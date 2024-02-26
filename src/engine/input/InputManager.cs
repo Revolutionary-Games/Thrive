@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,7 +12,7 @@ using Godot;
 ///     This is an AutoLoad class.
 ///   </para>
 /// </remarks>
-public class InputManager : Node
+public partial class InputManager : Node
 {
     private static readonly List<WeakReference> DestroyedListeners = new();
     private static InputManager? staticInstance;
@@ -44,7 +44,7 @@ public class InputManager : Node
     /// </remarks>
     private ActiveInputMethod usedInputMethod = ActiveInputMethod.Keyboard;
 
-    private float inputChangeDelay;
+    private double inputChangeDelay;
     private bool queuedInputChange;
 
     /// <summary>
@@ -68,7 +68,7 @@ public class InputManager : Node
 
         LoadAttributes(new[] { Assembly.GetExecutingAssembly() });
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
 
         StartTimer();
     }
@@ -223,7 +223,7 @@ public class InputManager : Node
     ///   Calls all OnProcess methods of all input attributes
     /// </summary>
     /// <param name="delta">The time since the last _Process call</param>
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (staticInstance == null)
             throw new InstanceNotLoadedYetException();
@@ -249,7 +249,7 @@ public class InputManager : Node
     {
         // If the window goes out of focus, we don't receive the key released events
         // We reset our held down keys if the player tabs out while pressing a key
-        if (what == NotificationWmFocusOut)
+        if (what == NotificationWMWindowFocusOut)
         {
             OnFocusLost();
         }
@@ -394,7 +394,7 @@ public class InputManager : Node
 
         Settings.Instance.ControllerAxisDeadzoneAxes.OnChanged += _ => LoadControllerDeadzones();
 
-        GetTree().Root.Connect("size_changed", this, nameof(OnWindowSizeChanged));
+        GetTree().Root.Connect("size_changed", new Callable(this, nameof(OnWindowSizeChanged)));
         UpdateWindowSizeForInputs();
 
         foreach (var attribute in attributes)
@@ -437,7 +437,7 @@ public class InputManager : Node
             if (@event is InputEventJoypadMotion joypadMotion)
             {
                 // Apply controller axis deadzone
-                var motionAxis = joypadMotion.Axis;
+                var motionAxis = (int)(joypadMotion.Axis - JoyAxis.LeftX);
                 controllerAxisDeadzones.TryGetValue(motionAxis, out float deadzone);
 
                 if (Math.Abs(joypadMotion.AxisValue) < deadzone)
@@ -492,7 +492,7 @@ public class InputManager : Node
 
         // Define input as consumed to Godot if something reacted to it
         if (handled)
-            GetTree().SetInputAsHandled();
+            GetViewport().SetInputAsHandled();
     }
 
     private void StartTimer()
@@ -502,10 +502,10 @@ public class InputManager : Node
         {
             Autostart = true,
             OneShot = false,
-            PauseMode = PauseModeEnum.Process,
+            ProcessMode = ProcessModeEnum.Always,
             WaitTime = 1,
         };
-        timer.Connect("timeout", this, nameof(ClearExpiredReferences));
+        timer.Connect("timeout", new Callable(this, nameof(ClearExpiredReferences)));
         AddChild(timer);
     }
 
@@ -616,9 +616,9 @@ public class InputManager : Node
     {
         var values = Settings.Instance.ControllerAxisDeadzoneAxes.Value;
 
-        if (values.Count != (int)JoystickList.AxisMax)
+        if (values.Count != (int)JoyAxis.Max)
         {
-            GD.PrintErr("Mismatching number of controller axis deadzones. Expected: ", (int)JoystickList.AxisMax,
+            GD.PrintErr("Mismatching number of controller axis deadzones. Expected: ", (int)JoyAxis.Max,
                 " actually configured: ", values.Count);
         }
 

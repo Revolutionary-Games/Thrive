@@ -145,7 +145,7 @@ public sealed class SteamClient : ISteamClient
         lowPowerCallback = new Callback<LowBatteryPower_t>(t => receiver.LowPower(t.m_nMinutesBatteryLeft));
     }
 
-    public void Process(float delta)
+    public void Process(double delta)
     {
         if (!IsLoaded)
             return;

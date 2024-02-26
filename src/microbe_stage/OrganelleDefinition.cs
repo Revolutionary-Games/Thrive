@@ -67,7 +67,7 @@ public class OrganelleDefinition : IRegistryType
     ///   Loaded icon for display in GUIs
     /// </summary>
     [JsonIgnore]
-    public Texture? LoadedIcon;
+    public Texture2D? LoadedIcon;
 
     /// <summary>
     ///   Density of this organelle. Note that densities should fall into just a few categories to ensure that cached
@@ -458,8 +458,7 @@ public class OrganelleDefinition : IRegistryType
 #if DEBUG
         if (!string.IsNullOrEmpty(CorpseChunkScene))
         {
-            using var directory = new Directory();
-            if (!directory.FileExists(CorpseChunkScene))
+            if (!FileAccess.FileExists(CorpseChunkScene))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Corpse chunk scene path doesn't exist");
@@ -485,7 +484,7 @@ public class OrganelleDefinition : IRegistryType
 
         if (!string.IsNullOrEmpty(IconPath))
         {
-            LoadedIcon = GD.Load<Texture>(IconPath);
+            LoadedIcon = GD.Load<Texture2D>(IconPath);
         }
 
         // Resolve process names

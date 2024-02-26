@@ -9,14 +9,14 @@ public class SpaceStructureSystem
     private readonly Node worldRoot;
 
     [JsonProperty]
-    private float elapsed = 1;
+    private double elapsed = 1;
 
     public SpaceStructureSystem(Node root)
     {
         worldRoot = root;
     }
 
-    public void Process(float delta, ISocietyStructureDataAccess societyData)
+    public void Process(double delta, ISocietyStructureDataAccess societyData)
     {
         elapsed += delta;
 

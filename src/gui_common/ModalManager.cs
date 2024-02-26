@@ -7,7 +7,7 @@ using Nito.Collections;
 /// <summary>
 ///   Handles a stack of <see cref="TopLevelContainer"/>s that block GUI inputs.
 /// </summary>
-public class ModalManager : NodeWithInput
+public partial class ModalManager : NodeWithInput
 {
     private static ModalManager? instance;
 
@@ -33,7 +33,7 @@ public class ModalManager : NodeWithInput
     {
         instance = this;
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     public static ModalManager Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -48,10 +48,10 @@ public class ModalManager : NodeWithInput
         canvasLayer = GetNode<CanvasLayer>("CanvasLayer");
         activeModalContainer = canvasLayer.GetNode<Control>("ActiveModalContainer");
 
-        activeModalContainer.SetAsToplevel(true);
+        activeModalContainer.SetAsTopLevel(true);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (modalsDirty)
         {
@@ -80,8 +80,8 @@ public class ModalManager : NodeWithInput
         modalsDirty = true;
 
         var binds = new Array { popup };
-        popup.CheckAndConnect(nameof(TopLevelContainer.Closed), this, nameof(OnModalLost), binds,
-            (uint)ConnectFlags.Oneshot);
+        popup.CheckAndConnect(nameof(TopLevelContainer.ClosedEventHandler), this, nameof(OnModalLost), binds,
+            (uint)ConnectFlags.OneShot);
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ public class ModalManager : NodeWithInput
         // This is emitted before closing to allow window using components to differentiate between "cancel" and
         // "any other reason for closing" in case some logic can be simplified by handling just those two situations.
         if (popup is CustomWindow dialog)
-            dialog.EmitSignal(nameof(CustomWindow.Cancelled));
+            dialog.EmitSignal(nameof(CustomWindow.CanceledEventHandler));
 
         popup.Close();
         popup.Notification(Control.NotificationModalClose);
@@ -203,7 +203,7 @@ public class ModalManager : NodeWithInput
             if (!top.Exclusive)
             {
                 if (top is CustomWindow dialog)
-                    dialog.EmitSignal(nameof(CustomWindow.Cancelled));
+                    dialog.EmitSignal(nameof(CustomWindow.CanceledEventHandler));
 
                 // The crux of the custom modal system, to have an overridable hide behavior!
                 top.Close();

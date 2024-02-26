@@ -360,7 +360,7 @@
 
                             // Preserve any previous animation properties that may have been setup by exocytosis
                             // request
-                            transportData.TargetValuesToLerp = (transportData.TargetValuesToLerp.Translation,
+                            transportData.TargetValuesToLerp = (transportData.TargetValuesToLerp.Position,
                                 engulfable.OriginalScale, transportData.TargetValuesToLerp.EndosomeScale);
                             StartBulkTransport(ref engulfable,
                                 ref engulfedEntity.Get<AttachedToEntity>(), 1.0f,
@@ -649,8 +649,8 @@
                 engulferPosition.Rotation.Inverse().Xform(targetEntityPosition.Position - engulferPosition.Position);
 
             var nearestPointOfMembraneToTarget =
-                engulferCellProperties.CreatedMembrane!.GetVectorTowardsNearestPointOfMembrane(relativePosition.x,
-                    relativePosition.z);
+                engulferCellProperties.CreatedMembrane!.GetVectorTowardsNearestPointOfMembrane(relativePosition.X,
+                    relativePosition.Z);
 
             // The point nearest to the membrane calculation doesn't take being bacteria into account
             if (engulferCellProperties.IsBacteria)
@@ -660,19 +660,19 @@
             // normalized radius to this cell's center in order to "shrink" the point relative to this cell's origin.
             // This will then act as a "maximum extent/edge" that qualifies as the interior of the engulfer's membrane
             var viableStoringAreaEdge =
-                nearestPointOfMembraneToTarget.LinearInterpolate(Vector3.Zero, targetRadiusNormalized);
+                nearestPointOfMembraneToTarget.Lerp(Vector3.Zero, targetRadiusNormalized);
 
             // Get the final storing position by taking a value between this cell's center and the storing area edge.
             // This would lessen the possibility of engulfed things getting bunched up in the same position.
-            var ingestionPoint = new Vector3(random.Next(0.0f, viableStoringAreaEdge.x),
-                engulferPosition.Position.y,
-                random.Next(0.0f, viableStoringAreaEdge.z));
+            var ingestionPoint = new Vector3(random.Next(0.0f, viableStoringAreaEdge.X),
+                engulferPosition.Position.Y,
+                random.Next(0.0f, viableStoringAreaEdge.Z));
 
             boundingBoxSize = Vector3.One;
 
             if (targetSpatial.GraphicalInstance != null)
             {
-                var geometryInstance = targetSpatial.GraphicalInstance as GeometryInstance;
+                var geometryInstance = targetSpatial.GraphicalInstance as GeometryInstance3D;
 
                 // TODO: should this use EntityMaterial.AutoRetrieveModelPath to find the path of the graphics instance
                 // in the node? This probably doesn't work for all kinds of chunks correctly
@@ -680,7 +680,7 @@
                 // Most engulfables have their graphical node as the first child of their primary node
                 if (geometryInstance == null && targetSpatial.GraphicalInstance.GetChildCount() > 0)
                 {
-                    geometryInstance = targetSpatial.GraphicalInstance.GetChild(0) as GeometryInstance;
+                    geometryInstance = targetSpatial.GraphicalInstance.GetChild(0) as GeometryInstance3D;
                 }
 
                 if (geometryInstance != null)
@@ -704,8 +704,8 @@
 
             // In the case of flat mesh (like membrane) we don't want the endosome to end up completely flat
             // as it can cause unwanted visual glitch
-            if (boundingBoxSize.y < Mathf.Epsilon)
-                boundingBoxSize = new Vector3(boundingBoxSize.x, 0.1f, boundingBoxSize.z);
+            if (boundingBoxSize.Y < Mathf.Epsilon)
+                boundingBoxSize = new Vector3(boundingBoxSize.X, 0.1f, boundingBoxSize.Z);
 
             return ingestionPoint;
         }
@@ -833,7 +833,7 @@
                 return endosome;
 
             // New entry needed
-            var newData = endosomeScene.Instance<Endosome>();
+            var newData = endosomeScene.Instantiate<Endosome>();
 
             // Tint is not applied here as all phagosome tints are applied always after processing an engulfer
 
@@ -1237,7 +1237,7 @@
             // The back of the microbe
             var exit = Hex.AxialToCartesian(new Hex(0, 1));
             var nearestPointOfMembraneToTarget =
-                engulferCellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
+                engulferCellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(exit.X, exit.Z);
 
             // The point nearest to the membrane calculation doesn't take being bacteria into account
             if (engulferCellProperties.IsBacteria)
@@ -1270,7 +1270,7 @@
             // immediately eject it without animation.
             // TODO: Asses performance cost in massive cells (of the membrane Contains)?
             if (engulferDead ||
-                !engulferCellProperties.CreatedMembrane.Contains(relativePosition.x, relativePosition.z))
+                !engulferCellProperties.CreatedMembrane.Contains(relativePosition.X, relativePosition.Z))
             {
                 CompleteEjection(ref engulfer, entity, ref engulfable, engulfedObject);
 
@@ -1574,10 +1574,10 @@
                 // Ease out
                 fraction = Mathf.Sin(fraction * Mathf.Pi * 0.5f);
 
-                if (animation.TargetValuesToLerp.Translation.HasValue)
+                if (animation.TargetValuesToLerp.Position.HasValue)
                 {
-                    relativePosition.RelativePosition = animation.InitialValuesToLerp.Translation.LinearInterpolate(
-                        animation.TargetValuesToLerp.Translation.Value, fraction);
+                    relativePosition.RelativePosition = animation.InitialValuesToLerp.Position.Lerp(
+                        animation.TargetValuesToLerp.Position.Value, fraction);
                 }
 
                 // There's an extra safety check here about the scale animation to not accidentally override things
@@ -1585,14 +1585,14 @@
                 // anyway when trying to debug a visual scale flickering problem related to engulfing -hhyyrylainen)
                 if (animation.TargetValuesToLerp.Scale.HasValue && animation.Interpolate)
                 {
-                    spatial.VisualScale = animation.InitialValuesToLerp.Scale.LinearInterpolate(
+                    spatial.VisualScale = animation.InitialValuesToLerp.Scale.Lerp(
                         animation.TargetValuesToLerp.Scale.Value, fraction);
                     spatial.ApplyVisualScale = true;
                 }
 
                 if (animation.TargetValuesToLerp.EndosomeScale.HasValue)
                 {
-                    endosome.Scale = animation.InitialValuesToLerp.EndosomeScale.LinearInterpolate(
+                    endosome.Scale = animation.InitialValuesToLerp.EndosomeScale.Lerp(
                         animation.TargetValuesToLerp.EndosomeScale.Value, fraction);
                 }
 
@@ -1603,8 +1603,8 @@
             }
 
             // Snap values
-            if (animation.TargetValuesToLerp.Translation.HasValue)
-                relativePosition.RelativePosition = animation.TargetValuesToLerp.Translation.Value;
+            if (animation.TargetValuesToLerp.Position.HasValue)
+                relativePosition.RelativePosition = animation.TargetValuesToLerp.Position.Value;
 
             // See the comment above where Interpolate is also referenced as to why it is here as well
             if (animation.TargetValuesToLerp.Scale.HasValue && animation.Interpolate)

@@ -6,49 +6,49 @@
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/VersionNumber.cs" type="Script" id=5]
 [ext_resource path="res://src/general/MainMenu.cs" type="Script" id=6]
-[ext_resource path="res://assets/textures/gui/BG_Menu02.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=8]
-[ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
-[ext_resource path="res://assets/misc/thrive_logo_big.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/gui/BG_Menu02.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/misc/thrive_logo_big.png" type="Texture2D" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/textures/gui/social_media/discord.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/gui/social_media/discord.png" type="Texture2D" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
-[ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" type="DynamicFont" id=16]
+[ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" type="FontFile" id=16]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryViewer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/general/NewGameSettings.tscn" type="PackedScene" id=18]
-[ext_resource path="res://assets/textures/gui/social_media/youtubeHover.png" type="Texture" id=19]
-[ext_resource path="res://assets/textures/gui/social_media/youtube.png" type="Texture" id=20]
-[ext_resource path="res://assets/textures/gui/social_media/youtubeActive.png" type="Texture" id=21]
-[ext_resource path="res://assets/textures/gui/social_media/facebook.png" type="Texture" id=22]
-[ext_resource path="res://assets/textures/gui/social_media/reddit.png" type="Texture" id=23]
-[ext_resource path="res://assets/textures/gui/social_media/github.png" type="Texture" id=24]
-[ext_resource path="res://assets/textures/gui/social_media/steam.png" type="Texture" id=25]
-[ext_resource path="res://assets/textures/gui/social_media/facebookActive.png" type="Texture" id=26]
-[ext_resource path="res://assets/textures/gui/social_media/twitterActive.png" type="Texture" id=27]
-[ext_resource path="res://assets/textures/gui/social_media/redditActive.png" type="Texture" id=28]
-[ext_resource path="res://assets/textures/gui/social_media/twitter.png" type="Texture" id=29]
-[ext_resource path="res://assets/textures/gui/social_media/steamActive.png" type="Texture" id=30]
-[ext_resource path="res://assets/textures/gui/social_media/redditHover.png" type="Texture" id=31]
-[ext_resource path="res://assets/textures/gui/social_media/steamHover.png" type="Texture" id=32]
-[ext_resource path="res://assets/textures/gui/social_media/twitterHover.png" type="Texture" id=33]
-[ext_resource path="res://assets/textures/gui/social_media/itchActive.png" type="Texture" id=34]
-[ext_resource path="res://assets/textures/gui/social_media/itchHover.png" type="Texture" id=35]
-[ext_resource path="res://assets/textures/gui/social_media/itch.png" type="Texture" id=36]
-[ext_resource path="res://assets/textures/gui/social_media/githubActive.png" type="Texture" id=37]
-[ext_resource path="res://assets/textures/gui/social_media/githubHover.png" type="Texture" id=38]
-[ext_resource path="res://assets/textures/gui/social_media/discordActive.png" type="Texture" id=39]
-[ext_resource path="res://assets/textures/gui/social_media/discordHover.png" type="Texture" id=40]
-[ext_resource path="res://assets/textures/gui/social_media/facebookHover.png" type="Texture" id=41]
-[ext_resource path="res://assets/textures/gui/social_media/patreon.png" type="Texture" id=43]
-[ext_resource path="res://assets/textures/gui/social_media/patreonActive.png" type="Texture" id=44]
-[ext_resource path="res://assets/textures/gui/social_media/patreonHover.png" type="Texture" id=45]
-[ext_resource path="res://assets/textures/gui/social_media/revolutionaryGames.png" type="Texture" id=46]
-[ext_resource path="res://assets/textures/gui/social_media/revolutionaryGamesActive.png" type="Texture" id=47]
-[ext_resource path="res://assets/textures/gui/social_media/revolutionaryGamesHover.png" type="Texture" id=48]
+[ext_resource path="res://assets/textures/gui/social_media/youtubeHover.png" type="Texture2D" id=19]
+[ext_resource path="res://assets/textures/gui/social_media/youtube.png" type="Texture2D" id=20]
+[ext_resource path="res://assets/textures/gui/social_media/youtubeActive.png" type="Texture2D" id=21]
+[ext_resource path="res://assets/textures/gui/social_media/facebook.png" type="Texture2D" id=22]
+[ext_resource path="res://assets/textures/gui/social_media/reddit.png" type="Texture2D" id=23]
+[ext_resource path="res://assets/textures/gui/social_media/github.png" type="Texture2D" id=24]
+[ext_resource path="res://assets/textures/gui/social_media/steam.png" type="Texture2D" id=25]
+[ext_resource path="res://assets/textures/gui/social_media/facebookActive.png" type="Texture2D" id=26]
+[ext_resource path="res://assets/textures/gui/social_media/twitterActive.png" type="Texture2D" id=27]
+[ext_resource path="res://assets/textures/gui/social_media/redditActive.png" type="Texture2D" id=28]
+[ext_resource path="res://assets/textures/gui/social_media/twitter.png" type="Texture2D" id=29]
+[ext_resource path="res://assets/textures/gui/social_media/steamActive.png" type="Texture2D" id=30]
+[ext_resource path="res://assets/textures/gui/social_media/redditHover.png" type="Texture2D" id=31]
+[ext_resource path="res://assets/textures/gui/social_media/steamHover.png" type="Texture2D" id=32]
+[ext_resource path="res://assets/textures/gui/social_media/twitterHover.png" type="Texture2D" id=33]
+[ext_resource path="res://assets/textures/gui/social_media/itchActive.png" type="Texture2D" id=34]
+[ext_resource path="res://assets/textures/gui/social_media/itchHover.png" type="Texture2D" id=35]
+[ext_resource path="res://assets/textures/gui/social_media/itch.png" type="Texture2D" id=36]
+[ext_resource path="res://assets/textures/gui/social_media/githubActive.png" type="Texture2D" id=37]
+[ext_resource path="res://assets/textures/gui/social_media/githubHover.png" type="Texture2D" id=38]
+[ext_resource path="res://assets/textures/gui/social_media/discordActive.png" type="Texture2D" id=39]
+[ext_resource path="res://assets/textures/gui/social_media/discordHover.png" type="Texture2D" id=40]
+[ext_resource path="res://assets/textures/gui/social_media/facebookHover.png" type="Texture2D" id=41]
+[ext_resource path="res://assets/textures/gui/social_media/patreon.png" type="Texture2D" id=43]
+[ext_resource path="res://assets/textures/gui/social_media/patreonActive.png" type="Texture2D" id=44]
+[ext_resource path="res://assets/textures/gui/social_media/patreonHover.png" type="Texture2D" id=45]
+[ext_resource path="res://assets/textures/gui/social_media/revolutionaryGames.png" type="Texture2D" id=46]
+[ext_resource path="res://assets/textures/gui/social_media/revolutionaryGamesActive.png" type="Texture2D" id=47]
+[ext_resource path="res://assets/textures/gui/social_media/revolutionaryGamesHover.png" type="Texture2D" id=48]
 [ext_resource path="res://src/thriveopedia/Thriveopedia.tscn" type="PackedScene" id=49]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=50]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="FontFile" id=50]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=56]
 [ext_resource path="res://src/gui_common/ThriveFeedDisplayer.tscn" type="PackedScene" id=57]
 [ext_resource path="res://src/gui_common/PatchNotesDisplayer.tscn" type="PackedScene" id=58]
@@ -80,8 +80,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.1 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "SwitchMenu"
@@ -94,8 +94,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3 ),
-"transitions": PoolRealArray( 2, 0.5, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.3 ),
+"transitions": PackedFloat32Array( 2, 0.5, 1 ),
 "update": 0,
 "values": [ 0.275, 0.45, 0.275 ]
 }
@@ -106,8 +106,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3 ),
-"transitions": PoolRealArray( 2, 0.5, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.3 ),
+"transitions": PackedFloat32Array( 2, 0.5, 1 ),
 "update": 0,
 "values": [ 0.952, 1.2, 0.952 ]
 }
@@ -160,15 +160,15 @@ __meta__ = {
 
 [node name="StoreUser" type="Label" parent="."]
 anchor_right = 1.0
-margin_left = 3.0
-margin_top = 4.0
-margin_bottom = 19.0
+offset_left = 3.0
+offset_top = 4.0
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = ExtResource( 16 )
+theme_override_fonts/font = ExtResource( 16 )
 text = "Logged in as: name"
 max_lines_visible = 1
 __meta__ = {
@@ -180,15 +180,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -763.0
-margin_top = -19.0
-margin_right = -4.0
-margin_bottom = -4.0
+offset_left = -763.0
+offset_top = -19.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = ExtResource( 16 )
+theme_override_fonts/font = ExtResource( 16 )
 text = "x.y.z"
 align = 2
 valign = 2
@@ -206,19 +206,19 @@ __meta__ = {
 [node name="LogoCenterContainer" type="CenterContainer" parent="MenuContainers"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -640.0
-margin_right = 639.0
-margin_bottom = 221.0
+offset_left = -640.0
+offset_right = 639.0
+offset_bottom = 221.0
 __meta__ = {
 "_editor_description_": "Centering fo the Thrive logo"
 }
 
 [node name="Logo" type="TextureRect" parent="MenuContainers/LogoCenterContainer"]
-margin_left = 539.0
-margin_top = 10.0
-margin_right = 739.0
-margin_bottom = 210.0
-rect_min_size = Vector2( 200, 200 )
+offset_left = 539.0
+offset_top = 10.0
+offset_right = 739.0
+offset_bottom = 210.0
+custom_minimum_size = Vector2( 200, 200 )
 texture = ExtResource( 10 )
 expand = true
 stretch_mode = 6
@@ -230,22 +230,22 @@ __meta__ = {
 anchor_left = 0.597
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 45.0
-margin_top = 195.0
-margin_right = -30.0
-margin_bottom = -125.0
+offset_left = 45.0
+offset_top = 195.0
+offset_right = -30.0
+offset_bottom = -125.0
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/FeedPositioner"]
-margin_right = 440.0
-margin_bottom = 400.0
+offset_right = 440.0
+offset_bottom = 400.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NewsDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
-margin_right = 440.0
-margin_bottom = 198.0
+offset_right = 440.0
+offset_bottom = 198.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -253,15 +253,15 @@ size_flags_vertical = 3
 [node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" instance=ExtResource( 57 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 440.0
-margin_bottom = 198.0
+offset_right = 440.0
+offset_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PatchNotesDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
-margin_top = 202.0
-margin_right = 440.0
-margin_bottom = 400.0
+offset_top = 202.0
+offset_right = 440.0
+offset_bottom = 400.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -269,8 +269,8 @@ size_flags_vertical = 3
 [node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" instance=ExtResource( 58 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 440.0
-margin_bottom = 198.0
+offset_right = 440.0
+offset_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -278,28 +278,28 @@ size_flags_vertical = 3
 anchor_top = 0.275
 anchor_right = 1.0
 anchor_bottom = 0.952
-rect_clip_content = true
+clip_contents = true
 mouse_filter = 2
 theme = ExtResource( 1 )
 
 [node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
-margin_left = 515.0
-margin_top = 13.0
-margin_right = 765.0
-margin_bottom = 473.0
-custom_constants/separation = 10
+offset_left = 515.0
+offset_top = 13.0
+offset_right = 765.0
+offset_bottom = 473.0
+theme_override_constants/separation = 10
 
 [node name="Spacer" type="Control" parent="MenuContainers/Menus/MainMenu"]
-margin_right = 250.0
+offset_right = 250.0
 
 [node name="NewGame" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 10.0
-margin_right = 250.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "NEW_GAME_BUTTON_TOOLTIP"
-focus_neighbour_top = NodePath(".")
-focus_neighbour_bottom = NodePath("../LoadGame")
+offset_top = 10.0
+offset_right = 250.0
+offset_bottom = 50.0
+custom_minimum_size = Vector2( 250, 40 )
+tooltip_text = "NEW_GAME_BUTTON_TOOLTIP"
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../LoadGame")
 focus_previous = NodePath(".")
 mouse_filter = 1
 text = "NEW_GAME"
@@ -308,122 +308,122 @@ __meta__ = {
 }
 
 [node name="LoadGame" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 60.0
-margin_right = 250.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "LOAD_GAME_BUTTON_TOOLTIP"
+offset_top = 60.0
+offset_right = 250.0
+offset_bottom = 100.0
+custom_minimum_size = Vector2( 250, 40 )
+tooltip_text = "LOAD_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
 text = "LOAD_GAME"
 
 [node name="Options" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 110.0
-margin_right = 250.0
-margin_bottom = 150.0
-rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "OPTIONS_BUTTON_TOOLTIP"
+offset_top = 110.0
+offset_right = 250.0
+offset_bottom = 150.0
+custom_minimum_size = Vector2( 250, 40 )
+tooltip_text = "OPTIONS_BUTTON_TOOLTIP"
 mouse_filter = 1
 text = "OPTIONS"
 
 [node name="Tools" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 160.0
-margin_right = 250.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 250, 40 )
+offset_top = 160.0
+offset_right = 250.0
+offset_bottom = 200.0
+custom_minimum_size = Vector2( 250, 40 )
 mouse_filter = 1
 text = "TOOLS"
 
 [node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 210.0
-margin_right = 250.0
-margin_bottom = 250.0
-rect_min_size = Vector2( 250, 40 )
+offset_top = 210.0
+offset_right = 250.0
+offset_bottom = 250.0
+custom_minimum_size = Vector2( 250, 40 )
 mouse_filter = 1
 text = "VIEW_SOURCE_CODE"
 
 [node name="Extras" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 260.0
-margin_right = 250.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 250, 40 )
+offset_top = 260.0
+offset_right = 250.0
+offset_bottom = 300.0
+custom_minimum_size = Vector2( 250, 40 )
 mouse_filter = 1
 text = "EXTRAS"
 
 [node name="Credits" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 310.0
-margin_right = 250.0
-margin_bottom = 350.0
-rect_min_size = Vector2( 250, 40 )
+offset_top = 310.0
+offset_right = 250.0
+offset_bottom = 350.0
+custom_minimum_size = Vector2( 250, 40 )
 mouse_filter = 1
 text = "CREDITS"
 
 [node name="Launcher" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 360.0
-margin_right = 250.0
-margin_bottom = 400.0
-rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "QUIT_BUTTON_TOOLTIP"
+offset_top = 360.0
+offset_right = 250.0
+offset_bottom = 400.0
+custom_minimum_size = Vector2( 250, 40 )
+tooltip_text = "QUIT_BUTTON_TOOLTIP"
 mouse_filter = 1
 text = "EXIT_TO_LAUNCHER"
 
 [node name="Quit" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 410.0
-margin_right = 250.0
-margin_bottom = 450.0
-rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "QUIT_BUTTON_TOOLTIP"
-focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
-focus_neighbour_bottom = NodePath(".")
+offset_top = 410.0
+offset_right = 250.0
+offset_bottom = 450.0
+custom_minimum_size = Vector2( 250, 40 )
+tooltip_text = "QUIT_BUTTON_TOOLTIP"
+focus_neighbor_left = NodePath("../../../SocialMedia/TwitterButton")
+focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath("../../../SocialMedia/RevolutionaryGamesButton")
 mouse_filter = 1
 text = "QUIT"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/MainMenu" instance=ExtResource( 56 )]
-margin_top = 460.0
-margin_right = 250.0
-margin_bottom = 460.0
+offset_top = 460.0
+offset_right = 250.0
+offset_bottom = 460.0
 NodeToGiveFocusTo = NodePath("../NewGame")
 
 [node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
-margin_left = 460.0
-margin_top = 88.0
-margin_right = 820.0
-margin_bottom = 398.0
-custom_constants/separation = 10
+offset_left = 460.0
+offset_top = 88.0
+offset_right = 820.0
+offset_bottom = 398.0
+theme_override_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Spacer" type="Control" parent="MenuContainers/Menus/Tools"]
-margin_right = 360.0
+offset_right = 360.0
 
 [node name="FreebuildMicrobeEditor" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_top = 10.0
-margin_right = 360.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 250, 40 )
-focus_neighbour_top = NodePath(".")
+offset_top = 10.0
+offset_right = 360.0
+offset_bottom = 50.0
+custom_minimum_size = Vector2( 250, 40 )
+focus_neighbor_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
 size_flags_vertical = 0
 text = "MICROBE_FREEBUILD_EDITOR"
 
 [node name="FreebuildMulticellularEditor" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_top = 60.0
-margin_right = 360.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 250, 40 )
+offset_top = 60.0
+offset_right = 360.0
+offset_bottom = 100.0
+custom_minimum_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_vertical = 0
 text = "MULTICELLULAR_FREEBUILD_EDITOR"
 
 [node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_top = 110.0
-margin_right = 360.0
-margin_bottom = 150.0
-rect_min_size = Vector2( 250, 40 )
-focus_neighbour_bottom = NodePath("../Benchmarks")
+offset_top = 110.0
+offset_right = 360.0
+offset_bottom = 150.0
+custom_minimum_size = Vector2( 250, 40 )
+focus_neighbor_bottom = NodePath("../Benchmarks")
 focus_next = NodePath("../Benchmarks")
 mouse_filter = 1
 size_flags_vertical = 0
@@ -433,11 +433,11 @@ __meta__ = {
 }
 
 [node name="Benchmarks" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_top = 160.0
-margin_right = 360.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 250, 40 )
-focus_neighbour_bottom = NodePath("../Back")
+offset_top = 160.0
+offset_right = 360.0
+offset_bottom = 200.0
+custom_minimum_size = Vector2( 250, 40 )
+focus_neighbor_bottom = NodePath("../Back")
 focus_next = NodePath("../Back")
 mouse_filter = 1
 size_flags_vertical = 0
@@ -447,10 +447,10 @@ __meta__ = {
 }
 
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_top = 210.0
-margin_right = 360.0
-margin_bottom = 250.0
-rect_min_size = Vector2( 250, 40 )
+offset_top = 210.0
+offset_right = 360.0
+offset_bottom = 250.0
+custom_minimum_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_vertical = 0
@@ -461,43 +461,43 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_top = 260.0
-margin_right = 360.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 250, 40 )
-focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
-focus_neighbour_top = NodePath("../Benchmarks")
+offset_top = 260.0
+offset_right = 360.0
+offset_bottom = 300.0
+custom_minimum_size = Vector2( 250, 40 )
+focus_neighbor_left = NodePath("../../../SocialMedia/TwitterButton")
+focus_neighbor_top = NodePath("../Benchmarks")
 focus_previous = NodePath("../Benchmarks")
 mouse_filter = 1
 size_flags_vertical = 0
 text = "BACK"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/Tools" instance=ExtResource( 56 )]
-margin_top = 310.0
-margin_right = 360.0
-margin_bottom = 310.0
+offset_top = 310.0
+offset_right = 360.0
+offset_bottom = 310.0
 NodeToGiveFocusTo = NodePath("../FreebuildMicrobeEditor")
 
 [node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
-margin_left = 508.0
-margin_top = 88.0
-margin_right = 771.0
-margin_bottom = 398.0
-custom_constants/separation = 10
+offset_left = 508.0
+offset_top = 88.0
+offset_right = 771.0
+offset_bottom = 398.0
+theme_override_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Spacer" type="Control" parent="MenuContainers/Menus/Extras"]
-margin_right = 250.0
+offset_right = 250.0
 
 [node name="Thriveopedia" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 515.0
-margin_right = 765.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 250, 40 )
-focus_neighbour_top = NodePath(".")
+offset_left = 515.0
+offset_right = 765.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 250, 40 )
+focus_neighbor_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
 size_flags_vertical = 0
@@ -507,11 +507,11 @@ __meta__ = {
 }
 
 [node name="Mods" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 515.0
-margin_top = 50.0
-margin_right = 765.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 250, 40 )
+offset_left = 515.0
+offset_top = 50.0
+offset_right = 765.0
+offset_bottom = 90.0
+custom_minimum_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_vertical = 0
 text = "MODS"
@@ -520,21 +520,21 @@ __meta__ = {
 }
 
 [node name="ArtGallery" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 515.0
-margin_top = 100.0
-margin_right = 765.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 250, 40 )
+offset_left = 515.0
+offset_top = 100.0
+offset_right = 765.0
+offset_bottom = 140.0
+custom_minimum_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_vertical = 0
 text = "ART_GALLERY"
 
 [node name="Licenses" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 515.0
-margin_top = 150.0
-margin_right = 765.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 40 )
+offset_left = 515.0
+offset_top = 150.0
+offset_right = 765.0
+offset_bottom = 190.0
+custom_minimum_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_vertical = 0
 text = "LICENSES"
@@ -543,11 +543,11 @@ __meta__ = {
 }
 
 [node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 508.0
-margin_top = 200.0
-margin_right = 771.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 250, 40 )
+offset_left = 508.0
+offset_top = 200.0
+offset_right = 771.0
+offset_bottom = 240.0
+custom_minimum_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_vertical = 0
 text = "VISIT_SUGGESTIONS_SITE"
@@ -556,54 +556,54 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 515.0
-margin_top = 250.0
-margin_right = 765.0
-margin_bottom = 290.0
-rect_min_size = Vector2( 250, 40 )
-focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
-focus_neighbour_bottom = NodePath(".")
+offset_left = 515.0
+offset_top = 250.0
+offset_right = 765.0
+offset_bottom = 290.0
+custom_minimum_size = Vector2( 250, 40 )
+focus_neighbor_left = NodePath("../../../SocialMedia/TwitterButton")
+focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 mouse_filter = 1
 size_flags_vertical = 0
 text = "BACK"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/Extras" instance=ExtResource( 56 )]
-margin_top = 460.0
-margin_right = 250.0
-margin_bottom = 460.0
+offset_top = 460.0
+offset_right = 250.0
+offset_bottom = 460.0
 NodeToGiveFocusTo = NodePath("../Thriveopedia")
 
 [node name="Benchmarks" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
-margin_left = 515.0
-margin_top = 163.0
-margin_right = 765.0
-margin_bottom = 323.0
-custom_constants/separation = 10
+offset_left = 515.0
+offset_top = 163.0
+offset_right = 765.0
+offset_bottom = 323.0
+theme_override_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Spacer" type="Control" parent="MenuContainers/Menus/Benchmarks"]
-margin_right = 250.0
+offset_right = 250.0
 
 [node name="MicrobeBenchmark" type="Button" parent="MenuContainers/Menus/Benchmarks"]
-margin_right = 288.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 250, 40 )
-focus_neighbour_top = NodePath(".")
+offset_right = 288.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 250, 40 )
+focus_neighbor_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
 size_flags_vertical = 0
 text = "MICROBE_BENCHMARK"
 
 [node name="unknown" type="Button" parent="MenuContainers/Menus/Benchmarks"]
-margin_left = 19.0
-margin_top = 100.0
-margin_right = 269.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 250, 40 )
+offset_left = 19.0
+offset_top = 100.0
+offset_right = 269.0
+offset_bottom = 140.0
+custom_minimum_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_vertical = 0
@@ -614,156 +614,156 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/Benchmarks"]
-margin_left = 19.0
-margin_top = 200.0
-margin_right = 269.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 250, 40 )
-focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
+offset_left = 19.0
+offset_top = 200.0
+offset_right = 269.0
+offset_bottom = 240.0
+custom_minimum_size = Vector2( 250, 40 )
+focus_neighbor_left = NodePath("../../../SocialMedia/TwitterButton")
 mouse_filter = 1
 size_flags_vertical = 0
 text = "BACK"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/Benchmarks" instance=ExtResource( 56 )]
-margin_top = 460.0
-margin_right = 250.0
-margin_bottom = 460.0
+offset_top = 460.0
+offset_right = 250.0
+offset_bottom = 460.0
 NodeToGiveFocusTo = NodePath("../MicrobeBenchmark")
 
 [node name="WebsiteButtons" type="PopupPanel" parent="MenuContainers"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 7.0
-margin_top = -306.0
-margin_right = 175.0
-margin_bottom = -41.0
-rect_min_size = Vector2( 0, 80 )
+offset_left = 7.0
+offset_top = -306.0
+offset_right = 175.0
+offset_bottom = -41.0
+custom_minimum_size = Vector2( 0, 80 )
 theme = ExtResource( 1 )
-custom_styles/panel = SubResource( 2 )
+theme_override_styles/panel = SubResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuContainers/WebsiteButtons"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 163.0
-margin_bottom = 260.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 163.0
+offset_bottom = 260.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer"]
-margin_right = 158.0
-margin_bottom = 255.0
-custom_constants/separation = 10
+offset_right = 158.0
+offset_bottom = 255.0
+theme_override_constants/separation = 10
 
 [node name="Spacer" type="Control" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_right = 158.0
+offset_right = 158.0
 
 [node name="OfficialWebsiteButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 10.0
-margin_right = 158.0
-margin_bottom = 35.0
-hint_tooltip = "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
-focus_neighbour_left = NodePath(".")
-focus_neighbour_top = NodePath("../VisitSuggestionsSite")
-focus_neighbour_right = NodePath(".")
-focus_neighbour_bottom = NodePath("../CommunityForumButton")
+offset_top = 10.0
+offset_right = 158.0
+offset_bottom = 35.0
+tooltip_text = "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../VisitSuggestionsSite")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../CommunityForumButton")
 focus_next = NodePath("../CommunityForumButton")
 focus_previous = NodePath("../VisitSuggestionsSite")
 mouse_filter = 1
-custom_fonts/font = ExtResource( 50 )
+theme_override_fonts/font = ExtResource( 50 )
 text = "OFFICIAL_WEBSITE"
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="CommunityForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 45.0
-margin_right = 158.0
-margin_bottom = 70.0
-hint_tooltip = "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-focus_neighbour_left = NodePath(".")
-focus_neighbour_right = NodePath(".")
+offset_top = 45.0
+offset_right = 158.0
+offset_bottom = 70.0
+tooltip_text = "COMMUNITY_FORUM_BUTTON_TOOLTIP"
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
 mouse_filter = 1
-custom_fonts/font = ExtResource( 50 )
+theme_override_fonts/font = ExtResource( 50 )
 text = "COMMUNITY_FORUM"
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="DevelopmentForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 80.0
-margin_right = 158.0
-margin_bottom = 105.0
-hint_tooltip = "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-focus_neighbour_left = NodePath(".")
-focus_neighbour_right = NodePath(".")
+offset_top = 80.0
+offset_right = 158.0
+offset_bottom = 105.0
+tooltip_text = "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
 mouse_filter = 1
-custom_fonts/font = ExtResource( 50 )
+theme_override_fonts/font = ExtResource( 50 )
 text = "DEVELOPMENT_FORUM"
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 115.0
-margin_right = 158.0
-margin_bottom = 140.0
-hint_tooltip = "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-focus_neighbour_left = NodePath(".")
-focus_neighbour_right = NodePath(".")
+offset_top = 115.0
+offset_right = 158.0
+offset_bottom = 140.0
+tooltip_text = "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
 mouse_filter = 1
-custom_fonts/font = ExtResource( 50 )
+theme_override_fonts/font = ExtResource( 50 )
 text = "DEVELOPMENT_WIKI"
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="CommunityWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 150.0
-margin_right = 158.0
-margin_bottom = 175.0
-hint_tooltip = "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-focus_neighbour_left = NodePath(".")
-focus_neighbour_right = NodePath(".")
+offset_top = 150.0
+offset_right = 158.0
+offset_bottom = 175.0
+tooltip_text = "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
 mouse_filter = 1
-custom_fonts/font = ExtResource( 50 )
+theme_override_fonts/font = ExtResource( 50 )
 text = "COMMUNITY_WIKI"
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="ReportBugButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 185.0
-margin_right = 158.0
-margin_bottom = 210.0
-focus_neighbour_left = NodePath(".")
-focus_neighbour_right = NodePath(".")
+offset_top = 185.0
+offset_right = 158.0
+offset_bottom = 210.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
 mouse_filter = 1
-custom_fonts/font = ExtResource( 50 )
+theme_override_fonts/font = ExtResource( 50 )
 text = "REPORT_BUG"
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 220.0
-margin_right = 158.0
-margin_bottom = 245.0
-focus_neighbour_left = NodePath(".")
-focus_neighbour_top = NodePath("../CommunityWikiButton")
-focus_neighbour_right = NodePath(".")
-focus_neighbour_bottom = NodePath("../OfficialWebsiteButton")
+offset_top = 220.0
+offset_right = 158.0
+offset_bottom = 245.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../CommunityWikiButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../OfficialWebsiteButton")
 focus_next = NodePath("../OfficialWebsiteButton")
 focus_previous = NodePath("../CommunityWikiButton")
 mouse_filter = 1
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 50 )
+theme_override_fonts/font = ExtResource( 50 )
 text = "VISIT_SUGGESTIONS_SITE"
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="FocusGrabber" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer" instance=ExtResource( 56 )]
-margin_top = 255.0
-margin_right = 158.0
-margin_bottom = 255.0
+offset_top = 255.0
+offset_right = 158.0
+offset_bottom = 255.0
 SkipOverridingFocusForElements = [ NodePath("../../..") ]
 Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
@@ -772,18 +772,18 @@ AlwaysOverrideFocus = true
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 7.0
-margin_top = -33.0
-margin_right = 397.0
-margin_bottom = -8.0
+offset_left = 7.0
+offset_top = -33.0
+offset_right = 397.0
+offset_bottom = -8.0
 theme = ExtResource( 1 )
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 
 [node name="RevolutionaryGamesButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
-margin_right = 25.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+offset_right = 25.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
+tooltip_text = "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 focus_previous = NodePath("../../Menus/MainMenu/Quit")
 texture_normal = ExtResource( 46 )
 texture_pressed = ExtResource( 47 )
@@ -792,11 +792,11 @@ texture_focused = ExtResource( 48 )
 expand = true
 
 [node name="SteamButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
-margin_left = 35.0
-margin_right = 60.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "STEAM_TOOLTIP"
+offset_left = 35.0
+offset_right = 60.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
+tooltip_text = "STEAM_TOOLTIP"
 texture_normal = ExtResource( 25 )
 texture_pressed = ExtResource( 30 )
 texture_hover = ExtResource( 32 )
@@ -804,11 +804,11 @@ texture_focused = ExtResource( 32 )
 expand = true
 
 [node name="ItchButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
-margin_left = 70.0
-margin_right = 95.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "ITCH_TOOLTIP"
+offset_left = 70.0
+offset_right = 95.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
+tooltip_text = "ITCH_TOOLTIP"
 texture_normal = ExtResource( 36 )
 texture_pressed = ExtResource( 34 )
 texture_hover = ExtResource( 35 )
@@ -816,11 +816,11 @@ texture_focused = ExtResource( 35 )
 expand = true
 
 [node name="PatreonButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
-margin_left = 105.0
-margin_right = 130.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "PATREON_TOOLTIP"
+offset_left = 105.0
+offset_right = 130.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
+tooltip_text = "PATREON_TOOLTIP"
 texture_normal = ExtResource( 43 )
 texture_pressed = ExtResource( 44 )
 texture_hover = ExtResource( 45 )
@@ -828,11 +828,11 @@ texture_focused = ExtResource( 45 )
 expand = true
 
 [node name="GitHubButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
-margin_left = 140.0
-margin_right = 165.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "GITHUB_TOOLTIP"
+offset_left = 140.0
+offset_right = 165.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
+tooltip_text = "GITHUB_TOOLTIP"
 texture_normal = ExtResource( 24 )
 texture_pressed = ExtResource( 37 )
 texture_hover = ExtResource( 38 )
@@ -840,11 +840,11 @@ texture_focused = ExtResource( 38 )
 expand = true
 
 [node name="YouTubeButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
-margin_left = 175.0
-margin_right = 200.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "YOUTUBE_TOOLTIP"
+offset_left = 175.0
+offset_right = 200.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
+tooltip_text = "YOUTUBE_TOOLTIP"
 texture_normal = ExtResource( 20 )
 texture_pressed = ExtResource( 21 )
 texture_hover = ExtResource( 19 )
@@ -852,11 +852,11 @@ texture_focused = ExtResource( 19 )
 expand = true
 
 [node name="RedditButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
-margin_left = 210.0
-margin_right = 235.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "REDDIT_TOOLTIP"
+offset_left = 210.0
+offset_right = 235.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
+tooltip_text = "REDDIT_TOOLTIP"
 texture_normal = ExtResource( 23 )
 texture_pressed = ExtResource( 28 )
 texture_hover = ExtResource( 31 )
@@ -864,11 +864,11 @@ texture_focused = ExtResource( 31 )
 expand = true
 
 [node name="DiscordButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
-margin_left = 245.0
-margin_right = 270.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "DISCORD_TOOLTIP"
+offset_left = 245.0
+offset_right = 270.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
+tooltip_text = "DISCORD_TOOLTIP"
 texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 39 )
 texture_hover = ExtResource( 40 )
@@ -876,11 +876,11 @@ texture_focused = ExtResource( 40 )
 expand = true
 
 [node name="FacebookButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
-margin_left = 280.0
-margin_right = 305.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "FACEBOOK_TOOLTIP"
+offset_left = 280.0
+offset_right = 305.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
+tooltip_text = "FACEBOOK_TOOLTIP"
 texture_normal = ExtResource( 22 )
 texture_pressed = ExtResource( 26 )
 texture_hover = ExtResource( 41 )
@@ -888,12 +888,12 @@ texture_focused = ExtResource( 41 )
 expand = true
 
 [node name="TwitterButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
-margin_left = 315.0
-margin_right = 340.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "TWITTER_TOOLTIP"
-focus_neighbour_right = NodePath("../../Menus/MainMenu/Quit")
+offset_left = 315.0
+offset_right = 340.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
+tooltip_text = "TWITTER_TOOLTIP"
+focus_neighbor_right = NodePath("../../Menus/MainMenu/Quit")
 focus_next = NodePath("../../Menus/MainMenu/Quit")
 texture_normal = ExtResource( 29 )
 texture_pressed = ExtResource( 27 )
@@ -914,8 +914,8 @@ visible = false
 visible = false
 
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
-margin_top = 28.0
-margin_bottom = 628.0
+offset_top = 28.0
+offset_bottom = 628.0
 
 [node name="GalleryViewer" parent="." instance=ExtResource( 17 )]
 
@@ -937,11 +937,11 @@ AutoStart = false
 anchor_top = 0.931
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 4.67993
-margin_right = -1125.0
-margin_bottom = -5.00006
-rect_min_size = Vector2( 150, 40 )
+offset_left = 5.0
+offset_top = 4.67993
+offset_right = -1125.0
+offset_bottom = -5.00006
+custom_minimum_size = Vector2( 150, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -960,18 +960,18 @@ visible = false
 anims/MenuSlide = SubResource( 1 )
 
 [node name="GLES2Popup" parent="." instance=ExtResource( 4 )]
-margin_top = 28.0
-margin_right = 680.0
-margin_bottom = 148.0
-rect_min_size = Vector2( 680, 0 )
+offset_top = 28.0
+offset_right = 680.0
+offset_bottom = 148.0
+custom_minimum_size = Vector2( 680, 0 )
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
 
 [node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 59 )]
-margin_right = 163.0
-margin_bottom = 97.0
-rect_min_size = Vector2( 550, 0 )
+offset_right = 163.0
+offset_bottom = 97.0
+custom_minimum_size = Vector2( 550, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -983,22 +983,22 @@ CenterText = false
 DialogType = 1
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 550, 370 )
+offset_right = 40.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 550, 370 )
 WindowTitle = "SAFE_MODE_TITLE"
 HideCancelButton = true
 DialogText = "SAFE_MODE_EXPLANATION"
 
 [node name="ModFailureDialog" parent="." instance=ExtResource( 15 )]
-rect_min_size = Vector2( 400, 350 )
+custom_minimum_size = Vector2( 400, 350 )
 WindowTitle = "MOD_LOAD_ERRORS"
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
 [node name="ThanksForBuyingDialog" parent="." instance=ExtResource( 59 )]
-margin_right = 163.0
-margin_bottom = 97.0
-rect_min_size = Vector2( 500, 0 )
+offset_right = 163.0
+offset_bottom = 97.0
+custom_minimum_size = Vector2( 500, 0 )
 WindowTitle = "THANK_YOU_TITLE"
 HideCancelButton = true
 DialogText = "THANKS_FOR_BUYING_THRIVE"
@@ -1006,15 +1006,15 @@ CenterText = false
 NoticeType = 1
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource( 4 )]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 500, 0 )
+offset_right = 40.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 500, 0 )
 WindowTitle = "STEAM_INIT_FAILED"
 HideCancelButton = true
 DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 
 [node name="LowPerformanceDialog" parent="." instance=ExtResource( 59 )]
-rect_min_size = Vector2( 500, 0 )
+custom_minimum_size = Vector2( 500, 0 )
 WindowTitle = "LOW_MENU_PERFORMANCE"
 ShowCloseButton = false
 DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"

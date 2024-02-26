@@ -1,7 +1,7 @@
-﻿/// <summary>
+/// <summary>
 ///   Handles input for the space stage
 /// </summary>
-public class PlayerSpaceInput : NodeWithInput
+public partial class PlayerSpaceInput : NodeWithInput
 {
 #pragma warning disable CA2213 // this is our parent object
     private SpaceStage stage = null!;
@@ -12,7 +12,7 @@ public class PlayerSpaceInput : NodeWithInput
         // Not the cleanest that the parent has to be a specific stage type...
         stage = (SpaceStage)GetParent();
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     // TODO: implement new thing building

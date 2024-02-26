@@ -1,55 +1,55 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="FontFile" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="FontFile" id=2]
 [ext_resource path="res://src/microbe_stage/editor/CellStatsIndicator.cs" type="Script" id=3]
 
 [node name="CellStatIndicator" type="HBoxContainer"]
-margin_right = 213.0
-margin_bottom = 25.0
+offset_right = 213.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 script = ExtResource( 3 )
 ValuePath = NodePath("HBoxContainer/Value")
 
 [node name="Indicator" type="TextureRect" parent="."]
 visible = false
-margin_top = 7.0
-margin_right = 10.0
-margin_bottom = 17.0
-rect_min_size = Vector2( 10, 10 )
+offset_top = 7.0
+offset_right = 10.0
+offset_bottom = 17.0
+custom_minimum_size = Vector2( 10, 10 )
 size_flags_vertical = 4
 expand = true
 
 [node name="Icon" type="TextureRect" parent="."]
-margin_right = 25.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
+offset_right = 25.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
 expand = true
 
 [node name="Description" type="Label" parent="."]
-margin_left = 29.0
-margin_top = 4.0
-margin_right = 203.0
-margin_bottom = 21.0
-custom_fonts/font = ExtResource( 1 )
+offset_left = 29.0
+offset_top = 4.0
+offset_right = 203.0
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource( 1 )
 text = "CELL_STAT_PLACEHOLDER"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 207.0
-margin_right = 228.0
-margin_bottom = 25.0
+offset_left = 207.0
+offset_right = 228.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="Value" type="Label" parent="HBoxContainer"]
-margin_top = 3.0
-margin_right = 21.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0.937255, 0.901961, 0.545098, 1 )
-custom_fonts/font = ExtResource( 2 )
+offset_top = 3.0
+offset_right = 21.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color( 0.937255, 0.901961, 0.545098, 1 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "n/a"
 align = 2
 __meta__ = {

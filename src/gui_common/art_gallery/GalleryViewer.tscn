@@ -4,19 +4,19 @@
 [ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/art_gallery/SlideScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryCardModel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="FontFile" id=5]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryCardAudio.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryViewer.cs" type="Script" id=7]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryDetailsTooltip.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=10]
 [ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=11]
 
 [node name="GalleryViewer" instance=ExtResource( 2 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 script = ExtResource( 7 )
 Exclusive = true
 PreventsMouseCaptureWhileOpen = false
@@ -35,13 +35,13 @@ GalleryDetailsToolTipScene = ExtResource( 8 )
 [node name="MarginContainer" type="MarginContainer" parent="." index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_left = 10
+theme_override_constants/margin_left = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" index="0"]
-margin_left = 10.0
-margin_right = 1280.0
-margin_bottom = 720.0
-custom_constants/separation = 5
+offset_left = 10.0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -49,42 +49,42 @@ __meta__ = {
 [node name="TabButtons" parent="MarginContainer/VBoxContainer" index="0" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1270.0
-margin_bottom = 0.0
+offset_right = 1270.0
+offset_bottom = 0.0
 TabsLoop = true
 TabChangeTriggerMethod = 0
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" index="1"]
-margin_top = 5.0
-margin_right = 1270.0
-margin_bottom = 9.0
+offset_top = 5.0
+offset_right = 1270.0
+offset_bottom = 9.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2"]
-margin_top = 14.0
-margin_right = 1270.0
-margin_bottom = 33.0
+offset_top = 14.0
+offset_right = 1270.0
+offset_bottom = 33.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3" index="0"]
-margin_top = 1.0
-margin_right = 249.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 10 )
+offset_top = 1.0
+offset_right = 249.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource( 10 )
 text = "FILTER_ITEMS_BY_CATEGORY_COLON"
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer3" index="1"]
-margin_left = 253.0
-margin_right = 287.0
-margin_bottom = 19.0
+offset_left = 253.0
+offset_right = 287.0
+offset_bottom = 19.0
 
 [node name="HBoxContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer" index="3"]
-margin_top = 38.0
-margin_right = 1270.0
-margin_bottom = 683.0
+offset_top = 38.0
+offset_right = 1270.0
+offset_bottom = 683.0
 size_flags_vertical = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2" index="0"]
-margin_right = 1270.0
-margin_bottom = 645.0
+offset_right = 1270.0
+offset_bottom = 645.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -92,47 +92,47 @@ __meta__ = {
 }
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer" index="0"]
-margin_right = 1270.0
-margin_bottom = 645.0
+offset_right = 1270.0
+offset_bottom = 645.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/vseparation = 5
-custom_constants/hseparation = 5
+theme_override_constants/v_separation = 5
+theme_override_constants/h_separation = 5
 columns = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="4"]
-margin_top = 688.0
-margin_right = 1270.0
-margin_bottom = 720.0
+offset_top = 688.0
+offset_right = 1270.0
+offset_bottom = 720.0
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0"]
-margin_right = 539.0
-margin_bottom = 32.0
+offset_right = 539.0
+offset_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1"]
-margin_left = 543.0
-margin_right = 607.0
-margin_bottom = 32.0
+offset_left = 543.0
+offset_right = 607.0
+offset_bottom = 32.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 5 )
+theme_override_fonts/font = ExtResource( 5 )
 text = "CLOSE"
 
 [node name="SlideshowButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" index="2"]
-margin_left = 611.0
-margin_right = 726.0
-margin_bottom = 32.0
-custom_fonts/font = ExtResource( 5 )
+offset_left = 611.0
+offset_right = 726.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource( 5 )
 text = "SLIDESHOW"
 
 [node name="FocusGrabber" parent="MarginContainer/VBoxContainer/HBoxContainer" index="3" instance=ExtResource( 9 )]
-margin_left = 730.0
-margin_right = 1270.0
-margin_bottom = 32.0
+offset_left = 730.0
+offset_right = 1270.0
+offset_bottom = 32.0
 size_flags_horizontal = 3
 Priority = 1
 NodeToGiveFocusTo = NodePath("../CloseButton")

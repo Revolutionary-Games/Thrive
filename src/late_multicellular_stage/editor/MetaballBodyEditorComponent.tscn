@@ -1,19 +1,19 @@
 [gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs" type="Script" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture2D" id=2]
 [ext_resource path="res://src/late_multicellular_stage/editor/MetaballPopupMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="FontFile" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=6]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="FontFile" id=8]
 [ext_resource path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/gui_common/CollapsibleList.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/microbe_stage/editor/MutationPointsBar.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/textures/gui/bevel/warningBadge.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/warningBadge.png" type="Texture2D" id=14]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -188,86 +188,86 @@ corner_radius_bottom_left = 3
 [sub_resource type="Animation" id=17]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_scale")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rect_size")
+tracks/1/path = NodePath(".:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 21, 21 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:rect_position")
+tracks/2/path = NodePath(".:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 134, -8.58575 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("..:custom_constants/margin_right")
+tracks/3/path = NodePath("..:theme_override_constants/margin_right")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("..:custom_constants/margin_top")
+tracks/4/path = NodePath("..:theme_override_constants/margin_top")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("..:custom_constants/margin_left")
+tracks/5/path = NodePath("..:theme_override_constants/margin_left")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("..:custom_constants/margin_bottom")
+tracks/6/path = NodePath("..:theme_override_constants/margin_bottom")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 0 ]
 }
@@ -276,14 +276,14 @@ tracks/6/keys = {
 resource_name = "hide"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_scale")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
 }
@@ -292,14 +292,14 @@ tracks/0/keys = {
 resource_name = "show"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_scale")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
 }
@@ -336,21 +336,21 @@ CannotReduceBrainPowerPopupPath = NodePath("CannotReduceBrainPowerStage")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
-margin_top = 40.0
-margin_right = 350.0
-margin_bottom = -50.0
-rect_min_size = Vector2( 350, 0 )
+offset_top = 40.0
+offset_right = 350.0
+offset_bottom = -50.0
+custom_minimum_size = Vector2( 350, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 0
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="MainPanel" type="PanelContainer" parent="LeftPanel"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 350.0
-margin_bottom = 625.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 350.0
+offset_bottom = 625.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -359,53 +359,53 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 339.0
-margin_bottom = 619.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 339.0
+offset_bottom = 619.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer"]
-margin_right = 338.0
-margin_bottom = 35.0
+offset_right = 338.0
+offset_bottom = 35.0
 mouse_filter = 1
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="MutationPointsBar" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2" instance=ExtResource( 12 )]
 
 [node name="HSeparator" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer"]
-margin_top = 39.0
-margin_right = 338.0
-margin_bottom = 43.0
+offset_top = 39.0
+offset_right = 338.0
+offset_bottom = 43.0
 mouse_filter = 1
-custom_styles/separator = SubResource( 1 )
+theme_override_styles/separator = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer"]
-margin_top = 47.0
-margin_right = 338.0
-margin_bottom = 618.0
+offset_top = 47.0
+offset_right = 338.0
+offset_bottom = 618.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EditingPanel" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 328.0
-margin_bottom = 561.0
-custom_constants/separation = 10
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 328.0
+offset_bottom = 561.0
+theme_override_constants/separation = 10
 __meta__ = {
 "_editor_description_": "To add a new item to a cell parts list, instantiate MicrobePartSelection scene into the list and change its node name with the defined internal name of a cell part object (e.g. organelle, membrane) it represents. Note that if the object is registered in the JSON files, the values of the newly-added item would be automatically updated at runtime, otherwise it wouldn't. Final step is to assign the item into the appropriate Group in the Node tab (see the existing selection buttons for reference)."
 }
@@ -413,22 +413,22 @@ __meta__ = {
 [node name="TabButtons" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 318.0
-margin_bottom = 28.0
+offset_right = 318.0
+offset_bottom = 28.0
 LevelOnScreen = 1
 
 [node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
-margin_right = 103.0
-margin_bottom = 28.0
+offset_right = 103.0
+offset_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+theme_override_colors/font_disabled_color = Color( 1, 1, 1, 1 )
+theme_override_colors/font_pressed_color = Color( 0, 0, 0, 1 )
+theme_override_fonts/font = ExtResource( 4 )
+theme_override_styles/hover = SubResource( 2 )
+theme_override_styles/pressed = SubResource( 3 )
+theme_override_styles/disabled = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 toggle_mode = true
 pressed = true
 action_mode = 0
@@ -439,18 +439,18 @@ __meta__ = {
 }
 
 [node name="Internals" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
-margin_left = 107.0
-margin_right = 210.0
-margin_bottom = 28.0
+offset_left = 107.0
+offset_right = 210.0
+offset_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+theme_override_colors/font_disabled_color = Color( 0.870588, 0.870588, 0.870588, 1 )
+theme_override_colors/font_pressed_color = Color( 0, 0, 0, 1 )
+theme_override_fonts/font = ExtResource( 4 )
+theme_override_styles/hover = SubResource( 2 )
+theme_override_styles/pressed = SubResource( 3 )
+theme_override_styles/disabled = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 disabled = true
 toggle_mode = true
 action_mode = 0
@@ -461,18 +461,18 @@ __meta__ = {
 }
 
 [node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
-margin_left = 214.0
-margin_right = 318.0
-margin_bottom = 28.0
+offset_left = 214.0
+offset_right = 318.0
+offset_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+theme_override_colors/font_disabled_color = Color( 0.870588, 0.870588, 0.870588, 1 )
+theme_override_colors/font_pressed_color = Color( 0, 0, 0, 1 )
+theme_override_fonts/font = ExtResource( 4 )
+theme_override_styles/hover = SubResource( 2 )
+theme_override_styles/pressed = SubResource( 3 )
+theme_override_styles/disabled = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 6 )
@@ -483,18 +483,18 @@ __meta__ = {
 
 [node name="Appearance" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 visible = false
-margin_left = 268.0
-margin_right = 364.0
-margin_bottom = 28.0
+offset_left = 268.0
+offset_right = 364.0
+offset_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+theme_override_colors/font_disabled_color = Color( 1, 1, 1, 1 )
+theme_override_colors/font_pressed_color = Color( 0, 0, 0, 1 )
+theme_override_fonts/font = ExtResource( 4 )
+theme_override_styles/hover = SubResource( 2 )
+theme_override_styles/pressed = SubResource( 3 )
+theme_override_styles/disabled = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 6 )
@@ -505,18 +505,18 @@ __meta__ = {
 
 [node name="Movement" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 visible = false
-margin_left = 268.0
-margin_right = 353.0
-margin_bottom = 28.0
+offset_left = 268.0
+offset_right = 353.0
+offset_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+theme_override_colors/font_disabled_color = Color( 1, 1, 1, 1 )
+theme_override_colors/font_pressed_color = Color( 0, 0, 0, 1 )
+theme_override_fonts/font = ExtResource( 4 )
+theme_override_styles/hover = SubResource( 2 )
+theme_override_styles/pressed = SubResource( 3 )
+theme_override_styles/disabled = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 disabled = true
 toggle_mode = true
 action_mode = 0
@@ -528,18 +528,18 @@ __meta__ = {
 
 [node name="Reproduction" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 visible = false
-margin_left = 268.0
-margin_right = 380.0
-margin_bottom = 28.0
+offset_left = 268.0
+offset_right = 380.0
+offset_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+theme_override_colors/font_disabled_color = Color( 1, 1, 1, 1 )
+theme_override_colors/font_pressed_color = Color( 0, 0, 0, 1 )
+theme_override_fonts/font = ExtResource( 4 )
+theme_override_styles/hover = SubResource( 2 )
+theme_override_styles/pressed = SubResource( 3 )
+theme_override_styles/disabled = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 6 )
@@ -549,16 +549,16 @@ __meta__ = {
 }
 
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
-margin_top = 38.0
-margin_right = 318.0
-margin_bottom = 556.0
+offset_top = 38.0
+offset_right = 318.0
+offset_bottom = 556.0
 mouse_filter = 1
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 7 )
+theme_override_styles/panel = SubResource( 7 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure"]
-margin_right = 318.0
-margin_bottom = 518.0
+offset_right = 318.0
+offset_bottom = 518.0
 mouse_filter = 1
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
@@ -567,18 +567,18 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer"]
-margin_right = 318.0
-margin_bottom = 98.0
+offset_right = 318.0
+offset_bottom = 98.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_constants/margin_right = 10
+theme_override_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer"]
-margin_right = 308.0
-margin_bottom = 98.0
+offset_right = 308.0
+offset_bottom = 98.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -587,61 +587,61 @@ __meta__ = {
 [node name="Cells" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 308.0
-margin_bottom = 24.0
+offset_right = 308.0
+offset_bottom = 24.0
 DisplayName = "CELLS"
 Columns = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection"]
-margin_top = 34.0
-margin_right = 308.0
-margin_bottom = 98.0
+offset_top = 34.0
+offset_right = 308.0
+offset_bottom = 98.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer"]
-margin_right = 308.0
-margin_bottom = 30.0
+offset_right = 308.0
+offset_bottom = 30.0
 
 [node name="Modify" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
-margin_right = 109.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 8 )
+offset_right = 109.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource( 8 )
 disabled = true
 text = "MODIFY_TYPE"
 
 [node name="Control" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
-margin_left = 113.0
-margin_right = 239.0
-margin_bottom = 30.0
+offset_left = 113.0
+offset_right = 239.0
+offset_bottom = 30.0
 size_flags_horizontal = 3
 
 [node name="Delete" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
-margin_left = 243.0
-margin_right = 308.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 8 )
+offset_left = 243.0
+offset_right = 308.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource( 8 )
 disabled = true
 text = "DELETE"
 
 [node name="Duplicate" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer"]
-margin_top = 34.0
-margin_right = 308.0
-margin_bottom = 64.0
-custom_fonts/font = ExtResource( 8 )
+offset_top = 34.0
+offset_right = 308.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource( 8 )
 disabled = true
 text = "DUPLICATE_TYPE"
 
 [node name="Reproduction" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
-margin_top = 74.0
-margin_right = 409.0
-margin_bottom = 556.0
+offset_top = 74.0
+offset_right = 409.0
+offset_bottom = 556.0
 mouse_filter = 1
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 8 )
+theme_override_styles/panel = SubResource( 8 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction"]
-margin_right = 409.0
-margin_bottom = 482.0
+offset_right = 409.0
+offset_bottom = 482.0
 mouse_filter = 1
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -649,41 +649,41 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer"]
-margin_right = 409.0
-margin_bottom = 19.0
+offset_right = 409.0
+offset_bottom = 19.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_constants/margin_right = 10
+theme_override_constants/margin_right = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer"]
-margin_right = 399.0
-margin_bottom = 19.0
-custom_constants/separation = 15
+offset_right = 399.0
+offset_bottom = 19.0
+theme_override_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 399.0
-margin_bottom = 19.0
+offset_right = 399.0
+offset_bottom = 19.0
 
 [node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_top = 1.0
-margin_right = 179.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 6 )
+offset_top = 1.0
+offset_right = 179.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource( 6 )
 text = "REPRODUCTION_METHOD"
 
 [node name="Control" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 183.0
-margin_right = 183.0
-margin_bottom = 19.0
+offset_left = 183.0
+offset_right = 183.0
+offset_bottom = 19.0
 size_flags_horizontal = 3
 
 [node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 187.0
-margin_right = 399.0
-margin_bottom = 19.0
+offset_left = 187.0
+offset_right = 399.0
+offset_bottom = 19.0
 disabled = true
 text = "REPRODUCTION_ASEXUAL"
 items = [ "REPRODUCTION_ASEXUAL", null, false, 0, null ]
@@ -691,21 +691,21 @@ selected = 0
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 9 )]
 visible = false
-margin_top = 74.0
+offset_top = 74.0
 FinishOrNextButtonPath = NodePath("")
 
 [node name="Appearance" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
-margin_top = 74.0
-margin_right = 318.0
-margin_bottom = 556.0
+offset_top = 74.0
+offset_right = 318.0
+offset_bottom = 556.0
 mouse_filter = 1
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 8 )
+theme_override_styles/panel = SubResource( 8 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance"]
-margin_right = 318.0
-margin_bottom = 482.0
+offset_right = 318.0
+offset_bottom = 482.0
 mouse_filter = 1
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -713,28 +713,28 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer"]
-margin_right = 318.0
-margin_bottom = 112.0
+offset_right = 318.0
+offset_bottom = 112.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_constants/margin_right = 10
+theme_override_constants/margin_right = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer"]
-margin_right = 308.0
-margin_bottom = 112.0
-custom_constants/separation = 15
+offset_right = 308.0
+offset_bottom = 112.0
+theme_override_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 308.0
+offset_right = 308.0
 
 [node name="MetaballsOnlyLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 15.0
-margin_right = 308.0
-margin_bottom = 112.0
-custom_fonts/font = ExtResource( 6 )
+offset_top = 15.0
+offset_right = 308.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource( 6 )
 text = "We plan to implement convolution surfaces to make the \"skin\" of the creatures. Currently this is not implemented so the metaballs are rendered with just basic spheres to give some impression of what the shape is."
 autowrap = true
 __meta__ = {
@@ -751,27 +751,27 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -10.0
-margin_bottom = -10.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomRight"]
-margin_right = 150.0
-margin_bottom = 40.0
+offset_right = 150.0
+offset_bottom = 40.0
 alignment = 2
 
 [node name="CancelButton" type="Button" parent="BottomRight/HBoxContainer"]
 visible = false
-margin_right = 237.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 140, 40 )
+offset_right = 237.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 140, 40 )
 mouse_filter = 1
-custom_colors/font_color_disabled = Color( 0.498039, 0.529412, 0.541176, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_styles/hover = SubResource( 12 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/normal = SubResource( 14 )
+theme_override_colors/font_disabled_color = Color( 0.498039, 0.529412, 0.541176, 1 )
+theme_override_colors/font_pressed_color = Color( 1, 1, 1, 1 )
+theme_override_styles/hover = SubResource( 12 )
+theme_override_styles/pressed = SubResource( 13 )
+theme_override_styles/normal = SubResource( 14 )
 shortcut_in_tooltip = false
 text = "CANCEL_ACTION_CAPITAL"
 __meta__ = {
@@ -779,14 +779,14 @@ __meta__ = {
 }
 
 [node name="ConfirmButton" type="Button" parent="BottomRight/HBoxContainer"]
-margin_right = 150.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 140, 40 )
+offset_right = 150.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 140, 40 )
 mouse_filter = 1
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_styles/hover = SubResource( 15 )
-custom_styles/focus = SubResource( 41 )
-custom_styles/normal = SubResource( 16 )
+theme_override_colors/font_pressed_color = Color( 0, 0, 0, 1 )
+theme_override_styles/hover = SubResource( 15 )
+theme_override_styles/focus = SubResource( 41 )
+theme_override_styles/normal = SubResource( 16 )
 text = "NEXT_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -795,23 +795,23 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -21.0
-margin_top = -10.0
-margin_bottom = 11.0
+offset_left = -21.0
+offset_top = -10.0
+offset_bottom = 11.0
 mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_constants/margin_right = 0
-custom_constants/margin_top = 0
-custom_constants/margin_left = 0
-custom_constants/margin_bottom = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="WarningBadge" type="TextureRect" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer"]
 visible = false
-margin_right = 21.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 21, 21 )
-rect_pivot_offset = Vector2( 0, 10 )
+offset_right = 21.0
+offset_bottom = 21.0
+custom_minimum_size = Vector2( 21, 21 )
+pivot_offset = Vector2( 0, 10 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 14 )
@@ -823,9 +823,9 @@ anims/hide = SubResource( 18 )
 anims/show = SubResource( 19 )
 
 [node name="IslandError" parent="." instance=ExtResource( 7 )]
-margin_right = 600.0
-margin_bottom = 85.0
-rect_min_size = Vector2( 600, 0 )
+offset_right = 600.0
+offset_bottom = 85.0
+custom_minimum_size = Vector2( 600, 0 )
 WindowTitle = "DISCONNECTED_METABALLS"
 HideCancelButton = true
 DialogText = "DISCONNECTED_METABALLS_TEXT"
@@ -841,49 +841,49 @@ HideCancelButton = true
 DialogText = "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 
 [node name="NewTissueTypeSetup" parent="." instance=ExtResource( 7 )]
-rect_min_size = Vector2( 550, 90 )
+custom_minimum_size = Vector2( 550, 90 )
 WindowTitle = "CREATE_NEW_TISSUE_TYPE"
 HideOnOk = false
 NodeToGiveFocusOnOpen = NodePath("VBoxContainer2/NewName")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="NewTissueTypeSetup"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Description" type="Label" parent="NewTissueTypeSetup/VBoxContainer2"]
-margin_right = 381.0
-margin_bottom = 25.0
+offset_right = 381.0
+offset_bottom = 25.0
 text = "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 autowrap = true
 
 [node name="Spacer" type="Control" parent="NewTissueTypeSetup/VBoxContainer2"]
-margin_top = 29.0
-margin_right = 381.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 29.0
+offset_right = 381.0
+offset_bottom = 34.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="NewNameLabel" type="Label" parent="NewTissueTypeSetup/VBoxContainer2"]
-margin_top = 38.0
-margin_right = 381.0
-margin_bottom = 63.0
+offset_top = 38.0
+offset_right = 381.0
+offset_bottom = 63.0
 text = "NEW_NAME_COLON"
 
 [node name="NewName" type="LineEdit" parent="NewTissueTypeSetup/VBoxContainer2"]
-margin_top = 67.0
-margin_right = 381.0
-margin_bottom = 98.0
+offset_top = 67.0
+offset_right = 381.0
+offset_bottom = 98.0
 max_length = 100
 placeholder_text = "NEW_NAME"
 
 [node name="BottomButtonSpacer" type="Control" parent="NewTissueTypeSetup/VBoxContainer2"]
-margin_top = 102.0
-margin_right = 381.0
-margin_bottom = 147.0
-rect_min_size = Vector2( 0, 45 )
+offset_top = 102.0
+offset_right = 381.0
+offset_bottom = 147.0
+custom_minimum_size = Vector2( 0, 45 )
 mouse_filter = 2
 
 [node name="MetaballPopupMenu" parent="." instance=ExtResource( 3 )]
@@ -908,7 +908,7 @@ mouse_filter = 2
 [connection signal="animation_finished" from="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge/AnimationPlayer" to="." method="HideFinishButtonWarningAfterAnimation"]
 [connection signal="Confirmed" from="NewTissueTypeSetup" to="." method="OnNewCellTypeConfirmed"]
 [connection signal="text_changed" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
-[connection signal="text_entered" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]
+[connection signal="text_submitted" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]
 [connection signal="DeletePressed" from="MetaballPopupMenu" to="." method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="MetaballPopupMenu" to="." method="OnModifyPressed"]
 [connection signal="MovePressed" from="MetaballPopupMenu" to="." method="OnMovePressed"]

@@ -1,9 +1,9 @@
-﻿/// <summary>
+/// <summary>
 ///   Microbe patch map GUI
 /// </summary>
 [IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn", UsesEarlyResolve = false)]
-public class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWithPatches>
+public partial class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWithPatches>
 {
     public void MarkDrawerDirty()
     {

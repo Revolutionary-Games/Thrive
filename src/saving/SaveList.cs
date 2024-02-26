@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -8,7 +8,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   A widget containing a list of saves
 /// </summary>
-public class SaveList : ScrollContainer
+public partial class SaveList : ScrollContainer
 {
     [Export]
     public bool AutoRefreshOnFirstVisible = true;
@@ -90,16 +90,16 @@ public class SaveList : ScrollContainer
     private bool isLoadingSave;
 
     [Signal]
-    public delegate void OnSelectedChanged();
+    public delegate void OnSelectedChangedEventHandler();
 
     [Signal]
-    public delegate void OnItemsChanged();
+    public delegate void OnItemsChangedEventHandler();
 
     [Signal]
-    public delegate void OnConfirmed(SaveListItem item);
+    public delegate void OnConfirmedEventHandler(SaveListItem item);
 
     [Signal]
-    public delegate void OnSaveLoaded(string saveName);
+    public delegate void OnSaveLoadedEventHandler(string saveName);
 
     public override void _Ready()
     {
@@ -119,7 +119,7 @@ public class SaveList : ScrollContainer
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         bool isCurrentlyVisible = IsVisibleInTree();
 
@@ -150,29 +150,38 @@ public class SaveList : ScrollContainer
 
             foreach (var save in saves)
             {
-                var item = (SaveListItem)listItemScene.Instance();
+                var item = listItemScene.Instantiate<SaveListItem>();
                 item.Selectable = SelectableItems;
                 item.Loadable = LoadableItems;
 
                 if (SelectableItems)
-                    item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
+                {
+                    item.Connect(nameof(SaveListItem.OnSelectedChangedEventHandler),
+                        new Callable(this, nameof(OnSubItemSelectedChanged)));
+                }
 
-                item.Connect(nameof(SaveListItem.OnDoubleClicked), this, nameof(OnItemDoubleClicked),
+                item.Connect(nameof(SaveListItem.OnDoubleClickedEventHandler), this, nameof(OnItemDoubleClicked),
                     new Array { item });
 
-                item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
-
-                item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
-
-                // This can't use binds because we need an additional dynamic parameter from the list item here
-                item.Connect(nameof(SaveListItem.OnUpgradeableSaveLoaded), this, nameof(OnUpgradeableSaveLoaded));
-                item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
-                item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded),
+                item.Connect(nameof(SaveListItem.OnDeletedEventHandler), new Callable(this, nameof(OnDeletePressed)),
                     new Array { save });
-                item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
-                item.Connect(nameof(SaveListItem.OnDifferentVersionPrototypeLoaded), this,
+
+                item.Connect(nameof(SaveListItem.OnOldSaveLoadedEventHandler),
+                    new Callable(this, nameof(OnOldSaveLoaded)), new Array { save });
+
+                // This can't use binds because we need an additional Dynamic parameter from the list item here
+                item.Connect(nameof(SaveListItem.OnUpgradeableSaveLoadedEventHandler),
+                    new Callable(this, nameof(OnUpgradeableSaveLoaded)));
+                item.Connect(nameof(SaveListItem.OnNewSaveLoadedEventHandler),
+                    new Callable(this, nameof(OnNewSaveLoaded)), new Array { save });
+                item.Connect(nameof(SaveListItem.OnBrokenSaveLoadedEventHandler), this, nameof(OnInvalidLoaded),
+                    new Array { save });
+                item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoadedEventHandler),
+                    new Callable(this, nameof(OnKnownIncompatibleLoaded)));
+                item.Connect(nameof(SaveListItem.OnDifferentVersionPrototypeLoadedEventHandler), this,
                     nameof(OnDifferentVersionPrototypeLoaded));
-                item.Connect(nameof(SaveListItem.OnProblemFreeSaveLoaded), this, nameof(OnProblemFreeLoaded),
+                item.Connect(nameof(SaveListItem.OnProblemFreeSaveLoadedEventHandler), this,
+                    nameof(OnProblemFreeLoaded),
                     new Array { save });
 
                 item.SaveName = save;
@@ -210,7 +219,7 @@ public class SaveList : ScrollContainer
         loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
         TaskExecutor.Instance.AddTask(readSavesList);
-        EmitSignal(nameof(OnItemsChanged));
+        EmitSignal(nameof(OnItemsChangedEventHandler));
     }
 
     protected override void Dispose(bool disposing)
@@ -239,7 +248,7 @@ public class SaveList : ScrollContainer
 
     private void OnSubItemSelectedChanged()
     {
-        EmitSignal(nameof(OnSelectedChanged));
+        EmitSignal(nameof(OnSelectedChangedEventHandler));
     }
 
     private void OnDeletePressed(string saveName)
@@ -278,7 +287,7 @@ public class SaveList : ScrollContainer
         saveToBeDeleted = null;
 
         Refresh();
-        EmitSignal(nameof(OnItemsChanged));
+        EmitSignal(nameof(OnItemsChangedEventHandler));
     }
 
     private void OnOldSaveLoaded(string saveName)
@@ -435,7 +444,7 @@ public class SaveList : ScrollContainer
 
     private void OnItemDoubleClicked(SaveListItem item)
     {
-        EmitSignal(nameof(OnConfirmed), item);
+        EmitSignal(nameof(OnConfirmedEventHandler), item);
     }
 
     private void LoadSave()
@@ -448,7 +457,7 @@ public class SaveList : ScrollContainer
 
         SaveHelper.LoadSave(saveToBeLoaded);
 
-        EmitSignal(nameof(OnSaveLoaded), saveToBeLoaded);
+        EmitSignal(nameof(OnSaveLoadedEventHandler), saveToBeLoaded);
         saveToBeLoaded = null;
         isLoadingSave = false;
     }

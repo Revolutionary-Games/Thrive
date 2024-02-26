@@ -4,7 +4,7 @@
 [ext_resource path="res://src/ascension_stage/gui/AscensionCongratulationsPopup.cs" type="Script" id=2]
 
 [node name="AscensionCongratulationsPopup" instance=ExtResource( 1 )]
-rect_min_size = Vector2( 450, 300 )
+custom_minimum_size = Vector2( 450, 300 )
 script = ExtResource( 2 )
 WindowTitle = "ASCENSION_CONGRATULATIONS"
 HideCancelButton = true

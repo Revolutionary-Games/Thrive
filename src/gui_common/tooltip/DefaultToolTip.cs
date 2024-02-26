@@ -3,7 +3,7 @@
 /// <summary>
 ///   For a more generic use and less customized tooltips, only has message text
 /// </summary>
-public class DefaultToolTip : Control, ICustomToolTip
+public partial class DefaultToolTip : Control, ICustomToolTip
 {
     [Export]
     public NodePath? DescriptionLabelPath;

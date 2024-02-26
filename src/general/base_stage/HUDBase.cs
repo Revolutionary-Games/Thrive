@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Common HUD things for every HUD in the game
 /// </summary>
-public abstract class HUDBase : Control, IStageHUD
+public abstract partial class HUDBase : Control, IStageHUD
 {
     [Export]
     public NodePath? MenuPath;

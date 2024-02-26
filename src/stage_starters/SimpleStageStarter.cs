@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class SimpleStageStarter : Node
+public partial class SimpleStageStarter : Node
 {
     [Export]
     public MainGameState StageToSwitchTo = MainGameState.Invalid;
@@ -22,7 +22,7 @@ public class SimpleStageStarter : Node
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (switchStarted)
             return;

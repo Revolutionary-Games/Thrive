@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Path = System.IO.Path;
 
-public class ModUploader : Control
+public partial class ModUploader : Control
 {
     [Export]
     public NodePath? UploadDialogPath;
@@ -273,7 +273,7 @@ public class ModUploader : Control
         {
             editedTitle.Text = previousData.Title;
             editedDescription.Text = previousData.Description;
-            editedVisibility.Pressed = previousData.Visibility == SteamItemVisibility.Public;
+            editedVisibility.ButtonPressed = previousData.Visibility == SteamItemVisibility.Public;
             editedTags.Text = string.Join(",", previousData.Tags);
 
             toBeUploadedPreviewImagePath = previousData.PreviewImagePath;
@@ -288,7 +288,7 @@ public class ModUploader : Control
             editedDescription.Text = string.IsNullOrEmpty(selectedMod.Info.LongDescription) ?
                 selectedMod.Info.Description :
                 selectedMod.Info.LongDescription;
-            editedVisibility.Pressed = true;
+            editedVisibility.ButtonPressed = true;
             editedTags.Text = string.Empty;
 
             if (selectedMod.Info.Icon == null)
@@ -319,13 +319,9 @@ public class ModUploader : Control
             return;
         }
 
-        var image = new Image();
-        image.Load(toBeUploadedPreviewImagePath);
+        var image = Image.LoadFromFile(toBeUploadedPreviewImagePath);
 
-        var texture = new ImageTexture();
-        texture.CreateFromImage(image);
-
-        previewImageRect.Texture = texture;
+        previewImageRect.Texture = ImageTexture.CreateFromImage(image);
     }
 
     /// <summary>
@@ -380,17 +376,16 @@ public class ModUploader : Control
 
         if (!string.IsNullOrEmpty(toBeUploadedPreviewImagePath))
         {
-            using var file = new File();
+            using var file = FileAccess.Open(toBeUploadedPreviewImagePath, FileAccess.ModeFlags.Read);
 
-            if (!file.FileExists(toBeUploadedPreviewImagePath) ||
-                file.Open(toBeUploadedPreviewImagePath, File.ModeFlags.Read) != Error.Ok)
+            if (file == null)
             {
                 SetError(TranslationServer.Translate("PREVIEW_IMAGE_DOES_NOT_EXIST"));
                 return false;
             }
 
             // Let's hope Steam uses megabytes and not mebibytes as the limit
-            if (file.GetLen() >= 1000000)
+            if (file.GetLength() >= 1000000)
             {
                 SetError(TranslationServer.Translate("PREVIEW_IMAGE_IS_TOO_LARGE"));
                 return false;
@@ -408,8 +403,8 @@ public class ModUploader : Control
             return;
         }
 
-        if (showManualEnterId.Pressed)
-            showManualEnterId.Pressed = false;
+        if (showManualEnterId.ButtonPressed)
+            showManualEnterId.ButtonPressed = false;
 
         if (index == -1)
         {
@@ -539,7 +534,7 @@ public class ModUploader : Control
             ProjectSettings.GlobalizePath(toBeUploadedPreviewImagePath))
         {
             Description = editedDescription.Text,
-            Visibility = editedVisibility.Pressed ? SteamItemVisibility.Public : SteamItemVisibility.Private,
+            Visibility = editedVisibility.ButtonPressed ? SteamItemVisibility.Public : SteamItemVisibility.Private,
         };
 
         if (!string.IsNullOrWhiteSpace(editedTags.Text))
@@ -607,10 +602,10 @@ public class ModUploader : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        fileSelectDialog.DeselectItems();
+        fileSelectDialog.DeselectAll();
         fileSelectDialog.CurrentDir = "user://";
         fileSelectDialog.CurrentPath = "user://";
-        fileSelectDialog.PopupCenteredClamped(new Vector2(700, 400));
+        fileSelectDialog.PopupCenteredClamped(new Vector2I(700, 400));
     }
 
     private void OnFileSelected(string? selected)
@@ -622,9 +617,7 @@ public class ModUploader : Control
             return;
         }
 
-        using var file = new File();
-
-        if (!file.FileExists(selected))
+        if (!FileAccess.FileExists(selected))
         {
             GD.PrintErr("Selected preview image file doesn't exist");
             return;

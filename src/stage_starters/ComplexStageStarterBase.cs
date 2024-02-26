@@ -3,7 +3,7 @@
 /// <summary>
 ///   Helper base class for making more complex stage starters than <see cref="SimpleStageStarter"/> can handle
 /// </summary>
-public abstract class ComplexStageStarterBase : Node
+public abstract partial class ComplexStageStarterBase : Node
 {
     [Export]
     public bool FadeFromBlack = true;
@@ -25,7 +25,7 @@ public abstract class ComplexStageStarterBase : Node
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (switchStarted)
             return;
@@ -53,7 +53,7 @@ public abstract class ComplexStageStarterBase : Node
 
     protected virtual Node LoadScene()
     {
-        return SceneManager.Instance.LoadScene(SimplyLoadableGameState).Instance();
+        return SceneManager.Instance.LoadScene(SimplyLoadableGameState).Instantiate();
     }
 
     /// <summary>

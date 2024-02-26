@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -18,7 +18,7 @@ public class BaseBuildableStructure : IRegistryType
     private readonly Lazy<PackedScene> worldRepresentation;
     private readonly Lazy<PackedScene> ghostRepresentation;
     private readonly Lazy<PackedScene> scaffoldingScene;
-    private readonly Lazy<Texture> icon;
+    private readonly Lazy<Texture2D> icon;
 
     [JsonConstructor]
     public BaseBuildableStructure(string name)
@@ -28,7 +28,7 @@ public class BaseBuildableStructure : IRegistryType
         worldRepresentation = new Lazy<PackedScene>(LoadWorldScene);
         ghostRepresentation = new Lazy<PackedScene>(LoadGhostScene);
         scaffoldingScene = new Lazy<PackedScene>(LoadScaffoldingScene);
-        icon = new Lazy<Texture>(LoadIcon);
+        icon = new Lazy<Texture2D>(LoadIcon);
     }
 
     [JsonProperty]
@@ -82,7 +82,7 @@ public class BaseBuildableStructure : IRegistryType
     public PackedScene ScaffoldingScene => scaffoldingScene.Value;
 
     [JsonIgnore]
-    public Texture Icon => icon.Value;
+    public Texture2D Icon => icon.Value;
 
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
@@ -155,7 +155,7 @@ public class BaseBuildableStructure : IRegistryType
         if (ScaffoldingCost.Any(t => t.Value < 1))
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad required scaffolding resource amount");
 
-        if (WorldSize.x <= 0 || WorldSize.y <= 0 || WorldSize.z <= 0)
+        if (WorldSize.X <= 0 || WorldSize.Y <= 0 || WorldSize.Z <= 0)
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad world size");
     }
 
@@ -184,8 +184,8 @@ public class BaseBuildableStructure : IRegistryType
         return GD.Load<PackedScene>(ScaffoldingScenePath);
     }
 
-    private Texture LoadIcon()
+    private Texture2D LoadIcon()
     {
-        return GD.Load<Texture>(BuildingIcon);
+        return GD.Load<Texture2D>(BuildingIcon);
     }
 }

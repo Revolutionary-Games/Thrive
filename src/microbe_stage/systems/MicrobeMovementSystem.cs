@@ -1,4 +1,4 @@
-﻿namespace Systems
+namespace Systems
 {
     using System;
     using Components;
@@ -73,7 +73,7 @@
             ref var position = ref entity.Get<WorldPosition>();
 
             var lookVector = control.LookAtPoint - position.Position;
-            lookVector.y = 0;
+            lookVector.Y = 0;
 
             var length = lookVector.Length();
 
@@ -101,7 +101,8 @@
             lookVector *= -1;
             var column0 = up.Cross(lookVector);
             var column1 = lookVector.Cross(column0);
-            var wantedRotation = new Basis(column0.Normalized(), column1.Normalized(), lookVector).Quat();
+            var wantedRotation =
+                new Basis(column0.Normalized(), column1.Normalized(), lookVector).GetRotationQuaternion();
 
 #if DEBUG
             if (!wantedRotation.IsNormalized())
@@ -158,7 +159,7 @@
             }
 
             // Ensure no cells attempt to move on the y-axis
-            control.MovementDirection.y = 0;
+            control.MovementDirection.Y = 0;
 
             // Normalize if length is over 1 to not allow diagonal movement to be very fast
             var length = control.MovementDirection.Length();
@@ -192,7 +193,7 @@
             {
                 foreach (var flagellum in organelles.ThrustComponents)
                 {
-                    force += flagellum.UseForMovement(control.MovementDirection, compounds, Quat.Identity,
+                    force += flagellum.UseForMovement(control.MovementDirection, compounds, Quaternion.Identity,
                         cellProperties.IsBacteria, delta);
                 }
             }

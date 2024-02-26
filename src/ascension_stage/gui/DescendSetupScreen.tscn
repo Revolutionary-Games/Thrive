@@ -8,11 +8,11 @@
 script = ExtResource( 3 )
 NewGameSettingsPath = NodePath("GUIRoot/NewGameSettings")
 
-[node name="Background" type="Spatial" parent="."]
-transform = Transform( -0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 0, 0, 0 )
+[node name="Background" type="Node3D" parent="."]
+transform = Transform3D( -0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 0, 0, 0 )
 
 [node name="MainMenuScene1" parent="Background" instance=ExtResource( 1 )]
-transform = Transform( -0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.305019, 0, 0, 0 )
+transform = Transform3D( -0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.305019, 0, 0, 0 )
 
 [node name="GUIRoot" type="Control" parent="."]
 anchor_right = 1.0

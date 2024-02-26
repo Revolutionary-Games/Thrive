@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class CellPopupMenu : HexPopupMenu
+public partial class CellPopupMenu : HexPopupMenu
 {
     private List<HexWithData<CellTemplate>>? selectedCells;
 

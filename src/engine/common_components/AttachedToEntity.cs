@@ -22,7 +22,7 @@
         /// <summary>
         ///   Rotation relative to the parent entity
         /// </summary>
-        public Quat RelativeRotation;
+        public Quaternion RelativeRotation;
 
         /// <summary>
         ///   If true then this entity is deleted if <see cref="AttachedTo"/> is deleted (handled by the attached
@@ -30,7 +30,7 @@
         /// </summary>
         public bool DeleteIfTargetIsDeleted;
 
-        public AttachedToEntity(in Entity parentEntity, Vector3 relativePosition, Quat relativeRotation)
+        public AttachedToEntity(in Entity parentEntity, Vector3 relativePosition, Quaternion relativeRotation)
         {
             AttachedTo = parentEntity;
             RelativePosition = relativePosition;

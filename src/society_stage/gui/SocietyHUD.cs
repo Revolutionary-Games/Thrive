@@ -3,7 +3,7 @@
 /// <summary>
 ///   HUD for the society stage, manages updating the GUI for this stage
 /// </summary>
-public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
+public partial class SocietyHUD : StrategyStageHUDBase<SocietyStage>
 {
     [Export]
     public NodePath? PopulationLabelPath;
@@ -14,7 +14,7 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
 #pragma warning restore CA2213
 
     [Signal]
-    public delegate void OnBuildingPlacingRequested();
+    public delegate void OnBuildingPlacingRequestedEventHandler();
 
     // TODO: real button referencing text for this
     protected override string UnPauseHelpText => "TODO: unpause text for this stage";
@@ -29,7 +29,7 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     public void ForwardBuildingPlacingRequest()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnBuildingPlacingRequested));
+        EmitSignal(nameof(OnBuildingPlacingRequestedEventHandler));
     }
 
     public void UpdatePopulationDisplay(long population)

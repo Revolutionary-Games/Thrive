@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   Draws a PatchMap inside a control
 /// </summary>
-public class PatchMapDrawer : Control
+public partial class PatchMapDrawer : Control
 {
     [Export]
     public bool DrawDefaultMapIfEmpty;
@@ -33,7 +33,7 @@ public class PatchMapDrawer : Control
     /// <summary>
     ///   The representation of connections between regions, so we won't draw the same connection multiple times
     /// </summary>
-    private readonly Dictionary<Int2, Vector2[]> connections = new();
+    private readonly Dictionary<Vector2I, Vector2[]> connections = new();
 
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
@@ -54,7 +54,7 @@ public class PatchMapDrawer : Control
     private Patch? playerPatch;
 
     [Signal]
-    public delegate void OnCurrentPatchCentered(Vector2 coordinates, bool smoothed);
+    public delegate void OnCurrentPatchCenteredEventHandler(Vector2 coordinates, bool smoothed);
 
     public PatchMap? Map
     {
@@ -126,7 +126,7 @@ public class PatchMapDrawer : Control
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -135,9 +135,9 @@ public class PatchMapDrawer : Control
         if (dirty)
         {
             RebuildMap();
-            Update();
+            QueueRedraw();
 
-            RectMinSize = GetRightBottomCornerPointOnMap() + new Vector2(450, 450);
+            CustomMinimumSize = GetRightBottomCornerPointOnMap() + new Vector2(450, 450);
 
             dirty = false;
         }
@@ -179,7 +179,7 @@ public class PatchMapDrawer : Control
     /// <param name="smoothed">If true, smoothly pans the view to the destination, otherwise just snaps.</param>
     public void CenterToCurrentPatch(bool smoothed = true)
     {
-        EmitSignal(nameof(OnCurrentPatchCentered), PlayerPatch!.ScreenCoordinates, smoothed);
+        EmitSignal(nameof(OnCurrentPatchCenteredEventHandler), PlayerPatch!.ScreenCoordinates, smoothed);
     }
 
     public void MarkDirty()
@@ -240,63 +240,63 @@ public class PatchMapDrawer : Control
     private static bool SegmentSegmentIntersects(Vector2 segment1Start, Vector2 segment1End,
         Vector2 segment2Start, Vector2 segment2End)
     {
-        if (Math.Abs(segment1Start.x - segment1End.x) < MathUtils.EPSILON)
+        if (Math.Abs(segment1Start.X - segment1End.X) < MathUtils.EPSILON)
         {
-            var segment1Greater = Math.Max(segment1Start.y, segment1End.y);
-            var segment1Smaller = Math.Min(segment1Start.y, segment1End.y);
+            var segment1Greater = Math.Max(segment1Start.Y, segment1End.Y);
+            var segment1Smaller = Math.Min(segment1Start.Y, segment1End.Y);
 
-            if (Math.Abs(segment2Start.x - segment2End.x) < MathUtils.EPSILON)
+            if (Math.Abs(segment2Start.X - segment2End.X) < MathUtils.EPSILON)
             {
-                var segment2Greater = Math.Max(segment2Start.y, segment2End.y);
-                var segment2Smaller = Math.Min(segment2Start.y, segment2End.y);
+                var segment2Greater = Math.Max(segment2Start.Y, segment2End.Y);
+                var segment2Smaller = Math.Min(segment2Start.Y, segment2End.Y);
 
-                return (Math.Abs(segment1Start.x - segment2Start.x) < MathUtils.EPSILON) &&
+                return (Math.Abs(segment1Start.X - segment2Start.X) < MathUtils.EPSILON) &&
                     !(Math.Max(segment1Smaller, segment2Smaller) - Math.Min(segment1Greater, segment2Greater) >
                         MathUtils.EPSILON);
             }
             else
             {
-                if (!(Math.Abs(segment2Start.y - segment2End.y) < MathUtils.EPSILON))
+                if (!(Math.Abs(segment2Start.Y - segment2End.Y) < MathUtils.EPSILON))
                     throw new InvalidOperationException("Segment2 isn't parallel to axis!");
 
-                var segment2Greater = Math.Max(segment2Start.x, segment2End.x);
-                var segment2Smaller = Math.Min(segment2Start.x, segment2End.x);
+                var segment2Greater = Math.Max(segment2Start.X, segment2End.X);
+                var segment2Smaller = Math.Min(segment2Start.X, segment2End.X);
 
-                return segment1Greater - segment2Start.y > -MathUtils.EPSILON &&
-                    segment2Start.y - segment1Smaller > -MathUtils.EPSILON &&
-                    segment2Greater - segment1Start.x > -MathUtils.EPSILON &&
-                    segment1Start.x - segment2Smaller > -MathUtils.EPSILON;
+                return segment1Greater - segment2Start.Y > -MathUtils.EPSILON &&
+                    segment2Start.Y - segment1Smaller > -MathUtils.EPSILON &&
+                    segment2Greater - segment1Start.X > -MathUtils.EPSILON &&
+                    segment1Start.X - segment2Smaller > -MathUtils.EPSILON;
             }
         }
         else
         {
-            if (!(Math.Abs(segment1Start.y - segment1End.y) < MathUtils.EPSILON))
+            if (!(Math.Abs(segment1Start.Y - segment1End.Y) < MathUtils.EPSILON))
                 throw new InvalidOperationException("Segment1 isn't parallel to axis!");
 
-            var segment1Greater = Math.Max(segment1Start.x, segment1End.x);
-            var segment1Smaller = Math.Min(segment1Start.x, segment1End.x);
+            var segment1Greater = Math.Max(segment1Start.X, segment1End.X);
+            var segment1Smaller = Math.Min(segment1Start.X, segment1End.X);
 
-            if (Math.Abs(segment2Start.y - segment2End.y) < MathUtils.EPSILON)
+            if (Math.Abs(segment2Start.Y - segment2End.Y) < MathUtils.EPSILON)
             {
-                var segment2Greater = Math.Max(segment2Start.x, segment2End.x);
-                var segment2Smaller = Math.Min(segment2Start.x, segment2End.x);
+                var segment2Greater = Math.Max(segment2Start.X, segment2End.X);
+                var segment2Smaller = Math.Min(segment2Start.X, segment2End.X);
 
-                return (Math.Abs(segment1Start.y - segment2Start.y) < MathUtils.EPSILON) &&
+                return (Math.Abs(segment1Start.Y - segment2Start.Y) < MathUtils.EPSILON) &&
                     !(Math.Max(segment1Smaller, segment2Smaller) - Math.Min(segment1Greater, segment2Greater) >
                         MathUtils.EPSILON);
             }
             else
             {
-                if (!(Math.Abs(segment2Start.x - segment2End.x) < MathUtils.EPSILON))
+                if (!(Math.Abs(segment2Start.X - segment2End.X) < MathUtils.EPSILON))
                     throw new InvalidOperationException("Segment2 isn't parallel to axis!");
 
-                var segment2Greater = Math.Max(segment2Start.y, segment2End.y);
-                var segment2Smaller = Math.Min(segment2Start.y, segment2End.y);
+                var segment2Greater = Math.Max(segment2Start.Y, segment2End.Y);
+                var segment2Smaller = Math.Min(segment2Start.Y, segment2End.Y);
 
-                return segment1Greater - segment2Start.x > -MathUtils.EPSILON &&
-                    segment2Start.x - segment1Smaller > -MathUtils.EPSILON &&
-                    segment2Greater - segment1Start.y > -MathUtils.EPSILON &&
-                    segment1Start.y - segment2Smaller > -MathUtils.EPSILON;
+                return segment1Greater - segment2Start.X > -MathUtils.EPSILON &&
+                    segment2Start.X - segment1Smaller > -MathUtils.EPSILON &&
+                    segment2Greater - segment1Start.Y > -MathUtils.EPSILON &&
+                    segment1Start.Y - segment2Smaller > -MathUtils.EPSILON;
             }
         }
     }
@@ -304,8 +304,8 @@ public class PatchMapDrawer : Control
     private static bool SegmentRectangleIntersects(Vector2 start, Vector2 end, Rect2 rect)
     {
         var p0 = rect.Position;
-        var p1 = rect.Position + new Vector2(0, rect.Size.y);
-        var p2 = rect.Position + new Vector2(rect.Size.x, 0);
+        var p1 = rect.Position + new Vector2(0, rect.Size.Y);
+        var p2 = rect.Position + new Vector2(rect.Size.X, 0);
         var p3 = rect.End;
 
         return SegmentSegmentIntersects(p0, p1, start, end) ||
@@ -316,14 +316,14 @@ public class PatchMapDrawer : Control
 
     private static Vector2 RegionCenter(PatchRegion region)
     {
-        return new Vector2(region.ScreenCoordinates.x + region.Width * 0.5f,
-            region.ScreenCoordinates.y + region.Height * 0.5f);
+        return new Vector2(region.ScreenCoordinates.X + region.Width * 0.5f,
+            region.ScreenCoordinates.Y + region.Height * 0.5f);
     }
 
     private static Vector2 PatchCenter(Vector2 pos)
     {
-        return new Vector2(pos.x + Constants.PATCH_NODE_RECT_LENGTH * 0.5f,
-            pos.y + Constants.PATCH_NODE_RECT_LENGTH * 0.5f);
+        return new Vector2(pos.X + Constants.PATCH_NODE_RECT_LENGTH * 0.5f,
+            pos.Y + Constants.PATCH_NODE_RECT_LENGTH * 0.5f);
     }
 
     private Line2D CreateConnectionLine(Vector2[] points, Color connectionColor)
@@ -389,8 +389,8 @@ public class PatchMapDrawer : Control
         {
             var regionEnd = region.Value.ScreenCoordinates + region.Value.Size;
 
-            point.x = Math.Max(point.x, regionEnd.x);
-            point.y = Math.Max(point.y, regionEnd.y);
+            point.X = Math.Max(point.X, regionEnd.X);
+            point.Y = Math.Max(point.Y, regionEnd.Y);
         }
 
         return point;
@@ -408,8 +408,8 @@ public class PatchMapDrawer : Control
         {
             foreach (var adjacent in region.Adjacent)
             {
-                var connectionKey = new Int2(region.ID, adjacent.ID);
-                var reverseConnectionKey = new Int2(adjacent.ID, region.ID);
+                var connectionKey = new Vector2I(region.ID, adjacent.ID);
+                var reverseConnectionKey = new Vector2I(adjacent.ID, region.ID);
 
                 if (connections.ContainsKey(connectionKey) || connections.ContainsKey(reverseConnectionKey))
                     continue;
@@ -446,57 +446,57 @@ public class PatchMapDrawer : Control
         var probablePaths = new List<(Vector2[] Path, int Priority)>();
 
         // Direct line, I shape, highest priority
-        if (Math.Abs(startCenter.x - endCenter.x) < MathUtils.EPSILON ||
-            Math.Abs(startCenter.y - endCenter.y) < MathUtils.EPSILON)
+        if (Math.Abs(startCenter.X - endCenter.X) < MathUtils.EPSILON ||
+            Math.Abs(startCenter.Y - endCenter.Y) < MathUtils.EPSILON)
         {
             probablePaths.Add((new[] { startCenter, endCenter }, 3));
         }
 
         // 2-segment line, L shape
-        var intermediate = new Vector2(startCenter.x, endCenter.y);
+        var intermediate = new Vector2(startCenter.X, endCenter.Y);
         if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
             probablePaths.Add((new[] { startCenter, intermediate, endCenter }, 2));
 
-        intermediate = new Vector2(endCenter.x, startCenter.y);
+        intermediate = new Vector2(endCenter.X, startCenter.Y);
         if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
             probablePaths.Add((new[] { startCenter, intermediate, endCenter }, 2));
 
         // 3-segment lines consider relative position
-        var upper = startRect.Position.y < endRect.Position.y ? startRect : endRect;
-        var lower = startRect.End.y > endRect.End.y ? startRect : endRect;
-        var left = startRect.Position.x < endRect.Position.x ? startRect : endRect;
-        var right = startRect.End.x > endRect.End.x ? startRect : endRect;
+        var upper = startRect.Position.Y < endRect.Position.Y ? startRect : endRect;
+        var lower = startRect.End.Y > endRect.End.Y ? startRect : endRect;
+        var left = startRect.Position.X < endRect.Position.X ? startRect : endRect;
+        var right = startRect.End.X > endRect.End.X ? startRect : endRect;
 
         // 3-segment line, Z shape
-        var middlePoint = new Vector2(left.End.x + right.Position.x, upper.End.y + lower.Position.y) / 2.0f;
+        var middlePoint = new Vector2(left.End.X + right.Position.X, upper.End.Y + lower.Position.Y) / 2.0f;
 
-        var intermediate1 = new Vector2(startCenter.x, middlePoint.y);
-        var intermediate2 = new Vector2(endCenter.x, middlePoint.y);
+        var intermediate1 = new Vector2(startCenter.X, middlePoint.Y);
+        var intermediate2 = new Vector2(endCenter.X, middlePoint.Y);
         if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, 1));
 
-        intermediate1 = new Vector2(middlePoint.x, startCenter.y);
-        intermediate2 = new Vector2(middlePoint.x, endCenter.y);
+        intermediate1 = new Vector2(middlePoint.X, startCenter.Y);
+        intermediate2 = new Vector2(middlePoint.X, endCenter.Y);
         if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, 1));
 
         // 3-segment line, U shape
         for (int i = 1; i <= 3; i++)
         {
-            intermediate1 = new Vector2(startCenter.x, lower.End.y + i * 50);
-            intermediate2 = new Vector2(endCenter.x, lower.End.y + i * 50);
+            intermediate1 = new Vector2(startCenter.X, lower.End.Y + i * 50);
+            intermediate2 = new Vector2(endCenter.X, lower.End.Y + i * 50);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
 
-            intermediate1 = new Vector2(startCenter.x, upper.Position.y - i * 50);
-            intermediate2 = new Vector2(endCenter.x, upper.Position.y - i * 50);
+            intermediate1 = new Vector2(startCenter.X, upper.Position.Y - i * 50);
+            intermediate2 = new Vector2(endCenter.X, upper.Position.Y - i * 50);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
 
-            intermediate1 = new Vector2(right.End.x + i * 50, startCenter.y);
-            intermediate2 = new Vector2(right.End.x + i * 50, endCenter.y);
+            intermediate1 = new Vector2(right.End.X + i * 50, startCenter.Y);
+            intermediate2 = new Vector2(right.End.X + i * 50, endCenter.Y);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
 
-            intermediate1 = new Vector2(left.Position.x - i * 50, startCenter.y);
-            intermediate2 = new Vector2(left.Position.x - i * 50, endCenter.y);
+            intermediate1 = new Vector2(left.Position.X - i * 50, startCenter.Y);
+            intermediate2 = new Vector2(left.Position.X - i * 50, endCenter.Y);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
         }
 
@@ -517,8 +517,8 @@ public class PatchMapDrawer : Control
         foreach (var region in Map!.Regions)
         {
             int regionId = region.Key;
-            var connectionStartHere = connections.Where(p => p.Key.x == regionId);
-            var connectionEndHere = connections.Where(p => p.Key.y == regionId);
+            var connectionStartHere = connections.Where(p => p.Key.X == regionId);
+            var connectionEndHere = connections.Where(p => p.Key.Y == regionId);
 
             var connectionTupleList = connectionStartHere.Select(c => (c.Value, 0, 1)).ToList();
             connectionTupleList.AddRange(
@@ -536,17 +536,17 @@ public class PatchMapDrawer : Control
 
             foreach (var (path, endpoint, intermediate) in connectionTupleList)
             {
-                if (Math.Abs(path[endpoint].x - path[intermediate].x) < MathUtils.EPSILON)
+                if (Math.Abs(path[endpoint].X - path[intermediate].X) < MathUtils.EPSILON)
                 {
-                    connectionsToDirections[path[endpoint].y > path[intermediate].y ? 1 : 3].Add((
+                    connectionsToDirections[path[endpoint].Y > path[intermediate].Y ? 1 : 3].Add((
                         path, endpoint, intermediate,
-                        Math.Abs(path[endpoint].y - path[intermediate].y)));
+                        Math.Abs(path[endpoint].Y - path[intermediate].Y)));
                 }
                 else
                 {
-                    connectionsToDirections[path[endpoint].x > path[intermediate].x ? 0 : 2].Add((
+                    connectionsToDirections[path[endpoint].X > path[intermediate].X ? 0 : 2].Add((
                         path, endpoint, intermediate,
-                        Math.Abs(path[endpoint].x - path[intermediate].x)));
+                        Math.Abs(path[endpoint].X - path[intermediate].X)));
                 }
             }
 
@@ -555,22 +555,22 @@ public class PatchMapDrawer : Control
             // Endpoint position
             foreach (var (path, endpoint, _, _) in connectionsToDirections[0])
             {
-                path[endpoint].x -= region.Value.Width / 2 + halfBorderWidth;
+                path[endpoint].X -= region.Value.Width / 2 + halfBorderWidth;
             }
 
             foreach (var (path, endpoint, _, _) in connectionsToDirections[1])
             {
-                path[endpoint].y -= region.Value.Height / 2 + halfBorderWidth;
+                path[endpoint].Y -= region.Value.Height / 2 + halfBorderWidth;
             }
 
             foreach (var (path, endpoint, _, _) in connectionsToDirections[2])
             {
-                path[endpoint].x += region.Value.Width / 2 + halfBorderWidth;
+                path[endpoint].X += region.Value.Width / 2 + halfBorderWidth;
             }
 
             foreach (var (path, endpoint, _, _) in connectionsToDirections[3])
             {
-                path[endpoint].y += region.Value.Height / 2 + halfBorderWidth;
+                path[endpoint].Y += region.Value.Height / 2 + halfBorderWidth;
             }
 
             // Separation
@@ -592,16 +592,16 @@ public class PatchMapDrawer : Control
                     foreach (var (path, endpoint, intermediate, _) in
                              connectionsToDirection.OrderBy(t => t.Distance))
                     {
-                        if (path.Length == 2 || path[2 * intermediate - endpoint].x > path[intermediate].x)
+                        if (path.Length == 2 || path[2 * intermediate - endpoint].X > path[intermediate].X)
                         {
-                            path[endpoint].x += lineSeparation * right;
-                            path[intermediate].x += lineSeparation * right;
+                            path[endpoint].X += lineSeparation * right;
+                            path[intermediate].X += lineSeparation * right;
                             right -= 1;
                         }
                         else
                         {
-                            path[endpoint].x += lineSeparation * left;
-                            path[intermediate].x += lineSeparation * left;
+                            path[endpoint].X += lineSeparation * left;
+                            path[intermediate].X += lineSeparation * left;
                             left += 1;
                         }
                     }
@@ -614,16 +614,16 @@ public class PatchMapDrawer : Control
                     foreach (var (path, endpoint, intermediate, _) in
                              connectionsToDirection.OrderBy(t => t.Distance))
                     {
-                        if (path.Length == 2 || path[2 * intermediate - endpoint].y > path[intermediate].y)
+                        if (path.Length == 2 || path[2 * intermediate - endpoint].Y > path[intermediate].Y)
                         {
-                            path[endpoint].y += lineSeparation * down;
-                            path[intermediate].y += lineSeparation * down;
+                            path[endpoint].Y += lineSeparation * down;
+                            path[intermediate].Y += lineSeparation * down;
                             down -= 1;
                         }
                         else
                         {
-                            path[endpoint].y += lineSeparation * up;
-                            path[intermediate].y += lineSeparation * up;
+                            path[endpoint].Y += lineSeparation * up;
+                            path[intermediate].Y += lineSeparation * up;
                             up += 1;
                         }
                     }
@@ -821,10 +821,10 @@ public class PatchMapDrawer : Control
 
     private void AddPatchNode(Patch patch, Vector2 position)
     {
-        var node = (PatchMapNode)nodeScene.Instance();
-        node.MarginLeft = position.x;
-        node.MarginTop = position.y;
-        node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
+        var node = nodeScene.Instantiate<PatchMapNode>();
+        node.OffsetLeft = position.X;
+        node.OffsetTop = position.Y;
+        node.Size = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
 
         node.Patch = patch;
         node.PatchIcon = patch.BiomeTemplate.LoadedIcon;
@@ -841,13 +841,13 @@ public class PatchMapDrawer : Control
 
     private void RebuildRegionConnections()
     {
-        // Clear exisiting connection lines
+        // Clear existing connection lines
         lineContainer.FreeChildren();
 
         foreach (var entry in connections)
         {
-            var region1 = map.Regions[entry.Key.x];
-            var region2 = map.Regions[entry.Key.y];
+            var region1 = map.Regions[entry.Key.X];
+            var region2 = map.Regions[entry.Key.Y];
 
             var visibility1 = region1.Visibility;
             var visibility2 = region2.Visibility;
@@ -900,7 +900,7 @@ public class PatchMapDrawer : Control
             var endingPoint = targetPatch.ScreenCoordinates + patchSize / 2;
 
             // Draw a straight line if possible
-            if (endingPoint.x == startingPoint.x || endingPoint.y == startingPoint.y)
+            if (endingPoint.X == startingPoint.X || endingPoint.Y == startingPoint.Y)
             {
                 var straightPoints = new[]
                 {
@@ -912,12 +912,12 @@ public class PatchMapDrawer : Control
                 continue;
             }
 
-            var intermediate = new Vector2(endingPoint.x, startingPoint.y);
+            var intermediate = new Vector2(endingPoint.X, startingPoint.Y);
 
             // Make sure the new point is not covered by the patch itself
             var targetPatchRect = new Rect2(targetPatch.ScreenCoordinates, patchSize);
             if (targetPatchRect.HasPoint(intermediate))
-                intermediate = new Vector2(startingPoint.x, endingPoint.y);
+                intermediate = new Vector2(startingPoint.X, endingPoint.Y);
 
             var points = new[]
             {

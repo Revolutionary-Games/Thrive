@@ -1,15 +1,15 @@
-﻿using Components;
+using Components;
 using DefaultEcs;
 using Godot;
 
 /// <summary>
 ///   Button shown above organisms in pause mode to fossilise (save) them.
 /// </summary>
-public class FossilisationButton : TextureButton
+public partial class FossilisationButton : TextureButton
 {
 #pragma warning disable CA2213
     [Export]
-    public Texture AlreadyFossilisedTexture = null!;
+    public Texture2D AlreadyFossilisedTexture = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -27,11 +27,11 @@ public class FossilisationButton : TextureButton
     /// <summary>
     ///   Active camera grabbed when this is created in order to properly position this on that camera's view
     /// </summary>
-    private Camera camera = null!;
+    private Camera3D camera = null!;
 #pragma warning restore CA2213
 
     [Signal]
-    public delegate void OnFossilisationDialogOpened(FossilisationButton button);
+    public delegate void OnFossilisationDialogOpenedEventHandler(FossilisationButton button);
 
     /// <summary>
     ///   Whether this species has already been fossilised.
@@ -52,16 +52,16 @@ public class FossilisationButton : TextureButton
     {
         base._Ready();
 
-        camera = GetViewport().GetCamera();
+        camera = GetViewport().GetCamera3D();
     }
 
     /// <summary>
-    ///   Update the position of this button, e.g. to reflect player zooming.
+    ///   Update the position of this button, e.g. to reflect player.Zooming.
     /// </summary>
     public void UpdatePosition()
     {
         if (camera is not { Current: true })
-            camera = GetViewport().GetCamera();
+            camera = GetViewport().GetCamera3D();
 
         // If the entity is removed (e.g. forcefully despawned)
         if (!AttachedEntity.IsAlive || !AttachedEntity.Has<WorldPosition>())
@@ -70,12 +70,12 @@ public class FossilisationButton : TextureButton
             return;
         }
 
-        RectGlobalPosition = camera.UnprojectPosition(AttachedEntity.Get<WorldPosition>().Position);
+        GlobalPosition = camera.UnprojectPosition(AttachedEntity.Get<WorldPosition>().Position);
     }
 
     private void OnPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnFossilisationDialogOpened), this);
+        EmitSignal(nameof(OnFossilisationDialogOpenedEventHandler), this);
     }
 }

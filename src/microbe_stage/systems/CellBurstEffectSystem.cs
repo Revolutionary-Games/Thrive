@@ -8,7 +8,7 @@
 
     /// <summary>
     ///   Updates cell burst effects as time elapses. As this just setups the effect this doesn't need to run per frame
-    ///   normal update frequency is fine.
+    ///   normal update frequen.Y is fine.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -44,7 +44,7 @@
 
             burstEffect.Initialized = true;
 
-            var particles = spatial.GraphicalInstance as Particles;
+            var particles = spatial.GraphicalInstance as GpuParticles3D;
 
             if (particles == null)
             {
@@ -52,12 +52,13 @@
                 return;
             }
 
-            timedLife.TimeToLiveRemaining = particles.Lifetime;
+            timedLife.TimeToLiveRemaining = (float)particles.Lifetime;
 
-            var material = (ParticlesMaterial)particles.ProcessMaterial;
+            var material = (ParticleProcessMaterial)particles.ProcessMaterial;
 
             material.EmissionSphereRadius = burstEffect.Radius / 2;
-            material.LinearAccel = burstEffect.Radius / 2;
+            material.LinearAccelMax = burstEffect.Radius * 0.5f;
+            material.LinearAccelMin = burstEffect.Radius * 0.25f;
             particles.OneShot = true;
         }
     }

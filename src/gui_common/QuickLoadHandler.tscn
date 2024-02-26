@@ -14,9 +14,9 @@ __meta__ = {
 DifferentVersionDialogPath = NodePath("DifferentVersionDialog")
 
 [node name="DifferentVersionDialog" parent="." instance=ExtResource( 2 )]
-margin_right = 570.0
-margin_bottom = 75.0
-rect_min_size = Vector2( 570, 0 )
+offset_right = 570.0
+offset_bottom = 75.0
+custom_minimum_size = Vector2( 570, 0 )
 DialogText = "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 HideCancelButton = true
 WindowTitle = "SAVE_HAS_DIFFERENT_VERSION"

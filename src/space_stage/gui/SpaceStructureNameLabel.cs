@@ -2,7 +2,7 @@
 using Godot;
 using Newtonsoft.Json;
 
-public class SpaceStructureNameLabel : Button, IEntityNameLabel
+public partial class SpaceStructureNameLabel : Button, IEntityNameLabel
 {
     private string translationTemplate = null!;
 

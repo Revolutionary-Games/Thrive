@@ -44,7 +44,7 @@ public class AvailableUpgrade : IRegistryType
     ///   </para>
     /// </remarks>
     [JsonIgnore]
-    public Texture? LoadedIcon { get; private set; }
+    public Texture2D? LoadedIcon { get; private set; }
 
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
@@ -74,7 +74,7 @@ public class AvailableUpgrade : IRegistryType
     public void Resolve()
     {
         if (!string.IsNullOrEmpty(IconPath))
-            LoadedIcon = GD.Load<Texture>(IconPath);
+            LoadedIcon = GD.Load<Texture2D>(IconPath);
     }
 
     public void ApplyTranslations()

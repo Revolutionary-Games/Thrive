@@ -10,7 +10,7 @@ public partial class DebugOverlays
     public void DumpSceneTreeToFile(Node node)
     {
         var file = new File();
-        file.Open(SCENE_DUMP_FILE, File.ModeFlags.Write);
+        file.Open(SCENE_DUMP_FILE, FileAccess.ModeFlags.Write);
 
         DumpSceneTreeToFile(node, file, 0);
 

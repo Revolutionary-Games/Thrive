@@ -1,24 +1,24 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
 ///   A customized check box that changes icon when hovered / clicked.
 /// </summary>
-public class CustomCheckBox : Button
+public partial class CustomCheckBox : Button
 {
 #pragma warning disable CA2213
-    private Texture unpressedNormal = null!;
-    private Texture unpressedHovered = null!;
-    private Texture unpressedClicked = null!;
-    private Texture pressedNormal = null!;
-    private Texture pressedHovered = null!;
-    private Texture pressedClicked = null!;
-    private Texture radioUnpressedNormal = null!;
-    private Texture radioUnpressedHovered = null!;
-    private Texture radioUnpressedClicked = null!;
-    private Texture radioPressedNormal = null!;
-    private Texture radioPressedHovered = null!;
-    private Texture radioPressedClicked = null!;
+    private Texture2D unpressedNormal = null!;
+    private Texture2D unpressedHovered = null!;
+    private Texture2D unpressedClicked = null!;
+    private Texture2D pressedNormal = null!;
+    private Texture2D pressedHovered = null!;
+    private Texture2D pressedClicked = null!;
+    private Texture2D radioUnpressedNormal = null!;
+    private Texture2D radioUnpressedHovered = null!;
+    private Texture2D radioUnpressedClicked = null!;
+    private Texture2D radioPressedNormal = null!;
+    private Texture2D radioPressedHovered = null!;
+    private Texture2D radioPressedClicked = null!;
 #pragma warning restore CA2213
 
     private Color normalColor;
@@ -40,26 +40,26 @@ public class CustomCheckBox : Button
         Disabled,
     }
 
-    public bool Radio => Group != null;
+    public bool Radio => ButtonGroup != null;
 
     public override void _Ready()
     {
-        unpressedNormal = GetIcon("UnpressedNormal", "CheckBox");
-        unpressedHovered = GetIcon("UnpressedHovered", "CheckBox");
-        unpressedClicked = GetIcon("UnpressedClicked", "CheckBox");
-        pressedNormal = GetIcon("PressedNormal", "CheckBox");
-        pressedHovered = GetIcon("PressedHovered", "CheckBox");
-        pressedClicked = GetIcon("PressedClicked", "CheckBox");
-        radioUnpressedNormal = GetIcon("RadioUnpressedNormal", "CheckBox");
-        radioUnpressedHovered = GetIcon("RadioUnpressedHovered", "CheckBox");
-        radioUnpressedClicked = GetIcon("RadioUnpressedClicked", "CheckBox");
-        radioPressedNormal = GetIcon("RadioPressedNormal", "CheckBox");
-        radioPressedHovered = GetIcon("RadioPressedHovered", "CheckBox");
-        radioPressedClicked = GetIcon("RadioPressedClicked", "CheckBox");
+        unpressedNormal = GetThemeIcon("UnpressedNormal", "CheckBox");
+        unpressedHovered = GetThemeIcon("UnpressedHovered", "CheckBox");
+        unpressedClicked = GetThemeIcon("UnpressedClicked", "CheckBox");
+        pressedNormal = GetThemeIcon("PressedNormal", "CheckBox");
+        pressedHovered = GetThemeIcon("PressedHovered", "CheckBox");
+        pressedClicked = GetThemeIcon("PressedClicked", "CheckBox");
+        radioUnpressedNormal = GetThemeIcon("RadioUnpressedNormal", "CheckBox");
+        radioUnpressedHovered = GetThemeIcon("RadioUnpressedHovered", "CheckBox");
+        radioUnpressedClicked = GetThemeIcon("RadioUnpressedClicked", "CheckBox");
+        radioPressedNormal = GetThemeIcon("RadioPressedNormal", "CheckBox");
+        radioPressedHovered = GetThemeIcon("RadioPressedHovered", "CheckBox");
+        radioPressedClicked = GetThemeIcon("RadioPressedClicked", "CheckBox");
 
-        normalColor = GetColor("font_color");
-        focusColor = GetColor("font_color_focus");
-        pressedColor = GetColor("font_color_pressed");
+        normalColor = GetThemeColor("font_color");
+        focusColor = GetThemeColor("font_color_focus");
+        pressedColor = GetThemeColor("font_color_pressed");
 
         UpdateIcon();
     }
@@ -68,16 +68,16 @@ public class CustomCheckBox : Button
     {
         base._Notification(what);
 
-        if (what is NotificationFocusEnter or NotificationFocusExit)
+        if ((long)what is NotificationFocusEnter or NotificationFocusExit)
         {
             focused = what == NotificationFocusEnter;
 
             // Update font colour based on focused state to make things more clear which box is focused (and more
             // consistent with mouse hover)
-            AddColorOverride("font_color", focused ? focusColor : normalColor);
-            AddColorOverride("font_color_pressed", focused ? focusColor : pressedColor);
+            AddThemeColorOverride("font_color", focused ? focusColor : normalColor);
+            AddThemeColorOverride("font_color_pressed", focused ? focusColor : pressedColor);
 
-            Update();
+            QueueRedraw();
         }
     }
 
@@ -85,7 +85,7 @@ public class CustomCheckBox : Button
     {
         if (pressing && !Disabled)
         {
-            currentState = Pressed ? State.PressedClicked : State.UnpressedClicked;
+            currentState = ButtonPressed ? State.PressedClicked : State.UnpressedClicked;
         }
         else
         {
@@ -114,7 +114,7 @@ public class CustomCheckBox : Button
         if (@event is InputEventMouseButton mouseEvent)
         {
             pressing = (mouseEvent.ButtonMask & ButtonMask) != 0;
-            Update();
+            QueueRedraw();
         }
 
         base._GuiInput(@event);
@@ -126,7 +126,7 @@ public class CustomCheckBox : Button
         {
             Icon = currentState switch
             {
-                State.Disabled => Pressed ? radioPressedNormal : radioUnpressedNormal,
+                State.Disabled => ButtonPressed ? radioPressedNormal : radioUnpressedNormal,
                 State.UnpressedNormal => radioUnpressedNormal,
                 State.UnpressedHovered => radioUnpressedHovered,
                 State.UnpressedClicked => radioUnpressedClicked,
@@ -140,7 +140,7 @@ public class CustomCheckBox : Button
         {
             Icon = currentState switch
             {
-                State.Disabled => Pressed ? pressedNormal : unpressedNormal,
+                State.Disabled => ButtonPressed ? pressedNormal : unpressedNormal,
                 State.UnpressedNormal => unpressedNormal,
                 State.UnpressedHovered => unpressedHovered,
                 State.UnpressedClicked => unpressedClicked,

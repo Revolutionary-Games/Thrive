@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 public static class BenchmarkHelpers
 {
@@ -20,7 +20,7 @@ public static class BenchmarkHelpers
         return $"CPU: {OS.GetProcessorName()} (used tasks: {TaskExecutor.Instance.ParallelTasks}, " +
             $"native: {TaskExecutor.Instance.NativeTasks}, sim threads: " +
             $"{Settings.Instance.RunGameSimulationMultithreaded.Value})\n" +
-            $"GPU: {VisualServer.GetVideoAdapterName()}\nOS: {OS.GetName()}";
+            $"GPU: {RenderingServer.GetVideoAdapterName()}\nOS: {OS.GetName()}";
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public static class BenchmarkHelpers
         Settings.Instance.CloudUpdateInterval.Value = settingStore;
     }
 
-    public class BenchmarkChangedSettingsStore
+    public partial class BenchmarkChangedSettingsStore
     {
         public float CloudSettings;
     }

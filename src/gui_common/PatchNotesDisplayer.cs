@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles displaying the patch notes from the previous version to the current one
 /// </summary>
-public class PatchNotesDisplayer : VBoxContainer
+public partial class PatchNotesDisplayer : VBoxContainer
 {
     [Export]
     public bool InsideDialogStyle;

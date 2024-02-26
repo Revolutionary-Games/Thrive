@@ -220,7 +220,7 @@
                     }
                 }
 
-                // var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
+                // var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.Origin);
                 //
                 // distanceRight += ;
             }
@@ -428,7 +428,7 @@
             float angle = 180;
 
             // Find the direction the microbe is facing
-            var yAxis = Transform.basis.y;
+            var yAxis = Transform.Basis.y;
             var microbeAngle = Mathf.Atan2(yAxis.x, yAxis.y);
             if (microbeAngle < 0)
             {
@@ -443,10 +443,10 @@
             var s = Mathf.Sin(finalAngle / 180 * Mathf.Pi);
             var c = Mathf.Cos(finalAngle / 180 * Mathf.Pi);
 
-            var ejectionDirection = new Vector3(-membraneCoords.x * c + membraneCoords.z * s, 0,
-                membraneCoords.x * s + membraneCoords.z * c);
+            var ejectionDirection = new Vector3(-membraneCoords.X * c + membraneCoords.Z * s, 0,
+                membraneCoords.X * s + membraneCoords.Z * c);
 
-            return Translation + (ejectionDirection * ejectionDistance);
+            return Position + (ejectionDirection * ejectionDistance);
             */
 
             // Unlike the commented block of code above, this uses cheap membrane radius to calculate
@@ -467,7 +467,7 @@
         }
 
         public static Vector3 CalculateExternalOrganellePosition(this ref CellProperties cellProperties,
-            Hex hexPosition, int orientation, out Quat rotation)
+            Hex hexPosition, int orientation, out Quaternion rotation)
         {
             // TODO: https://github.com/Revolutionary-Games/Thrive/issues/3109
             _ = orientation;
@@ -488,8 +488,7 @@
                 relativeOrganellePosition = DefaultVisualPos;
 
             Vector3 exit = middle - relativeOrganellePosition;
-            var membraneCoords = membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
-                exit.z);
+            var membraneCoords = membrane.GetVectorTowardsNearestPointOfMembrane(exit.X, exit.Z);
 
             var calculatedNewAngle = GetExternalOrganelleAngle(relativeOrganellePosition);
 
@@ -589,7 +588,7 @@
         /// <param name="delta">The difference between the cell middle and the external organelle position</param>
         private static float GetExternalOrganelleAngle(Vector3 delta)
         {
-            float angle = Mathf.Atan2(-delta.z, delta.x);
+            float angle = Mathf.Atan2(-delta.Z, delta.X);
             if (angle < 0)
             {
                 angle += 2 * Mathf.Pi;

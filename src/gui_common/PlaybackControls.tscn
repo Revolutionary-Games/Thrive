@@ -3,7 +3,7 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/PlayButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/PlaybackControls.cs" type="Script" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="FontFile" id=4]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
@@ -72,15 +72,15 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [node name="PlaybackControls" type="HBoxContainer"]
-margin_right = 29.0
-margin_bottom = 25.0
+offset_right = 29.0
+offset_bottom = 25.0
 size_flags_vertical = 8
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="PlaybackSlider" type="HSlider" parent="."]
-margin_top = 5.0
-margin_bottom = 20.0
+offset_top = 5.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource( 1 )
@@ -88,22 +88,22 @@ step = 0.01
 ticks_on_borders = true
 
 [node name="PlayButton" parent="." instance=ExtResource( 2 )]
-margin_left = 4.0
-margin_right = 29.0
+offset_left = 4.0
+offset_right = 29.0
 size_flags_vertical = 4
 
 [node name="StopButton" type="Button" parent="."]
-margin_left = 33.0
-margin_right = 73.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
+offset_left = 33.0
+offset_right = 73.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 1 )
+theme_override_fonts/font = ExtResource( 4 )
+theme_override_styles/hover = SubResource( 2 )
+theme_override_styles/pressed = SubResource( 3 )
+theme_override_styles/focus = SubResource( 4 )
+theme_override_styles/disabled = SubResource( 5 )
+theme_override_styles/normal = SubResource( 1 )
 text = "STOP"
 
 [connection signal="value_changed" from="PlaybackSlider" to="." method="OnSliderChanged"]

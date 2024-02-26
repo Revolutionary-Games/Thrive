@@ -3,9 +3,9 @@
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="FontFile" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="FontFile" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="FontFile" id=6]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=9]
@@ -16,7 +16,7 @@
 [ext_resource path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" type="PackedScene" id=14]
 
 [node name="MicrobeTutorialGUI" type="Control"]
-pause_mode = 2
+process_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -52,11 +52,11 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -1280.0
-margin_top = -360.0
-margin_right = -830.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 450, 400 )
+offset_left = -1280.0
+offset_top = -360.0
+offset_right = -830.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 450, 400 )
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_description_": ""
@@ -72,64 +72,64 @@ LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 435.0
-margin_bottom = 385.0
-rect_min_size = Vector2( 230, 230 )
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 435.0
+offset_bottom = 385.0
+custom_minimum_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome/ScrollContainer"]
-margin_right = 870.0
-margin_bottom = 770.0
+offset_right = 870.0
+offset_bottom = 770.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="MicrobeWelcome/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
-margin_right = 870.0
-margin_bottom = 24.0
-custom_fonts/normal_font = ExtResource( 4 )
+offset_right = 870.0
+offset_bottom = 24.0
+theme_override_fonts/normal_font = ExtResource( 4 )
 ExtendedBbcode = ""
 
 [node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-margin_top = 28.0
-margin_right = 870.0
-margin_bottom = 710.0
+offset_top = 28.0
+offset_right = 870.0
+offset_bottom = 710.0
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-margin_top = 714.0
-margin_right = 870.0
-margin_bottom = 734.0
+offset_top = 714.0
+offset_right = 870.0
+offset_bottom = 734.0
 
 [node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 10, 0 )
+offset_right = 10.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 10, 0 )
 
 [node name="CheckBox" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
-margin_left = 14.0
-margin_right = 174.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 5 )
+offset_left = 14.0
+offset_right = 174.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource( 5 )
 pressed = true
 text = "SHOW_TUTORIALS"
 
 [node name="FocusGrabber" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
-margin_left = 178.0
-margin_right = 178.0
-margin_bottom = 20.0
+offset_left = 178.0
+offset_right = 178.0
+offset_bottom = 20.0
 Priority = 2
 NodeToGiveFocusTo = NodePath("../../Button")
 GrabFocusWhenBecomingVisible = true
 
 [node name="Button" type="Button" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-margin_left = 354.0
-margin_top = 738.0
-margin_right = 515.0
-margin_bottom = 770.0
+offset_left = 354.0
+offset_top = 738.0
+offset_right = 515.0
+offset_bottom = 770.0
 size_flags_horizontal = 4
-custom_fonts/font = ExtResource( 6 )
+theme_override_fonts/font = ExtResource( 6 )
 text = "BEGIN_THRIVING"
 
 [node name="MicrobeMovementTutorial" type="Control" parent="."]
@@ -142,11 +142,11 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 95.0
-rect_min_size = Vector2( 260, 274 )
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 95.0
+custom_minimum_size = Vector2( 260, 274 )
 Description = "MICROBE_STAGE_CONTROL_TEXT"
 DescriptionForController = "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 
@@ -156,11 +156,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -640.0
-margin_top = -360.0
-margin_right = 640.0
-margin_bottom = 360.0
-rect_pivot_offset = Vector2( 640, 360 )
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+pivot_offset = Vector2( 640, 360 )
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -168,38 +168,38 @@ __meta__ = {
 
 [node name="Forward" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
 visible = false
-margin_left = 620.0
-margin_top = 280.0
-margin_right = -628.0
-margin_bottom = -408.0
-rect_min_size = Vector2( 40, 40 )
+offset_left = 620.0
+offset_top = 280.0
+offset_right = -628.0
+offset_bottom = -408.0
+custom_minimum_size = Vector2( 40, 40 )
 ActionName = "g_move_forward"
 
 [node name="Backwards" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
 visible = false
-margin_left = 620.0
-margin_top = 400.0
-margin_right = -628.0
-margin_bottom = -288.0
-rect_min_size = Vector2( 40, 40 )
+offset_left = 620.0
+offset_top = 400.0
+offset_right = -628.0
+offset_bottom = -288.0
+custom_minimum_size = Vector2( 40, 40 )
 ActionName = "g_move_backwards"
 
 [node name="Left" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
 visible = false
-margin_left = 560.0
-margin_top = 340.0
-margin_right = -688.0
-margin_bottom = -348.0
-rect_min_size = Vector2( 40, 40 )
+offset_left = 560.0
+offset_top = 340.0
+offset_right = -688.0
+offset_bottom = -348.0
+custom_minimum_size = Vector2( 40, 40 )
 ActionName = "g_move_left"
 
 [node name="Right" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
 visible = false
-margin_left = 680.0
-margin_top = 340.0
-margin_right = -568.0
-margin_bottom = -348.0
-rect_min_size = Vector2( 40, 40 )
+offset_left = 680.0
+offset_top = 340.0
+offset_right = -568.0
+offset_bottom = -348.0
+custom_minimum_size = Vector2( 40, 40 )
 ActionName = "g_move_right"
 
 [node name="GlucoseTutorial" parent="." instance=ExtResource( 10 )]
@@ -207,10 +207,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 61.0
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 61.0
 Description = "MICROBE_STAGE_COLLECT_TEXT"
 
 [node name="DayNightTutorial" parent="." instance=ExtResource( 10 )]
@@ -218,10 +218,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 61.0
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 61.0
 Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
 
 [node name="OrganelleDivisionTutorial" parent="." instance=ExtResource( 10 )]
@@ -229,10 +229,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -298.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 61.0
+offset_left = -298.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 61.0
 Description = "MICROBE_STAGE_ORGANELLE_DIVISION"
 
 [node name="BecomeMulticellularTutorial" parent="." instance=ExtResource( 10 )]
@@ -240,10 +240,10 @@ anchor_left = 1.0
 anchor_top = 0.45
 anchor_right = 1.0
 anchor_bottom = 0.45
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 61.0
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 61.0
 Description = "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 
 [node name="StayingAliveTutorial" parent="." instance=ExtResource( 10 )]
@@ -251,10 +251,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 61.0
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 61.0
 Description = "MICROBE_STAGE_HEALTH_TEXT"
 
 [node name="ReproductionTutorial" parent="." instance=ExtResource( 10 )]
@@ -262,30 +262,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 91.0
-rect_min_size = Vector2( 260, 270 )
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 91.0
+custom_minimum_size = Vector2( 260, 270 )
 Description = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 
 [node name="EditorButtonHighlight" parent="." instance=ExtResource( 11 )]
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 490.0
-margin_bottom = 490.0
+offset_right = 490.0
+offset_bottom = 490.0
 
 [node name="EditorButtonTutorial" parent="." instance=ExtResource( 10 )]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 61.0
-rect_min_size = Vector2( 260, 260 )
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 61.0
+custom_minimum_size = Vector2( 260, 260 )
 PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 
@@ -294,10 +294,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 61.0
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 61.0
 PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 
@@ -306,11 +306,11 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -189.0
-margin_right = 0.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 260, 240 )
+offset_left = -260.0
+offset_top = -189.0
+offset_right = 0.0
+offset_bottom = 51.0
+custom_minimum_size = Vector2( 260, 240 )
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_description_": ""
@@ -324,34 +324,34 @@ LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 [node name="ScrollContainer" type="ScrollContainer" parent="CheckHelpMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 230, 230 )
+custom_minimum_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CheckHelpMenu/ScrollContainer"]
-margin_right = 260.0
-margin_bottom = 240.0
+offset_right = 260.0
+offset_bottom = 240.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="CheckHelpMenu/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
-margin_right = 260.0
-margin_bottom = 24.0
-custom_fonts/normal_font = ExtResource( 4 )
+offset_right = 260.0
+offset_bottom = 24.0
+theme_override_fonts/normal_font = ExtResource( 4 )
 ExtendedBbcode = ""
 
 [node name="Control" type="Control" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
-margin_top = 28.0
-margin_right = 260.0
-margin_bottom = 204.0
+offset_top = 28.0
+offset_right = 260.0
+offset_bottom = 204.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
-margin_left = 26.0
-margin_top = 208.0
-margin_right = 234.0
-margin_bottom = 240.0
+offset_left = 26.0
+offset_top = 208.0
+offset_right = 234.0
+offset_bottom = 240.0
 size_flags_horizontal = 4
-custom_fonts/font = ExtResource( 6 )
+theme_override_fonts/font = ExtResource( 6 )
 text = "TUTORIAL_VIEW_NOW"
 
 [node name="EngulfmentFullCapacity" parent="." instance=ExtResource( 10 )]
@@ -359,10 +359,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 61.0
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 61.0
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 
 [node name="EngulfmentTutorial" parent="." instance=ExtResource( 10 )]
@@ -370,10 +370,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 61.0
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 61.0
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 
 [node name="EngulfedTutorial" parent="." instance=ExtResource( 10 )]
@@ -381,11 +381,11 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 61.0
-rect_min_size = Vector2( 260, 275 )
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 61.0
+custom_minimum_size = Vector2( 260, 275 )
 PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 
@@ -394,44 +394,44 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -179.0
-margin_right = 0.0
-margin_bottom = 96.0
-rect_min_size = Vector2( 260, 275 )
+offset_left = -260.0
+offset_top = -179.0
+offset_right = 0.0
+offset_bottom = 96.0
+custom_minimum_size = Vector2( 260, 275 )
 Description = "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 
 [node name="EarlyMulticellularWelcome" parent="." instance=ExtResource( 10 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -830.0
-margin_bottom = -260.0
-rect_min_size = Vector2( 450, 460 )
+offset_right = -830.0
+offset_bottom = -260.0
+custom_minimum_size = Vector2( 450, 460 )
 Exclusive = true
 PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 
 [node name="VBoxContainer" parent="EarlyMulticellularWelcome/ScrollContainer" index="0"]
-margin_right = 450.0
-margin_bottom = 460.0
+offset_right = 450.0
+offset_bottom = 460.0
 
 [node name="CustomRichTextLabel" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="0"]
-margin_right = 450.0
-margin_bottom = 24.0
+offset_right = 450.0
+offset_bottom = 24.0
 
 [node name="Control" type="Control" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="1"]
-margin_top = 28.0
-margin_right = 450.0
-margin_bottom = 424.0
+offset_top = 28.0
+offset_right = 450.0
+offset_bottom = 424.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="2"]
-margin_left = 125.0
-margin_top = 428.0
-margin_right = 325.0
-margin_bottom = 460.0
+offset_left = 125.0
+offset_top = 428.0
+offset_right = 325.0
+offset_bottom = 460.0
 size_flags_horizontal = 4
-custom_fonts/font = ExtResource( 6 )
+theme_override_fonts/font = ExtResource( 6 )
 text = "CONTINUE_THRIVING"
 
 [connection signal="hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]

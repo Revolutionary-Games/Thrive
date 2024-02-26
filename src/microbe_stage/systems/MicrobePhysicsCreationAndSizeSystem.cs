@@ -1,4 +1,4 @@
-﻿namespace Systems
+namespace Systems
 {
     using System;
     using System.Collections.Generic;
@@ -38,17 +38,17 @@
     {
         private readonly float pilusDensity;
 
-        private readonly ThreadLocal<List<(PhysicsShape Shape, Vector3 Position, Quat Rotation)>>
-            temporaryCombinedShapeData = new(() => new List<(PhysicsShape Shape, Vector3 Position, Quat Rotation)>());
+        private readonly ThreadLocal<List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)>>
+            temporaryCombinedShapeData = new(() => new List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)>());
 
         private readonly ThreadLocal<List<(Membrane Membrane, bool Bacteria)>> temporaryColonyMemberMembranes =
             new(() => new List<(Membrane Membrane, bool Bacteria)>());
 
         private readonly
-            ThreadLocal<List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quat ExtraRotation)>>
+            ThreadLocal<List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quaternion ExtraRotation)>>
             temporaryColonyMemberOrganelles =
                 new(() =>
-                    new List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quat ExtraRotation)>());
+                    new List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quaternion ExtraRotation)>());
 
         private readonly Lazy<PhysicsShape> eukaryoticPilus;
 
@@ -260,9 +260,9 @@
             // Base microbe shape is always first
             combinedData.Add((
                 CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties, membraneVertices,
-                    vertexCount), Vector3.Zero, Quat.Identity));
+                    vertexCount), Vector3.Zero, Quaternion.Identity));
 
-            List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quat ExtraRotation)>?
+            List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quaternion ExtraRotation)>?
                 memberOrganelles = null;
 
             // Then the (potential) colony members
@@ -323,7 +323,7 @@
                     }
 
                     combinedData.Add(CreatePilusShape(ref extraData, ref cellProperties, organelle, Vector3.Zero,
-                        Quat.Identity));
+                        Quaternion.Identity));
                 }
             }
 
@@ -356,7 +356,7 @@
                     if (organelle.Definition.HasPilusComponent && organelle.Upgrades.HasInjectisomeUpgrade())
                     {
                         combinedData.Add(CreatePilusShape(ref extraData, ref cellProperties, organelle, Vector3.Zero,
-                            Quat.Identity));
+                            Quaternion.Identity));
                         ++extraData.PilusInjectisomeCount;
                     }
                 }
@@ -395,9 +395,9 @@
             return combinedShape;
         }
 
-        private (PhysicsShape Shape, Vector3 Position, Quat Rotation) CreatePilusShape(
+        private (PhysicsShape Shape, Vector3 Position, Quaternion Rotation) CreatePilusShape(
             ref MicrobePhysicsExtraData extraData, ref CellProperties cellProperties,
-            PlacedOrganelle placedOrganelle, Vector3 extraOffset, Quat extraRotation)
+            PlacedOrganelle placedOrganelle, Vector3 extraOffset, Quaternion extraRotation)
         {
             var externalPosition = cellProperties.CalculateExternalOrganellePosition(placedOrganelle.Position,
                 placedOrganelle.Orientation, out var rotation);

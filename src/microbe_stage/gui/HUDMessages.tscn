@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/microbe_stage/gui/HUDMessages.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="FontFile" id=2]
 
 [node name="HUDMessages" type="VBoxContainer"]
-pause_mode = 1
+process_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

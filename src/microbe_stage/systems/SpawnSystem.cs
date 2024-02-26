@@ -68,7 +68,7 @@
         ///   Used to prevent a "spawn belt" of densely spawned entities when player doesn't move.
         /// </summary>
         [JsonProperty]
-        private HashSet<Int2> coordinatesSpawned = new();
+        private HashSet<Vector2I> coordinatesSpawned = new();
 
         public SpawnSystem(IWorldSimulation world)
         {
@@ -415,29 +415,29 @@
 
         private void SpawnAllTypes(ref float spawnsLeftThisFrame)
         {
-            var playerCoordinatePoint = new Tuple<int, int>(Mathf.RoundToInt(playerPosition.x /
-                Constants.SPAWN_SECTOR_SIZE), Mathf.RoundToInt(playerPosition.z / Constants.SPAWN_SECTOR_SIZE));
+            var playerCoordinatePoint = new Tuple<int, int>(Mathf.RoundToInt(playerPosition.X /
+                Constants.SPAWN_SECTOR_SIZE), Mathf.RoundToInt(playerPosition.Z / Constants.SPAWN_SECTOR_SIZE));
 
             // Spawn for all sectors immediately outside a 3x3 box around the player
-            var sectorsToSpawn = new List<Int2>(12);
+            var sectorsToSpawn = new List<Vector2I>(12);
             for (int y = -1; y <= 1; y++)
             {
-                sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + y));
+                sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + y));
             }
 
             for (int x = -1; x <= 1; x++)
             {
-                sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + x));
+                sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + x));
             }
 
             for (int y = -1; y <= 1; y++)
             {
-                sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + y, playerCoordinatePoint.Item2 - 2));
+                sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + y, playerCoordinatePoint.Item2 - 2));
             }
 
             for (int x = -1; x <= 1; x++)
             {
-                sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + x, playerCoordinatePoint.Item2 + 2));
+                sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + x, playerCoordinatePoint.Item2 + 2));
             }
 
             foreach (var newSector in sectorsToSpawn)
@@ -466,7 +466,7 @@
         ///   X/Y coordinates of the sector to be spawned, in <see cref="Constants.SPAWN_SECTOR_SIZE" /> units
         /// </param>
         /// <param name="spawnsLeftThisFrame">How many spawns are still allowed this frame</param>
-        private void SpawnInSector(Int2 sector, ref float spawnsLeftThisFrame)
+        private void SpawnInSector(Vector2I sector, ref float spawnsLeftThisFrame)
         {
             float spawns = 0.0f;
 
@@ -475,8 +475,8 @@
                 if (SpawnsBlocked(spawnType))
                     continue;
 
-                var sectorCenter = new Vector3(sector.x * Constants.SPAWN_SECTOR_SIZE, 0,
-                    sector.y * Constants.SPAWN_SECTOR_SIZE);
+                var sectorCenter = new Vector3(sector.X * Constants.SPAWN_SECTOR_SIZE, 0,
+                    sector.Y * Constants.SPAWN_SECTOR_SIZE);
 
                 // Distance from the sector center.
                 var displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE -

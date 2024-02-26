@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -7,7 +7,7 @@ using Godot;
 ///   Central store of game information for the player. Acts like a browser. Can be opened in-game and from the main
 ///   menu. Some pages relating to a game in progress are only available in-game.
 /// </summary>
-public class Thriveopedia : ControlWithInput
+public partial class Thriveopedia : ControlWithInput
 {
     [Export]
     public NodePath? BackButtonPath;
@@ -85,10 +85,10 @@ public class Thriveopedia : ControlWithInput
     private bool hasGeneratedWiki;
 
     [Signal]
-    public delegate void OnThriveopediaClosed();
+    public delegate void OnThriveopediaClosedEventHandler();
 
     [Signal]
-    public delegate void OnSceneChanged();
+    public delegate void OnSceneChangedEventHandler();
 
     /// <summary>
     ///   The currently open Thriveopedia page. Defaults to the home page if none has been set.
@@ -329,13 +329,13 @@ public class Thriveopedia : ControlWithInput
         if (page == null)
         {
             var scene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn");
-            page = (ThriveopediaPage)scene.Instance();
+            page = scene.Instantiate<ThriveopediaPage>();
         }
 
         if (page.ParentPageName != null && !allPages.Keys.Any(p => p.PageName == page.ParentPageName))
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
 
-        page.Connect(nameof(ThriveopediaPage.OnSceneChanged), this, nameof(HandleSceneChanged));
+        page.Connect(nameof(ThriveopediaPage.OnSceneChangedEventHandler), new Callable(this, nameof(HandleSceneChanged)));
         pageContainer.AddChild(page);
 
         var treeItem = CreateTreeItem(page, page.ParentPageName);
@@ -513,7 +513,7 @@ public class Thriveopedia : ControlWithInput
 
     private void HandleSceneChanged()
     {
-        EmitSignal(nameof(OnSceneChanged));
+        EmitSignal(nameof(OnSceneChangedEventHandler));
     }
 
     private void OnClosePressed()
@@ -525,7 +525,7 @@ public class Thriveopedia : ControlWithInput
 
     private void Exit()
     {
-        EmitSignal(nameof(OnThriveopediaClosed));
+        EmitSignal(nameof(OnThriveopediaClosedEventHandler));
     }
 
     private void PrintErrorAboutCurrentGame()

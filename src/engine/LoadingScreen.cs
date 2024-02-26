@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   A loading screen that shows cool stuff. This is autoloaded overlay on top of other scenes.
 /// </summary>
-public class LoadingScreen : Control
+public partial class LoadingScreen : Control
 {
     [Export]
     public NodePath? ArtworkPath;
@@ -55,7 +55,7 @@ public class LoadingScreen : Control
     private string loadingDescription = string.Empty;
     private string? artDescription;
 
-    private float totalElapsed;
+    private double totalElapsed;
 
     private LoadingScreen()
     {
@@ -143,7 +143,7 @@ public class LoadingScreen : Control
         Hide();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         // Only elapse passed time if this is visible
         if (!Visible)
@@ -160,7 +160,7 @@ public class LoadingScreen : Control
         // Spin the spinner
         totalElapsed += delta;
 
-        spinner.RectRotation = (int)(totalElapsed * SpinnerSpeed) % 360;
+        spinner.Rotation = (int)(totalElapsed * SpinnerSpeed) % 360;
     }
 
     /// <summary>
@@ -206,7 +206,7 @@ public class LoadingScreen : Control
         var category = gallery.AssetCategories.ContainsKey(gameStateName) ? gameStateName : "General";
         var artwork = gallery.AssetCategories[category].Assets.Random(random);
 
-        artworkRect.Image = GD.Load<Texture>(artwork.ResourcePath);
+        artworkRect.Image = GD.Load<Texture2D>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);
     }
 

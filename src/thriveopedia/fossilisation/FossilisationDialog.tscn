@@ -1,37 +1,37 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="FontFile" id=2]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/SpeciesDetailsPanel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButton.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture" id=10]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonHover.png" type="Texture" id=12]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="FontFile" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButton.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture2D" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture2D" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonHover.png" type="Texture2D" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "invalidSpeciesNameFlash"
 length = 0.8
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 0.301961, 0.301961, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.301961, 0.301961, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.301961, 0.301961, 1 ) ]
 }
 
 [node name="FossilisationDialog" instance=ExtResource( 4 )]
-margin_right = 364.0
-margin_bottom = 420.0
-rect_min_size = Vector2( 364, 420 )
-popup_exclusive = false
+offset_right = 364.0
+offset_bottom = 420.0
+custom_minimum_size = Vector2( 364, 420 )
+exclusive = false
 script = ExtResource( 1 )
 WindowTitle = "FOSSILISATION"
 ExclusiveAllowCloseOnEscape = false
@@ -43,64 +43,64 @@ FossilisationFailedDialogPath = NodePath("FossilisationFailedDialog")
 
 [node name="VBoxContainer" parent="." index="0"]
 visible = false
-margin_right = 152.0
+offset_right = 152.0
 
 [node name="Label" parent="VBoxContainer" index="0"]
-margin_right = 137.0
+offset_right = 137.0
 
 [node name="FocusGrabber" parent="VBoxContainer" index="1"]
-margin_right = 137.0
+offset_right = 137.0
 NodeToGiveFocusTo = NodePath("../../VBoxContainer2/HBoxContainer/CancelButton")
 
 [node name="HBoxContainer" parent="VBoxContainer" index="2"]
-margin_right = 137.0
+offset_right = 137.0
 
 [node name="Spacer" parent="VBoxContainer/HBoxContainer" index="0"]
-margin_right = 1.0
+offset_right = 1.0
 
 [node name="CancelButton" parent="VBoxContainer/HBoxContainer" index="1"]
-margin_left = 5.0
-margin_right = 85.0
+offset_left = 5.0
+offset_right = 85.0
 
 [node name="Spacer2" parent="VBoxContainer/HBoxContainer" index="2"]
-margin_left = 89.0
-margin_right = 90.0
+offset_left = 89.0
+offset_right = 90.0
 
 [node name="ConfirmButton" parent="VBoxContainer/HBoxContainer" index="3"]
-margin_left = 94.0
-margin_right = 131.0
+offset_left = 94.0
+offset_right = 131.0
 
 [node name="Spacer3" parent="VBoxContainer/HBoxContainer" index="4"]
-margin_left = 135.0
-margin_right = 137.0
+offset_left = 135.0
+offset_right = 137.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." index="1"]
-margin_left = 11.0
-margin_top = 11.0
-margin_right = 353.0
-margin_bottom = 409.0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 353.0
+offset_bottom = 409.0
 
 [node name="Spacer2" type="Control" parent="VBoxContainer2" index="0"]
-margin_right = 352.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 342, 16 )
+offset_right = 352.0
+offset_bottom = 16.0
+custom_minimum_size = Vector2( 342, 16 )
 size_flags_horizontal = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2" index="1"]
-margin_top = 20.0
-margin_right = 352.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 275, 0 )
+offset_top = 20.0
+offset_right = 352.0
+offset_bottom = 51.0
+custom_minimum_size = Vector2( 275, 0 )
 
 [node name="SpeciesName" type="LineEdit" parent="VBoxContainer2/HBoxContainer2" index="0"]
-margin_right = 240.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 240, 27 )
+offset_right = 240.0
+offset_bottom = 31.0
+custom_minimum_size = Vector2( 240, 27 )
 focus_mode = 1
 mouse_filter = 1
 size_flags_vertical = 4
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 2 )
+theme_override_colors/font_color = Color( 1, 1, 1, 1 )
+theme_override_fonts/font = ExtResource( 2 )
 max_length = 100
 placeholder_text = "SPECIES_NAME_DOT_DOT_DOT"
 caret_blink = true
@@ -112,10 +112,10 @@ __meta__ = {
 anims/invalidSpeciesNameFlash = SubResource( 1 )
 
 [node name="RandomizeButton" type="TextureButton" parent="VBoxContainer2/HBoxContainer2" index="1"]
-margin_left = 244.0
-margin_right = 275.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 31, 31 )
+offset_left = 244.0
+offset_right = 275.0
+offset_bottom = 31.0
+custom_minimum_size = Vector2( 31, 31 )
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture_normal = ExtResource( 9 )
@@ -128,83 +128,83 @@ __meta__ = {
 }
 
 [node name="Spacer" type="Control" parent="VBoxContainer2" index="2"]
-margin_top = 55.0
-margin_right = 352.0
-margin_bottom = 71.0
-rect_min_size = Vector2( 342, 16 )
+offset_top = 55.0
+offset_right = 352.0
+offset_bottom = 71.0
+custom_minimum_size = Vector2( 342, 16 )
 size_flags_horizontal = 3
 
 [node name="SpeciesDetails" parent="VBoxContainer2" index="3" instance=ExtResource( 5 )]
-margin_top = 75.0
-margin_bottom = 375.0
+offset_top = 75.0
+offset_bottom = 375.0
 
 [node name="Description" parent="VBoxContainer2" index="4" instance=ExtResource( 3 )]
-margin_top = 379.0
-margin_right = 352.0
-margin_bottom = 423.0
-rect_min_size = Vector2( 342, 44 )
+offset_top = 379.0
+offset_right = 352.0
+offset_bottom = 423.0
+custom_minimum_size = Vector2( 342, 44 )
 ExtendedBbcode = "FOSSILISATION_EXPLANATION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" index="5"]
-margin_top = 427.0
-margin_right = 352.0
-margin_bottom = 459.0
+offset_top = 427.0
+offset_right = 352.0
+offset_bottom = 459.0
 
 [node name="Spacer" type="Control" parent="VBoxContainer2/HBoxContainer" index="0"]
-margin_right = 53.0
-margin_bottom = 32.0
+offset_right = 53.0
+offset_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="CancelButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="1"]
-margin_left = 57.0
-margin_right = 137.0
-margin_bottom = 32.0
+offset_left = 57.0
+offset_right = 137.0
+offset_bottom = 32.0
 focus_mode = 0
-custom_fonts/font = ExtResource( 8 )
-enabled_focus_mode = 0
+theme_override_fonts/font = ExtResource( 8 )
+focus_mode = 0
 text = "CANCEL"
 
 [node name="Spacer2" type="Control" parent="VBoxContainer2/HBoxContainer" index="2"]
-margin_left = 141.0
-margin_right = 195.0
-margin_bottom = 32.0
+offset_left = 141.0
+offset_right = 195.0
+offset_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="FossiliseButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="3"]
-margin_left = 199.0
-margin_right = 294.0
-margin_bottom = 32.0
+offset_left = 199.0
+offset_right = 294.0
+offset_bottom = 32.0
 focus_mode = 0
-custom_fonts/font = ExtResource( 8 )
-enabled_focus_mode = 0
+theme_override_fonts/font = ExtResource( 8 )
+focus_mode = 0
 text = "FOSSILISE"
 
 [node name="Spacer3" type="Control" parent="VBoxContainer2/HBoxContainer" index="4"]
-margin_left = 298.0
-margin_right = 352.0
-margin_bottom = 32.0
+offset_left = 298.0
+offset_right = 352.0
+offset_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="OverwriteNameConfirmation" parent="." index="2" instance=ExtResource( 4 )]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 935.0
-margin_bottom = 599.0
-rect_min_size = Vector2( 440, 0 )
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 935.0
+offset_bottom = 599.0
+custom_minimum_size = Vector2( 440, 0 )
 WindowTitle = "CONFIRM_FOSSILISATION_OVERWRITE"
 
 [node name="FossilisationFailedDialog" parent="." index="3" instance=ExtResource( 4 )]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 935.0
-margin_bottom = 599.0
-rect_min_size = Vector2( 440, 0 )
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 935.0
+offset_bottom = 599.0
+custom_minimum_size = Vector2( 440, 0 )
 WindowTitle = "FOSSILISATION_FAILED"
 HideCancelButton = true
 DialogText = "FOSSILISATION_FAILED_DESCRIPTION"
 
 [connection signal="text_changed" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextChanged"]
-[connection signal="text_entered" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextEntered"]
+[connection signal="text_submitted" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextEntered"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer2/RandomizeButton" to="." method="OnRandomizeNamePressed"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/FossiliseButton" to="." method="OnFossilisePressed"]

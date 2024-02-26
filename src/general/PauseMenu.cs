@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-public class PauseMenu : TopLevelContainer
+public partial class PauseMenu : TopLevelContainer
 {
     [Export]
     public string HelpCategory = null!;
@@ -59,20 +59,20 @@ public class PauseMenu : TopLevelContainer
     private int exitTries;
 
     [Signal]
-    public delegate void OnResumed();
+    public delegate void OnResumedEventHandler();
 
     /// <summary>
     ///   Triggered when the user hits ESC to open the pause menu
     /// </summary>
     [Signal]
-    public delegate void OnOpenWithKeyPress();
+    public delegate void OnOpenWithKeyPressEventHandler();
 
     /// <summary>
     ///   Called when a save needs to be made
     /// </summary>
     /// <param name="name">Name of the save to make or empty string</param>
     [Signal]
-    public delegate void MakeSave(string name);
+    public delegate void MakeSaveEventHandler(string name);
 
     /// <summary>
     ///   Types of exit the player can request. Used to store the action for when the warning popup
@@ -221,7 +221,7 @@ public class PauseMenu : TopLevelContainer
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
-        unsavedProgressWarning.Connect(nameof(CustomWindow.Cancelled), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(nameof(CustomWindow.CanceledEventHandler), new Callable(this, nameof(CancelExit)));
 
         if (GameProperties != null)
             thriveopedia.CurrentGame = GameProperties;
@@ -273,7 +273,7 @@ public class PauseMenu : TopLevelContainer
             ActiveMenu = ActiveMenuType.Primary;
 
             Close();
-            EmitSignal(nameof(OnResumed));
+            EmitSignal(nameof(OnResumedEventHandler));
 
             return true;
         }
@@ -282,7 +282,7 @@ public class PauseMenu : TopLevelContainer
             return false;
 
         Open();
-        EmitSignal(nameof(OnOpenWithKeyPress));
+        EmitSignal(nameof(OnOpenWithKeyPressEventHandler));
 
         return true;
     }
@@ -294,7 +294,7 @@ public class PauseMenu : TopLevelContainer
             return false;
 
         Open();
-        EmitSignal(nameof(OnOpenWithKeyPress));
+        EmitSignal(nameof(OnOpenWithKeyPressEventHandler));
 
         ShowHelpScreen();
         return true;
@@ -387,7 +387,7 @@ public class PauseMenu : TopLevelContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
         Close();
-        EmitSignal(nameof(OnResumed));
+        EmitSignal(nameof(OnResumedEventHandler));
     }
 
     private void ReturnToMenuPressed()
@@ -557,8 +557,8 @@ public class PauseMenu : TopLevelContainer
 
         // Close this first to get the menus out of the way to capture the save screenshot
         Hide();
-        EmitSignal(nameof(OnResumed));
-        EmitSignal(nameof(MakeSave), name);
+        EmitSignal(nameof(OnResumedEventHandler));
+        EmitSignal(nameof(MakeSaveEventHandler), name);
         Paused = false;
     }
 

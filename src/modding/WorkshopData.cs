@@ -2,7 +2,7 @@
 using System.IO;
 using Godot;
 using Newtonsoft.Json;
-using File = Godot.File;
+using FileAccess = Godot.FileAccess;
 
 /// <summary>
 ///   Holds data that we need to interact with the Steam workshop
@@ -17,12 +17,9 @@ public class WorkshopData
 
     public static WorkshopData Load()
     {
-        using var file = new File();
-        if (!file.FileExists(Constants.WORKSHOP_DATA_FILE))
+        using var file = FileAccess.Open(Constants.WORKSHOP_DATA_FILE, FileAccess.ModeFlags.Read);
+        if (file == null)
             return new WorkshopData();
-
-        if (file.Open(Constants.WORKSHOP_DATA_FILE, File.ModeFlags.Read) != Error.Ok)
-            throw new IOException("Can't read workshop data file even though it exists");
 
         var data = file.GetAsText();
 
@@ -32,9 +29,9 @@ public class WorkshopData
 
     public void Save()
     {
-        using var file = new File();
+        using var file = FileAccess.Open(Constants.WORKSHOP_DATA_FILE, FileAccess.ModeFlags.Write);
 
-        if (file.Open(Constants.WORKSHOP_DATA_FILE, File.ModeFlags.Write) != Error.Ok)
+        if (file == null)
             throw new IOException("Can't open workshop data file for writing");
 
         var serialized = new StringWriter();

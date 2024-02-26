@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System;
 using Godot;
+using Godot.Collections;
 using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Class managing the main menu and everything in it
 /// </summary>
-public class MainMenu : NodeWithInput
+public partial class MainMenu : NodeWithInput
 {
     /// <summary>
     ///   Index of the current menu.
@@ -18,12 +17,17 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath? ThriveLogoPath;
 
-    [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
-    [Export]
-    public List<Texture> MenuBackgrounds = null!;
+    /// <summary>
+    ///   Needs to be a collection of <see cref="Texture2D"/>
+    /// </summary>
+    [Export(PropertyHint.ArrayType, "Texture2D")]
+    public Array MenuBackgrounds = null!;
 
-    [Export(PropertyHint.File, "*.tscn")]
-    public List<string> Menu3DBackgroundScenes = null!;
+    /// <summary>
+    ///   Needs to be a collection of paths to scenes
+    /// </summary>
+    [Export(PropertyHint.ArrayType, "string")]
+    public Array Menu3DBackgroundScenes = null!;
 
     [Export]
     public NodePath FreebuildButtonPath = null!;
@@ -111,7 +115,7 @@ public class MainMenu : NodeWithInput
 
 #pragma warning disable CA2213
     private TextureRect background = null!;
-    private Spatial? created3DBackground;
+    private Node3D? created3DBackground;
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -162,11 +166,11 @@ public class MainMenu : NodeWithInput
     private CenterContainer menus = null!;
 #pragma warning restore CA2213
 
-    private Array? menuArray;
+    private Array<Node> menuArray;
 
     private bool introVideoPassed;
 
-    private float timerForStartupSuccess = Constants.MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS;
+    private double timerForStartupSuccess = Constants.MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS;
 
     /// <summary>
     ///   True when we are able to show the thanks for buying popup due to being a store version
@@ -178,12 +182,12 @@ public class MainMenu : NodeWithInput
     /// </summary>
     private string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
 
-    private float averageFrameRate;
+    private double averageFrameRate;
 
     /// <summary>
     ///   Time tracking related to performance. Note that this is reset when performance tracking is restarted.
     /// </summary>
-    private float secondsInMenu;
+    private double secondsInMenu;
 
     private bool canShowLowPerformanceWarning = true;
 
@@ -250,7 +254,7 @@ public class MainMenu : NodeWithInput
         ThriveopediaManager.Instance.OnPageOpenedHandler -= OnThriveopediaOpened;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -319,7 +323,7 @@ public class MainMenu : NodeWithInput
     {
         base._Notification(notification);
 
-        if (notification == NotificationWmQuitRequest)
+        if (notification == NotificationWMCloseRequest)
         {
             GD.Print("Main window close signal detected");
             Invoke.Instance.Queue(QuitPressed);
@@ -532,17 +536,17 @@ public class MainMenu : NodeWithInput
         // Some of the 3D backgrounds render very incorrectly in GLES2 so they are disabled
         if (Settings.Instance.Menu3DBackgroundEnabled && OS.GetCurrentVideoDriver() != OS.VideoDriver.Gles2)
         {
-            SetBackgroundScene(Menu3DBackgroundScenes.Random(random));
+            SetBackgroundScene(Menu3DBackgroundScenes.Random(random).AsString());
         }
         else
         {
             var chosenBackground = MenuBackgrounds.Random(random);
 
-            SetBackground(chosenBackground);
+            SetBackground(chosenBackground.As<Texture2D>());
         }
     }
 
-    private void SetBackground(Texture backgroundImage)
+    private void SetBackground(Texture2D backgroundImage)
     {
         background.Visible = true;
         background.Texture = backgroundImage;
@@ -576,7 +580,7 @@ public class MainMenu : NodeWithInput
                 created3DBackground = null;
             }
 
-            created3DBackground = backgroundScene.Instance<Spatial>();
+            created3DBackground = backgroundScene.Instantiate<Node3D>();
             AddChild(created3DBackground);
         });
     }
@@ -795,7 +799,7 @@ public class MainMenu : NodeWithInput
         }
     }
 
-    private float TrackMenuPerformance()
+    private double TrackMenuPerformance()
     {
         var currentFrameRate = Engine.GetFramesPerSecond();
 
@@ -869,7 +873,7 @@ public class MainMenu : NodeWithInput
             OnEnteringGame();
 
             // Instantiate a new editor scene
-            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate();
 
             // Start freebuild game
             editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
@@ -892,7 +896,7 @@ public class MainMenu : NodeWithInput
 
             // Instantiate a new editor scene
             var editor = (EarlyMulticellularEditor)SceneManager.Instance
-                .LoadScene(MainGameState.EarlyMulticellularEditor).Instance();
+                .LoadScene(MainGameState.EarlyMulticellularEditor).Instantiate();
 
             // Start freebuild game
             editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings(), true);
@@ -1105,7 +1109,7 @@ public class MainMenu : NodeWithInput
 
         // A plain PopupPanel doesn't resize automatically and using other popup types will be overkill,
         // so we need to manually shrink it
-        websiteButtonsContainer.RectSize = Vector2.Zero;
+        websiteButtonsContainer.Size = Vector2I.Zero;
     }
 
     private void OnSocialMediaButtonPressed(string url)

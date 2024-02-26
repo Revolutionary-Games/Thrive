@@ -126,8 +126,8 @@ public struct Hex : IEquatable<Hex>
     public static Hex CartesianToAxial(Vector3 pos)
     {
         // Getting the cube coordinates.
-        float cx = pos.x * (2.0f / 3.0f) / Constants.DEFAULT_HEX_SIZE;
-        float cy = pos.z / (Constants.DEFAULT_HEX_SIZE * Mathf.Sqrt(3)) - cx / 2.0f;
+        float cx = pos.X * (2.0f / 3.0f) / Constants.DEFAULT_HEX_SIZE;
+        float cy = pos.Z / (Constants.DEFAULT_HEX_SIZE * Mathf.Sqrt(3)) - cx / 2.0f;
         float cz = -(cx + cy);
 
         // Rounding the result.
@@ -149,15 +149,15 @@ public struct Hex : IEquatable<Hex>
         }
 
         // Returning the axial coordinates.
-        return CubeToAxial(new Int3((int)rx, (int)ry, (int)rz));
+        return CubeToAxial(new Vector3I((int)rx, (int)ry, (int)rz));
     }
 
     /// <summary>
     ///   Converts axial hex coordinates to coordinates in the cube based hex model
     /// </summary>
-    public static Int3 AxialToCube(Hex hex)
+    public static Vector3I AxialToCube(Hex hex)
     {
-        return new Int3(hex.Q, hex.R, -(hex.Q + hex.R));
+        return new Vector3I(hex.Q, hex.R, -(hex.Q + hex.R));
     }
 
     /// <summary>
@@ -165,24 +165,24 @@ public struct Hex : IEquatable<Hex>
     ///   coordinates. Basically just seems to discard the z value.
     /// </summary>
     /// <returns>hex coordinates.</returns>
-    public static Hex CubeToAxial(Int3 cube)
+    public static Hex CubeToAxial(Vector3I cube)
     {
-        return new Hex(cube.x, cube.y);
+        return new Hex(cube.X, cube.Y);
     }
 
     /// <summary>
     ///   Correctly rounds fractional hex cube coordinates to the
     ///   correct integer coordinates.
     /// </summary>
-    public static Int3 CubeHexRound(Vector3 pos)
+    public static Vector3I CubeHexRound(Vector3 pos)
     {
-        float rx = Mathf.Round(pos.x);
-        float ry = Mathf.Round(pos.y);
-        float rz = Mathf.Round(pos.z);
+        float rx = Mathf.Round(pos.X);
+        float ry = Mathf.Round(pos.Y);
+        float rz = Mathf.Round(pos.Z);
 
-        float xDiff = Mathf.Abs(rx - pos.x);
-        float yDiff = Mathf.Abs(ry - pos.y);
-        float zDiff = Mathf.Abs(rz - pos.z);
+        float xDiff = Mathf.Abs(rx - pos.X);
+        float yDiff = Mathf.Abs(ry - pos.Y);
+        float zDiff = Mathf.Abs(rz - pos.Z);
 
         if (xDiff > yDiff && xDiff > zDiff)
         {
@@ -197,7 +197,7 @@ public struct Hex : IEquatable<Hex>
             rz = -(ry + rx);
         }
 
-        return new Int3((int)rx, (int)ry, (int)rz);
+        return new Vector3I((int)rx, (int)ry, (int)rz);
     }
 
     /// <summary>

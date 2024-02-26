@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -125,7 +125,7 @@ public partial class MetaballBodyEditorComponent :
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     [Signal]
-    public delegate void OnCellTypeToEditSelected(string name);
+    public delegate void OnCellTypeToEditSelectedEventHandler(string name);
 
     public enum SelectionMenuTab
     {
@@ -217,7 +217,7 @@ public partial class MetaballBodyEditorComponent :
         UpdateCancelButtonVisibility();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -452,7 +452,7 @@ public partial class MetaballBodyEditorComponent :
 
     protected override IMetaballDisplayer<MulticellularMetaball> CreateMetaballDisplayer()
     {
-        var displayer = (MulticellularMetaballDisplayer)metaballDisplayerScene.Instance();
+        var displayer = metaballDisplayerScene.Instantiate<MulticellularMetaballDisplayer>();
         Editor.RootOfDynamicallySpawned.AddChild(displayer);
         return displayer;
     }
@@ -511,11 +511,11 @@ public partial class MetaballBodyEditorComponent :
         foreach (var metaball in editedMetaballs)
         {
             // Only consider the middle 3 rows
-            if (metaball.Position.x is < -3 or > 3)
+            if (metaball.Position.X is < -3 or > 3)
                 continue;
 
             // Get the min z-axis (highest point in the editor)
-            highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, metaball.Position.z);
+            highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, metaball.Position.Z);
         }
 
         return highestPointInMiddleRows;
@@ -841,7 +841,7 @@ public partial class MetaballBodyEditorComponent :
 
     private void OnModifyPressed()
     {
-        EmitSignal(nameof(OnCellTypeToEditSelected), metaballPopupMenu.SelectedMetaballs.First().CellType.TypeName);
+        EmitSignal(nameof(OnCellTypeToEditSelectedEventHandler), metaballPopupMenu.SelectedMetaballs.First().CellType.TypeName);
     }
 
     /// <summary>
@@ -855,7 +855,7 @@ public partial class MetaballBodyEditorComponent :
             if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
             {
                 // Need new button
-                control = (CellTypeSelection)cellTypeSelectionButtonScene.Instance();
+                control = cellTypeSelectionButtonScene.Instantiate<CellTypeSelection>();
                 control.SelectionGroup = cellTypeButtonGroup;
 
                 control.PartName = cellType.TypeName;
@@ -865,7 +865,7 @@ public partial class MetaballBodyEditorComponent :
                 cellTypeSelectionList.AddItem(control);
                 cellTypeSelectionButtons.Add(cellType.TypeName, control);
 
-                control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnCellToPlaceSelected));
+                control.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler), new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
             control.MPCost = Constants.METABALL_ADD_COST;
@@ -985,7 +985,7 @@ public partial class MetaballBodyEditorComponent :
 
         duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
-        duplicateCellTypeName.CaretPosition = type.TypeName.Length;
+        duplicateCellTypeName.CaretColumn = type.TypeName.Length;
     }
 
     private void OnNewCellTypeNameChanged(string newText)
@@ -1075,7 +1075,7 @@ public partial class MetaballBodyEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnCellTypeToEditSelected), activeActionName);
+        EmitSignal(nameof(OnCellTypeToEditSelectedEventHandler), activeActionName);
     }
 
     private void RegenerateCellTypeIcon(CellType type)
@@ -1116,28 +1116,28 @@ public partial class MetaballBodyEditorComponent :
             case SelectionMenuTab.Structure:
             {
                 structureTab.Show();
-                structureTabButton.Pressed = true;
+                structureTabButton.ButtonPressed = true;
                 break;
             }
 
             case SelectionMenuTab.Reproduction:
             {
                 reproductionTab.Show();
-                reproductionTabButton.Pressed = true;
+                reproductionTabButton.ButtonPressed = true;
                 break;
             }
 
             case SelectionMenuTab.Behaviour:
             {
                 behaviourEditor.Show();
-                behaviourTabButton.Pressed = true;
+                behaviourTabButton.ButtonPressed = true;
                 break;
             }
 
             case SelectionMenuTab.Appearance:
             {
                 appearanceTab.Show();
-                appearanceTabButton.Pressed = true;
+                appearanceTabButton.ButtonPressed = true;
                 break;
             }
 

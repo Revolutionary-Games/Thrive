@@ -11,11 +11,11 @@ using Newtonsoft.Json;
 /// <typeparam name="TSimulation">The type of simulation this stage uses</typeparam>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
+public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
     where TSimulation : class, IWorldSimulation, new()
 {
 #pragma warning disable CA2213
-    protected DirectionalLight worldLight = null!;
+    protected DirectionalLight3D worldLight = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -25,7 +25,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     protected bool spawnedPlayer;
 
     [JsonProperty]
-    protected float playerRespawnTimer;
+    protected double playerRespawnTimer;
 
     /// <summary>
     ///   True when the player is extinct in the current patch. The player can still move to another patch.
@@ -82,7 +82,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
 
         base.ResolveNodeReferences();
 
-        worldLight = world.GetNode<DirectionalLight>("WorldLight");
+        worldLight = world.GetNode<DirectionalLight3D>("WorldLight");
     }
 
     public override void _ExitTree()
@@ -97,7 +97,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -275,7 +275,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     }
 
     /// <summary>
-    ///   Handles respawning the player and checking for extinction
+    ///   Handles respawning the player and checking for Extinction
     /// </summary>
     protected void HandlePlayerRespawn()
     {

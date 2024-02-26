@@ -1,8 +1,10 @@
 ﻿namespace Systems
 {
+    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
+    using Godot;
 
     /// <summary>
     ///   Handles applying the shader "tint" parameter based on <see cref="ColourAnimation"/> to an
@@ -23,8 +25,16 @@
     [RunsOnMainThread]
     public sealed class TintColourApplyingSystem : AEntitySetSystem<float>
     {
+        private readonly StringName tintName = new("tint");
+
         public TintColourApplyingSystem(World world) : base(world, null)
         {
+        }
+
+        public override void Dispose()
+        {
+            Dispose(true);
+            base.Dispose();
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -47,18 +57,26 @@
             {
                 if (materials.Length > 0)
                 {
-                    materials[0].SetShaderParam("tint", currentColour);
+                    materials[0].SetShaderParameter(tintName, currentColour);
                 }
             }
             else
             {
                 foreach (var material in materials)
                 {
-                    material.SetShaderParam("tint", currentColour);
+                    material.SetShaderParameter(tintName, currentColour);
                 }
             }
 
             animation.ColourApplied = true;
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                tintName.Dispose();
+            }
         }
     }
 }

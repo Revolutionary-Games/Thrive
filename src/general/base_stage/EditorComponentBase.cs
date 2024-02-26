@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 /// <typeparam name="TEditor">The type of editor this component is contained in</typeparam>
 [JsonObject(MemberSerialization.OptIn)]
-public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorComponent
+public abstract partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorComponent
     where TEditor : IEditor
 {
     [Export]

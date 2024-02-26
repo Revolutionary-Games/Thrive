@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -118,7 +118,7 @@ public partial class CellBodyPlanEditorComponent :
     private bool forceUpdateCellGraphics;
 
     [Signal]
-    public delegate void OnCellTypeToEditSelected(string name, bool switchTab);
+    public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
     public enum SelectionMenuTab
     {
@@ -231,7 +231,7 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCancelButtonVisibility();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -860,7 +860,7 @@ public partial class CellBodyPlanEditorComponent :
             if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
             {
                 // Need new button
-                control = (CellTypeSelection)cellTypeSelectionButtonScene.Instance();
+                control = (CellTypeSelection)cellTypeSelectionButtonScene.Instantiate();
                 control.SelectionGroup = cellTypeButtonGroup;
 
                 control.PartName = cellType.TypeName;
@@ -943,7 +943,7 @@ public partial class CellBodyPlanEditorComponent :
         OnCurrentActionChanged();
 
         // After clearing the selected cell, emit a signal to let the editor know
-        EmitSignal(nameof(OnCellTypeToEditSelected), null, false);
+        EmitSignal(nameof(OnCellTypeToEditSelectedEventHandler), null, false);
     }
 
     private void OnCellsChanged()
@@ -992,7 +992,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void ShowCellTypeInModelHolder(SceneDisplayer modelHolder, CellType cell, Vector3 position, int orientation)
     {
-        modelHolder.Transform = new Transform(Quat.Identity, position);
+        modelHolder.Transform3D = new Transform3D(Quaternion.Identity, position);
 
         var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
 
@@ -1007,11 +1007,11 @@ public partial class CellBodyPlanEditorComponent :
         }
         else
         {
-            billboard = (CellBillboard)billboardScene.Instance();
+            billboard = (CellBillboard)billboardScene.Instantiate();
         }
 
         // Set look direction
-        billboard.Transform = new Transform(rotation, new Vector3(0, 0, 0));
+        billboard.Transform3D = new Transform3D(rotation, new Vector3(0, 0, 0));
 
         billboard.DisplayedCell = cell;
 
@@ -1051,7 +1051,7 @@ public partial class CellBodyPlanEditorComponent :
         // the entire time and doesn't change due to the focus grabber a tiny bit later
         duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
-        duplicateCellTypeName.CaretPosition = type.TypeName.Length;
+        duplicateCellTypeName.CaretColumn = type.TypeName.Length;
     }
 
     private void OnNewCellTypeNameChanged(string newText)
@@ -1136,7 +1136,7 @@ public partial class CellBodyPlanEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnCellTypeToEditSelected), activeActionName, true);
+        EmitSignal(nameof(OnCellTypeToEditSelectedEventHandler), activeActionName, true);
     }
 
     private void RegenerateCellTypeIcon(CellType type)
@@ -1176,21 +1176,21 @@ public partial class CellBodyPlanEditorComponent :
             case SelectionMenuTab.Structure:
             {
                 structureTab.Show();
-                structureTabButton.Pressed = true;
+                structureTabButton.ButtonPressed = true;
                 break;
             }
 
             case SelectionMenuTab.Reproduction:
             {
                 reproductionTab.Show();
-                reproductionTabButton.Pressed = true;
+                reproductionTabButton.ButtonPressed = true;
                 break;
             }
 
             case SelectionMenuTab.Behaviour:
             {
                 behaviourEditor.Show();
-                behaviourTabButton.Pressed = true;
+                behaviourTabButton.ButtonPressed = true;
                 break;
             }
 

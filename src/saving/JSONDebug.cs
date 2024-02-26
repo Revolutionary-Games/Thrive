@@ -57,28 +57,26 @@
             if (QueuedTraces.Count < 1)
                 return;
 
-            using (var file = new File())
+            using var file = FileAccess.Open(Constants.JSON_DEBUG_OUTPUT_FILE, FileAccess.ModeFlags.Write);
+            if (file == null)
             {
-                if (file.Open(Constants.JSON_DEBUG_OUTPUT_FILE, File.ModeFlags.Write) != Error.Ok)
+                GD.PrintErr("Failed to open JSON debug file for writing at: ", Constants.JSON_DEBUG_OUTPUT_FILE);
+            }
+            else
+            {
+                bool first = true;
+
+                foreach (var trace in QueuedTraces)
                 {
-                    GD.PrintErr("Failed to open JSON debug file for writing at: ", Constants.JSON_DEBUG_OUTPUT_FILE);
+                    if (!first)
+                        file.StoreLine("---- Start of next trace ----");
+
+                    file.StoreLine(trace);
+
+                    first = false;
                 }
-                else
-                {
-                    bool first = true;
 
-                    foreach (var trace in QueuedTraces)
-                    {
-                        if (!first)
-                            file.StoreLine("---- Start of next trace ----");
-
-                        file.StoreLine(trace);
-
-                        first = false;
-                    }
-
-                    GD.Print("JSON trace written to: ", Constants.JSON_DEBUG_OUTPUT_FILE);
-                }
+                GD.Print("JSON trace written to: ", Constants.JSON_DEBUG_OUTPUT_FILE);
             }
 
             foreach (var trace in QueuedTraces)

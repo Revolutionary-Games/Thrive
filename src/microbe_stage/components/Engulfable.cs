@@ -99,8 +99,8 @@
             public float AnimationTimeElapsed;
 
             // TODO: refactor this to not use nullable values as that will save a bunch of boxing and memory allocation
-            public (Vector3? Translation, Vector3? Scale, Vector3? EndosomeScale) TargetValuesToLerp;
-            public (Vector3 Translation, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp;
+            public (Vector3? Position, Vector3? Scale, Vector3? EndosomeScale) TargetValuesToLerp;
+            public (Vector3 Position, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp;
         }
     }
 

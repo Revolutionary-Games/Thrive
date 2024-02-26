@@ -12,7 +12,7 @@ public class FossilisedSpeciesInformation
     /// <param name="type">The type of this species (e.g. microbe)</param>
     public FossilisedSpeciesInformation(SpeciesType type)
     {
-        Type = type;
+        type = type;
     }
 
     public enum SpeciesType
@@ -50,5 +50,5 @@ public class FossilisedSpeciesInformation
     /// <summary>
     ///   The type of this species, e.g. microbe.
     /// </summary>
-    public SpeciesType Type { get; set; }
+    public SpeciesType type { get; set; }
 }

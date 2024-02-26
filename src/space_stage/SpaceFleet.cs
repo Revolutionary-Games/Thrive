@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -7,7 +7,7 @@ using Nito.Collections;
 /// <summary>
 ///   A fleet (or just one) ship out in space.
 /// </summary>
-public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
+public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 {
     [Export]
     public NodePath? VisualsParentPath;
@@ -16,7 +16,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
         new(() => GD.Load<PackedScene>("res://src/space_stage/gui/FleetNameLabel.tscn"));
 
 #pragma warning disable CA2213
-    private Spatial visualsParent = null!;
+    private Node3D visualsParent = null!;
 #pragma warning restore CA2213
 
     private bool nodeReferencesResolved;
@@ -28,7 +28,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
     ///   Emitted when this fleet is selected by the player
     /// </summary>
     [Signal]
-    public delegate void OnSelected();
+    public delegate void OnSelectedEventHandler();
 
     // TODO: more interesting name generation / include AI empire names by default
     [JsonProperty]
@@ -75,7 +75,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     public override void _Ready()
     {
@@ -96,7 +96,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
         if (nodeReferencesResolved)
             return;
 
-        visualsParent = GetNode<Spatial>(VisualsParentPath);
+        visualsParent = GetNode<Node3D>(VisualsParentPath);
 
         nodeReferencesResolved = true;
     }
@@ -109,7 +109,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
         IsPlayerFleet = playerFleet;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         this.ProcessOrderQueue(delta);
     }
@@ -123,14 +123,14 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
 
         // TODO: see the visuals info in SetShips
 
-        var newVisuals = unit.WorldRepresentationSpace.Instance<Spatial>();
+        var newVisuals = unit.WorldRepresentationSpace.Instantiate<Node3D>();
         visualsParent.AddChild(newVisuals);
-        newVisuals.Translation = ships.Count * new Vector3(2.5f, 0, 0);
+        newVisuals.Position = ships.Count * new Vector3(2.5f, 0, 0);
     }
 
     public void OnSelectedThroughLabel()
     {
-        EmitSignal(nameof(OnSelected));
+        EmitSignal(nameof(OnSelectedEventHandler));
     }
 
     public void OnDestroyed()
@@ -156,7 +156,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
         ships = new List<UnitType> { ship };
 
         // TODO: proper positioning and scaling for multiple ships
-        visualsParent.AddChild(ship.WorldRepresentationSpace.Instance());
+        visualsParent.AddChild(ship.WorldRepresentationSpace.Instantiate());
 
         // TODO: fleet model rotations
     }

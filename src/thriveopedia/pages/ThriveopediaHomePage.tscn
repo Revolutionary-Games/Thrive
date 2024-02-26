@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/thriveopedia/pages/ThriveopediaHomePage.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=3]
-[ext_resource path="res://assets/concept_art/disturbance.jpg" type="Texture" id=4]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="FontFile" id=3]
+[ext_resource path="res://assets/concept_art/disturbance.jpg" type="Texture2D" id=4]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
 
 [node name="ThriveopediaHomePage" instance=ExtResource( 1 )]
@@ -11,40 +11,40 @@ script = ExtResource( 2 )
 ContentPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/CustomRichTextLabel")
 
 [node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
-margin_right = 864.0
-margin_bottom = 41.0
+offset_right = 864.0
+offset_bottom = 41.0
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2" index="0"]
-margin_left = 194.0
-margin_right = 669.0
-margin_bottom = 41.0
-custom_fonts/font = ExtResource( 3 )
+offset_left = 194.0
+offset_right = 669.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "WELCOME_TO_THRIVEOPEDIA"
 
 [node name="Control" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
-margin_top = 51.0
-margin_right = 864.0
-margin_bottom = 61.0
-rect_min_size = Vector2( 0, 10 )
+offset_top = 51.0
+offset_right = 864.0
+offset_bottom = 61.0
+custom_minimum_size = Vector2( 0, 10 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
-margin_top = 71.0
-margin_right = 864.0
-margin_bottom = 528.0
+offset_top = 71.0
+offset_right = 864.0
+offset_bottom = 528.0
 size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource( 5 )]
-margin_right = 510.0
-margin_bottom = 457.0
+offset_right = 510.0
+offset_bottom = 457.0
 size_flags_horizontal = 3
 ExtendedBbcode = "THRIVEOPEDIA_HOME_INFO"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
-margin_left = 514.0
-margin_right = 864.0
-margin_bottom = 457.0
-rect_min_size = Vector2( 350, 0 )
-hint_tooltip = "THE_DISTURBANCE"
+offset_left = 514.0
+offset_right = 864.0
+offset_bottom = 457.0
+custom_minimum_size = Vector2( 350, 0 )
+tooltip_text = "THE_DISTURBANCE"
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 expand = true

@@ -10,7 +10,7 @@ using DataSetDictionary = System.Collections.Generic.Dictionary<string, ChartDat
 ///   A custom widget for multi-line chart with hoverable data points tooltip. Uses <see cref="LineChartData"/>
 ///   as dataset; currently only support numerical data.
 /// </summary>
-public class LineChart : VBoxContainer
+public partial class LineChart : VBoxContainer
 {
     [Export]
     public NodePath? HorizontalLabelPath;
@@ -121,12 +121,12 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Fallback icon for the legend display mode using icons
     /// </summary>
-    private Texture defaultIconLegendTexture = null!;
+    private Texture2D defaultIconLegendTexture = null!;
 
-    private Texture hLineTexture = null!;
+    private Texture2D hLineTexture = null!;
 
     // ReSharper disable once NotAccessedField.Local
-    private Texture vLineTexture = null!;
+    private Texture2D vLineTexture = null!;
 
     private Label? horizontalLabel;
     private Label? verticalLabel;
@@ -260,9 +260,9 @@ public class LineChart : VBoxContainer
         extraLegendContainer = GetNode<GridContainer>(ExtraLegendContainerPath);
         inspectButton = GetNode<TextureButton>(InspectButtonPath);
         chartPopup = GetNode<CustomWindow>("ChartPopup");
-        defaultIconLegendTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/blankCircle.png");
-        hLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
-        vLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/vSeparatorUp.png");
+        defaultIconLegendTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/blankCircle.png");
+        hLineTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
+        vLineTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/vSeparatorUp.png");
 
         SetupChartChild();
         UpdateAxesName();
@@ -502,7 +502,7 @@ public class LineChart : VBoxContainer
         // Wait until rect sizes settle down then we update visuals
         Invoke.Instance.Queue(() =>
         {
-            drawArea.Update();
+            drawArea.QueueRedraw();
 
             foreach (var data in dataSets.Keys)
             {
@@ -588,7 +588,7 @@ public class LineChart : VBoxContainer
 
         data.Draw = visible;
         UpdateMinimumAndMaximumValues();
-        drawArea.Update();
+        drawArea.QueueRedraw();
 
         if (dataLines.ContainsKey(name) && !initiallyVisible)
             FlattenLines(name);
@@ -612,26 +612,26 @@ public class LineChart : VBoxContainer
     ///     NOTE: Must be called after Plot() as this will got cleared (removed) if called beforehand.
     ///   </para>
     /// </remarks>
-    public void AddIconLegend(Texture icon, string name, float size = 15)
+    public void AddIconLegend(Texture2D icon, string name, float size = 15)
     {
         if (isChild)
             return;
 
         var parent = new HBoxContainer();
-        parent.AddConstantOverride("separation", 7);
+        parent.AddThemeConstantOverride("separation", 7);
 
         var rect = new TextureRect
         {
             Texture = icon,
-            Expand = true,
-            RectMinSize = new Vector2(size, size),
-            SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
+            ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
+            CustomMinimumSize = new Vector2(size, size),
+            SizeFlagsVertical = SizeFlags.ShrinkCenter,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered,
         };
 
         var label = new Label { Text = name };
 
-        label.AddFontOverride("font", GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Small.tres"));
+        label.AddThemeFontOverride("font", GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Small.tres"));
 
         parent.AddChild(rect);
         parent.AddChild(label);
@@ -707,7 +707,7 @@ public class LineChart : VBoxContainer
         foreach (Control tick in verticalLabelsContainer.GetChildren())
         {
             drawArea.DrawTextureRect(hLineTexture,
-                new Rect2(new Vector2(0, tick.RectPosition.y + (tick.RectSize.y / 2)), drawArea.RectSize.x, 1), false,
+                new Rect2(new Vector2(0, tick.Position.Y + (tick.Size.Y / 2)), drawArea.Size.X, 1), false,
                 new Color(1, 1, 1, 0.3f));
         }
     }
@@ -744,7 +744,7 @@ public class LineChart : VBoxContainer
 
                 if (index < dataLine.Points.Length)
                 {
-                    dataLine.InterpolatePointPosition(index, point.RectPosition + (point.RectSize / 2),
+                    dataLine.InterpolatePointPosition(index, point.Position + (point.Size / 2),
                         point.Coordinate);
                 }
                 else
@@ -771,10 +771,10 @@ public class LineChart : VBoxContainer
         // Create a new collision rect if it hasn't been created yet
         if (!dataLine.CollisionBoxes.ContainsKey(firstPoint))
         {
-            var newCollisionRect = new Control { RectSize = Vector2.One };
+            var newCollisionRect = new Control { Size = Vector2.One };
 
-            newCollisionRect.Connect("mouse_entered", dataLine, nameof(dataLine.OnMouseEnter));
-            newCollisionRect.Connect("mouse_exited", dataLine, nameof(dataLine.OnMouseExit));
+            newCollisionRect.Connect("mouse_entered", new Callable(dataLine, nameof(dataLine.OnMouseEnter)));
+            newCollisionRect.Connect("mouse_exited", new Callable(dataLine, nameof(dataLine.OnMouseExit)));
 
             if (!dataLineTooltips.TryGetValue(dataLine, out var currentDataLineToolTips))
             {
@@ -805,17 +805,17 @@ public class LineChart : VBoxContainer
         var mouseCollider = dataLine.CollisionBoxes[firstPoint];
 
         // Position the collider at a middle point between two data point coordinates
-        mouseCollider.RectPosition = firstPoint.Coordinate.LinearInterpolate(secondPoint.Coordinate, 0.5f);
+        mouseCollider.Position = firstPoint.Coordinate.Lerp(secondPoint.Coordinate, 0.5f);
 
         // Set pivot at the center of the rect
-        mouseCollider.RectPivotOffset = mouseCollider.RectSize / 2;
+        mouseCollider.PivotOffset = mouseCollider.Size / 2;
 
         // Use the distance between two coordinates as the length of the collider
-        mouseCollider.RectScale = new Vector2(
-            firstPoint.Coordinate.DistanceTo(secondPoint.Coordinate) - firstPoint.RectSize.x,
+        mouseCollider.Scale = new Vector2(
+            firstPoint.Coordinate.DistanceTo(secondPoint.Coordinate) - firstPoint.Size.X,
             ((LineChartData)dataSets[datasetName]).LineWidth + 10);
 
-        mouseCollider.RectRotation = Mathf.Rad2Deg(firstPoint.Coordinate.AngleToPoint(secondPoint.Coordinate));
+        mouseCollider.Rotation = Mathf.RadToDeg(firstPoint.Coordinate.AngleToPoint(secondPoint.Coordinate));
 
         mouseCollider.Visible = dataSets[datasetName].Draw;
     }
@@ -825,11 +825,11 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void DrawErrorText(string error)
     {
-        var font = GetFont("jura_small", "Label");
+        var font = GetThemeFont("jura_small", "Label");
 
         // Values are rounded to make the font not be blurry
-        var position = new Vector2(Mathf.Round((drawArea.RectSize.x - font.GetStringSize(error).x) / 2),
-            Mathf.Round(drawArea.RectSize.y / 2));
+        var position = new Vector2(Mathf.Round((drawArea.Size.X - font.GetStringSize(error).X) / 2),
+            Mathf.Round(drawArea.Size.Y / 2));
 
         drawArea.DrawString(font, position, error);
     }
@@ -851,7 +851,7 @@ public class LineChart : VBoxContainer
                 continue;
 
             // First we move the point marker to the bottom of the chart
-            point.SetCoordinate(new Vector2(ConvertToXCoordinate(point.X), drawArea.RectSize.y), false);
+            point.SetCoordinate(new Vector2(ConvertToXCoordinate(point.X), drawArea.Size.Y), false);
 
             // Next start interpolating it into its assigned position
             point.SetCoordinate(ConvertToCoordinate(point));
@@ -934,8 +934,8 @@ public class LineChart : VBoxContainer
         {
             var label = new Label
             {
-                SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
-                Align = Label.AlignEnum.Center,
+                SizeFlagsHorizontal = SizeFlags.ExpandFill,
+                Align = HorizontalAlignment.Center,
             };
 
             label.Text = Math.Round(i * (MaxValues.X - MinValues.X) / (XAxisTicks - 1) + MinValues.X, 1).FormatNumber();
@@ -948,9 +948,9 @@ public class LineChart : VBoxContainer
         {
             var label = new Label
             {
-                SizeFlagsVertical = (int)SizeFlags.ExpandFill,
-                Align = Label.AlignEnum.Right,
-                Valign = Label.VAlign.Center,
+                SizeFlagsVertical = SizeFlags.ExpandFill,
+                Align = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Center,
             };
 
             label.Text = Math.Round(i * (MaxValues.Y - MinValues.Y) / (YAxisTicks - 1) + MinValues.Y, 1).FormatNumber();
@@ -973,7 +973,7 @@ public class LineChart : VBoxContainer
                 {
                     // Plotting failed, here we place the marker at the bottom left corner, we can't hide it at the
                     // same time because it can't be automatically made visible again later
-                    point.SetCoordinate(new Vector2(0, drawArea.RectSize.y), false);
+                    point.SetCoordinate(new Vector2(0, drawArea.Size.Y), false);
                 }
             }
         }
@@ -990,7 +990,7 @@ public class LineChart : VBoxContainer
 
     private float ConvertToXCoordinate(double value)
     {
-        var lineRectX = drawArea.RectSize.x / XAxisTicks;
+        var lineRectX = drawArea.Size.X / XAxisTicks;
         var lineRectWidth = lineRectX * (XAxisTicks - 1);
         var dx = MaxValues.X - MinValues.X;
 
@@ -999,7 +999,7 @@ public class LineChart : VBoxContainer
 
     private float ConvertToYCoordinate(double value)
     {
-        var lineRectY = drawArea.RectSize.y / YAxisTicks;
+        var lineRectY = drawArea.Size.Y / YAxisTicks;
         var lineRectHeight = lineRectY * (YAxisTicks - 1);
         var dy = MaxValues.Y - MinValues.Y;
 
@@ -1029,7 +1029,7 @@ public class LineChart : VBoxContainer
             return;
 
         var scene = GD.Load<PackedScene>("res://src/gui_common/charts/line/LineChart.tscn");
-        childChart = scene.Instance<LineChart>();
+        childChart = scene.Instantiate<LineChart>();
 
         childChart.parentChart = this;
         childChart.isChild = true;
@@ -1187,7 +1187,7 @@ public class LineChart : VBoxContainer
 
     // Subclasses
 
-    public class DatasetsIconLegend : Reference, IDataSetsLegend
+    public partial class DatasetsIconLegend : RefCounted, IDataSetsLegend
     {
         protected readonly LineChart chart;
         protected readonly List<DatasetIcon> icons = new();
@@ -1204,7 +1204,7 @@ public class LineChart : VBoxContainer
             _ = title;
 
             var hBox = new HBoxContainer { Alignment = AlignMode.End };
-            hBox.AddConstantOverride("separation", 0);
+            hBox.AddThemeConstantOverride("separation", 0);
 
             this.datasets = datasets;
 
@@ -1224,12 +1224,12 @@ public class LineChart : VBoxContainer
 
                 hBox.AddChild(icon);
 
-                icon.Connect("toggled", this, nameof(OnIconLegendToggled), new Array { icon });
+                icon.Connect("toggled", new Callable(this, nameof(OnIconLegendToggled)), new Array { icon });
 
                 // Set initial icon toggle state
                 if (!data.Value.Draw)
                 {
-                    icon.Pressed = false;
+                    icon.ButtonPressed = false;
                     OnDataSetVisibilityChange(false, data.Key);
                 }
 
@@ -1260,7 +1260,7 @@ public class LineChart : VBoxContainer
             if (icon == null)
                 return;
 
-            icon.Pressed = visible;
+            icon.ButtonPressed = visible;
 
             var data = datasets[dataset];
 
@@ -1286,12 +1286,12 @@ public class LineChart : VBoxContainer
             switch (result)
             {
                 case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
-                    icon.Pressed = false;
+                    icon.ButtonPressed = false;
                     ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("MAX_VISIBLE_DATASET_WARNING")
                         .FormatSafe(chart.MaxDisplayedDataSet), 1.0f);
                     break;
                 case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
-                    icon.Pressed = true;
+                    icon.ButtonPressed = true;
                     ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("MIN_VISIBLE_DATASET_WARNING")
                         .FormatSafe(chart.MinDisplayedDataSet), 1.0f);
                     break;
@@ -1299,7 +1299,7 @@ public class LineChart : VBoxContainer
         }
     }
 
-    public class DataSetsDropdownLegend : Reference, IDataSetsLegend
+    public partial class DataSetsDropdownLegend : RefCounted, IDataSetsLegend
     {
         protected LineChart chart;
 
@@ -1328,7 +1328,7 @@ public class LineChart : VBoxContainer
 
             Dropdown.CreateElements();
 
-            Dropdown.Popup.Connect("index_pressed", this, nameof(OnDropDownLegendItemSelected));
+            Dropdown.Popup.Connect("index_pressed", new Callable(this, nameof(OnDropDownLegendItemSelected)));
 
             return Dropdown;
         }
@@ -1389,7 +1389,7 @@ public class LineChart : VBoxContainer
         }
     }
 
-    public class DatasetIcon : TextureButton
+    public partial class DatasetIcon : TextureButton
     {
         public readonly string DataName;
         public readonly bool IsUsingFallbackIcon;
@@ -1408,20 +1408,20 @@ public class LineChart : VBoxContainer
             this.data = data;
             IsUsingFallbackIcon = isUsingFallbackIcon;
             Expand = true;
-            RectMinSize = new Vector2(18, 18);
+            CustomMinimumSize = new Vector2(18, 18);
             FocusMode = FocusModeEnum.None;
             ToggleMode = true;
-            Pressed = true;
+            ButtonPressed = true;
             TextureNormal = data.Icon;
             StretchMode = StretchModeEnum.KeepAspectCentered;
-            RectPivotOffset = RectMinSize / 2;
+            PivotOffset = CustomMinimumSize / 2;
 
             // Set the default icon's color
             if (isUsingFallbackIcon)
                 Modulate = data.Colour;
 
-            Connect("mouse_entered", this, nameof(IconLegendMouseEnter));
-            Connect("mouse_exited", this, nameof(IconLegendMouseExit));
+            Connect("mouse_entered", new Callable(this, nameof(IconLegendMouseEnter)));
+            Connect("mouse_exited", new Callable(this, nameof(IconLegendMouseExit)));
 
             tween = new Tween();
             AddChild(tween);
@@ -1443,7 +1443,7 @@ public class LineChart : VBoxContainer
             tween.InterpolateProperty(this, "rect_scale", new Vector2(1.1f, 1.1f), Vector2.One, 0.1f);
             tween.Start();
 
-            if (Pressed)
+            if (ButtonPressed)
             {
                 // Reset icon color
                 Modulate = IsUsingFallbackIcon ? data.Colour : Colors.White;
@@ -1461,7 +1461,7 @@ public class LineChart : VBoxContainer
     ///   Used as the chart's dataset line segments. Contains mouse collision boxes and
     ///   mouse enter/exit callback to make the line interactable.
     /// </summary>
-    private class DataLine : Line2D
+    private partial class DataLine : Line2D
     {
         /// <summary>
         ///   The dataset lines will always be visible and can't be made hidden.
@@ -1486,7 +1486,7 @@ public class LineChart : VBoxContainer
             Width = data.LineWidth * widthMultiplier;
             DefaultColor = data.Colour;
             dataColour = data.Colour;
-            Texture = GD.Load<Texture>("res://assets/textures/gui/bevel/line.png");
+            Texture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/line.png");
             TextureMode = LineTextureMode.Stretch;
 
             tween = new Tween();
@@ -1499,9 +1499,9 @@ public class LineChart : VBoxContainer
 
         public void InterpolatePointPosition(int i, Vector2 initialPos, Vector2 targetPos)
         {
-            var finalValue = new Vector3(i, targetPos.x, targetPos.y);
+            var finalValue = new Vector3(i, targetPos.X, targetPos.Y);
 
-            tween.InterpolateMethod(this, nameof(ChangePointPos), new Vector3(i, initialPos.x, initialPos.y),
+            tween.InterpolateMethod(this, nameof(ChangePointPos), new Vector3(i, initialPos.X, initialPos.Y),
                 finalValue, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.Out);
             tween.Start();
         }
@@ -1528,7 +1528,7 @@ public class LineChart : VBoxContainer
         /// </summary>
         private void ChangePointPos(Vector3 arguments)
         {
-            SetPointPosition((int)arguments.x, new Vector2(arguments.y, arguments.z));
+            SetPointPosition((int)arguments.X, new Vector2(arguments.Y, arguments.Z));
         }
     }
 

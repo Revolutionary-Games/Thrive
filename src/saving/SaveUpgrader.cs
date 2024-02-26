@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 using Saving;
 
@@ -60,7 +60,7 @@ public static class SaveUpgrader
                         Constants.SAVE_EXTENSION_WITH_DOT.Length) +
                     Constants.SAVE_BACKUP_SUFFIX;
 
-                using var folder = new Directory();
+                using var folder = new DirAccess();
 
                 if (folder.Rename(SaveFileInfo.SaveNameToPath(toSave), SaveFileInfo.SaveNameToPath(fromSave)) !=
                     Error.Ok)

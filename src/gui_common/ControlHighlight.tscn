@@ -3,7 +3,7 @@
 [ext_resource path="res://src/gui_common/ControlHighlight.cs" type="Script" id=1]
 
 [node name="ControlHighlight" type="Control"]
-pause_mode = 2
+process_mode = 3
 process_priority = 1000
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,24 +20,24 @@ RightPlanePath = NodePath("RightBlanking")
 BottomPlanePath = NodePath("BottomPlanking")
 
 [node name="LeftBlanking" type="ColorRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 color = Color( 0.14902, 0.137255, 0.137255, 0.882353 )
 
 [node name="RightBlanking" type="ColorRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_pivot_offset = Vector2( 1520, -62 )
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2( 1520, -62 )
 color = Color( 0.14902, 0.137255, 0.137255, 0.882353 )
 
 [node name="TopBlanking" type="ColorRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 color = Color( 0.14902, 0.137255, 0.137255, 0.882353 )
 
 [node name="BottomPlanking" type="ColorRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 color = Color( 0.14902, 0.137255, 0.137255, 0.882353 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Base class for all stage classes that are part of the strategy stages part of the game (society stage etc.)
 /// </summary>
-public abstract class StrategyStageBase : StageBase, IStrategyStage
+public abstract partial class StrategyStageBase : StageBase, IStrategyStage
 {
     [Export]
     public NodePath? StrategicCameraPath;
@@ -55,7 +55,7 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
         GameWorld.ResetAutoEvoRun();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -113,13 +113,13 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
         // If we ever have camera rotation, that should reset as well
     }
 
-    public bool AnimateCameraZoomTowards(float target, float delta, float speed = 1)
+    public bool AnimateCameraZoomTowards(float target, double delta, float speed = 1)
     {
         strategicCamera.AllowPlayerInput = false;
 
         if (strategicCamera.ZoomLevel > target)
         {
-            strategicCamera.ZoomLevel -= speed * delta;
+            strategicCamera.ZoomLevel -= (float)(speed * delta);
 
             if (strategicCamera.ZoomLevel < target)
             {
@@ -129,7 +129,7 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
         }
         else if (strategicCamera.ZoomLevel < target)
         {
-            strategicCamera.ZoomLevel += speed * delta;
+            strategicCamera.ZoomLevel += (float)(speed * delta);
 
             if (strategicCamera.ZoomLevel > target)
             {

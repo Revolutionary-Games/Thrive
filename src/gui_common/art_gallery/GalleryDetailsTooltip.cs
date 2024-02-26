@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
+public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 {
     [Export]
     public NodePath? TitleLabelPath;

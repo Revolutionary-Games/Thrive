@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Godot;
+using HttpClient = System.Net.Http.HttpClient;
 
 /// <summary>
 ///   Manages downloading and parsing the Thrive news feed into Godot-friendly bbcode

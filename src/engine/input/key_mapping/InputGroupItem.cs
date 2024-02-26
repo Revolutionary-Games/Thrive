@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -8,7 +8,7 @@ using Godot;
 ///   Has multiple <see cref="InputActionItem">InputActions</see>.
 ///   Used by OptionsMenu>Inputs>InputGroupContainer>InputGroupItem
 /// </summary>
-public class InputGroupItem : VBoxContainer
+public partial class InputGroupItem : VBoxContainer
 {
     [Export]
     public NodePath? InputGroupHeaderPath;
@@ -111,7 +111,7 @@ public class InputGroupItem : VBoxContainer
     internal static InputGroupItem BuildGUI(InputGroupList associatedList, NamedInputGroup data,
         InputDataList inputData)
     {
-        var result = (InputGroupItem)associatedList.InputGroupItemScene.Instance();
+        var result = (InputGroupItem)associatedList.InputGroupItemScene.Instantiate();
 
         result.AssociatedList = new WeakReference<InputGroupList>(associatedList);
         result.EnvironmentId = data.EnvironmentId.ToList();

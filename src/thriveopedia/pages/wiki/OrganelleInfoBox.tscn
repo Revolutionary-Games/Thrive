@@ -1,16 +1,16 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="FontFile" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="FontFile" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
 [ext_resource path="res://src/thriveopedia/pages/wiki/OrganelleInfoBox.cs" type="Script" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/RequirementFulfilled.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/RequirementFulfilled.png" type="Texture2D" id=7]
 
 [node name="PanelContainer" type="PanelContainer"]
-margin_right = 286.0
-margin_bottom = 732.0
-rect_min_size = Vector2( 330, 0 )
+offset_right = 286.0
+offset_bottom = 732.0
+custom_minimum_size = Vector2( 330, 0 )
 theme = ExtResource( 5 )
 script = ExtResource( 6 )
 NamePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Name")
@@ -29,387 +29,387 @@ UpgradesLabelPath = NodePath("MarginContainer/VBoxContainer/Ugrades/Value")
 InternalNameLabelPath = NodePath("MarginContainer/VBoxContainer/InternalName/Value")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 329.0
-margin_bottom = 731.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 329.0
+offset_bottom = 731.0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 318.0
-margin_bottom = 720.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 318.0
+offset_bottom = 720.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 308.0
-margin_bottom = 60.0
+offset_right = 308.0
+offset_bottom = 60.0
 
 [node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_top = 20.0
-margin_right = 224.0
-margin_bottom = 39.0
-rect_min_size = Vector2( 180, 0 )
+offset_top = 20.0
+offset_right = 224.0
+offset_bottom = 39.0
+custom_minimum_size = Vector2( 180, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
+theme_override_fonts/font = ExtResource( 4 )
 align = 1
 autowrap = true
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 228.0
-margin_right = 308.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 80, 60 )
+offset_left = 228.0
+offset_right = 308.0
+offset_bottom = 60.0
+custom_minimum_size = Vector2( 80, 60 )
 expand = true
 stretch_mode = 6
 
 [node name="Model" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 visible = false
-margin_top = 72.0
-margin_right = 264.0
-margin_bottom = 322.0
-rect_min_size = Vector2( 250, 250 )
+offset_top = 72.0
+offset_right = 264.0
+offset_bottom = 322.0
+custom_minimum_size = Vector2( 250, 250 )
 size_flags_horizontal = 3
 expand = true
 stretch_mode = 6
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 64.0
-margin_right = 308.0
-margin_bottom = 68.0
+offset_top = 64.0
+offset_right = 308.0
+offset_bottom = 68.0
 
 [node name="Cost" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 72.0
-margin_right = 308.0
-margin_bottom = 97.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 72.0
+offset_right = 308.0
+offset_bottom = 97.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Cost"]
-margin_top = 4.0
-margin_right = 160.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 21.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_COST"
 align = 1
 autowrap = true
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Cost"]
-margin_left = 164.0
-margin_top = 4.0
-margin_right = 308.0
-margin_bottom = 21.0
+offset_left = 164.0
+offset_top = 4.0
+offset_right = 308.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 autowrap = true
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 101.0
-margin_right = 308.0
-margin_bottom = 105.0
+offset_top = 101.0
+offset_right = 308.0
+offset_bottom = 105.0
 
 [node name="RequiresNucleus" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 109.0
-margin_right = 308.0
-margin_bottom = 146.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 109.0
+offset_right = 308.0
+offset_bottom = 146.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/RequiresNucleus"]
-margin_right = 160.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_right = 160.0
+offset_bottom = 37.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_REQUIRES_NUCLEUS"
 align = 1
 autowrap = true
 
 [node name="Value" type="TextureRect" parent="MarginContainer/VBoxContainer/RequiresNucleus"]
-margin_left = 164.0
-margin_right = 184.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 20, 20 )
+offset_left = 164.0
+offset_right = 184.0
+offset_bottom = 37.0
+custom_minimum_size = Vector2( 20, 20 )
 texture = ExtResource( 7 )
 expand = true
 stretch_mode = 6
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 150.0
-margin_right = 308.0
-margin_bottom = 154.0
+offset_top = 150.0
+offset_right = 308.0
+offset_bottom = 154.0
 
 [node name="Processes" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 158.0
-margin_right = 308.0
-margin_bottom = 183.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 158.0
+offset_right = 308.0
+offset_bottom = 183.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Processes"]
-margin_top = 4.0
-margin_right = 160.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 21.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_PROCESSES"
 align = 1
 autowrap = true
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Processes"]
-margin_left = 164.0
-margin_top = 4.0
-margin_right = 308.0
-margin_bottom = 21.0
+offset_left = 164.0
+offset_top = 4.0
+offset_right = 308.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 autowrap = true
 
 [node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 187.0
-margin_right = 308.0
-margin_bottom = 191.0
+offset_top = 187.0
+offset_right = 308.0
+offset_bottom = 191.0
 
 [node name="Enzymes" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 195.0
-margin_right = 308.0
-margin_bottom = 220.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 195.0
+offset_right = 308.0
+offset_bottom = 220.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Enzymes"]
-margin_top = 4.0
-margin_right = 160.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 21.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_ENZYMES"
 align = 1
 autowrap = true
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Enzymes"]
-margin_left = 164.0
-margin_top = 4.0
-margin_right = 308.0
-margin_bottom = 21.0
+offset_left = 164.0
+offset_top = 4.0
+offset_right = 308.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 autowrap = true
 
 [node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 224.0
-margin_right = 308.0
-margin_bottom = 228.0
+offset_top = 224.0
+offset_right = 308.0
+offset_bottom = 228.0
 
 [node name="Mass" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 232.0
-margin_right = 308.0
-margin_bottom = 257.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 232.0
+offset_right = 308.0
+offset_bottom = 257.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mass"]
-margin_top = 4.0
-margin_right = 160.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 21.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_MASS"
 align = 1
 autowrap = true
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Mass"]
-margin_left = 164.0
-margin_top = 4.0
-margin_right = 308.0
-margin_bottom = 21.0
+offset_left = 164.0
+offset_top = 4.0
+offset_right = 308.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 autowrap = true
 
 [node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 261.0
-margin_right = 308.0
-margin_bottom = 265.0
+offset_top = 261.0
+offset_right = 308.0
+offset_bottom = 265.0
 
 [node name="Size" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 269.0
-margin_right = 308.0
-margin_bottom = 294.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 269.0
+offset_right = 308.0
+offset_bottom = 294.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Size"]
-margin_top = 4.0
-margin_right = 160.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 21.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_SIZE"
 align = 1
 autowrap = true
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Size"]
-margin_left = 164.0
-margin_top = 4.0
-margin_right = 308.0
-margin_bottom = 21.0
+offset_left = 164.0
+offset_top = 4.0
+offset_right = 308.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 autowrap = true
 
 [node name="HSeparator8" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 298.0
-margin_right = 308.0
-margin_bottom = 302.0
+offset_top = 298.0
+offset_right = 308.0
+offset_bottom = 302.0
 
 [node name="OsmoregulationCost" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 306.0
-margin_right = 308.0
-margin_bottom = 343.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 306.0
+offset_right = 308.0
+offset_bottom = 343.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/OsmoregulationCost"]
-margin_right = 160.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_right = 160.0
+offset_bottom = 37.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_OSMOREGULATION_COST"
 align = 1
 autowrap = true
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/OsmoregulationCost"]
-margin_left = 164.0
-margin_top = 10.0
-margin_right = 308.0
-margin_bottom = 27.0
+offset_left = 164.0
+offset_top = 10.0
+offset_right = 308.0
+offset_bottom = 27.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 autowrap = true
 
 [node name="HSeparator9" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 347.0
-margin_right = 308.0
-margin_bottom = 351.0
+offset_top = 347.0
+offset_right = 308.0
+offset_bottom = 351.0
 
 [node name="Storage" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 355.0
-margin_right = 308.0
-margin_bottom = 380.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 355.0
+offset_right = 308.0
+offset_bottom = 380.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Storage"]
-margin_top = 4.0
-margin_right = 160.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 21.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_STORAGE"
 align = 1
 autowrap = true
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Storage"]
-margin_left = 164.0
-margin_top = 4.0
-margin_right = 308.0
-margin_bottom = 21.0
+offset_left = 164.0
+offset_top = 4.0
+offset_right = 308.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 autowrap = true
 
 [node name="HSeparator10" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 384.0
-margin_right = 308.0
-margin_bottom = 388.0
+offset_top = 384.0
+offset_right = 308.0
+offset_bottom = 388.0
 
 [node name="Unique" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 392.0
-margin_right = 308.0
-margin_bottom = 417.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 392.0
+offset_right = 308.0
+offset_bottom = 417.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Unique"]
-margin_top = 4.0
-margin_right = 160.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 21.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_UNIQUE"
 align = 1
 autowrap = true
 
 [node name="Value" type="TextureRect" parent="MarginContainer/VBoxContainer/Unique"]
-margin_left = 164.0
-margin_right = 184.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 20, 20 )
+offset_left = 164.0
+offset_right = 184.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 20, 20 )
 texture = ExtResource( 7 )
 expand = true
 stretch_mode = 6
 
 [node name="HSeparator11" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 421.0
-margin_right = 308.0
-margin_bottom = 425.0
+offset_top = 421.0
+offset_right = 308.0
+offset_bottom = 425.0
 
 [node name="Ugrades" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 429.0
-margin_right = 308.0
-margin_bottom = 454.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 429.0
+offset_right = 308.0
+offset_bottom = 454.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Ugrades"]
-margin_top = 4.0
-margin_right = 160.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 21.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_UPGRADES"
 align = 1
 autowrap = true
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Ugrades"]
-margin_left = 164.0
-margin_top = 4.0
-margin_right = 308.0
-margin_bottom = 21.0
+offset_left = 164.0
+offset_top = 4.0
+offset_right = 308.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 autowrap = true
 
 [node name="HSeparator13" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 458.0
-margin_right = 308.0
-margin_bottom = 462.0
+offset_top = 458.0
+offset_right = 308.0
+offset_bottom = 462.0
 
 [node name="InternalName" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 466.0
-margin_right = 308.0
-margin_bottom = 503.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 466.0
+offset_right = 308.0
+offset_bottom = 503.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/InternalName"]
-margin_right = 160.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 3 )
+offset_right = 160.0
+offset_bottom = 37.0
+custom_minimum_size = Vector2( 160, 0 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "INFO_BOX_INTERNAL_NAME"
 align = 1
 autowrap = true
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/InternalName"]
-margin_left = 164.0
-margin_top = 10.0
-margin_right = 308.0
-margin_bottom = 27.0
+offset_left = 164.0
+offset_top = 10.0
+offset_right = 308.0
+offset_bottom = 27.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 autowrap = true

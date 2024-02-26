@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Displays a layout of metaballs using multimeshing for more efficient rendering
 /// </summary>
-public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDisplayer<MulticellularMetaball>
+public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMetaballDisplayer<MulticellularMetaball>
 {
     private const float AABBMargin = 0.1f;
 
-    private SpatialMaterial? material;
+    private StandardMaterial3D? material;
     private Mesh metaballSphere = null!;
 
     private float? overrideColourAlpha;
@@ -38,7 +38,7 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
         // {
         //     Shader = GD.Load<Shader>("res://shaders/Metaball.shader"),
         // },
-        material = new SpatialMaterial
+        material = new StandardMaterial3D
         {
             VertexColorUseAsAlbedo = true,
         };
@@ -89,7 +89,7 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
 
         // TODO: drawing links between the metaballs (or maybe only just the editor needs that?)
 
-        var basis = new Basis(Quat.Identity);
+        var basis = new Basis(Quaternion.Identity);
 
         var extends = Vector3.Zero;
 
@@ -109,7 +109,7 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
                 colour.a = OverrideColourAlpha.Value;
 
             // TODO: check if using SetAsBulkArray is faster
-            mesh.SetInstanceTransform(i, new Transform(basis, metaball.Position));
+            mesh.SetInstanceTransform(i, new Transform3D(basis, metaball.Position));
 
             mesh.SetInstanceColor(i, colour);
 
@@ -118,14 +118,14 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
             // Keep track of the farthest points for AABB building
             var absPosition = metaball.Position.Abs() + new Vector3(metaball.Size, metaball.Size, metaball.Size);
 
-            if (absPosition.x > extends.x)
-                extends.x = absPosition.x;
+            if (absPosition.X > extends.X)
+                extends.X = absPosition.X;
 
-            if (absPosition.y > extends.y)
-                extends.y = absPosition.y;
+            if (absPosition.Y > extends.Y)
+                extends.Y = absPosition.Y;
 
-            if (absPosition.z > extends.z)
-                extends.z = absPosition.z;
+            if (absPosition.Z > extends.Z)
+                extends.Z = absPosition.Z;
 
             ++i;
         }

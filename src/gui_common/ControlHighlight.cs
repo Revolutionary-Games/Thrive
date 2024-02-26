@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   Highlights a target Control by blanking out other areas of the screen
 /// </summary>
-public class ControlHighlight : Control
+public partial class ControlHighlight : Control
 {
     [Export]
     public NodePath? LeftPlanePath;
@@ -44,7 +44,7 @@ public class ControlHighlight : Control
         bottomPlane = GetNode<Control>(BottomPlanePath);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!Visible)
             return;
@@ -58,27 +58,27 @@ public class ControlHighlight : Control
 
         if (hasTarget)
         {
-            var screenSize = UseParentControlSizeAsWindowSize ? ((Control)GetParent()).RectSize : GetViewport().Size;
-            var screenHeight = screenSize.y;
-            var screenWidth = screenSize.x;
+            var screenSize = UseParentControlSizeAsWindowSize ? ((Control)GetParent()).Size : GetViewport().Size;
+            var screenHeight = screenSize.Y;
+            var screenWidth = screenSize.X;
 
             var nonCoveredArea = TargetControl!.GetGlobalRect();
 
-            leftPlane.RectGlobalPosition = new Vector2(0, 0);
-            leftPlane.RectSize = new Vector2(Mathf.Ceil(nonCoveredArea.Position.x), screenHeight);
+            leftPlane.GlobalPosition = new Vector2(0, 0);
+            leftPlane.Size = new Vector2(Mathf.Ceil(nonCoveredArea.Position.X), screenHeight);
 
-            var rightWidth = screenWidth - nonCoveredArea.End.x;
-            rightPlane.RectGlobalPosition = new Vector2(screenWidth - rightWidth, 0);
-            rightPlane.RectSize = new Vector2(rightWidth, screenHeight);
+            var rightWidth = screenWidth - nonCoveredArea.End.X;
+            rightPlane.GlobalPosition = new Vector2(screenWidth - rightWidth, 0);
+            rightPlane.Size = new Vector2(rightWidth, screenHeight);
 
-            var middleWidth = nonCoveredArea.Size.x;
+            var middleWidth = nonCoveredArea.Size.X;
 
-            topPlane.RectGlobalPosition = new Vector2(nonCoveredArea.Position.x, 0);
-            topPlane.RectSize = new Vector2(middleWidth, nonCoveredArea.Position.y);
+            topPlane.GlobalPosition = new Vector2(nonCoveredArea.Position.X, 0);
+            topPlane.Size = new Vector2(middleWidth, nonCoveredArea.Position.Y);
 
-            var bottomHeight = screenHeight - nonCoveredArea.End.y;
-            bottomPlane.RectGlobalPosition = new Vector2(nonCoveredArea.Position.x, screenHeight - bottomHeight);
-            bottomPlane.RectSize = new Vector2(middleWidth, bottomHeight);
+            var bottomHeight = screenHeight - nonCoveredArea.End.Y;
+            bottomPlane.GlobalPosition = new Vector2(nonCoveredArea.Position.X, screenHeight - bottomHeight);
+            bottomPlane.Size = new Vector2(middleWidth, bottomHeight);
         }
     }
 

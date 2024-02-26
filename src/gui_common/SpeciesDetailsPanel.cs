@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class SpeciesDetailsPanel : MarginContainer
+public partial class SpeciesDetailsPanel : MarginContainer
 {
     [Export]
     public NodePath? SpeciesDetailsLabelPath;

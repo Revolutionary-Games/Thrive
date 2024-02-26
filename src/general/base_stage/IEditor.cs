@@ -34,7 +34,7 @@ public interface IEditor : ISaveLoadedTracked
     /// <summary>
     ///   Root node under which editor components should put their 3D space Nodes (placed things, editor controls etc.)
     /// </summary>
-    public Spatial RootOfDynamicallySpawned { get; }
+    public Node3D RootOfDynamicallySpawned { get; }
 
     /// <summary>
     ///   The main current game object holding various details

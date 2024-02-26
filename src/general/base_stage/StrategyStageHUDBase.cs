@@ -1,15 +1,14 @@
 ﻿using System;
 using Godot;
 using Newtonsoft.Json;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Base HUD class for stages where the player uses the strategic view
 /// </summary>
 /// <typeparam name="TStage">The type of the stage this HUD is for</typeparam>
 [JsonObject(MemberSerialization.OptIn)]
-public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategyStageHUD
-    where TStage : Object, IStrategyStage
+public abstract partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategyStageHUD
+    where TStage : GodotObject, IStrategyStage
 {
     [Export]
     public NodePath? HintTextPath;
@@ -48,13 +47,13 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
-    public delegate void OnOpenMenu();
+    public delegate void OnOpenMenuEventHandler();
 
     [Signal]
-    public delegate void OnOpenMenuToHelp();
+    public delegate void OnOpenMenuToHelpEventHandler();
 
     [Signal]
-    public delegate void OnStartResearching(string technology);
+    public delegate void OnStartResearchingEventHandler(string technology);
 
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
@@ -146,12 +145,12 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
 
     protected void OpenMenu()
     {
-        EmitSignal(nameof(OnOpenMenu));
+        EmitSignal(nameof(OnOpenMenuEventHandler));
     }
 
     protected void OpenHelp()
     {
-        EmitSignal(nameof(OnOpenMenuToHelp));
+        EmitSignal(nameof(OnOpenMenuToHelpEventHandler));
     }
 
     protected override void Dispose(bool disposing)
@@ -183,6 +182,6 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
 
     private void ForwardStartResearch(string technology)
     {
-        EmitSignal(nameof(OnStartResearching), technology);
+        EmitSignal(nameof(OnStartResearchingEventHandler), technology);
     }
 }

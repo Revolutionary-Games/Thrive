@@ -6,7 +6,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   A ProgressBar that is split up into IconProgressBars, data is stored in a dictionary
 /// </summary>
-public class SegmentedBar : HBoxContainer
+public partial class SegmentedBar : HBoxContainer
 {
     public readonly List<IconProgressBar> SubBars = new();
 
@@ -36,10 +36,10 @@ public class SegmentedBar : HBoxContainer
     }
 
     [Signal]
-    public delegate void SubBarMouseEnter();
+    public delegate void SubBarMouseEnterEventHandler();
 
     [Signal]
-    public delegate void SubBarMouseExit();
+    public delegate void SubBarMouseExitEventHandler();
 
     public enum Type
     {
@@ -109,7 +109,7 @@ public class SegmentedBar : HBoxContainer
     {
         var progressBar = FindBar(dataPair.Key);
 
-        var progressBarBarSize = new Vector2((float)Math.Floor(dataPair.Value / MaxValue * RectSize.x), RectSize.y);
+        var progressBarBarSize = new Vector2((float)Math.Floor(dataPair.Value / MaxValue * Size.X), Size.Y);
 
         if (progressBar != null)
         {
@@ -117,7 +117,7 @@ public class SegmentedBar : HBoxContainer
         }
         else
         {
-            progressBar = (IconProgressBar)iconProgressBarScene.Instance();
+            progressBar = (IconProgressBar)iconProgressBarScene.Instantiate();
             progressBar.Name = dataPair.Key;
             AddChild(progressBar);
             SubBars.Add(progressBar);
@@ -131,9 +131,9 @@ public class SegmentedBar : HBoxContainer
 
             progressBar.MouseFilter = MouseFilterEnum.Pass;
 
-            progressBar.Connect("gui_input", this, nameof(BarToggled), new Array { progressBar });
-            progressBar.Connect("mouse_entered", this, nameof(OnBarMouseOver), new Array { progressBar });
-            progressBar.Connect("mouse_exited", this, nameof(OnBarMouseExit), new Array { progressBar });
+            progressBar.Connect("gui_input", new Callable(this, nameof(BarToggled)), new Array { progressBar });
+            progressBar.Connect("mouse_entered", new Callable(this, nameof(OnBarMouseOver)), new Array { progressBar });
+            progressBar.Connect("mouse_exited", new Callable(this, nameof(OnBarMouseExit)), new Array { progressBar });
         }
     }
 
@@ -153,14 +153,14 @@ public class SegmentedBar : HBoxContainer
     {
         bar.Highlight = true;
 
-        EmitSignal(nameof(SubBarMouseEnter));
+        EmitSignal(nameof(SubBarMouseEnterEventHandler));
     }
 
     private void OnBarMouseExit(IconProgressBar bar)
     {
         bar.Highlight = false;
 
-        EmitSignal(nameof(SubBarMouseExit));
+        EmitSignal(nameof(SubBarMouseExitEventHandler));
     }
 
     private void HandleBarDisabling(IconProgressBar bar)

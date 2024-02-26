@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/engine/input/key_mapping/InputActionItem.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="FontFile" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -26,31 +26,31 @@ InputActionHeaderPath = NodePath("InputActionHeader")
 InputEventsContainerPath = NodePath("InputEventsContainer")
 
 [node name="InputActionHeader" type="Label" parent="."]
-margin_right = 1280.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 3 )
+offset_right = 1280.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "Title goes here"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="InputEventsContainer" type="HBoxContainer" parent="."]
-margin_top = 24.0
-margin_right = 1280.0
-margin_bottom = 51.0
-custom_constants/separation = 10
+offset_top = 24.0
+offset_right = 1280.0
+offset_bottom = 51.0
+theme_override_constants/separation = 10
 
 [node name="AddEventButton" type="Button" parent="InputEventsContainer"]
-margin_right = 26.0
-margin_bottom = 27.0
-focus_neighbour_right = NodePath(".")
+offset_right = 26.0
+offset_bottom = 27.0
+focus_neighbor_right = NodePath(".")
 size_flags_stretch_ratio = 0.0
-custom_colors/font_color_focus = Color( 0.184314, 0.588235, 0.184314, 1 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
+theme_override_colors/font_focus_color = Color( 0.184314, 0.588235, 0.184314, 1 )
+theme_override_colors/font_color = Color( 0, 1, 0, 1 )
+theme_override_styles/hover = SubResource( 1 )
+theme_override_styles/pressed = SubResource( 2 )
+theme_override_styles/focus = SubResource( 3 )
+theme_override_styles/normal = SubResource( 4 )
 text = "+"
 __meta__ = {
 "_editor_description_": ""

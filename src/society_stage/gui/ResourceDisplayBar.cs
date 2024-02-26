@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Godot;
 
-public class ResourceDisplayBar : HBoxContainer
+public partial class ResourceDisplayBar : HBoxContainer
 {
     [Export]
     public NodePath? EarlyResourcesContainerPath;
@@ -46,7 +46,7 @@ public class ResourceDisplayBar : HBoxContainer
         scienceAmountLabel = GetNode<Label>(ScienceAmountLabelPath);
 
         scienceIndicatorContainer.Visible = false;
-        scienceAmountLabel.AddFontOverride("font", AmountLabelFont);
+        scienceAmountLabel.AddThemeFontOverride("font", AmountLabelFont);
 
         // TODO: remove once this is used
         lateResourcesContainer.Visible = false;
@@ -81,12 +81,12 @@ public class ResourceDisplayBar : HBoxContainer
 
         if (amount <= 0)
         {
-            scienceAmountLabel.AddColorOverride("font_color", CriticalResourceAmountColour);
+            scienceAmountLabel.AddThemeColorOverride("font_color", CriticalResourceAmountColour);
             scienceAmountLabel.Text = "0";
             return;
         }
 
-        scienceAmountLabel.AddColorOverride("font_color", NormalResourceAmountColour);
+        scienceAmountLabel.AddThemeColorOverride("font_color", NormalResourceAmountColour);
         scienceAmountLabel.Text =
             StringUtils.FormatPositiveWithLeadingPlus(StringUtils.ThreeDigitFormat(amount), amount);
     }
@@ -112,7 +112,7 @@ public class ResourceDisplayBar : HBoxContainer
         return new DisplayAmount(resource, FullResourceAmountColour, NormalResourceAmountColour, AmountLabelFont);
     }
 
-    private class DisplayAmount : HBoxContainer
+    private partial class DisplayAmount : HBoxContainer
     {
         private readonly Color maxColour;
         private readonly Color normalColour;
@@ -134,7 +134,7 @@ public class ResourceDisplayBar : HBoxContainer
                 Text = "0",
             };
 
-            amountLabel.AddFontOverride("font", font);
+            amountLabel.AddThemeFontOverride("font", font);
 
             // TODO: reserving space for the characters would help to have the display jitter less
 
@@ -143,9 +143,9 @@ public class ResourceDisplayBar : HBoxContainer
             AddChild(new TextureRect
             {
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-                RectMinSize = new Vector2(16, 16),
+                CustomMinimumSize = new Vector2(16, 16),
                 Texture = resource.Icon,
-                Expand = true,
+                ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
             });
 
             // TODO: tooltips showing the resource name and where it comes from and what consumes it
@@ -166,7 +166,7 @@ public class ResourceDisplayBar : HBoxContainer
 
             amountLabel.Text = newAmountString;
 
-            amountLabel.AddColorOverride("font_color", max ? maxColour : normalColour);
+            amountLabel.AddThemeColorOverride("font_color", max ? maxColour : normalColour);
         }
     }
 }

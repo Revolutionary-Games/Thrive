@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-public class CellHexesPhotoBuilder : Spatial, IScenePhotographable
+public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
 {
     private float radius;
     private bool radiusDirty;
@@ -30,14 +30,14 @@ public class CellHexesPhotoBuilder : Spatial, IScenePhotographable
         }
     }
 
-    public void ApplySceneParameters(Spatial instancedScene)
+    public void ApplySceneParameters(Node3D instancedScene)
     {
         var builder = (CellHexesPhotoBuilder)instancedScene;
         builder.Species = Species;
         builder.BuildHexStruct();
     }
 
-    public Vector3 CalculatePhotographDistance(Spatial instancedScene)
+    public Vector3 CalculatePhotographDistance(Node3D instancedScene)
     {
         return new Vector3(0, PhotoStudio.CameraDistanceFromRadiusOfObject(
             ((CellHexesPhotoBuilder)instancedScene).Radius *
@@ -65,10 +65,10 @@ public class CellHexesPhotoBuilder : Spatial, IScenePhotographable
             {
                 var pos = Hex.AxialToCartesian(hex + position);
 
-                var hexNode = (MeshInstance)hexScene.Instance();
+                var hexNode = hexScene.Instantiate<MeshInstance3D>();
                 AddChild(hexNode);
                 hexNode.MaterialOverride = hexMaterial;
-                hexNode.Translation = pos;
+                hexNode.Position = pos;
             }
         }
 
@@ -77,7 +77,7 @@ public class CellHexesPhotoBuilder : Spatial, IScenePhotographable
             // Model of the organelle
             if (organelle.Definition.DisplayScene != null)
             {
-                var organelleModel = (SceneDisplayer)modelScene.Instance();
+                var organelleModel = modelScene.Instantiate<SceneDisplayer>();
                 AddChild(organelleModel);
 
                 CellEditorComponent.UpdateOrganelleDisplayerTransform(organelleModel, organelle);

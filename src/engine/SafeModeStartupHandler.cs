@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using Godot;
 using Newtonsoft.Json;
@@ -110,8 +110,8 @@ public static class SafeModeStartupHandler
 
     private static StartupAttemptInfo? LoadExistingStartupInfo()
     {
-        using var file = new File();
-        if (file.Open(Constants.STARTUP_ATTEMPT_INFO_FILE, File.ModeFlags.Read) != Error.Ok)
+        using var file = FileAccess.Open(Constants.STARTUP_ATTEMPT_INFO_FILE, FileAccess.ModeFlags.Read);
+        if (file == null)
         {
             // No previous startup info
             return null;
@@ -152,8 +152,8 @@ public static class SafeModeStartupHandler
             return;
         }
 
-        using var file = new File();
-        if (file.Open(Constants.STARTUP_ATTEMPT_INFO_FILE, File.ModeFlags.Write) != Error.Ok)
+        using var file = FileAccess.Open(Constants.STARTUP_ATTEMPT_INFO_FILE, FileAccess.ModeFlags.Write);
+        if (file == null)
         {
             GD.PrintErr("Failed to open startup info file for writing");
             return;
@@ -164,13 +164,11 @@ public static class SafeModeStartupHandler
 
     private static void DeleteCurrentStartupInfoFile()
     {
-        using var directory = new Directory();
-
-        if (!directory.FileExists(Constants.STARTUP_ATTEMPT_INFO_FILE))
+        if (!FileAccess.FileExists(Constants.STARTUP_ATTEMPT_INFO_FILE))
             return;
 
         GD.Print("Startup successful, removing startup info file");
-        if (directory.Remove(Constants.STARTUP_ATTEMPT_INFO_FILE) != Error.Ok)
+        if (DirAccess.RemoveAbsolute(Constants.STARTUP_ATTEMPT_INFO_FILE) != Error.Ok)
             GD.PrintErr("Failed to delete startup info file, game will incorrectly enter safe mode on next start");
     }
 }

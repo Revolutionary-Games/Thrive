@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   A custom Control type which defines top-level Controls that also behaves like a Popup.
@@ -9,7 +9,7 @@
 ///     <see cref="CustomWindow"/> as the base class / scene.
 ///   </para>
 /// </remarks>
-public class TopLevelContainer : Control
+public partial class TopLevelContainer : Control
 {
     private bool mouseUnCaptureActive;
     private bool previousVisibilityState;
@@ -26,13 +26,13 @@ public class TopLevelContainer : Control
     ///   </para>
     /// </remarks>
     [Signal]
-    public delegate void Closed();
+    public delegate void ClosedEventHandler();
 
     /// <summary>
     ///   Emitted when this is opened
     /// </summary>
     [Signal]
-    public delegate void Opened();
+    public delegate void OpenedEventHandler();
 
     /// <summary>
     ///   Returns true if this window is closing (not yet hidden) after calling <see cref="Close"/>.
@@ -96,8 +96,8 @@ public class TopLevelContainer : Control
         {
             case NotificationEnterTree:
             {
-                SetAsToplevel(true);
-                GetTree().Root.Connect("size_changed", this, nameof(ApplyRectSettings));
+                SetAsTopLevel(true);
+                GetTree().Root.Connect("size_changed", new Callable(this, nameof(ApplyRectSettings)));
 
                 // Special actions when re-entering the tree (and not when initially being added to the tree)
                 if (hasBeenRemovedFromTree)
@@ -115,7 +115,7 @@ public class TopLevelContainer : Control
 
             case NotificationExitTree:
             {
-                GetTree().Root.Disconnect("size_changed", this, nameof(ApplyRectSettings));
+                GetTree().Root.Disconnect("size_changed", new Callable(this, nameof(ApplyRectSettings)));
 
                 MouseUnCaptureActive = false;
                 hasBeenRemovedFromTree = true;
@@ -141,14 +141,14 @@ public class TopLevelContainer : Control
                     MouseUnCaptureActive = true;
                     ApplyRectSettings();
                     OnOpen();
-                    EmitSignal(nameof(Opened));
+                    EmitSignal(nameof(OpenedEventHandler));
                 }
                 else
                 {
                     Closing = false;
                     MouseUnCaptureActive = false;
                     OnHidden();
-                    EmitSignal(nameof(Closed));
+                    EmitSignal(nameof(ClosedEventHandler));
                 }
 
                 break;
@@ -193,8 +193,8 @@ public class TopLevelContainer : Control
 
         if (rect.HasValue)
         {
-            RectPosition = rect.Value.Position;
-            RectSize = rect.Value.Size;
+            Position = rect.Value.Position;
+            Size = rect.Value.Size;
         }
     }
 
@@ -205,8 +205,8 @@ public class TopLevelContainer : Control
     {
         var windowSize = GetViewportRect().Size;
 
-        var rectPosition = ((windowSize - (size ?? RectSize) * RectScale) / 2.0f).Floor();
-        var rectSize = size ?? RectSize;
+        var rectPosition = ((windowSize - (size ?? Size) * Scale) / 2.0f).Floor();
+        var rectSize = size ?? Size;
 
         Open(modal, new Rect2(rectPosition, rectSize));
     }
@@ -305,8 +305,8 @@ public class TopLevelContainer : Control
         if (FullRect)
         {
             var fullRect = GetFullRect();
-            RectPosition = fullRect.Position;
-            RectSize = fullRect.Size;
+            Position = fullRect.Position;
+            Size = fullRect.Size;
         }
     }
 

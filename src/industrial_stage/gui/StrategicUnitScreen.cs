@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Base class for strategy stage controllable unit popup screens. For showing info about the unit and giving options
 ///   to control it.
 /// </summary>
 /// <typeparam name="T">The type of unit controller</typeparam>
-public abstract class StrategicUnitScreen<T> : CustomWindow
-    where T : Object, IStrategicUnit, IEntity
+public abstract partial class StrategicUnitScreen<T> : CustomWindow
+    where T : GodotObject, IStrategicUnit, IEntity
 {
     [Export]
     public NodePath? ActionButtonsContainerPath;
@@ -27,10 +26,10 @@ public abstract class StrategicUnitScreen<T> : CustomWindow
 
     protected EntityReference<T>? managedUnit;
 
-    private float elapsed = 1;
+    private double elapsed = 1;
 
     [Signal]
-    public delegate void OnOpenGodTools(Object unit);
+    public delegate void OnOpenGodToolsEventHandler(GodotObject unit);
 
     /// <summary>
     ///   The unit this screen is open for, or null
@@ -49,7 +48,7 @@ public abstract class StrategicUnitScreen<T> : CustomWindow
             unitListContainer = GetNode<Container>(UnitListContainerPath);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -112,7 +111,7 @@ public abstract class StrategicUnitScreen<T> : CustomWindow
             Text = TranslationServer.Translate("UNIT_ACTION_MOVE"),
         };
 
-        button1.Connect("pressed", this, nameof(OnMoveStart));
+        button1.Connect("pressed", new Callable(this, nameof(OnMoveStart)));
 
         actionButtonsContainer.AddChild(button1);
 
@@ -123,7 +122,7 @@ public abstract class StrategicUnitScreen<T> : CustomWindow
             Text = TranslationServer.Translate("UNIT_ACTION_CONSTRUCT"),
         };
 
-        button2.Connect("pressed", this, nameof(OnConstructStart));
+        button2.Connect("pressed", new Callable(this, nameof(OnConstructStart)));
 
         actionButtonsContainer.AddChild(button2);
 
@@ -134,7 +133,7 @@ public abstract class StrategicUnitScreen<T> : CustomWindow
                 Text = TranslationServer.Translate("OPEN_GOD_TOOLS"),
             };
 
-            godButton.Connect("pressed", this, nameof(ForwardGodTools));
+            godButton.Connect("pressed", new Callable(this, nameof(ForwardGodTools)));
 
             actionButtonsContainer.AddChild(godButton);
         }
@@ -210,6 +209,6 @@ public abstract class StrategicUnitScreen<T> : CustomWindow
             return;
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnOpenGodTools), target);
+        EmitSignal(nameof(OnOpenGodToolsEventHandler), target);
     }
 }

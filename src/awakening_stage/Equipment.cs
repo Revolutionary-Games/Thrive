@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -6,19 +6,19 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A concrete, equipable piece of equipment
 /// </summary>
-public class Equipment : RigidBody, IInteractableEntity
+public partial class Equipment : RigidBody3D, IInteractableEntity
 {
     public Equipment(EquipmentDefinition definition)
     {
         Definition = definition;
 
-        AddChild(definition.WorldRepresentation.Instance());
+        AddChild(definition.WorldRepresentation.Instantiate());
 
         // TODO: physics customization
         var owner = CreateShapeOwner(this);
-        ShapeOwnerAddShape(owner, new BoxShape
+        ShapeOwnerAddShape(owner, new BoxShape3D
         {
-            Extents = new Vector3(0.5f, 0.5f, 0.5f),
+            Size = new Vector3(1, 1, 1),
         });
     }
 
@@ -29,13 +29,13 @@ public class Equipment : RigidBody, IInteractableEntity
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     [JsonIgnore]
     public string ReadableName => Definition.Name;
 
     [JsonIgnore]
-    public Texture Icon => Definition.Icon;
+    public Texture2D Icon => Definition.Icon;
 
     [JsonIgnore]
     public WeakReference<InventorySlot>? ShownAsGhostIn { get; set; }

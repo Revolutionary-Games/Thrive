@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Godot;
 using Godot.Collections;
 using Container = Godot.Container;
 
-public class InteractablePopup : Control
+public partial class InteractablePopup : Control
 {
     [Export]
     public NodePath? PopupPath;
@@ -82,7 +82,7 @@ public class InteractablePopup : Control
                     TranslationServer.Translate(interactionType.GetAttribute<DescriptionAttribute>().Description),
             };
 
-            button.AddFontOverride("font", InteractionButtonFont);
+            button.AddThemeFontOverride("font", InteractionButtonFont);
 
             buttonsContainer.AddChild(button);
 
@@ -94,7 +94,7 @@ public class InteractablePopup : Control
 
             var binds = new Array();
             binds.Add(interactionType);
-            button.Connect("pressed", this, nameof(OptionSelected), binds);
+            button.Connect("pressed", new Callable(this, nameof(OptionSelected)), binds);
 
             firstButton ??= button;
         }

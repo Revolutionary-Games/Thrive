@@ -59,7 +59,7 @@ public partial class CellBodyPlanEditorComponent
         Editor.EditedSpecies.CellTypes.Add(data.CellType);
         GD.Print("New cell type created: ", data.CellType.TypeName);
 
-        EmitSignal(nameof(OnCellTypeToEditSelected), data.CellType.TypeName, false);
+        EmitSignal(nameof(OnCellTypeToEditSelectedEventHandler), data.CellType.TypeName, false);
 
         UpdateCellTypeSelections();
 

@@ -1,14 +1,14 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=1]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="FontFile" id=2]
 [ext_resource path="res://src/gui_common/CustomPopupMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/editorButtonDelete.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/editorButtonMove.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/editorButtonModify.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/editorButtonDelete.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/editorButtonMove.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/editorButtonModify.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture2D" id=7]
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.cs" type="Script" id=8]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="DynamicFont" id=10]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="FontFile" id=10]
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 7 )
@@ -113,8 +113,8 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [node name="OrganellePopupMenu" instance=ExtResource( 3 )]
-margin_bottom = 139.0
-rect_min_size = Vector2( 220, 139 )
+offset_bottom = 139.0
+custom_minimum_size = Vector2( 220, 139 )
 script = ExtResource( 8 )
 TitleLabelPath = NodePath("PanelContainer/VBoxContainer/MarginContainer/SelectedOrganelleName")
 DeleteButtonPath = NodePath("PanelContainer/VBoxContainer/Delete")
@@ -122,85 +122,85 @@ MoveButtonPath = NodePath("PanelContainer/VBoxContainer/Move")
 ModifyButtonPath = NodePath("PanelContainer/VBoxContainer/Modify")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" index="0"]
-margin_left = -5.0
-margin_top = -5.0
-margin_right = 205.0
-margin_bottom = 20.0
-custom_constants/margin_right = 10
-custom_constants/margin_left = 5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 205.0
+offset_bottom = 20.0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_left = 5
 
 [node name="SelectedOrganelleName" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer" index="0"]
-margin_left = 5.0
-margin_right = 200.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 10 )
+offset_left = 5.0
+offset_right = 200.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource( 10 )
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" index="1"]
-margin_left = -5.0
-margin_top = 24.0
-margin_right = 205.0
-margin_bottom = 28.0
-custom_styles/separator = SubResource( 2 )
+offset_left = -5.0
+offset_top = 24.0
+offset_right = 205.0
+offset_bottom = 28.0
+theme_override_styles/separator = SubResource( 2 )
 
 [node name="Delete" type="Button" parent="PanelContainer/VBoxContainer" index="2"]
-margin_left = -5.0
-margin_top = 32.0
-margin_right = 205.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 0, 28 )
+offset_left = -5.0
+offset_top = 32.0
+offset_right = 205.0
+offset_bottom = 60.0
+custom_minimum_size = Vector2( 0, 28 )
 focus_mode = 0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
+theme_override_colors/font_disabled_color = Color( 1, 1, 1, 1 )
+theme_override_styles/hover = SubResource( 3 )
+theme_override_styles/pressed = SubResource( 4 )
+theme_override_styles/disabled = SubResource( 5 )
+theme_override_styles/normal = SubResource( 6 )
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Delete" index="0"]
-margin_right = 210.0
-margin_bottom = 28.0
+offset_right = 210.0
+offset_bottom = 28.0
 mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Delete/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 205.0
-margin_bottom = 25.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 25.0
 mouse_filter = 2
-custom_constants/separation = 7
+theme_override_constants/separation = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="0"]
-margin_top = 2.0
-margin_right = 16.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 16, 16 )
+offset_top = 2.0
+offset_right = 16.0
+offset_bottom = 18.0
+custom_minimum_size = Vector2( 16, 16 )
 mouse_filter = 2
 size_flags_vertical = 4
 texture = ExtResource( 4 )
 expand = true
 
 [node name="Name" type="Label" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="1"]
-margin_left = 23.0
-margin_right = 78.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
+offset_left = 23.0
+offset_right = 78.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource( 2 )
 text = "DELETE"
 
 [node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="2"]
-margin_left = 85.0
-margin_top = 1.0
-margin_right = 195.0
-margin_bottom = 18.0
+offset_left = 85.0
+offset_top = 1.0
+offset_right = 195.0
+offset_bottom = 18.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
+theme_override_fonts/font = ExtResource( 1 )
 text = "-15 MP"
 align = 2
 __meta__ = {
@@ -208,66 +208,66 @@ __meta__ = {
 }
 
 [node name="Move" type="Button" parent="PanelContainer/VBoxContainer" index="3"]
-margin_left = -5.0
-margin_top = 64.0
-margin_right = 205.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 0, 28 )
+offset_left = -5.0
+offset_top = 64.0
+offset_right = 205.0
+offset_bottom = 92.0
+custom_minimum_size = Vector2( 0, 28 )
 focus_mode = 0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/disabled = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
+theme_override_colors/font_disabled_color = Color( 1, 1, 1, 1 )
+theme_override_styles/hover = SubResource( 7 )
+theme_override_styles/pressed = SubResource( 8 )
+theme_override_styles/disabled = SubResource( 9 )
+theme_override_styles/normal = SubResource( 10 )
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Move" index="0"]
-margin_right = 210.0
-margin_bottom = 28.0
+offset_right = 210.0
+offset_bottom = 28.0
 mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Move/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 205.0
-margin_bottom = 25.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 25.0
 mouse_filter = 2
-custom_constants/separation = 7
+theme_override_constants/separation = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="0"]
-margin_top = 2.0
-margin_right = 16.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 16, 16 )
+offset_top = 2.0
+offset_right = 16.0
+offset_bottom = 18.0
+custom_minimum_size = Vector2( 16, 16 )
 mouse_filter = 2
 size_flags_vertical = 4
 texture = ExtResource( 5 )
 expand = true
 
 [node name="Name" type="Label" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="1"]
-margin_left = 23.0
-margin_right = 66.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
+offset_left = 23.0
+offset_right = 66.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource( 2 )
 text = "MOVE"
 
 [node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="2"]
-margin_left = 73.0
-margin_top = 1.0
-margin_right = 195.0
-margin_bottom = 18.0
+offset_left = 73.0
+offset_top = 1.0
+offset_right = 195.0
+offset_bottom = 18.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
+theme_override_fonts/font = ExtResource( 1 )
 text = "-2 MP/hex"
 align = 2
 __meta__ = {
@@ -275,67 +275,67 @@ __meta__ = {
 }
 
 [node name="Modify" type="Button" parent="PanelContainer/VBoxContainer" index="4"]
-margin_left = -5.0
-margin_top = 96.0
-margin_right = 205.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 0, 28 )
+offset_left = -5.0
+offset_top = 96.0
+offset_right = 205.0
+offset_bottom = 124.0
+custom_minimum_size = Vector2( 0, 28 )
 focus_mode = 0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/disabled = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
+theme_override_colors/font_disabled_color = Color( 1, 1, 1, 1 )
+theme_override_styles/hover = SubResource( 7 )
+theme_override_styles/pressed = SubResource( 8 )
+theme_override_styles/disabled = SubResource( 9 )
+theme_override_styles/normal = SubResource( 10 )
 disabled = true
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Modify" index="0"]
-margin_right = 210.0
-margin_bottom = 28.0
+offset_right = 210.0
+offset_bottom = 28.0
 mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Modify/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 205.0
-margin_bottom = 25.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 25.0
 mouse_filter = 2
-custom_constants/separation = 7
+theme_override_constants/separation = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="0"]
-margin_top = 2.0
-margin_right = 16.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 16, 16 )
+offset_top = 2.0
+offset_right = 16.0
+offset_bottom = 18.0
+custom_minimum_size = Vector2( 16, 16 )
 mouse_filter = 2
 size_flags_vertical = 4
 texture = ExtResource( 6 )
 expand = true
 
 [node name="Name" type="Label" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="1"]
-margin_left = 23.0
-margin_right = 79.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
+offset_left = 23.0
+offset_right = 79.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource( 2 )
 text = "MODIFY"
 
 [node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="2"]
-margin_left = 86.0
-margin_top = 1.0
-margin_right = 195.0
-margin_bottom = 18.0
+offset_left = 86.0
+offset_top = 1.0
+offset_right = 195.0
+offset_bottom = 18.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
+theme_override_fonts/font = ExtResource( 1 )
 align = 2
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"

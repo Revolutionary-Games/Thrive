@@ -1,4 +1,4 @@
-﻿namespace Components
+namespace Components
 {
     using Godot;
 
@@ -10,15 +10,15 @@
     public struct WorldPosition
     {
         public Vector3 Position;
-        public Quat Rotation;
+        public Quaternion Rotation;
 
         public WorldPosition(Vector3 position)
         {
             Position = position;
-            Rotation = Quat.Identity;
+            Rotation = Quaternion.Identity;
         }
 
-        public WorldPosition(Vector3 position, Quat rotation)
+        public WorldPosition(Vector3 position, Quaternion rotation)
         {
             Position = position;
             Rotation = rotation;
@@ -27,9 +27,9 @@
 
     public static class WorldPositionHelpers
     {
-        public static Transform ToTransform(this ref WorldPosition position)
+        public static Transform3D ToTransform(this ref WorldPosition position)
         {
-            return new Transform(new Basis(position.Rotation), position.Position);
+            return new Transform3D(new Basis(position.Rotation), position.Position);
         }
     }
 }

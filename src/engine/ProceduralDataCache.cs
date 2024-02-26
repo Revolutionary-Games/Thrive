@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Stores procedurally generated data to speed up things by not requiring it to be recomputed
 /// </summary>
-public class ProceduralDataCache : Node
+public partial class ProceduralDataCache : Node
 {
     private static ProceduralDataCache? instance;
 
@@ -18,7 +18,7 @@ public class ProceduralDataCache : Node
     private MainGameState previousState = MainGameState.Invalid;
 
     private float currentTime;
-    private float timeSinceClean;
+    private double timeSinceClean;
 
     private ProceduralDataCache()
     {
@@ -49,12 +49,13 @@ public class ProceduralDataCache : Node
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
+        timeSinceClean += delta;
+
         // This is just incidentally used inside lock blocks
         // ReSharper disable once InconsistentlySynchronizedField
-        currentTime += delta;
-        timeSinceClean += delta;
+        currentTime += (float)delta;
 
         if (!(timeSinceClean > Constants.PROCEDURAL_CACHE_CLEAN_INTERVAL))
             return;

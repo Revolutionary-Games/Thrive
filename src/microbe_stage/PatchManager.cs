@@ -19,7 +19,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
-    private DirectionalLight worldLight;
+    private DirectionalLight3D worldLight;
 
     private Patch? previousPatch;
 
@@ -31,7 +31,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     private bool skipDespawn;
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight)
+        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight3D worldLight)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
@@ -291,7 +291,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void UpdateLight(Biome biome)
     {
-        worldLight.Translation = new Vector3(0, 0, 0);
+        worldLight.Position = new Vector3(0, 0, 0);
         worldLight.LookAt(biome.Sunlight.Direction, new Vector3(0, 1, 0));
 
         worldLight.ShadowEnabled = biome.Sunlight.Shadows;

@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
+public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 {
     [Export]
     public NodePath? GuidanceLinePath;
@@ -45,7 +45,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
     /// </summary>
-    private float elapsedSinceEntityPositionCheck = Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL + 1;
+    private double elapsedSinceEntityPositionCheck = Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL + 1;
 
     [JsonProperty]
     private bool wonOnce;
@@ -184,7 +184,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         DebugOverlays.Instance.OnWorldDisabled(WorldSimulation);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -207,7 +207,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         bool playerAlive = HasAlivePlayer;
 
-        if (WorldSimulation.ProcessAll(delta))
+        if (WorldSimulation.ProcessAll((float)delta))
         {
             // If game logic didn't run, the debug labels don't need to update
             DebugOverlays.Instance.UpdateActiveEntities(WorldSimulation);
@@ -412,7 +412,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
             var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
-            sceneInstance = scene.Instance();
+            sceneInstance = scene.Instantiate();
             var editor = (EarlyMulticellularEditor)sceneInstance;
 
             editor.CurrentGame = CurrentGame;
@@ -432,7 +432,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
             var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
 
-            sceneInstance = scene.Instance();
+            sceneInstance = scene.Instantiate();
             var editor = (MicrobeEditor)sceneInstance;
 
             editor.CurrentGame = CurrentGame;
@@ -525,7 +525,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
-        var editor = (EarlyMulticellularEditor)scene.Instance();
+        var editor = scene.Instantiate<EarlyMulticellularEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
         editor.ReturnToStage = this;
@@ -581,7 +581,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
 
-        var editor = (LateMulticellularEditor)scene.Instance();
+        var editor = scene.Instantiate<LateMulticellularEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
 

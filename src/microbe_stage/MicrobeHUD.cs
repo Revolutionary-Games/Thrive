@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Components;
@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 ///   Manages the microbe HUD
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
-public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
+public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 {
     [Export]
     public NodePath? MulticellularButtonPath;
@@ -66,28 +66,28 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
-    public new delegate void OnOpenMenu();
+    public new delegate void OnOpenMenuEventHandler();
 
     [Signal]
-    public new delegate void OnOpenMenuToHelp();
+    public new delegate void OnOpenMenuToHelpEventHandler();
 
     [Signal]
-    public delegate void OnToggleEngulfButtonPressed();
+    public delegate void OnToggleEngulfButtonPressedEventHandler();
 
     [Signal]
-    public delegate void OnFireToxinButtonPressed();
+    public delegate void OnFireToxinButtonPressedEventHandler();
 
     [Signal]
-    public delegate void OnSecreteSlimeButtonPressed();
+    public delegate void OnSecreteSlimeButtonPressedEventHandler();
 
     [Signal]
-    public delegate void OnToggleBindingButtonPressed();
+    public delegate void OnToggleBindingButtonPressedEventHandler();
 
     [Signal]
-    public delegate void OnUnbindAllButtonPressed();
+    public delegate void OnUnbindAllButtonPressedEventHandler();
 
     [Signal]
-    public delegate void OnEjectEngulfedButtonPressed();
+    public delegate void OnEjectEngulfedButtonPressedEventHandler();
 
     protected override string? UnPauseHelpText => TranslationServer.Translate("PAUSE_PROMPT");
 
@@ -119,7 +119,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         macroscopicButton.Visible = false;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -216,11 +216,11 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         winExtinctBoxHolder.Show();
 
-        winBox = WinBoxScene.Instance<CustomWindow>();
+        winBox = WinBoxScene.Instantiate<CustomWindow>();
         winExtinctBoxHolder.AddChild(winBox);
         winBox.Show();
 
-        winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
+        winBox.GetNode<Timer>("Timer").Connect("timeout", new Callable(this, nameof(ToggleWinBox)));
     }
 
     protected override void UpdateFossilisationButtonStates()
@@ -249,9 +249,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             var species = entity.Get<SpeciesMember>().Species;
 
-            var button = FossilisationButtonScene.Instance<FossilisationButton>();
+            var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
             button.AttachedEntity = entity;
-            button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
+            button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpenedEventHandler), this,
                 nameof(ShowFossilisationDialog));
 
             var alreadyFossilised =
@@ -308,7 +308,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
         hpLabel.Text = hpText;
-        hpLabel.HintTooltip = hpText;
+        hpLabel.TooltipText = hpText;
     }
 
     protected override CompoundBag? GetPlayerUsefulCompounds()
@@ -450,8 +450,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
 
-        bindingModeHotkey.Pressed = control.State == MicrobeState.Binding;
-        unbindAllHotkey.Pressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+        bindingModeHotkey.ButtonPressed = control.State == MicrobeState.Binding;
+        unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
     }
 
     protected override void UpdateHoverInfo(float delta)
@@ -555,7 +555,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         // Display a faded button with a different hint if the species has been fossilised.
         button.AlreadyFossilised = alreadyFossilised;
-        button.HintTooltip = alreadyFossilised ?
+        button.TooltipText = alreadyFossilised ?
             TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
             TranslationServer.Translate("FOSSILISATION_HINT");
     }
@@ -768,31 +768,31 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private void OnEngulfmentPressed()
     {
-        EmitSignal(nameof(OnToggleEngulfButtonPressed));
+        EmitSignal(nameof(OnToggleEngulfButtonPressedEventHandler));
     }
 
     private void OnFireToxinPressed()
     {
-        EmitSignal(nameof(OnFireToxinButtonPressed));
+        EmitSignal(nameof(OnFireToxinButtonPressedEventHandler));
     }
 
     private void OnBindingModePressed()
     {
-        EmitSignal(nameof(OnToggleBindingButtonPressed));
+        EmitSignal(nameof(OnToggleBindingButtonPressedEventHandler));
     }
 
     private void OnUnbindAllPressed()
     {
-        EmitSignal(nameof(OnUnbindAllButtonPressed));
+        EmitSignal(nameof(OnUnbindAllButtonPressedEventHandler));
     }
 
     private void OnSecreteSlimePressed()
     {
-        EmitSignal(nameof(OnSecreteSlimeButtonPressed));
+        EmitSignal(nameof(OnSecreteSlimeButtonPressedEventHandler));
     }
 
     private void OnEjectEngulfedPressed()
     {
-        EmitSignal(nameof(OnEjectEngulfedButtonPressed));
+        EmitSignal(nameof(OnEjectEngulfedButtonPressedEventHandler));
     }
 }

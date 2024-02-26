@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="FontFile" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="FontFile" id=3]
 [ext_resource path="res://src/gui_common/MouseHoverPanel.cs" type="Script" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=5]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 5 )
 
 [node name="MouseHoverPanel" type="PanelContainer"]
-margin_right = 250.0
-margin_bottom = 73.0
-rect_min_size = Vector2( 250, 0 )
+offset_right = 250.0
+offset_bottom = 73.0
+custom_minimum_size = Vector2( 250, 0 )
 mouse_filter = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -22,27 +22,27 @@ CategoriesContainerPath = NodePath("MarginContainer/VBoxContainer/Categories")
 NothingHereContainerPath = NodePath("MarginContainer/VBoxContainer/NothingHere")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 249.0
-margin_bottom = 72.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 249.0
+offset_bottom = 72.0
 mouse_filter = 2
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 238.0
-margin_bottom = 61.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 238.0
+offset_bottom = 61.0
 mouse_filter = 2
 
 [node name="MousePos" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_right = 228.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 3 )
+offset_right = 228.0
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "AT_CURSOR"
 align = 1
 __meta__ = {
@@ -50,25 +50,25 @@ __meta__ = {
 }
 
 [node name="TitleSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 23.0
-margin_right = 228.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 23.0
+offset_right = 228.0
+offset_bottom = 28.0
+custom_minimum_size = Vector2( 0, 5 )
 mouse_filter = 2
 
 [node name="NothingHere" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 32.0
-margin_right = 228.0
-margin_bottom = 52.0
+offset_top = 32.0
+offset_right = 228.0
+offset_bottom = 52.0
 mouse_filter = 2
-custom_constants/margin_left = 10
+theme_override_constants/margin_left = 10
 
 [node name="NothingHereLabel" type="Label" parent="MarginContainer/VBoxContainer/NothingHere"]
-margin_left = 10.0
-margin_right = 228.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 10.0
+offset_right = 228.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 0, 20 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "NOTHING_HERE"
 valign = 1
 __meta__ = {
@@ -76,7 +76,7 @@ __meta__ = {
 }
 
 [node name="Categories" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 56.0
-margin_right = 228.0
-margin_bottom = 56.0
+offset_top = 56.0
+offset_right = 228.0
+offset_bottom = 56.0
 theme = SubResource( 1 )

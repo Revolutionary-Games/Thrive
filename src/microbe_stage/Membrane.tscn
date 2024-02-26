@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/microbe_stage/Membrane.cs" type="Script" id=1]
-[ext_resource path="res://shaders/Membrane.shader" type="Shader" id=2]
-[ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/FresnelGradientDamaged.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=5]
+[ext_resource path="res://shaders/Membrane.gdshader" type="Shader" id=2]
+[ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/textures/FresnelGradientDamaged.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture2D" id=5]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="BoxMesh" id=1]
 size = Vector3( 2, 0.539, 2 )
 
 [sub_resource type="ShaderMaterial" id=2]
@@ -22,9 +22,9 @@ shader_param/albedoTexture = ExtResource( 3 )
 shader_param/damagedTexture = ExtResource( 4 )
 shader_param/dissolveTexture = ExtResource( 5 )
 
-[node name="Membrane" type="MeshInstance"]
+[node name="Membrane" type="MeshInstance3D"]
 process_priority = 2
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, 0.034008 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, 0.034008 )
 mesh = SubResource( 1 )
 script = ExtResource( 1 )
 MaterialToEdit = SubResource( 2 )

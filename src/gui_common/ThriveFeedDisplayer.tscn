@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="FontFile" id=2]
 [ext_resource path="res://src/gui_common/ThriveFeedDisplayer.cs" type="Script" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="FontFile" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="FontFile" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="FontFile" id=6]
 
 [node name="ThriveFeedDisplayer" type="VBoxContainer"]
 anchor_right = 1.0
@@ -19,34 +19,34 @@ TitleFont = ExtResource( 6 )
 FooterFont = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="."]
-margin_right = 1280.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 5 )
+offset_right = 1280.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource( 5 )
 text = "NEWS"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-margin_top = 29.0
-margin_right = 1280.0
-margin_bottom = 720.0
+offset_top = 29.0
+offset_right = 1280.0
+offset_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 1280.0
-margin_bottom = 26.0
+offset_right = 1280.0
+offset_bottom = 26.0
 size_flags_horizontal = 3
 
 [node name="LoadingIndicator" type="Label" parent="ScrollContainer/VBoxContainer"]
-margin_right = 1280.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 2 )
+offset_right = 1280.0
+offset_bottom = 22.0
+theme_override_fonts/font = ExtResource( 2 )
 text = "LOADING_DOT_DOT_DOT"
 
 [node name="NewsContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_top = 26.0
-margin_right = 1280.0
-margin_bottom = 26.0
+offset_top = 26.0
+offset_right = 1280.0
+offset_bottom = 26.0
 size_flags_horizontal = 3
-custom_constants/separation = 15
+theme_override_constants/separation = 15

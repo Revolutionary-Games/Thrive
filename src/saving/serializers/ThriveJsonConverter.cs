@@ -37,7 +37,7 @@ public class ThriveJsonConverter : IDisposable
             new RegistryTypeConverter(context),
             new GodotColorConverter(),
             new GodotBasisConverter(),
-            new GodotQuatConverter(),
+            new GodotQuaternionConverter(),
             new PackedSceneConverter(),
             new SystemVector4ArrayConverter(),
             new RandomConverter(),
@@ -414,7 +414,7 @@ public abstract class BaseThriveConverter : JsonConverter
         if (scene == null)
             throw new JsonException($"Couldn't load scene ({data.ScenePath}) for scene loaded type");
 
-        var node = scene.Instance();
+        var node = scene.Instantiate();
 
         // Ensure that instance ended up being a good type
         if (!objectType.IsInstanceOfType(node))

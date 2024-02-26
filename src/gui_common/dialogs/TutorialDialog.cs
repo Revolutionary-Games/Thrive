@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class TutorialDialog : CustomWindow
+public partial class TutorialDialog : CustomWindow
 {
     [Export]
     public NodePath? LabelPath;
@@ -86,11 +86,11 @@ public class TutorialDialog : CustomWindow
         base.OnOpen();
 
         // Don't animate if currently running inside the editor
-        if (Engine.EditorHint)
+        if (Engine.IsEditorHint())
             return;
 
-        RectPivotOffset = RectSize / 2;
-        RectScale = Vector2.Zero;
+        PivotOffset = Size / 2;
+        Scale = Vector2.Zero;
 
         tween.InterpolateProperty(this, "rect_scale", Vector2.Zero, Vector2.One, 0.3f, Tween.TransitionType.Expo,
             Tween.EaseType.Out, ShowDelay);

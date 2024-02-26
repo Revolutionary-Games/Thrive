@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,7 +8,7 @@ using Godot;
 /// <summary>
 ///   For extra functionality added on top of normal RichTextLabel. Includes custom bbcode parser.
 /// </summary>
-public class CustomRichTextLabel : RichTextLabel
+public partial class CustomRichTextLabel : RichTextLabel
 {
     private string? extendedBbcode;
 
@@ -84,12 +84,12 @@ public class CustomRichTextLabel : RichTextLabel
         // Make sure bbcode is enabled
         BbcodeEnabled = true;
 
-        Connect("meta_clicked", this, nameof(OnMetaClicked));
+        Connect("meta_clicked", new Callable(this, nameof(OnMetaClicked)));
 
         if (EnableTooltipsForMetaTags)
         {
-            Connect("meta_hover_started", this, nameof(OnMetaHoverStarted));
-            Connect("meta_hover_ended", this, nameof(OnMetaHoverEnded));
+            Connect("meta_hover_started", new Callable(this, nameof(OnMetaHoverStarted)));
+            Connect("meta_hover_ended", new Callable(this, nameof(OnMetaHoverEnded)));
         }
     }
 
@@ -120,7 +120,7 @@ public class CustomRichTextLabel : RichTextLabel
 #pragma warning disable CA2245 // Necessary for workaround
         Invoke.Instance.QueueForObject(() =>
         {
-            var bbCode = BbcodeText;
+            var bbCode = Text;
 
             // Only run this once to not absolutely tank performance with long rich text labels
             if (heightWorkaroundRanForString == bbCode)
@@ -128,7 +128,7 @@ public class CustomRichTextLabel : RichTextLabel
 
             heightWorkaroundRanForString = bbCode;
 
-            BbcodeText = bbCode;
+            Text = bbCode;
         }, this);
 #pragma warning restore CA2245
     }
@@ -164,7 +164,7 @@ public class CustomRichTextLabel : RichTextLabel
     {
         if (extendedBbcode == null)
         {
-            BbcodeText = null;
+            Text = null;
             return;
         }
 
@@ -175,14 +175,14 @@ public class CustomRichTextLabel : RichTextLabel
         try
         {
             // Parse our custom tags into standard tags and display that text
-            BbcodeText = ParseCustomTagsString(translated);
+            Text = ParseCustomTagsString(translated);
         }
         catch (Exception e)
         {
             GD.PrintErr("Failed to parse bbcode string due to exception: ", e);
 
             // Just display the raw markup for now
-            BbcodeText = translated;
+            Text = translated;
         }
     }
 
@@ -399,7 +399,7 @@ public class CustomRichTextLabel : RichTextLabel
             {
                 // TODO: Remove this horrible hack once proper bbcode vertical image alignment is available in Godot 4
                 GD.PrintErr($"Input Action: No ascent font found for {ascent}, creating a new one");
-                var newAscentFont = new BitmapFont { Ascent = ascent };
+                var newAscentFont = new FontFile { Ascent = ascent };
                 ResourceSaver.Save(ascentFont, newAscentFont);
             }
 

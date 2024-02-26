@@ -21,32 +21,32 @@ corner_radius_bottom_left = 5
 [node name="SpeciesDetailsTooltip" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -946.0
-margin_bottom = -518.0
+offset_right = -946.0
+offset_bottom = -518.0
 mouse_filter = 2
 theme = ExtResource( 1 )
-custom_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource( 1 )
 script = ExtResource( 5 )
 SpeciesPreviewPath = NodePath("HBoxContainer/SpeciesPreview")
 HexPreviewPath = NodePath("HBoxContainer/CellHexPreview")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 333.0
-margin_bottom = 201.0
-rect_min_size = Vector2( 332, 200 )
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 333.0
+offset_bottom = 201.0
+custom_minimum_size = Vector2( 332, 200 )
 mouse_filter = 2
 
 [node name="SpeciesPreview" parent="HBoxContainer" instance=ExtResource( 2 )]
-margin_right = 164.0
-margin_bottom = 200.0
+offset_right = 164.0
+offset_bottom = 200.0
 mouse_filter = 2
 script = ExtResource( 4 )
 
 [node name="CellHexPreview" parent="HBoxContainer" instance=ExtResource( 2 )]
-margin_left = 168.0
-margin_right = 332.0
-margin_bottom = 200.0
+offset_left = 168.0
+offset_right = 332.0
+offset_bottom = 200.0
 mouse_filter = 2
 script = ExtResource( 3 )

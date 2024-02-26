@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-BiggerPlus.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-BiggerPlus.tres" type="FontFile" id=1]
 [ext_resource path="res://src/microbe_stage/ProcessList.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture2D" id=5]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs" type="Script" id=7]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="FontFile" id=8]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=9]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=10]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="FontFile" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
@@ -27,12 +27,12 @@ texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
 [node name="SelectionMenuTooltip" type="PanelContainer"]
-margin_right = 350.0
-margin_bottom = 155.0
-rect_min_size = Vector2( 350, 0 )
+offset_right = 350.0
+offset_bottom = 155.0
+custom_minimum_size = Vector2( 350, 0 )
 mouse_filter = 2
 theme = ExtResource( 9 )
-custom_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource( 1 )
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_description_": "NOTE: processes description string should only be set here on the ProcessesDescription property and not directly on the rich text label node as it will be overidden otherwise."
@@ -47,123 +47,123 @@ ProcessListPath = NodePath("MarginContainer/VBoxContainer/ProcessList")
 MoreInfoPath = NodePath("MarginContainer/VBoxContainer/MoreInfo")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 364.0
-margin_bottom = 264.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 364.0
+offset_bottom = 264.0
 mouse_filter = 2
-custom_constants/margin_right = 15
-custom_constants/margin_top = 15
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 348.0
-margin_bottom = 248.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 348.0
+offset_bottom = 248.0
 mouse_filter = 2
-custom_constants/separation = 15
+theme_override_constants/separation = 15
 
 [node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 333.0
-margin_bottom = 31.0
+offset_right = 333.0
+offset_bottom = 31.0
 mouse_filter = 2
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 
 [node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header"]
-margin_right = 83.0
-margin_bottom = 20.0
+offset_right = 83.0
+offset_bottom = 20.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+offset_right = 20.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 20, 20 )
 mouse_filter = 2
 size_flags_vertical = 4
 texture = ExtResource( 4 )
 expand = true
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP"]
-margin_left = 24.0
-margin_right = 83.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 8 )
+offset_left = 24.0
+offset_right = 83.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource( 8 )
 text = "N_A_MP"
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
-margin_left = 93.0
-margin_right = 323.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 230, 0 )
+offset_left = 93.0
+offset_right = 323.0
+offset_bottom = 31.0
+custom_minimum_size = Vector2( 230, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
+theme_override_fonts/font = ExtResource( 1 )
 align = 1
 autowrap = true
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header"]
-margin_left = 333.0
-margin_right = 333.0
-margin_bottom = 31.0
+offset_left = 333.0
+offset_right = 333.0
+offset_bottom = 31.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="RequiresNucleus" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 46.0
-margin_right = 333.0
-margin_bottom = 65.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 10 )
+offset_top = 46.0
+offset_right = 333.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+theme_override_fonts/font = ExtResource( 10 )
 text = "REQUIRES_NUCLEUS"
 
 [node name="ProcessesDescription" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 80.0
-margin_right = 333.0
-margin_bottom = 102.0
+offset_top = 80.0
+offset_right = 333.0
+offset_bottom = 102.0
 mouse_filter = 2
 
 [node name="ProcessList" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 117.0
-margin_right = 333.0
-margin_bottom = 117.0
+offset_top = 117.0
+offset_right = 333.0
+offset_bottom = 117.0
 mouse_filter = 2
 
 [node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 132.0
-margin_right = 333.0
-margin_bottom = 132.0
+offset_top = 132.0
+offset_right = 333.0
+offset_bottom = 132.0
 mouse_filter = 2
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 147.0
-margin_right = 333.0
-margin_bottom = 151.0
+offset_top = 147.0
+offset_right = 333.0
+offset_bottom = 151.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 2 )
+theme_override_styles/separator = SubResource( 2 )
 
 [node name="Description" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 166.0
-margin_right = 333.0
-margin_bottom = 188.0
+offset_top = 166.0
+offset_right = 333.0
+offset_bottom = 188.0
 
 [node name="MoreInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 203.0
-margin_right = 333.0
-margin_bottom = 233.0
+offset_top = 203.0
+offset_right = 333.0
+offset_bottom = 233.0
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MoreInfo"]
-margin_right = 333.0
-margin_bottom = 4.0
+offset_right = 333.0
+offset_bottom = 4.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 2 )
+theme_override_styles/separator = SubResource( 2 )
 
 [node name="MoreInfoLabel" parent="MarginContainer/VBoxContainer/MoreInfo" instance=ExtResource( 6 )]
-margin_top = 8.0
-margin_right = 333.0
-margin_bottom = 30.0
+offset_top = 8.0
+offset_right = 333.0
+offset_bottom = 30.0
 ExtendedBbcode = "MORE_INFO_PROMPT"

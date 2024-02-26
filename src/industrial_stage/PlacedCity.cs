@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 ///   A city that has been placed in the world
 /// </summary>
 [DeserializedCallbackTarget]
-public class PlacedCity : Spatial, IEntityWithNameLabel
+public partial class PlacedCity : Node3D, IEntityWithNameLabel
 {
     private static readonly Lazy<PackedScene> LabelScene =
         new(() => GD.Load<PackedScene>("res://src/industrial_stage/gui/CityNameLabel.tscn"));
@@ -32,7 +32,7 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
     ///   Emitted when this city is selected by the player
     /// </summary>
     [Signal]
-    public delegate void OnSelected();
+    public delegate void OnSelectedEventHandler();
 
     // TODO: automatically take a name from one of the planet's patches
     [JsonProperty]
@@ -68,7 +68,7 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     public override void _Ready()
     {
@@ -249,7 +249,7 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
 
     public void OnSelectedThroughLabel()
     {
-        EmitSignal(nameof(OnSelected));
+        EmitSignal(nameof(OnSelectedEventHandler));
     }
 
     public void OnDestroyed()

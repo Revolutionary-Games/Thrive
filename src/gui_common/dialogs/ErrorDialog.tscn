@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="FontFile" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="FontFile" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.392157 )
@@ -25,23 +25,23 @@ ErrorMessage = ""
 ExceptionInfo = null
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 49.0
-margin_bottom = 70.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 49.0
+offset_bottom = 70.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 5
+theme_override_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ExtraErrorDescription" type="Label" parent="VBoxContainer" index="0"]
-margin_right = 37.0
-margin_bottom = 20.0
+offset_right = 37.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 3 )
+theme_override_fonts/font = ExtResource( 3 )
 align = 1
 valign = 1
 __meta__ = {
@@ -50,37 +50,37 @@ __meta__ = {
 
 [node name="ExceptionBox" type="VBoxContainer" parent="VBoxContainer" index="1"]
 visible = false
-margin_top = 25.0
-margin_right = 983.0
-margin_bottom = 568.0
-rect_min_size = Vector2( 600, 300 )
+offset_top = 25.0
+offset_right = 983.0
+offset_bottom = 568.0
+custom_minimum_size = Vector2( 600, 300 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ExceptionBox" index="0"]
-margin_right = 983.0
-margin_bottom = 503.0
+offset_right = 983.0
+offset_bottom = 503.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ExceptionBox/PanelContainer" index="0"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 982.0
-margin_bottom = 502.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 982.0
+offset_bottom = 502.0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/ExceptionBox/PanelContainer/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 971.0
-margin_bottom = 491.0
-rect_min_size = Vector2( 300, 200 )
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 971.0
+offset_bottom = 491.0
+custom_minimum_size = Vector2( 300, 200 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -88,29 +88,29 @@ __meta__ = {
 }
 
 [node name="Exception" type="Label" parent="VBoxContainer/ExceptionBox/PanelContainer/MarginContainer/ScrollContainer" index="0"]
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 3 )
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="CopyErrorButton" type="Button" parent="VBoxContainer/ExceptionBox" index="1"]
-margin_left = 373.0
-margin_top = 513.0
-margin_right = 610.0
-margin_bottom = 543.0
+offset_left = 373.0
+offset_top = 513.0
+offset_right = 610.0
+offset_bottom = 543.0
 size_flags_horizontal = 4
 size_flags_vertical = 9
-custom_fonts/font = ExtResource( 5 )
+theme_override_fonts/font = ExtResource( 5 )
 text = "COPY_ERROR_TO_CLIPBOARD"
 
 [node name="OkButton" type="Button" parent="VBoxContainer" index="2"]
-margin_top = 25.0
-margin_right = 37.0
-margin_bottom = 57.0
+offset_top = 25.0
+offset_right = 37.0
+offset_bottom = 57.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
-custom_fonts/font = ExtResource( 5 )
+theme_override_fonts/font = ExtResource( 5 )
 text = "OK"
 
 [connection signal="pressed" from="VBoxContainer/ExceptionBox/CopyErrorButton" to="." method="OnCopyToClipboardPressed"]

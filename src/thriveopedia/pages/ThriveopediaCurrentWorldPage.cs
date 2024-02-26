@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   Thriveopedia page displaying information about the current game in progress.
 /// </summary>
-public class ThriveopediaCurrentWorldPage : ThriveopediaPage
+public partial class ThriveopediaCurrentWorldPage : ThriveopediaPage
 {
     [Export]
     public NodePath? DifficultyDetailsPath;

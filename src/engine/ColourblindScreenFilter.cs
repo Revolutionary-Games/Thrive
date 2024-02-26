@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   Handles what colourblind filter is used
 /// </summary>
-public class ColourblindScreenFilter : TextureRect
+public partial class ColourblindScreenFilter : TextureRect
 {
     private static ColourblindScreenFilter? instance;
 
@@ -53,14 +53,14 @@ public class ColourblindScreenFilter : TextureRect
     private void SetRedGreen()
     {
         Material = screenFilterMaterial;
-        screenFilterMaterial.SetShaderParam("mode", 1);
+        screenFilterMaterial.SetShaderParameter("mode", 1);
         Show();
     }
 
     private void SetBlueYellow()
     {
         Material = screenFilterMaterial;
-        screenFilterMaterial.SetShaderParam("mode", 2);
+        screenFilterMaterial.SetShaderParameter("mode", 2);
         Show();
     }
 }

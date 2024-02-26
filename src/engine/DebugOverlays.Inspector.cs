@@ -27,7 +27,7 @@ public partial class DebugOverlays
 
     private void OnInspectorToggled()
     {
-        inspectorCheckbox.Pressed = !inspectorCheckbox.Pressed;
+        inspectorCheckbox.ButtonPressed = !inspectorCheckbox.ButtonPressed;
     }
 
     private void OnInspectorCheckBoxToggled(bool state)

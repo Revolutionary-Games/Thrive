@@ -14,9 +14,9 @@ public struct JVec3
 
     public JVec3(Vector3 vector)
     {
-        X = vector.x;
-        Y = vector.y;
-        Z = vector.z;
+        X = vector.X;
+        Y = vector.Y;
+        Z = vector.Z;
     }
 
     public static implicit operator Vector3(JVec3 d)
@@ -35,17 +35,17 @@ public struct JQuat
     public float Z;
     public float W;
 
-    public JQuat(Quat quat)
+    public JQuat(Quaternion quat)
     {
-        X = quat.x;
-        Y = quat.y;
-        Z = quat.z;
-        W = quat.w;
+        X = quat.X;
+        Y = quat.Y;
+        Z = quat.Z;
+        W = quat.W;
     }
 
-    public static implicit operator Quat(JQuat d)
+    public static implicit operator Quaternion(JQuat d)
     {
-        return new Quat(d.X, d.Y, d.Z, d.W);
+        return new Quaternion(d.X, d.Y, d.Z, d.W);
     }
 }
 
@@ -58,9 +58,9 @@ public struct JVecF3 : IEquatable<JVecF3>
 
     public JVecF3(Vector3 vector)
     {
-        X = vector.x;
-        Y = vector.y;
-        Z = vector.z;
+        X = vector.X;
+        Y = vector.Y;
+        Z = vector.Z;
     }
 
     public JVecF3(float x, float y, float z)
@@ -122,10 +122,10 @@ public struct JColour
 
     public JColour(Color color)
     {
-        R = color.r;
-        G = color.g;
-        B = color.b;
-        A = color.a;
+        R = color.R;
+        G = color.G;
+        B = color.B;
+        A = color.A;
     }
 
     public JColour(float r, float g, float b, float a)
@@ -156,7 +156,7 @@ public struct SubShapeDefinition
 
     public IntPtr ShapeNativePtr;
 
-    public SubShapeDefinition(Vector3 position, Quat rotation, IntPtr shapePtr, uint userData = 0)
+    public SubShapeDefinition(Vector3 position, Quaternion rotation, IntPtr shapePtr, uint userData = 0)
     {
         Position = new JVecF3(position);
         Rotation = new JQuat(rotation);

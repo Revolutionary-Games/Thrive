@@ -4,8 +4,8 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 
 [node name="HelpBox" type="PanelContainer"]
-margin_right = 360.0
-margin_bottom = 26.0
+offset_right = 360.0
+offset_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource( 2 )
@@ -14,17 +14,17 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 359.0
-margin_bottom = 43.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 359.0
+offset_bottom = 43.0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="CustomRichTextLabel" parent="MarginContainer" instance=ExtResource( 1 )]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 348.0
-margin_bottom = 32.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 348.0
+offset_bottom = 32.0

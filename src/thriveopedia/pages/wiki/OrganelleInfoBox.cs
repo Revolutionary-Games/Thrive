@@ -1,11 +1,11 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Linq;
 using Godot;
 
 /// <summary>
 ///   Wiki-style info box for an organelle.
 /// </summary>
-public class OrganelleInfoBox : PanelContainer
+public partial class OrganelleInfoBoX : PanelContainer
 {
     [Export]
     public NodePath? NamePath;
@@ -67,8 +67,8 @@ public class OrganelleInfoBox : PanelContainer
     private Label upgradesLabel = null!;
     private Label internalNameLabel = null!;
 
-    private Texture? modelTexture;
-    private Texture? modelLoadingTexture;
+    private Texture2D? modelTexture;
+    private Texture2D? modelLoadingTexture;
 #pragma warning restore CA2213
 
     private ImageTask? modelImageTask;
@@ -88,7 +88,7 @@ public class OrganelleInfoBox : PanelContainer
         }
     }
 
-    public Texture? ModelTexture
+    public Texture2D? ModelTexture
     {
         get => modelTexture;
         set
@@ -117,13 +117,13 @@ public class OrganelleInfoBox : PanelContainer
         upgradesLabel = GetNode<Label>(UpgradesLabelPath);
         internalNameLabel = GetNode<Label>(InternalNameLabelPath);
 
-        modelLoadingTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/IconGenerating.png");
+        modelLoadingTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/IconGenerating.png");
 
         UpdateModelImage();
         UpdateValues();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -183,7 +183,7 @@ public class OrganelleInfoBox : PanelContainer
         if (organelle == null)
             return;
 
-        icon.Texture = GD.Load<Texture>(organelle.IconPath);
+        icon.Texture = GD.Load<Texture2D>(organelle.IconPath);
 
         var opaque = new Color(1, 1, 1, 1);
         var translucent = new Color(1, 1, 1, 0.25f);

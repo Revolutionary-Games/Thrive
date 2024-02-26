@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using Godot;
 using Newtonsoft.Json;
 
-public class EditorCamera3D : Camera
+public partial class EditorCamera3D : Camera3D
 {
     /// <summary>
     ///   Minimum distance the camera can be at from the rotate point
@@ -95,7 +95,7 @@ public class EditorCamera3D : Camera
     ///   where their camera was
     /// </summary>
     [Signal]
-    public delegate void OnPositionChanged(Transform newPosition);
+    public delegate void OnPositionChangedEventHandler(Transform3D newPosition);
 
     public override void _Ready()
     {
@@ -160,7 +160,7 @@ public class EditorCamera3D : Camera
     [RunOnAxis(new[] { "e_pan_up", "e_pan_down" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "e_pan_left", "e_pan_right" }, new[] { -1.0f, 1.0f })]
     [RunOnAxisGroup(Priority = -1)]
-    public bool RotateOrPanCameraWithKeys(float delta, float upDown, float leftRight)
+    public bool RotateOrPanCameraWithKeys(double delta, float upDown, float leftRight)
     {
         if (!Current || !Visible)
             return false;
@@ -172,19 +172,19 @@ public class EditorCamera3D : Camera
 
         if (IsPanModeWanted())
         {
-            PanCamera(movement.Normalized() * delta * PanSpeed);
+            PanCamera(movement.Normalized() * (float)delta * PanSpeed);
         }
         else
         {
             // TODO: check if multiplying by delta is a good idea here
-            RotateCamera(RotateSpeed * upDown * delta, RotateSpeed * leftRight * delta);
+            RotateCamera(RotateSpeed * upDown * (float)delta, RotateSpeed * leftRight * (float)delta);
         }
 
         return true;
     }
 
     [RunOnKey("e_pan_mouse", Priority = -2, OnlyUnhandled = false)]
-    public void RotateOrPanCameraWithMouse(float delta)
+    public void RotateOrPanCameraWithMouse(double delta)
     {
         if (!Current || !Visible)
             return;
@@ -206,22 +206,22 @@ public class EditorCamera3D : Camera
         {
             // TODO: could maybe take the aspect ratio of the viewport into account rather than having two explicit
             // variables
-            var mousePanDirection = (newPosition - mousePanningStart.Value) * delta *
+            var mousePanDirection = (newPosition - mousePanningStart.Value) * (float)delta *
                 new Vector2(MousePanHorizontalMultiplier, -MousePanVerticalMultiplier);
 
             if (!InvertedMousePanning)
                 mousePanDirection = -mousePanDirection;
 
-            PanCamera(new Vector3(mousePanDirection.x, mousePanDirection.y, 0));
+            PanCamera(new Vector3(mousePanDirection.X, mousePanDirection.Y, 0));
         }
         else
         {
-            var mouseDirection = (newPosition - mousePanningStart.Value) * delta * MouseRotateMultiplier;
+            var mouseDirection = (newPosition - mousePanningStart.Value) * (float)delta * MouseRotateMultiplier;
 
             if (!InvertedMouseRotation)
                 mouseDirection = -mouseDirection;
 
-            RotateCamera(mouseDirection.y, mouseDirection.x);
+            RotateCamera(mouseDirection.Y, mouseDirection.X);
         }
 
         mousePanningStart = newPosition;
@@ -251,7 +251,7 @@ public class EditorCamera3D : Camera
     }
 
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
-    public void ZoomInOrOut(float delta, float value)
+    public void ZoomInOrOut(double delta, float value)
     {
         _ = delta;
 
@@ -260,9 +260,9 @@ public class EditorCamera3D : Camera
     }
 
     [RunOnAxis(new[] { "g_move_down", "g_move_up" }, new[] { -1.0f, 1.0f })]
-    public void PanUpDown(float delta, float value)
+    public void PanUpDown(double delta, float value)
     {
-        PanCamera(new Vector3(0, UpDownMoveSpeed * value * delta, 0));
+        PanCamera(new Vector3(0, UpDownMoveSpeed * value * (float)delta, 0));
     }
 
     [RunOnKeyDown("e_reset_camera", Priority = -1)]
@@ -288,11 +288,11 @@ public class EditorCamera3D : Camera
 
     private void PanCamera(Vector3 panAmount)
     {
-        var yAmount = panAmount.y;
-        panAmount.y = 0;
+        var yAmount = panAmount.Y;
+        panAmount.Y = 0;
 
         // Only left and right look rotation is taken into account for movement, so that it feels better
-        var rotation = new Quat(new Vector3(0, 1, 0), YRotation).Normalized();
+        var rotation = new Quaternion(new Vector3(0, 1, 0), YRotation).Normalized();
 
         panAmount = rotation.Xform(panAmount);
         panOffset += panAmount;
@@ -300,7 +300,7 @@ public class EditorCamera3D : Camera
         // Y-axis panning *does* take the full rotation of the camera into account
         if (yAmount != 0)
         {
-            rotation = Transform.basis.Quat().Normalized();
+            rotation = Transform.Basis.GetRotationQuaternion().Normalized();
 
             panAmount = rotation.Xform(new Vector3(0, yAmount, 0));
             panOffset += panAmount;
@@ -326,18 +326,18 @@ public class EditorCamera3D : Camera
         var rotatedPosition = new Vector3(0, 0, ViewDistance).Rotated(right, XRotation).Rotated(up, YRotation) +
             RotateAroundPoint;
 
-        Translation = rotatedPosition;
+        Position = rotatedPosition;
 
         // "Up" being always up here makes the visuals a bit weird looking when going fully around
         // TODO: could add a mode that clamps the XRotation to ]-0.5 * FULL_CIRCLE, 0.5 * FULL_CIRCLE[
         LookAt(RotateAroundPoint, up);
 
-        var newTransform = new Transform(Transform.basis, rotatedPosition + panOffset);
+        var newTransform = new Transform3D(Transform.Basis, rotatedPosition + panOffset);
 
         if (newTransform != currentTransform)
         {
             Transform = newTransform;
-            EmitSignal(nameof(OnPositionChanged), Transform);
+            EmitSignal(nameof(OnPositionChangedEventHandler), Transform);
         }
     }
 }

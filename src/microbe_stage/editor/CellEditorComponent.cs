@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -244,7 +244,7 @@ public partial class CellEditorComponent :
 
     private PackedScene undiscoveredOrganellesTooltipScene = null!;
 
-    private Spatial? cellPreviewVisualsRoot;
+    private Node3D? cellPreviewVisualsRoot;
 #pragma warning restore CA2213
 
     private OrganelleDefinition protoplasm = null!;
@@ -521,7 +521,7 @@ public partial class CellEditorComponent :
 
     public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
     {
-        organelleModel.Transform = new Transform(MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation),
+        organelleModel.Transform = new Transform3D(MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation),
             organelle.OrganelleModelPosition);
 
         organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
@@ -656,7 +656,7 @@ public partial class CellEditorComponent :
         // Visual simulation is needed very early when loading a save
         previewSimulation = new MicrobeVisualOnlySimulation();
 
-        cellPreviewVisualsRoot = new Spatial
+        cellPreviewVisualsRoot = new Node3D
         {
             Name = "CellPreviewVisuals",
         };
@@ -734,7 +734,7 @@ public partial class CellEditorComponent :
         ApplySymmetryForCurrentOrganelle();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (cellPreviewVisualsRoot == null)
             throw new InvalidOperationException("This editor component is not initialized");
@@ -764,7 +764,7 @@ public partial class CellEditorComponent :
         if (cellPreviewVisualsRoot.Visible)
         {
             // Init being called is checked at the start of this method
-            previewSimulation!.ProcessAll(delta);
+            previewSimulation!.ProcessAll((float)delta);
         }
 
         // Show the organelle that is about to be placed
@@ -1336,7 +1336,7 @@ public partial class CellEditorComponent :
                 var cartesian = Hex.AxialToCartesian(absoluteHex);
 
                 // Get the min z-axis (highest point in the editor)
-                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z);
+                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.Z);
             }
         }
 
@@ -1719,7 +1719,7 @@ public partial class CellEditorComponent :
 
             var organelleModel = hoverModels[usedHoverModel++];
 
-            organelleModel.Transform = new Transform(MathUtils.CreateRotationForOrganelle(rotation),
+            organelleModel.Transform = new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(rotation)),
                 cartesianPosition + shownOrganelle.ModelOffset);
 
             organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
@@ -2149,7 +2149,7 @@ public partial class CellEditorComponent :
                 return;
             }
 
-            var control = (MicrobePartSelection)organelleSelectionButtonScene.Instance();
+            var control = organelleSelectionButtonScene.Instantiate<MicrobePartSelection>();
             control.Locked = organelle.Unimplemented;
             control.PartIcon = organelle.LoadedIcon ?? throw new Exception("Organelle with no icon");
             control.PartName = organelle.UntranslatedName;
@@ -2170,12 +2170,12 @@ public partial class CellEditorComponent :
             // Only add items with valid organelles to dictionary
             placeablePartSelectionElements.Add(organelle, control);
 
-            control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected));
+            control.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler), new Callable(this, nameof(OnOrganelleToPlaceSelected)));
         }
 
         foreach (var membraneType in simulationParameters.GetAllMembranes().OrderBy(m => m.EditorButtonOrder))
         {
-            var control = (MicrobePartSelection)organelleSelectionButtonScene.Instance();
+            var control = organelleSelectionButtonScene.Instantiate<MicrobePartSelection>();
             control.PartIcon = membraneType.LoadedIcon;
             control.PartName = membraneType.UntranslatedName;
             control.SelectionGroup = membraneButtonGroup;
@@ -2188,7 +2188,7 @@ public partial class CellEditorComponent :
 
             membraneSelectionElements.Add(membraneType, control);
 
-            control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected));
+            control.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler), new Callable(this, nameof(OnMembraneSelected)));
         }
 
         // Multicellular parts only available (visible) in multicellular
@@ -2314,28 +2314,28 @@ public partial class CellEditorComponent :
         {
             case LightLevelOption.Day:
             {
-                dayButton.Pressed = true;
+                dayButton.ButtonPressed = true;
                 Editor.DayLightFraction = 1;
                 break;
             }
 
             case LightLevelOption.Night:
             {
-                nightButton.Pressed = true;
+                nightButton.ButtonPressed = true;
                 Editor.DayLightFraction = 0;
                 break;
             }
 
             case LightLevelOption.Average:
             {
-                averageLightButton.Pressed = true;
+                averageLightButton.ButtonPressed = true;
                 Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
                 break;
             }
 
             case LightLevelOption.Current:
             {
-                currentLightButton.Pressed = true;
+                currentLightButton.ButtonPressed = true;
                 Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
                 break;
             }
@@ -2371,7 +2371,7 @@ public partial class CellEditorComponent :
             case SelectionMenuTab.Structure:
             {
                 structureTab.Show();
-                structureTabButton.Pressed = true;
+                structureTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
                 break;
             }
@@ -2379,7 +2379,7 @@ public partial class CellEditorComponent :
             case SelectionMenuTab.Membrane:
             {
                 appearanceTab.Show();
-                appearanceTabButton.Pressed = true;
+                appearanceTabButton.ButtonPressed = true;
                 MicrobePreviewMode = true;
                 break;
             }
@@ -2387,7 +2387,7 @@ public partial class CellEditorComponent :
             case SelectionMenuTab.Behaviour:
             {
                 behaviourEditor.Show();
-                behaviourTabButton.Pressed = true;
+                behaviourTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
                 break;
             }
@@ -2508,7 +2508,7 @@ public partial class CellEditorComponent :
         if (PreviousPlayerGatheredEnergy != null)
         {
             totalEnergyLabel.Value = PreviousPlayerGatheredEnergy.Value;
-            totalEnergyLabel.HintTooltip =
+            totalEnergyLabel.TooltipText =
                 new LocalizedString("GATHERED_ENERGY_TOOLTIP", PreviousPlayerGatheredEnergy).ToString();
         }
         else

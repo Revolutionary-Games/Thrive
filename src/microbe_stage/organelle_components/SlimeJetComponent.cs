@@ -84,9 +84,9 @@ public class SlimeJetComponent : IOrganelleComponent
     {
         force = queuedForce;
 
-        queuedForce.x = 0;
-        queuedForce.y = 0;
-        queuedForce.z = 0;
+        queuedForce.X = 0;
+        queuedForce.Y = 0;
+        queuedForce.Z = 0;
     }
 
     public Vector3 GetDirection()

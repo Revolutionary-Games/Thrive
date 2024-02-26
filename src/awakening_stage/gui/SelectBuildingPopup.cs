@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Godot;
@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   Allows selecting a structure type from a list of available ones
 /// </summary>
-public class SelectBuildingPopup : StructureToBuildPopupBase<StructureDefinition>
+public partial class SelectBuildingPopup : StructureToBuildPopupBase<StructureDefinition>
 {
     private readonly List<StructureDefinition> validDefinitions = new();
 

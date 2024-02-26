@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 ///   Separate HUD base that adds pausing, this is separate as both strategy and creature HUDs want pausing but maybe
 ///   there's something that won't want pausing in the future
 /// </summary>
-public abstract class HUDWithPausing : HUDBase
+public abstract partial class HUDWithPausing : HUDBase
 {
     [Export]
     public NodePath? PausePromptPath;

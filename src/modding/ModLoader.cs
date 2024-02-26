@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +10,7 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Handles loading mods, and auto-loading mods, and also showing related errors etc. popups
 /// </summary>
-public class ModLoader : Node
+public partial class ModLoader : Node
 {
     private static ModLoader? instance;
     private static ModInterface? modInterface;
@@ -74,16 +74,16 @@ public class ModLoader : Node
     /// <returns>The mod details if the mod could be loaded</returns>
     public static FullModDetails? LoadModInfo(string name, bool failureIsError = true)
     {
-        using var currentDirectory = new Directory();
-
         foreach (var location in Constants.ModLocations)
         {
             var modsFolder = Path.Combine(location, name);
 
-            if (!currentDirectory.DirExists(modsFolder))
+            using var folder = DirAccess.Open(modsFolder);
+
+            if (folder == null)
                 continue;
 
-            if (currentDirectory.FileExists(Path.Combine(modsFolder, Constants.MOD_INFO_FILE_NAME)))
+            if (folder.FileExists(Path.Combine(modsFolder, Constants.MOD_INFO_FILE_NAME)))
             {
                 var info = ModManager.LoadModInfo(modsFolder);
 
@@ -117,17 +117,15 @@ public class ModLoader : Node
 
         var result = new List<FullModDetails>();
 
-        using var directory = new Directory();
-
         foreach (var location in steamHandler.GetWorkshopItemFolders())
         {
-            if (!directory.DirExists(location))
+            if (!DirAccess.DirExistsAbsolute(location))
             {
                 GD.PrintErr("Workshop item folder doesn't exist: ", location);
                 continue;
             }
 
-            if (directory.FileExists(Path.Combine(location, Constants.MOD_INFO_FILE_NAME)))
+            if (FileAccess.FileExists(Path.Combine(location, Constants.MOD_INFO_FILE_NAME)))
             {
                 var info = ModManager.LoadModInfo(location);
 
@@ -162,7 +160,7 @@ public class ModLoader : Node
         initialLoad = false;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -239,20 +237,14 @@ public class ModLoader : Node
 
     private static ModInfo? LoadFirstInstalledModInfo()
     {
-        using var currentDirectory = new Directory();
-
         foreach (var location in Constants.ModLocations)
         {
-            if (!currentDirectory.DirExists(location))
+            using var currentDirectory = DirAccess.Open(location);
+
+            if (currentDirectory == null)
                 continue;
 
-            if (currentDirectory.Open(location) != Error.Ok)
-            {
-                GD.PrintErr("Failed to open potential mod folder for reading at: ", location);
-                continue;
-            }
-
-            if (currentDirectory.ListDirBegin(true, true) != Error.Ok)
+            if (currentDirectory.ListDirBegin() != Error.Ok)
             {
                 GD.PrintErr("Failed to begin directory listing");
                 continue;
@@ -453,7 +445,7 @@ public class ModLoader : Node
 
         try
         {
-            var mod = (IMod)Activator.CreateInstance(type);
+            var mod = (IMod?)Activator.CreateInstance(type);
 
             if (!mod.Initialize(modInterface!, info.Info))
             {

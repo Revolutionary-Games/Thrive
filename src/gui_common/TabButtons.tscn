@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/gui_common/TabButtons.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" type="FontFile" id=2]
 [ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
 
 [node name="TabButtons" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1280.0
-margin_bottom = -720.0
+offset_right = -1280.0
+offset_bottom = -720.0
 size_flags_horizontal = 3
 script = ExtResource( 1 )
 LeftContainerPath = NodePath("LeftIndicatorContainer")
@@ -22,30 +22,30 @@ TabButtonsContainerNoWrapPath = NodePath("ButtonsContainerNoWrap")
 
 [node name="LeftAlternativePadding" type="Control" parent="."]
 visible = false
-margin_right = 63.0
-margin_bottom = 42.0
-rect_min_size = Vector2( 63, 42 )
+offset_right = 63.0
+offset_bottom = 42.0
+custom_minimum_size = Vector2( 63, 42 )
 
 [node name="LeftIndicatorContainer" type="HBoxContainer" parent="."]
 visible = false
-margin_right = 63.0
-margin_bottom = 42.0
+offset_right = 63.0
+offset_bottom = 42.0
 
 [node name="Label" type="Label" parent="LeftIndicatorContainer"]
-margin_top = 3.0
-margin_right = 17.0
-margin_bottom = 38.0
-custom_fonts/font = ExtResource( 2 )
+offset_top = 3.0
+offset_right = 17.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource( 2 )
 text = "<"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="KeyPrompt" parent="LeftIndicatorContainer" instance=ExtResource( 3 )]
-margin_left = 21.0
-margin_right = 63.0
-margin_bottom = 42.0
-rect_min_size = Vector2( 42, 42 )
+offset_left = 21.0
+offset_right = 63.0
+offset_bottom = 42.0
+custom_minimum_size = Vector2( 42, 42 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -62,23 +62,23 @@ alignment = 1
 
 [node name="RightIndicatorContainer" type="HBoxContainer" parent="."]
 visible = false
-margin_left = 67.0
-margin_right = 130.0
-margin_bottom = 42.0
+offset_left = 67.0
+offset_right = 130.0
+offset_bottom = 42.0
 
 [node name="KeyPrompt" parent="RightIndicatorContainer" instance=ExtResource( 3 )]
-margin_right = 42.0
-margin_bottom = 42.0
-rect_min_size = Vector2( 42, 42 )
+offset_right = 42.0
+offset_bottom = 42.0
+custom_minimum_size = Vector2( 42, 42 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="RightIndicatorContainer"]
-margin_left = 46.0
-margin_top = 3.0
-margin_right = 63.0
-margin_bottom = 38.0
-custom_fonts/font = ExtResource( 2 )
+offset_left = 46.0
+offset_top = 3.0
+offset_right = 63.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource( 2 )
 text = ">"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -86,7 +86,7 @@ __meta__ = {
 
 [node name="RightAlternativePadding" type="Control" parent="."]
 visible = false
-margin_left = 134.0
-margin_right = 197.0
-margin_bottom = 42.0
-rect_min_size = Vector2( 63, 42 )
+offset_left = 134.0
+offset_right = 197.0
+offset_bottom = 42.0
+custom_minimum_size = Vector2( 63, 42 )

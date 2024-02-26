@@ -115,7 +115,7 @@
         ///   removed organelles
         /// </summary>
         [JsonIgnore]
-        public Dictionary<PlacedOrganelle, Spatial>? CreatedOrganelleVisuals;
+        public Dictionary<PlacedOrganelle, Node3D>? CreatedOrganelleVisuals;
 
         // TODO: maybe put the process list refresh variable here and a some new system to regenerate the process list?
         // instead of just doing it when changing the organelles?

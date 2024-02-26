@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using Godot;
 
-public class RecipeListItem : Button
+public partial class RecipeListItem : Button
 {
     [Export(PropertyHint.ColorNoAlpha)]
     public Color UncraftableItemColor = new(0.5f, 0.5f, 0.5f);
@@ -21,7 +21,7 @@ public class RecipeListItem : Button
     private IReadOnlyDictionary<WorldResource, int> availableMaterials = new Dictionary<WorldResource, int>();
 
     [Signal]
-    public delegate void OnSelected();
+    public delegate void OnSelectedEventHandler();
 
     public CraftingRecipe? DisplayedRecipe
     {
@@ -75,9 +75,9 @@ public class RecipeListItem : Button
     {
         if (textLabel != null)
         {
-            textLabel.RectSize = RectSize - new Vector2(MarginAroundLabel, MarginAroundLabel);
+            textLabel.Size = Size - new Vector2(MarginAroundLabel, MarginAroundLabel);
             var halfMargin = MarginAroundLabel / 2;
-            textLabel.RectPosition = new Vector2(halfMargin, halfMargin);
+            textLabel.Position = new Vector2(halfMargin, halfMargin);
         }
     }
 
@@ -124,6 +124,6 @@ public class RecipeListItem : Button
     private void OnToggledChanged(bool pressed)
     {
         if (pressed)
-            EmitSignal(nameof(OnSelected));
+            EmitSignal(nameof(OnSelectedEventHandler));
     }
 }

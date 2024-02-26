@@ -96,11 +96,11 @@
 
             try
             {
-                spatial.GraphicalInstance = scene.Instance<Spatial>();
+                spatial.GraphicalInstance = scene.Instantiate<Node3D>();
             }
             catch (Exception e)
             {
-                GD.PrintErr("Predefined visual is not convertible to Spatial: ", e);
+                GD.PrintErr("Predefined visual is not convertible to Node3D: ", e);
             }
         }
 

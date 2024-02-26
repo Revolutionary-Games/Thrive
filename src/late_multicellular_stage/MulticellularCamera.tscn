@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.cs" type="Script" id=1]
 
-[node name="MulticellularCamera" type="Spatial"]
-pause_mode = 2
+[node name="MulticellularCamera" type="Node3D"]
+process_mode = 3
 process_priority = 100
 script = ExtResource( 1 )
 __meta__ = {
@@ -12,19 +12,19 @@ __meta__ = {
 }
 Current = true
 
-[node name="CameraPosition" type="Spatial" parent="."]
+[node name="CameraPosition" type="Node3D" parent="."]
 __meta__ = {
 "_editor_description_": "Base camera position offset from the player"
 }
 
-[node name="SpringArm" type="SpringArm" parent="CameraPosition"]
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPosition"]
 spring_length = 3.0
 margin = 0.08
 
-[node name="Camera" type="Camera" parent="CameraPosition/SpringArm"]
+[node name="Camera3D" type="Camera3D" parent="CameraPosition/SpringArm3D"]
 process_priority = 100
 doppler_tracking = 2
 fov = 90.0
 far = 400.0
 
-[node name="Listener" type="Listener" parent="CameraPosition/SpringArm/Camera"]
+[node name="AudioListener3D" type="AudioListener3D" parent="CameraPosition/SpringArm3D/Camera3D"]

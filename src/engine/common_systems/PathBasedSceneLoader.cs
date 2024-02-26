@@ -89,7 +89,7 @@
 
             try
             {
-                var instancedScene = scene.Instance<Spatial>();
+                var instancedScene = scene.Instantiate<Node3D>();
 
                 if (sceneVisuals.AttachDirectlyToScene)
                 {
@@ -98,7 +98,7 @@
                 else
                 {
                     // Many scenes require a parent node where scale can be used
-                    var parent = new Spatial();
+                    var parent = new Node3D();
                     parent.AddChild(instancedScene);
 
                     spatial.GraphicalInstance = parent;
@@ -106,7 +106,7 @@
             }
             catch (Exception e)
             {
-                GD.PrintErr($"Godot scene ({sceneVisuals.LastLoadedScene}) doesn't have a Spatial root node visual: ",
+                GD.PrintErr($"Godot scene ({sceneVisuals.LastLoadedScene}) doesn't have a Node3D root node visual: ",
                     e);
             }
         }

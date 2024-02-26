@@ -1,4 +1,4 @@
-﻿namespace Components
+namespace Components
 {
     using System;
     using System.Collections.Generic;
@@ -191,7 +191,7 @@
                 }
 
                 // Skip entities that have no useful compounds
-                if (!compounds.Compounds.Any(x => usefulCompoundSource.IsUseful(x.Key)))
+                if (!compounds.Compounds.Any(p => usefulCompoundSource.IsUseful(p.Key)))
                     continue;
 
                 if (nearestPoint == null || distance < nearestDistanceSquared)

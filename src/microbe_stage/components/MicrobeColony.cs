@@ -1040,7 +1040,7 @@
         /// <returns>True on success, false if data not ready for calculation yet</returns>
         private static bool CalculateColonyMemberAttachPosition(Entity colonyEntity, Entity parentMicrobe,
             WorldPosition newMemberPosition, CellProperties newMemberProperties, out Vector3 offsetToColonyLeader,
-            out Quat rotationToLeader)
+            out Quaternion rotationToLeader)
         {
             try
             {
@@ -1060,7 +1060,7 @@
             {
                 GD.PrintErr("Microbe colony related data not initialized enough to add colony member: ", e);
                 offsetToColonyLeader = Vector3.Zero;
-                rotationToLeader = Quat.Identity;
+                rotationToLeader = Quaternion.Identity;
                 return false;
             }
 
@@ -1112,11 +1112,11 @@
             // world coordinates.
             var parentMembranePoint = colonyParentPosition.Rotation.Xform(
                 colonyParentProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(
-                    vectorFromParentInLocalSpace.x, vectorFromParentInLocalSpace.z));
+                    vectorFromParentInLocalSpace.X, vectorFromParentInLocalSpace.Z));
 
             var cellMembranePoint = cellPosition.Rotation.Xform(
-                cellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(vectorToParentInLocalSpace.x,
-                    vectorToParentInLocalSpace.z));
+                cellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(vectorToParentInLocalSpace.X,
+                    vectorToParentInLocalSpace.Z));
 
             // The cell membrane point is negated here to amplify the distance as it is the opposite sign of the parent
             // membrane point otherwise.
@@ -1129,7 +1129,7 @@
         ///   Common code for new colony member setup
         /// </summary>
         private static void SetupColonyMemberData(ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
-            in Entity newMember, Vector3 offsetToColonyLeader, Quat rotationToLeader, EntityCommandRecorder recorder)
+            in Entity newMember, Vector3 offsetToColonyLeader, Quaternion rotationToLeader, EntityCommandRecorder recorder)
         {
             OnCommonColonyMemberSetup(ref colony, colonyEntity, parentIndex, newMember, recorder);
 

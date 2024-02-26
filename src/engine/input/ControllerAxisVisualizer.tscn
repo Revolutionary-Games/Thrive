@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="FontFile" id=3]
 [ext_resource path="res://src/engine/input/ControllerAxisVisualizer.cs" type="Script" id=4]
 
 [node name="ControllerAxisVisualizer" type="MarginContainer"]
-margin_right = 273.0
-margin_bottom = 210.0
+offset_right = 273.0
+offset_bottom = 210.0
 focus_mode = 2
 theme = ExtResource( 2 )
-custom_constants/margin_right = 3
-custom_constants/margin_top = 3
-custom_constants/margin_left = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_left = 3
 script = ExtResource( 4 )
 DrawerNodePath = NodePath("VBoxContainer/DrawArea")
 HorizontalLabelPath = NodePath("VBoxContainer/TextContainer/Horizontal")
@@ -25,137 +25,137 @@ VerticalRawDisplayerPath = NodePath("VBoxContainer/TextContainer/RawDisplayer2")
 VerticalDeadzoneDisplayerPath = NodePath("VBoxContainer/TextContainer/DeadzoneDisplayer2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 276.0
-margin_bottom = 213.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 276.0
+offset_bottom = 213.0
 
 [node name="DrawArea" type="Control" parent="VBoxContainer"]
-margin_right = 273.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 92, 92 )
+offset_right = 273.0
+offset_bottom = 92.0
+custom_minimum_size = Vector2( 92, 92 )
 
 [node name="TextContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 96.0
-margin_right = 273.0
-margin_bottom = 210.0
+offset_top = 96.0
+offset_right = 273.0
+offset_bottom = 210.0
 
 [node name="Horizontal" type="Label" parent="VBoxContainer/TextContainer"]
-margin_right = 273.0
-margin_bottom = 17.0
-custom_fonts/font = ExtResource( 1 )
+offset_right = 273.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource( 1 )
 text = "HORIZONTAL_WITH_AXIS_NAME_COLON"
 
 [node name="RawDisplayer" type="HBoxContainer" parent="VBoxContainer/TextContainer"]
-margin_top = 21.0
-margin_right = 273.0
-margin_bottom = 36.0
+offset_top = 21.0
+offset_right = 273.0
+offset_bottom = 36.0
 
 [node name="Label" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer"]
-margin_right = 119.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 3 )
+offset_right = 119.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "RAW_VALUE_COLON"
 
 [node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/RawDisplayer"]
-margin_left = 123.0
-margin_right = 231.0
-margin_bottom = 15.0
+offset_left = 123.0
+offset_right = 231.0
+offset_bottom = 15.0
 size_flags_horizontal = 3
 
 [node name="RawValue" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer"]
-margin_left = 235.0
-margin_right = 273.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 3 )
+offset_left = 235.0
+offset_right = 273.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "0.0124"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="DeadzoneDisplayer" type="HBoxContainer" parent="VBoxContainer/TextContainer"]
-margin_top = 40.0
-margin_right = 273.0
-margin_bottom = 55.0
+offset_top = 40.0
+offset_right = 273.0
+offset_bottom = 55.0
 
 [node name="Label" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer"]
-margin_right = 198.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 3 )
+offset_right = 198.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "CONTROLLER_DEADZONE_COLON"
 
 [node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/DeadzoneDisplayer"]
-margin_left = 202.0
-margin_right = 252.0
-margin_bottom = 15.0
+offset_left = 202.0
+offset_right = 252.0
+offset_bottom = 15.0
 size_flags_horizontal = 3
 
 [node name="DeadzoneValue" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer"]
-margin_left = 256.0
-margin_right = 273.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 3 )
+offset_left = 256.0
+offset_right = 273.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "0.2"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Vertical" type="Label" parent="VBoxContainer/TextContainer"]
-margin_top = 59.0
-margin_right = 273.0
-margin_bottom = 76.0
-custom_fonts/font = ExtResource( 1 )
+offset_top = 59.0
+offset_right = 273.0
+offset_bottom = 76.0
+theme_override_fonts/font = ExtResource( 1 )
 text = "VERTICAL_WITH_AXIS_NAME_COLON"
 
 [node name="RawDisplayer2" type="HBoxContainer" parent="VBoxContainer/TextContainer"]
-margin_top = 80.0
-margin_right = 273.0
-margin_bottom = 95.0
+offset_top = 80.0
+offset_right = 273.0
+offset_bottom = 95.0
 
 [node name="Label" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer2"]
-margin_right = 119.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 3 )
+offset_right = 119.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "RAW_VALUE_COLON"
 
 [node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/RawDisplayer2"]
-margin_left = 123.0
-margin_right = 224.0
-margin_bottom = 15.0
+offset_left = 123.0
+offset_right = 224.0
+offset_bottom = 15.0
 size_flags_horizontal = 3
 
 [node name="RawValue" type="Label" parent="VBoxContainer/TextContainer/RawDisplayer2"]
-margin_left = 228.0
-margin_right = 273.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 3 )
+offset_left = 228.0
+offset_right = 273.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "0.00453"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="DeadzoneDisplayer2" type="HBoxContainer" parent="VBoxContainer/TextContainer"]
-margin_top = 99.0
-margin_right = 273.0
-margin_bottom = 114.0
+offset_top = 99.0
+offset_right = 273.0
+offset_bottom = 114.0
 
 [node name="Label" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer2"]
-margin_right = 198.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 3 )
+offset_right = 198.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "CONTROLLER_DEADZONE_COLON"
 
 [node name="Spacer" type="Control" parent="VBoxContainer/TextContainer/DeadzoneDisplayer2"]
-margin_left = 202.0
-margin_right = 252.0
-margin_bottom = 15.0
+offset_left = 202.0
+offset_right = 252.0
+offset_bottom = 15.0
 size_flags_horizontal = 3
 
 [node name="DeadzoneValue" type="Label" parent="VBoxContainer/TextContainer/DeadzoneDisplayer2"]
-margin_left = 256.0
-margin_right = 273.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 3 )
+offset_left = 256.0
+offset_right = 273.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "0.2"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"

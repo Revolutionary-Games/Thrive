@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Godot;
 
 // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 // [Tool]
-public class LicensesDisplay : CustomWindow
+public partial class LicensesDisplay : CustomWindow
 {
     [Export]
     public NodePath? TextsContainerPath;
@@ -70,7 +70,7 @@ public class LicensesDisplay : CustomWindow
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         // Keep the license texts only loaded when this is visible
         if (IsVisibleInTree())
@@ -106,7 +106,7 @@ public class LicensesDisplay : CustomWindow
     {
         using var reader = new File();
 
-        if (reader.Open(file, File.ModeFlags.Read) == Error.Ok)
+        if (reader.Open(file, FileAccess.ModeFlags.Read) == Error.Ok)
         {
             return reader.GetAsText();
         }
@@ -120,20 +120,20 @@ public class LicensesDisplay : CustomWindow
         foreach (var licenseTuple in licensesToShow)
         {
             var heading = new Label { Text = licenseTuple.Heading };
-            heading.AddFontOverride("font", GetFont("lato_bold_regular", "Fonts"));
+            heading.AddThemeFontOverride("font", GetThemeFont("lato_bold_regular", "Fonts"));
             textsContainer.AddChild(heading);
 
             var content = new Label
             {
                 Text = licenseTuple.Content(),
-                Align = Label.AlignEnum.Left,
+                Align = HorizontalAlignment.Left,
                 Autowrap = true,
             };
 
-            content.AddFontOverride("font", GetFont("lato_normal", "Fonts"));
+            content.AddThemeFontOverride("font", GetThemeFont("lato_normal", "Fonts"));
             textsContainer.AddChild(content);
 
-            textsContainer.AddChild(new Control { RectMinSize = new Vector2(0, 5) });
+            textsContainer.AddChild(new Control { CustomMinimumSize = new Vector2(0, 5) });
         }
     }
 

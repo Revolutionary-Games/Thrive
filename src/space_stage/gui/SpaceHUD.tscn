@@ -26,12 +26,12 @@ visible = false
 disabled = true
 
 [node name="Research" parent="ScrollContainer/HotBar" index="1"]
-margin_left = 226.0
-margin_right = 272.0
+offset_left = 226.0
+offset_right = 272.0
 
 [node name="Possess" parent="ScrollContainer/HotBar" index="2"]
-margin_left = 278.0
-margin_right = 324.0
+offset_left = 278.0
+offset_right = 324.0
 
 [node name="PlanetScreen" parent="." index="9" instance=ExtResource( 2 )]
 
@@ -46,10 +46,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -235.369
-margin_top = -45.1216
-margin_right = -40.3691
-margin_bottom = -10.1216
+offset_left = -235.369
+offset_top = -45.1216
+offset_right = -40.3691
+offset_bottom = -10.1216
 text = "DESCEND_BUTTON"
 
 [connection signal="OnConstructOptionSelected" from="SpaceFleetInfoPopup" to="." method="ShowConstructionOptionsForFleet"]

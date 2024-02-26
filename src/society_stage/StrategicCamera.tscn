@@ -2,11 +2,11 @@
 
 [ext_resource path="res://src/society_stage/StrategicCamera.cs" type="Script" id=1]
 
-[node name="StrategicCamera" type="Camera"]
+[node name="StrategicCamera" type="Camera3D"]
 current = true
 fov = 80.0
 far = 300.0
 script = ExtResource( 1 )
 
-[node name="Listener" type="Listener" parent="."]
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true

@@ -33,7 +33,7 @@ public class RunOnKeyChangeAttribute : RunOnKeyAttribute
         return CallMethod(cachedMethodCallParameters!);
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
     }
 }

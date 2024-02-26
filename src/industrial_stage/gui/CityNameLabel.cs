@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Shows a label with a city name and size for selecting that city
 /// </summary>
-public class CityNameLabel : Button, IEntityNameLabel
+public partial class CityNameLabel : Button, IEntityNameLabel
 {
     private string translationTemplate = null!;
 

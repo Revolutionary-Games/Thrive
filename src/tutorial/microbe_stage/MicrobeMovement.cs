@@ -1,4 +1,4 @@
-﻿namespace Tutorial
+namespace Tutorial
 {
     using System;
     using Godot;
@@ -78,10 +78,10 @@
                         }
                         else
                         {
-                            var rotationDegrees = -((RotationEventArgs)args).RotationInDegrees.y;
-                            var lerped = Mathf.LerpAngle(Mathf.Deg2Rad(keyPromptRotation),
-                                Mathf.Deg2Rad(rotationDegrees), 0.1f);
-                            keyPromptRotation = Mathf.Rad2Deg(lerped);
+                            var rotationDegrees = -((RotationEventArgs)args).RotationInDegrees.Y;
+                            var lerped = Mathf.LerpAngle(Mathf.DegToRad(keyPromptRotation),
+                                Mathf.DegToRad(rotationDegrees), 0.1f);
+                            keyPromptRotation = Mathf.RadToDeg(lerped);
                         }
 
                         consumed = true;

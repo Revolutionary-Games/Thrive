@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Godot;
@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   Allows selecting a thing for a space fleet to build
 /// </summary>
-public class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStructureDefinition>
+public partial class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStructureDefinition>
 {
     private readonly List<SpaceStructureDefinition> validDefinitions = new();
 

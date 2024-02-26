@@ -718,7 +718,6 @@
     <Compile Include="src\microbe_stage\Spawner.cs" />
     <Compile Include="src\microbe_stage\Spawners.cs" />
     <Compile Include="src\engine\Settings.cs" />
-    <Compile Include="src\general\Int3.cs" />
     <Compile Include="src\general\GameProperties.cs" />
     <Compile Include="src\microbe_stage\AgentProperties.cs" />
     <Compile Include="src\general\IWorldEffect.cs" />
@@ -736,7 +735,6 @@
     <Compile Include="src\microbe_stage\PatchManager.cs" />
     <Compile Include="src\microbe_stage\PatchRegion.cs" />
     <Compile Include="src\microbe_stage\OrganelleTemplate.cs" />
-    <Compile Include="src\general\Int2.cs" />
     <Compile Include="src\microbe_stage\IPositionedOrganelle.cs" />
     <Compile Include="src\general\ActionHistory.cs" />
     <Compile Include="src\general\ReversibleAction.cs" />
@@ -816,7 +814,7 @@
     <Compile Include="src\saving\serializers\EntityWorldConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\GodotBasisConverter.cs" />
-    <Compile Include="src\saving\serializers\GodotQuatConverter.cs" />
+    <Compile Include="src\saving\serializers\GodotQuaternionConverter.cs" />
     <Compile Include="src\saving\serializers\InProgressObjectDeserialization.cs" />
     <Compile Include="src\saving\serializers\LocalizedStringTypeConverter.cs" />
     <Compile Include="src\saving\serializers\NodeConverter.cs" />

@@ -3,7 +3,7 @@
 /// <summary>
 ///   A progress bar that supports showing an icon.
 /// </summary>
-public class IconProgressBar : ColorRect
+public partial class IconProgressBar : ColorRect
 {
     /// <summary>
     ///   Special property used by SegmentedBar
@@ -20,23 +20,23 @@ public class IconProgressBar : ColorRect
 
     public Vector2 BarSize
     {
-        get => RectSize;
+        get => Size;
         set
         {
-            RectMinSize = value;
-            RectSize = value;
+            CustomMinimumSize = value;
+            Size = value;
 
-            highlight.RectSize = value;
+            highlight.Size = value;
 
             // Sets icon size
-            icon.RectSize = new Vector2(value.y, value.y);
+            icon.Size = new Vector2(value.Y, value.Y);
 
             // Changes icon visibility if bar is not wide enough
-            icon.Visible = RectSize.x >= icon.RectSize.x;
+            icon.Visible = Size.X >= icon.Size.X;
         }
     }
 
-    public Texture? IconTexture
+    public Texture2D? IconTexture
     {
         get => icon.Texture;
         set => icon.Texture = value;

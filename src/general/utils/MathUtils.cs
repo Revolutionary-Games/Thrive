@@ -43,19 +43,19 @@ public static class MathUtils
     ///     Rotation is now the number of 60 degree rotations
     ///   </para>
     /// </remarks>
-    public static Quat CreateRotationForOrganelle(float rotation)
+    public static Quaternion CreateRotationForOrganelle(float rotation)
     {
-        return new Quat(new Vector3(0, -1, 0), rotation * 60 * DEGREES_TO_RADIANS);
+        return new Quaternion(new Vector3(0, -1, 0), rotation * 60 * DEGREES_TO_RADIANS);
     }
 
     /// <summary>
     ///   This still takes the angle in degrees as this is used from
     ///   places that calculate the angle in degrees.
     /// </summary>
-    public static Quat CreateRotationForExternal(float angle)
+    public static Quaternion CreateRotationForExternal(float angle)
     {
-        return new Quat(new Vector3(0, 1, 0), 180 * DEGREES_TO_RADIANS) *
-            new Quat(new Vector3(0, 1, 0), angle * DEGREES_TO_RADIANS);
+        return new Quaternion(new Vector3(0, 1, 0), 180 * DEGREES_TO_RADIANS) *
+            new Quaternion(new Vector3(0, 1, 0), angle * DEGREES_TO_RADIANS);
     }
 
     /// <summary>

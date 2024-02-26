@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.cs" type="Script" id=1]
-[ext_resource path="res://shaders/Monochrome.shader" type="Shader" id=2]
+[ext_resource path="res://shaders/Monochrome.gdshader" type="Shader" id=2]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )

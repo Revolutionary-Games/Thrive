@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/textures/background/Thrive_vent1.png" type="Texture" id=1]
-[ext_resource path="res://assets/textures/background/Thrive_vent2.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/background/Thrive_vent1.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/textures/background/Thrive_vent2.png" type="Texture2D" id=2]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.cs" type="Script" id=3]
-[ext_resource path="res://assets/textures/background/Thrive_vent3.png" type="Texture" id=4]
-[ext_resource path="res://shaders/MicrobeBackground.shader" type="Shader" id=5]
-[ext_resource path="res://assets/textures/background/Thrive_vent0.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/background/Thrive_vent3.png" type="Texture2D" id=4]
+[ext_resource path="res://shaders/MicrobeBackground.gdshader" type="Shader" id=5]
+[ext_resource path="res://assets/textures/background/Thrive_vent0.png" type="Texture2D" id=6]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 800, 400 )
@@ -21,19 +21,19 @@ shader_param/layer1 = ExtResource( 1 )
 shader_param/layer2 = ExtResource( 2 )
 shader_param/layer3 = ExtResource( 4 )
 
-[node name="MicrobeCamera" type="Camera"]
+[node name="MicrobeCamera" type="Camera3D"]
 process_priority = 100
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
+transform = Transform3D( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
 current = true
 fov = 90.0
 script = ExtResource( 3 )
 DefaultCameraHeight = 30.0
 
-[node name="BackgroundPlane" type="CSGMesh" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 5.96247e-08, -15 )
+[node name="BackgroundPlane" type="CSGMesh3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 5.96247e-08, -15 )
 cast_shadow = 0
 mesh = SubResource( 1 )
 material = SubResource( 2 )
 
-[node name="Listener" type="Listener" parent="."]
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true

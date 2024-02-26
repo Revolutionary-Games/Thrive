@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/textures/gui/bevel/IconGenerating.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/IconGenerating.png" type="Texture2D" id=1]
 [ext_resource path="res://src/gui_common/PhotographablePreview.cs" type="Script" id=2]
 
 [node name="PhotographablePreview" type="Control"]
-rect_min_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 2 )

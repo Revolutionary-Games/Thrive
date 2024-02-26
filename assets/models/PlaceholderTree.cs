@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Until plants are procedurally generated species, this serves as a source of wood
 /// </summary>
-public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
+public partial class PlaceholderTree : StaticBody3D, IInteractableEntity, IHarvestAction
 {
     private const float AnimationDuration = 1.5f;
     private const float PostAnimationDuration = 4;
@@ -15,12 +15,12 @@ public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
     private bool harvested;
     private int availableWood = 4;
 
-    private float animationTime;
-    private Transform animationStart;
-    private Transform animationEnd;
+    private double animationTime;
+    private Transform3D animationStart;
+    private Transform3D animationEnd;
 
     public AliveMarker AliveMarker { get; } = new();
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     /// <summary>
     ///   Placeholder name, intentionally not translated (second part is now in
@@ -28,7 +28,7 @@ public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
     /// </summary>
     public string ReadableName => "Placeholder Tree";
 
-    public Texture Icon => woodResource.Icon;
+    public Texture2D Icon => woodResource.Icon;
 
     public WeakReference<InventorySlot>? ShownAsGhostIn { get; set; }
     public float InteractDistanceOffset => 0.5f;
@@ -40,7 +40,7 @@ public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
     public bool InteractionDisabled { get; set; }
     public bool CanBeCarried => false;
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!harvested)
             return;
@@ -56,7 +56,7 @@ public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
         {
             var progress = Math.Min(animationTime / AnimationDuration, 1);
 
-            Transform = animationStart.InterpolateWith(animationEnd, progress);
+            Transform = animationStart.InterpolateWith(animationEnd, (float)progress);
         }
     }
 
@@ -99,9 +99,10 @@ public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
 
         // Setup a really simple falling animation
         animationStart = Transform;
-        animationEnd = new Transform(
-            new Basis(animationStart.basis.Quat() * new Quat(new Vector3(0, 0, 1), Mathf.Pi * 0.5f)),
-            animationStart.origin - new Vector3(0, -0.3f, 0));
+        animationEnd = new Transform3D(
+            new Basis(animationStart.Basis.GetRotationQuaternion() *
+                new Quaternion(new Vector3(0, 0, 1), Mathf.Pi * 0.5f)),
+            animationStart.Origin - new Vector3(0, -0.3f, 0));
 
         // Disable collision while being destroyed
         CollisionLayer = 0;

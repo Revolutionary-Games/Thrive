@@ -5,7 +5,7 @@
 /// </summary>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class CustomConfirmationDialog : CustomWindow
+public partial class CustomConfirmationDialog : CustomWindow
 {
     [Export]
     public bool HideOnOk = true;
@@ -38,7 +38,7 @@ public class CustomConfirmationDialog : CustomWindow
     ///   Emitted when OK button is pressed. For Cancel see <see cref="CustomWindow.Cancelled"/>.
     /// </summary>
     [Signal]
-    public delegate void Confirmed();
+    public delegate void ConfirmedEventHandler();
 
     /// <summary>
     ///   If true, turns this dialog into its AcceptDialog form (only Ok button visible).
@@ -115,7 +115,7 @@ public class CustomConfirmationDialog : CustomWindow
 
         // Only move the buttons when run outside of the editor to avoid messing up
         // the predefined button order placement in the scene when it's opened
-        if (OS.IsOkLeftAndCancelRight() && !Engine.EditorHint)
+        if (OS.IsOkLeftAndCancelRight() && !Engine.IsEditorHint())
         {
             buttonsContainer.MoveChild(confirmButton, 1);
             buttonsContainer.MoveChild(cancelButton, 3);
@@ -198,7 +198,7 @@ public class CustomConfirmationDialog : CustomWindow
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(Confirmed));
+        EmitSignal(nameof(ConfirmedEventHandler));
 
         if (HideOnOk)
             Close();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using Godot;
@@ -40,10 +40,10 @@ public partial class DebugOverlays
         get => performanceMetrics.Visible;
         private set
         {
-            if (performanceMetricsCheckBox.Pressed == value)
+            if (performanceMetricsCheckBox.ButtonPressed == value)
                 return;
 
-            performanceMetricsCheckBox.Pressed = value;
+            performanceMetricsCheckBox.ButtonPressed = value;
         }
     }
 
@@ -69,7 +69,7 @@ public partial class DebugOverlays
         currentDespawned += newDespawns;
     }
 
-    private void UpdateMetrics(float delta)
+    private void UpdateMetrics(double delta)
     {
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
         deltaLabel.Text = new LocalizedString("FRAME_DURATION", delta).ToString();

@@ -1,68 +1,68 @@
 [gd_scene load_steps=102 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=3]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="FontFile" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture2D" id=3]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="FontFile" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
 [ext_resource path="res://src/gui_common/MouseHoverPanel.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=7]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="FontFile" id=7]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/actions/OpenInventory.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/actions/OpenInventory.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture2D" id=10]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularHUD.cs" type="Script" id=11]
 [ext_resource path="res://src/microbe_stage/PatchNameOverlay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/microbe_stage/ProcessPanel.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=15]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="FontFile" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture2D" id=15]
 [ext_resource path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=18]
-[ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=19]
-[ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture" id=20]
-[ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture" id=21]
-[ext_resource path="res://assets/textures/gui/bevel/mucilage.png" type="Texture" id=22]
-[ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=23]
-[ext_resource path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture2D" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture2D" id=20]
+[ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture2D" id=21]
+[ext_resource path="res://assets/textures/gui/bevel/mucilage.png" type="Texture2D" id=22]
+[ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture2D" id=23]
+[ext_resource path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" type="Texture2D" id=24]
 [ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=25]
-[ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture2D" id=26]
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" type="PackedScene" id=27]
-[ext_resource path="res://assets/textures/gui/bevel/actions/InteractAction.png" type="Texture" id=28]
+[ext_resource path="res://assets/textures/gui/bevel/actions/InteractAction.png" type="Texture2D" id=28]
 [ext_resource path="res://src/awakening_stage/gui/InventoryScreen.tscn" type="PackedScene" id=29]
-[ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=30]
-[ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=31]
+[ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture2D" id=30]
+[ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture2D" id=31]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=32]
-[ext_resource path="res://assets/textures/gui/bevel/actions/EngulfEject.png" type="Texture" id=33]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=42]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=45]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=46]
-[ext_resource path="res://assets/textures/gui/bevel/atp.png" type="Texture" id=47]
-[ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=49]
-[ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=50]
-[ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=51]
-[ext_resource path="res://assets/textures/gui/bevel/carbondioxide.png" type="Texture" id=52]
-[ext_resource path="res://assets/textures/gui/bevel/oxytoxy.png" type="Texture" id=53]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture" id=54]
-[ext_resource path="res://assets/textures/gui/bevel/AtpBar.png" type="Texture" id=55]
-[ext_resource path="res://assets/textures/gui/bevel/HealthBar.png" type="Texture" id=56]
-[ext_resource path="res://assets/textures/gui/bevel/ReproductionBar.png" type="Texture" id=57]
-[ext_resource path="res://assets/textures/gui/bevel/compressPanel.png" type="Texture" id=58]
-[ext_resource path="res://assets/textures/gui/bevel/compressPanelActive.png" type="Texture" id=59]
-[ext_resource path="res://assets/textures/gui/bevel/Hitpoints.png" type="Texture" id=60]
-[ext_resource path="res://assets/textures/gui/bevel/glucose.png" type="Texture" id=61]
-[ext_resource path="res://assets/textures/gui/bevel/iron.png" type="Texture" id=62]
-[ext_resource path="res://assets/textures/gui/bevel/Pressure.png" type="Texture" id=63]
-[ext_resource path="res://assets/textures/gui/bevel/oxygen.png" type="Texture" id=64]
-[ext_resource path="res://assets/textures/gui/bevel/hydrogensulfide.png" type="Texture" id=65]
-[ext_resource path="res://assets/textures/gui/bevel/ammonia.png" type="Texture" id=66]
-[ext_resource path="res://assets/textures/gui/bevel/expandPanelActive.png" type="Texture" id=67]
-[ext_resource path="res://assets/textures/gui/bevel/expandPanel.png" type="Texture" id=68]
+[ext_resource path="res://assets/textures/gui/bevel/actions/EngulfEject.png" type="Texture2D" id=33]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture2D" id=42]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture2D" id=45]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture2D" id=46]
+[ext_resource path="res://assets/textures/gui/bevel/atp.png" type="Texture2D" id=47]
+[ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture2D" id=49]
+[ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture2D" id=50]
+[ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture2D" id=51]
+[ext_resource path="res://assets/textures/gui/bevel/carbondioxide.png" type="Texture2D" id=52]
+[ext_resource path="res://assets/textures/gui/bevel/oxytoxy.png" type="Texture2D" id=53]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture2D" id=54]
+[ext_resource path="res://assets/textures/gui/bevel/AtpBar.png" type="Texture2D" id=55]
+[ext_resource path="res://assets/textures/gui/bevel/HealthBar.png" type="Texture2D" id=56]
+[ext_resource path="res://assets/textures/gui/bevel/ReproductionBar.png" type="Texture2D" id=57]
+[ext_resource path="res://assets/textures/gui/bevel/compressPanel.png" type="Texture2D" id=58]
+[ext_resource path="res://assets/textures/gui/bevel/compressPanelActive.png" type="Texture2D" id=59]
+[ext_resource path="res://assets/textures/gui/bevel/Hitpoints.png" type="Texture2D" id=60]
+[ext_resource path="res://assets/textures/gui/bevel/glucose.png" type="Texture2D" id=61]
+[ext_resource path="res://assets/textures/gui/bevel/iron.png" type="Texture2D" id=62]
+[ext_resource path="res://assets/textures/gui/bevel/Pressure.png" type="Texture2D" id=63]
+[ext_resource path="res://assets/textures/gui/bevel/oxygen.png" type="Texture2D" id=64]
+[ext_resource path="res://assets/textures/gui/bevel/hydrogensulfide.png" type="Texture2D" id=65]
+[ext_resource path="res://assets/textures/gui/bevel/ammonia.png" type="Texture2D" id=66]
+[ext_resource path="res://assets/textures/gui/bevel/expandPanelActive.png" type="Texture2D" id=67]
+[ext_resource path="res://assets/textures/gui/bevel/expandPanel.png" type="Texture2D" id=68]
 [ext_resource path="res://src/microbe_stage/HUDBottomBar.tscn" type="PackedScene" id=69]
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
-[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=71]
-[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=72]
-[ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=73]
-[ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=76]
+[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture2D" id=71]
+[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture2D" id=72]
+[ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="FontFile" id=73]
+[ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture2D" id=76]
 [ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=77]
 [ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=78]
 
@@ -193,20 +193,20 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2.5, 3.5, 5 ),
-"transitions": PoolRealArray( 0.5, 0.5, 0.5, 1, 1 ),
+"times": PackedFloat32Array( 0, 1, 2.5, 3.5, 5 ),
+"transitions": PackedFloat32Array( 0.5, 0.5, 0.5, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Highlight/Light2D:energy")
+tracks/1/path = NodePath("Highlight/PointLight2D:energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.5, 2.1, 4.4, 5 ),
-"transitions": PoolRealArray( 1, 2, 1, 2 ),
+"times": PackedFloat32Array( 0.5, 2.1, 4.4, 5 ),
+"transitions": PackedFloat32Array( 1, 2, 1, 2 ),
 "update": 0,
 "values": [ 0.0, 0.8, 0.8, 0.0 ]
 }
@@ -221,8 +221,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -233,20 +233,20 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:rect_position:x")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 2, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 2, 1 ),
 "update": 0,
 "values": [ 0, -350 ]
 }
@@ -261,8 +261,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -273,20 +273,20 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:rect_position:x")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( -2, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( -2, 1 ),
 "update": 0,
 "values": [ -350, 0 ]
 }
@@ -301,8 +301,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -313,20 +313,20 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:rect_position:x")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 2, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 2, 1 ),
 "update": 0,
 "values": [ 0, -350 ]
 }
@@ -341,8 +341,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -353,20 +353,20 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:rect_position:x")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 2 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 2 ),
 "update": 0,
 "values": [ -350, 0 ]
 }
@@ -397,7 +397,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="MulticellularHUD" type="Control"]
-pause_mode = 2
+process_mode = 3
 process_priority = 4
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -445,7 +445,7 @@ AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
 AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
 PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar")
-EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/Light2D")
+EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/PointLight2D")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
 HotBarPath = NodePath("ScrollContainer/HotBar")
@@ -481,165 +481,165 @@ InventoryScreenPath = NodePath("InventoryScreen")
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -260.0
-margin_bottom = -641.0
+offset_left = -260.0
+offset_bottom = -641.0
 grow_horizontal = 0
 mouse_filter = 2
 theme = ExtResource( 5 )
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
 
 [node name="MouseHoverPanel" parent="TopRight" instance=ExtResource( 6 )]
-margin_top = 10.0
-margin_bottom = 83.0
+offset_top = 10.0
+offset_bottom = 83.0
 
 [node name="TopLeft" type="Control" parent="."]
-margin_right = 469.0
-margin_bottom = 42.0
+offset_right = 469.0
+offset_bottom = 42.0
 
 [node name="CursorHelpText" parent="TopLeft" instance=ExtResource( 8 )]
-rect_min_size = Vector2( 150, 0 )
+custom_minimum_size = Vector2( 150, 0 )
 ExtendedBbcode = "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 
 [node name="BottomLeft" type="Control" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -632.0
-margin_right = 455.0
+offset_top = -632.0
+offset_right = 455.0
 mouse_filter = 2
 
 [node name="LeftPanels" type="VBoxContainer" parent="BottomLeft"]
-margin_top = 14.0
-margin_right = -96.0
-margin_bottom = 581.0
+offset_top = 14.0
+offset_right = -96.0
+offset_bottom = 581.0
 grow_vertical = 0
 mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 alignment = 2
 
 [node name="EnvironmentGroup" type="VBoxContainer" parent="BottomLeft/LeftPanels"]
-margin_right = 254.0
-margin_bottom = 234.0
+offset_right = 254.0
+offset_bottom = 234.0
 
 [node name="EnvironmentPanel" type="Panel" parent="BottomLeft/LeftPanels/EnvironmentGroup"]
-margin_right = 197.0
-margin_bottom = 234.0
-rect_min_size = Vector2( 197, 234 )
-rect_clip_content = true
+offset_right = 197.0
+offset_bottom = 234.0
+custom_minimum_size = Vector2( 197, 234 )
+clip_contents = true
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 2 )
+theme_override_styles/panel = SubResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 196.0
-margin_bottom = 233.0
-rect_min_size = Vector2( 195, 0 )
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 196.0
+offset_bottom = 233.0
+custom_minimum_size = Vector2( 195, 0 )
 
 [node name="Header" type="MarginContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
-margin_right = 197.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 195, 35 )
+offset_right = 197.0
+offset_bottom = 52.0
+custom_minimum_size = Vector2( 195, 35 )
 mouse_filter = 1
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 184.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 174, 0 )
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 184.0
+offset_bottom = 52.0
+custom_minimum_size = Vector2( 174, 0 )
 size_flags_horizontal = 0
-custom_constants/separation = 6
+theme_override_constants/separation = 6
 
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
-margin_right = 126.0
-margin_bottom = 47.0
+offset_right = 126.0
+offset_bottom = 47.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
+theme_override_fonts/font = ExtResource( 4 )
 text = "ENVIRONMENT"
 autowrap = true
 
 [node name="EnvironmentExpandButton" type="Button" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
-margin_left = 132.0
-margin_top = 14.0
-margin_right = 150.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 18, 18 )
+offset_left = 132.0
+offset_top = 14.0
+offset_right = 150.0
+offset_bottom = 32.0
+custom_minimum_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 73 )
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+theme_override_fonts/font = ExtResource( 73 )
+theme_override_styles/hover = SubResource( 3 )
+theme_override_styles/pressed = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 toggle_mode = true
 pressed = true
 action_mode = 0
 group = SubResource( 6 )
 
 [node name="EnvironmentCompressButton" type="Button" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
-margin_left = 156.0
-margin_top = 14.0
-margin_right = 174.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 18, 18 )
+offset_left = 156.0
+offset_top = 14.0
+offset_right = 174.0
+offset_bottom = 32.0
+custom_minimum_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 73 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/normal = SubResource( 9 )
+theme_override_fonts/font = ExtResource( 73 )
+theme_override_styles/hover = SubResource( 7 )
+theme_override_styles/pressed = SubResource( 8 )
+theme_override_styles/normal = SubResource( 9 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 6 )
 
 [node name="HSeparator" type="HSeparator" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
-margin_top = 56.0
-margin_right = 197.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 197, 0 )
+offset_top = 56.0
+offset_right = 197.0
+offset_bottom = 60.0
+custom_minimum_size = Vector2( 197, 0 )
 size_flags_horizontal = 0
-custom_styles/separator = SubResource( 10 )
+theme_override_styles/separator = SubResource( 10 )
 
 [node name="Body" type="MarginContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
-margin_top = 64.0
-margin_right = 197.0
-margin_bottom = 255.0
-custom_constants/margin_top = 5
-custom_constants/margin_left = 22
-custom_constants/margin_bottom = 10
+offset_top = 64.0
+offset_right = 197.0
+offset_bottom = 255.0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_bottom = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BarContainer" type="GridContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body"]
-margin_left = 22.0
-margin_top = 5.0
-margin_right = 197.0
-margin_bottom = 181.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 197.0
+offset_bottom = 181.0
 
 [node name="Oxygen" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
-margin_right = 162.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 11 )
-custom_styles/bg = SubResource( 12 )
+offset_right = 162.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 162, 25 )
+theme_override_styles/fg = SubResource( 11 )
+theme_override_styles/bg = SubResource( 12 )
 step = 0.1
 percent_visible = false
 
 [node name="OxygenIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
-margin_left = -15.0
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 25 )
+offset_left = -15.0
+offset_right = 10.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 30, 25 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 64 )
@@ -651,12 +651,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 20.0
-margin_top = -12.5
-margin_right = 38.0
-margin_bottom = 12.5
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_top = -12.5
+offset_right = 38.0
+offset_bottom = 12.5
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "O₂"
 valign = 1
 __meta__ = {
@@ -668,13 +668,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -62.0
-margin_top = -12.5
-margin_right = -6.99998
-margin_bottom = 12.5
+offset_left = -62.0
+offset_top = -12.5
+offset_right = -6.99998
+offset_bottom = 12.5
 grow_horizontal = 0
-rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 55, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0%"
 align = 2
 valign = 1
@@ -684,20 +684,20 @@ __meta__ = {
 
 [node name="CarbonDioxide" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
-margin_top = 29.0
-margin_right = 162.0
-margin_bottom = 54.0
-rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 13 )
-custom_styles/bg = SubResource( 12 )
+offset_top = 29.0
+offset_right = 162.0
+offset_bottom = 54.0
+custom_minimum_size = Vector2( 162, 25 )
+theme_override_styles/fg = SubResource( 13 )
+theme_override_styles/bg = SubResource( 12 )
 step = 0.1
 percent_visible = false
 
 [node name="CO2Icon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
-margin_left = -15.0
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 25 )
+offset_left = -15.0
+offset_right = 10.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 30, 25 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 52 )
@@ -709,12 +709,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 20.0
-margin_top = -12.5
-margin_right = 46.0
-margin_bottom = 12.5
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_top = -12.5
+offset_right = 46.0
+offset_bottom = 12.5
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "CO₂"
 valign = 1
 __meta__ = {
@@ -727,13 +727,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -62.0
-margin_top = -12.5
-margin_right = -6.99998
-margin_bottom = 12.5
+offset_left = -62.0
+offset_top = -12.5
+offset_right = -6.99998
+offset_bottom = 12.5
 grow_horizontal = 0
-rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 55, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0%"
 align = 2
 valign = 1
@@ -743,20 +743,20 @@ __meta__ = {
 
 [node name="Nitrogen" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
-margin_top = 58.0
-margin_right = 162.0
-margin_bottom = 83.0
-rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 14 )
-custom_styles/bg = SubResource( 12 )
+offset_top = 58.0
+offset_right = 162.0
+offset_bottom = 83.0
+custom_minimum_size = Vector2( 162, 25 )
+theme_override_styles/fg = SubResource( 14 )
+theme_override_styles/bg = SubResource( 12 )
 step = 0.1
 percent_visible = false
 
 [node name="NitrogenIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
-margin_left = -15.0
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 25 )
+offset_left = -15.0
+offset_right = 10.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 30, 25 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 51 )
@@ -768,12 +768,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 20.0
-margin_top = -12.5
-margin_right = 49.0
-margin_bottom = 12.5
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_top = -12.5
+offset_right = 49.0
+offset_bottom = 12.5
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "N₂"
 valign = 1
 __meta__ = {
@@ -786,13 +786,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -62.0
-margin_top = -12.5
-margin_right = -6.99998
-margin_bottom = 12.5
+offset_left = -62.0
+offset_top = -12.5
+offset_right = -6.99998
+offset_bottom = 12.5
 grow_horizontal = 0
-rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 55, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0%"
 align = 2
 valign = 1
@@ -803,16 +803,16 @@ __meta__ = {
 [node name="Temperature" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 87.0
-margin_right = 162.0
-margin_bottom = 114.0
-rect_min_size = Vector2( 162, 25 )
+offset_top = 87.0
+offset_right = 162.0
+offset_bottom = 114.0
+custom_minimum_size = Vector2( 162, 25 )
 
 [node name="TemperatureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
-margin_left = -15.0
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 25 )
+offset_left = -15.0
+offset_right = 10.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 30, 25 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 50 )
@@ -824,12 +824,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 20.0
-margin_top = -12.5
-margin_right = 60.0
-margin_bottom = 12.5
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_top = -12.5
+offset_right = 60.0
+offset_bottom = 12.5
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "TEMPERATURE_SHORT"
 valign = 1
 __meta__ = {
@@ -841,13 +841,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -62.0
-margin_top = -12.5
-margin_right = -6.99998
-margin_bottom = 12.5
+offset_left = -62.0
+offset_top = -12.5
+offset_right = -6.99998
+offset_bottom = 12.5
 grow_horizontal = 0
-rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 55, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "55° C"
 align = 2
 valign = 1
@@ -859,16 +859,16 @@ __meta__ = {
 [node name="Sunlight" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 118.0
-margin_right = 162.0
-margin_bottom = 145.0
-rect_min_size = Vector2( 162, 25 )
+offset_top = 118.0
+offset_right = 162.0
+offset_bottom = 145.0
+custom_minimum_size = Vector2( 162, 25 )
 
 [node name="LightIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
-margin_left = -15.0
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 25 )
+offset_left = -15.0
+offset_right = 10.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 30, 25 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 49 )
@@ -880,12 +880,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 20.0
-margin_top = -12.5
-margin_right = 66.0
-margin_bottom = 12.5
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_top = -12.5
+offset_right = 66.0
+offset_bottom = 12.5
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "LIGHT"
 valign = 1
 __meta__ = {
@@ -897,13 +897,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -62.0
-margin_top = -12.5
-margin_right = -6.99998
-margin_bottom = 12.5
+offset_left = -62.0
+offset_top = -12.5
+offset_right = -6.99998
+offset_bottom = 12.5
 grow_horizontal = 0
-rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 55, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0%"
 align = 2
 valign = 1
@@ -914,16 +914,16 @@ __meta__ = {
 [node name="Pressure" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 149.0
-margin_right = 162.0
-margin_bottom = 176.0
-rect_min_size = Vector2( 162, 25 )
+offset_top = 149.0
+offset_right = 162.0
+offset_bottom = 176.0
+custom_minimum_size = Vector2( 162, 25 )
 
 [node name="PressureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
-margin_left = -15.0
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 25 )
+offset_left = -15.0
+offset_right = 10.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 30, 25 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 63 )
@@ -935,12 +935,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 20.0
-margin_top = -12.5
-margin_right = 69.0
-margin_bottom = 12.5
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_top = -12.5
+offset_right = 69.0
+offset_bottom = 12.5
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "PRESSURE_SHORT"
 valign = 1
 __meta__ = {
@@ -952,13 +952,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -62.0
-margin_top = -12.5
-margin_right = -4.0
-margin_bottom = 12.5
+offset_left = -62.0
+offset_top = -12.5
+offset_right = -4.0
+offset_bottom = 12.5
 grow_horizontal = 0
-rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 55, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "200 kPa"
 align = 2
 valign = 1
@@ -968,24 +968,24 @@ __meta__ = {
 }
 
 [node name="CompoundsGroup" type="VBoxContainer" parent="BottomLeft/LeftPanels"]
-margin_top = 244.0
-margin_right = 254.0
-margin_bottom = 587.0
+offset_top = 244.0
+offset_right = 254.0
+offset_bottom = 587.0
 
 [node name="CompoundsPanel" type="Panel" parent="BottomLeft/LeftPanels/CompoundsGroup"]
-margin_right = 254.0
-margin_bottom = 219.0
-rect_min_size = Vector2( 254, 219 )
-rect_clip_content = true
+offset_right = 254.0
+offset_bottom = 219.0
+custom_minimum_size = Vector2( 254, 219 )
+clip_contents = true
 size_flags_horizontal = 0
-custom_styles/panel = SubResource( 2 )
+theme_override_styles/panel = SubResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 253.0
-margin_bottom = 218.0
-rect_min_size = Vector2( 252, 0 )
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 253.0
+offset_bottom = 218.0
+custom_minimum_size = Vector2( 252, 0 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 __meta__ = {
@@ -993,126 +993,126 @@ __meta__ = {
 }
 
 [node name="Header" type="MarginContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer"]
-margin_right = 254.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
+offset_right = 254.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 0, 40 )
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 239.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 197, 0 )
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 239.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 197, 0 )
 size_flags_horizontal = 0
-custom_constants/separation = 6
+theme_override_constants/separation = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Icon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
-margin_right = 35.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
+offset_right = 35.0
+offset_bottom = 35.0
+custom_minimum_size = Vector2( 35, 35 )
 size_flags_vertical = 4
 texture = ExtResource( 10 )
 expand = true
 
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
-margin_left = 41.0
-margin_top = 6.0
-margin_right = 186.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 145, 0 )
+offset_left = 41.0
+offset_top = 6.0
+offset_right = 186.0
+offset_bottom = 28.0
+custom_minimum_size = Vector2( 145, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
+theme_override_fonts/font = ExtResource( 4 )
 text = "COMPOUNDS"
 autowrap = true
 
 [node name="CompoundExpandButton" type="Button" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
-margin_left = 192.0
-margin_top = 8.0
-margin_right = 210.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 18, 18 )
+offset_left = 192.0
+offset_top = 8.0
+offset_right = 210.0
+offset_bottom = 26.0
+custom_minimum_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 73 )
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+theme_override_fonts/font = ExtResource( 73 )
+theme_override_styles/hover = SubResource( 3 )
+theme_override_styles/pressed = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 toggle_mode = true
 pressed = true
 action_mode = 0
 group = SubResource( 15 )
 
 [node name="CompoundCompressButton" type="Button" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
-margin_left = 216.0
-margin_top = 8.0
-margin_right = 234.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 18, 18 )
+offset_left = 216.0
+offset_top = 8.0
+offset_right = 234.0
+offset_bottom = 26.0
+custom_minimum_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 73 )
-custom_styles/hover = SubResource( 16 )
-custom_styles/pressed = SubResource( 17 )
-custom_styles/normal = SubResource( 18 )
+theme_override_fonts/font = ExtResource( 73 )
+theme_override_styles/hover = SubResource( 16 )
+theme_override_styles/pressed = SubResource( 17 )
+theme_override_styles/normal = SubResource( 18 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 15 )
 
 [node name="HSeparator" type="HSeparator" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer"]
-margin_top = 44.0
-margin_right = 254.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 254, 0 )
+offset_top = 44.0
+offset_right = 254.0
+offset_bottom = 48.0
+custom_minimum_size = Vector2( 254, 0 )
 size_flags_horizontal = 0
-custom_styles/separator = SubResource( 10 )
+theme_override_styles/separator = SubResource( 10 )
 
 [node name="Body" type="MarginContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer"]
-margin_top = 52.0
-margin_right = 254.0
-margin_bottom = 217.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 22
-custom_constants/margin_bottom = 15
+offset_top = 52.0
+offset_right = 254.0
+offset_bottom = 217.0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_bottom = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BarContainer" type="GridContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body"]
-margin_left = 22.0
-margin_top = 5.0
-margin_right = 242.0
-margin_bottom = 150.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 242.0
+offset_bottom = 150.0
 size_flags_horizontal = 0
-custom_constants/vseparation = 5
+theme_override_constants/v_separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="glucose" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
-margin_right = 220.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 220, 25 )
+offset_right = 220.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 19 )
-custom_styles/bg = SubResource( 20 )
+theme_override_styles/fg = SubResource( 19 )
+theme_override_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
 [node name="GlucoseIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
-margin_left = -12.0
-margin_right = 13.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 25, 25 )
+offset_left = -12.0
+offset_right = 13.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 texture = ExtResource( 61 )
 expand = true
@@ -1121,11 +1121,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
-margin_left = 20.0
-margin_right = 83.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_right = 83.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "GLUCOSE"
 valign = 1
 __meta__ = {
@@ -1135,12 +1135,12 @@ __meta__ = {
 [node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -44.0
-margin_right = -4.0
-margin_bottom = 25.0
+offset_left = -44.0
+offset_right = -4.0
+offset_bottom = 25.0
 grow_horizontal = 0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1150,21 +1150,21 @@ __meta__ = {
 
 [node name="ammonia" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
-margin_top = 30.0
-margin_right = 220.0
-margin_bottom = 55.0
-rect_min_size = Vector2( 220, 25 )
+offset_top = 30.0
+offset_right = 220.0
+offset_bottom = 55.0
+custom_minimum_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 21 )
-custom_styles/bg = SubResource( 20 )
+theme_override_styles/fg = SubResource( 21 )
+theme_override_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
 [node name="AmmoniaIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
-margin_left = -12.0
-margin_right = 13.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 25, 25 )
+offset_left = -12.0
+offset_right = 13.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 texture = ExtResource( 66 )
 expand = true
@@ -1173,11 +1173,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
-margin_left = 20.0
-margin_right = 81.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_right = 81.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "AMMONIA"
 valign = 1
 __meta__ = {
@@ -1187,12 +1187,12 @@ __meta__ = {
 [node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -44.0
-margin_right = -4.0
-margin_bottom = 25.0
+offset_left = -44.0
+offset_right = -4.0
+offset_bottom = 25.0
 grow_horizontal = 0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1202,21 +1202,21 @@ __meta__ = {
 
 [node name="phosphates" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
-margin_top = 60.0
-margin_right = 220.0
-margin_bottom = 85.0
-rect_min_size = Vector2( 220, 25 )
+offset_top = 60.0
+offset_right = 220.0
+offset_bottom = 85.0
+custom_minimum_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 22 )
-custom_styles/bg = SubResource( 20 )
+theme_override_styles/fg = SubResource( 22 )
+theme_override_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
 [node name="PhospateIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
-margin_left = -12.0
-margin_right = 13.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 25, 25 )
+offset_left = -12.0
+offset_right = 13.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 texture = ExtResource( 31 )
 expand = true
@@ -1225,11 +1225,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
-margin_left = 20.0
-margin_right = 95.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_right = 95.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "PHOSPHATE"
 valign = 1
 __meta__ = {
@@ -1239,12 +1239,12 @@ __meta__ = {
 [node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -44.0
-margin_right = -3.99998
-margin_bottom = 25.0
+offset_left = -44.0
+offset_right = -3.99998
+offset_bottom = 25.0
 grow_horizontal = 0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1254,21 +1254,21 @@ __meta__ = {
 
 [node name="hydrogensulfide" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
-margin_top = 90.0
-margin_right = 220.0
-margin_bottom = 115.0
-rect_min_size = Vector2( 220, 25 )
+offset_top = 90.0
+offset_right = 220.0
+offset_bottom = 115.0
+custom_minimum_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 23 )
-custom_styles/bg = SubResource( 20 )
+theme_override_styles/fg = SubResource( 23 )
+theme_override_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
 [node name="HydrogenSulfideIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
-margin_left = -12.0
-margin_right = 13.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 25, 25 )
+offset_left = -12.0
+offset_right = 13.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 texture = ExtResource( 65 )
 expand = true
@@ -1277,11 +1277,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
-margin_left = 20.0
-margin_right = 141.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_right = 141.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "HYDROGEN_SULFIDE"
 valign = 1
 __meta__ = {
@@ -1291,12 +1291,12 @@ __meta__ = {
 [node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -44.0
-margin_right = -3.99998
-margin_bottom = 25.0
+offset_left = -44.0
+offset_right = -3.99998
+offset_bottom = 25.0
 grow_horizontal = 0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1306,21 +1306,21 @@ __meta__ = {
 
 [node name="iron" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
-margin_top = 120.0
-margin_right = 220.0
-margin_bottom = 145.0
-rect_min_size = Vector2( 220, 25 )
+offset_top = 120.0
+offset_right = 220.0
+offset_bottom = 145.0
+custom_minimum_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 24 )
-custom_styles/bg = SubResource( 20 )
+theme_override_styles/fg = SubResource( 24 )
+theme_override_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
 [node name="IronIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
-margin_left = -12.0
-margin_right = 13.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 25, 25 )
+offset_left = -12.0
+offset_right = 13.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 texture = ExtResource( 62 )
 expand = true
@@ -1329,11 +1329,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
-margin_left = 20.0
-margin_right = 47.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 20.0
+offset_right = 47.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "IRON"
 valign = 1
 __meta__ = {
@@ -1343,12 +1343,12 @@ __meta__ = {
 [node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -44.0
-margin_right = -3.99998
-margin_bottom = 25.0
+offset_left = -44.0
+offset_right = -3.99998
+offset_bottom = 25.0
 grow_horizontal = 0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1357,96 +1357,96 @@ __meta__ = {
 }
 
 [node name="AgentsPanel" type="Panel" parent="BottomLeft/LeftPanels/CompoundsGroup"]
-margin_top = 223.0
-margin_right = 254.0
-margin_bottom = 343.0
-rect_min_size = Vector2( 254, 120 )
-rect_clip_content = true
+offset_top = 223.0
+offset_right = 254.0
+offset_bottom = 343.0
+custom_minimum_size = Vector2( 254, 120 )
+clip_contents = true
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 2 )
+theme_override_styles/panel = SubResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 253.0
-margin_bottom = 93.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 253.0
+offset_bottom = 93.0
 
 [node name="Header" type="MarginContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer"]
-margin_right = 254.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 230, 35 )
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
+offset_right = 254.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 230, 35 )
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Header"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 244.0
-margin_bottom = 40.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 244.0
+offset_bottom = 40.0
 
 [node name="Icon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Header/HBoxContainer"]
-margin_right = 35.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
+offset_right = 35.0
+offset_bottom = 35.0
+custom_minimum_size = Vector2( 35, 35 )
 size_flags_vertical = 4
 texture = ExtResource( 19 )
 expand = true
 
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Header/HBoxContainer"]
-margin_left = 39.0
-margin_top = 6.0
-margin_right = 239.0
-margin_bottom = 28.0
+offset_left = 39.0
+offset_top = 6.0
+offset_right = 239.0
+offset_bottom = 28.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
+theme_override_fonts/font = ExtResource( 4 )
 text = "AGENTS"
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer"]
-margin_top = 44.0
-margin_right = 254.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 254, 0 )
+offset_top = 44.0
+offset_right = 254.0
+offset_bottom = 48.0
+custom_minimum_size = Vector2( 254, 0 )
 size_flags_horizontal = 0
-custom_styles/separator = SubResource( 10 )
+theme_override_styles/separator = SubResource( 10 )
 
 [node name="Body" type="MarginContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer"]
-margin_top = 52.0
-margin_right = 254.0
-margin_bottom = 121.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 22
-custom_constants/margin_bottom = 10
+offset_top = 52.0
+offset_right = 254.0
+offset_bottom = 121.0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_bottom = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BarContainer" type="GridContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body"]
-margin_left = 22.0
-margin_top = 5.0
-margin_right = 244.0
-margin_bottom = 59.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 244.0
+offset_bottom = 59.0
 
 [node name="oxytoxy" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
-margin_right = 220.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 220, 25 )
+offset_right = 220.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 25 )
-custom_styles/bg = SubResource( 26 )
+theme_override_styles/fg = SubResource( 25 )
+theme_override_styles/bg = SubResource( 26 )
 step = 0.1
 percent_visible = false
 
 [node name="OxyToxyIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
 anchor_left = -0.00454545
 anchor_right = -0.00454545
-margin_left = -12.0
-margin_right = 13.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 25, 25 )
+offset_left = -12.0
+offset_right = 13.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 53 )
@@ -1456,11 +1456,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
-margin_left = 18.0
-margin_right = 97.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 18.0
+offset_right = 97.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "OXYTOXY_NT"
 valign = 1
 __meta__ = {
@@ -1470,12 +1470,12 @@ __meta__ = {
 [node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -45.0
-margin_right = -4.99998
-margin_bottom = 25.0
+offset_left = -45.0
+offset_right = -4.99998
+offset_bottom = 25.0
 grow_horizontal = 0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1484,46 +1484,46 @@ __meta__ = {
 }
 
 [node name="mucilage" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
-margin_top = 29.0
-margin_right = 220.0
-margin_bottom = 54.0
-rect_min_size = Vector2( 220, 25 )
+offset_top = 29.0
+offset_right = 220.0
+offset_bottom = 54.0
+custom_minimum_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 39 )
-custom_styles/bg = SubResource( 40 )
+theme_override_styles/fg = SubResource( 39 )
+theme_override_styles/bg = SubResource( 40 )
 step = 0.1
 percent_visible = false
 
 [node name="MucilageIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
 anchor_left = -0.00454545
 anchor_right = -0.00454545
-margin_left = -12.0
-margin_right = 13.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 25, 25 )
+offset_left = -12.0
+offset_right = 13.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 22 )
 expand = true
 
 [node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
-margin_left = 18.0
-margin_right = 97.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+offset_left = 18.0
+offset_right = 97.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "MUCILAGE"
 valign = 1
 
 [node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -45.0
-margin_right = -4.99998
-margin_bottom = 25.0
+offset_left = -45.0
+offset_right = -4.99998
+offset_bottom = 25.0
 grow_horizontal = 0
-rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2( 0, 25 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1534,18 +1534,18 @@ __meta__ = {
 [node name="PanelsTween" type="Tween" parent="BottomLeft/LeftPanels"]
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource( 69 )]
-margin_top = -43.0
-margin_bottom = -8.0
+offset_top = -43.0
+offset_bottom = -8.0
 
 [node name="BottomRight" type="Control" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -274.0
-margin_top = -317.0
-margin_right = 1.0
-margin_bottom = -1.0
+offset_left = -274.0
+offset_top = -317.0
+offset_right = 1.0
+offset_bottom = -1.0
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BottomRight"]
@@ -1553,65 +1553,65 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -229.0
-margin_top = -317.0
-margin_right = -10.0
-margin_bottom = -242.0
+offset_left = -229.0
+offset_top = -317.0
+offset_right = -10.0
+offset_bottom = -242.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_constants/separation = 8
+theme_override_constants/separation = 8
 alignment = 2
 
 [node name="ToLand" type="Button" parent="BottomRight/VBoxContainer"]
-margin_left = 90.0
-margin_right = 219.0
-margin_bottom = 30.0
+offset_left = 90.0
+offset_right = 219.0
+offset_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 7 )
+theme_override_fonts/font = ExtResource( 7 )
 text = "MOVE_TO_LAND"
 
 [node name="Control" type="MarginContainer" parent="BottomRight/VBoxContainer"]
-margin_left = 80.0
-margin_top = 38.0
-margin_right = 219.0
-margin_bottom = 68.0
+offset_left = 80.0
+offset_top = 38.0
+offset_right = 219.0
+offset_bottom = 68.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="Awaken" type="Button" parent="BottomRight/VBoxContainer/Control"]
-margin_right = 139.0
-margin_bottom = 30.0
+offset_right = 139.0
+offset_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
-hint_tooltip = "ACTION_AWAKEN_TOOLTIP"
+tooltip_text = "ACTION_AWAKEN_TOOLTIP"
 focus_mode = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 7 )
+theme_override_fonts/font = ExtResource( 7 )
 text = "ACTION_AWAKEN"
 
 [node name="PopulationData" type="HBoxContainer" parent="BottomRight/VBoxContainer"]
-margin_left = 88.0
-margin_top = 76.0
-margin_right = 219.0
-margin_bottom = 113.0
+offset_left = 88.0
+offset_top = 76.0
+offset_right = 219.0
+offset_bottom = 113.0
 grow_horizontal = 0
 grow_vertical = 0
-rect_min_size = Vector2( 0, 17 )
+custom_minimum_size = Vector2( 0, 17 )
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="BottomRight/VBoxContainer/PopulationData"]
-margin_right = 87.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 87, 0 )
+offset_right = 87.0
+offset_bottom = 37.0
+custom_minimum_size = Vector2( 87, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 14 )
-custom_styles/normal = SubResource( 28 )
+theme_override_fonts/font = ExtResource( 14 )
+theme_override_styles/normal = SubResource( 28 )
 text = "POPULATION_CAPITAL"
 align = 1
 autowrap = true
@@ -1620,14 +1620,14 @@ __meta__ = {
 }
 
 [node name="Value" type="Label" parent="BottomRight/VBoxContainer/PopulationData"]
-margin_left = 91.0
-margin_top = 9.0
-margin_right = 131.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 40, 0 )
+offset_left = 91.0
+offset_top = 9.0
+offset_right = 131.0
+offset_bottom = 28.0
+custom_minimum_size = Vector2( 40, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 14 )
-custom_styles/normal = SubResource( 28 )
+theme_override_fonts/font = ExtResource( 14 )
+theme_override_styles/normal = SubResource( 28 )
 text = "100"
 align = 1
 __meta__ = {
@@ -1639,37 +1639,37 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -90.0
-margin_top = -235.0
-margin_right = -10.0
-margin_bottom = -183.0
+offset_left = -90.0
+offset_top = -235.0
+offset_right = -10.0
+offset_bottom = -183.0
 mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 29 )
+theme_override_styles/panel = SubResource( 29 )
 
 [node name="Margin" type="MarginContainer" parent="BottomRight/DataValue"]
-margin_right = 80.0
-margin_bottom = 52.0
+offset_right = 80.0
+offset_bottom = 52.0
 mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="VBox" type="VBoxContainer" parent="BottomRight/DataValue/Margin"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 75.0
-margin_bottom = 47.0
-custom_constants/separation = 8
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 75.0
+offset_bottom = 47.0
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="HPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
-margin_right = 70.0
-margin_bottom = 17.0
+offset_right = 70.0
+offset_bottom = 17.0
 mouse_filter = 0
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "Hitpoints"
 clip_text = true
 __meta__ = {
@@ -1677,26 +1677,26 @@ __meta__ = {
 }
 
 [node name="ATPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
-margin_top = 25.0
-margin_right = 70.0
-margin_bottom = 42.0
+offset_top = 25.0
+offset_right = 70.0
+offset_bottom = 42.0
 mouse_filter = 0
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "ATP"
 clip_text = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="HealthBar" type="TextureProgress" parent="BottomRight"]
+[node name="HealthBar" type="TextureProgressBar" parent="BottomRight"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -229.509
-margin_top = -228.78
-margin_right = 33.491
-margin_bottom = 34.22
+offset_left = -229.509
+offset_top = -228.78
+offset_right = 33.491
+offset_bottom = 34.22
 mouse_filter = 2
 step = 0.1
 value = 100.0
@@ -1712,25 +1712,25 @@ __meta__ = {
 }
 
 [node name="HitpointIcon" type="TextureRect" parent="BottomRight/HealthBar"]
-margin_left = 21.46
-margin_top = 197.749
-margin_right = 41.46
-margin_bottom = 217.749
+offset_left = 21.46
+offset_top = 197.749
+offset_right = 41.46
+offset_bottom = 217.749
 texture = ExtResource( 60 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ATPBar" type="TextureProgress" parent="BottomRight"]
+[node name="ATPBar" type="TextureProgressBar" parent="BottomRight"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -202.756
-margin_top = -201.525
-margin_right = 6.24402
-margin_bottom = 7.47501
+offset_left = -202.756
+offset_top = -201.525
+offset_right = 6.24402
+offset_bottom = 7.47501
 step = 0.1
 value = 100.0
 texture_under = ExtResource( 55 )
@@ -1745,10 +1745,10 @@ __meta__ = {
 }
 
 [node name="ATPIcon" type="TextureRect" parent="BottomRight/ATPBar"]
-margin_left = 18.5
-margin_top = 156.5
-margin_right = 38.5
-margin_bottom = 176.5
+offset_left = 18.5
+offset_top = 156.5
+offset_right = 38.5
+offset_bottom = 176.5
 texture = ExtResource( 47 )
 expand = true
 
@@ -1757,11 +1757,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -178.0
-margin_top = -178.0
-margin_right = -18.0
-margin_bottom = -18.0
-rect_min_size = Vector2( 160, 160 )
+offset_left = -178.0
+offset_top = -178.0
+offset_right = -18.0
+offset_bottom = -18.0
+custom_minimum_size = Vector2( 160, 160 )
 focus_mode = 0
 disabled = true
 texture_normal = ExtResource( 42 )
@@ -1785,7 +1785,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Light2D" type="Light2D" parent="BottomRight/EditorButton/Highlight"]
+[node name="PointLight2D" type="PointLight2D" parent="BottomRight/EditorButton/Highlight"]
 position = Vector2( 79.2703, 78.2703 )
 scale = Vector2( 0.845357, 0.845357 )
 texture = ExtResource( 72 )
@@ -1805,10 +1805,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -70.0
-margin_top = -70.0
-margin_right = 70.0
-margin_bottom = 70.0
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
 texture = ExtResource( 57 )
 expand = true
 stretch_mode = 6
@@ -1816,15 +1816,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AmmoniaReproductionBar" type="TextureProgress" parent="BottomRight/EditorButton/ReproductionBar"]
+[node name="AmmoniaReproductionBar" type="TextureProgressBar" parent="BottomRight/EditorButton/ReproductionBar"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -70.0
-margin_top = -70.0
-margin_right = 70.0
-margin_bottom = 70.0
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
 step = 0.1
 texture_progress = ExtResource( 57 )
 fill_mode = 5
@@ -1835,15 +1835,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PhosphateReproductionBar" type="TextureProgress" parent="BottomRight/EditorButton/ReproductionBar"]
+[node name="PhosphateReproductionBar" type="TextureProgressBar" parent="BottomRight/EditorButton/ReproductionBar"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -70.0
-margin_top = -70.0
-margin_right = 70.0
-margin_bottom = 70.0
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
 step = 0.1
 texture_progress = ExtResource( 57 )
 fill_mode = 5
@@ -1856,10 +1856,10 @@ __meta__ = {
 }
 
 [node name="AmmoniaIcon" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
-margin_left = 70.0
-margin_top = 5.5
-margin_right = 90.0
-margin_bottom = 25.5
+offset_left = 70.0
+offset_top = 5.5
+offset_right = 90.0
+offset_bottom = 25.5
 texture = ExtResource( 20 )
 expand = true
 __meta__ = {
@@ -1867,10 +1867,10 @@ __meta__ = {
 }
 
 [node name="PhosphateIcon" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
-margin_left = 70.0
-margin_top = 134.5
-margin_right = 90.0
-margin_bottom = 154.5
+offset_left = 70.0
+offset_top = 134.5
+offset_right = 90.0
+offset_bottom = 154.5
 texture = ExtResource( 21 )
 expand = true
 
@@ -1886,26 +1886,26 @@ anims/HideEnvironmentPanel = SubResource( 37 )
 anims/ShowEnvironmentPanel = SubResource( 38 )
 
 [node name="ProcessPanel" parent="." instance=ExtResource( 13 )]
-margin_left = 8.0
-margin_top = 72.0
-margin_right = 408.0
-margin_bottom = 672.0
+offset_left = 8.0
+offset_top = 72.0
+offset_right = 408.0
+offset_bottom = 672.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -274.0
-margin_top = -69.0
-rect_min_size = Vector2( 550, 69 )
+offset_left = -274.0
+offset_top = -69.0
+custom_minimum_size = Vector2( 550, 69 )
 theme = ExtResource( 5 )
 scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
-margin_right = 550.0
+offset_right = 550.0
 size_flags_horizontal = 3
-custom_constants/separation = 6
+theme_override_constants/separation = 6
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1915,13 +1915,13 @@ __meta__ = {
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 252.0
-margin_right = 298.0
-margin_bottom = 51.0
-hint_tooltip = "TOGGLE_ENGULF"
-custom_styles/hover = SubResource( 33 )
-custom_styles/pressed = SubResource( 33 )
-custom_styles/normal = SubResource( 34 )
+offset_left = 252.0
+offset_right = 298.0
+offset_bottom = 51.0
+tooltip_text = "TOGGLE_ENGULF"
+theme_override_styles/hover = SubResource( 33 )
+theme_override_styles/pressed = SubResource( 33 )
+theme_override_styles/normal = SubResource( 34 )
 ActionIcon = ExtResource( 28 )
 ActionName = "g_interact"
 
@@ -1929,10 +1929,10 @@ ActionName = "g_interact"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 252.0
-margin_right = 298.0
-margin_bottom = 51.0
-hint_tooltip = "TOGGLE_INVENTORY"
+offset_left = 252.0
+offset_right = 298.0
+offset_bottom = 51.0
+tooltip_text = "TOGGLE_INVENTORY"
 ActionIcon = ExtResource( 9 )
 ActionName = "g_inventory"
 
@@ -1940,10 +1940,10 @@ ActionName = "g_inventory"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 252.0
-margin_right = 298.0
-margin_bottom = 51.0
-hint_tooltip = "BUILD_STRUCTURE"
+offset_left = 252.0
+offset_right = 298.0
+offset_bottom = 51.0
+tooltip_text = "BUILD_STRUCTURE"
 ActionIcon = ExtResource( 30 )
 ActionName = "g_build_structure"
 
@@ -1951,13 +1951,13 @@ ActionName = "g_build_structure"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 252.0
-margin_right = 298.0
-margin_bottom = 51.0
-hint_tooltip = "TOGGLE_ENGULF"
-custom_styles/hover = SubResource( 33 )
-custom_styles/pressed = SubResource( 33 )
-custom_styles/normal = SubResource( 34 )
+offset_left = 252.0
+offset_right = 298.0
+offset_bottom = 51.0
+tooltip_text = "TOGGLE_ENGULF"
+theme_override_styles/hover = SubResource( 33 )
+theme_override_styles/pressed = SubResource( 33 )
+theme_override_styles/normal = SubResource( 34 )
 ActionIcon = ExtResource( 71 )
 ActionName = "g_toggle_engulf"
 
@@ -1965,21 +1965,21 @@ ActionName = "g_toggle_engulf"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 277.0
-margin_right = 323.0
-margin_bottom = 51.0
-hint_tooltip = "FIRE_TOXIN_TOOLTIP"
+offset_left = 277.0
+offset_right = 323.0
+offset_bottom = 51.0
+tooltip_text = "FIRE_TOXIN_TOOLTIP"
 ActionIcon = ExtResource( 19 )
 ActionName = "g_fire_toxin"
 
 [node name="SignalingAgents" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
 visible = false
-margin_left = 277.0
-margin_right = 323.0
-margin_bottom = 51.0
-custom_styles/hover = SubResource( 33 )
-custom_styles/pressed = SubResource( 33 )
-custom_styles/normal = SubResource( 34 )
+offset_left = 277.0
+offset_right = 323.0
+offset_bottom = 51.0
+theme_override_styles/hover = SubResource( 33 )
+theme_override_styles/pressed = SubResource( 33 )
+theme_override_styles/normal = SubResource( 34 )
 toggle_mode = true
 ActionIcon = ExtResource( 76 )
 ActionName = "g_pack_commands"
@@ -1988,10 +1988,10 @@ ActionName = "g_pack_commands"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 277.0
-margin_right = 323.0
-margin_bottom = 51.0
-hint_tooltip = "SECRETE_SLIME_TOOLTIP"
+offset_left = 277.0
+offset_right = 323.0
+offset_bottom = 51.0
+tooltip_text = "SECRETE_SLIME_TOOLTIP"
 disabled = true
 ActionIcon = ExtResource( 24 )
 ActionName = "g_secrete_slime"
@@ -2000,18 +2000,18 @@ ActionName = "g_secrete_slime"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 277.0
-margin_right = 323.0
-margin_bottom = 51.0
-hint_tooltip = "EJECT_ENGULFED_TOOLTIP"
+offset_left = 277.0
+offset_right = 323.0
+offset_bottom = 51.0
+tooltip_text = "EJECT_ENGULFED_TOOLTIP"
 ActionIcon = ExtResource( 33 )
 ActionName = "g_eject_engulfed"
 
 [node name="HintText" type="Label" parent="."]
 anchor_right = 1.0
-margin_top = 35.0
-margin_bottom = 59.0
-custom_fonts/font = ExtResource( 1 )
+offset_top = 35.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource( 1 )
 align = 1
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -2026,20 +2026,20 @@ visible = false
 visible = false
 
 [node name="HUDMessages" parent="." instance=ExtResource( 25 )]
-margin_left = 270.0
-margin_top = 90.0
-margin_right = -270.0
-margin_bottom = -525.0
+offset_left = 270.0
+offset_top = 90.0
+offset_right = -270.0
+offset_bottom = -525.0
 
 [node name="RadialPopup" parent="." instance=ExtResource( 32 )]
 
 [node name="MoveToLandConfirmation" parent="." instance=ExtResource( 17 )]
-rect_min_size = Vector2( 450, 0 )
+custom_minimum_size = Vector2( 450, 0 )
 WindowTitle = "MOVING_TO_LAND_PROTOTYPE_TITLE"
 DialogText = "MOVING_TO_LAND_PROTOTYPE"
 
 [node name="MoveToAwakeningConfirm" parent="." instance=ExtResource( 17 )]
-rect_min_size = Vector2( 450, 0 )
+custom_minimum_size = Vector2( 450, 0 )
 WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 

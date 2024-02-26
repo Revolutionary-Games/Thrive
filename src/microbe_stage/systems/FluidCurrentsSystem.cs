@@ -7,6 +7,7 @@
     using DefaultEcs.Threading;
     using Godot;
     using Newtonsoft.Json;
+    using FastNoiseLite = FastNoiseLite;
     using World = DefaultEcs.World;
 
     /// <summary>
@@ -31,6 +32,7 @@
         private const float DISTURBANCE_TO_CURRENTS_RATIO = 0.15f;
         private const float POSITION_SCALING = 0.9f;
 
+        // TODO: test the inbuilt fast noise in Godot to see if it is faster / a good enough replacement
         private readonly FastNoiseLite noiseDisturbancesX;
         private readonly FastNoiseLite noiseDisturbancesY;
         private readonly FastNoiseLite noiseCurrentsX;
@@ -75,15 +77,15 @@
         {
             var scaledPosition = position * POSITION_SCALING;
 
-            float disturbancesX = noiseDisturbancesX.GetNoise(scaledPosition.x, scaledPosition.y,
+            float disturbancesX = noiseDisturbancesX.GetNoise(scaledPosition.X, scaledPosition.Y,
                 currentsTimePassed * DISTURBANCE_TIMESCALE);
-            float disturbancesY = noiseDisturbancesY.GetNoise(scaledPosition.x, scaledPosition.y,
+            float disturbancesY = noiseDisturbancesY.GetNoise(scaledPosition.X, scaledPosition.Y,
                 currentsTimePassed * DISTURBANCE_TIMESCALE);
 
-            float currentsX = noiseCurrentsX.GetNoise(scaledPosition.x * CURRENTS_STRETCHING_MULTIPLIER,
-                scaledPosition.y, currentsTimePassed * CURRENTS_TIMESCALE);
-            float currentsY = noiseCurrentsY.GetNoise(scaledPosition.x,
-                scaledPosition.y * CURRENTS_STRETCHING_MULTIPLIER,
+            float currentsX = noiseCurrentsX.GetNoise(scaledPosition.X * CURRENTS_STRETCHING_MULTIPLIER,
+                scaledPosition.Y, currentsTimePassed * CURRENTS_TIMESCALE);
+            float currentsY = noiseCurrentsY.GetNoise(scaledPosition.X,
+                scaledPosition.Y * CURRENTS_STRETCHING_MULTIPLIER,
                 currentsTimePassed * CURRENTS_TIMESCALE);
 
             var disturbancesVelocity = new Vector2(disturbancesX, disturbancesY);
@@ -111,10 +113,10 @@
             ref var position = ref entity.Get<WorldPosition>();
             ref var physicsControl = ref entity.Get<ManualPhysicsControl>();
 
-            var pos = new Vector2(position.Position.x, position.Position.z);
+            var pos = new Vector2(position.Position.X, position.Position.Z);
             var vel = VelocityAt(pos) * Constants.MAX_FORCE_APPLIED_BY_CURRENTS;
 
-            physicsControl.ImpulseToGive += new Vector3(vel.x, 0, vel.y) * delta;
+            physicsControl.ImpulseToGive += new Vector3(vel.X, 0, vel.Y) * delta;
         }
     }
 }

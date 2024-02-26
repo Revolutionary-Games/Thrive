@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-public class PatchExtinctionBox : Control
+public partial class PatchExtinctionBox : Control
 {
     [Export]
     public NodePath? PatchMapDrawerPath;
@@ -81,7 +81,7 @@ public class PatchExtinctionBox : Control
             return;
         }
 
-        var animLength = animationPlayer.CurrentAnimationLength;
+        var animLength = (float)animationPlayer.CurrentAnimationLength;
 
         animationPlayer.PlayBackwards();
 

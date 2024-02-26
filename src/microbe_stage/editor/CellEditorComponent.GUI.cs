@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -17,7 +17,7 @@ using UnlockConstraints;
 public partial class CellEditorComponent
 {
     [Signal]
-    public delegate void Clicked();
+    public delegate void ClickedEventHandler();
 
     /// <summary>
     ///   Detects presses anywhere to notify the name input to unfocus
@@ -33,7 +33,7 @@ public partial class CellEditorComponent
     {
         if (@event is InputEventMouseButton { Pressed: true })
         {
-            EmitSignal(nameof(Clicked));
+            EmitSignal(nameof(ClickedEventHandler));
         }
     }
 
@@ -397,12 +397,12 @@ public partial class CellEditorComponent
             var group = partsSelectionContainer.GetNode<CollapsibleList>(groupWithUndiscovered.Key.ToString());
             var (unlockText, count) = groupWithUndiscovered.Value;
 
-            var button = (UndiscoveredOrganellesButton)undiscoveredOrganellesScene.Instance();
+            var button = undiscoveredOrganellesScene.Instantiate<UndiscoveredOrganellesButton>();
             button.Count = count;
             group.AddItem(button);
 
             // Register tooltip
-            var tooltip = (UndiscoveredOrganellesTooltip)undiscoveredOrganellesTooltipScene.Instance();
+            var tooltip = undiscoveredOrganellesTooltipScene.Instantiate<UndiscoveredOrganellesTooltip>();
             tooltip.UnlockText = unlockText;
             ToolTipManager.Instance.AddToolTip(tooltip, "lockedOrganelles");
             button.RegisterToolTipForControl(tooltip, true);
@@ -478,13 +478,13 @@ public partial class CellEditorComponent
         if (energyBalance.FinalBalance > 0)
         {
             atpBalanceLabel.Text = TranslationServer.Translate("ATP_PRODUCTION");
-            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
+            atpBalanceLabel.AddThemeColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
         }
         else
         {
             atpBalanceLabel.Text = TranslationServer.Translate("ATP_PRODUCTION") + " - " +
                 TranslationServer.Translate("ATP_PRODUCTION_TOO_LOW");
-            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
+            atpBalanceLabel.AddThemeColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
 
         atpProductionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalProduction);

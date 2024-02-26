@@ -1,6 +1,9 @@
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 
+/// <summary>
+///   Test for our custom window reordering
+/// </summary>
 public partial class WindowReorderingSupportTest : Control
 {
     public override void _Ready()
@@ -8,7 +11,7 @@ public partial class WindowReorderingSupportTest : Control
         EnableAllWindows(GetChildren());
     }
 
-    private void EnableAllWindows(Array children)
+    private void EnableAllWindows(Array<Node> children)
     {
         foreach (Node child in children)
         {

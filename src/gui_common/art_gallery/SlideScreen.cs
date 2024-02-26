@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Screen capable of moving slides of gallery items.
 /// </summary>
-public class SlideScreen : TopLevelContainer
+public partial class SlideScreen : TopLevelContainer
 {
     public const float SLIDESHOW_INTERVAL = 6.0f;
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
@@ -46,8 +46,8 @@ public class SlideScreen : TopLevelContainer
     private Button? slideShowModeButton;
     private Label? slideTitleLabel;
     private CrossFadableGalleryViewport? modelViewerContainer;
-    private Viewport? modelViewer;
-    private Spatial? modelHolder;
+    private SubViewport? modelViewer;
+    private Node3D? modelHolder;
     private OrbitCamera? modelViewerCamera;
     private PlaybackControls? playbackControls;
 
@@ -115,8 +115,8 @@ public class SlideScreen : TopLevelContainer
         slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);
         slideTitleLabel = GetNode<Label>(SlideTitleLabelPath);
         modelViewerContainer = GetNode<CrossFadableGalleryViewport>(ModelViewerContainerPath);
-        modelViewer = GetNode<Viewport>(ModelViewerPath);
-        modelHolder = GetNode<Spatial>(ModelHolderPath);
+        modelViewer = GetNode<SubViewport>(ModelViewerPath);
+        modelHolder = GetNode<Node3D>(ModelHolderPath);
         modelViewerCamera = GetNode<OrbitCamera>(ModelViewerCameraPath);
         playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
 
@@ -138,7 +138,7 @@ public class SlideScreen : TopLevelContainer
         InputManager.UnregisterReceiver(this);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (toolbarHideTimer >= 0 && Visible)
         {
@@ -250,8 +250,8 @@ public class SlideScreen : TopLevelContainer
         SlideControlsVisible = false;
 
         var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
-        RectGlobalPosition = currentItemRect.Position;
-        RectSize = currentItemRect.Size;
+        GlobalPosition = currentItemRect.Position;
+        Size = currentItemRect.Size;
 
         popupTween.InterpolateProperty(this, "rect_position", null, GetFullRect().Position, 0.2f,
             Tween.TransitionType.Sine, Tween.EaseType.Out);
@@ -259,8 +259,8 @@ public class SlideScreen : TopLevelContainer
             Tween.EaseType.Out);
         popupTween.Start();
 
-        if (!popupTween.IsConnected("tween_completed", this, nameof(OnScaledUp)))
-            popupTween.Connect("tween_completed", this, nameof(OnScaledUp), null, (uint)ConnectFlags.Oneshot);
+        if (!popupTween.IsConnected("tween_completed", new Callable(this, nameof(OnScaledUp))))
+            popupTween.Connect("tween_completed", new Callable(this, nameof(OnScaledUp)), null, (uint)ConnectFlags.OneShot);
     }
 
     protected override void OnClose()
@@ -282,8 +282,8 @@ public class SlideScreen : TopLevelContainer
             Tween.EaseType.Out);
         popupTween.Start();
 
-        if (!popupTween.IsConnected("tween_completed", this, nameof(OnScaledDown)))
-            popupTween.Connect("tween_completed", this, nameof(OnScaledDown), null, (uint)ConnectFlags.Oneshot);
+        if (!popupTween.IsConnected("tween_completed", new Callable(this, nameof(OnScaledDown))))
+            popupTween.Connect("tween_completed", new Callable(this, nameof(OnScaledDown)), null, (uint)ConnectFlags.OneShot);
     }
 
     protected override void OnHidden()
@@ -330,7 +330,7 @@ public class SlideScreen : TopLevelContainer
             return;
 
         var item = items[currentSlideIndex];
-        slideTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture;
+        slideTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture2D;
 
         if (slideTextureRect.Image != null)
             return;
@@ -359,7 +359,7 @@ public class SlideScreen : TopLevelContainer
         slideShowModeButton.Visible = item.CanBeShownInASlideshow;
 
         slideTitleLabel.Text = string.IsNullOrEmpty(item.Asset.Title) ? item.Asset.FileName : item.Asset.Title;
-        slideTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
+        slideTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture2D;
     }
 
     private void UpdateModelViewer()
@@ -376,14 +376,14 @@ public class SlideScreen : TopLevelContainer
         modelViewerContainer?.Show();
         modelHolder.QueueFreeChildren();
 
-        modelViewer.Msaa = Settings.Instance.MSAAResolution;
+        modelViewer.Msaa3D = Settings.Instance.MSAAResolution;
 
         var scene = GD.Load<PackedScene>(item.Asset.ResourcePath);
-        var instanced = scene.Instance();
+        var instanced = scene.Instantiate();
 
         modelHolder.AddChild(instanced);
 
-        var mesh = instanced.GetNode<MeshInstance>(item.Asset.MeshNodePath!);
+        var mesh = instanced.GetNode<MeshInstance3D>(item.Asset.MeshNodePath!);
         var minDistance = mesh.GetTransformedAabb().Size.Length();
         var maxDistance = PhotoStudio.CameraDistanceFromRadiusOfObject(minDistance);
 
@@ -422,7 +422,7 @@ public class SlideScreen : TopLevelContainer
         closeButton.Visible = slideControlsVisible;
     }
 
-    private void OnScaledUp(Object @object, NodePath key)
+    private void OnScaledUp(GodotObject @object, NodePath key)
     {
         _ = @object;
         _ = key;
@@ -431,7 +431,7 @@ public class SlideScreen : TopLevelContainer
         FullRect = true;
     }
 
-    private void OnScaledDown(Object @object, NodePath key)
+    private void OnScaledDown(GodotObject @object, NodePath key)
     {
         _ = @object;
         _ = key;
@@ -467,7 +467,7 @@ public class SlideScreen : TopLevelContainer
     {
         var icon = closeButton!.GetChild<TextureRect>(0);
 
-        if (closeButton.GetDrawMode() == BaseButton.DrawMode.Pressed)
+        if (closeButton.GetDrawMode() == BaseButton.DrawMode.ButtonPressed)
         {
             icon.Modulate = Colors.Black;
         }

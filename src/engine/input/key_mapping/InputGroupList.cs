@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -7,7 +7,7 @@ using Godot;
 ///   Holds the various <see cref="InputGroupItem">input groups</see> in one VBoxContainer.
 ///   Used by OptionsMenu>Inputs>InputGroupContainer
 /// </summary>
-public class InputGroupList : VBoxContainer
+public partial class InputGroupList : VBoxContainer
 {
     [Export]
     public NodePath? ConflictDialogPath;

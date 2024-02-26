@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   Shows message lines on screen that fade after some time to give the player some gameplay related messages
 /// </summary>
-public class HUDMessages : VBoxContainer
+public partial class HUDMessages : VBoxContainer
 {
     /// <summary>
     ///   When this is true any new messages are added *above* existing messages. Otherwise new messages appear below
@@ -42,7 +42,7 @@ public class HUDMessages : VBoxContainer
 
     private string multipliedMessageTemplate = string.Empty;
 
-    private float extraTime;
+    private double extraTime;
 
     public override void _Ready()
     {
@@ -55,7 +55,7 @@ public class HUDMessages : VBoxContainer
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         bool clean = false;
 
@@ -65,9 +65,11 @@ public class HUDMessages : VBoxContainer
             extraTime = 0;
         }
 
+        var convertedDelta = (float)delta;
+
         foreach (var (message, displayer) in hudMessages)
         {
-            message.TimeRemaining -= delta;
+            message.TimeRemaining -= convertedDelta;
 
             if (message.TimeRemaining < 0)
             {
@@ -76,15 +78,15 @@ public class HUDMessages : VBoxContainer
                 continue;
             }
 
-            message.TotalDisplayedTime += delta;
+            message.TotalDisplayedTime += convertedDelta;
 
             // Update fade
             // TODO: should different types of messages (more urgent?) have different colours
             var alpha = CalculateMessageAlpha(message.TimeRemaining, message.OriginalTimeRemaining);
             displayer.SelfModulate = new Color(BaseMessageColour, alpha);
 
-            displayer.AddColorOverride("font_color_shadow",
-                new Color(MessageShadowColour, MessageShadowColour.a * alpha));
+            displayer.AddThemeColorOverride("font_color_shadow",
+                new Color(MessageShadowColour, MessageShadowColour.A * alpha));
         }
 
         if (clean)
@@ -116,17 +118,17 @@ public class HUDMessages : VBoxContainer
         // Can't combine, need to add a new label to display this
         var label = new Label
         {
-            SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
-            Align = Label.AlignEnum.Center,
-            Autowrap = true,
+            SizeFlagsHorizontal = SizeFlags.ExpandFill,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            AutowrapMode = TextServer.AutowrapMode.WordSmart,
             MouseFilter = MouseFilterEnum.Ignore,
             Text = TextForMessage(message),
         };
 
-        label.AddFontOverride("font", MessageFont);
-        label.AddColorOverride("font_color_shadow", MessageShadowColour);
-        label.AddConstantOverride("shadow_offset_x", 1);
-        label.AddConstantOverride("shadow_offset_y", 1);
+        label.AddThemeFontOverride("font", MessageFont);
+        label.AddThemeColorOverride("font_color_shadow", MessageShadowColour);
+        label.AddThemeConstantOverride("shadow_offset_x", 1);
+        label.AddThemeConstantOverride("shadow_offset_y", 1);
 
         AddChild(label);
 

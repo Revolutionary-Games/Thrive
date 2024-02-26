@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class WorldResource : IRegistryType, IPlayerReadableName
 {
     private readonly Lazy<PackedScene> worldRepresentation;
-    private readonly Lazy<Texture> icon;
+    private readonly Lazy<Texture2D> icon;
 
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
@@ -22,7 +22,7 @@ public class WorldResource : IRegistryType, IPlayerReadableName
         Name = name;
 
         worldRepresentation = new Lazy<PackedScene>(LoadWorldScene);
-        icon = new Lazy<Texture>(LoadIcon);
+        icon = new Lazy<Texture2D>(LoadIcon);
     }
 
     [JsonProperty]
@@ -39,7 +39,7 @@ public class WorldResource : IRegistryType, IPlayerReadableName
     public PackedScene WorldRepresentation => worldRepresentation.Value;
 
     [JsonIgnore]
-    public Texture Icon => icon.Value;
+    public Texture2D Icon => icon.Value;
 
     [JsonIgnore]
     public string ReadableName => Name;
@@ -77,8 +77,8 @@ public class WorldResource : IRegistryType, IPlayerReadableName
         return GD.Load<PackedScene>(WorldRepresentationScene);
     }
 
-    private Texture LoadIcon()
+    private Texture2D LoadIcon()
     {
-        return GD.Load<Texture>(InventoryIcon);
+        return GD.Load<Texture2D>(InventoryIcon);
     }
 }

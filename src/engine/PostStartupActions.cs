@@ -1,14 +1,14 @@
-﻿using System.Globalization;
+using System.Globalization;
 using Godot;
 
 /// <summary>
 ///   This is the last autoloaded class to perform some actions there
 /// </summary>
-public class PostStartupActions : Node
+public partial class PostStartupActions : Node
 {
     private PostStartupActions()
     {
-        if (Engine.EditorHint)
+        if (Engine.IsEditorHint())
         {
             // Skip these actions when running in the Godot editor
             return;

@@ -1,32 +1,32 @@
-﻿using System;
+using System;
 using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-public class GodotQuatConverter : JsonConverter
+public class GodotQuaternionConverter : JsonConverter
 {
-    private static readonly Type QuatType = typeof(Quat);
+    private static readonly Type QuatType = typeof(Quaternion);
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         if (value == null)
-            throw new JsonException("Quat can't be null as it is a value type");
+            throw new JsonException("Quaternion can't be null as it is a value type");
 
-        var quat = (Quat)value;
+        var quat = (Quaternion)value;
 
         writer.WriteStartObject();
 
         writer.WritePropertyName("x");
-        writer.WriteValue(quat.x);
+        writer.WriteValue(quat.X);
 
         writer.WritePropertyName("y");
-        writer.WriteValue(quat.y);
+        writer.WriteValue(quat.Y);
 
         writer.WritePropertyName("z");
-        writer.WriteValue(quat.z);
+        writer.WriteValue(quat.Z);
 
         writer.WritePropertyName("w");
-        writer.WriteValue(quat.w);
+        writer.WriteValue(quat.W);
 
         writer.WriteEndObject();
     }
@@ -35,14 +35,14 @@ public class GodotQuatConverter : JsonConverter
         JsonSerializer serializer)
     {
         if (reader.TokenType != JsonToken.StartObject)
-            return default(Quat);
+            return default(Quaternion);
 
         var item = JObject.Load(reader);
 
         try
         {
             // ReSharper disable AssignNullToNotNullAttribute
-            return new Quat(item["x"]!.Value<float>(),
+            return new Quaternion(item["x"]!.Value<float>(),
                 item["y"]!.Value<float>(),
                 item["z"]!.Value<float>(),
                 item["w"]!.Value<float>());
@@ -52,7 +52,7 @@ public class GodotQuatConverter : JsonConverter
         catch (Exception e) when (
             e is NullReferenceException or ArgumentNullException)
         {
-            throw new JsonException("can't read Quat (missing property)", e);
+            throw new JsonException("can't read Quaternion (missing property)", e);
         }
     }
 

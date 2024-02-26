@@ -209,7 +209,7 @@
             {
                 if (usedPositionalPlayer.GetUpdatedPositionIfEntityIsValid(out var position))
                 {
-                    usedPositionalPlayer.Player.Translation = position;
+                    usedPositionalPlayer.Player.Position = position;
                 }
             }
 
@@ -409,7 +409,7 @@
                 }
 
                 player.Stream = GetAudioStream(sound);
-                player.UnitDb = GD.Linear2Db(volume);
+                player.VolumeDb = Mathf.LinearToDb(volume);
                 player.Play();
 
                 usedPositionalPlayers.Add(new PlayingPositionalPlayer(player, entity, sound, id, loop));
@@ -429,7 +429,7 @@
                 }
 
                 player.Stream = GetAudioStream(sound);
-                player.VolumeDb = GD.Linear2Db(volume);
+                player.VolumeDb = Mathf.LinearToDb(volume);
                 player.Play();
 
                 used2DPlayers.Add(new NonPlayingPositionalPlayer(player, entity, sound, id, loop));
@@ -630,7 +630,7 @@
 
             public override void SetVolume(float linearVolume)
             {
-                Player.UnitDb = GD.Linear2Db(linearVolume);
+                Player.VolumeDb = Mathf.LinearToDb(linearVolume);
             }
         }
 
@@ -652,7 +652,7 @@
 
             public override void SetVolume(float linearVolume)
             {
-                Player.VolumeDb = GD.Linear2Db(linearVolume);
+                Player.VolumeDb = Mathf.LinearToDb(linearVolume);
             }
         }
 

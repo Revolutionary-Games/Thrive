@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://shaders/CompoundCloudPlane.shader" type="Shader" id=1]
-[ext_resource path="res://assets/textures/PerlinNoise.jpg" type="Texture" id=2]
+[ext_resource path="res://shaders/CompoundCloudPlane.gdshader" type="Shader" id=1]
+[ext_resource path="res://assets/textures/PerlinNoise.jpg" type="Texture2D" id=2]
 [ext_resource path="res://src/microbe_stage/CompoundCloudPlane.cs" type="Script" id=3]
-[ext_resource path="res://assets/textures/TestCloudConcentrations.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/TestCloudConcentrations.png" type="Texture2D" id=4]
 
 [sub_resource type="QuadMesh" id=1]
 size = Vector2( 200, 200 )
@@ -19,8 +19,8 @@ shader_param/colour4 = Plane( 0, 1, 1, 1 )
 shader_param/densities = ExtResource( 4 )
 shader_param/noise = ExtResource( 2 )
 
-[node name="CompoundCloudPlane" type="CSGMesh"]
-transform = Transform( 3, 0, 0, 0, -1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0 )
+[node name="CompoundCloudPlane" type="CSGMesh3D"]
+transform = Transform3D( 3, 0, 0, 0, -1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0 )
 cast_shadow = 0
 mesh = SubResource( 1 )
 material = SubResource( 2 )

@@ -26,8 +26,8 @@
     {
         private readonly Node godotWorldRoot;
 
-        private readonly Dictionary<Spatial, AttachedInfo> attachedSpatialInstances = new();
-        private readonly List<Spatial> instancesToDelete = new();
+        private readonly Dictionary<Node3D, AttachedInfo> attachedSpatialInstances = new();
+        private readonly List<Node3D> instancesToDelete = new();
 
         public SpatialAttachSystem(Node godotWorldRoot, World world) : base(world, null)
         {

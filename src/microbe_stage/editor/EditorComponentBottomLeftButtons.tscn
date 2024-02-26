@@ -1,42 +1,42 @@
 [gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButton.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/button.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/clockButtonDisabled.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/gui/bevel/clockButton.png" type="Texture" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/clockButtonActive.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/gui/bevel/clockButtonHover.png" type="Texture" id=10]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonDisabled.png" type="Texture" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/redoButtonDisabled.png" type="Texture" id=12]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonHover.png" type="Texture" id=13]
-[ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture" id=15]
-[ext_resource path="res://assets/textures/gui/bevel/buttonHover.png" type="Texture" id=16]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture" id=17]
-[ext_resource path="res://assets/textures/gui/bevel/1xSymmetry.png" type="Texture" id=18]
-[ext_resource path="res://assets/textures/gui/bevel/redoButtonActive.png" type="Texture" id=19]
-[ext_resource path="res://assets/textures/gui/bevel/buttonActive.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButton.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/button.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/clockButtonDisabled.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/clockButton.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/clockButtonActive.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/clockButtonHover.png" type="Texture2D" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/undoButtonDisabled.png" type="Texture2D" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/redoButtonDisabled.png" type="Texture2D" id=12]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonHover.png" type="Texture2D" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture2D" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture2D" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/buttonHover.png" type="Texture2D" id=16]
+[ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture2D" id=17]
+[ext_resource path="res://assets/textures/gui/bevel/1xSymmetry.png" type="Texture2D" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/redoButtonActive.png" type="Texture2D" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/buttonActive.png" type="Texture2D" id=20]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=21]
 [ext_resource path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs" type="Script" id=22]
-[ext_resource path="res://assets/textures/gui/bevel/buttonDisabled.png" type="Texture" id=23]
-[ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="DynamicFont" id=24]
+[ext_resource path="res://assets/textures/gui/bevel/buttonDisabled.png" type="Texture2D" id=23]
+[ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="FontFile" id=24]
 
 [sub_resource type="Animation" id=22]
 resource_name = "invalidSpeciesNameFlash"
 length = 0.8
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 0.301961, 0.301961, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.301961, 0.301961, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.301961, 0.301961, 1 ) ]
 }
@@ -44,13 +44,13 @@ tracks/0/keys = {
 [node name="EditorComponentBottomLeftButtons" type="MarginContainer"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -55.0
-margin_right = 605.0
-rect_min_size = Vector2( 641, 0 )
+offset_top = -55.0
+offset_right = 605.0
+custom_minimum_size = Vector2( 641, 0 )
 theme = ExtResource( 21 )
-custom_constants/margin_top = 5
-custom_constants/margin_left = 195
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 195
+theme_override_constants/margin_bottom = 5
 script = ExtResource( 22 )
 SymmetryButtonPath = NodePath("HBoxContainer/SymmetryButton")
 SymmetryIconPath = NodePath("HBoxContainer/SymmetryButton/SymmetryIcon")
@@ -61,19 +61,19 @@ NameEditPath = NodePath("HBoxContainer/HBoxContainer/SpeciesName")
 RandomizeNameButtonPath = NodePath("HBoxContainer/HBoxContainer/RandomizeButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 195.0
-margin_top = 5.0
-margin_right = 641.0
-margin_bottom = 50.0
-custom_constants/separation = 5
+offset_left = 195.0
+offset_top = 5.0
+offset_right = 641.0
+offset_bottom = 50.0
+theme_override_constants/separation = 5
 alignment = 2
 
 [node name="SymmetryButton" type="TextureButton" parent="HBoxContainer"]
-margin_left = 1.0
-margin_top = 5.0
-margin_right = 36.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 35, 35 )
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 36.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 35, 35 )
 mouse_filter = 1
 size_flags_vertical = 4
 action_mode = 0
@@ -91,11 +91,11 @@ texture = ExtResource( 18 )
 expand = true
 
 [node name="UndoButton" type="TextureButton" parent="HBoxContainer"]
-margin_left = 41.0
-margin_top = 5.0
-margin_right = 76.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 35, 35 )
+offset_left = 41.0
+offset_top = 5.0
+offset_right = 76.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 35, 35 )
 mouse_filter = 1
 size_flags_vertical = 4
 action_mode = 0
@@ -109,11 +109,11 @@ __meta__ = {
 }
 
 [node name="RedoButton" type="TextureButton" parent="HBoxContainer"]
-margin_left = 81.0
-margin_top = 5.0
-margin_right = 116.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 35, 35 )
+offset_left = 81.0
+offset_top = 5.0
+offset_right = 116.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 35, 35 )
 mouse_filter = 1
 size_flags_vertical = 4
 action_mode = 0
@@ -127,11 +127,11 @@ __meta__ = {
 }
 
 [node name="NewButton" type="TextureButton" parent="HBoxContainer"]
-margin_left = 121.0
-margin_top = 5.0
-margin_right = 156.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 35, 35 )
+offset_left = 121.0
+offset_top = 5.0
+offset_right = 156.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 35, 35 )
 mouse_filter = 1
 size_flags_vertical = 4
 texture_normal = ExtResource( 8 )
@@ -144,28 +144,28 @@ __meta__ = {
 }
 
 [node name="Spacer" type="Control" parent="HBoxContainer"]
-margin_left = 161.0
-margin_right = 166.0
-margin_bottom = 45.0
-rect_min_size = Vector2( 5, 0 )
+offset_left = 161.0
+offset_right = 166.0
+offset_bottom = 45.0
+custom_minimum_size = Vector2( 5, 0 )
 mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
-margin_left = 171.0
-margin_right = 446.0
-margin_bottom = 45.0
-rect_min_size = Vector2( 275, 0 )
+offset_left = 171.0
+offset_right = 446.0
+offset_bottom = 45.0
+custom_minimum_size = Vector2( 275, 0 )
 
 [node name="SpeciesName" type="LineEdit" parent="HBoxContainer/HBoxContainer"]
-margin_top = 7.0
-margin_right = 240.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 240, 27 )
+offset_top = 7.0
+offset_right = 240.0
+offset_bottom = 38.0
+custom_minimum_size = Vector2( 240, 27 )
 focus_mode = 1
 mouse_filter = 1
 size_flags_vertical = 4
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 24 )
+theme_override_colors/font_color = Color( 1, 1, 1, 1 )
+theme_override_fonts/font = ExtResource( 24 )
 max_length = 60
 placeholder_text = "SPECIES_NAME_DOT_DOT_DOT"
 caret_blink = true
@@ -177,11 +177,11 @@ __meta__ = {
 anims/invalidSpeciesNameFlash = SubResource( 22 )
 
 [node name="RandomizeButton" type="TextureButton" parent="HBoxContainer/HBoxContainer"]
-margin_left = 244.0
-margin_top = 7.0
-margin_right = 275.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 31, 31 )
+offset_left = 244.0
+offset_top = 7.0
+offset_right = 275.0
+offset_bottom = 38.0
+custom_minimum_size = Vector2( 31, 31 )
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture_normal = ExtResource( 5 )
@@ -202,7 +202,7 @@ __meta__ = {
 [connection signal="mouse_entered" from="HBoxContainer/HBoxContainer/SpeciesName" to="." method="OnControlMouseEntered"]
 [connection signal="mouse_exited" from="HBoxContainer/HBoxContainer/SpeciesName" to="." method="OnControlMouseExited"]
 [connection signal="text_changed" from="HBoxContainer/HBoxContainer/SpeciesName" to="." method="OnNameTextChanged"]
-[connection signal="text_entered" from="HBoxContainer/HBoxContainer/SpeciesName" to="." method="OnNameTextEntered"]
+[connection signal="text_submitted" from="HBoxContainer/HBoxContainer/SpeciesName" to="." method="OnNameTextEntered"]
 [connection signal="mouse_entered" from="HBoxContainer/HBoxContainer/RandomizeButton" to="." method="OnControlMouseEntered"]
 [connection signal="mouse_exited" from="HBoxContainer/HBoxContainer/RandomizeButton" to="." method="OnControlMouseExited"]
 [connection signal="pressed" from="HBoxContainer/HBoxContainer/RandomizeButton" to="." method="OnRandomizeNamePressed"]

@@ -40,7 +40,7 @@ public class Biome : IRegistryType
     public MusicContext[]? ActiveMusicContexts = null;
 
     [JsonIgnore]
-    public Texture? LoadedIcon;
+    public Texture2D? LoadedIcon;
 
     public BiomeConditions Conditions = null!;
 
@@ -92,7 +92,7 @@ public class Biome : IRegistryType
     /// </summary>
     public void Resolve(SimulationParameters parameters)
     {
-        LoadedIcon = GD.Load<Texture>(Icon);
+        LoadedIcon = GD.Load<Texture2D>(Icon);
     }
 
     public void ApplyTranslations()

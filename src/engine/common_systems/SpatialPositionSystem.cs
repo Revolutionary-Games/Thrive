@@ -31,12 +31,12 @@
             if (spatial.ApplyVisualScale)
             {
                 spatial.GraphicalInstance.Transform =
-                    new Transform(new Basis(position.Rotation).Scaled(spatial.VisualScale), position.Position);
+                    new Transform3D(new Basis(position.Rotation).Scaled(spatial.VisualScale), position.Position);
             }
             else
             {
                 spatial.GraphicalInstance.Transform =
-                    new Transform(new Basis(position.Rotation), position.Position);
+                    new Transform3D(new Basis(position.Rotation), position.Position);
             }
         }
     }

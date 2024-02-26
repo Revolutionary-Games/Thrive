@@ -4,14 +4,13 @@ using System.IO;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Directory = Godot.Directory;
-using File = Godot.File;
-using Path = System.IO.Path;
+using DirAccess = Godot.DirAccess;
+using FileAccess = Godot.FileAccess;
 
 /// <summary>
 ///   Provides GUI for managing enabled mods
 /// </summary>
-public class ModManager : Control
+public partial class ModManager : Control
 {
     [Export]
     public NodePath? LeftArrowPath;
@@ -204,7 +203,7 @@ public class ModManager : Control
     private bool wasVisible;
 
     [Signal]
-    public delegate void OnClosed();
+    public delegate void OnClosedEventHandler();
 
     /// <summary>
     ///   Loads mod info from a folder
@@ -215,9 +214,9 @@ public class ModManager : Control
     {
         var infoFile = Path.Combine(folder, Constants.MOD_INFO_FILE_NAME);
 
-        using var file = new File();
+        using var file = FileAccess.Open(infoFile, FileAccess.ModeFlags.Read);
 
-        if (file.Open(infoFile, File.ModeFlags.Read) != Error.Ok)
+        if (file == null)
         {
             GD.PrintErr("Can't read mod info file at: ", infoFile);
             return null;
@@ -233,18 +232,14 @@ public class ModManager : Control
     /// </summary>
     /// <param name="mod">Mod to load the icon for</param>
     /// <returns>The loaded icon or null if mod doesn't have icon set</returns>
-    public static Texture? LoadModIcon(FullModDetails mod)
+    public static Texture2D? LoadModIcon(FullModDetails mod)
     {
         if (string.IsNullOrEmpty(mod.Info.Icon))
             return null;
 
-        var image = new Image();
-        image.Load(Path.Combine(mod.Folder, mod.Info.Icon!));
+        var image = Image.LoadFromFile(Path.Combine(mod.Folder, mod.Info.Icon!));
 
-        var texture = new ImageTexture();
-        texture.CreateFromImage(image);
-
-        return texture;
+        return ImageTexture.CreateFromImage(image);
     }
 
     /// <summary>
@@ -411,7 +406,7 @@ public class ModManager : Control
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -541,20 +536,14 @@ public class ModManager : Control
     {
         var result = new List<string>();
 
-        using var currentDirectory = new Directory();
-
         foreach (var location in Constants.ModLocations)
         {
-            if (!currentDirectory.DirExists(location))
+            using var currentDirectory = DirAccess.Open(location);
+
+            if (currentDirectory == null)
                 continue;
 
-            if (currentDirectory.Open(location) != Error.Ok)
-            {
-                GD.PrintErr("Failed to open potential mod folder for reading at: ", location);
-                continue;
-            }
-
-            if (currentDirectory.ListDirBegin(true, true) != Error.Ok)
+            if (currentDirectory.ListDirBegin() != Error.Ok)
             {
                 GD.PrintErr("Failed to begin directory listing");
                 continue;
@@ -599,8 +588,8 @@ public class ModManager : Control
         RefreshAvailableMods();
         RefreshEnabledMods();
 
-        availableModsContainer.UnselectAll();
-        enabledModsContainer.UnselectAll();
+        availableModsContainer.DeselectAll();
+        enabledModsContainer.DeselectAll();
 
         UpdateOverallModButtons();
     }
@@ -736,9 +725,10 @@ public class ModManager : Control
 
         GD.Print("Opening mod folder: ", folder);
 
-        using var directory = new Directory();
-
-        directory.MakeDirRecursive(folder);
+        if (DirAccess.MakeDirRecursiveAbsolute(folder) != Error.Ok)
+        {
+            GD.PrintErr("Failed to create mods folder for viewing");
+        }
 
         FolderHelpers.OpenFolder(folder);
     }
@@ -756,7 +746,7 @@ public class ModManager : Control
             // TODO: show a warning popup that can be permanently dismissed
         }
 
-        Texture? icon = null;
+        Texture2D? icon = null;
 
         foreach (var index in availableModsContainer.GetSelectedItems())
         {
@@ -780,7 +770,7 @@ public class ModManager : Control
             return;
         }
 
-        Texture? icon = null;
+        Texture2D? icon = null;
 
         foreach (var index in enabledModsContainer.GetSelectedItems())
         {
@@ -810,7 +800,7 @@ public class ModManager : Control
             UpdateSelectedModInfo();
         }
 
-        while (enabledModsContainer.GetItemCount() > 0)
+        while (enabledModsContainer.ItemCount > 0)
         {
             var icon = enabledModsContainer.GetItemIcon(0);
             var text = enabledModsContainer.GetItemText(0);
@@ -829,8 +819,8 @@ public class ModManager : Control
     {
         selectedMod = null;
         UpdateSelectedModInfo();
-        enabledModsContainer.UnselectAll();
-        availableModsContainer.UnselectAll();
+        enabledModsContainer.DeselectAll();
+        availableModsContainer.DeselectAll();
 
         UpdateOverallModButtons();
     }
@@ -896,7 +886,7 @@ public class ModManager : Control
         }
 
         if (enabledModsContainer.IsAnythingSelected())
-            enabledModsContainer.UnselectAll();
+            enabledModsContainer.DeselectAll();
     }
 
     private void EnabledModSelected(int index)
@@ -911,7 +901,7 @@ public class ModManager : Control
         }
 
         if (availableModsContainer.IsAnythingSelected())
-            availableModsContainer.UnselectAll();
+            availableModsContainer.DeselectAll();
     }
 
     private void OpenInfoUrlPressed()
@@ -1008,8 +998,7 @@ public class ModManager : Control
 
         GD.Print("Creating new mod at: ", parsedData.Folder);
 
-        using var folder = new Directory();
-        if (folder.MakeDirRecursive(parsedData.Folder) != Error.Ok)
+        if (DirAccess.MakeDirRecursiveAbsolute(parsedData.Folder) != Error.Ok)
         {
             modCreateErrorDialog.ErrorMessage = TranslationServer.Translate("ERROR_CREATING_FOLDER");
             modCreateErrorDialog.ExceptionInfo = null;
@@ -1017,8 +1006,8 @@ public class ModManager : Control
             return;
         }
 
-        using var file = new File();
-        if (file.Open(Path.Combine(parsedData.Folder, Constants.MOD_INFO_FILE_NAME), File.ModeFlags.Write) != Error.Ok)
+        using var file = FileAccess.Open(Path.Combine(parsedData.Folder, Constants.MOD_INFO_FILE_NAME), FileAccess.ModeFlags.Write);
+        if (file == null)
         {
             modCreateErrorDialog.ErrorMessage = TranslationServer.Translate("ERROR_CREATING_INFO_FILE");
             modCreateErrorDialog.ExceptionInfo = null;
@@ -1057,7 +1046,7 @@ public class ModManager : Control
         if (applyChangesButton.Disabled)
         {
             GUICommon.Instance.PlayButtonPressSound();
-            EmitSignal(nameof(OnClosed));
+            EmitSignal(nameof(OnClosedEventHandler));
         }
         else
         {
@@ -1067,6 +1056,6 @@ public class ModManager : Control
 
     private void ConfirmBackWithUnAppliedChanges()
     {
-        EmitSignal(nameof(OnClosed));
+        EmitSignal(nameof(OnClosedEventHandler));
     }
 }

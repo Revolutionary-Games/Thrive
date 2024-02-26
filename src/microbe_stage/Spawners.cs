@@ -1,4 +1,4 @@
-﻿// This file contains all the different microbe stage spawner types
+// This file contains all the different microbe stage spawner types
 // just so that they are in one place.
 
 using System;
@@ -208,7 +208,7 @@ public static class SpawnHelpers
         var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
         entity.Set(new WorldPosition(location,
-            new Quat(rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
+            new Quaternion(rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
 
         // TODO: redo chunk visuals with the loadable visual definitions
         // entity.Set(new PredefinedVisuals
@@ -423,7 +423,7 @@ public static class SpawnHelpers
         entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
         // Position
-        entity.Set(new WorldPosition(location, Quat.Identity));
+        entity.Set(new WorldPosition(location, Quaternion.Identity));
 
         entity.Set(new SpeciesMember(species));
 
@@ -798,14 +798,14 @@ public static class SpawnHelpers
         Node worldRoot, PackedScene multicellularScene, bool aiControlled, ISpawnSystem spawnSystem,
         GameProperties currentGame)
     {
-        var creature = (MulticellularCreature)multicellularScene.Instance();
+        var creature = multicellularScene.Instantiate<MulticellularCreature>();
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
         creature.Init(spawnSystem, currentGame, !aiControlled);
 
         worldRoot.AddChild(creature);
-        creature.Translation = location;
+        creature.Position = location;
 
         creature.AddToGroup(Constants.ENTITY_TAG_CREATURE);
         creature.AddToGroup(Constants.PROGRESS_ENTITY_GROUP);
@@ -827,7 +827,7 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularCreature.tscn");
     }
 
-    public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform location, Node worldNode,
+    public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform3D location, Node worldNode,
         PackedScene entityScene, bool randomizeRotation = false, Random? random = null)
     {
         var resourceEntity = CreateHarvestedResourceEntity(resourceType, entityScene, false);
@@ -838,8 +838,8 @@ public static class SpawnHelpers
 
             // Randomize rotation by constructing a new Transform that has the basis rotated, note that this loses the
             // scale, but entities shouldn't anyway be allowed to have a root node scale
-            location = new Transform(new Basis(location.basis.Quat() * RandomRotationForResourceEntity(random)),
-                location.origin);
+            location = new Transform3D(new Basis(location.Basis.GetRotationQuaternion() * RandomRotationForResourceEntity(random)),
+                location.Origin);
         }
 
         worldNode.AddChild(resourceEntity);
@@ -856,7 +856,7 @@ public static class SpawnHelpers
     public static ResourceEntity CreateHarvestedResourceEntity(WorldResource resourceType, PackedScene entityScene,
         bool randomizeRotation = true, Random? random = null)
     {
-        var resourceEntity = (ResourceEntity)entityScene.Instance();
+        var resourceEntity = entityScene.Instantiate<ResourceEntity>();
 
         // Apply settings
         resourceEntity.SetResource(resourceType);
@@ -865,7 +865,7 @@ public static class SpawnHelpers
         {
             random ??= new Random();
 
-            resourceEntity.Transform = new Transform(new Basis(RandomRotationForResourceEntity(random)), Vector3.Zero);
+            resourceEntity.Transform = new Transform3D(new Basis(RandomRotationForResourceEntity(random)), Vector3.Zero);
         }
 
         resourceEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
@@ -885,10 +885,10 @@ public static class SpawnHelpers
         return entity;
     }
 
-    public static PlacedStructure SpawnStructure(StructureDefinition structureDefinition, Transform location,
+    public static PlacedStructure SpawnStructure(StructureDefinition structureDefinition, Transform3D location,
         Node worldNode, PackedScene entityScene)
     {
-        var structureEntity = entityScene.Instance<PlacedStructure>();
+        var structureEntity = entityScene.Instantiate<PlacedStructure>();
 
         worldNode.AddChild(structureEntity);
         structureEntity.Init(structureDefinition);
@@ -909,12 +909,12 @@ public static class SpawnHelpers
     public static SocietyCreature SpawnCitizen(Species species, Vector3 location, Node worldRoot,
         PackedScene citizenScene)
     {
-        var creature = (SocietyCreature)citizenScene.Instance();
+        var creature = citizenScene.Instantiate<SocietyCreature>();
 
         creature.Init();
 
         worldRoot.AddChild(creature);
-        creature.Translation = location;
+        creature.Position = location;
 
         creature.AddToGroup(Constants.CITIZEN_GROUP);
 
@@ -928,10 +928,10 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/society_stage/SocietyCreature.tscn");
     }
 
-    public static PlacedCity SpawnCity(Transform location, Node worldRoot, PackedScene cityScene, bool playerCity,
+    public static PlacedCity SpawnCity(Transform3D location, Node worldRoot, PackedScene cityScene, bool playerCity,
         TechWeb availableTechnology)
     {
-        var city = (PlacedCity)cityScene.Instance();
+        var city = cityScene.Instantiate<PlacedCity>();
 
         city.Init(playerCity, availableTechnology);
 
@@ -949,11 +949,11 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/industrial_stage/PlacedCity.tscn");
     }
 
-    public static PlacedPlanet SpawnPlanet(Transform location, Node worldRoot, PackedScene planetScene,
+    public static PlacedPlanet SpawnPlanet(Transform3D location, Node worldRoot, PackedScene planetScene,
         bool playerPlanet,
         TechWeb availableTechnology)
     {
-        var planet = (PlacedPlanet)planetScene.Instance();
+        var planet = planetScene.Instantiate<PlacedPlanet>();
 
         planet.Init(playerPlanet, availableTechnology);
 
@@ -971,10 +971,10 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/space_stage/PlacedPlanet.tscn");
     }
 
-    public static SpaceFleet SpawnFleet(Transform location, Node worldRoot, PackedScene fleetScene,
+    public static SpaceFleet SpawnFleet(Transform3D location, Node worldRoot, PackedScene fleetScene,
         bool playerFleet, UnitType initialShip)
     {
-        var fleet = (SpaceFleet)fleetScene.Instance();
+        var fleet = fleetScene.Instantiate<SpaceFleet>();
 
         fleet.Init(initialShip, playerFleet);
 
@@ -988,9 +988,9 @@ public static class SpawnHelpers
     }
 
     public static PlacedSpaceStructure SpawnSpaceStructure(SpaceStructureDefinition structureDefinition,
-        Transform location, Node worldNode, PackedScene structureScene, bool playerOwned)
+        Transform3D location, Node worldNode, PackedScene structureScene, bool playerOwned)
     {
-        var structureEntity = structureScene.Instance<PlacedSpaceStructure>();
+        var structureEntity = structureScene.Instantiate<PlacedSpaceStructure>();
 
         worldNode.AddChild(structureEntity);
         structureEntity.Init(structureDefinition, playerOwned);
@@ -1013,9 +1013,9 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/space_stage/SpaceFleet.tscn");
     }
 
-    private static Quat RandomRotationForResourceEntity(Random random)
+    private static Quaternion RandomRotationForResourceEntity(Random random)
     {
-        return new Quat(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
+        return new Quaternion(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
             random.NextFloat() * Mathf.Pi + 0.01f);
     }
 }

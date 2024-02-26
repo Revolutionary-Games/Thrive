@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles drawing debug lines
 /// </summary>
-public class DebugDrawer : ControlWithInput
+public partial class DebugDrawer : ControlWithInput
 {
 #pragma warning disable CA2213
     [Export]
@@ -57,8 +57,8 @@ public class DebugDrawer : ControlWithInput
     private readonly Vector3 pointOffsetBack = new(0, 0, PointLineWidth);
 
 #pragma warning disable CA2213
-    private MeshInstance lineDrawer = null!;
-    private MeshInstance triangleDrawer = null!;
+    private MeshInstance3D lineDrawer = null!;
+    private MeshInstance3D triangleDrawer = null!;
 #pragma warning restore CA2213
 
     private CustomImmediateMesh? lineMesh;
@@ -84,7 +84,7 @@ public class DebugDrawer : ControlWithInput
     private int timedLineCount;
 
     // As the data is not drawn each frame, there's a delay before hiding the draw result
-    private float timeInactive;
+    private double timeInactive;
 
     private DebugDrawer()
     {
@@ -119,8 +119,8 @@ public class DebugDrawer : ControlWithInput
 
     public override void _Ready()
     {
-        lineDrawer = GetNode<MeshInstance>("LineDrawer");
-        triangleDrawer = GetNode<MeshInstance>("TriangleDrawer");
+        lineDrawer = GetNode<MeshInstance3D>("LineDrawer");
+        triangleDrawer = GetNode<MeshInstance3D>("TriangleDrawer");
 
         lineMesh = new CustomImmediateMesh(LineMaterial);
         triangleMesh = new CustomImmediateMesh(TriangleMaterial);
@@ -128,7 +128,7 @@ public class DebugDrawer : ControlWithInput
         // Make sure the debug stuff is always rendered
         float halfVisibility = Constants.DEBUG_DRAW_MAX_DISTANCE_ORIGIN * 0.5f;
 
-        var quiteBigAABB = new AABB(-halfVisibility, -halfVisibility, -halfVisibility, halfVisibility * 2,
+        var quiteBigAABB = new Aabb(-halfVisibility, -halfVisibility, -halfVisibility, halfVisibility * 2,
             halfVisibility * 2, halfVisibility * 2);
 
         lineMesh.CustomBoundingBox = quiteBigAABB;
@@ -174,19 +174,19 @@ public class DebugDrawer : ControlWithInput
         NativeInterop.RemoveDebugDrawer();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (timedLineCount > 0)
         {
             // Only draw the other debug lines if physics lines have been updated to avoid flicker
             if (!physicsDebugSupported || DebugLevel == 0 || drawnThisFrame)
             {
-                HandleTimedLines(delta);
+                HandleTimedLines((float)delta);
             }
             else
             {
                 // To make lines not stick around longer with physics debug
-                OnlyElapseLineTime(delta);
+                OnlyElapseLineTime((float)delta);
             }
         }
 
@@ -205,11 +205,11 @@ public class DebugDrawer : ControlWithInput
             // Send camera position to the debug draw for LOD purposes
             try
             {
-                var camera = GetViewport().GetCamera();
+                var camera = GetViewport().GetCamera3D();
 
                 if (camera != null)
                 {
-                    DebugCameraLocation = camera.GlobalTranslation;
+                    DebugCameraLocation = camera.GlobalPosition;
 
                     OnPhysicsDebugCameraPositionChangedHandler?.Invoke(DebugCameraLocation);
                 }
@@ -402,7 +402,7 @@ public class DebugDrawer : ControlWithInput
 
             var endColour = new Color(line.Color, 0);
 
-            var colour = line.Color.LinearInterpolate(endColour, fraction);
+            var colour = line.Color.Lerp(endColour, fraction);
 
             DrawLine(line.From, line.To, colour);
         }

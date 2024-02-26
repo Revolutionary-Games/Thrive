@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 /// </summary>
 [IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn", UsesEarlyResolve = false)]
-public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
+public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
 {
     [Export]
     public NodePath? AutoEvoSubtabButtonPath;
@@ -84,7 +84,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     private LineChart compoundsChart = null!;
     private LineChart speciesPopulationChart = null!;
 
-    private Texture temperatureIcon = null!;
+    private Texture2D temperatureIcon = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -122,7 +122,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
         reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
 
-        temperatureIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/Temperature.png");
+        temperatureIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/Temperature.png");
 
         ApplyReportSubtab();
         RegisterTooltips();
@@ -444,8 +444,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
                 $"{point.Name}\n{point.TimePeriod.FormatNumber()}\n{extinctionType}");
         }
 
-        var cross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
-        var skull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
+        var cross = GD.Load<Texture2D>("res://assets/textures/gui/bevel/graphMarkerCross.png");
+        var skull = GD.Load<Texture2D>("res://assets/textures/gui/bevel/SuicideIcon.png");
 
         speciesPopulationChart.AddIconLegend(cross, TranslationServer.Translate("EXTINCT_FROM_PATCH"));
         speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
@@ -478,11 +478,11 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         {
             case ReportSubtab.AutoEvo:
                 autoEvoSubtab.Show();
-                autoEvoSubtabButton.Pressed = true;
+                autoEvoSubtabButton.ButtonPressed = true;
                 break;
             case ReportSubtab.Timeline:
                 timelineSubtab.Show();
-                timelineSubtabButton.Pressed = true;
+                timelineSubtabButton.ButtonPressed = true;
                 Invoke.Instance.Queue(timelineSubtab.TimelineAutoScrollToCurrentTimePeriod);
                 break;
             default:
@@ -561,7 +561,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
             tween.InterpolateProperty(button, "rect_scale", new Vector2(1.1f, 1.1f), Vector2.One, 0.1f);
             tween.Start();
 
-            button.Modulate = button.Pressed ? Colors.White : Colors.DarkGray;
+            button.Modulate = button.ButtonPressed ? Colors.White : Colors.DarkGray;
         }
     }
 }

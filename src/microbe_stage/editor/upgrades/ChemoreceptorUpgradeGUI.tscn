@@ -21,53 +21,53 @@ MinimumAmountLabelPath = NodePath("MinimumAmountLabel")
 ColourSelectorPath = NodePath("Colour")
 
 [node name="Label" type="Label" parent="."]
-margin_right = 1280.0
-margin_bottom = 25.0
+offset_right = 1280.0
+offset_bottom = 25.0
 text = "TARGET_TYPE_COLON"
 
 [node name="TargetType" type="OptionButton" parent="."]
-margin_top = 29.0
-margin_right = 1280.0
-margin_bottom = 48.0
+offset_top = 29.0
+offset_right = 1280.0
+offset_bottom = 48.0
 text = "COMPOUNDS"
 items = [ "COMPOUNDS", null, false, 0, null, "SPECIES", null, false, 1, null ]
 
 [node name="CompoundLabel" type="Label" parent="."]
-margin_right = 1280.0
-margin_bottom = 25.0
+offset_right = 1280.0
+offset_bottom = 25.0
 text = "COMPOUND_TO_FIND"
 
 [node name="Compound" type="OptionButton" parent="."]
-margin_top = 29.0
-margin_right = 1280.0
-margin_bottom = 48.0
+offset_top = 29.0
+offset_right = 1280.0
+offset_bottom = 48.0
 
 [node name="SpeciesLabel" type="Label" parent="."]
-margin_right = 1280.0
-margin_bottom = 25.0
+offset_right = 1280.0
+offset_bottom = 25.0
 text = "SPECIES_TO_FIND"
 
 [node name="Species" type="OptionButton" parent="."]
-margin_top = 29.0
-margin_right = 1280.0
-margin_bottom = 48.0
+offset_top = 29.0
+offset_right = 1280.0
+offset_bottom = 48.0
 
 [node name="Spacer" type="Control" parent="."]
-margin_top = 52.0
-margin_right = 1280.0
-margin_bottom = 57.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 52.0
+offset_right = 1280.0
+offset_bottom = 57.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label3" type="Label" parent="."]
-margin_top = 61.0
-margin_right = 1280.0
-margin_bottom = 86.0
+offset_top = 61.0
+offset_right = 1280.0
+offset_bottom = 86.0
 text = "SEARCH_RADIUS"
 
 [node name="Distance" type="HSlider" parent="."]
-margin_top = 90.0
-margin_right = 1280.0
-margin_bottom = 105.0
+offset_top = 90.0
+offset_right = 1280.0
+offset_bottom = 105.0
 size_flags_horizontal = 3
 rounded = true
 scrollable = false
@@ -75,21 +75,21 @@ tick_count = 8
 ticks_on_borders = true
 
 [node name="Spacer2" type="Control" parent="."]
-margin_top = 109.0
-margin_right = 1280.0
-margin_bottom = 112.0
-rect_min_size = Vector2( 0, 3 )
+offset_top = 109.0
+offset_right = 1280.0
+offset_bottom = 112.0
+custom_minimum_size = Vector2( 0, 3 )
 
 [node name="MinimumAmountLabel" type="Label" parent="."]
-margin_top = 116.0
-margin_right = 1280.0
-margin_bottom = 141.0
+offset_top = 116.0
+offset_right = 1280.0
+offset_bottom = 141.0
 text = "MINIMUM_AMOUNT_TO_FIND"
 
 [node name="MinimumAmount" type="HSlider" parent="."]
-margin_top = 145.0
-margin_right = 1280.0
-margin_bottom = 160.0
+offset_top = 145.0
+offset_right = 1280.0
+offset_bottom = 160.0
 size_flags_horizontal = 3
 step = 50.0
 scrollable = false
@@ -97,22 +97,22 @@ tick_count = 8
 ticks_on_borders = true
 
 [node name="Spacer3" type="Control" parent="."]
-margin_top = 164.0
-margin_right = 1280.0
-margin_bottom = 167.0
-rect_min_size = Vector2( 0, 3 )
+offset_top = 164.0
+offset_right = 1280.0
+offset_bottom = 167.0
+custom_minimum_size = Vector2( 0, 3 )
 
 [node name="ColourLabel" type="Label" parent="."]
-margin_top = 171.0
-margin_right = 1280.0
-margin_bottom = 196.0
+offset_top = 171.0
+offset_right = 1280.0
+offset_bottom = 196.0
 text = "LINE_COLOUR"
 
 [node name="Colour" parent="." instance=ExtResource( 2 )]
-margin_left = 0.0
-margin_top = 200.0
-margin_right = 1280.0
-margin_bottom = 759.0
+offset_left = 0.0
+offset_top = 200.0
+offset_right = 1280.0
+offset_bottom = 759.0
 edit_alpha = false
 
 [connection signal="item_selected" from="TargetType" to="." method="TypeChanged"]

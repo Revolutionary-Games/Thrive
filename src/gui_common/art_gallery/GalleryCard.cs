@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class GalleryCard : Button
+public partial class GalleryCard : Button
 {
     [Export]
     public NodePath? TitleLabelPath;
@@ -10,15 +10,15 @@ public class GalleryCard : Button
 
 #pragma warning disable CA2213
     [Export]
-    public Texture MissingTexture = null!;
+    public Texture2D MissingTexture = null!;
 
     private Label? titleLabel;
     private TextureRect? imagePreview;
-    private Texture? thumbnail;
+    private Texture2D? thumbnail;
 #pragma warning restore CA2213
 
     [Signal]
-    public delegate void OnFullscreenView(GalleryCard item);
+    public delegate void OnFullscreenViewEventHandler(GalleryCard item);
 
     /// <summary>
     ///   If this is true, this item can be featured in slideshow.
@@ -28,7 +28,7 @@ public class GalleryCard : Button
 
     public Asset Asset { get; set; } = null!;
 
-    public Texture Thumbnail
+    public Texture2D Thumbnail
     {
         get => thumbnail ?? MissingTexture;
         set
@@ -55,7 +55,7 @@ public class GalleryCard : Button
             if (mouse.Doubleclick)
             {
                 GUICommon.Instance.PlayButtonPressSound();
-                EmitSignal(nameof(OnFullscreenView), this);
+                EmitSignal(nameof(OnFullscreenViewEventHandler), this);
             }
         }
     }

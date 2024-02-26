@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Background in the microbe stage, needs to have 4 layers (textures)
 /// </summary>
-[SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "This is a read-only type")]
 public class Background : IRegistryType
 {
     [JsonRequired]
@@ -43,11 +41,12 @@ public class Background : IRegistryType
     {
         _ = parameters;
 
-        var directory = new Directory();
+        var directory = new DirAccess();
 
         foreach (var resource in Textures)
         {
             // When exported only the .import files exist, so this check is done accordingly
+            // TODO: this check should probably only run in debug mode
             if (!directory.FileExists(resource + ".import"))
             {
                 throw new InvalidRegistryDataException(InternalName, GetType().Name,

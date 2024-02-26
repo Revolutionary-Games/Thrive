@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Custom widget for microbe editor's collapsible/expandable item list box
 /// </summary>
-public class CollapsibleList : VBoxContainer
+public partial class CollapsibleList : VBoxContainer
 {
     [Export]
     public NodePath? TitleLabelPath;
@@ -220,11 +220,11 @@ public class CollapsibleList : VBoxContainer
         expandButton.Show();
 
         tween.InterpolateProperty(clipBox, "custom_constants/margin_top", cachedTopMarginValue,
-            -clipBox.RectSize.y, 0.3f, Tween.TransitionType.Sine, Tween.EaseType.Out);
+            -clipBox.Size.Y, 0.3f, Tween.TransitionType.Sine, Tween.EaseType.Out);
         tween.Start();
 
         tween.Connect("tween_all_completed", this, nameof(OnCollapsingFinished), null,
-            (int)ConnectFlags.Oneshot);
+            (int)ConnectFlags.OneShot);
 
         isCollapsing = true;
     }

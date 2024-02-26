@@ -30,7 +30,7 @@ using Newtonsoft.Json;
 ///     those few operations are merged into this class.
 ///   </para>
 /// </remarks>
-public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
+public abstract partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
     IGodotEarlyNodeResolve
     where TAction : EditorAction
     where TStage : Node, IReturnableGameState
@@ -95,7 +95,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     ///   a one more level of parent nodes so that different editor components can have their things visible at
     ///   different times
     /// </summary>
-    public Spatial RootOfDynamicallySpawned { get; private set; } = null!;
+    public Node3D RootOfDynamicallySpawned { get; private set; } = null!;
 
     [JsonIgnore]
     public bool TransitionFinished { get; protected set; }
@@ -211,7 +211,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         NodeReferencesResolved = true;
 
         world = GetNode("EditorWorld");
-        RootOfDynamicallySpawned = world.GetNode<Spatial>("DynamicallySpawned");
+        RootOfDynamicallySpawned = world.GetNode<Node3D>("DynamicallySpawned");
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
         editorGUIBaseNode = GetNode<Control>(EditorGUIBaseNodePath);
 
@@ -248,7 +248,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!Ready)
         {
@@ -741,7 +741,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         DirtyMutationPointsCache();
     }
 
-    protected virtual void UpdateEditor(float delta)
+    protected virtual void UpdateEditor(double delta)
     {
         if (mutationPointsCache == null)
         {
@@ -848,7 +848,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
             var scene = SceneManager.Instance.LoadScene(typeof(TStage).GetCustomAttribute<SceneLoadedClassAttribute>());
 
-            ReturnToStage = (TStage)scene.Instance();
+            ReturnToStage = (TStage)scene.Instantiate();
             ReturnToStage.CurrentGame = CurrentGame;
         }
     }

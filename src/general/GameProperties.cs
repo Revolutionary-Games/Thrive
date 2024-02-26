@@ -430,7 +430,7 @@ public class GameProperties
             {
                 var finalPos = direction * distance;
                 var template = new CellTemplate(type,
-                    new Hex(Mathf.RoundToInt(finalPos.x), Mathf.RoundToInt(finalPos.y)), 0);
+                    new Hex(Mathf.RoundToInt(finalPos.X), Mathf.RoundToInt(finalPos.Y)), 0);
 
                 if (species.Cells.CanPlace(template, workMemory1, workMemory2))
                 {

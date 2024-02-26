@@ -5,8 +5,8 @@
 [ext_resource path="res://src/gui_common/TopLevelContainer.tscn" type="PackedScene" id=3]
 
 [node name="CustomWindow" instance=ExtResource( 3 )]
-margin_right = 94.0
-margin_bottom = 69.0
+offset_right = 94.0
+offset_bottom = 69.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 WindowTitle = ""

@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   A chromatic aberration and barrel distortion filter effect
 /// </summary>
-public class ChromaticFilter : TextureRect
+public partial class ChromaticFilter : TextureRect
 {
     private ShaderMaterial? material;
 
@@ -42,6 +42,6 @@ public class ChromaticFilter : TextureRect
 
     private void SetAmount(float amount)
     {
-        material!.SetShaderParam("MAX_DIST_PX", amount);
+        material!.SetShaderParameter("MAX_DIST_PX", amount);
     }
 }

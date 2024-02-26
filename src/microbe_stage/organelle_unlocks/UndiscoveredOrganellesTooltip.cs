@@ -3,7 +3,7 @@
 /// <summary>
 ///   The tooltip for undiscovered organelles
 /// </summary>
-public class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
+public partial class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
 {
     [Export]
     public NodePath? NameLabelPath;

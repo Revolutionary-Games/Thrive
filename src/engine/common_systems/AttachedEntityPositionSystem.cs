@@ -24,7 +24,7 @@
             this.worldSimulation = worldSimulation;
         }
 
-        protected override void Update(float state, in Entity entity)
+        protected override void Update(float delta, in Entity entity)
         {
             ref var attachInfo = ref entity.Get<AttachedToEntity>();
 

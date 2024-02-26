@@ -30,7 +30,7 @@ public static class TutorialHelper
     ///   Handles process for all tutorial GUI derived classes.
     ///   This passes time to the TutorialState as the tutorial GUI Node shouldn't stop processing on pause
     /// </summary>
-    public static void ProcessTutorialGUI(ITutorialGUI gui, float delta)
+    public static void ProcessTutorialGUI(ITutorialGUI gui, double delta)
     {
         // Just to make sure this is reset properly
         gui.IsClosingAutomatically = false;

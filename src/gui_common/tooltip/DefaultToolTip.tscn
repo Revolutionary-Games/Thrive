@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=1]
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.cs" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -16,34 +16,34 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="DefaultTooltip" type="PanelContainer"]
-margin_right = 14.0
-margin_bottom = 14.0
+offset_right = 14.0
+offset_bottom = 14.0
 mouse_filter = 2
-custom_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource( 1 )
 script = ExtResource( 3 )
 DescriptionLabelPath = NodePath("../DefaultTooltip/MarginContainer/VBoxContainer/Description")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 13.0
-margin_bottom = 28.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 13.0
+offset_bottom = 28.0
 mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 7.0
-margin_bottom = 22.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 7.0
+offset_bottom = 22.0
 mouse_filter = 2
-custom_constants/separation = 0
+theme_override_constants/separation = 0
 
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_right = 2.0
-margin_bottom = 17.0
+offset_right = 2.0
+offset_bottom = 17.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
+theme_override_fonts/font = ExtResource( 1 )

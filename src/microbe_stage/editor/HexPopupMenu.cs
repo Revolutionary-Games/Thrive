@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Base class for more specialized right click popup menus for the editor
 /// </summary>
-public abstract class HexPopupMenu : CustomPopupMenu
+public abstract partial class HexPopupMenu : CustomPopupMenu
 {
     [Export]
     public NodePath? TitleLabelPath;
@@ -34,13 +34,13 @@ public abstract class HexPopupMenu : CustomPopupMenu
     private string? deleteTooltip;
 
     [Signal]
-    public delegate void DeletePressed();
+    public delegate void DeletePressedEventHandler();
 
     [Signal]
-    public delegate void MovePressed();
+    public delegate void MovePressedEventHandler();
 
     [Signal]
-    public delegate void ModifyPressed();
+    public delegate void ModifyPressedEventHandler();
 
     public Func<IEnumerable<EditorCombinableActionData>, int>? GetActionPrice { get; set; }
 
@@ -55,7 +55,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
             // TODO: See #1857
             if (ShowPopup)
             {
-                RectPosition = GetViewport().GetMousePosition();
+                Position = GetViewport().GetMousePosition();
                 OpenModal();
             }
             else
@@ -134,7 +134,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
     {
         if (IsInteractable)
         {
-            EmitSignal(nameof(DeletePressed));
+            EmitSignal(nameof(DeletePressedEventHandler));
 
             Close();
 
@@ -150,7 +150,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
     {
         if (IsInteractable)
         {
-            EmitSignal(nameof(MovePressed));
+            EmitSignal(nameof(MovePressedEventHandler));
 
             Close();
 
@@ -209,14 +209,14 @@ public abstract class HexPopupMenu : CustomPopupMenu
         if (pressed)
         {
             icon.Modulate = new Color(0, 0, 0);
-            nameLabel.AddColorOverride("font_color", new Color(0, 0, 0));
-            mpLabel.AddColorOverride("font_color", new Color(0, 0, 0));
+            nameLabel.AddThemeColorOverride("font_color", new Color(0, 0, 0));
+            mpLabel.AddThemeColorOverride("font_color", new Color(0, 0, 0));
         }
         else
         {
             icon.Modulate = new Color(1, 1, 1);
-            nameLabel.AddColorOverride("font_color", new Color(1, 1, 1));
-            mpLabel.AddColorOverride("font_color", new Color(1, 1, 1));
+            nameLabel.AddThemeColorOverride("font_color", new Color(1, 1, 1));
+            mpLabel.AddThemeColorOverride("font_color", new Color(1, 1, 1));
         }
     }
 
@@ -227,7 +227,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(DeletePressed));
+        EmitSignal(nameof(DeletePressedEventHandler));
 
         Close();
     }
@@ -239,7 +239,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(MovePressed));
+        EmitSignal(nameof(MovePressedEventHandler));
 
         Close();
     }
@@ -251,7 +251,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(ModifyPressed));
+        EmitSignal(nameof(ModifyPressedEventHandler));
 
         Close();
     }

@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Shows a list of Compounds with their amounts
 /// </summary>
-public class CompoundListBox : HBoxContainer
+public partial class CompoundListBox : HBoxContainer
 {
     private readonly ChildObjectCache<Compound, CompoundAmount> compoundAmountControls;
 

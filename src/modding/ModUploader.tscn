@@ -5,7 +5,7 @@
 [ext_resource path="res://src/modding/ModUploader.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="FontFile" id=6]
 
 [node name="ModUploader" type="Control"]
 anchor_right = 1.0
@@ -39,17 +39,17 @@ UploadSucceededDialogPath = NodePath("UploadSuccess")
 UploadSucceededTextPath = NodePath("UploadSuccess/VBoxContainer/CustomRichTextLabel")
 
 [node name="Dialog" parent="." instance=ExtResource( 2 )]
-margin_right = 580.0
-margin_bottom = 530.0
+offset_right = 580.0
+offset_bottom = 530.0
 WindowTitle = "MOD_UPLOADER"
 ConfirmText = "UPLOAD"
 HideOnOk = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Dialog"]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 565.0
-margin_bottom = 559.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 565.0
+offset_bottom = 559.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -58,9 +58,9 @@ __meta__ = {
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Dialog/VBoxContainer2"]
-margin_right = 550.0
-margin_bottom = 500.0
-rect_min_size = Vector2( 550, 500 )
+offset_right = 550.0
+offset_bottom = 500.0
+custom_minimum_size = Vector2( 550, 500 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -68,180 +68,180 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer"]
-margin_right = 550.0
-margin_bottom = 919.0
+offset_right = 550.0
+offset_bottom = 919.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
-margin_right = 544.0
-margin_bottom = 25.0
+offset_right = 544.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_right = 167.0
-margin_bottom = 25.0
+offset_right = 167.0
+offset_bottom = 25.0
 text = "MOD_TO_UPLOAD"
 
 [node name="Mods" type="OptionButton" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 171.0
-margin_right = 544.0
-margin_bottom = 25.0
+offset_left = 171.0
+offset_right = 544.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 clip_text = true
 expand_icon = true
 
 [node name="Spacer" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
-margin_top = 29.0
-margin_right = 544.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 29.0
+offset_right = 544.0
+offset_bottom = 34.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="UnknownItem" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
-margin_top = 38.0
-margin_right = 544.0
-margin_bottom = 170.0
+offset_top = 38.0
+offset_right = 544.0
+offset_bottom = 170.0
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem"]
-margin_right = 544.0
-margin_bottom = 25.0
+offset_right = 544.0
+offset_bottom = 25.0
 text = "UNKNOWN_WORKSHOP_ID"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem"]
-margin_top = 29.0
-margin_right = 544.0
-margin_bottom = 64.0
+offset_top = 29.0
+offset_right = 544.0
+offset_bottom = 64.0
 alignment = 1
 
 [node name="New" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer"]
-margin_left = 202.0
-margin_right = 341.0
-margin_bottom = 35.0
+offset_left = 202.0
+offset_right = 341.0
+offset_bottom = 35.0
 text = "CREATE_NEW"
 
 [node name="Existing" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer"]
-margin_left = 259.0
-margin_right = 458.0
-margin_bottom = 35.0
+offset_left = 259.0
+offset_right = 458.0
+offset_bottom = 35.0
 toggle_mode = true
 text = "ENTER_EXISTING_ID"
 
 [node name="ManualId" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem"]
-margin_top = 68.0
-margin_right = 544.0
-margin_bottom = 132.0
+offset_top = 68.0
+offset_right = 544.0
+offset_bottom = 132.0
 
 [node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId"]
-margin_right = 544.0
-margin_bottom = 25.0
+offset_right = 544.0
+offset_bottom = 25.0
 text = "ENTER_EXISTING_WORKSHOP_ID"
 autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId"]
-margin_top = 29.0
-margin_right = 544.0
-margin_bottom = 64.0
+offset_top = 29.0
+offset_right = 544.0
+offset_bottom = 64.0
 size_flags_horizontal = 3
 
 [node name="Id" type="LineEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId/HBoxContainer"]
-margin_right = 470.0
-margin_bottom = 35.0
+offset_right = 470.0
+offset_bottom = 35.0
 size_flags_horizontal = 3
 max_length = 50
 placeholder_text = "ID_NUMBER"
 
 [node name="Apply" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId/HBoxContainer"]
-margin_left = 474.0
-margin_right = 544.0
-margin_bottom = 35.0
+offset_left = 474.0
+offset_right = 544.0
+offset_bottom = 35.0
 text = "APPLY"
 
 [node name="DetailsEditor" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
-margin_top = 174.0
-margin_right = 544.0
-margin_bottom = 825.0
+offset_top = 174.0
+offset_right = 544.0
+offset_bottom = 825.0
 
 [node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_right = 544.0
-margin_bottom = 25.0
+offset_right = 544.0
+offset_bottom = 25.0
 text = "WORKSHOP_ITEM_TITLE"
 
 [node name="Title" type="LineEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 29.0
-margin_right = 544.0
-margin_bottom = 60.0
+offset_top = 29.0
+offset_right = 544.0
+offset_bottom = 60.0
 max_length = 128
 
 [node name="Spacer" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 64.0
-margin_right = 544.0
-margin_bottom = 68.0
-rect_min_size = Vector2( 0, 4 )
+offset_top = 64.0
+offset_right = 544.0
+offset_bottom = 68.0
+custom_minimum_size = Vector2( 0, 4 )
 
 [node name="Label2" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 72.0
-margin_right = 544.0
-margin_bottom = 97.0
+offset_top = 72.0
+offset_right = 544.0
+offset_bottom = 97.0
 text = "WORKSHOP_ITEM_DESCRIPTION"
 
 [node name="Description" type="TextEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 101.0
-margin_right = 544.0
-margin_bottom = 251.0
-rect_min_size = Vector2( 0, 150 )
+offset_top = 101.0
+offset_right = 544.0
+offset_bottom = 251.0
+custom_minimum_size = Vector2( 0, 150 )
 
 [node name="Spacer2" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 255.0
-margin_right = 544.0
-margin_bottom = 259.0
-rect_min_size = Vector2( 0, 4 )
+offset_top = 255.0
+offset_right = 544.0
+offset_bottom = 259.0
+custom_minimum_size = Vector2( 0, 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 263.0
-margin_right = 544.0
-margin_bottom = 288.0
+offset_top = 263.0
+offset_right = 544.0
+offset_bottom = 288.0
 
 [node name="CheckBox" type="CheckBox" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer"]
-margin_right = 93.0
-margin_bottom = 25.0
-hint_tooltip = "WORKSHOP_VISIBILITY_TOOLTIP"
+offset_right = 93.0
+offset_bottom = 25.0
+tooltip_text = "WORKSHOP_VISIBILITY_TOOLTIP"
 text = "VISIBLE"
 
 [node name="Label3" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 292.0
-margin_right = 544.0
-margin_bottom = 317.0
+offset_top = 292.0
+offset_right = 544.0
+offset_bottom = 317.0
 text = "WORKSHOP_ITEM_TAGS"
 
 [node name="Tags" type="LineEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 321.0
-margin_right = 544.0
-margin_bottom = 352.0
+offset_top = 321.0
+offset_right = 544.0
+offset_bottom = 352.0
 max_length = 150
 
 [node name="Spacer3" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 356.0
-margin_right = 544.0
-margin_bottom = 360.0
-rect_min_size = Vector2( 0, 4 )
+offset_top = 356.0
+offset_right = 544.0
+offset_bottom = 360.0
+custom_minimum_size = Vector2( 0, 4 )
 
 [node name="Label4" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 364.0
-margin_right = 544.0
-margin_bottom = 389.0
+offset_top = 364.0
+offset_right = 544.0
+offset_bottom = 389.0
 text = "WORKSHOP_ITEM_PREVIEW"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 393.0
-margin_right = 544.0
-margin_bottom = 521.0
+offset_top = 393.0
+offset_right = 544.0
+offset_bottom = 521.0
 size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2"]
-margin_right = 447.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 0, 128 )
+offset_right = 447.0
+offset_bottom = 128.0
+custom_minimum_size = Vector2( 0, 128 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -251,78 +251,78 @@ __meta__ = {
 }
 
 [node name="Browse" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2"]
-margin_left = 451.0
-margin_top = 46.0
-margin_right = 544.0
-margin_bottom = 81.0
+offset_left = 451.0
+offset_top = 46.0
+offset_right = 544.0
+offset_bottom = 81.0
 size_flags_vertical = 4
 text = "BROWSE"
 
 [node name="Spacer5" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 525.0
-margin_right = 544.0
-margin_bottom = 529.0
-rect_min_size = Vector2( 0, 4 )
+offset_top = 525.0
+offset_right = 544.0
+offset_bottom = 529.0
+custom_minimum_size = Vector2( 0, 4 )
 
 [node name="ContentLocation" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 533.0
-margin_right = 544.0
-margin_bottom = 555.0
-custom_fonts/font = ExtResource( 6 )
+offset_top = 533.0
+offset_right = 544.0
+offset_bottom = 555.0
+theme_override_fonts/font = ExtResource( 6 )
 text = "CONTENT_UPLOADED_FROM"
 autowrap = true
 
 [node name="Spacer6" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 559.0
-margin_right = 544.0
-margin_bottom = 563.0
-rect_min_size = Vector2( 0, 4 )
+offset_top = 559.0
+offset_right = 544.0
+offset_bottom = 563.0
+custom_minimum_size = Vector2( 0, 4 )
 
 [node name="Forget" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_right = 228.0
-margin_bottom = 35.0
-hint_tooltip = "FORGET_MOD_DETAILS_TOOLTIP"
+offset_right = 228.0
+offset_bottom = 35.0
+tooltip_text = "FORGET_MOD_DETAILS_TOOLTIP"
 size_flags_horizontal = 0
 text = "FORGET_MOD_DETAILS"
 
 [node name="Label5" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 567.0
-margin_right = 544.0
-margin_bottom = 592.0
-hint_tooltip = "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
+offset_top = 567.0
+offset_right = 544.0
+offset_bottom = 592.0
+tooltip_text = "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 mouse_filter = 1
 text = "WORKSHOP_ITEM_CHANGE_NOTES"
 
 [node name="ChangeNotes" type="TextEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 596.0
-margin_right = 544.0
-margin_bottom = 651.0
-rect_min_size = Vector2( 0, 55 )
-hint_tooltip = "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
+offset_top = 596.0
+offset_right = 544.0
+offset_bottom = 651.0
+custom_minimum_size = Vector2( 0, 55 )
+tooltip_text = "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 
 [node name="WorkshopNotice" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
-margin_top = 829.0
-margin_right = 544.0
-margin_bottom = 851.0
+offset_top = 829.0
+offset_right = 544.0
+offset_bottom = 851.0
 ExtendedBbcode = "MOD_UPLOADER"
 
 [node name="Error" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
-margin_top = 855.0
-margin_right = 544.0
-margin_bottom = 880.0
+offset_top = 855.0
+offset_right = 544.0
+offset_bottom = 880.0
 
 [node name="ButtonOverlapPreventer" type="Control" parent="Dialog/VBoxContainer2"]
-margin_top = 504.0
-margin_right = 550.0
-margin_bottom = 544.0
-rect_min_size = Vector2( 0, 40 )
+offset_top = 504.0
+offset_right = 550.0
+offset_bottom = 544.0
+custom_minimum_size = Vector2( 0, 40 )
 mouse_filter = 2
 
 [node name="PreviewSelector" type="FileDialog" parent="."]
-margin_right = 364.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 87.5 )
-popup_exclusive = true
+offset_right = 364.0
+offset_bottom = 190.0
+custom_minimum_size = Vector2( 250, 87.5 )
+exclusive = true
 window_title = "SELECT_PREVIEW_IMAGE"
 resizable = true
 mode_overrides_title = false
@@ -330,28 +330,28 @@ mode = 0
 access = 2
 
 [node name="UploadSuccess" parent="." instance=ExtResource( 5 )]
-rect_min_size = Vector2( 450, 50 )
+custom_minimum_size = Vector2( 450, 50 )
 Exclusive = true
 WindowTitle = "UPLOAD_SUCCEEDED"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UploadSuccess"]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 115.0
-margin_bottom = 104.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 104.0
 size_flags_horizontal = 3
 
 [node name="CustomRichTextLabel" parent="UploadSuccess/VBoxContainer" instance=ExtResource( 4 )]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 212.0
-margin_bottom = 65.0
-rect_min_size = Vector2( 100, 50 )
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 212.0
+offset_bottom = 65.0
+custom_minimum_size = Vector2( 100, 50 )
 size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="UploadSuccess/VBoxContainer"]
-margin_right = 10.0
-margin_bottom = 35.0
+offset_right = 10.0
+offset_bottom = 35.0
 size_flags_horizontal = 4
 text = "OK"
 

@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class MutationPointsBar : HBoxContainer
+public partial class MutationPointsBar : HBoxContainer
 {
     [Export]
     public NodePath? CurrentMutationPointsLabelPath;

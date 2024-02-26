@@ -10,18 +10,18 @@ using Godot;
 ///     always rotated towards the camera. That will be needed if this is to be used in some new context.
 ///   </para>
 /// </remarks>
-public class CellBillboard : Spatial
+public partial class CellBillboard : Node3D
 {
     private int displayedHash;
 
     private ICellDefinition? displayedCell;
 
 #pragma warning disable CA2213
-    private MeshInstance? quad;
+    private MeshInstance3D? quad;
 #pragma warning restore CA2213
 
-    private SpatialMaterial material = null!;
-    private Texture? cellImage;
+    private StandardMaterial3D material = null!;
+    private Texture2D? cellImage;
     private ImageTask? imageTask;
 
     private bool dirty = true;
@@ -64,12 +64,12 @@ public class CellBillboard : Spatial
 
     public override void _Ready()
     {
-        quad = GetChild<MeshInstance>(0);
+        quad = GetChild<MeshInstance3D>(0);
 
-        material = new SpatialMaterial
+        material = new StandardMaterial3D
         {
             AlbedoTexture = null,
-            FlagsTransparent = true,
+            Transparency = BaseMaterial3D.TransparencyEnum.Alpha,
         };
 
         quad.MaterialOverride = material;
@@ -80,7 +80,7 @@ public class CellBillboard : Spatial
         ApplyScale();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!dirty)
             return;

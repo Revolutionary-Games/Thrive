@@ -12,7 +12,7 @@ CityScreenPopupPath = NodePath("CityScreen")
 visible = false
 
 [node name="Build" parent="ScrollContainer/HotBar" index="0"]
-hint_tooltip = "BUILD_CITY"
+tooltip_text = "BUILD_CITY"
 disabled = true
 
 [node name="CityScreen" parent="." index="8" instance=ExtResource( 3 )]

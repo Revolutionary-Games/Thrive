@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/engine/ChromaticFilter.cs" type="Script" id=1]
-[ext_resource path="res://shaders/Chromatic.shader" type="Shader" id=2]
-[ext_resource path="res://assets/textures/blank.png" type="Texture" id=3]
+[ext_resource path="res://shaders/Chromatic.gdshader" type="Shader" id=2]
+[ext_resource path="res://assets/textures/blank.png" type="Texture2D" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )

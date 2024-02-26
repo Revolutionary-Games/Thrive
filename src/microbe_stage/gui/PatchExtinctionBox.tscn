@@ -1,14 +1,14 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Humongous.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="FontFile" id=1]
+[ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Humongous.tres" type="FontFile" id=2]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/microbe_stage/gui/PatchExtinctionBox.cs" type="Script" id=4]
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="FontFile" id=6]
 [ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=8]
-[ext_resource path="res://shaders/Monochrome.shader" type="Shader" id=9]
+[ext_resource path="res://shaders/Monochrome.gdshader" type="Shader" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.196078 )
@@ -27,8 +27,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -46,72 +46,72 @@ AnimationPlayer = NodePath("AnimationPlayer")
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-margin_right = 1280.0
-margin_bottom = 648.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
+offset_right = 1280.0
+offset_bottom = 648.0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="PatchExtinctionBoxMenu" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1260.0
-margin_bottom = 628.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 628.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
-margin_right = 1240.0
-margin_bottom = 66.0
-custom_colors/font_color = Color( 1, 0.2, 0.2, 1 )
-custom_fonts/font = ExtResource( 2 )
+offset_right = 1240.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color( 1, 0.2, 0.2, 1 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "PATCH_EXTINCTION_CAPITAL"
 align = 1
 valign = 1
 
 [node name="Message" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
-margin_top = 70.0
-margin_right = 1240.0
-margin_bottom = 99.0
-custom_fonts/font = ExtResource( 1 )
+offset_top = 70.0
+offset_right = 1240.0
+offset_bottom = 99.0
+theme_override_fonts/font = ExtResource( 1 )
 text = "PATCH_EXTINCTION_BOX_TEXT"
 align = 1
 valign = 1
 autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
-margin_top = 103.0
-margin_right = 1240.0
-margin_bottom = 608.0
+offset_top = 103.0
+offset_right = 1240.0
+offset_bottom = 608.0
 size_flags_vertical = 3
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
-margin_right = 100.0
-margin_bottom = 505.0
-rect_min_size = Vector2( 100, 0 )
-custom_styles/separator = SubResource( 4 )
+offset_right = 100.0
+offset_bottom = 505.0
+custom_minimum_size = Vector2( 100, 0 )
+theme_override_styles/separator = SubResource( 4 )
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
-margin_left = 104.0
-margin_right = 786.0
-margin_bottom = 505.0
+offset_left = 104.0
+offset_right = 786.0
+offset_bottom = 505.0
 size_flags_horizontal = 3
-custom_constants/margin_top = 15
-custom_constants/margin_bottom = 45
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 45
 
 [node name="MapPanel" type="PanelContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer"]
-margin_top = 15.0
-margin_right = 682.0
-margin_bottom = 460.0
+offset_top = 15.0
+offset_right = 682.0
+offset_bottom = 460.0
 size_flags_horizontal = 3
 theme = ExtResource( 8 )
 __meta__ = {
@@ -119,68 +119,68 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 681.0
-margin_bottom = 444.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 681.0
+offset_bottom = 444.0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="DraggableScrollContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer" instance=ExtResource( 7 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 670.0
-margin_bottom = 433.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 670.0
+offset_bottom = 433.0
 ShowScrollbars = false
 ContentPath = NodePath("PatchMapDrawer")
 
 [node name="PatchMapDrawer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/DraggableScrollContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1500.0
-margin_bottom = 1500.0
-rect_min_size = Vector2( 1500, 1500 )
+offset_right = 1500.0
+offset_bottom = 1500.0
+custom_minimum_size = Vector2( 1500, 1500 )
 DrawDefaultMapIfEmpty = false
 PatchNodeWidth = 64.0
 PatchNodeHeight = 64.0
 MonochromeMaterial = SubResource( 3 )
 
 [node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer"]
-margin_left = 483.0
-margin_top = 10.0
-margin_right = 670.0
-margin_bottom = 40.0
+offset_left = 483.0
+offset_top = 10.0
+offset_right = 670.0
+offset_bottom = 40.0
 size_flags_horizontal = 10
 size_flags_vertical = 2
 
 [node name="FindCurrentPatchButton" type="Button" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/VBoxContainer"]
-margin_right = 187.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 6 )
+offset_right = 187.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource( 6 )
 text = "FIND_CURRENT_PATCH"
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
-margin_left = 790.0
-margin_right = 1136.0
-margin_bottom = 505.0
-custom_constants/margin_top = 15
-custom_constants/margin_bottom = 45
+offset_left = 790.0
+offset_right = 1136.0
+offset_bottom = 505.0
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 45
 
 [node name="PatchDetailsPanel" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2" instance=ExtResource( 5 )]
-margin_top = 15.0
-margin_right = 346.0
-margin_bottom = 460.0
+offset_top = 15.0
+offset_right = 346.0
+offset_bottom = 460.0
 
 [node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
-margin_left = 1140.0
-margin_right = 1240.0
-margin_bottom = 505.0
-rect_min_size = Vector2( 100, 0 )
-custom_styles/separator = SubResource( 4 )
+offset_left = 1140.0
+offset_right = 1240.0
+offset_bottom = 505.0
+custom_minimum_size = Vector2( 100, 0 )
+theme_override_styles/separator = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FadeIn"

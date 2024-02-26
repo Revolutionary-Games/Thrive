@@ -1,4 +1,4 @@
-﻿namespace Systems
+namespace Systems
 {
     using System;
     using System.Buffers;
@@ -110,7 +110,7 @@
             ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
             // Create graphics top level node if missing for entity
-            spatialInstance.GraphicalInstance ??= new Spatial();
+            spatialInstance.GraphicalInstance ??= new Node3D();
 
 #if DEBUG
 
@@ -165,7 +165,7 @@
 
             if (cellProperties.CreatedMembrane == null)
             {
-                var membrane = membraneScene.Value.Instance<Membrane>() ??
+                var membrane = membraneScene.Value.Instantiate<Membrane>() ??
                     throw new Exception("Invalid membrane scene");
 
                 SetMembraneDisplayData(membrane, data, ref cellProperties);
@@ -294,10 +294,10 @@
             cellProperties.ApplyMembraneWigglyness(membrane);
         }
 
-        private void CreateOrganelleVisuals(Spatial parentNode, ref OrganelleContainer organelleContainer,
+        private void CreateOrganelleVisuals(Node3D parentNode, ref OrganelleContainer organelleContainer,
             ref CellProperties cellProperties)
         {
-            organelleContainer.CreatedOrganelleVisuals ??= new Dictionary<PlacedOrganelle, Spatial>();
+            organelleContainer.CreatedOrganelleVisuals ??= new Dictionary<PlacedOrganelle, Node3D>();
 
             var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour);
 
@@ -309,7 +309,7 @@
 
                 inUseOrganelles.Add(placedOrganelle);
 
-                Transform transform;
+                Transform3D transform;
 
                 if (!placedOrganelle.Definition.PositionedExternally)
                 {
@@ -333,12 +333,12 @@
 
                     // For organelle visuals to work, they need to be wrapped in an extra layer of Spatial to not
                     // mess with the normal scale that is used by many organelle scenes
-                    var extraLayer = new Spatial
+                    var extraLayer = new Node3D
                     {
                         Transform = transform,
                     };
 
-                    var visualsInstance = placedOrganelle.Definition.LoadedScene.Instance<Spatial>();
+                    var visualsInstance = placedOrganelle.Definition.LoadedScene.Instantiate<Node3D>();
                     placedOrganelle.ReportCreatedGraphics(visualsInstance);
 
                     extraLayer.AddChild(visualsInstance);
@@ -367,7 +367,7 @@
                 int count = tempMaterialsList.Count;
                 for (int i = start; i < count; ++i)
                 {
-                    tempMaterialsList[i].SetShaderParam("tint", organelleColour);
+                    tempMaterialsList[i].SetShaderParameter("tint", organelleColour);
                 }
             }
 

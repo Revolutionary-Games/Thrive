@@ -2,12 +2,12 @@
 
 [ext_resource path="res://src/thriveopedia/pages/ThriveopediaPatchMapPage.cs" type="Script" id=1]
 [ext_resource path="res://src/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=3]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="FontFile" id=4]
 [ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=7]
-[ext_resource path="res://shaders/Monochrome.shader" type="Shader" id=8]
+[ext_resource path="res://shaders/Monochrome.gdshader" type="Shader" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 8 )
@@ -20,78 +20,78 @@ PatchDetailsPanelPath = NodePath("HSplitContainer/PatchDetailsPanel")
 SeedLabelPath = NodePath("HSplitContainer/MapPanel/MarginContainer/SeedLabel")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="." index="1"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 935.0
-margin_bottom = 599.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 935.0
+offset_bottom = 599.0
 size_flags_vertical = 3
-custom_constants/separation = 15
+theme_override_constants/separation = 15
 collapsed = true
 
 [node name="MapPanel" type="PanelContainer" parent="HSplitContainer" index="0"]
-margin_right = 567.0
-margin_bottom = 598.0
+offset_right = 567.0
+offset_bottom = 598.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/MapPanel" index="0"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 566.0
-margin_bottom = 597.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 566.0
+offset_bottom = 597.0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="DraggableScrollContainer" parent="HSplitContainer/MapPanel/MarginContainer" index="0" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 555.0
-margin_bottom = 586.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 555.0
+offset_bottom = 586.0
 ContentPath = NodePath("PatchMapDrawer")
 
 [node name="PatchMapDrawer" parent="HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" index="0" instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1500.0
-margin_bottom = 1500.0
-rect_min_size = Vector2( 1500, 1500 )
+offset_right = 1500.0
+offset_bottom = 1500.0
+custom_minimum_size = Vector2( 1500, 1500 )
 DrawDefaultMapIfEmpty = false
 MonochromeMaterial = SubResource( 1 )
 
 [node name="VBoxContainer" type="HBoxContainer" parent="HSplitContainer/MapPanel/MarginContainer" index="1"]
-margin_left = 368.0
-margin_top = 10.0
-margin_right = 555.0
-margin_bottom = 40.0
+offset_left = 368.0
+offset_top = 10.0
+offset_right = 555.0
+offset_bottom = 40.0
 size_flags_horizontal = 10
 size_flags_vertical = 2
 
 [node name="FindCurrentPatchButton" type="Button" parent="HSplitContainer/MapPanel/MarginContainer/VBoxContainer" index="0"]
-margin_right = 187.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 4 )
+offset_right = 187.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource( 4 )
 text = "FIND_CURRENT_PATCH"
 
 [node name="SeedLabel" type="Label" parent="HSplitContainer/MapPanel/MarginContainer" index="2"]
-margin_left = 10.0
-margin_top = 569.0
-margin_right = 555.0
-margin_bottom = 586.0
+offset_left = 10.0
+offset_top = 569.0
+offset_right = 555.0
+offset_bottom = 586.0
 size_flags_vertical = 8
-custom_fonts/font = ExtResource( 3 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "SEED_LABEL"
 
 [node name="PatchDetailsPanel" parent="HSplitContainer" index="1" instance=ExtResource( 7 )]
-margin_left = 582.0
-margin_right = 934.0
-margin_bottom = 598.0
-rect_min_size = Vector2( 352, 0 )
+offset_left = 582.0
+offset_right = 934.0
+offset_bottom = 598.0
+custom_minimum_size = Vector2( 352, 0 )
 MoveToPatchButtonVisible = false
 
 [connection signal="OnCurrentPatchCentered" from="HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" method="CenterTo"]

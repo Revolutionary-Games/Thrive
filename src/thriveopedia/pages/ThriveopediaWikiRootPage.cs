@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   Root page for the wiki section of the Thriveopedia. Contains links to major pages within the wiki.
 /// </summary>
-public class ThriveopediaWikiRootPage : ThriveopediaPage
+public partial class ThriveopediaWikiRootPage : ThriveopediaPage
 {
     public override string PageName => "WikiRoot";
 

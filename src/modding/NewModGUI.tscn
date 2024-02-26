@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/modding/NewModGUI.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="FontFile" id=3]
 
 [node name="NewModGUI" type="Control"]
 anchor_right = 1.0
@@ -29,74 +29,74 @@ AssemblyModAutoHarmonyPath = NodePath("CustomWindow/ScrollContainer/MarginContai
 ErrorDisplayPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Error")
 
 [node name="CustomWindow" parent="." instance=ExtResource( 1 )]
-popup_exclusive = true
+exclusive = true
 WindowTitle = "CREATE_NEW_MOD"
 Resizable = true
 ExclusiveAllowCloseOnEscape = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CustomWindow"]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 565.0
-margin_bottom = 465.0
-rect_min_size = Vector2( 550, 450 )
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 565.0
+offset_bottom = 465.0
+custom_minimum_size = Vector2( 550, 450 )
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="CustomWindow/ScrollContainer"]
-margin_right = 550.0
-margin_bottom = 1272.0
+offset_right = 550.0
+offset_bottom = 1272.0
 size_flags_horizontal = 3
-custom_constants/margin_right = 10
+theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer"]
-margin_right = 540.0
-margin_bottom = 1272.0
+offset_right = 540.0
+offset_bottom = 1272.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HelpLine" type="HBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 534.0
-margin_bottom = 25.0
+offset_right = 534.0
+offset_bottom = 25.0
 
 [node name="Label" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/HelpLine"]
-margin_right = 286.0
-margin_bottom = 25.0
+offset_right = 286.0
+offset_bottom = 25.0
 text = "MODDING_INSTRUCTIONS_ON"
 
 [node name="LinkButton" type="LinkButton" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/HelpLine"]
-margin_left = 290.0
-margin_right = 380.0
-margin_bottom = 25.0
+offset_left = 290.0
+offset_right = 380.0
+offset_bottom = 25.0
 button_mask = 5
 text = "OUR_WIKI"
 
 [node name="Control" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 29.0
-margin_right = 534.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 29.0
+offset_right = 534.0
+offset_bottom = 34.0
+custom_minimum_size = Vector2( 0, 5 )
 size_flags_horizontal = 3
 
 [node name="Form" type="VBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 38.0
-margin_right = 534.0
-margin_bottom = 1214.0
+offset_top = 38.0
+offset_right = 534.0
+offset_bottom = 1214.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_right = 534.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 3 )
+offset_right = 534.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_INTERNAL_NAME"
 
 [node name="InternalName" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 29.0
-margin_right = 534.0
-margin_bottom = 60.0
+offset_top = 29.0
+offset_right = 534.0
+offset_bottom = 60.0
 text = "Folder name here..."
 max_length = 100
 __meta__ = {
@@ -104,22 +104,22 @@ __meta__ = {
 }
 
 [node name="Spacer14" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 64.0
-margin_right = 534.0
-margin_bottom = 69.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 64.0
+offset_right = 534.0
+offset_bottom = 69.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label2" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 73.0
-margin_right = 534.0
-margin_bottom = 98.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 73.0
+offset_right = 534.0
+offset_bottom = 98.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_NAME"
 
 [node name="Name" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 102.0
-margin_right = 534.0
-margin_bottom = 133.0
+offset_top = 102.0
+offset_right = 534.0
+offset_bottom = 133.0
 text = "Name goes here..."
 max_length = 120
 __meta__ = {
@@ -127,22 +127,22 @@ __meta__ = {
 }
 
 [node name="Spacer" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 137.0
-margin_right = 534.0
-margin_bottom = 142.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 137.0
+offset_right = 534.0
+offset_bottom = 142.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label3" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 146.0
-margin_right = 534.0
-margin_bottom = 171.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 146.0
+offset_right = 534.0
+offset_bottom = 171.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_AUTHOR"
 
 [node name="Author" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 175.0
-margin_right = 534.0
-margin_bottom = 206.0
+offset_top = 175.0
+offset_right = 534.0
+offset_bottom = 206.0
 text = "Author goes here..."
 max_length = 120
 __meta__ = {
@@ -150,22 +150,22 @@ __meta__ = {
 }
 
 [node name="Spacer2" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 210.0
-margin_right = 534.0
-margin_bottom = 215.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 210.0
+offset_right = 534.0
+offset_bottom = 215.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label4" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 219.0
-margin_right = 534.0
-margin_bottom = 244.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 219.0
+offset_right = 534.0
+offset_bottom = 244.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_VERSION"
 
 [node name="Version" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 248.0
-margin_right = 534.0
-margin_bottom = 279.0
+offset_top = 248.0
+offset_right = 534.0
+offset_bottom = 279.0
 text = "1.0"
 max_length = 50
 __meta__ = {
@@ -173,22 +173,22 @@ __meta__ = {
 }
 
 [node name="Spacer3" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 283.0
-margin_right = 534.0
-margin_bottom = 288.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 283.0
+offset_right = 534.0
+offset_bottom = 288.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label5" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 292.0
-margin_right = 534.0
-margin_bottom = 317.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 292.0
+offset_right = 534.0
+offset_bottom = 317.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_DESCRIPTION"
 
 [node name="Description" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 321.0
-margin_right = 534.0
-margin_bottom = 352.0
+offset_top = 321.0
+offset_right = 534.0
+offset_bottom = 352.0
 text = "Mod description"
 max_length = 150
 __meta__ = {
@@ -196,23 +196,23 @@ __meta__ = {
 }
 
 [node name="Spacer4" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 356.0
-margin_right = 534.0
-margin_bottom = 361.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 356.0
+offset_right = 534.0
+offset_bottom = 361.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label6" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 365.0
-margin_right = 534.0
-margin_bottom = 390.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 365.0
+offset_right = 534.0
+offset_bottom = 390.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_EXTENDED_DESCRIPTION"
 
 [node name="LongDescription" type="TextEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 394.0
-margin_right = 534.0
-margin_bottom = 519.0
-rect_min_size = Vector2( 0, 125 )
+offset_top = 394.0
+offset_right = 534.0
+offset_bottom = 519.0
+custom_minimum_size = Vector2( 0, 125 )
 text = "Longer mod description"
 draw_tabs = true
 __meta__ = {
@@ -220,22 +220,22 @@ __meta__ = {
 }
 
 [node name="Spacer5" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 523.0
-margin_right = 534.0
-margin_bottom = 528.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 523.0
+offset_right = 534.0
+offset_bottom = 528.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label7" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 532.0
-margin_right = 534.0
-margin_bottom = 557.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 532.0
+offset_right = 534.0
+offset_bottom = 557.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_ICON_FILE"
 
 [node name="IconFile" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 561.0
-margin_right = 534.0
-margin_bottom = 592.0
+offset_top = 561.0
+offset_right = 534.0
+offset_bottom = 592.0
 text = "mod_icon.png"
 max_length = 200
 __meta__ = {
@@ -243,22 +243,22 @@ __meta__ = {
 }
 
 [node name="Spacer6" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 596.0
-margin_right = 534.0
-margin_bottom = 601.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 596.0
+offset_right = 534.0
+offset_bottom = 601.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label8" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 605.0
-margin_right = 534.0
-margin_bottom = 630.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 605.0
+offset_right = 534.0
+offset_bottom = 630.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_INFO_URL"
 
 [node name="InfoURL" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 634.0
-margin_right = 534.0
-margin_bottom = 665.0
+offset_top = 634.0
+offset_right = 534.0
+offset_bottom = 665.0
 text = "some URL"
 max_length = 200
 __meta__ = {
@@ -266,22 +266,22 @@ __meta__ = {
 }
 
 [node name="Spacer7" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 669.0
-margin_right = 534.0
-margin_bottom = 674.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 669.0
+offset_right = 534.0
+offset_bottom = 674.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label9" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 678.0
-margin_right = 534.0
-margin_bottom = 703.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 678.0
+offset_right = 534.0
+offset_bottom = 703.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_LICENSE"
 
 [node name="License" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 707.0
-margin_right = 534.0
-margin_bottom = 738.0
+offset_top = 707.0
+offset_right = 534.0
+offset_bottom = 738.0
 text = "MIT"
 max_length = 50
 __meta__ = {
@@ -289,22 +289,22 @@ __meta__ = {
 }
 
 [node name="Spacer8" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 742.0
-margin_right = 534.0
-margin_bottom = 747.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 742.0
+offset_right = 534.0
+offset_bottom = 747.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label10" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 751.0
-margin_right = 534.0
-margin_bottom = 776.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 751.0
+offset_right = 534.0
+offset_bottom = 776.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_RECOMMENDED_THRIVE"
 
 [node name="RecommendedThrive" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 780.0
-margin_right = 534.0
-margin_bottom = 811.0
+offset_top = 780.0
+offset_right = 534.0
+offset_bottom = 811.0
 text = "0.5.6"
 max_length = 40
 __meta__ = {
@@ -312,22 +312,22 @@ __meta__ = {
 }
 
 [node name="Spacer9" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 815.0
-margin_right = 534.0
-margin_bottom = 820.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 815.0
+offset_right = 534.0
+offset_bottom = 820.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label11" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 824.0
-margin_right = 534.0
-margin_bottom = 849.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 824.0
+offset_right = 534.0
+offset_bottom = 849.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_MINIMUM_THRIVE"
 
 [node name="MinimumThrive" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 853.0
-margin_right = 534.0
-margin_bottom = 884.0
+offset_top = 853.0
+offset_right = 534.0
+offset_bottom = 884.0
 text = "0.5.6-alpha"
 max_length = 40
 __meta__ = {
@@ -335,22 +335,22 @@ __meta__ = {
 }
 
 [node name="Spacer10" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 888.0
-margin_right = 534.0
-margin_bottom = 893.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 888.0
+offset_right = 534.0
+offset_bottom = 893.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label12" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 897.0
-margin_right = 534.0
-margin_bottom = 922.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 897.0
+offset_right = 534.0
+offset_bottom = 922.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_MAXIMUM_THRIVE"
 
 [node name="MaximumThrive" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 926.0
-margin_right = 534.0
-margin_bottom = 957.0
+offset_top = 926.0
+offset_right = 534.0
+offset_bottom = 957.0
 text = "0.5.6"
 max_length = 40
 __meta__ = {
@@ -358,22 +358,22 @@ __meta__ = {
 }
 
 [node name="Spacer11" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 961.0
-margin_right = 534.0
-margin_bottom = 966.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 961.0
+offset_right = 534.0
+offset_bottom = 966.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label13" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 970.0
-margin_right = 534.0
-margin_bottom = 995.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 970.0
+offset_right = 534.0
+offset_bottom = 995.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_PCK_NAME"
 
 [node name="PckName" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 999.0
-margin_right = 534.0
-margin_bottom = 1030.0
+offset_top = 999.0
+offset_right = 534.0
+offset_bottom = 1030.0
 text = "ModName.pck"
 max_length = 200
 __meta__ = {
@@ -381,22 +381,22 @@ __meta__ = {
 }
 
 [node name="Spacer12" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1034.0
-margin_right = 534.0
-margin_bottom = 1039.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 1034.0
+offset_right = 534.0
+offset_bottom = 1039.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label14" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1043.0
-margin_right = 534.0
-margin_bottom = 1068.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 1043.0
+offset_right = 534.0
+offset_bottom = 1068.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_ASSEMBLY"
 
 [node name="ModAssembly" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1072.0
-margin_right = 534.0
-margin_bottom = 1103.0
+offset_top = 1072.0
+offset_right = 534.0
+offset_bottom = 1103.0
 text = "Mod.dll"
 max_length = 200
 __meta__ = {
@@ -404,22 +404,22 @@ __meta__ = {
 }
 
 [node name="Spacer13" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1107.0
-margin_right = 534.0
-margin_bottom = 1112.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 1107.0
+offset_right = 534.0
+offset_bottom = 1112.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Label15" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1116.0
-margin_right = 534.0
-margin_bottom = 1141.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 1116.0
+offset_right = 534.0
+offset_bottom = 1141.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "MOD_ASSEMBLY_CLASS"
 
 [node name="AssemblyModClass" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1145.0
-margin_right = 534.0
-margin_bottom = 1176.0
+offset_top = 1145.0
+offset_right = 534.0
+offset_bottom = 1176.0
 text = "ModClass"
 max_length = 200
 __meta__ = {
@@ -427,16 +427,16 @@ __meta__ = {
 }
 
 [node name="Spacer15" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1107.0
-margin_right = 534.0
-margin_bottom = 1112.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 1107.0
+offset_right = 534.0
+offset_bottom = 1112.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="AutoHarmony" type="CheckBox" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1145.0
-margin_right = 534.0
-margin_bottom = 1176.0
-hint_tooltip = "USE_AUTO_HARMONY_TOOLTIP"
+offset_top = 1145.0
+offset_right = 534.0
+offset_bottom = 1176.0
+tooltip_text = "USE_AUTO_HARMONY_TOOLTIP"
 size_flags_horizontal = 3
 text = "USE_AUTO_HARMONY"
 __meta__ = {
@@ -444,31 +444,31 @@ __meta__ = {
 }
 
 [node name="Error" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 1218.0
-margin_right = 534.0
-margin_bottom = 1243.0
+offset_top = 1218.0
+offset_right = 534.0
+offset_bottom = 1243.0
 autowrap = true
 max_lines_visible = 5
 
 [node name="BottomButtons" type="HBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 1247.0
-margin_right = 534.0
-margin_bottom = 1279.0
+offset_top = 1247.0
+offset_right = 534.0
+offset_bottom = 1279.0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="Create" type="Button" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons"]
-margin_left = 186.0
-margin_right = 264.0
-margin_bottom = 32.0
-custom_fonts/font = ExtResource( 3 )
+offset_left = 186.0
+offset_right = 264.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "CREATE"
 
 [node name="Cancel" type="Button" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons"]
-margin_left = 268.0
-margin_right = 348.0
-margin_bottom = 32.0
-custom_fonts/font = ExtResource( 3 )
+offset_left = 268.0
+offset_right = 348.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "CANCEL"
 
 [connection signal="hide" from="CustomWindow" to="." method="Closed"]

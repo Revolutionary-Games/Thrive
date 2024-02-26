@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DefaultEcs;
 using Godot;
@@ -22,7 +22,7 @@ public class MicrobeEventArgs : TutorialEventArgs
 
 public class RotationEventArgs : TutorialEventArgs
 {
-    public RotationEventArgs(Quat rotation, Vector3 rotationInDegrees)
+    public RotationEventArgs(Quaternion rotation, Vector3 rotationInDegrees)
     {
         Rotation = rotation;
         RotationInDegrees = rotationInDegrees;
@@ -31,7 +31,7 @@ public class RotationEventArgs : TutorialEventArgs
     /// <summary>
     ///   Quaternion of the rotation
     /// </summary>
-    public Quat Rotation { get; }
+    public Quaternion Rotation { get; }
 
     /// <summary>
     ///   Axis-wise degree rotations

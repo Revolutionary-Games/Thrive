@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class PatchNameOverlay : PanelContainer
+public partial class PatchNameOverlay : PanelContainer
 {
     [Export]
     public NodePath? PatchLabelPath;

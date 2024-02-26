@@ -1,7 +1,7 @@
-﻿/// <summary>
+/// <summary>
 ///   Handles input for the society stage
 /// </summary>
-public class PlayerSocietyInput : NodeWithInput
+public partial class PlayerSocietyInput : NodeWithInput
 {
 #pragma warning disable CA2213 // this is our parent object
     private SocietyStage stage = null!;
@@ -12,7 +12,7 @@ public class PlayerSocietyInput : NodeWithInput
         // Not the cleanest that the parent has to be a specific stage type...
         stage = (SocietyStage)GetParent();
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     [RunOnKeyDown("g_build_structure")]

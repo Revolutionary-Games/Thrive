@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.IO;
 using Godot;
 using Newtonsoft.Json;
 using Path = System.IO.Path;
 
-public class NewModGUI : Control
+public partial class NewModGUI : Control
 {
     [Export]
     public NodePath? DialogPath;
@@ -86,13 +86,13 @@ public class NewModGUI : Control
     private ModInfo? editedInfo;
 
     [Signal]
-    public delegate void OnCancelled();
+    public delegate void OnCancelledEventHandler();
 
     /// <summary>
     ///   Emitted when creation is accepted. Contains the full JSON serialized <see cref="FullModDetails"/> object.
     /// </summary>
     [Signal]
-    public delegate void OnAccepted(string newModInfo);
+    public delegate void OnAcceptedEventHandler(string newModInfo);
 
     public override void _Ready()
     {
@@ -158,7 +158,7 @@ public class NewModGUI : Control
     private void Closed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnCancelled));
+        EmitSignal(nameof(OnCancelledEventHandler));
     }
 
     private void Cancel()
@@ -191,7 +191,7 @@ public class NewModGUI : Control
         ClearError();
 
         dialog.Hide();
-        EmitSignal(nameof(OnAccepted), serialized);
+        EmitSignal(nameof(OnAcceptedEventHandler), serialized);
     }
 
     private void WikiLinkPressed()
@@ -234,7 +234,7 @@ public class NewModGUI : Control
         pckName.Text = editedInfo.PckToLoad;
         modAssembly.Text = editedInfo.ModAssembly;
         assemblyModClass.Text = editedInfo.AssemblyModClass;
-        assemblyModAutoHarmony.Pressed = editedInfo.UseAutoHarmony ?? false;
+        assemblyModAutoHarmony.ButtonPressed = editedInfo.UseAutoHarmony ?? false;
     }
 
     private bool ReadControlsToEditedInfo()
@@ -253,7 +253,7 @@ public class NewModGUI : Control
         editedInfo.PckToLoad = pckName.Text;
         editedInfo.ModAssembly = modAssembly.Text;
         editedInfo.AssemblyModClass = assemblyModClass.Text;
-        editedInfo.UseAutoHarmony = assemblyModAutoHarmony.Pressed;
+        editedInfo.UseAutoHarmony = assemblyModAutoHarmony.ButtonPressed;
 
         if (string.IsNullOrWhiteSpace(infoUrl.Text))
         {

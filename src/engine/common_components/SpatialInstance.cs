@@ -4,13 +4,13 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    ///   Displays a single <see cref="Spatial"/> as this entity's graphics in Godot
+    ///   Displays a single <see cref="Node3D"/> as this entity's graphics in Godot
     /// </summary>
     [JSONDynamicTypeAllowed]
     public struct SpatialInstance
     {
         [JsonIgnore]
-        public Spatial? GraphicalInstance;
+        public Node3D? GraphicalInstance;
 
         /// <summary>
         ///   Visual scale to set. Only applies when <see cref="ApplyVisualScale"/> is set to true to only require

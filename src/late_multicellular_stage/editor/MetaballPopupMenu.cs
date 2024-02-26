@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class MetaballPopupMenu : HexPopupMenu
+public partial class MetaballPopupMenu : HexPopupMenu
 {
     private List<MulticellularMetaball>? selectedMetaballs;
 

@@ -37,12 +37,12 @@ public static class ControlHelpers
     public static void MoveToCenter(this Control popup)
     {
         // "Refresh" control to correct its size
-        popup.RectSize = Vector2.Zero;
+        popup.Size = Vector2.Zero;
 
         var parentRect = popup.GetViewportRect();
 
         // Center it
-        popup.RectPosition = parentRect.Position + (parentRect.Size - popup.RectSize) / 2;
+        popup.Position = parentRect.Position + (parentRect.Size - popup.Size) / 2;
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ public static class ControlHelpers
     /// </param>
     public static void BecomeFocusForwarder(this Control control, bool adjustNextNodePreviousLinks = true)
     {
-        control.Connect("focus_entered", GUICommon.Instance, nameof(GUICommon.ProxyFocusForward), new Array(control));
+        control.Connect("focus_entered", new Callable(GUICommon.Instance, nameof(GUICommon.ProxyFocusForward)), new Array(control));
 
         if (!adjustNextNodePreviousLinks)
             return;
@@ -86,12 +86,12 @@ public static class ControlHelpers
 
         if (next.ResolveToAbsolutePath(next.FocusPrevious) == currentPath)
             next.FocusPrevious = previousPath;
-        if (next.ResolveToAbsolutePath(next.FocusNeighbourLeft) == currentPath)
-            next.FocusNeighbourLeft = previousPath;
-        if (next.ResolveToAbsolutePath(next.FocusNeighbourRight) == currentPath)
-            next.FocusNeighbourRight = previousPath;
-        if (next.ResolveToAbsolutePath(next.FocusNeighbourBottom) == currentPath)
-            next.FocusNeighbourBottom = previousPath;
+        if (next.ResolveToAbsolutePath(next.FocusNeighborLeft) == currentPath)
+            next.FocusNeighborLeft = previousPath;
+        if (next.ResolveToAbsolutePath(next.FocusNeighborRight) == currentPath)
+            next.FocusNeighborRight = previousPath;
+        if (next.ResolveToAbsolutePath(next.FocusNeighborBottom) == currentPath)
+            next.FocusNeighborBottom = previousPath;
     }
 
     /// <summary>
@@ -125,7 +125,7 @@ public static class ControlHelpers
 
     public static Control? GetNextControl(this Control control)
     {
-        var path = control.FocusNext ?? control.FocusNeighbourBottom ?? control.FocusNeighbourRight;
+        var path = control.FocusNext ?? control.FocusNeighborBottom ?? control.FocusNeighborRight;
 
         if (path == null)
         {
@@ -143,7 +143,7 @@ public static class ControlHelpers
 
     public static Control? GetPreviousControl(this Control control)
     {
-        var path = control.FocusPrevious ?? control.FocusNeighbourTop ?? control.FocusNeighbourLeft;
+        var path = control.FocusPrevious ?? control.FocusNeighborTop ?? control.FocusNeighborLeft;
 
         if (path == null)
         {
@@ -161,9 +161,9 @@ public static class ControlHelpers
 
     public static void RegisterCustomFocusDrawer(this Control control)
     {
-        control.Connect("draw", GUICommon.Instance, nameof(GUICommon.ProxyDrawFocus), new Array(control));
-        control.Connect("focus_entered", control, "update");
-        control.Connect("focus_exited", control, "update");
+        control.Connect("draw", new Callable(GUICommon.Instance, nameof(GUICommon.ProxyDrawFocus)), new Array(control));
+        control.Connect("focus_entered", new Callable(control, "update"));
+        control.Connect("focus_exited", new Callable(control, "update"));
     }
 
     /// <summary>
@@ -243,25 +243,25 @@ public static class ControlHelpers
         // Lines
         // Top line
         control.DrawLine(new Vector2(cornerRadius, 0),
-            new Vector2(size.x - cornerRadius, 0),
+            new Vector2(size.X - cornerRadius, 0),
             Constants.CustomFocusDrawerColour, Constants.CUSTOM_FOCUS_DRAWER_WIDTH,
             Constants.CUSTOM_FOCUS_DRAWER_ANTIALIAS);
 
         // Bottom line
-        control.DrawLine(new Vector2(cornerRadius, size.y),
-            new Vector2(size.x - cornerRadius, size.y),
+        control.DrawLine(new Vector2(cornerRadius, size.Y),
+            new Vector2(size.X - cornerRadius, size.Y),
             Constants.CustomFocusDrawerColour, Constants.CUSTOM_FOCUS_DRAWER_WIDTH,
             Constants.CUSTOM_FOCUS_DRAWER_ANTIALIAS);
 
         // Left
         control.DrawLine(new Vector2(0, cornerRadius),
-            new Vector2(0, size.y - cornerRadius),
+            new Vector2(0, size.Y - cornerRadius),
             Constants.CustomFocusDrawerColour, Constants.CUSTOM_FOCUS_DRAWER_WIDTH,
             Constants.CUSTOM_FOCUS_DRAWER_ANTIALIAS);
 
         // Right
-        control.DrawLine(new Vector2(size.x, cornerRadius),
-            new Vector2(size.x, size.y - cornerRadius),
+        control.DrawLine(new Vector2(size.X, cornerRadius),
+            new Vector2(size.X, size.Y - cornerRadius),
             Constants.CustomFocusDrawerColour, Constants.CUSTOM_FOCUS_DRAWER_WIDTH,
             Constants.CUSTOM_FOCUS_DRAWER_ANTIALIAS);
 
@@ -275,19 +275,19 @@ public static class ControlHelpers
             arcWidth, Constants.CUSTOM_FOCUS_DRAWER_ANTIALIAS);
 
         // Top right
-        control.DrawArc(new Vector2(size.x - cornerRadius, cornerRadius), cornerRadius,
+        control.DrawArc(new Vector2(size.X - cornerRadius, cornerRadius), cornerRadius,
             quarterCircle * 3, quarterCircle * 4,
             Constants.CUSTOM_FOCUS_DRAWER_RADIUS_POINTS, Constants.CustomFocusDrawerColour,
             arcWidth, Constants.CUSTOM_FOCUS_DRAWER_ANTIALIAS);
 
         // Bottom right
-        control.DrawArc(new Vector2(size.x - cornerRadius, size.y - cornerRadius), cornerRadius,
+        control.DrawArc(new Vector2(size.X - cornerRadius, size.Y - cornerRadius), cornerRadius,
             0, quarterCircle,
             Constants.CUSTOM_FOCUS_DRAWER_RADIUS_POINTS, Constants.CustomFocusDrawerColour,
             arcWidth, Constants.CUSTOM_FOCUS_DRAWER_ANTIALIAS);
 
         // Bottom left
-        control.DrawArc(new Vector2(cornerRadius, size.y - cornerRadius), cornerRadius,
+        control.DrawArc(new Vector2(cornerRadius, size.Y - cornerRadius), cornerRadius,
             quarterCircle, quarterCircle * 2,
             Constants.CUSTOM_FOCUS_DRAWER_RADIUS_POINTS, Constants.CustomFocusDrawerColour,
             arcWidth, Constants.CUSTOM_FOCUS_DRAWER_ANTIALIAS);

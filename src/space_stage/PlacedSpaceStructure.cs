@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Structure that is placed in the world but in space (see <see cref="PlacedStructure"/>)
 /// </summary>
-public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
+public partial class PlacedSpaceStructure : Node3D, IEntityWithNameLabel
 {
     private static readonly Lazy<PackedScene> LabelScene =
         new(() => GD.Load<PackedScene>("res://src/space_stage/gui/SpaceStructureNameLabel.tscn"));
@@ -15,8 +15,8 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
     private readonly List<SpaceStructureComponent> componentInstances = new();
 
 #pragma warning disable CA2213
-    private Spatial scaffoldingParent = null!;
-    private Spatial visualsParent = null!;
+    private Node3D scaffoldingParent = null!;
+    private Node3D visualsParent = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -29,7 +29,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
     ///   Emitted when this fleet is selected by the player
     /// </summary>
     [Signal]
-    public delegate void OnSelected();
+    public delegate void OnSelectedEventHandler();
 
     [JsonProperty]
     public bool Completed { get; private set; }
@@ -96,12 +96,12 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     public override void _Ready()
     {
-        scaffoldingParent = GetNode<Spatial>("Scaffolding");
-        visualsParent = GetNode<Spatial>("Visuals");
+        scaffoldingParent = GetNode<Node3D>("Scaffolding");
+        visualsParent = GetNode<Node3D>("Visuals");
     }
 
     public void Init(SpaceStructureDefinition structureDefinition, bool playerOwned, bool fullyConstructed = false)
@@ -114,7 +114,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
             missingResourcesToFullyConstruct = structureDefinition.RequiredResources.CloneShallow();
 
             // Setup scaffolding
-            scaffoldingParent.AddChild(structureDefinition.ScaffoldingScene.Instance());
+            scaffoldingParent.AddChild(structureDefinition.ScaffoldingScene.Instantiate());
         }
         else
         {
@@ -127,7 +127,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
         AliveMarker.Alive = false;
     }
 
-    public void ProcessSpace(float delta, ISocietyStructureDataAccess societyData)
+    public void ProcessSpace(double delta, ISocietyStructureDataAccess societyData)
     {
         foreach (var component in componentInstances)
         {
@@ -223,7 +223,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
 
     public void OnSelectedThroughLabel()
     {
-        EmitSignal(nameof(OnSelected));
+        EmitSignal(nameof(OnSelectedEventHandler));
     }
 
     private void OnCompleted()
@@ -238,7 +238,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
         scaffoldingParent.QueueFreeChildren();
 
         // For now we don't have an animation so we just create the actual visuals at this point
-        visualsParent.AddChild(Definition.WorldRepresentation.Instance());
+        visualsParent.AddChild(Definition.WorldRepresentation.Instantiate());
 
         // Create the components
         foreach (var factory in Definition.Components.Factories)

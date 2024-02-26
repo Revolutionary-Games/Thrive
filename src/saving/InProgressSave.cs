@@ -137,7 +137,6 @@ public class InProgressSave : IDisposable
         oldestSave = null;
         ulong oldestModifiedTime = ulong.MaxValue;
 
-        using var file = new File();
         foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
         {
             var match = Regex.Match(name, matchRegex);
@@ -155,7 +154,7 @@ public class InProgressSave : IDisposable
                 if (found > highestNumber)
                     highestNumber = found;
 
-                var modified = file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, name));
+                var modified = FileAccess.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, name));
 
                 if (modified < oldestModifiedTime)
                 {

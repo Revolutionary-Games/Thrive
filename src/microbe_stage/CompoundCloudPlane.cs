@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -8,9 +7,10 @@ using Newtonsoft.Json;
 using Systems;
 using Vector2 = Godot.Vector2;
 using Vector3 = Godot.Vector3;
+using Vector4 = System.Numerics.Vector4;
 
 [SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn", UsesEarlyResolve = false)]
-public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
+public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 {
     /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored.
@@ -92,49 +92,49 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
         var blank = new Color(0, 0, 0, 0);
 
-        material.SetShaderParam("colour2", cloud2?.Colour ?? blank);
-        material.SetShaderParam("colour3", cloud3?.Colour ?? blank);
-        material.SetShaderParam("colour4", cloud4?.Colour ?? blank);
+        material.SetShaderParameter("colour2", cloud2?.Colour ?? blank);
+        material.SetShaderParameter("colour3", cloud3?.Colour ?? blank);
+        material.SetShaderParameter("colour4", cloud4?.Colour ?? blank);
 
         // CompoundCloudPlanes need different render priorities to avoid the flickering effect
         // Which result from intersecting meshes.
         material.RenderPriority = renderPriority;
     }
 
-    public void UpdatePosition(Int2 newPosition)
+    public void UpdatePosition(Vector2I newPosition)
     {
         // Whoever made the modulus operator return negatives: i hate u.
-        int newX = ((newPosition.x % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+        int newX = ((newPosition.X % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
-        int newY = ((newPosition.y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+        int newY = ((newPosition.Y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
 
-        if (newX == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        if (newX == (position.X + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
+            PartialClearDensity(position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
-        else if (newX == (position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+        else if (newX == (position.X + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                  % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(((position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+            PartialClearDensity(((position.X + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                     % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                 0, Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
 
-        if (newY == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        if (newY == (position.Y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(0, position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+            PartialClearDensity(0, position.Y * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                 Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
         }
-        else if (newY == (position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        else if (newY == (position.Y + Constants.CLOUD_SQUARES_PER_SIDE - 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(0, ((position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+            PartialClearDensity(0, ((position.Y + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                     % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                 Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
         }
 
-        position = new Int2(newX, newY);
+        position = new Vector2I(newX, newY);
 
         // This accommodates the texture of the cloud to the new position of the plane.
         SetMaterialUVForPosition();
@@ -149,25 +149,25 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
 
-        if (position.x != 0)
+        if (position.X != 0)
         {
             PartialDiffuseEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta);
             PartialDiffuseEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta);
         }
 
-        if (position.x != 1)
+        if (position.X != 1)
         {
             PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 0,
                 Constants.CLOUD_EDGE_WIDTH, Size, delta);
         }
 
-        if (position.x != 2)
+        if (position.X != 2)
         {
             PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 0,
                 Constants.CLOUD_EDGE_WIDTH, Size, delta);
         }
 
-        if (position.y != 0)
+        if (position.Y != 0)
         {
             PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2, 0,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
@@ -190,7 +190,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 Constants.CLOUD_EDGE_WIDTH / 2, delta);
         }
 
-        if (position.y != 1)
+        if (position.Y != 1)
         {
             PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
@@ -206,7 +206,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 Constants.CLOUD_EDGE_WIDTH, delta);
         }
 
-        if (position.y != 2)
+        if (position.Y != 2)
         {
             PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2,
                 2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
@@ -232,28 +232,28 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
-        var pos = new Vector2(Translation.x, Translation.z);
+        var pos = new Vector2(Position.X, Position.Z);
 
-        if (position.x != 0)
+        if (position.X != 0)
         {
             PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
             PartialAdvectEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2,
                 Size, delta, pos);
         }
 
-        if (position.x != 1)
+        if (position.X != 1)
         {
             PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
                 0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
         }
 
-        if (position.x != 2)
+        if (position.X != 2)
         {
             PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
                 0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
         }
 
-        if (position.y != 0)
+        if (position.Y != 0)
         {
             PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, 0,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
@@ -277,7 +277,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
         }
 
-        if (position.y != 1)
+        if (position.Y != 1)
         {
             PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
@@ -293,7 +293,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 Constants.CLOUD_EDGE_WIDTH, delta, pos);
         }
 
-        if (position.y != 2)
+        if (position.Y != 2)
         {
             PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
                 2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
@@ -318,7 +318,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
-        var pos = new Vector2(Translation.x, Translation.z);
+        var pos = new Vector2(Position.X, Position.Z);
 
         for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
         {
@@ -365,7 +365,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     public void UpdateTexture()
     {
         image!.Unlock();
-        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Repeat);
+        texture.CreateFromImage(image, (uint)Texture2D.FlagsEnum.Filter | (uint)Texture2D.FlagsEnum.Repeat);
     }
 
     public bool HandlesCompound(Compound compound)
@@ -641,10 +641,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     public bool ContainsPositionWithRadius(Vector3 worldPosition,
         float radius)
     {
-        if (worldPosition.x + radius < Translation.x - Constants.CLOUD_WIDTH ||
-            worldPosition.x - radius >= Translation.x + Constants.CLOUD_WIDTH ||
-            worldPosition.z + radius < Translation.z - Constants.CLOUD_HEIGHT ||
-            worldPosition.z - radius >= Translation.z + Constants.CLOUD_HEIGHT)
+        if (worldPosition.X + radius < Position.X - Constants.CLOUD_WIDTH ||
+            worldPosition.X - radius >= Position.X + Constants.CLOUD_WIDTH ||
+            worldPosition.Z + radius < Position.Z - Constants.CLOUD_HEIGHT ||
+            worldPosition.Z - radius >= Position.Z + Constants.CLOUD_HEIGHT)
             return false;
 
         return true;
@@ -655,12 +655,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </summary>
     public void ConvertToCloudLocal(Vector3 worldPosition, out int x, out int y)
     {
-        var topLeftRelative = worldPosition - Translation;
+        var topLeftRelative = worldPosition - Position;
 
         // Floor is used here because otherwise the last coordinate is wrong
-        x = ((int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution)
+        x = ((int)Math.Floor((topLeftRelative.X + Constants.CLOUD_WIDTH) / Resolution)
             + position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
-        y = ((int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / Resolution)
+        y = ((int)Math.Floor((topLeftRelative.Z + Constants.CLOUD_HEIGHT) / Resolution)
             + position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
     }
 
@@ -672,11 +672,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         // Integer calculations are intentional here
         // ReSharper disable PossibleLossOfFraction
         return new Vector3(cloudX * Resolution +
-            ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+            ((4 - position.X) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
             Constants.CLOUD_WIDTH,
             0,
-            cloudY * Resolution + ((4 - position.y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
-            Constants.CLOUD_HEIGHT) + Translation;
+            cloudY * Resolution + ((4 - position.Y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+            Constants.CLOUD_HEIGHT) + Position;
 
         // ReSharper restore PossibleLossOfFraction
     }
@@ -766,7 +766,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     public void SetBrightness(float brightness)
     {
         var material = (ShaderMaterial)Material;
-        material.SetShaderParam("BrightnessMultiplier", brightness);
+        material.SetShaderParameter("BrightnessMultiplier", brightness);
     }
 
     protected override void Dispose(bool disposing)
@@ -978,10 +978,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         image = new Image();
         image.Create(Size, Size, false, Image.Format.Rgba8);
         texture = new ImageTexture();
-        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Repeat);
+        texture.CreateFromImage(image, (uint)Texture2D.FlagsEnum.Filter | (uint)Texture2D.FlagsEnum.Repeat);
 
         var material = (ShaderMaterial)Material;
-        material.SetShaderParam("densities", texture);
+        material.SetShaderParameter("densities", texture);
     }
 
     private void SetMaterialUVForPosition()
@@ -989,7 +989,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         var material = (ShaderMaterial)Material;
 
         // No clue how this math ends up with the right UV offsets - hhyyrylainen
-        material.SetShaderParam("UVOffset", new Vector2(position.x / (float)Constants.CLOUD_SQUARES_PER_SIDE,
-            position.y / (float)Constants.CLOUD_SQUARES_PER_SIDE));
+        material.SetShaderParameter("UVOffset", new Vector2(position.X / (float)Constants.CLOUD_SQUARES_PER_SIDE,
+            position.Y / (float)Constants.CLOUD_SQUARES_PER_SIDE));
     }
 }

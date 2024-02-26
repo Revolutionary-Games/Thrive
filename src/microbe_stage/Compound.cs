@@ -70,7 +70,7 @@ public class Compound : IRegistryType
     /// <summary>
     ///   Loaded icon for display in GUIs
     /// </summary>
-    public Texture? LoadedIcon;
+    public Texture2D? LoadedIcon;
 
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
@@ -130,7 +130,7 @@ public class Compound : IRegistryType
 
     public void Resolve()
     {
-        LoadedIcon = GD.Load<Texture>(IconPath);
+        LoadedIcon = GD.Load<Texture2D>(IconPath);
     }
 
     public void ApplyTranslations()

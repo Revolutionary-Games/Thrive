@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 
-public class ThriveFeedDisplayer : VBoxContainer
+public partial class ThriveFeedDisplayer : VBoxContainer
 {
     [Export]
     public NodePath? NewsContainerPath;
@@ -65,7 +65,7 @@ public class ThriveFeedDisplayer : VBoxContainer
         CheckStartFetchNews();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (newsEnumerator != null)
         {
@@ -168,7 +168,7 @@ public class ThriveFeedDisplayer : VBoxContainer
         var itemContainer = new PanelContainer();
 
         // Customize the feed item background style to be less visible to not make the main menu look too busy
-        itemContainer.AddStyleboxOverride("panel", feedItemBackground);
+        itemContainer.AddThemeStyleboxOverride("panel", feedItemBackground);
 
         var itemContentContainer = new VBoxContainer();
         itemContainer.AddChild(itemContentContainer);
@@ -186,18 +186,18 @@ public class ThriveFeedDisplayer : VBoxContainer
         }
 
         // This uses rich text purely to be clickable
-        var title = customRichTextScene.Instance<CustomRichTextLabel>();
+        var title = customRichTextScene.Instantiate<CustomRichTextLabel>();
 
         // We don't generate custom bbcode when converting html so we use the simpler form here
         // but we need to use the custom rich text label to ensure the links are clickable
         title.BbcodeText = titleText;
 
         // Big font for titles
-        title.AddFontOverride("normal_font", TitleFont);
+        title.AddThemeFontOverride("normal_font", TitleFont);
 
         itemContentContainer.AddChild(title);
 
-        var textDisplayer = customRichTextScene.Instance<CustomRichTextLabel>();
+        var textDisplayer = customRichTextScene.Instantiate<CustomRichTextLabel>();
 
         // Make the feed look nicer with less repeating content by stripping the last part of the text
         var content = Constants.NewsFeedRegexDeleteContent.Replace(feedItem.ContentBbCode, "\n");
@@ -216,7 +216,7 @@ public class ThriveFeedDisplayer : VBoxContainer
             };
 
             // Small font for footers
-            footerLabel.AddFontOverride("font", FooterFont);
+            footerLabel.AddThemeFontOverride("font", FooterFont);
 
             itemContentContainer.AddChild(footerLabel);
         }

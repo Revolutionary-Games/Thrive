@@ -23,7 +23,7 @@ GuidanceLinePath = NodePath("World/GuidanceLine")
 [node name="World" type="Node" parent="."]
 
 [node name="PrimaryCamera" parent="World" instance=ExtResource( 2 )]
-pause_mode = 2
+process_mode = 3
 AutoProcessWhilePaused = true
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
@@ -31,23 +31,23 @@ AutoProcessWhilePaused = true
 [node name="CompoundClouds" type="Node" parent="World"]
 script = ExtResource( 10 )
 
-[node name="WorldLight" type="DirectionalLight" parent="World"]
-transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
+[node name="WorldLight" type="DirectionalLight3D" parent="World"]
+transform = Transform3D( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
 shadow_enabled = true
 
 [node name="GuidanceLine" parent="World" instance=ExtResource( 75 )]
 visible = false
 
 [node name="PlayerHoverInfo" type="Node" parent="."]
-pause_mode = 2
+process_mode = 3
 script = ExtResource( 22 )
 
 [node name="PlayerMicrobeInput" type="Node" parent="."]
 script = ExtResource( 7 )
 
 [node name="ChromaticFilter" parent="." instance=ExtResource( 67 )]
-margin_left = -0.943848
-margin_right = -0.943848
+offset_left = -0.943848
+offset_right = -0.943848
 
 [node name="MicrobeHUD" parent="." instance=ExtResource( 3 )]
 MenuPath = NodePath("../PauseMenu")
@@ -55,17 +55,17 @@ FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
 
 [node name="FossilisationDialog" parent="MicrobeHUD" instance=ExtResource( 4 )]
-margin_left = 458.0
-margin_top = 120.0
-margin_right = 822.0
-margin_bottom = 540.0
+offset_left = 458.0
+offset_top = 120.0
+offset_right = 822.0
+offset_bottom = 540.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FossilisationButtonLayer" type="Control" parent="MicrobeHUD"]
-margin_right = 1280.0
-margin_bottom = 720.0
+offset_right = 1280.0
+offset_bottom = 720.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 ///     future with more logic being put in <see cref="MicrobeEditorPatchMap"/>
 ///   </para>
 /// </remarks>
-public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
+public abstract partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
     where TEditor : IEditorWithPatches
 {
     [Export]

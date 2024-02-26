@@ -17,7 +17,7 @@ public class FleetMovementOrder : UnitOrderBase<SpaceFleet>
 
     protected override bool WorkOnOrder(float delta)
     {
-        var unitPosition = Unit.GlobalTranslation;
+        var unitPosition = Unit.GlobalPosition;
         var toTarget = TargetPosition - unitPosition;
 
         var distanceToTarget = toTarget.Length();
@@ -28,12 +28,12 @@ public class FleetMovementOrder : UnitOrderBase<SpaceFleet>
 
         if (distanceToTarget < adjustedSpeed)
         {
-            Unit.GlobalTranslation = TargetPosition;
+            Unit.GlobalPosition = TargetPosition;
             return true;
         }
 
         var direction = toTarget / distanceToTarget;
-        Unit.GlobalTranslation += direction * adjustedSpeed;
+        Unit.GlobalPosition += direction * adjustedSpeed;
         return false;
     }
 }

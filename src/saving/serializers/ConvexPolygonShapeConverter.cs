@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Converter for <see cref="ConvexPolygonShape"/>
+///   Converter for <see cref="ConvexPolygonShape3D"/>
 /// </summary>
 public class ConvexPolygonShapeConverter : JsonConverter
 {
@@ -17,7 +17,7 @@ public class ConvexPolygonShapeConverter : JsonConverter
             return;
         }
 
-        serializer.Serialize(writer, ((ConvexPolygonShape)value).ResourcePath);
+        serializer.Serialize(writer, ((ConvexPolygonShape3D)value).ResourcePath);
     }
 
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
@@ -28,11 +28,11 @@ public class ConvexPolygonShapeConverter : JsonConverter
         if (string.IsNullOrEmpty(path))
             return null;
 
-        return GD.Load<ConvexPolygonShape>(path);
+        return GD.Load<ConvexPolygonShape3D>(path);
     }
 
     public override bool CanConvert(Type objectType)
     {
-        return objectType == typeof(ConvexPolygonShape);
+        return objectType == typeof(ConvexPolygonShape3D);
     }
 }

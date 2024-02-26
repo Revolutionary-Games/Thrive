@@ -3,7 +3,7 @@
 /// <summary>
 ///   Handles the opening, closing and operations of the cheat menus
 /// </summary>
-public abstract class CheatMenu : CustomWindow
+public abstract partial class CheatMenu : CustomWindow
 {
     /// <summary>
     ///   Whether the cheat menu may be opened or not

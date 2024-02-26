@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/textures/snowflake2.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/snowflake2.png" type="Texture2D" id=1]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.576577, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.392157, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0, 0.576577, 1 )
+colors = PackedColorArray( 0, 0, 0, 0, 1, 1, 1, 0.392157, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=2]
+[sub_resource type="GradientTexture2D" id=2]
 gradient = SubResource( 1 )
 
 [sub_resource type="Curve" id=3]
@@ -22,7 +22,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.670968, 1 ), 0.0, 0.0, 0, 
 [sub_resource type="CurveTexture" id=6]
 curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticleProcessMaterial" id=7]
 emission_shape = 1
 emission_sphere_radius = 1.0
 direction = Vector3( 0, 0, 0 )
@@ -40,7 +40,7 @@ scale = 0.05
 scale_curve = SubResource( 6 )
 color_ramp = SubResource( 2 )
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="StandardMaterial3D" id=8]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1

@@ -4,9 +4,9 @@
 [ext_resource path="res://src/space_stage/gui/SpaceStructureNameLabel.cs" type="Script" id=2]
 
 [node name="SpaceStructureNameLabel" type="Button"]
-margin_right = 200.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 50, 20 )
+offset_right = 200.0
+offset_bottom = 35.0
+custom_minimum_size = Vector2( 50, 20 )
 theme = ExtResource( 1 )
 text = "Ascension Gate (U)"
 script = ExtResource( 2 )

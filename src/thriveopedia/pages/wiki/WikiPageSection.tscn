@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="FontFile" id=1]
 [ext_resource path="res://src/thriveopedia/pages/wiki/WikiPageSection.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=3]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
 
 [node name="WikiPageSection" type="VBoxContainer"]
-margin_right = 476.0
-margin_bottom = 73.0
+offset_right = 476.0
+offset_bottom = 73.0
 theme = ExtResource( 5 )
 script = ExtResource( 2 )
 HeadingPath = NodePath("Heading")
@@ -16,31 +16,31 @@ SeparatorPath = NodePath("HSeparator")
 BodyPath = NodePath("Body")
 
 [node name="Heading" type="Label" parent="."]
-margin_right = 476.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 1 )
+offset_right = 476.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource( 1 )
 
 [node name="HSeparator" type="HSeparator" parent="."]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 29.0
-margin_right = 476.0
-margin_bottom = 33.0
+offset_top = 29.0
+offset_right = 476.0
+offset_bottom = 33.0
 
 [node name="Spacer" type="Control" parent="."]
-margin_top = 37.0
-margin_right = 476.0
-margin_bottom = 47.0
-rect_min_size = Vector2( 0, 10 )
+offset_top = 37.0
+offset_right = 476.0
+offset_bottom = 47.0
+custom_minimum_size = Vector2( 0, 10 )
 
 [node name="Body" parent="." instance=ExtResource( 4 )]
-margin_top = 51.0
-margin_right = 476.0
-margin_bottom = 73.0
-custom_fonts/normal_font = ExtResource( 3 )
+offset_top = 51.0
+offset_right = 476.0
+offset_bottom = 73.0
+theme_override_fonts/normal_font = ExtResource( 3 )
 ExtendedBbcode = ""
 
 [node name="Spacer2" type="Control" parent="."]
-margin_top = 77.0
-margin_right = 476.0
-margin_bottom = 87.0
-rect_min_size = Vector2( 0, 10 )
+offset_top = 77.0
+offset_right = 476.0
+offset_bottom = 87.0
+custom_minimum_size = Vector2( 0, 10 )

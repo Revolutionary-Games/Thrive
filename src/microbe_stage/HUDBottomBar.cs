@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class HUDBottomBar : HBoxContainer
+public partial class HUDBottomBar : HBoxContainer
 {
     /// <summary>
     ///   When false the compound and environment toggles are hidden
@@ -49,28 +49,28 @@ public class HUDBottomBar : HBoxContainer
     private bool processPanelPressed;
 
     [Signal]
-    public delegate void OnMenuPressed();
+    public delegate void OnMenuPressedEventHandler();
 
     [Signal]
-    public delegate void OnPausePressed(bool paused);
+    public delegate void OnPausePressedEventHandler(bool paused);
 
     [Signal]
-    public delegate void OnProcessesPressed();
+    public delegate void OnProcessesPressedEventHandler();
 
     [Signal]
-    public delegate void OnCompoundsToggled(bool expanded);
+    public delegate void OnCompoundsToggledEventHandler(bool expanded);
 
     [Signal]
-    public delegate void OnEnvironmentToggled(bool expanded);
+    public delegate void OnEnvironmentToggledEventHandler(bool expanded);
 
     [Signal]
-    public delegate void OnSuicidePressed();
+    public delegate void OnSuicidePressedEventHandler();
 
     [Signal]
-    public delegate void OnHelpPressed();
+    public delegate void OnHelpPressedEventHandler();
 
     [Signal]
-    public delegate void OnStatisticsPressed();
+    public delegate void OnStatisticsPressedEventHandler();
 
     public bool Paused
     {
@@ -144,57 +144,57 @@ public class HUDBottomBar : HBoxContainer
     private void MenuPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnMenuPressed));
+        EmitSignal(nameof(OnMenuPressedEventHandler));
     }
 
     private void TogglePause()
     {
         GUICommon.Instance.PlayButtonPressSound();
         Paused = !Paused;
-        EmitSignal(nameof(OnPausePressed), Paused);
+        EmitSignal(nameof(OnPausePressedEventHandler), Paused);
     }
 
     private void ProcessButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnProcessesPressed));
+        EmitSignal(nameof(OnProcessesPressedEventHandler));
     }
 
     private void CompoundsButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
         CompoundsPressed = !CompoundsPressed;
-        EmitSignal(nameof(OnCompoundsToggled), CompoundsPressed);
+        EmitSignal(nameof(OnCompoundsToggledEventHandler), CompoundsPressed);
     }
 
     private void EnvironmentButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
         EnvironmentPressed = !EnvironmentPressed;
-        EmitSignal(nameof(OnEnvironmentToggled), EnvironmentPressed);
+        EmitSignal(nameof(OnEnvironmentToggledEventHandler), EnvironmentPressed);
     }
 
     private void SuicideButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnSuicidePressed));
+        EmitSignal(nameof(OnSuicidePressedEventHandler));
     }
 
     private void HelpButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnHelpPressed));
+        EmitSignal(nameof(OnHelpPressedEventHandler));
     }
 
     private void StatisticsButtonPressed()
     {
         // No need to play a sound as changing Thriveopedia page does it anyway
-        EmitSignal(nameof(OnStatisticsPressed));
+        EmitSignal(nameof(OnStatisticsPressedEventHandler));
     }
 
     private void PausePressed(bool paused)
     {
-        EmitSignal(nameof(OnPausePressed), paused);
+        EmitSignal(nameof(OnPausePressedEventHandler), paused);
     }
 
     private void UpdateCompoundButton()
@@ -202,7 +202,7 @@ public class HUDBottomBar : HBoxContainer
         if (compoundsButton == null)
             return;
 
-        compoundsButton.Pressed = CompoundsPressed;
+        compoundsButton.ButtonPressed = CompoundsPressed;
     }
 
     private void UpdateEnvironmentButton()
@@ -210,7 +210,7 @@ public class HUDBottomBar : HBoxContainer
         if (environmentButton == null)
             return;
 
-        environmentButton.Pressed = EnvironmentPressed;
+        environmentButton.ButtonPressed = EnvironmentPressed;
     }
 
     private void UpdateProcessPanelButton()
@@ -218,7 +218,7 @@ public class HUDBottomBar : HBoxContainer
         if (processPanelButton == null)
             return;
 
-        processPanelButton.Pressed = ProcessesPressed;
+        processPanelButton.ButtonPressed = ProcessesPressed;
     }
 
     private void UpdateButtonVisibility()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class GalleryViewer : CustomWindow
+public partial class GalleryViewer : CustomWindow
 {
     public const string ALL_CATEGORY = "All";
 
@@ -112,7 +112,7 @@ public class GalleryViewer : CustomWindow
         UnregisterToolTips();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!Visible)
             return;
@@ -177,8 +177,8 @@ public class GalleryViewer : CustomWindow
         var tabsButtonGroup = new ButtonGroup();
         var itemsButtonGroup = new ButtonGroup();
 
-        tabsButtonGroup.Connect("pressed", this, nameof(OnGallerySelected));
-        itemsButtonGroup.Connect("pressed", this, nameof(OnGalleryItemPressed));
+        tabsButtonGroup.Connect("pressed", new Callable(this, nameof(OnGallerySelected)));
+        itemsButtonGroup.Connect("pressed", new Callable(this, nameof(OnGalleryItemPressed)));
 
         Button? firstEntry = null;
 
@@ -230,7 +230,7 @@ public class GalleryViewer : CustomWindow
             }
         }
 
-        firstEntry!.Pressed = true;
+        firstEntry!.ButtonPressed = true;
 
         initialized = true;
     }
@@ -259,8 +259,8 @@ public class GalleryViewer : CustomWindow
 
         switch (asset.Type)
         {
-            case AssetType.Texture:
-                item = GalleryCardScene.Instance<GalleryCard>();
+            case AssetType.Texture2D:
+                item = GalleryCardScene.Instantiate<GalleryCard>();
 
                 // To avoid massive lag spikes, only set a placeholder loading icon here and queue a load for the icon
                 var resourceManager = ResourceManager.Instance;
@@ -275,10 +275,10 @@ public class GalleryViewer : CustomWindow
                 resourceManager.QueueLoad(loadingResource);
                 break;
             case AssetType.ModelScene:
-                item = GalleryCardModelScene.Instance<GalleryCardModel>();
+                item = GalleryCardModelScene.Instantiate<GalleryCardModel>();
                 break;
             case AssetType.AudioPlayback:
-                item = GalleryCardAudioScene.Instance<GalleryCardAudio>();
+                item = GalleryCardAudioScene.Instantiate<GalleryCardAudio>();
                 break;
             default:
                 throw new InvalidOperationException("Unhandled asset type: " + asset.Type);
@@ -292,7 +292,7 @@ public class GalleryViewer : CustomWindow
 
         item.Asset = asset;
         item.Group = buttonGroup;
-        item.Connect(nameof(GalleryCard.OnFullscreenView), this, nameof(OnAssetPreviewOpened));
+        item.Connect(nameof(GalleryCard.OnFullscreenViewEventHandler), new Callable(this, nameof(OnAssetPreviewOpened)));
 
         // Reuse existing tooltip if possible
         var name = "galleryCard_" + asset.ResourcePath.GetFile();
@@ -302,7 +302,7 @@ public class GalleryViewer : CustomWindow
         if (tooltip == null)
         {
             // Need to create a new tooltip
-            tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
+            tooltip = GalleryDetailsToolTipScene.Instantiate<GalleryDetailsTooltip>();
             tooltip.Name = name;
             ToolTipManager.Instance.AddToolTip(tooltip, "artGallery");
         }
@@ -379,7 +379,7 @@ public class GalleryViewer : CustomWindow
         if (lastSelected == item)
         {
             lastSelected = null;
-            item.Pressed = false;
+            item.ButtonPressed = false;
         }
         else
         {

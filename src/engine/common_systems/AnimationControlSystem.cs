@@ -63,7 +63,7 @@
             animation.AnimationApplied = true;
         }
 
-        private AnimationPlayer? GetPlayer(Spatial spatial, string? playerPath)
+        private AnimationPlayer? GetPlayer(Node3D spatial, string? playerPath)
         {
             // TODO: cache for animation players to allow fast per-update data access
             // For now a cache is not implemented as this is just for stopping playing an animation once and then not
@@ -88,7 +88,7 @@
             if (childCount == 1)
             {
                 // There might be one level of indirection
-                if (!playerPath!.StartsWith("Spatial"))
+                if (!playerPath!.StartsWith("Node3D"))
                 {
                     // TODO: how to suppress errors if this is wrong
                     var attempt = spatial.GetChild(0).GetNode<AnimationPlayer>(playerPath);

@@ -1,14 +1,14 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=1]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture2D" id=1]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" type="FontFile" id=2]
 [ext_resource path="res://src/microbe_stage/PatchNameOverlay.cs" type="Script" id=3]
 
 [sub_resource type="Gradient" id=33]
-offsets = PoolRealArray( 0, 0.1, 0.5, 0.9, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0.588235, 0, 0, 0, 0.627451, 0, 0, 0, 0.588235, 0, 0, 0, 0 )
+offsets = PackedFloat32Array( 0, 0.1, 0.5, 0.9, 1 )
+colors = PackedColorArray( 0, 0, 0, 0, 0, 0, 0, 0.588235, 0, 0, 0, 0.627451, 0, 0, 0, 0.588235, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=34]
+[sub_resource type="GradientTexture2D" id=34]
 gradient = SubResource( 33 )
 
 [sub_resource type="StyleBoxTexture" id=35]
@@ -29,8 +29,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 4.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
@@ -41,8 +41,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.7, 1.2, 3.5, 4.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.7, 1.2, 3.5, 4.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -52,27 +52,27 @@ modulate = Color( 1, 1, 1, 0 )
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -65.0
-margin_bottom = 65.0
-rect_min_size = Vector2( 0, 130 )
+offset_top = -65.0
+offset_bottom = 65.0
+custom_minimum_size = Vector2( 0, 130 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 35 )
+theme_override_styles/panel = SubResource( 35 )
 script = ExtResource( 3 )
 PatchLabelPath = NodePath("VBoxContainer/PatchLabel")
 PatchOverlayAnimatorPath = NodePath("AnimationPlayer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 130.0
+offset_right = 1280.0
+offset_bottom = 130.0
 mouse_filter = 2
 alignment = 1
 
 [node name="PatchLabel" type="Label" parent="VBoxContainer"]
-margin_top = 28.0
-margin_right = 1280.0
-margin_bottom = 94.0
+offset_top = 28.0
+offset_right = 1280.0
+offset_bottom = 94.0
 size_flags_vertical = 1
-custom_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "Insert Patch Name"
 align = 1
 __meta__ = {
@@ -80,11 +80,11 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 98.0
-margin_right = 1280.0
-margin_bottom = 102.0
+offset_top = 98.0
+offset_right = 1280.0
+offset_bottom = 102.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 36 )
+theme_override_styles/separator = SubResource( 36 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/FadeInOut = SubResource( 37 )

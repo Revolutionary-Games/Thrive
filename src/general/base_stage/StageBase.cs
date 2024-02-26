@@ -1,14 +1,13 @@
 ﻿using System;
 using Godot;
 using Newtonsoft.Json;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Base for all stages
 /// </summary>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResolve
+public abstract partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath? PauseMenuPath;
@@ -42,7 +41,7 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     /// <summary>
     ///   Used to control how often updated light level data is read from the day/night cycle.
     /// </summary>
-    private float elapsedSinceLightLevelUpdate = 1;
+    private double elapsedSinceLightLevelUpdate = 1;
 
     /// <summary>
     ///   The main current game object holding various details
@@ -104,7 +103,7 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
         NodeReferencesResolved = true;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -123,7 +122,7 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
             wantsToSave = false;
         }
 
-        GameWorld.Process(delta);
+        GameWorld.Process((float)delta);
 
         elapsedSinceLightLevelUpdate += delta;
         if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
@@ -180,7 +179,7 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     /// <param name="godotEntity">
     ///   The object that was passed through Godot signals. This uses the Godot type here to ensure
     /// </param>
-    public virtual void OpenGodToolsForEntity(Object? godotEntity)
+    public virtual void OpenGodToolsForEntity(GodotObject? godotEntity)
     {
         if (godotEntity == null || !IsInstanceValid(godotEntity))
             return;

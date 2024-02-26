@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
@@ -9,7 +9,7 @@ using Godot;
 ///     Note a lot of this functionality is duplicated from PatchMapEditorComponent.
 ///   </para>
 /// </remarks>
-public class ThriveopediaPatchMapPage : ThriveopediaPage
+public partial class ThriveopediaPatchMapPage : ThriveopediaPage
 {
     [Export]
     public NodePath? MapDrawerPath;

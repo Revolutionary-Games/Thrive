@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Shows a version label
 /// </summary>
-public class VersionNumber : Label
+public partial class VersionNumber : Label
 {
     [Export]
     public bool ShowDevBuildInfo = true;

@@ -1,33 +1,33 @@
 [gd_resource type="Theme" load_steps=77 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/checkB.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=7]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=8]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=9]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=12]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=13]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="DynamicFont" id=14]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=15]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=16]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=17]
-[ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=18]
-[ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=19]
-[ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture" id=20]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=21]
-[ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="DynamicFont" id=22]
-[ext_resource path="res://src/gui_common/fonts/Lato-BoldItalic-Small.tres" type="DynamicFont" id=23]
-[ext_resource path="res://assets/textures/gui/bevel/radioA.png" type="Texture" id=24]
-[ext_resource path="res://assets/textures/gui/bevel/radioB.png" type="Texture" id=25]
-[ext_resource path="res://assets/textures/gui/bevel/radioAhover.png" type="Texture" id=26]
-[ext_resource path="res://assets/textures/gui/bevel/radioBhover.png" type="Texture" id=27]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=28]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" type="FontFile" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/checkB.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture2D" id=7]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="FontFile" id=8]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="FontFile" id=9]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=10]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="FontFile" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture2D" id=12]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="FontFile" id=13]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="FontFile" id=14]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="FontFile" id=15]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="FontFile" id=16]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="FontFile" id=17]
+[ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture2D" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture2D" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture2D" id=20]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="FontFile" id=21]
+[ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="FontFile" id=22]
+[ext_resource path="res://src/gui_common/fonts/Lato-BoldItalic-Small.tres" type="FontFile" id=23]
+[ext_resource path="res://assets/textures/gui/bevel/radioA.png" type="Texture2D" id=24]
+[ext_resource path="res://assets/textures/gui/bevel/radioB.png" type="Texture2D" id=25]
+[ext_resource path="res://assets/textures/gui/bevel/radioAhover.png" type="Texture2D" id=26]
+[ext_resource path="res://assets/textures/gui/bevel/radioBhover.png" type="Texture2D" id=27]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="FontFile" id=28]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -729,7 +729,7 @@ OptionButton/styles/normal = SubResource( 25 )
 OptionButton/styles/pressed = SubResource( 26 )
 Panel/styles/panel = SubResource( 27 )
 PanelContainer/styles/panel = SubResource( 27 )
-PopupDialog/styles/panel = null
+Popup/styles/panel = null
 PopupMenu/colors/font_color = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_accel = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
@@ -792,25 +792,25 @@ TabContainer/styles/panel = null
 TabContainer/styles/tab_bg = null
 TabContainer/styles/tab_disabled = null
 TabContainer/styles/tab_fg = null
-Tabs/colors/font_color_bg = Color( 0, 0, 0, 1 )
-Tabs/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-Tabs/colors/font_color_fg = Color( 0, 0, 0, 1 )
-Tabs/constants/hseparation = 4
-Tabs/constants/label_valign_bg = 2
-Tabs/constants/label_valign_fg = 0
-Tabs/constants/top_margin = 24
-Tabs/fonts/font = ExtResource( 8 )
-Tabs/icons/close = null
-Tabs/icons/decrement = null
-Tabs/icons/decrement_highlight = null
-Tabs/icons/increment = null
-Tabs/icons/increment_highlight = null
-Tabs/styles/button = null
-Tabs/styles/button_pressed = null
-Tabs/styles/panel = null
-Tabs/styles/tab_bg = null
-Tabs/styles/tab_disabled = null
-Tabs/styles/tab_fg = null
+TabBar/colors/font_color_bg = Color( 0, 0, 0, 1 )
+TabBar/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+TabBar/colors/font_color_fg = Color( 0, 0, 0, 1 )
+TabBar/constants/hseparation = 4
+TabBar/constants/label_valign_bg = 2
+TabBar/constants/label_valign_fg = 0
+TabBar/constants/top_margin = 24
+TabBar/fonts/font = ExtResource( 8 )
+TabBar/icons/close = null
+TabBar/icons/decrement = null
+TabBar/icons/decrement_highlight = null
+TabBar/icons/increment = null
+TabBar/icons/increment_highlight = null
+TabBar/styles/button = null
+TabBar/styles/button_pressed = null
+TabBar/styles/panel = null
+TabBar/styles/tab_bg = null
+TabBar/styles/tab_disabled = null
+TabBar/styles/tab_fg = null
 TextEdit/colors/background_color = Color( 1, 1, 1, 1 )
 TextEdit/colors/bookmark_color = Color( 1, 1, 1, 1 )
 TextEdit/colors/brace_mismatch_color = Color( 1, 1, 1, 1 )
@@ -850,17 +850,17 @@ TextEdit/styles/completion = null
 TextEdit/styles/focus = SubResource( 52 )
 TextEdit/styles/normal = SubResource( 32 )
 TextEdit/styles/read_only = SubResource( 33 )
-ToolButton/colors/font_color = Color( 0, 0, 0, 1 )
-ToolButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-ToolButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-ToolButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-ToolButton/constants/hseparation = 3
-ToolButton/fonts/font = ExtResource( 8 )
-ToolButton/styles/disabled = null
-ToolButton/styles/focus = null
-ToolButton/styles/hover = null
-ToolButton/styles/normal = null
-ToolButton/styles/pressed = null
+Button/colors/font_color = Color( 0, 0, 0, 1 )
+Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
+Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+Button/constants/hseparation = 3
+Button/fonts/font = ExtResource( 8 )
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null
 TooltipLabel/colors/font_color = Color( 1, 1, 1, 1 )
 TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 TooltipLabel/constants/shadow_offset_x = 1
@@ -927,24 +927,24 @@ VSplitContainer/constants/autohide = 1
 VSplitContainer/constants/separation = 12
 VSplitContainer/icons/grabber = null
 VSplitContainer/styles/bg = null
-WindowDialog/colors/custom_close_color = Color( 0, 0, 0, 1 )
-WindowDialog/colors/custom_title_color = Color( 0, 0, 0, 1 )
-WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
-WindowDialog/constants/close_h_ofs = 18
-WindowDialog/constants/close_v_ofs = 18
-WindowDialog/constants/custom_close_h_ofs = 22
-WindowDialog/constants/custom_close_v_ofs = 20
-WindowDialog/constants/custom_scaleBorder_size = 5
-WindowDialog/constants/custom_title_height = 26
-WindowDialog/constants/custom_titlebar_height = 28
-WindowDialog/constants/scaleborder_size = 4
-WindowDialog/constants/title_height = 16
-WindowDialog/fonts/custom_title_font = ExtResource( 15 )
-WindowDialog/fonts/title_font = ExtResource( 11 )
-WindowDialog/icons/close = null
-WindowDialog/icons/close_highlight = null
-WindowDialog/icons/custom_close = ExtResource( 12 )
-WindowDialog/styles/custom_close_highlight = SubResource( 39 )
-WindowDialog/styles/custom_panel = SubResource( 40 )
-WindowDialog/styles/custom_titlebar = SubResource( 51 )
-WindowDialog/styles/panel = SubResource( 42 )
+Window/colors/custom_close_color = Color( 0, 0, 0, 1 )
+Window/colors/custom_title_color = Color( 0, 0, 0, 1 )
+Window/colors/title_color = Color( 0, 0, 0, 1 )
+Window/constants/close_h_ofs = 18
+Window/constants/close_v_ofs = 18
+Window/constants/custom_close_h_ofs = 22
+Window/constants/custom_close_v_ofs = 20
+Window/constants/custom_scaleBorder_size = 5
+Window/constants/custom_title_height = 26
+Window/constants/custom_titlebar_height = 28
+Window/constants/scaleborder_size = 4
+Window/constants/title_height = 16
+Window/fonts/custom_title_font = ExtResource( 15 )
+Window/fonts/title_font = ExtResource( 11 )
+Window/icons/close = null
+Window/icons/close_highlight = null
+Window/icons/custom_close = ExtResource( 12 )
+Window/styles/custom_close_highlight = SubResource( 39 )
+Window/styles/custom_panel = SubResource( 40 )
+Window/styles/custom_titlebar = SubResource( 51 )
+Window/styles/panel = SubResource( 42 )

@@ -7,7 +7,7 @@ using Container = Godot.Container;
 /// <summary>
 ///   Info and possible actions on a space structure
 /// </summary>
-public class SpaceStructureInfoPopup : CustomWindow
+public partial class SpaceStructureInfoPopup : CustomWindow
 {
     [Export]
     public NodePath? StructureStatusTextLabelPath;
@@ -25,7 +25,7 @@ public class SpaceStructureInfoPopup : CustomWindow
 
     private EntityReference<PlacedSpaceStructure> managedStructure = new();
 
-    private float elapsed = 1;
+    private double elapsed = 1;
 
     public override void _Ready()
     {
@@ -38,7 +38,7 @@ public class SpaceStructureInfoPopup : CustomWindow
             new ChildObjectCache<Enum, CreatedInteractionButton>(interactionButtonContainer, CreateInteractionButton);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -178,12 +178,12 @@ public class SpaceStructureInfoPopup : CustomWindow
         var binds = new Array();
         binds.Add(child.ToString());
 
-        button.Connect("pressed", this, nameof(OnActionSelected), binds);
+        button.Connect("pressed", new Callable(this, nameof(OnActionSelected)), binds);
 
         return button;
     }
 
-    private class CreatedInteractionButton : Button
+    private partial class CreatedInteractionButton : Button
     {
     }
 }

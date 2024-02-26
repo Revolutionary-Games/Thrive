@@ -5,7 +5,7 @@ using Godot;
 ///   Variant of the <see cref="KeyPrompt"/> that shows a "hold" progress on the button. For use with actions that take
 ///   some time to trigger.
 /// </summary>
-public class HoldKeyPrompt : KeyPrompt
+public partial class HoldKeyPrompt : KeyPrompt
 {
     [Export]
     public float RequiredHoldTime = 1;
@@ -49,24 +49,24 @@ public class HoldKeyPrompt : KeyPrompt
 
     private bool pressedPreviously;
     private bool wasFullyPressed;
-    private float holdProgress;
+    private double holdProgress;
 
     [Signal]
-    public delegate void OnPressedLongEnough();
+    public delegate void OnPressedLongEnoughEventHandler();
 
     /// <summary>
     ///   Value between 0-1 indicating how far along the press is currently
     /// </summary>
-    public float HoldProgress => holdProgress;
+    public double HoldProgress => holdProgress;
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!ShowPress)
         {
             if (holdProgress != 0)
             {
                 holdProgress = 0;
-                Update();
+                QueueRedraw();
             }
 
             return;
@@ -126,7 +126,7 @@ public class HoldKeyPrompt : KeyPrompt
 
             if (Math.Abs(holdProgress - oldProgress) > 0.0001f)
             {
-                Update();
+                QueueRedraw();
             }
         }
         else
@@ -134,7 +134,7 @@ public class HoldKeyPrompt : KeyPrompt
             if (holdProgress != 0)
             {
                 holdProgress = 0;
-                Update();
+                QueueRedraw();
             }
         }
     }
@@ -145,15 +145,15 @@ public class HoldKeyPrompt : KeyPrompt
 
         if (holdProgress > 0.001f)
         {
-            var ourSize = RectSize;
+            var ourSize = Size;
 
-            var drawHeight = ourSize.y * holdProgress;
+            var drawHeight = ourSize.Y * holdProgress;
 
-            // Ensure at least one pixel drawn if there's some progress
+            // Ensure at least one p.Xel drawn if there's some progress
             if (drawHeight < 1)
                 drawHeight = 1;
 
-            DrawRect(new Rect2(0, ourSize.y - drawHeight, ourSize.x, drawHeight),
+            DrawRect(new Rect2(0, ourSize.Y - drawHeight, ourSize.X, drawHeight),
                 holdProgress >= 1 ? HoldIndicatorFilledColour : HoldIndicatorColour, true);
         }
     }
@@ -166,25 +166,25 @@ public class HoldKeyPrompt : KeyPrompt
             return;
         }
 
-        var size = RectSize;
+        var size = Size;
 
         // Position the icons to leave some size for rendering the hold indicator
 
         var doubleIndicatorSize = HoldIndicatorMarginSize * 2;
-        size = new Vector2(size.x - doubleIndicatorSize, size.y - doubleIndicatorSize);
+        size = new Vector2(size.X - doubleIndicatorSize, size.Y - doubleIndicatorSize);
 
-        primaryIcon!.RectMinSize = size;
-        secondaryIcon.RectMinSize = size;
+        primaryIcon!.CustomMinimumSize = size;
+        secondaryIcon.CustomMinimumSize = size;
 
         var offset = new Vector2(HoldIndicatorMarginSize, HoldIndicatorMarginSize);
 
-        primaryIcon.RectPosition = offset;
-        secondaryIcon.RectPosition = offset;
+        primaryIcon.Position = offset;
+        secondaryIcon.Position = offset;
     }
 
     private void OnFullyPressed()
     {
         wasFullyPressed = true;
-        EmitSignal(nameof(OnPressedLongEnough));
+        EmitSignal(nameof(OnPressedLongEnoughEventHandler));
     }
 }

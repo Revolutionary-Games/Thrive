@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/ChemicalEquation.cs" type="Script" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/ProcessProcessing.png" type="Texture" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/ProcessProcessing.png" type="Texture2D" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="FontFile" id=4]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 4 )
@@ -23,24 +23,24 @@ SpinnerPath = NodePath("HBoxContainer/Spinner")
 FirstLineContainerPath = NodePath("FirstLine")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 32.0
+offset_right = 1280.0
+offset_bottom = 32.0
 
 [node name="Spinner" type="TextureRect" parent="HBoxContainer"]
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-rect_pivot_offset = Vector2( 16, 16 )
+offset_right = 32.0
+offset_bottom = 32.0
+custom_minimum_size = Vector2( 32, 32 )
+pivot_offset = Vector2( 16, 16 )
 texture = ExtResource( 3 )
 expand = true
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 36.0
-margin_top = 6.0
-margin_right = 1280.0
-margin_bottom = 26.0
+offset_left = 36.0
+offset_top = 6.0
+offset_right = 1280.0
+offset_bottom = 26.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
+theme_override_fonts/font = ExtResource( 4 )
 text = "Process name goes here..."
 autowrap = true
 max_lines_visible = 5
@@ -49,8 +49,8 @@ __meta__ = {
 }
 
 [node name="FirstLine" type="HBoxContainer" parent="."]
-margin_top = 36.0
-margin_right = 1280.0
-margin_bottom = 36.0
+offset_top = 36.0
+offset_right = 1280.0
+offset_bottom = 36.0
 mouse_filter = 2
 theme = SubResource( 1 )

@@ -6,7 +6,7 @@ using Godot.Collections;
 ///   Base type for all menus where selecting a building / structure to be built can be done
 /// </summary>
 /// <typeparam name="TSelection">The type of object this is allowing selecting from</typeparam>
-public abstract class StructureToBuildPopupBase<TSelection> : Control
+public abstract partial class StructureToBuildPopupBase<TSelection> : Control
 {
     [Export]
     public NodePath? PopupPath;
@@ -77,32 +77,32 @@ public abstract class StructureToBuildPopupBase<TSelection> : Control
     }
 
     protected (HBoxContainer StructureContent, Button Button, CustomRichTextLabel RichText) CreateStructureSelectionGUI(
-        Texture icon)
+        Texture2D icon)
     {
         var structureContent = new HBoxContainer
         {
-            SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
+            SizeFlagsHorizontal = SizeFlags.ExpandFill,
         };
 
         // TODO: adjust the button visuals / make the text clickable like for a crafting recipe selection
         var button = new Button
         {
             SizeFlagsHorizontal = 0,
-            SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
+            SizeFlagsVertical = SizeFlags.ShrinkCenter,
             Icon = icon,
-            IconAlign = Button.TextAlign.Center,
+            IconAlignment = HorizontalAlignment.Center,
             ExpandIcon = true,
-            RectMinSize = new Vector2(42, 42),
+            CustomMinimumSize = new Vector2(42, 42),
         };
 
         structureContent.AddChild(button);
         structureContent.AddChild(new Control
         {
-            RectMinSize = new Vector2(5, 0),
+            CustomMinimumSize = new Vector2(5, 0),
         });
 
-        var richText = richTextScene.Instance<CustomRichTextLabel>();
-        richText.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+        var richText = richTextScene.Instantiate<CustomRichTextLabel>();
+        richText.SizeFlagsHorizontal = SizeFlags.ExpandFill;
 
         structureContent.AddChild(richText);
         return (structureContent, button, richText);
@@ -117,7 +117,7 @@ public abstract class StructureToBuildPopupBase<TSelection> : Control
         {
             var binds = new Array();
             binds.Add(callbackParameter);
-            button.Connect("pressed", this, callbackMethodName, binds);
+            button.Connect("pressed", new Callable(this, callbackMethodName), binds);
 
             firstButton ??= button;
         }

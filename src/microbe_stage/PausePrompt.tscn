@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="FontFile" id=1]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
 
 [node name="PausePrompt" type="Control"]
@@ -8,18 +8,18 @@ anchor_left = 0.5
 anchor_top = 0.697
 anchor_right = 0.5
 anchor_bottom = 0.776
-margin_left = -200.0
-margin_top = 48.16
-margin_right = 200.0
-margin_bottom = 70.16
+offset_left = -200.0
+offset_top = 48.16
+offset_right = 200.0
+offset_bottom = 70.16
 mouse_filter = 2
 
 [node name="PausePromptLabel" type="Label" parent="."]
-margin_top = 18.0
-margin_right = 400.0
-margin_bottom = 59.0
-rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = ExtResource( 1 )
+offset_top = 18.0
+offset_right = 400.0
+offset_bottom = 59.0
+custom_minimum_size = Vector2( 0, 20 )
+theme_override_fonts/font = ExtResource( 1 )
 text = "PAUSED"
 align = 1
 valign = 1
@@ -28,8 +28,8 @@ __meta__ = {
 }
 
 [node name="PauseInfo" parent="." instance=ExtResource( 5 )]
-margin_top = 60.0
-margin_right = 400.0
-margin_bottom = 100.0
-rect_clip_content = false
+offset_top = 60.0
+offset_right = 400.0
+offset_bottom = 100.0
+clip_contents = false
 mouse_filter = 2

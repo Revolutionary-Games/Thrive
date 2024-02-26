@@ -1,10 +1,10 @@
-﻿using System.Linq;
+using System.Linq;
 using Godot;
 
 /// <summary>
 ///   Shows the god tools available to mess with a game object
 /// </summary>
-public class GodToolsPopup : CustomWindow
+public partial class GodToolsPopup : CustomWindow
 {
     [Export]
     public NodePath? ActionButtonsContainerPath;
@@ -29,7 +29,7 @@ public class GodToolsPopup : CustomWindow
         targetEntityNameLabel = GetNode<Label>(TargetEntityNameLabelPath);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!Visible)
             return;
@@ -69,7 +69,7 @@ public class GodToolsPopup : CustomWindow
                 break;
         }
 
-        if (entity is Spatial)
+        if (entity is Node3D)
         {
             AddActionButton(TranslationServer.Translate("ACTION_TELEPORT"), nameof(OnTeleportState), true);
         }
@@ -98,9 +98,9 @@ public class GodToolsPopup : CustomWindow
 
             var target = GetTarget();
 
-            if (target is Spatial spatial)
+            if (target is Node3D spatial)
             {
-                spatial.GlobalTranslation = location;
+                spatial.GlobalPosition = location;
             }
             else
             {
@@ -139,11 +139,11 @@ public class GodToolsPopup : CustomWindow
         if (toggleButton)
         {
             button.ToggleMode = true;
-            button.Connect("toggled", this, methodName);
+            button.Connect("toggled", new Callable(this, methodName));
         }
         else
         {
-            button.Connect("pressed", this, methodName);
+            button.Connect("pressed", new Callable(this, methodName));
         }
 
         actionButtonsContainer.AddChild(button);

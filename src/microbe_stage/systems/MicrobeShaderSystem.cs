@@ -76,7 +76,7 @@
 
             foreach (var material in entityMaterial.Materials)
             {
-                material.SetShaderParam("dissolveValue", shaderParameters.DissolveValue);
+                material.SetShaderParameter("dissolveValue", shaderParameters.DissolveValue);
 
                 // Dissolve texture must be set in the material set on the object otherwise the dissolve animation
                 // won't play correctly. It used to be the case that the old C# code set the noise texture here but

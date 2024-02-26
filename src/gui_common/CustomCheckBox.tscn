@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/gui_common/CustomCheckBox.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture2D" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -15,19 +15,19 @@
 [sub_resource type="StyleBoxEmpty" id=5]
 
 [node name="CheckBox" type="Button"]
-margin_right = 10.0
+offset_right = 10.0
 theme = ExtResource( 2 )
-custom_colors/font_color_disabled = Color( 0.670588, 0.670588, 0.670588, 1 )
-custom_colors/font_color_focus = Color( 0.466667, 0.670588, 0.709804, 1 )
-custom_colors/font_color = Color( 0.901961, 0.901961, 0.901961, 1 )
-custom_colors/font_color_hover = Color( 0.717647, 0.847059, 0.870588, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_constants/hseparation = 5
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+theme_override_colors/font_disabled_color = Color( 0.670588, 0.670588, 0.670588, 1 )
+theme_override_colors/font_focus_color = Color( 0.466667, 0.670588, 0.709804, 1 )
+theme_override_colors/font_color = Color( 0.901961, 0.901961, 0.901961, 1 )
+theme_override_colors/font_hover_color = Color( 0.717647, 0.847059, 0.870588, 1 )
+theme_override_colors/font_pressed_color = Color( 1, 1, 1, 1 )
+theme_override_constants/h_separation = 5
+theme_override_styles/hover = SubResource( 1 )
+theme_override_styles/pressed = SubResource( 2 )
+theme_override_styles/focus = SubResource( 3 )
+theme_override_styles/disabled = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 toggle_mode = true
 shortcut_in_tooltip = false
 icon = ExtResource( 3 )

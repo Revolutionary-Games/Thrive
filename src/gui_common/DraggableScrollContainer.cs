@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using Godot;
-using Object = Godot.Object;
 
 /// <summary>
 ///   A scroll container which can be also moved by clicking and dragging.
 /// </summary>
-public class DraggableScrollContainer : ScrollContainer
+public partial class DraggableScrollContainer : ScrollContainer
 {
     /// <summary>
     ///   If set to null, the first child is used.
@@ -43,7 +42,7 @@ public class DraggableScrollContainer : ScrollContainer
     ///   Unwanted scrolling happens while zooming with mouse wheel, this is used to reset the scroll values back to
     ///   its last state before zooming started.
     /// </summary>
-    private Int2 lastScrollValues;
+    private Vector2I lastScrollValues;
 
     [Export]
     public float DragSensitivity { get; set; } = 1.0f;
@@ -93,8 +92,8 @@ public class DraggableScrollContainer : ScrollContainer
         AddChild(tween);
 
         // Workaround a bug in Godot (https://github.com/godotengine/godot/issues/22936).
-        GetVScrollbar().Connect("value_changed", this, nameof(OnScrollStarted));
-        GetHScrollbar().Connect("value_changed", this, nameof(OnScrollStarted));
+        GetVScrollBar().Connect("value_changed", new Callable(this, nameof(OnScrollStarted)));
+        GetHScrollBar().Connect("value_changed", new Callable(this, nameof(OnScrollStarted)));
 
         UpdateScrollbars();
     }
@@ -115,12 +114,12 @@ public class DraggableScrollContainer : ScrollContainer
     {
         base._Draw();
 
-        content.RectPivotOffset = new Vector2(ScrollHorizontal, ScrollVertical) + GetRect().End * 0.5f;
+        content.PivotOffset = new Vector2(ScrollHorizontal, ScrollVertical) + GetRect().End * 0.5f;
         contentScale = Mathf.Clamp(contentScale, MinZoom, MaxZoom);
         var pairValue = new Vector2(contentScale, contentScale);
 
-        if (content.RectScale != pairValue)
-            content.RectScale = pairValue;
+        if (content.Scale != pairValue)
+            content.Scale = pairValue;
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -132,11 +131,11 @@ public class DraggableScrollContainer : ScrollContainer
         }
 
         var mouse = GetGlobalMousePosition();
-        var min = RectGlobalPosition;
-        var max = min + RectSize;
+        var min = GlobalPosition;
+        var max = min + Size;
 
         // Don't allow drag motion to continue outside this control
-        if (mouse.x < min.x || mouse.y < min.y || mouse.x > max.x || mouse.y > max.y)
+        if (mouse.X < min.X || mouse.Y < min.Y || mouse.X > max.X || mouse.Y > max.Y)
         {
             dragging = false;
             return;
@@ -166,8 +165,8 @@ public class DraggableScrollContainer : ScrollContainer
             // vice versa.
             var scaleInverse = 1 / contentScale;
 
-            ImmediatePan(new Vector2(ScrollHorizontal - (int)(motion.Relative.x * scaleInverse) * DragSensitivity,
-                ScrollVertical - (int)(motion.Relative.y * scaleInverse) * DragSensitivity));
+            ImmediatePan(new Vector2(ScrollHorizontal - (int)(motion.Relative.X * scaleInverse) * DragSensitivi.Y,
+                ScrollVertical - (int)(motion.Relativery * scaleInverse) * DragSensitivi.Y));
         }
     }
 
@@ -204,7 +203,8 @@ public class DraggableScrollContainer : ScrollContainer
         tween.Start();
 
         this.onPanned = onPanned;
-        tween.CheckAndConnect("tween_completed", this, nameof(OnPanningStopped), null, (uint)ConnectFlags.Oneshot);
+        tween.CheckAndConnect("tween_completed", new Callable(this, nameof(OnPanningStopped)), null,
+            (uint)ConnectFlags.OneShot);
     }
 
     public void ResetZoom()
@@ -232,18 +232,18 @@ public class DraggableScrollContainer : ScrollContainer
     private void ImmediateZoom(float value)
     {
         contentScale = value;
-        Update();
+        QueueRedraw();
     }
 
     private void ImmediatePan(Vector2 coordinates)
     {
-        ScrollHorizontal = (int)coordinates.x;
-        ScrollVertical = (int)coordinates.y;
+        ScrollHorizontal = (int)coordinates.X;
+        ScrollVertical = (int)coordinates.Y;
     }
 
     private void UpdateScrollbars()
     {
-        GetHScrollbar().RectScale = GetVScrollbar().RectScale = ShowScrollbars ? Vector2.One : Vector2.Zero;
+        GetHScrollBar().Scale = GetVScrollBar().Scale = ShowScrollbars ? Vector2.One : Vector2.Zero;
     }
 
     private void OnScrollStarted(float value)
@@ -252,17 +252,17 @@ public class DraggableScrollContainer : ScrollContainer
 
         if (zooming)
         {
-            ScrollHorizontal = lastScrollValues.x;
-            ScrollVertical = lastScrollValues.y;
+            ScrollHorizontal = lastScrollValues.X;
+            ScrollVertical = lastScrollValues.Y;
             zooming = false;
         }
         else
         {
-            lastScrollValues = new Int2(ScrollHorizontal, ScrollVertical);
+            lastScrollValues = new Vector2I(ScrollHorizontal, ScrollVertical);
         }
     }
 
-    private void OnPanningStopped(Object @object, NodePath key)
+    private void OnPanningStopped(GodotObject @object, NodePath key)
     {
         _ = @object;
         _ = key;

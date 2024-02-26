@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/microbe_stage/particles/embergradient.tres" type="Texture" id=1]
-[ext_resource path="res://assets/textures/snowflake.png" type="Texture" id=2]
+[ext_resource path="res://src/microbe_stage/particles/embergradient.tres" type="Texture2D" id=1]
+[ext_resource path="res://assets/textures/snowflake.png" type="Texture2D" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
@@ -13,7 +13,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticleProcessMaterial" id=2]
 emission_shape = 2
 emission_box_extents = Vector3( 100, 30, 100 )
 direction = Vector3( 2, 7, 0 )
@@ -30,7 +30,7 @@ color_ramp = ExtResource( 1 )
 [sub_resource type="QuadMesh" id=3]
 
 [node name="Bathypelagic&seafloor" type="Particles"]
-pause_mode = 1
+process_mode = 1
 material_override = SubResource( 1 )
 amount = 65
 lifetime = 15.0

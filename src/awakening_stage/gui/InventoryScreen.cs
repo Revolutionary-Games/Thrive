@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -7,7 +7,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Player inventory and crafting screen for the awakening stage
 /// </summary>
-public class InventoryScreen : ControlWithInput
+public partial class InventoryScreen : ControlWithInput
 {
     [Export]
     public NodePath? InventoryPopupPath;
@@ -103,7 +103,7 @@ public class InventoryScreen : ControlWithInput
     private CraftingRecipe? selectedRecipe;
 
     private InventorySlot? previouslySelectedSlot;
-    private float timeUntilSlotSwap = -1;
+    private double timeUntilSlotSwap = -1;
     private InventorySlot? slotSwapFrom;
     private InventorySlot? slotSwapTo;
 
@@ -158,10 +158,10 @@ public class InventoryScreen : ControlWithInput
 
         Visible = true;
 
-        craftingPanelDefaultPosition = craftingPanelPopup.RectPosition;
+        craftingPanelDefaultPosition = craftingPanelPopup.Position;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         // TODO: refresh the ground objects at some interval here
         // If ground items change UpdateRecipesWeHaveMaterialsFor needs to be called
@@ -414,9 +414,9 @@ public class InventoryScreen : ControlWithInput
     {
         int nextIndex = 0;
 
-        var areaSize = equipmentSlotParent.RectSize;
+        var areaSize = equipmentSlotParent.Size;
 
-        equipmentBackgroundImage.RectSize = areaSize;
+        equipmentBackgroundImage.Size = areaSize;
 
         foreach (var slotData in creature.ListEquipmentContents())
         {
@@ -451,7 +451,7 @@ public class InventoryScreen : ControlWithInput
 
             // TODO: take image alignment to the center into account at certain aspect ratios
 
-            slot.RectPosition = new Vector2(position.x * areaSize.x, position.y * areaSize.y) - slot.RectSize * 0.5f;
+            slot.Position = new Vector2(position.X * areaSize.X, position.Y * areaSize.Y) - slot.Size * 0.5f;
 
             ++nextIndex;
         }
@@ -486,8 +486,8 @@ public class InventoryScreen : ControlWithInput
         // unstuck fixing here
         Invoke.Instance.QueueForObject(() =>
         {
-            craftingPanelPopup.RectSize = Vector2.Zero;
-            craftingPanelPopup.RectPosition = craftingPanelDefaultPosition;
+            craftingPanelPopup.Size = Vector2.Zero;
+            craftingPanelPopup.Position = craftingPanelDefaultPosition;
         }, craftingPanelPopup);
     }
 
@@ -545,18 +545,18 @@ public class InventoryScreen : ControlWithInput
 
     private InventorySlot CreateInventorySlot(InventorySlotCategory category, bool transient)
     {
-        var slot = inventorySlotScene.Instance<InventorySlot>();
+        var slot = inventorySlotScene.Instantiate<InventorySlot>();
         slot.Transient = transient;
         slot.Category = category;
 
-        slot.Group = inventorySlotGroup;
+        slot.ButtonGroup = inventorySlotGroup;
 
         // Connect the required signals
         var binds = new Array();
         binds.Add(slot);
-        slot.Connect(nameof(InventorySlot.OnSelected), this, nameof(OnInventorySlotSelected), binds);
+        slot.Connect(nameof(InventorySlot.OnSelectedEventHandler), new Callable(this, nameof(OnInventorySlotSelected)), binds);
 
-        slot.Connect(nameof(InventorySlot.OnDragStarted), this, nameof(OnInventoryDragStarted));
+        slot.Connect(nameof(InventorySlot.OnDragStartedEventHandler), new Callable(this, nameof(OnInventoryDragStarted)));
 
         slot.AllowDropHandler += CheckIsDropAllowed;
         slot.PerformDropHandler += OnDropPerformed;
@@ -651,8 +651,8 @@ public class InventoryScreen : ControlWithInput
 
     private void UpdateToggleButtonStatus()
     {
-        craftingPanelButton.Pressed = craftingPanelPopup.Visible;
-        groundPanelButton.Pressed = groundPanelPopup.Visible;
+        craftingPanelButton.ButtonPressed = craftingPanelPopup.Visible;
+        groundPanelButton.ButtonPressed = groundPanelPopup.Visible;
     }
 
     private void OnInventorySlotSelected(InventorySlot slot)
@@ -1296,11 +1296,11 @@ public class InventoryScreen : ControlWithInput
                 if (recipe == selectedRecipe)
                 {
                     sawSelected = true;
-                    item.Pressed = true;
+                    item.ButtonPressed = true;
                 }
                 else
                 {
-                    item.Pressed = false;
+                    item.ButtonPressed = false;
                 }
             }
         }
@@ -1528,7 +1528,7 @@ public class InventoryScreen : ControlWithInput
 
     private RecipeListItem CreateRecipeListItem(CraftingRecipe recipe)
     {
-        var item = recipeListItemScene.Instance<RecipeListItem>();
+        var item = recipeListItemScene.Instantiate<RecipeListItem>();
         item.Group = recipeSelectionGroup;
         item.DisplayedRecipe = recipe;
         item.AvailableMaterials = availableCraftingMaterials;
@@ -1536,7 +1536,7 @@ public class InventoryScreen : ControlWithInput
         var binds = new Array();
         binds.Add(item);
 
-        item.Connect(nameof(RecipeListItem.OnSelected), this, nameof(OnCraftingRecipeSelected), binds);
+        item.Connect(nameof(RecipeListItem.OnSelectedEventHandler), new Callable(this, nameof(OnCraftingRecipeSelected)), binds);
 
         return item;
     }

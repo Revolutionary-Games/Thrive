@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/society_stage/gui/ResourceDisplayBar.cs" type="Script" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture2D" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="FontFile" id=3]
 
 [node name="ResourceDisplayBar" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
-custom_constants/separation = 12
+theme_override_constants/separation = 12
 script = ExtResource( 1 )
 EarlyResourcesContainerPath = NodePath("EarlyResources")
 ScienceIndicatorContainerPath = NodePath("ScienceContainer")
@@ -19,32 +19,32 @@ CriticalResourceAmountColour = Color( 1, 0.341176, 0.341176, 1 )
 AmountLabelFont = ExtResource( 3 )
 
 [node name="EarlyResources" type="HBoxContainer" parent="."]
-margin_bottom = 720.0
-custom_constants/separation = 10
+offset_bottom = 720.0
+theme_override_constants/separation = 10
 
 [node name="ScienceContainer" type="HBoxContainer" parent="."]
-margin_left = 12.0
-margin_right = 68.0
-margin_bottom = 720.0
+offset_left = 12.0
+offset_right = 68.0
+offset_bottom = 720.0
 
 [node name="ScienceAmount" type="Label" parent="ScienceContainer"]
-margin_top = 353.0
-margin_right = 28.0
-margin_bottom = 367.0
+offset_top = 353.0
+offset_right = 28.0
+offset_bottom = 367.0
 text = "+0.5"
 
 [node name="TextureRect" type="TextureRect" parent="ScienceContainer"]
-margin_left = 32.0
-margin_right = 56.0
-margin_bottom = 720.0
-rect_min_size = Vector2( 24, 24 )
+offset_left = 32.0
+offset_right = 56.0
+offset_bottom = 720.0
+custom_minimum_size = Vector2( 24, 24 )
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
 [node name="LateResources" type="HBoxContainer" parent="."]
-margin_left = 80.0
-margin_right = 1280.0
-margin_bottom = 720.0
+offset_left = 80.0
+offset_right = 1280.0
+offset_bottom = 720.0
 size_flags_horizontal = 3
-custom_constants/separation = 10
+theme_override_constants/separation = 10

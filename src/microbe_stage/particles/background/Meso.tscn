@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/microbe_stage/particles/embergradient.tres" type="Texture" id=1]
-[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=2]
+[ext_resource path="res://src/microbe_stage/particles/embergradient.tres" type="Texture2D" id=1]
+[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture2D" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_transparent = true
 flags_unshaded = true
 flags_ensure_correct_normals = true
@@ -22,7 +22,7 @@ _data = [ Vector2( 0, 0.582955 ), 0.0, 1.54091, 0, 0, Vector2( 1, 0.610227 ), -1
 [sub_resource type="CurveTexture" id=3]
 curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticleProcessMaterial" id=4]
 lifetime_randomness = 0.01
 emission_shape = 2
 emission_box_extents = Vector3( 100, 100, 100 )
@@ -38,7 +38,7 @@ color_ramp = ExtResource( 1 )
 [sub_resource type="QuadMesh" id=5]
 
 [node name="Meso" type="Particles"]
-pause_mode = 1
+process_mode = 1
 material_override = SubResource( 1 )
 cast_shadow = 0
 amount = 45

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/microbe_stage/particles/Embers.tres" type="Material" id=1]
-[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture2D" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_transparent = true
 flags_unshaded = true
 flags_ensure_correct_normals = true
@@ -19,7 +19,7 @@ albedo_texture = ExtResource( 2 )
 [sub_resource type="QuadMesh" id=2]
 
 [node name="Vent" type="Particles"]
-pause_mode = 1
+process_mode = 1
 material_override = SubResource( 1 )
 cast_shadow = 0
 amount = 60

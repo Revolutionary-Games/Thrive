@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Components;
 using DefaultEcs;
@@ -15,7 +15,7 @@ public partial class DebugOverlays
 
 #pragma warning disable CA2213
     private Font smallerFont = null!;
-    private Camera? activeCamera;
+    private Camera3D? activeCamera;
 #pragma warning restore CA2213
 
     private IWorldSimulation? labelsActiveForSimulation;
@@ -78,7 +78,7 @@ public partial class DebugOverlays
     {
         if (!entity.IsAlive)
         {
-            label.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+            label.AddThemeColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
             return false;
         }
 
@@ -90,25 +90,25 @@ public partial class DebugOverlays
             {
                 case MicrobeState.Binding:
                 {
-                    label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 0.0f));
+                    label.AddThemeColorOverride("font_color", new Color(0.2f, 0.5f, 0.0f));
                     break;
                 }
 
                 case MicrobeState.Engulf:
                 {
-                    label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 1.0f));
+                    label.AddThemeColorOverride("font_color", new Color(0.2f, 0.5f, 1.0f));
                     break;
                 }
 
                 case MicrobeState.Unbinding:
                 {
-                    label.AddColorOverride("font_color", new Color(1.0f, 0.5f, 0.2f));
+                    label.AddThemeColorOverride("font_color", new Color(1.0f, 0.5f, 0.2f));
                     break;
                 }
 
                 default:
                 {
-                    label.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
+                    label.AddThemeColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
                     break;
                 }
             }
@@ -120,7 +120,7 @@ public partial class DebugOverlays
     private void UpdateEntityLabels()
     {
         if (!IsInstanceValid(activeCamera) || activeCamera is not { Current: true })
-            activeCamera = GetViewport().GetCamera();
+            activeCamera = GetViewport().GetCamera3D();
 
         if (activeCamera == null)
             return;
@@ -144,7 +144,7 @@ public partial class DebugOverlays
 
             ref var position = ref entity.Get<WorldPosition>();
 
-            label.RectPosition = activeCamera.UnprojectPosition(position.Position);
+            label.Position = activeCamera.UnprojectPosition(position.Position);
 
             if (!label.Text.Empty())
                 continue;
@@ -187,7 +187,7 @@ public partial class DebugOverlays
         if (entity.Has<ToxinDamageSource>() || entity.Has<CompoundVenter>() || entity.Has<DamageOnTouch>())
         {
             // To reduce the labels overlapping each other
-            label.AddFontOverride("font", smallerFont);
+            label.AddThemeFontOverride("font", smallerFont);
         }
     }
 

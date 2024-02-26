@@ -4,7 +4,7 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
-public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAction, TMetaball> :
+public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TAction, TMetaball> :
     EditorComponentWithActionsBase<TEditor, TCombinedAction>,
     ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
@@ -34,9 +34,9 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     protected EditorCamera3D? camera;
 
     [JsonIgnore]
-    protected MeshInstance editorArrow = null!;
+    protected MeshInstance3D editorArrow = null!;
 
-    protected MeshInstance editorGround = null!;
+    protected MeshInstance3D editorGround = null!;
 
     protected AudioStream hexPlacementSound = null!;
 #pragma warning restore CA2213
@@ -165,10 +165,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         }
 
         camera = GetNode<EditorCamera3D>(CameraPath);
-        editorArrow = GetNode<MeshInstance>(EditorArrowPath);
-        editorGround = GetNode<MeshInstance>(EditorGroundPath);
+        editorArrow = GetNode<MeshInstance3D>(EditorArrowPath);
+        editorGround = GetNode<MeshInstance3D>(EditorGroundPath);
 
-        camera.Connect(nameof(EditorCamera3D.OnPositionChanged), this, nameof(OnCameraPositionChanged));
+        camera.Connect(nameof(EditorCamera3D.OnPositionChangedEventHandler), new Callable(this, nameof(OnCameraPositionChanged)));
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
@@ -218,7 +218,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         hoverMetaballData.Clear();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -478,14 +478,14 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         if (animateMovement)
         {
             // TODO: check that this works
-            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation", editorArrow.Translation,
+            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation", editorArrow.Position,
                 arrowPosition, Constants.EDITOR_ARROW_INTERPOLATE_SPEED,
                 Tween.TransitionType.Expo, Tween.EaseType.Out);
             GUICommon.Instance.Tween.Start();
         }
         else
         {
-            editorArrow.Translation = arrowPosition;
+            editorArrow.Position = arrowPosition;
         }
     }
 
@@ -622,7 +622,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         {
             // TODO: check if the math is faster if we roll our custom sphere intersection rather than call into native
             // Godot code here
-            var potentialIntersection = Geometry.SegmentIntersectsSphere(rayOrigin, rayEnd, testedMetaball.Position,
+            var potentialIntersection = Geometry3D.SegmentIntersectsSphere(rayOrigin, rayEnd, testedMetaball.Position,
                 testedMetaball.Size * 0.5f);
 
             if (potentialIntersection.Length < 1)
@@ -647,7 +647,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
         foreach (var plane in cursorHitWorldPlanes)
         {
-            var intersection = plane.IntersectRay(rayOrigin, rayNormal);
+            var intersection = plane.IntersectsRay(rayOrigin, rayNormal);
 
             if (intersection != null)
             {
@@ -788,7 +788,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         base.Dispose(disposing);
     }
 
-    private void OnCameraPositionChanged(Transform newPosition)
+    private void OnCameraPositionChanged(Transform3D newPosition)
     {
         // TODO: implement camera position saving
     }

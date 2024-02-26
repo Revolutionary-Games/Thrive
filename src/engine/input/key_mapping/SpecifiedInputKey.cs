@@ -73,7 +73,7 @@ public class SpecifiedInputKey : ICloneable
             {
                 var (button, device) = UnpackCodeAndDevice(Code);
 
-                container.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerButton((JoystickList)button)));
+                container.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerButton((JoyButton)button)));
 
                 if (device >= 0)
                     GD.Print("TODO: displaying device restriction");
@@ -91,9 +91,9 @@ public class SpecifiedInputKey : ICloneable
                 var (axis, direction, device) = UnpackAxis(Code);
 
                 overlayPositioner.AddChild(
-                    CreateTextureRect(KeyPromptHelper.GetPathForControllerAxis((JoystickList)axis)));
+                    CreateTextureRect(KeyPromptHelper.GetPathForControllerAxis((JoyAxis)axis)));
 
-                var directionImage = KeyPromptHelper.GetPathForControllerAxisDirection((JoystickList)axis, direction);
+                var directionImage = KeyPromptHelper.GetPathForControllerAxisDirection((JoyAxis)axis, direction);
 
                 if (directionImage != null)
                 {
@@ -444,14 +444,14 @@ public class SpecifiedInputKey : ICloneable
 
     private void ConstructFrom(InputEventWithModifiers @event)
     {
-        Control = @event.Control;
-        Alt = @event.Alt;
-        Shift = @event.Shift;
+        Control = @event.IsCommandOrControlPressed();
+        Alt = @event.AltPressed;
+        Shift = @event.ShiftPressed;
         switch (@event)
         {
             case InputEventKey inputKey:
                 Type = InputType.Key;
-                Code = inputKey.Scancode;
+                Code = inputKey.Keycode;
                 break;
             case InputEventMouseButton inputMouse:
                 Type = InputType.MouseButton;
@@ -471,9 +471,9 @@ public class SpecifiedInputKey : ICloneable
             _ => throw new NotSupportedException("Unsupported InputType given"),
         };
 
-        result.Alt = Alt;
+        result.AltPressed = Alt;
         result.Control = Control;
-        result.Shift = Shift;
+        result.ShiftPressed = Shift;
         return result;
     }
 

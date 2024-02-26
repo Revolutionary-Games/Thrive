@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/textures/gui/bevel/MPNoCircleLight.png" type="Texture" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/MPNoCircleLight.png" type="Texture2D" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="FontFile" id=2]
 [ext_resource path="res://src/microbe_stage/editor/MicrobePartSelection.cs" type="Script" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Tiny.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Tiny.tres" type="FontFile" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -64,34 +64,34 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [node name="MicrobePartSelection" type="MarginContainer"]
-margin_right = 80.0
-margin_bottom = 103.0
+offset_right = 80.0
+offset_bottom = 103.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_top = 5
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
 script = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_top = 5.0
-margin_right = 85.0
-margin_bottom = 98.0
+offset_top = 5.0
+offset_right = 85.0
+offset_bottom = 98.0
 mouse_filter = 2
-custom_constants/separation = 1
+theme_override_constants/separation = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_left = 2.0
-margin_right = 82.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 80, 60 )
+offset_left = 2.0
+offset_right = 82.0
+offset_bottom = 60.0
+custom_minimum_size = Vector2( 80, 60 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
+theme_override_styles/hover = SubResource( 1 )
+theme_override_styles/pressed = SubResource( 2 )
+theme_override_styles/disabled = SubResource( 3 )
+theme_override_styles/normal = SubResource( 4 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 5 )
@@ -113,27 +113,27 @@ grow_horizontal = 2
 mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="VBoxContainer/Button/RecentlyUnlocked"]
-margin_right = 189.0
-margin_bottom = 14.0
+offset_right = 189.0
+offset_bottom = 14.0
 mouse_filter = 2
 theme = ExtResource( 5 )
-custom_styles/panel = SubResource( 6 )
+theme_override_styles/panel = SubResource( 6 )
 
 [node name="Label" type="Label" parent="VBoxContainer/Button/RecentlyUnlocked"]
-margin_right = 189.0
-margin_bottom = 14.0
+offset_right = 189.0
+offset_bottom = 14.0
 text = "UNLOCKED_NEW_ORGANELLE"
 align = 1
 valign = 1
 
 [node name="Name" type="Label" parent="VBoxContainer"]
-margin_top = 61.0
-margin_right = 85.0
-margin_bottom = 76.0
-rect_min_size = Vector2( 85, 0 )
+offset_top = 61.0
+offset_right = 85.0
+offset_bottom = 76.0
+custom_minimum_size = Vector2( 85, 0 )
 size_flags_horizontal = 4
-custom_constants/line_spacing = -3
-custom_fonts/font = ExtResource( 2 )
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource( 2 )
 text = "PART NAME"
 align = 1
 autowrap = true
@@ -143,26 +143,26 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 77.0
-margin_right = 85.0
-margin_bottom = 92.0
-custom_constants/separation = 0
+offset_top = 77.0
+offset_right = 85.0
+offset_bottom = 92.0
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
-margin_left = 16.0
-margin_right = 31.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 15, 15 )
+offset_left = 16.0
+offset_right = 31.0
+offset_bottom = 15.0
+custom_minimum_size = Vector2( 15, 15 )
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6
 
 [node name="MP" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_left = 31.0
-margin_right = 54.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 4 )
+offset_left = 31.0
+offset_right = 54.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource( 4 )
 text = "N_A"
 align = 1
 __meta__ = {
@@ -171,9 +171,9 @@ __meta__ = {
 }
 
 [node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
-margin_left = 54.0
-margin_right = 68.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 14, 0 )
+offset_left = 54.0
+offset_right = 68.0
+offset_bottom = 15.0
+custom_minimum_size = Vector2( 14, 0 )
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="OnPressed"]

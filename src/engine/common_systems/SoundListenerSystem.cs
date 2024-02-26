@@ -1,4 +1,4 @@
-﻿namespace Systems
+namespace Systems
 {
     using Components;
     using DefaultEcs;
@@ -19,9 +19,9 @@
     [RunsOnMainThread]
     public sealed class SoundListenerSystem : AEntitySetSystem<float>
     {
-        private readonly Listener listener;
+        private readonly AudioListener3D listener;
 
-        private Transform? wantedListenerPosition;
+        private Transform3D? wantedListenerPosition;
 
         private bool useTopDownOrientation;
 
@@ -29,7 +29,7 @@
 
         public SoundListenerSystem(Node listenerParentNode, World world, IParallelRunner runner) : base(world, runner)
         {
-            listener = new Listener();
+            listener = new AudioListener3D();
             listener.ClearCurrent();
             listenerParentNode.AddChild(listener);
         }
@@ -40,9 +40,9 @@
             base.Dispose();
         }
 
-        protected override void PreUpdate(float state)
+        protected override void PreUpdate(float delta)
         {
-            base.PreUpdate(state);
+            base.PreUpdate(delta);
 
             wantedListenerPosition = null;
         }
@@ -70,9 +70,9 @@
             wantedListenerPosition = position.ToTransform();
         }
 
-        protected override void PostUpdate(float state)
+        protected override void PostUpdate(float delta)
         {
-            base.PostUpdate(state);
+            base.PostUpdate(delta);
 
             if (wantedListenerPosition == null)
             {
@@ -85,8 +85,8 @@
                 {
                     // Listener is directional, so in this case we want to separate the rotation out from the entity
                     // transform to not use it
-                    Transform transform = wantedListenerPosition.Value;
-                    transform.basis = new Basis(new Vector3(0.0f, 0.0f, -1.0f));
+                    var transform = wantedListenerPosition.Value;
+                    transform.Basis = new Basis(new Vector3(0.0f, 0.0f, -1.0f));
                     listener.GlobalTransform = transform;
                 }
                 else

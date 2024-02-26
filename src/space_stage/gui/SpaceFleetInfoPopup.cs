@@ -6,10 +6,10 @@ using Godot;
 /// <summary>
 ///   Info and control popup for a <see cref="SpaceFleet"/>
 /// </summary>
-public class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
+public partial class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
 {
     [Signal]
-    public delegate void OnConstructOptionSelected(SpaceFleet fleet);
+    public delegate void OnConstructOptionSelectedEventHandler(SpaceFleet fleet);
 
     protected override void UpdateAll()
     {
@@ -38,7 +38,7 @@ public class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
         var target = OpenedForUnit;
         if (target != null)
         {
-            EmitSignal(nameof(OnConstructOptionSelected), target);
+            EmitSignal(nameof(OnConstructOptionSelectedEventHandler), target);
         }
         else
         {

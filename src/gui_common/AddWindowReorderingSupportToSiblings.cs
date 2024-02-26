@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -23,7 +23,7 @@ using Array = Godot.Collections.Array;
 ///     unregistering errors will be triggered.
 ///   </para>
 /// </remarks>
-public class AddWindowReorderingSupportToSiblings : Control
+public partial class AddWindowReorderingSupportToSiblings : Control
 {
     /// <summary>
     ///   Paths to window reordering nodes in ancestors.
@@ -165,7 +165,7 @@ public class AddWindowReorderingSupportToSiblings : Control
             }
         }
 
-        if (window.IsConnected(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder)))
+        if (window.IsConnected(nameof(CustomWindow.DraggedEventHandler), new Callable(this, nameof(OnWindowReorder))))
         {
             // This window is already connected here
             GD.PrintErr($"A window {window.Name} ({window}) tried to connect to {Name} ({this}) multiple times");
@@ -179,11 +179,11 @@ public class AddWindowReorderingSupportToSiblings : Control
             return;
         }
 
-        window.Connect(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder));
+        window.Connect(nameof(CustomWindow.DraggedEventHandler), new Callable(this, nameof(OnWindowReorder)));
 
         var binds = new Array();
         binds.Add(window);
-        window.Connect(nameof(TopLevelContainer.Opened), this, nameof(OnWindowOpen), binds);
+        window.Connect(nameof(TopLevelContainer.OpenedEventHandler), new Callable(this, nameof(OnWindowOpen)), binds);
 
         connectedWindows.Add(window, topNode);
         connectedSiblings.Add(topNode);
@@ -208,15 +208,15 @@ public class AddWindowReorderingSupportToSiblings : Control
             }
         }
 
-        if (!window.IsConnected(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder)))
+        if (!window.IsConnected(nameof(CustomWindow.DraggedEventHandler), new Callable(this, nameof(OnWindowReorder))))
         {
             GD.PrintErr(
                 $"A window {window.Name} ({window}) tried to disconnect from {Name} ({this}) but it wasn't connected");
             return;
         }
 
-        window.Disconnect(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder));
-        window.Disconnect(nameof(TopLevelContainer.Opened), this, nameof(OnWindowOpen));
+        window.Disconnect(nameof(CustomWindow.DraggedEventHandler), new Callable(this, nameof(OnWindowReorder)));
+        window.Disconnect(nameof(TopLevelContainer.OpenedEventHandler), new Callable(this, nameof(OnWindowOpen)));
 
         if (!connectedWindows.TryGetValue(window, out var windowSibling))
         {
@@ -398,9 +398,9 @@ public class AddWindowReorderingSupportToSiblings : Control
 
         // For unexplained reasons this has to be here to update the order visually
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4349 fix this hack
-        bool isSetAsToplevel = window.IsSetAsToplevel();
-        window.SetAsToplevel(!isSetAsToplevel);
-        window.SetAsToplevel(isSetAsToplevel);
+        bool isSetAsToplevel = window.IsSetAsTopLevel();
+        window.SetAsTopLevel(!isSetAsToplevel);
+        window.SetAsTopLevel(isSetAsToplevel);
     }
 
     private void OnWindowOpen(CustomWindow window)

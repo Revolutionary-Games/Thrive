@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   Main script for debugging.
@@ -91,7 +91,7 @@ public partial class DebugOverlays : Control
         InputManager.UnregisterReceiver(this);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -125,7 +125,7 @@ public partial class DebugOverlays : Control
     [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false)]
     public void OnPerformanceMetricsToggled()
     {
-        performanceMetricsCheckBox.Pressed = !performanceMetricsCheckBox.Pressed;
+        performanceMetricsCheckBox.ButtonPressed = !performanceMetricsCheckBox.ButtonPressed;
     }
 
     [RunOnKeyDown("toggle_debug_panel", OnlyUnhandled = false)]
@@ -144,7 +144,7 @@ public partial class DebugOverlays : Control
     [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false)]
     public void OnFpsToggled()
     {
-        fpsCheckBox.Pressed = !fpsCheckBox.Pressed;
+        fpsCheckBox.ButtonPressed = !fpsCheckBox.ButtonPressed;
     }
 
     protected override void Dispose(bool disposing)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -19,7 +19,7 @@ public class UnitType : IRegistryType, ICityConstructionProject
 {
     private readonly Lazy<PackedScene> visualScene;
     private readonly Lazy<PackedScene> spaceVisuals;
-    private readonly Lazy<Texture> icon;
+    private readonly Lazy<Texture2D> icon;
 
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
@@ -32,7 +32,7 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
         visualScene = new Lazy<PackedScene>(LoadWorldScene);
         spaceVisuals = new Lazy<PackedScene>(LoadSpaceWorldScene);
-        icon = new Lazy<Texture>(LoadIcon);
+        icon = new Lazy<Texture2D>(LoadIcon);
     }
 
     [JsonProperty]
@@ -67,7 +67,7 @@ public class UnitType : IRegistryType, ICityConstructionProject
     public PackedScene WorldRepresentationSpace => spaceVisuals.Value;
 
     [JsonIgnore]
-    public Texture Icon => icon.Value;
+    public Texture2D Icon => icon.Value;
 
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
@@ -137,8 +137,8 @@ public class UnitType : IRegistryType, ICityConstructionProject
         return GD.Load<PackedScene>(SpaceVisuals);
     }
 
-    private Texture LoadIcon()
+    private Texture2D LoadIcon()
     {
-        return GD.Load<Texture>(UnitIcon);
+        return GD.Load<Texture2D>(UnitIcon);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class AwareStageStarter : ComplexStageStarterBase
+public partial class AwareStageStarter : ComplexStageStarterBase
 {
     protected override MainGameState SimplyLoadableGameState => MainGameState.MulticellularStage;
 

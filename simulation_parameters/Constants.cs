@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
-using Path = System.IO.Path;
 
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
@@ -1577,7 +1577,7 @@ public static class Constants
         (FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT > REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT) ? 0 : -42;
 
     // Needed to be true by InputManager
-    private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;
+    private const uint GodotJoystickAxesStartAtZero = (JoyAxis.LeftX == 0) ? 0 : -42;
 
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823

@@ -2,11 +2,11 @@
 
 [ext_resource path="res://src/gui_common/RadialMenu.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/radialIndicator.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/gui/radialMenuHighlightBackground.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/radialIndicator.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/textures/gui/radialMenuHighlightBackground.png" type="Texture2D" id=4]
 
 [node name="RadialMenu" type="CenterContainer"]
-pause_mode = 2
+process_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
@@ -20,11 +20,11 @@ IndicatorPath = NodePath("Indicator")
 HoveredItemHighlightBackground = ExtResource( 4 )
 
 [node name="CenterLabel" type="Label" parent="."]
-margin_left = 540.0
-margin_top = 347.0
-margin_right = 740.0
-margin_bottom = 372.0
-rect_min_size = Vector2( 200, 0 )
+offset_left = 540.0
+offset_top = 347.0
+offset_right = 740.0
+offset_bottom = 372.0
+custom_minimum_size = Vector2( 200, 0 )
 text = "Pick something"
 align = 1
 valign = 1
@@ -35,19 +35,19 @@ __meta__ = {
 }
 
 [node name="Indicator" type="TextureRect" parent="."]
-margin_left = 624.0
-margin_top = 344.0
-margin_right = 656.0
-margin_bottom = 376.0
-rect_min_size = Vector2( 32, 32 )
-rect_pivot_offset = Vector2( 16, 32 )
+offset_left = 624.0
+offset_top = 344.0
+offset_right = 656.0
+offset_bottom = 376.0
+custom_minimum_size = Vector2( 32, 32 )
+pivot_offset = Vector2( 16, 32 )
 texture = ExtResource( 3 )
 expand = true
 
 [node name="DynamicLabels" type="Control" parent="."]
-margin_left = 640.0
-margin_top = 360.0
-margin_right = 640.0
-margin_bottom = 360.0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

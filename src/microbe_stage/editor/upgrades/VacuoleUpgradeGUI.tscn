@@ -2,14 +2,14 @@
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=3]
 
 [node name="VacuoleUpgradeGUI" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -880.0
-margin_bottom = -650.0
-rect_min_size = Vector2( 400, 0 )
+offset_right = -880.0
+offset_bottom = -650.0
+custom_minimum_size = Vector2( 400, 0 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 CompoundsPath = NodePath("CompoundSelection/OptionButton")
@@ -18,44 +18,44 @@ CompoundDescriptionPath = NodePath("Description")
 CompoundSelectionPath = NodePath("CompoundSelection")
 
 [node name="CheckBox" type="CheckBox" parent="."]
-margin_right = 400.0
-margin_bottom = 17.0
-custom_fonts/font = ExtResource( 3 )
+offset_right = 400.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "VACUOLE_IS_SPECIALIZED"
 
 [node name="Spacer2" type="Control" parent="."]
-margin_top = 21.0
-margin_right = 400.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 21.0
+offset_right = 400.0
+offset_bottom = 26.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="CompoundSelection" type="VBoxContainer" parent="."]
-margin_top = 30.0
-margin_right = 400.0
-margin_bottom = 79.0
+offset_top = 30.0
+offset_right = 400.0
+offset_bottom = 79.0
 
 [node name="Label" type="Label" parent="CompoundSelection"]
-margin_right = 400.0
-margin_bottom = 17.0
-custom_fonts/font = ExtResource( 3 )
+offset_right = 400.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "SELECT_VACUOLE_COMPOUND_COLON"
 
 [node name="OptionButton" type="OptionButton" parent="CompoundSelection"]
-margin_top = 21.0
-margin_right = 400.0
-margin_bottom = 40.0
+offset_top = 21.0
+offset_right = 400.0
+offset_bottom = 40.0
 
 [node name="Spacer" type="Control" parent="CompoundSelection"]
-margin_top = 44.0
-margin_right = 400.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 0, 5 )
+offset_top = 44.0
+offset_right = 400.0
+offset_bottom = 49.0
+custom_minimum_size = Vector2( 0, 5 )
 
 [node name="Description" type="Label" parent="."]
-margin_top = 83.0
-margin_right = 400.0
-margin_bottom = 100.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 83.0
+offset_right = 400.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "DESCRIPTION GOES HERE"
 autowrap = true
 __meta__ = {

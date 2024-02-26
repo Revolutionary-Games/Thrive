@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -11,7 +11,7 @@ using Godot;
 ///   Benchmarking tool for the microbe stage. Used for checking performance impact of changes or for players to see
 ///   how fast their computer is compared to other ones.
 /// </summary>
-public class MicrobeBenchmark : Node
+public partial class MicrobeBenchmark : Node
 {
     [Export]
     public NodePath? GUIContainerPath;
@@ -133,12 +133,12 @@ public class MicrobeBenchmark : Node
     private bool preventDying;
 
     private int internalPhaseCounter;
-    private float timer;
+    private double timer;
 
     private int spawnCounter;
     private double spawnAngle;
     private float spawnDistance;
-    private float timeSinceSpawn;
+    private double timeSinceSpawn;
     private bool spawnedSomething;
 
     private float microbeStationaryResult;
@@ -152,7 +152,7 @@ public class MicrobeBenchmark : Node
     private int remainingMicrobesAtEnd;
 
     private DateTime startTime;
-    private float totalDuration;
+    private double totalDuration;
 
     private bool exiting;
 
@@ -190,7 +190,7 @@ public class MicrobeBenchmark : Node
         BenchmarkHelpers.RestoreNormalSettings(storedSettings);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
         microbesCountLabel.Text = spawnedMicrobes.Count.ToString(CultureInfo.CurrentCulture);

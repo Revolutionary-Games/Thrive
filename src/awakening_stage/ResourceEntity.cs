@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -6,13 +6,13 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A clump of some resource that can be found in the world
 /// </summary>
-public class ResourceEntity : RigidBody, IInteractableEntity
+public partial class ResourceEntity : RigidBody3D, IInteractableEntity
 {
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     [JsonIgnore]
     public float InteractDistanceOffset => 0;
@@ -38,7 +38,7 @@ public class ResourceEntity : RigidBody, IInteractableEntity
     public string ReadableName => ResourceType?.ReadableName ?? throw new NotSupportedException("Not initialized yet");
 
     [JsonIgnore]
-    public Texture Icon => ResourceType?.Icon ?? throw new NotSupportedException("Not initialized yet");
+    public Texture2D Icon => ResourceType?.Icon ?? throw new NotSupportedException("Not initialized yet");
 
     [JsonIgnore]
     public WeakReference<InventorySlot>? ShownAsGhostIn { get; set; }
@@ -55,7 +55,7 @@ public class ResourceEntity : RigidBody, IInteractableEntity
 
         ResourceType = resourceType;
 
-        AddChild(ResourceType.WorldRepresentation.Instance());
+        AddChild(ResourceType.WorldRepresentation.Instantiate());
     }
 
     public IHarvestAction? GetHarvestingInfo()

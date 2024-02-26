@@ -45,7 +45,7 @@
 
                     if (!materialComponent.AutoRetrieveAssumesNodeIsDirectlyAttached)
                     {
-                        nodeToFetchFrom = nodeToFetchFrom.GetChild<Spatial>(0);
+                        nodeToFetchFrom = nodeToFetchFrom.GetChild<Node3D>(0);
                     }
 
                     if (string.IsNullOrEmpty(materialComponent.AutoRetrieveModelPath))

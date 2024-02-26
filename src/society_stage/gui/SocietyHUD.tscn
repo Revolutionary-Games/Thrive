@@ -1,20 +1,20 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="FontFile" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture2D" id=3]
 [ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/society_stage/gui/ResourceDisplayBar.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture2D" id=10]
 [ext_resource path="res://src/society_stage/gui/ResearchScreen.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/society_stage/gui/SocietyHUD.cs" type="Script" id=12]
-[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=13]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture2D" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture2D" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture2D" id=15]
 [ext_resource path="res://src/microbe_stage/HUDBottomBar.tscn" type="PackedScene" id=16]
 
 [sub_resource type="StyleBoxFlat" id=2]
@@ -43,7 +43,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="SocietyHUD" type="Control"]
-pause_mode = 2
+process_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -64,10 +64,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -274.0
-margin_top = -317.0
-margin_right = 1.0
-margin_bottom = -1.0
+offset_left = -274.0
+offset_top = -317.0
+offset_right = 1.0
+offset_bottom = -1.0
 mouse_filter = 2
 
 [node name="EditorButton" type="TextureButton" parent="BottomRight"]
@@ -75,12 +75,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -70.201
-margin_top = -70.201
-margin_right = -6.20105
-margin_bottom = -6.20105
-rect_min_size = Vector2( 64, 64 )
-hint_tooltip = "Once added to the prototype, it will be possible to make small changes at this stage (for example lactose tolerance)"
+offset_left = -70.201
+offset_top = -70.201
+offset_right = -6.20105
+offset_bottom = -6.20105
+custom_minimum_size = Vector2( 64, 64 )
+tooltip_text = "Once added to the prototype, it will be possible to make small changes at this stage (for example lactose tolerance)"
 focus_mode = 0
 disabled = true
 texture_normal = ExtResource( 9 )
@@ -93,8 +93,8 @@ __meta__ = {
 }
 
 [node name="HUDBottomBar" parent="." instance=ExtResource( 16 )]
-margin_top = -43.0
-margin_bottom = -8.0
+offset_top = -43.0
+offset_bottom = -8.0
 ShowCompoundPanelToggles = false
 ShowSuicideButton = false
 ShowProcessesButton = false
@@ -104,17 +104,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -274.0
-margin_top = -69.0
-rect_min_size = Vector2( 550, 69 )
+offset_left = -274.0
+offset_top = -69.0
+custom_minimum_size = Vector2( 550, 69 )
 theme = ExtResource( 2 )
 scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
-margin_right = 550.0
-margin_bottom = 51.0
+offset_right = 550.0
+offset_bottom = 51.0
 size_flags_horizontal = 3
-custom_constants/separation = 6
+theme_override_constants/separation = 6
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -123,34 +123,34 @@ __meta__ = {
 [node name="Build" parent="ScrollContainer/HotBar" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 200.0
-margin_right = 246.0
-margin_bottom = 51.0
-hint_tooltip = "BUILD_STRUCTURE"
+offset_left = 200.0
+offset_right = 246.0
+offset_bottom = 51.0
+tooltip_text = "BUILD_STRUCTURE"
 ActionIcon = ExtResource( 8 )
 ActionName = "g_build_structure"
 
 [node name="Research" parent="ScrollContainer/HotBar" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 252.0
-margin_right = 298.0
-margin_bottom = 51.0
-hint_tooltip = "OPEN_RESEARCH_SCREEN"
+offset_left = 252.0
+offset_right = 298.0
+offset_bottom = 51.0
+tooltip_text = "OPEN_RESEARCH_SCREEN"
 ActionIcon = ExtResource( 13 )
 ActionName = "g_science"
 
 [node name="Possess" parent="ScrollContainer/HotBar" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 304.0
-margin_right = 350.0
-margin_bottom = 51.0
-hint_tooltip = "Possess a member of your species for direct control
+offset_left = 304.0
+offset_right = 350.0
+offset_bottom = 51.0
+tooltip_text = "Possess a member of your species for direct control
 (as this is a very complex feature this will be the last thing to be added once the strategy stages are complete)"
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = SubResource( 3 )
+theme_override_styles/hover = SubResource( 2 )
+theme_override_styles/pressed = SubResource( 2 )
+theme_override_styles/normal = SubResource( 3 )
 disabled = true
 __meta__ = {
 "_edit_use_anchors_": true,
@@ -161,9 +161,9 @@ ActionName = "g_toggle_engulf"
 
 [node name="HintText" type="Label" parent="."]
 anchor_right = 1.0
-margin_top = 35.0
-margin_bottom = 59.0
-custom_fonts/font = ExtResource( 1 )
+offset_top = 35.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource( 1 )
 align = 1
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -175,56 +175,56 @@ __meta__ = {
 visible = false
 
 [node name="HUDMessages" parent="." instance=ExtResource( 6 )]
-margin_left = 270.0
-margin_top = 90.0
-margin_right = -270.0
-margin_bottom = -525.0
+offset_left = 270.0
+offset_top = 90.0
+offset_right = -270.0
+offset_bottom = -525.0
 
 [node name="TopBar" type="PanelContainer" parent="."]
 anchor_right = 1.0
-margin_bottom = 36.0
+offset_bottom = 36.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 1279.0
-margin_bottom = 35.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1279.0
+offset_bottom = 35.0
 
 [node name="LeftSpacer" type="Control" parent="TopBar/HBoxContainer"]
-margin_right = 8.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 8, 5 )
+offset_right = 8.0
+offset_bottom = 34.0
+custom_minimum_size = Vector2( 8, 5 )
 
 [node name="ResourceDisplayBar" parent="TopBar/HBoxContainer" instance=ExtResource( 7 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 12.0
-margin_right = 1014.0
-margin_bottom = 34.0
+offset_left = 12.0
+offset_right = 1014.0
+offset_bottom = 34.0
 
 [node name="PopulationContainer" type="HBoxContainer" parent="TopBar/HBoxContainer"]
-margin_left = 1018.0
-margin_right = 1266.0
-margin_bottom = 34.0
+offset_left = 1018.0
+offset_right = 1266.0
+offset_bottom = 34.0
 
 [node name="Label" type="Label" parent="TopBar/HBoxContainer/PopulationContainer"]
-margin_top = 4.0
-margin_right = 212.0
-margin_bottom = 29.0
+offset_top = 4.0
+offset_right = 212.0
+offset_bottom = 29.0
 text = "POPULATION_CAPITAL"
 
 [node name="Population" type="Label" parent="TopBar/HBoxContainer/PopulationContainer"]
-margin_left = 216.0
-margin_top = 4.0
-margin_right = 248.0
-margin_bottom = 29.0
+offset_left = 216.0
+offset_top = 4.0
+offset_right = 248.0
+offset_bottom = 29.0
 text = "123"
 
 [node name="RightSpacer" type="Control" parent="TopBar/HBoxContainer"]
-margin_left = 1270.0
-margin_right = 1278.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 8, 5 )
+offset_left = 1270.0
+offset_right = 1278.0
+offset_bottom = 34.0
+custom_minimum_size = Vector2( 8, 5 )
 
 [connection signal="OnHelpPressed" from="HUDBottomBar" to="." method="OpenHelp"]
 [connection signal="OnMenuPressed" from="HUDBottomBar" to="." method="OpenMenu"]

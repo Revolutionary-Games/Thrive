@@ -16,7 +16,7 @@
 ///     </list>
 ///   </para>
 /// </remarks>
-public abstract class PhotographablePreview : Control
+public abstract partial class PhotographablePreview : Control
 {
     [Export]
     public NodePath? TextureRectPath;
@@ -29,7 +29,7 @@ public abstract class PhotographablePreview : Control
 
 #pragma warning disable CA2213
     private TextureRect textureRect = null!;
-    private Texture loadingTexture = null!;
+    private Texture2D loadingTexture = null!;
 #pragma warning restore CA2213
 
     private ImageTask? task;
@@ -49,7 +49,7 @@ public abstract class PhotographablePreview : Control
         textureRect.Texture = null;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 

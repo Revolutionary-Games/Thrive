@@ -28,7 +28,7 @@ CellEditorTabPath = NodePath("MicrobeEditorGUI/CellEditor")
 [node name="EditorWorld" parent="." instance=ExtResource( 1 )]
 
 [node name="MicrobeEditorGUI" type="Control" parent="."]
-pause_mode = 2
+process_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -44,20 +44,20 @@ EditorGridPath = NodePath("../../EditorWorld/Grid")
 CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
 
 [node name="Report" parent="MicrobeEditorGUI" instance=ExtResource( 6 )]
-margin_top = 0.0
+offset_top = 0.0
 
 [node name="PatchMap" parent="MicrobeEditorGUI" instance=ExtResource( 7 )]
 visible = false
 
 [node name="MicrobeEditorTabButtons" parent="MicrobeEditorGUI" instance=ExtResource( 5 )]
-margin_right = 350.0
-margin_bottom = 45.0
+offset_right = 350.0
+offset_bottom = 45.0
 
 [node name="EditorCommonBottomLeftButtons" parent="MicrobeEditorGUI" instance=ExtResource( 4 )]
 
 [node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" instance=ExtResource( 39 )]
-margin_left = 10.0
-margin_top = 30.0
+offset_left = 10.0
+offset_top = 30.0
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 85 )]
 visible = false

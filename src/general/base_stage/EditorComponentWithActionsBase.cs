@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 /// </summary>
 /// <typeparam name="TEditor">The type of editor this component is contained in</typeparam>
 /// <typeparam name="TAction">Editor action type the editor this will be used with will use</typeparam>
-public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorComponentBase<TEditor>
+public abstract partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorComponentBase<TEditor>
     where TEditor : IEditorWithActions
     where TAction : EditorAction
 {

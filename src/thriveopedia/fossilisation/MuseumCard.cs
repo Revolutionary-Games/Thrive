@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   Card displaying a fossilised species in the Thriveopedia museum.
 /// </summary>
-public class MuseumCard : Button
+public partial class MuseumCard : Button
 {
     [Export]
     public NodePath? SpeciesNameLabelPath;
@@ -28,10 +28,10 @@ public class MuseumCard : Button
     private Image? fossilPreviewImage;
 
     [Signal]
-    public delegate void OnSpeciesSelected(MuseumCard card);
+    public delegate void OnSpeciesSelectedEventHandler(MuseumCard card);
 
     [Signal]
-    public delegate void OnSpeciesDeleted(MuseumCard card);
+    public delegate void OnSpeciesDeletedEventHandler(MuseumCard card);
 
     /// <summary>
     ///   The fossilised species associated with this card.
@@ -125,7 +125,7 @@ public class MuseumCard : Button
         // delete button. Could maybe queue invoke the species select and skip that if the delete got pressed?
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnSpeciesSelected), this);
+        EmitSignal(nameof(OnSpeciesSelectedEventHandler), this);
     }
 
     private void OnMouseEnter()
@@ -144,7 +144,7 @@ public class MuseumCard : Button
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnSpeciesDeleted), this);
+        EmitSignal(nameof(OnSpeciesDeletedEventHandler), this);
     }
 
     private void OnDeleteMouseEntered()

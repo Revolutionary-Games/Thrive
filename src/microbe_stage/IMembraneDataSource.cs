@@ -67,7 +67,7 @@ public static class MembraneComputationHelpers
             for (int j = 0; j < hexCount; ++j)
             {
                 var hexCartesian = Hex.AxialToCartesian(entry.Position + rotatedHexes[j]);
-                result[resultWriteIndex++] = new Vector2(hexCartesian.x, hexCartesian.z);
+                result[resultWriteIndex++] = new Vector2(hexCartesian.X, hexCartesian.Z);
             }
         }
 
@@ -169,11 +169,11 @@ public static class MembraneComputationHelpers
     {
         public int Compare(Vector2 first, Vector2 second)
         {
-            var xComparison = first.x.CompareTo(second.x);
+            var xComparison = first.X.CompareTo(second.X);
             if (xComparison != 0)
                 return xComparison;
 
-            return first.y.CompareTo(second.y);
+            return first.Y.CompareTo(second.Y);
         }
     }
 }
