@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/models/Iron5.mesh" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/models/IronMaterial.material" type="Material" id=2]
 
-[node name="iron5" type="MeshInstance"]
-transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
+[node name="iron5" type="MeshInstance3D"]
+transform = Transform3D( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
 material_override = ExtResource( 2 )
 mesh = ExtResource( 1 )

@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   Tests / stress tests the physics system
 /// </summary>
-public class PhysicsTest : Node
+public partial class PhysicsTest : Node
 {
     [Export]
     public TestType Type = TestType.MicrobePlaceholders;
@@ -75,7 +75,7 @@ public class PhysicsTest : Node
     private readonly List<NativePhysicsBody> allCreatedBodies = new();
     private readonly List<NativePhysicsBody> sphereBodies = new();
 
-    private readonly List<Spatial> testVisuals = new();
+    private readonly List<Node3D> testVisuals = new();
     private readonly List<Node> otherCreatedNodes = new();
 
     private readonly List<NativePhysicsBody> microbeAnalogueBodies = new();
@@ -84,7 +84,7 @@ public class PhysicsTest : Node
 #pragma warning disable CA2213
     private Node worldVisuals = null!;
 
-    private Camera camera = null!;
+    private Camera3D camera = null!;
 
     private CustomWindow guiWindowRoot = null!;
     private Label deltaLabel = null!;
@@ -126,7 +126,7 @@ public class PhysicsTest : Node
     public override void _Ready()
     {
         worldVisuals = GetNode(WorldVisualsPath);
-        camera = GetNode<Camera>(CameraPath);
+        camera = GetNode<Camera3D>(CameraPath);
 
         guiWindowRoot = GetNode<CustomWindow>(GUIWindowRootPath);
         deltaLabel = GetNode<Label>(DeltaLabelPath);
@@ -143,7 +143,7 @@ public class PhysicsTest : Node
         guiWindowRoot.Open(false);
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
 
@@ -167,7 +167,7 @@ public class PhysicsTest : Node
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (resetTest)
         {
@@ -199,7 +199,7 @@ public class PhysicsTest : Node
                     TransformFormat = MultiMesh.TransformFormatEnum.Transform3d,
                 };
 
-                var instance = new MultiMeshInstance
+                var instance = new MultiMeshInstance3D
                 {
                     Multimesh = sphereMultiMesh,
                 };
@@ -249,18 +249,18 @@ public class PhysicsTest : Node
             {
                 if (i >= testVisuals.Count)
                 {
-                    var sphere = new MeshInstance
+                    var sphere = new MeshInstance3D
                     {
                         Mesh = sphereVisual.Value,
                     };
 
-                    sphere.Transform = physicalWorld.ReadBodyTransform(sphereBodies[i]);
+                    sphere.Transform3D = physicalWorld.ReadBodyTransform(sphereBodies[i]);
                     worldVisuals.AddChild(sphere);
                     testVisuals.Add(sphere);
                 }
                 else
                 {
-                    testVisuals[i].Transform = physicalWorld.ReadBodyTransform(sphereBodies[i]);
+                    testVisuals[i].Transform3D = physicalWorld.ReadBodyTransform(sphereBodies[i]);
                 }
             }
 
@@ -278,7 +278,7 @@ public class PhysicsTest : Node
                 distanceCutoff += InitialVisibilityRangeIncrease * InitialVisibilityRangeIncrease;
             }
 
-            var cameraPos = camera.Translation;
+            var cameraPos = camera.Position;
 
             var count = microbeAnalogueBodies.Count;
             int usedVisualIndex = 0;
@@ -299,13 +299,13 @@ public class PhysicsTest : Node
                 {
                     var visuals = CreateTestMicrobeVisuals(testMicrobeOrganellePositions!);
 
-                    visuals.Transform = transform;
+                    visuals.Transform3D = transform;
                     worldVisuals.AddChild(visuals);
                     testVisuals.Add(visuals);
                 }
                 else
                 {
-                    testVisuals[usedVisualIndex].Transform = transform;
+                    testVisuals[usedVisualIndex].Transform3D = transform;
 
                     if (!testVisuals[usedVisualIndex].Visible)
                         testVisuals[usedVisualIndex].Visible = true;
@@ -369,7 +369,7 @@ public class PhysicsTest : Node
     }
 
     // These used to be general helpers, but now are only needed to allow running this legacy benchmark
-    private static uint CreateShapeOwnerWithTransform(CollisionObject entity, Transform transform, Shape shape)
+    private static uint CreateShapeOwnerWithTransform(CollisionObject3D entity, Transform3D transform, Shape3D shape)
     {
         var newShapeOwnerId = entity.CreateShapeOwner(shape);
         entity.ShapeOwnerAddShape(newShapeOwnerId, shape);
@@ -377,7 +377,7 @@ public class PhysicsTest : Node
         return newShapeOwnerId;
     }
 
-    private static uint CreateNewOwnerId(CollisionObject oldParent, CollisionObject newParent, Transform transform,
+    private static uint CreateNewOwnerId(CollisionObject3D oldParent, CollisionObject3D newParent, Transform3D transform,
         uint oldShapeOwnerId)
     {
         var shape = oldParent.ShapeOwnerGetShape(oldShapeOwnerId, 0);
@@ -516,7 +516,7 @@ public class PhysicsTest : Node
 
         if (Type == TestType.SpheresGodotPhysics)
         {
-            var sphere = new SphereShape
+            var sphere = new SphereShape3D
             {
                 Radius = 0.5f,
             };
@@ -528,15 +528,15 @@ public class PhysicsTest : Node
             {
                 for (int z = -100; z < 100; z += 2)
                 {
-                    var body = new RigidBody();
-                    body.AddChild(new MeshInstance
+                    var body = new RigidBody3D();
+                    body.AddChild(new MeshInstance3D
                     {
                         Mesh = visuals.Mesh,
                     });
                     var owner = body.CreateShapeOwner(body);
                     body.ShapeOwnerAddShape(owner, sphere);
 
-                    body.Translation = new Vector3(x, 1 + (float)random.NextDouble() * 25, z);
+                    body.Position = new Vector3(x, 1 + (float)random.NextDouble() * 25, z);
 
                     // This is added to the test visuals to allow the camera cycle algorithm to find these
                     worldVisuals.AddChild(body);
@@ -548,16 +548,16 @@ public class PhysicsTest : Node
             GD.Print("Created Godot rigid bodies: ", created);
             UpdateBodyCountGUI(created);
 
-            var groundShape = new BoxShape
+            var groundShape = new BoxShape3D
             {
                 Extents = new Vector3(100, 0.05f, 100),
             };
 
-            var ground = new StaticBody();
+            var ground = new StaticBody3D();
             var groundShapeOwner = ground.CreateShapeOwner(ground);
             ground.ShapeOwnerAddShape(groundShapeOwner, groundShape);
 
-            ground.Translation = new Vector3(0, -0.025f, 0);
+            ground.Position = new Vector3(0, -0.025f, 0);
             worldVisuals.AddChild(ground);
             otherCreatedNodes.Add(ground);
 
@@ -573,7 +573,7 @@ public class PhysicsTest : Node
                 for (int z = -100; z < 100; z += 2)
                 {
                     sphereBodies.Add(physicalWorld.CreateMovingBody(sphere,
-                        new Vector3(x, 1 + (float)random.NextDouble() * 25, z), Quat.Identity));
+                        new Vector3(x, 1 + (float)random.NextDouble() * 25, z), Quaternion.Identity));
                 }
             }
 
@@ -582,7 +582,7 @@ public class PhysicsTest : Node
             var groundShape = PhysicsShape.CreateBox(new Vector3(100, 0.05f, 100));
 
             allCreatedBodies.Add(physicalWorld.CreateStaticBody(groundShape, new Vector3(0, -0.025f, 0),
-                Quat.Identity));
+                Quaternion.Identity));
 
             allCreatedBodies.AddRange(sphereBodies);
         }
@@ -683,7 +683,7 @@ public class PhysicsTest : Node
     {
         if (Type == TestType.MicrobePlaceholdersGodotPhysics)
         {
-            var body = new RigidBody();
+            var body = new RigidBody3D();
             body.Mass = 10;
             body.AxisLockAngularX = true;
             body.AxisLockAngularZ = true;
@@ -700,7 +700,7 @@ public class PhysicsTest : Node
             }
 
             body.AddChild(CreateTestMicrobeVisuals(testMicrobeOrganellePositions!));
-            body.Translation = location;
+            body.Position = location;
 
             worldVisuals.AddChild(body);
             testVisuals.Add(body);
@@ -714,7 +714,7 @@ public class PhysicsTest : Node
             var shape = PhysicsShape.CreateMicrobeShape(testMicrobeOrganellePositions!, 1000, false,
                 CreateMicrobeAsSpheres);
 
-            var body = physicalWorld.CreateMovingBodyWithAxisLock(shape, location, Quat.Identity, Vector3.Up, true);
+            var body = physicalWorld.CreateMovingBodyWithAxisLock(shape, location, Quaternion.Identity, Vector3.Up, true);
 
             physicalWorld.SetDamping(body, MicrobeDamping);
 
@@ -726,9 +726,9 @@ public class PhysicsTest : Node
         }
     }
 
-    private void CreateGodotMicrobePhysics(RigidBody body, JVecF3[] points)
+    private void CreateGodotMicrobePhysics(RigidBody3D body, JVecF3[] points)
     {
-        var shape = new ConvexPolygonShape();
+        var shape = new ConvexPolygonShape3D();
         float thickness = 0.2f;
 
         shape.Points = points.Select(p => new Vector3(p))
@@ -738,20 +738,20 @@ public class PhysicsTest : Node
         body.ShapeOwnerAddShape(owner, shape);
     }
 
-    private void CreateGodotMicrobePhysicsSpheres(RigidBody body, JVecF3[] organellePositions)
+    private void CreateGodotMicrobePhysicsSpheres(RigidBody3D body, JVecF3[] organellePositions)
     {
-        var sphere = new SphereShape
+        var sphere = new SphereShape3D
         {
             Radius = 1,
         };
 
         foreach (var position in organellePositions)
         {
-            CreateShapeOwnerWithTransform(body, new Transform(Basis.Identity, position), sphere);
+            CreateShapeOwnerWithTransform(body, new Transform3D(Basis.Identity, position), sphere);
         }
     }
 
-    private Spatial CreateTestMicrobeVisuals(IReadOnlyList<JVecF3> organellePositions)
+    private Node3D CreateTestMicrobeVisuals(IReadOnlyList<JVecF3> organellePositions)
     {
         var multiMesh = new MultiMesh
         {
@@ -763,10 +763,10 @@ public class PhysicsTest : Node
 
         for (int i = 0; i < organellePositions.Count; ++i)
         {
-            multiMesh.SetInstanceTransform(i, new Transform(Basis.Identity, new Vector3(organellePositions[i])));
+            multiMesh.SetInstanceTransform(i, new Transform3D(Basis.Identity, new Vector3(organellePositions[i])));
         }
 
-        return new MultiMeshInstance
+        return new MultiMeshInstance3D
         {
             Multimesh = multiMesh,
         };
@@ -777,7 +777,7 @@ public class PhysicsTest : Node
         if (Type is TestType.MicrobePlaceholders or TestType.MicrobePlaceholdersGodotPhysics)
         {
             // Top down view
-            camera.Translation = new Vector3(0, MicrobeCameraDefaultHeight, 0);
+            camera.Position = new Vector3(0, MicrobeCameraDefaultHeight, 0);
             camera.LookAt(new Vector3(0, 0, 0), Vector3.Forward);
         }
 
@@ -789,16 +789,16 @@ public class PhysicsTest : Node
         // Even though some visuals may be hidden, using the visible count here makes this very unstable
         var index = followedTestVisualIndex % testVisuals.Count;
 
-        var target = testVisuals[index].Translation;
+        var target = testVisuals[index].Position;
 
-        var currentPos = camera.Translation;
+        var currentPos = camera.Position;
 
         var targetPos = new Vector3(target.x, MicrobeCameraDefaultHeight + cameraHeightOffset, target.z);
 
-        camera.Translation = currentPos.LinearInterpolate(targetPos, 3 * delta);
+        camera.Position = currentPos.Lerp(targetPos, 3 * delta);
     }
 
-    private float GetPhysicsTime()
+    private double GetPhysicsTime()
     {
         if (Type is TestType.SpheresGodotPhysics or TestType.MicrobePlaceholdersGodotPhysics)
             return Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess);
@@ -806,9 +806,9 @@ public class PhysicsTest : Node
         return physicalWorld.AveragePhysicsDuration;
     }
 
-    private CSGMesh CreateSphereMesh()
+    private CsgMesh3D CreateSphereMesh()
     {
-        var sphere = new CSGMesh
+        var sphere = new CsgMesh3D
         {
             Mesh = new SphereMesh
             {
@@ -844,7 +844,7 @@ public class PhysicsTest : Node
         private const float ReachTargetRotationSpeed = 1.2f;
 
         private readonly NativePhysicsBody? body;
-        private readonly RigidBody? godotBody;
+        private readonly RigidBody3D? godotBody;
         private readonly Random random;
 
         private float timeUntilDirectionChange = 1;
@@ -852,7 +852,7 @@ public class PhysicsTest : Node
 
         private int notMovedToOrigin = 6;
 
-        private Quat lookDirection;
+        private Quaternion lookDirection;
         private Vector3 movementDirection;
 
         public TestMicrobeAnalogue(NativePhysicsBody body, int randomSeed)
@@ -863,7 +863,7 @@ public class PhysicsTest : Node
             SetLookDirection();
         }
 
-        public TestMicrobeAnalogue(RigidBody godotBody, int randomSeed)
+        public TestMicrobeAnalogue(RigidBody3D godotBody, int randomSeed)
         {
             this.godotBody = godotBody;
             random = new Random(randomSeed);
@@ -887,21 +887,21 @@ public class PhysicsTest : Node
         public void ProcessGodot(float delta)
         {
             HandleMovementDirectionAndRotation(delta,
-                new Lazy<Vector3>(() => godotBody!.Translation));
+                new Lazy<Vector3>(() => godotBody!.Position));
 
             godotBody!.ApplyCentralImpulse(movementDirection * GodotImpulseStrength);
 
-            var currentTransform = godotBody!.Transform;
+            var currentTransform = godotBody!.Transform3D;
             GodotPhysicsPosition = currentTransform.origin;
 
-            var currentRotation = currentTransform.basis.Quat();
+            var currentRotation = currentTransform.basis.Quaternion();
 
             var difference = currentRotation * lookDirection.Inverse();
 
             // This needs a really high tolerance to fix the jitter. Seems like if we don't want to use Jolt, a smarter
             // approach may be needed for physics rotation
             // if ((Quat.Identity - difference).LengthSquared < 0.000000001f)
-            if ((Quat.Identity - difference).LengthSquared < 2.0f)
+            if ((Quaternion.Identity - difference).LengthSquared < 2.0f)
             {
                 godotBody.AngularVelocity = new Vector3(0, 0, 0);
             }
@@ -950,7 +950,7 @@ public class PhysicsTest : Node
 
         private void SetLookDirection()
         {
-            lookDirection = new Quat(Vector3.Up, random.NextFloat() * 2 * Mathf.Pi);
+            lookDirection = new Quaternion(Vector3.Up, random.NextFloat() * 2 * Mathf.Pi);
         }
     }
 }

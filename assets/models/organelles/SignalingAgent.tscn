@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/models/organelles/SignalingAgent.mesh" type="ArrayMesh" id=1]
-[ext_resource path="res://assets/textures/SignalAgentAlbedo.png" type="Texture" id=2]
-[ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=3]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=4]
+[ext_resource path="res://assets/textures/SignalAgentAlbedo.png" type="Texture2D" id=2]
+[ext_resource path="res://shaders/OrganelleTransparent.gdshader" type="Shader" id=3]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture2D" id=4]
 
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -18,8 +18,8 @@ shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/texture = ExtResource( 2 )
 shader_param/dissolveTexture = ExtResource( 4 )
 
-[node name="SignalingAgent" type="MeshInstance"]
-transform = Transform( 0.75, 0, 0, 0, -3.27835e-08, 0.75, 0, -0.75, -3.27835e-08, 0, 0, 0 )
+[node name="SignalingAgent" type="MeshInstance3D"]
+transform = Transform3D( 0.75, 0, 0, 0, -3.27835e-08, 0.75, 0, -0.75, -3.27835e-08, 0, 0, 0 )
 material_override = SubResource( 1 )
 mesh = ExtResource( 1 )
 material/0 = null

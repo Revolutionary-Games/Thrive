@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/models/Iceshard1.mesh" type="ArrayMesh" id=1]
 
-[node name="iceshard1" type="MeshInstance"]
-transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
+[node name="iceshard1" type="MeshInstance3D"]
+transform = Transform3D( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
 mesh = ExtResource( 1 )
 material/0 = null

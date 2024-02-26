@@ -2,15 +2,15 @@
 
 [ext_resource path="res://assets/models/EditorArrow.mesh" type="ArrayMesh" id=1]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 albedo_color = Color( 0, 0.129412, 0.141176, 1 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="StandardMaterial3D" id=2]
 flags_transparent = true
 albedo_color = Color( 0.0666667, 1, 0.835294, 0.337255 )
 
-[node name="EditorArrow" type="MeshInstance"]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -0.1, 0 )
+[node name="EditorArrow" type="MeshInstance3D"]
+transform = Transform3D( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -0.1, 0 )
 mesh = ExtResource( 1 )
 skeleton = NodePath("")
 material/0 = SubResource( 1 )

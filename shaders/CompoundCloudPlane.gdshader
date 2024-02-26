@@ -5,10 +5,10 @@ render_mode unshaded;
 uniform sampler2D densities;
 uniform sampler2D noise;
 
-uniform vec4 colour1 : hint_color = vec4(0, 0, 0, 0);
-uniform vec4 colour2 : hint_color = vec4(0, 0, 0, 0);
-uniform vec4 colour3 : hint_color = vec4(0, 0, 0, 0);
-uniform vec4 colour4 : hint_color = vec4(0, 0, 0, 0);
+uniform vec4 colour1 : source_color = vec4(0, 0, 0, 0);
+uniform vec4 colour2 : source_color = vec4(0, 0, 0, 0);
+uniform vec4 colour3 : source_color = vec4(0, 0, 0, 0);
+uniform vec4 colour4 : source_color = vec4(0, 0, 0, 0);
 
 uniform vec2 UVOffset = vec2(0, 0);
 

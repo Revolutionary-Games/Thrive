@@ -5,10 +5,10 @@ render_mode unshaded;
 uniform float lightLevel = 1.0f;
 
 uniform vec2 repeats = vec2(1.0f, 1.0f);
-uniform sampler2D layer0 : hint_albedo;
-uniform sampler2D layer1 : hint_albedo;
-uniform sampler2D layer2 : hint_albedo;
-uniform sampler2D layer3 : hint_albedo;
+uniform sampler2D layer0 : source_color;
+uniform sampler2D layer1 : source_color;
+uniform sampler2D layer2 : source_color;
+uniform sampler2D layer3 : source_color;
 
 const vec2 speed0 = vec2(3300.0f);
 const vec2 speed1 = vec2(2550.0f);
@@ -39,7 +39,7 @@ vec3 LightInfluence(float amount)
 
 void vertex(){
     vec2 offset = (repeats - 1.0f) / 2.0f;
-    vec2 worldPos = (CAMERA_MATRIX * vec4(0.0f, 0.0f, 0.0f, 1.0f)).xz;
+    vec2 worldPos = (INV_VIEW_MATRIX * vec4(0.0f, 0.0f, 0.0f, 1.0f)).xz;
 
     UV = (UV + worldPos / (speed0 * repeats)) * repeats - offset;
     UV2 = (0.12f + UV + worldPos / (speed1));

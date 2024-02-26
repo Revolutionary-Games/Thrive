@@ -1,14 +1,14 @@
 shader_type spatial;
-render_mode depth_draw_alpha_prepass;
+render_mode depth_prepass_alpha;
 
-uniform sampler2D albedoTexture : hint_albedo;
+uniform sampler2D albedoTexture : source_color;
 uniform sampler2D normalTexture;
 
-uniform sampler2D dissolveTexture : hint_albedo;
+uniform sampler2D dissolveTexture : source_color;
 uniform float dissolveValue : hint_range(0, 1);
 
 uniform float outlineWidth;
-uniform vec4 growColor : hint_color;
+uniform vec4 growColor : source_color;
 
 void fragment() {
     vec4 mainTex = texture(albedoTexture, UV);
@@ -22,7 +22,7 @@ void fragment() {
         growColor.rgb;
 
     ALBEDO = mainTex.rgb;
-    NORMALMAP = normalMap.xyz;
+    NORMAL_MAP = normalMap.xyz;
     METALLIC = 0.9 * (((ALBEDO.r + ALBEDO.g + ALBEDO.b) / 3.0) * -1.0 + 1.0);
     ROUGHNESS = 0.85;
     ALPHA = round(cutoff) * mainTex.a;

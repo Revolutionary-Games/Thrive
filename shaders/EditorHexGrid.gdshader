@@ -6,7 +6,7 @@ render_mode unshaded;
 // See https://andrewhungblog.wordpress.com/2018/07/28/shader-art-tutorial-hexagonal-grids
 
 uniform sampler2D maskTexture;
-uniform vec4 color : hint_color;
+uniform vec4 color : source_color;
 uniform float lineWidth = 0.02;
 uniform float edgeLength = 1.299;
 
@@ -25,7 +25,7 @@ float hexDist(vec2 coord)
 }
 
 void vertex(){
-    worldPos = (CAMERA_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+    worldPos = (INV_VIEW_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
 
     // min line width to not look unsteady
     minLineWidth = (worldPos.y / VIEWPORT_SIZE.y);

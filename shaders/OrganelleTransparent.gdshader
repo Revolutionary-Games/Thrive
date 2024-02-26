@@ -1,18 +1,18 @@
 shader_type spatial;
-render_mode depth_draw_alpha_prepass;
+render_mode depth_prepass_alpha;
 
-uniform sampler2D texture : hint_albedo;
+uniform sampler2D texture : source_color;
 
-uniform sampler2D dissolveTexture : hint_albedo;
+uniform sampler2D dissolveTexture : source_color;
 uniform float dissolveValue : hint_range(0, 1);
 
 uniform float fresnelValue : hint_range(0, 1) = 1;
 uniform bool fresnelActive = false;
 
 uniform float outlineWidth;
-uniform vec4 growColor : hint_color;
+uniform vec4 growColor : source_color;
 
-uniform vec4 tint : hint_color = vec4(1, 1, 1, 1);
+uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 
 uniform float jiggleAmount = 0.0005f;
 

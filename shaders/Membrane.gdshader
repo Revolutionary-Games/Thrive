@@ -1,25 +1,25 @@
 shader_type spatial;
-render_mode depth_draw_alpha_prepass;
+render_mode depth_prepass_alpha;
 
 // Set to 0 to disable wiggle
 uniform float wigglyNess = 1.f;
 
 uniform float movementWigglyNess = 1.f;
 
-uniform sampler2D albedoTexture : hint_albedo;
-uniform sampler2D damagedTexture : hint_albedo;
+uniform sampler2D albedoTexture : source_color;
+uniform sampler2D damagedTexture : source_color;
 
 uniform sampler2D normalTexture;
 
-uniform sampler2D dissolveTexture : hint_albedo;
+uniform sampler2D dissolveTexture : source_color;
 uniform float dissolveValue : hint_range(0, 1);
 
 uniform float healthFraction = 0.5f;
-uniform vec4 tint : hint_color = vec4(1, 1, 1, 1);
+uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 
 
 void vertex(){
-    vec3 worldVertex = (WORLD_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
     
     VERTEX.x += sin(worldVertex.z * movementWigglyNess + TIME / 4.0f) / 10.f
@@ -49,7 +49,7 @@ void fragment(){
         float(-0.15 + clamp(dissolveValue, 0, 1));
 
     ALBEDO = final.rgb;
-    NORMAL = (CAMERA_MATRIX * (WORLD_MATRIX * vec4(normals, 0.0))).xyz;
+    NORMAL = (INV_VIEW_MATRIX * (MODEL_MATRIX * vec4(normals, 0.0))).xyz;
     ALPHA = round(cutoff) * final.a;
     DEPTH = 0.0f;
 }

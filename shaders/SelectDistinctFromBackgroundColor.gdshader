@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
-uniform vec4 backgroundColour : hint_color;
+uniform vec4 backgroundColour : source_color;
 
-uniform vec4 mainColour : hint_color;
-uniform vec4 secondaryColour : hint_color;
+uniform vec4 mainColour : source_color;
+uniform vec4 secondaryColour : source_color;
 
 void fragment() {
     vec4 screenColour = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);

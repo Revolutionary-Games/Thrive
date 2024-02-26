@@ -1,6 +1,6 @@
 [gd_resource type="NoiseTexture" load_steps=2 format=2]
 
-[sub_resource type="OpenSimplexNoise" id=1]
+[sub_resource type="FastNoiseLite" id=1]
 period = 15.0
 persistence = 1.0
 lacunarity = 4.0

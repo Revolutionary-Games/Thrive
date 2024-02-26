@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 
-[sub_resource type="CubeMesh" id=2]
+[sub_resource type="BoxMesh" id=2]
 material = SubResource( 1 )
 size = Vector3( 1, 1, 1 )
 
-[node name="MissingItemPlaceholder" type="MeshInstance"]
+[node name="MissingItemPlaceholder" type="MeshInstance3D"]
 mesh = SubResource( 2 )

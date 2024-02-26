@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Godot.NET.Sdk/3.3.0">
+<Project Sdk="Godot.NET.Sdk/4.2.1">
   <PropertyGroup>
     <ProjectGuid>{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -7,7 +7,7 @@
     <AssemblyName>Thrive</AssemblyName>
     <GodotProjectGeneratorVersion>1.0.7333.4679</GodotProjectGeneratorVersion>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <!--The following properties were overriden during migration to prevent errors.
     Enabling them may require other manual changes to the project and its files.-->
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
@@ -16,9 +16,6 @@
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

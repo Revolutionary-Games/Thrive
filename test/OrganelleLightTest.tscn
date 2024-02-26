@@ -1,18 +1,18 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=1]
+[ext_resource path="res://shaders/OrganelleTransparent.gdshader" type="Shader" id=1]
 [ext_resource path="res://assets/models/organelles/Mitochondrion.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/textures/mitochondrion.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/mitochondrion.png" type="Texture2D" id=3]
 [ext_resource path="res://assets/models/organelles/Chemoplast.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/textures/chemoplast.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/FresnelGradientDamaged.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/chemoplast.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/textures/FresnelGradientDamaged.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture2D" id=7]
 [ext_resource path="res://src/microbe_stage/Membrane.tscn" type="PackedScene" id=8]
-[ext_resource path="res://shaders/Membrane.shader" type="Shader" id=9]
+[ext_resource path="res://shaders/Membrane.gdshader" type="Shader" id=9]
 [ext_resource path="res://assets/models/organelles/SlimeJet.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/models/organelles/Rusticyanin.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/textures/rusticyanin.png" type="Texture" id=12]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=13]
+[ext_resource path="res://assets/textures/rusticyanin.png" type="Texture2D" id=12]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture2D" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -63,42 +63,42 @@ shader_param/jiggleAmount = 0.0005
 shader_param/texture = ExtResource( 12 )
 shader_param/dissolveTexture = ExtResource( 13 )
 
-[node name="Spatial" type="Spatial"]
+[node name="Node3D" type="Node3D"]
 
 [node name="Mitochondrion" parent="." instance=ExtResource( 2 )]
 material_override = SubResource( 1 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.866025, 0.25, -0.433013, 0, 0.866025, 0.5, 0.5, -0.433013, 0.75, -3, 2, 3 )
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D( 0.866025, 0.25, -0.433013, 0, 0.866025, 0.5, 0.5, -0.433013, 0.75, -3, 2, 3 )
 shadow_enabled = true
 
 [node name="Chemoplast" parent="." instance=ExtResource( 4 )]
-transform = Transform( -28.3865, 95.8864, 1.56219e-05, 0, -1.62921e-05, 100, 95.8864, 28.3865, 4.62475e-06, -2.37408, 0, 0 )
+transform = Transform3D( -28.3865, 95.8864, 1.56219e-05, 0, -1.62921e-05, 100, 95.8864, 28.3865, 4.62475e-06, -2.37408, 0, 0 )
 material_override = SubResource( 2 )
 
-[node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.19501, -1.17122 )
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.19501, -1.17122 )
 width = 33.445
 depth = 38.246
 
-[node name="CSGBox2" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66004, -0.174119, 0 )
+[node name="CSGBox2" type="CSGBox3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66004, -0.174119, 0 )
 width = 2.45813
 
-[node name="CSGBox3" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0240011, 1.7432, 3.09903 )
+[node name="CSGBox3" type="CSGBox3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0240011, 1.7432, 3.09903 )
 width = 2.45813
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.952724, 0.219617, -0.209965, -0.0332861, 0.762328, 0.646334, 0.302008, -0.608789, 0.733599, -3.19108, 3.1727, 3.8879 )
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D( 0.952724, 0.219617, -0.209965, -0.0332861, 0.762328, 0.646334, 0.302008, -0.608789, 0.733599, -3.19108, 3.1727, 3.8879 )
 
 [node name="Membrane" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, -1.75788 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, -1.75788 )
 MaterialToEdit = SubResource( 3 )
 
 [node name="SlimeJet" parent="." instance=ExtResource( 10 )]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -6.1659, -0.463915, -3.19489 )
+transform = Transform3D( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -6.1659, -0.463915, -3.19489 )
 
 [node name="Rusticyanin" parent="." instance=ExtResource( 11 )]
-transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, -0.286165, -0.912676, -3.82358 )
+transform = Transform3D( 100, 0, 0, 0, 100, 0, 0, 0, 100, -0.286165, -0.912676, -3.82358 )
 material_override = SubResource( 4 )

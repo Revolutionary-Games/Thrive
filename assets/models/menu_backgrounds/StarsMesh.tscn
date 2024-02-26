@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/models/menu_backgrounds/SphereSkyBox.glb" type="PackedScene" id=1]
-[ext_resource path="res://assets/textures/menu_backgrounds/SphereSkyMaterial_Base_color.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/menu_backgrounds/SphereSkyMaterial_Base_color.png" type="Texture2D" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_is_srgb = true

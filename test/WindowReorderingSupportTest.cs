@@ -1,7 +1,7 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
-public class WindowReorderingSupportTest : Control
+public partial class WindowReorderingSupportTest : Control
 {
     public override void _Ready()
     {

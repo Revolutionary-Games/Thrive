@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/models/organelles/Axon.mesh" type="ArrayMesh" id=1]
-[ext_resource path="res://assets/textures/Axon.png" type="Texture" id=2]
-[ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=3]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=4]
+[ext_resource path="res://assets/textures/Axon.png" type="Texture2D" id=2]
+[ext_resource path="res://shaders/OrganelleTransparent.gdshader" type="Shader" id=3]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture2D" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -18,7 +18,7 @@ shader_param/jiggleAmount = 0.0005
 shader_param/texture = ExtResource( 2 )
 shader_param/dissolveTexture = ExtResource( 4 )
 
-[node name="Axon" type="MeshInstance"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.6 )
+[node name="Axon" type="MeshInstance3D"]
+transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.6 )
 material_override = SubResource( 1 )
 mesh = ExtResource( 1 )

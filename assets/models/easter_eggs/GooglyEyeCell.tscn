@@ -6,7 +6,7 @@
 
 [node name="GooglyEyeCell" instance=ExtResource( 5 )]
 
-[node name="Cube" parent="Armature/Skeleton" index="0"]
+[node name="Cube" parent="Armature/Skeleton3D" index="0"]
 material_override = ExtResource( 1 )
 
 [node name="AnimationPlayer" parent="." index="1"]

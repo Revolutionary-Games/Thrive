@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=1]
-[ext_resource path="res://assets/textures/Thermoplast_insideDiffuse.png" type="Texture" id=2]
+[ext_resource path="res://shaders/OrganelleTransparent.gdshader" type="Shader" id=1]
+[ext_resource path="res://assets/textures/Thermoplast_insideDiffuse.png" type="Texture2D" id=2]
 [ext_resource path="res://assets/models/organelles/Thermoplast_Particles.mesh" type="ArrayMesh" id=3]
 [ext_resource path="res://assets/models/organelles/Thermoplast_Inside.mesh" type="ArrayMesh" id=4]
 [ext_resource path="res://assets/models/organelles/Thermoplast_Membrane.mesh" type="ArrayMesh" id=5]
-[ext_resource path="res://assets/textures/Thermoplast_particlesEmission.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/Thermoplast_membraneAlbedo.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=8]
+[ext_resource path="res://assets/textures/Thermoplast_particlesEmission.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/textures/Thermoplast_membraneAlbedo.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture2D" id=8]
 
 
 [sub_resource type="ShaderMaterial" id=4]
@@ -43,19 +43,19 @@ shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/texture = ExtResource( 6 )
 shader_param/dissolveTexture = ExtResource( 8 )
 
-[node name="ThermoplastInside" type="MeshInstance"]
+[node name="ThermoplastInside" type="MeshInstance3D"]
 material_override = SubResource( 4 )
 mesh = ExtResource( 4 )
 material/0 = SubResource( 4 )
 
-[node name="ThermoplastMembrane" type="MeshInstance" parent="."]
-transform = Transform( 0.697468, 0, 0, 0, 0.697468, 0, 0, 0, 0.896833, 0, 0, 0 )
+[node name="ThermoplastMembrane" type="MeshInstance3D" parent="."]
+transform = Transform3D( 0.697468, 0, 0, 0, 0.697468, 0, 0, 0, 0.896833, 0, 0, 0 )
 material_override = SubResource( 5 )
 mesh = ExtResource( 5 )
 material/0 = SubResource( 5 )
 
-[node name="ThermoplastParticles" type="MeshInstance" parent="."]
-transform = Transform( 0.664977, 0, 0, 0, 0.664977, 0, 0, 0, 0.855055, 0, 0, 0 )
+[node name="ThermoplastParticles" type="MeshInstance3D" parent="."]
+transform = Transform3D( 0.664977, 0, 0, 0, 0.664977, 0, 0, 0, 0.855055, 0, 0, 0 )
 material_override = SubResource( 6 )
 mesh = ExtResource( 3 )
 material/0 = SubResource( 6 )
