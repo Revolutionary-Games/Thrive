@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -120,35 +121,36 @@ public static class NativeInterop
             if (result == CPUCheckResult.CPUCheckSuccess)
                 return true;
 
+            // Try the compatibility library
+            var originalResult = result;
+
+            result = NativeMethods.CheckCompatibilityLibraryCPUFeatures();
+
+            if (result == CPUCheckResult.CPUCheckSuccess)
+            {
+                GD.Print("Cannot use full-speed Thrive native library due to: " +
+                    GetMissingFeatureList(originalResult));
+
+                GD.Print("The upcoming compatibility library would be compatible with current CPU");
+                GD.PrintErr("This is not yet available but should be in the next release, unless we forget");
+
+                return false;
+            }
+
             GD.PrintErr("Current CPU detected as not sufficient for Thrive");
 
-            bool printedError = false;
-
-            if ((result & CPUCheckResult.CPUCheckMissingAvx) != 0)
-            {
-                printedError = true;
-                GD.PrintErr("CPU is missing AVX 1 extension instruction support");
-            }
-
-            if ((result & CPUCheckResult.CPUCheckMissingSse41) != 0)
-            {
-                printedError = true;
-                GD.PrintErr("CPU is missing SSE 4.1 support");
-            }
-
-            if ((result & CPUCheckResult.CPUCheckMissingSse42) != 0)
-            {
-                printedError = true;
-                GD.PrintErr("CPU is missing SSE 4.2 support");
-            }
-
-            if (!printedError)
-                GD.PrintErr("Unknown problem with CPU check");
+            GD.PrintErr(GetMissingFeatureList(result));
 
             return false;
         }
         catch (DllNotFoundException e)
         {
+            if (Engine.EditorHint)
+            {
+                GD.Print("Cannot load early check library within the editor concept due to it missing");
+                return false;
+            }
+
             GD.PrintErr("Cannot load early check library to check CPU features: ", e);
             return false;
         }
@@ -204,6 +206,44 @@ public static class NativeInterop
             return;
 
         NativeMethods.SetNativeExecutorThreads(threads);
+    }
+
+    private static string GetMissingFeatureList(CPUCheckResult result)
+    {
+        var builder = new StringBuilder();
+
+        if ((result & CPUCheckResult.CPUCheckMissingAvx) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing AVX 1 extension instruction support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingAvx2) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing AVX 2 extension instruction support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingSse41) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing SSE 4.1 support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingSse42) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing SSE 4.2 support");
+        }
+
+        if (builder.Length < 1)
+            builder.Append("Unknown problem with CPU check");
+
+        return builder.ToString();
     }
 
     private static void ForwardMessage(IntPtr messageData, int messageLength, NativeMethods.LogLevel level)
@@ -302,6 +342,9 @@ internal static partial class NativeMethods
 
     [DllImport("early_checks")]
     internal static extern CPUCheckResult CheckRequiredCPUFeatures();
+
+    [DllImport("early_checks")]
+    internal static extern CPUCheckResult CheckCompatibilityLibraryCPUFeatures();
 
     [DllImport("thrive_native")]
     internal static extern void SetLogLevel(LogLevel level);
