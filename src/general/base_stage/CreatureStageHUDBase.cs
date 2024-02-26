@@ -168,6 +168,15 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     [Export]
     public NodePath FossilisationDialogPath = null!;
 
+    [Export]
+    public NodePath StrainBarPanelPath = null!;
+
+    [Export]
+    public NodePath StrainBarPath = null!;
+
+    [Export]
+    public NodePath StrainBarFadeAnimationPlayerPath = null!;
+
 #pragma warning disable CA2213
     [Export]
     public PackedScene FossilisationButtonScene = null!;
@@ -192,6 +201,9 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
     [Export]
     public PackedScene PatchExtinctionBoxScene = null!;
+
+    [Export]
+    public Gradient StrainGradient = null!;
 #pragma warning restore CA2213
 
     protected readonly Color defaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
@@ -264,6 +276,10 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
     protected Control fossilisationButtonLayer = null!;
     protected FossilisationDialog fossilisationDialog = null!;
+
+    protected PanelContainer strainBarPanel = null!;
+    protected ProgressBar strainBar = null!;
+    protected AnimationPlayer strainBarFadeAnimationPlayer = null!;
 #pragma warning restore CA2213
 
     // Store these statefully for after player death
@@ -441,6 +457,10 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
         fossilisationButtonLayer = GetNode<Control>(FossilisationButtonLayerPath);
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
+
+        strainBarPanel = GetNode<PanelContainer>(StrainBarPanelPath);
+        strainBar = GetNode<ProgressBar>(StrainBarPath);
+        strainBarFadeAnimationPlayer = GetNode<AnimationPlayer>(StrainBarFadeAnimationPlayerPath);
 
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
@@ -1165,6 +1185,9 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
                 HUDMessagesPath.Dispose();
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
+                StrainBarPanelPath.Dispose();
+                StrainBarPath.Dispose();
+                StrainBarFadeAnimationPlayerPath.Dispose();
             }
 
             compoundBars?.Dispose();

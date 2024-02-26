@@ -30,21 +30,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Export]
     public NodePath UnbindAllHotkeyPath = null!;
 
-    [Export]
-    public NodePath StrainBarPanelPath = null!;
-
-    [Export]
-    public NodePath StrainBarPath = null!;
-
-    [Export]
-    public NodePath StrainBarFadeAnimationPlayerPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public PackedScene WinBoxScene = null!;
-
-    [Export]
-    public Gradient StrainGradient = null!;
 
     // These are category keys for MouseHoverPanel
     private const string COMPOUNDS_CATEGORY = "compounds";
@@ -64,10 +52,6 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private ProgressBar ingestedMatterBar = null!;
 
-    private PanelContainer strainBarPanel = null!;
-    private ProgressBar strainBar = null!;
-    private AnimationPlayer strainBarFadeAnimationPlayer = null!;
-
     private CustomWindow? winBox;
 #pragma warning restore CA2213
 
@@ -79,6 +63,12 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private int? playerColonySize;
 
     private bool playerWasDigested;
+
+    /// <summary>
+    ///   Wether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
+    ///   and updating the bar will be ignored
+    /// </summary>
+    private bool? playerHasStrainAffected = null;
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
@@ -121,10 +111,6 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
         unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
-
-        strainBarPanel = GetNode<PanelContainer>(StrainBarPanelPath);
-        strainBar = GetNode<ProgressBar>(StrainBarPath);
-        strainBarFadeAnimationPlayer = GetNode<AnimationPlayer>(StrainBarFadeAnimationPlayerPath);
 
         mouseHoverPanel.AddCategory(COMPOUNDS_CATEGORY, new LocalizedString("COMPOUNDS_COLON"));
         mouseHoverPanel.AddCategory(SPECIES_CATEGORY, new LocalizedString("SPECIES_COLON"));
@@ -566,9 +552,6 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 IngestedMatterBarPath.Dispose();
                 BindingModeHotkeyPath.Dispose();
                 UnbindAllHotkeyPath.Dispose();
-                StrainBarPanelPath.Dispose();
-                StrainBarPath.Dispose();
-                StrainBarFadeAnimationPlayerPath.Dispose();
             }
         }
 
@@ -581,6 +564,17 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             strainBar.Visible = false;
             return;
+        }
+
+        if (playerHasStrainAffected == null && !player.Has<StrainAffected>())
+        {
+            playerHasStrainAffected = false;
+            GD.PrintErr("Player does not have StrainAffected component");
+            return;
+        }
+        else
+        {
+            playerHasStrainAffected ??= true;
         }
 
         var strainFraction = player.Get<StrainAffected>().CalculateStrainFraction();
