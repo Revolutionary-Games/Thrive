@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
-"PO-Revision-Date: 2023-12-05 07:44+0000\n"
-"Last-Translator: Koala Dourado <edooardoluz@gmail.com>\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
+"PO-Revision-Date: 2024-02-22 22:12+0000\n"
+"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.2.1\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -167,9 +167,8 @@ msgstr "Quantidade de salvamentos rápidos para manter:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Fixação Anaeróbica de Nitrogênio"
 
-#, fuzzy
 msgid "AND_UNLOCK_CONDITION"
-msgstr "Condições Físicas"
+msgstr "e"
 
 msgid "APPEARANCE"
 msgstr "Aparência"
@@ -1403,13 +1402,11 @@ msgstr ""
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#, fuzzy
 msgid "EJECT_ENGULFED"
-msgstr "Não é possível realizar a fagocitose"
+msgstr "Ejetar objetos fagocitados"
 
-#, fuzzy
 msgid "EJECT_ENGULFED_TOOLTIP"
-msgstr "Não é possível realizar a fagocitose"
+msgstr "Ejetar objetos fagocitados"
 
 msgid "ENABLED_MODS"
 msgstr "Mods Habilitados"
@@ -1419,9 +1416,6 @@ msgstr "Habilitar Todos os Mods Compatíveis"
 
 msgid "ENABLE_EDITOR"
 msgstr "Habilitar o editor"
-
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
 
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efeitos de luz na interface"
@@ -1435,9 +1429,8 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia em {0} para {1}"
 
-#, fuzzy
 msgid "ENERGY_IN_PATCH_SHORT"
-msgstr "Energia em {0} para {1}"
+msgstr "{0}, {1}"
 
 msgid "ENERGY_SOURCES"
 msgstr "Fontes de Energia:"
@@ -1534,10 +1527,6 @@ msgstr "Sair"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Sair para o Lançador"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(velocidade que a IA se muta)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exportar Todos os Mundos"
@@ -1781,9 +1770,10 @@ msgstr "Visualizador de Galeria"
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equipe de Game Design"
 
-#, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
-msgstr "Visite a nossa página no Patreon"
+msgstr ""
+"Mostra a previsão total de energia adquirida pela sua espécie em todas as regiões e a população final (entre parênteses).\n"
+"Energia anterior: {0}"
 
 msgid "GENERAL"
 msgstr "Geral"
@@ -1886,7 +1876,7 @@ msgid "HOLD_FOR_PAN_WITH_MOUSE"
 msgstr "Segure para mover a câmera com o mouse"
 
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr "Segure para mostrar o menu de comandos do pacote"
+msgstr "Segure para mostrar o menu de comandos do bando"
 
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "Aperte para mostrar o cursor"
@@ -2868,27 +2858,25 @@ msgstr ""
 "\n"
 "Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
-"Em um planeta distante, éons de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenômeno no universo.\n"
+"Em um planeta distante, um meteoro impacta sua superfície após vagar por enormes distâncias carregando consigo as sementes necessárias para um novo fenômeno no planeta.\n"
 "\n"
 "A vida.\n"
 "\n"
-"Micróbios simples moram nas regiões mais profundas do oceano. Você é o Último Ancestral Comum Universal (LUCA) no planeta.\n"
+"Micróbios habitam as redondezas do local de impacto. Você é o Último Ancestral Comum Universal (LUCA) nesse planeta.\n"
 "\n"
-"Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
+"Para sobreviver nesse mundo hostil, você precisará coletar todos os compostos que puder encontrar e evoluir ao longo das gerações para competir contra outras espécies de microrganismos."
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
-"Em um planeta distante, éons de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenômeno no universo.\n"
+"Em um planeta distante, éons de evolução química desenvolveram moléculas autorreplicantes que geraram um novo fenômeno no universo.\n"
 "\n"
 "A vida.\n"
 "\n"
-"Micróbios simples moram nas regiões mais profundas do oceano. Você é o Último Ancestral Comum Universal (LUCA) no planeta.\n"
+"Micróbios agora habitam lagos rasos e quentes. Você é o Último Ancestral Comum Universal (LUCA) nesse planeta.\n"
 "\n"
-"Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
+"Para sobreviver nesse mundo hostil, você precisará coletar todos os compostos que puder encontrar e evoluir ao longo das gerações para competir contra outras espécies de microrganismos."
 
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
@@ -3072,9 +3060,8 @@ msgstr "Versão do Mod:"
 msgid "MORE_INFO"
 msgstr "Mostrar Mais Informações"
 
-#, fuzzy
 msgid "MORE_INFO_PROMPT"
-msgstr "Mostrar Mais Informações"
+msgstr "Aperte [thrive:input]help[/thrive:input] para ver mais informações na Thrivepédia."
 
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr "Mover visualização estratégica ao mover o cursor para as bordas da tela"
@@ -3184,6 +3171,18 @@ msgstr "Múltiplas Organelas"
 
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multi-amostras:"
+
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Descender removerá seu status de ascensão e o retornará ao Estágio Microbial. A partir daí, você poderá jogar novamente no salvamento atual.\n"
+"\n"
+"Você receberá um benefício de descensão para o novo jogo. Em uma versão futura você poderá escolher o benefício, mas por enquanto será sempre uma redução de 20% na osmorregulação.\n"
+"\n"
+"Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -3441,7 +3440,6 @@ msgstr "Abrir a página de organelas"
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Abrir o menu de organelas"
 
-#, fuzzy
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Abrir a Tela de Pesquisa"
 
@@ -3481,9 +3479,8 @@ msgstr "Muda as configurações do jogo"
 msgid "ORGANELLES"
 msgstr "Organelas"
 
-#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr "(AVISO: a fotossíntese se tornará menos viável)"
+msgstr "As condições de desbloqueio são verificadas a cada geração ao entrar no editor"
 
 msgid "ORGANELLE_AXON"
 msgstr "Axônio"
@@ -3509,30 +3506,23 @@ msgstr "Pili (singular: pilus) são estruturas similares a cabelos vistos em vá
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Perfure outras células com isto."
 
-#, fuzzy
 msgid "ORGANELLE_PLURAL"
-msgstr "Pilus Predatório"
+msgstr "{0} organelas"
 
-#, fuzzy
 msgid "ORGANELLE_SINGULAR"
-msgstr "Pilus Predatório"
+msgstr "{0} organela"
 
-#, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
-msgstr ""
-"Foram detectados mods instalados, mas nenhum está ativado.\n"
-"\n"
-"Os mods precisam ser ativados após a instalação. Visite o gerenciador de mods pelo menu de extras."
+msgstr "Desbloqueio de organelas ativado"
 
-#, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
-msgstr "(AVISO: a fotossíntese se tornará menos viável)"
+msgstr "(Algumas organelas terão condições de desbloqueio para poder as colocar)"
 
 msgid "ORGANISM_STATISTICS"
 msgstr "Estatísticas do Organismo"
 
 msgid "OR_UNLOCK_CONDITION"
-msgstr ""
+msgstr "ou"
 
 msgid "OSMOREGULATION"
 msgstr "Osmorregulação"
@@ -3919,9 +3909,8 @@ msgstr "Reprodução:"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Requer um núcleo"
 
-#, fuzzy
 msgid "RESEARCH"
-msgstr "Pesquisar"
+msgstr "Pesquisa"
 
 msgid "RESET"
 msgstr "Redefinir"
@@ -4233,9 +4222,8 @@ msgstr "Selecione uma região para mostrar seus detalhes"
 msgid "SELECT_A_SPECIES"
 msgstr "Selecione uma espécie"
 
-#, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
-msgstr "Selecione uma região para mostrar seus detalhes"
+msgstr "Selecione uma tecnologia da Rede de Tecnologias"
 
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Selecione um tipo de célula para editá-lo aqui"
@@ -4249,9 +4237,8 @@ msgstr "Selecione uma Opção"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Selecionar Imagem de Pré-Visualização"
 
-#, fuzzy
 msgid "SELECT_SPACE_STRUCTURE_TITLE"
-msgstr "Construir uma Estrutura"
+msgstr "Selecionar Estrutura a Construir"
 
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr "Selecione uma Estrutura para Colocar"
@@ -4259,9 +4246,8 @@ msgstr "Selecione uma Estrutura para Colocar"
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Selecione um tipo de tecido para editá-lo aqui"
 
-#, fuzzy
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
-msgstr "Selecionado:"
+msgstr "Selecione o composto que o vacúolo armazenará:"
 
 msgid "SEPTEMBER"
 msgstr "Setembro"
@@ -4308,9 +4294,8 @@ msgstr "Mostrar o feed de notícias de Thrive (baixadas pela internet)"
 msgid "SIGNALING_AGENT"
 msgstr "Agente de Sinalização"
 
-#, fuzzy
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
-msgstr "Agentes de sinalização permitem que as celúlas produzam substâncias químicas a que outras podem reagir. Essas substâncias podem ser usadas para atrair outras células ou avisá-las de algum perigo para fazê-las fugir."
+msgstr "Aperte a tecla do menu de comandos do bando para controlar outras células"
 
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Agentes de sinalização permitem que as celúlas produzam substâncias químicas a que outras podem reagir. Essas substâncias podem ser usadas para atrair outras células ou avisá-las de algum perigo para fazê-las fugir."
@@ -4363,9 +4348,8 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 msgid "SMALL_IRON_CHUNK"
 msgstr "Pedaço de ferro pequeno"
 
-#, fuzzy
 msgid "SOCIETY_STAGE"
-msgstr "Estágio Microbial"
+msgstr "Estágio Social"
 
 msgid "SOUND"
 msgstr "Som"
@@ -4382,17 +4366,14 @@ msgstr "Gestores da Equipe de Som"
 msgid "SPACE"
 msgstr "Espaço"
 
-#, fuzzy
 msgid "SPACE_STAGE"
-msgstr "Estágio Microbial"
+msgstr "Estágio Espacial"
 
-#, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
-msgstr "Construir uma Estrutura"
+msgstr "A estrutura está esperando por uma frota de construção para começar"
 
-#, fuzzy
 msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
-msgstr "Construir uma Estrutura"
+msgstr "Não há mais informações disponíveis"
 
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
 msgstr "Estrutura está esperando a frota de construção e recursos: {0}"
@@ -4461,9 +4442,8 @@ msgstr "População mínima para que uma espécie se divida se há mutações bo
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "População mínima para que uma fração de uma espécie possa dividir por mutações"
 
-#, fuzzy
 msgid "SPECIES_TO_FIND"
-msgstr "Espécies:"
+msgstr "Espécies a Encontrar:"
 
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} com população: {1}"
@@ -4489,9 +4469,8 @@ msgstr "Iniciar a calibração"
 msgid "START_GAME"
 msgstr "Começar Jogo"
 
-#, fuzzy
 msgid "START_RESEARCH"
-msgstr "Reinício Necessário"
+msgstr "Começar Pesquisa"
 
 msgid "STATISTICS"
 msgstr "Estatísticas"
@@ -4567,24 +4546,8 @@ msgstr "Armazenamento:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Entrou como: {0}"
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
-#, fuzzy
 msgid "STRATEGY_STAGES"
-msgstr "Estágio Microbial"
+msgstr "Estágios de Estratégia"
 
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Competição por nichos mais forte (diferenças de aptidão exageradas)"
@@ -4600,7 +4563,7 @@ msgstr "Portão de Ascensão"
 
 #, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr "Estrutura"
+msgstr "Esfera de Dyson"
 
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "Os materiais necessários para construção foram depositados"
@@ -4680,9 +4643,8 @@ msgstr "Etiquetas contém somente espaços em branco"
 msgid "TAKE_SCREENSHOT"
 msgstr "Capturar tela"
 
-#, fuzzy
 msgid "TARGET_TYPE_COLON"
-msgstr "Tipo:"
+msgstr "Tipo do Alvo:"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Ascensão"
@@ -4705,9 +4667,8 @@ msgstr "Primitivo"
 msgid "TECHNOLOGY_LEVEL_SCIFI"
 msgstr "Ficção Científica"
 
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr "Média"
+msgstr "Era Espacial"
 
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
 msgstr "Nível tecnológico necessário: {0}"
@@ -4855,14 +4816,8 @@ msgstr "Nova espécie: [b][u]{0}[/u][/b] ramificou-se de [b][u]{1}[/u][/b] para 
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "A nova espécie, [b][u]{0}[/u][/b], ramificou-se de [b][u]{1}[/u][/b] devido a diferentes pressões seletivas"
 
-#, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
-msgstr ""
-"Colete glicose (nuvens brancas) movendo-se na direção delas.\n"
-"\n"
-"Sua célula precisa de glicose para produzir energia e sobreviver.\n"
-"\n"
-"Siga a linha da sua célula até a glicose."
+msgstr "[b][u]{0}[/u][/b] tornou-se multicelular"
 
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "A espécie [b][u]{0}[/u][/b] foi extinta!"
@@ -4894,9 +4849,8 @@ msgstr "Título:"
 msgid "TOGGLE_BINDING"
 msgstr "Ativar modo de ligação"
 
-#, fuzzy
 msgid "TOGGLE_BINDING_TOOLTIP"
-msgstr "Ativar modo de ligação"
+msgstr "Ativar modo de ligação. Toque em outras células para criar uma colônia."
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Exibir painel de depuração"
@@ -4906,7 +4860,9 @@ msgstr "Fagocitar"
 
 #, fuzzy
 msgid "TOGGLE_ENGULF_TOOLTIP"
-msgstr "Fagocitar"
+msgstr ""
+"Ative a fagocitose para engolir pedaços\n"
+"e organismos pequenos em troca de um maior uso ATP enquanto está ativo"
 
 msgid "TOGGLE_FPS"
 msgstr "Exibir FPS"
@@ -4917,9 +4873,8 @@ msgstr "Tela cheia"
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Exibir HUD"
 
-#, fuzzy
 msgid "TOGGLE_INVENTORY"
-msgstr "Ativar modo de ligação"
+msgstr "Ativar Inventário"
 
 msgid "TOGGLE_METRICS"
 msgstr "Exibir métricas"
@@ -4930,10 +4885,6 @@ msgstr "Ativar a barra lateral"
 msgid "TOGGLE_PAUSE"
 msgstr "Pausar"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Ativar modo de ligação"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Desativar modo de ligação"
 
@@ -4943,9 +4894,8 @@ msgstr "Ferramentas"
 msgid "TOOL_HAND_AXE"
 msgstr "Machado de Mão"
 
-#, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
-msgstr "Estado:"
+msgstr "Energia Acumulada:"
 
 msgid "TOTAL_SAVES"
 msgstr "Salvamentos totais:"

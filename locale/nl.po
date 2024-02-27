@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
-"PO-Revision-Date: 2023-11-14 20:10+0000\n"
-"Last-Translator: Tim Kuppens <t.m.kuppens@gmail.com>\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
+"PO-Revision-Date: 2024-02-18 17:10+0000\n"
+"Last-Translator: Jelver Prins <Jelverprins@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1.1\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -624,7 +624,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Lichaamsdeel van cel"
 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Verbruik van {0}"
@@ -1041,7 +1041,7 @@ msgstr ""
 "Kijkend naar coordinaten: {1}"
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "physics-debug tekenwijze niet beschikbaar in deze build"
 
 msgid "DEBUG_PANEL"
 msgstr "Debugpaneel"
@@ -1401,13 +1401,11 @@ msgstr ""
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#, fuzzy
 msgid "EJECT_ENGULFED"
-msgstr "Kan niet verzwelgen"
+msgstr "Verzwolgen objecten uitstoten"
 
-#, fuzzy
 msgid "EJECT_ENGULFED_TOOLTIP"
-msgstr "Kan niet verzwelgen"
+msgstr "Verzwolgen objecten uitstoten"
 
 msgid "ENABLED_MODS"
 msgstr "Aangezette Mods"
@@ -1417,9 +1415,6 @@ msgstr "Zet Alle Bruikbare Mods Aan"
 
 msgid "ENABLE_EDITOR"
 msgstr "Schakel de editor in"
-
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
 
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Zet GUI Licht Effecten Aan"
@@ -1533,10 +1528,6 @@ msgstr "Sluit"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Sluit af naar opstartprogramma"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(snelheid waarmee AI-soorten muteren)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exporteer Alle Werelden"
@@ -3192,6 +3183,18 @@ msgstr "Meerdere Organellen"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-Aliasing:"
 
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Neerdalen zal je verheven status verwijderen en je terug naar de Microbenfase brengen. Je kunt dan in je huidige opslagbestand het spel opnieuw spelen.\n"
+"\n"
+"Je zult neerdalingsextraatjes krijgen voor de verdere spelduur. In een toekomstige versie zul je het extraatje zelf kunnen kiezen maar voor nu zul je altijd een 20% verlaging in osmoregulatiekosten krijgen. \n"
+"\n"
+"Zodra je besluit neer te dalen kun je een nieuw wereldkiemgetal kiezen om op een andere kaart te spelen. Ook kun je bijvoorbeeld LZWHK uitzetten."
+
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Welkom in het museum! Hier kun je de vele soorten die je in verschillende spellen hebt gefossiliseerd bewonderen. Je kunt zelfs spelen als een soort door het in de vrije bouwbewerker te openen.\n"
@@ -4567,21 +4570,6 @@ msgstr "Opslag:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als: {0}"
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 msgid "STRATEGY_STAGES"
 msgstr "Strategiefasen"
 
@@ -4922,10 +4910,6 @@ msgstr "Zet navigatieboom uit/aan"
 
 msgid "TOGGLE_PAUSE"
 msgstr "Pauzeren"
-
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Binden aan/uit"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Ontbinden aan/uit"

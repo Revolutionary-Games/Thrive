@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
 "PO-Revision-Date: 2023-10-12 00:43+0000\n"
 "Last-Translator: Irmantas <irmantas_i@yahoo.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -1375,9 +1375,6 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr ""
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
@@ -1491,10 +1488,6 @@ msgstr "Išeiti"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -3007,6 +3000,18 @@ msgstr ""
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Nusileidimas panaikins jūsų pakilusio statusą ir grąžins jus į Mikrobų Etapą. Iš ten galėsite vėl pereiti žaidimą, išsaugoję dabartinį išsaugojimą.\n"
+"\n"
+"Už naująjį peržaidimą gausite nusileidimo privilegiją. Būsimoje versijoje galėsite patys pasirinkti šį privalumą, tačiau kol kas jis visada bus 20 % sumažėjęs osmoreguliacijos koeficientas.\n"
+"\n"
+"Kai patvirtinsite nusileidimą, galėsite redaguoti žaidimo nustatymus ir pasirinkti naują pasaulio sėklą, kad galėtumėte žaisti kitame žemėlapyje arba, pavyzdžiui, išjungti LAWK."
+
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4350,21 +4355,6 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Prisijungęs kaip: {0}"
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Mikroorganizmo būsena"
@@ -4687,10 +4677,6 @@ msgstr ""
 
 msgid "TOGGLE_PAUSE"
 msgstr ""
-
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 msgid "TOGGLE_UNBINDING"
 msgstr ""

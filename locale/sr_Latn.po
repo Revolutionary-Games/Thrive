@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
 "PO-Revision-Date: 2022-03-21 22:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -1460,9 +1460,6 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr "Omogućite uređivač"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Spoljni efekti:"
@@ -1579,10 +1576,6 @@ msgstr "Izaći"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -3231,6 +3224,13 @@ msgstr "Postavite organelu"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4708,21 +4708,6 @@ msgstr "Skladište"
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Zona: {0}"
@@ -5062,10 +5047,6 @@ msgstr ""
 
 msgid "TOGGLE_PAUSE"
 msgstr ""
-
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Prebacite gutanje"
 
 #, fuzzy
 msgid "TOGGLE_UNBINDING"

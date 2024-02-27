@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
-"PO-Revision-Date: 2024-01-25 07:44+0000\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
+"PO-Revision-Date: 2024-02-24 06:17+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1415,9 +1415,6 @@ msgstr "Bütün Uyumlu Modları Etkinleştir"
 msgid "ENABLE_EDITOR"
 msgstr "Düzenleyiciyi aç"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Arayüz ışık efektlerini etkinleştir"
 
@@ -1528,10 +1525,6 @@ msgstr "Çık"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Çık ve Başlatıcıya Dön"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(AI türlerinin mutasyona uğrama hızı)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Tüm Dünyaları Dışa Aktar"
@@ -2864,25 +2857,23 @@ msgstr ""
 "\n"
 "Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
-"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren volkanik aktiviteler ve göktaşı darbeleri evrende yeni bir olayın gelişmesine neden oldu.\n"
+"Uzaklardaki bir uzaylı gezegende, uçsuz bucaksız astronomik mesafelerden gelen bir göktaşı çarptı ve yeni bir olayın oluşması için gerekli tohumları bu gezegene taşıdı.\n"
 "\n"
 "Hayat.\n"
 "\n"
-"Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
+"Çarpma alanının yakınında basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
 "\n"
 "Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
-"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren volkanik aktiviteler ve göktaşı darbeleri evrende yeni bir olayın gelişmesine neden oldu.\n"
+"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren kimyasal evrimin kendi kendini kopyalayan moleküllere doğru ilerlemesi evrende yeni bir olayın gelişmesine neden oldu.\n"
 "\n"
 "Hayat.\n"
 "\n"
-"Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
+"Ilık ve sığ göletlerde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
 "\n"
 "Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
 
@@ -3179,6 +3170,12 @@ msgstr "Birden Fazla Organel"
 
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Çoklu örnekleme kenar yumuşatma:"
+
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr "Oyun simülasyonunu birden fazla iş parçacığı ile çalıştır"
+
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr "(etkinleştirildiğinde, temel oyun mantık güncellemelerini çalıştırmak için birden fazla iş parçacığı kullanılır; arkaplanda düşük sayıda iş parçacığı varken performansın düşmesine neden olabilir)"
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -4547,21 +4544,6 @@ msgstr "Depo:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 msgid "STRATEGY_STAGES"
 msgstr "Strateji Evreleri"
 
@@ -4899,10 +4881,6 @@ msgstr "Navigasyon ağacını aç"
 msgid "TOGGLE_PAUSE"
 msgstr "Oyunu duraklat"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Bağ kurma moduna geç. Bir koloni oluşturmak için diğer hücrelere dokunun."
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Bağ koparma moduna geç"
 
@@ -4982,7 +4960,7 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"Bu panel, sizin gelecekte kazanacağınız toplam enerji tahmini gösterir. Bu rakamlar, [b]oto-evrimin[/b] simülasyonundan gelir.\n"
+"Bu panel, sizin gelecekte kazanacağınız toplam tahmini enerjiyi gösterir. Bu rakamlar, [b]oto-evrimin[/b] simülasyonundan gelir.\n"
 "\n"
 "Bu tahminler, sizin bireysel performansınızı hesaba katmaz. Böylece düzenleyiciye girdiğinizde, bulunduğunuz arazide daha iyi performans sergileyebilirsiniz.\n"
 "\n"
@@ -5529,7 +5507,7 @@ msgstr "Hücrelere eklenemez. Henüz eklenmedi."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"Bazı bakteri ve tek hücreli canlılar dahil, birçok gerçek organizma biyolüminesandır. Bir organizmanın vücudunun içinde kimyasal olarak ışık üretme eyleminin; eşlerin dikkatini çekme, aynı türün üyeleri ile iletişim kurma ve diğer türleri dikkatini çekme ya da geri püskürtme gibi birçok kullanımı vardır. Mikroskopik algdeki biyolüminesans, mavi-yeşil parıltı ile okyanusun büyük bir parçasını aydınlatan alg patlamalarını üretebilir.\n"
+"Bazı bakteri ve tek hücreli canlılar dahil, birçok gerçek organizma biyolüminesandır. Bir organizmanın vücudunun içinde kimyasal olarak ışık üretme eyleminin; eşlerin dikkatini çekme, aynı türün üyeleri ile iletişim kurma ve diğer türlerin dikkatini çekme ya da onları geri püskürtme gibi birçok kullanımı vardır. Mikroskopik algdeki biyolüminesans, mavi-yeşil parıltı ile okyanusun büyük bir parçasını aydınlatan alg patlamalarını üretebilir.\n"
 "\n"
 "Şu anda, biyolüminesans için oyun içi bir işlev konusunda anlaşmaya varamadık. İyi bir kozmetik dokunuş olacağına ve oyuncuya karanlık ortamlarda yardımcı olacağına rağmen, biyolüminesansa dayalı faydalı bir oyun mekaniği belirlemek oldukça zor. Tür içi iletişim zaten [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Verici Ajan[/url][/color][/b] tarafından kullanılmakta ve kaçınılmaz bir [thrive:compound type=\"atp\"]ATP[/thrive:compound] maliyetine yol açacağı zaman başka kullanımlar da ayarlamak zor görünmektedir.\n"
 "\n"
@@ -5543,24 +5521,23 @@ msgstr "Oyunda mevcut değil. Henüz eklenmedi."
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Geliştirme yok. Henüz eklenmedi."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
-msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "Etki yok."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_INTRO"
-msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "[thrive:compound type=\"hydrogenSulfide\"]Hidrojen Sülfürü[/thrive:compound], ortamdaki [thrive:compound type=\"carbondioxide\"]Karbondioksiti[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]Glukoza[/thrive:compound] dönüştürme işlemini yani [b]Kemosentez[/b] yapmak için kullanılan bir ökaryotik organeldir. Kemoplast, bu işlemi prokaryotik karşılığından daha etkili bir şekilde yapar: [color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Kemosentez Yapan Proteinler[/url][/color]."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
-msgstr "[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr ""
+"[b]Kemosentez[/b]: [thrive:compound type=\"hydrogenSulfide\"]Hidrojen Sülfür[/thrive:compound] + [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] → [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound]\n"
+"\n"
+"Bir glukoz üretme yöntemidir. [thrive:compound type=\"hydrogenSulfide\"]Hidrojen Sülfür[/thrive:compound] gerektirir ve reaksiyon hızı, ortamdaki [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır. Bu işlem, [color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Kemosentez Yapan Proteinlerdeki[/url][/color] işlemden daha üstündür."
 
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Bir hücre, [b]Kemoplastları[/b] evrimleştirmek için [color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color] sahip olmalıdır."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -5570,9 +5547,8 @@ msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemd
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
-msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "Geliştirme yok."
 
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
 msgstr ""
@@ -5838,7 +5814,7 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "Etkiler yok."
+msgstr "Etki yok."
 
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr "[b]Metabolozomlar[/b], [b]Oksijenli Solunumun[/b] bir biçimi olan ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondridekinden[/url][/color][/b] aşağı olan [b]Protein Solunumunu[/b] gerçekleştirir. Bu işlem, [thrive:compound type=\"glucose\"]Glukozun[/thrive:compound] [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] kullanılarak [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesidir."
@@ -5871,7 +5847,7 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "Etkiler yok."
+msgstr "Etki yok."
 
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "Hücrenin güç merkezidir. [b]Mitokondri[/b], [thrive:compound type=\"oxygen\"]Oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]Glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. [b]Mitokondri[/b] bu işlevi [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi organellerden daha verimli bir şekilde gerçekleştirir."
@@ -6201,7 +6177,7 @@ msgstr "Oyuncu [b]Protoplazmayı[/b] evrimleştiremez. Oyuncu olmayan türler s�
 
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"Bazı yerlerde, [b]Protoplazma[/b] [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] başka bir adıdır. Ancak, çekirdek ve çevreleyen yapılar dahil, bir hücrenin tüm içeriği olarak da ifade edilebilir.\n"
+"Bazı yerlerde [b]Protoplazma[/b], [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] başka bir adıdır. Ancak, çekirdek ve çevreleyen yapılar dahil, bir hücrenin tüm içeriği olarak da ifade edilebilir.\n"
 "\n"
 "Bu organelin [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Vikipedi sayfasından[/url][/color] daha fazlasını okuyun."
 
@@ -6225,24 +6201,23 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr "Thrive Oyun İçi Vikisi"
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
-msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+msgstr "Etki yok."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
-msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+msgstr "[b]Demir Kemolitoototrofisi[/b] işlemi ile [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"iron\"]Demire[/thrive:compound] dönüştürür. Bu reaksiyonun hızı, ortamdaki [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] miktarı ile doğru orantılıdır."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
-msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
-msgstr "[thrive:compound type=\"iron\"]Demiri[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr ""
+"[b]Demir Kemolitoototrofisi[/b]: [thrive:compound type=\"iron\"]Demir[/thrive:compound] + [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"\n"
+"[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] atlayan bir enerji üretim yöntemidir. [thrive:compound type=\"iron\"]Demir[/thrive:compound] tüketir ve ortamdaki [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] miktarı ile doğru orantılıdır."
 
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Gereksinimler yok."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6252,9 +6227,8 @@ msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_UPGRADES"
-msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+msgstr "Geliştirme yok."
 
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
@@ -6288,33 +6262,41 @@ msgstr "Sinyal Verici Ajan"
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Sinyal Verici Ajan"
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
-msgstr "Birçok organizma, balçığımsı polisakkarit maddeler üretir. Müsilaj da bu polisakkaritlerden biridir. Pek çok tür, hareket için balçığı kullanırken belirli bakteri türleri yüksek basınçta bu maddeleri arkalarından salar. Bu fışkırtıcılar, roket motorları gibi davranır ve hücreleri inanılmaz hızda ileri doğru iter. Balçık ayrıca, yırtıcıları engellemek için kullanılır ve sadece fışkırtıcı kullanan organizmaların geçebildiği bir maddenin içine onları hapseder."
+msgstr ""
+"Hücrenin kendini ileri doğru itmesi için [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] salma yeteneğinin kilidini açar. [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] salmak, kısa süreliğine büyük miktarda hız sağlar. Mevcut [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] miktarına bağlı olarak, dinlenip hareket etme eylemi daha uzun sürdürülebilir.\n"
+"\n"
+"[b]Balçık Fışkırtıcıları[/b] olmayan ve ortaya çıkan [thrive:compound type=\"mucilage\"]Müsilajın[/thrive:compound] olduğu alana giren herhangi bir hücre yavaşlar."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
-msgstr "Birçok organizma, balçığımsı polisakkarit maddeler üretir. Müsilaj da bu polisakkaritlerden biridir. Pek çok tür, hareket için balçığı kullanırken belirli bakteri türleri yüksek basınçta bu maddeleri arkalarından salar. Bu fışkırtıcılar, roket motorları gibi davranır ve hücreleri inanılmaz hızda ileri doğru iter. Balçık ayrıca, yırtıcıları engellemek için kullanılır ve sadece fışkırtıcı kullanan organizmaların geçebildiği bir maddenin içine onları hapseder."
+msgstr ""
+"[thrive:compound type=\"glucose\"]Glukozdan[/thrive:compound], [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] adı verilen bir yapışkan polimer üretir. Hücrenin kendini ileri doğru itmesi için, salınan maddenin alanına giren canlıları yavaşlatan, söz konusu [thrive:compound type=\"glucose\"]Müsilajı[/thrive:compound] dışarı atmasını sağlar.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:flagellum]Kamçının[/url][/color] aksine, yırtıcılardan kaçmak veya av yakalayabilmek için yararlı olacak ani bir hız artışı sağlar."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
-msgstr "Birçok organizma, balçığımsı polisakkarit maddeler üretir. Müsilaj da bu polisakkaritlerden biridir. Pek çok tür, hareket için balçığı kullanırken belirli bakteri türleri yüksek basınçta bu maddeleri arkalarından salar. Bu fışkırtıcılar, roket motorları gibi davranır ve hücreleri inanılmaz hızda ileri doğru iter. Balçık ayrıca, yırtıcıları engellemek için kullanılır ve sadece fışkırtıcı kullanan organizmaların geçebildiği bir maddenin içine onları hapseder."
+msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
-msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"mucilage\"]müsilaja[/thrive:compound] çevirir. Depolanan [thrive:compound type=\"mucilage\"]müsilajı[/thrive:compound] salmak için [thrive:input]g_secrete_slime[/thrive:input] tuşuna basın. Müsilaj, salgılandığı hücrenin hızını arttırırken diğer yırtıcılarınkini azaltır."
+msgstr ""
+"[b]Müsilaj Sentezi[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound]\n"
+"\n"
+"İleri doğru gitmek için salınan [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] üretir."
 
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Gereksinimler yok."
 
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
+"Anlık bir hız artışı yeteneği kazanmak, av yakalamaya çalışırken veya yırtıcılardan kaçarken kullanışlıdır, özellikle de salınan [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound], gelmekte olan yırtıcıları yavaşlatabildiği için.\n"
+"\n"
+"Şunu da belirtmek gerekir ki, bu organel, [thrive:compound type=\"atp\"]ATP[/thrive:compound] yerine [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] kullanır. O yüzden, bu organeli eklerken, hücrenizin [b]bileşik dengesini[/b] incelediğinizden emin olun."
 
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Geliştirme yok."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6384,7 +6366,7 @@ msgstr "Özel etki yok."
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
-"<br>Işığa hassas yeşil pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]Kromatofor Fotosentezi[/b] adı verilen bir işlemde, su ve [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]Işık[/thrive:compound] enerjisini kullanır. Üretilen [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] oranı, [thrive:compound type=\"sunlight\"]Işığın[/thrive:compound] şiddeti ile doğru orantılı olduğundan, [b]Tilakoidler[/b] yalnızca yüzeye yakın arazilerde etkilidir.\n"
+"Işığa hassas yeşil pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]Kromatofor Fotosentezi[/b] adı verilen bir işlemde, su ve [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]Işık[/thrive:compound] enerjisini kullanır. Üretilen [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] oranı, [thrive:compound type=\"sunlight\"]Işığın[/thrive:compound] şiddeti ile doğru orantılı olduğundan, [b]Tilakoidler[/b] yalnızca yüzeye yakın arazilerde etkilidir.\n"
 "\n"
 "[b]Fotosentezin[/b] en yüksek düzeyini yerine getiren [b][color=#3796e1][url=thriveopedia:chloroplast]Kloroplastın[/url][/color][/b] prokaryotik bir formudur."
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1434,9 +1434,6 @@ msgstr "Povolit všechny kompatibilní mody"
 msgid "ENABLE_EDITOR"
 msgstr "Zapnout editor"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povolit světelné efekty rozhraní"
 
@@ -1552,10 +1549,6 @@ msgstr "Odejít"
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Spustit E"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(rychlost mutací AI druhů)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exportovat všechny světy"
@@ -3298,6 +3291,17 @@ msgstr "Více organel"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Vícevzorové vyhlazování:"
 
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Agresivní mikrobi budou pronásledovat kořist na větší vzdálenosti\n"
+"a při napadení predátory jsou náchylnější k boji.\n"
+"Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
+"a je méně pravděpodobné, že budou používat toxiny proti predátorům."
+
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4719,21 +4723,6 @@ msgstr "Úložný prostor:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Přihlášen jako: {0}"
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Mikrobiální Období"
@@ -5073,10 +5062,6 @@ msgstr ""
 
 msgid "TOGGLE_PAUSE"
 msgstr "Pozastavit"
-
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Přepnout spojování"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Přepnout rozpojování"

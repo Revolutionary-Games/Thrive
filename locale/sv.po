@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -1466,9 +1466,6 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr "Aktivera Cellredigeraren"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Aktivera GUI ljus effecter"
 
@@ -1596,10 +1593,6 @@ msgstr "Lämna"
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Avfyra E"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(farten som AI arter muterar)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -3311,6 +3304,17 @@ msgstr "Placera organell"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multispel anti-aliasing:"
 
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4795,21 +4799,6 @@ msgstr "Förråd"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Inloggad som: {0}"
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Mikrob Stadiet"
@@ -5160,10 +5149,6 @@ msgstr ""
 
 msgid "TOGGLE_PAUSE"
 msgstr "Pausa"
-
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Växla bindning av och på"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Växla avbindning av och på"

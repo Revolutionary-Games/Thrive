@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
-"PO-Revision-Date: 2024-01-11 11:42+0000\n"
-"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
+"PO-Revision-Date: 2024-02-24 06:17+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1444,9 +1444,6 @@ msgstr "Включване на съвместимите модификации"
 msgid "ENABLE_EDITOR"
 msgstr "Активиране на редактора"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Светлинни ефекти"
 
@@ -1562,10 +1559,6 @@ msgstr "Изход"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Стартираща програма"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(определя скоростта на мутация на Вашите съперници)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Експортиране"
@@ -3257,6 +3250,13 @@ msgstr "Няколко органела"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Множествено изглаждане:"
 
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
+
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Добре дошли в музея! Тук може да се възхищавате на създанията, които сте вкаменили по време на Вашите игри. Може дори да играете с тях, като ги отворите в редактора.\n"
@@ -4664,21 +4664,6 @@ msgstr "Съхранение:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Влезли сте като: {0}"
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Микробен етап"
@@ -5026,10 +5011,6 @@ msgstr "Превключване на навигацията"
 
 msgid "TOGGLE_PAUSE"
 msgstr "Прекъсване на играта"
-
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Свързване"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Отделяне"
@@ -5679,18 +5660,23 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
@@ -5700,6 +5686,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
 msgstr "Подлежи на уточняване"
 
@@ -6265,18 +6252,23 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
@@ -6286,6 +6278,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Подлежи на уточняване"
 
@@ -6313,27 +6306,34 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Подлежи на уточняване"
 

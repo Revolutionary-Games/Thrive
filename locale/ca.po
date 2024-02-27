@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1422,9 +1422,6 @@ msgstr "Habilitar Tots els Mods Compatibles"
 msgid "ENABLE_EDITOR"
 msgstr "Habilitar l'editor"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efectes de llum del GUI"
 
@@ -1542,10 +1539,6 @@ msgstr "Sortir"
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Llançar E"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -3311,6 +3304,17 @@ msgstr "Múltiples Orgànuls"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Antialiàsing Multimostres (MSAA):"
 
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Els microbis agressius perseguiran les preses a més distància\n"
+"i és més probable que s'enfrontin a depredadors quan siguin atacats.\n"
+"Els microbis pacífics desistiran de perseguir les seves preses abans\n"
+"i és menys probable que facin servir toxines contra depredadors."
+
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4747,21 +4751,6 @@ msgstr "Emmagatzematge:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Registrat com a: {0}"
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Estadi de Microbi"
@@ -5101,10 +5090,6 @@ msgstr ""
 
 msgid "TOGGLE_PAUSE"
 msgstr "Pausa"
-
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Activar el mode d'unió"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Desactivar el mode d'unió"

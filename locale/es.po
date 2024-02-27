@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -1436,9 +1436,6 @@ msgstr "Activar todos los mods compatibles"
 msgid "ENABLE_EDITOR"
 msgstr "Activar editor"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efectos de luz GUI"
 
@@ -1556,10 +1553,6 @@ msgstr "Salir"
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Lanzar E"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(Velocidad con la cual las species de la AI mutan)"
 
 #, fuzzy
 msgid "EXPORT_ALL_WORLDS"
@@ -3290,6 +3283,13 @@ msgstr "Multiples Orgánulos"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "MSAA:"
 
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr "Fosiliza esta especie para preservarla en el Museo. Puedes acceder al Museo desde la Thrivepedia, o abrir especies fosilizadas en el editor libre."
+
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "¡Bienvenid@ al museo! Aquí puedes admirar todas las especies que has fosilizado a lo largo de tus partidas. Puedes incluso jugar con ellas seleccionándolas en el editor libre.\n"
@@ -4727,21 +4727,6 @@ msgstr "Almacenamiento:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Conectado como: {0}"
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Etapa de microbio"
@@ -5109,10 +5094,6 @@ msgstr "Activar/desactivar árbol de navegación"
 
 msgid "TOGGLE_PAUSE"
 msgstr "Pausa"
-
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Alternar unión"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Alternar separación"

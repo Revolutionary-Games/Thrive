@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
-"PO-Revision-Date: 2024-01-18 22:40+0000\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
+"PO-Revision-Date: 2024-02-16 05:40+0000\n"
 "Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -1360,13 +1360,11 @@ msgstr ""
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#, fuzzy
 msgid "EJECT_ENGULFED"
-msgstr "Não pode engolir"
+msgstr "Ejetar objetos engulidos"
 
-#, fuzzy
 msgid "EJECT_ENGULFED_TOOLTIP"
-msgstr "Não pode engolir"
+msgstr "Ejetar objetos engolidos"
 
 msgid "ENABLED_MODS"
 msgstr "Ativar Mods"
@@ -1376,9 +1374,6 @@ msgstr "Ativar Todos os Mods Compatíveis"
 
 msgid "ENABLE_EDITOR"
 msgstr "Ativar o editor"
-
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
 
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Ativar efeitos de luz da interface gráfica"
@@ -1488,10 +1483,6 @@ msgstr "Sair"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Sair para o Launcher"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(velocidade na qual as espécies de IA sofrem mutação)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exportar todos os mundos"
@@ -2802,16 +2793,15 @@ msgstr ""
 "\n"
 "Para sobreviver neste mundo hostil, precisarás de acumular compostos e evoluir para competir contra outras espécies de micróbios."
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
-"Num planeta alienígena distante, eras de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
+"Num planeta alienígena distante,um meteoro caiu após percorrer grandes distâncias astronómicas, levando consigo as sementes necessárias para um novo fenómeno no planeta.\n"
 "\n"
 "Vida.\n"
 "\n"
-"Micróbios simples moram nas regiões mais profundas do oceano. Tu és o Último Ancestral Comum Universal (LUCA) no planeta.\n"
+"Micróbios simples moram nas regiões próximas ao impacto. Tu és o Último Ancestral Comum Universal (LUCA) no planeta.\n"
 "\n"
-"Para sobreviver neste mundo hostil, precisarás de acumular compostos e evoluir para competir contra outras espécies de micróbios."
+"Para sobreviver neste mundo hostil, precisarás de acumular qualquer compostos que consigas encontrar e evoluir entre gerações para competir contra outras espécies de micróbios."
 
 #, fuzzy
 msgid "MICROBE_STAGE_INITIAL_POND"
@@ -3003,9 +2993,8 @@ msgstr "Versão do Mod:"
 msgid "MORE_INFO"
 msgstr "Mostrar Mais Informações"
 
-#, fuzzy
 msgid "MORE_INFO_PROMPT"
-msgstr "Mostrar Mais Informações"
+msgstr "Pressione [thrive:input]help[/thrive:input] para ver mais informações na Thrivepédia."
 
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
@@ -3114,6 +3103,17 @@ msgstr "Múltiplos Organelos"
 
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
+
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Micróbios agressivos perseguirão presas em distâncias maiores\n"
+"e são mais propensos a lutar contra predadores quando atacados.\n"
+"Micróbios pacíficos não se envolvem com os outros em distâncias maiores\n"
+"e são menos propensos a usar toxinas contra predadores."
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -4503,21 +4503,6 @@ msgstr "Armazenamento:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Entrou como: {0}"
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Fase Microbial"
@@ -4859,10 +4844,6 @@ msgstr ""
 
 msgid "TOGGLE_PAUSE"
 msgstr "Parar"
-
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Ativar Modo de Ligação. Toca noutras células para criar uma colónia."
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Desconectar"

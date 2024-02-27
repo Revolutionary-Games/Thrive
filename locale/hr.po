@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-25 17:15+0100\n"
-"PO-Revision-Date: 2022-09-22 10:31+0000\n"
-"Last-Translator: Ivan Bratović <ivanbratovic4@gmail.com>\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
+"PO-Revision-Date: 2024-02-21 15:28+0000\n"
+"Last-Translator: Gabriel Glavica <gabriel.glavicacretni@gmail.com>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.10.3\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -46,17 +46,18 @@ msgstr "Abisopelagičar"
 msgid "ACTION_AWAKEN"
 msgstr "Probuditi ({0:F1} / {1:F1})"
 
+#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr ""
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Radnja je zaustavljena dok je druga u tijeku"
 
 msgid "ACTION_DELETE"
-msgstr ""
+msgstr "Izbriši"
 
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr ""
+msgstr "Dupla populacija"
 
 msgid "ACTION_DUPLICATE_UNITS"
 msgstr ""
@@ -68,28 +69,30 @@ msgid "ACTION_TELEPORT"
 msgstr ""
 
 msgid "ACTIVE"
-msgstr ""
+msgstr "Aktivno"
 
 msgid "ACTIVE_THREAD_COUNT"
 msgstr ""
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+"Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr ""
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Dodaj novu postavku tipke"
 
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Napreduj"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Aerobna fiksacija dušika"
 
 msgid "AGENTS"
 msgstr ""
@@ -102,9 +105,13 @@ msgstr ""
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
 
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "Agresivni"
 
 msgid "AI_MUTATION_RATE"
 msgstr ""
@@ -116,76 +123,84 @@ msgid "ALL"
 msgstr "Sve"
 
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
+msgstr "Dopusti vrstama da ne migriraju (ako nema dobrog mjesta za migraciju)"
 
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr ""
+msgstr "Dopusti vrstama da ne mutiraju (ako nema dobrih mutacija)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr ""
+msgstr "Opće statistike za sve svijetove"
 
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "Već si uzvišen"
 
 msgid "ALT"
 msgstr ""
 
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "Glasnoća okoline"
 
 msgid "AMMONIA"
-msgstr ""
+msgstr "Amonijak"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Kolićina automatskih spremanja za čuvanje:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Količina brzih spremanja za čuvanje:"
 
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Anaerobna fiksacija dušika"
 
 msgid "AND_UNLOCK_CONDITION"
-msgstr ""
+msgstr "i"
 
 msgid "APPEARANCE"
-msgstr ""
+msgstr "Izgled"
 
 msgid "APPLY"
-msgstr ""
+msgstr "Primjeni"
 
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Primjeni promjene"
 
 msgid "APRIL"
-msgstr ""
+msgstr "Travanj"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
+msgstr "Jesi li sigruan da želiš vratiti sve postavke na početne vrijednosti?"
 
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
 msgid "ARTIST_COLON"
-msgstr ""
+msgstr "Umjetnik:"
 
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "\"{0}\" - {1}"
 
 msgid "ART_BY"
-msgstr ""
+msgstr "Umjetničko djelo od {0}"
 
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "umjetnička galerija"
 
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr ""
+msgstr "Čestitamo!"
 
+#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Uzvišen si i završio si igru. Čestitamo na dosegu kraja igre!\n"
+"\n"
+"Možeš nastaviti igrati u svemirskoj fazi s otključanim Božanstvenim Alatima da se zabavljaš u slobodnom modu.\n"
+"\n"
+"Takđer je moguće spustiti se i vratiti se u fazu migroba u ovoj igri i igrati kroz sve faze s dodatnim povlasticama.\n"
+"\n"
+"Ukupni broj uzvišenja u ovoj igri: {0}"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
@@ -1303,9 +1318,6 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr ""
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
@@ -1412,9 +1424,6 @@ msgid "EXIT"
 msgstr ""
 
 msgid "EXIT_TO_LAUNCHER"
-msgstr ""
-
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr ""
 
 msgid "EXPORT_ALL_WORLDS"
@@ -3007,6 +3016,12 @@ msgstr ""
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4316,21 +4331,6 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
-
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Stadij mikroba"
@@ -4661,9 +4661,6 @@ msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
 msgid "TOGGLE_PAUSE"
-msgstr ""
-
-msgid "TOGGLE_SPRINT_TOOLTIP"
 msgstr ""
 
 msgid "TOGGLE_UNBINDING"
@@ -6000,4 +5997,4 @@ msgid "ZOOM_IN"
 msgstr ""
 
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "Povećaj"
