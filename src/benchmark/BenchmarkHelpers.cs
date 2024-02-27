@@ -31,8 +31,8 @@ public static class BenchmarkHelpers
         // This needs to be invoked to make sure directly starting benchmark scenes works
         Invoke.Instance.Queue(() =>
         {
-            Engine.TargetFps = -1;
-            OS.VsyncEnabled = false;
+            Engine.MaxFps = 0;
+            DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Disabled);
         });
     }
 
@@ -59,7 +59,7 @@ public static class BenchmarkHelpers
         Settings.Instance.CloudUpdateInterval.Value = settingStore;
     }
 
-    public partial class BenchmarkChangedSettingsStore
+    public class BenchmarkChangedSettingsStore
     {
         public float CloudSettings;
     }

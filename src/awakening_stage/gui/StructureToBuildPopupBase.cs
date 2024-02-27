@@ -1,6 +1,7 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Godot;
-using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Base type for all menus where selecting a building / structure to be built can be done
@@ -109,15 +110,13 @@ public abstract partial class StructureToBuildPopupBase<TSelection> : Control
     }
 
     protected void HandleAddingStructureSelector(HBoxContainer structureContent, bool registerPress,
-        string callbackMethodName, string callbackParameter, Button button, ref Control? firstButton)
+        Action callback, Button button, ref Control? firstButton)
     {
         buttonsContainer.AddChild(structureContent);
 
         if (registerPress)
         {
-            var binds = new Array();
-            binds.Add(callbackParameter);
-            button.Connect("pressed", new Callable(this, callbackMethodName), binds);
+            button.Connect(BaseButton.SignalName.Pressed, Callable.From(callback));
 
             firstButton ??= button;
         }

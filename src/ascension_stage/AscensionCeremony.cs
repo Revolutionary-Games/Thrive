@@ -284,7 +284,8 @@ public partial class AscensionCeremony : Node
             rootOfDynamicallySpawned, actorScene, false, dummySpawner, CurrentGame);
 
         // We control the walker through code
-        gateWalker.Mode = RigidBody3D.ModeEnum.Kinematic;
+        gateWalker.Freeze = true;
+        gateWalker.FreezeMode = RigidBody3D.FreezeModeEnum.Kinematic;
 
         gateWalker.LookAt(rampStartPoint.GlobalPosition, Vector3.Up);
 
@@ -307,7 +308,8 @@ public partial class AscensionCeremony : Node
         lookAt.Y = 0;
 
         // Make the observer not move and look at the gate
-        observer.Mode = RigidBody3D.ModeEnum.Kinematic;
+        observer.Freeze = true;
+        observer.FreezeMode = RigidBody3D.FreezeModeEnum.Kinematic;
         observer.LookAt(lookAt, Vector3.Up);
     }
 

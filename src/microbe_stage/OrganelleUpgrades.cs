@@ -43,7 +43,7 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
 
     public override int GetHashCode()
     {
-        return (UnlockedFeatures.GetHashCode() * 3) ^
-            ((CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151);
+        return UnlockedFeatures.GetHashCode() * 3 ^
+            (CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151;
     }
 }

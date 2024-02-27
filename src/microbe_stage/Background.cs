@@ -41,18 +41,18 @@ public class Background : IRegistryType
     {
         _ = parameters;
 
-        var directory = new DirAccess();
-
+#if DEBUG
         foreach (var resource in Textures)
         {
-            // When exported only the .import files exist, so this check is done accordingly
-            // TODO: this check should probably only run in debug mode
-            if (!directory.FileExists(resource + ".import"))
+            // When exported only the .import files exist, so this check is done accordingly (even though now this is
+            // just in debug mode)
+            if (!FileAccess.FileExists(resource + ".import"))
             {
                 throw new InvalidRegistryDataException(InternalName, GetType().Name,
                     "Background contains non-existent image: " + resource);
             }
         }
+#endif
 
         ParticleEffectScene = GD.Load<PackedScene>(ParticleEffect);
     }

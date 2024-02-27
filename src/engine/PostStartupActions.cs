@@ -15,7 +15,7 @@ public partial class PostStartupActions : Node
         }
 
         // Queue window title set as setting it in the autoloads doesn't work yet
-        Invoke.Instance.Perform(() => { OS.SetWindowTitle("Thrive - " + Constants.Version); });
+        Invoke.Instance.Perform(() => { DisplayServer.WindowSetTitle("Thrive - " + Constants.Version); });
     }
 
     public override void _Ready()

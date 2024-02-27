@@ -227,7 +227,7 @@ public partial class MicrobePartSelection : MarginContainer
         if (button == null)
             return;
 
-        button.Group = SelectionGroup;
+        button.ButtonGroup = SelectionGroup;
         button.ButtonPressed = Selected;
         button.Disabled = Locked;
     }
@@ -238,6 +238,6 @@ public partial class MicrobePartSelection : MarginContainer
             return;
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnPartSelectedEventHandler), Name);
+        EmitSignal(SignalName.OnPartSelected, Name);
     }
 }

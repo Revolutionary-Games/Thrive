@@ -67,7 +67,7 @@ public class SaveInformation
 
     [JsonIgnore]
     public string TranslatedSaveTypeString =>
-        TranslationServer.Translate(Type.GetAttribute<DescriptionAttribute>().Description);
+        Localization.Translate(Type.GetAttribute<DescriptionAttribute>().Description);
 
     /// <summary>
     ///   Creates save information for an invalid save

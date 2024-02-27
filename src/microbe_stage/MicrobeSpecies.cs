@@ -226,9 +226,8 @@ public class MicrobeSpecies : Species, ICellDefinition
     {
         var hash = base.GetVisualHashCode();
 
-        hash ^= (MembraneType.GetHashCode() * 5743) ^ (MembraneRigidity.GetHashCode() * 5749) ^
-            ((IsBacteria ? 1 : 0) * 5779) ^
-            (Organelles.Count * 131);
+        hash ^= MembraneType.GetHashCode() * 5743 ^ MembraneRigidity.GetHashCode() * 5749 ^
+            (IsBacteria ? 1 : 0) * 5779 ^ Organelles.Count * 131;
 
         int counter = 0;
 
@@ -243,7 +242,7 @@ public class MicrobeSpecies : Species, ICellDefinition
     public override string GetDetailString()
     {
         return base.GetDetailString() + "\n" +
-            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(MembraneType.Name,
+            Localization.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(MembraneType.Name,
                 MembraneRigidity,
                 BaseSpeed,
                 BaseRotationSpeed,

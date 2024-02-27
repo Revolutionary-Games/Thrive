@@ -66,9 +66,9 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
         {
             Mesh = metaballSphere,
             InstanceCount = 0,
-            TransformFormat = MultiMesh.TransformFormatEnum.Transform3d,
-            ColorFormat = MultiMesh.ColorFormatEnum.Color8bit,
-            CustomDataFormat = MultiMesh.CustomDataFormatEnum.None,
+            TransformFormat = MultiMesh.TransformFormatEnum.Transform3D,
+            UseColors = true,
+            UseCustomData = false,
         };
 
         ExtraCullMargin = AABBMargin;
@@ -83,13 +83,11 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
 
         if (instances < 1)
         {
-            SetCustomAabb(new AABB(0, 0, 0, Vector3.One));
+            CustomAabb = new Aabb(0, 0, 0, Vector3.One);
             return;
         }
 
         // TODO: drawing links between the metaballs (or maybe only just the editor needs that?)
-
-        var basis = new Basis(Quaternion.Identity);
 
         var extends = Vector3.Zero;
 
@@ -101,12 +99,12 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
             if (i >= instances)
                 throw new ArgumentException("List count doesn't matches indexes when setting parameters");
 
-            basis.Scale = new Vector3(metaball.Size, metaball.Size, metaball.Size);
+            var basis = Basis.Identity.Scaled(new Vector3(metaball.Size, metaball.Size, metaball.Size));
 
             var colour = metaball.Colour;
 
             if (OverrideColourAlpha != null)
-                colour.a = OverrideColourAlpha.Value;
+                colour.A = OverrideColourAlpha.Value;
 
             // TODO: check if using SetAsBulkArray is faster
             mesh.SetInstanceTransform(i, new Transform3D(basis, metaball.Position));
@@ -130,7 +128,7 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
             ++i;
         }
 
-        SetCustomAabb(new AABB(-extends, extends * 2));
+        CustomAabb = new Aabb(-extends, extends * 2);
     }
 
     protected override void Dispose(bool disposing)
@@ -154,11 +152,11 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
 
         if (OverrideColourAlpha == null || overrideColourAlpha >= 1)
         {
-            material.FlagsTransparent = false;
+            material.Transparency = BaseMaterial3D.TransparencyEnum.Disabled;
         }
         else
         {
-            material.FlagsTransparent = true;
+            material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
         }
     }
 }

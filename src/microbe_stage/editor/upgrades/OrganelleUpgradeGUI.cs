@@ -130,8 +130,8 @@ public partial class OrganelleUpgradeGUI : Control
                 selectionButton.MPCost = cost;
                 selectionButton.PartIcon = upgrade.LoadedIcon;
 
-                selectionButton.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler), this,
-                    nameof(OnGeneralUpgradeSelected));
+                selectionButton.Connect(MicrobePartSelection.SignalName.OnPartSelected, new Callable(this,
+                    nameof(OnGeneralUpgradeSelected)));
 
                 // Tooltip
                 var tooltip = upgradeTooltipScene.Instantiate<SelectionMenuToolTip>();
@@ -251,7 +251,7 @@ public partial class OrganelleUpgradeGUI : Control
             }
         }
 
-        EmitSignal(nameof(AcceptedEventHandler));
+        EmitSignal(SignalName.Accepted);
     }
 
     private void OnCancel()

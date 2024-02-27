@@ -35,15 +35,15 @@ public partial class ResearchScreen : CustomWindow
     {
         if (currentResearch == null)
         {
-            currentResearchProgressLabel.Text = TranslationServer.Translate("CURRENT_RESEARCH_NONE");
+            currentResearchProgressLabel.Text = Localization.Translate("CURRENT_RESEARCH_NONE");
             return;
         }
 
         var progressPercentage = Math.Round(currentResearch.OverallProgress * 100, 1);
 
-        currentResearchProgressLabel.Text = TranslationServer.Translate("CURRENT_RESEARCH_PROGRESS")
+        currentResearchProgressLabel.Text = Localization.Translate("CURRENT_RESEARCH_PROGRESS")
             .FormatSafe(currentResearch.Technology.Name,
-                TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(progressPercentage));
+                Localization.Translate("PERCENTAGE_VALUE").FormatSafe(progressPercentage));
     }
 
     protected override void OnOpen()
@@ -76,6 +76,6 @@ public partial class ResearchScreen : CustomWindow
 
     private void ForwardStartResearch(string technology)
     {
-        EmitSignal(nameof(OnStartResearchingEventHandler), technology);
+        EmitSignal(SignalName.OnStartResearching, technology);
     }
 }

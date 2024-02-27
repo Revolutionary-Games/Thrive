@@ -87,7 +87,7 @@ public partial class CollapsibleList : VBoxContainer
         expandButton = GetNode<TextureButton>(ExpandButtonPath);
         tween = GetNode<Tween>(TweenPath);
 
-        cachedTopMarginValue = clipBox.GetConstant("margin_top");
+        cachedTopMarginValue = clipBox.GetThemeConstant("margin_top");
 
         UpdateItemContainer();
         UpdateTitle();
@@ -104,7 +104,7 @@ public partial class CollapsibleList : VBoxContainer
 
         // Readjusts the clip box height
         if (Collapsed)
-            clipBox.AddConstantOverride("margin_top", -(int)itemContainer.RectSize.y);
+            clipBox.AddThemeConstantOverride("margin_top", -(int)itemContainer.Size.Y);
     }
 
     public T GetItem<T>(string name)

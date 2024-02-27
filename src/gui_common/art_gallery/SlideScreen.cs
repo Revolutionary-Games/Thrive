@@ -55,8 +55,8 @@ public partial class SlideScreen : TopLevelContainer
     private Tween toolbarTween = null!;
 #pragma warning restore CA2213
 
-    private float toolbarHideTimer;
-    private float slideshowTimer;
+    private double toolbarHideTimer;
+    private double slideshowTimer;
 
     private List<GalleryCard>? items;
     private int currentSlideIndex;
@@ -144,7 +144,7 @@ public partial class SlideScreen : TopLevelContainer
         {
             toolbarHideTimer -= delta;
 
-            if (toolbar?.Modulate.a < 1)
+            if (toolbar?.Modulate.A < 1)
             {
                 toolbarTween.InterpolateProperty(toolbar, "modulate:a", null, 1, 0.5f);
                 toolbarTween.InterpolateProperty(closeButton, "modulate:a", null, 1, 0.5f);
@@ -260,7 +260,8 @@ public partial class SlideScreen : TopLevelContainer
         popupTween.Start();
 
         if (!popupTween.IsConnected("tween_completed", new Callable(this, nameof(OnScaledUp))))
-            popupTween.Connect("tween_completed", new Callable(this, nameof(OnScaledUp)), null, (uint)ConnectFlags.OneShot);
+            popupTween.Connect("tween_completed", new Callable(this, nameof(OnScaledUp)), null,
+                (uint)ConnectFlags.OneShot);
     }
 
     protected override void OnClose()
@@ -283,7 +284,8 @@ public partial class SlideScreen : TopLevelContainer
         popupTween.Start();
 
         if (!popupTween.IsConnected("tween_completed", new Callable(this, nameof(OnScaledDown))))
-            popupTween.Connect("tween_completed", new Callable(this, nameof(OnScaledDown)), null, (uint)ConnectFlags.OneShot);
+            popupTween.Connect("tween_completed", new Callable(this, nameof(OnScaledDown)), null,
+                (uint)ConnectFlags.OneShot);
     }
 
     protected override void OnHidden()
@@ -384,7 +386,7 @@ public partial class SlideScreen : TopLevelContainer
         modelHolder.AddChild(instanced);
 
         var mesh = instanced.GetNode<MeshInstance3D>(item.Asset.MeshNodePath!);
-        var minDistance = mesh.GetTransformedAabb().Size.Length();
+        var minDistance = (mesh.GlobalTransform * mesh.GetAabb()).Size.Length();
         var maxDistance = PhotoStudio.CameraDistanceFromRadiusOfObject(minDistance);
 
         modelViewerCamera.MinCameraDistance = minDistance;
@@ -467,7 +469,7 @@ public partial class SlideScreen : TopLevelContainer
     {
         var icon = closeButton!.GetChild<TextureRect>(0);
 
-        if (closeButton.GetDrawMode() == BaseButton.DrawMode.ButtonPressed)
+        if (closeButton.GetDrawMode() == BaseButton.DrawMode.Pressed)
         {
             icon.Modulate = Colors.Black;
         }

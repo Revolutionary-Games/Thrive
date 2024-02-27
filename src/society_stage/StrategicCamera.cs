@@ -212,7 +212,7 @@ public partial class StrategicCamera : Camera3D
         // TODO: switch to full quaternion approach
         var rotation = new Quaternion(Vector3.Up, GlobalTransform.Basis.GetEuler().Y);
 
-        var movement = rotation.Xform(scaledMovement);
+        var movement = rotation * scaledMovement;
 
         WorldLocation += movement;
     }

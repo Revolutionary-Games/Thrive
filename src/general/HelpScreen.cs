@@ -81,7 +81,7 @@ public partial class HelpScreen : Control
         {
             var helpTexts = SimulationParameters.Instance.GetHelpTexts("EasterEgg");
 
-            tipMessageLabel.Text = TranslationServer.Translate(helpTexts.Messages.Random(random).Message);
+            tipMessageLabel.Text = Localization.Translate(helpTexts.Messages.Random(random).Message);
             tipMessageLabel.Show();
 
             timer.Start(20);
@@ -114,7 +114,7 @@ public partial class HelpScreen : Control
 
         foreach (var text in helpTexts.Messages)
         {
-            var message = TranslationServer.Translate(text.Message);
+            var message = Localization.Translate(text.Message);
 
             var helpBox = HelpBoxScene.Instantiate();
             helpBox.GetNode<CustomRichTextLabel>("MarginContainer/CustomRichTextLabel").ExtendedBbcode = message;
@@ -146,6 +146,6 @@ public partial class HelpScreen : Control
 
     private void OnCloseButtonPressed()
     {
-        EmitSignal(nameof(HelpScreenClosedEventHandler));
+        EmitSignal(SignalName.HelpScreenClosed);
     }
 }

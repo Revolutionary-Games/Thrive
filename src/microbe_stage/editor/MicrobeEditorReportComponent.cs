@@ -166,23 +166,23 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     public void UpdateTimeIndicator(double value)
     {
         timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " "
-            + TranslationServer.Translate("MEGA_YEARS");
+            + Localization.Translate("MEGA_YEARS");
 
         var tooltip = ToolTipManager.Instance.GetToolTip("timeIndicator", "editor");
 
         if (tooltip == null)
             throw new InvalidOperationException("Could not find time indicator tooltip");
 
-        tooltip.Description = TranslationServer.Translate("TIME_INDICATOR_TOOLTIP")
+        tooltip.Description = Localization.Translate("TIME_INDICATOR_TOOLTIP")
             .FormatSafe(Editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
     public void UpdateGlucoseReduction(float value)
     {
-        var percentage = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(value * 100));
+        var percentage = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(value * 100));
 
         // The amount of glucose has been reduced to {0} of the previous amount.
-        glucoseReductionLabel.Text = TranslationServer.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED")
+        glucoseReductionLabel.Text = Localization.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED")
             .FormatSafe(percentage);
     }
 
@@ -290,7 +290,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             Colour = new Color(0.67f, 1, 0.24f),
         };
 
-        temperatureChart.AddDataSet(TranslationServer.Translate("TEMPERATURE"), temperatureData);
+        temperatureChart.AddDataSet(Localization.Translate("TEMPERATURE"), temperatureData);
 
         foreach (var snapshot in patch.History)
         {
@@ -402,7 +402,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             }
         }
 
-        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
 
         sunlightChart.TooltipYAxisFormat = percentageFormat + " lx";
         atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
@@ -420,14 +420,14 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.CustomOrNone;
         }
 
-        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5, null, null, null, 5);
-        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5, null, null, null, 5);
-        atmosphericGassesChart.Plot(TranslationServer.Translate("YEARS"), "%", 5,
-            TranslationServer.Translate("ATMOSPHERIC_GASSES"), null, null, 5);
-        speciesPopulationChart.Plot(TranslationServer.Translate("YEARS"), string.Empty, 5,
-            TranslationServer.Translate("SPECIES_LIST"), speciesPopDatasetsLegend,
+        sunlightChart.Plot(Localization.Translate("YEARS"), "% lx", 5, null, null, null, 5);
+        temperatureChart.Plot(Localization.Translate("YEARS"), "°C", 5, null, null, null, 5);
+        atmosphericGassesChart.Plot(Localization.Translate("YEARS"), "%", 5,
+            Localization.Translate("ATMOSPHERIC_GASSES"), null, null, 5);
+        speciesPopulationChart.Plot(Localization.Translate("YEARS"), string.Empty, 5,
+            Localization.Translate("SPECIES_LIST"), speciesPopDatasetsLegend,
             Editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
-        compoundsChart.Plot(TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"),
+        compoundsChart.Plot(Localization.Translate("YEARS"), "%", 5, Localization.Translate("COMPOUNDS"),
             null, null, 5);
 
         OnPhysicalConditionsChartLegendPressed("temperature");
@@ -435,8 +435,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         foreach (var point in extinctPoints)
         {
             var extinctionType = point.ExtinctEverywhere ?
-                TranslationServer.Translate("EXTINCT_FROM_THE_PLANET") :
-                TranslationServer.Translate("EXTINCT_FROM_PATCH");
+                Localization.Translate("EXTINCT_FROM_THE_PLANET") :
+                Localization.Translate("EXTINCT_FROM_PATCH");
 
             // Override datapoint tooltip to show extinction type instead of just zero.
             // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
@@ -447,8 +447,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         var cross = GD.Load<Texture2D>("res://assets/textures/gui/bevel/graphMarkerCross.png");
         var skull = GD.Load<Texture2D>("res://assets/textures/gui/bevel/SuicideIcon.png");
 
-        speciesPopulationChart.AddIconLegend(cross, TranslationServer.Translate("EXTINCT_FROM_PATCH"));
-        speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
+        speciesPopulationChart.AddIconLegend(cross, Localization.Translate("EXTINCT_FROM_PATCH"));
+        speciesPopulationChart.AddIconLegend(skull, Localization.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
     private void UpdateTimeline(Patch? mapSelectedPatch, Patch? patch = null)

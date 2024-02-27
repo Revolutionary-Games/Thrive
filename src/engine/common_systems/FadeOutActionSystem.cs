@@ -182,14 +182,15 @@
             {
                 ref var spatial = ref entity.Get<SpatialInstance>();
 
-                var particles = spatial.GraphicalInstance as Particles;
+                // TODO: also check for CPU particles?
+                var particles = spatial.GraphicalInstance as GpuParticles3D;
 
                 if (particles == null)
                 {
                     // Allow one level of indirection node
                     if (spatial.GraphicalInstance?.GetChildCount() > 0)
                     {
-                        particles = spatial.GraphicalInstance.GetChild(0) as Particles;
+                        particles = spatial.GraphicalInstance.GetChild(0) as GpuParticles3D;
                     }
 
                     if (particles == null)

@@ -45,7 +45,7 @@ public partial class MutationPointsBar : HBoxContainer
         mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
 
-        freebuildingText = TranslationServer.Translate("FREEBUILDING");
+        freebuildingText = Localization.Translate("FREEBUILDING");
     }
 
     public void UpdateBar(float currentMutationPoints, float possibleMutationPoints, bool tween = true)

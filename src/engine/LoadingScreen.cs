@@ -66,7 +66,7 @@ public partial class LoadingScreen : Control
 
     public string LoadingMessage
     {
-        get => loadingMessage ??= TranslationServer.Translate("LOADING");
+        get => loadingMessage ??= Localization.Translate("LOADING");
         set
         {
             if (loadingMessage == value)
@@ -265,6 +265,6 @@ public partial class LoadingScreen : Control
     private void UpdateTip()
     {
         if (tipLabel != null)
-            tipLabel.ExtendedBbcode = TranslationServer.Translate(Tip);
+            tipLabel.ExtendedBbcode = Localization.Translate(Tip);
     }
 }

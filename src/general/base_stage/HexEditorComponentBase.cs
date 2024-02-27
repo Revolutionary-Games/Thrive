@@ -218,7 +218,7 @@ public abstract partial class HexEditorComponentBase<TEditor, TCombinedAction, T
         editorGrid = GetNode<MeshInstance3D>(EditorGridPath);
         cameraFollow = GetNode<Node3D>(CameraFollowPath);
 
-        camera.Connect(nameof(MicrobeCamera.OnZoomChangedEventHandler), new Callable(this, nameof(OnZoomChanged)));
+        camera.Connect(MicrobeCamera.SignalName.OnZoomChanged, new Callable(this, nameof(OnZoomChanged)));
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
@@ -666,7 +666,7 @@ public abstract partial class HexEditorComponentBase<TEditor, TCombinedAction, T
 
         if (animateMovement)
         {
-            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation:z", editorArrow.Translation.z,
+            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation:z", editorArrow.Position.Z,
                 arrowPosition, Constants.EDITOR_ARROW_INTERPOLATE_SPEED,
                 Tween.TransitionType.Expo, Tween.EaseType.Out);
             GUICommon.Instance.Tween.Start();

@@ -313,14 +313,14 @@ public partial class PatchDetailsPanel : PanelContainer
         name.Text = SelectedPatch!.Name.ToString();
 
         // Biome: {0}
-        biome.Text = TranslationServer.Translate("BIOME_LABEL").FormatSafe(SelectedPatch.BiomeTemplate.Name);
+        biome.Text = Localization.Translate("BIOME_LABEL").FormatSafe(SelectedPatch.BiomeTemplate.Name);
 
         // {0}-{1}m below sea level
         depth.Text = new LocalizedString("BELOW_SEA_LEVEL", SelectedPatch.Depth[0], SelectedPatch.Depth[1]).ToString();
         playerHere.Visible = CurrentPatch == SelectedPatch;
 
-        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
-        var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
+        var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
 
         // Atmospheric gasses
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
@@ -332,7 +332,7 @@ public partial class PatchDetailsPanel : PanelContainer
         light.Text =
             unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch,
                 sunlightCompound.InternalName))), "lx");
-        lightMax.Text = TranslationServer.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
+        lightMax.Text = Localization.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
             unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx"));
         lightMax.Visible = maxLightLevel > 0;
 
@@ -361,7 +361,7 @@ public partial class PatchDetailsPanel : PanelContainer
 
         foreach (var species in SelectedPatch.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName))
         {
-            speciesList.AppendLine(TranslationServer.Translate("SPECIES_WITH_POPULATION").FormatSafe(
+            speciesList.AppendLine(Localization.Translate("SPECIES_WITH_POPULATION").FormatSafe(
                 species.FormattedNameBbCode, SelectedPatch.GetSpeciesSimulationPopulation(species)));
         }
 

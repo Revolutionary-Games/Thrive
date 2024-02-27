@@ -81,8 +81,7 @@
                 if (!Animating || AnimationElapsed >= AnimationDuration)
                     return AnimationTargetColour;
 
-                return AnimationStartColour.LinearInterpolate(AnimationTargetColour,
-                    AnimationElapsed / AnimationDuration);
+                return AnimationStartColour.Lerp(AnimationTargetColour, AnimationElapsed / AnimationDuration);
             }
         }
     }

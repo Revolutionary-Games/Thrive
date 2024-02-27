@@ -179,7 +179,7 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
             currentDeadzones[i] = 0;
         }
 
-        statusLabel.Text = TranslationServer.Translate("DEADZONE_CALIBRATION_INPROGRESS");
+        statusLabel.Text = Localization.Translate("DEADZONE_CALIBRATION_INPROGRESS");
         calibrating = true;
         applyButton.Disabled = true;
         startButton.Disabled = true;
@@ -200,7 +200,7 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
 
         visualizationContainer.OverrideDeadzones(currentDeadzones);
 
-        statusLabel.Text = TranslationServer.Translate("DEADZONE_CALIBRATION_IS_RESET");
+        statusLabel.Text = Localization.Translate("DEADZONE_CALIBRATION_IS_RESET");
     }
 
     private void OnFinishedCalibrating()
@@ -214,7 +214,7 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
 
         visualizationContainer.OverrideDeadzones(currentDeadzones);
 
-        statusLabel.Text = TranslationServer.Translate("DEADZONE_CALIBRATION_FINISHED");
+        statusLabel.Text = Localization.Translate("DEADZONE_CALIBRATION_FINISHED");
         calibrating = false;
         applyButton.Disabled = false;
         startButton.Disabled = false;

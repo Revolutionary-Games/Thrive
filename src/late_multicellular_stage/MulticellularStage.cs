@@ -59,7 +59,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
     private MulticellularSpeciesType previousPlayerStage;
 
     [JsonProperty]
-    private float moveToSocietyTimer;
+    private double moveToSocietyTimer;
 
     [JsonProperty]
     private Transform3D societyCameraAnimationStart = Transform3D.Identity;
@@ -185,7 +185,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
                 throw new InvalidOperationException("Animation camera not set");
 
             moveToSocietyTimer += delta;
-            float interpolationProgress = moveToSocietyTimer / Constants.SOCIETY_STAGE_ENTER_ANIMATION_DURATION;
+            var interpolationProgress = moveToSocietyTimer / Constants.SOCIETY_STAGE_ENTER_ANIMATION_DURATION;
 
             if (interpolationProgress >= 1)
             {
@@ -205,7 +205,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
 
             // TODO: switch to some other animation type like quintic once that is usable without a tween node
             animationCamera.GlobalTransform =
-                societyCameraAnimationStart.InterpolateWith(societyCameraAnimationEnd, interpolationProgress);
+                societyCameraAnimationStart.InterpolateWith(societyCameraAnimationEnd, (float)interpolationProgress);
         }
 
         // TODO: notify metrics
@@ -381,7 +381,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
 
         ground.AddChild(new CollisionShape3D
         {
-            Shape3D = new WorldBoundanyShape3D
+            Shape = new WorldBoundaryShape3D
             {
                 Plane = new Plane(new Vector3(0, 1, 0), 0),
             },
@@ -516,7 +516,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         if (target == null)
         {
             // Did not find anything for the player to interact with
-            HUD.HUDMessages.ShowMessage(TranslationServer.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
+            HUD.HUDMessages.ShowMessage(Localization.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
             return;
         }
 
@@ -597,7 +597,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
             return;
 
         GD.Print("Move to society stage triggered");
-        HUD.HUDMessages.ShowMessage(TranslationServer.Translate("MOVING_TO_SOCIETY_STAGE"), DisplayDuration.Long);
+        HUD.HUDMessages.ShowMessage(Localization.Translate("MOVING_TO_SOCIETY_STAGE"), DisplayDuration.Long);
         movingToSocietyStage = true;
 
         // Show cursor while we are switching
@@ -618,8 +618,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         // Do an inverse transform to get the vector in creature local space and multiply it to not make the creature
         // move at full speed
         // TODO: this math doesn't seem to be correct
-        var wantedMovementDirection =
-            moveCreatureToSocietyCenter.Transform.Basis.XformInv(creatureToCenterVector);
+        var wantedMovementDirection = creatureToCenterVector * moveCreatureToSocietyCenter.Transform.Basis;
         wantedMovementDirection.Y = 0;
         wantedMovementDirection = wantedMovementDirection.Normalized() * 0.5f;
         moveCreatureToSocietyCenter.MovementDirection = wantedMovementDirection;
@@ -654,9 +653,10 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
             // Panoramas don't exist yet when above water so we need this null check
             if (worldEnvironmentNode.Environment != null)
             {
-                var worldPanoramaSky = worldEnvironmentNode.Environment.Sky;
+                var sky = worldEnvironmentNode.Environment.Sky;
+                var skyMaterial = (PanoramaSkyMaterial)sky.SkyMaterial;
 
-                worldPanoramaSky.Panorama =
+                skyMaterial.Panorama =
                     GD.Load<Texture2D>(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
             }
         }
@@ -874,7 +874,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
     private void ShowTechnologyUnlockMessage(Technology technology)
     {
         HUD.HUDMessages.ShowMessage(
-            TranslationServer.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
+            Localization.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
             DisplayDuration.Long);
     }
 

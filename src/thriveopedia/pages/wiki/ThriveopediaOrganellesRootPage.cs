@@ -16,7 +16,7 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
     public override string PageName => "OrganellesRoot";
 
-    public override string TranslatedPageName => TranslationServer.Translate("ORGANELLES");
+    public override string TranslatedPageName => Localization.Translate("ORGANELLES");
 
     public override string ParentPageName => "WikiRoot";
 

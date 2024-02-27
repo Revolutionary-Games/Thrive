@@ -170,11 +170,11 @@ public partial class CompoundAmount : HBoxContainer
         string numberPart;
         if (!string.IsNullOrEmpty(compound!.Unit))
         {
-            numberPart = TranslationServer.Translate("VALUE_WITH_UNIT").FormatSafe(Math.Round(amount), compound.Unit);
+            numberPart = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(Math.Round(amount), compound.Unit);
         }
         else if (UsePercentageDisplay)
         {
-            numberPart = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(amount * 100, 1));
+            numberPart = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(amount * 100, 1));
         }
         else
         {

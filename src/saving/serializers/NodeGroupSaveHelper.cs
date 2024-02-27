@@ -28,7 +28,7 @@ public static class NodeGroupSaveHelper
             var groups = value.GetGroups().Cast<string>().ToList();
 
             // Ignore inbuilt groups
-            groups.RemoveAll(g => g.BeginsWith("_") || IgnoredGroups.Contains(g));
+            groups.RemoveAll(g => g.StartsWith("_") || IgnoredGroups.Contains(g));
 
             serializer.Serialize(writer, groups.Count > 0 ? groups : null);
         }

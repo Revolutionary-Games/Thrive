@@ -131,7 +131,7 @@
                 // Time to create a body
                 ref var position = ref entity.Get<WorldPosition>();
                 sensor.SensorBody = worldSimulationWithPhysics.CreateSensor(sensor.ActiveArea, position.Position,
-                    Quat.Identity, sensor.DetectSleepingBodies, sensor.DetectStaticBodies);
+                    Quaternion.Identity, sensor.DetectSleepingBodies, sensor.DetectStaticBodies);
 
                 // Set no entity on the sensor so anything colliding with the sensor can't do anything
                 sensor.SensorBody.SetEntityReference(default(Entity));

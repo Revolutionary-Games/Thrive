@@ -21,7 +21,7 @@ public partial class RecipeListItem : Button
     private IReadOnlyDictionary<WorldResource, int> availableMaterials = new Dictionary<WorldResource, int>();
 
     [Signal]
-    public delegate void OnSelectedEventHandler();
+    public delegate void OnSelectedEventHandler(RecipeListItem selectedItem);
 
     public CraftingRecipe? DisplayedRecipe
     {
@@ -107,7 +107,7 @@ public partial class RecipeListItem : Button
         ResourceAmountHelpers.CreateRichTextForResourceAmounts(displayedRecipe.RequiredResources, availableMaterials,
             materialsStringBuilder);
 
-        topLevelStringBuilder.Append(TranslationServer.Translate("CRAFTING_RECIPE_DISPLAY")
+        topLevelStringBuilder.Append(Localization.Translate("CRAFTING_RECIPE_DISPLAY")
             .FormatSafe(displayedRecipe.Name, materialsStringBuilder));
 
         // TODO: display for recipes that require tools to be present but won't consume them
@@ -124,6 +124,6 @@ public partial class RecipeListItem : Button
     private void OnToggledChanged(bool pressed)
     {
         if (pressed)
-            EmitSignal(nameof(OnSelectedEventHandler));
+            EmitSignal(SignalName.OnSelected);
     }
 }

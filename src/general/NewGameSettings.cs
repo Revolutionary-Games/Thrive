@@ -322,7 +322,7 @@ public partial class NewGameSettings : ControlWithInput
         foreach (var mode in new[] { FogOfWarMode.Ignored, FogOfWarMode.Regular, FogOfWarMode.Intense })
         {
             fogOfWarModeDropdown.AddItem(
-                TranslationServer.Translate(mode.GetAttribute<DescriptionAttribute>().Description), (int)mode);
+                Localization.Translate(mode.GetAttribute<DescriptionAttribute>().Description), (int)mode);
         }
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
@@ -428,14 +428,14 @@ public partial class NewGameSettings : ControlWithInput
             GUICommon.MarkInputAsValid(gameSeed);
             GUICommon.MarkInputAsValid(gameSeedAdvanced);
             startButton.Disabled = false;
-            startButton.TooltipText = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
+            startButton.TooltipText = Localization.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
         }
         else
         {
             GUICommon.MarkInputAsInvalid(gameSeed);
             GUICommon.MarkInputAsInvalid(gameSeedAdvanced);
             startButton.Disabled = true;
-            startButton.TooltipText = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
+            startButton.TooltipText = Localization.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
     }
 
@@ -622,7 +622,7 @@ public partial class NewGameSettings : ControlWithInput
                 TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f), () =>
                 {
                     // Notify that the video now starts to allow the main menu to hide its expensive 3D rendering
-                    EmitSignal(nameof(OnNewGameVideoStartedEventHandler));
+                    EmitSignal(SignalName.OnNewGameVideoStarted);
                 });
 
             TransitionManager.Instance.AddSequence(
@@ -648,7 +648,7 @@ public partial class NewGameSettings : ControlWithInput
 
     private bool Exit()
     {
-        EmitSignal(nameof(OnNewGameSettingsClosedEventHandler));
+        EmitSignal(SignalName.OnNewGameSettingsClosed);
         return true;
     }
 
@@ -805,7 +805,7 @@ public partial class NewGameSettings : ControlWithInput
     private void OnGlucoseDecayRateValueChanged(double percentage)
     {
         percentage = Math.Round(percentage, 2);
-        glucoseDecayRateReadout.Text = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(percentage);
+        glucoseDecayRateReadout.Text = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(percentage);
 
         UpdateSelectedDifficultyPresetControl();
     }
@@ -832,13 +832,13 @@ public partial class NewGameSettings : ControlWithInput
         switch (mode)
         {
             case FogOfWarMode.Ignored:
-                description = TranslationServer.Translate("FOG_OF_WAR_DISABLED_DESCRIPTION");
+                description = Localization.Translate("FOG_OF_WAR_DISABLED_DESCRIPTION");
                 break;
             case FogOfWarMode.Regular:
-                description = TranslationServer.Translate("FOG_OF_WAR_REGULAR_DESCRIPTION");
+                description = Localization.Translate("FOG_OF_WAR_REGULAR_DESCRIPTION");
                 break;
             case FogOfWarMode.Intense:
-                description = TranslationServer.Translate("FOG_OF_WAR_INTENSE_DESCRIPTION");
+                description = Localization.Translate("FOG_OF_WAR_INTENSE_DESCRIPTION");
                 break;
         }
 
@@ -958,6 +958,6 @@ public partial class NewGameSettings : ControlWithInput
     {
         _ = meta;
 
-        EmitSignal(nameof(OnWantToSwitchToOptionsMenuEventHandler));
+        EmitSignal(SignalName.OnWantToSwitchToOptionsMenu);
     }
 }

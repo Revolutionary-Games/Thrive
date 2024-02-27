@@ -48,14 +48,14 @@ public partial class GalleryCard : Button
 
     public override void _GuiInput(InputEvent @event)
     {
-        if (@event is InputEventMouseButton { Pressed: true, ButtonIndex: (int)ButtonList.Left } mouse)
+        if (@event is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left } mouse)
         {
             AcceptEvent();
 
-            if (mouse.Doubleclick)
+            if (mouse.DoubleClick)
             {
                 GUICommon.Instance.PlayButtonPressSound();
-                EmitSignal(nameof(OnFullscreenViewEventHandler), this);
+                EmitSignal(SignalName.OnFullscreenView, this);
             }
         }
     }

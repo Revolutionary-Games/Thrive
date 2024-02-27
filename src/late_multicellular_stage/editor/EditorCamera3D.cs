@@ -294,7 +294,7 @@ public partial class EditorCamera3D : Camera3D
         // Only left and right look rotation is taken into account for movement, so that it feels better
         var rotation = new Quaternion(new Vector3(0, 1, 0), YRotation).Normalized();
 
-        panAmount = rotation.Xform(panAmount);
+        panAmount = rotation * panAmount;
         panOffset += panAmount;
 
         // Y-axis panning *does* take the full rotation of the camera into account
@@ -302,7 +302,7 @@ public partial class EditorCamera3D : Camera3D
         {
             rotation = Transform.Basis.GetRotationQuaternion().Normalized();
 
-            panAmount = rotation.Xform(new Vector3(0, yAmount, 0));
+            panAmount = rotation * new Vector3(0, yAmount, 0);
             panOffset += panAmount;
         }
 
@@ -337,7 +337,7 @@ public partial class EditorCamera3D : Camera3D
         if (newTransform != currentTransform)
         {
             Transform = newTransform;
-            EmitSignal(nameof(OnPositionChangedEventHandler), Transform);
+            EmitSignal(SignalName.OnPositionChanged, Transform);
         }
     }
 }

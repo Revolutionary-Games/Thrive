@@ -83,21 +83,21 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
     public void Check(string name)
     {
-        using var file = new File();
-
         if (string.IsNullOrEmpty(Name))
             throw new InvalidRegistryDataException(name, GetType().Name, "Name is not set");
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
 
-        if (string.IsNullOrEmpty(VisualScene) || !file.FileExists(VisualScene))
+        if (string.IsNullOrEmpty(VisualScene) || !FileAccess.FileExists(VisualScene))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing world representation scene");
 
         if (string.IsNullOrWhiteSpace(SpaceVisuals))
             SpaceVisuals = VisualScene;
 
-        if (!file.FileExists(SpaceVisuals))
+#if DEBUG
+        if (!FileAccess.FileExists(SpaceVisuals))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing space visuals scene scene");
+#endif
 
         if (string.IsNullOrEmpty(UnitIcon))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing icon");

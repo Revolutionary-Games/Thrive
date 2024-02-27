@@ -103,7 +103,7 @@ public partial class InputEventItem : MarginContainer
 
         // ESC must not be re-assignable or removable, otherwise it can't be added back because ESC is the only key
         // reserved this way to serve as the way to cancel a rebind action.
-        if (AssociatedEvent?.Code == Key.Escape)
+        if (AssociatedEvent?.Code == (uint)Key.Escape)
         {
             button.Disabled = true;
             xButton.Disabled = true;
@@ -186,7 +186,7 @@ public partial class InputEventItem : MarginContainer
                 GetViewport().SetInputAsHandled();
                 OnButtonPressed(new InputEventMouseButton
                 {
-                    ButtonIndex = (int)ButtonList.Right,
+                    ButtonIndex = MouseButton.Right,
                 });
             }
             else if (joypadButton.IsActionPressed("ui_accept"))
@@ -194,7 +194,7 @@ public partial class InputEventItem : MarginContainer
                 GetViewport().SetInputAsHandled();
                 OnButtonPressed(new InputEventMouseButton
                 {
-                    ButtonIndex = (int)ButtonList.Left,
+                    ButtonIndex = MouseButton.Left,
                 });
             }
         }
@@ -217,7 +217,7 @@ public partial class InputEventItem : MarginContainer
 
             switch (key.Keycode)
             {
-                case (uint)KeyList.Escape:
+                case Key.Escape:
                 {
                     GetViewport().SetInputAsHandled();
 
@@ -242,9 +242,9 @@ public partial class InputEventItem : MarginContainer
 
                 // TODO: allow binding these (probably need to wait a bit to see if a second keypress is coming soon)
                 // See: https://github.com/Revolutionary-Games/Thrive/issues/3887
-                case (uint)KeyList.Alt:
-                case (uint)KeyList.Shift:
-                case (uint)KeyList.Control:
+                case Key.Alt:
+                case Key.Shift:
+                case Key.Control:
                     return;
             }
         }
@@ -268,7 +268,7 @@ public partial class InputEventItem : MarginContainer
                 return;
 
             // TODO: should we allow binding L2 and R2 as axis inputs
-            if (controllerAxis.Axis is (int)JoystickList.R2 or (int)JoystickList.L2)
+            if (controllerAxis.Axis is JoyAxis.TriggerLeft or JoyAxis.TriggerRight)
                 return;
 
             // TODO: controller device keybinding mode setting
@@ -425,11 +425,11 @@ public partial class InputEventItem : MarginContainer
 
         switch (@event.ButtonIndex)
         {
-            case (int)ButtonList.Left:
+            case MouseButton.Left:
                 wasPressingButton = true;
                 OnRebindButtonPressed();
                 break;
-            case (int)ButtonList.Right:
+            case MouseButton.Right:
                 Delete();
                 break;
         }
@@ -438,7 +438,7 @@ public partial class InputEventItem : MarginContainer
     private void OnRebindButtonPressed()
     {
         WaitingForInput = true;
-        button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
+        button.Text = Localization.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
 
         if (alternativeButtonContentToText != null)

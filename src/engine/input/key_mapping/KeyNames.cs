@@ -55,13 +55,15 @@ internal static class KeyNames
             Key.Bar => "|",
             Key.Braceright => "}",
             Key.Asciitilde => "~",
-            Key.Exclam => "¡",
+            Key.Yen => "¥",
+            Key.Section => "§",
+
+            // TODO: removed keys figure out what to do
+            /*Key.Exclam => "¡",
             Key.Cent => "¢",
             Key.Sterling => "£",
             Key.Currency => "¤",
-            Key.Yen => "¥",
             Key.Brokenbar => "¦",
-            Key.Section => "§",
             Key.Diaeresis => "¨",
             Key.Copyright => "©",
             Key.Ordfeminine => "ª",
@@ -119,36 +121,36 @@ internal static class KeyNames
             Key.Thorn => "Þ",
             Key.Ssharp => "ß",
             Key.Division => "÷",
-            Key.Ydiaeresis => "ÿ",
+            Key.Ydiaeresis => "ÿ",*/
 
             // Key names that would conflict with simple words in translations
-            Key.Forward => TranslationServer.Translate("KEY_FORWARD"),
-            Key.Tab => TranslationServer.Translate("KEY_TAB"),
-            Key.Enter => TranslationServer.Translate("KEY_ENTER"),
-            Key.Insert => TranslationServer.Translate("KEY_INSERT"),
-            Key.Delete => TranslationServer.Translate("KEY_DELETE"),
-            Key.Pause => TranslationServer.Translate("KEY_PAUSE"),
-            Key.Clear => TranslationServer.Translate("KEY_CLEAR"),
-            Key.Home => TranslationServer.Translate("KEY_HOME"),
-            Key.End => TranslationServer.Translate("KEY_END"),
-            Key.Left => TranslationServer.Translate("KEY_LEFT"),
-            Key.Up => TranslationServer.Translate("KEY_UP"),
-            Key.Right => TranslationServer.Translate("KEY_RIGHT"),
-            Key.Down => TranslationServer.Translate("KEY_DOWN"),
-            Key.Menu => TranslationServer.Translate("KEY_MENU"),
-            Key.Help => TranslationServer.Translate("KEY_HELP"),
-            Key.Back => TranslationServer.Translate("KEY_BACK"),
-            Key.Stop => TranslationServer.Translate("KEY_STOP"),
-            Key.Refresh => TranslationServer.Translate("KEY_REFRESH"),
-            Key.Search => TranslationServer.Translate("KEY_SEARCH"),
-            Key.Standby => TranslationServer.Translate("KEY_STANDBY"),
-            Key.Openurl => TranslationServer.Translate("KEY_OPENURL"),
-            Key.Homepage => TranslationServer.Translate("KEY_HOMEPAGE"),
-            Key.Favorites => TranslationServer.Translate("KEY_FAVORITES"),
-            Key.Print => TranslationServer.Translate("KEY_PRINT"),
+            Key.Forward => Localization.Translate("KEY_FORWARD"),
+            Key.Tab => Localization.Translate("KEY_TAB"),
+            Key.Enter => Localization.Translate("KEY_ENTER"),
+            Key.Insert => Localization.Translate("KEY_INSERT"),
+            Key.Delete => Localization.Translate("KEY_DELETE"),
+            Key.Pause => Localization.Translate("KEY_PAUSE"),
+            Key.Clear => Localization.Translate("KEY_CLEAR"),
+            Key.Home => Localization.Translate("KEY_HOME"),
+            Key.End => Localization.Translate("KEY_END"),
+            Key.Left => Localization.Translate("KEY_LEFT"),
+            Key.Up => Localization.Translate("KEY_UP"),
+            Key.Right => Localization.Translate("KEY_RIGHT"),
+            Key.Down => Localization.Translate("KEY_DOWN"),
+            Key.Menu => Localization.Translate("KEY_MENU"),
+            Key.Help => Localization.Translate("KEY_HELP"),
+            Key.Back => Localization.Translate("KEY_BACK"),
+            Key.Stop => Localization.Translate("KEY_STOP"),
+            Key.Refresh => Localization.Translate("KEY_REFRESH"),
+            Key.Search => Localization.Translate("KEY_SEARCH"),
+            Key.Standby => Localization.Translate("KEY_STANDBY"),
+            Key.Openurl => Localization.Translate("KEY_OPENURL"),
+            Key.Homepage => Localization.Translate("KEY_HOMEPAGE"),
+            Key.Favorites => Localization.Translate("KEY_FAVORITES"),
+            Key.Print => Localization.Translate("KEY_PRINT"),
 
             // Fallback to using the key name (in upper case) to translate. These must all be defined in Keys method
-            _ => TranslationServer.Translate(key.ToString().ToUpper(CultureInfo.InvariantCulture)),
+            _ => Localization.Translate(keyCode.ToString().ToUpper(CultureInfo.InvariantCulture)),
         };
     }
 
@@ -160,70 +162,70 @@ internal static class KeyNames
     {
         // Names are from Godot so we need to have these as-is
         // ReSharper disable StringLiteralTypo
-        TranslationServer.Translate("SPACE");
-        TranslationServer.Translate("BACKSLASH");
-        TranslationServer.Translate("ESCAPE");
-        TranslationServer.Translate("BACKSPACE");
-        TranslationServer.Translate("KPENTER");
-        TranslationServer.Translate("SYSREQ");
-        TranslationServer.Translate("PAGEUP");
-        TranslationServer.Translate("PAGEDOWN");
-        TranslationServer.Translate("CAPSLOCK");
-        TranslationServer.Translate("NUMLOCK");
-        TranslationServer.Translate("SCROLLLOCK");
-        TranslationServer.Translate("SUPERL");
-        TranslationServer.Translate("SUPERR");
-        TranslationServer.Translate("HYPERL");
-        TranslationServer.Translate("HYPERR");
-        TranslationServer.Translate("DIRECTIONL");
-        TranslationServer.Translate("DIRECTIONR");
-        TranslationServer.Translate("VOLUMEDOWN");
-        TranslationServer.Translate("VOLUMEMUTE");
-        TranslationServer.Translate("VOLUMEUP");
-        TranslationServer.Translate("BASSBOOST");
-        TranslationServer.Translate("BASSUP");
-        TranslationServer.Translate("BASSDOWN");
-        TranslationServer.Translate("TREBLEUP");
-        TranslationServer.Translate("TREBLEDOWN");
-        TranslationServer.Translate("MEDIAPLAY");
-        TranslationServer.Translate("MEDIASTOP");
-        TranslationServer.Translate("MEDIAPREVIOUS");
-        TranslationServer.Translate("MEDIANEXT");
-        TranslationServer.Translate("MEDIARECORD");
-        TranslationServer.Translate("LAUNCHMAIL");
-        TranslationServer.Translate("LAUNCHMEDIA");
-        TranslationServer.Translate("LAUNCH0");
-        TranslationServer.Translate("LAUNCH1");
-        TranslationServer.Translate("LAUNCH2");
-        TranslationServer.Translate("LAUNCH3");
-        TranslationServer.Translate("LAUNCH4");
-        TranslationServer.Translate("LAUNCH5");
-        TranslationServer.Translate("LAUNCH6");
-        TranslationServer.Translate("LAUNCH7");
-        TranslationServer.Translate("LAUNCH8");
-        TranslationServer.Translate("LAUNCH9");
-        TranslationServer.Translate("LAUNCHA");
-        TranslationServer.Translate("LAUNCHB");
-        TranslationServer.Translate("LAUNCHC");
-        TranslationServer.Translate("LAUNCHD");
-        TranslationServer.Translate("LAUNCHE");
-        TranslationServer.Translate("LAUNCHF");
-        TranslationServer.Translate("KPMULTIPLY");
-        TranslationServer.Translate("KPDIVIDE");
-        TranslationServer.Translate("KPSUBTRACT");
-        TranslationServer.Translate("KPPERIOD");
-        TranslationServer.Translate("KPADD");
-        TranslationServer.Translate("KP0");
-        TranslationServer.Translate("KP1");
-        TranslationServer.Translate("KP2");
-        TranslationServer.Translate("KP3");
-        TranslationServer.Translate("KP4");
-        TranslationServer.Translate("KP5");
-        TranslationServer.Translate("KP6");
-        TranslationServer.Translate("KP7");
-        TranslationServer.Translate("KP8");
-        TranslationServer.Translate("KP9");
-        TranslationServer.Translate("UNKNOWN");
+        Localization.Translate("SPACE");
+        Localization.Translate("BACKSLASH");
+        Localization.Translate("ESCAPE");
+        Localization.Translate("BACKSPACE");
+        Localization.Translate("KPENTER");
+        Localization.Translate("SYSREQ");
+        Localization.Translate("PAGEUP");
+        Localization.Translate("PAGEDOWN");
+        Localization.Translate("CAPSLOCK");
+        Localization.Translate("NUMLOCK");
+        Localization.Translate("SCROLLLOCK");
+        Localization.Translate("SUPERL");
+        Localization.Translate("SUPERR");
+        Localization.Translate("HYPERL");
+        Localization.Translate("HYPERR");
+        Localization.Translate("DIRECTIONL");
+        Localization.Translate("DIRECTIONR");
+        Localization.Translate("VOLUMEDOWN");
+        Localization.Translate("VOLUMEMUTE");
+        Localization.Translate("VOLUMEUP");
+        Localization.Translate("BASSBOOST");
+        Localization.Translate("BASSUP");
+        Localization.Translate("BASSDOWN");
+        Localization.Translate("TREBLEUP");
+        Localization.Translate("TREBLEDOWN");
+        Localization.Translate("MEDIAPLAY");
+        Localization.Translate("MEDIASTOP");
+        Localization.Translate("MEDIAPREVIOUS");
+        Localization.Translate("MEDIANEXT");
+        Localization.Translate("MEDIARECORD");
+        Localization.Translate("LAUNCHMAIL");
+        Localization.Translate("LAUNCHMEDIA");
+        Localization.Translate("LAUNCH0");
+        Localization.Translate("LAUNCH1");
+        Localization.Translate("LAUNCH2");
+        Localization.Translate("LAUNCH3");
+        Localization.Translate("LAUNCH4");
+        Localization.Translate("LAUNCH5");
+        Localization.Translate("LAUNCH6");
+        Localization.Translate("LAUNCH7");
+        Localization.Translate("LAUNCH8");
+        Localization.Translate("LAUNCH9");
+        Localization.Translate("LAUNCHA");
+        Localization.Translate("LAUNCHB");
+        Localization.Translate("LAUNCHC");
+        Localization.Translate("LAUNCHD");
+        Localization.Translate("LAUNCHE");
+        Localization.Translate("LAUNCHF");
+        Localization.Translate("KPMULTIPLY");
+        Localization.Translate("KPDIVIDE");
+        Localization.Translate("KPSUBTRACT");
+        Localization.Translate("KPPERIOD");
+        Localization.Translate("KPADD");
+        Localization.Translate("KP0");
+        Localization.Translate("KP1");
+        Localization.Translate("KP2");
+        Localization.Translate("KP3");
+        Localization.Translate("KP4");
+        Localization.Translate("KP5");
+        Localization.Translate("KP6");
+        Localization.Translate("KP7");
+        Localization.Translate("KP8");
+        Localization.Translate("KP9");
+        Localization.Translate("UNKNOWN");
 
         // ReSharper restore StringLiteralTypo
     }

@@ -78,7 +78,7 @@ public static class MathUtils
     public static int PositiveModulo(this int val, int mod)
     {
         int result = val % mod;
-        return (result < 0) ? result + mod : result;
+        return result < 0 ? result + mod : result;
     }
 
     public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(

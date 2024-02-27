@@ -16,10 +16,10 @@ public partial class InventorySlot : Button
     private bool takeOnly;
 
     [Signal]
-    public delegate void OnSelectedEventHandler();
+    public delegate void OnSelectedEventHandler(InventorySlot slot);
 
     [Signal]
-    public delegate void OnPressedEventHandler();
+    public delegate void OnPressedEventHandler(InventorySlot slot);
 
     [Signal]
     public delegate void OnDragStartedEventHandler();
@@ -142,7 +142,7 @@ public partial class InventorySlot : Button
 
         SetDragPreview(CreateDragPreviewForItem(Item));
 
-        EmitSignal(nameof(OnDragStartedEventHandler));
+        EmitSignal(SignalName.OnDragStarted);
 
         return new InventoryDragData(this, Item);
     }
@@ -152,7 +152,8 @@ public partial class InventorySlot : Button
         if (Locked)
             return false;
 
-        if (data is not InventoryDragData inventoryDragData)
+        var inventoryDragData = (InventoryDragData?)data;
+        if (inventoryDragData == null)
             return false;
 
         if (AllowDropHandler != null)
@@ -166,8 +167,7 @@ public partial class InventorySlot : Button
 
     public override void _DropData(Vector2 position, Variant data)
     {
-        if (data is not InventoryDragData inventoryDragData)
-            throw new InvalidCastException($"Can't accept drop data of Type: {data.GetType()}");
+        var inventoryDragData = (InventoryDragData)data;
 
         DragResult result;
         if (PerformDropHandler != null)
@@ -237,12 +237,12 @@ public partial class InventorySlot : Button
 
     private void OnPress()
     {
-        EmitSignal(nameof(OnPressedEventHandler));
+        EmitSignal(SignalName.OnPressed, this);
     }
 
     private void OnToggle(bool pressed)
     {
         if (pressed)
-            EmitSignal(nameof(OnSelectedEventHandler));
+            EmitSignal(SignalName.OnSelected, this);
     }
 }

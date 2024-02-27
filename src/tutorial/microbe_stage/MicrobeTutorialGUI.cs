@@ -461,7 +461,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Process(double delta)
     {
-        TutorialHelper.ProcessTutorialGUI(this, delta);
+        TutorialHelper.ProcessTutorialGUI(this, (float)delta);
     }
 
     public void OnClickedCloseAll()
@@ -531,12 +531,12 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
         // Note that this opening while the tutorial box is still visible is a bit problematic due to:
         // https://github.com/Revolutionary-Games/Thrive/issues/2326
-        EmitSignal(nameof(OnHelpMenuOpenRequestedEventHandler));
+        EmitSignal(SignalName.OnHelpMenuOpenRequested);
     }
 
     private void DummyKeepInitialTextTranslations()
     {
-        TranslationServer.Translate("MICROBE_STAGE_INITIAL_POND");
-        TranslationServer.Translate("MICROBE_STAGE_INITIAL_PANSPERMIA");
+        Localization.Translate("MICROBE_STAGE_INITIAL_POND");
+        Localization.Translate("MICROBE_STAGE_INITIAL_PANSPERMIA");
     }
 }

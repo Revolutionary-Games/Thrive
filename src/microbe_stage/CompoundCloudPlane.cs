@@ -38,7 +38,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     private Vector4 decayRates;
 
     [JsonProperty]
-    private Int2 position = new(0, 0);
+    private Vector2I position = new(0, 0);
 
     [JsonProperty]
     public int Resolution { get; private set; }
@@ -88,7 +88,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         // Setup colours
         var material = (ShaderMaterial)Material;
 
-        material.SetShaderParam("colour1", cloud1.Colour);
+        material.SetShaderParameter("colour1", cloud1.Colour);
 
         var blank = new Color(0, 0, 0, 0);
 
@@ -343,8 +343,6 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     /// </summary>
     public void QueueUpdateTextureImage(List<Task> queue)
     {
-        image!.Lock();
-
         for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
         {
             for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
@@ -364,8 +362,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     public void UpdateTexture()
     {
-        image!.Unlock();
-        texture.CreateFromImage(image, (uint)Texture2D.FlagsEnum.Filter | (uint)Texture2D.FlagsEnum.Repeat);
+        texture.Update(image);
     }
 
     public bool HandlesCompound(Compound compound)
@@ -659,9 +656,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         // Floor is used here because otherwise the last coordinate is wrong
         x = ((int)Math.Floor((topLeftRelative.X + Constants.CLOUD_WIDTH) / Resolution)
-            + position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
+            + position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
         y = ((int)Math.Floor((topLeftRelative.Z + Constants.CLOUD_HEIGHT) / Resolution)
-            + position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
+            + position.Y * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
     }
 
     /// <summary>
@@ -857,11 +854,11 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
+                    var velocity = fluidSystem!.VelocityAt(pos + new Vector2(x, y) * Resolution) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
-                    float dx = x + (delta * velocity.x);
-                    float dy = y + (delta * velocity.y);
+                    float dx = x + (delta * velocity.X);
+                    float dy = y + (delta * velocity.Y);
 
                     // So this is clamped to not go to the other clouds
                     dx = dx.Clamp(x0 - 0.5f, x0 + width + 0.5f);
@@ -895,11 +892,11 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
+                    var velocity = fluidSystem!.VelocityAt(pos + new Vector2(x, y) * Resolution) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
-                    float dx = x + (delta * velocity.x);
-                    float dy = y + (delta * velocity.y);
+                    float dx = x + (delta * velocity.X);
+                    float dy = y + (delta * velocity.Y);
 
                     CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
                         out var s1, out var s0, out var t1, out var t0);
@@ -975,10 +972,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void CreateDensityTexture()
     {
-        image = new Image();
-        image.Create(Size, Size, false, Image.Format.Rgba8);
-        texture = new ImageTexture();
-        texture.CreateFromImage(image, (uint)Texture2D.FlagsEnum.Filter | (uint)Texture2D.FlagsEnum.Repeat);
+        image = Image.Create(Size, Size, false, Image.Format.Rgba8);
+        texture = ImageTexture.CreateFromImage(image);
 
         var material = (ShaderMaterial)Material;
         material.SetShaderParameter("densities", texture);

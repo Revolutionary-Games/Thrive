@@ -172,14 +172,14 @@ public partial class SaveStatusOverlay : Control
     private void SetJsonDebugLabelText()
     {
         errorJsonDebugLabel.ExtendedBbcode =
-            TranslationServer.Translate("SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE")
+            Localization.Translate("SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE")
                 .FormatSafe(DebugMeta, Constants.JSON_DEBUG_OUTPUT_FILE_NAME, FolderMeta);
     }
 
     private void SetJsonDebugLabelMissingFileText()
     {
         errorJsonDebugLabel.ExtendedBbcode =
-            TranslationServer.Translate("SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE")
+            Localization.Translate("SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE")
                 .FormatSafe(Constants.JSON_DEBUG_OUTPUT_FILE_NAME, FolderMeta);
     }
 

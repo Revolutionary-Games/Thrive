@@ -510,7 +510,7 @@ public partial class LineChart : VBoxContainer
             }
         });
 
-        chartPopup.WindowTitle = TranslationServer.Translate(ChartName);
+        chartPopup.WindowTitle = Localization.Translate(ChartName);
 
         if (!isChild)
         {
@@ -687,11 +687,11 @@ public partial class LineChart : VBoxContainer
         // Handle errors
         if (VisibleDataSets <= 0)
         {
-            DrawErrorText(TranslationServer.Translate("NO_DATA_TO_SHOW"));
+            DrawErrorText(Localization.Translate("NO_DATA_TO_SHOW"));
         }
         else if (!IsMinMaxValid())
         {
-            DrawErrorText(TranslationServer.Translate("INVALID_DATA_TO_PLOT"));
+            DrawErrorText(Localization.Translate("INVALID_DATA_TO_PLOT"));
         }
 
         DrawOrdinateLines();
@@ -707,7 +707,7 @@ public partial class LineChart : VBoxContainer
         foreach (Control tick in verticalLabelsContainer.GetChildren())
         {
             drawArea.DrawTextureRect(hLineTexture,
-                new Rect2(new Vector2(0, tick.Position.Y + (tick.Size.Y / 2)), drawArea.Size.X, 1), false,
+                new Rect2(new Vector2(0, tick.Position.Y + tick.Size.Y * 0.5f), drawArea.Size.X, 1), false,
                 new Color(1, 1, 1, 0.3f));
         }
     }
@@ -744,7 +744,7 @@ public partial class LineChart : VBoxContainer
 
                 if (index < dataLine.Points.Length)
                 {
-                    dataLine.InterpolatePointPosition(index, point.Position + (point.Size / 2),
+                    dataLine.InterpolatePointPosition(index, point.Position + point.Size * 0.5f,
                         point.Coordinate);
                 }
                 else
@@ -935,7 +935,7 @@ public partial class LineChart : VBoxContainer
             var label = new Label
             {
                 SizeFlagsHorizontal = SizeFlags.ExpandFill,
-                Align = HorizontalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
             };
 
             label.Text = Math.Round(i * (MaxValues.X - MinValues.X) / (XAxisTicks - 1) + MinValues.X, 1).FormatNumber();
@@ -949,7 +949,7 @@ public partial class LineChart : VBoxContainer
             var label = new Label
             {
                 SizeFlagsVertical = SizeFlags.ExpandFill,
-                Align = HorizontalAlignment.Right,
+                HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
             };
 
@@ -1003,7 +1003,7 @@ public partial class LineChart : VBoxContainer
         var lineRectHeight = lineRectY * (YAxisTicks - 1);
         var dy = MaxValues.Y - MinValues.Y;
 
-        return (float)(lineRectHeight - ((value - MinValues.Y) * lineRectHeight / dy) + lineRectY / 2);
+        return (float)(lineRectHeight - ((value - MinValues.Y) * lineRectHeight / dy) + lineRectY * 0.5f);
     }
 
     /// <summary>
@@ -1203,7 +1203,7 @@ public partial class LineChart : VBoxContainer
         {
             _ = title;
 
-            var hBox = new HBoxContainer { Alignment = AlignMode.End };
+            var hBox = new HBoxContainer { Alignment = AlignmentMode.End };
             hBox.AddThemeConstantOverride("separation", 0);
 
             this.datasets = datasets;
@@ -1224,7 +1224,7 @@ public partial class LineChart : VBoxContainer
 
                 hBox.AddChild(icon);
 
-                icon.Connect("toggled", new Callable(this, nameof(OnIconLegendToggled)), new Array { icon });
+                icon.Connect(BaseButton.SignalName.Toggled, new Callable(this, nameof(OnIconLegendToggled)), new Array { icon });
 
                 // Set initial icon toggle state
                 if (!data.Value.Draw)
@@ -1287,12 +1287,12 @@ public partial class LineChart : VBoxContainer
             {
                 case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
                     icon.ButtonPressed = false;
-                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("MAX_VISIBLE_DATASET_WARNING")
+                    ToolTipManager.Instance.ShowPopup(Localization.Translate("MAX_VISIBLE_DATASET_WARNING")
                         .FormatSafe(chart.MaxDisplayedDataSet), 1.0f);
                     break;
                 case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
                     icon.ButtonPressed = true;
-                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("MIN_VISIBLE_DATASET_WARNING")
+                    ToolTipManager.Instance.ShowPopup(Localization.Translate("MIN_VISIBLE_DATASET_WARNING")
                         .FormatSafe(chart.MinDisplayedDataSet), 1.0f);
                     break;
             }
@@ -1378,11 +1378,11 @@ public partial class LineChart : VBoxContainer
             switch (result)
             {
                 case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
-                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("MAX_VISIBLE_DATASET_WARNING")
+                    ToolTipManager.Instance.ShowPopup(Localization.Translate("MAX_VISIBLE_DATASET_WARNING")
                         .FormatSafe(chart.MaxDisplayedDataSet), 1.0f);
                     break;
                 case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
-                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("MIN_VISIBLE_DATASET_WARNING")
+                    ToolTipManager.Instance.ShowPopup(Localization.Translate("MIN_VISIBLE_DATASET_WARNING")
                         .FormatSafe(chart.MinDisplayedDataSet), 1.0f);
                     break;
             }
@@ -1407,7 +1407,6 @@ public partial class LineChart : VBoxContainer
             this.chart = chart;
             this.data = data;
             IsUsingFallbackIcon = isUsingFallbackIcon;
-            Expand = true;
             CustomMinimumSize = new Vector2(18, 18);
             FocusMode = FocusModeEnum.None;
             ToggleMode = true;

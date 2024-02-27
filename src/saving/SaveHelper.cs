@@ -510,7 +510,7 @@ public static class SaveHelper
             }
             catch (NullReferenceException e)
             {
-                inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
+                inProgress.ReportStatus(false, Localization.Translate("SAVING_FAILED_WITH_EXCEPTION"),
                     e.ToString(), true);
                 return true;
             }
@@ -519,8 +519,8 @@ public static class SaveHelper
         if (!save.SavedProperties.GameWorld.PlayerSpecies.IsExtinct)
             return false;
 
-        inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
-            TranslationServer.Translate("PLAYER_EXTINCT"), false);
+        inProgress.ReportStatus(false, Localization.Translate("SAVING_NOT_POSSIBLE"),
+            Localization.Translate("PLAYER_EXTINCT"), false);
         return true;
     }
 
@@ -538,8 +538,8 @@ public static class SaveHelper
 
     private static void SetMessageAboutPrototypeSaving(InProgressSave inProgressSave)
     {
-        inProgressSave.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
-            TranslationServer.Translate("IN_PROTOTYPE"), false);
+        inProgressSave.ReportStatus(false, Localization.Translate("SAVING_NOT_POSSIBLE"),
+            Localization.Translate("IN_PROTOTYPE"), false);
     }
 
     private static void PerformSave(InProgressSave inProgress, Save save)
@@ -551,7 +551,7 @@ public static class SaveHelper
         try
         {
             save.SaveToFile();
-            inProgress.ReportStatus(true, TranslationServer.Translate("SAVING_SUCCEEDED"));
+            inProgress.ReportStatus(true, Localization.Translate("SAVING_SUCCEEDED"));
         }
         catch (Exception e)
         {
@@ -566,7 +566,7 @@ public static class SaveHelper
                 throw;
 #pragma warning restore 162
 
-            inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
+            inProgress.ReportStatus(false, Localization.Translate("SAVING_FAILED_WITH_EXCEPTION"),
                 e.ToString());
             return;
         }

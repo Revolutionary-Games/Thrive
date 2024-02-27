@@ -166,7 +166,7 @@ public partial class MainMenu : NodeWithInput
     private CenterContainer menus = null!;
 #pragma warning restore CA2213
 
-    private Array<Node> menuArray;
+    private Array<Node>? menuArray;
 
     private bool introVideoPassed;
 
@@ -272,7 +272,7 @@ public partial class MainMenu : NodeWithInput
 
                     // The text has a store link template, so we need to update the right links into it
                     thanksDialog.DialogText =
-                        TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
+                        Localization.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
 
                     thanksDialog.PopupCenteredShrink();
                 }
@@ -440,8 +440,6 @@ public partial class MainMenu : NodeWithInput
                 ThanksDialogPath.Dispose();
                 MenusPath.Dispose();
             }
-
-            menuArray?.Dispose();
         }
 
         base.Dispose(disposing);
@@ -509,7 +507,7 @@ public partial class MainMenu : NodeWithInput
         // Easter egg message
         thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
 
-        if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
+        if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3 && !IsReturningToMenu)
             gles2Popup.PopupCenteredShrink();
 
         UpdateStoreVersionStatus();
@@ -534,7 +532,9 @@ public partial class MainMenu : NodeWithInput
         var random = new Random();
 
         // Some of the 3D backgrounds render very incorrectly in GLES2 so they are disabled
-        if (Settings.Instance.Menu3DBackgroundEnabled && OS.GetCurrentVideoDriver() != OS.VideoDriver.Gles2)
+        // TODO: check if the 3D backgrounds look now fine in opengl mode
+        if (Settings.Instance
+            .Menu3DBackgroundEnabled /*&& FeatureInformation.GetVideoDriver() != OS.RenderingDriver.Opengl3*/)
         {
             SetBackgroundScene(Menu3DBackgroundScenes.Random(random).AsString());
         }
@@ -664,7 +664,7 @@ public partial class MainMenu : NodeWithInput
 
     private void UpdateSteamLoginText()
     {
-        storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
+        storeLoggedInDisplay.Text = Localization.Translate("STORE_LOGGED_IN_AS")
             .FormatSafe(SteamHandler.Instance.DisplayName);
     }
 

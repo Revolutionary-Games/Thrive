@@ -95,7 +95,7 @@ public partial class NewSaveMenu : Control
     private void ShowOverwriteConfirm(string name)
     {
         // The chosen filename ({0}) already exists. Overwrite?
-        overwriteConfirm.DialogText = TranslationServer.Translate("CHOSEN_FILENAME_ALREADY_EXISTS").FormatSafe(name);
+        overwriteConfirm.DialogText = Localization.Translate("CHOSEN_FILENAME_ALREADY_EXISTS").FormatSafe(name);
         overwriteConfirm.PopupCenteredShrink();
     }
 
@@ -103,7 +103,7 @@ public partial class NewSaveMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnClosedEventHandler));
+        EmitSignal(SignalName.OnClosed);
     }
 
     private void SaveButtonPressed()
@@ -146,7 +146,7 @@ public partial class NewSaveMenu : Control
             return;
         }
 
-        EmitSignal(nameof(OnSaveNameChosenEventHandler), name);
+        EmitSignal(SignalName.OnSaveNameChosen, name);
     }
 
     private string GetSaveName()
@@ -212,7 +212,7 @@ public partial class NewSaveMenu : Control
         }
         else
         {
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SAVE_NAME_POPUP"), 2.5f);
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("INVALID_SAVE_NAME_POPUP"), 2.5f);
         }
     }
 

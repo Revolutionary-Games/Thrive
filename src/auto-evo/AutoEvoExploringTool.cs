@@ -682,7 +682,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private void OnFinishXGenerationsSpinBoxValueChanged(float value)
     {
         finishXGenerationsButton.Text =
-            TranslationServer.Translate("FINISH_X_GENERATIONS").FormatSafe(Math.Round(value));
+            Localization.Translate("FINISH_X_GENERATIONS").FormatSafe(Math.Round(value));
     }
 
     /// <summary>
@@ -698,7 +698,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     private void OnRunXWorldsSpinBoxValueChanged(float value)
     {
-        runXWorldsButton.Text = TranslationServer.Translate("RUN_X_WORLDS").FormatSafe(Math.Round(value));
+        runXWorldsButton.Text = Localization.Translate("RUN_X_WORLDS").FormatSafe(Math.Round(value));
     }
 
     /// <summary>
@@ -826,7 +826,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         autoEvoRun = null;
         generationsPendingToRun = 0;
         SetControlButtonsState(RunControlState.Ready);
-        runStatusLabel.Text = TranslationServer.Translate("READY");
+        runStatusLabel.Text = Localization.Translate("READY");
 
         world = worldsList[index];
         worldsListMenu.Text = index.ToString(CultureInfo.CurrentCulture);
@@ -963,7 +963,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     {
         world.UpdateWorldStatistics();
 
-        var bbcode = TranslationServer.Translate("CURRENT_WORLD_STATISTICS").FormatSafe(world.CurrentGeneration,
+        var bbcode = Localization.Translate("CURRENT_WORLD_STATISTICS").FormatSafe(world.CurrentGeneration,
             world.PatchesCount,
             world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture),
             world.TotalSpeciesCount,
@@ -976,7 +976,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         foreach (var stat in world.MicrobeSpeciesOrganelleStatistics.OrderByDescending(s => s.Value.Percentage))
         {
-            bbcode += "\n" + TranslationServer.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
+            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
                 stat.Key.NameWithoutSpecialCharacters,
                 stat.Value.Percentage.ToString("P", CultureInfo.CurrentCulture),
                 stat.Value.Average.ToString("F2", CultureInfo.CurrentCulture));
@@ -1004,7 +1004,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         var (microbeSpeciesHexSizeAverage, microbeSpeciesHexSizeStandardDeviation) =
             worldsList.Select(w => w.MicrobeSpeciesAverageHexSize).CalculateAverageAndStandardDeviation();
 
-        var bbcode = TranslationServer.Translate("ALL_WORLDS_STATISTICS").FormatSafe(worldGenerations,
+        var bbcode = Localization.Translate("ALL_WORLDS_STATISTICS").FormatSafe(worldGenerations,
             totalSpeciesAverage.ToString("F2", CultureInfo.CurrentCulture),
             totalSpeciesStandardDeviation.ToString("F2", CultureInfo.CurrentCulture),
             speciesStillAliveAverage.ToString("F2", CultureInfo.CurrentCulture),
@@ -1020,7 +1020,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         {
             var percentage = worldsList.Average(w => w.MicrobeSpeciesOrganelleStatistics[organelle].Percentage);
             var average = worldsList.Average(w => w.MicrobeSpeciesOrganelleStatistics[organelle].Average);
-            bbcode += "\n" + TranslationServer.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
+            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
                 organelle.NameWithoutSpecialCharacters,
                 percentage.ToString("P", CultureInfo.CurrentCulture),
                 average.ToString("F2", CultureInfo.CurrentCulture));

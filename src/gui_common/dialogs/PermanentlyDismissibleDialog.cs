@@ -36,10 +36,10 @@ public partial class PermanentlyDismissibleDialog : CustomConfirmationDialog
         switch (DialogType)
         {
             case DialogTypeEnum.Information:
-                checkbox.Text = TranslationServer.Translate("DISMISS_INFORMATION_PERMANENTLY");
+                checkbox.Text = Localization.Translate("DISMISS_INFORMATION_PERMANENTLY");
                 break;
             case DialogTypeEnum.Warning:
-                checkbox.Text = TranslationServer.Translate("DISMISS_WARNING_PERMANENTLY");
+                checkbox.Text = Localization.Translate("DISMISS_WARNING_PERMANENTLY");
                 break;
         }
     }

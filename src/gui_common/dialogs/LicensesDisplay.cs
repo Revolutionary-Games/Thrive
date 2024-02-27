@@ -65,7 +65,7 @@ public partial class LicensesDisplay : CustomWindow
 
         if (!isSteamVersion)
         {
-            licensesToShow.Add((TranslationServer.Translate("GPL_LICENSE_HEADING"),
+            licensesToShow.Add((Localization.Translate("GPL_LICENSE_HEADING"),
                 () => LoadFile(Constants.GPL_LICENSE_FILE)));
         }
     }
@@ -104,9 +104,9 @@ public partial class LicensesDisplay : CustomWindow
 
     private static string LoadFile(string file)
     {
-        using var reader = new File();
+        using var reader = FileAccess.Open(file, FileAccess.ModeFlags.Read);
 
-        if (reader.Open(file, FileAccess.ModeFlags.Read) == Error.Ok)
+        if (reader != null)
         {
             return reader.GetAsText();
         }
@@ -126,8 +126,8 @@ public partial class LicensesDisplay : CustomWindow
             var content = new Label
             {
                 Text = licenseTuple.Content(),
-                Align = HorizontalAlignment.Left,
-                Autowrap = true,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                AutowrapMode = TextServer.AutowrapMode.WordSmart,
             };
 
             content.AddThemeFontOverride("font", GetThemeFont("lato_normal", "Fonts"));

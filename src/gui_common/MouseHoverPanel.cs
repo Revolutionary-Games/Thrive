@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
 
 /// <summary>
 ///   The panel that shows what the player is hovering over/inspecting.
@@ -19,7 +18,7 @@ public partial class MouseHoverPanel : PanelContainer
     private Container nothingHereContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private Dictionary<string, MouseHoverCategory> categories = new();
+    private System.Collections.Generic.Dictionary<string, MouseHoverCategory> categories = new();
 
     /// <summary>
     ///   The array of category controls ordered based on their position in the scene tree.
@@ -29,7 +28,7 @@ public partial class MouseHoverPanel : PanelContainer
     ///     TODO: this being a Godot.Array causes the enumeration of this to allocate memory each time
     ///   </para>
     /// </remarks>
-    private Array categoryControls = new();
+    private Array<Node> categoryControls = new();
 
     public override void _Ready()
     {
@@ -127,7 +126,6 @@ public partial class MouseHoverPanel : PanelContainer
             {
                 CategoriesContainerPath.Dispose();
                 NothingHereContainerPath.Dispose();
-                categoryControls.Dispose();
             }
         }
     }

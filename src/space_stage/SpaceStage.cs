@@ -151,7 +151,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
                 ascendAnimationElapsed += delta;
 
                 strategicCamera.WorldLocation = ascendAnimationStart.Lerp(ascendAnimationEnd,
-                    Math.Min(1, ascendAnimationElapsed / Constants.SPACE_ASCEND_ANIMATION_DURATION));
+                    (float)Math.Min(1, ascendAnimationElapsed / Constants.SPACE_ASCEND_ANIMATION_DURATION));
 
                 if (AnimateCameraZoomTowards(strategicCamera.MinZoomLevel, delta,
                         Constants.SPACE_ASCEND_ANIMATION_ZOOM_SPEED) &&
@@ -226,10 +226,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         }
 
         var planet = SpawnHelpers.SpawnPlanet(location, rootOfDynamicallySpawned, planetScene, playerPlanet, techWeb);
-
-        var binds = new Array();
-        binds.Add(planet);
-        planet.Connect(nameof(PlacedPlanet.OnSelectedEventHandler), new Callable(this, nameof(OpenPlanetInfo)), binds);
+        planet.Connect(PlacedPlanet.SignalName.OnSelected, new Callable(this, nameof(OpenPlanetInfo)));
 
         return planet;
     }
@@ -238,9 +235,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         var fleet = SpawnHelpers.SpawnFleet(location, rootOfDynamicallySpawned, fleetScene, playerFleet, initialShip);
 
-        var binds = new Array();
-        binds.Add(fleet);
-        fleet.Connect(nameof(SpaceFleet.OnSelectedEventHandler), new Callable(this, nameof(OpenFleetInfo)), binds);
+        fleet.Connect(SpaceFleet.SignalName.OnSelected, new Callable(this, nameof(OpenFleetInfo)));
 
         return fleet;
     }
@@ -249,12 +244,9 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         bool playerOwned)
     {
         var structure = SpawnHelpers.SpawnSpaceStructure(structureDefinition, location, rootOfDynamicallySpawned,
-            structureScene,
-            playerOwned);
+            structureScene, playerOwned);
 
-        var binds = new Array();
-        binds.Add(structure);
-        structure.Connect(nameof(PlacedSpaceStructure.OnSelectedEventHandler), new Callable(this, nameof(OpenStructureInfo)), binds);
+        structure.Connect(PlacedSpaceStructure.SignalName.OnSelected, new Callable(this, nameof(OpenStructureInfo)));
 
         return structure;
     }
@@ -409,7 +401,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         if (CurrentGame!.Ascended)
         {
             GD.Print("Player is already ascended");
-            HUD.HUDMessages.ShowMessage(TranslationServer.Translate("ALREADY_ASCENDED"));
+            HUD.HUDMessages.ShowMessage(Localization.Translate("ALREADY_ASCENDED"));
             return;
         }
 

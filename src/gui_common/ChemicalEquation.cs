@@ -120,7 +120,7 @@ public partial class ChemicalEquation : VBoxContainer
     {
         if (ShowSpinner && EquationFromProcess != null)
         {
-            currentSpinnerRotation += delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed;
+            currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed;
 
             // TODO: should we at some point subtract like 100000*360 from the spinner rotation to avoid float range
             // exceeding?
@@ -138,7 +138,7 @@ public partial class ChemicalEquation : VBoxContainer
         if (what == NotificationTranslationChanged)
         {
             if (perSecondLabel != null)
-                perSecondLabel.Text = TranslationServer.Translate("PER_SECOND_SLASH");
+                perSecondLabel.Text = Localization.Translate("PER_SECOND_SLASH");
 
             if (environmentSeparator != null)
                 environmentSeparator.Text = GetEnvironmentLabelText();
@@ -196,7 +196,7 @@ public partial class ChemicalEquation : VBoxContainer
 
         if (perSecondLabel == null && ShowPerSecondLabel)
         {
-            perSecondLabel = new Label { Text = TranslationServer.Translate("PER_SECOND_SLASH") };
+            perSecondLabel = new Label { Text = Localization.Translate("PER_SECOND_SLASH") };
             firstLineContainer.AddChild(perSecondLabel);
         }
 
@@ -259,8 +259,8 @@ public partial class ChemicalEquation : VBoxContainer
                 equationArrow = new TextureRect
                 {
                     ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
-                    CustomMinimumSize = new Vector2(20, 20), T
-                    exture = equationArrowTexture,
+                    CustomMinimumSize = new Vector2(20, 20),
+                    Texture = equationArrowTexture,
                 };
                 firstLineContainer.AddChild(equationArrow);
             }
@@ -292,7 +292,7 @@ public partial class ChemicalEquation : VBoxContainer
                 {
                     Text = GetEnvironmentLabelText(),
                     CustomMinimumSize = new Vector2(30, 20),
-                    Align = HorizontalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
 
                 firstLineContainer.AddChild(environmentSeparator);
@@ -322,6 +322,6 @@ public partial class ChemicalEquation : VBoxContainer
 
     private string GetEnvironmentLabelText()
     {
-        return TranslationServer.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
+        return Localization.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
     }
 }

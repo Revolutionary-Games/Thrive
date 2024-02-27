@@ -305,7 +305,7 @@ public partial class ModUploader : Control
             changeNotes.Text = "Initial version";
         }
 
-        toBeUploadedContentLocation.Text = TranslationServer.Translate("CONTENT_UPLOADED_FROM")
+        toBeUploadedContentLocation.Text = Localization.Translate("CONTENT_UPLOADED_FROM")
             .FormatSafe(ProjectSettings.GlobalizePath(selectedMod.Folder));
 
         UpdatePreviewRect();
@@ -332,13 +332,13 @@ public partial class ModUploader : Control
     {
         if (string.IsNullOrWhiteSpace(editedTitle.Text))
         {
-            SetError(TranslationServer.Translate("MISSING_TITLE"));
+            SetError(Localization.Translate("MISSING_TITLE"));
             return false;
         }
 
         if (string.IsNullOrWhiteSpace(editedDescription.Text))
         {
-            SetError(TranslationServer.Translate("MISSING_DESCRIPTION"));
+            SetError(Localization.Translate("MISSING_DESCRIPTION"));
             return false;
         }
 
@@ -346,13 +346,13 @@ public partial class ModUploader : Control
 
         if (editedDescription.Text.Length > 8000)
         {
-            SetError(TranslationServer.Translate("DESCRIPTION_TOO_LONG"));
+            SetError(Localization.Translate("DESCRIPTION_TOO_LONG"));
             return false;
         }
 
         if (changeNotes.Text.Length > 8000)
         {
-            SetError(TranslationServer.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG"));
+            SetError(Localization.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG"));
             return false;
         }
 
@@ -360,7 +360,7 @@ public partial class ModUploader : Control
         {
             if (string.IsNullOrWhiteSpace(editedTags.Text))
             {
-                SetError(TranslationServer.Translate("TAGS_IS_WHITESPACE"));
+                SetError(Localization.Translate("TAGS_IS_WHITESPACE"));
                 return false;
             }
 
@@ -368,7 +368,7 @@ public partial class ModUploader : Control
             {
                 if (!SteamHandler.Tags.Contains(tag))
                 {
-                    SetError(TranslationServer.Translate("INVALID_TAG").FormatSafe(tag));
+                    SetError(Localization.Translate("INVALID_TAG").FormatSafe(tag));
                     return false;
                 }
             }
@@ -380,14 +380,14 @@ public partial class ModUploader : Control
 
             if (file == null)
             {
-                SetError(TranslationServer.Translate("PREVIEW_IMAGE_DOES_NOT_EXIST"));
+                SetError(Localization.Translate("PREVIEW_IMAGE_DOES_NOT_EXIST"));
                 return false;
             }
 
             // Let's hope Steam uses megabytes and not mebibytes as the limit
             if (file.GetLength() >= 1000000)
             {
-                SetError(TranslationServer.Translate("PREVIEW_IMAGE_IS_TOO_LARGE"));
+                SetError(Localization.Translate("PREVIEW_IMAGE_IS_TOO_LARGE"));
                 return false;
             }
         }
@@ -442,7 +442,7 @@ public partial class ModUploader : Control
 
         if (!ulong.TryParse(manualIdEntry.Text, out ulong id))
         {
-            SetError(TranslationServer.Translate("ID_IS_NOT_A_NUMBER"));
+            SetError(Localization.Translate("ID_IS_NOT_A_NUMBER"));
             return;
         }
 
@@ -485,7 +485,7 @@ public partial class ModUploader : Control
         GD.Print("Create new workshop item button pressed");
         SetProcessingStatus(true);
 
-        errorDisplay.Text = TranslationServer.Translate("CREATING_DOT_DOT_DOT");
+        errorDisplay.Text = Localization.Translate("CREATING_DOT_DOT_DOT");
 
         SteamHandler.Instance.CreateWorkshopItem(result =>
         {
@@ -499,7 +499,7 @@ public partial class ModUploader : Control
 
             if (result.ItemId == null)
             {
-                SetError(TranslationServer.Translate("SUCCESS_BUT_MISSING_ID"));
+                SetError(Localization.Translate("SUCCESS_BUT_MISSING_ID"));
                 return;
             }
 
@@ -544,7 +544,7 @@ public partial class ModUploader : Control
         }
 
         // TODO: proper progress bar
-        errorDisplay.Text = TranslationServer.Translate("UPLOADING_DOT_DOT_DOT");
+        errorDisplay.Text = Localization.Translate("UPLOADING_DOT_DOT_DOT");
 
         string? notes = null;
 
@@ -581,11 +581,11 @@ public partial class ModUploader : Control
             if (result.TermsOfServiceSigningRequired)
             {
                 uploadSucceededText.ExtendedBbcode =
-                    TranslationServer.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED");
+                    Localization.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED");
             }
             else
             {
-                uploadSucceededText.ExtendedBbcode = TranslationServer.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED");
+                uploadSucceededText.ExtendedBbcode = Localization.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED");
             }
 
             uploadSucceededDialog.PopupCenteredShrink();
@@ -643,7 +643,7 @@ public partial class ModUploader : Control
     private void UpdateWorkshopNoticeTexts()
     {
         // Rich text labels don't seem to automatically translate their text, so we do it for the label here
-        workshopNotice.ExtendedBbcode = TranslationServer.Translate("WORKSHOP_TERMS_OF_SERVICE_NOTICE");
+        workshopNotice.ExtendedBbcode = Localization.Translate("WORKSHOP_TERMS_OF_SERVICE_NOTICE");
     }
 
     private void DismissSuccessDialog()
@@ -667,7 +667,7 @@ public partial class ModUploader : Control
         catch (Exception e)
         {
             GD.PrintErr("Saving workshop data failed: ", e);
-            SetError(TranslationServer.Translate("SAVING_DATA_FAILED_DUE_TO").FormatSafe(e.Message));
+            SetError(Localization.Translate("SAVING_DATA_FAILED_DUE_TO").FormatSafe(e.Message));
             return false;
         }
 
@@ -681,7 +681,7 @@ public partial class ModUploader : Control
             ClearError();
         }
 
-        errorDisplay.Text = TranslationServer.Translate("FORM_ERROR_MESSAGE").FormatSafe(message);
+        errorDisplay.Text = Localization.Translate("FORM_ERROR_MESSAGE").FormatSafe(message);
     }
 
     private void ClearError()

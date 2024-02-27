@@ -9,8 +9,13 @@ public partial class DebugOverlays
 
     public void DumpSceneTreeToFile(Node node)
     {
-        var file = new File();
-        file.Open(SCENE_DUMP_FILE, FileAccess.ModeFlags.Write);
+        using var file = FileAccess.Open(SCENE_DUMP_FILE, FileAccess.ModeFlags.Write);
+
+        if (file == null)
+        {
+            GD.PrintErr("Cannot open file for writing scene tree");
+            return;
+        }
 
         DumpSceneTreeToFile(node, file, 0);
 
@@ -19,7 +24,7 @@ public partial class DebugOverlays
         GD.Print("Scene tree dumped to \"", SCENE_DUMP_FILE, "\"");
     }
 
-    private static void DumpSceneTreeToFile(Node node, File file, int indent)
+    private static void DumpSceneTreeToFile(Node node, FileAccess file, int indent)
     {
         file.StoreString($"{new string(' ', 2 * indent)}{node.GetType()}: {node.Name}\n");
 

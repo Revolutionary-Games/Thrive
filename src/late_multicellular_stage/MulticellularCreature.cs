@@ -410,7 +410,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
         {
             bool full = !FitsInCarryingCapacity(target);
             yield return (InteractionType.Pickup, !full,
-                full ? TranslationServer.Translate("INTERACTION_PICK_UP_CANNOT_FULL") : null);
+                full ? Localization.Translate("INTERACTION_PICK_UP_CANNOT_FULL") : null);
         }
 
         if (target is ResourceEntity)
@@ -433,8 +433,8 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
             }
             else
             {
-                var message = TranslationServer.Translate("INTERACTION_HARVEST_CANNOT_MISSING_TOOL").FormatSafe(
-                    TranslationServer.Translate(missingTool.GetAttribute<DescriptionAttribute>().Description));
+                var message = Localization.Translate("INTERACTION_HARVEST_CANNOT_MISSING_TOOL").FormatSafe(
+                    Localization.Translate(missingTool.GetAttribute<DescriptionAttribute>().Description));
 
                 yield return (InteractionType.Harvest, false, message);
             }
@@ -447,7 +447,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
             yield return (InteractionType.DepositResources, takesItems,
                 takesItems ?
                     null :
-                    TranslationServer.Translate("INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"));
+                    Localization.Translate("INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"));
         }
 
         if (target is IConstructable { Completed: false } constructable)
@@ -457,7 +457,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
             yield return (InteractionType.Construct, canBeBuilt,
                 canBeBuilt ?
                     null :
-                    TranslationServer.Translate("INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"));
+                    Localization.Translate("INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"));
         }
 
         // Add the extra interactions the entity provides
@@ -846,7 +846,10 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
 
         // Surprise surprise, the physics detach bug can also hit here
         if (targetNode is RigidBody3D entityPhysics)
-            entityPhysics.Mode = ModeEnum.Kinematic;
+        {
+            entityPhysics.Freeze = true;
+            entityPhysics.FreezeMode = FreezeModeEnum.Kinematic;
+        }
 
         return true;
     }
@@ -873,13 +876,13 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
             entityNode.ReParent(world);
         }
 
-        entityNode.GlobalPosition = ourTransform.Origin + ourTransform.Basis.GetRotationQuaternion().Xform(offset);
+        entityNode.GlobalPosition = ourTransform.Origin + ourTransform.Basis.GetRotationQuaternion() * offset;
 
         // Allow others to interact with the object again
         item.InteractionDisabled = false;
 
         if (entityNode is RigidBody3D entityPhysics)
-            entityPhysics.Mode = ModeEnum.Rigid;
+            entityPhysics.Freeze = false;
     }
 
     private void SetItemPositionInSlot(InventorySlotData slot, Node3D node)
@@ -975,7 +978,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
         var transform = GlobalTransform;
         var rotation = transform.Basis.GetRotationQuaternion();
 
-        var worldTransform = new Transform3D(new Basis(rotation), transform.Origin + rotation.Xform(relative));
+        var worldTransform = new Transform3D(new Basis(rotation), transform.Origin + rotation * relative);
         return worldTransform;
     }
 }

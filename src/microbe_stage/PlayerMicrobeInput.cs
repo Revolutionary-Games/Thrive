@@ -96,7 +96,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
                 // Rotate the opposite of the player orientation to get back to screen (as when applying movement
                 // vector the normal rotation is used to rotate the movement direction so these two operations cancel
                 // out)
-                movement = position.Rotation.Inverse().Xform(movement);
+                movement = position.Rotation.Inverse() * movement;
             }
 
             if (autoMove)
@@ -221,7 +221,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
         else if (stage.Player.Has<MicrobeColony>() && stage.GameWorld.PlayerSpecies is MicrobeSpecies)
         {
-            stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
+            stage.HUD.HintText = Localization.Translate("UNBIND_HELP_TEXT");
             control.SetStateColonyAware(stage.Player, MicrobeState.Unbinding);
 
             ref var callbacks = ref stage.Player.Get<MicrobeEventCallbacks>();

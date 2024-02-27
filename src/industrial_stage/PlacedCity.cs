@@ -249,7 +249,7 @@ public partial class PlacedCity : Node3D, IEntityWithNameLabel
 
     public void OnSelectedThroughLabel()
     {
-        EmitSignal(nameof(OnSelectedEventHandler));
+        EmitSignal(SignalName.OnSelected);
     }
 
     public void OnDestroyed()

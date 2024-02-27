@@ -552,11 +552,9 @@ public partial class InventoryScreen : ControlWithInput
         slot.ButtonGroup = inventorySlotGroup;
 
         // Connect the required signals
-        var binds = new Array();
-        binds.Add(slot);
-        slot.Connect(nameof(InventorySlot.OnSelectedEventHandler), new Callable(this, nameof(OnInventorySlotSelected)), binds);
+        slot.Connect(InventorySlot.SignalName.OnSelected, new Callable(this, nameof(OnInventorySlotSelected)));
 
-        slot.Connect(nameof(InventorySlot.OnDragStartedEventHandler), new Callable(this, nameof(OnInventoryDragStarted)));
+        slot.Connect(InventorySlot.SignalName.OnDragStarted, new Callable(this, nameof(OnInventoryDragStarted)));
 
         slot.AllowDropHandler += CheckIsDropAllowed;
         slot.PerformDropHandler += OnDropPerformed;
@@ -1080,7 +1078,7 @@ public partial class InventoryScreen : ControlWithInput
     {
         if (selectedRecipe == null)
         {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_NO_RECIPE_SELECTED"));
+            SetCraftingError(Localization.Translate("CRAFTING_NO_RECIPE_SELECTED"));
 
             // TODO: invalid action sound would be nice to have in GUICommon to play here
             return;
@@ -1093,7 +1091,7 @@ public partial class InventoryScreen : ControlWithInput
 
         if (missingMaterial != null)
         {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_NOT_ENOUGH_MATERIAL")
+            SetCraftingError(Localization.Translate("CRAFTING_NOT_ENOUGH_MATERIAL")
                 .FormatSafe(missingMaterial.Name));
             return;
         }
@@ -1101,7 +1099,7 @@ public partial class InventoryScreen : ControlWithInput
         // Only take the results once we are pretty sure we can craft the thing
         if (!TakeAllCraftingResults())
         {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"));
+            SetCraftingError(Localization.Translate("CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"));
             return;
         }
 
@@ -1121,7 +1119,7 @@ public partial class InventoryScreen : ControlWithInput
 
         if (slotsToConsumeFrom == null)
         {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_ERROR_TAKING_ITEMS"));
+            SetCraftingError(Localization.Translate("CRAFTING_ERROR_TAKING_ITEMS"));
             return;
         }
 
@@ -1155,7 +1153,7 @@ public partial class InventoryScreen : ControlWithInput
 
         if (error)
         {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"));
+            SetCraftingError(Localization.Translate("CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"));
             GD.PrintErr("Ran into an item consume problem before crafting, some items may have already permanently " +
                 "disappeared. This is a bug");
             return;
@@ -1523,20 +1521,17 @@ public partial class InventoryScreen : ControlWithInput
 
     private void ResetCraftingErrorLabel()
     {
-        craftingErrorStatusLabel.Text = TranslationServer.Translate("CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER");
+        craftingErrorStatusLabel.Text = Localization.Translate("CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER");
     }
 
     private RecipeListItem CreateRecipeListItem(CraftingRecipe recipe)
     {
         var item = recipeListItemScene.Instantiate<RecipeListItem>();
-        item.Group = recipeSelectionGroup;
+        item.ButtonGroup = recipeSelectionGroup;
         item.DisplayedRecipe = recipe;
         item.AvailableMaterials = availableCraftingMaterials;
 
-        var binds = new Array();
-        binds.Add(item);
-
-        item.Connect(nameof(RecipeListItem.OnSelectedEventHandler), new Callable(this, nameof(OnCraftingRecipeSelected)), binds);
+        item.Connect(RecipeListItem.SignalName.OnSelected, new Callable(this, nameof(OnCraftingRecipeSelected)));
 
         return item;
     }

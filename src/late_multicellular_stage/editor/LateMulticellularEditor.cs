@@ -109,7 +109,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
     protected override string MusicCategory => "LateMulticellularEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MulticellularStage;
-    protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MULTICELLULAR_EDITOR");
+    protected override string EditorLoadingMessage => Localization.Translate("LOADING_MULTICELLULAR_EDITOR");
     protected override bool HasInProgressAction => CanCancelAction;
 
     public void SendAutoEvoResultsToReportComponent()
@@ -276,8 +276,8 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
         if (run.Results == null)
         {
-            reportTab.UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
-                TranslationServer.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
+            reportTab.UpdateAutoEvoResults(Localization.Translate("AUTO_EVO_FAILED"),
+                Localization.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
         }
 
         base.OnEditorReady();
@@ -469,9 +469,10 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
     private void UpdateBackgroundPanorama(Biome biome)
     {
-        var worldPanoramaSky = worldEnvironmentNode.Environment.Sky;
+        var sky = worldEnvironmentNode.Environment.Sky;
+        var skyMaterial = (PanoramaSkyMaterial)sky.SkyMaterial;
 
-        worldPanoramaSky.Panorama = GD.Load<Texture2D>(biome.Panorama);
+        skyMaterial.Panorama = GD.Load<Texture2D>(biome.Panorama);
 
         // TODO: update colour properties if really wanted (right now white ambient light is used to see things better
         // in the editor)
@@ -503,7 +504,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
     {
         if (CanCancelAction)
         {
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
                 1.5f);
             return;
         }

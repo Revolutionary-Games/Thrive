@@ -312,7 +312,7 @@ public partial class EvolutionaryTree : Control
             return;
 
         node.ButtonGroup = nodesGroup;
-        node.Connect("pressed", new Callable(this, nameof(OnTreeNodeSelected)), new Array { node });
+        node.Connect(BaseButton.SignalName.Pressed, Callable.From(() => OnTreeNodeSelected(node)));
 
         speciesNodeList.Add(node);
         tree.AddChild(node);
@@ -400,7 +400,7 @@ public partial class EvolutionaryTree : Control
             if (generationTimes.TryGetValue(i, out var generationTime))
             {
                 localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTime) + " "
-                    + TranslationServer.Translate("MEGA_YEARS");
+                    + Localization.Translate("MEGA_YEARS");
             }
 
             var size = latoSmallRegular.GetStringSize(localizedText);
@@ -424,14 +424,13 @@ public partial class EvolutionaryTree : Control
 
         if (@event is InputEventMouseButton buttonEvent)
         {
-            dragging = (buttonEvent.ButtonMask & ((int)ButtonList.Left | (int)ButtonList.Right)) != 0;
+            dragging = (buttonEvent.ButtonMask & (MouseButtonMask.Left | MouseButtonMask.Right)) != 0;
             if (dragging)
                 lastMousePosition = buttonEvent.Position;
 
-            if (buttonEvent.ButtonPressed &&
-                (ButtonList)buttonEvent.ButtonIndex is ButtonList.WheelDown or ButtonList.WheelUp)
+            if (buttonEvent.Pressed && buttonEvent.ButtonIndex is MouseButton.WheelDown or MouseButton.WheelUp)
             {
-                bool zoomIn = (ButtonList)buttonEvent.ButtonIndex == ButtonList.WheelUp;
+                bool zoomIn = buttonEvent.ButtonIndex == MouseButton.WheelUp;
 
                 // The current mouse position relative to tree
                 var mouseTreePosition = buttonEvent.Position / sizeFactor - dragOffset;
@@ -592,6 +591,6 @@ public partial class EvolutionaryTree : Control
 
     private void OnTreeNodeSelected(EvolutionaryTreeNode node)
     {
-        EmitSignal(nameof(SpeciesSelectedEventHandler), node.Generation, node.SpeciesID);
+        EmitSignal(SignalName.SpeciesSelected, node.Generation, node.SpeciesID);
     }
 }

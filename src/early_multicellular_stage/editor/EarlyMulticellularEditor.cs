@@ -86,7 +86,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
 
     protected override string EditorLoadingMessage =>
-        TranslationServer.Translate("LOADING_EARLY_MULTICELLULAR_EDITOR");
+        Localization.Translate("LOADING_EARLY_MULTICELLULAR_EDITOR");
 
     protected override bool HasInProgressAction => CanCancelAction;
 
@@ -251,8 +251,8 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
 
         if (run.Results == null)
         {
-            reportTab.UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
-                TranslationServer.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
+            reportTab.UpdateAutoEvoResults(Localization.Translate("AUTO_EVO_FAILED"),
+                Localization.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
         }
 
         base.OnEditorReady();
@@ -429,7 +429,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
     {
         if (CanCancelAction)
         {
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
                 1.5f);
             return;
         }

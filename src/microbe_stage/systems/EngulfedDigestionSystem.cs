@@ -127,7 +127,7 @@
                     if (engulfer.EjectEngulfable(ref engulfable))
                     {
                         entity.SendNoticeIfPossible(
-                            new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
+                            new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULF_STORAGE_FULL")));
                     }
 
                     // As ejecting is delayed, we need to temporarily adjust the size here so that we don't
@@ -255,7 +255,7 @@
                                 health.MaxHealth * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy");
 
                             entity.SendNoticeIfPossible(() => new SimpleHUDMessage(
-                                TranslationServer.Translate("NOTICE_ENGULF_DAMAGE_FROM_TOXIN"),
+                                Localization.Translate("NOTICE_ENGULF_DAMAGE_FROM_TOXIN"),
                                 DisplayDuration.Short));
                         }
                     }

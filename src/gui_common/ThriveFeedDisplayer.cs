@@ -190,7 +190,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
 
         // We don't generate custom bbcode when converting html so we use the simpler form here
         // but we need to use the custom rich text label to ensure the links are clickable
-        title.BbcodeText = titleText;
+        title.Text = titleText;
 
         // Big font for titles
         title.AddThemeFontOverride("normal_font", TitleFont);
@@ -202,7 +202,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
         // Make the feed look nicer with less repeating content by stripping the last part of the text
         var content = Constants.NewsFeedRegexDeleteContent.Replace(feedItem.ContentBbCode, "\n");
 
-        textDisplayer.BbcodeText = content;
+        textDisplayer.Text = content;
 
         itemContentContainer.AddChild(textDisplayer);
 

@@ -146,7 +146,7 @@ public partial class DebugOverlays
 
             label.Position = activeCamera.UnprojectPosition(position.Position);
 
-            if (!label.Text.Empty())
+            if (label.Text.Length > 0)
                 continue;
 
             // Update names

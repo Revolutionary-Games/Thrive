@@ -179,7 +179,7 @@ public partial class PatchMapDrawer : Control
     /// <param name="smoothed">If true, smoothly pans the view to the destination, otherwise just snaps.</param>
     public void CenterToCurrentPatch(bool smoothed = true)
     {
-        EmitSignal(nameof(OnCurrentPatchCenteredEventHandler), PlayerPatch!.ScreenCoordinates, smoothed);
+        EmitSignal(SignalName.OnCurrentPatchCentered, PlayerPatch!.ScreenCoordinates, smoothed);
     }
 
     public void MarkDirty()
@@ -250,7 +250,7 @@ public partial class PatchMapDrawer : Control
                 var segment2Greater = Math.Max(segment2Start.Y, segment2End.Y);
                 var segment2Smaller = Math.Min(segment2Start.Y, segment2End.Y);
 
-                return (Math.Abs(segment1Start.X - segment2Start.X) < MathUtils.EPSILON) &&
+                return Math.Abs(segment1Start.X - segment2Start.X) < MathUtils.EPSILON &&
                     !(Math.Max(segment1Smaller, segment2Smaller) - Math.Min(segment1Greater, segment2Greater) >
                         MathUtils.EPSILON);
             }
@@ -281,7 +281,7 @@ public partial class PatchMapDrawer : Control
                 var segment2Greater = Math.Max(segment2Start.X, segment2End.X);
                 var segment2Smaller = Math.Min(segment2Start.X, segment2End.X);
 
-                return (Math.Abs(segment1Start.Y - segment2Start.Y) < MathUtils.EPSILON) &&
+                return Math.Abs(segment1Start.Y - segment2Start.Y) < MathUtils.EPSILON &&
                     !(Math.Max(segment1Smaller, segment2Smaller) - Math.Min(segment1Greater, segment2Greater) >
                         MathUtils.EPSILON);
             }

@@ -163,19 +163,19 @@ public partial class MulticellularCamera : Node3D, IGodotEarlyNodeResolve
 
         // Move ourselves (the base node) to be on top of the target, our offset node will then position the camera
         // correctly
-        Transform3D = new Transform3D(Quaternion.Identity, FollowedNode.Position);
+        Transform = new Transform3D(Basis.Identity, FollowedNode.Position);
 
         // Horizontal .Yaw) rotation along the.Y axis is applied to the offset node to make things work nicer
         var up = new Vector3(0, 1, 0);
         var yQuaternion = new Quaternion(up, YRotation);
-        offsetNode.Position = yQuaternion.Xform(FollowOffset);
+        offsetNode.Position = yQuaternion * FollowOffset;
 
         var right = new Vector3(1, 0, 0);
 
         // Some part of Y-rotation is also applied here to make for non-jan.Y camera turning effect
         var rotation = yQuaternion * new Quaternion(right, XRotation);
 
-        arm!.Transform3D = new Transform3D(rotation, Vector3.Zero);
+        arm!.Transform = new Transform3D(new Basis(rotation), Vector3.Zero);
     }
 
     [RunOnAxis(new[] { "g.Zoom_in", "g.Zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]

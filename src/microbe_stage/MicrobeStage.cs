@@ -1041,7 +1041,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // No enemy species to spawn in this patch
         if (species.Count == 0)
         {
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPAWN_ENEMY_CHEAT_FAIL"), 2.0f);
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("SPAWN_ENEMY_CHEAT_FAIL"), 2.0f);
             GD.PrintErr("Can't use spawn enemy cheat because this patch does not contain any enemy species");
             return;
         }
@@ -1339,8 +1339,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private void TranslationsForFeaturesToReimplement()
     {
         // TODO: reimplement the microbe features that depend on these translations
-        TranslationServer.Translate("SUCCESSFUL_KILL");
-        TranslationServer.Translate("SUCCESSFUL_SCAVENGE");
-        TranslationServer.Translate("ESCAPE_ENGULFING");
+        Localization.Translate("SUCCESSFUL_KILL");
+        Localization.Translate("SUCCESSFUL_SCAVENGE");
+        Localization.Translate("ESCAPE_ENGULFING");
     }
 }

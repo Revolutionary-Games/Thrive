@@ -52,9 +52,9 @@ public class PlanetSystem
             // TODO: processing for non-player cities
             if (planet.IsPlayerOwned)
             {
-                planet.ProcessSpace(elapsed, societyData.SocietyResources);
+                planet.ProcessSpace((float)elapsed, societyData.SocietyResources);
 
-                planet.ProcessResearch(elapsed, societyData);
+                planet.ProcessResearch((float)elapsed, societyData);
 
                 storage += planet.TotalStorageSpace;
                 population += planet.Population;

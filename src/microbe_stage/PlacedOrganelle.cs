@@ -365,7 +365,7 @@ public class PlacedOrganelle : IPositionedOrganelle
         // TODO: check that the rotation of ModelOffset works correctly here (also in
         // CalculateVisualsTransformExternalCached)
         return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scale)),
-            externalPosition + orientation.Xform(Definition.ModelOffset));
+            externalPosition + orientation * Definition.ModelOffset);
     }
 
     /// <summary>
@@ -380,7 +380,7 @@ public class PlacedOrganelle : IPositionedOrganelle
 
         // TODO: check that the rotation of ModelOffset works correctly here
         return new Transform3D(new Basis(cachedExternalOrientation).Scaled(new Vector3(scale, scale, scale)),
-            cachedExternalPosition + cachedExternalOrientation.Xform(Definition.ModelOffset));
+            cachedExternalPosition + cachedExternalOrientation * Definition.ModelOffset);
     }
 
     public (Vector3 Position, Quaternion Rotation) CalculatePhysicsExternalTransform(Vector3 externalPosition,
@@ -402,7 +402,7 @@ public class PlacedOrganelle : IPositionedOrganelle
             offset.Z += length;
         }
 
-        return (externalPosition + orientation.Xform(offset), orientation * extraRotation);
+        return (externalPosition + orientation * offset, orientation * extraRotation);
     }
 
     private void InitializeComponents()

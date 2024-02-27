@@ -91,9 +91,9 @@ public partial class PlayerMulticellularInput : NodeWithInput
                 ThreeDimensionalMovementMode.WorldRelative)
             {
                 // Rotate movement direction by the 2D rotation of the camera
-                var rotation = new Quaternion(new Vector3(0, 1, 0), stage.PlayerCameranyRotation);
+                var rotation = new Quaternion(new Vector3(0, 1, 0), stage.PlayerCamera.Rotation);
 
-                movement = rotation.Xform(movement);
+                movement = rotation * movement;
             }
 
             stage.Player.MovementDirection = movement;

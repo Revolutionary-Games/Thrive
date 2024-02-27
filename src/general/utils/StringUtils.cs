@@ -18,7 +18,7 @@ public static class StringUtils
         if (number is >= 1000000000 or <= -1000000000)
         {
             return withSuffix ?
-                TranslationServer.Translate("BILLION_ABBREVIATION")
+                Localization.Translate("BILLION_ABBREVIATION")
                     .FormatSafe(number.ToString("0,,,.###", CultureInfo.CurrentCulture)) :
                 number.ToString("0,,,.###", CultureInfo.CurrentCulture);
         }
@@ -26,7 +26,7 @@ public static class StringUtils
         if (number is >= 1000000 or <= -1000000)
         {
             return withSuffix ?
-                TranslationServer.Translate("MILLION_ABBREVIATION")
+                Localization.Translate("MILLION_ABBREVIATION")
                     .FormatSafe(number.ToString("0,,.##", CultureInfo.CurrentCulture)) :
                 number.ToString("0,,.##", CultureInfo.CurrentCulture);
         }
@@ -34,7 +34,7 @@ public static class StringUtils
         if (number is >= 1000 or <= -1000)
         {
             return withSuffix ?
-                TranslationServer.Translate("KILO_ABBREVIATION")
+                Localization.Translate("KILO_ABBREVIATION")
                     .FormatSafe(number.ToString("0,.#", CultureInfo.CurrentCulture)) :
                 number.ToString("0,.#", CultureInfo.CurrentCulture);
         }

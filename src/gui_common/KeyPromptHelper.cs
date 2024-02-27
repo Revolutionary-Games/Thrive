@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
 
 /// <summary>
 ///   Resolves input actions to icons for them
@@ -152,7 +152,7 @@ public static class KeyPromptHelper
     /// <returns>
     ///   A tuple of path to the icon for the action and potentially an overlay image to be drawn on top
     /// </returns>
-    public static (string Primary, string? Overlay) GetPathForAction(Array actionList)
+    public static (string Primary, string? Overlay) GetPathForAction(Array<InputEvent> actionList)
     {
         // Find the first action matching InputMethod
         foreach (var action in actionList)
@@ -168,7 +168,7 @@ public static class KeyPromptHelper
 
                     if (action is InputEventMouseButton button)
                     {
-                        return GetPathForMouseButton((ButtonList)button.ButtonIndex);
+                        return GetPathForMouseButton(button.ButtonIndex);
                     }
 
                     break;
@@ -178,13 +178,13 @@ public static class KeyPromptHelper
                 {
                     if (action is InputEventJoypadButton joypadButton)
                     {
-                        return (GetPathForControllerButton((JoystickList)joypadButton.ButtonIndex), null);
+                        return (GetPathForControllerButton(joypadButton.ButtonIndex), null);
                     }
 
                     if (action is InputEventJoypadMotion joypadMotion)
                     {
-                        return (GetPathForControllerAxis((JoystickList)joypadMotion.Axis),
-                            GetPathForControllerAxisDirection((JoystickList)joypadMotion.Axis, joypadMotion.AxisValue));
+                        return (GetPathForControllerAxis(joypadMotion.Axis),
+                            GetPathForControllerAxisDirection(joypadMotion.Axis, joypadMotion.AxisValue));
                     }
 
                     break;
@@ -345,37 +345,39 @@ public static class KeyPromptHelper
 
         switch (button)
         {
-            case JoyButton.Xb.XA:
+            case JoyButton.A:
                 buttonName = "A";
                 break;
-            case JoyButton.Xb.XB:
+            case JoyButton.B:
                 buttonName = "B";
                 break;
-            case JoyButton.Xb.XX:
+            case JoyButton.X:
                 buttonName = "X";
                 break;
-            case JoyButton.Xb.XY:
+            case JoyButton.Y:
                 buttonName = "Y";
                 break;
-            case JoyButton.L:
+            case JoyButton.LeftShoulder:
                 buttonName = "LB";
                 break;
-            case JoyButton.R:
+            case JoyButton.RightShoulder:
                 buttonName = "RB";
                 break;
-            case JoyButton.L2:
+
+            // NOTE: bumpers no longer part of the button list
+            /*case JoyButton.L2:
                 buttonName = "LT";
                 break;
             case JoyButton.R2:
                 buttonName = "RT";
-                break;
-            case JoyButton.L3:
+                break;*/
+            case JoyButton.LeftStick:
                 buttonName = "Left_Stick_Click";
                 break;
-            case JoyButton.R3:
+            case JoyButton.RightStick:
                 buttonName = "Right_Stick_Click";
                 break;
-            case JoyButton.Select:
+            case JoyButton.Back:
                 buttonName = "Back";
                 break;
             case JoyButton.Start:
@@ -434,37 +436,40 @@ public static class KeyPromptHelper
 
         switch (button)
         {
-            case JoyButton.X:
+            case JoyButton.A:
                 buttonName = "Cross";
                 break;
-            case JoyButton.So.YCircle:
+            case JoyButton.B:
                 buttonName = "Circle";
                 break;
-            case JoyButton.So.YSquare:
+            case JoyButton.X:
                 buttonName = "Square";
                 break;
-            case JoyButton.So.YTriangle:
+            case JoyButton.Y:
                 buttonName = "Triangle";
                 break;
-            case JoyButton.L:
+            case JoyButton.LeftShoulder:
                 buttonName = "L1";
                 break;
-            case JoyButton.R:
+            case JoyButton.RightShoulder:
                 buttonName = "R1";
                 break;
-            case JoyButton.L2:
+
+            // No longer present in button list
+            /*case JoyButton.L2:
                 buttonName = "L2";
                 break;
             case JoyButton.R2:
                 buttonName = "R2";
-                break;
-            case JoyButton.L3:
+                break;*/
+
+            case JoyButton.LeftStick:
                 buttonName = "Left_Stick_Click";
                 break;
-            case JoyButton.R3:
+            case JoyButton.RightStick:
                 buttonName = "Right_Stick_Click";
                 break;
-            case JoyButton.Select:
+            case JoyButton.Back:
             {
                 if (type == "PS3")
                 {

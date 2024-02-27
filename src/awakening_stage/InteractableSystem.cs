@@ -190,7 +190,7 @@ public partial class InteractableSystem : Control
         var interactThreshold = Constants.INTERACTION_DEFAULT_INTERACT_DISTANCE *
             Constants.INTERACTION_DEFAULT_INTERACT_DISTANCE;
 
-        var viewDirection = camera!.GlobalTransform.Basis.GetRotationQuaternion().Xform(Vector3.Forward);
+        var viewDirection = camera!.GlobalTransform.Basis.GetRotationQuaternion() * Vector3.Forward;
 
         bestInteractable = null;
         var bestInteractableScore = double.MaxValue;

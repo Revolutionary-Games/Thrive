@@ -4,7 +4,6 @@ using Components;
 using Godot;
 using Godot.Collections;
 using Newtonsoft.Json;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Base HUD class for stages where the player moves a creature around
@@ -290,7 +289,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     private ProcessPanel processPanel = null!;
 #pragma warning restore CA2213
 
-    private Array<Node> compoundBars;
+    private Array<Node> compoundBars = null!;
 
     private bool environmentCompressed;
     private bool compoundCompressed;
@@ -520,7 +519,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
 
-        HUDMessages.ShowMessage(TranslationServer.Translate("NOTICE_READY_TO_EDIT"), DisplayDuration.Long);
+        HUDMessages.ShowMessage(Localization.Translate("NOTICE_READY_TO_EDIT"), DisplayDuration.Long);
     }
 
     /// <summary>
@@ -653,8 +652,8 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         var sunlightPercentage = Math.Round(biome.CurrentCompoundAmounts[sunlight].Ambient * 100, 0);
         var averageTemperature = biome.CurrentCompoundAmounts[temperature].Ambient;
 
-        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
-        var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
+        var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
 
         oxygenBar.MaxValue = 100;
         oxygenBar.Value = oxygenPercentage;
@@ -912,17 +911,17 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         return amount switch
         {
             >= Constants.COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE =>
-                TranslationServer.Translate("CATEGORY_AN_ABUNDANCE"),
+                Localization.Translate("CATEGORY_AN_ABUNDANCE"),
             >= Constants.COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT =>
-                TranslationServer.Translate("CATEGORY_QUITE_A_BIT"),
+                Localization.Translate("CATEGORY_QUITE_A_BIT"),
             >= Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT =>
-                TranslationServer.Translate("CATEGORY_A_FAIR_AMOUNT"),
+                Localization.Translate("CATEGORY_A_FAIR_AMOUNT"),
             >= Constants.COMPOUND_DENSITY_CATEGORY_SOME =>
-                TranslationServer.Translate("CATEGORY_SOME"),
+                Localization.Translate("CATEGORY_SOME"),
             >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE =>
-                TranslationServer.Translate("CATEGORY_LITTLE"),
+                Localization.Translate("CATEGORY_LITTLE"),
             >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE =>
-                TranslationServer.Translate("CATEGORY_VERY_LITTLE"),
+                Localization.Translate("CATEGORY_VERY_LITTLE"),
             _ => null,
         };
     }
@@ -1094,12 +1093,12 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     protected void OpenMenu()
     {
-        EmitSignal(nameof(OnOpenMenuEventHandler));
+        EmitSignal(SignalName.OnOpenMenu);
     }
 
     protected void OpenHelp()
     {
-        EmitSignal(nameof(OnOpenMenuToHelpEventHandler));
+        EmitSignal(SignalName.OnOpenMenuToHelp);
     }
 
     protected void FlashHealthBar(Color colour, float delta)
@@ -1179,8 +1178,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }
-
-            compoundBars?.Dispose();
         }
 
         base.Dispose(disposing);

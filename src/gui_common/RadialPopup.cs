@@ -18,7 +18,7 @@ public partial class RadialPopup : CustomWindow
         FullRect = true;
         Decorate = false;
 
-        Radial.Connect(nameof(RadialMenu.OnItemSelectedEventHandler), new Callable(this, nameof(ForwardSelected)));
+        Radial.Connect(RadialMenu.SignalName.OnItemSelected, new Callable(this, nameof(ForwardSelected)));
         Radial.Visible = false;
     }
 
@@ -55,7 +55,7 @@ public partial class RadialPopup : CustomWindow
     protected override void OnHidden()
     {
         base.OnHidden();
-        EmitSignal(nameof(CanceledEventHandler));
+        EmitSignal(SignalName.Canceled);
         Radial.Visible = false;
     }
 
@@ -71,7 +71,7 @@ public partial class RadialPopup : CustomWindow
 
     private void ForwardSelected(int itemId)
     {
-        EmitSignal(nameof(OnItemSelectedEventHandler), itemId);
+        EmitSignal(SignalName.OnItemSelected, itemId);
         Hide();
     }
 }

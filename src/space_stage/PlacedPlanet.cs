@@ -21,7 +21,7 @@ public partial class PlacedPlanet : Node3D, IEntityWithNameLabel
     ///   Emitted when this planet is selected by the player
     /// </summary>
     [Signal]
-    public delegate void OnSelectedEventHandler();
+    public delegate void OnSelectedEventHandler(PlacedPlanet planet);
 
     public enum ColonizationState
     {
@@ -122,7 +122,7 @@ public partial class PlacedPlanet : Node3D, IEntityWithNameLabel
 
     public void OnSelectedThroughLabel()
     {
-        EmitSignal(nameof(OnSelectedEventHandler));
+        EmitSignal(SignalName.OnSelected, this);
     }
 
     public void OnDestroyed()

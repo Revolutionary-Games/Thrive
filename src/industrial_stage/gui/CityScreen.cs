@@ -131,7 +131,7 @@ public partial class CityScreen : CustomWindow
         var foodBalance = managedCity.CalculateFoodProduction() - managedCity.CalculateFoodConsumption();
 
         // Update the bottom stats bar
-        shortStatsLabel.Text = TranslationServer.Translate("CITY_SHORT_STATISTICS")
+        shortStatsLabel.Text = Localization.Translate("CITY_SHORT_STATISTICS")
             .FormatSafe(StringUtils.ThreeDigitFormat(managedCity.Population),
                 StringUtils.FormatPositiveWithLeadingPlus(StringUtils.ThreeDigitFormat(foodBalance), foodBalance),
                 researchSpeed);

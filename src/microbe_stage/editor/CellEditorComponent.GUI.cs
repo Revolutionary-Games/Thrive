@@ -33,7 +33,7 @@ public partial class CellEditorComponent
     {
         if (@event is InputEventMouseButton { Pressed: true })
         {
-            EmitSignal(nameof(ClickedEventHandler));
+            EmitSignal(SignalName.Clicked);
         }
     }
 
@@ -51,7 +51,7 @@ public partial class CellEditorComponent
 
     public override void OnActionBlockedWhileAnotherIsInProgress()
     {
-        ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+        ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
             1.5f);
     }
 
@@ -231,7 +231,7 @@ public partial class CellEditorComponent
 
     private void UpdateTotalDigestionSpeed(float speed)
     {
-        digestionSpeedLabel.Format = TranslationServer.Translate("DIGESTION_SPEED_VALUE");
+        digestionSpeedLabel.Format = Localization.Translate("DIGESTION_SPEED_VALUE");
         digestionSpeedLabel.Value = (float)Math.Round(speed, 2);
     }
 
@@ -239,12 +239,12 @@ public partial class CellEditorComponent
     {
         if (efficiencies.Count == 1)
         {
-            digestionEfficiencyLabel.Format = TranslationServer.Translate("PERCENTAGE_VALUE");
+            digestionEfficiencyLabel.Format = Localization.Translate("PERCENTAGE_VALUE");
             digestionEfficiencyLabel.Value = (float)Math.Round(efficiencies.First().Value * 100, 2);
         }
         else
         {
-            digestionEfficiencyLabel.Format = TranslationServer.Translate("MIXED_DOT_DOT_DOT");
+            digestionEfficiencyLabel.Format = Localization.Translate("MIXED_DOT_DOT_DOT");
 
             // Set this to a value hero to fix the up/down arrow
             // Using sum makes the arrow almost always go up, using average makes the arrow almost always point down...
@@ -477,13 +477,13 @@ public partial class CellEditorComponent
 
         if (energyBalance.FinalBalance > 0)
         {
-            atpBalanceLabel.Text = TranslationServer.Translate("ATP_PRODUCTION");
+            atpBalanceLabel.Text = Localization.Translate("ATP_PRODUCTION");
             atpBalanceLabel.AddThemeColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
         }
         else
         {
-            atpBalanceLabel.Text = TranslationServer.Translate("ATP_PRODUCTION") + " - " +
-                TranslationServer.Translate("ATP_PRODUCTION_TOO_LOW");
+            atpBalanceLabel.Text = Localization.Translate("ATP_PRODUCTION") + " - " +
+                Localization.Translate("ATP_PRODUCTION_TOO_LOW");
             atpBalanceLabel.AddThemeColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
 
@@ -517,7 +517,7 @@ public partial class CellEditorComponent
 
             subBar.RegisterToolTipForControl(tooltip, true);
 
-            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
+            tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
                 SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
                 energyBalance.Production[subBar.Name]);
         }
@@ -537,13 +537,13 @@ public partial class CellEditorComponent
             {
                 case "osmoregulation":
                 {
-                    displayName = TranslationServer.Translate("OSMOREGULATION");
+                    displayName = Localization.Translate("OSMOREGULATION");
                     break;
                 }
 
                 case "baseMovement":
                 {
-                    displayName = TranslationServer.Translate("BASE_MOVEMENT");
+                    displayName = Localization.Translate("BASE_MOVEMENT");
                     break;
                 }
 
@@ -554,7 +554,7 @@ public partial class CellEditorComponent
                 }
             }
 
-            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION")
+            tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION")
                 .FormatSafe(displayName, energyBalance.Consumption[subBar.Name]);
         }
     }

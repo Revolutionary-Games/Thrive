@@ -21,7 +21,7 @@ public partial class DebugOverlays
 
     private void UpdateInspector()
     {
-        debugCoordinates.Text = TranslationServer.Translate("DEBUG_COORDINATES")
+        debugCoordinates.Text = Localization.Translate("DEBUG_COORDINATES")
             .FormatSafe(positionCoordinates, lookingAtCoordinates);
     }
 

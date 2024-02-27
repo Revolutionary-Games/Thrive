@@ -164,13 +164,13 @@ public partial class ControllerAxisVisualizer : MarginContainer
         if (horizontalAxis == -1)
         {
             horizontalAxis = axis;
-            horizontalLabel.Text = TranslationServer.Translate("HORIZONTAL_WITH_AXIS_NAME_COLON").FormatSafe(axis);
+            horizontalLabel.Text = Localization.Translate("HORIZONTAL_WITH_AXIS_NAME_COLON").FormatSafe(axis);
             ReadDeadzone(horizontalDeadzoneValue, horizontalAxis, Settings.Instance.ControllerAxisDeadzoneAxes.Value);
         }
         else if (!HasSecondAxis)
         {
             verticalAxis = axis;
-            verticalLabel.Text = TranslationServer.Translate("VERTICAL_WITH_AXIS_NAME_COLON").FormatSafe(axis);
+            verticalLabel.Text = Localization.Translate("VERTICAL_WITH_AXIS_NAME_COLON").FormatSafe(axis);
             SetVerticalAxisDisplay(true);
             ReadDeadzone(verticalDeadzoneValue, verticalAxis, Settings.Instance.ControllerAxisDeadzoneAxes.Value);
         }

@@ -199,7 +199,7 @@ public partial class GalleryViewer : CustomWindow
                 SizeFlagsHorizontal = 0,
                 ToggleMode = true,
                 ActionMode = BaseButton.ActionModeEnum.Press,
-                Group = tabsButtonGroup,
+                ButtonGroup = tabsButtonGroup,
             };
 
             firstEntry ??= tabButton;
@@ -291,8 +291,8 @@ public partial class GalleryViewer : CustomWindow
         }
 
         item.Asset = asset;
-        item.Group = buttonGroup;
-        item.Connect(nameof(GalleryCard.OnFullscreenViewEventHandler), new Callable(this, nameof(OnAssetPreviewOpened)));
+        item.ButtonGroup = buttonGroup;
+        item.Connect(GalleryCard.SignalName.OnFullscreenView, new Callable(this, nameof(OnAssetPreviewOpened)));
 
         // Reuse existing tooltip if possible
         var name = "galleryCard_" + asset.ResourcePath.GetFile();
@@ -308,7 +308,7 @@ public partial class GalleryViewer : CustomWindow
         }
 
         tooltip.DisplayName = string.IsNullOrEmpty(asset.Title) ?
-            TranslationServer.Translate("UNTITLED") :
+            Localization.Translate("UNTITLED") :
             asset.Title!;
         tooltip.Description = asset.Description;
         tooltip.Artist = asset.Artist;
@@ -399,7 +399,7 @@ public partial class GalleryViewer : CustomWindow
         {
             if (entry.Key == 0 && entry.Value == ALL_CATEGORY)
             {
-                assetsCategoryDropdown.AddItem(TranslationServer.Translate("ALL"), entry.Key);
+                assetsCategoryDropdown.AddItem(Localization.Translate("ALL"), entry.Key);
                 continue;
             }
 

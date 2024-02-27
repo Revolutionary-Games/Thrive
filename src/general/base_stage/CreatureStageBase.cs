@@ -270,7 +270,7 @@ public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBas
         var playerSpecies = GameWorld.PlayerSpecies;
         GameWorld.AlterSpeciesPopulationInCurrentPatch(playerSpecies,
             Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
-            TranslationServer.Translate("PLAYER_REPRODUCED"),
+            Localization.Translate("PLAYER_REPRODUCED"),
             false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
     }
 
@@ -325,7 +325,7 @@ public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBas
         // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
             Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
-            TranslationServer.Translate("PLAYER_DIED"),
+            Localization.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
             / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 
@@ -393,7 +393,7 @@ public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBas
         // they have to select a new patch if they die again.
         GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
             Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
-            TranslationServer.Translate("EXTINCT_IN_PATCH"),
+            Localization.Translate("EXTINCT_IN_PATCH"),
             true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT
             / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 

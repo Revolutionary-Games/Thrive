@@ -81,7 +81,7 @@ public partial class GUIFocusSetter : Control
             return;
         }
 
-        var currentlyFocused = GetFocusOwner();
+        var currentlyFocused = GetViewport().GuiGetFocusOwner();
 
         if (currentlyFocused != null && currentlyFocused.IsVisibleInTree())
         {

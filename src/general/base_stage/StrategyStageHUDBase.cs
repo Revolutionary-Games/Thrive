@@ -145,12 +145,12 @@ public abstract partial class StrategyStageHUDBase<TStage> : HUDWithPausing, ISt
 
     protected void OpenMenu()
     {
-        EmitSignal(nameof(OnOpenMenuEventHandler));
+        EmitSignal(SignalName.OnOpenMenu);
     }
 
     protected void OpenHelp()
     {
-        EmitSignal(nameof(OnOpenMenuToHelpEventHandler));
+        EmitSignal(SignalName.OnOpenMenuToHelp);
     }
 
     protected override void Dispose(bool disposing)
@@ -182,6 +182,6 @@ public abstract partial class StrategyStageHUDBase<TStage> : HUDWithPausing, ISt
 
     private void ForwardStartResearch(string technology)
     {
-        EmitSignal(nameof(OnStartResearchingEventHandler), technology);
+        EmitSignal(SignalName.OnStartResearching, technology);
     }
 }

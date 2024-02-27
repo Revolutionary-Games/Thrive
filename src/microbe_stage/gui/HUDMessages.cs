@@ -46,7 +46,7 @@ public partial class HUDMessages : VBoxContainer
 
     public override void _Ready()
     {
-        multipliedMessageTemplate = TranslationServer.Translate("HUD_MESSAGE_MULTIPLE");
+        multipliedMessageTemplate = Localization.Translate("HUD_MESSAGE_MULTIPLE");
 
         if (MaxShownMessages < 1)
         {

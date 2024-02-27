@@ -156,7 +156,7 @@ public partial class FossilisationDialog : CustomWindow
             GetViewport().SetInputAsHandled();
 
             // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
 
             speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
         }
@@ -186,7 +186,7 @@ public partial class FossilisationDialog : CustomWindow
         if (FossilisedSpecies.IsSpeciesAlreadyFossilised(speciesName))
         {
             overwriteNameConfirmationDialog.DialogText =
-                TranslationServer.Translate("OVERWRITE_SPECIES_NAME_CONFIRMATION");
+                Localization.Translate("OVERWRITE_SPECIES_NAME_CONFIRMATION");
             overwriteNameConfirmationDialog.PopupCenteredShrink();
             return;
         }
@@ -250,7 +250,7 @@ public partial class FossilisationDialog : CustomWindow
             return;
         }
 
-        EmitSignal(nameof(OnSpeciesFossilisedEventHandler));
+        EmitSignal(SignalName.OnSpeciesFossilised);
 
         Hide();
     }

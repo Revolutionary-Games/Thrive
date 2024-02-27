@@ -40,7 +40,7 @@ public class CellType : ICellDefinition, ICloneable
         Colour = microbeSpecies.Colour;
         IsBacteria = microbeSpecies.IsBacteria;
         CanEngulf = microbeSpecies.CanEngulf;
-        TypeName = TranslationServer.Translate("STEM_CELL_NAME");
+        TypeName = Localization.Translate("STEM_CELL_NAME");
     }
 
     [JsonProperty]
@@ -150,9 +150,9 @@ public class CellType : ICellDefinition, ICloneable
 
     public override int GetHashCode()
     {
-        var hash = (TypeName.GetHashCode() * 131) ^ (MPCost * 2797) ^ (MembraneType.GetHashCode() * 2801) ^
-            (MembraneRigidity.GetHashCode() * 2803) ^ (Colour.GetHashCode() * 587) ^ ((IsBacteria ? 1 : 0) * 5171) ^
-            (Organelles.Count * 127);
+        var hash = TypeName.GetHashCode() * 131 ^ MPCost * 2797 ^ MembraneType.GetHashCode() * 2801 ^
+            MembraneRigidity.GetHashCode() * 2803 ^ Colour.GetHashCode() * 587 ^ (IsBacteria ? 1 : 0) * 5171 ^
+            Organelles.Count * 127;
 
         int counter = 0;
 

@@ -86,7 +86,7 @@ namespace Systems
                     // Listener is directional, so in this case we want to separate the rotation out from the entity
                     // transform to not use it
                     var transform = wantedListenerPosition.Value;
-                    transform.Basis = new Basis(new Vector3(0.0f, 0.0f, -1.0f));
+                    transform.Basis = new Basis(Quaternion.FromEuler(new Vector3(0.0f, 0.0f, -1.0f)));
                     listener.GlobalTransform = transform;
                 }
                 else

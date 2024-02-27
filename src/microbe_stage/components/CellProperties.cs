@@ -167,7 +167,7 @@
             var currentPosition = position.Position;
 
             // Find the direction to the right from where the cell is facing
-            var direction = position.Rotation.Xform(Vector3.Right);
+            var direction = position.Rotation * Vector3.Right;
 
             // Start calculating separation distance
             // TODO: fix for multihex organelles
@@ -320,7 +320,7 @@
                     {
                         // NPC parent cells have at least 50% taken away, or more if it would leave them
                         // with more than 90% of the compound it would take to immediately divide again.
-                        amountToTake = Math.Max(amountToTake, amount - (divideAmount * 0.9f));
+                        amountToTake = Math.Max(amountToTake, amount - divideAmount * 0.9f);
                     }
 
                     originalCompounds.TakeCompound(compound, amountToTake);
@@ -459,7 +459,7 @@
 
             distance += displacement;
 
-            var ejectionDirection = cellPosition.Rotation.Xform(direction);
+            var ejectionDirection = cellPosition.Rotation * direction;
 
             var result = cellPosition.Position + (ejectionDirection * distance);
 
@@ -574,12 +574,10 @@
         public static void ApplyMembraneWigglyness(this ref CellProperties cellProperties, Membrane targetMembrane)
         {
             targetMembrane.WigglyNess = cellProperties.MembraneType.BaseWigglyness -
-                (cellProperties.MembraneRigidity /
-                    cellProperties.MembraneType.BaseWigglyness) * 0.2f;
+                cellProperties.MembraneRigidity / cellProperties.MembraneType.BaseWigglyness * 0.2f;
 
             targetMembrane.MovementWigglyNess = cellProperties.MembraneType.MovementWigglyness -
-                (cellProperties.MembraneRigidity /
-                    cellProperties.MembraneType.BaseWigglyness) * 0.2f;
+                cellProperties.MembraneRigidity / cellProperties.MembraneType.BaseWigglyness * 0.2f;
         }
 
         /// <summary>

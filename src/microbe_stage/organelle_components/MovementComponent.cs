@@ -110,10 +110,10 @@ public class MovementComponent : IOrganelleComponent
         Quaternion extraColonyRotation, bool isBacteria, float elapsed)
     {
         // Real force the flagella applied to the colony (considering rotation)
-        var realForce = extraColonyRotation.Xform(force);
+        var realForce = extraColonyRotation * force;
 
         // TODO: does the direction need to be rotated for the colony member offset here to make sense?
-        var forceMagnitude = realForce.Dot(extraColonyRotation.Xform(wantedMovementDirection));
+        var forceMagnitude = realForce.Dot(extraColonyRotation * wantedMovementDirection);
 
         if (forceMagnitude <= 0 || wantedMovementDirection.LengthSquared() < MathUtils.EPSILON ||
             realForce.LengthSquared() < MathUtils.EPSILON)

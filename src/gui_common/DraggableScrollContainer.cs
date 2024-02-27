@@ -143,18 +143,18 @@ public partial class DraggableScrollContainer : ScrollContainer
 
         if (@event is InputEventMouseButton
             {
-                Pressed: true, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
+                Pressed: true, ButtonIndex: MouseButton.Left or MouseButton.Right,
             })
         {
             dragging = true;
         }
         else if (@event is InputEventMouseButton buttonDown && buttonDown.Pressed)
         {
-            if (buttonDown.ButtonIndex == (int)ButtonList.WheelUp)
+            if (buttonDown.ButtonIndex == MouseButton.WheelUp)
             {
                 Zoom(contentScale + ZoomFactor * ZoomStep);
             }
-            else if (buttonDown.ButtonIndex == (int)ButtonList.WheelDown)
+            else if (buttonDown.ButtonIndex == MouseButton.WheelDown)
             {
                 Zoom(contentScale - ZoomFactor * ZoomStep);
             }
@@ -165,8 +165,8 @@ public partial class DraggableScrollContainer : ScrollContainer
             // vice versa.
             var scaleInverse = 1 / contentScale;
 
-            ImmediatePan(new Vector2(ScrollHorizontal - (int)(motion.Relative.X * scaleInverse) * DragSensitivi.Y,
-                ScrollVertical - (int)(motion.Relativery * scaleInverse) * DragSensitivi.Y));
+            ImmediatePan(new Vector2(ScrollHorizontal - (int)(motion.Relative.X * scaleInverse) * DragSensitivity,
+                ScrollVertical - (int)(motion.Relative.Y * scaleInverse) * DragSensitivity));
         }
     }
 
@@ -180,7 +180,7 @@ public partial class DraggableScrollContainer : ScrollContainer
 
         if (@event is InputEventMouseButton
             {
-                Pressed: false, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
+                Pressed: false, ButtonIndex: MouseButton.Left or MouseButton.Right,
             })
         {
             dragging = false;

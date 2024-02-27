@@ -81,12 +81,14 @@ public partial class DebugOverlays
         var usedMemory = Math.Round(currentProcess.WorkingSet64 / (double)Constants.MEBIBYTE, 1);
         var usedVideoMemory = Math.Round(Performance.GetMonitor(Performance.Monitor.RenderVideoMemUsed) /
             Constants.MEBIBYTE, 1);
-        var mibFormat = TranslationServer.Translate("MIB_VALUE");
+        var mibFormat = Localization.Translate("MIB_VALUE");
 
         // These don't seem to work:
         // Performance.GetMonitor(Performance.Monitor.Physics3dActiveObjects),
         // Performance.GetMonitor(Performance.Monitor.Physics3dCollisionPairs),
         // Performance.GetMonitor(Performance.Monitor.Physics3dIslandCount),
+
+        // TODO: check if memory use can finally be gotten on Windows
 
         metricsText.Text =
             new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
@@ -95,15 +97,12 @@ public partial class DebugOverlays
                     Math.Round(spawnHistory.Sum(), 1), Math.Round(despawnHistory.Sum(), 1),
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
                     OS.GetName() == Constants.OS_WINDOWS_NAME ?
-                        TranslationServer.Translate("UNKNOWN_ON_WINDOWS") :
+                        Localization.Translate("UNKNOWN_ON_WINDOWS") :
                         mibFormat.FormatSafe(usedMemory),
                     mibFormat.FormatSafe(usedVideoMemory),
-                    Performance.GetMonitor(Performance.Monitor.RenderObjectsInFrame),
-                    Performance.GetMonitor(Performance.Monitor.RenderDrawCallsInFrame),
-                    Performance.GetMonitor(Performance.Monitor.Render2dDrawCallsInFrame),
-                    Performance.GetMonitor(Performance.Monitor.RenderVerticesInFrame),
-                    Performance.GetMonitor(Performance.Monitor.RenderMaterialChangesInFrame),
-                    Performance.GetMonitor(Performance.Monitor.RenderShaderChangesInFrame),
+                    Performance.GetMonitor(Performance.Monitor.RenderTotalObjectsInFrame),
+                    Performance.GetMonitor(Performance.Monitor.RenderTotalDrawCallsInFrame),
+                    Performance.GetMonitor(Performance.Monitor.RenderTotalPrimitivesInFrame),
                     Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount),
                     Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, threads, processorTime)
                 .ToString();

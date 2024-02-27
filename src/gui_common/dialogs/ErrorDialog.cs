@@ -129,9 +129,9 @@ public partial class ErrorDialog : CustomWindow
 
     private void OnCopyToClipboardPressed()
     {
-        OS.Clipboard = TranslationServer.Translate(WindowTitle) + " - " +
-            TranslationServer.Translate(extraDescriptionLabel!.Text) + " exception: " +
-            exceptionLabel!.Text;
+        DisplayServer.ClipboardSet(Localization.Translate(WindowTitle) + " - " +
+            Localization.Translate(extraDescriptionLabel!.Text) + " exception: " +
+            exceptionLabel!.Text);
     }
 
     private void OnClosePressed()

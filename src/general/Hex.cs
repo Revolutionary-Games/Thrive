@@ -260,8 +260,8 @@ public struct Hex : IEquatable<Hex>
         var hashCode = -1997189103;
 
         // ReSharper disable NonReadonlyMemberInGetHashCode
-        hashCode = (hashCode * -1521134295) + Q.GetHashCode();
-        hashCode = (hashCode * -1521134295) + R.GetHashCode();
+        hashCode = hashCode * -1521134295 + Q.GetHashCode();
+        hashCode = hashCode * -1521134295 + R.GetHashCode();
 
         // ReSharper restore NonReadonlyMemberInGetHashCode
         return hashCode;

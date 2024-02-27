@@ -115,8 +115,8 @@
         {
             ref var organelles = ref entity.Get<OrganelleContainer>();
 
-            var osmoregulationCost = (organelles.HexCount * cellProperties.MembraneType.OsmoregulationFactor *
-                Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
+            var osmoregulationCost = organelles.HexCount * cellProperties.MembraneType.OsmoregulationFactor *
+                Constants.ATP_COST_FOR_OSMOREGULATION * delta;
 
             int colonySize = 0;
             if (entity.Has<MicrobeColony>())

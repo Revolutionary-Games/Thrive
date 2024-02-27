@@ -126,8 +126,8 @@ public partial class PlayButton : MarginContainer
         if (pauseButton == null || playButton == null)
             return;
 
-        pauseButton.TooltipText = TranslationServer.Translate(pauseButtonTooltip);
-        playButton.TooltipText = TranslationServer.Translate(playButtonTooltip);
+        pauseButton.TooltipText = Localization.Translate(pauseButtonTooltip);
+        playButton.TooltipText = Localization.Translate(playButtonTooltip);
     }
 
     private void OnButtonPressed(string what)
@@ -143,6 +143,6 @@ public partial class PlayButton : MarginContainer
             Paused = false;
         }
 
-        EmitSignal(nameof(OnPressedEventHandler), Paused);
+        EmitSignal(SignalName.OnPressed, Paused);
     }
 }

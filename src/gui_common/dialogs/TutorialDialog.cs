@@ -118,11 +118,11 @@ public partial class TutorialDialog : CustomWindow
 
         if (showingTextForInput == ActiveInputMethod.Controller && !string.IsNullOrWhiteSpace(DescriptionForController))
         {
-            newText = TranslationServer.Translate(DescriptionForController);
+            newText = Localization.Translate(DescriptionForController);
         }
         else
         {
-            newText = TranslationServer.Translate(Description);
+            newText = Localization.Translate(Description);
         }
 
         // We only set the text if it is actually different to avoid an extra parsing

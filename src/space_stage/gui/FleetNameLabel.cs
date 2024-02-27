@@ -58,7 +58,7 @@ public partial class FleetNameLabel : Button, IEntityNameLabel
 
     private void UpdateTranslationTemplate()
     {
-        translationTemplate = TranslationServer.Translate("NAME_LABEL_FLEET");
+        translationTemplate = Localization.Translate("NAME_LABEL_FLEET");
     }
 
     private void ForwardSelection()

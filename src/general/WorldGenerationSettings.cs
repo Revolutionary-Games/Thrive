@@ -138,14 +138,14 @@ public class WorldGenerationSettings
     {
         string translatedDifficulty = Difficulty is DifficultyPreset difficulty ?
             difficulty.Name :
-            TranslationServer.Translate("DIFFICULTY_PRESET_CUSTOM");
+            Localization.Translate("DIFFICULTY_PRESET_CUSTOM");
 
-        return TranslationServer.Translate("DIFFICULTY_DETAILS_STRING").FormatSafe(translatedDifficulty,
+        return Localization.Translate("DIFFICULTY_DETAILS_STRING").FormatSafe(translatedDifficulty,
             MPMultiplier,
             AIMutationMultiplier,
             CompoundDensity,
             PlayerDeathPopulationPenalty,
-            TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
+            Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
             OsmoregulationMultiplier,
             TranslationHelper.TranslateFeatureFlag(FreeGlucoseCloud),
             TranslationHelper.TranslateFeatureFlag(PassiveGainOfReproductionCompounds),
@@ -157,9 +157,9 @@ public class WorldGenerationSettings
     /// </summary>
     public string GetTranslatedPlanetString()
     {
-        return TranslationServer.Translate("PLANET_DETAILS_STRING").FormatSafe(
+        return Localization.Translate("PLANET_DETAILS_STRING").FormatSafe(
             TranslationHelper.TranslateFeatureFlag(LAWK),
-            TranslationServer.Translate(Origin.GetAttribute<DescriptionAttribute>().Description),
+            Localization.Translate(Origin.GetAttribute<DescriptionAttribute>().Description),
             TranslationHelper.TranslateFeatureFlag(DayNightCycleEnabled),
             DayLength,
             Seed);
@@ -170,7 +170,7 @@ public class WorldGenerationSettings
     /// </summary>
     public string GetTranslatedMiscString()
     {
-        return TranslationServer.Translate("WORLD_MISC_DETAILS_STRING").FormatSafe(
+        return Localization.Translate("WORLD_MISC_DETAILS_STRING").FormatSafe(
             TranslationHelper.TranslateFeatureFlag(IncludeMulticellular),
             TranslationHelper.TranslateFeatureFlag(EasterEggs));
     }

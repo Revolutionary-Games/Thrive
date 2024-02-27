@@ -101,11 +101,11 @@
                 {
                     // Use parent rotation rather than our own to get the whole cell colony facing direction rather
                     // than our facing direction in world space
-                    return attachedTo.Get<WorldPosition>().Rotation.Xform(Vector3.Forward);
+                    return attachedTo.Get<WorldPosition>().Rotation * Vector3.Forward;
                 }
             }
 
-            return position.Rotation.Xform(Vector3.Forward);
+            return position.Rotation * Vector3.Forward;
         }
 
         /// <summary>

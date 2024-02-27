@@ -28,14 +28,14 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
     ///   Emitted when this fleet is selected by the player
     /// </summary>
     [Signal]
-    public delegate void OnSelectedEventHandler();
+    public delegate void OnSelectedEventHandler(SpaceFleet fleet);
 
     // TODO: more interesting name generation / include AI empire names by default
     [JsonProperty]
     public string UnitName { get; private set; } = null!;
 
     [JsonIgnore]
-    public string UnitScreenTitle => TranslationServer.Translate("NAME_LABEL_FLEET").FormatSafe(UnitName, CombatPower);
+    public string UnitScreenTitle => Localization.Translate("NAME_LABEL_FLEET").FormatSafe(UnitName, CombatPower);
 
     [JsonProperty]
     public Deque<IUnitOrder> QueuedOrders { get; private set; } = new();
@@ -83,7 +83,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 
         if (string.IsNullOrEmpty(UnitName))
         {
-            UnitName = TranslationServer.Translate("FLEET_NAME_FROM_PLACE").FormatSafe(
+            UnitName = Localization.Translate("FLEET_NAME_FROM_PLACE").FormatSafe(
                 SimulationParameters.Instance.PatchMapNameGenerator.Next(new Random()).RegionName);
         }
 
@@ -111,7 +111,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 
     public override void _Process(double delta)
     {
-        this.ProcessOrderQueue(delta);
+        this.ProcessOrderQueue((float)delta);
     }
 
     public void AddShip(UnitType unit)
@@ -130,7 +130,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 
     public void OnSelectedThroughLabel()
     {
-        EmitSignal(nameof(OnSelectedEventHandler));
+        EmitSignal(SignalName.OnSelected, this);
     }
 
     public void OnDestroyed()

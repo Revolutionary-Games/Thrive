@@ -108,7 +108,7 @@ public abstract partial class StrategicUnitScreen<T> : CustomWindow
         // TODO: add parameters / abstract methods to control what buttons are shown
         var button1 = new Button
         {
-            Text = TranslationServer.Translate("UNIT_ACTION_MOVE"),
+            Text = Localization.Translate("UNIT_ACTION_MOVE"),
         };
 
         button1.Connect("pressed", new Callable(this, nameof(OnMoveStart)));
@@ -119,7 +119,7 @@ public abstract partial class StrategicUnitScreen<T> : CustomWindow
 
         var button2 = new Button
         {
-            Text = TranslationServer.Translate("UNIT_ACTION_CONSTRUCT"),
+            Text = Localization.Translate("UNIT_ACTION_CONSTRUCT"),
         };
 
         button2.Connect("pressed", new Callable(this, nameof(OnConstructStart)));
@@ -130,7 +130,7 @@ public abstract partial class StrategicUnitScreen<T> : CustomWindow
         {
             var godButton = new Button
             {
-                Text = TranslationServer.Translate("OPEN_GOD_TOOLS"),
+                Text = Localization.Translate("OPEN_GOD_TOOLS"),
             };
 
             godButton.Connect("pressed", new Callable(this, nameof(ForwardGodTools)));
@@ -209,6 +209,6 @@ public abstract partial class StrategicUnitScreen<T> : CustomWindow
             return;
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnOpenGodToolsEventHandler), target);
+        EmitSignal(SignalName.OnOpenGodTools, target);
     }
 }

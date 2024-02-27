@@ -7,7 +7,7 @@ public partial class ThriveopediaWikiRootPage : ThriveopediaPage
 {
     public override string PageName => "WikiRoot";
 
-    public override string TranslatedPageName => TranslationServer.Translate("WIKI");
+    public override string TranslatedPageName => Localization.Translate("WIKI");
 
     public override string? ParentPageName => null;
 

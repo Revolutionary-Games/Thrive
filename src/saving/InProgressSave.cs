@@ -203,7 +203,7 @@ public class InProgressSave : IDisposable
                     ColourblindScreenFilter.Instance.Show();
                 }
 
-                SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVING_DOT_DOT_DOT"),
+                SaveStatusOverlay.Instance.ShowMessage(Localization.Translate("SAVING_DOT_DOT_DOT"),
                     Mathf.Inf);
 
                 state = State.SaveData;
@@ -242,8 +242,8 @@ public class InProgressSave : IDisposable
                 }
                 else
                 {
-                    SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVE_FAILED"));
-                    SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_SAVING"),
+                    SaveStatusOverlay.Instance.ShowMessage(Localization.Translate("SAVE_FAILED"));
+                    SaveStatusOverlay.Instance.ShowError(Localization.Translate("ERROR_SAVING"),
                         message, exceptionOrFailureMessage, false, false, null, exceptionOrMessageIsException);
                 }
 

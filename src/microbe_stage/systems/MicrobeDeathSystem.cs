@@ -105,8 +105,8 @@
                     // we're releasing compounds out of thin air.
                     if (existing > 0)
                     {
-                        compoundsToRelease[entry.Key] = existing + (entry.Value *
-                            Constants.COMPOUND_MAKEUP_RELEASE_FRACTION);
+                        compoundsToRelease[entry.Key] =
+                            existing + entry.Value * Constants.COMPOUND_MAKEUP_RELEASE_FRACTION;
                     }
                 }
             }
@@ -126,7 +126,7 @@
                     .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).CorpseChunkScene ??
                 throw new Exception("No chunk scene set on default organelle type to use");
 
-            var chunkName = TranslationServer.Translate("CHUNK_CELL_CORPSE_PART");
+            var chunkName = Localization.Translate("CHUNK_CELL_CORPSE_PART");
 
             for (int i = 0; i < chunksToSpawn; ++i)
             {
@@ -357,7 +357,7 @@
             if (!entity.Has<PlayerMarker>() && !species.PlayerSpecies)
             {
                 gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
-                    Constants.CREATURE_DEATH_POPULATION_LOSS, TranslationServer.Translate("DEATH"));
+                    Constants.CREATURE_DEATH_POPULATION_LOSS, Localization.Translate("DEATH"));
             }
 
             // Record player death in statistics

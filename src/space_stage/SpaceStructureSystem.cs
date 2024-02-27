@@ -31,7 +31,7 @@ public class SpaceStructureSystem
                 continue;
             }
 
-            structure.ProcessSpace(elapsed, societyData);
+            structure.ProcessSpace((float)elapsed, societyData);
         }
 
         elapsed = 0;

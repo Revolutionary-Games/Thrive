@@ -296,7 +296,7 @@ public abstract partial class PatchMapEditorComponent<TEditor> : EditorComponent
 
     private void UpdateSeedLabel()
     {
-        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
+        seedLabel.Text = Localization.Translate("SEED_LABEL")
             .FormatSafe(Editor.CurrentGame.GameWorld.WorldSettings.Seed);
     }
 

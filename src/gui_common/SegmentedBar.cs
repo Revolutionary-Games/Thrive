@@ -123,17 +123,18 @@ public partial class SegmentedBar : HBoxContainer
             SubBars.Add(progressBar);
 
             progressBar.Color = BarHelper.GetBarColour(SelectedType, dataPair.Key, IsProduction);
-            progressBar.HighlightColor = new Color(progressBar.Color.r + 0.5f, progressBar.Color.g + 0.5f,
-                progressBar.Color.b + 0.5f, 0.3f);
+            progressBar.HighlightColor = new Color(progressBar.Color.R + 0.5f, progressBar.Color.G + 0.5f,
+                progressBar.Color.B + 0.5f, 0.3f);
             progressBar.BarSize = progressBarBarSize;
             progressBar.IconTexture = BarHelper.GetBarIcon(SelectedType, dataPair.Key);
             progressBar.IconModulation = BarHelper.GetBarIconColor(SelectedType);
 
             progressBar.MouseFilter = MouseFilterEnum.Pass;
 
-            progressBar.Connect("gui_input", new Callable(this, nameof(BarToggled)), new Array { progressBar });
-            progressBar.Connect("mouse_entered", new Callable(this, nameof(OnBarMouseOver)), new Array { progressBar });
-            progressBar.Connect("mouse_exited", new Callable(this, nameof(OnBarMouseExit)), new Array { progressBar });
+            progressBar.Connect(Control.SignalName.GuiInput,
+                Callable.From<InputEvent>(@event => BarToggled(@event, progressBar)));
+            progressBar.Connect(Control.SignalName.MouseEntered, Callable.From(() => OnBarMouseOver(progressBar)));
+            progressBar.Connect(Control.SignalName.MouseExited, Callable.From(() => OnBarMouseExit(progressBar)));
         }
     }
 
@@ -141,7 +142,7 @@ public partial class SegmentedBar : HBoxContainer
     {
         if (@event is InputEventMouseButton eventMouse && @event.IsPressed())
         {
-            if (eventMouse.ButtonIndex != (int)ButtonList.Left)
+            if (eventMouse.ButtonIndex != MouseButton.Left)
                 return;
 
             bar.Disabled = !bar.Disabled;
@@ -153,14 +154,14 @@ public partial class SegmentedBar : HBoxContainer
     {
         bar.Highlight = true;
 
-        EmitSignal(nameof(SubBarMouseEnterEventHandler));
+        EmitSignal(SignalName.SubBarMouseEnter);
     }
 
     private void OnBarMouseExit(IconProgressBar bar)
     {
         bar.Highlight = false;
 
-        EmitSignal(nameof(SubBarMouseExitEventHandler));
+        EmitSignal(SignalName.SubBarMouseExit);
     }
 
     private void HandleBarDisabling(IconProgressBar bar)

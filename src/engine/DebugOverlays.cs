@@ -205,7 +205,7 @@ public partial class DebugOverlays : Control
 
             if (!DebugDrawer.Instance.PhysicsDebugDrawAvailable)
             {
-                ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("DEBUG_DRAW_NOT_AVAILABLE"), 4);
+                ToolTipManager.Instance.ShowPopup(Localization.Translate("DEBUG_DRAW_NOT_AVAILABLE"), 4);
             }
         }
         else

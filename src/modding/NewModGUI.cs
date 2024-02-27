@@ -158,7 +158,7 @@ public partial class NewModGUI : Control
     private void Closed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnCancelledEventHandler));
+        EmitSignal(SignalName.OnCancelled);
     }
 
     private void Cancel()
@@ -191,7 +191,7 @@ public partial class NewModGUI : Control
         ClearError();
 
         dialog.Hide();
-        EmitSignal(nameof(OnAcceptedEventHandler), serialized);
+        EmitSignal(SignalName.OnAccepted, serialized);
     }
 
     private void WikiLinkPressed()
@@ -208,7 +208,7 @@ public partial class NewModGUI : Control
         {
             Author = Settings.EnvironmentUserName,
             Version = "1.0",
-            Description = TranslationServer.Translate("NEW_MOD_DEFAULT_DESCRIPTION"),
+            Description = Localization.Translate("NEW_MOD_DEFAULT_DESCRIPTION"),
             License = "proprietary",
             RecommendedThriveVersion = Constants.Version,
             MinimumThriveVersion = Constants.Version,
@@ -267,7 +267,7 @@ public partial class NewModGUI : Control
             }
             else
             {
-                SetError(TranslationServer.Translate("INVALID_URL_FORMAT"));
+                SetError(Localization.Translate("INVALID_URL_FORMAT"));
                 return false;
             }
         }
@@ -282,19 +282,19 @@ public partial class NewModGUI : Control
 
         if (string.IsNullOrWhiteSpace(editedInfo.InternalName))
         {
-            SetError(TranslationServer.Translate("INTERNAL_NAME_REQUIRED"));
+            SetError(Localization.Translate("INTERNAL_NAME_REQUIRED"));
             return null;
         }
 
         if (!char.IsUpper(editedInfo.InternalName, 0))
         {
-            SetError(TranslationServer.Translate("INTERNAL_NAME_REQUIRES_CAPITAL"));
+            SetError(Localization.Translate("INTERNAL_NAME_REQUIRES_CAPITAL"));
             return null;
         }
 
         if (ModLoader.LoadModInfo(editedInfo.InternalName, false) != null)
         {
-            SetError(TranslationServer.Translate("INTERNAL_NAME_IN_USE"));
+            SetError(Localization.Translate("INTERNAL_NAME_IN_USE"));
             return null;
         }
 
@@ -309,7 +309,7 @@ public partial class NewModGUI : Control
         }
         catch (JsonSerializationException e)
         {
-            SetError(TranslationServer.Translate("MISSING_OR_INVALID_REQUIRED_FIELD").FormatSafe(e.Message));
+            SetError(Localization.Translate("MISSING_OR_INVALID_REQUIRED_FIELD").FormatSafe(e.Message));
             return null;
         }
 
@@ -319,7 +319,7 @@ public partial class NewModGUI : Control
         }
         catch (Exception e)
         {
-            SetError(TranslationServer.Translate("ADDITIONAL_VALIDATION_FAILED").FormatSafe(e.Message));
+            SetError(Localization.Translate("ADDITIONAL_VALIDATION_FAILED").FormatSafe(e.Message));
             return null;
         }
 
@@ -333,7 +333,7 @@ public partial class NewModGUI : Control
             ClearError();
         }
 
-        errorDisplay.Text = TranslationServer.Translate("FORM_ERROR_MESSAGE").FormatSafe(message);
+        errorDisplay.Text = Localization.Translate("FORM_ERROR_MESSAGE").FormatSafe(message);
     }
 
     private void ClearError()

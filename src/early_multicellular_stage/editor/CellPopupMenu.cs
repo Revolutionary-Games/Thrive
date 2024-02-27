@@ -55,7 +55,7 @@ public partial class CellPopupMenu : HexPopupMenu
         }
         else
         {
-            titleLabel.Text = TranslationServer.Translate("MULTIPLE_CELLS");
+            titleLabel.Text = Localization.Translate("MULTIPLE_CELLS");
         }
     }
 

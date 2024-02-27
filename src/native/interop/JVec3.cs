@@ -90,8 +90,8 @@ public struct JVecF3 : IEquatable<JVecF3>
         unchecked
         {
             var hashCode = x.GetHashCode();
-            hashCode = (hashCode * 397) ^ y.GetHashCode();
-            hashCode = (hashCode * 401) ^ z.GetHashCode();
+            hashCode = hashCode * 397 ^ y.GetHashCode();
+            hashCode = hashCode * 401 ^ z.GetHashCode();
             return hashCode;
         }
     }

@@ -3,7 +3,7 @@
 /// <summary>
 ///   Helper class to contain callbacks for the custom tooltips to make them react to things.
 /// </summary>
-public class ToolTipCallbackData : Reference
+public partial class ToolTipCallbackData : RefCounted
 {
     public ToolTipCallbackData(Control toolTipable, ICustomToolTip tooltip, bool autoUnregisterOnTreeExit)
     {

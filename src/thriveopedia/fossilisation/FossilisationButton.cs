@@ -76,6 +76,6 @@ public partial class FossilisationButton : TextureButton
     private void OnPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnFossilisationDialogOpenedEventHandler), this);
+        EmitSignal(SignalName.OnFossilisationDialogOpened, this);
     }
 }

@@ -281,7 +281,7 @@
             Vector3? predator =
                 GetNearestPredatorItem(ref health, ref ourSpecies, ref engulfer, ref position, speciesFear)?.Position;
             if (predator.HasValue && position.Position.DistanceSquaredTo(predator.Value) <
-                (1500.0 * speciesFear / Constants.MAX_SPECIES_FEAR))
+                1500.0 * speciesFear / Constants.MAX_SPECIES_FEAR)
             {
                 FleeFromPredators(ref position, ref ai, ref control, ref organelles, compounds, entity, predator.Value,
                     speciesFocus, speciesActivity, speciesAggression, speciesFear, random);
@@ -561,7 +561,7 @@
                         position.Position.DistanceSquaredTo(focused.Get<WorldPosition>().Position);
                     if (!focused.Get<Health>().Dead &&
                         focused.Get<Engulfable>().PhagocytosisStep == PhagocytosisPhase.None && distanceToFocusedPrey <
-                        (3500.0f * speciesFocus / Constants.MAX_SPECIES_FOCUS))
+                        3500.0f * speciesFocus / Constants.MAX_SPECIES_FOCUS)
                     {
                         if (distanceToFocusedPrey < ai.PursuitThreshold)
                         {
@@ -770,7 +770,7 @@
             CompoundBag compounds, float speciesActivity, float speciesFocus, Random random)
         {
             // More active species just try to get distance to avoid over-clustering
-            if (RollCheck(speciesActivity, Constants.MAX_SPECIES_ACTIVITY + (Constants.MAX_SPECIES_ACTIVITY / 2),
+            if (RollCheck(speciesActivity, Constants.MAX_SPECIES_ACTIVITY + Constants.MAX_SPECIES_ACTIVITY / 2,
                     random))
             {
                 control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
@@ -829,7 +829,7 @@
                         weight :
                         0).First().Target;
                 ai.PursuitThreshold = position.Position.DistanceSquaredTo(ai.LastSmelledCompoundPosition.Value)
-                    * (1 + (speciesFocus / Constants.MAX_SPECIES_FOCUS));
+                    * (1 + speciesFocus / Constants.MAX_SPECIES_FOCUS);
             }
             else
             {
@@ -1011,7 +1011,7 @@
                     // Hold fire until the target is lined up.
                     // TODO: verify that this calculation is now correct, this used to use just the angle to the world
                     // look at point which certainly wasn't correct when the microbe was not positioned at world origin
-                    var currentLookDirection = position.Rotation.Xform(Vector3.Forward);
+                    var currentLookDirection = position.Rotation * Vector3.Forward;
 
                     if (currentLookDirection.Normalized()
                             .AngleTo((control.LookAtPoint - position.Position).Normalized()) <
@@ -1041,7 +1041,7 @@
             return choosingToEngulf &&
                 targetSpecies.ID != ourSpecies.ID && (
                     choosingToAttackWithToxin
-                    || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+                    || sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ);
         }
 
         private bool CanShootToxin(CompoundBag compounds, float speciesFocus)

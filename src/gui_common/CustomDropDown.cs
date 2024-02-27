@@ -42,10 +42,15 @@ public partial class CustomDropDown : MenuButton
         // Set the custom icon size
         iconSize = new Vector2(checkSize.X - 2, checkSize.Y - 2);
 
-        Popup.ClipContents = true;
+        // TODO: verify this is correct, this used to be applied to the popup
+        // Popup.ClipContents = true;
+        ClipContents = true;
 
-        Connect("about_to_show", new Callable(this, nameof(OnPopupAboutToShow)));
-        Popup.Connect("draw", new Callable(this, nameof(RedrawPopup)));
+        Connect(MenuButton.SignalName.AboutToPopup, new Callable(this, nameof(OnPopupAboutToShow)));
+
+        // TODO: verify this works, this signal used to be registered on the popup
+        /*Popup.*/
+        Connect(CanvasItem.SignalName.Draw, new Callable(this, nameof(RedrawPopup)));
     }
 
     public override void _Draw()

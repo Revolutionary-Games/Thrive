@@ -202,7 +202,7 @@ public partial class CellStatsIndicator : HBoxContainer
         if (descriptionLabel == null)
             return;
 
-        descriptionLabel.Text = TranslationServer.Translate(Description);
+        descriptionLabel.Text = Localization.Translate(Description);
     }
 
     private void UpdateValue()

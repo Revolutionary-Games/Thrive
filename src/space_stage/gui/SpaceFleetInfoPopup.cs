@@ -38,7 +38,7 @@ public partial class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
         var target = OpenedForUnit;
         if (target != null)
         {
-            EmitSignal(nameof(OnConstructOptionSelectedEventHandler), target);
+            EmitSignal(SignalName.OnConstructOptionSelected, target);
         }
         else
         {

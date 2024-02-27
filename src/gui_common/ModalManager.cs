@@ -48,7 +48,7 @@ public partial class ModalManager : NodeWithInput
         canvasLayer = GetNode<CanvasLayer>("CanvasLayer");
         activeModalContainer = canvasLayer.GetNode<Control>("ActiveModalContainer");
 
-        activeModalContainer.SetAsTopLevel(true);
+        activeModalContainer.TopLevel = true;
     }
 
     public override void _Process(double delta)
@@ -79,8 +79,7 @@ public partial class ModalManager : NodeWithInput
         modalStack.AddToFront(popup);
         modalsDirty = true;
 
-        var binds = new Array { popup };
-        popup.CheckAndConnect(nameof(TopLevelContainer.ClosedEventHandler), this, nameof(OnModalLost), binds,
+        popup.CheckAndConnect(TopLevelContainer.SignalName.Closed, Callable.From(() => OnModalLost(popup)),
             (uint)ConnectFlags.OneShot);
     }
 
@@ -101,7 +100,7 @@ public partial class ModalManager : NodeWithInput
         // This is emitted before closing to allow window using components to differentiate between "cancel" and
         // "any other reason for closing" in case some logic can be simplified by handling just those two situations.
         if (popup is CustomWindow dialog)
-            dialog.EmitSignal(nameof(CustomWindow.CanceledEventHandler));
+            dialog.EmitSignal(CustomWindow.SignalName.Canceled);
 
         popup.Close();
         popup.Notification(Control.NotificationModalClose);
@@ -192,8 +191,8 @@ public partial class ModalManager : NodeWithInput
 
             // Don't count mouse wheel, this is the original Godot behavior
             if (modalStack.Count <= 0 || mouseButton.ButtonIndex is
-                    (int)ButtonList.WheelDown or (int)ButtonList.WheelUp or
-                    (int)ButtonList.WheelLeft or (int)ButtonList.WheelRight)
+                    MouseButton.WheelDown or MouseButton.WheelUp or
+                    MouseButton.WheelLeft or MouseButton.WheelRight)
             {
                 return;
             }
@@ -203,7 +202,7 @@ public partial class ModalManager : NodeWithInput
             if (!top.Exclusive)
             {
                 if (top is CustomWindow dialog)
-                    dialog.EmitSignal(nameof(CustomWindow.CanceledEventHandler));
+                    dialog.EmitSignal(CustomWindow.SignalName.Canceled);
 
                 // The crux of the custom modal system, to have an overridable hide behavior!
                 top.Close();

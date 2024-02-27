@@ -61,20 +61,20 @@ public partial class GodToolsPopup : CustomWindow
         switch (entity)
         {
             case SpaceFleet:
-                AddActionButton(TranslationServer.Translate("ACTION_DUPLICATE_UNITS"), nameof(OnDuplicateUnits));
+                AddActionButton(Localization.Translate("ACTION_DUPLICATE_UNITS"), nameof(OnDuplicateUnits));
                 break;
             case PlacedPlanet:
-                AddActionButton(TranslationServer.Translate("ACTION_DOUBLE_POPULATION"), nameof(OnDoublePopulation));
-                AddActionButton(TranslationServer.Translate("ACTION_HALF_POPULATION"), nameof(OnHalfPopulation));
+                AddActionButton(Localization.Translate("ACTION_DOUBLE_POPULATION"), nameof(OnDoublePopulation));
+                AddActionButton(Localization.Translate("ACTION_HALF_POPULATION"), nameof(OnHalfPopulation));
                 break;
         }
 
         if (entity is Node3D)
         {
-            AddActionButton(TranslationServer.Translate("ACTION_TELEPORT"), nameof(OnTeleportState), true);
+            AddActionButton(Localization.Translate("ACTION_TELEPORT"), nameof(OnTeleportState), true);
         }
 
-        AddActionButton(TranslationServer.Translate("ACTION_DELETE"), nameof(OnDelete));
+        AddActionButton(Localization.Translate("ACTION_DELETE"), nameof(OnDelete));
 
         Open(false);
 
@@ -143,7 +143,7 @@ public partial class GodToolsPopup : CustomWindow
         }
         else
         {
-            button.Connect("pressed", new Callable(this, methodName));
+            button.Connect(BaseButton.SignalName.Pressed, new Callable(this, methodName));
         }
 
         actionButtonsContainer.AddChild(button);

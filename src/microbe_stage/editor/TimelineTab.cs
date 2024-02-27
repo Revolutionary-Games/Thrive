@@ -227,7 +227,7 @@ public partial class TimelineTab : PanelContainer
             var timePeriodLabel = new Label
             {
                 Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", data.TimePeriod) + " "
-                    + TranslationServer.Translate("MEGA_YEARS"),
+                    + Localization.Translate("MEGA_YEARS"),
                 CustomMinimumSize = new Vector2(0, 55),
                 VerticalAlignment = VerticalAlignment.Center,
             };
@@ -267,7 +267,7 @@ public partial class TimelineTab : PanelContainer
                 var eventLabel = customRichTextLabelScene.Instantiate<CustomRichTextLabel>();
                 eventLabel.SizeFlagsHorizontal = SizeFlags.ExpandFill;
                 eventLabel.ExtendedBbcode = entry.Description.ToString();
-                eventLabel.FitContentHeight = true;
+                eventLabel.FitContent = true;
 
                 eventLabel.AddThemeFontOverride("normal_font", GetThemeFont("jura_almost_smaller", "Fonts"));
                 eventLabel.AddThemeFontOverride("bold_font", GetThemeFont("jura_demibold_almost_smaller", "Fonts"));
@@ -284,7 +284,7 @@ public partial class TimelineTab : PanelContainer
             {
                 var noneLabelContainer = new HBoxContainer();
                 var noneLabelSpacer = new Control { CustomMinimumSize = new Vector2(25, 25) };
-                var noneLabel = new Label { Text = TranslationServer.Translate("NO_EVENTS_RECORDED") };
+                var noneLabel = new Label { Text = Localization.Translate("NO_EVENTS_RECORDED") };
 
                 noneLabelContainer.AddThemeConstantOverride("separation", 5);
                 noneLabel.AddThemeFontOverride("font", GetThemeFont("jura_almost_smaller", "Fonts"));

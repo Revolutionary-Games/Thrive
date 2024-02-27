@@ -521,7 +521,8 @@ public partial class CellEditorComponent :
 
     public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
     {
-        organelleModel.Transform = new Transform3D(MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation),
+        organelleModel.Transform = new Transform3D(
+            new Basis(MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation)),
             organelle.OrganelleModelPosition);
 
         organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
@@ -710,7 +711,7 @@ public partial class CellEditorComponent :
             // TODO: implement random cell type name generator
             componentBottomLeftButtons.ShowRandomizeButton = false;
 
-            componentBottomLeftButtons.SetNamePlaceholder(TranslationServer.Translate("CELL_TYPE_NAME"));
+            componentBottomLeftButtons.SetNamePlaceholder(Localization.Translate("CELL_TYPE_NAME"));
 
             autoEvoPredictionPanel.Visible = false;
 
@@ -1149,8 +1150,7 @@ public partial class CellEditorComponent :
 
     public float CalculateHitpoints()
     {
-        var maxHitpoints = Membrane.Hitpoints +
-            (Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+        var maxHitpoints = Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
 
         return maxHitpoints;
     }
@@ -1481,8 +1481,8 @@ public partial class CellEditorComponent :
             organelleMenu.EnableDeleteOption = false;
 
             organelleMenu.DeleteOptionTooltip = attemptingNucleusDelete ?
-                TranslationServer.Translate("NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP") :
-                TranslationServer.Translate("LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP");
+                Localization.Translate("NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP") :
+                Localization.Translate("LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP");
         }
         else
         {
@@ -1820,7 +1820,9 @@ public partial class CellEditorComponent :
         // 2 - you put an organelle that requires nucleus but you don't have one
         if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.RequiresNucleus && !HasNucleus))
+        {
             return null;
+        }
 
         if (organelle.Definition.Unique)
             DeselectOrganelleToPlace();
@@ -2170,7 +2172,8 @@ public partial class CellEditorComponent :
             // Only add items with valid organelles to dictionary
             placeablePartSelectionElements.Add(organelle, control);
 
-            control.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler), new Callable(this, nameof(OnOrganelleToPlaceSelected)));
+            control.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler),
+                new Callable(this, nameof(OnOrganelleToPlaceSelected)));
         }
 
         foreach (var membraneType in simulationParameters.GetAllMembranes().OrderBy(m => m.EditorButtonOrder))
@@ -2188,7 +2191,8 @@ public partial class CellEditorComponent :
 
             membraneSelectionElements.Add(membraneType, control);
 
-            control.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler), new Callable(this, nameof(OnMembraneSelected)));
+            control.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler),
+                new Callable(this, nameof(OnMembraneSelected)));
         }
 
         // Multicellular parts only available (visible) in multicellular
@@ -2409,18 +2413,18 @@ public partial class CellEditorComponent :
             autoEvoPredictionFailedLabel.Hide();
         }
 
-        var energyFormat = TranslationServer.Translate("ENERGY_IN_PATCH_SHORT");
+        var energyFormat = Localization.Translate("ENERGY_IN_PATCH_SHORT");
 
         if (!string.IsNullOrEmpty(bestPatchName))
         {
             var formatted = StringUtils.ThreeDigitFormat(bestPatchEnergyGathered);
 
             bestPatchLabel.Text =
-                energyFormat.FormatSafe(TranslationServer.Translate(bestPatchName), formatted);
+                energyFormat.FormatSafe(Localization.Translate(bestPatchName), formatted);
         }
         else
         {
-            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+            bestPatchLabel.Text = Localization.Translate("N_A");
         }
 
         if (!string.IsNullOrEmpty(worstPatchName))
@@ -2428,18 +2432,18 @@ public partial class CellEditorComponent :
             var formatted = StringUtils.ThreeDigitFormat(worstPatchEnergyGathered);
 
             worstPatchLabel.Text =
-                energyFormat.FormatSafe(TranslationServer.Translate(worstPatchName), formatted);
+                energyFormat.FormatSafe(Localization.Translate(worstPatchName), formatted);
         }
         else
         {
-            worstPatchLabel.Text = TranslationServer.Translate("N_A");
+            worstPatchLabel.Text = Localization.Translate("N_A");
         }
     }
 
     private void DummyKeepTranslation()
     {
         // This keeps this translation string existing if we ever still want to use worst and best population numbers
-        TranslationServer.Translate("POPULATION_IN_PATCH_SHORT");
+        Localization.Translate("POPULATION_IN_PATCH_SHORT");
     }
 
     private void OpenAutoEvoPredictionDetails()
@@ -2603,7 +2607,7 @@ public partial class CellEditorComponent :
     {
         autoEvoPredictionExplanationLabel.ExtendedBbcode = predictionDetailsText != null ?
             predictionDetailsText.ToString() :
-            TranslationServer.Translate("NO_DATA_TO_SHOW");
+            Localization.Translate("NO_DATA_TO_SHOW");
     }
 
     private OrganelleDefinition GetOrganelleDefinition(string name)

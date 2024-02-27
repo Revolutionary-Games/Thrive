@@ -35,6 +35,6 @@ public partial class VersionNumber : Label
         }
 
         var time = info.BuiltAt.ToLocalTime().ToString("G", CultureInfo.CurrentCulture);
-        Text = TranslationServer.Translate("DEVBUILD_VERSION_INFO").FormatSafe(info.Commit, info.Branch, time, version);
+        Text = Localization.Translate("DEVBUILD_VERSION_INFO").FormatSafe(info.Commit, info.Branch, time, version);
     }
 }

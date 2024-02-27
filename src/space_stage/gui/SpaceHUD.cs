@@ -69,11 +69,11 @@ public partial class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSele
 
         // Setup multi level god tools signals, these are done this way as they would be pretty annoying to hook up
         // all over the place purely through Godot
-        fleetPopup.Connect(nameof(StrategicUnitScreen<SpaceFleet>.OnOpenGodToolsEventHandler), containedInStage,
-            nameof(StageBase.OpenGodToolsForEntity));
+        fleetPopup.Connect(StrategicUnitScreen<SpaceFleet>.SignalName.OnOpenGodTools, new Callable(containedInStage,
+            nameof(StageBase.OpenGodToolsForEntity)));
 
-        planetScreenPopup.Connect(nameof(PlanetScreen.OnOpenGodToolsEventHandler), containedInStage,
-            nameof(StageBase.OpenGodToolsForEntity));
+        planetScreenPopup.Connect(PlanetScreen.SignalName.OnOpenGodTools, new Callable(containedInStage,
+            nameof(StageBase.OpenGodToolsForEntity)));
     }
 
     public void OnAscended()
@@ -178,6 +178,6 @@ public partial class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSele
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnDescendPressedEventHandler));
+        EmitSignal(SignalName.OnDescendPressed);
     }
 }

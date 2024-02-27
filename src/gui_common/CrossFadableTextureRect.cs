@@ -57,7 +57,7 @@ public partial class CrossFadableTextureRect : TextureRect
         _ = key;
 
         Texture = Image;
-        EmitSignal(nameof(FadedEventHandler));
+        EmitSignal(SignalName.Faded);
 
         tween.InterpolateProperty(this, "modulate", null, Colors.White, FadeDuration);
         tween.Start();

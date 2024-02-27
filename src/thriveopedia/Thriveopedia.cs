@@ -335,7 +335,7 @@ public partial class Thriveopedia : ControlWithInput
         if (page.ParentPageName != null && !allPages.Keys.Any(p => p.PageName == page.ParentPageName))
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
 
-        page.Connect(nameof(ThriveopediaPage.OnSceneChangedEventHandler), new Callable(this, nameof(HandleSceneChanged)));
+        page.Connect(ThriveopediaPage.SignalName.OnSceneChanged, new Callable(this, nameof(HandleSceneChanged)));
         pageContainer.AddChild(page);
 
         var treeItem = CreateTreeItem(page, page.ParentPageName);
@@ -513,7 +513,7 @@ public partial class Thriveopedia : ControlWithInput
 
     private void HandleSceneChanged()
     {
-        EmitSignal(nameof(OnSceneChangedEventHandler));
+        EmitSignal(SignalName.OnSceneChanged);
     }
 
     private void OnClosePressed()
@@ -525,7 +525,7 @@ public partial class Thriveopedia : ControlWithInput
 
     private void Exit()
     {
-        EmitSignal(nameof(OnThriveopediaClosedEventHandler));
+        EmitSignal(SignalName.OnThriveopediaClosed);
     }
 
     private void PrintErrorAboutCurrentGame()

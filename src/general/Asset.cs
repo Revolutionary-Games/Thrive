@@ -47,11 +47,11 @@ public class Asset
 
         if (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Artist))
         {
-            result.Append(TranslationServer.Translate("ARTWORK_TITLE").FormatSafe(Title, Artist));
+            result.Append(Localization.Translate("ARTWORK_TITLE").FormatSafe(Title, Artist));
         }
         else if (string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Artist))
         {
-            result.Append(TranslationServer.Translate("ART_BY").FormatSafe(Artist));
+            result.Append(Localization.Translate("ART_BY").FormatSafe(Artist));
         }
         else if (!string.IsNullOrEmpty(Title) && string.IsNullOrEmpty(Artist))
         {

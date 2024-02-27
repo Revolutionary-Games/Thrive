@@ -543,9 +543,9 @@ public class Settings
     /// <returns>The current inputs</returns>
     public static InputDataList GetCurrentlyAppliedControls()
     {
-        return new InputDataList(InputMap.GetActions().OfType<string>()
-            .ToDictionary(p => p,
-                p => InputMap.GetActionList(p).OfType<InputEvent>().Select(x => new SpecifiedInputKey(x)).ToList())!);
+        return new InputDataList(InputMap.GetActions()
+            .ToDictionary(p => p.ToString(),
+                p => InputMap.ActionGetEvents(p).Select(x => new SpecifiedInputKey(x)).ToList()));
     }
 
     /// <summary>
@@ -732,7 +732,8 @@ public class Settings
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa3D = MSAAResolution;
 
         // Values less than 0 are undefined behaviour
-        Engine.TargetFps = MaxFramesPerSecond >= 0 ? MaxFramesPerSecond : 0;
+        int max = MaxFramesPerSecond;
+        Engine.MaxFps = max >= 0 ? max : 0;
         ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 
@@ -780,8 +781,15 @@ public class Settings
     /// </summary>
     public void ApplyWindowSettings()
     {
-        OS.WindowFullscreen = FullScreen;
-        OS.VsyncEnabled = VSync;
+        // TODO: add exclusive fullscreen mode option
+        DisplayServer.WindowSetMode(FullScreen.Value ?
+            DisplayServer.WindowMode.Fullscreen :
+            DisplayServer.WindowMode.Windowed);
+
+        // TODO: switch the setting to allow specifying all of the 4 possible values
+        DisplayServer.WindowSetVsyncMode(VSync.Value ?
+            DisplayServer.VSyncMode.Enabled :
+            DisplayServer.VSyncMode.Disabled);
     }
 
     /// <summary>

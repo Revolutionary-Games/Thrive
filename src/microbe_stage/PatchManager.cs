@@ -378,7 +378,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         public override int GetHashCode(CreatedSpawner obj)
         {
-            return (obj.Name.GetHashCode() * 439) ^ (obj.Spawner.GetHashCode() * 443);
+            return obj.Name.GetHashCode() * 439 ^ obj.Spawner.GetHashCode() * 443;
         }
     }
 }

@@ -77,8 +77,8 @@ public static class TranslationHelper
     public static string TranslateFeatureFlag(bool enabled)
     {
         return enabled ?
-            TranslationServer.Translate("FEATURE_ENABLED") :
-            TranslationServer.Translate("FEATURE_DISABLED");
+            Localization.Translate("FEATURE_ENABLED") :
+            Localization.Translate("FEATURE_DISABLED");
     }
 
     private static string GetTranslatedText(Type type, object instance, object[] translateAttributes)
@@ -90,7 +90,7 @@ public static class TranslationHelper
         if (string.IsNullOrWhiteSpace(source))
             throw new Exception("Text to translate from is empty");
 
-        return TranslationServer.Translate(source);
+        return Localization.Translate(source);
     }
 
     private static string? GetValue(Type type, object instance, TranslateFromAttribute data)

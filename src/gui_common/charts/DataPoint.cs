@@ -119,14 +119,14 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         if (DataPointCache.Count == 0)
         {
             return new DataPoint(x, y)
-                { IconType = iconType, Size = size, MarkerColour = markerColour, Draw = draw, coordinate = coordinate };
+                { IconType = iconType, PointSize = size, MarkerColour = markerColour, Draw = draw, coordinate = coordinate };
         }
 
         var point = DataPointCache.Pop();
         point.X = x;
         point.Y = y;
         point.IconType = iconType;
-        point.Size = size;
+        point.PointSize = size;
         point.MarkerColour = markerColour;
         point.Draw = draw;
         point.coordinate = coordinate;
@@ -171,7 +171,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         if (!Draw)
             return;
 
-        var vectorSize = new Vector2(Size, Size);
+        var vectorSize = new Vector2(PointSize, PointSize);
 
         switch (IconType)
         {
@@ -180,14 +180,14 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                 // Circle filler
                 if (isMouseOver)
                 {
-                    DrawCircle(Size / 2, Size / 2, MarkerFillerHighlightedColour);
+                    DrawCircle(Size * 0.5f, PointSize * 0.5f, MarkerFillerHighlightedColour);
                 }
                 else
                 {
-                    DrawCircle(Size / 2, Size / 2, MarkerFillerColour);
+                    DrawCircle(Size * 0.5f, PointSize * 0.5f, MarkerFillerColour);
                 }
 
-                DrawTextureRect(graphMarkerCircle, new Rect2(Size / 2 - vectorSize / 2, vectorSize), false,
+                DrawTextureRect(graphMarkerCircle, new Rect2(Size * 0.5f - vectorSize * 0.5f, vectorSize), false,
                     MarkerColour);
 
                 break;
@@ -200,7 +200,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                 if (isMouseOver)
                     color = MarkerColour.Lightened(0.5f);
 
-                DrawTextureRect(graphMarkerCross, new Rect2(Size / 2 - vectorSize / 2, vectorSize), false, color);
+                DrawTextureRect(graphMarkerCross, new Rect2(Size * 0.5f - vectorSize * 0.5f, vectorSize), false, color);
                 break;
             }
 
@@ -211,7 +211,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                 if (isMouseOver)
                     colour = MarkerColour.Lightened(0.5f);
 
-                DrawTextureRect(graphMarkerSkull, new Rect2(Size / 2 - vectorSize / 2, vectorSize), false, colour);
+                DrawTextureRect(graphMarkerSkull, new Rect2(Size * 0.5f - vectorSize * 0.5f, vectorSize), false, colour);
                 break;
             }
 
@@ -235,11 +235,11 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 
         if (!useTween)
         {
-            Position = coordinate - Size / 2;
+            Position = coordinate - Size * 0.5f;
         }
         else
         {
-            tween.InterpolateProperty(this, "rect_position", Position, coordinate - Size / 2, duration,
+            tween.InterpolateProperty(this, "rect_position", Position, coordinate - Size * 0.5f, duration,
                 transitionType, easeType);
             tween.Start();
         }
@@ -266,7 +266,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         {
             IconType = IconType,
             Coordinate = Coordinate,
-            Size = Size,
+            PointSize = PointSize,
             MarkerFillerColour = MarkerFillerColour,
             MarkerFillerHighlightedColour = MarkerFillerHighlightedColour,
             MarkerColour = MarkerColour,
@@ -286,6 +286,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 
     public override string ToString()
     {
+        // ReSharper disable once StringLiteralTypo
         return $"Value: {X}, {Y} Coord: {Coordinate}";
     }
 

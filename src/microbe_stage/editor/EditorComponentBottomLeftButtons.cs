@@ -184,7 +184,7 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
 
     public void OnClickedOffName()
     {
-        var focused = GetFocusOwner();
+        var focused = GetViewport().GuiGetFocusOwner();
 
         // Ignore if the species name line edit wasn't focused or if one of our controls is hovered
         if (focused != speciesNameEdit || controlsHoveredOver)
@@ -225,25 +225,25 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
     private void OnSymmetryClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnSymmetryChangedEventHandler));
+        EmitSignal(SignalName.OnSymmetryChanged);
     }
 
     private void UndoPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnUndoEventHandler));
+        EmitSignal(SignalName.OnUndo);
     }
 
     private void RedoPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnRedoEventHandler));
+        EmitSignal(SignalName.OnRedo);
     }
 
     private void OnNewButtonClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnNewClickedEventHandler));
+        EmitSignal(SignalName.OnNewClicked);
     }
 
     private void OnNameTextChanged(string newText)
@@ -253,13 +253,13 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
             ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX) && ValidateNameLength(newText));
         }
 
-        EmitSignal(nameof(OnNameSetEventHandler), newText);
+        EmitSignal(SignalName.OnNameSet, newText);
     }
 
     private void OnNameTextEntered(string newText)
     {
         PerformValidation(newText);
-        EmitSignal(nameof(OnNameSetEventHandler), newText);
+        EmitSignal(SignalName.OnNameSet, newText);
     }
 
     private void PerformValidation(string text)
@@ -281,11 +281,11 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
                 // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
                 if (!nameLengthValid)
                 {
-                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPECIES_NAME_TOO_LONG_POPUP"), 2.5f);
+                    ToolTipManager.Instance.ShowPopup(Localization.Translate("SPECIES_NAME_TOO_LONG_POPUP"), 2.5f);
                 }
                 else
                 {
-                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+                    ToolTipManager.Instance.ShowPopup(Localization.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
                 }
 
                 speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
@@ -317,7 +317,7 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
         }
         else
         {
-            EmitSignal(nameof(OnRandomNameEventHandler));
+            EmitSignal(SignalName.OnRandomName);
         }
     }
 

@@ -30,7 +30,7 @@ public partial class AutoEvoExploringTool
         }
 
         worldExportButton.Disabled = false;
-        exportSuccessNotificationDialog.DialogText = TranslationServer.Translate("WORLD_EXPORT_SUCCESS_MESSAGE")
+        exportSuccessNotificationDialog.DialogText = Localization.Translate("WORLD_EXPORT_SUCCESS_MESSAGE")
             .FormatSafe(ProjectSettings.GlobalizePath(exportPath));
 
         exportSuccessNotificationDialog.PopupCenteredShrink();

@@ -286,7 +286,7 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         var limit = Constants.BRAIN_POWER_REQUIRED_FOR_AWAKENING;
 
         awakenButton.Disabled = brainPower < limit;
-        awakenButton.Text = TranslationServer.Translate("ACTION_AWAKEN").FormatSafe(brainPower, limit);
+        awakenButton.Text = Localization.Translate("ACTION_AWAKEN").FormatSafe(brainPower, limit);
     }
 
     private void OnAwakenConfirmed()
@@ -298,16 +298,16 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
 
     private void ForwardInteractButton()
     {
-        EmitSignal(nameof(OnInteractButtonPressedEventHandler));
+        EmitSignal(SignalName.OnInteractButtonPressed);
     }
 
     private void ForwardOpenInventory()
     {
-        EmitSignal(nameof(OnOpenInventoryPressedEventHandler));
+        EmitSignal(SignalName.OnOpenInventoryPressed);
     }
 
     private void ForwardBuildPressed()
     {
-        EmitSignal(nameof(OnOpenBuildPressedEventHandler));
+        EmitSignal(SignalName.OnOpenBuildPressed);
     }
 }

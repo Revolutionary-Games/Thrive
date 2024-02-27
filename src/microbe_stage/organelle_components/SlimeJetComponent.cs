@@ -120,7 +120,7 @@ public class SlimeJetComponent : IOrganelleComponent
         {
             var extraRotation = entity.Get<AttachedToEntity>().RelativeRotation;
 
-            return extraRotation.Xform(direction) * force;
+            return extraRotation * direction * force;
         }
 
         return direction * force;

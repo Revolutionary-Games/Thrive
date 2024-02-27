@@ -51,7 +51,7 @@ public class CustomImmediateMesh : IDisposable
         Mesh = new ArrayMesh();
 
         // Setup the mesh data we don't need to change
-        arrays = new Array((int)Godot.Mesh.ArrayType.Max);
+        arrays = new Array();
         arrays.Resize((int)Godot.Mesh.ArrayType.Max);
     }
 

@@ -633,7 +633,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
         bool reference = ForceReferenceWrite ||
             serializer.PreserveReferencesHandling != PreserveReferencesHandling.None ||
-            (contract.IsReference == true);
+            contract.IsReference == true;
 
         writer.WriteStartObject();
 

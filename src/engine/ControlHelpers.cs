@@ -7,6 +7,8 @@ using Godot.Collections;
 /// </summary>
 public static class ControlHelpers
 {
+    private static StringName godotRefreshDrawMethodName = "queue_redraw";
+
     /// <summary>
     ///   Shows the popup in the center of the screen and shrinks it to the minimum size,
     ///   alternative to PopupCentered.
@@ -19,7 +21,7 @@ public static class ControlHelpers
     /// </remarks>
     public static void PopupCenteredShrink(this Popup popup, bool runSizeUnstuck = true)
     {
-        popup.PopupCentered(popup.GetMinimumSize());
+        popup.PopupCentered(popup.GetContentsMinimumSize().RoundedInt());
 
         // In case the popup sizing stuck (this happens sometimes)
         if (runSizeUnstuck)
@@ -65,7 +67,7 @@ public static class ControlHelpers
     /// </param>
     public static void BecomeFocusForwarder(this Control control, bool adjustNextNodePreviousLinks = true)
     {
-        control.Connect("focus_entered", new Callable(GUICommon.Instance, nameof(GUICommon.ProxyFocusForward)), new Array(control));
+        control.Connect(Control.SignalName.FocusEntered, Callable.From(() => GUICommon.Instance.ProxyFocusForward(control)));
 
         if (!adjustNextNodePreviousLinks)
             return;
@@ -161,9 +163,9 @@ public static class ControlHelpers
 
     public static void RegisterCustomFocusDrawer(this Control control)
     {
-        control.Connect("draw", new Callable(GUICommon.Instance, nameof(GUICommon.ProxyDrawFocus)), new Array(control));
-        control.Connect("focus_entered", new Callable(control, "update"));
-        control.Connect("focus_exited", new Callable(control, "update"));
+        control.Connect(CanvasItem.SignalName.Draw, Callable.From(() => GUICommon.Instance.ProxyDrawFocus(control)));
+        control.Connect(Control.SignalName.FocusEntered, new Callable(control, godotRefreshDrawMethodName));
+        control.Connect(Control.SignalName.FocusExited, new Callable(control, godotRefreshDrawMethodName));
     }
 
     /// <summary>

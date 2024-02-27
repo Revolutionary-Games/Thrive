@@ -99,11 +99,11 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
     {
         return type switch
         {
-            BehaviouralValueType.Aggression => TranslationServer.Translate("BEHAVIOUR_AGGRESSION"),
-            BehaviouralValueType.Opportunism => TranslationServer.Translate("BEHAVIOUR_OPPORTUNISM"),
-            BehaviouralValueType.Fear => TranslationServer.Translate("BEHAVIOUR_FEAR"),
-            BehaviouralValueType.Activity => TranslationServer.Translate("BEHAVIOUR_ACTIVITY"),
-            BehaviouralValueType.Focus => TranslationServer.Translate("BEHAVIOUR_FOCUS"),
+            BehaviouralValueType.Aggression => Localization.Translate("BEHAVIOUR_AGGRESSION"),
+            BehaviouralValueType.Opportunism => Localization.Translate("BEHAVIOUR_OPPORTUNISM"),
+            BehaviouralValueType.Fear => Localization.Translate("BEHAVIOUR_FEAR"),
+            BehaviouralValueType.Activity => Localization.Translate("BEHAVIOUR_ACTIVITY"),
+            BehaviouralValueType.Focus => Localization.Translate("BEHAVIOUR_FOCUS"),
             _ => type.ToString(),
         };
     }

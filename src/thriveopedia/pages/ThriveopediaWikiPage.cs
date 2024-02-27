@@ -25,7 +25,7 @@ public abstract partial class ThriveopediaWikiPage : ThriveopediaPage
     public string Url => PageContent.Url;
 
     public override string PageName => PageContent.InternalName;
-    public override string TranslatedPageName => TranslationServer.Translate(PageContent.Name);
+    public override string TranslatedPageName => Localization.Translate(PageContent.Name);
 
     /// <summary>
     ///   Creates all wiki pages using the data in wiki.json, in order of their definition. In particular, parents must

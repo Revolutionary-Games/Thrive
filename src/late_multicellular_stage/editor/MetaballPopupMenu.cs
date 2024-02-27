@@ -55,7 +55,7 @@ public partial class MetaballPopupMenu : HexPopupMenu
         }
         else
         {
-            titleLabel.Text = TranslationServer.Translate("MULTIPLE_METABALLS");
+            titleLabel.Text = Localization.Translate("MULTIPLE_METABALLS");
         }
     }
 

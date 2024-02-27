@@ -72,7 +72,7 @@ public partial class GalleryCardModel : GalleryCard
                 instancedMesh = (MeshInstance3D)instancedScene;
             }
 
-            return new Vector3(0, instancedMesh.GetTransformedAabb().Size.Length(), 0);
+            return new Vector3(0, (instancedMesh.GlobalTransform * instancedMesh.GetAabb()).Size.Length(), 0);
         }
     }
 }

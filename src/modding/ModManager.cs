@@ -291,7 +291,7 @@ public partial class ModManager : Control
             {
                 if (throwOnError)
                 {
-                    throw new ArgumentException(TranslationServer.Translate("INVALID_ICON_PATH"));
+                    throw new ArgumentException(Localization.Translate("INVALID_ICON_PATH"));
                 }
 
                 GD.PrintErr("Invalid icon specified for mod: ", info.Icon);
@@ -305,7 +305,7 @@ public partial class ModManager : Control
             {
                 if (throwOnError)
                 {
-                    throw new ArgumentException(TranslationServer.Translate("INVALID_URL_SCHEME"));
+                    throw new ArgumentException(Localization.Translate("INVALID_URL_SCHEME"));
                 }
 
                 GD.PrintErr("Disallowed URI scheme in: ", info.InfoUrl);
@@ -317,7 +317,7 @@ public partial class ModManager : Control
         {
             if (throwOnError)
             {
-                throw new ArgumentException(TranslationServer.Translate("ASSEMBLY_CLASS_REQUIRED"));
+                throw new ArgumentException(Localization.Translate("ASSEMBLY_CLASS_REQUIRED"));
             }
 
             GD.PrintErr("AssemblyModClass must be set if ModAssembly is set (and auto harmony is not used)");
@@ -328,7 +328,7 @@ public partial class ModManager : Control
         {
             if (throwOnError)
             {
-                throw new ArgumentException(TranslationServer.Translate("ASSEMBLY_REQUIRED_WITH_HARMONY"));
+                throw new ArgumentException(Localization.Translate("ASSEMBLY_REQUIRED_WITH_HARMONY"));
             }
 
             GD.PrintErr("ModAssembly must be set if UseAutoHarmony is true");
@@ -701,7 +701,7 @@ public partial class ModManager : Control
         }
         else
         {
-            selectedModName.Text = TranslationServer.Translate("NO_SELECTED_MOD");
+            selectedModName.Text = Localization.Translate("NO_SELECTED_MOD");
             selectedModIcon.Texture = null;
             selectedModAuthor.Text = string.Empty;
             selectedModVersion.Text = string.Empty;
@@ -943,8 +943,8 @@ public partial class ModManager : Control
         fullInfoDescription.Text = info.Description;
         fullInfoLongDescription.Text = info.LongDescription;
         fullInfoFromWorkshop.Text = selectedMod!.Workshop ?
-            TranslationServer.Translate("THIS_IS_WORKSHOP_MOD") :
-            TranslationServer.Translate("THIS_IS_LOCAL_MOD");
+            Localization.Translate("THIS_IS_WORKSHOP_MOD") :
+            Localization.Translate("THIS_IS_LOCAL_MOD");
         fullInfoIconFile.Text = info.Icon;
         fullInfoInfoUrl.Text = info.InfoUrl == null ? string.Empty : info.InfoUrl.ToString();
         fullInfoLicense.Text = info.License;
@@ -955,8 +955,8 @@ public partial class ModManager : Control
         fullInfoModAssembly.Text = info.ModAssembly;
         fullInfoAssemblyModClass.Text = info.AssemblyModClass;
         fullInfoAutoHarmony.Text = info.UseAutoHarmony == true ?
-            TranslationServer.Translate("USES_FEATURE") :
-            TranslationServer.Translate("DOES_NOT_USE_FEATURE");
+            Localization.Translate("USES_FEATURE") :
+            Localization.Translate("DOES_NOT_USE_FEATURE");
 
         modFullInfoPopup.PopupCenteredShrink();
     }
@@ -1000,7 +1000,7 @@ public partial class ModManager : Control
 
         if (DirAccess.MakeDirRecursiveAbsolute(parsedData.Folder) != Error.Ok)
         {
-            modCreateErrorDialog.ErrorMessage = TranslationServer.Translate("ERROR_CREATING_FOLDER");
+            modCreateErrorDialog.ErrorMessage = Localization.Translate("ERROR_CREATING_FOLDER");
             modCreateErrorDialog.ExceptionInfo = null;
             modCreateErrorDialog.PopupCenteredShrink();
             return;
@@ -1009,7 +1009,7 @@ public partial class ModManager : Control
         using var file = FileAccess.Open(Path.Combine(parsedData.Folder, Constants.MOD_INFO_FILE_NAME), FileAccess.ModeFlags.Write);
         if (file == null)
         {
-            modCreateErrorDialog.ErrorMessage = TranslationServer.Translate("ERROR_CREATING_INFO_FILE");
+            modCreateErrorDialog.ErrorMessage = Localization.Translate("ERROR_CREATING_INFO_FILE");
             modCreateErrorDialog.ExceptionInfo = null;
             modCreateErrorDialog.PopupCenteredShrink();
             return;
@@ -1046,7 +1046,7 @@ public partial class ModManager : Control
         if (applyChangesButton.Disabled)
         {
             GUICommon.Instance.PlayButtonPressSound();
-            EmitSignal(nameof(OnClosedEventHandler));
+            EmitSignal(SignalName.OnClosed);
         }
         else
         {
@@ -1056,6 +1056,6 @@ public partial class ModManager : Control
 
     private void ConfirmBackWithUnAppliedChanges()
     {
-        EmitSignal(nameof(OnClosedEventHandler));
+        EmitSignal(SignalName.OnClosed);
     }
 }

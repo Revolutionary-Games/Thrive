@@ -18,8 +18,8 @@ public partial class CustomExpandingWordWrappedLabel : Label
     public CustomExpandingWordWrappedLabel(string text)
     {
         Text = text;
-        Align = AlignEnum.Center;
-        SizeFlagsHorizontal = (int)SizeFlags..XpandFill;
+        HorizontalAlignment = HorizontalAlignment.Center;
+        SizeFlagsHorizontal = SizeFlags.ExpandFill;
     }
 
     public override void _Notification(int what)
@@ -28,7 +28,7 @@ public partial class CustomExpandingWordWrappedLabel : Label
 
         if (what == NotificationVisibilityChanged && Visible)
         {
-            Autowrap = true;
+            AutowrapMode = TextServer.AutowrapMode.WordSmart;
         }
     }
 }

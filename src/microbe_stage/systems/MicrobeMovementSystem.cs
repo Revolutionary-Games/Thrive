@@ -155,7 +155,7 @@ namespace Systems
                 if (jetMovement == Vector3.Zero)
                     return Vector3.Zero;
 
-                return position.Rotation.Xform(jetMovement);
+                return position.Rotation * jetMovement;
             }
 
             // Ensure no cells attempt to move on the y-axis
@@ -199,7 +199,7 @@ namespace Systems
             }
 
             force *= cellProperties.MembraneType.MovementFactor -
-                (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
+                cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
 
             bool hasColony = entity.Has<MicrobeColony>();
 
@@ -251,7 +251,7 @@ namespace Systems
 
             // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
             // vector to work correctly
-            return position.Rotation.Xform(movementVector);
+            return position.Rotation * movementVector;
         }
 
         private Vector3 CalculateMovementFromSlimeJets(ref OrganelleContainer organelles)
@@ -286,7 +286,7 @@ namespace Systems
             // TODO: a proper rebalance of the algorithm would be excellent to do
             force *= microbeColony.ColonyMembers.Length * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
             var seriesValue = 1 - 1 / (float)Math.Pow(2, microbeColony.ColonyMembers.Length - 1);
-            force -= (force * 0.15f) * seriesValue;
+            force -= force * 0.15f * seriesValue;
 
             // Colony members have their movement update before organelle update, so that the movement organelles
             // see the direction

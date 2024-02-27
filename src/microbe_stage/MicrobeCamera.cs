@@ -254,7 +254,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     public void ResetHeight()
     {
         CameraHeight = DefaultCameraHeight;
-        EmitSignal(nameof(OnZoomChangedEventHandler), CameraHeight);
+        EmitSignal(SignalName.OnZoomChanged, CameraHeight);
     }
 
     /// <summary>
@@ -293,7 +293,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (CameraHeight != old)
-            EmitSignal(nameof(OnZoomChangedEventHandler), CameraHeight);
+            EmitSignal(SignalName.OnZoomChanged, CameraHeight);
 
         return true;
     }

@@ -788,7 +788,7 @@ public partial class MetaballBodyEditorComponent :
         // For now moving to descendant tree is not implement as it would be pretty tricky to get working correctly
         if (newParent != null && editedMetaballs.IsDescendantsOf(newParent, metaball))
         {
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"),
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"),
                 3.0f);
             return false;
         }
@@ -841,7 +841,7 @@ public partial class MetaballBodyEditorComponent :
 
     private void OnModifyPressed()
     {
-        EmitSignal(nameof(OnCellTypeToEditSelectedEventHandler), metaballPopupMenu.SelectedMetaballs.First().CellType.TypeName);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, metaballPopupMenu.SelectedMetaballs.First().CellType.TypeName);
     }
 
     /// <summary>
@@ -865,7 +865,7 @@ public partial class MetaballBodyEditorComponent :
                 cellTypeSelectionList.AddItem(control);
                 cellTypeSelectionButtons.Add(cellType.TypeName, control);
 
-                control.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler), new Callable(this, nameof(OnCellToPlaceSelected)));
+                control.Connect(MicrobePartSelection.SignalName.OnPartSelected, new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
             control.MPCost = Constants.METABALL_ADD_COST;
@@ -1075,7 +1075,7 @@ public partial class MetaballBodyEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnCellTypeToEditSelectedEventHandler), activeActionName);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, activeActionName);
     }
 
     private void RegenerateCellTypeIcon(CellType type)

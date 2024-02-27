@@ -234,7 +234,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
             var noProcessLabel = new Label();
             noProcessLabel.AddThemeFontOverride("font", latoBoldFont);
-            noProcessLabel.Text = TranslationServer.Translate("NO_ORGANELLE_PROCESSES");
+            noProcessLabel.Text = Localization.Translate("NO_ORGANELLE_PROCESSES");
             processList.AddChild(noProcessLabel);
             return;
         }
@@ -298,7 +298,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
             }
             else
             {
-                modifier.ModifierValue = StringUtils.FormatPositiveWithLeadingPlus(TranslationServer
+                modifier.ModifierValue = StringUtils.FormatPositiveWithLeadingPlus(Localization
                     .Translate("PERCENTAGE_VALUE")
                     .FormatSafe((deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture)), deltaValue);
             }
@@ -365,7 +365,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         if (descriptionLabel == null)
             return;
 
-        descriptionLabel.ExtendedBbcode = TranslationServer.Translate(Description);
+        descriptionLabel.ExtendedBbcode = Localization.Translate(Description);
     }
 
     private void UpdateProcessesDescription()
@@ -373,7 +373,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         if (processesDescriptionLabel == null)
             return;
 
-        processesDescriptionLabel.ExtendedBbcode = TranslationServer.Translate(ProcessesDescription);
+        processesDescriptionLabel.ExtendedBbcode = Localization.Translate(ProcessesDescription);
         processesDescriptionLabel.Visible = !string.IsNullOrEmpty(ProcessesDescription);
     }
 

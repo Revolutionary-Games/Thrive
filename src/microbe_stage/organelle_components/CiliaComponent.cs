@@ -330,7 +330,7 @@ public class CiliaComponent : IOrganelleComponent
 
         // TODO: this will need a size parameter if cilia can ever be placed on prokaryotes
         return PhysicsShape.CreateSphere(Constants.CILIA_PULLING_FORCE_FIELD_RADIUS +
-            (count * Constants.CILIA_PULL_RADIUS_PER_CILIA));
+            count * Constants.CILIA_PULL_RADIUS_PER_CILIA);
     }
 
     /// <summary>

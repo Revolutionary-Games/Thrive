@@ -389,7 +389,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public override void _Process(double delta)
     {
-        TutorialHelper.ProcessTutorialGUI(this, delta);
+        TutorialHelper.ProcessTutorialGUI(this, (float)delta);
     }
 
     public void OnClickedCloseAll()

@@ -63,15 +63,15 @@ public partial class OrbitCamera : Node3D
 
         camera.Position = camera.Position.Lerp(new Vector3(0, 0, Distance), InterpolateZoomSpeed * convertedDelta);
 
-        var currentRotation = new Quaternion(Transform3D.Basis);
-        var targetRotation = new Quaternion(rotation);
+        var currentRotation = new Quaternion(Transform.Basis);
+        var targetRotation = Quaternion.FromEuler(rotation);
         var smoothRotation = currentRotation.Slerp(targetRotation, InterpolateRotationSpeed * convertedDelta);
         Transform = new Transform3D(new Basis(smoothRotation), Position);
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion motion && Input.IsMouseButtonPressed((int)ButtonList.Left))
+        if (@event is InputEventMouseMotion motion && Input.IsMouseButtonPressed(MouseButton.Left))
         {
             moveSpeed = motion.Relative;
         }

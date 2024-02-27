@@ -23,7 +23,7 @@ public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 
     public string DisplayName
     {
-        get => title ?? TranslationServer.Translate("N_A");
+        get => title ?? Localization.Translate("N_A");
         set
         {
             title = value;
@@ -33,7 +33,7 @@ public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 
     public string? Description
     {
-        get => description ?? TranslationServer.Translate("N_A");
+        get => description ?? Localization.Translate("N_A");
         set
         {
             description = value;
@@ -43,7 +43,7 @@ public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 
     public string? Artist
     {
-        get => artist ?? TranslationServer.Translate("N_A");
+        get => artist ?? Localization.Translate("N_A");
         set
         {
             artist = value;

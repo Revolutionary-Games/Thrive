@@ -255,7 +255,7 @@ public abstract partial class EditorBase<TAction, TStage> : NodeWithInput, IEdit
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
                 LoadingScreen.Instance.Show(EditorLoadingMessage, ReturnToState,
-                    TranslationServer.Translate("WAITING_FOR_AUTO_EVO") + " " +
+                    Localization.Translate("WAITING_FOR_AUTO_EVO") + " " +
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
                 return;
             }
@@ -700,7 +700,7 @@ public abstract partial class EditorBase<TAction, TStage> : NodeWithInput, IEdit
             // Make sure button status is reset so that it doesn't look like the wrong tab button is now active
             editorTabSelector?.SetCurrentTab(selectedEditorTab);
 
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
                 1.5f);
             return;
         }

@@ -92,12 +92,12 @@ public partial class TopLevelContainer : Control
         // TODO: refactoring this to work the normal way, would be pretty nice but requires all derived classes to be
         // checked to ensure they contain base calls in all of their overridden methods.
 
-        switch (what)
+        switch ((long)what)
         {
             case NotificationEnterTree:
             {
-                SetAsTopLevel(true);
-                GetTree().Root.Connect("size_changed", new Callable(this, nameof(ApplyRectSettings)));
+                TopLevel = true;
+                GetTree().Root.Connect(Viewport.SignalName.SizeChanged, new Callable(this, nameof(ApplyRectSettings)));
 
                 // Special actions when re-entering the tree (and not when initially being added to the tree)
                 if (hasBeenRemovedFromTree)
@@ -115,7 +115,7 @@ public partial class TopLevelContainer : Control
 
             case NotificationExitTree:
             {
-                GetTree().Root.Disconnect("size_changed", new Callable(this, nameof(ApplyRectSettings)));
+                GetTree().Root.Connect(Viewport.SignalName.SizeChanged, new Callable(this, nameof(ApplyRectSettings)));
 
                 MouseUnCaptureActive = false;
                 hasBeenRemovedFromTree = true;
@@ -141,14 +141,14 @@ public partial class TopLevelContainer : Control
                     MouseUnCaptureActive = true;
                     ApplyRectSettings();
                     OnOpen();
-                    EmitSignal(nameof(OpenedEventHandler));
+                    EmitSignal(SignalName.Opened);
                 }
                 else
                 {
                     Closing = false;
                     MouseUnCaptureActive = false;
                     OnHidden();
-                    EmitSignal(nameof(ClosedEventHandler));
+                    EmitSignal(SignalName.Closed);
                 }
 
                 break;

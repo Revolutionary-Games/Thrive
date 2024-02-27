@@ -29,7 +29,7 @@ public partial class ThriveopediaPatchMapPage : ThriveopediaPage
     private Patch playerPatchOnEntry = null!;
 
     public override string PageName => "PatchMap";
-    public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE");
+    public override string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE");
 
     public Action<Patch>? OnSelectedPatchChanged { get; set; }
 
@@ -143,7 +143,7 @@ public partial class ThriveopediaPatchMapPage : ThriveopediaPage
 
     private void UpdateSeedLabel()
     {
-        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
+        seedLabel.Text = Localization.Translate("SEED_LABEL")
             .FormatSafe(CurrentGame!.GameWorld.WorldSettings.Seed);
     }
 }

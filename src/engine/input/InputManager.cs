@@ -188,7 +188,7 @@ public partial class InputManager : Node
     {
         base._Ready();
 
-        Input.Singleton.Connect("joy_connection_changed", this, nameof(OnConnectedControllersChanged));
+        Input.Singleton.Connect(Input.SignalName.JoyConnectionChanged, new Callable(this, nameof(OnConnectedControllersChanged)));
 
         DoPostLoad();
 
@@ -421,7 +421,7 @@ public partial class InputManager : Node
         }
         else
         {
-            WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
+            WindowSizeForInputs = DisplayServer.WindowGetSize().AsFloats() * DisplayServer.ScreenGetScale();
         }
     }
 

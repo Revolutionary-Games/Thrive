@@ -303,9 +303,10 @@ public partial class PhotoStudio : SubViewport
             {
                 renderedImage!.Convert(Image.Format.Rgba8);
 
-                var texture = new ImageTexture();
-                texture.CreateFromImage(renderedImage,
-                    (uint)Texture2D.FlagsEnum.Filter | (uint)Texture2D.FlagsEnum.Mipmaps);
+                // TODO: should mipmaps be optional?
+                renderedImage.GenerateMipmaps();
+
+                var texture = ImageTexture.CreateFromImage(renderedImage);
 
                 currentTask!.OnFinished(texture, renderedImage);
                 currentTask = null;

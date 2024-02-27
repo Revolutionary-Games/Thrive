@@ -1066,9 +1066,9 @@ public partial class OptionsMenu : ControlWithInput
         if (resolution == null)
             return;
 
-        var screenResolution = OS.WindowSize * OS.GetScreenScale();
-        resolution.Text = TranslationServer.Translate("AUTO_RESOLUTION")
-            .FormatSafe(screenResolution.x, screenResolution.y);
+        var screenResolution = DisplayServer.WindowGetSize().AsFloats() * DisplayServer.ScreenGetScale();
+        resolution.Text = Localization.Translate("AUTO_RESOLUTION")
+            .FormatSafe(screenResolution.X, screenResolution.Y);
     }
 
     /// <summary>
@@ -1078,29 +1078,27 @@ public partial class OptionsMenu : ControlWithInput
     {
         gpuName.Text = RenderingServer.GetVideoAdapterName();
 
-        if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2)
+        switch (FeatureInformation.GetVideoDriver())
         {
-            // Gles2 is being used
-            usedRendererName.Text = TranslationServer.Translate("GLES2");
-        }
-        else if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles3)
-        {
-            // Gles3 is being used
-            usedRendererName.Text = TranslationServer.Translate("GLES3");
-        }
-        else
-        {
-            // An unknown display driver is being used
-            usedRendererName.Text = TranslationServer.Translate("UNKNOWN_DISPLAY_DRIVER");
+            case OS.RenderingDriver.Vulkan:
+                usedRendererName.Text = Localization.Translate("DISPLAY_DRIVER_VULKAN");
+                break;
+            case OS.RenderingDriver.Opengl3:
+                usedRendererName.Text = Localization.Translate("DISPLAY_DRIVER_OPENGL");
+                break;
+            default:
+                // An unknown display driver is being used
+                usedRendererName.Text = Localization.Translate("UNKNOWN_DISPLAY_DRIVER");
+                break;
         }
 
-        float videoMemoryInMebibytes = RenderingServer.GetRenderingInfo(RenderingServer.RenderInfo.VideoMemUsed);
+        float videoMemoryInMebibytes = RenderingServer.GetRenderingInfo(RenderingServer.RenderingInfo.VideoMemUsed);
 
         // Convert to mebibytes
         videoMemoryInMebibytes /= Constants.MEBIBYTE;
 
         // Round to 2 places after the floating point
-        videoMemory.Text = TranslationServer.Translate("VIDEO_MEMORY_MIB")
+        videoMemory.Text = Localization.Translate("VIDEO_MEMORY_MIB")
             .FormatSafe(Math.Round(videoMemoryInMebibytes, 2));
     }
 
@@ -1535,7 +1533,7 @@ public partial class OptionsMenu : ControlWithInput
         // Only update the text when the button is populated (otherwise this triggers an error when exiting the editor)
         if (audioOutputDeviceSelection.ItemCount > 0)
         {
-            audioOutputDeviceSelection.SetItemText(0, TranslationServer.Translate("DEFAULT_AUDIO_OUTPUT_DEVICE"));
+            audioOutputDeviceSelection.SetItemText(0, Localization.Translate("DEFAULT_AUDIO_OUTPUT_DEVICE"));
         }
     }
 
@@ -1579,15 +1577,15 @@ public partial class OptionsMenu : ControlWithInput
 
         if (progress >= 0 && progress < Constants.TRANSLATION_VERY_INCOMPLETE_THRESHOLD)
         {
-            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW");
+            textFormat = Localization.Translate("LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW");
         }
         else if (progress >= 0 && progress < Constants.TRANSLATION_INCOMPLETE_THRESHOLD)
         {
-            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS_LOW");
+            textFormat = Localization.Translate("LANGUAGE_TRANSLATION_PROGRESS_LOW");
         }
         else
         {
-            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS");
+            textFormat = Localization.Translate("LANGUAGE_TRANSLATION_PROGRESS");
         }
 
         languageProgressLabel.Text = textFormat.FormatSafe(Mathf.Floor(progress));
@@ -1613,7 +1611,7 @@ public partial class OptionsMenu : ControlWithInput
         }
 
         ClearInputRebindingControls();
-        EmitSignal(nameof(OnOptionsClosedEventHandler));
+        EmitSignal(SignalName.OnOptionsClosed);
         return true;
     }
 
@@ -1666,14 +1664,14 @@ public partial class OptionsMenu : ControlWithInput
         var info = SimulationParameters.Instance.GetBuildInfoIfExists();
 
 #if DEBUG
-        var prefix = TranslationServer.Translate("UNCERTAIN_VERSION_WARNING") + "\n";
+        var prefix = Localization.Translate("UNCERTAIN_VERSION_WARNING") + "\n";
 #else
         var prefix = string.Empty;
 #endif
 
         if (info == null)
         {
-            commitLabel.Text = TranslationServer.Translate("UNKNOWN_VERSION");
+            commitLabel.Text = Localization.Translate("UNKNOWN_VERSION");
             builtAtLabel.Text = string.Empty;
             return;
         }
@@ -1748,7 +1746,7 @@ public partial class OptionsMenu : ControlWithInput
         backConfirmationBox.Hide();
 
         UpdateResetSaveButtonState();
-        EmitSignal(nameof(OnOptionsClosedEventHandler));
+        EmitSignal(SignalName.OnOptionsClosed);
     }
 
     private void BackDiscardSelected()
@@ -1766,7 +1764,7 @@ public partial class OptionsMenu : ControlWithInput
         backConfirmationBox.Hide();
 
         UpdateResetSaveButtonState();
-        EmitSignal(nameof(OnOptionsClosedEventHandler));
+        EmitSignal(SignalName.OnOptionsClosed);
     }
 
     private void BackCancelSelected()

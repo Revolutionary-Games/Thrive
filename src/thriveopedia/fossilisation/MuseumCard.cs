@@ -108,12 +108,10 @@ public partial class MuseumCard : Button
 
         if (FossilPreviewImage != null)
         {
-            var imageTexture = new ImageTexture();
-
             // Could add filter and mipmap flags here if the preview images look too bad at small sizes, but that
             // would presumably make this take more time, so maybe then this shouldn't be done in a blocking way here
             // and instead using ResourceManager
-            imageTexture.CreateFromImage(FossilPreviewImage);
+            var imageTexture = ImageTexture.CreateFromImage(FossilPreviewImage);
 
             speciesPreview.Texture = imageTexture;
         }
@@ -125,7 +123,7 @@ public partial class MuseumCard : Button
         // delete button. Could maybe queue invoke the species select and skip that if the delete got pressed?
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnSpeciesSelectedEventHandler), this);
+        EmitSignal(SignalName.OnSpeciesSelected, this);
     }
 
     private void OnMouseEnter()
@@ -144,7 +142,7 @@ public partial class MuseumCard : Button
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnSpeciesDeletedEventHandler), this);
+        EmitSignal(SignalName.OnSpeciesDeleted, this);
     }
 
     private void OnDeleteMouseEntered()

@@ -20,7 +20,7 @@ public partial class SpeciesPopulationDatasetsLegend : LineChart.DataSetsDropdow
         var result = (CustomDropDown)base.CreateLegend(datasets, title, createdToolTips);
 
         foreach (var species in extinctSpecies)
-            AddSpeciesToList(species, TranslationServer.Translate("EXTINCT_SPECIES"));
+            AddSpeciesToList(species, Localization.Translate("EXTINCT_SPECIES"));
 
         result.CreateElements();
 

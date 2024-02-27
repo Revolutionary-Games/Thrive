@@ -305,7 +305,7 @@
             if (!species.PlayerSpecies)
             {
                 gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
-                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
+                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, Localization.Translate("REPRODUCED"));
             }
 
             ref var cellProperties = ref entity.Get<CellProperties>();

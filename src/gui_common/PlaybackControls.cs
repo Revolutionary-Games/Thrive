@@ -111,7 +111,7 @@ public partial class PlaybackControls : HBoxContainer
             return 0;
         }
 
-        return (float)((value / AudioPlayer.Stream.GetLength()) * playbackSlider.MaxValue);
+        return (float)(value / AudioPlayer.Stream.GetLength() * playbackSlider.MaxValue);
     }
 
     private float PlaybackPosFromProgress(float value)
@@ -122,7 +122,7 @@ public partial class PlaybackControls : HBoxContainer
             return 0;
         }
 
-        return (float)((value * AudioPlayer.Stream.GetLength()) / playbackSlider.MaxValue);
+        return (float)(value * AudioPlayer.Stream.GetLength() / playbackSlider.MaxValue);
     }
 
     private void UpdatePlaybackState()
@@ -137,11 +137,11 @@ public partial class PlaybackControls : HBoxContainer
         {
             if (!Playing)
             {
-                EmitSignal(nameof(StoppedEventHandler));
+                EmitSignal(SignalName.Stopped);
             }
             else
             {
-                EmitSignal(nameof(StartedEventHandler));
+                EmitSignal(SignalName.Started);
             }
 
             lastState = Playing;

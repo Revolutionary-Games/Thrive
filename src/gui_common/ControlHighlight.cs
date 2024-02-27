@@ -58,7 +58,7 @@ public partial class ControlHighlight : Control
 
         if (hasTarget)
         {
-            var screenSize = UseParentControlSizeAsWindowSize ? ((Control)GetParent()).Size : GetViewport().Size;
+            var screenSize = UseParentControlSizeAsWindowSize ? ((Control)GetParent()).Size : GetWindow().Size;
             var screenHeight = screenSize.Y;
             var screenWidth = screenSize.X;
 

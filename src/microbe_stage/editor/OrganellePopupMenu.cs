@@ -59,7 +59,7 @@ public partial class OrganellePopupMenu : HexPopupMenu
         }
         else
         {
-            titleLabel.Text = TranslationServer.Translate("MULTIPLE_ORGANELLES");
+            titleLabel.Text = Localization.Translate("MULTIPLE_ORGANELLES");
         }
     }
 

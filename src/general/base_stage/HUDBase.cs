@@ -30,6 +30,11 @@ public abstract partial class HUDBase : Control, IStageHUD
 
     public abstract void OnEnterStageTransition(bool longerDuration, bool returningFromEditor);
 
+    public Control? GetFocusOwner()
+    {
+        return GetViewport().GuiGetFocusOwner();
+    }
+
     protected void AddFadeIn(IStageBase stageBase, bool longerDuration)
     {
         // Fade out for that smooth satisfying transition

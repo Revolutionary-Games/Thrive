@@ -61,7 +61,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     protected override string MusicCategory => "MicrobeEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
-    protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");
+    protected override string EditorLoadingMessage => Localization.Translate("LOADING_MICROBE_EDITOR");
     protected override bool HasInProgressAction => CanCancelAction;
 
     public override void _Ready()
@@ -210,8 +210,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         if (run.Results == null)
         {
-            reportTab.UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
-                TranslationServer.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
+            reportTab.UpdateAutoEvoResults(Localization.Translate("AUTO_EVO_FAILED"),
+                Localization.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
         }
         else
         {

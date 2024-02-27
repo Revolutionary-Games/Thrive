@@ -134,7 +134,7 @@ public abstract partial class HexPopupMenu : CustomPopupMenu
     {
         if (IsInteractable)
         {
-            EmitSignal(nameof(DeletePressedEventHandler));
+            EmitSignal(SignalName.DeletePressed);
 
             Close();
 
@@ -150,7 +150,7 @@ public abstract partial class HexPopupMenu : CustomPopupMenu
     {
         if (IsInteractable)
         {
-            EmitSignal(nameof(MovePressedEventHandler));
+            EmitSignal(SignalName.MovePressed);
 
             Close();
 
@@ -227,7 +227,7 @@ public abstract partial class HexPopupMenu : CustomPopupMenu
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(DeletePressedEventHandler));
+        EmitSignal(SignalName.DeletePressed);
 
         Close();
     }
@@ -239,7 +239,7 @@ public abstract partial class HexPopupMenu : CustomPopupMenu
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(MovePressedEventHandler));
+        EmitSignal(SignalName.MovePressed);
 
         Close();
     }
@@ -251,7 +251,7 @@ public abstract partial class HexPopupMenu : CustomPopupMenu
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(ModifyPressedEventHandler));
+        EmitSignal(SignalName.ModifyPressed);
 
         Close();
     }

@@ -79,7 +79,7 @@ public partial class InteractablePopup : Control
             {
                 SizeFlagsHorizontal = 0,
                 Text = textOverride ??
-                    TranslationServer.Translate(interactionType.GetAttribute<DescriptionAttribute>().Description),
+                    Localization.Translate(interactionType.GetAttribute<DescriptionAttribute>().Description),
             };
 
             button.AddThemeFontOverride("font", InteractionButtonFont);
@@ -92,9 +92,7 @@ public partial class InteractablePopup : Control
                 continue;
             }
 
-            var binds = new Array();
-            binds.Add(interactionType);
-            button.Connect("pressed", new Callable(this, nameof(OptionSelected)), binds);
+            button.Connect(BaseButton.SignalName.Pressed, Callable.From(() => OptionSelected(interactionType)));
 
             firstButton ??= button;
         }
@@ -122,7 +120,7 @@ public partial class InteractablePopup : Control
         if (!popup.Visible)
             return false;
 
-        var focused = GetFocusOwner();
+        var focused = GetViewport().GuiGetFocusOwner();
 
         if (focused == null)
             return false;

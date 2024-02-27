@@ -244,9 +244,9 @@ public partial class PatchNotesList : VBoxContainer
     {
         var stringBuilder = new StringBuilder();
 
-        var changesHeading = TranslationServer.Translate("PATCH_NOTE_CHANGES_HEADING");
-        var bulletPointTemplateText = TranslationServer.Translate("PATCH_NOTE_BULLET_POINT");
-        var linkVisitTemplate = TranslationServer.Translate("PATCH_NOTE_LINK_VISIT_TEXT");
+        var changesHeading = Localization.Translate("PATCH_NOTE_CHANGES_HEADING");
+        var bulletPointTemplateText = Localization.Translate("PATCH_NOTE_BULLET_POINT");
+        var linkVisitTemplate = Localization.Translate("PATCH_NOTE_LINK_VISIT_TEXT");
 
         var subHeadingFontPath = SubHeadingFont.ResourcePath;
 
@@ -285,7 +285,7 @@ public partial class PatchNotesList : VBoxContainer
 
             // This uses rich text purely to be clickable
             var title = customRichTextScene.Instantiate<CustomRichTextLabel>();
-            title.BbcodeText = titleText;
+            title.Text = titleText;
             title.AddThemeFontOverride("normal_font", TitleFont);
 
             itemContentContainer.AddChild(title);
@@ -310,7 +310,7 @@ public partial class PatchNotesList : VBoxContainer
 
             var bodyTextDisplayer = customRichTextScene.Instantiate<CustomRichTextLabel>();
 
-            bodyTextDisplayer.BbcodeText = stringBuilder.ToString();
+            bodyTextDisplayer.Text = stringBuilder.ToString();
             stringBuilder.Clear();
 
             itemContentContainer.AddChild(bodyTextDisplayer);
@@ -319,7 +319,7 @@ public partial class PatchNotesList : VBoxContainer
             {
                 var visitLink = customRichTextScene.Instantiate<CustomRichTextLabel>();
 
-                visitLink.BbcodeText = linkVisitTemplate.FormatSafe(versionPatchNotes.ReleaseLink);
+                visitLink.Text = linkVisitTemplate.FormatSafe(versionPatchNotes.ReleaseLink);
 
                 visitLink.AddThemeFontOverride("normal_font", TrailingVisitLinkFont);
 

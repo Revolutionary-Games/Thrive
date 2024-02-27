@@ -124,21 +124,21 @@ public class BaseBuildableStructure : IRegistryType
 
     public virtual void Check(string name)
     {
-        using var file = new File();
-
         if (string.IsNullOrEmpty(Name))
             throw new InvalidRegistryDataException(name, GetType().Name, "Name is not set");
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
 
-        if (string.IsNullOrEmpty(WorldRepresentationScene) || !file.FileExists(WorldRepresentationScene))
+#if DEBUG
+        if (string.IsNullOrEmpty(WorldRepresentationScene) || !FileAccess.FileExists(WorldRepresentationScene))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing world representation scene");
 
-        if (string.IsNullOrEmpty(GhostScenePath) || !file.FileExists(GhostScenePath))
+        if (string.IsNullOrEmpty(GhostScenePath) || !FileAccess.FileExists(GhostScenePath))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing ghost scene");
 
-        if (string.IsNullOrEmpty(ScaffoldingScenePath) || !file.FileExists(ScaffoldingScenePath))
+        if (string.IsNullOrEmpty(ScaffoldingScenePath) || !FileAccess.FileExists(ScaffoldingScenePath))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing scaffolding scene");
+#endif
 
         if (string.IsNullOrEmpty(BuildingIcon))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing icon");

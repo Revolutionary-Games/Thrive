@@ -140,7 +140,7 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
 
         var binds = new Array();
         binds.Add(city);
-        city.Connect(nameof(PlacedCity.OnSelectedEventHandler), new Callable(this, nameof(OpenCityInfo)), binds);
+        city.Connect(PlacedCity.SignalName.OnSelected, Callable.From(() => OpenCityInfo(city)));
 
         return city;
     }

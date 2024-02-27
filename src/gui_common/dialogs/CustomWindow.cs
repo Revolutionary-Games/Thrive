@@ -162,9 +162,9 @@ public partial class CustomWindow : TopLevelContainer
                 return;
 
             windowTitle = value;
-            translatedWindowTitle = TranslationServer.Translate(value);
+            translatedWindowTitle = Localization.Translate(value);
 
-            MinimumSizeChanged();
+            UpdateMinimumSize();
             QueueRedraw();
         }
     }
@@ -227,17 +227,17 @@ public partial class CustomWindow : TopLevelContainer
 
     public override void _EnterTree()
     {
-        customPanel = GetStylebox("custom_panel", "Window");
-        titleBarPanel = GetStylebox("custom_titlebar", "Window");
-        titleBarHeight = decorate ? GetConstant("custom_titlebar_height", "Window") : 0;
+        customPanel = GetThemeStylebox("custom_panel", "Window");
+        titleBarPanel = GetThemeStylebox("custom_titlebar", "Window");
+        titleBarHeight = decorate ? GetThemeConstant("custom_titlebar_height", "Window") : 0;
         titleFont = GetThemeFont("custom_title_font", "Window");
-        titleHeight = GetConstant("custom_title_height", "Window");
-        titleColor = GetColor("custom_title_color", "Window");
-        closeButtonColor = GetColor("custom_close_color", "Window");
-        closeButtonHighlight = GetStylebox("custom_close_highlight", "Window");
-        closeButtonTexture = GetIcon("custom_close", "Window");
-        scaleBorderSize = GetConstant("custom_scaleBorder_size", "Window");
-        customMargin = decorate ? GetConstant("custom_margin", "Dialogs") : 0;
+        titleHeight = GetThemeConstant("custom_title_height", "Window");
+        titleColor = GetThemeColor("custom_title_color", "Window");
+        closeButtonColor = GetThemeColor("custom_close_color", "Window");
+        closeButtonHighlight = GetThemeStylebox("custom_close_highlight", "Window");
+        closeButtonTexture = GetThemeIcon("custom_close", "Window");
+        scaleBorderSize = GetThemeConstant("custom_scaleBorder_size", "Window");
+        customMargin = decorate ? GetThemeConstant("custom_margin", "Dialogs") : 0;
 
         // Make the close button style be fully created when this is initialized
         if (showCloseButton)
@@ -259,7 +259,7 @@ public partial class CustomWindow : TopLevelContainer
     {
         base._Notification(what);
 
-        switch (what)
+        switch ((long)what)
         {
             case NotificationReady:
             {
@@ -288,7 +288,7 @@ public partial class CustomWindow : TopLevelContainer
 
             case NotificationTranslationChanged:
             {
-                translatedWindowTitle = TranslationServer.Translate(windowTitle);
+                translatedWindowTitle = Localization.Translate(windowTitle);
                 break;
             }
         }
@@ -339,21 +339,21 @@ public partial class CustomWindow : TopLevelContainer
     public override void _GuiInput(InputEvent @event)
     {
         // Handle title bar dragging
-        if (@event is InputEventMouseButton { ButtonIndex: (int)ButtonList.Left } mouseButton)
+        if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left } mouseButton)
         {
-            if (mouseButton.ButtonPressed && Movable && !closeHovered)
+            if (mouseButton.Pressed && Movable && !closeHovered)
             {
                 // Begin a possible dragging operation
-                dragType = DragHitTest(new Vector2(mouseButton.Position.x, mouseButton.Position.y));
+                dragType = DragHitTest(new Vector2(mouseButton.Position.X, mouseButton.Position.Y));
 
                 if (dragType != DragType.None)
                     dragOffset = GetGlobalMousePosition() - Position;
 
                 dragOffsetFar = Position + Size - GetGlobalMousePosition();
 
-                EmitSignal(nameof(DraggedEventHandler), this);
+                EmitSignal(SignalName.Dragged, this);
             }
-            else if (dragType != DragType.None && !mouseButton.ButtonPressed)
+            else if (dragType != DragType.None && !mouseButton.Pressed)
             {
                 // End a dragging operation
                 dragType = DragType.None;
@@ -379,9 +379,9 @@ public partial class CustomWindow : TopLevelContainer
     /// </summary>
     public override Vector2 _GetMinimumSize()
     {
-        var buttonWidth = closeButton?.GetCombinedMinimumSize().x;
-        var titleWidth = titleFont?.GetStringSize(translatedWindowTitle).x;
-        var buttonArea = buttonWidth + (buttonWidth / 2);
+        var buttonWidth = closeButton?.GetCombinedMinimumSize().X;
+        var titleWidth = titleFont?.GetStringSize(translatedWindowTitle).X;
+        var buttonArea = buttonWidth + buttonWidth / 2;
 
         var contentSize = Vector2.Zero;
 
@@ -389,18 +389,18 @@ public partial class CustomWindow : TopLevelContainer
         {
             var child = GetChildOrNull<Control>(i);
 
-            if (child == null || child == closeButton || child.IsSetAsTopLevel())
+            if (child == null || child == closeButton || child.TopLevel)
                 continue;
 
             var childMinSize = child.GetCombinedMinimumSize();
 
-            contentSize = new Vector2(Mathf.Max(childMinSize.x, contentSize.x),
-                Mathf.Max(childMinSize.y, contentSize.y));
+            contentSize = new Vector2(Mathf.Max(childMinSize.X, contentSize.X),
+                Mathf.Max(childMinSize.Y, contentSize.Y));
         }
 
         // Re-decide whether the largest rect is the default elements' or the contents'
         return new Vector2(Mathf.Max(2 * buttonArea.GetValueOrDefault() + titleWidth.GetValueOrDefault(),
-            contentSize.x + customMargin * 2), contentSize.y + customMargin * 2);
+            contentSize.X + customMargin * 2), contentSize.Y + customMargin * 2);
     }
 
     /// <summary>
@@ -412,15 +412,15 @@ public partial class CustomWindow : TopLevelContainer
         // Enlarge upwards for title bar
         var position = Vector2.Zero;
         var size = Size;
-        position.y -= titleBarHeight;
-        size.y += titleBarHeight;
+        position.Y -= titleBarHeight;
+        size.Y += titleBarHeight;
         var rect = new Rect2(position, size);
 
         // Inflate by the resizable border thickness
         if (Resizable)
         {
-            rect = new Rect2(new Vector2(rect.Position.x - scaleBorderSize, rect.Position.y - scaleBorderSize),
-                new Vector2(rect.Size.x + scaleBorderSize * 2, rect.Size.y + scaleBorderSize * 2));
+            rect = new Rect2(new Vector2(rect.Position.X - scaleBorderSize, rect.Position.Y - scaleBorderSize),
+                new Vector2(rect.Size.X + scaleBorderSize * 2, rect.Size.Y + scaleBorderSize * 2));
         }
 
         return rect.HasPoint(point);
@@ -444,7 +444,7 @@ public partial class CustomWindow : TopLevelContainer
     {
         var rect = base.GetFullRect();
         rect.Position = new Vector2(0, titleBarHeight);
-        rect.Size = new Vector2(rect.Size.x, rect.Size.y - titleBarHeight);
+        rect.Size = new Vector2(rect.Size.X, rect.Size.Y - titleBarHeight);
         return rect;
     }
 
@@ -534,11 +534,11 @@ public partial class CustomWindow : TopLevelContainer
 
         if (Resizable)
         {
-            if (position.Y < (-titleBarHeight + scaleBorderSize))
+            if (position.Y < -titleBarHeight + scaleBorderSize)
             {
                 result = DragType.ResizeTop;
             }
-            else if (position.Y >= (Size.Y - scaleBorderSize))
+            else if (position.Y >= Size.Y - scaleBorderSize)
             {
                 result = DragType.ResizeBottom;
             }
@@ -547,7 +547,7 @@ public partial class CustomWindow : TopLevelContainer
             {
                 result |= DragType.ResizeLeft;
             }
-            else if (position.X >= (Size.X - scaleBorderSize))
+            else if (position.X >= Size.X - scaleBorderSize)
             {
                 result |= DragType.ResizeRight;
             }
@@ -568,7 +568,7 @@ public partial class CustomWindow : TopLevelContainer
 
         if (Resizable)
         {
-            var previewDragType = DragHitTest(new Vector2(mouseMotion.Position.x, mouseMotion.Position.y));
+            var previewDragType = DragHitTest(new Vector2(mouseMotion.Position.X, mouseMotion.Position.Y));
 
             switch (previewDragType)
             {
@@ -667,15 +667,15 @@ public partial class CustomWindow : TopLevelContainer
 
         closeButton = new TextureButton
         {
-            Expand = true,
+            StretchMode = TextureButton.StretchModeEnum.KeepAspectCentered,
             CustomMinimumSize = new Vector2(14, 14),
             MouseFilter = MouseFilterEnum.Pass,
         };
 
         closeButton.SetAnchorsPreset(LayoutPreset.TopRight);
 
-        closeButton.Position = new Vector2(-GetConstant("custom_close_h_ofs", "Window"),
-            -GetConstant("custom_close_v_ofs", "Window"));
+        closeButton.Position = new Vector2(-GetThemeConstant("custom_close_h_ofs", "Window"),
+            -GetThemeConstant("custom_close_v_ofs", "Window"));
 
         closeButton.Connect("mouse_entered", new Callable(this, nameof(OnCloseButtonMouseEnter)));
         closeButton.Connect("mouse_exited", new Callable(this, nameof(OnCloseButtonMouseExit)));
@@ -695,7 +695,7 @@ public partial class CustomWindow : TopLevelContainer
         {
             var child = GetChildOrNull<Control>(i);
 
-            if (child == null || child == closeButton || child.IsSetAsTopLevel())
+            if (child == null || child == closeButton || child.TopLevel)
                 continue;
 
             child.Position = childPos;
@@ -730,7 +730,7 @@ public partial class CustomWindow : TopLevelContainer
     private void OnCloseButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(CanceledEventHandler));
+        EmitSignal(SignalName.Canceled);
         Close();
     }
 }

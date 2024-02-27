@@ -39,7 +39,7 @@ public partial class PlacedStructure : Node3D, IInteractableEntity, IConstructab
             if (Completed)
                 return typeName;
 
-            return TranslationServer.Translate("STRUCTURE_IN_PROGRESS_CONSTRUCTION").FormatSafe(typeName);
+            return Localization.Translate("STRUCTURE_IN_PROGRESS_CONSTRUCTION").FormatSafe(typeName);
         }
     }
 
@@ -66,12 +66,12 @@ public partial class PlacedStructure : Node3D, IInteractableEntity, IConstructab
                 return null;
 
             if (missingResourcesToFullyConstruct == null)
-                return TranslationServer.Translate("STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD");
+                return Localization.Translate("STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD");
 
             // Display the still required resources
-            string resourceAmountFormat = TranslationServer.Translate("RESOURCE_AMOUNT_SHORT");
+            string resourceAmountFormat = Localization.Translate("RESOURCE_AMOUNT_SHORT");
 
-            return TranslationServer.Translate("STRUCTURE_REQUIRED_RESOURCES_TO_FINISH")
+            return Localization.Translate("STRUCTURE_REQUIRED_RESOURCES_TO_FINISH")
                 .FormatSafe(string.Join(", ",
                     missingResourcesToFullyConstruct.Select(r =>
                         resourceAmountFormat.FormatSafe(r.Key.Name, r.Value))));

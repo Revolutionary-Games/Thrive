@@ -646,7 +646,7 @@
             // This needs to convert the relative vector from world space to engulfer local space as this is used
             // as the attached component position so it is applied relative to the engulfer and its rotation
             relativePosition =
-                engulferPosition.Rotation.Inverse().Xform(targetEntityPosition.Position - engulferPosition.Position);
+                engulferPosition.Rotation.Inverse() * (targetEntityPosition.Position - engulferPosition.Position);
 
             var nearestPointOfMembraneToTarget =
                 engulferCellProperties.CreatedMembrane!.GetVectorTowardsNearestPointOfMembrane(relativePosition.X,
@@ -1025,7 +1025,7 @@
                     callbacks.OnEngulfmentStorageFull?.Invoke(entity);
 
                     entity.SendNoticeIfPossible(() =>
-                        new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
+                        new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULF_STORAGE_FULL")));
                 }
             }
             else if (engulfCheckResult == EngulfCheckResult.TargetTooBig)
@@ -1033,7 +1033,7 @@
                 if (entity.Has<MicrobeEventCallbacks>())
                 {
                     entity.SendNoticeIfPossible(() =>
-                        new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_SIZE_TOO_SMALL")));
+                        new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULF_SIZE_TOO_SMALL")));
                 }
             }
 
@@ -1428,7 +1428,7 @@
             // And give an impulse
             // TODO: check is it correct to rotate by the rotation here on the relative position for this force
             var relativeVelocity =
-                engulferPosition.Rotation.Xform(relativePosition) * Constants.ENGULF_EJECTION_VELOCITY;
+                engulferPosition.Rotation * relativePosition * Constants.ENGULF_EJECTION_VELOCITY;
 
             // Apply outwards ejection speed
             physics.Velocity = engulferVelocity + relativeVelocity;

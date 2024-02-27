@@ -164,7 +164,7 @@ public partial class CreditsScroll : Container
                 // End once all parts have scrolled off-screen
                 if (dynamicParts.Count < 1)
                 {
-                    EmitSignal(nameof(OnFinishedSignalEventHandler));
+                    EmitSignal(SignalName.OnFinishedSignal);
                     scrolling = false;
                 }
 
@@ -222,63 +222,63 @@ public partial class CreditsScroll : Container
     {
         int offset = GetNextDynamicSectionOffset();
 
-        var leadLabel = CreateDynamicPart(offset, TranslationServer.Translate("LEAD_DEVELOPERS"), SectionNameFont);
+        var leadLabel = CreateDynamicPart(offset, Localization.Translate("LEAD_DEVELOPERS"), SectionNameFont);
         offset += (int)leadLabel.Height + OffsetAfterSection;
 
         // Team leads
         if (credits.Developers.Current.TryGetValue(ProgrammingTeamName, out var members))
         {
-            offset = CreateTeamLeadsList(offset, TranslationServer.Translate("LEAD_PROGRAMMER"),
-                TranslationServer.Translate("LEAD_PROGRAMMERS"), FindLeadsInTeam(members));
+            offset = CreateTeamLeadsList(offset, Localization.Translate("LEAD_PROGRAMMER"),
+                Localization.Translate("LEAD_PROGRAMMERS"), FindLeadsInTeam(members));
         }
 
         if (credits.Developers.Current.TryGetValue(TheoryTeamName, out members))
         {
-            offset = CreateTeamLeadsList(offset, TranslationServer.Translate("LEAD_THEORIST"),
-                TranslationServer.Translate("LEAD_THEORISTS"), FindLeadsInTeam(members));
+            offset = CreateTeamLeadsList(offset, Localization.Translate("LEAD_THEORIST"),
+                Localization.Translate("LEAD_THEORISTS"), FindLeadsInTeam(members));
         }
 
         if (credits.Developers.Current.TryGetValue(GraphicsTeamName, out members))
         {
-            offset = CreateTeamLeadsList(offset, TranslationServer.Translate("LEAD_ARTIST"),
-                TranslationServer.Translate("LEAD_ARTISTS"), FindLeadsInTeam(members));
+            offset = CreateTeamLeadsList(offset, Localization.Translate("LEAD_ARTIST"),
+                Localization.Translate("LEAD_ARTISTS"), FindLeadsInTeam(members));
         }
 
         if (credits.Developers.Current.TryGetValue(SoundTeamName, out members))
         {
-            offset = CreateTeamLeadsList(offset, TranslationServer.Translate("SOUND_TEAM_LEAD"),
-                TranslationServer.Translate("SOUND_TEAM_LEADS"), FindLeadsInTeam(members));
+            offset = CreateTeamLeadsList(offset, Localization.Translate("SOUND_TEAM_LEAD"),
+                Localization.Translate("SOUND_TEAM_LEADS"), FindLeadsInTeam(members));
         }
 
         if (credits.Developers.Current.TryGetValue(OutreachTeamName, out members))
         {
-            offset = CreateTeamLeadsList(offset, TranslationServer.Translate("LEAD_OUTREACH_PERSON"),
-                TranslationServer.Translate("LEAD_OUTREACH_PEOPLE"), FindLeadsInTeam(members));
+            offset = CreateTeamLeadsList(offset, Localization.Translate("LEAD_OUTREACH_PERSON"),
+                Localization.Translate("LEAD_OUTREACH_PEOPLE"), FindLeadsInTeam(members));
         }
 
         if (credits.Developers.Current.TryGetValue(GameDesignTeamName, out members))
         {
-            offset = CreateTeamLeadsList(offset, TranslationServer.Translate("LEAD_GAME_DESIGNER"),
-                TranslationServer.Translate("LEAD_GAME_DESIGNERS"), FindLeadsInTeam(members));
+            offset = CreateTeamLeadsList(offset, Localization.Translate("LEAD_GAME_DESIGNER"),
+                Localization.Translate("LEAD_GAME_DESIGNERS"), FindLeadsInTeam(members));
         }
 
         if (credits.Developers.Current.TryGetValue(TestingTeamName, out members))
         {
-            offset = CreateTeamLeadsList(offset, TranslationServer.Translate("LEAD_TESTER"),
-                TranslationServer.Translate("LEAD_TESTERS"), FindLeadsInTeam(members));
+            offset = CreateTeamLeadsList(offset, Localization.Translate("LEAD_TESTER"),
+                Localization.Translate("LEAD_TESTERS"), FindLeadsInTeam(members));
         }
 
         if (credits.Developers.Current.TryGetValue(ProjectManagementTeamName, out members))
         {
-            offset = CreateTeamLeadsList(offset, TranslationServer.Translate("LEAD_PROJECT_MANAGER"),
-                TranslationServer.Translate("LEAD_PROJECT_MANAGERS"), FindLeadsInTeam(members));
+            offset = CreateTeamLeadsList(offset, Localization.Translate("LEAD_PROJECT_MANAGER"),
+                Localization.Translate("LEAD_PROJECT_MANAGERS"), FindLeadsInTeam(members));
         }
 
         offset += OffsetBeforeNextDynamicPart;
 
         // Team members
         var currentLabel =
-            CreateDynamicPart(offset, TranslationServer.Translate("CURRENT_DEVELOPERS"), SectionNameFont);
+            CreateDynamicPart(offset, Localization.Translate("CURRENT_DEVELOPERS"), SectionNameFont);
         offset += (int)currentLabel.Height + OffsetAfterSection;
 
         foreach (var pair in credits.Developers.Current)
@@ -294,7 +294,7 @@ public partial class CreditsScroll : Container
     {
         int offset = GetNextDynamicSectionOffset();
 
-        var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("PAST_DEVELOPERS"), SectionNameFont);
+        var currentLabel = CreateDynamicPart(offset, Localization.Translate("PAST_DEVELOPERS"), SectionNameFont);
         offset += (int)currentLabel.Height + OffsetAfterSection;
 
         foreach (var pair in credits.Developers.Past)
@@ -310,10 +310,10 @@ public partial class CreditsScroll : Container
         int offset = GetNextDynamicSectionOffset();
 
         var currentLabel =
-            CreateDynamicPart(offset, TranslationServer.Translate("OUTSIDE_CONTRIBUTORS"), SectionNameFont);
+            CreateDynamicPart(offset, Localization.Translate("OUTSIDE_CONTRIBUTORS"), SectionNameFont);
         offset += (int)currentLabel.Height + 15;
 
-        var patreonPromptLabel = CreateDynamicPart(offset, TranslationServer.Translate("YOU_CAN_MAKE_PULL_REQUEST"));
+        var patreonPromptLabel = CreateDynamicPart(offset, Localization.Translate("YOU_CAN_MAKE_PULL_REQUEST"));
         offset += (int)patreonPromptLabel.Height + OffsetAfterSection - 15;
 
         foreach (var pair in credits.Developers.Outside)
@@ -328,13 +328,13 @@ public partial class CreditsScroll : Container
     {
         int offset = GetNextDynamicSectionOffset();
 
-        var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("PATRONS"), SectionNameFont);
+        var currentLabel = CreateDynamicPart(offset, Localization.Translate("PATRONS"), SectionNameFont);
         offset += (int)currentLabel.Height + 15;
 
         if (!steamVersion)
         {
             var patreonPromptLabel =
-                CreateDynamicPart(offset, TranslationServer.Translate("YOU_CAN_SUPPORT_THRIVE_ON_PATREON"));
+                CreateDynamicPart(offset, Localization.Translate("YOU_CAN_SUPPORT_THRIVE_ON_PATREON"));
             offset += (int)patreonPromptLabel.Height + 35;
         }
 
@@ -351,7 +351,7 @@ public partial class CreditsScroll : Container
     {
         int offset = GetNextDynamicSectionOffset();
 
-        var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("DONATIONS"), SectionNameFont);
+        var currentLabel = CreateDynamicPart(offset, Localization.Translate("DONATIONS"), SectionNameFont);
         offset += (int)currentLabel.Height + OffsetAfterSection;
 
         foreach (var yearPair in credits.Donations)
@@ -374,7 +374,7 @@ public partial class CreditsScroll : Container
     {
         int offset = GetNextDynamicSectionOffset();
 
-        var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("TRANSLATORS"), SectionNameFont);
+        var currentLabel = CreateDynamicPart(offset, Localization.Translate("TRANSLATORS"), SectionNameFont);
         offset += (int)currentLabel.Height + OffsetAfterSection;
 
         // For now translators aren't separated by language as a lot of random people have done one or two edits
@@ -388,7 +388,7 @@ public partial class CreditsScroll : Container
     {
         int offset = GetNextDynamicSectionOffset();
 
-        var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("USED_LIBRARIES_LICENSES"),
+        var currentLabel = CreateDynamicPart(offset, Localization.Translate("USED_LIBRARIES_LICENSES"),
             SectionNameFont);
         offset += (int)currentLabel.Height + OffsetAfterSection;
 
@@ -501,7 +501,7 @@ public partial class CreditsScroll : Container
     {
         int offset = GetNextDynamicSectionOffset() + OffsetBeforeNextDynamicPart;
 
-        CreateDynamicPart(offset, TranslationServer.Translate("THANKS_FOR_PLAYING"));
+        CreateDynamicPart(offset, Localization.Translate("THANKS_FOR_PLAYING"));
 
         // This is the last section so when these items have all scrolled off the credits trigger the end signal
     }
@@ -511,53 +511,53 @@ public partial class CreditsScroll : Container
         switch (team)
         {
             case ProgrammingTeamName:
-                return TranslationServer.Translate("PROGRAMMING_TEAM");
+                return Localization.Translate("PROGRAMMING_TEAM");
             case TheoryTeamName:
-                return TranslationServer.Translate("THEORY_TEAM");
+                return Localization.Translate("THEORY_TEAM");
             case GraphicsTeamName:
-                return TranslationServer.Translate("GRAPHICS_TEAM");
+                return Localization.Translate("GRAPHICS_TEAM");
             case SoundTeamName:
-                return TranslationServer.Translate("SOUND_TEAM");
+                return Localization.Translate("SOUND_TEAM");
             case OutreachTeamName:
-                return TranslationServer.Translate("OUTREACH_TEAM");
+                return Localization.Translate("OUTREACH_TEAM");
             case GameDesignTeamName:
-                return TranslationServer.Translate("GAME_DESIGN_TEAM");
+                return Localization.Translate("GAME_DESIGN_TEAM");
             case TestingTeamName:
-                return TranslationServer.Translate("TESTING_TEAM");
+                return Localization.Translate("TESTING_TEAM");
             case ProjectManagementTeamName:
-                return TranslationServer.Translate("PROJECT_MANAGEMENT_TEAM");
+                return Localization.Translate("PROJECT_MANAGEMENT_TEAM");
             case "Pull Requests / Programming":
-                return TranslationServer.Translate("PULL_REQUESTS_PROGRAMMING");
+                return Localization.Translate("PULL_REQUESTS_PROGRAMMING");
             case "VIP_PATRONS":
-                return TranslationServer.Translate("VIP_PATRONS");
+                return Localization.Translate("VIP_PATRONS");
             case "DEV_BUILD_PATRONS":
-                return TranslationServer.Translate("DEV_BUILD_PATRONS");
+                return Localization.Translate("DEV_BUILD_PATRONS");
             case "SUPPORTER_PATRONS":
-                return TranslationServer.Translate("SUPPORTER_PATRONS");
+                return Localization.Translate("SUPPORTER_PATRONS");
             case "January":
-                return TranslationServer.Translate("JANUARY");
+                return Localization.Translate("JANUARY");
             case "February":
-                return TranslationServer.Translate("FEBRUARY");
+                return Localization.Translate("FEBRUARY");
             case "March":
-                return TranslationServer.Translate("MARCH");
+                return Localization.Translate("MARCH");
             case "April":
-                return TranslationServer.Translate("APRIL");
+                return Localization.Translate("APRIL");
             case "May":
-                return TranslationServer.Translate("MAY");
+                return Localization.Translate("MAY");
             case "June":
-                return TranslationServer.Translate("JUNE");
+                return Localization.Translate("JUNE");
             case "July":
-                return TranslationServer.Translate("JULY");
+                return Localization.Translate("JULY");
             case "August":
-                return TranslationServer.Translate("AUGUST");
+                return Localization.Translate("AUGUST");
             case "September":
-                return TranslationServer.Translate("SEPTEMBER");
+                return Localization.Translate("SEPTEMBER");
             case "October":
-                return TranslationServer.Translate("OCTOBER");
+                return Localization.Translate("OCTOBER");
             case "November":
-                return TranslationServer.Translate("NOVEMBER");
+                return Localization.Translate("NOVEMBER");
             case "December":
-                return TranslationServer.Translate("DECEMBER");
+                return Localization.Translate("DECEMBER");
             default:
                 GD.Print($"unknown heading '{team}' needs to be added to " +
                     $"{nameof(CreditsScroll)}.{nameof(GetTranslatedHeading)}");
@@ -621,7 +621,7 @@ public partial class CreditsScroll : Container
         {
             Text = text,
             CustomMinimumSize = new Vector2(Size.X, 0),
-            Align = HorizontalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
         });
 
         if (overrideFont != null)
@@ -648,9 +648,9 @@ public partial class CreditsScroll : Container
     private DynamicPart CreateFileLoadedPart(int offset, string file)
     {
         string text;
-        using var reader = new File();
+        using var reader = FileAccess.Open(file, FileAccess.ModeFlags.Read);
 
-        if (reader.Open(file, FileAccess.ModeFlags.Read) == Error.Ok)
+        if (reader != null)
         {
             text = reader.GetAsText();
         }

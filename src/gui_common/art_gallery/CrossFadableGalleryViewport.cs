@@ -26,7 +26,7 @@ public partial class CrossFadableGalleryViewport : SubViewportContainer
         tween.InterpolateProperty(this, "modulate", null, Colors.Black, FadeDuration);
         tween.Start();
 
-        tween.CheckAndConnect("tween_completed", new Callable(this, nameof(OnFaded)), null, (uint)ConnectFlags.OneShot);
+        tween.CheckAndConnect("tween_completed", new Callable(this, nameof(OnFaded)), (uint)ConnectFlags.OneShot);
     }
 
     private void OnFaded(GodotObject @object, NodePath key)
@@ -34,7 +34,7 @@ public partial class CrossFadableGalleryViewport : SubViewportContainer
         _ = @object;
         _ = key;
 
-        EmitSignal(nameof(FadedEventHandler));
+        EmitSignal(SignalName.Faded);
 
         tween.InterpolateProperty(this, "modulate", null, Colors.White, FadeDuration);
         tween.Start();

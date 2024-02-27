@@ -65,7 +65,7 @@ public partial class SocietyCreature : Node3D, IEntity
         {
             // Move towards the target
             // TODO: nicer looking movement (and rotation)
-            var vectorToTarget = movementTarget.Value - GlobalTranslation;
+            var vectorToTarget = movementTarget.Value - GlobalPosition;
 
             var distance = vectorToTarget.Length();
 
@@ -82,9 +82,9 @@ public partial class SocietyCreature : Node3D, IEntity
             // TODO: speed from species
             float speed = 10;
 
-            vectorToTarget *= speed * delta;
+            vectorToTarget *= speed * (float)delta;
 
-            GlobalTranslation += vectorToTarget;
+            GlobalPosition += vectorToTarget;
         }
     }
 

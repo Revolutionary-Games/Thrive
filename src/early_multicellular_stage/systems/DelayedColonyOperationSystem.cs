@@ -64,7 +64,7 @@
             attachPosition.CreateMulticellularAttachPosition(cellTemplate.Position, cellTemplate.Orientation);
 
             var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species,
-                colonyPosition.Position + colonyPosition.Rotation.Xform(attachPosition.RelativePosition), true,
+                colonyPosition.Position + colonyPosition.Rotation * attachPosition.RelativePosition, true,
                 (cellTemplate.CellType, bodyPlanIndex), recorder, out var member, MulticellularSpawnState.Bud,
                 giveStartingCompounds);
 

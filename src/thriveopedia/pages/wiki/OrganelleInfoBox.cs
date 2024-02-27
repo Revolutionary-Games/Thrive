@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Wiki-style info box for an organelle.
 /// </summary>
-public partial class OrganelleInfoBoX : PanelContainer
+public partial class OrganelleInfoBox : PanelContainer
 {
     [Export]
     public NodePath? NamePath;
@@ -194,7 +194,7 @@ public partial class OrganelleInfoBoX : PanelContainer
             organelle.Processes!.Keys
                 .Select(p => SimulationParameters.Instance.GetBioProcess(p).Name)
                 .Aggregate((a, b) => a + "\n" + b) :
-            TranslationServer.Translate("NONE");
+            Localization.Translate("NONE");
 
         var hasEnzymes = organelle.Enzymes.Count > 0;
         enzymesLabel.Modulate = hasEnzymes ? opaque : translucent;
@@ -203,7 +203,7 @@ public partial class OrganelleInfoBoX : PanelContainer
                 .Where(e => e.Value > 0)
                 .Select(e => e.Key.Name)
                 .Aggregate((a, b) => a + "\n" + b) :
-            TranslationServer.Translate("NONE");
+            Localization.Translate("NONE");
 
         var hasUpgrades = organelle.AvailableUpgrades.Count > 0;
         upgradesLabel.Modulate = hasUpgrades ? opaque : translucent;
@@ -212,7 +212,7 @@ public partial class OrganelleInfoBoX : PanelContainer
                 .Where(u => u.Key != "none")
                 .Select(u => u.Value.Name)
                 .Aggregate((a, b) => a + "\n" + b) :
-            TranslationServer.Translate("NONE");
+            Localization.Translate("NONE");
 
         nameLabel.Text = organelle.Name;
         costLabel.Text = organelle.MPCost.ToString(CultureInfo.CurrentCulture);

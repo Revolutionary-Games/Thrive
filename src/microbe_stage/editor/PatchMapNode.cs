@@ -213,7 +213,7 @@ public partial class PatchMapNode : MarginContainer
 
         if (@event is InputEventMouseButton
             {
-                Pressed: true, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
+                Pressed: true, ButtonIndex: MouseButton.Left or MouseButton.Right,
             })
         {
             IsDirty = true;

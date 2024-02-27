@@ -291,7 +291,7 @@ public partial class ModLoader : Node
         if (info == null)
         {
             GD.PrintErr("Can't load mod due to failed info reading: ", name);
-            modErrors.Add(TranslationServer.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name));
+            modErrors.Add(Localization.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name));
             return;
         }
 
@@ -313,7 +313,7 @@ public partial class ModLoader : Node
             catch (Exception e)
             {
                 GD.PrintErr("Could not load mod assembly due to exception: ", e);
-                modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION").FormatSafe(name, e));
+                modErrors.Add(Localization.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION").FormatSafe(name, e));
                 return;
             }
 
@@ -328,7 +328,7 @@ public partial class ModLoader : Node
         if (!loadedSomething)
         {
             GD.Print("A mod contained no loadable resources");
-            modErrors.Add(TranslationServer.Translate("MOD_HAS_NO_LOADABLE_RESOURCES").FormatSafe(name));
+            modErrors.Add(Localization.Translate("MOD_HAS_NO_LOADABLE_RESOURCES").FormatSafe(name));
         }
     }
 
@@ -339,7 +339,7 @@ public partial class ModLoader : Node
         if (info == null)
         {
             GD.PrintErr("Can't unload mod due to failed info reading: ", name);
-            modErrors.Add(TranslationServer.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name));
+            modErrors.Add(Localization.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name));
             return;
         }
 
@@ -352,13 +352,13 @@ public partial class ModLoader : Node
                 if (!mod.Unload())
                 {
                     GD.PrintErr("Mod's (", name, ") assembly unload method call failed");
-                    modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED").FormatSafe(name));
+                    modErrors.Add(Localization.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED").FormatSafe(name));
                 }
             }
             catch (Exception e)
             {
                 GD.PrintErr("Mod's (", name, ") assembly unload method call failed with an exception: ", e);
-                modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION")
+                modErrors.Add(Localization.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION")
                     .FormatSafe(name, e));
             }
 
@@ -439,7 +439,7 @@ public partial class ModLoader : Node
         if (type == null)
         {
             GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
-            modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND").FormatSafe(name, className));
+            modErrors.Add(Localization.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND").FormatSafe(name, className));
             return false;
         }
 
@@ -450,7 +450,7 @@ public partial class ModLoader : Node
             if (!mod.Initialize(modInterface!, info.Info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");
-                modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED").FormatSafe(name));
+                modErrors.Add(Localization.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED").FormatSafe(name));
             }
 
             loadedModAssemblies.Add(name, mod);
@@ -464,7 +464,7 @@ public partial class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") initialization failed with an exception: ", e);
-            modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION").FormatSafe(name, e));
+            modErrors.Add(Localization.Translate("MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION").FormatSafe(name, e));
         }
 
         return true;
@@ -487,7 +487,7 @@ public partial class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") harmony loading failed with an exception: ", e);
-            modErrors.Add(TranslationServer.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION").FormatSafe(name, e));
+            modErrors.Add(Localization.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION").FormatSafe(name, e));
         }
     }
 
@@ -508,7 +508,7 @@ public partial class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") harmony unload failed with an exception: ", e);
-            modErrors.Add(TranslationServer.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION").FormatSafe(name, e));
+            modErrors.Add(Localization.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION").FormatSafe(name, e));
         }
     }
 
@@ -519,7 +519,7 @@ public partial class ModLoader : Node
         if (!FileHelpers.Exists(path))
         {
             GD.PrintErr(".pck loading failed due to the .pck file not existing: ", path);
-            modErrors.Add(TranslationServer.Translate("PCK_LOAD_FAILED_DOES_NOT_EXIST")
+            modErrors.Add(Localization.Translate("PCK_LOAD_FAILED_DOES_NOT_EXIST")
                 .FormatSafe(Path.GetFileName(path)));
             return;
         }
@@ -527,7 +527,7 @@ public partial class ModLoader : Node
         if (!ProjectSettings.LoadResourcePack(path))
         {
             GD.PrintErr(".pck loading failed");
-            modErrors.Add(TranslationServer.Translate("PCK_LOAD_FAILED").FormatSafe(Path.GetFileName(path)));
+            modErrors.Add(Localization.Translate("PCK_LOAD_FAILED").FormatSafe(Path.GetFileName(path)));
         }
     }
 

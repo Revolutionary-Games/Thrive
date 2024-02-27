@@ -181,7 +181,7 @@ public abstract partial class StrategyStageBase : StageBase, IStrategyStage
     protected void ShowTechnologyUnlockMessage(Technology technology)
     {
         BaseHUD.HUDMessages.ShowMessage(
-            TranslationServer.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
+            Localization.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
             DisplayDuration.Long);
     }
 

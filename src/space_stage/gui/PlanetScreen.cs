@@ -115,7 +115,7 @@ public partial class PlanetScreen : CustomWindow
         var foodBalance = target.CalculateFoodProduction() - target.CalculateFoodConsumption();
 
         // Update the bottom stats bar
-        shortStatsLabel.Text = TranslationServer.Translate("CITY_SHORT_STATISTICS")
+        shortStatsLabel.Text = Localization.Translate("CITY_SHORT_STATISTICS")
             .FormatSafe(StringUtils.ThreeDigitFormat(target.Population),
                 StringUtils.FormatPositiveWithLeadingPlus(StringUtils.ThreeDigitFormat(foodBalance), foodBalance),
                 researchSpeed);
@@ -128,6 +128,6 @@ public partial class PlanetScreen : CustomWindow
             return;
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnOpenGodToolsEventHandler), target);
+        EmitSignal(SignalName.OnOpenGodTools, target);
     }
 }

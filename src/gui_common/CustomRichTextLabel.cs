@@ -169,7 +169,7 @@ public partial class CustomRichTextLabel : RichTextLabel
         }
 
         var old = extendedBbcode;
-        var translated = TranslationServer.Translate(extendedBbcode);
+        var translated = Localization.Translate(extendedBbcode);
         reactToLanguageChange = old != translated;
 
         try

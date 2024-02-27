@@ -45,7 +45,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage
     private MuseumCard? cardToBeDeleted;
 
     public override string PageName => "Museum";
-    public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
+    public override string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
 
     public override string? ParentPageName => null;
 
@@ -84,7 +84,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage
 
             card.Connect(nameof(MuseumCard.OnSpeciesSelectedEventHandler),
                 new Callable(this, nameof(UpdateSpeciesPreview)));
-            card.Connect(nameof(MuseumCard.OnSpeciesDeletedEventHandler), new Callable(this, nameof(DeleteSpecies)));
+            card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
 
             cardContainer.AddChild(card);
         }
@@ -140,7 +140,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage
         // If we're opening from a game in progress, warn the player
         if (CurrentGame != null)
         {
-            leaveGameConfirmationDialog.DialogText = TranslationServer.Translate("OPEN_FOSSIL_IN_FREEBUILD_WARNING");
+            leaveGameConfirmationDialog.DialogText = Localization.Translate("OPEN_FOSSIL_IN_FREEBUILD_WARNING");
             leaveGameConfirmationDialog.PopupCenteredShrink();
             return;
         }
@@ -164,7 +164,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage
 
     private void TransitionToFreebuild(Species startingSpecies)
     {
-        EmitSignal(nameof(OnSceneChangedEventHandler));
+        EmitSignal(SignalName.OnSceneChanged);
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {

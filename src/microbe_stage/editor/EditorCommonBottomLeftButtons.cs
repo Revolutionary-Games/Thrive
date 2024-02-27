@@ -47,13 +47,13 @@ public partial class EditorCommonBottomLeftButtons : MarginContainer
     private void OnMenuButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnOpenMenuEventHandler));
+        EmitSignal(SignalName.OnOpenMenu);
     }
 
     private void OnHelpButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnOpenHelpEventHandler));
+        EmitSignal(SignalName.OnOpenHelp);
     }
 
     private void OnStatisticsButtonPressed()

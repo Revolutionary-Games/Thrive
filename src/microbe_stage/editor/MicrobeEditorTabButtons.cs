@@ -89,7 +89,7 @@ public partial class MicrobeEditorTabButtons : MarginContainer
 
         ApplyButtonStates();
 
-        EmitSignal(nameof(OnTabSelectedEventHandler), selectedTab);
+        EmitSignal(SignalName.OnTabSelected, (int)selectedTab);
     }
 
     private void ApplyButtonStates()

@@ -56,8 +56,7 @@
     {
         public static float CalculateMicrobeHealth(MembraneType membraneType, float membraneRigidity)
         {
-            return membraneType.Hitpoints +
-                (membraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+            return membraneType.Hitpoints + membraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         }
 
         /// <summary>

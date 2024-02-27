@@ -172,7 +172,7 @@ public partial class ProgressBarSystem : Control
             if (extraOffset != null)
             {
                 // Extra offset is relative to a non-rotated state of the object, so we need to correct that here
-                position += entityTransform.Basis.Xform(extraOffset.Value);
+                position += entityTransform.Basis * extraOffset.Value;
             }
 
             if (camera!.IsPositionBehind(position))

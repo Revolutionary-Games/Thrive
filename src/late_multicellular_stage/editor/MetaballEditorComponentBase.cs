@@ -168,7 +168,7 @@ public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedActi
         editorArrow = GetNode<MeshInstance3D>(EditorArrowPath);
         editorGround = GetNode<MeshInstance3D>(EditorGroundPath);
 
-        camera.Connect(nameof(EditorCamera3D.OnPositionChangedEventHandler), new Callable(this, nameof(OnCameraPositionChanged)));
+        camera.Connect(EditorCamera3D.SignalName.OnPositionChanged, new Callable(this, nameof(OnCameraPositionChanged)));
     }
 
     public override void Init(TEditor owningEditor, bool fresh)

@@ -1051,7 +1051,7 @@
                 var inverseParentRotation = leaderPosition.Rotation.Inverse();
 
                 // Convert result to be relative to the colony lead cell (which is the colony's base position)
-                offsetToColonyLeader = inverseParentRotation.Xform(targetWorldPosition - leaderPosition.Position);
+                offsetToColonyLeader = inverseParentRotation * (targetWorldPosition - leaderPosition.Position);
 
                 // Convert the rotation to keep the global rotation intact after attaching
                 rotationToLeader = newMemberPosition.Rotation * inverseParentRotation;
@@ -1103,20 +1103,20 @@
             var cellRotationInverse = cellPosition.Rotation.Inverse();
 
             // These are in the local space of the given two cells respectively
-            var vectorFromParentInLocalSpace = parentRotationInverse.Xform(vectorFromParent);
+            var vectorFromParentInLocalSpace = parentRotationInverse * vectorFromParent;
 
-            var vectorToParentInLocalSpace = cellRotationInverse.Xform(vectorToParent);
+            var vectorToParentInLocalSpace = cellRotationInverse * vectorToParent;
 
             // Calculate membrane sizes that should be added to the distance between the center's of the cells so that
             // the cells don't overlap. The membrane points are in local coordinates so they are translated back to
             // world coordinates.
-            var parentMembranePoint = colonyParentPosition.Rotation.Xform(
+            var parentMembranePoint = colonyParentPosition.Rotation *
                 colonyParentProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(
-                    vectorFromParentInLocalSpace.X, vectorFromParentInLocalSpace.Z));
+                    vectorFromParentInLocalSpace.X, vectorFromParentInLocalSpace.Z);
 
-            var cellMembranePoint = cellPosition.Rotation.Xform(
+            var cellMembranePoint = cellPosition.Rotation *
                 cellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(vectorToParentInLocalSpace.X,
-                    vectorToParentInLocalSpace.Z));
+                    vectorToParentInLocalSpace.Z);
 
             // The cell membrane point is negated here to amplify the distance as it is the opposite sign of the parent
             // membrane point otherwise.
@@ -1129,7 +1129,8 @@
         ///   Common code for new colony member setup
         /// </summary>
         private static void SetupColonyMemberData(ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
-            in Entity newMember, Vector3 offsetToColonyLeader, Quaternion rotationToLeader, EntityCommandRecorder recorder)
+            in Entity newMember, Vector3 offsetToColonyLeader, Quaternion rotationToLeader,
+            EntityCommandRecorder recorder)
         {
             OnCommonColonyMemberSetup(ref colony, colonyEntity, parentIndex, newMember, recorder);
 

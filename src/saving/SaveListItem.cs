@@ -241,13 +241,13 @@ public partial class SaveListItem : PanelContainer
 
     public override void _GuiInput(InputEvent @event)
     {
-        if (@event is InputEventMouseButton { Pressed: true, ButtonIndex: (int)ButtonList.Left } mouse)
+        if (@event is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left } mouse)
         {
             AcceptEvent();
 
-            if (mouse.Doubleclick)
+            if (mouse.DoubleClick)
             {
-                EmitSignal(nameof(OnDoubleClickedEventHandler));
+                EmitSignal(SignalName.OnDoubleClicked);
             }
             else
             {
@@ -260,41 +260,41 @@ public partial class SaveListItem : PanelContainer
     {
         if (isBroken)
         {
-            EmitSignal(nameof(OnBrokenSaveLoadedEventHandler));
+            EmitSignal(SignalName.OnBrokenSaveLoaded);
             return;
         }
 
         if (isIncompatiblePrototype)
         {
-            EmitSignal(nameof(OnDifferentVersionPrototypeLoadedEventHandler));
+            EmitSignal(SignalName.OnDifferentVersionPrototypeLoaded);
             return;
         }
 
         if (versionDifference < 0 && isUpgradeable)
         {
-            EmitSignal(nameof(OnUpgradeableSaveLoadedEventHandler), SaveName, isKnownIncompatible);
+            EmitSignal(SignalName.OnUpgradeableSaveLoaded, SaveName, isKnownIncompatible);
             return;
         }
 
         if (isKnownIncompatible)
         {
-            EmitSignal(nameof(OnKnownIncompatibleLoadedEventHandler));
+            EmitSignal(SignalName.OnKnownIncompatibleLoaded);
             return;
         }
 
         if (versionDifference < 0)
         {
-            EmitSignal(nameof(OnOldSaveLoadedEventHandler));
+            EmitSignal(SignalName.OnOldSaveLoaded);
             return;
         }
 
         if (versionDifference > 0)
         {
-            EmitSignal(nameof(OnNewSaveLoadedEventHandler));
+            EmitSignal(SignalName.OnNewSaveLoaded);
             return;
         }
 
-        EmitSignal(nameof(OnProblemFreeSaveLoadedEventHandler));
+        EmitSignal(SignalName.OnProblemFreeSaveLoaded);
     }
 
     protected override void Dispose(bool disposing)
@@ -350,7 +350,7 @@ public partial class SaveListItem : PanelContainer
 
         Selected = !Selected;
 
-        EmitSignal(nameof(OnSelectedChangedEventHandler));
+        EmitSignal(SignalName.OnSelectedChanged);
     }
 
     private void OnMouseEnter()
@@ -375,7 +375,7 @@ public partial class SaveListItem : PanelContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnDeletedEventHandler));
+        EmitSignal(SignalName.OnDeleted);
     }
 
     private class SaveInfoAndScreenshot : IResource
@@ -439,8 +439,7 @@ public partial class SaveListItem : PanelContainer
                     }
                 }
 
-                Screenshot = new ImageTexture();
-                Screenshot.CreateFromImage(Save.Screenshot);
+                Screenshot = ImageTexture.CreateFromImage(Save.Screenshot);
             }
 
             Loaded = true;

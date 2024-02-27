@@ -63,7 +63,7 @@
 
                 ref var position = ref entity.Get<WorldPosition>();
 
-                control.LookAtPoint = position.Position + position.Rotation.Xform(Vector3.Forward);
+                control.LookAtPoint = position.Position + position.Rotation * Vector3.Forward;
             }
             else if (control.State == MicrobeState.Binding)
             {

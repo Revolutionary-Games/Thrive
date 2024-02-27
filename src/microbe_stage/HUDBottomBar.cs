@@ -144,57 +144,57 @@ public partial class HUDBottomBar : HBoxContainer
     private void MenuPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnMenuPressedEventHandler));
+        EmitSignal(SignalName.OnMenuPressed);
     }
 
     private void TogglePause()
     {
         GUICommon.Instance.PlayButtonPressSound();
         Paused = !Paused;
-        EmitSignal(nameof(OnPausePressedEventHandler), Paused);
+        EmitSignal(SignalName.OnPausePressed, Paused);
     }
 
     private void ProcessButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnProcessesPressedEventHandler));
+        EmitSignal(SignalName.OnProcessesPressed);
     }
 
     private void CompoundsButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
         CompoundsPressed = !CompoundsPressed;
-        EmitSignal(nameof(OnCompoundsToggledEventHandler), CompoundsPressed);
+        EmitSignal(SignalName.OnCompoundsToggled, CompoundsPressed);
     }
 
     private void EnvironmentButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
         EnvironmentPressed = !EnvironmentPressed;
-        EmitSignal(nameof(OnEnvironmentToggledEventHandler), EnvironmentPressed);
+        EmitSignal(SignalName.OnEnvironmentToggled, EnvironmentPressed);
     }
 
     private void SuicideButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnSuicidePressedEventHandler));
+        EmitSignal(SignalName.OnSuicidePressed);
     }
 
     private void HelpButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnHelpPressedEventHandler));
+        EmitSignal(SignalName.OnHelpPressed);
     }
 
     private void StatisticsButtonPressed()
     {
         // No need to play a sound as changing Thriveopedia page does it anyway
-        EmitSignal(nameof(OnStatisticsPressedEventHandler));
+        EmitSignal(SignalName.OnStatisticsPressed);
     }
 
     private void PausePressed(bool paused)
     {
-        EmitSignal(nameof(OnPausePressedEventHandler), paused);
+        EmitSignal(SignalName.OnPausePressed, paused);
     }
 
     private void UpdateCompoundButton()

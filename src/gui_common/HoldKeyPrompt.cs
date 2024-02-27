@@ -147,7 +147,7 @@ public partial class HoldKeyPrompt : KeyPrompt
         {
             var ourSize = Size;
 
-            var drawHeight = ourSize.Y * holdProgress;
+            var drawHeight = ourSize.Y * (float)holdProgress;
 
             // Ensure at least one p.Xel drawn if there's some progress
             if (drawHeight < 1)
@@ -185,6 +185,6 @@ public partial class HoldKeyPrompt : KeyPrompt
     private void OnFullyPressed()
     {
         wasFullyPressed = true;
-        EmitSignal(nameof(OnPressedLongEnoughEventHandler));
+        EmitSignal(SignalName.OnPressedLongEnough);
     }
 }

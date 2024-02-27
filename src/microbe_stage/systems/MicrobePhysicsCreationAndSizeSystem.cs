@@ -410,7 +410,7 @@ namespace Systems
             ++extraData.TotalShapeCount;
 
             return (cellProperties.IsBacteria ? prokaryoticPilus.Value : eukaryoticPilus.Value,
-                extraRotation.Xform(position) + extraOffset, extraRotation * orientation);
+                extraRotation * position + extraOffset, extraRotation * orientation);
         }
 
         /// <summary>

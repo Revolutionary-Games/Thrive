@@ -214,7 +214,7 @@
             playerPosition = position;
 
             // Remove the y-position from player position
-            playerPosition.y = 0;
+            playerPosition.Y = 0;
         }
 
         public void NotifyExternalEntitySpawned(in EntityRecord entity, float despawnRadiusSquared, float entityWeight)
@@ -480,8 +480,8 @@
 
                 // Distance from the sector center.
                 var displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE -
-                    (Constants.SPAWN_SECTOR_SIZE / 2), 0,
-                    random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
+                    Constants.SPAWN_SECTOR_SIZE * 0.5f, 0,
+                    random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - Constants.SPAWN_SECTOR_SIZE * 0.5f);
 
                 spawns += SpawnWithSpawner(spawnType, sectorCenter + displacement, ref spawnsLeftThisFrame);
             }

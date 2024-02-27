@@ -64,7 +64,7 @@ public partial class RadialMenu : CenterContainer
     private TextureRect indicator = null!;
 #pragma warning restore CA2213
 
-    private string centerText = TranslationServer.Translate("SELECT_OPTION");
+    private string centerText = Localization.Translate("SELECT_OPTION");
 
     // TODO: implement controller handling
     private Vector2? relativeMousePosition;
@@ -137,7 +137,7 @@ public partial class RadialMenu : CenterContainer
     {
         base._Notification(what);
 
-        switch (what)
+        switch ((long)what)
         {
             case NotificationResized:
                 if (Visible && centerLabel != null && createdLabels.Count > 0)
@@ -221,7 +221,7 @@ public partial class RadialMenu : CenterContainer
         }
         else if (@event is InputEventMouseButton mouseButton)
         {
-            if (mouseButton.Pressed && mouseButton.ButtonIndex == (int)ButtonList.Left)
+            if (mouseButton.Pressed && mouseButton.ButtonIndex == MouseButton.Left)
             {
                 if (AcceptHoveredItem())
                     GetViewport().SetInputAsHandled();
@@ -262,7 +262,7 @@ public partial class RadialMenu : CenterContainer
         // There seems to be a Godot bug here where when this is hidden the cursor stays in the clickable state
         // until the cursor is moved. Seems like even overriding the cursor style here back to arrow doesn't work
 
-        EmitSignal(nameof(OnItemSelectedEventHandler), HoveredItem.Value);
+        EmitSignal(SignalName.OnItemSelected, HoveredItem.Value);
         Visible = false;
         return true;
     }

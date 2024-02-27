@@ -111,12 +111,12 @@ public partial class PatchNotesDisplayer : VBoxContainer
         // Setup text to show how many new versions there are
         if (newVersions == 1)
         {
-            newVersionsCountLabel.Text = TranslationServer.Translate("PATCH_NOTES_LAST_PLAYED_INFO")
+            newVersionsCountLabel.Text = Localization.Translate("PATCH_NOTES_LAST_PLAYED_INFO")
                 .FormatSafe(lastPlayed);
         }
         else
         {
-            newVersionsCountLabel.Text = TranslationServer.Translate("PATCH_NOTES_LAST_PLAYED_INFO_PLURAL")
+            newVersionsCountLabel.Text = Localization.Translate("PATCH_NOTES_LAST_PLAYED_INFO_PLURAL")
                 .FormatSafe(lastPlayed, newVersions);
         }
 

@@ -29,7 +29,7 @@ public partial class PlacedSpaceStructure : Node3D, IEntityWithNameLabel
     ///   Emitted when this fleet is selected by the player
     /// </summary>
     [Signal]
-    public delegate void OnSelectedEventHandler();
+    public delegate void OnSelectedEventHandler(PlacedSpaceStructure spaceStructure);
 
     [JsonProperty]
     public bool Completed { get; private set; }
@@ -50,7 +50,7 @@ public partial class PlacedSpaceStructure : Node3D, IEntityWithNameLabel
             if (Completed)
                 return typeName;
 
-            return TranslationServer.Translate("STRUCTURE_IN_PROGRESS_CONSTRUCTION").FormatSafe(typeName);
+            return Localization.Translate("STRUCTURE_IN_PROGRESS_CONSTRUCTION").FormatSafe(typeName);
         }
     }
 
@@ -62,16 +62,16 @@ public partial class PlacedSpaceStructure : Node3D, IEntityWithNameLabel
             if (Completed)
             {
                 // TODO: implement structure finished type specific text
-                return TranslationServer.Translate("SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION");
+                return Localization.Translate("SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION");
             }
 
             if (missingResourcesToFullyConstruct == null)
-                return TranslationServer.Translate("SPACE_STRUCTURE_HAS_RESOURCES");
+                return Localization.Translate("SPACE_STRUCTURE_HAS_RESOURCES");
 
             // Display the still required resources
-            string resourceAmountFormat = TranslationServer.Translate("RESOURCE_AMOUNT_SHORT");
+            string resourceAmountFormat = Localization.Translate("RESOURCE_AMOUNT_SHORT");
 
-            return TranslationServer.Translate("SPACE_STRUCTURE_WAITING_CONSTRUCTION")
+            return Localization.Translate("SPACE_STRUCTURE_WAITING_CONSTRUCTION")
                 .FormatSafe(string.Join(", ",
                     missingResourcesToFullyConstruct.Select(r =>
                         resourceAmountFormat.FormatSafe(r.Key.Name, r.Value))));
@@ -127,7 +127,7 @@ public partial class PlacedSpaceStructure : Node3D, IEntityWithNameLabel
         AliveMarker.Alive = false;
     }
 
-    public void ProcessSpace(double delta, ISocietyStructureDataAccess societyData)
+    public void ProcessSpace(float delta, ISocietyStructureDataAccess societyData)
     {
         foreach (var component in componentInstances)
         {
@@ -223,7 +223,7 @@ public partial class PlacedSpaceStructure : Node3D, IEntityWithNameLabel
 
     public void OnSelectedThroughLabel()
     {
-        EmitSignal(nameof(OnSelectedEventHandler));
+        EmitSignal(SignalName.OnSelected, this);
     }
 
     private void OnCompleted()

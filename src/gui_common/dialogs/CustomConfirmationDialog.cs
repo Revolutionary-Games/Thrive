@@ -115,7 +115,7 @@ public partial class CustomConfirmationDialog : CustomWindow
 
         // Only move the buttons when run outside of the editor to avoid messing up
         // the predefined button order placement in the scene when it's opened
-        if (OS.IsOkLeftAndCancelRight() && !Engine.IsEditorHint())
+        if (DisplayServer.GetSwapCancelOk() && !Engine.IsEditorHint())
         {
             buttonsContainer.MoveChild(confirmButton, 1);
             buttonsContainer.MoveChild(cancelButton, 3);
@@ -160,7 +160,7 @@ public partial class CustomConfirmationDialog : CustomWindow
         if (dialogLabel == null)
             throw new SceneTreeAttachRequired();
 
-        var text = TranslationServer.Translate(dialogText);
+        var text = Localization.Translate(dialogText);
         dialogLabel.ExtendedBbcode = CenterText ? $"[center]{text}[/center]" : text;
     }
 
@@ -190,15 +190,15 @@ public partial class CustomConfirmationDialog : CustomWindow
             }
         }
 
-        confirmButton.Text = TranslationServer.Translate(confirmText);
-        cancelButton.Text = TranslationServer.Translate(cancelText);
+        confirmButton.Text = Localization.Translate(confirmText);
+        cancelButton.Text = Localization.Translate(cancelText);
     }
 
     private void OnConfirmPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(ConfirmedEventHandler));
+        EmitSignal(SignalName.Confirmed);
 
         if (HideOnOk)
             Close();

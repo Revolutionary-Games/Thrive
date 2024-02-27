@@ -65,7 +65,7 @@
             if (EnforceYPosition && (physics.AxisLock & Physics.AxisLockType.YAxis) != 0)
             {
                 // Apply fixing to Y-position if drifted too far
-                var driftAmount = Mathf.Abs(position.Position.y);
+                var driftAmount = Mathf.Abs(position.Position.Y);
 
                 if (driftAmount > Constants.PHYSICS_ALLOWED_Y_AXIS_DRIFT)
                 {

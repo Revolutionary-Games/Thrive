@@ -155,7 +155,7 @@ public partial class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.DialogText = TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT")
+        conflictDialog.DialogText = Localization.Translate("KEY_BINDING_CHANGE_CONFLICT")
             .FormatSafe(inputActionItem.DisplayName, inputActionItem.DisplayName);
 
         conflictDialog.PopupCenteredShrink();

@@ -104,12 +104,12 @@
                     // TODO: fix this, currently "toxin" is used both by microbes and chunks, as well as damage from
                     // ingested toxins
                     // OnNoticeMessage?.Invoke(this,
-                    //     new SimpleHUDMessage(TranslationServer.Translate("NOTICE_DAMAGED_BY_ENVIRONMENTAL_TOXIN")));
+                    //     new SimpleHUDMessage(Localization.Translate("NOTICE_DAMAGED_BY_ENVIRONMENTAL_TOXIN")));
                 }
                 else if (damageEvent.DamageSource == "atpDamage")
                 {
                     entity.SendNoticeIfPossible(() =>
-                        new SimpleHUDMessage(TranslationServer.Translate("NOTICE_DAMAGED_BY_NO_ATP"),
+                        new SimpleHUDMessage(Localization.Translate("NOTICE_DAMAGED_BY_NO_ATP"),
                             DisplayDuration.Short));
                 }
             }

@@ -29,7 +29,7 @@ public partial class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     public void ForwardBuildingPlacingRequest()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnBuildingPlacingRequestedEventHandler));
+        EmitSignal(SignalName.OnBuildingPlacingRequested);
     }
 
     public void UpdatePopulationDisplay(long population)
