@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -56,6 +57,34 @@ public class GlucoseReductionEffect : IWorldEffect
             // If there are microbes to be eating up the primordial soup, reduce the milk
             if (patch.SpeciesInPatch.Count > 0)
             {
+                var compoundsAddedBySpecies = SpeciesEnvironmentEffect(patch);
+                var defaultBiomeConditions = patch.BiomeTemplate.Conditions;
+
+                long divider = 1000000000;
+
+                foreach (var compound in compoundsAddedBySpecies)
+                {
+                    if (patch.Biome.ChangeableCompounds.ContainsKey(compound.Key))
+                    {
+                        // Uses default biome conditions to keep species / compounds balance
+                        if (!defaultBiomeConditions.ChangeableCompounds.TryGetValue(compound.Key,
+                                out BiomeCompoundProperties currentCompoundValue))
+                            return;
+
+                        if (!compound.Key.IsGas)
+                        {
+                            currentCompoundValue.Density += compound.Value / 100 / divider;
+                        }
+                        else
+                        {
+                            // TODO: gasseous compound support
+                            // currentCompoundValue.Ambient += compound.Value / 100 / divider;
+                        }
+
+                        patch.Biome.ChangeableCompounds[compound.Key] = currentCompoundValue;
+                    }
+                }
+
                 var initialGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
                     patch.GetTotalChunkCompoundAmount(glucose), 3);
 
@@ -96,5 +125,62 @@ public class GlucoseReductionEffect : IWorldEffect
                     glucose.Name, new LocalizedString("PERCENTAGE_VALUE", globalReduction)), false,
                 "glucoseDown.png");
         }
+    }
+
+    private Dictionary<Compound, float> SpeciesEnvironmentEffect(Patch patch)
+    {
+        // Values can be negative (compounds are reduced if so)
+        Dictionary<Compound, float> totalCompoundsAdded = new Dictionary<Compound, float>();
+
+        foreach (var speciesPair in patch.SpeciesInPatch)
+        {
+            var species = speciesPair.Key;
+            var population = speciesPair.Value;
+
+            // Microbe species
+            if (species is MicrobeSpecies)
+            {
+                var microbeSpecies = (MicrobeSpecies)species;
+
+                foreach (var organelle in microbeSpecies.Organelles)
+                {
+                    if (organelle.Definition.Processes == null)
+                        continue;
+
+                    foreach (var processPair in organelle.Definition.Processes)
+                    {
+                        var process = SimulationParameters.Instance.GetBioProcess(processPair.Key);
+
+                        // Inputs
+                        foreach (var processCompoundPair in process.Inputs)
+                        {
+                            var compound = processCompoundPair.Key;
+
+                            var addedValue = processCompoundPair.Value * processPair.Value * population;
+
+                            if (totalCompoundsAdded.ContainsKey(compound))
+                                totalCompoundsAdded[compound] -= addedValue;
+                            else
+                                totalCompoundsAdded.Add(compound, addedValue);
+                        }
+
+                        // Outputs
+                        foreach (var processCompoundPair in process.Outputs)
+                        {
+                            var compound = processCompoundPair.Key;
+
+                            var addedValue = processCompoundPair.Value * processPair.Value * population;
+
+                            if (totalCompoundsAdded.ContainsKey(compound))
+                                totalCompoundsAdded[compound] += addedValue;
+                            else
+                                totalCompoundsAdded.Add(compound, addedValue);
+                        }
+                    }
+                }
+            }
+        }
+
+        return totalCompoundsAdded;
     }
 }
