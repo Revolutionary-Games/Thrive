@@ -68,7 +68,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     ///   Wether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
     ///   and updating the bar will be ignored
     /// </summary>
-    private bool? playerHasStrainAffected = null;
+    private bool playerMissingStrainAffected;
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
@@ -76,9 +76,6 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Signal]
     public new delegate void OnOpenMenuToHelp();
-
-    [Signal]
-    public delegate void OnSprintButtonPressed();
 
     [Signal]
     public delegate void OnToggleEngulfButtonPressed();
@@ -139,7 +136,6 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             UpdateMulticellularButton(stage.Player);
             UpdateMacroscopicButton(stage.Player);
-            UpdateStrain(stage.Player);
         }
         else
         {
@@ -319,6 +315,18 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
         hpLabel.Text = hpText;
         hpLabel.HintTooltip = hpText;
+    }
+
+    protected override float? ReadPlayerStrainFraction()
+    {
+        if (stage!.Player.Has<StrainAffected>() && !playerMissingStrainAffected)
+        {
+            GD.PrintErr("Player is missing StrainAffected component");
+            playerMissingStrainAffected = true;
+            return null;
+        }
+
+        return stage.Player.Get<StrainAffected>().CalculateStrainFraction();
     }
 
     protected override CompoundBag? GetPlayerUsefulCompounds()
@@ -558,61 +566,6 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         base.Dispose(disposing);
     }
 
-    private void UpdateStrain(Entity player)
-    {
-        if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
-        {
-            strainBar.Visible = false;
-            return;
-        }
-
-        if (playerHasStrainAffected == null && !player.Has<StrainAffected>())
-        {
-            playerHasStrainAffected = false;
-            GD.PrintErr("Player does not have StrainAffected component");
-            return;
-        }
-        else
-        {
-            playerHasStrainAffected ??= true;
-        }
-
-        var strainFraction = player.Get<StrainAffected>().CalculateStrainFraction();
-        atpBar.TintProgress = StrainGradient.Interpolate(strainFraction);
-
-        strainBar.Value = strainFraction;
-
-        switch (Settings.Instance.StrainBarVisibilityMode.Value)
-        {
-            case Settings.StrainBarVisibility.Off:
-                strainBarPanel.Hide();
-                break;
-            case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
-                AnimateStrainBarPanel(strainFraction, 0.65f);
-                break;
-            case Settings.StrainBarVisibility.VisibleWhenOverZero:
-                AnimateStrainBarPanel(strainFraction, 0.05f);
-                break;
-            case Settings.StrainBarVisibility.AlwaysVisible:
-                strainBarPanel.Show();
-                break;
-        }
-    }
-
-    private void AnimateStrainBarPanel(float strainFraction, float minimum)
-    {
-        var shouldBeVisible = strainFraction >= minimum;
-
-        if (!strainBarPanel.Visible && shouldBeVisible)
-        {
-            strainBarFadeAnimationPlayer.Play("FadeIn");
-        }
-        else if (strainBarPanel.Visible && !shouldBeVisible)
-        {
-            strainBarFadeAnimationPlayer.Play("FadeOut");
-        }
-    }
-
     /// <summary>
     ///   Sets button's texture and hint based on its status of fossilisation
     /// </summary>
@@ -829,11 +782,6 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMacroscopic, false);
 
         stage.MovingToEditor = true;
-    }
-
-    private void OnSprintPressed()
-    {
-        EmitSignal(nameof(OnSprintButtonPressed));
     }
 
     private void OnEngulfmentPressed()

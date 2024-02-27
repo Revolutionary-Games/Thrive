@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=2]
+[gd_scene load_steps=112 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=31]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=32]
 [ext_resource path="res://assets/textures/gui/bevel/actions/EngulfEject.png" type="Texture" id=33]
+[ext_resource path="res://assets/textures/gui/bevel/baseMovementIcon.png" type="Texture" id=34]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=42]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=45]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=46]
@@ -65,6 +66,108 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=76]
 [ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=77]
 [ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=78]
+
+[sub_resource type="Gradient" id=47]
+offsets = PoolRealArray( 0, 0.65, 0.9 )
+colors = PoolColorArray( 0.439216, 0.956863, 0.137255, 1, 1, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=41]
+bg_color = Color( 1, 1, 0, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0.0509804, 0.133333, 0.141176, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="Animation" id=43]
+resource_name = "FadeIn"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("StrainBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StrainBar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "FadeOut"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("StrainBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StrainBar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=45]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("StrainBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StrainBar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0.129412, 0.141176, 0.784314 )
@@ -371,6 +474,42 @@ tracks/2/keys = {
 "values": [ -350, 0 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=46]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 0.784314 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id=49]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.709804, 0.188235, 0.188235, 1 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id=48]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.701961, 0.701961, 0.701961, 0.588235 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
 [sub_resource type="StyleBoxFlat" id=33]
 draw_center = false
 border_width_left = 2
@@ -449,6 +588,7 @@ EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/Light2D")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
 HotBarPath = NodePath("ScrollContainer/HotBar")
+SprintHotkeyPath = NodePath("ScrollContainer/HotBar/Sprint")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Eating")
 SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
@@ -460,6 +600,9 @@ AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/Age
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 EjectEngulfedHotkeyPath = NodePath("ScrollContainer/HotBar/EjectEngulfed")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
+StrainBarPanelPath = NodePath("Top/StrainBar")
+StrainBarPath = NodePath("Top/StrainBar/HBoxContainer/ProgressBar")
+StrainBarFadeAnimationPlayerPath = NodePath("Top/StrainBarFadeAnimationPlayer")
 FossilisationButtonScene = ExtResource( 27 )
 MicrobePickupOrganelleSound = ExtResource( 18 )
 AmmoniaBW = ExtResource( 23 )
@@ -468,6 +611,7 @@ AmmoniaInv = ExtResource( 20 )
 PhosphatesInv = ExtResource( 21 )
 ExtinctionBoxScene = ExtResource( 70 )
 PatchExtinctionBoxScene = ExtResource( 16 )
+StrainGradient = SubResource( 47 )
 MoveToLandPopupPath = NodePath("MoveToLandConfirmation")
 ToLandButtonPath = NodePath("BottomRight/VBoxContainer/ToLand")
 AwakenButtonPath = NodePath("BottomRight/VBoxContainer/Control/Awaken")
@@ -476,6 +620,60 @@ InteractActionPath = NodePath("ScrollContainer/HotBar/Interact")
 InventoryButtonPath = NodePath("ScrollContainer/HotBar/Inventory")
 BuildButtonPath = NodePath("ScrollContainer/HotBar/Build")
 InventoryScreenPath = NodePath("InventoryScreen")
+
+[node name="Top" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.02
+anchor_right = 0.5
+anchor_bottom = 0.02
+margin_left = -300.0
+margin_right = 300.0
+margin_bottom = 20.0
+grow_horizontal = 2
+rect_min_size = Vector2( 600, 20 )
+
+[node name="StrainBar" type="PanelContainer" parent="Top"]
+margin_right = 600.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/StrainBar"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 599.0
+margin_bottom = 19.0
+
+[node name="Control2" type="Control" parent="Top/StrainBar/HBoxContainer"]
+margin_right = 30.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="ProgressBar" type="ProgressBar" parent="Top/StrainBar/HBoxContainer"]
+margin_left = 34.0
+margin_top = 4.0
+margin_right = 564.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 0, 10 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_styles/fg = SubResource( 41 )
+custom_styles/bg = SubResource( 42 )
+max_value = 0.9
+step = 0.001
+value = 0.45
+percent_visible = false
+
+[node name="Control" type="Control" parent="Top/StrainBar/HBoxContainer"]
+margin_left = 568.0
+margin_right = 598.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="StrainBarFadeAnimationPlayer" type="AnimationPlayer" parent="Top"]
+anims/FadeIn = SubResource( 43 )
+anims/FadeOut = SubResource( 44 )
+anims/RESET = SubResource( 45 )
 
 [node name="TopRight" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -1904,12 +2102,29 @@ scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
 margin_right = 550.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
+margin_bottom = 51.0
+hint_tooltip = "TOGGLE_SPRINT_TOOLTIP"
+focus_mode = 2
+custom_styles/hover = SubResource( 46 )
+custom_styles/pressed = SubResource( 46 )
+custom_styles/disabled = SubResource( 49 )
+custom_styles/normal = SubResource( 48 )
+toggle_mode = true
+ActionIcon = ExtResource( 34 )
+ActionName = "g_sprint"
 
 [node name="Interact" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
 visible = false
@@ -2060,6 +2275,7 @@ DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Interact" to="." method="ForwardInteractButton"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Inventory" to="." method="ForwardOpenInventory"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Build" to="." method="ForwardBuildPressed"]

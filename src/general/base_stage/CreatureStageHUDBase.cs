@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Components;
+using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -333,6 +334,9 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     [Signal]
     public delegate void OnOpenMenuToHelp();
 
+    [Signal]
+    public delegate void OnSprintButtonPressed();
+
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
     /// </summary>
@@ -485,6 +489,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
             UpdateCompoundBars(delta);
             UpdateReproductionProgress();
             UpdateAbilitiesHotBar();
+            UpdateStrain();
         }
 
         UpdateATP(delta);
@@ -742,6 +747,11 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         }
     }
 
+    protected void OnSprintPressed()
+    {
+        EmitSignal(nameof(OnSprintButtonPressed));
+    }
+
     protected void UpdateEnvironmentPanelState()
     {
         if (environmentPanelBarContainer == null)
@@ -848,6 +858,52 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     }
 
     protected abstract void ReadPlayerHitpoints(out float hp, out float maxHP);
+
+    protected void UpdateStrain()
+    {
+        if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
+        {
+            strainBarPanel.Visible = false;
+            return;
+        }
+
+        var readStrainFraction = ReadPlayerStrainFraction();
+
+        // Skip the rest of the method if player does not have strain
+        if (readStrainFraction == null)
+            return;
+
+        var strainFraction = readStrainFraction.Value;
+
+        atpBar.TintProgress = StrainGradient.Interpolate(strainFraction);
+
+        strainBar.Value = strainFraction;
+
+        switch (Settings.Instance.StrainBarVisibilityMode.Value)
+        {
+            case Settings.StrainBarVisibility.Off:
+                strainBarPanel.Hide();
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
+                AnimateStrainBarPanel(strainFraction, 0.65f);
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenOverZero:
+                AnimateStrainBarPanel(strainFraction, 0.05f);
+                break;
+            case Settings.StrainBarVisibility.AlwaysVisible:
+                strainBarPanel.Show();
+                break;
+        }
+    }
+
+    /// <summary>
+    ///   Gets the current amount of strain affecting the player
+    /// </summary>
+    /// <returns>
+    ///   Null if the player is missing <see cref="StrainAffected"/>,
+    ///   else the player's strain fraction
+    /// </returns>
+    protected abstract float? ReadPlayerStrainFraction();
 
     protected void SetEditorButtonFlashEffect(bool enabled)
     {
@@ -1237,6 +1293,20 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
             {
                 bar.Hide();
             }
+        }
+    }
+
+    private void AnimateStrainBarPanel(float strainFraction, float minimum)
+    {
+        var shouldBeVisible = strainFraction >= minimum;
+
+        if (!strainBarPanel.Visible && shouldBeVisible)
+        {
+            strainBarFadeAnimationPlayer.Play("FadeIn");
+        }
+        else if (strainBarPanel.Visible && !shouldBeVisible)
+        {
+            strainBarFadeAnimationPlayer.Play("FadeOut");
         }
     }
 

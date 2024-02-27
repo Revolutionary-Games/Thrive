@@ -146,6 +146,12 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         maxHP = 100;
     }
 
+    protected override float? ReadPlayerStrainFraction()
+    {
+        // TODO: strain
+        return null;
+    }
+
     protected override CompoundBag GetPlayerUsefulCompounds()
     {
         return stage!.Player!.ProcessCompoundStorage;
