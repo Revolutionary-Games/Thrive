@@ -28,6 +28,11 @@ public class PlayerInspectInfo : Node
     /// <summary>
     ///   All (physics) entities the player is pointing at.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: switch this away from LINQ to reduce memory allocations
+    ///   </para>
+    /// </remarks>
     public IEnumerable<Entity> Entities =>
         hits.Take(validHits).Where(h => h.BodyEntity != default).Select(h => h.BodyEntity);
 

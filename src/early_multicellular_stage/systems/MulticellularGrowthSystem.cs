@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -13,6 +14,18 @@
     /// <summary>
     ///   Handles growth in multicellular cell colonies
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as reading <see cref="MicrobeStatus"/> as this uses one special flag in it. That flag is
+    ///     shared with <see cref="MicrobeReproductionSystem"/> but these systems cannot run on the same entities so
+    ///     there is no conflict.
+    ///   </para>
+    ///   <para>
+    ///     The runtime cost is purely a guess here based on the fact that this is likely a bit heavy system like
+    ///     microbe reproduction but this does less so should probably have lower cost.
+    ///   </para>
+    /// </remarks>
+    [With(typeof(ReproductionStatus))]
     [With(typeof(EarlyMulticellularSpeciesMember))]
     [With(typeof(MulticellularGrowth))]
     [With(typeof(CompoundStorage))]
@@ -20,11 +33,17 @@
     [With(typeof(OrganelleContainer))]
     [With(typeof(Health))]
     [Without(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(MicrobeEventCallbacks))]
+    [ReadsComponent(typeof(CellProperties))]
     [RunsAfter(typeof(ProcessSystem))]
     [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
+    [RuntimeCost(4, false)]
     public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     {
+        private readonly ThreadLocal<List<Compound>> temporaryWorkData = new(() => new List<Compound>());
+
         private readonly IWorldSimulation worldSimulation;
         private readonly ISpawnSystem spawnSystem;
         private GameWorld? gameWorld;
@@ -39,6 +58,12 @@
         public void SetWorld(GameWorld world)
         {
             gameWorld = world;
+        }
+
+        public override void Dispose()
+        {
+            Dispose(true);
+            base.Dispose();
         }
 
         protected override void PreUpdate(float delta)
@@ -80,7 +105,7 @@
 
             var (remainingAllowedCompoundUse, remainingFreeCompounds) =
                 MicrobeReproductionSystem.CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings,
-                    organelleContainer.HexCount, false, elapsedSinceLastUpdate);
+                    organelleContainer.HexCount, true, elapsedSinceLastUpdate);
 
             if (multicellularGrowth.CompoundsNeededForNextCell == null)
             {
@@ -128,6 +153,7 @@
                                 baseReproduction.MissingCompoundsForBaseReproduction, compounds,
                                 ref remainingAllowedCompoundUse,
                                 ref remainingFreeCompounds, status.ConsumeReproductionCompoundsReverse,
+                                temporaryWorkData.Value,
                                 multicellularGrowth.CompoundsUsedForMulticellularGrowth))
                         {
                             // Not ready yet for budding
@@ -153,6 +179,7 @@
 
             // Consume some compounds for the next cell in the layout
             // Similar logic for "growing" more cells than in PlacedOrganelle growth
+            // TODO: refactor this also to use an external list rather than LINQ to reverse things
             foreach (var entry in microbeStatus.ConsumeReproductionCompoundsReverse ?
                          multicellularGrowth.CompoundsNeededForNextCell.Reverse() :
                          multicellularGrowth.CompoundsNeededForNextCell)
@@ -293,6 +320,14 @@
                 // This catch helps if a colony member somehow got processed for the reproduction system and causes
                 // an exception due to not being allowed to divide
                 GD.PrintErr("Early multicellular cell divide failed: ", e);
+            }
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                temporaryWorkData.Dispose();
             }
         }
     }

@@ -311,10 +311,15 @@ void PhysicalWorld::ProcessInBackground(float delta)
     if (elapsedSinceUpdate < singlePhysicsFrame)
     {
         // We can just early exit if there's nothing to do
+        previous = true;
+        if (!runningBackgroundSimulation.compare_exchange_strong(previous, false))
+        {
+            LOG_ERROR(
+                "Failed to unset threaded running flag when it was not time to run physics yet, game will deadlock");
+        }
+
         return;
     }
-
-    runningBackgroundSimulation = true;
 
     TaskSystem::Get().QueueTask([this]() { StepAllPhysicsStepsInBackground(); });
 }

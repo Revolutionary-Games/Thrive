@@ -120,7 +120,7 @@ installing a development environment is the easier route.
 
 Godot currently supports the following development environments:
 
-- Visual Studio 2019
+- Visual Studio 2022
 - Visual Studio Code
 - JetBrains Rider
 - MonoDevelop
@@ -160,11 +160,11 @@ you can also change the build tools used by Rider.
 
 For better experience make sure to install the Godot plugin for Rider.
 
-### Visual Studio 2019
+### Visual Studio 2022
 
-On Windows you can use Visual Studio 2019 to work on Thrive. You can
+On Windows you can use Visual Studio 2022 to work on Thrive. You can
 find download and setup instructions here:
-https://docs.godotengine.org/en/stable/getting_started/scripting/c_sharp/c_sharp_basics.html#configuring-vs-2019-for-debugging
+https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_basics.html#configuring-an-external-editor
 
 ### Visual Studio Code
 
@@ -175,7 +175,7 @@ Visual Studio Code, not to be confused with Visual Studio, doesn't
 come with build tools, so you'll need to install the build tools for
 Visual Studio from here:
 https://visualstudio.microsoft.com/downloads/?q=build+tools You will
-need **at least** VS Build tools 2019 due to the version of C# used by
+need **at least** VS Build tools 2022 due to the version of C# used by
 Thrive. During the installation process, make sure MSBuild tools is
 listed under the installation details.
 
@@ -335,6 +335,10 @@ https://docs.microsoft.com/en-us/nuget/consume-packages/package-restore
 If you have nuget in path or you use the Visual Studio command prompt
 you should also be able to restore the packages by running `nuget
 restore` in the Thrive folder.
+
+If there are any errors about missing .csproj files at this point,
+run: `git submodule update --init` to ensure the files coming from
+submodules should all be up to date.
 
 Compiling
 ---------
@@ -582,7 +586,7 @@ files to check.
 
 ## Additional Tips
 
-### Build or script running fails
+### Build or script running fails (or nuget restore fails)
 
 First make sure your submodules are up to date:
 ```sh
@@ -603,6 +607,18 @@ If you get errors from any files in the Scripts folder, for example
 `Thrive\Scripts\Program.cs`, then you likely have an outdated version
 of the submodules. Running the above submodule update command should
 fix these kind of errors as well.
+
+### The project file was not found
+
+If you get errors like "The project file ... ScriptsBase.csproj was
+not found", then that is probably caused by git submodules not being
+initialized or being not up to date. Run `git submodule update --init`
+to fix the issue in the cloned folder on your computer. 
+
+Also if you get any other error when trying to restore the nuget
+packages, it might also be caused by the submodules. And the third way
+to get this error is likely when trying to run the scripts in the
+repository without again having the submodules be up to date.
 
 ### Godot asset import fails / images can't be opened
 
@@ -632,8 +648,8 @@ then see the section below about cleaning Godot.
 If Godot still can't build the full game after following the
 instructions, you should verify that it's using the proper toolset. Go
 to Editor > Editor Settings > Builds under Mono in the panel on the
-left. For VS2019, you should select MSBuild (VS Build Tools) for the
-build tool option, if it isn't already.
+left. For VS2019 and later, you should select MSBuild (VS Build Tools)
+for the build tool option, if it isn't already.
 
 ### Build problems with unsupported C# version
 

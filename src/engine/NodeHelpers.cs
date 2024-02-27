@@ -228,6 +228,19 @@ public static class NodeHelpers
     }
 
     /// <summary>
+    ///   Gets the parent of a Node as a Spatial in a way that actually works (Godot inbuilt method for this fails
+    ///   randomly)
+    /// </summary>
+    /// <param name="node">The node to get the parent from</param>
+    /// <returns>The parent Spatial or null</returns>
+    public static Spatial? GetParentSpatialWorking(this Node node)
+    {
+        var parent = node.GetParent();
+
+        return parent as Spatial;
+    }
+
+    /// <summary>
     ///   Looks through all parent nodes recursively of a node to find one of matching type
     /// </summary>
     /// <param name="node">The node which parent is the first node to search</param>

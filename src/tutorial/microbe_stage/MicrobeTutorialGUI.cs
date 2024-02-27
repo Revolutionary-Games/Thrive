@@ -136,7 +136,19 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public bool MicrobeMovementPromptsVisible
     {
         get => microbeMovementKeyPrompts.Visible;
-        set => microbeMovementKeyPrompts.Visible = value;
+        set
+        {
+            if (value == microbeMovementKeyPrompts.Visible)
+                return;
+
+            microbeMovementKeyPrompts.Visible = value;
+
+            // Apply visible to children to make the key prompts visible. This saves a lot of processing time overall
+            foreach (Control child in microbeMovementKeyPrompts.GetChildren())
+            {
+                child.Visible = value;
+            }
+        }
     }
 
     public bool MicrobeMovementPopupVisible

@@ -3,188 +3,403 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Godot;
 
     /// <summary>
-    ///   Simulates running <see cref="SystemToSchedule"/> accross multiple threads and generates barriers for
+    ///   Simulates running <see cref="SystemToSchedule"/> accross multiple allThreads and generates barriers for
     ///   correctness
     /// </summary>
     public class ThreadedRunSimulator
     {
-        private readonly List<Thread> threads = new();
+        private const double ExclusiveTaskChance = 0.90;
+        private const double ChanceToShuffleThreadOrderOnTimeStep = 0.3;
+        private const double ExclusiveContinueCheckChance = 0.95;
 
-        public ThreadedRunSimulator(IEnumerable<IReadOnlyList<SystemToSchedule>> threadTasks)
+        // TODO: currently this doesn't really impact anything (or very unlikely for this to impact anything)
+        private const double ChanceForNoWorkPerAheadTime = 0.5;
+
+        private const double ChanceToShuffleExclusiveTasks = 0.1;
+        private const double ChanceToShuffleNormalTasks = 0.2;
+
+        /// <summary>
+        ///   Relative time cost of a barrier to running an average system
+        /// </summary>
+        private const float TimeCostPerBarrier = 1.5f;
+
+        private static readonly bool ExtraVerifySystemRun = false;
+
+        /// <summary>
+        ///   After finding a new best result, how long to look at more attempts
+        /// </summary>
+        private readonly TimeSpan timeToLookForMoreResults = TimeSpan.FromSeconds(10);
+
+        private readonly object resultLock = new();
+
+        private readonly IReadOnlyList<SystemToSchedule> freelyAssignableTasks;
+        private readonly int threadCount;
+        private readonly IReadOnlyList<SystemToSchedule> mainThreadTasks;
+
+        private DateTime lastNewBestFound;
+        private float bestThreadTime;
+        private float bestThreadDifference;
+        private SimulationAttempt? bestSimulation;
+        private int attempts;
+
+        public ThreadedRunSimulator(IReadOnlyList<SystemToSchedule> mainThreadTasks,
+            IReadOnlyList<SystemToSchedule> freelyAssignableTasks, int threadCount)
         {
-            int counter = 1;
-            foreach (var thread in threadTasks)
-            {
-                threads.Add(new Thread(thread, counter++));
-            }
-        }
+            if (threadCount < 1)
+                throw new ArgumentException("Must have at least one thread");
 
-        public ThreadedRunSimulator(params IReadOnlyList<SystemToSchedule>[] threadTasks) :
-            this(threadTasks.AsEnumerable())
-        {
-        }
-
-        public void Simulate()
-        {
-            // Setup simulation variables
-            foreach (var thread in threads)
-            {
-                thread.Start();
-            }
-
-            var currentTimeslot = new Timeslot(1);
-
-            int deadlockCounter = 0;
-
-            var doneThreads = new HashSet<Thread>();
-
-            // Create time steps until all threads are done
-            while (true)
-            {
-                bool threadsActive = false;
-                bool systemsActive = false;
-
-                ++deadlockCounter;
-                doneThreads.Clear();
-
-                foreach (var thread in threads)
-                {
-                    if (thread.Done)
-                    {
-                        doneThreads.Add(thread);
-                        continue;
-                    }
-
-                    threadsActive = true;
-
-                    if (currentTimeslot.CanRunSystemInParallel(thread.RunningSystem, thread))
-                    {
-                        currentTimeslot.MarkConcurrentlyRunningSystem(thread.RunningSystem, thread);
-                        deadlockCounter = 0;
-                        systemsActive = true;
-                    }
-                    else
-                    {
-                        currentTimeslot.MarkThreadWaiting(thread);
-                    }
-                }
-
-                if (!threadsActive)
-                {
-                    break;
-                }
-
-                if (deadlockCounter > 1000)
-                {
-                    throw new Exception("Simulated threads cannot progress, likely deadlocked");
-                }
-
-                if (!systemsActive)
-                {
-                    // Time to move to a new timeslot
-                    currentTimeslot = currentTimeslot.StartNextTimeslot(doneThreads);
-                }
-            }
-
-            // TODO: re-enable this if the logic problem with removing needed barriers is removed
-            // RemoveUnnecessaryDoubleBarriers();
+            this.freelyAssignableTasks = freelyAssignableTasks;
+            this.threadCount = threadCount;
+            this.mainThreadTasks = mainThreadTasks;
         }
 
         /// <summary>
-        ///   Tries to remove double barriers. Doesn't work currently due to a bug
+        ///   Simulate threads and find a good ordering
         /// </summary>
-        private void RemoveUnnecessaryDoubleBarriers()
+        /// <returns>The tasks split into threads, first item is always the main thread tasks</returns>
+        public List<List<SystemToSchedule>> Simulate(int initialSeed, int parallelTasks)
         {
-            // Reset thread points to the start
-            foreach (var thread in threads)
+            if (parallelTasks < 1)
+                throw new ArgumentException("Parallel task count needs to be at least 1");
+
+            var random = new Random(initialSeed);
+
+            // Reset state in case this is reused
+            bestThreadTime = float.MaxValue;
+            bestThreadDifference = float.MaxValue;
+            bestSimulation = null;
+
+            attempts = 0;
+
+            // Create parallel tasks
+            var tasks = new List<Task>();
+            for (int i = 0; i < parallelTasks; ++i)
             {
-                thread.Start();
+                int seed = random.Next();
+                tasks.Add(new Task(() => RunSimulationAttempts(seed)));
             }
 
-            while (true)
+            lock (resultLock)
             {
-                bool doubleBarrierMissing = false;
-                bool hasDoubleBarriers = false;
-                bool completed = true;
+                lastNewBestFound = DateTime.UtcNow;
+            }
 
-                foreach (var thread in threads)
+            // Wait for tasks to end, this is not time critical threading here so this thread can be used to run
+            // a bunch more tasks
+            TaskExecutor.Instance.RunTasks(tasks, true);
+
+            if (bestSimulation == null)
+                throw new Exception("Couldn't find any valid thread orderings");
+
+            GD.Print($"Simulated {attempts} thread orderings to find the best one");
+
+            return bestSimulation.ToTaskListResult();
+        }
+
+        private void RunSimulationAttempts(int seed)
+        {
+            var random = new Random(seed);
+            SimulationAttempt? currentSimulationAttempt = null;
+
+            while (AttemptMoreSimulations())
+            {
+                currentSimulationAttempt ??= new SimulationAttempt(freelyAssignableTasks, mainThreadTasks,
+                    threadCount);
+
+                var (currentTime, currentDifference) = currentSimulationAttempt.AttemptOrdering(random.Next());
+                Interlocked.Increment(ref attempts);
+
+                // This is a bit cumbersome condition, but needed due to equal value being good enough if the thread
+                // deviance is smaller
+                if (!(currentTime <= bestThreadTime))
+                    continue;
+
+                lock (resultLock)
                 {
-                    if (thread.Done)
+                    if (currentTime < bestThreadTime || currentDifference < bestThreadDifference)
                     {
-                        // TODO: should finished threads not be taken into account and allowing other threads to remove
-                        // double barriers
-                        doubleBarrierMissing = true;
-                        continue;
-                    }
+                        bestThreadTime = currentTime;
+                        bestThreadDifference = currentDifference;
+                        lastNewBestFound = DateTime.UtcNow;
 
-                    completed = false;
+                        GD.Print($"Found new best thread simulation: {bestThreadTime} " +
+                            $"thread variance: {bestThreadDifference}");
 
-                    if (thread.ScanForNextDoubleBarrier())
-                    {
-                        hasDoubleBarriers = true;
-                    }
-                    else
-                    {
-                        doubleBarrierMissing = true;
+                        // Store the current attempt as the best one, and set it to null as we need to create a new
+                        // object to keep testing attempts
+                        bestSimulation = currentSimulationAttempt;
+                        currentSimulationAttempt = null;
                     }
                 }
+            }
+        }
 
-                if (hasDoubleBarriers)
-                {
-                    if (!doubleBarrierMissing)
-                    {
-                        // Can remove a double barrier
-                        foreach (var thread in threads)
-                        {
-                            thread.RemoveDoubleBarrier();
-                        }
-                    }
-                    else
-                    {
-                        // Only some threads could remove a barrier, step threads forward to skip this location
-                        foreach (var thread in threads)
-                        {
-                            thread.Step();
-                        }
-                    }
-                }
-                else if (completed)
-                {
-                    // No double barriers to remove anymore
-                    break;
-                }
+        private bool AttemptMoreSimulations()
+        {
+            lock (resultLock)
+            {
+                return DateTime.UtcNow - lastNewBestFound < timeToLookForMoreResults;
             }
         }
 
         /// <summary>
-        ///   Represents what's allowed to happen at the same moment in time
+        ///   Attempted ordering of thread simulation. A bunch of these are attempted with different seeds to find a
+        ///   good thread task assignment and barrier locations.
         /// </summary>
-        private class Timeslot
+        private class SimulationAttempt
         {
+            private readonly IReadOnlyList<SystemToSchedule> originalGeneralTasks;
+
+            private readonly List<Thread> allThreads = new();
+            private readonly List<SystemToSchedule> upcomingGeneralTasks = new();
+
             // All reads / runs need to be stored per-thread so when one thread is blocked another can still
             private readonly Dictionary<Thread, HashSet<Type>> componentReads = new();
             private readonly Dictionary<Thread, HashSet<Type>> componentWrites = new();
             private readonly Dictionary<Thread, List<SystemToSchedule>> runSystems = new();
 
-            /// <summary>
-            ///   Threads that are blocked and only can resume next timeslot
-            /// </summary>
-            private readonly List<Thread> threadsToResumeNextTimeslot = new();
-
-            private readonly int time;
-
             private readonly SystemToSchedule.SystemRequirementsBasedComparer comparer = new();
 
-            public Timeslot(int time)
+            private Random random = new();
+
+            public SimulationAttempt(IReadOnlyList<SystemToSchedule> generalTasks,
+                IReadOnlyList<SystemToSchedule> mainThreadTasks, int threadCount)
             {
-                this.time = time;
+                originalGeneralTasks = generalTasks;
+
+                for (int i = 0; i < threadCount; ++i)
+                {
+                    // Main tasks are reserved for first thread
+                    var thread = new Thread(i + 1, i == 0 ? mainThreadTasks : new List<SystemToSchedule>());
+                    allThreads.Add(thread);
+                }
             }
 
-            public bool CanRunSystemInParallel(SystemToSchedule systemToSchedule, Thread thread)
+            private bool HasUpcomingTasks => upcomingGeneralTasks.Count > 0 || HasThreadsWithExclusiveTasks;
+
+            private bool HasThreadsWithExclusiveTasks => allThreads.Any(t => t.HasUpcomingExclusiveTask);
+
+            public (float TotalTime, float ThreadDifference) AttemptOrdering(int seed)
             {
-                // Check for timing conflicts with *other* threads
+                random = new Random(seed);
+                Reset(random.NextDouble() < ChanceToShuffleExclusiveTasks);
+
+                upcomingGeneralTasks.Clear();
+                upcomingGeneralTasks.AddRange(originalGeneralTasks);
+
+                if (random.NextDouble() < ChanceToShuffleNormalTasks)
+                {
+                    upcomingGeneralTasks.Shuffle(random);
+
+                    // TODO: should this re-apply at least some sorting?
+                }
+
+                if (!HasUpcomingTasks)
+                    throw new Exception("Failed to add tasks to simulate");
+
+                // How long since the last barrier (as barriers synchronize the times of threads, this is used instead
+                // of total simulated time)
+                double timeSinceBarrier = 0;
+                float extraTimeCost = 0;
+                int stuckCount = 0;
+
+                while (HasUpcomingTasks)
+                {
+                    bool scheduledSomething = false;
+
+                    double neededTimeSkip = double.MaxValue;
+                    bool anyThreadIsAtCurrentTime = false;
+
+                    foreach (var thread in allThreads)
+                    {
+                        var timeInFuture = thread.TimeSinceBarrier - timeSinceBarrier;
+
+                        // If thread is still busy at this point in time, can't do anything
+                        if (timeInFuture > 0)
+                        {
+                            if (neededTimeSkip > timeInFuture)
+                                neededTimeSkip = timeInFuture;
+
+                            continue;
+                        }
+
+                        anyThreadIsAtCurrentTime = true;
+
+                        // Thread is free, try to schedule work
+                        if (ScheduleWorkForThread(thread))
+                        {
+                            scheduledSomething = true;
+                        }
+                    }
+
+                    // Keep happily scheduling stuff until we can't find anything to schedule
+                    if (scheduledSomething)
+                    {
+                        stuckCount = 0;
+                        continue;
+                    }
+
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
+                    if (!anyThreadIsAtCurrentTime && neededTimeSkip != double.MaxValue)
+                    {
+                        // All threads are still busy, jump forward in time to when the next thread is ready to do
+                        // something
+
+                        timeSinceBarrier += neededTimeSkip + MathUtils.EPSILON;
+
+                        if (random.NextDouble() < ChanceToShuffleThreadOrderOnTimeStep)
+                            RandomizeThreadOrder();
+
+                        continue;
+                    }
+
+                    // If cannot schedule anything (and there's something to do), need to move to next group of barriers
+                    if (HasUpcomingTasks)
+                    {
+                        AddBarrierPoint();
+                        timeSinceBarrier = 0;
+                        stuckCount = 0;
+
+                        // Barriers cost extra time
+                        extraTimeCost += TimeCostPerBarrier;
+                    }
+                    else
+                    {
+                        ++stuckCount;
+
+                        if (stuckCount > 100)
+                            throw new Exception("Thread simulation is stuck");
+                    }
+                }
+
+                return (allThreads.Max(t => t.Time) + extraTimeCost, CalculateThreadTimeDeviance());
+            }
+
+            public List<List<SystemToSchedule>> ToTaskListResult()
+            {
+                // Need to sort threads back to have main thread first
+                allThreads.Sort(new ThreadIdComparer());
+
+                if (allThreads[0].ThreadId != 1)
+                    throw new Exception("Thread order sort back to normal failed");
+
+                // Remove any extra barriers that can be removed
+                AnalyzeAndRemoveExtraBarriers();
+
+                var result = new List<List<SystemToSchedule>>();
+
+                foreach (var thread in allThreads)
+                {
+                    result.Add(thread.GetAndApplyResult());
+                }
+
+                return result;
+            }
+
+            private void Reset(bool shuffleExclusiveTasks)
+            {
+                foreach (var thread in allThreads)
+                {
+                    thread.Reset(shuffleExclusiveTasks, random);
+                }
+
+                ClearActiveSystemsAndComponentUses();
+            }
+
+            private float CalculateThreadTimeDeviance()
+            {
+                return (float)allThreads.Select(t => (double)t.Time).CalculateAverageAndStandardDeviation()
+                    .StandardDeviation;
+            }
+
+            private void AddBarrierPoint()
+            {
+                foreach (var thread in allThreads)
+                {
+                    thread.AddBarrier();
+                }
+
+                ClearActiveSystemsAndComponentUses();
+            }
+
+            private void RandomizeThreadOrder()
+            {
+                allThreads.Shuffle(random);
+            }
+
+            private void ClearActiveSystemsAndComponentUses()
+            {
+                foreach (var pair in componentReads)
+                {
+                    pair.Value.Clear();
+                }
+
+                foreach (var pair in componentWrites)
+                {
+                    pair.Value.Clear();
+                }
+
+                foreach (var pair in runSystems)
+                {
+                    pair.Value.Clear();
+                }
+            }
+
+            private bool ScheduleWorkForThread(Thread thread)
+            {
+                // If thread is ahead other threads, it gets more unlikely to be given more work
+                var ahead = allThreads.Where(t => t != thread)
+                    .Average(t => thread.TimeSinceBarrier - t.TimeSinceBarrier);
+
+                // TODO: maybe remove this code entirely as thanks to the thread being executing in the future checks
+                // no threads that are ahead other ones really get even into this method in the first place
+                if (ahead > 0)
+                {
+                    if (random.NextDouble() < ChanceForNoWorkPerAheadTime * ahead)
+                        return false;
+                }
+
+                // Prioritize running exclusive tasks a bit
+                if (thread.HasUpcomingExclusiveTask && random.NextDouble() < ExclusiveTaskChance)
+                {
+                    foreach (var exclusiveTask in thread.GetUpcomingExclusiveTasks())
+                    {
+                        if (CanRunSystemInParallel(exclusiveTask, thread))
+                        {
+                            MarkConcurrentlyRunningSystem(exclusiveTask, thread);
+                            return true;
+                        }
+
+                        // Chance to stop checking early
+                        if (random.NextDouble() > ExclusiveContinueCheckChance)
+                            break;
+                    }
+                }
+
+                // Then try the general pool
+                foreach (var task in upcomingGeneralTasks)
+                {
+                    if (CanRunSystemInParallel(task, thread))
+                    {
+                        MarkConcurrentlyRunningSystem(task, thread);
+                        return true;
+                    }
+
+                    // TODO: should this have a chance here to stop checking things for more randomness?
+                }
+
+                // Thread cannot start work
+                return false;
+            }
+
+            private bool CanRunSystemInParallel(SystemToSchedule systemToSchedule, Thread thread)
+            {
+                // Check for timing conflicts with *other* allThreads
                 var otherReads = componentReads.Where(p => p.Key != thread).SelectMany(p => p.Value);
                 var otherWrites = componentWrites.Where(p => p.Key != thread).SelectMany(p => p.Value);
                 var otherSystems = runSystems.Where(p => p.Key != thread).SelectMany(p => p.Value);
@@ -203,55 +418,57 @@
                 if (otherSystems.Any(s => comparer.CompareWeak(systemToSchedule, s) > 0))
                     return false;
 
-                // Check that the system is not running before a later system it should come after from a blocked
-                // thread
-                foreach (var blockedThread in threadsToResumeNextTimeslot)
+                // Check that the system is not running before a later system it should come after from a thread or
+                // the upcoming tasks
+                foreach (var otherThread in allThreads)
                 {
-                    if (blockedThread == thread)
+                    if (otherThread == thread)
                         continue;
 
-                    foreach (var futureSystem in blockedThread.GetStillUpcomingSystems())
+                    foreach (var futureSystem in otherThread.GetUpcomingExclusiveTasks())
                     {
                         if (comparer.CompareWeak(systemToSchedule, futureSystem) > 0)
                         {
-                            // Need to wait for a blocked thread to resume and schedule a system from it before running
+                            // Need to wait for this thread to manage to run this task
                             return false;
                         }
                     }
                 }
 
-                // TODO: should this also check for other future systems from existing threads?
-                // It's probably unnecessary as long as the system general list is sorted fully before being split into
-                // thread tasks
+                foreach (var upcomingTask in upcomingGeneralTasks)
+                {
+                    if (comparer.CompareWeak(systemToSchedule, upcomingTask) > 0)
+                    {
+                        // Need to wait until some thread takes this upcoming task before the checked task can be run
+                        return false;
+                    }
+                }
 
-                // No conflicts with other things happening in this timeslot
+                // No conflicts with other things happening in this barrier section
                 return true;
             }
 
-            public void MarkThreadWaiting(Thread thread)
+            private void MarkConcurrentlyRunningSystem(SystemToSchedule systemToSchedule, Thread thread)
             {
-                if (threadsToResumeNextTimeslot.Contains(thread))
-                    return;
+                // This check is not usually required as this is only called after the caller checks that this is
+                // allowed to run
+                if (ExtraVerifySystemRun)
+                {
+                    if (!CanRunSystemInParallel(systemToSchedule, thread))
+                        throw new InvalidOperationException("Cannot run the system in parallel");
+                }
 
-                threadsToResumeNextTimeslot.Add(thread);
+                AddRunningSystemData(systemToSchedule, thread);
 
-                var system = thread.RunningSystem;
+                // Current system from thread is ran, step it to the next system
+                thread.MarkExecutedTask(systemToSchedule);
 
-                ++system.RequiresBarrierBefore;
+                upcomingGeneralTasks.Remove(systemToSchedule);
             }
 
-            public void MarkConcurrentlyRunningSystem(SystemToSchedule systemToSchedule, Thread thread)
+            private void AddRunningSystemData(SystemToSchedule systemToSchedule, Thread thread)
             {
-                if (systemToSchedule != thread.RunningSystem)
-                    throw new ArgumentException("not currently running in thread", nameof(systemToSchedule));
-
-                // Blocked threads cannot run again before the next timeslot
-                if (threadsToResumeNextTimeslot.Contains(thread))
-                    throw new ArgumentException("Blocked thread cannot resume in this timeslot");
-
-                if (!CanRunSystemInParallel(systemToSchedule, thread))
-                    throw new InvalidOperationException("Cannot run the system in parallel");
-
+                // Running systems within the current barrier slot
                 if (!runSystems.TryGetValue(thread, out var threadSystems))
                 {
                     threadSystems = new List<SystemToSchedule>();
@@ -285,228 +502,210 @@
                 {
                     threadWrites.Add(component);
                 }
-
-                systemToSchedule.Timeslot = time;
-
-                // Current system from thread is ran, step it to the next system
-                thread.Step();
             }
 
-            public Timeslot StartNextTimeslot(IReadOnlyCollection<Thread> doneThreads)
+            private void AnalyzeAndRemoveExtraBarriers()
             {
-                AddThreadBarrierForUnblockedThreads();
+                var runningThreadCountsPerSlot = new List<int>();
 
-                if (doneThreads.Count > 0)
-                    AddBarriersForEarlyExitedThreads(doneThreads);
-
-                var nextSlot = new Timeslot(time + 1);
-
-                foreach (var thread in threadsToResumeNextTimeslot)
+                // Count how many threads are active between which barriers to determine where there are places with
+                // unnecessary barriers that don't guard against anything
+                foreach (var thread in allThreads)
                 {
-                    if (nextSlot.CanRunSystemInParallel(thread.RunningSystem, thread))
+                    int index = 0;
+
+                    foreach (var count in thread.CalculateTasksBetweenBarriers())
                     {
-                        nextSlot.MarkConcurrentlyRunningSystem(thread.RunningSystem, thread);
-                    }
-                    else
-                    {
-                        // Still need for this thread to wait
-                        nextSlot.MarkThreadWaiting(thread);
+                        while (runningThreadCountsPerSlot.Count <= index)
+                            runningThreadCountsPerSlot.Add(0);
+
+                        // With more than 0 tasks executed, the thread is considered active
+                        if (count > 0)
+                        {
+                            runningThreadCountsPerSlot[index] += 1;
+                        }
+
+                        ++index;
                     }
                 }
 
-                return nextSlot;
-            }
+                var pointIndexesToRemove = new List<int>();
 
-            public override string ToString()
-            {
-                return $"Moment in time: {time}";
-            }
-
-            private void AddThreadBarrierForUnblockedThreads()
-            {
-                foreach (var pair in runSystems)
+                for (int i = 0; i < runningThreadCountsPerSlot.Count - 1; ++i)
                 {
-                    // Skip systems that already got blocked and have a barrier set for this timeslot
-                    if (threadsToResumeNextTimeslot.Contains(pair.Key))
-                        continue;
+                    if (runningThreadCountsPerSlot[i] < 2 && runningThreadCountsPerSlot[i + 1] < 2)
+                    {
+                        // Found two consecutive barriers where the earlier one should be fine to remove
+                        // The earlier slot either has multiple threads and protects this slot that way, or it is also
+                        // one thread slot and is safe to merge into this one.
+                        pointIndexesToRemove.Add(i);
+                    }
+                }
 
-                    var system = pair.Value.Last();
-                    if (system.RequiresBarrierAfter > 0)
-                        throw new Exception("Barrier shouldn't be set already");
+                // The remove list is reversed so that indexes stay valid as things are being deleted
+                pointIndexesToRemove.Reverse();
 
-                    ++system.RequiresBarrierAfter;
+                foreach (var barrierToRemove in pointIndexesToRemove)
+                {
+                    GD.Print("Removing extra barrier at barrier index " + barrierToRemove);
+
+                    foreach (var thread in allThreads)
+                    {
+                        thread.RemoveBarrierWithIndex(barrierToRemove);
+                    }
                 }
             }
 
-            /// <summary>
-            ///   To keep barrier counts in sync, threads that have ran out of work still need to trigger all the
-            ///   barriers
-            /// </summary>
-            /// <param name="doneThreads">Threads that are complete</param>
-            private void AddBarriersForEarlyExitedThreads(IReadOnlyCollection<Thread> doneThreads)
+            private class ThreadIdComparer : IComparer<Thread>
             {
-                foreach (var doneThread in doneThreads)
+                public int Compare(Thread x, Thread y)
                 {
-                    if (runSystems.ContainsKey(doneThread))
-                    {
-                        // A thread was able to run a system before completing
-                        continue;
-                    }
+                    if (ReferenceEquals(x, y))
+                        return 0;
+                    if (ReferenceEquals(null, y))
+                        return 1;
+                    if (ReferenceEquals(null, x))
+                        return -1;
 
-                    if (threadsToResumeNextTimeslot.Contains(doneThread))
-                        continue;
-
-                    doneThread.AddDummyBarrierAtEnd();
+                    return x.ThreadId.CompareTo(y.ThreadId);
                 }
             }
         }
 
         private class Thread
         {
-            public readonly int ThreadId;
+            private readonly List<SystemToSchedule> threadTasks = new();
+            private readonly List<SystemToSchedule> upcomingExclusiveTasks = new();
 
-            private readonly IReadOnlyList<SystemToSchedule> threadTasks;
+            private readonly IReadOnlyList<SystemToSchedule> originalExclusiveTasks;
 
-            private int executionIndex = -1;
+            private readonly List<int> threadBarrierPoints = new();
 
-            public Thread(IReadOnlyList<SystemToSchedule> threadTasks, int threadId)
+            public Thread(int threadId, IReadOnlyList<SystemToSchedule> exclusiveTasks)
+            {
+                ThreadId = threadId;
+                originalExclusiveTasks = exclusiveTasks;
+
+                Reset(false, null);
+            }
+
+            public int ThreadId { get; }
+
+            public float Time { get; private set; }
+
+            /// <summary>
+            ///   Time since last barrier, used to not schedule too much work for a single thread
+            /// </summary>
+            public float TimeSinceBarrier { get; private set; }
+
+            public bool HasUpcomingExclusiveTask => upcomingExclusiveTasks.Count > 0;
+
+            public IEnumerable<SystemToSchedule> GetUpcomingExclusiveTasks()
+            {
+                return upcomingExclusiveTasks;
+            }
+
+            public void MarkExecutedTask(SystemToSchedule system)
+            {
+                if (threadTasks.Contains(system))
+                    throw new ArgumentException("Already marked as executed by this thread");
+
+                threadTasks.Add(system);
+
+                bool removedExclusive = upcomingExclusiveTasks.Remove(system);
+
+                if (!removedExclusive && originalExclusiveTasks.Contains(system))
+                    throw new Exception("Exclusive task remove was not done");
+
+                // Move forward in time, this thread is busy for the time the system takes estimated to run
+                Time += system.RuntimeCost;
+                TimeSinceBarrier += system.RuntimeCost;
+            }
+
+            public void AddBarrier()
+            {
+                TimeSinceBarrier = 0;
+
+                threadBarrierPoints.Add(threadTasks.Count - 1);
+            }
+
+            public List<SystemToSchedule> GetAndApplyResult()
             {
                 if (threadTasks.Count < 1)
-                    throw new ArgumentException("Thread must have at least one task");
+                    throw new InvalidOperationException("Thread doesn't have any tasks");
 
-                this.threadTasks = threadTasks;
-                ThreadId = threadId;
+                int timeSlot = 1;
 
-                foreach (var systemToSchedule in threadTasks)
+                for (int i = 0; i < threadTasks.Count; ++i)
                 {
+                    var systemToSchedule = threadTasks[i];
                     systemToSchedule.ThreadId = ThreadId;
+
+                    // Assign timeslots based on barriers
+                    systemToSchedule.Timeslot = timeSlot;
+
+                    timeSlot += threadBarrierPoints.Count(b => b == i);
                 }
-            }
 
-            public bool Done => executionIndex >= threadTasks.Count;
-
-            public SystemToSchedule RunningSystem
-            {
-                get
+                foreach (var barrierPoint in threadBarrierPoints)
                 {
-                    if (Done)
-                        throw new InvalidOperationException("Already done");
-
-                    return threadTasks[executionIndex];
-                }
-            }
-
-            public void Start()
-            {
-                executionIndex = 0;
-            }
-
-            public void Step()
-            {
-                if (Done)
-                    return;
-
-                ++executionIndex;
-            }
-
-            public IEnumerable<SystemToSchedule> GetStillUpcomingSystems()
-            {
-                if (Done)
-                    yield break;
-
-                for (int i = executionIndex; i < threadTasks.Count; ++i)
-                {
-                    yield return threadTasks[i];
-                }
-            }
-
-            public bool ScanForNextDoubleBarrier()
-            {
-                if (Done)
-                    return false;
-
-                // Multiple barriers between systems
-                bool afterBarrier = RunningSystem.RequiresBarrierAfter > 0;
-
-                while (true)
-                {
-                    // Single system having a double barrier
-                    if (RunningSystem.RequiresBarrierBefore > 1 || RunningSystem.RequiresBarrierAfter > 1)
-                        return true;
-
-                    ++executionIndex;
-
-                    if (Done)
-                        break;
-
-                    bool nextBeforeBarrier = RunningSystem.RequiresBarrierBefore > 0;
-                    bool nextAfterBarrier = RunningSystem.RequiresBarrierAfter > 0;
-
-                    if (afterBarrier && nextBeforeBarrier)
+                    // Barriers after the systems have run are assumed to be for the last system
+                    if (barrierPoint > threadTasks.Count)
                     {
-                        // A double barrier
-                        return true;
+                        ++threadTasks[threadTasks.Count - 1].RequiresBarrierAfter;
                     }
-
-                    afterBarrier = nextAfterBarrier;
-
-                    // If no double barrier was found, stop at the first barrier to not mess up inter-barrier group
-                    // ordering
-                    if (nextBeforeBarrier || nextAfterBarrier)
-                        break;
-                }
-
-                return false;
-            }
-
-            public void RemoveDoubleBarrier()
-            {
-                if (Done)
-                    throw new InvalidOperationException("Thread is already at the end, not at a system");
-
-                if (RunningSystem.RequiresBarrierBefore > 1)
-                {
-                    --RunningSystem.RequiresBarrierBefore;
-
-                    // Allow triple barrier detection (don't move if there are still many barriers here)
-                    if (RunningSystem.RequiresBarrierBefore < 2)
-                        ++executionIndex;
-                }
-                else if (RunningSystem.RequiresBarrierAfter > 1)
-                {
-                    --RunningSystem.RequiresBarrierAfter;
-
-                    // Allow triple barrier detection (don't move if there are still many barriers here)
-                    if (RunningSystem.RequiresBarrierAfter < 2)
-                        ++executionIndex;
-                }
-                else if (RunningSystem.RequiresBarrierBefore > 0)
-                {
-                    // Sanity check
-                    if (threadTasks[executionIndex - 1].RequiresBarrierAfter < 1)
+                    else
                     {
-                        throw new Exception(
-                            "Current point should be detected as double barrier between systems, but it was " +
-                            "not found");
+                        ++threadTasks[barrierPoint].RequiresBarrierAfter;
                     }
-
-                    --RunningSystem.RequiresBarrierBefore;
-                    ++executionIndex;
                 }
-                else
+
+                return threadTasks;
+            }
+
+            public IEnumerable<int> CalculateTasksBetweenBarriers()
+            {
+                if (!threadBarrierPoints.AsEnumerable().OrderBy(i => i).SequenceEqual(threadBarrierPoints))
+                    throw new Exception("Barrier points aren't in sorted order");
+
+                // This has to start at -1 for the count of tasks in the first barrier group to be correct
+                int previousBarrier = -1;
+
+                foreach (var barrierPoint in threadBarrierPoints)
                 {
-                    throw new InvalidOperationException("Couldn't find the double barrier to remove");
+                    int tasksBetween = barrierPoint - previousBarrier;
+
+                    yield return tasksBetween;
+
+                    previousBarrier = barrierPoint;
                 }
             }
 
-            public void AddDummyBarrierAtEnd()
+            public void RemoveBarrierWithIndex(int barrierIndexToRemove)
             {
-                ++threadTasks[threadTasks.Count - 1].RequiresBarrierAfter;
+                threadBarrierPoints.RemoveAt(barrierIndexToRemove);
+            }
+
+            public void Reset(bool shuffle, Random? random)
+            {
+                threadTasks.Clear();
+                threadBarrierPoints.Clear();
+
+                Time = 0;
+                TimeSinceBarrier = 0;
+
+                upcomingExclusiveTasks.Clear();
+                upcomingExclusiveTasks.AddRange(originalExclusiveTasks);
+
+                if (shuffle && upcomingExclusiveTasks.Count > 0)
+                {
+                    upcomingExclusiveTasks.Shuffle(random ?? new Random());
+                }
             }
 
             public override string ToString()
             {
-                return $"Thread {ThreadId}";
+                return $"Thread {ThreadId} at time {Time}";
             }
         }
     }

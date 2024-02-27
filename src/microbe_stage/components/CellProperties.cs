@@ -43,13 +43,13 @@
         [JsonIgnore]
         public bool ShapeCreated;
 
-        public CellProperties(ICellProperties initialProperties)
+        public CellProperties(ICellDefinition initialDefinition)
         {
-            Colour = initialProperties.Colour;
-            MembraneType = initialProperties.MembraneType;
-            MembraneRigidity = initialProperties.MembraneRigidity;
+            Colour = initialDefinition.Colour;
+            MembraneType = initialDefinition.MembraneType;
+            MembraneRigidity = initialDefinition.MembraneRigidity;
             CreatedMembrane = null;
-            IsBacteria = initialProperties.IsBacteria;
+            IsBacteria = initialDefinition.IsBacteria;
 
             // These are initialized later
             UnadjustedRadius = 0;
@@ -511,23 +511,26 @@
         /// </remarks>
         /// <param name="cellProperties">The cell to apply new settings to</param>
         /// <param name="entity">Entity of the cell, needed to apply new state to other components</param>
-        /// <param name="newProperties">The new properties to apply</param>
+        /// <param name="newDefinition">The new properties to apply</param>
         /// <param name="baseReproductionCostFrom">
         ///   Where to get base reproduction cost from. Other species properties are not used
-        ///   (<see cref="newProperties"/> applies instead). Note if species object instance changes from what it
+        ///   (<see cref="newDefinition"/> applies instead). Note if species object instance changes from what it
         ///   was before, the code calling this method must do that adjustment manually.
         /// </param>
         /// <param name="worldSimulation">
         ///   Needed when resetting multicellular growth as that needs to delete colony cells
         /// </param>
+        /// <param name="workMemory1">Temporary memory used for organelle copying</param>
+        /// <param name="workMemory2">More temporary memory</param>
         public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties, in Entity entity,
-            ICellProperties newProperties, Species baseReproductionCostFrom, IWorldSimulation worldSimulation)
+            ICellDefinition newDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation,
+            List<Hex> workMemory1, List<Hex> workMemory2)
         {
             // Copy new cell type properties
-            cellProperties.MembraneType = newProperties.MembraneType;
-            cellProperties.IsBacteria = newProperties.IsBacteria;
-            cellProperties.Colour = newProperties.Colour;
-            cellProperties.MembraneRigidity = newProperties.MembraneRigidity;
+            cellProperties.MembraneType = newDefinition.MembraneType;
+            cellProperties.IsBacteria = newDefinition.IsBacteria;
+            cellProperties.Colour = newDefinition.Colour;
+            cellProperties.MembraneRigidity = newDefinition.MembraneRigidity;
 
             // Update the enzyme required for digestion
             entity.Get<Engulfable>().RequisiteEnzymeToDigest =
@@ -542,13 +545,13 @@
             // Reset all the duplicates organelles / reproduction progress of the entity
             // This also resets multicellular creature's reproduction progress
             organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-                entity, newProperties, baseReproductionCostFrom, worldSimulation);
+                entity, newDefinition, baseReproductionCostFrom, worldSimulation, workMemory1, workMemory2);
 
             // Reset runtime colour
             if (entity.Has<ColourAnimation>())
             {
                 ref var colourAnimation = ref entity.Get<ColourAnimation>();
-                colourAnimation.DefaultColour = Membrane.MembraneTintFromSpeciesColour(newProperties.Colour);
+                colourAnimation.DefaultColour = Membrane.MembraneTintFromSpeciesColour(newDefinition.Colour);
 
                 colourAnimation.UpdateAnimationForNewDefaultColour();
             }

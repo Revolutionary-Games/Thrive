@@ -80,12 +80,14 @@ public static class MicrobeInternalCalculations
     /// </summary>
     /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
     /// <param name="organelles">Organelles to find specific capacity from</param>
-    public static void UpdateSpecificCapacities(CompoundBag compoundBag, IEnumerable<PlacedOrganelle> organelles)
+    public static void UpdateSpecificCapacities(CompoundBag compoundBag, IReadOnlyList<PlacedOrganelle> organelles)
     {
         compoundBag.ClearSpecificCapacities();
 
-        foreach (var organelle in organelles)
+        int count = organelles.Count;
+        for (int i = 0; i < count; i++)
         {
+            var organelle = organelles[i];
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
 
             if (specificCapacity.Compound == null)
@@ -244,7 +246,7 @@ public static class MicrobeInternalCalculations
     /// <returns>
     ///   The rotation speed value for putting in <see cref="Components.OrganelleContainer.RotationSpeed"/>
     /// </returns>
-    public static float CalculateRotationSpeed(IEnumerable<IPositionedOrganelle> organelles)
+    public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles)
     {
         // TODO: it would be very nice to be able to switch this back to a more physically accurate calculation using
         // the real physics shape here
@@ -253,10 +255,14 @@ public static class MicrobeInternalCalculations
         float inertia = 1;
         float ciliaFactor = 0;
 
+        int count = organelles.Count;
+
         // Simple moment of inertia calculation. Note that it is mass multiplied by square of the distance, so we can
         // use the cheaper distance calculations
-        foreach (var organelle in organelles)
+        for (int i = 0; i < count; ++i)
         {
+            var organelle = organelles[i];
+
             // TODO: should this be switched to calculate things per-hex instead of just organelle center positions?
             var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
 
@@ -274,9 +280,7 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///   Converts the speed from
-    ///   <see cref="CalculateRotationSpeed(IEnumerable{IPositionedOrganelle})"/> to a user displayable
-    ///   form
+    ///   Converts the speed from <see cref="CalculateRotationSpeed"/> to a user displayable form
     /// </summary>
     /// <param name="rawSpeed">The raw speed value</param>
     /// <returns>Converted value to be shown in the GUI</returns>

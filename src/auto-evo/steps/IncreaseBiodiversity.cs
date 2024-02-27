@@ -17,6 +17,8 @@
         private readonly SimulationCache cache;
 
         private readonly Mutations mutations = new();
+        private readonly List<Hex> workingMemory1 = new();
+        private readonly List<Hex> workingMemory2 = new();
 
         private bool tryCurrentPatch = true;
         private bool createdASpecies;
@@ -129,7 +131,7 @@
             if (configuration.BiodiversitySplitIsMutated)
             {
                 mutations.CreateMutatedSpecies(fromMicrobe, split, worldSettings.AIMutationMultiplier,
-                    worldSettings.LAWK);
+                    worldSettings.LAWK, workingMemory1, workingMemory2);
             }
 
             // Set the starting population in the patch

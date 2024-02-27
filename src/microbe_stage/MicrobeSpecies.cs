@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Godot;
@@ -13,7 +14,7 @@ using Systems;
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class MicrobeSpecies : Species, ICellProperties
+public class MicrobeSpecies : Species, ICellDefinition
 {
     [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
@@ -25,23 +26,25 @@ public class MicrobeSpecies : Species, ICellProperties
     ///   Creates a wrapper around a cell properties object for use with auto-evo predictions
     /// </summary>
     /// <param name="cloneOf">Grabs the ID and species name from here</param>
-    /// <param name="withCellProperties">
+    /// <param name="withCellDefinition">
     ///   Properties from here are copied to this (except organelle objects are shared)
     /// </param>
-    public MicrobeSpecies(Species cloneOf, ICellProperties withCellProperties) : this(cloneOf.ID, cloneOf.Genus,
-        cloneOf.Epithet)
+    /// <param name="workMemory1">Temporary memory needed to copy the organelles</param>
+    /// <param name="workMemory2">More needed temporary memory</param>
+    public MicrobeSpecies(Species cloneOf, ICellDefinition withCellDefinition, List<Hex> workMemory1,
+        List<Hex> workMemory2) : this(cloneOf.ID, cloneOf.Genus, cloneOf.Epithet)
     {
         cloneOf.ClonePropertiesTo(this);
 
-        foreach (var organelle in withCellProperties.Organelles)
+        foreach (var organelle in withCellDefinition.Organelles)
         {
-            Organelles.Add(organelle);
+            Organelles.AddFast(organelle, workMemory1, workMemory2);
         }
 
-        MembraneType = withCellProperties.MembraneType;
-        MembraneRigidity = withCellProperties.MembraneRigidity;
-        Colour = withCellProperties.Colour;
-        IsBacteria = withCellProperties.IsBacteria;
+        MembraneType = withCellDefinition.MembraneType;
+        MembraneRigidity = withCellDefinition.MembraneRigidity;
+        Colour = withCellDefinition.Colour;
+        IsBacteria = withCellDefinition.IsBacteria;
     }
 
     public bool IsBacteria { get; set; }
@@ -170,9 +173,12 @@ public class MicrobeSpecies : Species, ICellProperties
 
         Organelles.Clear();
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var organelle in casted.Organelles)
         {
-            Organelles.Add((OrganelleTemplate)organelle.Clone());
+            Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
         }
 
         IsBacteria = casted.IsBacteria;
@@ -205,9 +211,12 @@ public class MicrobeSpecies : Species, ICellProperties
         result.MembraneType = MembraneType;
         result.MembraneRigidity = MembraneRigidity;
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var organelle in Organelles)
         {
-            result.Organelles.Add((OrganelleTemplate)organelle.Clone());
+            result.Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
         }
 
         return result;

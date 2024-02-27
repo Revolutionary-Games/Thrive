@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-02 11:05+0200\n"
-"PO-Revision-Date: 2023-12-29 06:14+0000\n"
+"POT-Creation-Date: 2024-02-16 15:18+0200\n"
+"PO-Revision-Date: 2024-02-12 11:02+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -167,9 +167,8 @@ msgstr "Кількість можливих швидких збережень:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Анаеробна фіксація азоту"
 
-#, fuzzy
 msgid "AND_UNLOCK_CONDITION"
-msgstr "Фізичні умови"
+msgstr "та"
 
 msgid "APPEARANCE"
 msgstr "Зовнішній вигляд"
@@ -1401,13 +1400,11 @@ msgstr ""
 msgid "EIGHT_TIMES"
 msgstr "8х"
 
-#, fuzzy
 msgid "EJECT_ENGULFED"
-msgstr "Не може поглинати"
+msgstr "Виштовхнути поглинуті об'єкти"
 
-#, fuzzy
 msgid "EJECT_ENGULFED_TOOLTIP"
-msgstr "Не може поглинати"
+msgstr "Виштовхнути поглинуті об'єкти"
 
 msgid "ENABLED_MODS"
 msgstr "Увімкнути моди"
@@ -1430,9 +1427,8 @@ msgstr "{0}: +{1} АТФ"
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
 
-#, fuzzy
 msgid "ENERGY_IN_PATCH_SHORT"
-msgstr "Енергія в {0} для {1}"
+msgstr "{0}, {1}"
 
 msgid "ENERGY_SOURCES"
 msgstr "Джерела енергії:"
@@ -1772,9 +1768,10 @@ msgstr "Переглянути галерею"
 msgid "GAME_DESIGN_TEAM"
 msgstr "Команда геймдизайнерів"
 
-#, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
-msgstr "Відвідайте"
+msgstr ""
+"Показує загальну прогнозовану енергію, зібрану Вашим видом на всіх ділянках, та підсумкову популяцію (у дужках).\n"
+"Попередня енергія: {0}"
 
 msgid "GENERAL"
 msgstr "Загальне"
@@ -1873,9 +1870,8 @@ msgstr "(вищі значення погіршать продуктивніст
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "Утримуйте для перемикання між панорамним та обертальним режимами"
 
-#, fuzzy
 msgid "HOLD_FOR_PAN_WITH_MOUSE"
-msgstr "Утримуйте для перемикання між панорамним та обертальним режимами"
+msgstr "Утримуйте для панорамування за допомогою миші"
 
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Утримуйте для показу меню пакету команд"
@@ -3176,6 +3172,18 @@ msgstr "Група органел"
 
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Згладжування кількох зразків:"
+
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr "Запустити багатопотокову симуляцію гри"
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Спуск видалить Ваш статус піднесеного та поверне Вас до Мікробної Стадії. Від туди Ви зможете пройти гру заново у цьому збереженні.\n"
+"\n"
+"Ви отримаєте бонус за спуск у новому проходженні. У майбутніх версіях Ви зможете обрати бонус самостійно, але зараз це завжди 20-типроцентне зниження осморегуляції.\n"
+"\n"
+"Підтвердивши спуск, Ви зможете змінити налаштування гри. Наприклад, Ви зможете обрати новий сід, щоб грати у новому світі, або ж вимкнути ЗАКОН."
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""

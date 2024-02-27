@@ -8,8 +8,18 @@
     using Godot;
     using World = DefaultEcs.World;
 
+    /// <summary>
+    ///   Loads predefined visual instances for entities.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     On average this doesn't take a lot of time, but due to potential load time spikes when this does load
+    ///     something this has runtime cost of 1 even though 0.25-0.5 would be more suitable based on raw numbers.
+    ///   </para>
+    /// </remarks>
     [With(typeof(PredefinedVisuals))]
     [With(typeof(SpatialInstance))]
+    [RuntimeCost]
     [RunsOnMainThread]
     public sealed class PredefinedVisualLoaderSystem : AEntitySetSystem<float>
     {

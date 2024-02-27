@@ -45,8 +45,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
     /// </summary>
-    [JsonProperty]
-    private float elapsedSinceEntityPositionCheck;
+    private float elapsedSinceEntityPositionCheck = Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL + 1;
 
     [JsonProperty]
     private bool wonOnce;
@@ -619,6 +618,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             wonOnce = true;
         }
 
+        var workData1 = new List<Hex>();
+        var workData2 = new List<Hex>();
+
         var playerSpecies = Player.Get<SpeciesMember>().Species;
 
         // Update the player's cell
@@ -634,12 +636,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
 
             cellProperties.ReApplyCellTypeProperties(Player, earlySpeciesType.MulticellularCellType,
-                earlySpeciesType.Species, WorldSimulation);
+                earlySpeciesType.Species, WorldSimulation, workData1, workData2);
         }
         else
         {
             ref var species = ref Player.Get<MicrobeSpeciesMember>();
-            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation);
+            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation,
+                workData1, workData2);
         }
 
         var playerPosition = Player.Get<WorldPosition>().Position;
@@ -1227,8 +1230,19 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (microbe != Player)
             GD.PrintErr("Chemoreception data reported for non-player cell");
 
-        int currentLineIndex = 0;
         var position = microbe.Get<WorldPosition>().Position;
+
+        // This must be ran on the main thread. For now this should be fine to allocate a bit of memory capturing
+        // the parameters here.
+        Invoke.Instance.QueueForObject(
+            () => UpdateChemoreceptionLines(activeCompoundDetections, activeSpeciesDetections, position), this);
+    }
+
+    private void UpdateChemoreceptionLines(
+        List<(Compound Compound, Color Colour, Vector3 Target)>? activeCompoundDetections,
+        List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>? activeSpeciesDetections, Vector3 position)
+    {
+        int currentLineIndex = 0;
 
         if (activeCompoundDetections != null)
         {

@@ -18,6 +18,8 @@
     /// </remarks>
     [With(typeof(MicrobeColony))]
     [Without(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(MicrobeColony))]
+    [WritesToComponent(typeof(CompoundStorage))]
     [RunsBefore(typeof(EngulfingSystem))]
     public sealed class ColonyCompoundDistributionSystem : AEntitySetSystem<float>
     {

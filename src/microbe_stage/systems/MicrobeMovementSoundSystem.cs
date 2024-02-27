@@ -15,9 +15,13 @@
     [With(typeof(Engulfable))]
     [With(typeof(Physics))]
     [With(typeof(SoundEffectPlayer))]
+    [ReadsComponent(typeof(MicrobeControl))]
+    [ReadsComponent(typeof(Engulfable))]
+    [ReadsComponent(typeof(Physics))]
     [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
     [RunsAfter(typeof(MicrobeMovementSystem))]
     [RunsBefore(typeof(SoundEffectSystem))]
+    [RuntimeCost(3)]
     public sealed class MicrobeMovementSoundSystem : AEntitySetSystem<float>
     {
         public MicrobeMovementSoundSystem(World world, IParallelRunner parallelRunner) :

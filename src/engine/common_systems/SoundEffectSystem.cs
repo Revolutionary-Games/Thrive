@@ -14,6 +14,8 @@
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(WorldPosition))]
     [ReadsComponent(typeof(WorldPosition))]
+    [WritesToComponent(typeof(SoundEffectPlayer))]
+    [RuntimeCost(25)]
     [RunsOnMainThread]
     public sealed class SoundEffectSystem : AEntitySetSystem<float>
     {
@@ -226,40 +228,44 @@
             if (slots == null)
                 return;
 
-            var count = slots.Length;
-
-            for (int i = 0; i < count; ++i)
+            lock (slots)
             {
-                ref var slot = ref slots[i];
+                var count = slots.Length;
 
-                if (slot.InternalPlayingState == slotId && slot.SoundFile == sound)
+                for (int i = 0; i < count; ++i)
                 {
-                    slot.InternalPlayingState = 0;
-                    slot.Play = false;
-                    return;
-                }
-            }
+                    ref var slot = ref slots[i];
 
-            // If no exact match, do a partial match to report the player is no longer associated with the sound slot
-
-            for (int i = 0; i < count; ++i)
-            {
-                ref var slot = ref slots[i];
-
-                if (slot.InternalPlayingState == slotId)
-                {
-                    slot.InternalPlayingState = 0;
-
-                    // Don't reset play here unconditionally, instead let the full update determine what to do next
-
-                    if (slot.SoundFile == null)
+                    if (slot.InternalPlayingState == slotId && slot.SoundFile == sound)
                     {
-                        // Situation was that the file to play was cleared, it should be fully safe here to reset
-                        // play to false
+                        slot.InternalPlayingState = 0;
                         slot.Play = false;
+                        return;
                     }
+                }
 
-                    return;
+                // If no exact match, do a partial match to report the player is no longer associated with the
+                // sound slot
+
+                for (int i = 0; i < count; ++i)
+                {
+                    ref var slot = ref slots[i];
+
+                    if (slot.InternalPlayingState == slotId)
+                    {
+                        slot.InternalPlayingState = 0;
+
+                        // Don't reset play here unconditionally, instead let the full update determine what to do next
+
+                        if (slot.SoundFile == null)
+                        {
+                            // Situation was that the file to play was cleared, it should be fully safe here to reset
+                            // play to false
+                            slot.Play = false;
+                        }
+
+                        return;
+                    }
                 }
             }
         }
@@ -275,101 +281,111 @@
                 var slots = soundEffectPlayer.SoundEffectSlots;
 
                 if (slots == null)
+                {
+                    // Don't continuously re-check entities that haven't initialized their slots. When adding the slots
+                    // and a sound the helper methods will mark this as needing handling again
+                    soundEffectPlayer.SoundsApplied = true;
                     continue;
+                }
 
                 bool play2D = soundEffectPlayer.AutoDetectPlayer && entity.Has<SoundListener>();
 
                 bool skippedSomething = false;
 
-                // The slots are intentionally left unlocked as if sound effects are modified while this system runs
-                // it would lead to sometimes unexpected results
-
-                int slotCount = slots.Length;
-
-                for (int i = 0; i < slotCount; ++i)
+                // Slots are locked so that they aren't modified while this system runs. If any systems modify the
+                // sounds after this system, then that sound will be picked up on next sound update
+                lock (slots)
                 {
-                    ref var slot = ref slots[i];
+                    // The slots are intentionally left unlocked as if sound effects are modified while this system
+                    // runs it would lead to sometimes unexpected results
 
-                    if (slot.InternalAppliedState)
-                        continue;
+                    int slotCount = slots.Length;
 
-                    if (!slot.Play)
+                    for (int i = 0; i < slotCount; ++i)
                     {
-                        // See if there is a sound to stop
+                        ref var slot = ref slots[i];
 
-                        if (slot.InternalPlayingState != 0)
+                        if (slot.InternalAppliedState)
+                            continue;
+
+                        if (!slot.Play)
                         {
-                            var existing = FindPlayingSlot(play2D, entity, slot.InternalPlayingState);
+                            // See if there is a sound to stop
 
-                            existing?.Stop();
-                        }
-
-                        slot.InternalPlayingState = 0;
-                    }
-                    else
-                    {
-                        // This slot wants to play a sound
-
-                        bool startNew = slot.InternalPlayingState == 0;
-
-                        if (!startNew)
-                        {
-                            // Adjusting existing sound
-                            var existing = FindPlayingSlot(play2D, entity, slot.InternalPlayingState);
-
-                            if (existing != null)
+                            if (slot.InternalPlayingState != 0)
                             {
-                                if (existing.Sound == slot.SoundFile)
+                                var existing = FindPlayingSlot(play2D, entity, slot.InternalPlayingState);
+
+                                existing?.Stop();
+                            }
+
+                            slot.InternalPlayingState = 0;
+                        }
+                        else
+                        {
+                            // This slot wants to play a sound
+
+                            bool startNew = slot.InternalPlayingState == 0;
+
+                            if (!startNew)
+                            {
+                                // Adjusting existing sound
+                                var existing = FindPlayingSlot(play2D, entity, slot.InternalPlayingState);
+
+                                if (existing != null)
                                 {
-                                    existing.AdjustProperties(slot.Loop, slot.Volume);
+                                    if (existing.Sound == slot.SoundFile)
+                                    {
+                                        existing.AdjustProperties(slot.Loop, slot.Volume);
+                                    }
+                                    else
+                                    {
+                                        // Sound file changed but it wasn't fully correctly cleared
+                                        GD.PrintErr("Playing sound effect file changed incorrectly");
+                                        existing.Stop();
+                                        startNew = true;
+                                    }
                                 }
                                 else
                                 {
-                                    // Sound file changed but it wasn't fully correctly cleared
-                                    GD.PrintErr("Playing sound effect file changed incorrectly");
-                                    existing.Stop();
+                                    // Existing player no longer valid
                                     startNew = true;
                                 }
                             }
-                            else
+
+                            if (startNew && !string.IsNullOrEmpty(slot.SoundFile))
                             {
-                                // Existing player no longer valid
-                                startNew = true;
+                                // Only start playing if can
+                                // 2D sounds ignore the limit to make sure player sounds can always play
+                                if (playingSoundCount >= Constants.MAX_CONCURRENT_SOUNDS && !play2D)
+                                {
+                                    // This leaves SoundsApplied false so that this entity can keep trying until there
+                                    // are empty sound playing slots
+                                    skippedSomething = true;
+                                    continue;
+                                }
+
+                                // New sound start requested
+                                slot.InternalPlayingState = NextSoundIdentifier();
+
+                                // TODO: do we need to guard against a situation where a long playing sound has an ID
+                                // we have wrapped around to here? (by scanning the slot internal playing states on
+                                // this entity to see if there are duplicates)
+
+                                StartPlaying(play2D, entity, slot.InternalPlayingState, slot.SoundFile!, slot.Loop,
+                                    slot.Volume);
                             }
                         }
 
-                        if (startNew && !string.IsNullOrEmpty(slot.SoundFile))
-                        {
-                            // Only start playing if can
-                            // 2D sounds ignore the limit to make sure player sounds can always play
-                            if (playingSoundCount >= Constants.MAX_CONCURRENT_SOUNDS && !play2D)
-                            {
-                                // This leaves SoundsApplied false so that this entity can keep trying until there are
-                                // empty sound playing slots
-                                skippedSomething = true;
-                                continue;
-                            }
-
-                            // New sound start requested
-                            slot.InternalPlayingState = NextSoundIdentifier();
-
-                            // TODO: do we need to guard against a situation where a long playing sound has an ID we
-                            // have wrapped around to here? (by scanning the slot internal playing states on this
-                            // entity to see if there are duplicates)
-
-                            StartPlaying(play2D, entity, slot.InternalPlayingState, slot.SoundFile!, slot.Loop,
-                                slot.Volume);
-                        }
+                        slot.InternalAppliedState = true;
                     }
 
-                    slot.InternalAppliedState = true;
+                    // Only mark as applied if we had room to start all sounds that should be played
+                    if (skippedSomething)
+                        continue;
+
+                    soundEffectPlayer.SoundsApplied = true;
                 }
-
-                // Only mark as applied if we had room to start all sounds that should be played
-                if (skippedSomething)
-                    continue;
-
-                soundEffectPlayer.SoundsApplied = true;
             }
         }
 

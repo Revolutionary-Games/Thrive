@@ -187,15 +187,15 @@
         }
 
         /// <summary>
-        ///   The accumulation of all the colony member's <see cref="Engulfer.UsedIngestionCapacity"/>.
+        ///   The accumulation of all the colony member's <see cref="Engulfer.UsedEngulfingCapacity"/>.
         /// </summary>
         /// <remarks>
         ///   <para>
-        ///     This unfortunately is not cached as <see cref="Engulfer.UsedIngestionCapacity"/> can change
+        ///     This unfortunately is not cached as <see cref="Engulfer.UsedEngulfingCapacity"/> can change
         ///     every frame. And this is relatively expensive to calculate as this needs to read a lot of entities.
         ///   </para>
         /// </remarks>
-        public static float CalculateUsedIngestionCapacity(this ref MicrobeColony colony)
+        public static float CalculateUsedEngulfingCapacity(this ref MicrobeColony colony)
         {
 #if DEBUG
             colony.DebugCheckColonyHasNoDeadEntities();
@@ -206,7 +206,7 @@
             foreach (var colonyMember in colony.ColonyMembers)
             {
                 ref var engulfer = ref colonyMember.Get<Engulfer>();
-                usedCapacity += engulfer.UsedIngestionCapacity;
+                usedCapacity += engulfer.UsedEngulfingCapacity;
             }
 
             return usedCapacity;
@@ -360,8 +360,8 @@
 
             var parentMicrobe = colony.ColonyMembers[parentIndex];
 
-            if (!CalculateColonyMemberAttachPosition(parentIndex, parentMicrobe, newMemberPosition, newMemberProperties,
-                    out var offsetToColonyLeader, out var rotationToLeader))
+            if (!CalculateColonyMemberAttachPosition(colonyEntity, parentMicrobe, newMemberPosition,
+                    newMemberProperties, out var offsetToColonyLeader, out var rotationToLeader))
             {
                 return false;
             }
@@ -474,9 +474,10 @@
             var parentMicrobe = colony.ColonyMembers[parentIndex];
 
             // Calculate the attach position
-            // TODO: this probably needs to be changed when we have multicellular growth happening
-            if (!CalculateColonyMemberAttachPosition(parentIndex, parentMicrobe, newMemberPosition, newMemberProperties,
-                    out var offsetToColonyLeader, out var rotationToLeader))
+            // Note that if the multicellular growth is moved away from precomputed locations, this won't likely be
+            // usable to calculate the positions instead
+            if (!CalculateColonyMemberAttachPosition(colonyEntity, parentMicrobe, newMemberPosition,
+                    newMemberProperties, out var offsetToColonyLeader, out var rotationToLeader))
             {
                 return false;
             }
@@ -806,6 +807,9 @@
                 organelles.AllOrganellesDivided = false;
             }
 
+            // Clear queued slime jet force
+            control.QueuedSlimeSecretionTime = 0;
+
             ReportReproductionStatusOnAddToColony(addedEntity);
         }
 
@@ -889,7 +893,7 @@
             // be more physically accurate
 
             float colonyRotation = MicrobeInternalCalculations
-                .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!);
+                .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles);
 
             foreach (var colonyMember in colony.ColonyMembers)
             {
@@ -905,68 +909,13 @@
                 // This relies on the bounding of the cell rotation, as a colony can never be faster than the
                 // fastest cell inside it
                 var memberRotation = MicrobeInternalCalculations
-                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!)
+                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles)
                     * (1 + 0.03f * distanceSquared);
 
                 colonyRotation += memberRotation;
             }
 
             colony.ColonyRotationSpeed = colonyRotation / colony.ColonyMembers.Length;
-        }
-
-        /// <summary>
-        ///   This method calculates the relative rotation and translation this microbe should have to its
-        ///   microbe colony parent.
-        ///   Note this explanation image was made for the old version of this method but may still be useful:
-        ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
-        ///     Visual explanation
-        ///   </a>
-        /// </summary>
-        /// <returns>Returns relative translation and rotation</returns>
-        public static (Vector3 Translation, Quat Rotation) GetNewRelativeTransform(
-            ref WorldPosition colonyParentPosition, ref CellProperties colonyParentProperties,
-            ref WorldPosition cellPosition, ref CellProperties cellProperties)
-        {
-            if (colonyParentProperties.CreatedMembrane == null)
-                throw new InvalidOperationException("Colony parent cell has no membrane set");
-
-            if (cellProperties.CreatedMembrane == null)
-                throw new InvalidOperationException("Cell to add to colony has no membrane set");
-
-            // A vector from the parent to me
-            var vectorFromParent = cellPosition.Position - colonyParentPosition.Position;
-
-            // A vector from me to the parent
-            var vectorToParent = -vectorFromParent;
-
-            var parentRotationInverse = colonyParentPosition.Rotation.Inverse();
-            var cellRotationInverse = cellPosition.Rotation.Inverse();
-
-            // These are in the local space of the given two cells respectively
-            var vectorFromParentInLocalSpace = parentRotationInverse.Xform(vectorFromParent);
-
-            var vectorToParentInLocalSpace = cellRotationInverse.Xform(vectorToParent);
-
-            // Calculate membrane sizes that should be added to the distance between the center's of the cells so that
-            // the cells don't overlap. The membrane points are in local coordinates so they are translated back to
-            // world coordinates.
-            var parentMembranePoint = colonyParentPosition.Rotation.Xform(
-                colonyParentProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(
-                    vectorFromParentInLocalSpace.x, vectorFromParentInLocalSpace.z));
-
-            var cellMembranePoint = cellPosition.Rotation.Xform(
-                cellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(vectorToParentInLocalSpace.x,
-                    vectorToParentInLocalSpace.z));
-
-            // The cell membrane point is negated here to amplify the distance as it is the opposite sign of the parent
-            // membrane point otherwise.
-            var finalOffsetVector = parentMembranePoint - cellMembranePoint;
-
-            // Rotated because the rotation should be in the local space of the colony parent
-            var newTranslation = parentRotationInverse.Xform(finalOffsetVector);
-
-            // Transform rotation also to work correctly in the parent's local coordinate space
-            return (newTranslation, parentRotationInverse * cellPosition.Rotation);
         }
 
         /// <summary>
@@ -1079,32 +1028,26 @@
 
         /// <summary>
         ///   Calculate the position of a new microbe to attach to a colony. Requires membrane data to be generated to
-        ///   calculate an accurate position
+        ///   calculate an accurate position.
         /// </summary>
         /// <returns>True on success, false if data not ready for calculation yet</returns>
-        private static bool CalculateColonyMemberAttachPosition(int parentIndex, Entity parentMicrobe,
+        private static bool CalculateColonyMemberAttachPosition(Entity colonyEntity, Entity parentMicrobe,
             WorldPosition newMemberPosition, CellProperties newMemberProperties, out Vector3 offsetToColonyLeader,
             out Quat rotationToLeader)
         {
             try
             {
-                (offsetToColonyLeader, rotationToLeader) = GetNewRelativeTransform(
-                    ref parentMicrobe.Get<WorldPosition>(),
+                var targetWorldPosition = GetNewAttachPosition(ref parentMicrobe.Get<WorldPosition>(),
                     ref parentMicrobe.Get<CellProperties>(), ref newMemberPosition, ref newMemberProperties);
 
-                if (parentIndex != 0)
-                {
-                    // Not attaching directly to the colony leader, need to combine the offsets
-                    ref var parentsAttachOffset = ref parentMicrobe.Get<AttachedToEntity>();
+                ref var leaderPosition = ref colonyEntity.Get<WorldPosition>();
+                var inverseParentRotation = leaderPosition.Rotation.Inverse();
 
-                    var rotationToParentInverse = parentsAttachOffset.RelativeRotation.Inverse();
+                // Convert result to be relative to the colony lead cell (which is the colony's base position)
+                offsetToColonyLeader = inverseParentRotation.Xform(targetWorldPosition - leaderPosition.Position);
 
-                    // TODO: figure out why this starts to give bad results once many cells away from the colony leader
-                    offsetToColonyLeader = parentsAttachOffset.RelativePosition +
-                        rotationToParentInverse.Xform(offsetToColonyLeader);
-
-                    rotationToLeader = (rotationToParentInverse * rotationToLeader).Normalized();
-                }
+                // Convert the rotation to keep the global rotation intact after attaching
+                rotationToLeader = newMemberPosition.Rotation * inverseParentRotation;
             }
             catch (Exception e)
             {
@@ -1115,6 +1058,64 @@
             }
 
             return true;
+        }
+
+        /// <summary>
+        ///   This method calculates the new world rotation and translation this microbe should have after attaching to
+        ///   its microbe colony parent.
+        ///   Note this explanation image was made for the old version of this method but may still be useful:
+        ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
+        ///     Visual explanation
+        ///   </a>
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     This method used to calculate a relative offset, but now calculates a world position, which is less
+        ///     efficient, but no one could come up with the right math for the harder way to solve this:
+        ///     https://github.com/Revolutionary-Games/Thrive/issues/4666
+        ///   </para>
+        /// </remarks>
+        /// <returns>Returns the world position</returns>
+        private static Vector3 GetNewAttachPosition(ref WorldPosition colonyParentPosition,
+            ref CellProperties colonyParentProperties,
+            ref WorldPosition cellPosition, ref CellProperties cellProperties)
+        {
+            if (colonyParentProperties.CreatedMembrane == null)
+                throw new InvalidOperationException("Colony parent cell has no membrane set");
+
+            if (cellProperties.CreatedMembrane == null)
+                throw new InvalidOperationException("Cell to add to colony has no membrane set");
+
+            // A vector from the parent to me
+            var vectorFromParent = cellPosition.Position - colonyParentPosition.Position;
+
+            // A vector from me to the parent
+            var vectorToParent = -vectorFromParent;
+
+            var parentRotationInverse = colonyParentPosition.Rotation.Inverse();
+            var cellRotationInverse = cellPosition.Rotation.Inverse();
+
+            // These are in the local space of the given two cells respectively
+            var vectorFromParentInLocalSpace = parentRotationInverse.Xform(vectorFromParent);
+
+            var vectorToParentInLocalSpace = cellRotationInverse.Xform(vectorToParent);
+
+            // Calculate membrane sizes that should be added to the distance between the center's of the cells so that
+            // the cells don't overlap. The membrane points are in local coordinates so they are translated back to
+            // world coordinates.
+            var parentMembranePoint = colonyParentPosition.Rotation.Xform(
+                colonyParentProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(
+                    vectorFromParentInLocalSpace.x, vectorFromParentInLocalSpace.z));
+
+            var cellMembranePoint = cellPosition.Rotation.Xform(
+                cellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(vectorToParentInLocalSpace.x,
+                    vectorToParentInLocalSpace.z));
+
+            // The cell membrane point is negated here to amplify the distance as it is the opposite sign of the parent
+            // membrane point otherwise.
+            var finalOffsetVector = parentMembranePoint - cellMembranePoint;
+
+            return colonyParentPosition.Position + finalOffsetVector;
         }
 
         /// <summary>

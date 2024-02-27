@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -11,6 +11,8 @@ using Systems;
 /// </summary>
 public class PlacedOrganelle : IPositionedOrganelle
 {
+    private readonly List<Compound> tempCompoundsToProcess = new();
+
     private bool growthValueDirty = true;
     private float growthValue;
 
@@ -200,59 +202,47 @@ public class PlacedOrganelle : IPositionedOrganelle
     {
         float totalTaken = 0;
 
-        // TODO: should we just check a single type per update (and remove once done) so we can skip creating a bunch
-        // of extra lists
-        foreach (var key in reverseCompoundsLeftOrder ?
-                     compoundsLeft.Keys.Reverse().ToArray() :
-                     compoundsLeft.Keys.ToArray())
+        // Find compounds that should be processed. Sadly it seems that this always needs to loop all even if the
+        // compound usage limit will cut this short, as otherwise the consume in reverse mode isn't possible to make
+        // without allocating extra memory
+        foreach (var entry in compoundsLeft)
         {
-            var amountNeeded = compoundsLeft[key];
-
-            if (amountNeeded <= 0.0f)
+            if (entry.Value <= 0)
                 continue;
 
-            if (allowedCompoundUse <= 0)
-                break;
+            tempCompoundsToProcess.Add(entry.Key);
+        }
 
-            float usedAmount = 0;
+        if (tempCompoundsToProcess.Count > 0)
+        {
+            int count = tempCompoundsToProcess.Count;
 
-            float allowedUseAmount = Math.Min(amountNeeded, allowedCompoundUse);
-
-            if (freeCompoundsLeft > 0)
+            if (!reverseCompoundsLeftOrder)
             {
-                var usedFreeCompounds = Math.Min(allowedUseAmount, freeCompoundsLeft);
-                usedAmount += usedFreeCompounds;
-                allowedUseAmount -= usedFreeCompounds;
-                freeCompoundsLeft -= usedFreeCompounds;
+                for (int i = 0; i < count; ++i)
+                {
+                    // This breaks when out of compound use. A separate helper method is used to make these two loops
+                    // share their logic without needing a temporary list
+                    if (!GrowWithCompoundType(compounds, ref allowedCompoundUse, ref freeCompoundsLeft,
+                            tempCompoundsToProcess[i], ref totalTaken))
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = count - 1; i >= 0; --i)
+                {
+                    if (!GrowWithCompoundType(compounds, ref allowedCompoundUse, ref freeCompoundsLeft,
+                            tempCompoundsToProcess[i], ref totalTaken))
+                    {
+                        break;
+                    }
+                }
             }
 
-            // Take compounds if the cell has what we need
-            // ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST controls how much of a certain compound must exist before we
-            // take some
-            var amountAvailable =
-                compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
-
-            if (amountAvailable > MathUtils.EPSILON)
-            {
-                // We can take some
-                var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
-
-                usedAmount += compounds.TakeCompound(key, amountToTake);
-            }
-
-            if (usedAmount < MathUtils.EPSILON)
-                continue;
-
-            allowedCompoundUse -= usedAmount;
-
-            var left = amountNeeded - usedAmount;
-
-            if (left < 0.0001f)
-                left = 0;
-
-            compoundsLeft[key] = left;
-
-            totalTaken += usedAmount;
+            tempCompoundsToProcess.Clear();
         }
 
         if (totalTaken > 0)
@@ -445,6 +435,60 @@ public class PlacedOrganelle : IPositionedOrganelle
         // TODO: organelle scale used to be 1 + GrowthValue before the refactor, and now this is probably *more*
         // intended way, but might be worse looking than before
         return Constants.DEFAULT_HEX_SIZE + growth;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool GrowWithCompoundType(CompoundBag compounds, ref float allowedCompoundUse, ref float freeCompoundsLeft,
+        Compound compoundType, ref float totalTaken)
+    {
+        var amountNeeded = compoundsLeft[compoundType];
+
+        if (amountNeeded <= 0.0f)
+            return true;
+
+        if (allowedCompoundUse <= 0)
+            return false;
+
+        float usedAmount = 0;
+
+        float allowedUseAmount = Math.Min(amountNeeded, allowedCompoundUse);
+
+        if (freeCompoundsLeft > 0)
+        {
+            var usedFreeCompounds = Math.Min(allowedUseAmount, freeCompoundsLeft);
+            usedAmount += usedFreeCompounds;
+            allowedUseAmount -= usedFreeCompounds;
+            freeCompoundsLeft -= usedFreeCompounds;
+        }
+
+        // Take compounds if the cell has what we need
+        // ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST controls how much of a certain compound must exist before we
+        // take some
+        var amountAvailable =
+            compounds.GetCompoundAmount(compoundType) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+        if (amountAvailable > MathUtils.EPSILON)
+        {
+            // We can take some
+            var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+
+            usedAmount += compounds.TakeCompound(compoundType, amountToTake);
+        }
+
+        if (usedAmount < MathUtils.EPSILON)
+            return true;
+
+        allowedCompoundUse -= usedAmount;
+
+        var left = amountNeeded - usedAmount;
+
+        if (left < 0.0001f)
+            left = 0;
+
+        compoundsLeft[compoundType] = left;
+
+        totalTaken += usedAmount;
+        return false;
     }
 
     private void RecalculateGrowthValue()

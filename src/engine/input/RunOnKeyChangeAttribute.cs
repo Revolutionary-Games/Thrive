@@ -22,10 +22,15 @@ public class RunOnKeyChangeAttribute : RunOnKeyAttribute
         if (TrackInputMethod)
         {
             LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
-            return CallMethod(HeldDown, LastUsedInputMethod);
+            PrepareMethodParameters(ref cachedMethodCallParameters, 2, HeldDown);
+            cachedMethodCallParameters![1] = LastUsedInputMethod;
+        }
+        else
+        {
+            PrepareMethodParameters(ref cachedMethodCallParameters, 1, HeldDown);
         }
 
-        return CallMethod(HeldDown);
+        return CallMethod(cachedMethodCallParameters!);
     }
 
     public override void OnProcess(float delta)

@@ -33,10 +33,14 @@ public class RunOnKeyDownWithRepeatAttribute : RunOnKeyAttribute
             if (TrackInputMethod)
             {
                 LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
-                return CallMethod(LastUsedInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, LastUsedInputMethod);
+            }
+            else
+            {
+                PrepareMethodParametersEmpty(ref cachedMethodCallParameters);
             }
 
-            return CallMethod();
+            return CallMethod(cachedMethodCallParameters!);
         }
 
         return false;

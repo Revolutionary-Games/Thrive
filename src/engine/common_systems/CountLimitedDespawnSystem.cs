@@ -13,7 +13,9 @@
     /// </summary>
     [With(typeof(CountLimited))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(CountLimited))]
     [ReadsComponent(typeof(WorldPosition))]
+    [RuntimeCost(1.5f)]
     public sealed class CountLimitedDespawnSystem : AEntitySetSystem<float>
     {
         private readonly IEntityContainer entityContainer;

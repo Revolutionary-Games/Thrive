@@ -15,7 +15,14 @@
     [With(typeof(CollisionManagement))]
     [With(typeof(Physics))]
     [With(typeof(TimedLife))]
+    [ReadsComponent(typeof(MicrobeSpeciesMember))]
+    [ReadsComponent(typeof(SpeciesMember))]
+    [ReadsComponent(typeof(Health))]
+    [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(MicrobeColony))]
+    [ReadsComponent(typeof(MicrobePhysicsExtraData))]
     [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
+    [RuntimeCost(0.5f, false)]
     public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
     {
         public ToxinCollisionSystem(World world, IParallelRunner runner) : base(world, runner)

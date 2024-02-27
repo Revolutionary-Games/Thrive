@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -15,6 +16,7 @@ using Newtonsoft.Json;
 ///   </para>
 /// </remarks>
 public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>, IReadOnlyDictionary<TKey, TValue>
+    where TValue : IEquatable<TValue>
 {
     [JsonProperty]
     private readonly IDictionary<TKey, TValue> primary;
@@ -33,7 +35,8 @@ public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>, I
     }
 
     /// <summary>
-    ///   Note that this is an expensive operation as this needs to only count the unique keys
+    ///   Note that this is an expensive operation as this needs to only count the unique keys.
+    ///   <see cref="RoughCount"/> is less accurate but much faster.
     /// </summary>
     [JsonIgnore]
     public int Count => Keys.Count;
@@ -162,6 +165,7 @@ public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>, I
     /// <param name="key">The key to check</param>
     private void ResetPrimaryIfMatchesFallback(TKey key)
     {
+        // TODO: this method shows up in profiling as allocating memory, but I cannot figure out how -hhyyrylainen
         if (primary.TryGetValue(key, out var primaryValue) && fallback.TryGetValue(key, out var fallbackValue) &&
             primaryValue is not null)
         {

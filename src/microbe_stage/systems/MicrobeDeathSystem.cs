@@ -15,6 +15,16 @@
     ///   Handles microbes dying when they run out of health and also updates the membrane visuals to indicate how
     ///   close to death a microbe is
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Currently the use of <see cref="ManualPhysicsControl"/> to stop movement when dying is commented out. If
+    ///     eventually that is removed that component should also be removed from the With attribute list below.
+    ///   </para>
+    ///   <para>
+    ///     As death is pretty rare, this doesn't really show up in profiling, but just to guard against potential lag
+    ///     spikes this is marked with a bit of a runtime cost.
+    ///   </para>
+    /// </remarks>
     [With(typeof(Health))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(MicrobeShaderParameters))]
@@ -25,13 +35,21 @@
     [With(typeof(ManualPhysicsControl))]
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(CompoundAbsorber))]
+    [With(typeof(Engulfable))]
+    [With(typeof(CompoundStorage))]
+    [With(typeof(SpeciesMember))]
+    [ReadsComponent(typeof(Engulfable))]
+    [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(MicrobeEventCallbacks))]
+    [WritesToComponent(typeof(Health))]
     [WritesToComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsAfter(typeof(MicrobeEmissionSystem))]
     [RunsAfter(typeof(ColonyStatsUpdateSystem))]
     [RunsAfter(typeof(EngulfingSystem))]
     [RunsBefore(typeof(FadeOutActionSystem))]
+    [RuntimeCost(1)]
     public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
@@ -60,9 +78,7 @@
 
         public static void SpawnCorpseChunks(ref OrganelleContainer organelleContainer, CompoundBag compounds,
             ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, EntityCommandRecorder recorder,
-            Vector3 basePosition, Random random,
-            CustomizeSpawnedChunk? customizeCallback,
-            Compound? glucose)
+            Vector3 basePosition, Random random, CustomizeSpawnedChunk? customizeCallback, Compound? glucose)
         {
             if (organelleContainer.Organelles == null)
                 throw new InvalidOperationException("Organelles can't be null when determining chunks to drop");

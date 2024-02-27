@@ -24,6 +24,11 @@ public class MouseHoverPanel : PanelContainer
     /// <summary>
     ///   The array of category controls ordered based on their position in the scene tree.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: this being a Godot.Array causes the enumeration of this to allocate memory each time
+    ///   </para>
+    /// </remarks>
     private Array categoryControls = new();
 
     public override void _Ready()
@@ -38,11 +43,13 @@ public class MouseHoverPanel : PanelContainer
 
         MouseHoverCategory? firstVisibleCategory = null;
 
+        // TODO: avoid the enumerator allocation here
         foreach (MouseHoverCategory category in categoryControls)
         {
-            category.Visible = category.TotalEntriesCount > 0;
+            var entriesCount = category.TotalEntriesCount;
+            category.Visible = entriesCount > 0;
             category.SeparatorVisible = firstVisibleCategory != null;
-            visibleEntriesCount += category.TotalEntriesCount;
+            visibleEntriesCount += entriesCount;
 
             if (firstVisibleCategory == null && category.Visible)
                 firstVisibleCategory = category;
@@ -133,6 +140,12 @@ public class MouseHoverPanel : PanelContainer
         private HSeparator separator;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
+        /// <summary>
+        ///   Cached number of added entity labels. This needs to be used to avoid unnecessary memory allocations each
+        ///   frame.
+        /// </summary>
+        private int totalEntityLabels;
+
         private LocalizedString title;
 
         public MouseHoverCategory(LocalizedString title)
@@ -149,21 +162,7 @@ public class MouseHoverPanel : PanelContainer
             separator = new HSeparator { RectMinSize = new Vector2(0, 5) };
         }
 
-        public int TotalEntriesCount
-        {
-            get
-            {
-                var totalVisible = 0;
-
-                foreach (Control child in container.GetChildren())
-                {
-                    if (child.Visible)
-                        ++totalVisible;
-                }
-
-                return totalVisible;
-            }
-        }
+        public int TotalEntriesCount => totalEntityLabels;
 
         public bool SeparatorVisible
         {
@@ -193,11 +192,13 @@ public class MouseHoverPanel : PanelContainer
         public void EmplaceLabel(InspectedEntityLabel label)
         {
             container.AddChild(label);
+            ++totalEntityLabels;
         }
 
         public void ClearEntries()
         {
             container.FreeChildren();
+            totalEntityLabels = 0;
         }
     }
 }

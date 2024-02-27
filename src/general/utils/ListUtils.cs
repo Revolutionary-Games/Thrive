@@ -27,6 +27,20 @@ public static class ListUtils
         return items[random.Next(0, items.Count)];
     }
 
+    /// <summary>
+    ///   <inheritdoc cref="ShuffleBag{T}.Shuffle"/>
+    /// </summary>
+    public static void Shuffle<T>(this IList<T> list, Random random)
+    {
+        int length = list.Count;
+        for (int i = 0; i < length - 1; ++i)
+        {
+            int j = random.Next(i, length);
+
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
+
     public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> items)
         where T : class
     {

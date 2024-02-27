@@ -11,16 +11,26 @@
     ///   Handles the various <see cref="MicrobeEventCallbacks"/> that are not handled directly by other systems.
     ///   This is mostly used just for the player
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This technically writes to <see cref="MicrobeStatus"/> but this system has a reserved variable in there
+    ///     so this doesn't conflict with other systems.
+    ///   </para>
+    /// </remarks>
     [With(typeof(MicrobeEventCallbacks))]
     [With(typeof(MicrobeStatus))]
     [With(typeof(Health))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(MicrobeEventCallbacks))]
+    [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(OrganelleContainer))]
+    [ReadsComponent(typeof(MicrobeColony))]
     [RunsBefore(typeof(DamageSoundSystem))]
     [RunsAfter(typeof(OrganelleTickSystem))]
     [RunsAfter(typeof(SpawnSystem))]
     [RunsAfter(typeof(MicrobeAISystem))]
-    [RunsOnMainThread]
+    [RuntimeCost(0.25f)]
     public sealed class MicrobeEventCallbackSystem : AEntitySetSystem<float>
     {
         private readonly IReadonlyCompoundClouds compoundClouds;

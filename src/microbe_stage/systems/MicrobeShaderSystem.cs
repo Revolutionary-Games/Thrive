@@ -10,9 +10,17 @@
     ///   Handles things related to <see cref="MicrobeShaderParameters"/>. This should run each frame and pause when
     ///   the game is paused.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as just reading the entity materials as this just does a single shader parameter write to it
+    ///   </para>
+    /// </remarks>
     [With(typeof(MicrobeShaderParameters))]
     [With(typeof(EntityMaterial))]
+    [ReadsComponent(typeof(EntityMaterial))]
+    [RuntimeCost(8)]
     [RunsOnFrame]
+    [RunsOnMainThread]
     public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
     {
         // private readonly Lazy<Texture> noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");

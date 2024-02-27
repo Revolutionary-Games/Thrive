@@ -101,7 +101,7 @@
             builder.Append(new LocalizedString("UNLOCK_CONDITION_SPEED_BELOW", Threshold));
         }
 
-        private float GetPlayerSpeed(ICellProperties playerData)
+        private float GetPlayerSpeed(ICellDefinition playerData)
         {
             var rawSpeed = MicrobeInternalCalculations.CalculateSpeed(playerData.Organelles.Organelles,
                 playerData.MembraneType,

@@ -12,6 +12,7 @@
     [With(typeof(WorldPosition))]
     [With(typeof(SpatialInstance))]
     [ReadsComponent(typeof(WorldPosition))]
+    [RuntimeCost(36)]
     [RunsOnMainThread]
     public sealed class SpatialPositionSystem : AEntitySetSystem<float>
     {

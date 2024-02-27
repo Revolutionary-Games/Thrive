@@ -14,9 +14,11 @@
     /// <summary>
     ///   Spawns AI cells and other environmental things as the player moves around
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn, IsReference = true)]
+    [ReadsComponent(typeof(Spawned))]
+    [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(SpatialAttachSystem))]
     [RunsAfter(typeof(CountLimitedDespawnSystem))]
+    [JsonObject(MemberSerialization.OptIn, IsReference = true)]
     public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     {
         private readonly EntitySet spawnedEntitiesSet;
