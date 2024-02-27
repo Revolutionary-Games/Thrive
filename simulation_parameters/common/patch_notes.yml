@@ -282,3 +282,90 @@
     - Fixed native library symbol upload script
     - Updated Nito.Collections.Deque from 1.1.1 to 1.2.1
     - Updated translations
+
+0.6.5:
+  IntroductionText: |
+    With this latest release the game performance is improved even further and memory allocation count is optimized. This is the final release for now trying to improve the game performance. Even though the main focus was on performance again there are plenty of other fixes and improvements. The big 2 new features this time are the fog of war for the patch map and organelle unlocks.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.5
+  PatchNotes:
+    - Implemented fog of war for the patch map, you now need to explore the map to find all the patches that exist
+    - Added part unlock system. Some organelles are now locked until the player fulfils certain conditions.
+    - Added multithreaded running of ECS systems. This improves the performance a bit more on systems with enough CPU cores.
+    - Reduced memory allocations during normal gameplay by 75%
+    - Auto-evo prediction now shows the gained energy first and population second
+    - Hovering over a species name in the editor report now shows an image of the species in a tooltip
+    - Added button to eject all engulfed things, helpful when you have ingested too poisonous prey
+    - Thriveopedia now has inter-page links and external links
+    - Added a button to open an organelle's Thriveopedia page when hovering over the organelle
+    - Added multiple new microbe stage tutorials and reworked many existing ones as well as changed the tutorial flow in the editor
+    - The initial tutorial message is now customized based on the life origin selected in the new game options
+    - Added a new microbe stage music track that is exclusive to the vents biome
+    - Reduced bacteria swarm spawn counts for larger bacteria to try to balance large swarms of killer bacteria that clear out all smaller species
+    - Reimplemented pilus damage stab cooldown when dealing large amounts of damage at once, hopefully to prevent ejected cells from very quickly killing their engulfer
+    - Previous gathered energy is now shown in the prediction tooltip for comparing to see how much the increase/decrease is
+    - Did some further small system tweaking based on profiling for a bit more performance
+    - Increased minimum entity counts a bit now that we have more game performance
+    - Reduced density of big iron chunks to make them pushable by cells again
+    - Fixed big iron chunks having their collision models rotated differently than the visual modes (this caused the visuals to now be rotated differently than before until someone can remake the model)
+    - Added explicit check for available CPU features and making the game exit cleanly if the current CPU is not new enough. This is implemented through a small library which is loaded first and only after confirming things are good loading the main native code of Thrive is done.
+    - Improved the handling of native library load not succeeding and the game needing to close (this shouldn't be a hard crash anymore)
+    - Made compound cloud creation use interlocked operations rather than locks to slightly improve performance
+    - Added middle mouse button for panning to the list of rebindable keys
+    - Middle mouse button can now be used to pan in the society stage
+    - Made the move and delete hotkeys work for macroscopic editor
+    - Late multicellular speed now depends on the amount of myofibril metaballs
+    - Added a cheat for unlimited growth speed
+    - Cells now stop emitting mucilage when joining a colony, this should fix a really old reported bug
+    - Tweaked auto-evo prediction GUI a bit to give more horizontal space for numbers
+    - Fixed bug with colony member attach positions sometimes being incorrect which has been a bug for a really long time (note that this is different from multicellular body plan change bug)
+    - Fixed engulfing used storage not taking things currently being pulled in into account leading to overuse of storage and ejection
+    - Fixed engulfing not taking targets being in colonies into account, now the lead cell is no longer always yanked out of a colony
+    - Fixed regression in previous Thrive version with multicellular growth buff not working leading multicellular growth to be half the intended speed
+    - Fixed regression in entering engulf mode in a colony where other members could engulf but the player couldn't
+    - Fixed editor button not re-enabling after exiting a colony
+    - Fixed some bugs related engulfable being stuck with 0 contents, at least infinite toxin damage should be fixed
+    - Fixed a crash when accessing incorrect cell colony member index due to one missing "=" character in the code
+    - Fixed Thriveopedia map not displaying if opened before going once to the editor
+    - Fixed slime jet activation only playing a single frame of animation, now a full animation cycle is always completed
+    - Fixed bug with visual system setting Godot scale directly when a separate system should be doing it
+    - Fixed microbe sound effects continuing after cell death
+    - Fixed mouse click not working regression in signaling agent command wheel
+    - Fixed toxin projectile visuals not loading properly from saves
+    - Fixed fossilise buttons not updating their state when a species was fossilised, now the buttons correctly show the species as being fossilised
+    - Fixed bugs with body plan editor and cell editor displaying their graphics at the same time
+    - Fixed the 3D environment colour leaking into the cell editor in multicellular editor (the background is now disabled while in the cell editor and enabled when returning)
+    - Fixed saving not working in the editor if a save made in the editor was loaded and the stage was not entered in between
+    - Fixed an error being triggered when exiting from a save loaded in the editor without going to the microbe stage before quitting
+    - Fixed the metrics panel entity counts not making much sense with the ECS changes
+    - Added option to turn off the multithreaded world simulation in case it is slower or has other issues
+    - Added new setting to control the number of native executor threads (affects physics performance)
+    - Added some more models to the list in the gallery
+    - Added some extra safety checks to task executor based on one recent crash report
+    - Added some safety code to ensure ejected cells will despawn in a few seconds if they are dead
+    - Added safety code against entities being stuck in dead engulfers, instead the engulfing state is now properly cleared
+    - Added safety checks in editor enter button state apply to ensure the player hasn't died during the one frame it takes for the state change to apply after it is triggered
+    - Added code to force all cells into normal mode when they are engulfed to make sure engulfed cells can't be in weird states
+    - Added a check to ensure gas compounds add up to 100% in biomes
+    - Made the benchmark get progressively more intensive to ensure it should always eventually end
+    - Removed protoplasm from the game, it was an old buff for AI bacteria cells
+    - Removed a few unnecessarily saved fields from save files
+    - Added debugging feature to draw debug lines easily
+    - Added debugging helpers for verifying ECS component access patterns
+    - Wrote an overall Thrive ECS architecture describing document
+    - Implemented dependent entity delete for future use in Thrive
+    - Added .mo files to gitignore to stop people accidentally sending those in PRs
+    - Updated our scripts to run on .NET 8
+    - Fixed a few problems in the setup instructions (.NET 8, gold linker), added more info on submodules
+    - Updated code style rules and checking tools
+    - Added a styleguide section on avoiding memory allocations
+    - Removed unused code constants
+    - Renamed an interface in the code to clarify its purpose
+    - Renamed UsedIngestionCapacity to UsedEngulfingCapacity in the code to improve clarity
+    - Setup dependabot to automatically update our git submodules
+    - Some native side code build options improvements
+    - Applied our single letter LINQ lambda style across the codebase
+    - Updated AngleSharp from 1.0.7 to 1.1.0
+    - Updated YamlDotNet from 13.7.1 to 15.1.1
+    - Updated Jolt physics engine
+    - Switched translation files to no longer have source reference lines, this should reduce merge conflict amount massively, but most translation tools don't know how to look at the translation template file to find the reference line information
+    - Updated translations

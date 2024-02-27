@@ -22,9 +22,15 @@ public class RunOnKeyDownAttribute : RunOnKeyAttribute
         if (base.OnInput(@event) && !before && HeldDown)
         {
             if (TrackInputMethod)
-                return CallMethod(LastUsedInputMethod);
+            {
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, LastUsedInputMethod);
+            }
+            else
+            {
+                PrepareMethodParametersEmpty(ref cachedMethodCallParameters);
+            }
 
-            return CallMethod();
+            return CallMethod(cachedMethodCallParameters!);
         }
 
         return false;

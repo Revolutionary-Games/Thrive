@@ -18,6 +18,12 @@
     ///     organelles. Other operations are less time sensitive so they are fine to be detected next frame.
     ///   </para>
     /// </remarks>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as needing a few common components that the organelle component types use but this doesn't
+    ///     reference directly
+    ///   </para>
+    /// </remarks>
     [With(typeof(OrganelleContainer))]
     [With(typeof(CompoundStorage))]
     [With(typeof(WorldPosition))]
@@ -29,6 +35,7 @@
     [RunsAfter(typeof(MicrobeMovementSystem))]
     [RunsAfter(typeof(OrganelleComponentFetchSystem))]
     [RunsBefore(typeof(PhysicsSensorSystem))]
+    [RuntimeCost(14)]
     [RunsOnMainThread]
     public sealed class OrganelleTickSystem : AEntitySetSystem<float>
     {
@@ -52,10 +59,18 @@
             organelleContainer.ActiveCompoundDetections?.Clear();
             organelleContainer.ActiveSpeciesDetections?.Clear();
 
-            foreach (var organelle in organelleContainer.Organelles.Organelles)
+            var organelles = organelleContainer.Organelles.Organelles;
+            int organelleCount = organelles.Count;
+
+            // Manual loop used here to avoid memory allocations in this very often running code
+            for (int i = 0; i < organelleCount; ++i)
             {
-                foreach (var component in organelle.Components)
+                var components = organelles[i].Components;
+                int componentCount = components.Count;
+
+                for (int j = 0; j < componentCount; ++j)
                 {
+                    var component = components[j];
                     component.UpdateAsync(ref organelleContainer, entity, worldSimulation, delta);
 
                     if (component.UsesSyncProcess)

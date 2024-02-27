@@ -169,6 +169,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath RunAutoEvoDuringGameplayPath = null!;
 
     [Export]
+    public NodePath RunGameSimulationMultithreadedPath = null!;
+
+    [Export]
     public NodePath DetectedCPUCountPath = null!;
 
     [Export]
@@ -391,6 +394,7 @@ public class OptionsMenu : ControlWithInput
     private VBoxContainer cloudResolutionTitle = null!;
     private OptionButton cloudResolution = null!;
     private CustomCheckBox runAutoEvoDuringGameplay = null!;
+    private CustomCheckBox runGameSimulationMultithreaded = null!;
     private Label detectedCPUCount = null!;
     private Label activeThreadCount = null!;
     private CustomCheckBox assumeHyperthreading = null!;
@@ -597,6 +601,7 @@ public class OptionsMenu : ControlWithInput
         cloudResolutionTitle = GetNode<VBoxContainer>(CloudResolutionTitlePath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
         runAutoEvoDuringGameplay = GetNode<CustomCheckBox>(RunAutoEvoDuringGameplayPath);
+        runGameSimulationMultithreaded = GetNode<CustomCheckBox>(RunGameSimulationMultithreadedPath);
         detectedCPUCount = GetNode<Label>(DetectedCPUCountPath);
         activeThreadCount = GetNode<Label>(ActiveThreadCountPath);
         assumeHyperthreading = GetNode<CustomCheckBox>(AssumeHyperthreadingPath);
@@ -805,6 +810,7 @@ public class OptionsMenu : ControlWithInput
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
         runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
+        runGameSimulationMultithreaded.Pressed = settings.RunGameSimulationMultithreaded;
         assumeHyperthreading.Pressed = settings.AssumeCPUHasHyperthreading;
         useManualThreadCount.Pressed = settings.UseManualThreadCount;
         threadCountSlider.Value = settings.ThreadCount;
@@ -956,6 +962,7 @@ public class OptionsMenu : ControlWithInput
                 CloudResolutionTitlePath.Dispose();
                 CloudResolutionPath.Dispose();
                 RunAutoEvoDuringGameplayPath.Dispose();
+                RunGameSimulationMultithreadedPath.Dispose();
                 DetectedCPUCountPath.Dispose();
                 ActiveThreadCountPath.Dispose();
                 AssumeHyperthreadingPath.Dispose();
@@ -1295,8 +1302,12 @@ public class OptionsMenu : ControlWithInput
             case Constants.EXTREME_MAX_SPAWNED_ENTITIES:
                 return 7;
             default:
-                GD.PrintErr("invalid max entities count value");
-                return 3;
+                GD.PrintErr("invalid max entities count value (using closest value)");
+                return MaxEntitiesValueToIndex(ListUtils.FindClosestValue(value, Constants.TINY_MAX_SPAWNED_ENTITIES,
+                    Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES, Constants.SMALL_MAX_SPAWNED_ENTITIES,
+                    Constants.NORMAL_MAX_SPAWNED_ENTITIES, Constants.LARGE_MAX_SPAWNED_ENTITIES,
+                    Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES, Constants.HUGE_MAX_SPAWNED_ENTITIES,
+                    Constants.EXTREME_MAX_SPAWNED_ENTITIES));
         }
     }
 
@@ -2033,6 +2044,13 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDetectedCPUCount();
+    }
+
+    private void OnRunSimulationMultithreadedToggled(bool pressed)
+    {
+        Settings.Instance.RunGameSimulationMultithreaded.Value = pressed;
+
+        UpdateResetSaveButtonState();
     }
 
     private void OnHyperthreadingToggled(bool pressed)

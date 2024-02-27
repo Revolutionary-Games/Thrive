@@ -292,12 +292,18 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     /// </summary>
     protected TStage? stage;
 
+    private readonly Dictionary<Compound, float> gatheredCompounds = new();
+    private readonly Dictionary<Compound, float> totalNeededCompounds = new();
+
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
     private Panel compoundsPanel = null!;
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
+    private VBoxContainer environmentPanelVBoxContainer = null!;
+    private VBoxContainer compoundsPanelVBoxContainer = null!;
     private Control agentsPanel = null!;
+    private VBoxContainer agentsPanelVBoxContainer = null!;
     private ProgressBar oxytoxyBar = null!;
     private ProgressBar mucilageBar = null!;
     private CustomWindow? extinctionBox;
@@ -385,9 +391,11 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MouseHoverPanel>(MouseHoverPanelPath);
         agentsPanel = GetNode<Control>(AgentsPanelPath);
+        agentsPanelVBoxContainer = agentsPanel.GetNode<VBoxContainer>("VBoxContainer");
 
         environmentPanel = GetNode<Panel>(EnvironmentPanelPath);
         environmentPanelBarContainer = GetNode<GridContainer>(EnvironmentPanelBarContainerPath);
+        environmentPanelVBoxContainer = environmentPanel.GetNode<VBoxContainer>("VBoxContainer");
         oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
         co2Bar = GetNode<ProgressBar>(Co2BarPath);
         nitrogenBar = GetNode<ProgressBar>(NitrogenBarPath);
@@ -397,6 +405,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
         compoundsPanel = GetNode<Panel>(CompoundsPanelPath);
         compoundsPanelBarContainer = GetNode<GridContainer>(CompoundsPanelBarContainerPath);
+        compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
         glucoseBar = GetNode<ProgressBar>(GlucoseBarPath);
         ammoniaBar = GetNode<ProgressBar>(AmmoniaBarPath);
         phosphateBar = GetNode<ProgressBar>(PhosphateBarPath);
@@ -466,6 +475,9 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         strainBar = GetNode<ProgressBar>(StrainBarPath);
         strainBarFadeAnimationPlayer = GetNode<AnimationPlayer>(StrainBarFadeAnimationPlayerPath);
 
+        // Make sure fossilization layer update won't run if it isn't open
+        fossilisationButtonLayer.Visible = false;
+
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
 
@@ -524,6 +536,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
 
+        // TODO: switch these to be fetched just once in _Ready
         editorButton.Disabled = false;
         editorButton.GetNode<TextureRect>("Highlight").Show();
         editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
@@ -545,6 +558,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         if (!editorButton.Disabled)
             editorButton.Disabled = true;
 
+        // TODO: switch these to be fetched just once in _Ready
         editorButton.GetNode<TextureRect>("Highlight").Hide();
         editorButton.GetNode<Control>("ReproductionBar").Show();
         editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
@@ -698,30 +712,13 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
         if (Paused)
         {
+            fossilisationButtonLayer.Visible = true;
             ShowFossilisationButtons();
         }
         else
         {
             HideFossilisationButtons();
         }
-    }
-
-    /// <summary>
-    ///   Creates and displays a fossilisation button above each on-screen organism.
-    /// </summary>
-    public abstract void ShowFossilisationButtons();
-
-    /// <summary>
-    ///   Updates all fossilisation buttons' status of fossilisation
-    /// </summary>
-    public abstract void UpdateFossilisationButtonStates();
-
-    /// <summary>
-    ///   Destroys all fossilisation buttons on screen.
-    /// </summary>
-    public void HideFossilisationButtons()
-    {
-        fossilisationButtonLayer.QueueFreeChildren();
     }
 
     /// <summary>
@@ -750,6 +747,28 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     protected void OnSprintPressed()
     {
         EmitSignal(nameof(OnSprintButtonPressed));
+    }
+
+    /// <summary>
+    ///   Creates and displays a fossilisation button above each on-screen organism.
+    /// </summary>
+    protected abstract void ShowFossilisationButtons();
+
+    /// <summary>
+    ///   Updates all fossilisation buttons' status of fossilisation
+    /// </summary>
+    protected abstract void UpdateFossilisationButtonStates();
+
+    /// <summary>
+    ///   Destroys all fossilisation buttons on screen. And the layer won't be usable again until re-enabled (and
+    ///   becomes visible again)
+    /// </summary>
+    protected void HideFossilisationButtons()
+    {
+        fossilisationButtonLayer.QueueFreeChildren();
+
+        // Stop processing the layer
+        fossilisationButtonLayer.Visible = false;
     }
 
     protected void UpdateEnvironmentPanelState()
@@ -850,6 +869,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         if (stage!.HasPlayer)
             ReadPlayerHitpoints(out hp, out maxHP);
 
+        // TODO: skip updating the label if value has not changed to save on memory allocations
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
         var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
@@ -918,6 +938,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         if (population <= 0 && stage.HasPlayer)
             population = 1;
 
+        // TODO: skip updating the label if value has not changed to save on memory allocations
         populationLabel.Text = population.FormatNumber();
     }
 
@@ -932,6 +953,8 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         if (GetPlayerUsefulCompounds()?.HasAnyBeenSetUseful() != true)
             return;
 
+        // TODO: would it be better to calculate useful compounds one at a time rather than allocating a method here?
+        // This causes quite a bit of memory allocations
         UpdateBarVisibility(GetIsUsefulCheck());
     }
 
@@ -989,8 +1012,11 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     {
         var compounds = GetPlayerStorage();
 
+        // TODO: only call the string formatting if the value is changed to save on memory allocations a lot
         glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
         GUICommon.SmoothlyUpdateBar(glucoseBar, compounds.GetCompoundAmount(glucose), delta);
+
+        // TODO: switch to getting the labels in _Ready to avoid a bunch of unnecessary memory allocations
         glucoseBar.GetNode<Label>("Value").Text =
             StringUtils.SlashSeparatedNumbersFormat(glucoseBar.Value, glucoseBar.MaxValue);
 
@@ -1027,7 +1053,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
     protected void UpdateReproductionProgress()
     {
-        CalculatePlayerReproductionProgress(out var gatheredCompounds, out var totalNeededCompounds);
+        CalculatePlayerReproductionProgress(gatheredCompounds, totalNeededCompounds);
 
         float fractionOfAmmonia = 0;
         float fractionOfPhosphates = 0;
@@ -1057,8 +1083,8 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         CheckPhosphateProgressHighlight(fractionOfPhosphates);
     }
 
-    protected abstract void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out IReadOnlyDictionary<Compound, float> totalNeededCompounds);
+    protected abstract void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
+        Dictionary<Compound, float> totalNeededCompounds);
 
     protected void UpdateATP(float delta)
     {
@@ -1083,6 +1109,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
         GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
 
+        // TODO: skip updating the label if value has not changed to save on memory allocations
         var atpText = StringUtils.SlashSeparatedNumbersFormat(atpAmount, maxATP);
         atpLabel.Text = atpText;
         atpLabel.HintTooltip = atpText;
@@ -1102,10 +1129,6 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
     protected void UpdatePanelSizing(float delta)
     {
-        var environmentPanelVBoxContainer = environmentPanel.GetNode<VBoxContainer>("VBoxContainer");
-        var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
-        var agentsPanelVBoxContainer = agentsPanel.GetNode<VBoxContainer>("VBoxContainer");
-
         environmentPanelVBoxContainer.RectSize = new Vector2(environmentPanelVBoxContainer.RectMinSize.x, 0);
         compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectMinSize.x, 0);
         agentsPanelVBoxContainer.RectSize = new Vector2(agentsPanelVBoxContainer.RectMinSize.x, 0);
@@ -1278,11 +1301,14 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         if (compoundBars == null)
             throw new InvalidOperationException("This HUD is not initialized");
 
+        // TODO: this iteration causes quite many new enumerator allocations. Maybe it'd be better to just get an
+        // explicit list in _Ready?
         foreach (ProgressBar bar in compoundBars)
         {
             if (SpecialHandleBar(bar))
                 continue;
 
+            // This bar.Name call also causes quite a bit of allocations
             var compound = SimulationParameters.Instance.GetCompound(bar.Name);
 
             if (isUseful.Invoke(compound))

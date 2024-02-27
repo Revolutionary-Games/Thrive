@@ -15,6 +15,12 @@
     ///   Handles digestion of engulfed objects (and starting ejection of indigestible things).
     ///   <see cref="EngulfingSystem"/> for the system responsible for pulling in and ejecting engulfables.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This system has a separate variable in <see cref="MicrobeStatus"/> that this updates, so this is marked as
+    ///     just reading that component.
+    ///   </para>
+    /// </remarks>
     [With(typeof(Engulfer))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(CompoundStorage))]
@@ -22,13 +28,19 @@
     [With(typeof(CellProperties))]
     [With(typeof(Health))]
     [With(typeof(WorldPosition))]
+    [WritesToComponent(typeof(Engulfable))]
+    [ReadsComponent(typeof(OrganelleContainer))]
+    [ReadsComponent(typeof(MicrobeStatus))]
+    [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [RunsAfter(typeof(EngulfingSystem))]
+    [RuntimeCost(2)]
     public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
     {
         private readonly CompoundCloudSystem compoundCloudSystem;
         private readonly Compound oxytoxy;
-        private readonly IReadOnlyCollection<Compound> digestibleCompounds;
+        private readonly IReadOnlyList<Compound> digestibleCompounds;
 
         private readonly Enzyme lipase;
 
@@ -110,7 +122,7 @@
 
                 // Expel this engulfed object if the cell loses some of its size and its ingestion capacity
                 // is overloaded
-                if (engulfer.UsedIngestionCapacity > engulfer.EngulfStorageSize)
+                if (engulfer.UsedEngulfingCapacity > engulfer.EngulfStorageSize)
                 {
                     if (engulfer.EjectEngulfable(ref engulfable))
                     {
@@ -120,7 +132,7 @@
 
                     // As ejecting is delayed, we need to temporarily adjust the size here so that we don't
                     // accidentally eject *everything* if we go slightly over the limit
-                    engulfer.UsedIngestionCapacity -= engulfable.AdjustedEngulfSize;
+                    engulfer.UsedEngulfingCapacity -= engulfable.AdjustedEngulfSize;
                     continue;
                 }
 
@@ -184,8 +196,13 @@
 
                 var totalAmountLeft = 0.0f;
 
-                foreach (var compound in digestibleCompounds)
+                var digestibleCount = digestibleCompounds.Count;
+
+                // Manual loop to ensure no enumerator allocations
+                for (int j = 0; j < digestibleCount; ++j)
                 {
+                    var compound = digestibleCompounds[j];
+
                     var storageAmount = containedCompounds?.GetCompoundAmount(compound) ?? 0;
 
                     var additionalAmount = 0.0f;
@@ -296,7 +313,7 @@
                 usedCapacity += engulfable.AdjustedEngulfSize;
             }
 
-            engulfer.UsedIngestionCapacity = usedCapacity;
+            engulfer.UsedEngulfingCapacity = usedCapacity;
         }
     }
 }

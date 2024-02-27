@@ -15,7 +15,16 @@
     ///   having <see cref="Entity"/> instances yet
     /// </summary>
     [With(typeof(DelayedMicrobeColony))]
+    [WritesToComponent(typeof(AttachedToEntity))]
+    [WritesToComponent(typeof(MicrobeColony))]
+    [WritesToComponent(typeof(MicrobeControl))]
+    [WritesToComponent(typeof(CellProperties))]
+    [WritesToComponent(typeof(Physics))]
+    [WritesToComponent(typeof(OrganelleContainer))]
+    [ReadsComponent(typeof(EarlyMulticellularSpeciesMember))]
+    [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(ColonyBindingSystem))]
+    [RuntimeCost(0.5f, false)]
     public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

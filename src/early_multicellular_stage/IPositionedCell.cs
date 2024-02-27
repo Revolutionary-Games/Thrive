@@ -1,4 +1,4 @@
-﻿public interface IPositionedCell : IPositionedHex, ICellProperties
+﻿public interface IPositionedCell : IPositionedHex, ICellDefinition
 {
     /// <summary>
     ///   How many times this cell is rotated

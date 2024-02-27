@@ -188,8 +188,8 @@ public class SegmentedBar : HBoxContainer
             if (b.Disabled && !a.Disabled)
                 return -1;
 
-            return barValues.FindIndex(pair => pair.Key == a.Name) -
-                barValues.FindIndex(pair => pair.Key == b.Name);
+            return barValues.FindIndex(v => v.Key == a.Name) -
+                barValues.FindIndex(v => v.Key == b.Name);
         });
 
         int location = 0;

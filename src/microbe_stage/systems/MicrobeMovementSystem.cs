@@ -11,6 +11,11 @@
     /// <summary>
     ///   Handles applying <see cref="MicrobeControl"/> to a microbe
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The only write this does to <see cref="MicrobeControl"/> is ensuring the movement direction is normalized.
+    ///   </para>
+    /// </remarks>
     [With(typeof(MicrobeControl))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(CellProperties))]
@@ -19,16 +24,17 @@
     [With(typeof(WorldPosition))]
     [With(typeof(Health))]
     [With(typeof(StrainAffected))]
+    [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
-    [ReadsComponent(typeof(Health))]
     [RunsAfter(typeof(PhysicsBodyCreationSystem))]
     [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
     [RunsAfter(typeof(ProcessSystem))]
     [RunsBefore(typeof(PhysicsBodyControlSystem))]
     [RunsBefore(typeof(StrainSystem))]
     [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
+    [RuntimeCost(14)]
     public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;

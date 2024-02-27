@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Components;
 using DefaultEcs;
 using DefaultEcs.Threading;
@@ -10,6 +11,9 @@ using Systems;
 /// </summary>
 public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 {
+    private readonly List<Hex> hexWorkData1 = new();
+    private readonly List<Hex> hexWorkData2 = new();
+
     // Base systems
     private AnimationControlSystem animationControlSystem = null!;
     private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
@@ -42,6 +46,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <param name="visualDisplayRoot">Root node to place all visuals under</param>
     public void Init(Node visualDisplayRoot)
     {
+        disableComponentChecking = true;
+
         ResolveNodeReferences();
 
         visualsParent = visualDisplayRoot;
@@ -82,15 +88,6 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
 
         OnInitialized();
-    }
-
-    public override void ProcessFrameLogic(float delta)
-    {
-        ThrowIfNotInitialized();
-
-        colourAnimationSystem.Update(delta);
-        microbeShaderSystem.Update(delta);
-        tintColourApplyingSystem.Update(delta);
     }
 
     /// <summary>
@@ -144,7 +141,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         // Do a full update apply with the general code method
         ref var cellProperties = ref microbe.Get<CellProperties>();
-        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this);
+        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this, hexWorkData1, hexWorkData2);
 
         // TODO: update species member component if species changed?
     }
@@ -323,6 +320,13 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         cellBurstEffectSystem.Update(delta);
 
         microbeFlashingSystem.Update(delta);
+    }
+
+    protected override void OnProcessFrameLogic(float delta)
+    {
+        colourAnimationSystem.Update(delta);
+        microbeShaderSystem.Update(delta);
+        tintColourApplyingSystem.Update(delta);
     }
 
     protected override void ApplyECSThreadCount(int ecsThreadsToUse)

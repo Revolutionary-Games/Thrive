@@ -12,8 +12,10 @@
     /// </summary>
     [With(typeof(EntityMaterial))]
     [ReadsComponent(typeof(SpatialInstance))]
+    [ReadsComponent(typeof(SpatialInstance))]
     [RunsAfter(typeof(PathBasedSceneLoader))]
     [RunsAfter(typeof(PredefinedVisualLoaderSystem))]
+    [RuntimeCost(0.5f)]
     [RunsOnMainThread]
     public sealed class EntityMaterialFetchSystem : AEntitySetSystem<float>
     {

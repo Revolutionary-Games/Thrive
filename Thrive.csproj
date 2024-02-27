@@ -24,8 +24,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\microbe_stage\components\StrainAffected.cs" />
     <Compile Include="src\microbe_stage\systems\StrainSystem.cs" />
+    <Compile Include="src\engine\attributes\ComponentIsReadByDefaultAttribute.cs" />
     <Compile Include="src\engine\attributes\RunsConditionallyAttribute.cs" />
     <Compile Include="src\engine\attributes\RunsWithCustomCodeAttribute.cs" />
+    <Compile Include="src\engine\attributes\RuntimeCostAttribute.cs" />
+    <Compile Include="src\engine\ComponentAccessChecks.cs" />
+    <Compile Include="src\engine\SimpleBarrier.cs" />
     <Compile Include="src\general\AggregateEventArgs.cs" />
     <Compile Include="src\microbe_stage\organelle_unlocks\ConditionSet.cs" />
     <Compile Include="src\microbe_stage\organelle_unlocks\IUnlockCondition.cs" />
@@ -588,7 +592,7 @@
     <Compile Include="src\microbe_stage\gui\IHUDMessage.cs" />
     <Compile Include="src\microbe_stage\gui\SimpleHUDMessage.cs" />
     <Compile Include="src\microbe_stage\HUDBottomBar.cs" />
-    <Compile Include="src\microbe_stage\ICellProperties.cs" />
+    <Compile Include="src\microbe_stage\ICellDefinition.cs" />
     <Compile Include="src\microbe_stage\IMembraneDataSource.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
     <Compile Include="src\microbe_stage\editor\CombinedEditorAction.cs" />
@@ -982,7 +986,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="YamlDotNet">
-      <Version>15.1.0</Version>
+      <Version>15.1.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

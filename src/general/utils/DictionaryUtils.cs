@@ -48,14 +48,20 @@ public static class DictionaryUtils
     /// </summary>
     /// <param name="items">Items to add things to. As well as the result</param>
     /// <param name="valuesToAdd">Values to add to items.</param>
-    public static void Merge<T>(this Dictionary<T, float> items,
-        IReadOnlyDictionary<T, float> valuesToAdd)
+    public static void Merge<T>(this Dictionary<T, float> items, IReadOnlyDictionary<T, float> valuesToAdd)
     {
         foreach (var entry in valuesToAdd)
         {
-            if (!items.TryGetValue(entry.Key, out float existing))
-                existing = 0;
+            items.TryGetValue(entry.Key, out var existing);
+            items[entry.Key] = entry.Value + existing;
+        }
+    }
 
+    public static void Merge<T>(this Dictionary<T, float> items, Dictionary<T, float> valuesToAdd)
+    {
+        foreach (var entry in valuesToAdd)
+        {
+            items.TryGetValue(entry.Key, out var existing);
             items[entry.Key] = entry.Value + existing;
         }
     }
@@ -93,6 +99,18 @@ public static class DictionaryUtils
     }
 
     public static Dictionary<TKey, TValue> CloneShallow<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> dictionary)
+    {
+        var result = new Dictionary<TKey, TValue>(dictionary.Count);
+
+        foreach (var pair in dictionary)
+        {
+            result.Add(pair.Key, pair.Value);
+        }
+
+        return result;
+    }
+
+    public static Dictionary<TKey, TValue> CloneShallow<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)
     {
         var result = new Dictionary<TKey, TValue>(dictionary.Count);
 

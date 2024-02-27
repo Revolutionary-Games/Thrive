@@ -13,6 +13,7 @@
     [With(typeof(Physics))]
     [With(typeof(CollisionManagement))]
     [RunsAfter(typeof(PhysicsBodyCreationSystem))]
+    [RuntimeCost(1)]
     public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;

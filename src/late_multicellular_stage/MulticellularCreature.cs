@@ -349,7 +349,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
         // TODO: implement sound playing, should probably create a helper method to share with Microbe
 
         /*// Find a player not in use or create a new one if none are available.
-        var player = otherAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
+        var player = otherAudioPlayers.Find(p => !p.Playing);
 
         if (player == null)
         {

@@ -16,18 +16,23 @@
     [With(typeof(CellProperties))]
     [With(typeof(CompoundStorage))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(UnneededCompoundVenter))]
+    [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
-    [RunsAfter(typeof(AllCompoundsVentingSystem))]
+    [RunsAfter(typeof(ProcessSystem))]
+    [RuntimeCost(9)]
     public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
     {
         private readonly CompoundCloudSystem compoundCloudSystem;
-        private readonly IReadOnlyCollection<Compound> ventableCompounds;
+        private readonly IReadOnlyList<Compound> ventableCompounds;
 
         public UnneededCompoundVentingSystem(CompoundCloudSystem compoundCloudSystem, World world,
             IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
         {
             this.compoundCloudSystem = compoundCloudSystem;
+
+            // Cloud types are ones that can be vented
             ventableCompounds = SimulationParameters.Instance.GetCloudCompounds();
         }
 
@@ -49,9 +54,13 @@
 
             float amountToVent = Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta;
 
-            // Cloud types are ones that can be vented
-            foreach (var type in ventableCompounds)
+            int count = ventableCompounds.Count;
+
+            // Manual loop here to avoid enumerator allocations
+            for (int i = 0; i < count; ++i)
             {
+                var type = ventableCompounds[i];
+
                 var capacity = compounds.GetCapacityForCompound(type);
 
                 // Vent if not useful, or if overflowed the capacity

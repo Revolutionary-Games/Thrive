@@ -3,17 +3,23 @@
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
-    using DefaultEcs.Threading;
 
     /// <summary>
     ///   Loads predefined collision shapes from resources
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Runs on main thread for now due to needing to load Godot resources for physics. Maybe in the future we
+    ///     have a pre-converted format for the game that doesn't need this. Also multithreading disabled for now.
+    ///   </para>
+    /// </remarks>
     [With(typeof(CollisionShapeLoader))]
     [With(typeof(PhysicsShapeHolder))]
+    [RuntimeCost(0.5f)]
+    [RunsOnMainThread]
     public sealed class CollisionShapeLoaderSystem : AEntitySetSystem<float>
     {
-        public CollisionShapeLoaderSystem(World world, IParallelRunner runner) :
-            base(world, runner, Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD)
+        public CollisionShapeLoaderSystem(World world) : base(world, null)
         {
         }
 

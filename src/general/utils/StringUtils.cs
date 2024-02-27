@@ -72,7 +72,7 @@ public static class StringUtils
         }
         catch (FormatException e)
         {
-            GD.PrintErr("Invalid translation format for current language in text: ", format, ", exception: ", e);
+            GD.PrintErr($"Invalid translation format for current language in text: {format} exception: {e}");
             return format;
         }
     }

@@ -147,6 +147,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         /// <summary>
         ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     TODO: switch this to NodePath (though JSON loading will get a bit more complex)
+        ///   </para>
+        /// </remarks>
         public string? SceneModelPath;
 
         /// <summary>

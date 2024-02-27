@@ -26,11 +26,14 @@
     [With(typeof(OrganelleContainer))]
     [With(typeof(PhysicsShapeHolder))]
     [Without(typeof(AttachedToEntity))]
+    [WritesToComponent(typeof(MicrobeColony))]
+    [WritesToComponent(typeof(CompoundAbsorber))]
+    [ReadsComponent(typeof(OrganelleContainer))]
+    [ReadsComponent(typeof(AttachedToEntity))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
     [RunsBefore(typeof(PhysicsBodyCreationSystem))]
     [RunsBefore(typeof(MicrobeReproductionSystem))]
     [RunsBefore(typeof(MulticellularGrowthSystem))]
-    [WritesToComponent(typeof(CompoundAbsorber))]
     public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float>
     {
         private readonly float pilusDensity;
@@ -424,7 +427,7 @@
             }
 
             organelleContainer.RotationSpeed =
-                MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles);
+                MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles.Organelles);
         }
 
         private PhysicsShape CreatePilusShape(float size)

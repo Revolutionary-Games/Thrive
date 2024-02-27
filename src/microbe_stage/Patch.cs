@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
@@ -493,8 +492,11 @@ public class Patch
     public void LogEvent(LocalizedString description, bool highlight = false, string? iconPath = null)
     {
         // Event already logged in timeline
-        if (currentSnapshot.EventsLog.Any(entry => entry.Description.Equals(description)))
-            return;
+        foreach (var gameEvent in currentSnapshot.EventsLog)
+        {
+            if (gameEvent.Description.Equals(description))
+                return;
+        }
 
         currentSnapshot.EventsLog.Add(new GameEventDescription(description, iconPath, highlight));
     }

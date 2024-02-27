@@ -55,8 +55,8 @@ public class MicrobeBenchmark : Node
 
     // The starting spawn interval
     private const float SPAWN_INTERVAL = 0.121f;
-    private const float SPAWN_INTERVAL_REDUCE_EVERY_N = 100;
-    private const float SPAWN_INTERVAL_REDUCE_AMOUNT = 0.0007f;
+    private const float SPAWN_INTERVAL_REDUCE_EVERY_N = 70;
+    private const float SPAWN_INTERVAL_REDUCE_AMOUNT = 0.0005f;
     private const float MIN_SPAWN_INTERVAL = 0.01f;
 
     private const double SPAWN_ANGLE_INCREMENT = MathUtils.FULL_CIRCLE * 0.127f;
@@ -66,9 +66,9 @@ public class MicrobeBenchmark : Node
 
     private const int TARGET_FPS_FOR_SPAWNING = 60;
     private const float STRESS_TEST_END_THRESHOLD = 9;
-    private const float STRESS_TEST_THRESHOLD_REDUCE_EVERY_N = 200;
-    private const float STRESS_TEST_THRESHOLD_REDUCE = 0.20f;
-    private const float STRESS_TEST_END_THRESHOLD_MIN = 0.5f;
+    private const float STRESS_TEST_THRESHOLD_REDUCE_EVERY_N = 100;
+    private const float STRESS_TEST_THRESHOLD_REDUCE = 0.09f;
+    private const float STRESS_TEST_END_THRESHOLD_MIN = 1.0f;
 
     private const float MAX_WAIT_TIME_FOR_MICROBE_DEATH = 130;
     private const int REMAINING_MICROBES_THRESHOLD = 40;
@@ -469,12 +469,14 @@ public class MicrobeBenchmark : Node
 
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
         var mutator = new Mutations(random);
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
 
         for (int i = 0; i < SPECIES_COUNT; ++i)
         {
             var species = mutator.CreateRandomSpecies(world.NewMicrobeSpecies(nameGenerator.GenerateNameSection(random),
                     nameGenerator.GenerateNameSection(random, true)), AI_MUTATION_MULTIPLIER, false,
-                random.Next(MUTATION_STEPS_MIN, MUTATION_STEPS_MAX));
+                workMemory1, workMemory2, random.Next(MUTATION_STEPS_MIN, MUTATION_STEPS_MAX));
 
             generatedSpecies.Add(species);
         }

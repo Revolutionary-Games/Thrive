@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -198,9 +197,32 @@ public class CompoundBag : ICompoundStorage
         return usefulCompounds.Contains(compound);
     }
 
+    /// <summary>
+    ///   Checks if any of the given compounds are marked specifically useful. This variant exists to be hopefully more
+    ///   efficient in terms of enumerator allocation.
+    /// </summary>
+    /// <param name="compounds">Compounds to check</param>
+    /// <returns>True if any are set specifically useful</returns>
+    public bool AreAnySpecificallySetUseful(IList<Compound> compounds)
+    {
+        foreach (var compound in compounds)
+        {
+            if (usefulCompounds.Contains(compound))
+                return true;
+        }
+
+        return false;
+    }
+
     public bool AreAnySpecificallySetUseful(IEnumerable<Compound> compounds)
     {
-        return compounds.Any(usefulCompounds.Contains);
+        foreach (var compound in compounds)
+        {
+            if (usefulCompounds.Contains(compound))
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>

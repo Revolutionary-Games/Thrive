@@ -20,7 +20,6 @@ using DevCenterCommunication.Models.Enums;
 using ScriptsBase.Utilities;
 using SharedBase.Models;
 using SharedBase.Utilities;
-using ThriveDevCenter.Shared.Forms;
 
 /// <summary>
 ///   Handles the native C++ modules needed by Thrive
@@ -258,7 +257,7 @@ public class NativeLibs
                 throw new NotImplementedException("Creating release packages for mac is not done");
 
             case Program.NativeLibOptions.OperationMode.Upload:
-                if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken))
+                if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken) == true)
                 {
                     ColourConsole.WriteNormalLine("Checking for potential symbols to upload after library upload");
                     return await UploadMissingSymbolsToServer(cancellationToken);
@@ -502,8 +501,10 @@ public class NativeLibs
         // Give a nicer error message with missing cmake
         if (string.IsNullOrEmpty(ExecutableFinder.Which("cmake")))
         {
+            ExecutableFinder.PrintPathInfo(Console.Out);
             ColourConsole.WriteErrorLine("cmake not found. CMake is required for this build to work. " +
                 "Make sure it is installed and added to PATH before trying again.");
+
             return false;
         }
 
@@ -888,7 +889,7 @@ public class NativeLibs
         return true;
     }
 
-    private async Task<bool> CheckAndUpload(Library library, PackagePlatform platform,
+    private async Task<bool?> CheckAndUpload(Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
         var version = GetLibraryVersion(library);
@@ -899,7 +900,7 @@ public class NativeLibs
             ColourConsole.WriteWarningLine($"Skip checking uploading file that is missing locally: {file}");
 
             // For now this is not considered an error
-            return true;
+            return null;
         }
 
         bool debug = options.DebugLibrary;
@@ -907,6 +908,8 @@ public class NativeLibs
         if (string.IsNullOrEmpty(options.Key))
         {
             ColourConsole.WriteErrorLine("Key to access ThriveDevCenter is a required parameter");
+
+            // Explicit fail to stop trying
             return false;
         }
 
@@ -939,8 +942,8 @@ public class NativeLibs
 
         if (response.StatusCode == HttpStatusCode.NoContent)
         {
-            ColourConsole.WriteDebugLine("Server already has this");
-            return false;
+            // No preference to change the result
+            return null;
         }
 
         if (response.StatusCode == HttpStatusCode.OK)

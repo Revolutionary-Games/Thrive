@@ -11,7 +11,16 @@
     ///   Attaches <see cref="SpatialInstance"/> to the Godot scene and handles freeing unused spatial instances.
     ///   Must run before <see cref="SpatialPositionSystem"/>.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This explicitly marks the <see cref="SpatialInstance"/> as read component as the threading system doesn't
+    ///     handle AComponentSystem automatically. And as this *just* attaches the created instances to the scene tree
+    ///     this doesn't *really* modify the component data.
+    ///   </para>
+    /// </remarks>
     [RunsBefore(typeof(SpatialPositionSystem))]
+    [ReadsComponent(typeof(SpatialInstance))]
+    [RuntimeCost(5)]
     [RunsOnMainThread]
     public sealed class SpatialAttachSystem : AComponentSystem<float, SpatialInstance>
     {

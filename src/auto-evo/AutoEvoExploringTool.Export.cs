@@ -98,7 +98,7 @@ public partial class AutoEvoExploringTool
                     });
 
                     data.AddRange(allOrganelles
-                        .Select(o => microbeSpecies.Organelles.Count(ot => ot.Definition == o).ToString()));
+                        .Select(d => microbeSpecies.Organelles.Count(t => t.Definition == d).ToString()));
                 }
                 else
                 {

@@ -17,6 +17,9 @@
 
         // public readonly int OriginalOrder;
 
+        // TODO: add a relative cost field here and weight the amount of systems that can be given to a single thread
+        // Also should remember to modify AheadPenaltyPerTask value with the system weight multiplier
+
         public string? RunCondition;
         public string? CustomRunCode;
 
@@ -28,6 +31,8 @@
 
         public List<Type> ReadsComponents = new();
         public List<Type> WritesComponents = new();
+
+        public float RuntimeCost = 1;
 
         // Count of how many barriers are needed
         public int RequiresBarrierBefore;
@@ -46,12 +51,14 @@
         private static readonly Type SystemWithAttribute = typeof(WithAttribute);
         private static readonly Type WritesToAttribute = typeof(WritesToComponentAttribute);
         private static readonly Type ReadsFromAttribute = typeof(ReadsComponentAttribute);
+        private static readonly Type ReadByDefaultAttribute = typeof(ComponentIsReadByDefaultAttribute);
         private static readonly Type RunsAfterAttribute = typeof(RunsAfterAttribute);
         private static readonly Type RunsBeforeAttribute = typeof(RunsBeforeAttribute);
         private static readonly Type RunsOnMainAttribute = typeof(RunsOnMainThreadAttribute);
         private static readonly Type ConditionalRunAttribute = typeof(RunsConditionallyAttribute);
         private static readonly Type CustomRunAttribute = typeof(RunsWithCustomCodeAttribute);
         private static readonly Type RunsOnFrameAttribute = typeof(RunsOnFrameAttribute);
+        private static readonly Type RuntimeCostAttribute = typeof(RuntimeCostAttribute);
 
         public SystemToSchedule(Type type, string name)
         {
@@ -78,7 +85,17 @@
                 systemToSchedule.CustomRunCode = ((RunsWithCustomCodeAttribute)customRun).CustomCode;
             }
 
+            var customCost = systemToSchedule.Type.GetCustomAttribute(RuntimeCostAttribute);
+
+            if (customCost != null)
+            {
+                systemToSchedule.RuntimeCost = ((RuntimeCostAttribute)customCost).Cost;
+            }
+
             var expectedWritesTo = new List<Type>();
+            var expectedReadsFrom = new List<Type>();
+
+            var explicitReads = new HashSet<Type>();
 
             var withRaw = systemToSchedule.Type.GetCustomAttributes(SystemWithAttribute);
 
@@ -91,12 +108,17 @@
                 {
                     foreach (var componentType in attribute.ComponentTypes)
                     {
+                        // Handle components that are read by default
+                        if (componentType.GetCustomAttribute(ReadByDefaultAttribute) != null)
+                        {
+                            expectedReadsFrom.Add(componentType);
+                            continue;
+                        }
+
                         expectedWritesTo.Add(componentType);
                     }
                 }
             }
-
-            var expectedReadsFrom = new List<Type>();
 
             var readsRaw = systemToSchedule.Type.GetCustomAttributes(ReadsFromAttribute);
 
@@ -109,6 +131,8 @@
 
                 if (!expectedReadsFrom.Contains(attribute.ReadsFrom))
                     expectedReadsFrom.Add(attribute.ReadsFrom);
+
+                explicitReads.Add(attribute.ReadsFrom);
             }
 
             var writesRaw = systemToSchedule.Type.GetCustomAttributes(WritesToAttribute);
@@ -117,18 +141,18 @@
             {
                 var attribute = (WritesToComponentAttribute)attributeRaw;
 
-                if (expectedReadsFrom.Contains(attribute.WritesTo))
+                if (explicitReads.Contains(attribute.WritesTo))
                 {
                     throw new Exception(
                         "Shouldn't specify a writes to component with already a read attribute for same type");
                 }
 
+                // Convert implicit reads to writes
+                expectedReadsFrom.Remove(attribute.WritesTo);
+
                 if (!expectedWritesTo.Contains(attribute.WritesTo))
                     expectedWritesTo.Add(attribute.WritesTo);
             }
-
-            // TODO: should the following be done?:
-            // All writes are also reads for simplicity in checking thread access
 
             systemToSchedule.WritesComponents = expectedWritesTo;
             systemToSchedule.ReadsComponents = expectedReadsFrom;
@@ -242,6 +266,30 @@
             return false;
         }
 
+        public bool CanRunConcurrently(SystemToSchedule otherSystem)
+        {
+            // System ordering constraints
+            if (ShouldRunAfter(otherSystem) || ShouldRunBefore(otherSystem))
+                return false;
+
+            if (otherSystem.ShouldRunAfter(this) || otherSystem.ShouldRunBefore(this))
+                return false;
+
+            // Write / read conflicts
+            if (ReadsComponents.Any(c =>
+                    otherSystem.ReadsComponents.Contains(c) || otherSystem.WritesComponents.Contains(c)))
+            {
+                return false;
+            }
+
+            if (otherSystem.WritesComponents.Any(c => ReadsComponents.Contains(c) || WritesComponents.Contains(c)))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public void GetRunningText(List<string> lineReceiver, int indent, int thread)
         {
             for (int i = 0; i < RequiresBarrierBefore; ++i)
@@ -275,14 +323,29 @@
                     foreach (var component in WritesComponents)
                     {
                         lineReceiver.Add(StringUtils.GetIndent(indent) +
-                            $"OnThreadAccessComponent(true, \"{component.Name}\",{thread});");
+                            $"OnThreadAccessComponent(true, \"{component.Name}\", \"{Type.Name}\",{thread});");
                     }
 
                     foreach (var component in ReadsComponents)
                     {
                         lineReceiver.Add(StringUtils.GetIndent(indent) +
-                            $"OnThreadAccessComponent(false, \"{component.Name}\",{thread});");
+                            $"OnThreadAccessComponent(false, \"{component.Name}\", \"{Type.Name}\",{thread});");
                     }
+                }
+            }
+
+            if (GenerateThreadedSystems.UseCheckedComponentAccess)
+            {
+                foreach (var component in WritesComponents)
+                {
+                    lineReceiver.Add(StringUtils.GetIndent(indent) +
+                        $"ComponentAccessChecks.ReportAllowedAccess(\"{component.Name}\");");
+                }
+
+                foreach (var component in ReadsComponents)
+                {
+                    lineReceiver.Add(StringUtils.GetIndent(indent) +
+                        $"ComponentAccessChecks.ReportAllowedAccess(\"{component.Name}\");");
                 }
             }
 
@@ -298,9 +361,10 @@
                 lineReceiver.Add(StringUtils.GetIndent(indent) + $"{FieldName}.Update(delta);");
             }
 
-            for (int i = 0; i < RequiresBarrierAfter; ++i)
+            if (GenerateThreadedSystems.UseCheckedComponentAccess)
             {
-                GenerateThreadedSystems.AddBarrierWait(lineReceiver, 1, thread, indent);
+                lineReceiver.Add(StringUtils.GetIndent(indent) +
+                    "ComponentAccessChecks.ClearAccessForCurrentThread();");
             }
 
             if (closeBrace)
@@ -308,6 +372,13 @@
                 indent -= 4;
                 lineReceiver.Add(StringUtils.GetIndent(indent) + '}');
                 GenerateThreadedSystems.EnsureOneBlankLine(lineReceiver);
+            }
+
+            // Barriers after condition so that barriers aren't conditionally skipped, that would be really hard to
+            // balance across threads
+            for (int i = 0; i < RequiresBarrierAfter; ++i)
+            {
+                GenerateThreadedSystems.AddBarrierWait(lineReceiver, 1, thread, indent);
             }
         }
 

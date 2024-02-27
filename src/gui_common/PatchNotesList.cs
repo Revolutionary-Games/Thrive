@@ -181,6 +181,7 @@ public class PatchNotesList : VBoxContainer
         }
 
         // Skip rebuilding if this has not changed or is visible
+        // TODO: it seems like IsVisibleInTree causes memory allocations on each update?
         if (!dirty || !IsVisibleInTree())
             return;
 

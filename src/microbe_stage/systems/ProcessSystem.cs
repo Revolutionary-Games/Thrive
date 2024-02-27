@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -13,16 +14,23 @@
     /// <summary>
     ///   Runs biological processes on entities
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as writing to the processes due to <see cref="BioProcesses.ProcessStatistics"/>
+    ///   </para>
+    /// </remarks>
     [With(typeof(CompoundStorage))]
     [With(typeof(BioProcesses))]
     [RunsAfter(typeof(CompoundAbsorptionSystem))]
-    [RunsAfter(typeof(UnneededCompoundVentingSystem))]
     [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
     [RunsBefore(typeof(MicrobeMovementSystem))]
+    [RuntimeCost(55)]
     public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
         private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
+
+        private readonly ThreadLocal<List<BioProcess>> temporaryWorkData = new(() => new List<BioProcess>());
 
         private BiomeConditions? biome;
 
@@ -39,13 +47,55 @@
         /// <summary>
         ///   Creates a process list to send to <see cref="BioProcesses"/> from a given list of existing organelles
         /// </summary>
-        public static List<TweakedProcess> ComputeActiveProcessList(IEnumerable<IPositionedOrganelle> organelles)
+        /// <remarks>
+        ///   <para>
+        ///     This takes in an existing list to avoid allocations as much as possible
+        ///   </para>
+        /// </remarks>
+        public static void ComputeActiveProcessList(IReadOnlyList<IPositionedOrganelle> organelles,
+            ref List<TweakedProcess>? result)
         {
-            // TODO: switch to a manual approach if the performance characteristics of this LINQ query is not good
-            // The old approach just uses a linear scan of the already handled process types and adds to their existing
-            // rate
-            return organelles.Select(o => o.Definition).SelectMany(o => o.RunnableProcesses).GroupBy(p => p.Process)
-                .Select(g => new TweakedProcess(g.Key, g.Sum(p => p.Rate))).ToList();
+            result ??= new List<TweakedProcess>();
+
+            // Very important to clear any existing list to ensure old processes don't hang around
+            result.Clear();
+
+            // TODO: need to add a temporary work area map as parameter to this method if this is too slow approach
+            // A basic linear scan over all organelles and their processes with combining duplicates into the result
+            int count = organelles.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                var organelle = organelles[i];
+                var processes = organelle.Definition.RunnableProcesses;
+                int processCount = processes.Count;
+
+                for (int j = 0; j < processCount; ++j)
+                {
+                    var process = processes[j];
+                    var processKey = process.Process;
+
+                    bool added = false;
+
+                    // Try to add to existing result first
+                    int resultCount = result.Count;
+                    for (int k = 0; k < resultCount; ++k)
+                    {
+                        if (result[k].Process == processKey)
+                        {
+                            // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
+                            result[k] = new TweakedProcess(processKey, process.Rate + result[k].Rate);
+                            added = true;
+                            break;
+                        }
+                    }
+
+                    if (added)
+                        continue;
+
+                    // If not found, then create a new result
+                    result.Add(new TweakedProcess(process.Process, process.Rate));
+                }
+            }
         }
 
         /// <summary>
@@ -411,6 +461,12 @@
             return GetAmbientInBiome(compound, biome, amountType);
         }
 
+        public override void Dispose()
+        {
+            Dispose(true);
+            base.Dispose();
+        }
+
         protected override void PreUpdate(float delta)
         {
             if (biome == null)
@@ -483,7 +539,7 @@
             bag.ClampNegativeCompoundAmounts();
             bag.FixNaNCompounds();
 
-            processStatistics?.RemoveUnused();
+            processStatistics?.RemoveUnused(temporaryWorkData.Value);
         }
 
         private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
@@ -655,6 +711,14 @@
                 currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated * inverseDelta);
 
                 bag.AddCompound(entry.Key, outputGenerated);
+            }
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                temporaryWorkData.Dispose();
             }
         }
     }
