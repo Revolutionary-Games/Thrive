@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-24 10:33+0200\n"
+"POT-Creation-Date: 2024-02-27 22:50+0100\n"
 "PO-Revision-Date: 2024-02-19 08:09+0000\n"
 "Last-Translator: Charles Breillot <cbreillot@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1423,6 +1423,9 @@ msgstr "Activer tous les mods compatibles"
 msgid "ENABLE_EDITOR"
 msgstr "Activer l'éditeur"
 
+msgid "ENABLE_EXPERIMENTAL_FEATURES"
+msgstr ""
+
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Activer les effets lumineux dans l'interface utilisateur"
 
@@ -1537,6 +1540,10 @@ msgstr "Quitter"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Revenir au lanceur"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(vitesse de mutation des espèces controllées par l'IA)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exporter Tous Les Mondes"
@@ -4624,6 +4631,21 @@ msgstr "Stockage :"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Connecté sous le nom de : {0}"
 
+msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
+msgstr ""
+
+msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
+msgstr ""
+
+msgid "STRAIN_BAR_VISIBILITY_MODE"
+msgstr ""
+
+msgid "STRAIN_BAR_VISIBILITY_OFF"
+msgstr ""
+
+msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
+msgstr ""
+
 msgid "STRATEGY_STAGES"
 msgstr "Phase straté"
 
@@ -4978,6 +5000,10 @@ msgstr "Activer/désactiver l'arbre de navigation"
 
 msgid "TOGGLE_PAUSE"
 msgstr "Pause"
+
+#, fuzzy
+msgid "TOGGLE_SPRINT_TOOLTIP"
+msgstr "Activer relieur"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Activer/désactiver la liaison"

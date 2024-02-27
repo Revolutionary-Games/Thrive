@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-24 10:33+0200\n"
-"PO-Revision-Date: 2024-02-05 10:20+0200\n"
+"POT-Creation-Date: 2024-02-27 22:50+0100\n"
+"PO-Revision-Date: 2024-02-27 23:00+0100\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 2.4.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1415,6 +1415,9 @@ msgstr "Enable All Compatible Mods"
 msgid "ENABLE_EDITOR"
 msgstr "Enable the editor"
 
+msgid "ENABLE_EXPERIMENTAL_FEATURES"
+msgstr "Enable experimental settings"
+
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Enable GUI light effects"
 
@@ -1525,6 +1528,9 @@ msgstr "Exit"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Exit to Launcher"
+
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "Enable work in progress and experimental features. These are unfinished and unpolished, expect bugs."
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Export All Worlds"
@@ -4544,6 +4550,21 @@ msgstr "Storage:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
 
+msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
+msgstr "Always visible"
+
+msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
+msgstr "Visible when nearly full"
+
+msgid "STRAIN_BAR_VISIBILITY_MODE"
+msgstr "Strain bar visibility mode:"
+
+msgid "STRAIN_BAR_VISIBILITY_OFF"
+msgstr "Off"
+
+msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
+msgstr "Visible when over zero"
+
 msgid "STRATEGY_STAGES"
 msgstr "Strategy Stages"
 
@@ -4880,6 +4901,9 @@ msgstr "Toggle navigation tree"
 
 msgid "TOGGLE_PAUSE"
 msgstr "Pause"
+
+msgid "TOGGLE_SPRINT_TOOLTIP"
+msgstr "Toggle sprint"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Toggle unbinding"
@@ -6726,14 +6750,6 @@ msgstr "Zoom out"
 
 #~ msgid "AVERAGE"
 #~ msgstr "Average"
-
-#~ msgid "EXPERIMENTAL_LABEL"
-#~ msgstr "Experimental Settings"
-
-#~ msgid "EXPERIMENTAL_WARNING"
-#~ msgstr ""
-#~ "These settings are unpolished and unstable. They may affect your game in undesirable ways.\n"
-#~ "Use at your own risk."
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Insightful stats about the current game"
