@@ -1022,8 +1022,17 @@ public partial class CellEditorComponent :
             oldEditedMicrobeOrganelles.AddFast(organelle, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
-        var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour,
-            behaviourEditor.Behaviour ?? throw new Exception("Behaviour not initialized"));
+        NewMicrobeActionData data;
+        if (IsMulticellularEditor)
+        {
+            // Behaviour editor is not used in multicellular
+            data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour, null);
+        }
+        else
+        {
+            data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour,
+                behaviourEditor.Behaviour ?? throw new Exception("Behaviour not initialized"));
+        }
 
         var action =
             new SingleEditorAction<NewMicrobeActionData>(DoNewMicrobeAction, UndoNewMicrobeAction, data);
