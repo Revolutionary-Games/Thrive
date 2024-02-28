@@ -196,6 +196,9 @@ public partial class CellEditorComponent
 
         if (!IsMulticellularEditor)
         {
+            if (data.OldBehaviourValues == null)
+                throw new InvalidOperationException("Behaviour data should have been initialized for restore");
+
             foreach (var oldBehaviour in data.OldBehaviourValues)
             {
                 behaviourEditor.SetBehaviouralValue(oldBehaviour.Key, oldBehaviour.Value);
