@@ -79,6 +79,13 @@ public class GlucoseReductionEffect : IWorldEffect
                         {
                             currentCompoundValue.Density += compound.Value / 100 / divider;
                         }
+                        else
+                        {
+                            if (GAC.ContainsKey(compound.Key))
+                                GAC[compound.Key] += compound.Value / 100;
+                            else
+                                GAC.Add(compound.Key, compound.Value / 100);
+                        }
 
                         patch.Biome.ChangeableCompounds[compound.Key] = currentCompoundValue;
                     }

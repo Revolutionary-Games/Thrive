@@ -95,6 +95,9 @@ public class Patch
     [JsonProperty]
     public int[] Depth { get; private set; } = { -1, -1 };
 
+    [JsonProperty]
+    public float GACModifer { get; private set; }
+
     /// <summary>
     ///   The visibility of this patch on the map
     /// </summary>

@@ -35,6 +35,7 @@ public class Biome : IRegistryType
     /// </summary>
     public LightDetails Sunlight = new();
 
+
     public float CompoundCloudBrightness = 1.0f;
 
     public MusicContext[]? ActiveMusicContexts = null;
@@ -49,6 +50,11 @@ public class Biome : IRegistryType
 #pragma warning restore 169,649
 
     public string InternalName { get; set; } = null!;
+
+    /// <summary>
+    ///   Unique modifier for Global Atmospheric Compositior
+    /// </summary>
+    public float GACModifer { get; private set; }
 
     public void Check(string name)
     {
