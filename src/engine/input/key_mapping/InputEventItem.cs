@@ -244,7 +244,7 @@ public partial class InputEventItem : MarginContainer
                 // See: https://github.com/Revolutionary-Games/Thrive/issues/3887
                 case Key.Alt:
                 case Key.Shift:
-                case Key.Control:
+                case Key.Ctrl:
                     return;
             }
         }

@@ -403,10 +403,10 @@ public partial class EvolutionaryTree : Control
                     + Localization.Translate("MEGA_YEARS");
             }
 
-            var size = latoSmallRegular.GetStringSize(localizedText);
-
-            timeline.DrawString(latoSmallRegular, new Vector2(Mathf.Clamp(x - size.X / 2, 0, Size.X - size.X),
-                TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH * 2 + size.Y), localizedText, Colors.Cyan);
+            timeline.DrawString(latoSmallRegular,
+                new Vector2(x, TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH * 2 + Constants.FONT_SIZE_SMALL), localizedText,
+                HorizontalAlignment.Center, -1,
+                Constants.FONT_SIZE_SMALL, Colors.Cyan);
         }
     }
 
@@ -548,13 +548,14 @@ public partial class EvolutionaryTree : Control
             {
                 tree.DrawString(latoSmallItalic,
                     new Vector2(lastNode.Position.X + sizeFactor * TreeNodeSize.X + speciesNameOffset,
-                        lastNode.Center.Y), speciesNames[pair.Key], Colors.DarkRed);
+                        lastNode.Center.Y), speciesNames[pair.Key], HorizontalAlignment.Left, -1,
+                    Constants.FONT_SIZE_SMALL, Colors.DarkRed);
             }
             else
             {
                 tree.DrawString(latoSmallItalic,
                     new Vector2(treeRightPosition + speciesNameOffset, pair.Value.First().Center.Y),
-                    speciesNames[pair.Key]);
+                    speciesNames[pair.Key], HorizontalAlignment.Left, -1, Constants.FONT_SIZE_SMALL);
             }
         }
     }

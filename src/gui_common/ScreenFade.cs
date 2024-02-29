@@ -6,12 +6,21 @@ using Godot;
 /// </summary>
 public partial class ScreenFade : Control, ITransition
 {
+    private readonly NodePath colorReference = new("color");
+
+    private readonly Callable finishCallable;
+
 #pragma warning disable CA2213
+    private Tween? tween;
     private ColorRect? rect;
-    private Tween fader = null!;
 #pragma warning restore CA2213
 
     private FadeType currentFadeType;
+
+    public ScreenFade()
+    {
+        finishCallable = new Callable(this, nameof(OnFinished));
+    }
 
     [Signal]
     public delegate void OnFinishedSignalEventHandler();
@@ -31,7 +40,7 @@ public partial class ScreenFade : Control, ITransition
 
     public bool Finished { get; private set; }
 
-    public float FadeDuration { get; set; }
+    public double FadeDuration { get; set; }
 
     public FadeType CurrentFadeType
     {
@@ -46,9 +55,6 @@ public partial class ScreenFade : Control, ITransition
     public override void _Ready()
     {
         rect = GetNode<ColorRect>("Rect");
-        fader = GetNode<Tween>("Fader");
-
-        fader.Connect("tween_all_completed", new Callable(this, nameof(OnFinished)));
 
         // Keep this node running while paused
         ProcessMode = ProcessModeEnum.Always;
@@ -69,9 +75,13 @@ public partial class ScreenFade : Control, ITransition
 
     public void FadeTo(Color final)
     {
-        fader.InterpolateProperty(rect, "color", null, final, FadeDuration);
+        StopTween();
 
-        fader.Start();
+        tween = CreateTween();
+
+        tween.TweenProperty(rect, colorReference, final, FadeDuration);
+
+        tween.TweenCallback(finishCallable);
     }
 
     public void Begin()
@@ -92,6 +102,8 @@ public partial class ScreenFade : Control, ITransition
     public void Skip()
     {
         OnFinished();
+
+        SetToEndState();
     }
 
     public void Clear()
@@ -104,7 +116,7 @@ public partial class ScreenFade : Control, ITransition
         if (rect == null)
             throw new InvalidOperationException("Instance not initialized yet");
 
-        fader.RemoveAll();
+        StopTween();
 
         switch (CurrentFadeType)
         {
@@ -120,6 +132,16 @@ public partial class ScreenFade : Control, ITransition
         }
 
         Finished = true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            colorReference.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void SetInitialColours()
@@ -141,5 +163,16 @@ public partial class ScreenFade : Control, ITransition
     private void OnFinished()
     {
         Finished = true;
+    }
+
+    private void StopTween()
+    {
+        if (tween != null)
+        {
+            if (tween.IsValid())
+                tween.Kill();
+
+            tween = null;
+        }
     }
 }

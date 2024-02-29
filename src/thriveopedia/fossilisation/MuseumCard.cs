@@ -14,18 +14,21 @@ public partial class MuseumCard : Button
     [Export]
     public NodePath DeleteButtonPath = null!;
 
+    private readonly NodePath modulateReference = new("modulate");
+
 #pragma warning disable CA2213
     private Label? speciesNameLabel;
     private TextureRect? speciesPreview;
     private TextureButton deleteButton = null!;
+
+    // TODO: check if this should be disposed
+    private Image? fossilPreviewImage;
+
 #pragma warning restore CA2213
 
     private Color defaultDeleteModulate;
 
     private Species? savedSpecies;
-
-    // TODO: check if this should be disposed
-    private Image? fossilPreviewImage;
 
     [Signal]
     public delegate void OnSpeciesSelectedEventHandler(MuseumCard card);
@@ -88,6 +91,8 @@ public partial class MuseumCard : Button
                 SpeciesPreviewPath.Dispose();
                 DeleteButtonPath.Dispose();
             }
+
+            modulateReference.Dispose();
         }
 
         base.Dispose(disposing);
@@ -128,14 +133,14 @@ public partial class MuseumCard : Button
 
     private void OnMouseEnter()
     {
-        GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.Gray, 0.5f);
-        GUICommon.Instance.Tween.Start();
+        var tween = CreateTween();
+        tween.TweenProperty(speciesPreview, modulateReference, Colors.Gray, 0.5);
     }
 
     private void OnMouseExit()
     {
-        GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.White, 0.5f);
-        GUICommon.Instance.Tween.Start();
+        var tween = CreateTween();
+        tween.TweenProperty(speciesPreview, modulateReference, Colors.White, 0.5);
     }
 
     private void OnDeletePressed()

@@ -67,6 +67,8 @@ public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedActi
     private const float DefaultHoverAlpha = 0.8f;
     private const float CannotPlaceHoverAlpha = 0.2f;
 
+    private readonly NodePath positionReference = new("position");
+
     private readonly List<Plane> cursorHitWorldPlanes = new()
     {
         new Plane(new Vector3(0, 0, -1), 0.0f),
@@ -168,7 +170,8 @@ public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedActi
         editorArrow = GetNode<MeshInstance3D>(EditorArrowPath);
         editorGround = GetNode<MeshInstance3D>(EditorGroundPath);
 
-        camera.Connect(EditorCamera3D.SignalName.OnPositionChanged, new Callable(this, nameof(OnCameraPositionChanged)));
+        camera.Connect(EditorCamera3D.SignalName.OnPositionChanged,
+            new Callable(this, nameof(OnCameraPositionChanged)));
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
@@ -478,10 +481,13 @@ public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedActi
         if (animateMovement)
         {
             // TODO: check that this works
-            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation", editorArrow.Position,
-                arrowPosition, Constants.EDITOR_ARROW_INTERPOLATE_SPEED,
-                Tween.TransitionType.Expo, Tween.EaseType.Out);
-            GUICommon.Instance.Tween.Start();
+
+            var tween = CreateTween();
+            tween.SetTrans(Tween.TransitionType.Expo);
+            tween.SetEase(Tween.EaseType.Out);
+
+            tween.TweenProperty(editorArrow, positionReference, arrowPosition,
+                Constants.EDITOR_ARROW_INTERPOLATE_SPEED);
         }
         else
         {
@@ -783,6 +789,8 @@ public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedActi
                 EditorGroundPath.Dispose();
                 IslandErrorPath.Dispose();
             }
+
+            positionReference.Dispose();
         }
 
         base.Dispose(disposing);

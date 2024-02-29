@@ -63,6 +63,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     [Export]
     public NodePath ReportTabPatchSelectorPath = null!;
 
+    private readonly NodePath scaleReference = new("scale");
+
 #pragma warning disable CA2213
     private Button autoEvoSubtabButton = null!;
     private Button timelineSubtabButton = null!;
@@ -260,6 +262,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                 ReportTabPatchNamePath.Dispose();
                 ReportTabPatchSelectorPath.Dispose();
             }
+
+            scaleReference.Dispose();
         }
 
         base.Dispose(disposing);
@@ -547,19 +551,17 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private void OnPhysicalConditionsChartLegendMoused(string name, bool hover)
     {
         var button = physicalConditionsIconLegends.GetNode<TextureButton>(name);
-        var tween = physicalConditionsIconLegends.GetNode<Tween>("Tween");
+        var tween = CreateTween();
 
         if (hover)
         {
-            tween.InterpolateProperty(button, "rect_scale", Vector2.One, new Vector2(1.1f, 1.1f), 0.1f);
-            tween.Start();
+            tween.TweenProperty(button, scaleReference, new Vector2(1.1f, 1.1f), 0.1);
 
             button.Modulate = Colors.LightGray;
         }
         else
         {
-            tween.InterpolateProperty(button, "rect_scale", new Vector2(1.1f, 1.1f), Vector2.One, 0.1f);
-            tween.Start();
+            tween.TweenProperty(button, scaleReference, Vector2.One, 0.1);
 
             button.Modulate = button.ButtonPressed ? Colors.White : Colors.DarkGray;
         }

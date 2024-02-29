@@ -5,10 +5,11 @@ using Godot;
 /// </summary>
 public partial class CrossFadableTextureRect : TextureRect
 {
-    private Texture2D? image;
+    private readonly NodePath modulationReference = new("modulate");
 
+    // This class takes in external textures.
 #pragma warning disable CA2213
-    private Tween tween = null!;
+    private Texture2D? image;
 #pragma warning restore CA2213
 
     [Signal]
@@ -16,7 +17,7 @@ public partial class CrossFadableTextureRect : TextureRect
 
     /// <summary>
     ///   Image to be displayed. This fades the texture rect. To change the image without fading use
-    ///   <see cref="TextureRect.Texture"/>.
+    ///   <see cref="TextureRect.Texture"/>. Note that this needs to be a texture managed elsewhere for destroying.
     /// </summary>
     public Texture2D? Image
     {
@@ -29,11 +30,20 @@ public partial class CrossFadableTextureRect : TextureRect
     }
 
     [Export]
-    public float FadeDuration { get; set; } = 0.5f;
+    public double FadeDuration { get; set; } = 0.5;
 
     public override void _Ready()
     {
-        tween = GetNode<Tween>("Tween");
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            modulationReference.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateImage()
@@ -45,10 +55,11 @@ public partial class CrossFadableTextureRect : TextureRect
             return;
         }
 
-        tween.InterpolateProperty(this, "modulate", null, Colors.Black, FadeDuration);
-        tween.Start();
+        var tween = CreateTween();
 
-        tween.CheckAndConnect("tween_completed", new Callable(this, nameof(OnFaded)), null, (uint)ConnectFlags.OneShot);
+        tween.TweenProperty(this, modulationReference, Colors.Black, FadeDuration);
+
+        tween.TweenCallback(new Callable(this, nameof(OnFaded)));
     }
 
     private void OnFaded(GodotObject @object, NodePath key)
@@ -59,7 +70,7 @@ public partial class CrossFadableTextureRect : TextureRect
         Texture = Image;
         EmitSignal(SignalName.Faded);
 
-        tween.InterpolateProperty(this, "modulate", null, Colors.White, FadeDuration);
-        tween.Start();
+        var tween = CreateTween();
+        tween.TweenProperty(this, modulationReference, Colors.White, FadeDuration);
     }
 }

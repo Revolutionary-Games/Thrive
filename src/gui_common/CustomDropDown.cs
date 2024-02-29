@@ -14,8 +14,6 @@ public partial class CustomDropDown : MenuButton
     /// </summary>
     public readonly PopupMenu Popup;
 
-    private readonly Tween tween;
-
 #pragma warning restore CA2213
 
     private readonly float cachedPopupVSeparation;
@@ -31,9 +29,6 @@ public partial class CustomDropDown : MenuButton
     public CustomDropDown()
     {
         Popup = GetPopup();
-        tween = new Tween();
-
-        AddChild(tween);
 
         cachedPopupVSeparation = Popup.GetThemeConstant("vseparation");
 
@@ -185,7 +180,12 @@ public partial class CustomDropDown : MenuButton
         }
 
         // Redraw the menu button and popup
-        Popup.QueueRedraw();
+        // TODO: check if this works still
+        // There doesn't seem to be any way to force redraw of the PopupMenu as it creates an internal control
+        // in C++ in PopupMenu::PopupMenu in scene/gui/popup_menu.cpp but offers no way to access it, and itself it
+        // isn't any kind of object that can be told to re-draw
+        // Popup.Control.QueueRedraw();
+
         QueueRedraw();
     }
 
@@ -237,7 +237,9 @@ public partial class CustomDropDown : MenuButton
 
                 var position = new Vector2(Popup.Size.X - iconSize.X - 6, height);
 
-                Popup.DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
+                // TODO: this used to use Popup.DrawTextureRect but Popup is no longer a control that can draw stuff
+                // See the comment about QueueRedraw() problems with the new Popup implementation in this file
+                DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
 
                 height += font.GetHeight() + Popup.GetThemeConstant("vseparation");
             }
@@ -249,9 +251,13 @@ public partial class CustomDropDown : MenuButton
         Popup.AddThemeConstantOverride("vseparation", -14);
 
         // Animate slide down
-        tween.InterpolateProperty(Popup, "custom_constants/vseparation", -14, cachedPopupVSeparation, 0.1f,
-            Tween.TransitionType.Cubic, Tween.EaseType.Out);
-        tween.Start();
+
+        // TODO: check that this path is still valid
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Cubic);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(Popup, "custom_constants/vseparation", cachedPopupVSeparation, 0.1).From(-14);
     }
 
     /// <summary>

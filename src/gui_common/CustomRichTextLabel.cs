@@ -50,6 +50,27 @@ public partial class CustomRichTextLabel : RichTextLabel
     }
 
     /// <summary>
+    ///   Vertical alignment of an image
+    /// </summary>
+    public enum ImageVerticalAlignment
+    {
+        Top = 0,
+        Center,
+        Bottom,
+    }
+
+    /// <summary>
+    ///   Where in the text the image references its alignment to
+    /// </summary>
+    public enum ImageAlignmentReferencePoint
+    {
+        Top = 0,
+        Center,
+        Bottom,
+        Baseline,
+    }
+
+    /// <summary>
     ///   This supports custom bbcode tags specific to Thrive (for example: [thrive:compound type="glucose"]
     ///   [/thrive:compound])
     /// </summary>
@@ -373,7 +394,7 @@ public partial class CustomRichTextLabel : RichTextLabel
 
         string GetResizedImage(string imagePath, int width, int height, int ascent)
         {
-            if (pairs.TryGetValue("size", out string sizeInput))
+            if (pairs.TryGetValue("size", out string? sizeInput))
             {
                 var separator = sizeInput.Find("x");
 
@@ -406,13 +427,63 @@ public partial class CustomRichTextLabel : RichTextLabel
             return $"[font={ascentFont}][img={width}x{height}]{imagePath}[/img][/font]";
         }
 
+        string GetVerticallyAlignedImage(string imagePath,
+            ImageVerticalAlignment verticalAlignment = ImageVerticalAlignment.Bottom,
+            ImageAlignmentReferencePoint textAnchorPoint = ImageAlignmentReferencePoint.Bottom)
+        {
+            string vertical;
+
+            switch (verticalAlignment)
+            {
+                case ImageVerticalAlignment.Top:
+                    vertical = "top";
+                    break;
+                case ImageVerticalAlignment.Center:
+                    vertical = "center";
+                    break;
+                case ImageVerticalAlignment.Bottom:
+                    vertical = "bottom";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(verticalAlignment), verticalAlignment, null);
+            }
+
+            // Automatic reference if the same point is used
+            if ((int)textAnchorPoint == (int)verticalAlignment)
+            {
+                return $"[img={vertical}]{imagePath}[/img]";
+            }
+
+            string reference;
+
+            switch (textAnchorPoint)
+            {
+                case ImageAlignmentReferencePoint.Top:
+                    reference = "top";
+                    break;
+                case ImageAlignmentReferencePoint.Center:
+                    reference = "center";
+                    break;
+                case ImageAlignmentReferencePoint.Bottom:
+                    reference = "bottom";
+                    break;
+                case ImageAlignmentReferencePoint.Baseline:
+                    reference = "baseline";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(textAnchorPoint), textAnchorPoint, null);
+            }
+
+            return $"[img={vertical},{reference}]{imagePath}[/img]";
+        }
+
         switch (bbcode)
         {
             case ThriveBbCode.Compound:
             {
                 var internalName = string.Empty;
 
-                if (pairs.TryGetValue("type", out string value))
+                if (pairs.TryGetValue("type", out string? value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
@@ -469,7 +540,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             case ThriveBbCode.Constant:
             {
                 var parsedAttributes = StringUtils.ParseKeyValuePairs(attributes);
-                parsedAttributes.TryGetValue("format", out string format);
+                parsedAttributes.TryGetValue("format", out string? format);
 
                 switch (input)
                 {
@@ -538,7 +609,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             {
                 var internalName = string.Empty;
 
-                if (pairs.TryGetValue("type", out string value))
+                if (pairs.TryGetValue("type", out string? value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
@@ -642,7 +713,7 @@ public partial class CustomRichTextLabel : RichTextLabel
         return output;
     }
 
-    private void OnInputsRemapped(object sender, EventArgs args)
+    private void OnInputsRemapped(object? sender, EventArgs args)
     {
         ParseCustomTags();
     }

@@ -11,7 +11,11 @@ public partial class GalleryCard : Button
 #pragma warning disable CA2213
     [Export]
     public Texture2D MissingTexture = null!;
+#pragma warning restore CA2213
 
+    private readonly NodePath modulationReference = new("modulate");
+
+#pragma warning disable CA2213
     private Label? titleLabel;
     private TextureRect? imagePreview;
     private Texture2D? thumbnail;
@@ -69,6 +73,8 @@ public partial class GalleryCard : Button
                 TitleLabelPath.Dispose();
                 TextureRectPath.Dispose();
             }
+
+            modulationReference.Dispose();
         }
 
         base.Dispose(disposing);
@@ -85,13 +91,13 @@ public partial class GalleryCard : Button
 
     private void OnMouseEnter()
     {
-        GUICommon.Instance.Tween.InterpolateProperty(imagePreview, "modulate", null, Colors.Gray, 0.5f);
-        GUICommon.Instance.Tween.Start();
+        var tween = CreateTween();
+        tween.TweenProperty(imagePreview, modulationReference, Colors.Gray, 0.5);
     }
 
     private void OnMouseExit()
     {
-        GUICommon.Instance.Tween.InterpolateProperty(imagePreview, "modulate", null, Colors.White, 0.5f);
-        GUICommon.Instance.Tween.Start();
+        var tween = CreateTween();
+        tween.TweenProperty(imagePreview, modulationReference, Colors.White, 0.5);
     }
 }

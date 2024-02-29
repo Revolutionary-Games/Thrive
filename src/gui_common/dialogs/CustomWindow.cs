@@ -114,6 +114,7 @@ public partial class CustomWindow : TopLevelContainer
     private StyleBox titleBarPanel = null!;
     private StyleBox closeButtonHighlight = null!;
 
+    // TODO: switch away from the multiple font size files
     private Font? titleFont;
 #pragma warning restore CA2213
     private Color titleColor;
@@ -309,11 +310,11 @@ public partial class CustomWindow : TopLevelContainer
         // Draw title in the title bar
         var fontHeight = titleFont!.GetHeight() - titleFont.GetDescent() * 2;
 
-        var titlePosition = new Vector2((Size.X - titleFont.GetStringSize(translatedWindowTitle).X) / 2,
-            (-titleHeight + fontHeight) / 2);
+        var titlePosition = new Vector2(Size.X * 0.5f, (-titleHeight + fontHeight) * 0.5f);
 
-        DrawString(titleFont, titlePosition, translatedWindowTitle, titleColor,
-            (int)(Size.X - customPanel.GetMinimumSize().X));
+        // TODO: check that this is right. There used to be "(int)(Size.X - customPanel.GetMinimumSize().X)" here
+        DrawString(titleFont, titlePosition, translatedWindowTitle, HorizontalAlignment.Center, Size.X,
+            Constants.FONT_SIZE_NORMAL, titleColor);
 
         // Draw close button (if this window has a close button)
         if (closeButton != null)

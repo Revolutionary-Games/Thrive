@@ -1156,6 +1156,11 @@ public static class Constants
     public const string SPACE_FLEET_ENTITY_GROUP = "fleet";
     public const string SPACE_STRUCTURE_ENTITY_GROUP = "s_structure";
 
+    // Font size definitions for Godot 4 as it is no longer required to use one font file per size, so these can be
+    // defined like this now.
+    public const int FONT_SIZE_SMALL = 14;
+    public const int FONT_SIZE_NORMAL = 16;
+
     /// <summary>
     ///   Group for entities that can show a progress bar above them in the GUI
     /// </summary>

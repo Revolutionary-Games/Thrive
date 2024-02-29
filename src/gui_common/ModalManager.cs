@@ -103,7 +103,9 @@ public partial class ModalManager : NodeWithInput
             dialog.EmitSignal(CustomWindow.SignalName.Canceled);
 
         popup.Close();
-        popup.Notification(Control.NotificationModalClose);
+
+        // TODO: make sure removing this is not a problem (looks like this signal no longer exists at all)
+        // popup.Notification(Control.NotificationModalClose);
 
         return true;
     }
@@ -169,7 +171,7 @@ public partial class ModalManager : NodeWithInput
             if (!modal.Visible)
             {
                 modal.Open();
-                modal.Notification(Popup.NotificationPostPopup);
+                modal.Notification((int)MissingGodotNotifications.NotificationPostPopup);
             }
         }
 
@@ -206,7 +208,9 @@ public partial class ModalManager : NodeWithInput
 
                 // The crux of the custom modal system, to have an overridable hide behavior!
                 top.Close();
-                top.Notification(Control.NotificationModalClose);
+
+                // TODO: make sure removing this is not a problem (looks like this signal no longer exists at all)
+                // top.Notification(Control.NotificationModalClose);
             }
         }
     }

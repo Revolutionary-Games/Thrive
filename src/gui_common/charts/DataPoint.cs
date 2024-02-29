@@ -16,12 +16,14 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 {
     private static readonly Stack<DataPoint> DataPointCache = new();
 
+    private readonly NodePath positionReference = new("position");
+
 #pragma warning disable CA2213
     private Texture2D graphMarkerCircle = null!;
     private Texture2D graphMarkerCross = null!;
     private Texture2D graphMarkerSkull = null!;
 
-    private Tween tween = new();
+    private Tween? tween;
 #pragma warning restore CA2213
 
     private bool isMouseOver;
@@ -119,7 +121,10 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         if (DataPointCache.Count == 0)
         {
             return new DataPoint(x, y)
-                { IconType = iconType, PointSize = size, MarkerColour = markerColour, Draw = draw, coordinate = coordinate };
+            {
+                IconType = iconType, PointSize = size, MarkerColour = markerColour, Draw = draw,
+                coordinate = coordinate,
+            };
         }
 
         var point = DataPointCache.Pop();
@@ -146,7 +151,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
             return;
         }
 
-        point.tween.StopAll();
+        point.StopTween();
 
         DataPointCache.Push(point);
     }
@@ -157,10 +162,8 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         graphMarkerCross = GD.Load<Texture2D>("res://assets/textures/gui/bevel/graphMarkerCross.png");
         graphMarkerSkull = GD.Load<Texture2D>("res://assets/textures/gui/bevel/SuicideIcon.png");
 
-        AddChild(tween);
-
-        Connect("mouse_entered", new Callable(this, nameof(OnMouseEnter)));
-        Connect("mouse_Exited", new Callable(this, nameof(OnMouseExit)));
+        Connect(Control.SignalName.MouseEntered, new Callable(this, nameof(OnMouseEnter)));
+        Connect(Control.SignalName.MouseExited, new Callable(this, nameof(OnMouseExit)));
 
         UpdateRectSize();
         QueueRedraw();
@@ -211,7 +214,8 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                 if (isMouseOver)
                     colour = MarkerColour.Lightened(0.5f);
 
-                DrawTextureRect(graphMarkerSkull, new Rect2(Size * 0.5f - vectorSize * 0.5f, vectorSize), false, colour);
+                DrawTextureRect(graphMarkerSkull, new Rect2(Size * 0.5f - vectorSize * 0.5f, vectorSize), false,
+                    colour);
                 break;
             }
 
@@ -226,7 +230,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     /// </summary>
     public void SetCoordinate(Vector2 target, bool useTween = true,
         Tween.TransitionType transitionType = Tween.TransitionType.Expo,
-        Tween.EaseType easeType = Tween.EaseType.Out, float duration = 0.5f)
+        Tween.EaseType easeType = Tween.EaseType.Out, double duration = 0.5)
     {
         if (coordinate == target)
             return;
@@ -239,9 +243,11 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         }
         else
         {
-            tween.InterpolateProperty(this, "rect_position", Position, coordinate - Size * 0.5f, duration,
-                transitionType, easeType);
-            tween.Start();
+            StopTween();
+
+            tween = CreateTween();
+            tween.TweenProperty(this, positionReference, coordinate - Size * 0.5f, duration).SetTrans(transitionType)
+                .SetEase(easeType);
         }
     }
 
@@ -290,10 +296,31 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         return $"Value: {X}, {Y} Coord: {Coordinate}";
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            positionReference.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void UpdateRectSize()
     {
         // Increased by 10 for a more bigger cursor detection area
         Size = new Vector2(size + 10, size + 10);
+    }
+
+    private void StopTween()
+    {
+        if (tween != null)
+        {
+            if (tween.IsValid())
+                tween.Kill();
+
+            tween = null;
+        }
     }
 
     private void OnMouseEnter()

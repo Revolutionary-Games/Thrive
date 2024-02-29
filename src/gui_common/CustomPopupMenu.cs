@@ -43,7 +43,7 @@ public partial class CustomPopupMenu : TopLevelContainer
 
     protected override void OnOpen()
     {
-        CreateTween().TweenProperty(this, "rect_scale", Vector2.One, 0.2f)
+        CreateTween().TweenProperty(this, "scale", Vector2.One, 0.2)
             .From(Vector2.Zero)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
@@ -52,11 +52,11 @@ public partial class CustomPopupMenu : TopLevelContainer
     protected override void OnClose()
     {
         var tween = CreateTween();
-        tween.TweenProperty(this, "rect_scale", Vector2.Zero, 0.15f)
+        tween.TweenProperty(this, "scale", Vector2.Zero, 0.15)
             .From(Vector2.One)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
-        tween.TweenCallback(this, nameof(OnClosingAnimationFinished));
+        tween.TweenCallback(new Callable(this, nameof(OnClosingAnimationFinished)));
     }
 
     protected override void Dispose(bool disposing)

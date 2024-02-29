@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Godot;
 using Newtonsoft.Json;
 
@@ -7,6 +8,8 @@ using Newtonsoft.Json;
 /// </summary>
 public class SpecifiedInputKey : ICloneable
 {
+    private StringBuilder? toStringBuilder;
+
     [JsonConstructor]
     public SpecifiedInputKey()
     {
@@ -222,23 +225,41 @@ public class SpecifiedInputKey : ICloneable
     /// <returns>A human readable string.</returns>
     public override string ToString()
     {
-        var text = string.Empty;
+        if (toStringBuilder == null)
+        {
+            toStringBuilder = new StringBuilder();
+        }
+        else
+        {
+            toStringBuilder.Clear();
+        }
 
         if (Control)
-            text += Localization.Translate("CTRL") + "+";
+        {
+            toStringBuilder.Append(Localization.Translate("CTRL"));
+            toStringBuilder.Append('+');
+        }
+
         if (Alt)
-            text += Localization.Translate("ALT") + "+";
+        {
+            toStringBuilder.Append(Localization.Translate("ALT"));
+            toStringBuilder.Append('+');
+        }
+
         if (Shift)
-            text += Localization.Translate("SHIFT") + "+";
+        {
+            toStringBuilder.Append(Localization.Translate("SHIFT"));
+            toStringBuilder.Append('+');
+        }
 
         if (Type == InputType.Key)
         {
             // If the key is not defined in KeyNames.cs, the string will just be returned unmodified by Translate()
-            text += KeyNames.Translate((Key)Code);
+            toStringBuilder.Append(KeyNames.Translate((Key)Code));
         }
         else if (Type == InputType.MouseButton)
         {
-            text += Code switch
+            toStringBuilder.Append(Code switch
             {
                 1 => Localization.Translate("LEFT_MOUSE"),
                 2 => Localization.Translate("RIGHT_MOUSE"),
@@ -250,45 +271,46 @@ public class SpecifiedInputKey : ICloneable
                 8 => Localization.Translate("SPECIAL_MOUSE_1"),
                 9 => Localization.Translate("SPECIAL_MOUSE_2"),
                 _ => Localization.Translate("UNKNOWN_MOUSE"),
-            };
+            });
         }
         else if (Type == InputType.ControllerAxis)
         {
-            // TODO: add translations for the text here
             var (axis, direction, device) = UnpackAxis(Code);
-            text += direction < 0 ? "Negative " : "Positive ";
-            text += Input.GetJoyAxisString(axis);
+            toStringBuilder.Append(KeyNames.TranslateAxis(axis, direction, KeyPromptHelper.ActiveControllerType));
 
             if (device != -1)
             {
-                text += $" Device {device + 1}";
+                toStringBuilder.Append(" Device ");
+                toStringBuilder.Append(device + 1);
             }
             else
             {
-                text += " Any Device";
+                toStringBuilder.Append(' ');
+                toStringBuilder.Append(Localization.Translate("CONTROLLER_ANY_DEVICE"));
             }
         }
         else if (Type == InputType.ControllerButton)
         {
-            // TODO: and also translations here
             var (button, device) = UnpackCodeAndDevice(Code);
-            text += Input.GetJoyButtonString(button);
+            toStringBuilder.Append(KeyNames.TranslateControllerButton(button, KeyPromptHelper.ActiveControllerType));
 
             if (device != -1)
             {
-                text += $" Device {device + 1}";
+                toStringBuilder.Append(" Device ");
+                toStringBuilder.Append(device + 1);
             }
             else
             {
-                text += " Any Device";
+                toStringBuilder.Append(' ');
+                toStringBuilder.Append(Localization.Translate("CONTROLLER_ANY_DEVICE"));
             }
         }
         else
         {
-            text += "Invalid input key type";
+            toStringBuilder.Append("Invalid input key type");
         }
 
-        return text;
+        return toStringBuilder.ToString();
     }
 
     /// <summary>
@@ -476,7 +498,7 @@ public class SpecifiedInputKey : ICloneable
         };
 
         result.AltPressed = Alt;
-        result.Control = Control;
+        result.CtrlPressed = Control;
         result.ShiftPressed = Shift;
         return result;
     }

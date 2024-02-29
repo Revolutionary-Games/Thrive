@@ -6,27 +6,35 @@
 /// </summary>
 public partial class CrossFadableGalleryViewport : SubViewportContainer
 {
-#pragma warning disable CA2213
-    private Tween tween = null!;
-#pragma warning restore CA2213
+    private NodePath modulationReference = new("modulate");
 
     [Signal]
     public delegate void FadedEventHandler();
 
     [Export]
-    public float FadeDuration { get; set; } = 0.5f;
+    public double FadeDuration { get; set; } = 0.5;
 
     public override void _Ready()
     {
-        tween = GetNode<Tween>("Tween");
     }
 
     public void BeginFade()
     {
-        tween.InterpolateProperty(this, "modulate", null, Colors.Black, FadeDuration);
-        tween.Start();
+        var tween = CreateTween();
 
-        tween.CheckAndConnect("tween_completed", new Callable(this, nameof(OnFaded)), (uint)ConnectFlags.OneShot);
+        tween.TweenProperty(this, modulationReference, Colors.Black, FadeDuration);
+
+        tween.TweenCallback(new Callable(this, nameof(OnFaded)));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            modulationReference.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnFaded(GodotObject @object, NodePath key)
@@ -36,7 +44,7 @@ public partial class CrossFadableGalleryViewport : SubViewportContainer
 
         EmitSignal(SignalName.Faded);
 
-        tween.InterpolateProperty(this, "modulate", null, Colors.White, FadeDuration);
-        tween.Start();
+        var tween = CreateTween();
+        tween.TweenProperty(this, modulationReference, Colors.White, FadeDuration);
     }
 }

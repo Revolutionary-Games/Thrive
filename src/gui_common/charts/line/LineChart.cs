@@ -811,8 +811,7 @@ public partial class LineChart : VBoxContainer
         mouseCollider.PivotOffset = mouseCollider.Size / 2;
 
         // Use the distance between two coordinates as the length of the collider
-        mouseCollider.Scale = new Vector2(
-            firstPoint.Coordinate.DistanceTo(secondPoint.Coordinate) - firstPoint.Size.X,
+        mouseCollider.Scale = new Vector2(firstPoint.Coordinate.DistanceTo(secondPoint.Coordinate) - firstPoint.Size.X,
             ((LineChartData)dataSets[datasetName]).LineWidth + 10);
 
         mouseCollider.Rotation = Mathf.RadToDeg(firstPoint.Coordinate.AngleToPoint(secondPoint.Coordinate));
@@ -1224,7 +1223,8 @@ public partial class LineChart : VBoxContainer
 
                 hBox.AddChild(icon);
 
-                icon.Connect(BaseButton.SignalName.Toggled, new Callable(this, nameof(OnIconLegendToggled)), new Array { icon });
+                icon.Connect(BaseButton.SignalName.Toggled,
+                    Callable.From<bool>(toggled => OnIconLegendToggled(toggled, icon)));
 
                 // Set initial icon toggle state
                 if (!data.Value.Draw)
@@ -1397,9 +1397,7 @@ public partial class LineChart : VBoxContainer
         private readonly LineChart chart;
         private readonly LineChartData data;
 
-#pragma warning disable CA2213
-        private Tween tween;
-#pragma warning restore CA2213
+        private readonly NodePath scaleReference = new("scale");
 
         public DatasetIcon(string name, LineChart chart, LineChartData data, bool isUsingFallbackIcon)
         {
@@ -1419,17 +1417,24 @@ public partial class LineChart : VBoxContainer
             if (isUsingFallbackIcon)
                 Modulate = data.Colour;
 
-            Connect("mouse_entered", new Callable(this, nameof(IconLegendMouseEnter)));
-            Connect("mouse_exited", new Callable(this, nameof(IconLegendMouseExit)));
+            Connect(Control.SignalName.MouseEntered, new Callable(this, nameof(IconLegendMouseEnter)));
+            Connect(Control.SignalName.MouseExited, new Callable(this, nameof(IconLegendMouseExit)));
+        }
 
-            tween = new Tween();
-            AddChild(tween);
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                scaleReference.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
 
         private void IconLegendMouseEnter()
         {
-            tween.InterpolateProperty(this, "rect_scale", Vector2.One, new Vector2(1.1f, 1.1f), 0.1f);
-            tween.Start();
+            var tween = CreateTween();
+            tween.TweenProperty(this, scaleReference, new Vector2(1.1f, 1.1f), 0.1);
 
             // Highlight icon
             Modulate = IsUsingFallbackIcon ? data.Colour.Lightened(0.5f) : Colors.LightGray;
@@ -1439,8 +1444,8 @@ public partial class LineChart : VBoxContainer
 
         private void IconLegendMouseExit()
         {
-            tween.InterpolateProperty(this, "rect_scale", new Vector2(1.1f, 1.1f), Vector2.One, 0.1f);
-            tween.Start();
+            var tween = CreateTween();
+            tween.TweenProperty(this, scaleReference, Vector2.One, 0.1);
 
             if (ButtonPressed)
             {
@@ -1471,9 +1476,7 @@ public partial class LineChart : VBoxContainer
 
         private readonly LineChartData data;
 
-#pragma warning disable CA2213
-        private Tween tween;
-#pragma warning restore CA2213
+        private readonly Callable positionSetCallable;
 
         private Color dataColour;
 
@@ -1488,21 +1491,22 @@ public partial class LineChart : VBoxContainer
             Texture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/line.png");
             TextureMode = LineTextureMode.Stretch;
 
-            tween = new Tween();
-            AddChild(tween);
-
             // Antialiasing is turned off as it's a bit unreliable currently.
             // In the meantime we use a workaround by assigning a texture with transparent 1-pixel border
             // on top and bottom to emulate some antialiasing.
+
+            positionSetCallable = new Callable(this, nameof(ChangePointPos));
         }
 
         public void InterpolatePointPosition(int i, Vector2 initialPos, Vector2 targetPos)
         {
             var finalValue = new Vector3(i, targetPos.X, targetPos.Y);
 
-            tween.InterpolateMethod(this, nameof(ChangePointPos), new Vector3(i, initialPos.X, initialPos.Y),
-                finalValue, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.Out);
-            tween.Start();
+            var tween = CreateTween();
+            tween.SetTrans(Tween.TransitionType.Expo);
+            tween.SetEase(Tween.EaseType.Out);
+
+            tween.TweenMethod(positionSetCallable, new Vector3(i, initialPos.X, initialPos.Y), finalValue, 0.5);
         }
 
         public void OnMouseEnter()

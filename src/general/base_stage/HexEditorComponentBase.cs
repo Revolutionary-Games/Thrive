@@ -99,6 +99,8 @@ public abstract partial class HexEditorComponentBase<TEditor, TCombinedAction, T
     [JsonProperty]
     protected int placementRotation;
 
+    private readonly NodePath positionZReference = new("position:z");
+
     // This is separate from the other Godot resources as this is private and they are protected
 #pragma warning disable CA2213
     private CustomConfirmationDialog islandPopup = null!;
@@ -666,10 +668,12 @@ public abstract partial class HexEditorComponentBase<TEditor, TCombinedAction, T
 
         if (animateMovement)
         {
-            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation:z", editorArrow.Position.Z,
-                arrowPosition, Constants.EDITOR_ARROW_INTERPOLATE_SPEED,
-                Tween.TransitionType.Expo, Tween.EaseType.Out);
-            GUICommon.Instance.Tween.Start();
+            var tween = CreateTween();
+            tween.SetTrans(Tween.TransitionType.Expo);
+            tween.SetEase(Tween.EaseType.Out);
+
+            tween.TweenProperty(editorArrow, positionZReference, arrowPosition,
+                Constants.EDITOR_ARROW_INTERPOLATE_SPEED);
         }
         else
         {

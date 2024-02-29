@@ -11,6 +11,9 @@ public partial class GUICommon : Node
 {
     private static GUICommon? instance;
 
+    private readonly NodePath valueReference = new("value");
+    private readonly NodePath modulateAlphaReference = new("modulate:a");
+
 #pragma warning disable CA2213
     private AudioStream buttonPressSound = null!;
     private Texture2D? requirementFulfilledIcon;
@@ -20,17 +23,9 @@ public partial class GUICommon : Node
     private GUICommon()
     {
         instance = this;
-
-        Tween = new Tween();
-        AddChild(Tween);
     }
 
     public static GUICommon Instance => instance ?? throw new InstanceNotLoadedYetException();
-
-    /// <summary>
-    ///   General purpose Tween node for use in various places.
-    /// </summary>
-    public Tween Tween { get; }
 
     /// <summary>
     ///   Access to the logical size of the GUI drawing area for non-GUI components
@@ -157,50 +152,47 @@ public partial class GUICommon : Node
     }
 
     /// <summary>
-    ///   Smoothly interpolates the value of a TextureProgress bar.
+    ///   Smoothly interpolates the value of a progress bar.
     /// </summary>
-    public void TweenBarValue(TextureProgressBar bar, float targetValue, float maxValue, float speed)
+    public void TweenBarValue(Godot.Range bar, double targetValue, double maxValue, double speed)
     {
         bar.MaxValue = maxValue;
-        Tween.InterpolateProperty(bar, "value", bar.Value, targetValue, speed,
-            Tween.TransitionType.Cubic, Tween.EaseType.Out);
-        Tween.Start();
+
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Cubic);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(bar, valueReference, targetValue, speed);
     }
 
-    /// <summary>
-    ///   Smoothly interpolates the value of a ProgressBar.
-    /// </summary>
-    public void TweenBarValue(ProgressBar bar, float targetValue, float maxValue, float speed)
-    {
-        bar.MaxValue = maxValue;
-        Tween.InterpolateProperty(bar, "value", bar.Value, targetValue, speed,
-            Tween.TransitionType.Cubic, Tween.EaseType.Out);
-        Tween.Start();
-    }
-
-    public void ModulateFadeIn(Control control, float duration, float delay = 0,
+    public void ModulateFadeIn(Control control, double duration, double delay = 0,
         Tween.TransitionType transitionType = Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In)
     {
         // Make sure the control is visible
         control.Show();
 
-        Tween.InterpolateProperty(control, "modulate:a", null, 1, duration, transitionType, easeType, delay);
-        Tween.Start();
+        var tween = CreateTween();
+        tween.SetTrans(transitionType);
+        tween.SetEase(easeType);
+
+        tween.TweenProperty(control, modulateAlphaReference, 1, duration).SetDelay(delay);
     }
 
-    public void ModulateFadeOut(Control control, float duration, float delay = 0, Tween.TransitionType transitionType =
+    public void ModulateFadeOut(Control control, double duration, double delay = 0, Tween.TransitionType transitionType =
         Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In, bool hideOnFinished = true)
     {
         if (!control.Visible)
             return;
 
-        Tween.InterpolateProperty(control, "modulate:a", null, 0, duration, transitionType, easeType, delay);
-        Tween.Start();
+        var tween = CreateTween();
+        tween.SetTrans(transitionType);
+        tween.SetEase(easeType);
 
-        if (!Tween.IsConnected("tween_completed", new Callable(this, nameof(HideControlOnFadeOutComplete))) && hideOnFinished)
+        tween.TweenProperty(control, modulateAlphaReference, 0, duration).SetDelay(delay);
+
+        if (hideOnFinished)
         {
-            Tween.Connect("tween_completed", this, nameof(HideControlOnFadeOutComplete),
-                new Array { control }, (int)ConnectFlags.OneShot);
+            tween.TweenCallback(Callable.From(control.Hide));
         }
     }
 
@@ -268,13 +260,5 @@ public partial class GUICommon : Node
     internal void ReportViewportRect(Rect2 size)
     {
         ViewportRect = size;
-    }
-
-    private void HideControlOnFadeOutComplete(GodotObject obj, NodePath key, Control control)
-    {
-        _ = obj;
-        _ = key;
-
-        control.Hide();
     }
 }

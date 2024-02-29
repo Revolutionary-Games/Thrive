@@ -13,9 +13,6 @@ public partial class TutorialDialog : CustomWindow
 
 #pragma warning disable CA2213
     private CustomRichTextLabel? label;
-
-    // TODO: would make more sense for code consistency that this was defined in the scene for this class
-    private Tween tween = new();
 #pragma warning restore CA2213
 
     private string description = string.Empty;
@@ -58,8 +55,6 @@ public partial class TutorialDialog : CustomWindow
     {
         label = GetNode<CustomRichTextLabel>(LabelPath);
 
-        AddChild(tween);
-
         CheckShownTextVersion();
         UpdateLabel();
     }
@@ -92,9 +87,11 @@ public partial class TutorialDialog : CustomWindow
         PivotOffset = Size / 2;
         Scale = Vector2.Zero;
 
-        tween.InterpolateProperty(this, "rect_scale", Vector2.Zero, Vector2.One, 0.3f, Tween.TransitionType.Expo,
-            Tween.EaseType.Out, ShowDelay);
-        tween.Start();
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Expo);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(this, "scale", Vector2.One, 0.3).From(Vector2.Zero).SetDelay(ShowDelay);
     }
 
     protected override void Dispose(bool disposing)
@@ -130,7 +127,7 @@ public partial class TutorialDialog : CustomWindow
             label.ExtendedBbcode = newText;
     }
 
-    private void OnInputTypeChanged(object sender, EventArgs e)
+    private void OnInputTypeChanged(object? sender, EventArgs e)
     {
         CheckShownTextVersion();
     }

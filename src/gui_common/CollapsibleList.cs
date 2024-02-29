@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -21,9 +22,6 @@ public partial class CollapsibleList : VBoxContainer
     [Export]
     public NodePath ItemContainerPath = null!;
 
-    [Export]
-    public NodePath TweenPath = null!;
-
     private readonly List<Control> items = new();
 
     private string title = string.Empty;
@@ -37,7 +35,6 @@ public partial class CollapsibleList : VBoxContainer
     private MarginContainer clipBox = null!;
     private TextureButton collapseButton = null!;
     private TextureButton expandButton = null!;
-    private Tween tween = null!;
 #pragma warning restore CA2213
 
     private int cachedTopMarginValue;
@@ -85,9 +82,8 @@ public partial class CollapsibleList : VBoxContainer
         clipBox = GetNode<MarginContainer>(ClipBoxPath);
         collapseButton = GetNode<TextureButton>(CollapseButtonPath);
         expandButton = GetNode<TextureButton>(ExpandButtonPath);
-        tween = GetNode<Tween>(TweenPath);
 
-        cachedTopMarginValue = clipBox.GetThemeConstant("margin_top");
+        cachedTopMarginValue = clipBox.GetThemeConstant("offset_top");
 
         UpdateItemContainer();
         UpdateTitle();
@@ -156,7 +152,6 @@ public partial class CollapsibleList : VBoxContainer
                 ExpandButtonPath.Dispose();
                 ClipBoxPath.Dispose();
                 ItemContainerPath.Dispose();
-                TweenPath.Dispose();
             }
         }
 
@@ -216,29 +211,41 @@ public partial class CollapsibleList : VBoxContainer
 
     private void Collapse()
     {
+        if (isCollapsing)
+            GD.PrintErr("Duplicate collapsible list collapse call");
+
         collapseButton.Hide();
         expandButton.Show();
 
-        tween.InterpolateProperty(clipBox, "custom_constants/margin_top", cachedTopMarginValue,
-            -clipBox.Size.Y, 0.3f, Tween.TransitionType.Sine, Tween.EaseType.Out);
-        tween.Start();
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.SetEase(Tween.EaseType.Out);
 
-        tween.Connect("tween_all_completed", this, nameof(OnCollapsingFinished), null,
-            (int)ConnectFlags.OneShot);
+        tween.TweenProperty(clipBox, "custom_constants/offset_top", -clipBox.Size.Y, 0.3).From(cachedTopMarginValue);
+
+        tween.TweenCallback(new Callable(this, nameof(OnCollapsingFinished)));
 
         isCollapsing = true;
     }
 
     private void Expand()
     {
+        if (itemContainer == null)
+            throw new InvalidOperationException("Not initialized");
+
+        if (itemContainer.Visible)
+            GD.PrintErr("Collapsible list expanded while it was already visible");
+
         collapseButton.Show();
         expandButton.Hide();
 
-        itemContainer!.Show();
+        itemContainer.Show();
 
-        tween.InterpolateProperty(clipBox, "custom_constants/margin_top", null, cachedTopMarginValue, 0.3f,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        tween.Start();
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(clipBox, "custom_constants/offset_top", cachedTopMarginValue, 0.3);
     }
 
     // GUI Callbacks

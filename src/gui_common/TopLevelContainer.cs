@@ -177,7 +177,7 @@ public partial class TopLevelContainer : Control
     public void OpenModal()
     {
         ModalManager.Instance.MakeModal(this);
-        Notification(Popup.NotificationPostPopup);
+        Notification((int)MissingGodotNotifications.NotificationPostPopup);
     }
 
     public void Open(bool modal, Rect2? rect = null)

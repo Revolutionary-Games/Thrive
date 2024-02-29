@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Components;
 using Godot;
 using Godot.Collections;
@@ -18,9 +19,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     [Export]
     public NodePath EnvironmentGroupAnimationPlayerPath = null!;
-
-    [Export]
-    public NodePath PanelsTweenPath = null!;
 
     [Export]
     public NodePath LeftPanelsPath = null!;
@@ -249,7 +247,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     protected Label populationLabel = null!;
     protected PatchNameOverlay patchNameOverlay = null!;
     protected TextureButton editorButton = null!;
-    protected Tween panelsTween = null!;
     protected Label hintText = null!;
     protected RadialPopup packControlRadial = null!;
 
@@ -272,6 +269,8 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     private readonly System.Collections.Generic.Dictionary<Compound, float> gatheredCompounds = new();
     private readonly System.Collections.Generic.Dictionary<Compound, float> totalNeededCompounds = new();
+
+    private readonly NodePath minSizeXReference = new("custom_minimum_size:x");
 
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
@@ -364,7 +363,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
         winExtinctBoxHolder = GetNode<Control>("../WinExtinctBoxHolder");
 
-        panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MouseHoverPanel>(MouseHoverPanelPath);
         agentsPanel = GetNode<Control>(AgentsPanelPath);
         agentsPanelVBoxContainer = agentsPanel.GetNode<VBoxContainer>("VBoxContainer");
@@ -752,11 +750,14 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             environmentPanelBarContainer.AddThemeConstantOverride("vseparation", 20);
             environmentPanelBarContainer.AddThemeConstantOverride("hseparation", 17);
 
-            foreach (ProgressBar bar in bars)
-            {
-                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", 95, 73, 0.3f);
-                panelsTween?.Start();
+            var tween = CreateTween();
+            tween.SetParallel();
 
+            foreach (var bar in bars.OfType<ProgressBar>())
+            {
+                tween.TweenProperty(bar, minSizeXReference, 73, 0.3);
+
+                // TODO: create NodePaths for the following to avoid object allocations
                 bar.GetNode<Label>("Label").Hide();
                 bar.GetNode<Label>("Value").HorizontalAlignment = HorizontalAlignment.Center;
             }
@@ -769,11 +770,14 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             environmentPanelBarContainer.AddThemeConstantOverride("vseparation", 4);
             environmentPanelBarContainer.AddThemeConstantOverride("hseparation", 0);
 
-            foreach (ProgressBar bar in bars)
-            {
-                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", bar.CustomMinimumSize.X, 162, 0.3f);
-                panelsTween?.Start();
+            var tween = CreateTween();
+            tween.SetParallel();
 
+            foreach (var bar in bars.OfType<ProgressBar>())
+            {
+                tween.TweenProperty(bar, minSizeXReference, 162, 0.3);
+
+                // TODO: create NodePaths for the following to avoid object allocations
                 bar.GetNode<Label>("Label").Show();
                 bar.GetNode<Label>("Value").HorizontalAlignment = HorizontalAlignment.Right;
             }
@@ -802,11 +806,14 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 compoundsPanelBarContainer.Columns = 3;
             }
 
-            foreach (ProgressBar bar in bars)
-            {
-                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", 90, 64, 0.3f);
-                panelsTween?.Start();
+            var tween = CreateTween();
+            tween.SetParallel();
 
+            foreach (var bar in bars.OfType<ProgressBar>())
+            {
+                tween.TweenProperty(bar, minSizeXReference, 64, 0.3);
+
+                // TODO: create NodePaths for the following to avoid object allocations
                 bar.GetNode<Label>("Label").Hide();
             }
         }
@@ -818,11 +825,14 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             compoundsPanelBarContainer.AddThemeConstantOverride("vseparation", 5);
             compoundsPanelBarContainer.AddThemeConstantOverride("hseparation", 0);
 
-            foreach (ProgressBar bar in bars)
-            {
-                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", bar.CustomMinimumSize.X, 220, 0.3f);
-                panelsTween?.Start();
+            var tween = CreateTween();
+            tween.SetParallel();
 
+            foreach (var bar in bars.OfType<ProgressBar>())
+            {
+                tween.TweenProperty(bar, minSizeXReference, 220, 0.3);
+
+                // TODO: create NodePaths for the following to avoid object allocations
                 bar.GetNode<Label>("Label").Show();
             }
         }
@@ -1128,7 +1138,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             {
                 CompoundsGroupAnimationPlayerPath.Dispose();
                 EnvironmentGroupAnimationPlayerPath.Dispose();
-                PanelsTweenPath.Dispose();
                 LeftPanelsPath.Dispose();
                 MouseHoverPanelPath.Dispose();
                 AtpLabelPath.Dispose();
@@ -1178,6 +1187,8 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }
+
+            minSizeXReference.Dispose();
         }
 
         base.Dispose(disposing);
@@ -1211,7 +1222,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
         // TODO: this iteration causes quite many new enumerator allocations. Maybe it'd be better to just get an
         // explicit list in _Ready?
-        foreach (ProgressBar bar in compoundBars)
+        foreach (var bar in compoundBars.OfType<ProgressBar>())
         {
             if (SpecialHandleBar(bar))
                 continue;
@@ -1364,7 +1375,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         if (!fossilisationButtonLayer.Visible)
             return;
 
-        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
+        foreach (var button in fossilisationButtonLayer.GetChildren().OfType<FossilisationButton>())
         {
             button.UpdatePosition();
         }

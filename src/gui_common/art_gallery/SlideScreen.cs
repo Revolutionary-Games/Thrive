@@ -39,6 +39,8 @@ public partial class SlideScreen : TopLevelContainer
     [Export]
     public NodePath PlaybackControlsPath = null!;
 
+    private readonly NodePath modulateAlphaReference = new("modulate:a");
+
 #pragma warning disable CA2213
     private CrossFadableTextureRect? slideTextureRect;
     private Control? toolbar;
@@ -50,9 +52,6 @@ public partial class SlideScreen : TopLevelContainer
     private Node3D? modelHolder;
     private OrbitCamera? modelViewerCamera;
     private PlaybackControls? playbackControls;
-
-    private Tween popupTween = null!;
-    private Tween toolbarTween = null!;
 #pragma warning restore CA2213
 
     private double toolbarHideTimer;
@@ -120,9 +119,6 @@ public partial class SlideScreen : TopLevelContainer
         modelViewerCamera = GetNode<OrbitCamera>(ModelViewerCameraPath);
         playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
 
-        popupTween = GetNode<Tween>("PopupTween");
-        toolbarTween = GetNode<Tween>("ToolbarTween");
-
         UpdateScreen();
     }
 
@@ -146,18 +142,21 @@ public partial class SlideScreen : TopLevelContainer
 
             if (toolbar?.Modulate.A < 1)
             {
-                toolbarTween.InterpolateProperty(toolbar, "modulate:a", null, 1, 0.5f);
-                toolbarTween.InterpolateProperty(closeButton, "modulate:a", null, 1, 0.5f);
-                toolbarTween.Start();
+                var tween = CreateTween();
+                tween.Parallel();
+
+                tween.TweenProperty(toolbar, modulateAlphaReference, 1, 0.5);
+                tween.TweenProperty(closeButton, modulateAlphaReference, 1, 0.5);
             }
 
             if (toolbarHideTimer < 0)
             {
-                toolbarTween.InterpolateProperty(toolbar, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear,
-                    Tween.EaseType.InOut);
-                toolbarTween.InterpolateProperty(closeButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear,
-                    Tween.EaseType.InOut);
-                toolbarTween.Start();
+                var tween = CreateTween();
+                tween.Parallel();
+
+                tween.TweenProperty(toolbar, modulateAlphaReference, 0, 0.5);
+                tween.TweenProperty(closeButton, modulateAlphaReference, 0, 0.5);
+
                 MouseCaptureManager.SetMouseHideState(true);
             }
             else
@@ -253,15 +252,16 @@ public partial class SlideScreen : TopLevelContainer
         GlobalPosition = currentItemRect.Position;
         Size = currentItemRect.Size;
 
-        popupTween.InterpolateProperty(this, "rect_position", null, GetFullRect().Position, 0.2f,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        popupTween.InterpolateProperty(this, "rect_size", null, GetFullRect().Size, 0.2f, Tween.TransitionType.Sine,
-            Tween.EaseType.Out);
-        popupTween.Start();
+        var tween = CreateTween();
+        tween.Parallel();
+        tween.SetEase(Tween.EaseType.Out);
+        tween.SetTrans(Tween.TransitionType.Sine);
 
-        if (!popupTween.IsConnected("tween_completed", new Callable(this, nameof(OnScaledUp))))
-            popupTween.Connect("tween_completed", new Callable(this, nameof(OnScaledUp)), null,
-                (uint)ConnectFlags.OneShot);
+        var fullRect = GetFullRect();
+        tween.TweenProperty(this, "position", fullRect.Position, 0.2);
+        tween.TweenProperty(this, "size", fullRect.Size, 0.2);
+
+        tween.TweenCallback(new Callable(this, nameof(OnScaledUp)));
     }
 
     protected override void OnClose()
@@ -277,15 +277,15 @@ public partial class SlideScreen : TopLevelContainer
 
         var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
 
-        popupTween.InterpolateProperty(this, "rect_position", null, currentItemRect.Position, 0.2f,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        popupTween.InterpolateProperty(this, "rect_size", null, currentItemRect.Size, 0.2f, Tween.TransitionType.Sine,
-            Tween.EaseType.Out);
-        popupTween.Start();
+        var tween = CreateTween();
+        tween.Parallel();
+        tween.SetEase(Tween.EaseType.Out);
+        tween.SetTrans(Tween.TransitionType.Sine);
 
-        if (!popupTween.IsConnected("tween_completed", new Callable(this, nameof(OnScaledDown))))
-            popupTween.Connect("tween_completed", new Callable(this, nameof(OnScaledDown)), null,
-                (uint)ConnectFlags.OneShot);
+        tween.TweenProperty(this, "position", currentItemRect.Position, 0.2);
+        tween.TweenProperty(this, "size", currentItemRect.Size, 0.2);
+
+        tween.TweenCallback(new Callable(this, nameof(OnScaledDown)));
     }
 
     protected override void OnHidden()

@@ -30,13 +30,10 @@ public partial class DraggableScrollContainer : ScrollContainer
 
 #pragma warning disable CA2213
     private Control content = null!;
-    private Tween tween = null!;
 #pragma warning restore CA2213
 
     private bool showScrollbars;
     private float contentScale = 1;
-
-    private Action? onPanned;
 
     /// <summary>
     ///   Unwanted scrolling happens while zooming with mouse wheel, this is used to reset the scroll values back to
@@ -88,8 +85,6 @@ public partial class DraggableScrollContainer : ScrollContainer
         ContentPath ??= GetChild(2).GetPath();
 
         content = GetNode<Control>(ContentPath);
-        tween = new Tween();
-        AddChild(tween);
 
         // Workaround a bug in Godot (https://github.com/godotengine/godot/issues/22936).
         GetVScrollBar().Connect("value_changed", new Callable(this, nameof(OnScrollStarted)));
@@ -190,21 +185,26 @@ public partial class DraggableScrollContainer : ScrollContainer
     public void Zoom(float value, float lerpDuration = 0.1f)
     {
         zooming = true;
-        tween.InterpolateMethod(this, nameof(ImmediateZoom), contentScale, value, lerpDuration,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        tween.Start();
+
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenMethod(new Callable(this, nameof(ImmediateZoom)), contentScale, value, lerpDuration);
     }
 
     public void Pan(Vector2 coordinates, Action? onPanned = null, float lerpDuration = 0.1f)
     {
         var initial = new Vector2(ScrollHorizontal, ScrollVertical);
-        tween.InterpolateMethod(this, nameof(ImmediatePan), initial, coordinates, lerpDuration,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        tween.Start();
 
-        this.onPanned = onPanned;
-        tween.CheckAndConnect("tween_completed", new Callable(this, nameof(OnPanningStopped)), null,
-            (uint)ConnectFlags.OneShot);
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenMethod(new Callable(this, nameof(ImmediatePan)), initial, coordinates, lerpDuration);
+
+        if (onPanned != null)
+            tween.TweenCallback(Callable.From(onPanned));
     }
 
     public void ResetZoom()
@@ -260,13 +260,5 @@ public partial class DraggableScrollContainer : ScrollContainer
         {
             lastScrollValues = new Vector2I(ScrollHorizontal, ScrollVertical);
         }
-    }
-
-    private void OnPanningStopped(GodotObject @object, NodePath key)
-    {
-        _ = @object;
-        _ = key;
-
-        onPanned?.Invoke();
     }
 }

@@ -1105,7 +1105,10 @@ public partial class MainMenu : NodeWithInput
 
     private void OnWebsitesButtonPressed()
     {
-        websiteButtonsContainer.ShowModal();
+        // TODO: check that this new alternative works (or remake the GUI as something that can be modal)
+        // ModalManager.Instance.MakeModal(websiteButtonsContainer);
+        // websiteButtonsContainer.ShowModal();
+        websiteButtonsContainer.Popup();
 
         // A plain PopupPanel doesn't resize automatically and using other popup types will be overkill,
         // so we need to manually shrink it
