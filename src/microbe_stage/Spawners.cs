@@ -461,7 +461,7 @@ public static class SpawnHelpers
         }
 
         // Base species-based data initialization
-        ICellProperties usedCellProperties;
+        ICellDefinition usedCellDefinition;
         MembraneType membraneType;
 
         EarlyMulticellularSpecies? multicellular = null;
@@ -482,7 +482,7 @@ public static class SpawnHelpers
 
                 resolvedCellType = multicellularData.MulticellularCellType;
 
-                usedCellProperties = multicellularData.MulticellularCellType;
+                usedCellDefinition = multicellularData.MulticellularCellType;
                 var properties = new CellProperties(multicellularData.MulticellularCellType);
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
@@ -498,8 +498,8 @@ public static class SpawnHelpers
 
                 resolvedCellType = earlyMulticellularSpecies.Cells[0].CellType;
 
-                usedCellProperties = resolvedCellType;
-                var properties = new CellProperties(usedCellProperties);
+                usedCellDefinition = resolvedCellType;
+                var properties = new CellProperties(usedCellDefinition);
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
 
@@ -521,7 +521,7 @@ public static class SpawnHelpers
                 Species = microbeSpecies,
             });
 
-            usedCellProperties = microbeSpecies;
+            usedCellDefinition = microbeSpecies;
             var properties = new CellProperties(microbeSpecies);
             membraneType = properties.MembraneType;
             entity.Set(properties);
@@ -544,7 +544,13 @@ public static class SpawnHelpers
         // Initialize organelles for the cell type
         {
             var container = default(OrganelleContainer);
-            container.CreateOrganelleLayout(usedCellProperties);
+
+            // There's probably no clean way to have this temporary memory be passed into here from outside, so we
+            // just need to accept that spawning a microbe allocates a bit of temporary unnecessary memory
+            var workData1 = new List<Hex>();
+            var workData2 = new List<Hex>();
+
+            container.CreateOrganelleLayout(usedCellDefinition, workData1, workData2);
             container.RecalculateOrganelleBioProcesses(ref bioProcesses);
 
             organelleCount = container.Organelles!.Count;
@@ -567,7 +573,7 @@ public static class SpawnHelpers
 
             var engulfer = default(Engulfer);
 
-            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable, usedCellProperties.IsBacteria);
+            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable, usedCellDefinition.IsBacteria);
 
             entity.Set(engulfable);
             entity.Set(engulfer);
@@ -586,11 +592,13 @@ public static class SpawnHelpers
         entity.Set(new ReproductionStatus(species.BaseReproductionCost));
 
         // Visuals
-        var scale = usedCellProperties.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);
+        var scale = usedCellDefinition.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);
 
         entity.Set(new SpatialInstance
         {
             VisualScale = scale,
+
+            // Microbes must always apply visual scale for them to work correctly
             ApplyVisualScale = true,
         });
 
@@ -598,7 +606,7 @@ public static class SpawnHelpers
 
         entity.Set<EntityMaterial>();
 
-        entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(usedCellProperties.Colour))
+        entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(usedCellDefinition.Colour))
         {
             AnimateOnlyFirstMaterial = true,
         });
@@ -613,7 +621,7 @@ public static class SpawnHelpers
             // Microbes only want to grab stuff they want
             OnlyAbsorbUseful = true,
 
-            AbsorptionRatio = usedCellProperties.MembraneType.ResourceAbsorptionFactor,
+            AbsorptionRatio = usedCellDefinition.MembraneType.ResourceAbsorptionFactor,
 
             // AI requires this, player doesn't (or at least I can't remember right now that it would -hhyyrylainen)
             // but it isn't too big a problem to also specify this for the player
@@ -652,8 +660,8 @@ public static class SpawnHelpers
             TimeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL,
         });
 
-        entity.Set(new Health(HealthHelpers.CalculateMicrobeHealth(usedCellProperties.MembraneType,
-            usedCellProperties.MembraneRigidity)));
+        entity.Set(new Health(HealthHelpers.CalculateMicrobeHealth(usedCellDefinition.MembraneType,
+            usedCellDefinition.MembraneRigidity)));
 
         entity.Set(new CommandSignaler
         {

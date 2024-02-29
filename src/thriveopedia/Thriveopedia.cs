@@ -163,6 +163,20 @@ public class Thriveopedia : ControlWithInput
         SelectedPage = homePage;
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        ThriveopediaManager.ReportActiveThriveopedia(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        ThriveopediaManager.RemoveActiveThriveopedia(this);
+    }
+
     public override void _Notification(int what)
     {
         base._Notification(what);
@@ -235,6 +249,18 @@ public class Thriveopedia : ControlWithInput
     {
         // By default, assume we're navigating to this page normally
         ChangePage(pageName, true, true);
+    }
+
+    public Species? GetActiveSpeciesData(uint speciesId)
+    {
+        if (CurrentGame == null)
+        {
+            PrintErrorAboutCurrentGame();
+            return null;
+        }
+
+        CurrentGame.GameWorld.TryGetSpecies(speciesId, out var species);
+        return species;
     }
 
     protected override void Dispose(bool disposing)
@@ -451,7 +477,7 @@ public class Thriveopedia : ControlWithInput
             var children = GetAllChildren(page);
 
             if (page.TranslatedPageName.ToLower().Contains(newText.ToLower()) ||
-                children.Any(child => child.TranslatedPageName.ToLower().Contains(newText.ToLower())))
+                children.Any(c => c.TranslatedPageName.ToLower().Contains(newText.ToLower())))
             {
                 // We can assume a page is always before its children in the list of all pages
                 allPages[page] = CreateTreeItem(page, page.ParentPageName);
@@ -500,5 +526,10 @@ public class Thriveopedia : ControlWithInput
     private void Exit()
     {
         EmitSignal(nameof(OnThriveopediaClosed));
+    }
+
+    private void PrintErrorAboutCurrentGame()
+    {
+        GD.PrintErr("Thriveopedia doesn't have current game data set yet, but it was already needed");
     }
 }

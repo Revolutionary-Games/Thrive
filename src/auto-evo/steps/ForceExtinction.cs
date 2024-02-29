@@ -73,8 +73,6 @@
                     if (speciesToRemove.PlayerSpecies)
                         continue;
 
-                    GD.Print("Forced extinction of species ", speciesToRemove.FormattedName,
-                        " in patch ", patch.Name, ".");
                     results.KillSpeciesInPatch(speciesToRemove, patch,
                         configuration.RefundMigrationsInExtinctions);
                 }

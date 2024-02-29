@@ -35,7 +35,7 @@ public class PauseMenu : TopLevelContainer
 
 #pragma warning disable CA2213
     private Control primaryMenu = null!;
-    private Thriveopedia thriveopedia = null!;
+    private Thriveopedia? thriveopedia;
     private HelpScreen helpScreen = null!;
     private Control loadMenu = null!;
     private OptionsMenu optionsMenu = null!;
@@ -43,6 +43,8 @@ public class PauseMenu : TopLevelContainer
     private CustomConfirmationDialog unsavedProgressWarning = null!;
     private AnimationPlayer animationPlayer = null!;
 #pragma warning restore CA2213
+
+    private GameProperties? gameProperties;
 
     private bool paused;
 
@@ -96,7 +98,19 @@ public class PauseMenu : TopLevelContainer
     /// <summary>
     ///   The GameProperties object holding settings and state for the current game session.
     /// </summary>
-    public GameProperties? GameProperties { get; set; } = null!;
+    public GameProperties? GameProperties
+    {
+        get => gameProperties;
+        set
+        {
+            gameProperties = value;
+
+            // Forward the game properties to the Thriveopedia, even before it is opened for it to respond to
+            // data requests
+            if (gameProperties != null && thriveopedia != null)
+                thriveopedia.CurrentGame = value;
+        }
+    }
 
     public bool GameLoading { get; set; }
 
@@ -153,7 +167,7 @@ public class PauseMenu : TopLevelContainer
                             $"{nameof(GameProperties)} is required before opening options"));
                     break;
                 case ActiveMenuType.Thriveopedia:
-                    thriveopedia.OpenInGame(GameProperties ??
+                    thriveopedia!.OpenInGame(GameProperties ??
                         throw new InvalidOperationException(
                             $"{nameof(GameProperties)} is required before opening Thriveopedia in-game"));
                     break;
@@ -208,6 +222,9 @@ public class PauseMenu : TopLevelContainer
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
         unsavedProgressWarning.Connect(nameof(CustomWindow.Cancelled), this, nameof(CancelExit));
+
+        if (GameProperties != null)
+            thriveopedia.CurrentGame = GameProperties;
     }
 
     public override void _EnterTree()
@@ -454,6 +471,9 @@ public class PauseMenu : TopLevelContainer
 
     private void OnThriveopediaOpened(string pageName)
     {
+        if (thriveopedia == null)
+            throw new InvalidOperationException("Pause menu needs to be added to the scene first");
+
         Open();
         OpenThriveopediaPressed();
         thriveopedia.ChangePage(pageName);

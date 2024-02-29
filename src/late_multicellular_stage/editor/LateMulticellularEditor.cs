@@ -104,7 +104,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     [JsonIgnore]
-    public ICellProperties? EditedCellProperties => selectedCellTypeToEdit;
+    public ICellDefinition? EditedCellProperties => selectedCellTypeToEdit;
 
     protected override string MusicCategory => "LateMulticellularEditor";
 
@@ -175,6 +175,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         // save our changes to the current cell type, then switch to the other one
         SwapEditingCellIfNeeded(cellType);
 
+        // If the action we're redoing should be done on another editor tab, switch to that tab
+        SwapEditorTabIfNeeded(history.ActionToRedo());
+
         base.Redo();
     }
 
@@ -185,6 +188,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         // If the action we're undoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
         SwapEditingCellIfNeeded(cellType);
+
+        // If the action we're undoing should be done on another editor tab, switch to that tab
+        SwapEditorTabIfNeeded(history.ActionToUndo());
 
         base.Undo();
     }
@@ -617,6 +623,36 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         // This fixes complex cases where multiple types are undoing and redoing actions
         selectedCellTypeToEdit = newCell;
         cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+    }
+
+    private void SwapEditorTabIfNeeded(EditorAction? editorAction)
+    {
+        if (editorAction == null)
+            return;
+
+        var actionData = editorAction.Data.FirstOrDefault();
+
+        EditorTab targetTab;
+
+        // If the action was performed on a single Cell Type, target the Cell Type Editor tab
+        if (actionData is EditorCombinableActionData<CellType>)
+        {
+            targetTab = EditorTab.CellTypeEditor;
+        }
+        else if (actionData != null && bodyPlanEditorTab.IsMetaballAction(actionData))
+        {
+            targetTab = EditorTab.CellEditor;
+        }
+        else
+        {
+            return;
+        }
+
+        // If we're already on the selected tab, there's no need to do anything
+        if (targetTab == selectedEditorTab)
+            return;
+
+        SetEditorTab(targetTab);
     }
 
     private void RememberEnvironment()

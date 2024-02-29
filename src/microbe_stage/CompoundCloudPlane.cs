@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Threading;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
@@ -11,13 +12,6 @@ using Vector3 = Godot.Vector3;
 [SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn", UsesEarlyResolve = false)]
 public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 {
-    /// <summary>
-    ///   Some cloud operations are performed in a multithreaded way (absorbing, venting) and to do that safely this
-    ///   lock needs to be held by the thread doing the operations.
-    /// </summary>
-    [JsonIgnore]
-    public readonly object MultithreadedLock = new();
-
     /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored.
     /// </summary>
@@ -34,8 +28,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     [JsonProperty]
     public Compound?[] Compounds = null!;
 
-    // TODO: give each cloud a viscosity value in the
-    // JSON file and use it instead.
+    // TODO: give each cloud (compound type) a viscosity value in the JSON file and use it instead.
     private const float VISCOSITY = 0.0525f;
 
     private Image? image;
@@ -333,6 +326,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 var x0 = i;
                 var y0 = j;
+
+                // TODO: fix task allocations
                 var task = new Task(() => PartialUpdateCenter(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     Size / Constants.CLOUD_SQUARES_PER_SIDE,
@@ -356,6 +351,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 var x0 = i;
                 var y0 = j;
+
+                // TODO: fix task allocations
                 var task = new Task(() => PartialUpdateTextureImage(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     Size / Constants.CLOUD_SQUARES_PER_SIDE,
@@ -383,16 +380,150 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Adds some compound in cloud local coordinates
+    ///   Interlocked add variant that is thread safe
     /// </summary>
-    public void AddCloud(Compound compound, float density, int x, int y)
+    public void AddCloudInterlocked(Compound compound, int x, int y, float density)
     {
-        var cloudToAdd = CalculateCloudToAdd(compound, density);
+        var compoundIndex = GetCompoundIndex(compound);
 
-        lock (MultithreadedLock)
+        float seenCurrentAmount;
+        float newValue;
+
+        // Exact comparisons used to know when the atomic operation really succeeded
+        // ReSharper disable CompareOfFloatsByEqualityOperator
+        switch (compoundIndex)
         {
-            Density[x, y] += cloudToAdd;
+            case 0:
+            {
+                do
+                {
+                    seenCurrentAmount = Density[x, y].X;
+                    newValue = seenCurrentAmount + density;
+                }
+                while (Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
+
+                break;
+            }
+
+            case 1:
+            {
+                do
+                {
+                    seenCurrentAmount = Density[x, y].Y;
+                    newValue = seenCurrentAmount + density;
+                }
+                while (Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
+
+                break;
+            }
+
+            case 2:
+            {
+                do
+                {
+                    seenCurrentAmount = Density[x, y].Z;
+                    newValue = seenCurrentAmount + density;
+                }
+                while (Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
+
+                break;
+            }
+
+            case 3:
+            {
+                do
+                {
+                    seenCurrentAmount = Density[x, y].W;
+                    newValue = seenCurrentAmount + density;
+                }
+                while (Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
+
+                break;
+            }
+
+            default:
+                throw new ArgumentException("This cloud doesn't handle the given compound type");
         }
+
+        // ReSharper restore CompareOfFloatsByEqualityOperator
+    }
+
+    /// <summary>
+    ///   Add cloud variant that ignores unhandled compound types
+    /// </summary>
+    /// <returns>True if added, false if this didn't handle the given type</returns>
+    public bool AddCloudInterlockedIfHandlesType(Compound compound, int x, int y, float density)
+    {
+        var compoundIndex = GetCompoundIndex(compound);
+
+        float seenCurrentAmount;
+        float newValue;
+
+        // Exact comparisons used to know when the atomic operation really succeeded
+        // ReSharper disable CompareOfFloatsByEqualityOperator
+        switch (compoundIndex)
+        {
+            case 0:
+            {
+                do
+                {
+                    seenCurrentAmount = Density[x, y].X;
+                    newValue = seenCurrentAmount + density;
+                }
+                while (Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
+
+                return true;
+            }
+
+            case 1:
+            {
+                do
+                {
+                    seenCurrentAmount = Density[x, y].Y;
+                    newValue = seenCurrentAmount + density;
+                }
+                while (Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
+
+                return true;
+            }
+
+            case 2:
+            {
+                do
+                {
+                    seenCurrentAmount = Density[x, y].Z;
+                    newValue = seenCurrentAmount + density;
+                }
+                while (Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
+
+                return true;
+            }
+
+            case 3:
+            {
+                do
+                {
+                    seenCurrentAmount = Density[x, y].W;
+                    newValue = seenCurrentAmount + density;
+                }
+                while (Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
+
+                return true;
+            }
+
+            default:
+                return false;
+        }
+
+        // ReSharper restore CompareOfFloatsByEqualityOperator
     }
 
     /// <summary>
@@ -401,11 +532,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <returns>The amount of compound taken</returns>
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        float amountInCloud = HackyAddress(Density[x, y], GetCompoundIndex(compound));
+        float amountInCloud = HackyAddress(ref Density[x, y], GetCompoundIndex(compound));
         var amountToGive = amountInCloud * fraction;
 
         if (amountInCloud - amountToGive < 0.1f)
         {
+            // Taking basically everything in the cloud
             Density[x, y] += CalculateCloudToAdd(compound, -amountInCloud);
         }
         else
@@ -417,12 +549,58 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     }
 
     /// <summary>
+    ///   Multithreading safe TakeCompound variant
+    /// </summary>
+    /// <returns>
+    ///   True if the interlocked exchange succeeded, false if the <see cref="seenCurrentAmount"/> needs to be re-read
+    ///   and this re-attempted
+    /// </returns>
+    public bool TakeCompoundInterlocked(int compoundIndex, int x, int y, float fraction, float seenCurrentAmount,
+        out float taken)
+    {
+        taken = seenCurrentAmount * fraction;
+        float newValue;
+
+        if (seenCurrentAmount - taken < 0.1f)
+        {
+            // Taking basically everything in the cloud
+            newValue = 0;
+        }
+        else
+        {
+            newValue = seenCurrentAmount - taken;
+        }
+
+        // Exact comparisons used to know when the atomic operation really succeeded
+        // ReSharper disable CompareOfFloatsByEqualityOperator
+        switch (compoundIndex)
+        {
+            case 0:
+                return Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) ==
+                    seenCurrentAmount;
+            case 1:
+                return Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) ==
+                    seenCurrentAmount;
+            case 2:
+                return Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) ==
+                    seenCurrentAmount;
+            case 3:
+                return Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) ==
+                    seenCurrentAmount;
+            default:
+                throw new ArgumentException("Compound index out of range");
+        }
+
+        // ReSharper restore CompareOfFloatsByEqualityOperator
+    }
+
+    /// <summary>
     ///   Calculates how much TakeCompound would take without actually taking the amount
     /// </summary>
     /// <returns>The amount available for taking</returns>
     public float AmountAvailable(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        float amountInCloud = HackyAddress(Density[x, y], GetCompoundIndex(compound));
+        float amountInCloud = HackyAddress(ref Density[x, y], GetCompoundIndex(compound));
         float amountToGive = amountInCloud * fraction;
         return amountToGive;
     }
@@ -441,7 +619,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (!compound.IsAbsorbable && onlyAbsorbable)
                 continue;
 
-            float amount = HackyAddress(Density[x, y], i);
+            float amount = HackyAddress(ref Density[x, y], i);
             if (amount > 0)
                 result[compound] = amount;
         }
@@ -504,7 +682,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Absorbs compounds from this cloud
+    ///   Absorbs compounds from this cloud. Doesn't require locking thanks to using atomic updates.
     /// </summary>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
         Dictionary<Compound, float>? totals, float delta, float rate)
@@ -524,37 +702,51 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (!compound.IsAbsorbable || !storage.IsUseful(compound))
                 continue;
 
-            // Overestimate of how much compounds we get
-            float generousAmount = HackyAddress(Density[localX, localY], i) *
-                Constants.SKIP_TRYING_TO_ABSORB_RATIO;
-
-            // Skip if there isn't enough to absorb
-            if (generousAmount < MathUtils.EPSILON)
-                continue;
-
-            float freeSpace = storage.GetFreeSpaceForCompound(compound);
-
-            float multiplier = 1.0f * rate;
-
-            if (freeSpace < generousAmount)
+            // Loop here to retry in case we read stale data
+            while (true)
             {
-                if (freeSpace < 0.0f)
-                    throw new InvalidOperationException("Free space for compounds is negative");
+                // Overestimate of how much compounds we get
+                float cloudAmount = HackyAddress(ref Density[localX, localY], i);
+                float generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
-                // Allow partial absorption to allow cells to take from high density clouds
-                multiplier = freeSpace / generousAmount;
-            }
+                // Skip if there isn't enough to absorb
+                if (generousAmount < MathUtils.EPSILON)
+                    break;
 
-            float taken = TakeCompound(compound, localX, localY, fractionToTake * multiplier) *
-                Constants.ABSORPTION_RATIO;
+                float freeSpace = storage.GetFreeSpaceForCompound(compound);
 
-            storage.AddCompound(compound, taken);
+                float multiplier = 1.0f * rate;
 
-            if (totals != null)
-            {
-                // Keep track of total compounds absorbed for the cell
-                totals.TryGetValue(compound, out var existingValue);
-                totals[compound] = existingValue + taken;
+                if (freeSpace < generousAmount)
+                {
+                    if (freeSpace < 0.0f)
+                        throw new InvalidOperationException("Free space for compounds is negative");
+
+                    // Allow partial absorption to allow cells to take from high density clouds
+                    multiplier = freeSpace / generousAmount;
+                }
+
+                if (!TakeCompoundInterlocked(i, localX, localY, fractionToTake * multiplier, cloudAmount,
+                        out float taken))
+                {
+                    // Value was updated since we read it, we need to retry
+                    continue;
+                }
+
+                taken *= Constants.ABSORPTION_RATIO;
+
+                // This should never fail to add the full amount of compounds as we checked the free space above and
+                // scaled the take amount accordingly
+                storage.AddCompound(compound, taken);
+
+                if (totals != null)
+                {
+                    // Keep track of total compounds absorbed for the cell
+                    totals.TryGetValue(compound, out var existingValue);
+                    totals[compound] = existingValue + taken;
+                }
+
+                break;
             }
         }
     }
@@ -753,7 +945,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta, pos);
     }
 
-    private float HackyAddress(Vector4 vector, int index)
+    private float HackyAddress(ref Vector4 vector, int index)
     {
         switch (index)
         {

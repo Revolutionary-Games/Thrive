@@ -270,11 +270,11 @@ public class SaveManagerGUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
+        GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(s => s.SaveName).ToList()));
 
         try
         {
-            Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
+            Selected.ForEach(s => SaveHelper.DeleteSave(s.SaveName));
         }
         catch (IOException e)
         {

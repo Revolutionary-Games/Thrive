@@ -752,6 +752,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         autoEvoRun.CalculateAndApplyFinalExternalEffectSizes();
 
         // Make summary, this must be called before results are applied so that summary is correct
+        results.RegisterNewSpeciesForSummary(gameWorld);
         world.RunResultsList.Add(results.MakeSummary(gameWorld.Map, true));
 
         // Apply the results
@@ -764,10 +765,10 @@ public partial class AutoEvoExploringTool : NodeWithInput
         gameWorld.GenerationHistory.Add(gameWorld.PlayerSpecies.Generation - 1,
             new GenerationRecord(gameWorld.TotalPassedTime, results.GetSpeciesRecords()));
         gameWorld.BuildEvolutionaryTree(evolutionaryTree);
-        world.SpeciesHistoryList.Add(gameWorld.Species.ToDictionary(pair => pair.Key,
-            pair => (Species)pair.Value.Clone()));
-        world.PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(pair => pair.Key,
-            pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
+        world.SpeciesHistoryList.Add(gameWorld.Species.ToDictionary(s => s.Key,
+            s => (Species)s.Value.Clone()));
+        world.PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(s => s.Key,
+            s => (PatchSnapshot)s.Value.CurrentSnapshot.Clone()));
 
         // Add checkbox to history container
         historyListMenu.AddItem(world.CurrentGeneration.ToString(CultureInfo.CurrentCulture), false, Colors.White);
@@ -1086,8 +1087,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
                 },
             });
 
-            PatchHistoryList.Add(GameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
-                pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
+            PatchHistoryList.Add(GameProperties.GameWorld.Map.Patches.ToDictionary(p => p.Key,
+                p => (PatchSnapshot)p.Value.CurrentSnapshot.Clone()));
 
             PatchesCount = GameProperties.GameWorld.Map.Patches.Count;
 

@@ -8,10 +8,15 @@
     using World = DefaultEcs.World;
 
     /// <summary>
-    ///   Plays the sounds from <see cref="SoundEffectPlayer"/>
+    ///   Hears the sounds from <see cref="SoundEffectPlayer"/> (this marks where the player's ears are)
     /// </summary>
     [With(typeof(SoundListener))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
+    [RunsAfter(typeof(AttachedEntityPositionSystem))]
+    [RuntimeCost(2)]
+    [RunsOnMainThread]
     public sealed class SoundListenerSystem : AEntitySetSystem<float>
     {
         private readonly Listener listener;
@@ -33,8 +38,6 @@
         {
             Dispose(true);
             base.Dispose();
-
-            // GC.SuppressFinalize(this);
         }
 
         protected override void PreUpdate(float state)

@@ -38,14 +38,20 @@
     [WritesToComponent(typeof(CompoundAbsorber))]
     [WritesToComponent(typeof(UnneededCompoundVenter))]
     [WritesToComponent(typeof(SpatialInstance))]
-    [ReadsComponent(typeof(WorldPosition))]
+    [WritesToComponent(typeof(AttachedToEntity))]
+    [WritesToComponent(typeof(MicrobeColony))]
+    [WritesToComponent(typeof(MicrobeAI))]
+    [ReadsComponent(typeof(CollisionManagement))]
+    [ReadsComponent(typeof(MicrobePhysicsExtraData))]
     [ReadsComponent(typeof(OrganelleContainer))]
-    [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
-    [ReadsComponent(typeof(MicrobeColony))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(EntityRadiusInfo))]
     [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
+    [RunsBefore(typeof(SpatialAttachSystem))]
+    [RuntimeCost(11)]
     [RunsOnMainThread]
     public sealed class EngulfingSystem : AEntitySetSystem<float>
     {
@@ -326,8 +332,7 @@
                             break;
 
                         case PhagocytosisPhase.Digested:
-                            RemoveEngulfedObject(ref engulfer, engulfedEntity, ref engulfable);
-                            worldSimulation.DestroyEntity(engulfedEntity);
+                            RemoveEngulfedObject(ref engulfer, engulfedEntity, ref engulfable, true);
                             break;
 
                         case PhagocytosisPhase.RequestExocytosis:
@@ -384,7 +389,22 @@
             // Delete unused endosome graphics. First mark unused things
             foreach (var entry in entityEngulfingEndosomeGraphics)
             {
-                if (!usedTopLevelEngulfers.Contains(entry.Key))
+                // This cannot use a basic .Contains call here as that would allocate a lot of memory as this runs
+                // a bunch on each game update
+                bool contains = false;
+
+                int topLevelCount = usedTopLevelEngulfers.Count;
+
+                for (int i = 0; i < topLevelCount; ++i)
+                {
+                    if (usedTopLevelEngulfers[i] == entry.Key)
+                    {
+                        contains = true;
+                        break;
+                    }
+                }
+
+                if (!contains)
                 {
                     topLevelEngulfersToDelete.Add(entry.Key);
                     continue;
@@ -393,7 +413,25 @@
                 foreach (var childEntry in entry.Value)
                 {
                     var key = new KeyValuePair<Entity, Entity>(entry.Key, childEntry.Key);
-                    if (!usedEngulfedObjects.Contains(key))
+
+                    int usedEngulfedCount = usedEngulfedObjects.Count;
+
+                    contains = false;
+
+                    for (int i = 0; i < usedEngulfedCount; ++i)
+                    {
+                        var usedEngulfedObject = usedEngulfedObjects[i];
+
+                        // There's no normal compare operator available (which is why this memberwise comparison is
+                        // needed) so this may have been what caused the .Contains calls to blow up the memory here
+                        if (usedEngulfedObject.Key == key.Key && usedEngulfedObject.Value == key.Value)
+                        {
+                            contains = true;
+                            break;
+                        }
+                    }
+
+                    if (!contains)
                     {
                         engulfedObjectsToDelete.Add(key);
                     }
@@ -591,7 +629,7 @@
 
             // Update used engulfing space, this will be re-calculated by the digestion system (as used space changes
             // as digestion progresses)
-            engulfer.UsedIngestionCapacity += engulfable.AdjustedEngulfSize;
+            engulfer.UsedEngulfingCapacity += engulfable.AdjustedEngulfSize;
         }
 
         private static Vector3 CalculateEngulfableTargetPosition(ref CellProperties engulferCellProperties,
@@ -889,15 +927,30 @@
                 if (ourExtraData.IsSubShapePilus(collision.FirstSubShapeData))
                     continue;
 
+                var realTarget = collision.SecondEntity;
+
                 // Also can't engulf when the other physics body has a pilus
-                if (collision.SecondEntity.Has<MicrobePhysicsExtraData>() && collision.SecondEntity
-                        .Get<MicrobePhysicsExtraData>().IsSubShapePilus(collision.SecondSubShapeData))
+                if (realTarget.Has<MicrobePhysicsExtraData>())
                 {
-                    continue;
+                    ref var secondExtraData = ref realTarget.Get<MicrobePhysicsExtraData>();
+
+                    if (secondExtraData.IsSubShapePilus(collision.SecondSubShapeData))
+                        continue;
+
+                    // Resolve potential colony for the second entity
+                    if (realTarget.Has<MicrobeColony>())
+                    {
+                        ref var secondColony = ref realTarget.Get<MicrobeColony>();
+                        if (secondColony.GetMicrobeFromSubShape(ref secondExtraData, collision.SecondSubShapeData,
+                                out var adjusted))
+                        {
+                            realTarget = adjusted;
+                        }
+                    }
                 }
 
                 // Can't engulf dead things
-                if (collision.SecondEntity.Has<Health>() && collision.SecondEntity.Get<Health>().Dead)
+                if (realTarget.Has<Health>() && realTarget.Get<Health>().Dead)
                     continue;
 
                 // Pili don't block engulfing, check starting engulfing
@@ -919,7 +972,7 @@
                     ref realEngulfer == entity ? ref cellProperties : ref realEngulfer.Get<CellProperties>();
 
                 if (CheckStartEngulfingOnCandidate(ref actualCellProperties, ref actualEngulfer, ref species,
-                        realEngulfer, collision.SecondEntity))
+                        realEngulfer, realTarget))
                 {
                     // Engulf at most one thing per update, if further collisions still exist next update we'll pull
                     // it in then
@@ -1034,13 +1087,6 @@
             if (engulferCellProperties.IsBacteria)
                 radius *= 0.5f;
 
-            ref var targetEntityPosition = ref targetEntity.Get<WorldPosition>();
-            ref var engulferPosition = ref engulferEntity.Get<WorldPosition>();
-
-            AddEngulfableToEngulferDataList(ref engulfer, engulferEntity, ref engulfable, targetEntity);
-
-            CalculateAdditionalCompoundsInNewlyEngulfedObject(ref engulfable, targetEntity);
-
             EntityCommandRecorder? recorder = null;
 
             // Steal this cell from a colony if it is in a colony currently
@@ -1050,6 +1096,11 @@
             {
                 recorder ??= worldSimulation.StartRecordingEntityCommands();
 
+                // TODO: make sure that engulfing cells out of a colony don't cause issues
+                // When testing I saw some bugs with cells just becoming ghosts when engulfing was attempted to be
+                // started but that may have been caused by my testing method of overriding the required size ratio (
+                // in just one place so maybe some other later check then immediately canceled the engulf)
+                // - hhyyrylainen
                 if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder))
                 {
                     GD.PrintErr("Failed to engulf a member of a cell colony (can't remove it)");
@@ -1057,10 +1108,17 @@
                 }
             }
 
+            AddEngulfableToEngulferDataList(ref engulfer, engulferEntity, ref engulfable, targetEntity);
+
+            CalculateAdditionalCompoundsInNewlyEngulfedObject(ref engulfable, targetEntity);
+
             if (engulferEntity.Has<PlayerMarker>() && targetEntity.Has<CellProperties>())
             {
                 gameWorld!.StatisticsTracker.TotalEngulfedByPlayer.Increment(1);
             }
+
+            ref var targetEntityPosition = ref targetEntity.Get<WorldPosition>();
+            ref var engulferPosition = ref engulferEntity.Get<WorldPosition>();
 
             var engulfableFinalPosition = CalculateEngulfableTargetPosition(ref engulferCellProperties,
                 ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetRadius, random,
@@ -1271,7 +1329,7 @@
 
             PerformEjectionForceAndAttachedRemove(entity, ref engulfable, engulfableObject);
 
-            RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable);
+            RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable, false);
 
             // The phagosome will be deleted automatically, we just hide it here to make it disappear on the same frame
             // as the ejection completes
@@ -1387,7 +1445,8 @@
         ///   Doesn't do any ejection actions. This is purely for once data needs to be removed once it is safe to do
         ///   so.
         /// </summary>
-        private void RemoveEngulfedObject(ref Engulfer engulfer, Entity engulfedEntity, ref Engulfable engulfable)
+        private void RemoveEngulfedObject(ref Engulfer engulfer, Entity engulfedEntity, ref Engulfable engulfable,
+            bool destroy)
         {
             if (engulfer.EngulfedObjects == null)
                 throw new InvalidOperationException("Engulfed objects should not be null when this is called");
@@ -1414,10 +1473,33 @@
             engulfable.PhagocytosisStep = PhagocytosisPhase.None;
             engulfable.HostileEngulfer = default;
 
+#if DEBUG
+            if (engulfedEntity.Get<SpatialInstance>().VisualScale != engulfable.OriginalScale && !destroy)
+            {
+                GD.PrintErr("Original scale not applied correctly before eject");
+
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+            }
+#endif
+
             // Thanks to digestion decreasing the size of engulfed objects, this doesn't match what we took in
-            // originally. This relies on teh digestion system updating this later to make sure this is correct
-            engulfer.UsedIngestionCapacity =
-                Math.Max(0, engulfer.UsedIngestionCapacity - engulfable.AdjustedEngulfSize);
+            // originally. This relies on the digestion system updating this later to make sure this is correct
+            engulfer.UsedEngulfingCapacity =
+                Math.Max(0, engulfer.UsedEngulfingCapacity - engulfable.AdjustedEngulfSize);
+
+            if (destroy)
+            {
+                // Set the health to dead to ensure the microbe death system has a chance to see this dying and count
+                // statistics
+                if (engulfedEntity.Has<Health>())
+                {
+                    ref var health = ref engulfedEntity.Get<Health>();
+                    health.Kill();
+                }
+
+                worldSimulation.DestroyEntity(engulfedEntity);
+            }
         }
 
         /// <summary>

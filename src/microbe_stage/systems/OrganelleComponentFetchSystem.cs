@@ -10,8 +10,10 @@
     /// </summary>
     [With(typeof(OrganelleContainer))]
     [RunsAfter(typeof(MicrobeReproductionSystem))]
+    [RunsAfter(typeof(MulticellularGrowthSystem))]
     [RunsBefore(typeof(MicrobeMovementSystem))]
     [RunsBefore(typeof(OrganelleTickSystem))]
+    [RuntimeCost(0.25f)]
     public sealed class OrganelleComponentFetchSystem : AEntitySetSystem<float>
     {
         public OrganelleComponentFetchSystem(World world, IParallelRunner runner) : base(world, runner)

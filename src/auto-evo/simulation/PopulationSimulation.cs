@@ -147,7 +147,7 @@
             {
                 // Simulate the species in each patch taking into account the already computed populations
                 SimulatePatchStep(parameters, entry.Value,
-                    species.Where(item => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0),
+                    species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0),
                     random, cache, autoEvoConfiguration, worldSettings);
             }
         }

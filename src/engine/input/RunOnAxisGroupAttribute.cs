@@ -86,6 +86,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
 
             // This is applied here for more performance as InvokeAlsoWithNoInput seems very common, and assigning
             // two variables in a single loop is hopefully really optimized in the runtime
+            // TODO: try to avoid the boxing here
             callParameters[i + parameterOffset] = value;
         }
 

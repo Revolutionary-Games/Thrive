@@ -12,6 +12,7 @@
     [With(typeof(SimpleShapeCreator))]
     [With(typeof(PhysicsShapeHolder))]
     [RunsBefore(typeof(PhysicsBodyCreationSystem))]
+    [RuntimeCost(0.25f)]
     public sealed class SimpleShapeCreatorSystem : AEntitySetSystem<float>
     {
         public SimpleShapeCreatorSystem(World world, IParallelRunner runner) :

@@ -11,6 +11,12 @@
     /// <summary>
     ///   Handles microbe binding mode for creating microbe colonies
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This could have a pretty low runtime cost set, but the profiling run was done without colony binding
+    ///     happening so it is expected that actual colony binds happening will take much more time.
+    ///   </para>
+    /// </remarks>
     [With(typeof(MicrobeControl))]
     [With(typeof(CollisionManagement))]
     [With(typeof(MicrobeSpeciesMember))]
@@ -22,11 +28,18 @@
     [With(typeof(CellProperties))]
     [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
-    [RunsBefore(typeof(MicrobeFlashingSystem))]
-    [RunsAfter(typeof(MicrobeMovementSystem))]
+    [ReadsComponent(typeof(CollisionManagement))]
+    [ReadsComponent(typeof(MicrobePhysicsExtraData))]
     [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [WritesToComponent(typeof(Spawned))]
     [WritesToComponent(typeof(MicrobeColony))]
+    [WritesToComponent(typeof(MicrobeColonyMember))]
+    [WritesToComponent(typeof(Physics))]
+    [RunsBefore(typeof(MicrobeFlashingSystem))]
+    [RunsAfter(typeof(MicrobeMovementSystem))]
+    [RunsAfter(typeof(EngulfingSystem))]
     public sealed class ColonyBindingSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

@@ -83,13 +83,12 @@ public class ThriveJsonConverter : IDisposable
     /// </param>
     public string SerializeObject(object @object, Type? type = null)
     {
-        return PerformWithSettings(settings =>
-            JsonConvert.SerializeObject(@object, type, Constants.SAVE_FORMATTING, settings));
+        return PerformWithSettings(s => JsonConvert.SerializeObject(@object, type, Constants.SAVE_FORMATTING, s));
     }
 
     public T? DeserializeObject<T>(string json)
     {
-        return PerformWithSettings(settings => JsonConvert.DeserializeObject<T>(json, settings));
+        return PerformWithSettings(s => JsonConvert.DeserializeObject<T>(json, s));
     }
 
     /// <summary>
@@ -386,12 +385,12 @@ public abstract class BaseThriveConverter : JsonConverter
     {
         var customAttributeData = customAttributes.ToList();
 
-        bool export = customAttributeData.Any(attr => attr.AttributeType == typeof(ExportAttribute));
+        bool export = customAttributeData.Any(a => a.AttributeType == typeof(ExportAttribute));
 
         if (!export)
             return false;
 
-        return customAttributeData.All(attr => attr.AttributeType != JsonPropertyAttribute);
+        return customAttributeData.All(a => a.AttributeType != JsonPropertyAttribute);
     }
 
     public static bool IsIgnoredGodotMember(string name, Type type)
@@ -670,8 +669,8 @@ public abstract class BaseThriveConverter : JsonConverter
 
                 while (baseType != null && baseType != ObjectBaseType)
                 {
-                    if (baseType.CustomAttributes.Any(attr =>
-                            attr.AttributeType == BaseDynamicTypeAllowedAttribute) ||
+                    if (baseType.CustomAttributes.Any(a =>
+                            a.AttributeType == BaseDynamicTypeAllowedAttribute) ||
                         HasAlwaysJSONTypeWriteAttribute(baseType))
                     {
                         writeType = true;
@@ -864,9 +863,9 @@ public abstract class BaseThriveConverter : JsonConverter
     private static bool HasAlwaysJSONTypeWriteAttribute(Type type)
     {
         // If the current uses scene creation, dynamic type needs to be also in that case output
-        return type.CustomAttributes.Any(attr =>
-            attr.AttributeType == AlwaysDynamicAttribute ||
-            attr.AttributeType == SceneLoadedAttribute);
+        return type.CustomAttributes.Any(a =>
+            a.AttributeType == AlwaysDynamicAttribute ||
+            a.AttributeType == SceneLoadedAttribute);
     }
 
     private static bool UsesOnlyChildAssign(IEnumerable<Attribute> customAttributes,
@@ -1045,8 +1044,8 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
     public override bool CanConvert(Type objectType)
     {
         // Types with out custom attribute are supported
-        if (objectType.CustomAttributes.Any(attr =>
-                attr.AttributeType == UseSerializerAttribute || attr.AttributeType == SceneLoadedAttribute))
+        if (objectType.CustomAttributes.Any(a =>
+                a.AttributeType == UseSerializerAttribute || a.AttributeType == SceneLoadedAttribute))
         {
             return true;
         }

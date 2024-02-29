@@ -364,6 +364,38 @@ Code style rules
   prefer simpler code to understand. Avoid anti-patterns, for example
   God class.
 
+Memory allocation
+-----------------
+
+As Thrive is a game, memory usage needs to be considered relatively
+carefully. Code that runs each game update, or very often, should be
+designed to avoid all memory allocations. For example by storing a
+temporary list of working memory that can be reused. Rarely done
+operations or ones that don't happen during gameplay can be more
+relaxed about memory.
+
+Some C# features allocate memory in a hidden way. The `foreach` loop
+allocates memory *if* the C# compiler cannot be sure that the iterated
+object is an inbuilt `List` or `Dictionary`, iterating an interface
+like `IReadOnlyList` will cause memory allocations even if the
+underlying object is a list (so the actual type of the variable as
+seen during compile time is what matters). If this kind of thing needs
+to be looped, then a manual for-loop is required based on the length
+of the list.
+
+LINQ operarations that allocate memory, which is sadly most of them,
+should be avoided in commonly running code (especially in systems that
+run each frame). LINQ methods that take in a callback may allocate
+surprisingly large amounts of memory due to capturing local variables.
+
+To much more easily see where memory is being allocated, the following
+plugin is very useful for Rider:
+https://github.com/controlflow/resharper-heapview
+
+Of course things like spawning new NPCs etc. can allocate new memory
+as naturally things like spawning new game objects is expected to
+require more memory.
+
 Godot usage
 -----------
 

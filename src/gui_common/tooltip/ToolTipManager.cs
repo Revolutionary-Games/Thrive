@@ -294,7 +294,7 @@ public class ToolTipManager : CanvasLayer
             return null;
         }
 
-        var tooltip = tooltips[retrievedGroup].Find(found => found.ToolTipNode.Name == name);
+        var tooltip = tooltips[retrievedGroup].Find(t => t.ToolTipNode.Name == name);
 
         if (tooltip == null)
         {
@@ -317,7 +317,7 @@ public class ToolTipManager : CanvasLayer
         if (retrievedGroup == null)
             return null;
 
-        var tooltip = tooltips[retrievedGroup].Find(found => found.ToolTipNode.Name == name);
+        var tooltip = tooltips[retrievedGroup].Find(t => t.ToolTipNode.Name == name);
 
         return tooltip;
     }

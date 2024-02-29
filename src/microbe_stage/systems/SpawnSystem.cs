@@ -14,6 +14,10 @@
     /// <summary>
     ///   Spawns AI cells and other environmental things as the player moves around
     /// </summary>
+    [ReadsComponent(typeof(Spawned))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(SpatialAttachSystem))]
+    [RunsAfter(typeof(CountLimitedDespawnSystem))]
     [JsonObject(MemberSerialization.OptIn, IsReference = true)]
     public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     {
@@ -119,7 +123,7 @@
 
                 estimateEntityCount = DespawnEntities();
 
-                spawnTypes.RemoveAll(entity => entity.DestroyQueued);
+                spawnTypes.RemoveAll(s => s.DestroyQueued);
 
                 SpawnAllTypes(ref spawnsLeftThisFrame);
             }

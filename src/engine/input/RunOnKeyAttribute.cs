@@ -17,6 +17,8 @@ public class RunOnKeyAttribute : InputAttribute
     /// </summary>
     public const string CAPTURED_MOUSE_AS_AXIS_PREFIX = "captured_mouse:";
 
+    protected object[]? cachedMethodCallParameters;
+
     /// <summary>
     ///   Priming comes to effect when an input gets pressed for less than one frame
     ///   (when the release input gets detected before OnProcess could be called)
@@ -86,12 +88,15 @@ public class RunOnKeyAttribute : InputAttribute
             {
                 if (TrackInputMethod)
                 {
-                    result = CallMethod(0.0f, LastUsedInputMethod);
+                    PrepareMethodParameters(ref cachedMethodCallParameters, 2, 0.0f);
+                    cachedMethodCallParameters![1] = LastUsedInputMethod;
                 }
                 else
                 {
-                    result = CallMethod(0.0f);
+                    PrepareMethodParameters(ref cachedMethodCallParameters, 1, 0.0f);
                 }
+
+                result = CallMethod(cachedMethodCallParameters!);
             }
             else
             {
@@ -126,23 +131,29 @@ public class RunOnKeyAttribute : InputAttribute
             // Warnings for methods that only trigger here and not early in OnInput allowing ignoring input
             if (TrackInputMethod)
             {
-                CallDelayedMethod(delta, LastUsedInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, delta);
+                cachedMethodCallParameters![1] = LastUsedInputMethod;
             }
             else
             {
-                CallDelayedMethod(delta);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, delta);
             }
+
+            CallDelayedMethod(cachedMethodCallParameters!);
         }
         else
         {
             if (TrackInputMethod)
             {
-                CallMethod(delta, LastUsedInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, delta);
+                cachedMethodCallParameters![1] = LastUsedInputMethod;
             }
             else
             {
-                CallMethod(delta);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, delta);
             }
+
+            CallMethod(cachedMethodCallParameters!);
         }
     }
 

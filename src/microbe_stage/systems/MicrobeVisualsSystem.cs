@@ -4,6 +4,7 @@
     using System.Buffers;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
     using Components;
@@ -22,6 +23,9 @@
     [With(typeof(EntityMaterial))]
     [With(typeof(RenderPriorityOverride))]
     [RunsBefore(typeof(SpatialAttachSystem))]
+    [RunsBefore(typeof(EntityMaterialFetchSystem))]
+    [RunsBefore(typeof(SpatialPositionSystem))]
+    [RuntimeCost(6)]
     [RunsOnMainThread]
     public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {
@@ -108,9 +112,36 @@
             // Create graphics top level node if missing for entity
             spatialInstance.GraphicalInstance ??= new Spatial();
 
-            // Bacteria is 50% of the scale of other microbes
-            spatialInstance.GraphicalInstance.Scale =
-                cellProperties.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : Vector3.One;
+#if DEBUG
+
+            // Check scale is applied properly (but only if not attached as being attached can mean engulfment and at
+            // that time the scale can be modified)
+            if (!entity.Has<AttachedToEntity>())
+            {
+                if (cellProperties.IsBacteria)
+                {
+                    if (spatialInstance.ApplyVisualScale != true ||
+                        spatialInstance.VisualScale != new Vector3(0.5f, 0.5f, 0.5f))
+                    {
+                        GD.PrintErr("Microbe spatial component doesn't have scale correctly set for bacteria");
+
+                        if (Debugger.IsAttached)
+                            Debugger.Break();
+                    }
+                }
+                else
+                {
+                    if (spatialInstance.ApplyVisualScale &&
+                        spatialInstance.VisualScale != Vector3.One)
+                    {
+                        GD.PrintErr("Microbe spatial component doesn't have scale correctly set for eukaryote");
+
+                        if (Debugger.IsAttached)
+                            Debugger.Break();
+                    }
+                }
+            }
+#endif
 
             ref var materialStorage = ref entity.Get<EntityMaterial>();
 
@@ -329,7 +360,7 @@
                     organelleMeshWithChildren.GetChildrenMaterials(tempMaterialsList);
                 }
 
-                var material = graphics.GetMaterial(placedOrganelle.Definition.DisplaySceneModelPath);
+                var material = graphics.GetMaterial(placedOrganelle.Definition.DisplaySceneModelNodePath);
                 tempMaterialsList.Add(material);
 
                 // Apply tint (again) to make sure it is up to date

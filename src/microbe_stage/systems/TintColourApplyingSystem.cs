@@ -8,11 +8,22 @@
     ///   Handles applying the shader "tint" parameter based on <see cref="ColourAnimation"/> to an
     ///   <see cref="EntityMaterial"/> that has microbe stage compatible shader parameter names
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as only reading the materials as this just applies a single shader parameter to the found
+    ///     materials, but otherwise doesn't do anything to them.
+    ///   </para>
+    /// </remarks>
     [With(typeof(ColourAnimation))]
     [With(typeof(EntityMaterial))]
-    public sealed class TintColourAnimationSystem : AEntitySetSystem<float>
+    [ReadsComponent(typeof(EntityMaterial))]
+    [RunsAfter(typeof(ColourAnimationSystem))]
+    [RuntimeCost(8)]
+    [RunsOnFrame]
+    [RunsOnMainThread]
+    public sealed class TintColourApplyingSystem : AEntitySetSystem<float>
     {
-        public TintColourAnimationSystem(World world) : base(world, null)
+        public TintColourApplyingSystem(World world) : base(world, null)
         {
         }
 

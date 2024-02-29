@@ -30,6 +30,8 @@ public class RunOnAxisAttribute : InputAttribute
 
     private bool useDiscreteKeyInputs;
 
+    private object[]? cachedMethodCallParameters;
+
     /// <summary>
     ///   Instantiates a new RunOnAxisAttribute.
     /// </summary>
@@ -266,12 +268,17 @@ public class RunOnAxisAttribute : InputAttribute
         {
             if (TrackInputMethod)
             {
-                CallMethod(delta, currentResult, TrackInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 3, delta);
+                cachedMethodCallParameters![1] = currentResult;
+                cachedMethodCallParameters![2] = LastUsedInputMethod;
             }
             else
             {
-                CallMethod(delta, currentResult);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, delta);
+                cachedMethodCallParameters![1] = currentResult;
             }
+
+            CallMethod(cachedMethodCallParameters);
         }
     }
 

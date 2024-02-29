@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-16 21:56+0000\n"
-"PO-Revision-Date: 2023-11-14 20:10+0000\n"
-"Last-Translator: Tim Kuppens <t.m.kuppens@gmail.com>\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
+"PO-Revision-Date: 2024-02-18 17:10+0000\n"
+"Last-Translator: Jelver Prins <Jelverprins@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1.1\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -624,7 +624,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Lichaamsdeel van cel"
 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Verbruik van {0}"
@@ -1041,7 +1041,7 @@ msgstr ""
 "Kijkend naar coordinaten: {1}"
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "physics-debug tekenwijze niet beschikbaar in deze build"
 
 msgid "DEBUG_PANEL"
 msgstr "Debugpaneel"
@@ -1400,6 +1400,12 @@ msgstr ""
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
+
+msgid "EJECT_ENGULFED"
+msgstr "Verzwolgen objecten uitstoten"
+
+msgid "EJECT_ENGULFED_TOOLTIP"
+msgstr "Verzwolgen objecten uitstoten"
 
 msgid "ENABLED_MODS"
 msgstr "Aangezette Mods"
@@ -2863,6 +2869,28 @@ msgstr ""
 "Om in deze vijandige wereld te overleven zul je elke stof de je kunt vinden moeten verzamelen om generaties lang te kunnen evolueren in competitie met andere soorten microben."
 
 #, fuzzy
+msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
+msgstr ""
+"Op een verre planeet hebben eonen van vulkaanactiviteit en meteoorinslagen tot de ontwikkeling van een nieuw fenomeen in het universum geleid.\n"
+"\n"
+"Leven.\n"
+"\n"
+"Simpele microben leven in de diepte van de oceaan. Jij bent de Meest Recente Universele Voorouder op deze planeet.\n"
+"\n"
+"Om in deze vijandige wereld te overleven zul je elke stof de je kunt vinden moeten verzamelen om generaties lang te kunnen evolueren in competitie met andere soorten microben."
+
+#, fuzzy
+msgid "MICROBE_STAGE_INITIAL_POND"
+msgstr ""
+"Op een verre planeet hebben eonen van vulkaanactiviteit en meteoorinslagen tot de ontwikkeling van een nieuw fenomeen in het universum geleid.\n"
+"\n"
+"Leven.\n"
+"\n"
+"Simpele microben leven in de diepte van de oceaan. Jij bent de Meest Recente Universele Voorouder op deze planeet.\n"
+"\n"
+"Om in deze vijandige wereld te overleven zul je elke stof de je kunt vinden moeten verzamelen om generaties lang te kunnen evolueren in competitie met andere soorten microben."
+
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
 
@@ -3040,6 +3068,10 @@ msgstr "Mod Versie:"
 msgid "MORE_INFO"
 msgstr "Toon Meer Info"
 
+#, fuzzy
+msgid "MORE_INFO_PROMPT"
+msgstr "Toon Meer Info"
+
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr "Schuif strategische weergave wanneer muisaanwijzer aan de rand van het scherm is"
 
@@ -3150,6 +3182,18 @@ msgstr "Meerdere Organellen"
 
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-Aliasing:"
+
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Neerdalen zal je verheven status verwijderen en je terug naar de Microbenfase brengen. Je kunt dan in je huidige opslagbestand het spel opnieuw spelen.\n"
+"\n"
+"Je zult neerdalingsextraatjes krijgen voor de verdere spelduur. In een toekomstige versie zul je het extraatje zelf kunnen kiezen maar voor nu zul je altijd een 20% verlaging in osmoregulatiekosten krijgen. \n"
+"\n"
+"Zodra je besluit neer te dalen kun je een nieuw wereldkiemgetal kiezen om op een andere kaart te spelen. Ook kun je bijvoorbeeld LZWHK uitzetten."
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -3448,6 +3492,10 @@ msgstr "Pas je instellingen aan"
 
 msgid "ORGANELLES"
 msgstr "Organellen"
+
+#, fuzzy
+msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
+msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
 
 msgid "ORGANELLE_AXON"
 msgstr "Axon"
@@ -5197,6 +5245,10 @@ msgstr "Onbekende versie"
 
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Onbekende Workshop ID Voor Deze Mod"
+
+#, fuzzy
+msgid "UNLIMIT_GROWTH_SPEED"
+msgstr "Beperk groei stofgebruik"
 
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"

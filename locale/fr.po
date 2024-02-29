@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-16 21:56+0000\n"
-"PO-Revision-Date: 2023-11-15 07:28+0000\n"
-"Last-Translator: Marc Theriault <marc.55@live.ca>\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
+"PO-Revision-Date: 2024-02-19 08:09+0000\n"
+"Last-Translator: Charles Breillot <cbreillot@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.1.1\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -625,7 +625,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produit [thrive:compound type=\"glucose\"][/thrive:compound]. Effet proportionnel avec la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound] et l'[thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Morceau de cadavre cellulaire"
 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Consommation de {0}"
@@ -876,7 +876,7 @@ msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr "Erreur : bogue interne pour la consommation des matériaux"
 
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr ""
+msgstr "Impossible de trouver des éléments d'entrée de fabrication"
 
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Entrée"
@@ -963,9 +963,8 @@ msgstr "Développeurs actuels"
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSITION ACTUELLE"
 
-#, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
-msgstr "Ne recherche rien"
+msgstr "Aucune recherche en cours"
 
 msgid "CURRENT_RESEARCH_PROGRESS"
 msgstr "Recherche : {0} ({1})"
@@ -1042,8 +1041,9 @@ msgstr ""
 "Position : {0}\n"
 "Pointeur à : {1}"
 
+#, fuzzy
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Le dessin de débogage physique n'est pas disponible dans ce type de build"
 
 msgid "DEBUG_PANEL"
 msgstr "Débogueur"
@@ -1252,8 +1252,9 @@ msgstr "Ne plus montrer"
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr "Ne plus prévenir"
 
+#, fuzzy
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
-msgstr ""
+msgstr "Afficher le menu d'arrière plan 3D"
 
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Afficher la barre des capacités"
@@ -1285,8 +1286,9 @@ msgstr "Double-cliquer pour voir en plein écran"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Étant une membrane à double couche de phospholipides, elle offre une meilleure protection et demande peu d'énergie pour ne pas se déformer. Néanmoins, elle peut ralentir une cellule en terme de vitesse de locomotion et d'absorption de ressources."
 
+#, fuzzy
 msgid "DUMP_SCENE_TREE"
-msgstr ""
+msgstr "Vider l'arbre des scènes"
 
 msgid "DUPLICATE_TYPE"
 msgstr "Dupliquer le type"
@@ -1404,6 +1406,14 @@ msgstr ""
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
+#, fuzzy
+msgid "EJECT_ENGULFED"
+msgstr "Ne peut pas absorber"
+
+#, fuzzy
+msgid "EJECT_ENGULFED_TOOLTIP"
+msgstr "Ne peut pas absorber"
+
 msgid "ENABLED_MODS"
 msgstr "Mods activés"
 
@@ -1439,7 +1449,7 @@ msgid "ENTER_EXISTING_ID"
 msgstr "Insérez ID existant"
 
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr ""
+msgstr "Entrez l'ID du Workshop existant"
 
 msgid "ENTITY_LABEL"
 msgstr "Étiquette de l'entité"
@@ -1474,8 +1484,9 @@ msgstr "Erreur de création du dossier d'information pour le mod"
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Erreur : les nouveaux paramètres n'ont pas été sauvegardés dans le fichier de configuration."
 
+#, fuzzy
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr ""
+msgstr "La récupération des actualités a échoué en raison d'une erreur : {0}"
 
 msgid "ERROR_FETCHING_NEWS"
 msgstr ""
@@ -2879,6 +2890,28 @@ msgstr ""
 "Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
 
 #, fuzzy
+msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
+msgid "MICROBE_STAGE_INITIAL_POND"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "  {0} : Trouvé dans {1} espèce, en moyenne {2} chacun"
 
@@ -3066,6 +3099,10 @@ msgstr "Version du mod :"
 msgid "MORE_INFO"
 msgstr "Plus d'informations"
 
+#, fuzzy
+msgid "MORE_INFO_PROMPT"
+msgstr "Plus d'informations"
+
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
@@ -3176,6 +3213,18 @@ msgstr "Plusieurs organites"
 
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anticrénelage plusieurs échantillons :"
+
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Dévoluer vous retirera votre statut évolué et vous fera retourner à la phase microbienne. De là vous pourrez rejouer au jeu dans la sauvegarde actuelle.\n"
+"\n"
+"Vous recevrez un avantage de dévolution pour la nouvelle partie. Dans une version future vous pourrez choisir votre avantage mais pour l'instant ce sera toujours une diminution de 20% de l'osmorégulation.\n"
+"\n"
+"Une fois votre dévolution confirmée, vous pourrez modifier les paramètres du jeu pour choisir une autre graine de monde et ainsi jouer sur une carte différente ou désactiver LAWK, par exemple."
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -3485,6 +3534,10 @@ msgstr "Modifier les paramètres"
 
 msgid "ORGANELLES"
 msgstr "Organites"
+
+#, fuzzy
+msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
+msgstr "(ATTENTION : la photosynthèse devient beaucoup moins viable)"
 
 msgid "ORGANELLE_AXON"
 msgstr "Axone"
@@ -5271,6 +5324,10 @@ msgstr "Version inconnue"
 #, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Souris inconnue"
+
+#, fuzzy
+msgid "UNLIMIT_GROWTH_SPEED"
+msgstr "Limiter l'utilisation du composé de croissance"
 
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"

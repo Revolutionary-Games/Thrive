@@ -10,10 +10,18 @@
     ///   Updates cell burst effects as time elapses. As this just setups the effect this doesn't need to run per frame
     ///   normal update frequency is fine.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Marked as reading the spatial instance as this just tweaks some particle system properties on it
+    ///     (if exists)
+    ///   </para>
+    /// </remarks>
     [With(typeof(CellBurstEffect))]
     [With(typeof(TimedLife))]
     [With(typeof(SpatialInstance))]
+    [ReadsComponent(typeof(SpatialInstance))]
     [RunsBefore(typeof(TimedLifeSystem))]
+    [RuntimeCost(0.25f)]
     [RunsOnMainThread]
     public sealed class CellBurstEffectSystem : AEntitySetSystem<float>
     {

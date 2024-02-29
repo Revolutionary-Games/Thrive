@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-16 21:56+0000\n"
-"PO-Revision-Date: 2024-01-06 16:32+0000\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
+"PO-Revision-Date: 2024-02-24 06:17+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -268,7 +268,7 @@ msgstr "Oto-Evrim Tahmini"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
-"Bu panel, düzenlenen türler için oto-evrimden çıkan beklenilen popülasyon rakamlarını gösterir.\n"
+"Bu panel; düzenlenen türler için oto-evrimden tahmini olarak çıkan, kazanılan toplam enerji ve popülasyon rakamlarını (parantez içinde) gösterir.\n"
 "Oto-evrim, sizin popülasyonunuzu etkileyen diğer kısımların (sizin kendi performansınızın yanı sıra) olduğu popülasyon simülasyonunu çalıştırır."
 
 msgid "AUTO-EVO_STEPS_DONE"
@@ -422,7 +422,7 @@ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Biyoçeşitliliği arttıran tür, oluşum ile mutasyona uğrasın"
 
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr "Biyolüminesant Koful"
+msgstr "Biyolüminesan Koful"
 
 msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
@@ -749,7 +749,7 @@ msgid "COMPOUND_CLOUDS"
 msgstr "Bileşik bulutları"
 
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Bileşik bulutu sıklığı"
+msgstr "Bileşik bulutu yoğunluğu"
 
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(ortamdaki bileşik bulutlarının sıklığı)"
@@ -1352,7 +1352,7 @@ msgid "EASTEREGG_MESSAGE_27"
 msgstr "İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerinden biri bizim müthiş programcımız untrustedlife tarafından yapıldı!"
 
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "İşte size bir ipucu: Ozmoregülasyon, hücrenizin sahip olduğu her bir altıgen alan için saniyede 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik alan da saniyede 5 ATP üretir. Bu da demek oluyor ki, eğer ozmoregülasyondan dolayı ATP kaybediyorsanız, sadece birkaç altıgen alanı sitoplazmayla doldurmalı veya bazı organelleri kaldırmalısınız."
+msgstr "İşte size bir ipucu: Ozmoregülasyon, hücrenizin sahip olduğu her bir altıgen alan için saniyede 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgen alan da saniyede 5 ATP üretir. Bu da demek oluyor ki, eğer ozmoregülasyondan dolayı ATP kaybediyorsanız, sadece birkaç altıgen alanı sitoplazmayla doldurmalı veya bazı organelleri kaldırmalısınız."
 
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "İlginç Gerçek: Gerçek hayatta prokaryotlar, organeller gibi davranan Biyokompartman adı verilen yapılara sahiptir ve bunlar aslında Çok Yüzeyli organeller olarak adlandırılır."
@@ -1400,6 +1400,12 @@ msgstr ""
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
+msgid "EJECT_ENGULFED"
+msgstr "Yutulan nesneleri dışarı at"
+
+msgid "EJECT_ENGULFED_TOOLTIP"
+msgstr "Yutulan nesneleri dışarı at"
+
 msgid "ENABLED_MODS"
 msgstr "Etkin Modlar"
 
@@ -1421,9 +1427,8 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} için {0} arazisinde bulunan enerji miktarı"
 
-#, fuzzy
 msgid "ENERGY_IN_PATCH_SHORT"
-msgstr "{1} için {0} arazisinde bulunan enerji miktarı"
+msgstr "{0}, {1}"
 
 msgid "ENERGY_SOURCES"
 msgstr "Enerji Kaynakları:"
@@ -1498,7 +1503,7 @@ msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
 "Evrim ağacını kurma işlemi başarısız oldu.\n"
 "\n"
-"Lütfen bunu geliştirici ekibine bildirin ve oyun loglarını temin edin."
+"Lütfen bunu geliştirici ekibine bildirin ve oyun günlük dosyalarını temin edin."
 
 msgid "EXACT_VERSION_COLON"
 msgstr "Tam Thrive sürümü:"
@@ -1762,9 +1767,10 @@ msgstr "Galeri Görüntüleyicisi"
 msgid "GAME_DESIGN_TEAM"
 msgstr "Oyun Tasarım Ekibi"
 
-#, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
-msgstr "Patreon sayfamızı ziyaret edin"
+msgstr ""
+"Bütün arazilerde, türünüz tarafından kazanılan toplam tahmini enerji ve bundan kaynaklanan popülasyonu gösterir (parantez içinde).\n"
+"Bir önceki enerji: {0}"
 
 msgid "GENERAL"
 msgstr "Genel"
@@ -2710,7 +2716,7 @@ msgstr ""
 "\n"
 "Koful: Toplanan 8 bileşiği depolar\n"
 "\n"
-"Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] olarak adlandırılır) ve mevcut oksitoksi miktarına bağlı olarak zarar veren bu toksinleri salmana izin verir\n"
+"Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] olarak adlandırılır) ve mevcut OksiToksi miktarına bağlı olarak zarar veren bu toksinleri salmana izin verir\n"
 "\n"
 "Sinyal Verici Ajan: Belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar"
 
@@ -2848,6 +2854,26 @@ msgstr ""
 "Hayat.\n"
 "\n"
 "Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
+"\n"
+"Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
+
+msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
+msgstr ""
+"Uzaklardaki bir uzaylı gezegende, uçsuz bucaksız astronomik mesafelerden gelen bir göktaşı çarptı ve yeni bir olayın oluşması için gerekli tohumları bu gezegene taşıdı.\n"
+"\n"
+"Hayat.\n"
+"\n"
+"Çarpma alanının yakınında basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
+"\n"
+"Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
+
+msgid "MICROBE_STAGE_INITIAL_POND"
+msgstr ""
+"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren kimyasal evrimin kendi kendini kopyalayan moleküllere doğru ilerlemesi evrende yeni bir olayın gelişmesine neden oldu.\n"
+"\n"
+"Hayat.\n"
+"\n"
+"Ilık ve sığ göletlerde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
 "\n"
 "Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
 
@@ -2995,10 +3021,10 @@ msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Yükleme Hataları"
 
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Loglar, bu sorunla ilgili ek bilgi içerebilir."
+msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Günlük dosyaları, bu sorunla ilgili ek bilgi içerebilir."
 
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "Bir ya da daha fazla modu yüklerken ya da kaldırırken sorun oluştu. Loglar, bu sorunla ilgili ek bilgi içerebilir."
+msgstr "Bir ya da daha fazla modu yüklerken ya da kaldırırken sorun oluştu. Günlük dosyaları, bu sorunla ilgili ek bilgi içerebilir."
 
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Not: Birçok modun düzgün yüklenmesi ya da kaldırılması için oyunun yeniden başlatılması gerekir. Modlar, çalıştırılabilir kodlar içerebileceği için yalnızca güvendiğiniz modları yüklemelisiniz."
@@ -3032,6 +3058,9 @@ msgstr "Mod Sürümü:"
 
 msgid "MORE_INFO"
 msgstr "Daha Fazla Bilgi Göster"
+
+msgid "MORE_INFO_PROMPT"
+msgstr "Thriveopedi'de daha fazla bilgi görmek için [thrive:input]help[/thrive:input] tuşuna basın."
 
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr "Stratejik görünümde, imleç ekranın kenarındayken, ekranı kaydır"
@@ -3141,6 +3170,12 @@ msgstr "Birden Fazla Organel"
 
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Çoklu örnekleme kenar yumuşatma:"
+
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr "Oyun simülasyonunu birden fazla iş parçacığı ile çalıştır"
+
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr "(etkinleştirildiğinde, temel oyun mantık güncellemelerini çalıştırmak için birden fazla iş parçacığı kullanılır; arkaplanda düşük sayıda iş parçacığı varken performansın düşmesine neden olabilir)"
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -3392,7 +3427,7 @@ msgid "OPEN_IN_FREEBUILD"
 msgstr "Serbest Yapım Editöründe Aç"
 
 msgid "OPEN_LOGS_FOLDER"
-msgstr "Log Klasörünü Aç"
+msgstr "Günlük Dosyaları Klasörünü Aç"
 
 msgid "OPEN_MOD_URL"
 msgstr "Bilgi URL'sini Aç"
@@ -3442,6 +3477,9 @@ msgstr "Ayarlarını değiştir"
 msgid "ORGANELLES"
 msgstr "Organeller"
 
+msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
+msgstr "Kilit açma koşulları, düzenleyiciye girerken her kuşakta yalnızca bir kez kontrol edilir"
+
 msgid "ORGANELLE_AXON"
 msgstr "Akson"
 
@@ -3476,7 +3514,7 @@ msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Organellerin kilidini açma etkin"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
-msgstr "(Bazı organelleri yerleştirmek için gerekli olan kilit açma şartları sağlanmalıdır)"
+msgstr "(Bazı organelleri yerleştirmek için gerekli olan kilit açma koşulları sağlanmalıdır)"
 
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
@@ -3526,7 +3564,7 @@ msgid "OXYTOXISOME_DESC"
 msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
+msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
 
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
@@ -4852,9 +4890,8 @@ msgstr "Araçlar"
 msgid "TOOL_HAND_AXE"
 msgstr "El Baltası"
 
-#, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
-msgstr "Toplam geçen süre:"
+msgstr "Kazanılan Enerji:"
 
 msgid "TOTAL_SAVES"
 msgstr "Toplam kaydetme:"
@@ -4868,10 +4905,10 @@ msgstr ""
 "Kofulu"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
+msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
+msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Henüz Eklenmedi."
@@ -4923,11 +4960,11 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"Bu panel, sizin gelecekteki popülasyonunuza ait tahminleri gösterir. Bu rakamlar, [b]oto-evrimin[/b] popülasyon simülasyonundan gelir.\n"
+"Bu panel, sizin gelecekte kazanacağınız toplam tahmini enerjiyi gösterir. Bu rakamlar, [b]oto-evrimin[/b] simülasyonundan gelir.\n"
 "\n"
 "Bu tahminler, sizin bireysel performansınızı hesaba katmaz. Böylece düzenleyiciye girdiğinizde, bulunduğunuz arazide daha iyi performans sergileyebilirsiniz.\n"
 "\n"
-"Ama doğrudan dahil olmasanız bile, kendi popülasyonunuzu yukarıda tutmaya çalışmalısınız.\n"
+"Ama doğrudan dahil olmasanız bile, bu değeri yukarıda tutmaya çalışmalısınız.\n"
 "\n"
 "Paneldeki soru işaretli butona basarak oto-evrim tahmininin ardındaki detaylı bilgiyi inceleyebilirsiniz. Devam etmek için bu butona basın."
 
@@ -4996,7 +5033,7 @@ msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Bu [b]arazi haritası[/b].\n"
 "\n"
-"Her simge yaşayabileceğiniz eşsiz bir ortamı temsil eder. Sağ tarafta bulunan panelde ise mevcut seçili arazinin şartları tarif edilmektedir.\n"
+"Her simge yaşayabileceğiniz eşsiz bir ortamı temsil eder. Sağ tarafta bulunan panelde ise mevcut seçili arazinin koşulları tarif edilmektedir.\n"
 "\n"
 "Eğer bulunduğunuz araziye (yanıp sönen bir yeşil kenarlık ile vurgulanmış) bağlı bir arazi seçerseniz, sağdaki \"Bu Araziye Git\" butonuna basarak oraya gidebilirsiniz.\n"
 "\n"
@@ -5163,6 +5200,9 @@ msgstr "Bilinmeyen sürüm"
 
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Bu Mod İçin Bilinmeyen Atölye ID'si"
+
+msgid "UNLIMIT_GROWTH_SPEED"
+msgstr "Büyüme Hızı Sınırını Kaldır"
 
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "YENİ"
@@ -5408,12 +5448,15 @@ msgstr ""
 
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
-"Bağlayıcı ajanlara sahip olmak, hücrelerin koloni oluşturmak için [b]bağ kurma moduna[/b] girmesini sağlar. Bu organel, sonraki evrelerde ilerlemek için gereklidir. Bağ kurma modu aktifken, saniyede 2 ATP tüketir ve aynı türden hücrelerle temas halindeyken veya manuel olarak ayarlandığında devre dışı kalır.\n"
+"[b]Bağlayıcı Ajanlara[/b] sahip hücreler (veya [b]Bağlayıcı Ajanlara[/b] sahip hücreleri içeren koloniler) bağ kurma moduna girebilir. Bağ kurma modundayken, her hücre [b]+2[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketir. Bağ kurma modu, aynı türden bir hücre ile temas halindeyken devre dışı kalır. Bağ kurma modu, manuel olarak da devre dışı bırakılabilir.\n"
 "\n"
-"Bir kolonideki hücreler kaynaklarını paylaşır; kaynaklar tüm hücreler arasında eşit olarak bölüştürülür ve hücrelerin kolonideki her ek hücre başına ozmoregülasyon miktarı azalır. Ozmoregülasyon indirimi, aşağıdaki denklemle hesaplanır: [b]Hücre Ozmoregülasyon Maliyeti * 20.0 / (20.0 + Toplam Koloni Üyesi)[/b]. Bu, 50 ozmoregülasyon maliyetli bir hücrenin 5 üyeli bir kolonide 40 ozmoregülasyon maliyetine sahip olacağı anlamına gelir."
+"Bir kolonide hücreler kaynaklarını paylaşır; kaynaklar tüm hücreler arasında eşit olarak bölüştürülür. Koloniler, ayrıca, ozmoregülasyon indiriminden faydalanır. Her bir hücrenin ozmoregülasyon maliyeti, toplam koloni üyesi sayısına ters orantılı olarak düşer."
 
 msgid "WIKI_BINDING_AGENT_INTRO"
-msgstr "Bağlayıcı ajan, hücrenizin ve özdeş türlerinin emdikleri ve ürettikleri bileşikleri birbirleriyle paylaştığı bir hücre kolonisi kurmalarına olanak tanır. Koloni içindeyken, hücrenizi bölemez ve düzenleyiciye giremezsiniz. Düzenleyiciye girmek için, ilk önce, koloniden ayrılmalısınız. Büyük hücre kolonileri, çok hücreliliğe doğru giden bir yoldur."
+msgstr ""
+"Bir hücrenin, diğer özdeş türlere katılıp bir hücre kolonisi kurmasını sağlar. Bir koloniye bağlandığında, hücreler hep birlikte hareket ederler ve bileşikleri paylaşırlar. Düzenleyiciye girmeden ve bölünmeden önce, hücreler koloniden bağını koparmalıdır.\n"
+"\n"
+"Hücre kolonileri, çok hücreliliğe doğru ilk adımdır. Bu yüzden [b]Bağlayıcı Ajanlar[/b], sonraki evreye ilerlemede çok önemlidir."
 
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
 msgstr "Değişiklikler yok."
@@ -5422,7 +5465,13 @@ msgid "WIKI_BINDING_AGENT_PROCESSES"
 msgstr "İşlem yok."
 
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
-msgstr "Bir hücre, Bağlayıcı Ajanları evrimleştirmek için çekirdeğe sahip olmalıdır."
+msgstr ""
+"Bir hücre, [b]Bağlayıcı Ajanları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"\n"
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   En az [b]5[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] içermek.[/indent]\n"
+"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] dengesine sahip olmak.[/indent]"
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
@@ -5430,63 +5479,65 @@ msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu organeli eklemek, çok h�
 
 msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr ""
-"Koloni oluşturma yeteneği, özellikle fotosentetik organizmalar için, güçlüdür. Koloniye eklenen her bir hücre, genel ozmoregülasyon maliyetini düşürür. Bu, daha yüksek enerji verimliliği anlamına gelir. Bu ayrıca, fotosentez yapan organizmaların daha hızlı glukoz üreteceği ve yırtıcı kolonilerin yemek aralarında daha uzun süre dayanabileceği anlamına gelir.\n"
+"Koloni oluşturma yeteneği güçlüdür, özellikle [b]Fotosentez[/b] kullanan organizmalar için. Koloniye eklenen her bir hücre, genel ozmoregülasyon maliyetini düşürür. Bu, daha yüksek enerji verimliliği anlamına gelir. Bu yüzden fotosentetik türler, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] daha hızlı üretir ve yırtıcı koloniler yemek aralarında daha uzun süre hayatta kalır.\n"
 "\n"
-"Ancak bağ kurulacak müttefik hücreleri bulmak zor olabilir. Bu yüzden, koloni oluşumunu kolaylaştırmak amacıyla müttefikleri konumunuza çağırmak için bir [b]sinyal verici ajan[/b] kullanmak faydalı olabilir."
+"Ancak, bağ kurulacak müttefik hücreleri bulmak zor olabilir. O yüzden, müttefikleri konumunuza çağırmak için bir [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Verici Ajan[/url][/color][/b] kullanmak faydalı olabilir.\n"
+"\n"
+"Hücreler, bir koloni içindeyken bölünemez. Bu yüzden, düzenleyiciye girmeden önce bağınızı koparmalısınız.\n"
+"\n"
+"Bir koloni sonsuza kadar çoğalabilse de, sonraki evreye girmek için yalnızca 5 hücreye ihtiyacınız vardır. Gözünüz, ortam arayüzündeki düzenleyici butonunun üstündeki çok hücreli ol butonunun üzerinde olsun."
 
 msgid "WIKI_BINDING_AGENT_UPGRADES"
-msgstr "Geliştirmeler yok."
+msgstr "Geliştirme yok."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "Biyolüminesant Koful"
+msgstr "Etki yok. Henüz eklenmedi."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "Biyolüminesant Koful"
+msgstr "Işık oluşturur. Thrive'a henüz eklenmedi."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr "Biyolüminesant Koful"
+msgstr "Değişiklikler yok. Henüz eklenmedi."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
-msgstr "Biyolüminesant Koful"
+msgstr "İşlem yok. Henüz eklenmedi."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
-msgstr "Biyolüminesant Koful"
+msgstr "Hücrelere eklenemez. Henüz eklenmedi."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr "Biyolüminesant Koful"
+msgstr ""
+"Bazı bakteri ve tek hücreli canlılar dahil, birçok gerçek organizma biyolüminesandır. Bir organizmanın vücudunun içinde kimyasal olarak ışık üretme eyleminin; eşlerin dikkatini çekme, aynı türün üyeleri ile iletişim kurma ve diğer türlerin dikkatini çekme ya da onları geri püskürtme gibi birçok kullanımı vardır. Mikroskopik algdeki biyolüminesans, mavi-yeşil parıltı ile okyanusun büyük bir parçasını aydınlatan alg patlamalarını üretebilir.\n"
+"\n"
+"Şu anda, biyolüminesans için oyun içi bir işlev konusunda anlaşmaya varamadık. İyi bir kozmetik dokunuş olacağına ve oyuncuya karanlık ortamlarda yardımcı olacağına rağmen, biyolüminesansa dayalı faydalı bir oyun mekaniği belirlemek oldukça zor. Tür içi iletişim zaten [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Verici Ajan[/url][/color][/b] tarafından kullanılmakta ve kaçınılmaz bir [thrive:compound type=\"atp\"]ATP[/thrive:compound] maliyetine yol açacağı zaman başka kullanımlar da ayarlamak zor görünmektedir.\n"
+"\n"
+"Bu organel, [b]Biyolüminesan Kofulun[/b] veya daha özel bir organelin şeklini alabilir. Bunun gerçek bir dünya örneği, [color=#3796e1][url=https://en.wikipedia.org/wiki/Scintillon]scintillon'dur[/url][/color].\n"
+"\n"
+"Eğer [b]Biyolüminesan Kofulların[/b] dahil edilmesinde ısrarcıysanız veya oyun içi işlevler için değerli önerileriniz varsa, [color=#3796e1][url=https://suggestions.revolutionarygamesstudio.com/]öneriler panomuza[/url][/color] uğrayın."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
-msgstr "Biyolüminesant Koful"
+msgstr "Oyunda mevcut değil. Henüz eklenmedi."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr "Biyolüminesant Koful"
+msgstr "Geliştirme yok. Henüz eklenmedi."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
-msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "Etki yok."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_INTRO"
-msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "[thrive:compound type=\"hydrogenSulfide\"]Hidrojen Sülfürü[/thrive:compound], ortamdaki [thrive:compound type=\"carbondioxide\"]Karbondioksiti[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]Glukoza[/thrive:compound] dönüştürme işlemini yani [b]Kemosentez[/b] yapmak için kullanılan bir ökaryotik organeldir. Kemoplast, bu işlemi prokaryotik karşılığından daha etkili bir şekilde yapar: [color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Kemosentez Yapan Proteinler[/url][/color]."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
-msgstr "[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr ""
+"[b]Kemosentez[/b]: [thrive:compound type=\"hydrogenSulfide\"]Hidrojen Sülfür[/thrive:compound] + [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] → [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound]\n"
+"\n"
+"Bir glukoz üretme yöntemidir. [thrive:compound type=\"hydrogenSulfide\"]Hidrojen Sülfür[/thrive:compound] gerektirir ve reaksiyon hızı, ortamdaki [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır. Bu işlem, [color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Kemosentez Yapan Proteinlerdeki[/url][/color] işlemden daha üstündür."
 
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Bir hücre, [b]Kemoplastları[/b] evrimleştirmek için [color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color] sahip olmalıdır."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -5496,56 +5547,63 @@ msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemd
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
-msgstr "Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "Geliştirme yok."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
-msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için; kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
+msgstr ""
+"Oyuncu hücreye eklenen her [b]Kemoreseptör[/b] için:\n"
+"\n"
+"[indent]—   Eğer belirli bir bileşiği algılayacak şekilde ayarlandıysa; oyuncu o bileşiğe ait en yakın buluta işaret eden bir belirteci görür. Bulut, arama yarıçapı içinde olmalıdır ve minimum yoğunluktan daha fazla yoğunluğa sahip olmalıdır.[/indent]\n"
+"[indent]—   Eğer belirli bir türü algılayacak şekilde ayarlandıysa; oyuncu o türe ait en yakın hücreye işaret eden bir belirteci görür. Hücre, arama yarıçapı içinde olmalıdır.[/indent]\n"
+"\n"
+"Bu sırada, oyuncu olmayan hücrelerin kendi [b]Kemoreseptörlerinde[/b] belirtilen bileşiklere ve/veya türlere doğru hareket etmesi daha muhtemeldir."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_INTRO"
-msgstr "Kemoreseptör"
+msgstr "Hücrenin ortamdaki bileşikleri algılama yeteneğini temsil eden bir dış organeldir. [b]Kemoreseptörler[/b], belirli bir bileşiği ya da belirli bir türün hücrelerini algılamak için özelleştirilebilir."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
-msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için; kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
+msgstr "Aranacak bileşiği ya da, alternatif olarak, algılanacak türü seçmek için [b]Kemoreseptörde[/b] değişiklik yapın. Arama yarıçapını, çizgi rengini ve, eğer bileşikler arıyorsanız, algılanacak minimum bileşik yoğunluğunu ayarlayın."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_PROCESSES"
-msgstr "Kemoreseptör, bileşikleri daha uzaktan algılamayı sağlar. Bu organeli yerleştirdikten sonra, algılanacak bileşik türünü ve bu bileşiğe işaret eden çizginin rengini seçmek için değişiklik yapın."
+msgstr "İşlem yok."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
-msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için; kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
+msgstr "Gereksinimler yok"
 
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
 msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için; kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
-msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için; kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
+msgstr ""
+"[b]Kemoreseptörler[/b], oyunun başında [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] bulmada değerli bir yöntemdir. Oyunun sonlarında ise, [thrive:compound type=\"phosphates\"]Fosfat[/thrive:compound] bulmada en kullanışlı organellerdir. Çünkü bu bileşik, hücrelerin kendi kendilerine üretemedikleri tek bileşiktir.\n"
+"\n"
+"Arama yarıçapını maksimuma ve minimum yoğunluğu ise aralığın ortasındaki bir yere ayarlamanızı tavsiye ediyoruz. Bu şekilde, bulacağınız bulutlar daha kıymetli olacaktır ve onları toplamak enerji yatırımınıza değer olacaktır.\n"
+"\n"
+"Diğer hücrelerin [b]Kemoreseptörlerinin[/b] farkında olun (hem kendi türünüzün hem de diğer türlerin). [b]Kemoreseptörlere[/b] sahip oyuncu olmayan hücreler, kendi hedef bileşiklerini ararlar. Bu hücrelerin ortamda aşırı fazla olması, o hedef bileşiğin aniden kıtlaşmasına neden olabilir. Eğer kendi türünüz [b]Kemoreseptörler[/b] geliştirir ve popülasyonda patlama yaşarsa, arama kolaylığı ile ortamdaki bir bileşiğin yok olması arasında bir denge sağlamanız gerekebilir."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
-msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için; kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
+msgstr "Geliştirme yok."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
-msgstr "Özel etkiler yok."
+msgstr "Özel etki yok."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
-msgstr "Kemosentez yapan proteinler, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [b]hidrojen sülfür[/b], [b]karbondioksit[/b] gazı ve suyu [b]glukoza[/b] dönüştüren, sitoplazmada bulunan küçük proteinler kümesidir. Üretilen [b]glukoz[/b] oranı, [b]karbondioksit[/b] konsantrasyonu ile doğru orantılıdır. Kemosentez yapan proteinler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "[b]Bakteri Kemosentezi[/b] adı verilen işlemde, [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]Glukoza[/thrive:compound] dönüştüren [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmadaki[/url][/color][/b] küçük proteinler kümesidir. Üretilen [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
 msgstr ""
-"[b]Bakteri Kemosentezi:[/b] [b]Hidrojen Sülfür + Karbondioksit[/b] → [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound]\n"
+"[b]Bakteri Kemosentezi:[/b] [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound] + [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] → [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound]\n"
 "\n"
-"[b]Glikoliz:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]"
+"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:compound], [thrive:compound type=\"glucose\"]Glukoza[/thrive:compound] dönüştürür. Ortamdaki [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır.\n"
+"\n"
+"[b]Glikoliz:[/b] [b][thrive:compound type=\"glucose\"]Glukoz[/thrive:compound][/b] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"\n"
+"[b]Kemosentez Yapan Proteinler[/b], [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmada[/url][/color][/b] asılı kaldığından, bu organeller de biraz [b]Glikoliz[/b] yapabilir."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "Gereksinimler yok."
@@ -5556,14 +5614,14 @@ msgstr "Kemosentez yapan proteinler, [b]hidrojen sülfür kemosentezi[/b] adı v
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr ""
-"Kemosentez yapan proteinler ile hücreler, volkanik bacalardaki en bol ve güvenilir enerji kaynaklarından birine erişir: [b]Hidrojen sülfür[/b]. Depolanabilir bir bileşik olan [b]hidrojen sülfür[/b], sürekli olarak [b]glukoza[/b] dönüştürüldüğünden hücre içinde fazladan stoklanabilir. Böylece, bir seferde daha fazla enerji deposu tutulmasını sağlar.\n"
+"[b]Kemosentez Yapan Proteinler[/b] ile hücreler, volkanik bacalardaki en bol ve güvenilir enerji kaynaklarından birine erişir: [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound]. Bu bileşik depolanabilir ve sürekli olarak [thrive:compound type=\"glucose\"]Glukoza[/thrive:compound] dönüştürülebilir. Böylece, hücrenin tek seferde daha fazla enerji deposu tutmasını sağlar.\n"
 "\n"
-"Etkili kemosentez yapan bir bakteri oluşturmak için hücre içinde net bir [b]glukoz[/b] artışı sağlamaya, bunun için de yeterli proteine ihtiyacınız vardır. Başlamak için en iyi yol, ilk kuşakta iki kemosentez yapan protein yerleştirmek, ardından sonraki kuşakta bir [b]metabolozom[/b] ve güçlendirmeyi istediğiniz herhangi bir parçayı yerleştirmektir. Buradan sonra genellikle güvenli olan işlem, eklenen her iki parça başına yalnızca bir kemosentez yapan protein daha yerleştirmektir.\n"
+"Etkili kemosentez yapan bir bakteri oluşturmak için hücre içinde net bir [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] artışı sağlamaya, bunun için de sadece yeterli [b]Kemosentez Yapan Proteinlere[/b] ihtiyacınız vardır. Başlamak için en iyi yol, ilk kuşakta iki adet [b]Kemosentez Yapan Proteinler[/b] yerleştirmek, ardından sonraki kuşakta [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] ve güçlendirmeyi istediğiniz herhangi bir parçayı yerleştirmektir. Buradan sonra genellikle güvenli olan eylem, eklenen her iki parça başına yalnızca bir altıgenlik [b]Kemosentez Yapan Proteinler[/b] daha yerleştirmektir.\n"
 "\n"
-"Ancak dikkatli olun. Çünkü [i]hidrojen sülfür[/i], sadece birkaç biyomda bulunur. Kendinizi hidrojen sülfürü birincil enerji kaynağı olarak kullanmak üzere evrimleştirirseniz, bu sizin ihtiyaç duyduğunuzda başka ortamlara etkili bir şekilde yolculuk yapmanızı engelleyecektir."
+"Ancak dikkatli olun. Çünkü [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound], yalnızca birkaç biyomda bulunur. Kendinizi bu bileşiği birincil enerji kaynağı olarak kullanmak üzere evrimleştirirseniz, bu sizin başka ortamlara etkili bir şekilde yolculuk yapmanızı engelleyecektir."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
-msgstr "Geliştirmeler yok."
+msgstr "Geliştirme yok."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
@@ -5622,13 +5680,13 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
-msgstr "Herhangi bir organel, ek bir mutasyon puanına mal olmadan sitoplazmanın yerine geçebilir (organelin kendi maliyeti buna dahil değildir)."
+msgstr "Herhangi bir organel, ek bir mutasyon puanına mal olmadan [b]Sitoplazmanın[/b] yerine geçebilir (organelin kendi maliyeti buna dahil değildir)."
 
 msgid "WIKI_CYTOPLASM_INTRO"
 msgstr ""
-"Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur.\n"
+"Bir hücrenin yapışkan iç kısmı. [b]Sitoplazma[/b], hücrenin içini dolduran iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur.\n"
 "\n"
-"Yaptığı işlevlerden biri [b]glikolizdir[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümü. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
+"Yaptığı işlevlerden biri [b]Sitoplazma Glikolizi[/b], yani [thrive:compound type=\"glucose\"]Glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümüdür. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
 
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
 msgstr "Değişiklikler yok."
@@ -5637,19 +5695,29 @@ msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr ""
 "[b]Sitoplazma Glikolizi[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
 "\n"
-"Sitoplazma glikolizi, oyunda mevcut olan ilk enerji üretim yöntemidir. Diğer organellerdeki glikolizden daha az verimlidir (örn. metabolozomlar). Bu yöntem, yalnızca düzenli bir glukoz akışı gerektirir ve çevresel faktörlere göre hızı değişmez."
+"Oyunda mevcut olan ilk enerji üretim yöntemidir. Diğer organellerdeki [b]Glikolizden[/b] daha az verimlidir (örn. [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b]). Bu yöntem, yalnızca düzenli bir [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] girişi gerektirir ve çevresel faktörlere göre hızı değişmez."
 
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
 msgstr "Gereksinimler yok."
 
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"Teknik olarak konuşmak gerekirse, [b]Sitoplazma[/b] bir organel değildir; çekirdek ve hücre zarı haricinde, bir hücrenin bütün bileşenlerinin kombinasyonudur. Thrive'da, [b]Sitoplazmayı[/b] kendi başına bir organel yaptık. Böylece, hücrenin şekline ve büyüklüğüne katkı sağlayan bir boş alan olarak görev görüyor. Her iki durumda da [b]Sitoplazma[/b] hücre zarının dolgusu, hücrenin diğer bileşenlerinin yüzdüğü bir arkaplan olarak düşünülebilir.\n"
+"\n"
+"[b]Sitoplazmanın[/b] ana bileşeni sitozoldür. Sitozol, besinleri hücre boyunca dağıtan sıvılar (kabaca, makroskopik organizmalardaki kana benzer) ve hücre yapısını koruyan hücre iskeletini içerir. Ozmoregülasyonda ve kimyasal sinyallerle iç haberleşmede yer alan işlemler gibi birçok metabolik işlem sitozolde meydana gelir.\n"
+"\n"
+"Bu organelin [color=#3796e1][url=https://en.wikipedia.org/wiki/Cytoplasm]Vikipedi sayfasından[/url][/color] daha fazlasını okuyun."
 
 msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
+"Eğer ortamdaki bulutlardan [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] toplamaya devam ederseniz, [b]Sitoplazmanın[/b] her bir altıgen alanı net pozitif enerji ([thrive:compound type=\"atp\"]ATP[/thrive:compound] şeklinde) üretir. O yüzden, çoğu ortamda kolay enerji oluşumu için, bu organel güvenilir bir seçimdir. Hatta başlangıç hücresi (SEOA), bir altıgenlik [b]Sitoplazmadır[/b].\n"
+"\n"
+"Ama daha etkili [thrive:compound type=\"atp\"]ATP[/thrive:compound] oluşturma yöntemleri mevcuttur. Oyun ilerledikçe, ortam koşullarına bağlı olarak, daha özelleşmiş organellere yatırım yapmanızı tavsiye ediyoruz. Çünkü [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] konsantrasyonu zamanla azalıyor. Örneğin; eğer mevcut arazi bol miktarda [thrive:compound type=\"oxygen\"]Oksijene[/thrive:compound] sahipse, [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] etkilidir. [b][url=thriveopedia:thermosynthase]Termosentaz[/url][/color][/b] ise yüksek [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] arazilerde güçlüdür.\n"
+"\n"
+"Altıgen [b]Sitoplazma[/b] alanlar eklemek, ayrıca, bir hücrenin büyüklüğünü arttırmak için en etkili yollardan biridir. Artan büyüklük, hız ve manevra yeteneğinden ödün vererek, size daha fazla sağlık verir ve daha küçük hücrelerin sizi yutmasını önler."
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr "Geliştirmeler yok."
+msgstr "Geliştirme yok."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -5702,30 +5770,39 @@ msgstr "Geliştirmeler"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
-"[b]Kitinaz[/b] veya [b]selülaza[/b] sahip bir lizozom almak, hücrenin sırasıyla kitin veya selüloza sahip hücre zarı olan hücreleri sindirmesini sağlar. Eğer bir hücrede kitinaz veya selülaz ile donatılmış bir lizozom yoksa, hücre bu hücre zarına sahip diğer hücreleri sindiremez.\n"
+"[b]Kitinaz[/b] veya [b]Selülaza[/b] sahip bir [b]Lizozom[/b] almak, bir hücrenin sırasıyla [b]Kitin[/b] veya [b]Selüloza[/b] sahip hücre zarı olan hücreleri sindirmesini sağlar. Sindirilemeyen hücreler (bir hücrenin sindirmek için gerekli enzime sahip olmadığı hücreler), hemen dışarı atılır.\n"
 "\n"
-"Genel istatistiklerin yanı sıra, her lizozom bunlara da katkıda bulunur:\n"
+"Genel istatistiklerin yanı sıra, her [b]Lizozom[/b] bunlara da katkıda bulunur:\n"
 "\n"
 "[indent]—   [b]+0.05[/b] sindirim hızı. Yutulan madde daha çabuk sindirilir.[/indent]\n"
 "[indent]—   Seçili enzim için [b]+%4.5[/b] sindirim verimliliği. Enzimin hedeflediği hücre zarına sahip olan yutulan hücreler, sindirildiklerinde daha fazla bileşik verirler. [/indent]"
 
 msgid "WIKI_LYSOSOME_INTRO"
 msgstr ""
-"Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. Lizozom başına aynı anda yalnızca bir enzim kullanılabilir.\n"
+"Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. [b]Lizozom[/b] başına aynı anda yalnızca bir enzim kullanılabilir.\n"
 "\n"
-"Lizozom, çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+"[b]Lizozom[/b], çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. [b]Lizozomlar[/b], hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve otofaji adı verilen bir işlemle yan ürünleri temizler."
 
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
 msgstr ""
-"İçerdiği enzimi seçmek için lizozomu modifiye edin. Varsayılan olarak, lizozomlar tek ve çift katlı hücre zarlarını hedefleyen [b]lipaz[/b] enzimini içerir.\n"
+"İçerdiği enzimi seçmek için [b]Lizozomda[/b] değişiklik yapın. Varsayılan olarak bu organel, [b]Normal Hücre Zarlarını[/b] ve [b]Çift Katlı Hücre Zarlarını[/b] hedefleyen [b]Lipaz[/b] enzimini içerir.\n"
 "\n"
-"Bir lizozom, kitini olan bir hücre zarını hedefleyen [b]kitinaz[/b] veya selülozu olan bir hücre zarını hedefleyen [b]selülaz[/b] içerebilir."
+"Bir [b]Lizozom[/b] bunun yerine, aşağıdaki enzimlerden birini içerebilir:\n"
+"\n"
+"[indent]—   [b]Kitin Hücre Zarını[/b] hedefleyen [b]Kitinaz[/b][/indent]\n"
+"[indent]—   [b]Selüloz Hücre Zarını[/b] hedefleyen [b]Selülaz[/b][/indent]"
 
 msgid "WIKI_LYSOSOME_PROCESSES"
-msgstr "İşlemler yok."
+msgstr "İşlem yok."
 
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr "Bir hücre, lizozomları evrimleştirmek için çekirdeğe sahip olmalıdır."
+msgstr ""
+"Bir hücre, [b]Lizozomları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"\n"
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   Oyun sırasında şu ana kadar en az [b]20[/b] hücre yutmuş olmak.[/indent]\n"
+"[indent]—   Oyun sırasında şu ana kadar en az [b]10[/b] hücre sindirmiş olmak.[/indent]"
 
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -5734,56 +5811,64 @@ msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr "Geliştirmeler yok."
+msgstr "Geliştirme yok."
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "Etkiler yok."
+msgstr "Etki yok."
 
 msgid "WIKI_METABOLOSOMES_INTRO"
-msgstr "Metabolozomlar, [b]Oksijenli Solunumun[/b] bir biçimi olan ve <a href=\"/wiki/Mitochondrion\" title=\"Mitochondrion\">Mitokondridekinden</a> daha verimsiz olan [b]Protein Solunumunu[/b] gerçekleştirir. Bu, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanılarak [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesi işlemidir."
+msgstr "[b]Metabolozomlar[/b], [b]Oksijenli Solunumun[/b] bir biçimi olan ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondridekinden[/url][/color][/b] aşağı olan [b]Protein Solunumunu[/b] gerçekleştirir. Bu işlem, [thrive:compound type=\"glucose\"]Glukozun[/thrive:compound] [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] kullanılarak [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesidir."
 
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
-"[b]Protein Solunumu:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound] @ [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound]\n"
+"[b]Protein Solunumu:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] + [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
 "\n"
-"Protein Solunumu, Metabolozomlar tarafından gerçekleştirilen bir enerji üretim yöntemidir. Bu işlemin gerçekleşmesi için glukoz girişi gereklidir ve işlemin hızı çevresel Oksijen miktarı ile doğru orantılıdır."
+"[b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmadan[/url][/color][/b] üstün ama [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriden[/url][/color][/b] aşağı bir enerji üretim yöntemidir. Düzenli bir [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] girişi gerektirir. Ortamdaki [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
 msgstr "Gereksinimler yok"
 
 msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"Ökaryotlardan farklı olarak, prokaryot organellerinin zarı yoktur. Bunun yerine, bakteri gibi prokaryotlar proteinlerden yapılmış bölümler oluşturur. Metabolozom, resmi olarak bakteri mikro kompartmanı (BMC) olarak adlandırılan bölümün bir örneğidir. BMC'ler, virüs kapsidine benzeyen 100-200 nm büyüklüğünde çok yüzeyli bir protein kabuğundan oluşur. Kabuğu oluşturan proteinler, tipik olarak farklı bileşiklerin (substratlar ve ürünler) organele girip çıkmasını sağlayan (yarı geçirgen) gözeneklere sahiptirler. Bu proteinler, belirli metabolik işlemlere dahil olan enzimleri ve proteinleri tek bir noktada yoğunlaştırarak onların başarımını sağlarlar. Protein kabuğu aynı zamanda fiziksel bir bariyer görevi görerek toksik veya kararsız ara bileşikler oluşturan metabolik reaksiyonların gerçekleşmesine olanak tanır.\n"
+"Ökaryotlardan farklı olarak, prokaryot organellerinin zarı yoktur. Bunun yerine, bakteri gibi prokaryotlar proteinlerden yapılmış bölümler oluşturur. [b]Metabolozom[/b], resmi olarak Bakteri Mikro Kompartmanı (BMC) olarak adlandırılan bölümün bir örneğidir. BMC'ler, virüs kapsidine benzeyen, 100-200 nm büyüklüğünde çok yüzeyli bir protein kabuğu içerir. Kabuğu oluşturan proteinler, tipik olarak farklı bileşiklerin (substratlar ve ürünler) organele girip çıkmasını sağlayan (yarı geçirgen) gözeneklere sahiptirler. Bu proteinler, belirli metabolik işlemlere dahil olan enzimleri ve proteinleri tek bir noktada yoğunlaştırarak onların başarımını sağlarlar. Protein kabuğu aynı zamanda fiziksel bir bariyer görevi görerek toksik veya kararsız ara bileşikler oluşturan metabolik reaksiyonların gerçekleşmesine olanak tanır.\n"
 "\n"
-"Metabolozomlar, katalitik bir BMC türüdür ve gliserol ve amino asitler gibi farklı karbon kaynaklarının parçalanmasında rol oynarlar. Glukozun parçalanma işleminin metabolozomlarda gerçekleştiğine dair net bir kanıt yoktur. Ancak, bunu yapabildiğini varsaymak çok da mantıksız değildir."
+"[b]Metabolozomlar[/b], katalitik bir BMC türüdür ve gliserol ve amino asitler gibi farklı karbon kaynaklarının parçalanmasında rol oynarlar. [thrive:compound type=\"glucose\"]Glukozun[/thrive:compound] parçalanma işleminin metabolozomlarda gerçekleştiğine dair net bir kanıt yoktur. Ancak, bunu yapabildiğini varsaymak çok da mantıksız değildir. Enerji için asıl glukoz parçalama işlemi hem prokaryot hem de ökaryotlarda birkaç adımda gerçekleşir. Tek fark, bazı enzimlerin belirli bir yerde olması ve organize olmasıdır.\n"
+"\n"
+"Bu organelin [url=https://en.wikipedia.org/wiki/Bacterial_microcompartment#Metabolosomes%3A_aldehyde_oxidation]Vikipedi sayfasından[/url][/color] daha fazlasını okuyun."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. Sitoplazmada gerçekleşen [b]Oksijenli Solunuma[/b] kıyasla, metabolozomlar [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çok daha yüksek hızda dönüştürebilir. Ancak metabolozomlar çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
 msgid "WIKI_METABOLOSOMES_UPGRADES"
-msgstr "Geliştirmeler yok."
+msgstr "Geliştirme yok."
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "Etkiler yok."
+msgstr "Etki yok."
 
 msgid "WIKI_MITOCHONDRION_INTRO"
-msgstr "Hücrenin güç merkezidir. Mitokondri, [thrive:compound type=\"oxygen\"]oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. Mitokondri bu işlevi <a href=\"/wiki/Metabolosomes\" title=\"Metabolosomes\">Metabolozom</a> gibi organellerden daha verimli bir şekilde gerçekleştirir."
+msgstr "Hücrenin güç merkezidir. [b]Mitokondri[/b], [thrive:compound type=\"oxygen\"]Oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]Glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. [b]Mitokondri[/b] bu işlevi [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi organellerden daha verimli bir şekilde gerçekleştirir."
 
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
-"[b]Oksijenli Solunum:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound] @ [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound]\n"
+"[b]Oksijenli Solunum:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] + [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
 "\n"
-"Oksijenli solunum, ana enerji üretim yöntemlerinden biridir. Bu işlem, düzenli bir glukoz girişi gerektirir. Ancak, ortamdaki oksijen miktarıyla doğru orantılıdır."
+"[color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlardakinden[/url][/color] daha üstün olan ana enerji üretim yöntemlerinden biridir. Düzenli bir [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] girişi gerektirir. Ortamdaki [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
-msgstr "Bir hücre, Mitokondriyi evrimleştirmek için <a href=\"/wiki/Nucleus\" title=\"Nucleus\">Çekirdeğe</a> sahip olmalıdır."
+msgstr ""
+"Bir hücre, [b]Mitokondriyi[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"\n"
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   Üst üste en az [b]7[/b] kuşak boyunca [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] içermek.[/indent]\n"
+"[indent]—   En az [b]+20[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek.[/indent]"
 
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
@@ -5794,7 +5879,7 @@ msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
-msgstr "Geliştirmeler yok."
+msgstr "Geliştirme yok."
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -5920,25 +6005,33 @@ msgstr ""
 "\n"
 "Daha fazla şey öğrenmek için aşağıdaki listeden bir organel seçin."
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
-msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
+msgstr ""
+"Eğer bir hücre en az bir [b]Oksitoksizoma[/b] sahipse, toksin ateşleyebilir. Bunu yapmak, saklanan [thrive:compound type=\"oxytoxy\"]OksiToksi NT'leri[/thrive:compound] tüketir. Bu mermiler, diğer hücre türlerine hasar verir ama toksini ateşleyen türün üyelerine zarar vermez.\n"
+"\n"
+"Hasar, ateş edilen [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı ile doğru orantılıdır."
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_INTRO"
-msgstr "Oksitoksizom"
+msgstr "Toksin mermi olarak ateşlenebilen bir ajan olan [thrive:compound type=\"oxytoxy\"]OksiToksi NT'yi[/thrive:compound] üreten değiştirilmiş [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomdur[/url][/color][/b]. Bu organel, [b][color=#3796e1][url=thriveopedia:oxytoxy]Toksin Kofulunun[/url][/color][/b] aşağı bir çeşididir."
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
-msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
+msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
-msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
+msgstr ""
+"[b]OksiToksi Sentezi[/b]: [thrive:compound type=\"atp\"]ATP[/thrive:compound] + [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] → [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound]\n"
+"\n"
+"[b][color=#3796e1][url=thriveopedia:oxytoxy]Toksin Kofullarından[/url][/color][/b] çok daha verimsiz bir şekilde [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] üretir. Ortamdaki [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] miktarı ile doğru orantılıdır.\n"
+"\n"
+"<br>[b]Glikoliz[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"\n"
+"Birçok prokaryotik organel gibi; [b]Oksitoksizomu[/b] çevreleyen [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazma[/url][/color][/b], [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type=\"glucose\"]Glukoza[/thrive:compound] dönüştüren [b]Glikolizin[/b] daha verimsiz bir biçimini yerine getirir."
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
-msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
+msgstr ""
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   Oyun sırasında şu ana kadar en az [b]5[/b] hücre yutmuş olmak.[/indent]"
 
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -5947,9 +6040,8 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
-msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
+msgstr "Geliştirme yok."
 
 msgid "WIKI_PAGE_AXON"
 msgstr "Akson"
@@ -5958,7 +6050,7 @@ msgid "WIKI_PAGE_BINDING_AGENT"
 msgstr "Bağlayıcı Ajan"
 
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
-msgstr "Biyolüminesant Koful"
+msgstr "Biyolüminesan Koful"
 
 msgid "WIKI_PAGE_CHEMOPLAST"
 msgstr "Kemoplast"
@@ -6062,32 +6154,41 @@ msgstr ""
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplazma"
+msgstr "Etki yok."
 
-#, fuzzy
 msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplazma"
+msgstr ""
+"Oyuncu olmayan türler için depoyu arttırmak amacıyla tasarlanmış, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] önemli ölçüde gelişmiş bir biçimidir. Oyuncu hücrelere eklenemez ama oyuncunun ortamdan fosilleştirdiği hücrelerde mevcut olabilir.\n"
+"\n"
+"Görsel olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] benzer ve bu organelin birçok özelliğini alır."
 
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür."
+msgstr ""
+"[b]Glikoliz[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"\n"
+"Farklı giren/ürün oranları ile [b]Sitoplazma Glikolizinin[/b] gelişmiş bir biçimidir."
 
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Oyuncu [b]Protoplazmayı[/b] evrimleştiremez. Oyuncu olmayan türler sınırlama olmadan yapabilir."
 
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"Bazı yerlerde [b]Protoplazma[/b], [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] başka bir adıdır. Ancak, çekirdek ve çevreleyen yapılar dahil, bir hücrenin tüm içeriği olarak da ifade edilebilir.\n"
+"\n"
+"Bu organelin [color=#3796e1][url=https://en.wikipedia.org/wiki/Protoplasm]Vikipedi sayfasından[/url][/color] daha fazlasını okuyun."
 
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
+"Esas oyunda [b]Protoplazma[/b] kullanmak mümkün değildir. Oyuncu bu organeli yalnızca; eğer serbest yapım modunda bir önceki oyunda fossilleştirdiği oyuncu olmayan bir tür ile oynuyorsa, kullanabilir.\n"
+"\n"
+"Oyunda görüldüğünde, [b]Protoplazma[/b] stratejik olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] eşdeğerdir. Ancak deposu fazla ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi yavaştır. [b]Protoplazmaya[/b] sahip hücreler genellikle bileşik bulutu bulmadan veya bir besin tüketmeden daha uzun süre hayatta kalabilir."
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Geliştirme yok."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6100,24 +6201,23 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr "Thrive Oyun İçi Vikisi"
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
-msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+msgstr "Etki yok."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
-msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+msgstr "[b]Demir Kemolitoototrofisi[/b] işlemi ile [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"iron\"]Demire[/thrive:compound] dönüştürür. Bu reaksiyonun hızı, ortamdaki [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] miktarı ile doğru orantılıdır."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
-msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
-msgstr "[thrive:compound type=\"iron\"]Demiri[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr ""
+"[b]Demir Kemolitoototrofisi[/b]: [thrive:compound type=\"iron\"]Demir[/thrive:compound] + [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"\n"
+"[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] atlayan bir enerji üretim yöntemidir. [thrive:compound type=\"iron\"]Demir[/thrive:compound] tüketir ve ortamdaki [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] miktarı ile doğru orantılıdır."
 
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Gereksinimler yok."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6127,9 +6227,8 @@ msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_UPGRADES"
-msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+msgstr "Geliştirme yok."
 
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
@@ -6163,33 +6262,41 @@ msgstr "Sinyal Verici Ajan"
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Sinyal Verici Ajan"
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
-msgstr "Birçok organizma, balçığımsı polisakkarit maddeler üretir. Müsilaj da bu polisakkaritlerden biridir. Pek çok tür, hareket için balçığı kullanırken belirli bakteri türleri yüksek basınçta bu maddeleri arkalarından salar. Bu fışkırtıcılar, roket motorları gibi davranır ve hücreleri inanılmaz hızda ileri doğru iter. Balçık ayrıca, yırtıcıları engellemek için kullanılır ve sadece fışkırtıcı kullanan organizmaların geçebildiği bir maddenin içine onları hapseder."
+msgstr ""
+"Hücrenin kendini ileri doğru itmesi için [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] salma yeteneğinin kilidini açar. [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] salmak, kısa süreliğine büyük miktarda hız sağlar. Mevcut [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] miktarına bağlı olarak, dinlenip hareket etme eylemi daha uzun sürdürülebilir.\n"
+"\n"
+"[b]Balçık Fışkırtıcıları[/b] olmayan ve ortaya çıkan [thrive:compound type=\"mucilage\"]Müsilajın[/thrive:compound] olduğu alana giren herhangi bir hücre yavaşlar."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
-msgstr "Birçok organizma, balçığımsı polisakkarit maddeler üretir. Müsilaj da bu polisakkaritlerden biridir. Pek çok tür, hareket için balçığı kullanırken belirli bakteri türleri yüksek basınçta bu maddeleri arkalarından salar. Bu fışkırtıcılar, roket motorları gibi davranır ve hücreleri inanılmaz hızda ileri doğru iter. Balçık ayrıca, yırtıcıları engellemek için kullanılır ve sadece fışkırtıcı kullanan organizmaların geçebildiği bir maddenin içine onları hapseder."
+msgstr ""
+"[thrive:compound type=\"glucose\"]Glukozdan[/thrive:compound], [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] adı verilen bir yapışkan polimer üretir. Hücrenin kendini ileri doğru itmesi için, salınan maddenin alanına giren canlıları yavaşlatan, söz konusu [thrive:compound type=\"glucose\"]Müsilajı[/thrive:compound] dışarı atmasını sağlar.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:flagellum]Kamçının[/url][/color] aksine, yırtıcılardan kaçmak veya av yakalayabilmek için yararlı olacak ani bir hız artışı sağlar."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
-msgstr "Birçok organizma, balçığımsı polisakkarit maddeler üretir. Müsilaj da bu polisakkaritlerden biridir. Pek çok tür, hareket için balçığı kullanırken belirli bakteri türleri yüksek basınçta bu maddeleri arkalarından salar. Bu fışkırtıcılar, roket motorları gibi davranır ve hücreleri inanılmaz hızda ileri doğru iter. Balçık ayrıca, yırtıcıları engellemek için kullanılır ve sadece fışkırtıcı kullanan organizmaların geçebildiği bir maddenin içine onları hapseder."
+msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
-msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"mucilage\"]müsilaja[/thrive:compound] çevirir. Depolanan [thrive:compound type=\"mucilage\"]müsilajı[/thrive:compound] salmak için [thrive:input]g_secrete_slime[/thrive:input] tuşuna basın. Müsilaj, salgılandığı hücrenin hızını arttırırken diğer yırtıcılarınkini azaltır."
+msgstr ""
+"[b]Müsilaj Sentezi[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound]\n"
+"\n"
+"İleri doğru gitmek için salınan [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] üretir."
 
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Gereksinimler yok."
 
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
+"Anlık bir hız artışı yeteneği kazanmak, av yakalamaya çalışırken veya yırtıcılardan kaçarken kullanışlıdır, özellikle de salınan [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound], gelmekte olan yırtıcıları yavaşlatabildiği için.\n"
+"\n"
+"Şunu da belirtmek gerekir ki, bu organel, [thrive:compound type=\"atp\"]ATP[/thrive:compound] yerine [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] kullanır. O yüzden, bu organeli eklerken, hücrenizin [b]bileşik dengesini[/b] incelediğinizden emin olun."
 
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Geliştirme yok."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6255,22 +6362,32 @@ msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "Özel etkiler yok."
+msgstr "Özel etki yok."
 
 msgid "WIKI_THYLAKOIDS_INTRO"
-msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [b]karbondioksit[/b] gazından [b]glukoz[/b] üretmek için [b]ışık[/b] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [b]glukoz[/b] oranı,[b]karbondioksit[/b] konsantrasyonu ve [b]ışık[/b] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr ""
+"Işığa hassas yeşil pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]Kromatofor Fotosentezi[/b] adı verilen bir işlemde, su ve [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]Işık[/thrive:compound] enerjisini kullanır. Üretilen [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] oranı, [thrive:compound type=\"sunlight\"]Işığın[/thrive:compound] şiddeti ile doğru orantılı olduğundan, [b]Tilakoidler[/b] yalnızca yüzeye yakın arazilerde etkilidir.\n"
+"\n"
+"[b]Fotosentezin[/b] en yüksek düzeyini yerine getiren [b][color=#3796e1][url=thriveopedia:chloroplast]Kloroplastın[/url][/color][/b] prokaryotik bir formudur."
 
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
-msgstr "Değişiklikler yok"
+msgstr "Değişiklikler yok."
 
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
-"[b]Kromatofor Fotosentezi:[/b] [b]Güneş Işığı + Karbondioksit[/b] → [b]Glukoz + Oksijen[/b]\n"
+"[b]Kromatofor Fotosentezi:[/b] [thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound] + [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] → [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] + [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound]\n"
 "\n"
-"[b]Glikoliz:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]"
+"Artık [thrive:compound type=\"sunlight\"]Güneş Işığını[/thrive:compound] yiyebilirsiniz. Güneşi tadın. Not: [b]Tilakoidler[/b], karanlık arazilerde [b]Kromatofor Sentezini[/b] yerine getiremez ve bir hücre yüzeye ne kadar yaklaşırsa, bu işlem o kadar etkili olur.\n"
+"\n"
+"[b]Glikoliz:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"\n"
+"[b]Tilakoidler[/b] direkt [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmada[/url][/color][/b] asılı kaldığından, etraflarında bulunan sıvı [b]Glikoliz[/b] yapabilir."
 
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr "Gereksinimler yok"
+msgstr ""
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   En az [b]%20[/b] [thrive:compound type=\"sunlight\"]Güneş Işığına[/thrive:compound] sahip bir arazide olmak.[/indent]"
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6278,16 +6395,14 @@ msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesi
 
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr ""
-"Tilakoidler, glukoz üretmek için ışığa (lüks ile ölçülür) ihtiyaç duyar. Bu nedenle, yalnızca epipelajik veya gelgit havuzları gibi yüzey seviyesindeki arazilerde kullanılabilirler. Bu yüzden, oyuncunun fotosenteze başlamadan önce geçerli bir arazide yaşadığından emin olması çok önemlidir. Bir kez kurulduğunda; etkili biçimde fotosentez yapan bir hücre oluşturmak, hücrede net pozitif bir glukoz üretimi olduğunu ve bunu sürdürebilecek kadar enerji olduğunu garantilemek kadar basittir. Hayatta kalmak için yeterince glukoz üretemeyeceğinizi düşünüyorsanız, endişelenmeyin! Bir hücrenin enerji tüketiminin çoğu hareketten kaynaklanır ki bu da yiyeceğini bulmak zorunda olmayan bir hücre için tamamen isteğe bağlıdır. Bu nedenle, hareketsiz kalmak net glukoz üretimini önemli ölçüde arttırabilir.\n"
+"Yüksek seviyede [thrive:compound type=\"sunlight\"]Güneş Işığına[/thrive:compound] sahip arazilerde, tek altıgenlik [b]Tilakoidler[/b] kendi kendine yeten bir enerji fabrikasıdır. [b]Kromatofor Fotosentezi[/b] ve ardından [b]Glikoliz[/b] yoluyla, bu organel özünde bedava enerji üretir.\n"
 "\n"
-"Gündüz/gece döngüsünün varlığında, etkili bir fotosentetik hücre oluşturmak zor hale gelebilir. Maksimum glukoz üretimini garantiye almak için karşılayabileceğiniz kadar fotosentez yapan parça ve de uzun gecelerde daha fazla glukoz depolamanızı sağlayacak olan uygun miktarda depo geliştirici parça yerleştirin. Eğer glukoz deponuz düşükse, enerji tüketimini daha da azaltmak için hareketsiz kalmanız veya karmaşık bir organizyonunuz varsa, av peşinde koşmanız tavsiye edilir.\n"
+"Ancak bu organel, yalnızca epipelajik ya da gelgit havuzları gibi yüzey seviyesindeki arazilerde elverişlidir. Bu enerji üretim yöntemine geçmeden önce, şu anda doğru bir arazide yaşadığınızdan emin olmanız hayati bir önem taşımaktadır. Bir kez kurulduktan sonra; etkili bir şekilde fotosentez yapan bir hücre oluşturmak, hücrede net bir pozitif [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretimi olduğunu ve bunu sürdürebilecek kadar enerji olduğunu garantilemek kadar basittir. Dahası, bir hücrenin enerji tüketiminin çoğu hareketten kaynaklanır. Bu nedenle hareketsiz kalmak, net [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretimini önemli ölçüde arttırabilir.\n"
 "\n"
-"Gece bastırdığında, artık hiçbir glukoz üretemediğiniz için korkutucu miktarda enerji tüketmeye başlamanız muhtemeldir. Ama korkmayın! Enerji tasarrufu yapmak ve sabaha kadar dayanmak için hareketsiz kalın.\n"
-"\n"
-"Lüks seviyelerinin yükselmeye başladığı gündüz vaktinde çoğalmanız şiddetle tavsiye edilir. Çünkü çoğaldıktan sonra glukoz deponuz yarıya inecektir ki bu da gece yarısında sizi potansiyel olarak ölüme terk edebilir."
+"Eğer gündüz/gece döngüsü oyun ayarlarından etkinleştirildiyse, etkili bir fotosentetik hücre oluşturmak zor hale gelebilir. Maksimum [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretimini garantiye almak için karşılayabileceğiniz kadar fotosentez yapan parça ve de uzun gecelerde deponuzu arttırmak için uygun miktarda depo geliştirici parça ([b][color=#3796e1][url=thriveopedia:vacuole]Kofullar[/url][/color][/b] gibi) yerleştirin. Daha az enerji tüketmek için gece boyunca hareketsiz durmanızı ya da tam tersine; eğer karmaşık bir beslenme kurulumunuz varsa, av peşinde koşmanızı tavsiye ederiz. Ayrıca, lüks seviyelerinin yükselmeye başladığı gündüz vaktinde çoğalmanızı şiddetle tavsiye ederiz. Çünkü çoğaldıktan sonra, [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] deponuz yarıya inecektir."
 
 msgid "WIKI_THYLAKOIDS_UPGRADES"
-msgstr "Geliştirmeler yok."
+msgstr "Geliştirme yok."
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
@@ -6324,22 +6439,22 @@ msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Etki yok."
 
-#, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
-msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
+msgstr "Bileşikleri, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmadan[/url][/color][/b] çok daha yoğun şekilde depolayan bir ökaryotik organeldir. Depoyu daha da arttırmak için özelleştirilebilir."
 
-#, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
-msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
+msgstr ""
+"Belirli bir bileşiğe ([thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] dışında) özelleştirmek için [b]Kofulda[/b] isteğe bağlı olarak değişiklik yapın.\n"
+"\n"
+"Varsayılan olarak, [b]Koful[/b] tüm bileşiklerden [b]8[/b] birim depolar. Bir özelleştirme ile, bir [b]Koful[/b] bunun yerine bir bileşikten [b]16[/b] birim ve diğer tüm bileşiklerden [b]0[/b] birim depolar."
 
-#, fuzzy
 msgid "WIKI_VACUOLE_PROCESSES"
-msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
+msgstr "İşlem yok."
 
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Bir hücre, [b]Kofulları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır."
 
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -6348,7 +6463,7 @@ msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
 
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Geliştirme yok."
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Başaracak mısınız?"

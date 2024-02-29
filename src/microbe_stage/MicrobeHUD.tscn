@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/actions/EngulfEject.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=10]
@@ -468,6 +469,7 @@ OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBox
 MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
+EjectEngulfedHotkeyPath = NodePath("ScrollContainer/HotBar/EjectEngulfed")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
 FossilisationButtonLayerPath = NodePath("")
 FossilisationDialogPath = NodePath("")
@@ -1955,6 +1957,18 @@ toggle_mode = true
 ActionIcon = ExtResource( 9 )
 ActionName = "g_toggle_engulf"
 
+[node name="EjectEngulfed" parent="ScrollContainer/HotBar" instance=ExtResource( 65 )]
+visible = false
+margin_left = 277.0
+margin_right = 323.0
+margin_bottom = 51.0
+hint_tooltip = "EJECT_ENGULFED_TOOLTIP"
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 46 )
+ActionIcon = ExtResource( 7 )
+ActionName = "g_eject_engulfed"
+
 [node name="FireToxin" parent="ScrollContainer/HotBar" instance=ExtResource( 65 )]
 visible = false
 margin_left = 277.0
@@ -2056,6 +2070,7 @@ __meta__ = {
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="hide" from="ProcessPanel" to="." method="OnProcessPanelClosed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Engulfment" to="." method="OnEngulfmentPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/EjectEngulfed" to="." method="OnEjectEngulfedPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/FireToxin" to="." method="OnFireToxinPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/BindingMode" to="." method="OnBindingModePressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]

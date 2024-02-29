@@ -14,7 +14,7 @@ public class CellBillboard : Spatial
 {
     private int displayedHash;
 
-    private ICellProperties? displayedCell;
+    private ICellDefinition? displayedCell;
 
 #pragma warning disable CA2213
     private MeshInstance? quad;
@@ -30,7 +30,7 @@ public class CellBillboard : Spatial
     /// <summary>
     ///   The microbe image to display here
     /// </summary>
-    public ICellProperties? DisplayedCell
+    public ICellDefinition? DisplayedCell
     {
         get => displayedCell;
         set

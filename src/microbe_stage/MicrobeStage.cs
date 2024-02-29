@@ -45,8 +45,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
     /// </summary>
-    [JsonProperty]
-    private float elapsedSinceEntityPositionCheck;
+    private float elapsedSinceEntityPositionCheck = Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL + 1;
 
     [JsonProperty]
     private bool wonOnce;
@@ -63,6 +62,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     [JsonProperty]
     private bool appliedPlayerGodMode;
+
+    private bool appliedUnlimitGrowthSpeed;
 
     // Because this is a scene loaded class, we can't do the following to avoid a temporary unused world simulation
     // from being created
@@ -317,6 +318,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                     appliedPlayerGodMode = true;
                 }
             }
+
+            if (appliedUnlimitGrowthSpeed != CheatManager.UnlimitedGrowthSpeed)
+            {
+                appliedUnlimitGrowthSpeed = CheatManager.UnlimitedGrowthSpeed;
+                CurrentGame!.GameWorld.WorldSettings.Difficulty.SetGrowthRateLimitCheatOverride(!CheatManager
+                    .UnlimitedGrowthSpeed);
+            }
         }
         else
         {
@@ -333,7 +341,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
         {
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage,
-                new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
+                new AggregateEventArgs(new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())),
+                    new GameWorldEventArgs(GameWorld)), this);
         }
         else
         {
@@ -609,6 +618,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             wonOnce = true;
         }
 
+        var workData1 = new List<Hex>();
+        var workData2 = new List<Hex>();
+
         var playerSpecies = Player.Get<SpeciesMember>().Species;
 
         // Update the player's cell
@@ -624,12 +636,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
 
             cellProperties.ReApplyCellTypeProperties(Player, earlySpeciesType.MulticellularCellType,
-                earlySpeciesType.Species, WorldSimulation);
+                earlySpeciesType.Species, WorldSimulation, workData1, workData2);
         }
         else
         {
             ref var species = ref Player.Get<MicrobeSpeciesMember>();
-            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation);
+            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation,
+                workData1, workData2);
         }
 
         var playerPosition = Player.Get<WorldPosition>().Position;
@@ -770,6 +783,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             UpdatePatchSettings();
         }
+
+        // Reset any cheat state if there was some active
+        CurrentGame!.GameWorld.WorldSettings.Difficulty.ClearGrowthRateLimitOverride();
     }
 
     protected override void OnGameStarted()
@@ -1147,6 +1163,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             try
             {
+                if (!player.IsAlive)
+                {
+                    GD.PrintErr("Got player engulfed callback but player entity is dead");
+                    OnCanEditStatusChanged(false);
+                    return;
+                }
+
                 ref var hostileCell = ref hostile.Get<OrganelleContainer>();
 
                 ref var engulfable = ref player.Get<Engulfable>();
@@ -1207,8 +1230,19 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (microbe != Player)
             GD.PrintErr("Chemoreception data reported for non-player cell");
 
-        int currentLineIndex = 0;
         var position = microbe.Get<WorldPosition>().Position;
+
+        // This must be ran on the main thread. For now this should be fine to allocate a bit of memory capturing
+        // the parameters here.
+        Invoke.Instance.QueueForObject(
+            () => UpdateChemoreceptionLines(activeCompoundDetections, activeSpeciesDetections, position), this);
+    }
+
+    private void UpdateChemoreceptionLines(
+        List<(Compound Compound, Color Colour, Vector3 Target)>? activeCompoundDetections,
+        List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>? activeSpeciesDetections, Vector3 position)
+    {
+        int currentLineIndex = 0;
 
         if (activeCompoundDetections != null)
         {
@@ -1293,7 +1327,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         try
         {
-            return !Player.Get<Health>().Dead;
+            return HasPlayer && !Player.Get<Health>().Dead;
         }
         catch (Exception e)
         {

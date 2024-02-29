@@ -7,7 +7,7 @@ using Godot;
 ///   The main tooltip class for the selections on the microbe editor's selection menu.
 ///   Contains list of processes and modifiers info.
 /// </summary>
-public class SelectionMenuToolTip : Control, ICustomToolTip
+public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 {
     [Export]
     public NodePath? NameLabelPath;
@@ -30,6 +30,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     [Export]
     public NodePath ProcessListPath = null!;
 
+    [Export]
+    public NodePath MoreInfoPath = null!;
+
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
     /// </summary>
@@ -47,6 +50,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
     private ProcessList processList = null!;
+    private VBoxContainer? moreInfo;
 #pragma warning restore CA2213
 
     private string? displayName;
@@ -55,6 +59,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private int mpCost;
     private float osmoregulationCost;
     private bool requiresNucleus;
+    private string? thriveopediaPageName;
 
     [Export]
     public string DisplayName
@@ -141,6 +146,17 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
+    public string? ThriveopediaPageName
+    {
+        get => thriveopediaPageName;
+        set
+        {
+            thriveopediaPageName = value;
+            UpdateMoreInfo();
+        }
+    }
+
+    [Export]
     public float DisplayDelay { get; set; }
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightCorner;
@@ -160,6 +176,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<ProcessList>(ProcessListPath);
+        moreInfo = GetNode<VBoxContainer>(MoreInfoPath);
 
         modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
         latoBoldFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Bold-Smaller.tres");
@@ -170,6 +187,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         UpdateMpCost();
         UpdateRequiresNucleus();
         UpdateLists();
+        UpdateMoreInfo();
 
         // Update osmoregulation cost last after the modifier list has been populated
         // to make sure this tooltip even has an osmoregulation cost modifier
@@ -202,7 +220,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     public ModifierInfoLabel GetModifierInfo(string nodeName)
     {
-        return modifierInfos.Find(found => found.Name == nodeName);
+        return modifierInfos.Find(m => m.Name == nodeName);
     }
 
     /// <summary>
@@ -296,6 +314,16 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
+    [RunOnKeyDown("help", Priority = int.MaxValue)]
+    public bool OpenMoreInfo()
+    {
+        if (!Visible || thriveopediaPageName == null)
+            return false;
+
+        ThriveopediaManager.OpenPage(thriveopediaPageName);
+        return true;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -309,6 +337,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 ProcessesDescriptionLabelPath.Dispose();
                 ModifierListPath.Dispose();
                 ProcessListPath.Dispose();
+                MoreInfoPath.Dispose();
                 modifierInfoScene.Dispose();
             }
         }
@@ -391,5 +420,13 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         {
             modifierInfos.Add(item);
         }
+    }
+
+    private void UpdateMoreInfo()
+    {
+        if (moreInfo == null)
+            return;
+
+        moreInfo.Visible = thriveopediaPageName != null;
     }
 }

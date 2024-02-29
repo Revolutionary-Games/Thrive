@@ -226,11 +226,16 @@ public class Settings
     public SettingValue<int> CloudResolution { get; private set; } = new(2);
 
     /// <summary>
-    ///   If true an auto-evo run is started during gameplay,
-    ///   taking up one of the background threads.
+    ///   If true an auto-evo run is started during gameplay, taking up one of the background threads.
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> RunAutoEvoDuringGamePlay { get; private set; } = new(true);
+
+    /// <summary>
+    ///   If true the game simulations can run in a multithreaded way (for example <see cref="MicrobeWorldSimulation"/>
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> RunGameSimulationMultithreaded { get; private set; } = new(true);
 
     /// <summary>
     ///   If true it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2

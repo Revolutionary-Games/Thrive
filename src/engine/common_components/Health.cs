@@ -7,6 +7,13 @@
     /// <summary>
     ///   Things that have a health and can be damaged
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This component type is designed for concurrent access by many systems, as such this can be marked
+    ///     <see cref="ReadsComponentAttribute"/> often when "slight" writes are done to this component.
+    ///   </para>
+    /// </remarks>
+    [ComponentIsReadByDefault]
     [JSONDynamicTypeAllowed]
     public struct Health
     {

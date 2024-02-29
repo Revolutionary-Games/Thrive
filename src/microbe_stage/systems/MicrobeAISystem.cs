@@ -21,7 +21,6 @@
     [With(typeof(MicrobeAI))]
     [With(typeof(SpeciesMember))]
     [With(typeof(MicrobeControl))]
-    [With(typeof(WorldPosition))]
     [With(typeof(Health))]
     [With(typeof(CompoundAbsorber))]
     [With(typeof(CompoundStorage))]
@@ -29,8 +28,21 @@
     [With(typeof(CommandSignaler))]
     [With(typeof(CellProperties))]
     [With(typeof(Engulfer))]
+    [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(CompoundStorage))]
+    [ReadsComponent(typeof(OrganelleContainer))]
+    [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(Engulfer))]
+    [ReadsComponent(typeof(Engulfable))]
     [ReadsComponent(typeof(MicrobeColony))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(OrganelleComponentFetchSystem))]
+    [RunsBefore(typeof(MicrobeMovementSystem))]
+    [RunsBefore(typeof(MicrobeEmissionSystem))]
+    [RunsConditionally("RunAI")]
+    [RunsWithCustomCode("{0}.ReportPotentialPlayerPosition(reportedPlayerPosition);\n{0}.Update(delta);")]
+    [RuntimeCost(9)]
     public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLocationData
     {
         private readonly Compound atp;
@@ -285,11 +297,16 @@
 
             if (ai.ATPThreshold > 0.0f)
             {
-                if (compounds.GetCompoundAmount(atp) < compounds.GetCapacityForCompound(atp) * ai.ATPThreshold
-                    && compounds.Any(compound => IsVitalCompound(compound.Key, compounds) && compound.Value > 0.0f))
+                if (compounds.GetCompoundAmount(atp) < compounds.GetCapacityForCompound(atp) * ai.ATPThreshold)
                 {
-                    control.SetMoveSpeed(0.0f);
-                    return;
+                    foreach (var compound in compounds.Compounds)
+                    {
+                        if (IsVitalCompound(compound.Key, compounds) && compound.Value > 0.0f)
+                        {
+                            control.SetMoveSpeed(0.0f);
+                            return;
+                        }
+                    }
                 }
 
                 ai.ATPThreshold = 0.0f;
@@ -460,12 +477,17 @@
                 if (distance > (20000.0 * speciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
                     continue;
 
-                if (chunk.Compounds.Compounds.Any(p => ourCompounds.IsUseful(p.Key) && p.Key.Digestible))
+                foreach (var p in chunk.Compounds.Compounds)
                 {
-                    if (chosenChunk == null)
+                    if (ourCompounds.IsUseful(p.Key) && p.Key.Digestible)
                     {
-                        chosenChunk = chunk;
-                        bestFoundChunkDistance = distance;
+                        if (chosenChunk == null)
+                        {
+                            chosenChunk = chunk;
+                            bestFoundChunkDistance = distance;
+                        }
+
+                        break;
                     }
                 }
             }
@@ -802,8 +824,8 @@
 
             if (detections is { Count: > 0 })
             {
-                ai.LastSmelledCompoundPosition = detections.OrderBy(detection =>
-                    weights.TryGetValue(detection.Compound, out var weight) ?
+                ai.LastSmelledCompoundPosition = detections.OrderBy(d =>
+                    weights.TryGetValue(d.Compound, out var weight) ?
                         weight :
                         0).First().Target;
                 ai.PursuitThreshold = position.Position.DistanceSquaredTo(ai.LastSmelledCompoundPosition.Value)
@@ -889,17 +911,6 @@
         /// </summary>
         private void ComputeCompoundsSearchWeights(ref MicrobeAI ai, CompoundBag storedCompounds)
         {
-            // TODO: should this really assume that all stored compounds are immediately useful
-            IEnumerable<Compound> usefulCompounds = storedCompounds.Compounds.Keys;
-
-            // If this microbe lacks vital compounds don't bother with ammonia and phosphate
-            if (usefulCompounds.Any(c =>
-                    IsVitalCompound(c, storedCompounds) && storedCompounds.GetCompoundAmount(c) <
-                    0.5f * storedCompounds.GetCapacityForCompound(c)))
-            {
-                usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
-            }
-
             if (ai.CompoundsSearchWeights == null)
             {
                 ai.CompoundsSearchWeights = new Dictionary<Compound, float>();
@@ -909,14 +920,46 @@
                 ai.CompoundsSearchWeights.Clear();
             }
 
+            // TODO: should this really assume that all stored compounds are immediately useful
+            var usefulCompounds = storedCompounds.Compounds.Keys;
+
+            // If this microbe lacks vital compounds don't bother with ammonia and phosphate
+            bool lackingVital = false;
             foreach (var compound in usefulCompounds)
             {
-                // The priority of a compound is inversely proportional to its availability
-                // Should be tweaked with consumption
-                var compoundPriority = 1 - storedCompounds.GetCompoundAmount(compound) /
-                    storedCompounds.GetCapacityForCompound(compound);
+                if (IsVitalCompound(compound, storedCompounds) && storedCompounds.GetCompoundAmount(compound) <
+                    0.5f * storedCompounds.GetCapacityForCompound(compound))
+                {
+                    // Ammonia and phosphates are not considered useful
+                    lackingVital = true;
+                    break;
+                }
+            }
 
-                ai.CompoundsSearchWeights.Add(compound, compoundPriority);
+            if (!lackingVital)
+            {
+                foreach (var compound in usefulCompounds)
+                {
+                    // The priority of a compound is inversely proportional to its availability
+                    // Should be tweaked with consumption
+                    var compoundPriority = 1 - storedCompounds.GetCompoundAmount(compound) /
+                        storedCompounds.GetCapacityForCompound(compound);
+
+                    ai.CompoundsSearchWeights.Add(compound, compoundPriority);
+                }
+            }
+            else
+            {
+                foreach (var compound in usefulCompounds)
+                {
+                    if (compound == ammonia || compound == phosphates)
+                        continue;
+
+                    var compoundPriority = 1 - storedCompounds.GetCompoundAmount(compound) /
+                        storedCompounds.GetCapacityForCompound(compound);
+
+                    ai.CompoundsSearchWeights.Add(compound, compoundPriority);
+                }
             }
         }
 
@@ -1009,10 +1052,18 @@
 
         private void CleanMicrobeCache()
         {
+            // Skip when cache hasn't been updated in the meantime, this avoid unnecessarily clearing out a bunch of
+            // data from the cache as after we clear the lists, the lists won't be filled again until the cache is
+            // rebuild
+            if (!microbeCacheBuilt)
+                return;
+
             foreach (var entry in microbesBySpecies)
             {
                 if (entry.Value.Count < 1)
                 {
+                    // TODO: would it be possible to keep some old species here for some time as this seems to drop
+                    // stuff pretty often and then cause new memory allocations
                     speciesCachesToDrop.Add(entry.Key);
                 }
                 else

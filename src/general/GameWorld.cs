@@ -186,14 +186,14 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public IReadOnlyDictionary<double, List<GameEventDescription>> EventsLog => eventsLog;
 
-    public static void SetInitialSpeciesProperties(MicrobeSpecies species)
+    public static void SetInitialSpeciesProperties(MicrobeSpecies species, List<Hex> workMemory1, List<Hex> workMemory2)
     {
         species.IsBacteria = true;
 
         species.MembraneType = SimulationParameters.Instance.GetMembrane("single");
 
-        species.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
-            new Hex(0, 0), 0));
+        species.Organelles.AddFast(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0), workMemory1, workMemory2);
 
         species.OnEdited();
     }
@@ -241,7 +241,10 @@ public class GameWorld : ISaveLoadable
         var species = NewMicrobeSpecies("Primum", "thrivium");
         species.BecomePlayerSpecies();
 
-        SetInitialSpeciesProperties(species);
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
+        SetInitialSpeciesProperties(species, workMemory1, workMemory2);
 
         return species;
     }
@@ -252,6 +255,9 @@ public class GameWorld : ISaveLoadable
     public void GenerateRandomSpeciesForFreeBuild()
     {
         var random = new Random();
+
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
 
         foreach (var entry in Map.Patches)
         {
@@ -264,7 +270,7 @@ public class GameWorld : ISaveLoadable
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
                 var randomSpecies = mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK);
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK, workMemory1, workMemory2);
 
                 GenerationHistory[0].AllSpeciesData
                     .Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
@@ -292,12 +298,27 @@ public class GameWorld : ISaveLoadable
         switch (species)
         {
             case MicrobeSpecies s:
+            {
+                var workMemory1 = new List<Hex>();
+                var workMemory2 = new List<Hex>();
+
                 // Mutator will mutate the name
                 return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies(species.Genus, species.Epithet),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK);
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK, workMemory1, workMemory2);
+            }
+
             default:
                 throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
         }
+    }
+
+    /// <inheritdoc cref="RegisterAutoEvoCreatedSpecies"/>
+    public void RegisterAutoEvoCreatedSpeciesIfNotAlready(Species species)
+    {
+        if (worldSpecies.Any(p => p.Value == species))
+            return;
+
+        RegisterAutoEvoCreatedSpecies(species);
     }
 
     /// <summary>
@@ -433,6 +454,11 @@ public class GameWorld : ISaveLoadable
         return worldSpecies[id];
     }
 
+    public bool TryGetSpecies(uint id, out Species? species)
+    {
+        return worldSpecies.TryGetValue(id, out species);
+    }
+
     /// <summary>
     ///   Moves a species to the multicellular stage
     /// </summary>
@@ -450,9 +476,12 @@ public class GameWorld : ISaveLoadable
         var multicellularVersion = new EarlyMulticellularSpecies(species.ID, species.Genus, species.Epithet);
         species.CopyDataToConvertedSpecies(multicellularVersion);
 
-        var stemCellType = new CellType(microbeSpecies);
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
 
-        multicellularVersion.Cells.Add(new CellTemplate(stemCellType));
+        var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
+
+        multicellularVersion.Cells.AddFast(new CellTemplate(stemCellType), workMemory1, workMemory2);
         multicellularVersion.CellTypes.Add(stemCellType);
 
         multicellularVersion.OnEdited();
@@ -613,7 +642,7 @@ public class GameWorld : ISaveLoadable
             eventsLog.Add(TotalPassedTime, new List<GameEventDescription>());
 
         // Event already logged in timeline
-        if (eventsLog[TotalPassedTime].Any(entry => entry.Description.Equals(description)))
+        if (eventsLog[TotalPassedTime].Any(e => e.Description.Equals(description)))
         {
             return;
         }

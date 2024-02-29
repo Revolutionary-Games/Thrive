@@ -58,17 +58,17 @@ public class CellLayout<T> : HexLayout<T>
         }
     }
 
-    protected override IEnumerable<Hex> GetHexComponentPositions(T hex)
+    protected override void GetHexComponentPositions(T hex, List<Hex> result)
     {
+        result.Clear();
+
         foreach (var organelle in hex.Organelles)
         {
             foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
             {
                 var rotated = Hex.RotateAxialNTimes(organelleHex, hex.Orientation);
 
-                var positionedHex = rotated + organelle.Position;
-
-                yield return positionedHex;
+                result.Add(rotated + organelle.Position);
             }
         }
     }

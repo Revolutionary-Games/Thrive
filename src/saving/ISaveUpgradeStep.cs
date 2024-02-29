@@ -84,6 +84,8 @@
                 { "0.6.3.0-rc1", new UpgradeJustVersionNumber("0.6.3.0") },
                 { "0.6.4.0", new UpgradeJustVersionNumber("0.6.4.1") },
                 { "0.6.4.1", new UpgradeStep0641To065() },
+                { "0.6.5.0-alpha", new UpgradeJustVersionNumber("0.6.5.0-rc1") },
+                { "0.6.5.0-rc1", new UpgradeJustVersionNumber("0.6.5.0") },
             };
         }
     }

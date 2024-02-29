@@ -1,5 +1,6 @@
 ﻿namespace Systems
 {
+    using System;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using Components;
@@ -14,6 +15,10 @@
     [With(typeof(Physics))]
     [With(typeof(PhysicsShapeHolder))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(PhysicsShapeHolder))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsBefore(typeof(PhysicsUpdateAndPositionSystem))]
+    [RuntimeCost(2)]
     [RunsOnMainThread]
     public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
     {
@@ -22,12 +27,18 @@
 
         private readonly List<NativePhysicsBody> createdBodies = new();
 
+        /// <summary>
+        ///   Cached callable for RemoveAll call to avoid a memory allocation
+        /// </summary>
+        private readonly Predicate<NativePhysicsBody> destroyBodyIfNotMarkedCallable;
+
         // This is not parallel as we don't use the parallel body add method of Jolt
         public PhysicsBodyCreationSystem(IWorldSimulationWithPhysics worldSimulationWithPhysics,
             PhysicsBodyDisablingSystem disablingSystem, World world) : base(world, null)
         {
             this.worldSimulationWithPhysics = worldSimulationWithPhysics;
             this.disablingSystem = disablingSystem;
+            destroyBodyIfNotMarkedCallable = DestroyBodyIfNotMarked;
         }
 
         /// <summary>
@@ -148,7 +159,7 @@
 
         protected override void PostUpdate(float delta)
         {
-            createdBodies.RemoveAll(DestroyBodyIfNotMarked);
+            createdBodies.RemoveAll(destroyBodyIfNotMarkedCallable);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

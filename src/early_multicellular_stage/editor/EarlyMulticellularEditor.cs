@@ -79,7 +79,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     [JsonIgnore]
-    public ICellProperties? EditedCellProperties => selectedCellTypeToEdit;
+    public ICellDefinition? EditedCellProperties => selectedCellTypeToEdit;
 
     protected override string MusicCategory => "EarlyMulticellularEditor";
 
@@ -150,6 +150,9 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         // save our changes to the current cell type, then switch to the other one
         SwapEditingCellIfNeeded(cellType);
 
+        // If the action we're redoing should be done on another editor tab, switch to that tab
+        SwapEditorTabIfNeeded(history.ActionToRedo());
+
         base.Redo();
     }
 
@@ -160,6 +163,9 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         // If the action we're undoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
         SwapEditingCellIfNeeded(cellType);
+
+        // If the action we're undoing should be done on another editor tab, switch to that tab
+        SwapEditorTabIfNeeded(history.ActionToUndo());
 
         base.Undo();
     }
@@ -553,5 +559,31 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         // This fixes complex cases where multiple types are undoing and redoing actions
         selectedCellTypeToEdit = newCell;
         cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+    }
+
+    private void SwapEditorTabIfNeeded(EditorAction? editorAction)
+    {
+        if (editorAction == null)
+            return;
+
+        var actionData = editorAction.Data.FirstOrDefault();
+
+        var targetTab = actionData switch
+        {
+            // If the action was performed on a single Cell Type, target the Cell Type Editor tab
+            EditorCombinableActionData<CellType> => EditorTab.CellTypeEditor,
+
+            // If the action was performed on the species as a whole, target the Cell Editor tab
+            EditorCombinableActionData<EarlyMulticellularSpecies> => EditorTab.CellEditor,
+
+            // If the action wasn't performed in any specific context, just stay on the currently selected tab
+            _ => selectedEditorTab,
+        };
+
+        // If we're already on the selected tab, there's no need to do anything
+        if (targetTab == selectedEditorTab)
+            return;
+
+        SetEditorTab(targetTab);
     }
 }

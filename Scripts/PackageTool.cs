@@ -602,6 +602,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (godot == null)
         {
+            ExecutableFinder.PrintPathInfo(Console.Out);
             ColourConsole.WriteErrorLine("Godot not found in PATH with name \"godot\" please make it available");
             return false;
         }
@@ -679,7 +680,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         await revision.WriteLineAsync(await GitRunHelpers.Log("./", 1, cancellationToken));
         await revision.WriteLineAsync(string.Empty);
-        await revision.WriteLineAsync(await GitRunHelpers.SubmoduleInfo("./", cancellationToken));
+
+        var submoduleLines = await GitRunHelpers.SubmoduleStatusInfo("./", cancellationToken);
+
+        foreach (var submoduleLine in submoduleLines)
+        {
+            await revision.WriteLineAsync(submoduleLine);
+        }
+
         await revision.WriteLineAsync(string.Empty);
         await revision.WriteLineAsync("Submodules used by native libraries may be newer than what precompiled files " +
             "were used. Please cross reference the reported native library version with Thrive repository to see " +

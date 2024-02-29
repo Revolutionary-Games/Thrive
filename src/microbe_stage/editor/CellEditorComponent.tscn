@@ -1326,66 +1326,64 @@ hint_tooltip = "GATHERED_ENERGY_TOOLTIP"
 Description = "TOTAL_GATHERED_ENERGY_COLON"
 InvalidIcon = ExtResource( 20 )
 
-[node name="Best" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Best" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 29.0
 margin_right = 255.0
-margin_bottom = 48.0
+margin_bottom = 69.0
 
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
-margin_top = 1.0
-margin_right = 139.0
-margin_bottom = 18.0
+margin_right = 255.0
+margin_bottom = 17.0
 custom_fonts/font = ExtResource( 23 )
 text = "BEST_PATCH_COLON"
 
 [node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
-margin_left = 143.0
+margin_top = 21.0
 margin_right = 255.0
-margin_bottom = 19.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 10 )
 text = "n/a"
 autowrap = true
-max_lines_visible = 5
+max_lines_visible = 2
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Worst" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 52.0
+[node name="Worst" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 73.0
 margin_right = 255.0
-margin_bottom = 71.0
+margin_bottom = 113.0
 
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
-margin_top = 1.0
-margin_right = 157.0
-margin_bottom = 18.0
+margin_right = 255.0
+margin_bottom = 17.0
 custom_fonts/font = ExtResource( 23 )
 text = "WORST_PATCH_COLON"
 
 [node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
-margin_left = 161.0
+margin_top = 21.0
 margin_right = 255.0
-margin_bottom = 19.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 10 )
 text = "n/a"
 autowrap = true
-max_lines_visible = 5
+max_lines_visible = 2
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Spacer" type="Control" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 75.0
+margin_top = 117.0
 margin_right = 255.0
-margin_bottom = 79.0
+margin_bottom = 121.0
 rect_min_size = Vector2( 0, 4 )
 
 [node name="VSeparator" type="VSeparator" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 83.0
+margin_top = 125.0
 margin_right = 255.0
-margin_bottom = 93.0
+margin_bottom = 135.0
 rect_min_size = Vector2( 0, 10 )
 mouse_filter = 1
 custom_styles/separator = SubResource( 6 )
@@ -1540,6 +1538,7 @@ size_flags_vertical = 3
 
 [node name="ExplanationText" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_right = 48.0
+EnableTooltipsForMetaTags = false
 
 [node name="Spacer" type="Control" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 26.0

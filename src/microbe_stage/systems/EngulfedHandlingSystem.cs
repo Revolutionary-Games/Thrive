@@ -22,9 +22,11 @@
     [WritesToComponent(typeof(SpatialInstance))]
     [WritesToComponent(typeof(CompoundStorage))]
     [WritesToComponent(typeof(CellProperties))]
-    [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(OrganelleContainer))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(EngulfingSystem))]
     [RunsAfter(typeof(EngulfedDigestionSystem))]
+    [RuntimeCost(0.5f)]
     public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
@@ -107,6 +109,8 @@
                     GD.PrintErr("Entity is stuck inside a dead engulfer, force clearing state to rescue it");
 
                     engulfable.OnExpelledFromEngulfment(entity, spawnSystem, worldSimulation);
+                    engulfable.PhagocytosisStep = PhagocytosisPhase.None;
+                    engulfable.HostileEngulfer = default;
 
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 

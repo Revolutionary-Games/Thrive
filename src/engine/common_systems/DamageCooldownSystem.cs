@@ -9,6 +9,10 @@
     ///   Processes cooldowns for <see cref="DamageCooldown"/>
     /// </summary>
     [With(typeof(DamageCooldown))]
+    [RunsBefore(typeof(ToxinCollisionSystem))]
+    [RunsBefore(typeof(PilusDamageSystem))]
+    [RunsBefore(typeof(DamageOnTouchSystem))]
+    [RuntimeCost(0.25f)]
     public sealed class DamageCooldownSystem : AEntitySetSystem<float>
     {
         public DamageCooldownSystem(World world, IParallelRunner runner) : base(world, runner)

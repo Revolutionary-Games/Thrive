@@ -131,7 +131,7 @@ public class TutorialState : ITutorialInput
     ///   True if any of the tutorials are active that want to pause the game
     /// </summary>
     [JsonIgnore]
-    public bool WantsGamePaused => Tutorials.Any(tutorial => tutorial.WantsPaused);
+    public bool WantsGamePaused => Tutorials.Any(t => t.WantsPaused);
 
     [JsonIgnore]
     public IEnumerable<TutorialPhase> Tutorials
@@ -186,7 +186,7 @@ public class TutorialState : ITutorialInput
     /// <returns>True if any tutorial is visible</returns>
     public bool TutorialActive()
     {
-        return Tutorials.Any(tutorial => tutorial.ShownCurrently);
+        return Tutorials.Any(t => t.ShownCurrently);
     }
 
     /// <summary>

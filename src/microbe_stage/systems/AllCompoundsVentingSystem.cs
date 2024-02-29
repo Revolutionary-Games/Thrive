@@ -12,6 +12,11 @@
     [With(typeof(CompoundVenter))]
     [With(typeof(CompoundStorage))]
     [With(typeof(WorldPosition))]
+    [WritesToComponent(typeof(Physics))]
+    [WritesToComponent(typeof(MicrobeShaderParameters))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
+    [RuntimeCost(9)]
     public sealed class AllCompoundsVentingSystem : AEntitySetSystem<float>
     {
         private readonly CompoundCloudSystem compoundCloudSystem;

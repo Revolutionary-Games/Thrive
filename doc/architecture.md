@@ -134,7 +134,7 @@ time.
 
 ### Saving and Loading
 
-The ECS architecture simplifies savign and loading as it is just a
+The ECS architecture simplifies saving and loading as it is just a
 matter of writing the component data to disk and loading it back
 later. The saving system automatically handles converting entity
 references to point to newly created instances after loading a save.
@@ -149,6 +149,65 @@ recreate the data on load, or the data can be loaded through
 `PredefinedVisuals` for example for a save-proof way to load graphics
 for a Spatial instance.
 
+### Simulation Multithreading
+
+The simulation is ran with multiple threads in parallel, all of which
+can further dispatch single systems to run part of their entities on
+even more threads. This improves the game performance a lot. The top
+level multithreading is skipped when there aren't that many available
+processing threads as this part doesn't improve the game performance a
+lot.
+
+To manage the complexity of balancing tasks on multiple threads, the
+systems need to have metadata attributes telling which components they
+access, what systems they need to run before / after, and if they must
+run on the main thread (anything modifying Godot data). With correct
+metadata the threaded run generator tool can be ran through Godot to
+generate the simulation threaded runs: 
+
+```sh
+godot res://src/tools/GenerateThreadedSystems.tscn
+```
+This command must be ran in the Thrive folder to work.
+
+### Multithreading Helper Tools
+
+There are some tools in Thrive to help develop / fix multithreading
+problems. These options are available as static variables in the
+`GenerateThreadedSystems` class. After changing the values the
+threaded generation needs to be run again.
+
+To find systems that incorrectly access a component they are missing
+an attribute for (note that this cannot find write/read property being
+the wrong way around problems) set `UseCheckedComponentAccess` to
+true, then regenerate the files and run the game. Also this needs a
+step to switch component access to check the changes. On a system with
+unix tools, you can run the following command in terminal:
+```sh
+find src -name "*.cs" | grep -v "ComponentAccessCheck" | xargs -I {} sed -i 's/\.Get</.GetChecked</g' {}
+```
+
+Thrive will now throw an exception when it is detected that a
+component is being accessed by a system that doesn't declare it wants
+to access that component. Note that the checking happens only when
+accessing the component so to catch all issues all gameplay code needs
+to be triggered while the checks are enabled. To get rid of the
+changes related to the component checks, either git reset files or run
+the following reversing command:
+```sh
+find src -name "*.cs" | grep -v "ComponentAccessCheck" | xargs -I {} sed -i 's/\.GetChecked</.Get</g' {}
+```
+
+Setting `MeasureThreadWaits` enables measuring relative wait times of
+different simulation threads. This can be used to check how well
+balanced the different threads are in terms of work (too much
+difference in the wiat times indicates that performance is being lost
+due to waiting for another thread to catch up before continuing).
+
+Setting `DebugGuardComponentWrites` to true enables system conflict
+checking in terms of accessed components during runtime. This is
+mostly as a debugging tool against bugs in the threaded system
+generator itself.
 
 Folder Structure
 ----------------

@@ -438,7 +438,7 @@ public class InProgressObjectDeserialization
         instanceCreationStarted = true;
 
         // Detect scene loaded type
-        bool sceneLoad = type.CustomAttributes.Any(attr => attr.AttributeType == typeof(SceneLoadedClassAttribute));
+        bool sceneLoad = type.CustomAttributes.Any(a => a.AttributeType == typeof(SceneLoadedClassAttribute));
 
         createdInstance = !sceneLoad ?
             CreateDeserializedInstance(type) :

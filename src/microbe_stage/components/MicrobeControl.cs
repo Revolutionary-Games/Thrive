@@ -124,10 +124,10 @@
             {
                 ref var colony = ref entity.Get<MicrobeColony>();
 
-                colony.PerformForOtherColonyMembersThanLeader(member =>
-                    member.Get<MicrobeControl>()
-                        .EmitToxin(ref member.Get<OrganelleContainer>(), member.Get<CompoundStorage>().Compounds,
-                            member, agentType));
+                colony.PerformForOtherColonyMembersThanLeader(m =>
+                    m.Get<MicrobeControl>()
+                        .EmitToxin(ref m.Get<OrganelleContainer>(), m.Get<CompoundStorage>().Compounds,
+                            m, agentType));
             }
 
             if (control.AgentEmissionCooldown > 0)
@@ -161,9 +161,9 @@
                 ref var colony = ref entity.Get<MicrobeColony>();
 
                 // TODO: is it a good idea to allocate a delegate here?
-                colony.PerformForOtherColonyMembersThanLeader(member =>
-                    member.Get<MicrobeControl>()
-                        .QueueSecreteSlime(ref member.Get<OrganelleContainer>(), member, duration));
+                colony.PerformForOtherColonyMembersThanLeader(m =>
+                    m.Get<MicrobeControl>()
+                        .QueueSecreteSlime(ref m.Get<OrganelleContainer>(), m, duration));
             }
 
             if (organelleInfo.SlimeJets == null || organelleInfo.SlimeJets.Count < 1)

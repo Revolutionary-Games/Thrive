@@ -20,7 +20,6 @@ using DevCenterCommunication.Models.Enums;
 using ScriptsBase.Utilities;
 using SharedBase.Models;
 using SharedBase.Utilities;
-using ThriveDevCenter.Shared.Forms;
 
 /// <summary>
 ///   Handles the native C++ modules needed by Thrive
@@ -43,11 +42,13 @@ public class NativeLibs
     private readonly SymbolHandler symbolHandler = new(null, null);
 
     private readonly Lazy<Task<long>> thriveNativePrecompiledId;
+    private readonly Lazy<Task<long>> earlyCheckPrecompiledId;
 
     public NativeLibs(Program.NativeLibOptions options)
     {
         this.options = options;
         thriveNativePrecompiledId = new Lazy<Task<long>>(GetThriveNativeLibraryId);
+        earlyCheckPrecompiledId = new Lazy<Task<long>>(GetEarlyCheckLibraryId);
 
         if (options.Libraries is { Count: < 1 })
         {
@@ -105,6 +106,11 @@ public class NativeLibs
         ///   The main native side library that is pure C++ and doesn't depend on Godot
         /// </summary>
         ThriveNative,
+
+        /// <summary>
+        ///   Library for early checking that everything is fine before loading <see cref="ThriveNative"/>
+        /// </summary>
+        EarlyCheck,
     }
 
     public async Task<bool> Run(CancellationToken cancellationToken)
@@ -172,6 +178,8 @@ public class NativeLibs
         {
             case Library.ThriveNative:
                 return NativeConstants.Version.ToString();
+            case Library.EarlyCheck:
+                return NativeConstants.EarlyCheck.ToString();
             default:
                 throw new ArgumentOutOfRangeException(nameof(library), library, null);
         }
@@ -188,6 +196,21 @@ public class NativeLibs
                         return "libthrive_native.so";
                     case PackagePlatform.Windows:
                         return "libthrive_native.dll";
+                    case PackagePlatform.Windows32:
+                        throw new NotSupportedException("32-bit support is not done currently");
+                    case PackagePlatform.Mac:
+                        throw new NotImplementedException("TODO: name for this");
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
+                }
+
+            case Library.EarlyCheck:
+                switch (platform)
+                {
+                    case PackagePlatform.Linux:
+                        return "libearly_checks.so";
+                    case PackagePlatform.Windows:
+                        return "libearly_checks.dll";
                     case PackagePlatform.Windows32:
                         throw new NotSupportedException("32-bit support is not done currently");
                     case PackagePlatform.Mac:
@@ -234,7 +257,7 @@ public class NativeLibs
                 throw new NotImplementedException("Creating release packages for mac is not done");
 
             case Program.NativeLibOptions.OperationMode.Upload:
-                if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken))
+                if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken) == true)
                 {
                     ColourConsole.WriteNormalLine("Checking for potential symbols to upload after library upload");
                     return await UploadMissingSymbolsToServer(cancellationToken);
@@ -478,8 +501,10 @@ public class NativeLibs
         // Give a nicer error message with missing cmake
         if (string.IsNullOrEmpty(ExecutableFinder.Which("cmake")))
         {
+            ExecutableFinder.PrintPathInfo(Console.Out);
             ColourConsole.WriteErrorLine("cmake not found. CMake is required for this build to work. " +
                 "Make sure it is installed and added to PATH before trying again.");
+
             return false;
         }
 
@@ -615,6 +640,34 @@ public class NativeLibs
         {
             ColourConsole.WriteErrorLine($"Expected compile target folder doesn't exist: {installPath}");
             return false;
+        }
+
+        // When building Thrive native and the early check, those will conflict with each other and install each other
+        // as well to their version files. This tries to remove the extra files.
+        foreach (var file in Directory.EnumerateFiles(installPath, "*.*", SearchOption.AllDirectories))
+        {
+            foreach (var otherLibrary in Enum.GetValues<Library>())
+            {
+                if (otherLibrary == library)
+                    continue;
+
+                // TODO: skip libraries not compiled at the same time if any are added in the future
+
+                var name = GetLibraryDllName(otherLibrary, platform);
+
+                if (file.Contains(name))
+                {
+                    // Don't delete unrelated type
+                    if (!options.DebugLibrary && file.Contains("debug"))
+                        continue;
+
+                    if (options.DebugLibrary && file.Contains("release"))
+                        continue;
+
+                    File.Delete(file);
+                    ColourConsole.WriteNormalLine($"Deleting likely duplicate install of a different library: {file}");
+                }
+            }
         }
 
         ColourConsole.WriteSuccessLine($"Successfully compiled library {library}");
@@ -836,7 +889,7 @@ public class NativeLibs
         return true;
     }
 
-    private async Task<bool> CheckAndUpload(Library library, PackagePlatform platform,
+    private async Task<bool?> CheckAndUpload(Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
         var version = GetLibraryVersion(library);
@@ -847,7 +900,7 @@ public class NativeLibs
             ColourConsole.WriteWarningLine($"Skip checking uploading file that is missing locally: {file}");
 
             // For now this is not considered an error
-            return true;
+            return null;
         }
 
         bool debug = options.DebugLibrary;
@@ -855,6 +908,8 @@ public class NativeLibs
         if (string.IsNullOrEmpty(options.Key))
         {
             ColourConsole.WriteErrorLine("Key to access ThriveDevCenter is a required parameter");
+
+            // Explicit fail to stop trying
             return false;
         }
 
@@ -887,8 +942,8 @@ public class NativeLibs
 
         if (response.StatusCode == HttpStatusCode.NoContent)
         {
-            ColourConsole.WriteDebugLine("Server already has this");
-            return false;
+            // No preference to change the result
+            return null;
         }
 
         if (response.StatusCode == HttpStatusCode.OK)
@@ -928,6 +983,13 @@ public class NativeLibs
                 return new Uri(new Uri(options.Url), $"api/v1/PrecompiledObject/{nativeId}/versions/");
             }
 
+            case Library.EarlyCheck:
+            {
+                var nativeId = await earlyCheckPrecompiledId.Value;
+
+                return new Uri(new Uri(options.Url), $"api/v1/PrecompiledObject/{nativeId}/versions/");
+            }
+
             default:
                 throw new ArgumentOutOfRangeException(nameof(library), library, null);
         }
@@ -944,6 +1006,21 @@ public class NativeLibs
             throw new NullDecodedJsonException();
 
         ColourConsole.WriteDebugLine($"Determined that ThriveNative's precompiled ID is {data.Id}");
+
+        return data.Id;
+    }
+
+    private async Task<long> GetEarlyCheckLibraryId()
+    {
+        using var httpClient = GetDevCenterClient();
+
+        var data = await httpClient.GetFromJsonAsync<PrecompiledObjectDTO>(
+            "api/v1/PrecompiledObject/byName/ThriveEarlyCheck");
+
+        if (data == null)
+            throw new NullDecodedJsonException();
+
+        ColourConsole.WriteDebugLine($"Determined that Early Check's precompiled ID is {data.Id}");
 
         return data.Id;
     }

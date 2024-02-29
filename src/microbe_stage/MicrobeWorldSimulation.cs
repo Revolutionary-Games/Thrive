@@ -10,7 +10,7 @@ using World = DefaultEcs.World;
 ///   Contains all the parts needed to simulate a microbial world. Separate from (but used by) the
 ///   <see cref="MicrobeStage"/> to also allow other parts of the code to easily run a microbe simulation
 /// </summary>
-public class MicrobeWorldSimulation : WorldSimulationWithPhysics
+public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 {
     private readonly IParallelRunner nonParallelRunner = new DefaultParallelRunner(1);
 
@@ -78,7 +78,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobePhysicsCreationAndSizeSystem microbePhysicsCreationAndSizeSystem = null!;
     private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
     private MicrobeReproductionSystem microbeReproductionSystem = null!;
-    private TintColourAnimationSystem tintColourAnimationSystem = null!;
+    private TintColourApplyingSystem tintColourApplyingSystem = null!;
     private ToxinCollisionSystem toxinCollisionSystem = null!;
     private UnneededCompoundVentingSystem unneededCompoundVentingSystem = null!;
 
@@ -132,12 +132,19 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     /// </param>
     public void Init(Node visualDisplayRoot, CompoundCloudSystem cloudSystem)
     {
+        InitGenerated();
         ResolveNodeReferences();
 
         visualsParent = visualDisplayRoot;
 
         // Threading using our task system
-        var parallelRunner = TaskExecutor.Instance;
+        IParallelRunner parallelRunner = TaskExecutor.Instance;
+
+        if (GenerateThreadedSystems.UseCheckedComponentAccess)
+        {
+            GD.Print("Disallowing threaded execution to allow strict component thread checks to work");
+            parallelRunner = new DefaultParallelRunner(1);
+        }
 
         // Set on systems that can be ran in parallel but aren't currently as there's no real performance improvement
         // / the system entity count per thread needs tweaking before there's any benefit
@@ -146,7 +153,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // Systems stored in fields
         animationControlSystem = new AnimationControlSystem(EntitySystem);
         attachedEntityPositionSystem = new AttachedEntityPositionSystem(this, EntitySystem, couldParallelize);
-        colourAnimationSystem = new ColourAnimationSystem(EntitySystem, couldParallelize);
+        colourAnimationSystem = new ColourAnimationSystem(EntitySystem, parallelRunner);
         countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem);
         damageCooldownSystem = new DamageCooldownSystem(EntitySystem, couldParallelize);
         damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem, couldParallelize);
@@ -162,7 +169,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
         physicsSensorSystem = new PhysicsSensorSystem(this, EntitySystem);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, couldParallelize);
-        collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem, couldParallelize);
+        collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem);
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
 
         simpleShapeCreatorSystem = new SimpleShapeCreatorSystem(EntitySystem, couldParallelize);
@@ -206,7 +213,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
-        tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem);
+        tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
 
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, couldParallelize);
         unneededCompoundVentingSystem = new UnneededCompoundVentingSystem(cloudSystem, EntitySystem, parallelRunner);
@@ -255,15 +262,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         CloudSystem.Init(fluidCurrentsSystem);
     }
 
-    public override void ProcessFrameLogic(float delta)
-    {
-        ThrowIfNotInitialized();
-
-        colourAnimationSystem.Update(delta);
-        microbeShaderSystem.Update(delta);
-        tintColourAnimationSystem.Update(delta);
-    }
-
     public void SetSimulationBiome(BiomeConditions biomeConditions)
     {
         ProcessSystem.SetBiome(biomeConditions);
@@ -298,7 +296,13 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void InitSystemsEarly()
     {
-        var taskExecutor = TaskExecutor.Instance;
+        IParallelRunner taskExecutor = TaskExecutor.Instance;
+
+        // See the similar if in Init to know why this is used
+        if (GenerateThreadedSystems.UseCheckedComponentAccess)
+        {
+            taskExecutor = new DefaultParallelRunner(1);
+        }
 
         entitySignalingSystem = new EntitySignalingSystem(EntitySystem, taskExecutor);
         fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, taskExecutor);
@@ -308,106 +312,38 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void OnProcessFixedLogic(float delta)
     {
-        TimedLifeSystem.Update(delta);
+        int availableThreads = TaskExecutor.Instance.ParallelTasks;
 
-        microbeVisualsSystem.Update(delta);
-        pathBasedSceneLoader.Update(delta);
-        predefinedVisualLoaderSystem.Update(delta);
-        entityMaterialFetchSystem.Update(delta);
-        animationControlSystem.Update(delta);
-        microbeRenderPrioritySystem.Update(delta);
+        var settings = Settings.Instance;
+        if (settings.RunAutoEvoDuringGamePlay)
+            --availableThreads;
 
-        simpleShapeCreatorSystem.Update(delta);
-        collisionShapeLoaderSystem.Update(delta);
-        microbePhysicsCreationAndSizeSystem.Update(delta);
-        physicsBodyCreationSystem.Update(delta);
-        physicsBodyDisablingSystem.Update(delta);
-
-        physicsCollisionManagementSystem.Update(delta);
-
-        physicsUpdateAndPositionSystem.Update(delta);
-        attachedEntityPositionSystem.Update(delta);
-
-        fluidCurrentsSystem.Update(delta);
-
-        colonyCompoundDistributionSystem.Update(delta);
-
-        engulfingSystem.Update(delta);
-        engulfedDigestionSystem.Update(delta);
-        engulfedHandlingSystem.Update(delta);
-
-        spatialAttachSystem.Update(delta);
-        spatialPositionSystem.Update(delta);
-
-        allCompoundsVentingSystem.Update(delta);
-        unneededCompoundVentingSystem.Update(delta);
-        compoundAbsorptionSystem.Update(delta);
-        entitySignalingSystem.Update(delta);
-
-        damageCooldownSystem.Update(delta);
-        toxinCollisionSystem.Update(delta);
-        damageOnTouchSystem.Update(delta);
-        pilusDamageSystem.Update(delta);
-
-        ProcessSystem.Update(delta);
-
-        osmoregulationAndHealingSystem.Update(delta);
-
-        microbeReproductionSystem.Update(delta);
-        multicellularGrowthSystem.Update(delta);
-        organelleComponentFetchSystem.Update(delta);
-
-        if (RunAI)
+        if (!settings.RunGameSimulationMultithreaded || GenerateThreadedSystems.UseCheckedComponentAccess)
         {
-            // Update AI for the cells (note that the AI system itself can also be disabled, due to cheats)
-            microbeAI.ReportPotentialPlayerPosition(reportedPlayerPosition);
-            microbeAI.Update(delta);
+            availableThreads = 1;
         }
 
-        microbeEmissionSystem.Update(delta);
+        // For single-threaded testing uncomment the next line:
+        // availableThreads = 1;
 
-        countLimitedDespawnSystem.Update(delta);
+        // Need to have more threads than configured to run with to not deadlock on all threads just waiting for
+        // tasks to be able to start. Apparently with just 1 background task the deadlock never occurs but still
+        // performance is reduced a lot without enough threads
+        // TODO: adjust the min threads threshold here (currently +1 for slowest systems to not get hit with the
+        // threading performance penalty)
+        if (availableThreads > GenerateThreadedSystems.TargetThreadCount + 1)
+        {
+            OnProcessFixedWithThreads(delta);
+        }
+        else
+        {
+            OnProcessFixedWithoutThreads(delta);
+        }
+    }
 
-        SpawnSystem.Update(delta);
-
-        colonyStatsUpdateSystem.Update(delta);
-
-        microbeEventCallbackSystem.Update(delta);
-
-        microbeDeathSystem.Update(delta);
-
-        disallowPlayerBodySleepSystem.Update(delta);
-
-        slimeSlowdownSystem.Update(delta);
-        microbeMovementSystem.Update(delta);
-        microbeMovementSoundSystem.Update(delta);
-
-        organelleTickSystem.Update(delta);
-
-        physicsSensorSystem.Update(delta);
-
-        fadeOutActionSystem.Update(delta);
-        physicsBodyControlSystem.Update(delta);
-
-        colonyBindingSystem.Update(delta);
-        delayedColonyOperationSystem.Update(delta);
-
-        cellBurstEffectSystem.Update(delta);
-
-        microbeFlashingSystem.Update(delta);
-
-        damageSoundSystem.Update(delta);
-        microbeCollisionSoundSystem.Update(delta);
-        soundEffectSystem.Update(delta);
-
-        soundListenerSystem.Update(delta);
-
-        // This needs to be here to not visually jitter the player position
-        CameraFollowSystem.Update(delta);
-
-        cellCountingEntitySet.Complete();
-
-        reportedPlayerPosition = null;
+    protected override void OnProcessFrameLogic(float delta)
+    {
+        OnProcessFrameLogicGenerated(delta);
     }
 
     protected override void OnEntityDestroyed(in Entity entity)
@@ -509,7 +445,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 microbePhysicsCreationAndSizeSystem.Dispose();
                 microbeRenderPrioritySystem.Dispose();
                 microbeReproductionSystem.Dispose();
-                tintColourAnimationSystem.Dispose();
+                tintColourApplyingSystem.Dispose();
                 toxinCollisionSystem.Dispose();
                 unneededCompoundVentingSystem.Dispose();
                 delayedColonyOperationSystem.Dispose();
@@ -524,6 +460,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
             if (SpawnSystem != null!)
                 SpawnSystem.Dispose();
+
+            DisposeGenerated();
         }
 
         base.Dispose(disposing);

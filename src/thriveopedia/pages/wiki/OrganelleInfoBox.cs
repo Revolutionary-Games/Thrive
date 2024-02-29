@@ -141,8 +141,8 @@ public class OrganelleInfoBox : PanelContainer
             return;
         }
 
-        modelImageTask = new ImageTask(
-            new GalleryCardModel.ModelPreview(organelle.DisplayScene!, organelle.DisplaySceneModelPath ?? "."));
+        modelImageTask = new ImageTask(new GalleryCardModel.ModelPreview(organelle.DisplayScene!,
+            organelle.DisplaySceneModelNodePath));
 
         PhotoStudio.Instance.SubmitTask(modelImageTask);
 

@@ -11,9 +11,12 @@
     ///   Handles updating the state of <see cref="ColourAnimation"/> based on animations triggered elsewhere
     /// </summary>
     [With(typeof(ColourAnimation))]
+    [RuntimeCost(2)]
+    [RunsOnFrame]
     public sealed class ColourAnimationSystem : AEntitySetSystem<float>
     {
-        public ColourAnimationSystem(World world, IParallelRunner runner) : base(world, runner)
+        public ColourAnimationSystem(World world, IParallelRunner runner) : base(world, runner,
+            Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
         {
         }
 

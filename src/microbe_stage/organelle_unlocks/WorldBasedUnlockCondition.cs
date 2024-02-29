@@ -1,6 +1,7 @@
 ﻿namespace UnlockConstraints
 {
     using System;
+    using System.Globalization;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -101,7 +102,7 @@
             builder.Append(new LocalizedString("UNLOCK_CONDITION_SPEED_BELOW", Threshold));
         }
 
-        private float GetPlayerSpeed(ICellProperties playerData)
+        private float GetPlayerSpeed(ICellDefinition playerData)
         {
             var rawSpeed = MicrobeInternalCalculations.CalculateSpeed(playerData.Organelles.Organelles,
                 playerData.MembraneType,
@@ -132,7 +133,7 @@
             if (data is not WorldAndPlayerDataSource worldArgs)
                 return false;
 
-            var current = worldArgs.World.Map.CurrentPatch!.GetCompoundAmount(Compound!,
+            var current = worldArgs.CurrentPatch.GetCompoundAmount(Compound!,
                 CompoundAmountType.Biome);
 
             var minSatisfied = !Min.HasValue || current >= Min;
@@ -144,17 +145,51 @@
         {
             var compoundName = Compound!.InternalName;
 
-            if (Min.HasValue && Max.HasValue)
+            // These are objects to allow LocalizedString and pure string parameters used in the final localized string
+            // which anyway takes plain objects as the format parameters
+            object? formattedMin;
+            object? formattedMax;
+
+            switch (compoundName)
             {
-                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_BETWEEN", compoundName, Min, Max));
+                case "sunlight":
+                    formattedMin = Min.HasValue ?
+                        new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Min), "lx") :
+                        null;
+                    formattedMax = Max.HasValue ?
+                        new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Max), "lx") :
+                        null;
+                    break;
+                case "temperature":
+                    // TODO: automatically handle any compounds with unit set?
+                    var unit = Compound.Unit ?? "MISSING CONFIGURED UNIT";
+                    formattedMin = Min.HasValue ? new LocalizedString("VALUE_WITH_UNIT", Min / 100, unit) : null;
+                    formattedMax = Max.HasValue ? new LocalizedString("VALUE_WITH_UNIT", Max / 100, unit) : null;
+                    break;
+                case "oxygen":
+                case "carbondioxide":
+                case "nitrogen":
+                    formattedMin = Min.HasValue ? new LocalizedString("PERCENTAGE_VALUE", Min) : null;
+                    formattedMax = Max.HasValue ? new LocalizedString("PERCENTAGE_VALUE", Max) : null;
+                    break;
+                default:
+                    formattedMin = Min?.ToString(CultureInfo.CurrentCulture);
+                    formattedMax = Max?.ToString(CultureInfo.CurrentCulture);
+                    break;
             }
-            else if (Min.HasValue)
+
+            if (formattedMin != null && formattedMax != null)
             {
-                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_ABOVE", compoundName, Min));
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_BETWEEN", compoundName, formattedMin,
+                    formattedMax));
             }
-            else if (Max.HasValue)
+            else if (formattedMin != null)
             {
-                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_BELOW", compoundName, Max));
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_ABOVE", compoundName, formattedMin));
+            }
+            else if (formattedMax != null)
+            {
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_BELOW", compoundName, formattedMax));
             }
         }
 

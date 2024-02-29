@@ -3,6 +3,7 @@
     /// <summary>
     ///   General marker for species members to be able to check other members of their species
     /// </summary>
+    [ComponentIsReadByDefault]
     [JSONDynamicTypeAllowed]
     public struct SpeciesMember
     {

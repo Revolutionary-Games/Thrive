@@ -86,6 +86,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Signal]
     public delegate void OnUnbindAllButtonPressed();
 
+    [Signal]
+    public delegate void OnEjectEngulfedButtonPressed();
+
     protected override string? UnPauseHelpText => TranslationServer.Translate("PAUSE_PROMPT");
 
     public override void _Ready()
@@ -220,7 +223,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
     }
 
-    public override void UpdateFossilisationButtonStates()
+    protected override void UpdateFossilisationButtonStates()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
@@ -234,7 +237,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
-    public override void ShowFossilisationButtons()
+    protected override void ShowFossilisationButtons()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
@@ -388,13 +391,13 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         return stage!.Player.Get<BioProcesses>().ProcessStatistics;
     }
 
-    protected override void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out IReadOnlyDictionary<Compound, float> totalNeededCompounds)
+    protected override void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
+        Dictionary<Compound, float> totalNeededCompounds)
     {
         stage!.Player.Get<OrganelleContainer>().CalculateReproductionProgress(
             ref stage.Player.Get<ReproductionStatus>(), ref stage.Player.Get<SpeciesMember>(),
             stage.Player, stage.Player.Get<CompoundStorage>().Compounds, stage.GameWorld.WorldSettings,
-            out gatheredCompounds, out totalNeededCompounds);
+            gatheredCompounds, totalNeededCompounds);
     }
 
     protected override void UpdateAbilitiesHotBar()
@@ -432,10 +435,17 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             engulfing = control.State == MicrobeState.Engulf;
         }
 
+        bool isDigesting = false;
+
+        ref var engulfer = ref stage.Player.Get<Engulfer>();
+
+        if (engulfer.EngulfedObjects is { Count: > 0 })
+            isDigesting = true;
+
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, engulfing);
+            organelles.HasSignalingAgent, engulfing, isDigesting);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
@@ -564,9 +574,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private float GetPlayerUsedIngestionCapacity()
     {
         if (stage!.Player.Has<MicrobeColony>())
-            return stage.Player.Get<MicrobeColony>().CalculateUsedIngestionCapacity();
+            return stage.Player.Get<MicrobeColony>().CalculateUsedEngulfingCapacity();
 
-        return stage.Player.Get<Engulfer>().UsedIngestionCapacity;
+        return stage.Player.Get<Engulfer>().UsedEngulfingCapacity;
     }
 
     private void UpdateMulticellularButton(Entity player)
@@ -779,5 +789,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void OnSecreteSlimePressed()
     {
         EmitSignal(nameof(OnSecreteSlimeButtonPressed));
+    }
+
+    private void OnEjectEngulfedPressed()
+    {
+        EmitSignal(nameof(OnEjectEngulfedButtonPressed));
     }
 }

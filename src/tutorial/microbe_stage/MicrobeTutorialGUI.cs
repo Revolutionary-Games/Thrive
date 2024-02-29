@@ -76,7 +76,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath EditorButtonHighlightPath = null!;
 
 #pragma warning disable CA2213
-    private CustomWindow microbeWelcomeMessage = null!;
+    private TutorialDialog microbeWelcomeMessage = null!;
     private Control microbeMovementKeyPrompts = null!;
     private Control microbeMovementKeyForward = null!;
     private Control microbeMovementKeyLeft = null!;
@@ -136,7 +136,19 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public bool MicrobeMovementPromptsVisible
     {
         get => microbeMovementKeyPrompts.Visible;
-        set => microbeMovementKeyPrompts.Visible = value;
+        set
+        {
+            if (value == microbeMovementKeyPrompts.Visible)
+                return;
+
+            microbeMovementKeyPrompts.Visible = value;
+
+            // Apply visible to children to make the key prompts visible. This saves a lot of processing time overall
+            foreach (Control child in microbeMovementKeyPrompts.GetChildren())
+            {
+                child.Visible = value;
+            }
+        }
     }
 
     public bool MicrobeMovementPopupVisible
@@ -420,7 +432,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        microbeWelcomeMessage = GetNode<CustomWindow>(MicrobeWelcomeMessagePath);
+        microbeWelcomeMessage = GetNode<TutorialDialog>(MicrobeWelcomeMessagePath);
         microbeMovementKeyPrompts = GetNode<Control>(MicrobeMovementKeyPromptsPath);
         microbeMovementPopup = GetNode<CustomWindow>(MicrobeMovementPopupPath);
         microbeMovementKeyForward = GetNode<Control>(MicrobeMovementKeyForwardPath);
@@ -467,6 +479,18 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         TutorialEnabledSelected = value;
     }
 
+    public void SetWelcomeTextForLifeOrigin(WorldGenerationSettings.LifeOrigin gameLifeOrigin)
+    {
+        microbeWelcomeMessage.Description = gameLifeOrigin switch
+        {
+            WorldGenerationSettings.LifeOrigin.Vent => "MICROBE_STAGE_INITIAL",
+            WorldGenerationSettings.LifeOrigin.Pond => "MICROBE_STAGE_INITIAL_POND",
+            WorldGenerationSettings.LifeOrigin.Panspermia => "MICROBE_STAGE_INITIAL_PANSPERMIA",
+            _ => throw new ArgumentOutOfRangeException(nameof(gameLifeOrigin), gameLifeOrigin,
+                "Unhandled life origin for tutorial message"),
+        };
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -508,5 +532,11 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         // Note that this opening while the tutorial box is still visible is a bit problematic due to:
         // https://github.com/Revolutionary-Games/Thrive/issues/2326
         EmitSignal(nameof(OnHelpMenuOpenRequested));
+    }
+
+    private void DummyKeepInitialTextTranslations()
+    {
+        TranslationServer.Translate("MICROBE_STAGE_INITIAL_POND");
+        TranslationServer.Translate("MICROBE_STAGE_INITIAL_PANSPERMIA");
     }
 }

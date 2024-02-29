@@ -104,13 +104,54 @@ public static class NativeInterop
     /// <returns>True if everything is fine and load can proceed</returns>
     public static bool CheckCPU()
     {
-        if (!nativeLoadSucceeded)
+        try
         {
-            GD.Print("Can't check CPU features without native library loaded");
+            // This API is not really going to change so this is fine to do first before the version check
+            var result = NativeMethods.CheckRequiredCPUFeatures();
+
+            var version = NativeMethods.CheckEarlyAPIVersion();
+
+            if (version != NativeConstants.EarlyCheck)
+            {
+                GD.PrintErr($"Early check library version ({version}), doesn't match expected version: " +
+                    $"{NativeConstants.EarlyCheck}, will continue anyway");
+            }
+
+            if (result == CPUCheckResult.CPUCheckSuccess)
+                return true;
+
+            GD.PrintErr("Current CPU detected as not sufficient for Thrive");
+
+            bool printedError = false;
+
+            if ((result & CPUCheckResult.CPUCheckMissingAvx) != 0)
+            {
+                printedError = true;
+                GD.PrintErr("CPU is missing AVX 1 extension instruction support");
+            }
+
+            if ((result & CPUCheckResult.CPUCheckMissingSse41) != 0)
+            {
+                printedError = true;
+                GD.PrintErr("CPU is missing SSE 4.1 support");
+            }
+
+            if ((result & CPUCheckResult.CPUCheckMissingSse42) != 0)
+            {
+                printedError = true;
+                GD.PrintErr("CPU is missing SSE 4.2 support");
+            }
+
+            if (!printedError)
+                GD.PrintErr("Unknown problem with CPU check");
+
             return false;
         }
-
-        return NativeMethods.CheckRequiredCPUFeatures();
+        catch (DllNotFoundException e)
+        {
+            GD.PrintErr("Cannot load early check library to check CPU features: ", e);
+            return false;
+        }
     }
 
     /// <summary>
@@ -147,7 +188,14 @@ public static class NativeInterop
         OnLineDrawHandler = null;
         OnTriangleDrawHandler = null;
 
-        NativeMethods.DisableDebugDrawerCallbacks();
+        if (nativeLoadSucceeded)
+        {
+            NativeMethods.DisableDebugDrawerCallbacks();
+        }
+        else
+        {
+            GD.Print("Skip native side debug draw unregister as the native library is not loaded");
+        }
     }
 
     public static void NotifyWantedThreadCountChanged(int threads)
@@ -246,11 +294,14 @@ internal static partial class NativeMethods
     [DllImport("thrive_native")]
     internal static extern int CheckAPIVersion();
 
+    [DllImport("early_checks")]
+    internal static extern int CheckEarlyAPIVersion();
+
     [DllImport("thrive_native")]
     internal static extern void ShutdownThriveLibrary();
 
-    [DllImport("thrive_native")]
-    internal static extern bool CheckRequiredCPUFeatures();
+    [DllImport("early_checks")]
+    internal static extern CPUCheckResult CheckRequiredCPUFeatures();
 
     [DllImport("thrive_native")]
     internal static extern void SetLogLevel(LogLevel level);

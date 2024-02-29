@@ -16,6 +16,8 @@ using Godot;
 /// </remarks>
 public class PlayerMicrobeInput : NodeWithInput
 {
+    private readonly MicrobeMovementEventArgs cachedEventArgs = new(true, Vector3.Zero);
+
     private bool autoMove;
 
 #pragma warning disable CA2213 // this is our parent object
@@ -107,8 +109,10 @@ public class PlayerMicrobeInput : NodeWithInput
                 control.MovementDirection = movement.Length() > 1 ? movement.Normalized() : movement;
             }
 
-            stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement,
-                new MicrobeMovementEventArgs(screenRelative, control.MovementDirection), this);
+            // A cached event args is used as otherwise this generates quite a large fraction of allocated objects
+            // by the game
+            cachedEventArgs.ReuseEvent(screenRelative, control.MovementDirection);
+            stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement, cachedEventArgs, this);
         }
     }
 
@@ -160,6 +164,23 @@ public class PlayerMicrobeInput : NodeWithInput
         else if (cellProperties.CanEngulfInColony(stage.Player))
         {
             control.SetStateColonyAware(stage.Player, MicrobeState.Engulf);
+        }
+    }
+
+    [RunOnKeyDown("g_eject_engulfed")]
+    public void EjectAllEngulfed()
+    {
+        if (!stage.HasAlivePlayer)
+            return;
+
+        ref var engulfer = ref stage.Player.Get<Engulfer>();
+
+        if (engulfer.EngulfedObjects is { Count: > 0 })
+        {
+            foreach (var engulfedObject in engulfer.EngulfedObjects)
+            {
+                engulfer.EjectEngulfable(ref engulfedObject.Get<Engulfable>());
+            }
         }
     }
 

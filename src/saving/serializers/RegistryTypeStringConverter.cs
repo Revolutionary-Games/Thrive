@@ -18,52 +18,52 @@ public class RegistryTypeStringConverter : TypeConverter
             {
                 "compound",
                 new SupportedRegistryType(typeof(Compound), "compound",
-                    name => SimulationParameters.Instance.GetCompound(name))
+                    n => SimulationParameters.Instance.GetCompound(n))
             },
             {
                 "enzyme",
                 new SupportedRegistryType(typeof(Enzyme), "enzyme",
-                    name => SimulationParameters.Instance.GetEnzyme(name))
+                    n => SimulationParameters.Instance.GetEnzyme(n))
             },
             {
                 "worldResource",
                 new SupportedRegistryType(typeof(WorldResource), "worldResource",
-                    name => SimulationParameters.Instance.GetWorldResource(name))
+                    n => SimulationParameters.Instance.GetWorldResource(n))
             },
             {
                 "equipment",
                 new SupportedRegistryType(typeof(EquipmentDefinition), "equipment",
-                    name => SimulationParameters.Instance.GetBaseEquipmentDefinition(name))
+                    n => SimulationParameters.Instance.GetBaseEquipmentDefinition(n))
             },
             {
                 "recipe",
                 new SupportedRegistryType(typeof(CraftingRecipe), "recipe",
-                    name => SimulationParameters.Instance.GetCraftingRecipe(name))
+                    n => SimulationParameters.Instance.GetCraftingRecipe(n))
             },
             {
                 "structure",
                 new SupportedRegistryType(typeof(StructureDefinition), "structure",
-                    name => SimulationParameters.Instance.GetStructure(name))
+                    n => SimulationParameters.Instance.GetStructure(n))
             },
             {
                 "unitType",
                 new SupportedRegistryType(typeof(UnitType), "unitType",
-                    name => SimulationParameters.Instance.GetUnitType(name))
+                    n => SimulationParameters.Instance.GetUnitType(n))
             },
             {
                 "spaceStructure",
                 new SupportedRegistryType(typeof(SpaceStructureDefinition), "spaceStructure",
-                    name => SimulationParameters.Instance.GetSpaceStructure(name))
+                    n => SimulationParameters.Instance.GetSpaceStructure(n))
             },
             {
                 "biome",
                 new SupportedRegistryType(typeof(Biome), "biome",
-                    name => SimulationParameters.Instance.GetBiome(name))
+                    n => SimulationParameters.Instance.GetBiome(n))
             },
             {
                 "organelle",
                 new SupportedRegistryType(typeof(OrganelleDefinition), "organelle",
-                    name => SimulationParameters.Instance.GetOrganelleType(name))
+                    n => SimulationParameters.Instance.GetOrganelleType(n))
             },
         };
 

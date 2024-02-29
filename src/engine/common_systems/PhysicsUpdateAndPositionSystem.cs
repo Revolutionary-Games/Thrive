@@ -13,6 +13,7 @@
     [With(typeof(Physics))]
     [With(typeof(WorldPosition))]
     [RunsBefore(typeof(SpatialPositionSystem))]
+    [RuntimeCost(10)]
     public sealed class PhysicsUpdateAndPositionSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;

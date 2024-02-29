@@ -15,6 +15,8 @@
     [With(typeof(ColourAnimation))]
     [With(typeof(Health))]
     [With(typeof(Selectable))]
+    [ReadsComponent(typeof(MicrobeControl))]
+    [ReadsComponent(typeof(Selectable))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsBefore(typeof(DamageSoundSystem))]
     public sealed class MicrobeFlashingSystem : AEntitySetSystem<float>

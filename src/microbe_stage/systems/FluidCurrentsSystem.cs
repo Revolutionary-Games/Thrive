@@ -17,8 +17,10 @@
     [With(typeof(Physics))]
     [With(typeof(ManualPhysicsControl))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(CurrentAffected))]
     [ReadsComponent(typeof(Physics))]
     [ReadsComponent(typeof(WorldPosition))]
+    [RuntimeCost(8)]
     [JsonObject(MemberSerialization.OptIn)]
     public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     {

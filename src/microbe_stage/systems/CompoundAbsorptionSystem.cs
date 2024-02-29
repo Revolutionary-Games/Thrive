@@ -13,6 +13,8 @@
     [With(typeof(CompoundAbsorber))]
     [With(typeof(CompoundStorage))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RuntimeCost(50)]
     public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
     {
         private readonly CompoundCloudSystem compoundCloudSystem;

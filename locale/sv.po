@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-16 21:56+0000\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -1448,6 +1448,13 @@ msgstr ""
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
+
+msgid "EJECT_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "EJECT_ENGULFED_TOOLTIP"
+msgstr "Växla uppslukarläge av och på"
 
 #, fuzzy
 msgid "ENABLED_MODS"
@@ -2965,6 +2972,38 @@ msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
 #, fuzzy
+msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
+msgstr ""
+"[b]Stadie[/b]\n"
+"  Mikrob\n"
+"[b]Membrantyp[/b]\n"
+"  {0}\n"
+"[b]Membranstelhet[/b]\n"
+"  {1}\n"
+"[b]Grundhastighet[/b]\n"
+"  {2}\n"
+"[b]Grunrotationshastighet[/b]\n"
+"  {3}\n"
+"[b]Grundhexstorlek[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "MICROBE_STAGE_INITIAL_POND"
+msgstr ""
+"[b]Stadie[/b]\n"
+"  Mikrob\n"
+"[b]Membrantyp[/b]\n"
+"  {0}\n"
+"[b]Membranstelhet[/b]\n"
+"  {1}\n"
+"[b]Grundhastighet[/b]\n"
+"  {2}\n"
+"[b]Grunrotationshastighet[/b]\n"
+"  {3}\n"
+"[b]Grundhexstorlek[/b]\n"
+"  {4}"
+
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Organismstatistik"
 
@@ -3150,6 +3189,9 @@ msgstr ""
 msgid "MORE_INFO"
 msgstr ""
 
+msgid "MORE_INFO_PROMPT"
+msgstr ""
+
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
@@ -3261,6 +3303,17 @@ msgstr "Placera organell"
 
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multispel anti-aliasing:"
+
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -3568,6 +3621,14 @@ msgstr "Hjälp"
 
 msgid "ORGANELLES"
 msgstr "Organeller"
+
+#, fuzzy
+msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
 
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -5381,6 +5442,10 @@ msgstr "Okänd mus"
 #, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Okänd mus"
+
+#, fuzzy
+msgid "UNLIMIT_GROWTH_SPEED"
+msgstr "BEKRÄFTA"
 
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"

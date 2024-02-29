@@ -17,6 +17,8 @@ using Thread = System.Threading.Thread;
 public class TaskExecutor : IParallelRunner
 #pragma warning restore CA1001
 {
+    private const int ThreadSleepAfterNoWorkFor = 160;
+
     private static readonly TaskExecutor SingletonInstance = new();
 
     private readonly object threadNotifySync = new();
@@ -191,14 +193,14 @@ public class TaskExecutor : IParallelRunner
     }
 
     /// <summary>
-    ///   Runs an ECS library runnable on the main thread and the available executors
+    ///   Runs an ECS library runnable on the current thread and the available executors (waits for all ECS runnables
+    ///   to complete, even from other threads)
     /// </summary>
     public void Run(IParallelRunnable runnable)
     {
         int maxIndex = DegreeOfParallelism - 1;
 
-        if (Interlocked.Exchange(ref queuedParallelRunnableCount, maxIndex) != 0)
-            throw new Exception("TaskExecutor got into an inconsistent state while running ParallelRunnable tasks");
+        Interlocked.Add(ref queuedParallelRunnableCount, maxIndex);
 
         for (int i = 0; i < maxIndex; ++i)
         {
@@ -207,8 +209,12 @@ public class TaskExecutor : IParallelRunner
 
         NotifyNewTasksAdded(maxIndex);
 
-        // Main thread runs at the max index
+        // Current thread runs at the max index
         runnable.Run(maxIndex, maxIndex);
+
+        // If only ran on the main thread can exit early, no need to try to wait
+        if (maxIndex < 1)
+            return;
 
         Interlocked.MemoryBarrier();
 
@@ -221,8 +227,8 @@ public class TaskExecutor : IParallelRunner
         }
 
 #if DEBUG
-        if (queuedParallelRunnableCount != 0)
-            throw new Exception("After waiting for parallel runnables count got out of sync");
+        if (queuedParallelRunnableCount < 0)
+            throw new Exception("After waiting for parallel runnables count got negative");
 #endif
     }
 
@@ -230,14 +236,17 @@ public class TaskExecutor : IParallelRunner
     ///   Runs a list of tasks and waits for them to complete. The
     ///   first task is ran on the calling thread before waiting.
     /// </summary>
-    /// <param name="tasks">List of tasks to execute and wait to finish</param>
+    /// <param name="tasks">
+    ///   List of tasks to execute and wait to finish. Not modified but must be List to avoid a memory allocation in
+    ///   the foreach.
+    /// </param>
     /// <param name="runExtraTasksOnCallingThread">
     ///   If true the main thread processes tasks while there are queued tasks. Set this to false if you want to wait
     ///   only for the tasks list to complete. If this is true then this call blocks until all tasks (for example
     ///   ones queued from another thread while this method is executing) are complete, which may be unwanted in
     ///   some cases.
     /// </param>
-    public void RunTasks(IEnumerable<Task> tasks, bool runExtraTasksOnCallingThread = false)
+    public void RunTasks(List<Task> tasks, bool runExtraTasksOnCallingThread = false)
     {
         // Queue all but the first task
         Task? firstTask = null;
@@ -298,6 +307,8 @@ public class TaskExecutor : IParallelRunner
         // Wait for all given tasks to complete
         foreach (var task in mainThreadTaskStorage)
         {
+            // TODO: so apparently this Wait call can allocate memory, in SpinThenBlockingWait which eventually calls
+            // EnsureLockObjectCreated
             task.Wait();
         }
 
@@ -429,11 +440,14 @@ public class TaskExecutor : IParallelRunner
         while (running)
         {
             // Wait a bit before going to sleep
-            if (noWorkCounter > 1000)
+            if (noWorkCounter > ThreadSleepAfterNoWorkFor)
             {
                 lock (threadNotifySync)
                 {
-                    Monitor.Wait(threadNotifySync, 5);
+                    // This timeout here is just for safety to avoid locking up, reducing this doesn't seem to have any
+                    // performance impact. This is set now for a balance of threads not being able to be stuck too long
+                    // in case the wake up thread notify not working
+                    Monitor.Wait(threadNotifySync, 10);
                 }
             }
 

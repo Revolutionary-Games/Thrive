@@ -34,7 +34,8 @@
 
         /// <summary>
         ///   The amount of space all of the currently engulfed objects occupy in the cytoplasm. This is used to
-        ///   determine whether a cell can ingest any more objects or not due to being full.
+        ///   determine whether a cell can ingest any more objects or not due to being full. Also contains the size of
+        ///   objects being currently pulled in.
         /// </summary>
         /// <remarks>
         ///   <para>
@@ -42,10 +43,12 @@
         ///     the ingested objects. Maximum should be this cell's own <see cref="Engulfable.BaseEngulfSize"/>.
         ///   </para>
         /// </remarks>
-        public float UsedIngestionCapacity;
+        [JsonProperty("UsedIngestionCapacity")]
+        public float UsedEngulfingCapacity;
 
         /// <summary>
-        ///   Total size that all engulfed objects need to fit in
+        ///   Total size that all engulfed objects need to fit in (the max value <see cref="UsedEngulfingCapacity"/>
+        ///   should have)
         /// </summary>
         public float EngulfStorageSize;
     }
@@ -98,14 +101,14 @@
                     return EngulfCheckResult.TargetTooBig;
 
                 // Limit amount of things that can be engulfed at once
-                if (engulfer.UsedIngestionCapacity >= engulfer.EngulfStorageSize ||
-                    engulfer.UsedIngestionCapacity + engulfable.AdjustedEngulfSize >= engulfer.EngulfStorageSize)
+                if (engulfer.UsedEngulfingCapacity >= engulfer.EngulfStorageSize ||
+                    engulfer.UsedEngulfingCapacity + engulfable.AdjustedEngulfSize >= engulfer.EngulfStorageSize)
                 {
                     return EngulfCheckResult.IngestedMatterFull;
                 }
 
                 // Too many things attempted to be pulled in at once
-                if (engulfer.UsedIngestionCapacity + engulfable.AdjustedEngulfSize >= engulfer.EngulfStorageSize)
+                if (engulfer.UsedEngulfingCapacity + engulfable.AdjustedEngulfSize >= engulfer.EngulfStorageSize)
                 {
                     return EngulfCheckResult.IngestedMatterFull;
                 }
@@ -234,7 +237,7 @@
                     worldSimulation.DestroyEntity(engulfedObject);
                 }
 
-                engulfer.UsedIngestionCapacity = 0;
+                engulfer.UsedEngulfingCapacity = 0;
             }
 
             engulfer.ExpelledObjects?.Clear();

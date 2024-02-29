@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-16 21:56+0000\n"
+"POT-Creation-Date: 2024-02-24 10:33+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Gr0vey <monkoftime1188@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -1417,6 +1417,14 @@ msgstr ""
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
+
+#, fuzzy
+msgid "EJECT_ENGULFED"
+msgstr "Nevar absorbēt"
+
+#, fuzzy
+msgid "EJECT_ENGULFED_TOOLTIP"
+msgstr "Nevar absorbēt"
 
 msgid "ENABLED_MODS"
 msgstr ""
@@ -2943,6 +2951,40 @@ msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
 #, fuzzy
+msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
+msgid "MICROBE_STAGE_INITIAL_POND"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Organisma statistika"
 
@@ -3121,6 +3163,9 @@ msgstr "Modifikācijas Versija:"
 msgid "MORE_INFO"
 msgstr ""
 
+msgid "MORE_INFO_PROMPT"
+msgstr ""
+
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
@@ -3228,6 +3273,17 @@ msgstr "Novietot organoīdu"
 
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Vairāku paraugu kropļojumnovērse:"
+
+msgid "MULTITHREADED_SIMULATION_ENABLED"
+msgstr ""
+
+#, fuzzy
+msgid "MULTITHREADED_SIMULATION_EXPLANATION"
+msgstr ""
+"Agresīvi mikrobi savu upuri dzīs ļoti tālas distances\n"
+"un ir tie, kuri visbiežāk cīnīsies ar plēsējiem, kad tie uzbrūk.\n"
+"Miermīlīgi mikrobrobi necīnīsies ar citiem pāri tālām distancēm\n"
+"un retāk lietos toksīnus pret plēsējiem."
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -3532,6 +3588,13 @@ msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "ORGANELLES"
 msgstr "Organoīdi"
+
+#, fuzzy
+msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
+msgstr ""
+"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
+"un visticamāk būs ambiciozāki par gabaliem.\n"
+"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
 
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -5347,6 +5410,10 @@ msgstr "Modifikācijas Versija:"
 
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr ""
+
+#, fuzzy
+msgid "UNLIMIT_GROWTH_SPEED"
+msgstr "APSTIPRINĀT"
 
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
