@@ -82,7 +82,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage
             card.SavedSpecies = savedSpecies.Species;
             card.FossilPreviewImage = savedSpecies.PreviewImage;
 
-            card.Connect(nameof(MuseumCard.OnSpeciesSelectedEventHandler),
+            card.Connect(MuseumCard.SignalName.OnSpeciesSelected,
                 new Callable(this, nameof(UpdateSpeciesPreview)));
             card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
 

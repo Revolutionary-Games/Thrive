@@ -194,7 +194,7 @@ public partial class TweakedColourPicker : ColorPicker
         pickerButton.Hide();
         baseControl.AddChild(customPickerButton);
         pickerButton = customPickerButton;
-        pickerButton.Connect("pressed", new Callable(this, nameof(OnPickerClicked)));
+        pickerButton.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnPickerClicked)));
 
         // Update control state.
         UpdateButtonsState();

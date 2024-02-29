@@ -177,8 +177,8 @@ public partial class GalleryViewer : CustomWindow
         var tabsButtonGroup = new ButtonGroup();
         var itemsButtonGroup = new ButtonGroup();
 
-        tabsButtonGroup.Connect("pressed", new Callable(this, nameof(OnGallerySelected)));
-        itemsButtonGroup.Connect("pressed", new Callable(this, nameof(OnGalleryItemPressed)));
+        tabsButtonGroup.Connect(ButtonGroup.SignalName.Pressed, new Callable(this, nameof(OnGallerySelected)));
+        itemsButtonGroup.Connect(ButtonGroup.SignalName.Pressed, new Callable(this, nameof(OnGalleryItemPressed)));
 
         Button? firstEntry = null;
 

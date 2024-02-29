@@ -139,7 +139,7 @@ public partial class GodToolsPopup : CustomWindow
         if (toggleButton)
         {
             button.ToggleMode = true;
-            button.Connect("toggled", new Callable(this, methodName));
+            button.Connect(BaseButton.SignalName.Toggled, new Callable(this, methodName));
         }
         else
         {

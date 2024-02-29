@@ -251,7 +251,7 @@ public partial class Jukebox : Node
 
         // TODO: should MIX_TARGET_SURROUND be used here?
 
-        player.Connect("finished", new Callable(this, nameof(OnSomeTrackEnded)));
+        player.Connect(AudioStreamPlayer.SignalName.Finished, new Callable(this, nameof(OnSomeTrackEnded)));
 
         var created = new AudioPlayer(player);
 

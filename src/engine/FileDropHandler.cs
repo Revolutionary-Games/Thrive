@@ -8,7 +8,7 @@ public partial class FileDropHandler : Node
 {
     public override void _Ready()
     {
-        GetTree().Connect("files_dropped", new Callable(this, nameof(OnFilesDropped)));
+        GetTree().Root.Connect(Window.SignalName.FilesDropped, new Callable(this, nameof(OnFilesDropped)));
     }
 
     private void OnFilesDropped(string[] files, int screen)

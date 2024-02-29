@@ -111,7 +111,7 @@ public abstract partial class StrategicUnitScreen<T> : CustomWindow
             Text = Localization.Translate("UNIT_ACTION_MOVE"),
         };
 
-        button1.Connect("pressed", new Callable(this, nameof(OnMoveStart)));
+        button1.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnMoveStart)));
 
         actionButtonsContainer.AddChild(button1);
 
@@ -122,7 +122,7 @@ public abstract partial class StrategicUnitScreen<T> : CustomWindow
             Text = Localization.Translate("UNIT_ACTION_CONSTRUCT"),
         };
 
-        button2.Connect("pressed", new Callable(this, nameof(OnConstructStart)));
+        button2.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnConstructStart)));
 
         actionButtonsContainer.AddChild(button2);
 
@@ -133,7 +133,7 @@ public abstract partial class StrategicUnitScreen<T> : CustomWindow
                 Text = Localization.Translate("OPEN_GOD_TOOLS"),
             };
 
-            godButton.Connect("pressed", new Callable(this, nameof(ForwardGodTools)));
+            godButton.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(ForwardGodTools)));
 
             actionButtonsContainer.AddChild(godButton);
         }

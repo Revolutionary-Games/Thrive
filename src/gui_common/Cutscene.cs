@@ -44,7 +44,7 @@ public partial class Cutscene : Control, ITransition
     {
         cutsceneVideoPlayer = GetNode<VideoStreamPlayer>("VideoStreamPlayer");
 
-        cutsceneVideoPlayer.Connect("finished", new Callable(this, nameof(OnFinished)));
+        cutsceneVideoPlayer.Connect(VideoStreamPlayer.SignalName.Finished, new Callable(this, nameof(OnFinished)));
 
         UpdateVideoPlayer();
         Hide();

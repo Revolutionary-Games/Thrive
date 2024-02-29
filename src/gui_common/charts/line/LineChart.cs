@@ -773,8 +773,10 @@ public partial class LineChart : VBoxContainer
         {
             var newCollisionRect = new Control { Size = Vector2.One };
 
-            newCollisionRect.Connect("mouse_entered", new Callable(dataLine, nameof(dataLine.OnMouseEnter)));
-            newCollisionRect.Connect("mouse_exited", new Callable(dataLine, nameof(dataLine.OnMouseExit)));
+            newCollisionRect.Connect(Control.SignalName.MouseEntered,
+                new Callable(dataLine, nameof(dataLine.OnMouseEnter)));
+            newCollisionRect.Connect(Control.SignalName.MouseExited,
+                new Callable(dataLine, nameof(dataLine.OnMouseExit)));
 
             if (!dataLineTooltips.TryGetValue(dataLine, out var currentDataLineToolTips))
             {
@@ -1328,7 +1330,8 @@ public partial class LineChart : VBoxContainer
 
             Dropdown.CreateElements();
 
-            Dropdown.Popup.Connect("index_pressed", new Callable(this, nameof(OnDropDownLegendItemSelected)));
+            Dropdown.Popup.Connect(PopupMenu.SignalName.IndexPressed,
+                new Callable(this, nameof(OnDropDownLegendItemSelected)));
 
             return Dropdown;
         }

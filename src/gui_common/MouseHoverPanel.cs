@@ -173,7 +173,7 @@ public partial class MouseHoverPanel : PanelContainer
             AddChild(separator);
 
             var titleMargin = new MarginContainer();
-            titleMargin.AddThemeConstantOverride("margin_left", 10);
+            titleMargin.AddThemeConstantOverride("offset_left", 10);
 
             titleMargin.AddChild(titleLabel);
             AddChild(titleMargin);

@@ -515,7 +515,7 @@ public partial class OptionsMenu : ControlWithInput
 
         deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
 
-        GetViewport().Connect("size_changed", new Callable(this, nameof(DisplayResolution)));
+        GetViewport().Connect(Viewport.SignalName.SizeChanged, new Callable(this, nameof(DisplayResolution)));
 
         selectedOptionsTab = OptionsTab.Graphics;
     }

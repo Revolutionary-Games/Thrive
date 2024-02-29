@@ -66,9 +66,10 @@ public partial class MicrobeCheatMenu : CheatMenu
         manuallySetTime = GetNode<CustomCheckBox>(ManuallySetTimePath);
         targetTime = GetNode<Slider>(TargetTimePath);
 
-        playerDivide.Connect("pressed", new Callable(this, nameof(OnPlayerDivideClicked)));
-        spawnEnemy.Connect("pressed", new Callable(this, nameof(OnSpawnEnemyClicked)));
-        despawnAllEntities.Connect("pressed", new Callable(this, nameof(OnDespawnAllEntitiesClicked)));
+        playerDivide.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnPlayerDivideClicked)));
+        spawnEnemy.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnSpawnEnemyClicked)));
+        despawnAllEntities.Connect(BaseButton.SignalName.Pressed,
+            new Callable(this, nameof(OnDespawnAllEntitiesClicked)));
 
         base._Ready();
     }

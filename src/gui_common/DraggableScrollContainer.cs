@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Range = Godot.Range;
 
 /// <summary>
 ///   A scroll container which can be also moved by clicking and dragging.
@@ -87,8 +88,8 @@ public partial class DraggableScrollContainer : ScrollContainer
         content = GetNode<Control>(ContentPath);
 
         // Workaround a bug in Godot (https://github.com/godotengine/godot/issues/22936).
-        GetVScrollBar().Connect("value_changed", new Callable(this, nameof(OnScrollStarted)));
-        GetHScrollBar().Connect("value_changed", new Callable(this, nameof(OnScrollStarted)));
+        GetVScrollBar().Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnScrollStarted)));
+        GetHScrollBar().Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnScrollStarted)));
 
         UpdateScrollbars();
     }

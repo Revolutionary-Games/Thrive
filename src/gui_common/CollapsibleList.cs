@@ -100,7 +100,7 @@ public partial class CollapsibleList : VBoxContainer
 
         // Readjusts the clip box height
         if (Collapsed)
-            clipBox.AddThemeConstantOverride("margin_top", -(int)itemContainer.Size.Y);
+            clipBox.AddThemeConstantOverride("offset_top", -(int)itemContainer.Size.Y);
     }
 
     public T GetItem<T>(string name)

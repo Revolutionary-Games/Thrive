@@ -85,7 +85,7 @@ public partial class ControllerAxisVisualizer : MarginContainer
         verticalRawDisplayer = GetNode<Control>(VerticalRawDisplayerPath);
         verticalDeadzoneDisplayer = GetNode<Control>(VerticalDeadzoneDisplayerPath);
 
-        drawerNode.Connect("draw", new Callable(this, nameof(Draw)));
+        drawerNode.Connect(CanvasItem.SignalName.Draw, new Callable(this, nameof(Draw)));
 
         SetVerticalAxisDisplay(false);
     }

@@ -1,21 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cmg6okryq4k0l"]
 
-[ext_resource path="res://src/engine/ColourblindScreenFilter.cs" type="Script" id=1]
-[ext_resource path="res://assets/textures/blank.png" type="Texture2D" id=2]
-[ext_resource path="res://shaders/ScreenFilter.gdshader" type="Shader" id=3]
+[ext_resource type="Script" path="res://src/engine/ColourblindScreenFilter.cs" id="1"]
+[ext_resource type="Texture2D" uid="uid://dtvbg17mj0i35" path="res://assets/textures/blank.png" id="2"]
+[ext_resource type="Shader" path="res://shaders/ScreenFilter.gdshader" id="3"]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 3 )
-shader_param/mode = 0
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("3")
+shader_parameter/mode = 0
 
 [node name="ScreenFilter" type="TextureRect"]
-material = SubResource( 1 )
+material = SubResource("1")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = ExtResource( 2 )
-expand = true
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("2")
+expand_mode = 1
+script = ExtResource("1")

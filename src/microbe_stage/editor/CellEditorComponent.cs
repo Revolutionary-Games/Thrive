@@ -2172,7 +2172,7 @@ public partial class CellEditorComponent :
             // Only add items with valid organelles to dictionary
             placeablePartSelectionElements.Add(organelle, control);
 
-            control.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler),
+            control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
                 new Callable(this, nameof(OnOrganelleToPlaceSelected)));
         }
 
@@ -2191,7 +2191,7 @@ public partial class CellEditorComponent :
 
             membraneSelectionElements.Add(membraneType, control);
 
-            control.Connect(nameof(MicrobePartSelection.OnPartSelectedEventHandler),
+            control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
                 new Callable(this, nameof(OnMembraneSelected)));
         }
 

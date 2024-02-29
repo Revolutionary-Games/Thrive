@@ -156,7 +156,7 @@ public partial class SaveList : ScrollContainer
 
                 if (SelectableItems)
                 {
-                    item.Connect(nameof(SaveListItem.OnSelectedChangedEventHandler),
+                    item.Connect(SaveListItem.SignalName.OnSelectedChanged,
                         new Callable(this, nameof(OnSubItemSelectedChanged)));
                 }
 

@@ -678,11 +678,11 @@ public partial class CustomWindow : TopLevelContainer
         closeButton.Position = new Vector2(-GetThemeConstant("custom_close_h_ofs", "Window"),
             -GetThemeConstant("custom_close_v_ofs", "Window"));
 
-        closeButton.Connect("mouse_entered", new Callable(this, nameof(OnCloseButtonMouseEnter)));
-        closeButton.Connect("mouse_exited", new Callable(this, nameof(OnCloseButtonMouseExit)));
-        closeButton.Connect("pressed", new Callable(this, nameof(OnCloseButtonPressed)));
-        closeButton.Connect("focus_entered", new Callable(this, nameof(OnCloseButtonFocused)));
-        closeButton.Connect("focus_exited", new Callable(this, nameof(OnCloseButtonFocusLost)));
+        closeButton.Connect(Control.SignalName.MouseEntered, new Callable(this, nameof(OnCloseButtonMouseEnter)));
+        closeButton.Connect(Control.SignalName.MouseExited, new Callable(this, nameof(OnCloseButtonMouseExit)));
+        closeButton.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnCloseButtonPressed)));
+        closeButton.Connect(Control.SignalName.FocusEntered, new Callable(this, nameof(OnCloseButtonFocused)));
+        closeButton.Connect(Control.SignalName.FocusExited, new Callable(this, nameof(OnCloseButtonFocusLost)));
 
         AddChild(closeButton);
     }

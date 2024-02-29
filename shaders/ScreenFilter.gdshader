@@ -1,7 +1,10 @@
 shader_type canvas_item;
+
 uniform int mode = 0;
+uniform sampler2D screenTexture : hint_screen_texture, filter_linear_mipmap;
+
 void fragment() {
-    vec4 px = texture(SCREEN_TEXTURE, SCREEN_UV);
+    vec4 px = texture(screenTexture, SCREEN_UV);
     if (mode==1)
     {
         float rgDiff = px.r / px.g;

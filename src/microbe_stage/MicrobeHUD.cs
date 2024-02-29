@@ -220,7 +220,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         winExtinctBoxHolder.AddChild(winBox);
         winBox.Show();
 
-        winBox.GetNode<Timer>("Timer").Connect("timeout", new Callable(this, nameof(ToggleWinBox)));
+        winBox.GetNode<Timer>("Timer").Connect(Timer.SignalName.Timeout, new Callable(this, nameof(ToggleWinBox)));
     }
 
     protected override void UpdateFossilisationButtonStates()

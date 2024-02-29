@@ -84,10 +84,14 @@ public static class ToolTipHelper
 
         var toolTipCallbackData = new ToolTipCallbackData(control, tooltip, autoUnregister);
 
-        control.Connect("mouse_entered", new Callable(toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseEnter)));
-        control.Connect("mouse_exited", new Callable(toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit)));
-        control.Connect("hide", new Callable(toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit)));
-        control.Connect("tree_exiting", new Callable(toolTipCallbackData, nameof(ToolTipCallbackData.OnExitingTree)));
+        control.Connect(Control.SignalName.MouseEntered,
+            new Callable(toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseEnter)));
+        control.Connect(Control.SignalName.MouseExited,
+            new Callable(toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit)));
+        control.Connect(CanvasItem.SignalName.Hidden,
+            new Callable(toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit)));
+        control.Connect(Node.SignalName.TreeExiting,
+            new Callable(toolTipCallbackData, nameof(ToolTipCallbackData.OnExitingTree)));
 
         ToolTipCallbacks.Add(toolTipCallbackData);
     }

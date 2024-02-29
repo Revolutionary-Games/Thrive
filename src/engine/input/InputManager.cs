@@ -47,6 +47,8 @@ public partial class InputManager : Node
     private double inputChangeDelay;
     private bool queuedInputChange;
 
+    private double timeSinceExpiredClear;
+
     /// <summary>
     ///   Used to detect when the used controller
     /// </summary>
@@ -69,8 +71,6 @@ public partial class InputManager : Node
         LoadAttributes(new[] { Assembly.GetExecutingAssembly() });
 
         ProcessMode = ProcessModeEnum.Always;
-
-        StartTimer();
     }
 
     /// <summary>
@@ -188,7 +188,8 @@ public partial class InputManager : Node
     {
         base._Ready();
 
-        Input.Singleton.Connect(Input.SignalName.JoyConnectionChanged, new Callable(this, nameof(OnConnectedControllersChanged)));
+        Input.Singleton.Connect(Input.SignalName.JoyConnectionChanged,
+            new Callable(this, nameof(OnConnectedControllersChanged)));
 
         DoPostLoad();
 
@@ -239,6 +240,13 @@ public partial class InputManager : Node
                 if (queuedInputChange)
                     ApplyInputPromptTypes();
             }
+        }
+
+        timeSinceExpiredClear += delta;
+        if (timeSinceExpiredClear > 1)
+        {
+            timeSinceExpiredClear = 0;
+            ClearExpiredReferences();
         }
 
         foreach (var attribute in staticInstance.attributes)
@@ -394,7 +402,7 @@ public partial class InputManager : Node
 
         Settings.Instance.ControllerAxisDeadzoneAxes.OnChanged += _ => LoadControllerDeadzones();
 
-        GetTree().Root.Connect("size_changed", new Callable(this, nameof(OnWindowSizeChanged)));
+        GetTree().Root.Connect(Viewport.SignalName.SizeChanged, new Callable(this, nameof(OnWindowSizeChanged)));
         UpdateWindowSizeForInputs();
 
         foreach (var attribute in attributes)
@@ -493,20 +501,6 @@ public partial class InputManager : Node
         // Define input as consumed to Godot if something reacted to it
         if (handled)
             GetViewport().SetInputAsHandled();
-    }
-
-    private void StartTimer()
-    {
-        // TODO: switch this to using a timer variable like elsewhere in the code
-        var timer = new Timer
-        {
-            Autostart = true,
-            OneShot = false,
-            ProcessMode = ProcessModeEnum.Always,
-            WaitTime = 1,
-        };
-        timer.Connect("timeout", new Callable(this, nameof(ClearExpiredReferences)));
-        AddChild(timer);
     }
 
     private void UpdateUsedInputMethodType(InputEvent @event)

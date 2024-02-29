@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+uniform sampler2D screenTexture : hint_screen_texture, filter_linear_mipmap;
+
 const float color_count = 4.0f;
 const int pixel_count = 512;
 
@@ -13,7 +15,7 @@ const vec3 palette[4] = {
 void fragment()
 {
     vec2 grid_UV = (vec2(ivec2(SCREEN_UV * float(pixel_count))) + 0.5f) / float(pixel_count);
-    vec4 pixelColor = textureLod(SCREEN_TEXTURE, grid_UV, 0);
+    vec4 pixelColor = textureLod(screenTexture, grid_UV, 0);
     
     float avg = (pixelColor.r + pixelColor.g + pixelColor.b) / 3.0f;
     int color = int(floor(avg * (color_count - 1.0f) + 0.5f));
