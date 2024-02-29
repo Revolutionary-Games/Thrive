@@ -21,6 +21,9 @@ public interface IWorldEffect
 [JSONDynamicTypeAllowed]
 public class GlucoseReductionEffect : IWorldEffect
 {
+    // Global Atmospheric Composition; individual patches adjust to to with its biome-unique modifier;
+    public Dictionary<Compound, float> GAC = new Dictionary<Compound, float>();
+
     [JsonProperty]
     private GameWorld targetWorld;
 
@@ -57,6 +60,7 @@ public class GlucoseReductionEffect : IWorldEffect
             // If there are microbes to be eating up the primordial soup, reduce the milk
             if (patch.SpeciesInPatch.Count > 0)
             {
+                // Compounds by species
                 var compoundsAddedBySpecies = SpeciesEnvironmentEffect(patch);
                 var defaultBiomeConditions = patch.BiomeTemplate.Conditions;
 
@@ -75,10 +79,24 @@ public class GlucoseReductionEffect : IWorldEffect
                         {
                             currentCompoundValue.Density += compound.Value / 100 / divider;
                         }
-                        else
+
+                        patch.Biome.ChangeableCompounds[compound.Key] = currentCompoundValue;
+                    }
+                }
+
+                // Gasseous compounds by species
+                foreach (var compound in PatchModifiedGAC(patch))
+                {
+                    if (patch.Biome.ChangeableCompounds.ContainsKey(compound.Key))
+                    {
+                        // Uses default biome conditions to keep species / compounds balance
+                        if (!defaultBiomeConditions.ChangeableCompounds.TryGetValue(compound.Key,
+                                out BiomeCompoundProperties currentCompoundValue))
+                            return;
+
+                        if (compound.Key.IsGas)
                         {
-                            // TODO: gasseous compound support
-                            // currentCompoundValue.Ambient += compound.Value / 100 / divider;
+                            currentCompoundValue.Ambient += compound.Value;
                         }
 
                         patch.Biome.ChangeableCompounds[compound.Key] = currentCompoundValue;
@@ -158,10 +176,20 @@ public class GlucoseReductionEffect : IWorldEffect
 
                             var addedValue = processCompoundPair.Value * processPair.Value * population;
 
-                            if (totalCompoundsAdded.ContainsKey(compound))
-                                totalCompoundsAdded[compound] -= addedValue;
+                            if (!compound.IsGas)
+                            {
+                                if (totalCompoundsAdded.ContainsKey(compound))
+                                    totalCompoundsAdded[compound] -= addedValue;
+                                else
+                                    totalCompoundsAdded.Add(compound, addedValue);
+                            }
                             else
-                                totalCompoundsAdded.Add(compound, addedValue);
+                            {
+                                if (GAC.ContainsKey(compound))
+                                    GAC[compound] -= addedValue;
+                                else
+                                    GAC.Add(compound, addedValue);
+                            }
                         }
 
                         // Outputs
@@ -171,10 +199,20 @@ public class GlucoseReductionEffect : IWorldEffect
 
                             var addedValue = processCompoundPair.Value * processPair.Value * population;
 
-                            if (totalCompoundsAdded.ContainsKey(compound))
-                                totalCompoundsAdded[compound] += addedValue;
+                            if (!compound.IsGas)
+                            {
+                                if (totalCompoundsAdded.ContainsKey(compound))
+                                    totalCompoundsAdded[compound] += addedValue;
+                                else
+                                    totalCompoundsAdded.Add(compound, addedValue);
+                            }
                             else
-                                totalCompoundsAdded.Add(compound, addedValue);
+                            {
+                                if (GAC.ContainsKey(compound))
+                                    GAC[compound] += addedValue;
+                                else
+                                    GAC.Add(compound, addedValue);
+                            }
                         }
                     }
                 }
@@ -182,5 +220,17 @@ public class GlucoseReductionEffect : IWorldEffect
         }
 
         return totalCompoundsAdded;
+    }
+
+    private Dictionary<Compound, float> PatchModifiedGAC(Patch patch)
+    {
+        // Clone GAC and modify values
+        var newComposition = new Dictionary<Compound, float>();
+        foreach (var compound in GAC)
+        {
+            newComposition.Add(compound.Key, compound.Value * patch.BiomeTemplate.GACModifer);
+        }
+
+        return newComposition;
     }
 }
