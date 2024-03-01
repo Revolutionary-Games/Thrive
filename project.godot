@@ -15,6 +15,7 @@ config/description="Thrive is an open source evolution simulation game.
 Play as a microbe on an alien world trying to survive and adapt to your surroundings in order to thrive.
 
 https://revolutionarygamesstudio.com/"
+config/version="0.6.6"
 run/main_scene="res://src/general/MainMenu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Thrive"
@@ -53,13 +54,16 @@ PostStartupActions="*res://src/engine/PostStartupActions.cs"
 
 [debug]
 
+file_logging/log_path="user://logs/log.txt"
+file_logging/max_log_files=7
 settings/fps/force_fps=400
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="2d"
+window/size/initial_position_type=3
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="res://assets/textures/gui/cursors/default.png"
 mouse_cursor/tooltip_position_offset=Vector2(15, 15)
@@ -76,6 +80,12 @@ search_in_file_extensions=PackedStringArray("gd", "shader", "cs")
 [global]
 
 hardened=false
+
+[importer_defaults]
+
+texture={
+"mipmaps/generate": true
+}
 
 [input]
 
@@ -477,15 +487,15 @@ g_eject_engulfed={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://locale/af.po", "res://locale/ar.po", "res://locale/be.po", "res://locale/bg.po", "res://locale/bn.po", "res://locale/ca.po", "res://locale/cs.po", "res://locale/da.po", "res://locale/de.po", "res://locale/el.po", "res://locale/en.po", "res://locale/eo.po", "res://locale/es.po", "res://locale/es_AR.po", "res://locale/et.po", "res://locale/fi.po", "res://locale/fr.po", "res://locale/frm.po", "res://locale/he.po", "res://locale/hr.po", "res://locale/hu.po", "res://locale/id.po", "res://locale/it.po", "res://locale/ka.po", "res://locale/ko.po", "res://locale/la.po", "res://locale/lb_LU.po", "res://locale/lt.po", "res://locale/lv.po", "res://locale/mk.po", "res://locale/nb_NO.po", "res://locale/nl.po", "res://locale/nl_BE.po", "res://locale/pl.po", "res://locale/pt_BR.po", "res://locale/pt_PT.po", "res://locale/ro.po", "res://locale/ru.po", "res://locale/si_LK.po", "res://locale/sk.po", "res://locale/sr_Cyrl.po", "res://locale/sr_Latn.po", "res://locale/sv.po", "res://locale/th_TH.po", "res://locale/tok.po", "res://locale/tr.po", "res://locale/uk.po", "res://locale/vi.po", "res://locale/zh_CN.po", "res://locale/zh_TW.po")
+
 [layer_names]
 
 3d_physics/layer_1="Common"
 3d_physics/layer_2="Microbe"
 3d_physics/layer_31="Misc"
-
-[locale]
-
-translations=PackedStringArray("res://locale/en.po", "res://locale/af.po", "res://locale/ar.po", "res://locale/fr.po", "res://locale/et.po", "res://locale/fi.po", "res://locale/cs.po", "res://locale/da.po", "res://locale/de.po", "res://locale/el.po", "res://locale/eo.po", "res://locale/es.po", "res://locale/es_AR.po", "res://locale/id.po", "res://locale/mk.po", "res://locale/nb_NO.po", "res://locale/nl.po", "res://locale/nl_BE.po", "res://locale/pl.po", "res://locale/be.po", "res://locale/bg.po", "res://locale/bn.po", "res://locale/ca.po", "res://locale/ka.po", "res://locale/ko.po", "res://locale/lb_LU.po", "res://locale/it.po", "res://locale/pt_BR.po", "res://locale/pt_PT.po", "res://locale/ro.po", "res://locale/ru.po", "res://locale/si_LK.po", "res://locale/sk.po", "res://locale/sr_Cyrl.po", "res://locale/sr_Latn.po", "res://locale/he.po", "res://locale/hr.po", "res://locale/hu.po", "res://locale/lt.po", "res://locale/lv.po", "res://locale/sv.po", "res://locale/th_TH.po", "res://locale/tr.po", "res://locale/uk.po", "res://locale/vi.po", "res://locale/zh_CN.po", "res://locale/zh_TW.po")
 
 [logging]
 
@@ -497,15 +507,14 @@ file_logging/max_log_files=8
 
 limits/message_queue/max_size_kb=8192
 
-[mono]
-
-project/assembly_name="Thrive"
-
 [physics]
 
 3d/default_gravity=9.81
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=2
+anti_aliasing/quality/msaa_2d=1
+anti_aliasing/quality/msaa_3d=1
 environment/defaults/default_environment="res://default_env.tres"
 quality/driver/fallback_to_gles2=true
