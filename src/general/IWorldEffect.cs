@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -64,7 +65,7 @@ public class GlucoseReductionEffect : IWorldEffect
                 var compoundsAddedBySpecies = SpeciesEnvironmentEffect(patch);
                 var defaultBiomeConditions = patch.BiomeTemplate.Conditions;
 
-                long divider = 1000000000;
+                long divider = 100000;
 
                 foreach (var compound in compoundsAddedBySpecies)
                 {
@@ -103,7 +104,7 @@ public class GlucoseReductionEffect : IWorldEffect
 
                         if (compound.Key.IsGas)
                         {
-                            currentCompoundValue.Ambient += compound.Value;
+                           // currentCompoundValue.Ambient += compound.Value;
                         }
 
                         patch.Biome.ChangeableCompounds[compound.Key] = currentCompoundValue;
@@ -169,6 +170,7 @@ public class GlucoseReductionEffect : IWorldEffect
 
                 foreach (var organelle in microbeSpecies.Organelles)
                 {
+                    // Processes
                     if (organelle.Definition.Processes == null)
                         continue;
 
@@ -222,6 +224,15 @@ public class GlucoseReductionEffect : IWorldEffect
                             }
                         }
                     }
+                }
+
+                // Reproduction cost
+                foreach (var compound in microbeSpecies.BaseReproductionCost)
+                {
+                    if (totalCompoundsAdded.ContainsKey(compound.Key))
+                        totalCompoundsAdded[compound.Key] -= compound.Value;
+                    else
+                        totalCompoundsAdded.Add(compound.Key, -compound.Value);
                 }
             }
         }
