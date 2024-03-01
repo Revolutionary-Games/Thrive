@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   An archetype of an unit the player has. These define the fundamental thing that something is but the plan is to
@@ -14,7 +15,7 @@ using Newtonsoft.Json;
 ///     For now this implements the <see cref="ICityConstructionProject"/> interface for simplicity for the prototypes
 ///   </para>
 /// </remarks>
-[TypeConverter(typeof(UnitTypeStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(UnitTypeStringConverter)}")]
 public class UnitType : IRegistryType, ICityConstructionProject
 {
     private readonly Lazy<PackedScene> visualScene;

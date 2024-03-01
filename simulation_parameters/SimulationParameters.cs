@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using FileAccess = Godot.FileAccess;
@@ -608,11 +609,22 @@ public partial class SimulationParameters : Node
         return result;
     }
 
+    private static JsonSerializerSettings GetJSONSettings(JsonConverter[]? extraConverters = null)
+    {
+        var settings = new JsonSerializerSettings();
+
+        if (extraConverters != null)
+        {
+            settings.Converters = extraConverters;
+        }
+
+        return settings;
+    }
+
     private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[]? extraConverters = null)
     {
-        extraConverters ??= Array.Empty<JsonConverter>();
-
-        var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path), extraConverters);
+        var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path),
+            GetJSONSettings(extraConverters));
 
         if (result == null)
             throw new InvalidDataException("Could not load a registry from file: " + path);
@@ -640,9 +652,7 @@ public partial class SimulationParameters : Node
 
     private List<T> LoadListRegistry<T>(string path, JsonConverter[]? extraConverters = null)
     {
-        extraConverters ??= Array.Empty<JsonConverter>();
-
-        var result = JsonConvert.DeserializeObject<List<T>>(ReadJSONFile(path), extraConverters);
+        var result = JsonConvert.DeserializeObject<List<T>>(ReadJSONFile(path), GetJSONSettings(extraConverters));
 
         if (result == null)
             throw new InvalidDataException("Could not load a registry from file: " + path);
@@ -661,9 +671,7 @@ public partial class SimulationParameters : Node
     private T LoadDirectObject<T>(string path, JsonConverter[]? extraConverters = null)
         where T : class
     {
-        extraConverters ??= Array.Empty<JsonConverter>();
-
-        var result = JsonConvert.DeserializeObject<T>(ReadJSONFile(path), extraConverters);
+        var result = JsonConvert.DeserializeObject<T>(ReadJSONFile(path), GetJSONSettings(extraConverters));
 
         if (result == null)
             throw new InvalidDataException("Could not load a registry from file: " + path);

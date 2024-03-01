@@ -1,13 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
 using Godot;
+using Saving.Serializers;
 
 /// <summary>
 ///   Definition of a compound in the game. For all other simulation
 ///   parameters that refer to a compound, there must be an existing
 ///   entry of this type
 /// </summary>
-[TypeConverter(typeof(CompoundStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(CompoundStringConverter)}")]
 public class Compound : IRegistryType
 {
     /// <summary>

@@ -22,9 +22,12 @@ public partial class StartupActions : Node
         if (!Debugger.IsAttached)
         {
             GD.PrintErr("TODO: reimplement unhandled exception logger");
+
             // GD.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
-            GD.Print("Unhandled exception logger attached");
+            // GD.Print("Unhandled exception logger attached");
         }
+
+        NativeInterop.SetDllImportResolver();
 
         GD.Print("Startup C# locale is: ", CultureInfo.CurrentCulture, " Godot locale is: ",
             TranslationServer.GetLocale());
@@ -48,7 +51,7 @@ public partial class StartupActions : Node
             {
                 if (!NativeInterop.CheckCPU())
                 {
-                    if (Engine.EditorHint)
+                    if (Engine.IsEditorHint())
                     {
                         GD.Print(
                             "Skipping native library load in editor as it is not available (CPU check lib missing)");
@@ -80,7 +83,7 @@ public partial class StartupActions : Node
             {
                 NativeInterop.Load();
             }
-            else if (Engine.EditorHint)
+            else if (Engine.IsEditorHint())
             {
                 GD.Print("Skipping native library load in editor as the CPU feature check couldn't pass");
                 loadNative = false;

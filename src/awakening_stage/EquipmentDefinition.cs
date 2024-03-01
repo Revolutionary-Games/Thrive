@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   Definition for an equipment type
@@ -12,7 +13,7 @@ using Newtonsoft.Json;
 ///     for saving and loading these are needed to allow the switch to customized objects
 ///   </para>
 /// </remarks>
-[TypeConverter(typeof(EquipmentDefinitionStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(EquipmentDefinitionStringConverter)}")]
 public class EquipmentDefinition : IRegistryType
 {
     private readonly Lazy<PackedScene> worldRepresentation;

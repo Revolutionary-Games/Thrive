@@ -2,8 +2,9 @@
 using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
-[TypeConverter(typeof(StructureStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(StructureStringConverter)}")]
 public class StructureDefinition : BaseBuildableStructure
 {
     [JsonConstructor]

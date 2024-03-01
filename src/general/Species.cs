@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   Class that represents a species. This is an abstract base for
 ///   use by all stage-specific species classes.
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
 [UseThriveSerializer]

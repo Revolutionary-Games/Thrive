@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 using UnlockConstraints;
 
 /// <summary>
@@ -17,7 +18,7 @@ using UnlockConstraints;
 ///     organelles.json.
 ///   </para>
 /// </remarks>
-[TypeConverter(typeof(OrganelleDefinitionStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(OrganelleDefinitionStringConverter)}")]
 #pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
 public class OrganelleDefinition : IRegistryType
 #pragma warning restore CA1001

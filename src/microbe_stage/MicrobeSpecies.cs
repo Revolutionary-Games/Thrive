@@ -4,13 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 using Systems;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]

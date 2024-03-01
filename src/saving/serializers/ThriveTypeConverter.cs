@@ -1,4 +1,6 @@
-﻿using System;
+﻿namespace Saving.Serializers;
+
+using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -17,18 +19,21 @@ public class ThriveTypeConverter : TypeConverter
 {
     private static readonly Type StringType = typeof(string);
 
-    public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+    public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
     {
         return sourceType == StringType;
     }
 
-    public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+    public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
     {
+        if (destinationType == null)
+            throw new ArgumentNullException(nameof(destinationType));
+
         return destinationType == StringType || destinationType.CustomAttributes.Any(
             a => a.AttributeType == typeof(UseThriveConverterAttribute));
     }
 
-    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
+    public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object? value)
     {
         if (value == null)
             return null;
@@ -37,9 +42,12 @@ public class ThriveTypeConverter : TypeConverter
         return ThriveJsonConverter.Instance.DeserializeObjectDynamic((string)value);
     }
 
-    public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value,
+    public override object ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value,
         Type destinationType)
     {
+        if (value == null)
+            throw new ArgumentNullException(nameof(value));
+
         if (destinationType == StringType)
         {
             var type = value.GetType();
@@ -56,12 +64,4 @@ public class ThriveTypeConverter : TypeConverter
 
         throw new NotSupportedException();
     }
-}
-
-/// <summary>
-///   Attribute for marking a class compatible with ThriveTypeConverter
-/// </summary>
-[AttributeUsage(AttributeTargets.Class)]
-public class UseThriveConverterAttribute : Attribute
-{
 }

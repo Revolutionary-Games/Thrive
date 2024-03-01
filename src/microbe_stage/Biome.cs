@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   Base microbe biome with some parameters that are used for a Patch.
 ///   Modifiable versions of a Biome are stored in patches.
 /// </summary>
-[TypeConverter(typeof(BiomeStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(BiomeStringConverter)}")]
 public class Biome : IRegistryType
 {
     /// <summary>

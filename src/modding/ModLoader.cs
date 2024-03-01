@@ -33,7 +33,8 @@ public partial class ModLoader : Node
     {
         instance = this;
 
-        // Make sure we reference something from Harmony so that our builds are forced to always include it
+        // TODO: this causes an immediate crash in Godot 4
+        /*// Make sure we reference something from Harmony so that our builds are forced to always include it
         try
         {
             var harmony = new Harmony("com.revolutionarygamesstudio.thrive.dummyHarmony");
@@ -43,7 +44,8 @@ public partial class ModLoader : Node
         {
             GD.PrintErr("Harmony doesn't seem to be working. Don't expect any Harmony using mods to work. Exception: ",
                 e);
-        }
+        }*/
+        GD.Print("TODO: re-add harmony init");
 
         // The reason why mods aren't loaded here already is that this object can't be attached to the scene here yet
         // so we delay mod loading until this has been attached to the main scene tree

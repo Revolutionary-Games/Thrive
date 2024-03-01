@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel;
+using Saving.Serializers;
 
 /// <summary>
 ///   Define enzymes in the game. Enzyme is an "upgrade" that grants specific ability to microbes.
 /// </summary>
-[TypeConverter(typeof(EnzymeStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(EnzymeStringConverter)}")]
 public class Enzyme : IRegistryType
 {
     /// <summary>

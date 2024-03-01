@@ -2,11 +2,12 @@ using System;
 using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   A defined world resource
 /// </summary>
-[TypeConverter(typeof(WorldResourceStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(WorldResourceStringConverter)}")]
 public class WorldResource : IRegistryType, IPlayerReadableName
 {
     private readonly Lazy<PackedScene> worldRepresentation;

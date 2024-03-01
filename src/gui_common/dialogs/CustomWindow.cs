@@ -458,8 +458,10 @@ public partial class CustomWindow : TopLevelContainer
         if (BoundToScreenArea)
         {
             // Clamp position to ensure window stays inside the screen
+            // titleBarHeight may be larger than the space left after the window fills the entire screen so that last
+            // Max is needed
             Position = new Vector2(Mathf.Clamp(Position.X, 0, screenSize.X - Size.X),
-                Mathf.Clamp(Position.Y, titleBarHeight, screenSize.Y - Size.Y));
+                Mathf.Clamp(Position.Y, titleBarHeight, Math.Max(titleBarHeight, screenSize.Y - Size.Y)));
         }
 
         if (Resizable)

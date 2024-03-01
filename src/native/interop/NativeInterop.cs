@@ -12,6 +12,12 @@ using SharedBase.Utilities;
 /// </summary>
 public static class NativeInterop
 {
+    // Need these delegate holders to keep delegates alive
+    private static readonly NativeMethods.OnLogMessage LogMessageCallback = ForwardMessage;
+
+    private static readonly NativeMethods.OnLineDraw LineDrawCallback = ForwardLineDraw;
+    private static readonly NativeMethods.OnTriangleDraw TriangleDrawCallback = ForwardTriangleDraw;
+
     private static bool loadCalled;
     private static bool debugDrawIsPossible;
     private static bool nativeLoadSucceeded;
@@ -35,7 +41,7 @@ public static class NativeInterop
         // things for the initial settings
         _ = settings;
 
-        NativeMethods.SetLogForwardingCallback(ForwardMessage);
+        NativeMethods.SetLogForwardingCallback(LogMessageCallback);
 
         var result = NativeMethods.InitThriveLibrary();
 
@@ -46,7 +52,7 @@ public static class NativeInterop
 
         try
         {
-            debugDrawIsPossible = NativeMethods.SetDebugDrawerCallbacks(ForwardLineDraw, ForwardTriangleDraw);
+            debugDrawIsPossible = NativeMethods.SetDebugDrawerCallbacks(LineDrawCallback, TriangleDrawCallback);
         }
         catch (Exception e)
         {

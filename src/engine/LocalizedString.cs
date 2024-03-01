@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   String that can be localized on demand for different locales.
@@ -17,7 +18,7 @@ using Newtonsoft.Json;
 ///   </para>
 /// </remarks>
 [JSONDynamicTypeAllowed]
-[TypeConverter(typeof(LocalizedStringTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(LocalizedStringTypeConverter)}")]
 public class LocalizedString : IFormattable, IEquatable<LocalizedString>
 {
     [JsonProperty]
