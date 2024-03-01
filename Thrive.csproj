@@ -72,6 +72,7 @@
     <Content Include="simulation_parameters\space_stage\space_structures.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
     <ProjectReference Include="third_party\ThirdParty.csproj" />
   </ItemGroup>
 </Project>

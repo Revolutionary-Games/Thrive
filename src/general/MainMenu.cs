@@ -202,6 +202,12 @@ public partial class MainMenu : NodeWithInput
 
     public override void _Ready()
     {
+        if (SceneManager.QuitOrQuitting)
+        {
+            GD.Print("Skipping main menu initialization due to quitting");
+            return;
+        }
+
         // Unpause the game as the MainMenu should never be paused.
         PauseManager.Instance.ForceClear();
         MouseCaptureManager.ForceDisableCapture();

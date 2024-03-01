@@ -308,6 +308,7 @@ public class Program
             /// </summary>
             CheckDistributable,
 
+            // TODO: maybe remove this operation entirely (should also update documentation)
             /// <summary>
             ///   Installs a library to work with Godot editor
             /// </summary>
@@ -362,7 +363,7 @@ public class Program
 
         [Option('l', "library", Required = false, Default = null, MetaValue = "LIBRARIES",
             HelpText = "Libraries to work on, default is all.")]
-        public IList<NativeLibs.Library>? Libraries { get; set; } = new List<NativeLibs.Library>();
+        public IList<NativeConstants.Library>? Libraries { get; set; } = new List<NativeConstants.Library>();
 
         [Option('d', "debug", Required = false, Default = false,
             HelpText = "Set to work on debug versions of the libraries")]
