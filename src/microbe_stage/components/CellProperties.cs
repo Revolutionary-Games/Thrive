@@ -532,6 +532,9 @@
             cellProperties.Colour = newDefinition.Colour;
             cellProperties.MembraneRigidity = newDefinition.MembraneRigidity;
 
+            // Sets name; uses baseReproductionCostFrom as it is species
+            entity.Get<ReadableName>().Name = new LocalizedString(baseReproductionCostFrom.FormattedName);
+
             // Update the enzyme required for digestion
             entity.Get<Engulfable>().RequisiteEnzymeToDigest =
                 SimulationParameters.Instance.GetEnzyme(cellProperties.MembraneType.DissolverEnzyme);
