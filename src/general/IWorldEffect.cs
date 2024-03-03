@@ -22,9 +22,6 @@ public interface IWorldEffect
 [JSONDynamicTypeAllowed]
 public class GlucoseReductionEffect : IWorldEffect
 {
-    // Global Atmospheric Composition; individual patches adjust to to with its biome-unique modifier;
-    public Dictionary<Compound, float> GAC = new Dictionary<Compound, float>();
-
     [JsonProperty]
     private GameWorld targetWorld;
 
@@ -65,7 +62,7 @@ public class GlucoseReductionEffect : IWorldEffect
                 var compoundsAddedBySpecies = SpeciesEnvironmentEffect(patch);
                 var defaultBiomeConditions = patch.BiomeTemplate.Conditions;
 
-                long divider = 100000;
+                long divider = 1000000;
 
                 foreach (var compound in compoundsAddedBySpecies)
                 {
@@ -78,33 +75,8 @@ public class GlucoseReductionEffect : IWorldEffect
 
                         if (!compound.Key.IsGas)
                         {
-                            currentCompoundValue.Density += compound.Value / 100 / divider;
-                        }
-                        else
-                        {
-                            if (GAC.ContainsKey(compound.Key))
-                                GAC[compound.Key] += compound.Value / 100;
-                            else
-                                GAC.Add(compound.Key, compound.Value / 100);
-                        }
-
-                        patch.Biome.ChangeableCompounds[compound.Key] = currentCompoundValue;
-                    }
-                }
-
-                // Gasseous compounds by species
-                foreach (var compound in PatchModifiedGAC(patch))
-                {
-                    if (patch.Biome.ChangeableCompounds.ContainsKey(compound.Key))
-                    {
-                        // Uses default biome conditions to keep species / compounds balance
-                        if (!defaultBiomeConditions.ChangeableCompounds.TryGetValue(compound.Key,
-                                out BiomeCompoundProperties currentCompoundValue))
-                            return;
-
-                        if (compound.Key.IsGas)
-                        {
-                           // currentCompoundValue.Ambient += compound.Value;
+                            currentCompoundValue.Density = Mathf.Clamp(currentCompoundValue.Density +
+                                compound.Value/ 100 / divider, 0, 1);
                         }
 
                         patch.Biome.ChangeableCompounds[compound.Key] = currentCompoundValue;
@@ -190,14 +162,7 @@ public class GlucoseReductionEffect : IWorldEffect
                                 if (totalCompoundsAdded.ContainsKey(compound))
                                     totalCompoundsAdded[compound] -= addedValue;
                                 else
-                                    totalCompoundsAdded.Add(compound, addedValue);
-                            }
-                            else
-                            {
-                                if (GAC.ContainsKey(compound))
-                                    GAC[compound] -= addedValue;
-                                else
-                                    GAC.Add(compound, addedValue);
+                                    totalCompoundsAdded.Add(compound, -addedValue);
                             }
                         }
 
@@ -215,40 +180,23 @@ public class GlucoseReductionEffect : IWorldEffect
                                 else
                                     totalCompoundsAdded.Add(compound, addedValue);
                             }
-                            else
-                            {
-                                if (GAC.ContainsKey(compound))
-                                    GAC[compound] += addedValue;
-                                else
-                                    GAC.Add(compound, addedValue);
-                            }
                         }
                     }
                 }
 
                 // Reproduction cost
+                var reproductionCostDivider = 100;
+
                 foreach (var compound in microbeSpecies.BaseReproductionCost)
                 {
                     if (totalCompoundsAdded.ContainsKey(compound.Key))
-                        totalCompoundsAdded[compound.Key] -= compound.Value;
+                        totalCompoundsAdded[compound.Key] -= compound.Value * population / reproductionCostDivider;
                     else
-                        totalCompoundsAdded.Add(compound.Key, -compound.Value);
+                        totalCompoundsAdded.Add(compound.Key, -compound.Value * population / reproductionCostDivider);
                 }
             }
         }
 
         return totalCompoundsAdded;
-    }
-
-    private Dictionary<Compound, float> PatchModifiedGAC(Patch patch)
-    {
-        // Clone GAC and modify values
-        var newComposition = new Dictionary<Compound, float>();
-        foreach (var compound in GAC)
-        {
-            newComposition.Add(compound.Key, compound.Value * patch.BiomeTemplate.GACModifer);
-        }
-
-        return newComposition;
     }
 }
