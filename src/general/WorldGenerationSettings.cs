@@ -105,6 +105,11 @@ public class WorldGenerationSettings
     public bool DayNightCycleEnabled { get; set; }
 
     /// <summary>
+    ///   Whether dynamic compounds in this game is enabled
+    /// </summary>
+    public bool DynamicCompoundsEnabled { get; set; }
+
+    /// <summary>
     ///   Real-time length of a full day on the planet in seconds
     /// </summary>
     public int DayLength { get; set; } = Constants.DEFAULT_DAY_LENGTH;

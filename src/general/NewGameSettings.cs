@@ -126,6 +126,9 @@ public class NewGameSettings : ControlWithInput
     public NodePath DayNightCycleButtonPath = null!;
 
     [Export]
+    public NodePath DynamicCompoundsButtonPath = null!;
+
+    [Export]
     public NodePath DayLengthContainerPath = null!;
 
     [Export]
@@ -197,6 +200,7 @@ public class NewGameSettings : ControlWithInput
     private Button lawkButton = null!;
     private Button lawkAdvancedButton = null!;
     private Button dayNightCycleButton = null!;
+    private Button dynamicCompoundsButton = null!;
     private HSlider dayLength = null!;
     private LineEdit dayLengthReadout = null!;
     private VBoxContainer dayLengthContainer = null!;
@@ -280,6 +284,7 @@ public class NewGameSettings : ControlWithInput
         lawkButton = GetNode<Button>(LAWKButtonPath);
         lawkAdvancedButton = GetNode<Button>(LAWKAdvancedButtonPath);
         dayNightCycleButton = GetNode<Button>(DayNightCycleButtonPath);
+        dynamicCompoundsButton = GetNode<Button>(DynamicCompoundsButtonPath);
         dayLengthContainer = GetNode<VBoxContainer>(DayLengthContainerPath);
         dayLength = GetNode<HSlider>(DayLengthPath);
         dayLengthReadout = GetNode<LineEdit>(DayLengthReadoutPath);
@@ -402,6 +407,7 @@ public class NewGameSettings : ControlWithInput
 
         lawkButton.Pressed = settings.LAWK;
         dayNightCycleButton.Pressed = settings.DayNightCycleEnabled;
+        dynamicCompoundsButton.Pressed = settings.DynamicCompoundsEnabled;
         dayLength.Value = settings.DayLength;
 
         // Copy the seed from the settings, as there isn't one method to set this, this is done a bit clumsily like
@@ -481,6 +487,7 @@ public class NewGameSettings : ControlWithInput
                 LAWKButtonPath.Dispose();
                 LAWKAdvancedButtonPath.Dispose();
                 DayNightCycleButtonPath.Dispose();
+                DynamicCompoundsButtonPath.Dispose();
                 DayLengthContainerPath.Dispose();
                 DayLengthPath.Dispose();
                 DayLengthReadoutPath.Dispose();
@@ -588,6 +595,7 @@ public class NewGameSettings : ControlWithInput
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.LAWK = lawkButton.Pressed;
         settings.DayNightCycleEnabled = dayNightCycleButton.Pressed;
+        settings.DynamicCompoundsEnabled = dynamicCompoundsButton.Pressed;
         settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
 
