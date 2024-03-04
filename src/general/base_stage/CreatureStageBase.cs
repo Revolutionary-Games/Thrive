@@ -11,7 +11,8 @@ using Newtonsoft.Json;
 /// <typeparam name="TSimulation">The type of simulation this stage uses</typeparam>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
+[GodotAbstract]
+public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
     where TSimulation : class, IWorldSimulation, new()
 {
 #pragma warning disable CA2213
@@ -37,8 +38,7 @@ public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBas
     {
     }
 
-    [JsonConstructor]
-    public CreatureStageBase(TSimulation worldSimulation)
+    protected CreatureStageBase(TSimulation worldSimulation)
     {
         WorldSimulation = worldSimulation;
     }
@@ -57,10 +57,10 @@ public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBas
     public TPlayer? Player { get; protected set; }
 
     [JsonIgnore]
-    public abstract bool HasPlayer { get; }
+    public virtual bool HasPlayer => throw new GodotAbstractPropertyNotOverriddenException();
 
     [JsonIgnore]
-    public abstract bool HasAlivePlayer { get; }
+    public virtual bool HasAlivePlayer => throw new GodotAbstractPropertyNotOverriddenException();
 
     [JsonProperty]
     public TSimulation WorldSimulation { get; private set; } = null!;
@@ -73,7 +73,7 @@ public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBas
     public bool MovingToEditor { get; set; }
 
     [JsonIgnore]
-    protected abstract ICreatureStageHUD BaseHUD { get; }
+    protected virtual ICreatureStageHUD BaseHUD => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void ResolveNodeReferences()
     {
@@ -220,9 +220,15 @@ public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBas
         pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
-    public abstract void MoveToEditor();
+    public virtual void MoveToEditor()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    public abstract void OnSuicide();
+    public virtual void OnSuicide()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Called when the player died out in a patch and selected a new one
@@ -260,7 +266,10 @@ public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBas
         BaseHUD.OnEnterStageTransition(longDuration, returnFromEditor);
     }
 
-    protected abstract void UpdatePatchSettings(bool promptPatchNameChange = true);
+    protected virtual void UpdatePatchSettings(bool promptPatchNameChange = true)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Increases the population by the constant for the player reproducing
@@ -354,7 +363,10 @@ public abstract partial class CreatureStageBase<TPlayer, TSimulation> : StageBas
     /// <summary>
     ///   Spawns the player if there isn't currently a player node existing
     /// </summary>
-    protected abstract void SpawnPlayer();
+    protected virtual void SpawnPlayer()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected override void OnGameOver()
     {

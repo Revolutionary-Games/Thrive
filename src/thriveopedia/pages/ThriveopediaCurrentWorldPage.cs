@@ -20,10 +20,10 @@ public partial class ThriveopediaCurrentWorldPage : ThriveopediaPage
     private RichTextLabel miscDetails = null!;
 #pragma warning restore CA2213
 
-    public override string PageName => "CurrentWorld";
-    public override string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE");
+    public string PageName => "CurrentWorld";
+    public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE");
 
-    public override string? ParentPageName => null;
+    public string? ParentPageName => null;
 
     public override void _Ready()
     {

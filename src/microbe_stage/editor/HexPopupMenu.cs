@@ -5,7 +5,8 @@ using Godot;
 /// <summary>
 ///   Base class for more specialized right click popup menus for the editor
 /// </summary>
-public abstract partial class HexPopupMenu : CustomPopupMenu
+[GodotAbstract]
+public partial class HexPopupMenu : CustomPopupMenu
 {
     [Export]
     public NodePath? TitleLabelPath;
@@ -32,6 +33,10 @@ public abstract partial class HexPopupMenu : CustomPopupMenu
     private bool enableModify;
 
     private string? deleteTooltip;
+
+    protected HexPopupMenu()
+    {
+    }
 
     [Signal]
     public delegate void DeletePressedEventHandler();
@@ -169,11 +174,20 @@ public abstract partial class HexPopupMenu : CustomPopupMenu
         modifyButton = GetNode<Button>(ModifyButtonPath);
     }
 
-    protected abstract void UpdateTitleLabel();
+    protected virtual void UpdateTitleLabel()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void UpdateDeleteButton();
+    protected virtual void UpdateDeleteButton()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void UpdateMoveButton();
+    protected virtual void UpdateMoveButton()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected override void Dispose(bool disposing)
     {

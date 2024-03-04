@@ -6,7 +6,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Base class for all stage classes that are part of the strategy stages part of the game (society stage etc.)
 /// </summary>
-public abstract partial class StrategyStageBase : StageBase, IStrategyStage
+[GodotAbstract]
+public partial class StrategyStageBase : StageBase, IStrategyStage
 {
     [Export]
     public NodePath? StrategicCameraPath;
@@ -22,6 +23,10 @@ public abstract partial class StrategyStageBase : StageBase, IStrategyStage
 
     private readonly Dictionary<object, float> activeResearchContributions = new();
 
+    protected StrategyStageBase()
+    {
+    }
+
     /// <summary>
     ///   Where the stage's strategic view camera is looking at
     /// </summary>
@@ -35,7 +40,7 @@ public abstract partial class StrategyStageBase : StageBase, IStrategyStage
     public TechnologyProgress? CurrentlyResearchedTechnology { get; private set; }
 
     [JsonIgnore]
-    protected abstract IStrategyStageHUD BaseHUD { get; }
+    protected virtual IStrategyStageHUD BaseHUD => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void ResolveNodeReferences()
     {

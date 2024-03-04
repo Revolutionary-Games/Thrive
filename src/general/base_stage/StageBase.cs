@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public abstract partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResolve
+[GodotAbstract]
+public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath? PauseMenuPath;
@@ -43,6 +44,10 @@ public abstract partial class StageBase : NodeWithInput, IStageBase, IGodotEarly
     /// </summary>
     private double elapsedSinceLightLevelUpdate = 1;
 
+    protected StageBase()
+    {
+    }
+
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
@@ -68,7 +73,7 @@ public abstract partial class StageBase : NodeWithInput, IStageBase, IGodotEarly
     public bool NodeReferencesResolved { get; private set; }
 
     [JsonIgnore]
-    public abstract MainGameState GameState { get; }
+    public virtual MainGameState GameState => throw new GodotAbstractPropertyNotOverriddenException();
 
     /// <summary>
     ///   True once stage fade-in is complete
@@ -132,7 +137,10 @@ public abstract partial class StageBase : NodeWithInput, IStageBase, IGodotEarly
         }
     }
 
-    public abstract void StartMusic();
+    public virtual void StartMusic()
+    {
+        GD.PrintErr($"{nameof(StartMusic)} method not overridden for stage");
+    }
 
     public virtual void StartNewGame()
     {
@@ -171,7 +179,9 @@ public abstract partial class StageBase : NodeWithInput, IStageBase, IGodotEarly
         TransitionFinished = true;
     }
 
-    public abstract void OnFinishLoading(Save save);
+    public virtual void OnFinishLoading(Save save)
+    {
+    }
 
     /// <summary>
     ///   Tries to open God Tools for the specified game object
@@ -231,18 +241,40 @@ public abstract partial class StageBase : NodeWithInput, IStageBase, IGodotEarly
     /// <summary>
     ///   Common logic for the case where we directly open this scene or start a new game normally from the menu
     /// </summary>
-    protected abstract void OnGameStarted();
+    protected virtual void OnGameStarted()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void StartGUIStageTransition(bool longDuration, bool returnFromEditor);
+    protected virtual void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract bool IsGameOver();
+    protected virtual bool IsGameOver()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void OnGameOver();
+    protected virtual void OnGameOver()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void AutoSave();
-    protected abstract void PerformQuickSave();
+    protected virtual void AutoSave()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void OnLightLevelUpdate();
+    protected virtual void PerformQuickSave()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual void OnLightLevelUpdate()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     // TODO: implement for all stages
     protected virtual void OnOpenGodTools(IEntity entity)

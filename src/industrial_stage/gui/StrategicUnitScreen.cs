@@ -7,7 +7,8 @@ using Godot;
 ///   to control it.
 /// </summary>
 /// <typeparam name="T">The type of unit controller</typeparam>
-public abstract partial class StrategicUnitScreen<T> : CustomWindow
+[GodotAbstract]
+public partial class StrategicUnitScreen<T> : CustomWindow
     where T : GodotObject, IStrategicUnit, IEntity
 {
     [Export]
@@ -27,6 +28,10 @@ public abstract partial class StrategicUnitScreen<T> : CustomWindow
     protected EntityReference<T>? managedUnit;
 
     private double elapsed = 1;
+
+    protected StrategicUnitScreen()
+    {
+    }
 
     [Signal]
     public delegate void OnOpenGodToolsEventHandler(GodotObject unit);
@@ -169,12 +174,18 @@ public abstract partial class StrategicUnitScreen<T> : CustomWindow
     ///   Called when this is shown for a unit to update all the data. Note that <see cref="RefreshShownData"/> is not
     ///   automatically called right after this when this screen opens.
     /// </summary>
-    protected abstract void UpdateAll();
+    protected virtual void UpdateAll()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Called periodically to refresh the shown unit data
     /// </summary>
-    protected abstract void RefreshShownData();
+    protected virtual void RefreshShownData()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual void OnMoveStart()
     {

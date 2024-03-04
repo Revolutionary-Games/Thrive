@@ -37,6 +37,10 @@ public partial class PhotographablePreview : Control
 
     private ImageTask? task;
 
+    protected PhotographablePreview()
+    {
+    }
+
     public override void _Ready()
     {
         base._Ready();

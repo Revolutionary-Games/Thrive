@@ -4,7 +4,8 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
-public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TAction, TMetaball> :
+[GodotAbstract]
+public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TAction, TMetaball> :
     EditorComponentWithActionsBase<TEditor, TCombinedAction>,
     ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
@@ -87,6 +88,10 @@ public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedActi
 
     private IEnumerable<(Vector3 Position, TMetaball? Parent)>? mouseHoverPositions;
 
+    protected MetaballEditorComponentBase()
+    {
+    }
+
     /// <summary>
     ///   The symmetry setting of the editor.
     /// </summary>
@@ -139,11 +144,11 @@ public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedActi
     public override bool CanCancelAction => CanCancelMove;
 
     [JsonIgnore]
-    public abstract bool HasIslands { get; }
+    public virtual bool HasIslands => throw new GodotAbstractPropertyNotOverriddenException();
 
     public bool IsLoadedFromSave { get; set; }
 
-    protected abstract bool ForceHideHover { get; }
+    protected virtual bool ForceHideHover => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void _Ready()
     {
@@ -495,8 +500,15 @@ public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedActi
         }
     }
 
-    protected abstract MetaballLayout<TMetaball> CreateLayout();
-    protected abstract IMetaballDisplayer<TMetaball> CreateMetaballDisplayer();
+    protected virtual MetaballLayout<TMetaball> CreateLayout()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual IMetaballDisplayer<TMetaball> CreateMetaballDisplayer()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual void LoadMetaballDisplayers()
     {
@@ -743,7 +755,10 @@ public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedActi
         throw new NotImplementedException();
     }
 
-    protected abstract void PerformActiveAction();
+    protected virtual void PerformActiveAction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual bool DoesActionEndInProgressAction(TCombinedAction action)
     {
@@ -760,13 +775,30 @@ public abstract partial class MetaballEditorComponentBase<TEditor, TCombinedActi
     /// </param>
     /// <param name="metaball">The move data to try to move to the position</param>
     /// <returns>True if valid</returns>
-    protected abstract bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? rotation, TMetaball metaball);
+    protected virtual bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? rotation, TMetaball metaball)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void OnMoveActionStarted();
-    protected abstract void PerformMove(Vector3 position, TMetaball parent);
-    protected abstract TAction? TryCreateMetaballRemoveAction(TMetaball metaball, ref int alreadyDeleted);
+    protected virtual void OnMoveActionStarted()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract float CalculateEditorArrowZPosition();
+    protected virtual void PerformMove(Vector3 position, TMetaball parent)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual TAction? TryCreateMetaballRemoveAction(TMetaball metaball, ref int alreadyDeleted)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual float CalculateEditorArrowZPosition()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual void UpdateCancelState()
     {

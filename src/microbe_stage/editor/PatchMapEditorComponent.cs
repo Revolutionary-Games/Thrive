@@ -13,7 +13,8 @@ using Newtonsoft.Json;
 ///     future with more logic being put in <see cref="MicrobeEditorPatchMap"/>
 ///   </para>
 /// </remarks>
-public abstract partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
+[GodotAbstract]
+public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
     where TEditor : IEditorWithPatches
 {
     [Export]
@@ -44,6 +45,10 @@ public abstract partial class PatchMapEditorComponent<TEditor> : EditorComponent
 
     [JsonProperty]
     private FogOfWarMode fogOfWar;
+
+    protected PatchMapEditorComponent()
+    {
+    }
 
     /// <summary>
     ///   Returns the current patch the player is in

@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 /// </summary>
 /// <typeparam name="TStage">The type of the stage this HUD is for</typeparam>
 [JsonObject(MemberSerialization.OptIn)]
-public abstract partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategyStageHUD
+[GodotAbstract]
+public partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategyStageHUD
     where TStage : GodotObject, IStrategyStage
 {
     [Export]
@@ -44,6 +45,10 @@ public abstract partial class StrategyStageHUDBase<TStage> : HUDWithPausing, ISt
 
     private ResourceDisplayBar resourceDisplay = null!;
 #pragma warning restore CA2213
+
+    protected StrategyStageHUDBase()
+    {
+    }
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]

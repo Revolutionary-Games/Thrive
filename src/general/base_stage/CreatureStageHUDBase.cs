@@ -11,7 +11,8 @@ using Newtonsoft.Json;
 /// </summary>
 /// <typeparam name="TStage">The type of the stage this HUD is for</typeparam>
 [JsonObject(MemberSerialization.OptIn)]
-public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureStageHUD
+[GodotAbstract]
+public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureStageHUD
     where TStage : GodotObject, ICreatureStage
 {
     [Export]
@@ -309,6 +310,10 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     [JsonProperty]
     private Color healthBarFlashColour = new(0, 0, 0, 0);
+
+    protected CreatureStageHUDBase()
+    {
+    }
 
     // TODO: check if this is still true with Godot 4
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
@@ -717,12 +722,18 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     /// <summary>
     ///   Creates and displays a fossilisation button above each on-screen organism.
     /// </summary>
-    protected abstract void ShowFossilisationButtons();
+    protected virtual void ShowFossilisationButtons()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Updates all fossilisation buttons' status of fossilisation
     /// </summary>
-    protected abstract void UpdateFossilisationButtonStates();
+    protected virtual void UpdateFossilisationButtonStates()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Destroys all fossilisation buttons on screen. And the layer won't be usable again until re-enabled (and
@@ -854,7 +865,10 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         hpLabel.TooltipText = hpText;
     }
 
-    protected abstract void ReadPlayerHitpoints(out float hp, out float maxHP);
+    protected virtual void ReadPlayerHitpoints(out float hp, out float maxHP)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected void SetEditorButtonFlashEffect(bool enabled)
     {
@@ -889,18 +903,30 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         UpdateBarVisibility(GetIsUsefulCheck());
     }
 
-    protected abstract CompoundBag? GetPlayerUsefulCompounds();
+    protected virtual CompoundBag? GetPlayerUsefulCompounds()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract Func<Compound, bool> GetIsUsefulCheck();
+    protected virtual Func<Compound, bool> GetIsUsefulCheck()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Potentially special handling for a compound bar
     /// </summary>
     /// <param name="bar">The bar to handle</param>
     /// <returns>True if handled, in which case default handling is skipped</returns>
-    protected abstract bool SpecialHandleBar(ProgressBar bar);
+    protected virtual bool SpecialHandleBar(ProgressBar bar)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract bool ShouldShowAgentsPanel();
+    protected virtual bool ShouldShowAgentsPanel()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected Color GetCompoundDensityCategoryColor(float amount)
     {
@@ -1014,7 +1040,12 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         CheckPhosphateProgressHighlight(fractionOfPhosphates);
     }
 
-    protected abstract void CalculatePlayerReproductionProgress(System.Collections.Generic.Dictionary<Compound, float> gatheredCompounds, System.Collections.Generic.Dictionary<Compound, float> totalNeededCompounds);
+    protected virtual void CalculatePlayerReproductionProgress(
+        System.Collections.Generic.Dictionary<Compound, float> gatheredCompounds,
+        System.Collections.Generic.Dictionary<Compound, float> totalNeededCompounds)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected void UpdateATP(float delta)
     {
@@ -1045,7 +1076,10 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         atpLabel.TooltipText = atpText;
     }
 
-    protected abstract ICompoundStorage GetPlayerStorage();
+    protected virtual ICompoundStorage GetPlayerStorage()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected void UpdateProcessPanel()
     {
@@ -1055,7 +1089,10 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         processPanel.ShownData = stage is { HasAlivePlayer: true } ? GetPlayerProcessStatistics() : null;
     }
 
-    protected abstract ProcessStatistics? GetPlayerProcessStatistics();
+    protected virtual ProcessStatistics? GetPlayerProcessStatistics()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected void UpdatePanelSizing(float delta)
     {
@@ -1081,9 +1118,15 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     /// <summary>
     ///   Updates the mouse hover indicator / player look at box (inspector panel) with stuff.
     /// </summary>
-    protected abstract void UpdateHoverInfo(float delta);
+    protected virtual void UpdateHoverInfo(float delta)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void UpdateAbilitiesHotBar();
+    protected virtual void UpdateAbilitiesHotBar()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
         bool showingSignaling, bool engulfOn, bool showEject)

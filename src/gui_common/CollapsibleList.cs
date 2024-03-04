@@ -83,7 +83,7 @@ public partial class CollapsibleList : VBoxContainer
         collapseButton = GetNode<TextureButton>(CollapseButtonPath);
         expandButton = GetNode<TextureButton>(ExpandButtonPath);
 
-        cachedTopMarginValue = clipBox.GetThemeConstant("offset_top");
+        cachedTopMarginValue = clipBox.GetThemeConstant("margin_top");
 
         UpdateItemContainer();
         UpdateTitle();
@@ -100,7 +100,7 @@ public partial class CollapsibleList : VBoxContainer
 
         // Readjusts the clip box height
         if (Collapsed)
-            clipBox.AddThemeConstantOverride("offset_top", -(int)itemContainer.Size.Y);
+            clipBox.AddThemeConstantOverride("margin_top", -(int)itemContainer.Size.Y);
     }
 
     public T GetItem<T>(string name)
@@ -221,7 +221,7 @@ public partial class CollapsibleList : VBoxContainer
         tween.SetTrans(Tween.TransitionType.Sine);
         tween.SetEase(Tween.EaseType.Out);
 
-        tween.TweenProperty(clipBox, "custom_constants/offset_top", -clipBox.Size.Y, 0.3).From(cachedTopMarginValue);
+        tween.TweenProperty(clipBox, "custom_constants/margin_top", -clipBox.Size.Y, 0.3).From(cachedTopMarginValue);
 
         tween.TweenCallback(new Callable(this, nameof(OnCollapsingFinished)));
 
@@ -245,7 +245,7 @@ public partial class CollapsibleList : VBoxContainer
         tween.SetTrans(Tween.TransitionType.Sine);
         tween.SetEase(Tween.EaseType.Out);
 
-        tween.TweenProperty(clipBox, "custom_constants/offset_top", cachedTopMarginValue, 0.3);
+        tween.TweenProperty(clipBox, "custom_constants/margin_top", cachedTopMarginValue, 0.3);
     }
 
     // GUI Callbacks

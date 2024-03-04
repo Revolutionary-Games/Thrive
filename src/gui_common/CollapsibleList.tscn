@@ -1,99 +1,76 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://bq6aee8pw8y3m"]
 
-[ext_resource path="res://assets/textures/gui/bevel/minusButton.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/minusButtonHover.png" type="Texture2D" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture2D" id=5]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="FontFile" id=6]
-[ext_resource path="res://src/gui_common/CollapsibleList.cs" type="Script" id=7]
+[ext_resource type="Texture2D" uid="uid://cwrk1w3l7u6t4" path="res://assets/textures/gui/bevel/minusButton.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://ca7aacfe47auq" path="res://assets/textures/gui/bevel/minusButtonHover.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b84h4mjojeb7q" path="res://assets/textures/gui/bevel/plusButton.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bwcvbcn15kctq" path="res://assets/textures/gui/bevel/plusButtonHover.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="5"]
+[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" id="6"]
+[ext_resource type="Script" path="res://src/gui_common/CollapsibleList.cs" id="7"]
 
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 258, 1 )
+[sub_resource type="StyleBoxTexture" id="1"]
+texture = ExtResource("5")
+region_rect = Rect2(0, 0, 258, 1)
 
 [node name="CollapsibleList" type="VBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1225.0
 offset_bottom = -744.0
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("7")
 TitleLabelPath = NodePath("HBoxContainer/Title")
 CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
 ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
 ClipBoxPath = NodePath("Clip")
 ItemContainerPath = NodePath("Clip/GridContainer")
-TweenPath = NodePath("Tween")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_right = 144.0
-offset_bottom = 20.0
+layout_mode = 2
 
 [node name="Buttons" type="MarginContainer" parent="HBoxContainer"]
-offset_right = 20.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 20, 20 )
-mouse_filter = 1
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
 size_flags_vertical = 4
 
 [node name="minusButton" type="TextureButton" parent="HBoxContainer/Buttons"]
-offset_right = 20.0
-offset_bottom = 20.0
+layout_mode = 2
 mouse_filter = 1
-texture_normal = ExtResource( 1 )
-texture_hover = ExtResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource("1")
+texture_hover = ExtResource("2")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="plusButton" type="TextureButton" parent="HBoxContainer/Buttons"]
 visible = false
-offset_right = 20.0
-offset_bottom = 20.0
+layout_mode = 2
 mouse_filter = 1
-texture_normal = ExtResource( 3 )
-texture_hover = ExtResource( 4 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource("3")
+texture_hover = ExtResource("4")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Title" type="Label" parent="HBoxContainer"]
-offset_left = 24.0
-offset_top = 1.0
-offset_right = 137.0
-offset_bottom = 19.0
-theme_override_fonts/font = ExtResource( 6 )
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6")
 text = "Insert Title Here"
-valign = 1
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
-offset_left = 141.0
-offset_right = 144.0
-offset_bottom = 20.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/separator = SubResource( 1 )
+mouse_filter = 1
+theme_override_styles/separator = SubResource("1")
 
 [node name="Clip" type="MarginContainer" parent="."]
-offset_top = 24.0
-offset_right = 144.0
-offset_bottom = 24.0
 clip_contents = true
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="GridContainer" type="GridContainer" parent="Clip"]
-offset_right = 144.0
+layout_mode = 2
 mouse_filter = 2
 
-[node name="Tween" type="Tween" parent="."]
 [connection signal="pressed" from="HBoxContainer/Buttons/minusButton" to="." method="CollapseButtonPressed"]
 [connection signal="pressed" from="HBoxContainer/Buttons/plusButton" to="." method="ExpandButtonPressed"]

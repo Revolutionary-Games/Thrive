@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Editor component that specializes in hex-based stuff editing
 /// </summary>
-public abstract partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
+[GodotAbstract]
+public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
     EditorComponentWithActionsBase<TEditor, TCombinedAction>,
     ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
@@ -117,6 +118,10 @@ public abstract partial class HexEditorComponentBase<TEditor, TCombinedAction, T
     /// </summary>
     private Vector3? mousePanningStart;
 
+    protected HexEditorComponentBase()
+    {
+    }
+
     /// <summary>
     ///   The symmetry setting of the editor.
     /// </summary>
@@ -185,11 +190,11 @@ public abstract partial class HexEditorComponentBase<TEditor, TCombinedAction, T
     public override bool CanCancelAction => CanCancelMove;
 
     [JsonIgnore]
-    public abstract bool HasIslands { get; }
+    public virtual bool HasIslands => throw new GodotAbstractPropertyNotOverriddenException();
 
     public bool IsLoadedFromSave { get; set; }
 
-    protected abstract bool ForceHideHover { get; }
+    protected virtual bool ForceHideHover => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void _Ready()
     {
@@ -1026,7 +1031,10 @@ public abstract partial class HexEditorComponentBase<TEditor, TCombinedAction, T
         }
     }
 
-    protected abstract void PerformActiveAction();
+    protected virtual void PerformActiveAction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual bool DoesActionEndInProgressAction(TCombinedAction action)
     {
@@ -1043,14 +1051,35 @@ public abstract partial class HexEditorComponentBase<TEditor, TCombinedAction, T
     /// </param>
     /// <param name="hex">The move data to try to move to the position</param>
     /// <returns>True if valid</returns>
-    protected abstract bool IsMoveTargetValid(Hex position, int rotation, THexMove hex);
+    protected virtual bool IsMoveTargetValid(Hex position, int rotation, THexMove hex)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void OnMoveActionStarted();
-    protected abstract void PerformMove(int q, int r);
-    protected abstract THexMove? GetHexAt(Hex position);
-    protected abstract TAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted);
+    protected virtual void OnMoveActionStarted()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract float CalculateEditorArrowZPosition();
+    protected virtual void PerformMove(int q, int r)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual THexMove? GetHexAt(Hex position)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual TAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual float CalculateEditorArrowZPosition()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual void UpdateCancelState()
     {

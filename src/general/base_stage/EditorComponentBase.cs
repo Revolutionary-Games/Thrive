@@ -8,7 +8,8 @@ using Newtonsoft.Json;
 /// </summary>
 /// <typeparam name="TEditor">The type of editor this component is contained in</typeparam>
 [JsonObject(MemberSerialization.OptIn)]
-public abstract partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorComponent
+[GodotAbstract]
+public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorComponent
     where TEditor : IEditor
 {
     [Export]
@@ -21,6 +22,10 @@ public abstract partial class EditorComponentBase<TEditor> : ControlWithInput, I
 #pragma warning restore CA2213
 
     private TEditor? editor;
+
+    protected EditorComponentBase()
+    {
+    }
 
     /// <summary>
     ///   If this is set then the next / finish button on this tab is the next button.
@@ -117,18 +122,35 @@ public abstract partial class EditorComponentBase<TEditor> : ControlWithInput, I
     /// <summary>
     ///   Applies the new (edited) state that this editor component handled
     /// </summary>
-    public abstract void OnFinishEditing();
+    public virtual void OnFinishEditing()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    public abstract void UpdateUndoRedoButtons(bool canUndo, bool canRedo);
-    public abstract void OnInsufficientMP(bool playSound = true);
-    public abstract void OnActionBlockedWhileAnotherIsInProgress();
+    public virtual void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    public virtual void OnInsufficientMP(bool playSound = true)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    public virtual void OnActionBlockedWhileAnotherIsInProgress()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     public void OnInvalidAction()
     {
         PlayInvalidActionSound();
     }
 
-    public abstract void OnValidAction();
+    public virtual void OnValidAction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Notify this component about the freebuild status. Many components don't need to react to this, they can
@@ -139,7 +161,10 @@ public abstract partial class EditorComponentBase<TEditor> : ControlWithInput, I
     {
     }
 
-    public abstract void OnMutationPointsChanged(int mutationPoints);
+    public virtual void OnMutationPointsChanged(int mutationPoints)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     public virtual void OnLightLevelChanged(float lightLevel)
     {
@@ -153,7 +178,10 @@ public abstract partial class EditorComponentBase<TEditor> : ControlWithInput, I
     /// <summary>
     ///   Rebuilds and recalculates all value dependent UI elements on language change
     /// </summary>
-    protected abstract void OnTranslationsChanged();
+    protected virtual void OnTranslationsChanged()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Registers tooltip for the already existing Controls in the editor GUI

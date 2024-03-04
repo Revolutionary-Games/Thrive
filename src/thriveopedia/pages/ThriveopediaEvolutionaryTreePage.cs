@@ -12,7 +12,7 @@ using Godot;
 ///     Note a lot of this functionality is duplicated from AutoEvoExploringTool.
 ///   </para>
 /// </remarks>
-public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
+public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriveopediaPage
 {
     [Export]
     public NodePath? ErrorContainerPath;
@@ -31,12 +31,11 @@ public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
 #pragma warning restore CA2213
 
-    public override string PageName => "EvolutionaryTree";
+    public string PageName => "EvolutionaryTree";
 
-    public override string TranslatedPageName =>
-        Localization.Translate("THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE");
+    public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE");
 
-    public override string ParentPageName => "CurrentWorld";
+    public string ParentPageName => "CurrentWorld";
 
     public override void _Ready()
     {

@@ -1658,7 +1658,7 @@ public partial class CellEditorComponent :
         // First prediction can be made only after population numbers from previous run are applied
         // so this is just here to guard against that potential programming mistake that may happen when code is
         // changed
-        if (!Editor.Ready)
+        if (!Editor.EditorReady)
         {
             GD.PrintErr("Can't start auto-evo prediction before editor is ready");
             return;

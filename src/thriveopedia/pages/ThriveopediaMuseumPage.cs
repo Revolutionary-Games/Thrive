@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Thriveopedia page displaying fossilised (saved) organisms.
 /// </summary>
-public partial class ThriveopediaMuseumPage : ThriveopediaPage
+public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPage
 {
     [Export]
     public NodePath? CardContainerPath;
@@ -44,10 +44,10 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage
 
     private MuseumCard? cardToBeDeleted;
 
-    public override string PageName => "Museum";
-    public override string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
+    public string PageName => "Museum";
+    public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
 
-    public override string? ParentPageName => null;
+    public string? ParentPageName => null;
 
     public override void _Ready()
     {

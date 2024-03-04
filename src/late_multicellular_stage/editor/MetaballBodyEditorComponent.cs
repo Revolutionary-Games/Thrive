@@ -865,7 +865,8 @@ public partial class MetaballBodyEditorComponent :
                 cellTypeSelectionList.AddItem(control);
                 cellTypeSelectionButtons.Add(cellType.TypeName, control);
 
-                control.Connect(MicrobePartSelection.SignalName.OnPartSelected, new Callable(this, nameof(OnCellToPlaceSelected)));
+                control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
+                    new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
             control.MPCost = Constants.METABALL_ADD_COST;

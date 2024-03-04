@@ -7,7 +7,8 @@ using Array = Godot.Collections.Array;
 ///   Base type for all menus where selecting a building / structure to be built can be done
 /// </summary>
 /// <typeparam name="TSelection">The type of object this is allowing selecting from</typeparam>
-public abstract partial class StructureToBuildPopupBase<TSelection> : Control
+[GodotAbstract]
+public partial class StructureToBuildPopupBase<TSelection> : Control
 {
     [Export]
     public NodePath? PopupPath;
@@ -31,6 +32,10 @@ public abstract partial class StructureToBuildPopupBase<TSelection> : Control
 #pragma warning restore CA2213
 
     protected IStructureSelectionReceiver<TSelection>? receiver;
+
+    protected StructureToBuildPopupBase()
+    {
+    }
 
     public override void _Ready()
     {

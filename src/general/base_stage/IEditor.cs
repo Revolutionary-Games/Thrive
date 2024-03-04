@@ -50,7 +50,7 @@ public interface IEditor : ISaveLoadedTracked
     /// <summary>
     ///   True once auto-evo (and possibly other stuff) the editor needs to wait for is ready
     /// </summary>
-    public bool Ready { get; }
+    public bool EditorReady { get; }
 
     public float DayLightFraction { get; set; }
 
