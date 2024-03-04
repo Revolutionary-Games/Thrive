@@ -363,5 +363,5 @@ text = "OK"
 [connection signal="pressed" from="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2/Browse" to="." method="BrowseForPreviewImage"]
 [connection signal="pressed" from="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/Forget" to="." method="OnForgetDataPressed"]
 [connection signal="file_selected" from="PreviewSelector" to="." method="OnFileSelected"]
-[connection signal="hide" from="UploadSuccess" to="." method="SuccessDialogClosed"]
+[connection signal="hidden" from="UploadSuccess" to="." method="SuccessDialogClosed"]
 [connection signal="pressed" from="UploadSuccess/VBoxContainer/Button" to="." method="DismissSuccessDialog"]

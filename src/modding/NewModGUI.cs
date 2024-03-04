@@ -86,7 +86,7 @@ public partial class NewModGUI : Control
     private ModInfo? editedInfo;
 
     [Signal]
-    public delegate void OnCancelledEventHandler();
+    public delegate void OnCanceledEventHandler();
 
     /// <summary>
     ///   Emitted when creation is accepted. Contains the full JSON serialized <see cref="FullModDetails"/> object.
@@ -158,7 +158,7 @@ public partial class NewModGUI : Control
     private void Closed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(SignalName.OnCancelled);
+        EmitSignal(SignalName.OnCanceled);
     }
 
     private void Cancel()

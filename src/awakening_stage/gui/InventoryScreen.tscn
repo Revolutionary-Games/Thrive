@@ -296,13 +296,13 @@ text = "CRAFTING_TAKE_ALL"
 anims/Flash = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[connection signal="Cancelled" from="GroundPanel" to="." method="OnGroundPanelCancelled"]
+[connection signal="Canceled" from="GroundPanel" to="." method="OnGroundPanelCanceled"]
 [connection signal="Closed" from="GroundPanel" to="." method="OnGroundPanelBecameHidden"]
 [connection signal="Closed" from="MainInventory" to="." method="OnInventoryPanelClosed"]
 [connection signal="resized" from="MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots" to="." method="UpdateEquipmentSlotPositions"]
 [connection signal="toggled" from="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground" to="." method="ToggleGroundPanel"]
 [connection signal="toggled" from="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Crafting" to="." method="ToggleCraftingPanel"]
-[connection signal="Cancelled" from="CraftingPanel" to="." method="OnCraftingPanelCancelled"]
+[connection signal="Canceled" from="CraftingPanel" to="." method="OnCraftingPanelCanceled"]
 [connection signal="Closed" from="CraftingPanel" to="." method="OnCraftingPanelBecameHidden"]
 [connection signal="pressed" from="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/ClearInputs" to="." method="ClearCraftingInputs"]
 [connection signal="pressed" from="CraftingPanel/VBoxContainer/CraftingItemsSection/CraftButton" to="." method="TryToCraft"]

@@ -66,7 +66,7 @@ public partial class PermanentlyDismissibleDialog : CustomConfirmationDialog
             Settings.Instance.PermanentlyDismissNotice(NoticeType);
     }
 
-    private void OnCancelled()
+    private void OnCanceled()
     {
         if (checkbox.ButtonPressed && PermanentDismissType == PermanentDismissTypeEnum.RememberOnCancel)
             Settings.Instance.PermanentlyDismissNotice(NoticeType);

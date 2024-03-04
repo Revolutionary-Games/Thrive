@@ -19,8 +19,6 @@ uniform float jiggleAmount = 0.0005f;
 const float jiggleMaxAngle = 15.f;
 const float jiggleTimeMultiplier = 0.5f;
 
-const float PI = 3.14159265358979323846;
-
 void vertex(){
     // Offset animation
     VERTEX.x += sin(TIME * 3.0f * jiggleTimeMultiplier) * jiggleAmount;

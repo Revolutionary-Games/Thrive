@@ -80,5 +80,5 @@ DialogText = "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 [connection signal="OnOpenMenu" from="IndustrialHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="IndustrialHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnStartResearching" from="IndustrialHUD" to="." method="StartResearching"]
-[connection signal="Cancelled" from="ConfirmSpaceStage" to="." method="CancelMoveToNextStage"]
+[connection signal="Canceled" from="ConfirmSpaceStage" to="." method="CancelMoveToNextStage"]
 [connection signal="Confirmed" from="ConfirmSpaceStage" to="." method="ConfirmMoveToNextStage"]

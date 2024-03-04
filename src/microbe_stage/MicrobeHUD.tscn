@@ -2068,7 +2068,7 @@ __meta__ = {
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
-[connection signal="hide" from="ProcessPanel" to="." method="OnProcessPanelClosed"]
+[connection signal="hidden" from="ProcessPanel" to="." method="OnProcessPanelClosed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Engulfment" to="." method="OnEngulfmentPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/EjectEngulfed" to="." method="OnEjectEngulfedPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/FireToxin" to="." method="OnFireToxinPressed"]
@@ -2076,7 +2076,7 @@ __meta__ = {
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/SecreteSlime" to="." method="OnSecreteSlimePressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
-[connection signal="Cancelled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCancelled"]
+[connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCanceled"]
 [connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularConfirmed"]
 
 [editable path="PausePrompt"]

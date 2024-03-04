@@ -75,4 +75,4 @@ offset_bottom = 42.0
 theme_override_fonts/font = ExtResource( 4 )
 text = "METRICS_CONTENT"
 
-[connection signal="hide" from="CustomWindow" to="." method="DialogHidden"]
+[connection signal="hidden" from="CustomWindow" to="." method="DialogHidden"]

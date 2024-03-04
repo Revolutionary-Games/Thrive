@@ -143,4 +143,4 @@ DialogText = "FAILED_SAVE_DELETION_DESCRIPTION"
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmLoadOlder"]
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadInvalidSaveDialog" to="." method="OnConfirmLoadInvalid"]
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog" to="." method="OnAcceptSaveUpgrade"]
-[connection signal="hide" from="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog" to="." method="OnSaveUpgradeClosed"]
+[connection signal="hidden" from="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog" to="." method="OnSaveUpgradeClosed"]

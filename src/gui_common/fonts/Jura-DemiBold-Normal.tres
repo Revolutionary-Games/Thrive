@@ -1,28 +1,30 @@
-[gd_resource type="FontFile" load_steps=12 format=2]
+[gd_resource type="FontFile" load_steps=12 format=3 uid="uid://m8ivcpj1jdq"]
 
-[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="FontFile" id=1]
-[ext_resource path="res://assets/fonts/NotoSans-SemiBold.ttf" type="FontFile" id=2]
-[ext_resource path="res://assets/fonts/NotoEmoji-Regular.ttf" type="FontFile" id=3]
-[ext_resource path="res://assets/fonts/NotoSansCJKsc-Regular.otf" type="FontFile" id=4]
-[ext_resource path="res://assets/fonts/NotoSansCJKtc-Regular.otf" type="FontFile" id=5]
-[ext_resource path="res://assets/fonts/NotoSansHebrew-SemiBold.ttf" type="FontFile" id=6]
-[ext_resource path="res://assets/fonts/NotoSansThai-SemiBold.ttf" type="FontFile" id=7]
-[ext_resource path="res://assets/fonts/NotoSansSinhala-SemiBold.ttf" type="FontFile" id=8]
-[ext_resource path="res://assets/fonts/NotoSansGeorgian-SemiBold.ttf" type="FontFile" id=9]
-[ext_resource path="res://assets/fonts/NotoSansArabic-SemiBold.ttf" type="FontFile" id=10]
-[ext_resource path="res://assets/fonts/NotoSansBengali-SemiBold.ttf" type="FontFile" id=11]
+[ext_resource type="FontFile" uid="uid://br1ljx6dpi6gd" path="res://assets/fonts/Jura-DemiBold.ttf" id="1"]
+[ext_resource type="FontFile" uid="uid://c8jq7isbqbgqs" path="res://assets/fonts/NotoSans-SemiBold.ttf" id="2"]
+[ext_resource type="FontFile" uid="uid://bfm1oj61iaq27" path="res://assets/fonts/NotoEmoji-Regular.ttf" id="3"]
+[ext_resource type="FontFile" uid="uid://kfqqnkpn6ko3" path="res://assets/fonts/NotoSansCJKsc-Regular.otf" id="4"]
+[ext_resource type="FontFile" uid="uid://cgtj2idmx1wqo" path="res://assets/fonts/NotoSansCJKtc-Regular.otf" id="5"]
+[ext_resource type="FontFile" uid="uid://btgtvntysfp52" path="res://assets/fonts/NotoSansHebrew-SemiBold.ttf" id="6"]
+[ext_resource type="FontFile" uid="uid://20u7pdqk3cfe" path="res://assets/fonts/NotoSansThai-SemiBold.ttf" id="7"]
+[ext_resource type="FontFile" uid="uid://d2xuyo1ldfk1t" path="res://assets/fonts/NotoSansSinhala-SemiBold.ttf" id="8"]
+[ext_resource type="FontFile" uid="uid://cp4tel6abto8o" path="res://assets/fonts/NotoSansGeorgian-SemiBold.ttf" id="9"]
+[ext_resource type="FontFile" uid="uid://ct1xospdkiwhq" path="res://assets/fonts/NotoSansArabic-SemiBold.ttf" id="10"]
+[ext_resource type="FontFile" uid="uid://bw63pp8agw7yi" path="res://assets/fonts/NotoSansBengali-SemiBold.ttf" id="11"]
 
 [resource]
-size = 20
-use_filter = true
-font_data = ExtResource( 1 )
-fallback/0 = ExtResource( 2 )
-fallback/1 = ExtResource( 3 )
-fallback/2 = ExtResource( 4 )
-fallback/3 = ExtResource( 5 )
-fallback/4 = ExtResource( 6 )
-fallback/5 = ExtResource( 7 )
-fallback/6 = ExtResource( 8 )
-fallback/7 = ExtResource( 9 )
-fallback/8 = ExtResource( 10 )
-fallback/9 = ExtResource( 11 )
+fallbacks = Array[Font]([ExtResource("1"), ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("9"), ExtResource("10"), ExtResource("11")])
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)

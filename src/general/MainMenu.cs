@@ -1,7 +1,7 @@
 using System;
+using System.Linq;
 using Godot;
 using Godot.Collections;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Class managing the main menu and everything in it
@@ -20,14 +20,14 @@ public partial class MainMenu : NodeWithInput
     /// <summary>
     ///   Needs to be a collection of <see cref="Texture2D"/>
     /// </summary>
-    [Export(PropertyHint.ArrayType, "Texture2D")]
-    public Array MenuBackgrounds = null!;
+    [Export]
+    public Array<Texture2D> MenuBackgrounds = null!;
 
     /// <summary>
     ///   Needs to be a collection of paths to scenes
     /// </summary>
-    [Export(PropertyHint.ArrayType, "string")]
-    public Array Menu3DBackgroundScenes = null!;
+    [Export]
+    public Array<string> Menu3DBackgroundScenes = null!;
 
     [Export]
     public NodePath FreebuildButtonPath = null!;
@@ -542,13 +542,13 @@ public partial class MainMenu : NodeWithInput
         if (Settings.Instance
             .Menu3DBackgroundEnabled /*&& FeatureInformation.GetVideoDriver() != OS.RenderingDriver.Opengl3*/)
         {
-            SetBackgroundScene(Menu3DBackgroundScenes.Random(random).AsString());
+            SetBackgroundScene(Menu3DBackgroundScenes.Random(random));
         }
         else
         {
             var chosenBackground = MenuBackgrounds.Random(random);
 
-            SetBackground(chosenBackground.As<Texture2D>());
+            SetBackground(chosenBackground);
         }
     }
 
@@ -709,7 +709,7 @@ public partial class MainMenu : NodeWithInput
         thriveLogo.Hide();
 
         // Hide other menus and only show the one of the current index
-        foreach (Control menu in menuArray!)
+        foreach (var menu in menuArray!.OfType<Control>())
         {
             menu.Hide();
 

@@ -195,5 +195,5 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 
-[connection signal="hide" from="." to="." method="OnBecomeHidden"]
+[connection signal="hidden" from="." to="." method="OnBecomeHidden"]
 [connection signal="timeout" from="Timer" to="." method="RandomizeContent"]

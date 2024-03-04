@@ -699,7 +699,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         multicellularConfirmPopup.PopupCenteredShrink();
     }
 
-    private void OnBecomeMulticellularCancelled()
+    private void OnBecomeMulticellularCanceled()
     {
         // The game should have been paused already but just in case
         if (Paused)

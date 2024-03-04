@@ -82,5 +82,5 @@ offset_right = 159.0
 offset_left = 163.0
 offset_right = 178.0
 
-[connection signal="Cancelled" from="." to="." method="OnCancelled"]
+[connection signal="Canceled" from="." to="." method="OnCanceled"]
 [connection signal="Confirmed" from="." to="." method="OnConfirmed"]
