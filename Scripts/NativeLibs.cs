@@ -263,6 +263,9 @@ public class NativeLibs
                     return await UploadMissingSymbolsToServer(cancellationToken);
                 }
 
+                ColourConsole.WriteNormalLine("Skipping symbol upload check as the check upload operation " +
+                    "didn't return true");
+
                 // Check and upload step failed / or didn't upload anything
                 return false;
 
@@ -319,8 +322,12 @@ public class NativeLibs
             var currentResult = await OperateOnAllPlatformsWithResult(library, operation, cancellationToken);
             if (!resultSet)
             {
-                result = currentResult;
-                resultSet = true;
+                // Only update result when there is something to set, null implies skipping updating the result
+                if (currentResult is not null)
+                {
+                    result = currentResult;
+                    resultSet = true;
+                }
             }
             else if (currentResult is false)
             {

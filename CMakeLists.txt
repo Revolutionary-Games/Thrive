@@ -7,6 +7,9 @@ project(Thrive)
 # "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 
 # Options
+# Building either the faster variant with AVX or without for older CPU support
+option(THRIVE_AVX "Create faster code that needs AVX2" ON)
+
 option(THRIVE_LTO "Use LTO when linking Thrive libraries" ON)
 
 option(USE_OBJECT_POOLS
