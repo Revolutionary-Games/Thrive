@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/gui_common/VersionNumber.cs" id="5"]
 [ext_resource type="Script" path="res://src/general/MainMenu.cs" id="6"]
 [ext_resource type="Texture2D" uid="uid://dv5ipphdtx82d" path="res://assets/textures/gui/BG_Menu02.png" id="7"]
+[ext_resource type="LabelSettings" uid="uid://bp3qw4ja1j38x" path="res://src/gui_common/new_fonts/Thrive-Small.tres" id="7_1nsb2"]
 [ext_resource type="Texture2D" uid="uid://c4w1n4rgao7br" path="res://assets/textures/gui/BG_Menu01.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://d03rhbygf4qvw" path="res://assets/textures/gui/BG_Menu03.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://dpxsicy6au2mh" path="res://assets/misc/thrive_logo_big.png" id="10"]
@@ -15,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://bv0644lcfansy" path="res://assets/textures/gui/social_media/discord.png" id="13"]
 [ext_resource type="PackedScene" path="res://src/modding/ModManager.tscn" id="14"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="15"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" id="16"]
 [ext_resource type="PackedScene" path="res://src/gui_common/art_gallery/GalleryViewer.tscn" id="17"]
 [ext_resource type="PackedScene" path="res://src/general/NewGameSettings.tscn" id="18"]
 [ext_resource type="Texture2D" uid="uid://ciclkggyignhj" path="res://assets/textures/gui/social_media/youtubeHover.png" id="19"]
@@ -181,8 +181,8 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("16")
 text = "Logged in as: name"
+label_settings = ExtResource("7_1nsb2")
 max_lines_visible = 1
 
 [node name="VersionNumber" type="Label" parent="."]
@@ -200,8 +200,8 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("16")
 text = "x.y.z"
+label_settings = ExtResource("7_1nsb2")
 horizontal_alignment = 2
 vertical_alignment = 2
 script = ExtResource("5")

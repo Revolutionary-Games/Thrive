@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=77 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" load_steps=78 format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://bjchgyy3gt2vp" path="res://assets/textures/gui/bevel/grab.png" id="2"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://rwbebml2adio" path="res://assets/textures/gui/bevel/checkA.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bqqawdtjaf60f" path="res://assets/textures/gui/bevel/grabdisabled.png" id="7"]
 [ext_resource type="FontFile" uid="uid://m8ivcpj1jdq" path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" id="8"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-Small.tres" id="9"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Small.tres" id="10"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" id="11"]
 [ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="12"]
@@ -28,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://b7vu18mdc45jq" path="res://assets/textures/gui/bevel/radioAhover.png" id="26"]
 [ext_resource type="Texture2D" uid="uid://bi6kh0gp7vlje" path="res://assets/textures/gui/bevel/radioBhover.png" id="27"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" id="28"]
+[ext_resource type="FontFile" uid="uid://br1ljx6dpi6gd" path="res://assets/fonts/Jura-DemiBold.ttf" id="29_cye76"]
+[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="29_v71j1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcn6x"]
 content_margin_left = 5.0
@@ -165,6 +166,7 @@ border_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxTexture" id="16"]
 texture = ExtResource("4")
 expand_margin_left = 10.0
+expand_margin_top = 1.0
 expand_margin_right = 10.0
 region_rect = Rect2(0, 0, 429, 1)
 
@@ -511,7 +513,7 @@ corner_radius_bottom_left = 10
 expand_margin_top = 20.0
 
 [resource]
-default_font = ExtResource("8")
+default_font = ExtResource("29_v71j1")
 default_font_size = 20
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_color_disabled = Color(1, 1, 1, 1)
@@ -693,8 +695,7 @@ Label/constants/line_spacing = 3
 Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
-Label/fonts/font = ExtResource("8")
-Label/fonts/jura_small = ExtResource("9")
+Label/fonts/font = ExtResource("29_cye76")
 Label/styles/normal = null
 LineEdit/colors/clear_button_color = Color(1, 1, 1, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)

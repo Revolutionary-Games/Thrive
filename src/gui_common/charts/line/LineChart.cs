@@ -826,7 +826,7 @@ public partial class LineChart : VBoxContainer
     /// </summary>
     private void DrawErrorText(string error)
     {
-        var font = GetThemeFont("jura_small", "Label");
+        var font = GetThemeFont("font", "Label");
 
         // Values are rounded to make the font not be blurry
         var position = new Vector2(Mathf.Round((drawArea.Size.X - font.GetStringSize(error).X) / 2),

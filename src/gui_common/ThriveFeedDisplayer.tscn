@@ -1,16 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpp1dl8aiumt7"]
+[gd_scene load_steps=8 format=3 uid="uid://cpp1dl8aiumt7"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" id="2"]
 [ext_resource type="Script" path="res://src/gui_common/ThriveFeedDisplayer.cs" id="3"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" id="4"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" id="5"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" id="6"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_tq1re"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_mv3uf"]
+[ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/new_fonts/Title-SemiBold-Big.tres" id="6_gap0o"]
+[ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/new_fonts/Body-Regular-AlmostSmaller.tres" id="8_l5q4e"]
 
 [node name="ThriveFeedDisplayer" type="VBoxContainer"]
 anchors_preset = 15
@@ -28,7 +24,7 @@ FooterFont = ExtResource("4")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5")
 text = "NEWS"
-label_settings = SubResource("LabelSettings_tq1re")
+label_settings = ExtResource("6_gap0o")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
@@ -42,9 +38,8 @@ size_flags_horizontal = 3
 
 [node name="LoadingIndicator" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2")
 text = "LOADING_DOT_DOT_DOT"
-label_settings = SubResource("LabelSettings_mv3uf")
+label_settings = ExtResource("8_l5q4e")
 
 [node name="NewsContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2

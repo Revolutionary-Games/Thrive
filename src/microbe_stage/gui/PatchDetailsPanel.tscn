@@ -1,24 +1,27 @@
-[gd_scene load_steps=33 format=3 uid="uid://bjl5o7oy7yr15"]
+[gd_scene load_steps=36 format=3 uid="uid://bjl5o7oy7yr15"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="1"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" id="2"]
 [ext_resource type="FontFile" uid="uid://m8ivcpj1jdq" path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" id="3"]
+[ext_resource type="LabelSettings" uid="uid://b6d3jtfqx07xn" path="res://src/gui_common/new_fonts/Title-Semibold-AlmostHuge.tres" id="3_xknfg"]
 [ext_resource type="Script" path="res://src/microbe_stage/gui/PatchDetailsPanel.cs" id="4"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" id="5"]
+[ext_resource type="LabelSettings" uid="uid://tgseeon8t360" path="res://src/gui_common/new_fonts/Title-Bold-Smaller-Green.tres" id="5_133c0"]
+[ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/new_fonts/Title-SemiBold-Bigger.tres" id="5_xv7pc"]
 [ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://d0nvs2bcnmdsd" path="res://assets/textures/gui/bevel/nitrogen.png" id="7"]
+[ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/new_fonts/Title-SemiBold-Normal.tres" id="7_o264b"]
 [ext_resource type="Texture2D" uid="uid://bpaa6v4n78ipl" path="res://assets/textures/gui/bevel/carbondioxide.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://bo70v3237p6iv" path="res://assets/textures/gui/bevel/hSeparatorCentered.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://cifmy0gatcl1q" path="res://assets/textures/gui/bevel/glucose.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://dlucsppj73dkc" path="res://assets/textures/gui/bevel/iron.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://dy74vv7vysixm" path="res://assets/textures/gui/bevel/oxygen.png" id="12"]
 [ext_resource type="Texture2D" uid="uid://bsk2vo17bhwbv" path="res://assets/textures/gui/bevel/ammonia.png" id="13"]
+[ext_resource type="LabelSettings" uid="uid://8jxma2e6x3qd" path="res://src/gui_common/new_fonts/Title-Regular-Smaller.tres" id="13_tweyr"]
 [ext_resource type="Texture2D" uid="uid://dv67e1fovg0r2" path="res://assets/textures/gui/bevel/hydrogensulfide.png" id="14"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" id="15"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" id="16"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" id="17"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/new_fonts/Body-Regular-Smaller.tres" id="15_ng6rp"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Small.tres" id="18"]
 [ext_resource type="Texture2D" uid="uid://b84h4mjojeb7q" path="res://assets/textures/gui/bevel/plusButton.png" id="19"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/new_fonts/Body-Regular-Tiny.tres" id="19_6m1o4"]
 [ext_resource type="Texture2D" uid="uid://cwrk1w3l7u6t4" path="res://assets/textures/gui/bevel/minusButton.png" id="20"]
 [ext_resource type="Texture2D" uid="uid://dify8alf16jac" path="res://assets/textures/gui/bevel/phosphates.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://ca7aacfe47auq" path="res://assets/textures/gui/bevel/minusButtonHover.png" id="22"]
@@ -32,6 +35,7 @@
 
 [sub_resource type="StyleBoxTexture" id="32"]
 texture = ExtResource("24")
+texture_margin_top = 1.0
 region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="Theme" id="33"]
@@ -108,8 +112,8 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2")
 text = "SELECT_A_PATCH"
+label_settings = ExtResource("3_xknfg")
 
 [node name="UnknownPatch" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 visible = false
@@ -119,8 +123,8 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2")
 text = "UNKNOWN_PATCH"
+label_settings = ExtResource("3_xknfg")
 
 [node name="PatchDetailsContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -131,26 +135,33 @@ theme_override_constants/separation = 10
 layout_mode = 2
 
 [node name="PatchName" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("17")
 text = "Patch Name Goes Here"
+label_settings = ExtResource("5_xv7pc")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="PlayerHereLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.117647, 1)
-theme_override_fonts/font = ExtResource("15")
 text = "CURRENT_LOCATION_CAPITAL"
+label_settings = ExtResource("5_133c0")
+horizontal_alignment = 1
 
 [node name="Biome" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 text = "Biome: BIOME HERE"
+label_settings = ExtResource("7_o264b")
+horizontal_alignment = 1
 
 [node name="Depth" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 text = "200-340m below sea level"
+label_settings = ExtResource("7_o264b")
+horizontal_alignment = 1
 
 [node name="PhysicalConditions" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 layout_mode = 2
@@ -186,8 +197,8 @@ stretch_mode = 5
 
 [node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5")
 text = "PHYSICAL_CONDITIONS"
+label_settings = ExtResource("13_tweyr")
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
@@ -226,8 +237,8 @@ expand_mode = 1
 
 [node name="TemperatureLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "Temperature"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
 custom_minimum_size = Vector2(12, 12)
@@ -251,8 +262,8 @@ expand_mode = 1
 
 [node name="PressureLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "Pressure"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="Light3D" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
 layout_mode = 2
@@ -277,8 +288,8 @@ layout_mode = 2
 
 [node name="LightLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light3D/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "Light3D"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light3D/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(12, 12)
@@ -292,6 +303,7 @@ modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("29")
 text = "LIGHT_MAX"
+label_settings = ExtResource("19_6m1o4")
 
 [node name="AtmosphericGasses" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 layout_mode = 2
@@ -327,8 +339,8 @@ stretch_mode = 5
 
 [node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5")
 text = "ATMOSPHERIC_GASSES"
+label_settings = ExtResource("13_tweyr")
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
@@ -367,8 +379,8 @@ expand_mode = 1
 
 [node name="OxygenLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Oxygen"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "Oxygen"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="Nitrogen" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
 layout_mode = 2
@@ -385,8 +397,8 @@ expand_mode = 1
 
 [node name="NitrogenLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "Nitrogen"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="CO2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
 layout_mode = 2
@@ -403,8 +415,8 @@ expand_mode = 1
 
 [node name="CO2Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/CO2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "CO2"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="Compounds" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 layout_mode = 2
@@ -440,8 +452,8 @@ stretch_mode = 5
 
 [node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5")
 text = "COMPOUNDS"
+label_settings = ExtResource("13_tweyr")
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
@@ -479,8 +491,8 @@ expand_mode = 1
 
 [node name="HydrogenSulfideLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "Hydrogen Sulfide"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
 custom_minimum_size = Vector2(12, 12)
@@ -503,8 +515,8 @@ expand_mode = 1
 
 [node name="AmmoniaLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "Ammonia"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
 custom_minimum_size = Vector2(12, 12)
@@ -527,8 +539,8 @@ expand_mode = 1
 
 [node name="GlucoseLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "Glucose"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
 custom_minimum_size = Vector2(12, 12)
@@ -551,8 +563,8 @@ expand_mode = 1
 
 [node name="PhosphateLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "Phosphate"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
 custom_minimum_size = Vector2(12, 12)
@@ -575,8 +587,8 @@ expand_mode = 1
 
 [node name="IronLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16")
 text = "Iron"
+label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
 custom_minimum_size = Vector2(12, 12)
