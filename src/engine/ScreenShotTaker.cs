@@ -48,8 +48,8 @@ public partial class ScreenShotTaker : NodeWithInput
     {
         var image = GetViewport().GetTexture().GetImage();
 
-        // TODO: do we always need this?
-        image.FlipY();
+        // Viewport is no longer flipped in Godot 4 (hopefully this is not renderer specific)
+        // image.FlipY();
 
         return image;
     }
