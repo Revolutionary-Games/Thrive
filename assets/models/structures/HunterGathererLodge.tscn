@@ -1,26 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bd4ueep7n0567"]
 
-[sub_resource type="BoxShape3D" id=1]
-extents = Vector3( 2.5, 3.5, 10 )
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(5, 7, 20)
 
-[sub_resource type="StandardMaterial3D" id=2]
-albedo_color = Color( 0.439216, 0.262745, 0.0392157, 1 )
+[sub_resource type="StandardMaterial3D" id="2"]
+albedo_color = Color(0.439216, 0.262745, 0.0392157, 1)
 
 [node name="HunterGathererLodge" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4839, 0 )
-shape = SubResource( 1 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4839, 0)
+shape = SubResource("1")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.46073, 0.457827 )
-width = 5.0
-height = 7.0
-depth = 19.0519
-material = SubResource( 2 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.46073, 0.457827)
+size = Vector3(5, 7, 19.0519)
+material = SubResource("2")
 
 [node name="CSGBox4" type="CSGBox3D" parent="."]
-transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0270005, 2.5635, -9.28844 )
-width = 0.49926
-height = 5.19641
-depth = 3.15211
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0270005, 2.5635, -9.28844)
+size = Vector3(0.49926, 5.19641, 3.15211)

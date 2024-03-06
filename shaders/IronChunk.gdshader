@@ -15,8 +15,8 @@ void fragment() {
     vec4 normalMap = texture(normalTexture, UV);
     vec4 dissolveTex = texture(dissolveTexture, UV);
 
-    float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
-        float(-0.4 + clamp(dissolveValue, 0, 1));
+    float cutoff = dot(dissolveTex.rgb, vec3(0.382, 0.382, 0.382)) -
+        float(-0.487 + clamp(dissolveValue, 0, 1));
 
     vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
         growColor.rgb;

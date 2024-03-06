@@ -1,24 +1,24 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://nd0d2b26cjqr"]
 
-[ext_resource path="res://shaders/OrganelleTransparent.gdshader" type="Shader" id=1]
-[ext_resource path="res://assets/textures/Thermosynthase_Diffuse.png" type="Texture2D" id=2]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture2D" id=3]
-[ext_resource path="res://assets/models/organelles/Thermosynthase.mesh" type="ArrayMesh" id=4]
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://c5baojqfoibtu" path="res://assets/textures/Thermosynthase_Diffuse.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3"]
+[ext_resource type="ArrayMesh" uid="uid://dcdl88yuncjhn" path="res://assets/models/organelles/Thermosynthase.mesh" id="4"]
 
-
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/fresnelValue = 1.0
-shader_param/fresnelActive = false
-shader_param/dissolveValue = null
-shader_param/outlineWidth = 0.05
-shader_param/growColor = Color( 0.313726, 0.2, 0.054902, 1 )
-shader_param/tint = Color( 1, 1, 1, 1 )
-shader_param/texture = ExtResource( 2 )
-shader_param/dissolveTexture = ExtResource( 3 )
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/dissolveValue = null
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = 0.05
+shader_parameter/growColor = Color(0.313726, 0.2, 0.054902, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("2")
+shader_parameter/dissolveTexture = ExtResource("3")
 
 [node name="Thermosynthase" type="MeshInstance3D"]
-material_override = SubResource( 1 )
-mesh = ExtResource( 4 )
-material/0 = SubResource( 1 )
+material_override = SubResource("1")
+mesh = ExtResource("4")

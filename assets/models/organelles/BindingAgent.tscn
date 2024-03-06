@@ -1,47 +1,47 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://b33if5knje6v3"]
 
-[ext_resource path="res://shaders/OrganelleTransparent.gdshader" type="Shader" id=1]
-[ext_resource path="res://assets/textures/BindingAgent_Fibers_Albedo.png" type="Texture2D" id=2]
-[ext_resource path="res://assets/textures/BindingAgent_Membrane_AO.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture2D" id=4]
-[ext_resource path="res://assets/models/organelles/BindingAgent_Membrane.mesh" type="ArrayMesh" id=5]
-[ext_resource path="res://assets/models/organelles/BindingAgent_Fibers.mesh" type="ArrayMesh" id=6]
-[ext_resource path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" type="Script" id=7]
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://bd5vgvok1djeh" path="res://assets/textures/BindingAgent_Fibers_Albedo.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b1bsdqlu0xeqi" path="res://assets/textures/BindingAgent_Membrane_AO.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
+[ext_resource type="ArrayMesh" uid="uid://csbcy5jkxa47i" path="res://assets/models/organelles/BindingAgent_Membrane.mesh" id="5"]
+[ext_resource type="ArrayMesh" uid="uid://bwv6qiv1pcujc" path="res://assets/models/organelles/BindingAgent_Fibers.mesh" id="6"]
+[ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="7"]
 
-
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/dissolveValue = 0.0
-shader_param/fresnelValue = 1.0
-shader_param/fresnelActive = true
-shader_param/outlineWidth = 0.0
-shader_param/growColor = Color( 0.431373, 0.431373, 0.431373, 1 )
-shader_param/tint = Color( 0, 1, 0.701961, 1 )
-shader_param/texture = ExtResource( 3 )
-shader_param/dissolveTexture = ExtResource( 4 )
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = true
+shader_parameter/outlineWidth = 0.0
+shader_parameter/growColor = Color(0.431373, 0.431373, 0.431373, 1)
+shader_parameter/tint = Color(0, 1, 0.701961, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("3")
+shader_parameter/dissolveTexture = ExtResource("4")
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
 render_priority = -1
-shader = ExtResource( 1 )
-shader_param/dissolveValue = 0.0
-shader_param/fresnelValue = 1.0
-shader_param/fresnelActive = false
-shader_param/outlineWidth = null
-shader_param/growColor = Color( 0.431373, 0.431373, 0.431373, 1 )
-shader_param/tint = Color( 1, 1, 1, 1 )
-shader_param/texture = ExtResource( 2 )
-shader_param/dissolveTexture = ExtResource( 4 )
+shader = ExtResource("1")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = Color(0.431373, 0.431373, 0.431373, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("2")
+shader_parameter/dissolveTexture = ExtResource("4")
 
 [node name="BindingAgent" type="MeshInstance3D"]
-transform = Transform3D( 85, 0, 0, 0, -3.71547e-06, 85, 0, -85, -3.71547e-06, 0, 0, 0 )
-material_override = SubResource( 1 )
-mesh = ExtResource( 5 )
-material/0 = null
-script = ExtResource( 7 )
+transform = Transform3D(85, 0, 0, 0, -3.71547e-06, 85, 0, -85, -3.71547e-06, 0, 0, 0)
+material_override = SubResource("1")
+mesh = ExtResource("5")
+script = ExtResource("7")
 
 [node name="Fibers" type="MeshInstance3D" parent="."]
-material_override = SubResource( 2 )
-mesh = ExtResource( 6 )
-material/0 = null
+material_override = SubResource("2")
+mesh = ExtResource("6")

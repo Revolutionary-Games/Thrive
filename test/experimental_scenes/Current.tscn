@@ -1,59 +1,50 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://cqd05blmt6g5e"]
 
-[ext_resource path="res://assets/textures/bubble3.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://dd7k366lheo4f" path="res://assets/textures/bubble3.png" id="1"]
 
-[sub_resource type="StandardMaterial3D" id=1]
-flags_transparent = true
-flags_unshaded = true
-flags_ensure_correct_normals = true
+[sub_resource type="StandardMaterial3D" id="1"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
-params_blend_mode = 1
-params_billboard_mode = 3
+albedo_color = Color(1, 1, 1, 0.145098)
+albedo_texture = ExtResource("1")
+billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_color = Color( 1, 1, 1, 0.145098 )
-albedo_texture = ExtResource( 1 )
 
-[sub_resource type="Gradient" id=2]
-offsets = PackedFloat32Array( 0.00740741, 0.355556, 0.503704, 1 )
-colors = PackedColorArray( 1, 1, 1, 0.301961, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.145098 )
+[sub_resource type="Gradient" id="2"]
+offsets = PackedFloat32Array(0.00740741, 0.355556, 0.503704, 1)
+colors = PackedColorArray(1, 1, 1, 0.301961, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.145098)
 
-[sub_resource type="GradientTexture2D" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture2D" id="3"]
+gradient = SubResource("2")
 
-[sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 0.497727 ), 0.0, 2.71313, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.151136 ), -4.81781, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="4"]
+_data = [Vector2(0, 0.497727), 0.0, 2.71313, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.151136), -4.81781, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id="5"]
+curve = SubResource("4")
 
-[sub_resource type="ParticleProcessMaterial" id=6]
+[sub_resource type="ParticleProcessMaterial" id="6"]
 emission_shape = 2
-emission_box_extents = Vector3( 15, 5, 10 )
-direction = Vector3( -20, 0, 0 )
+emission_sphere_radius = 1.0
+direction = Vector3(-20, 0, 0)
 spread = 20.0
 flatness = 1.0
-gravity = Vector3( -10, 0, 0 )
-initial_velocity = 20.0
-initial_velocity_random = 1.0
-angular_velocity = 463.45
-linear_accel = 6.9
-linear_accel_random = 0.8
-radial_accel = 1.0
-scale = 0.25
-scale_random = 1.0
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
+gravity = Vector3(-10, 0, 0)
+scale_curve = SubResource("5")
+color_ramp = SubResource("3")
 
-[sub_resource type="QuadMesh" id=7]
+[sub_resource type="QuadMesh" id="7"]
 
-[node name="Current" type="Particles"]
-material_override = SubResource( 1 )
+[node name="Current" type="GPUParticles3D"]
+material_override = SubResource("1")
 amount = 33
 lifetime = 4.0
 randomness = 0.5
-visibility_aabb = AABB( -99.0033, -25.7145, -118.539, 198.007, 51.429, 237.077 )
-local_coords = false
-process_material = SubResource( 6 )
-draw_pass_1 = SubResource( 7 )
+visibility_aabb = AABB(-99.0033, -25.7145, -118.539, 198.007, 51.429, 237.077)
+process_material = SubResource("6")
+draw_pass_1 = SubResource("7")

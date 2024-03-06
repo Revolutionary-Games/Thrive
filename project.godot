@@ -29,6 +29,7 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 
 Invoke="*res://src/engine/Invoke.cs"
 StartupActions="*res://src/engine/StartupActions.cs"
+Localization="*res://src/engine/Localization.cs"
 SteamHandler="*res://src/steam/SteamHandler.cs"
 ResourceManager="*res://src/engine/ResourceManager.cs"
 ModLoader="*res://src/modding/ModLoader.cs"

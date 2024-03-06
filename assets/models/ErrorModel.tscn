@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://crxfbgkv61lx7"]
 
-[sub_resource type="StandardMaterial3D" id=1]
-albedo_color = Color( 0.960784, 0.266667, 1, 1 )
+[sub_resource type="StandardMaterial3D" id="1"]
+albedo_color = Color(0.960784, 0.266667, 1, 1)
 
 [node name="ErrorModel" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-material = SubResource( 1 )
+material = SubResource("1")

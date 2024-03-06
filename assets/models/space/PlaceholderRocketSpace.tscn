@@ -1,99 +1,81 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://cb54l5msbnmhx"]
 
-[ext_resource path="res://assets/models/space/RocketFlameMaterial.tres" type="Material" id=1]
-[ext_resource path="res://assets/models/space/RocketSmokeMaterial.tres" type="Material" id=2]
+[ext_resource type="Material" path="res://assets/models/space/RocketFlameMaterial.tres" id="1"]
+[ext_resource type="Material" path="res://assets/models/space/RocketSmokeMaterial.tres" id="2"]
 
-[sub_resource type="QuadMesh" id=2]
-material = ExtResource( 1 )
+[sub_resource type="QuadMesh" id="2"]
+material = ExtResource("1")
 
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 0.671591 ), 0.0, 0.0, 0, 0, Vector2( 0.0851735, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="3"]
+_data = [Vector2(0, 0.671591), 0.0, 0.0, 0, 0, Vector2(0.0851735, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="QuadMesh" id=4]
-material = ExtResource( 2 )
+[sub_resource type="QuadMesh" id="4"]
+material = ExtResource("2")
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id="5"]
 bake_resolution = 80
-_data = [ Vector2( 0, 0.0875 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.501136 ), 0.0, 0.0, 0, 0 ]
+_data = [Vector2(0, 0.0875), 0.0, 0.0, 0, 0, Vector2(1, 0.501136), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="Gradient" id=6]
-offsets = PackedFloat32Array( 0, 0.289116, 1 )
-colors = PackedColorArray( 0.615723, 0.615723, 0.615723, 0, 0.771973, 0.771973, 0.771973, 1, 0, 0, 0, 0 )
+[sub_resource type="Gradient" id="6"]
+offsets = PackedFloat32Array(0, 0.289116, 1)
+colors = PackedColorArray(0.615723, 0.615723, 0.615723, 0, 0.771973, 0.771973, 0.771973, 1, 0, 0, 0, 0)
 
 [node name="PlaceHolderRocket" type="Node3D"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.870609, 0 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.870609, 0)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98545, 0 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98545, 0)
 radius = 0.906584
 height = 10.1784
 sides = 16
 
 [node name="CSGCylinder2" type="CSGCylinder3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.2255, 0 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.2255, 0)
 radius = 0.906584
 height = 2.28669
 sides = 16
 cone = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09984, 0 )
-width = 3.04291
-height = 2.61609
-depth = 0.2211
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09984, 0)
+size = Vector3(3.04291, 2.61609, 0.2211)
 
 [node name="CSGBox2" type="CSGBox3D" parent="."]
-transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.09984, 0 )
-width = 3.04291
-height = 2.61609
-depth = 0.2211
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.09984, 0)
+size = Vector3(3.04291, 2.61609, 0.2211)
 
 [node name="EngineFire" type="CPUParticles3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0847248, 0 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0847248, 0)
 cast_shadow = 0
 amount = 150
 lifetime = 0.43
 randomness = 0.14
 lifetime_randomness = 0.09
-local_coords = false
-mesh = SubResource( 2 )
-direction = Vector3( 0, -1, 0 )
+mesh = SubResource("2")
+direction = Vector3(0, -1, 0)
 spread = 0.0
-gravity = Vector3( 0, -0.2, 0 )
-initial_velocity = 5.96
-initial_velocity_random = 0.07
-angular_velocity = 15.39
-angular_velocity_random = 0.04
-radial_accel = -0.82
-damping = 0.1
-scale_amount = 0.2
-scale_amount_random = 0.47
-scale_amount_curve = SubResource( 3 )
-color = Color( 0.415686, 0.4, 0.4, 1 )
+gravity = Vector3(0, -0.2, 0)
+scale_amount_curve = SubResource("3")
+color = Color(0.415686, 0.4, 0.4, 1)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="EngineFire"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.06933, 0 )
-light_color = Color( 0.996078, 0.823529, 0.360784, 1 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.06933, 0)
+light_color = Color(0.996078, 0.823529, 0.360784, 1)
 light_indirect_energy = 4.093
 light_specular = 0.965
 omni_range = 4.405
 omni_attenuation = 4.43827
 
 [node name="EngineSmoke" type="CPUParticles3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0847244, 0 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0847244, 0)
 amount = 100
 lifetime = 4.59
-local_coords = false
-mesh = SubResource( 4 )
-direction = Vector3( 0, -1, 0 )
+mesh = SubResource("4")
+direction = Vector3(0, -1, 0)
 spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 3.89
-damping = 1.12
-damping_random = 0.31
-angle = 360.0
-angle_random = 1.0
-scale_amount = 1.31
-scale_amount_curve = SubResource( 5 )
-color = Color( 0.976471, 0.976471, 0.976471, 1 )
-color_ramp = SubResource( 6 )
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("5")
+color = Color(0.976471, 0.976471, 0.976471, 1)
+color_ramp = SubResource("6")

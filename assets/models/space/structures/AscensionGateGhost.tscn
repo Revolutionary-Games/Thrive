@@ -1,25 +1,25 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://c0l7mebbx60fx"]
 
-[ext_resource path="res://assets/models/space/structures/AscensionGate.tscn" type="PackedScene" id=1]
+[ext_resource type="PackedScene" uid="uid://brucc75wulk44" path="res://assets/models/space/structures/AscensionGate.tscn" id="1"]
 
-[sub_resource type="StandardMaterial3D" id=1]
-flags_transparent = true
-flags_unshaded = true
-albedo_color = Color( 0.905882, 0.905882, 0.905882, 0.658824 )
+[sub_resource type="StandardMaterial3D" id="1"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.905882, 0.905882, 0.905882, 0.658824)
 
-[node name="AscensionGate" instance=ExtResource( 1 )]
+[node name="AscensionGate" instance=ExtResource("1")]
 
 [node name="CSGBox3D" parent="." index="0"]
-material_override = SubResource( 1 )
+material_override = SubResource("1")
 
 [node name="CSGBox2" parent="." index="1"]
-material_override = SubResource( 1 )
+material_override = SubResource("1")
 
 [node name="CSGBox3" parent="." index="2"]
-material_override = SubResource( 1 )
+material_override = SubResource("1")
 
 [node name="CSGBox5" parent="." index="3"]
-material_override = SubResource( 1 )
+material_override = SubResource("1")
 
 [node name="CSGBox4" parent="." index="4"]
-material_override = SubResource( 1 )
+material_override = SubResource("1")
