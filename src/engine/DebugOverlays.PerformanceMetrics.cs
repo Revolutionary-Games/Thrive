@@ -35,15 +35,24 @@ public partial class DebugOverlays
     private float currentSpawned;
     private float currentDespawned;
 
+    /// <summary>
+    ///   Needs to have a cached value of this visible to allow access from other threads
+    /// </summary>
+    private bool showPerformance;
+
     public bool PerformanceMetricsVisible
     {
-        get => performanceMetrics.Visible;
+        get => showPerformance;
         private set
         {
-            if (performanceMetricsCheckBox.ButtonPressed == value)
+            if (showPerformance == value)
                 return;
 
-            performanceMetricsCheckBox.ButtonPressed = value;
+            showPerformance = value;
+            if (performanceMetricsCheckBox.ButtonPressed == showPerformance)
+                return;
+
+            performanceMetricsCheckBox.ButtonPressed = showPerformance;
         }
     }
 
