@@ -290,6 +290,20 @@ public partial class NewGameSettings : ControlWithInput
         backButton = GetNode<Button>(BackButtonPath);
         startButton = GetNode<Button>(StartButtonPath);
 
+        // Difficulty presets need to be set here as the value sets below will trigger difficulty change callbacks
+        var simulationParameters = SimulationParameters.Instance;
+
+        difficultyPresets = simulationParameters.GetAllDifficultyPresets();
+        normal = simulationParameters.GetDifficultyPreset("normal");
+        custom = simulationParameters.GetDifficultyPreset("custom");
+
+        foreach (var preset in difficultyPresets.OrderBy(p => p.Index))
+        {
+            // The untranslated name will be translated automatically by Godot during runtime
+            difficultyPresetButton.AddItem(preset.UntranslatedName);
+            difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
+        }
+
         mpMultiplier.MinValue = Constants.MIN_MP_MULTIPLIER;
         mpMultiplier.MaxValue = Constants.MAX_MP_MULTIPLIER;
         aiMutationRate.MinValue = Constants.MIN_AI_MUTATION_RATE;
@@ -305,24 +319,11 @@ public partial class NewGameSettings : ControlWithInput
 
         checkOptionsMenuAdviceContainer = GetNode<Container>(CheckOptionsMenuAdviceContainerPath);
 
-        var simulationParameters = SimulationParameters.Instance;
-
-        difficultyPresets = simulationParameters.GetAllDifficultyPresets();
-        normal = simulationParameters.GetDifficultyPreset("normal");
-        custom = simulationParameters.GetDifficultyPreset("custom");
-
-        foreach (var preset in difficultyPresets.OrderBy(p => p.Index))
-        {
-            // The untranslated name will be translated automatically by Godot during runtime
-            difficultyPresetButton.AddItem(preset.UntranslatedName);
-            difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
-        }
-
         // Add items to the fog of war dropdown
         foreach (var mode in new[] { FogOfWarMode.Ignored, FogOfWarMode.Regular, FogOfWarMode.Intense })
         {
-            fogOfWarModeDropdown.AddItem(
-                Localization.Translate(mode.GetAttribute<DescriptionAttribute>().Description), (int)mode);
+            fogOfWarModeDropdown.AddItem(Localization.Translate(mode.GetAttribute<DescriptionAttribute>().Description),
+                (int)mode);
         }
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset

@@ -1,27 +1,30 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://bertyonikiucy"]
 
-[ext_resource path="res://shaders/CompoundCloudPlane.gdshader" type="Shader" id=1]
-[ext_resource path="res://assets/textures/PerlinNoise.jpg" type="Texture2D" id=2]
-[ext_resource path="res://src/microbe_stage/CompoundCloudPlane.cs" type="Script" id=3]
-[ext_resource path="res://assets/textures/TestCloudConcentrations.png" type="Texture2D" id=4]
+[ext_resource type="Shader" path="res://shaders/CompoundCloudPlane.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://xj4714l7pucx" path="res://assets/textures/PerlinNoise.jpg" id="2"]
+[ext_resource type="Script" path="res://src/microbe_stage/CompoundCloudPlane.cs" id="3"]
+[ext_resource type="Texture2D" uid="uid://bd6mlts55wpaf" path="res://assets/textures/TestCloudConcentrations.png" id="4"]
 
-[sub_resource type="QuadMesh" id=1]
-size = Vector2( 200, 200 )
+[sub_resource type="QuadMesh" id="1"]
+size = Vector2(200, 200)
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
 render_priority = -1
-shader = ExtResource( 1 )
-shader_param/colour1 = Plane( 0.2, 0.3, 0, 1 )
-shader_param/colour2 = Plane( 1, 0, 1, 1 )
-shader_param/colour3 = Plane( 1, 0, 0, 1 )
-shader_param/colour4 = Plane( 0, 1, 1, 1 )
-shader_param/densities = ExtResource( 4 )
-shader_param/noise = ExtResource( 2 )
+shader = ExtResource("1")
+shader_parameter/colour1 = Color(0, 0, 0, 0)
+shader_parameter/colour2 = Color(0, 0, 0, 0)
+shader_parameter/colour3 = Color(0, 0, 0, 0)
+shader_parameter/colour4 = Color(0, 0, 0, 0)
+shader_parameter/UVOffset = Vector2(0, 0)
+shader_parameter/BrightnessMultiplier = 1.0
+shader_parameter/CloudAlpha = 0.7
+shader_parameter/densities = ExtResource("4")
+shader_parameter/noise = ExtResource("2")
 
 [node name="CompoundCloudPlane" type="CSGMesh3D"]
-transform = Transform3D( 3, 0, 0, 0, -1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0 )
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0)
 cast_shadow = 0
-mesh = SubResource( 1 )
-material = SubResource( 2 )
-script = ExtResource( 3 )
+mesh = SubResource("1")
+material = SubResource("2")
+script = ExtResource("3")

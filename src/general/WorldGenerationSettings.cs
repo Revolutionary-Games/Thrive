@@ -39,13 +39,13 @@ public class WorldGenerationSettings
     public enum LifeOrigin
     {
         [Description("LIFE_ORIGIN_VENTS")]
-        Vent,
+        Vent = 0,
 
         [Description("LIFE_ORIGIN_POND")]
-        Pond,
+        Pond = 1,
 
         [Description("LIFE_ORIGIN_PANSPERMIA")]
-        Panspermia,
+        Panspermia = 2,
     }
 
     /// <summary>

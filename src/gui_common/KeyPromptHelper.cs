@@ -269,10 +269,10 @@ public static class KeyPromptHelper
             case ControllerType.Xbox360:
                 return GetXboxControllerButton("Xbox 360", "360_", button);
             case ControllerType.XboxOne:
-                return GetXboxControllerButton("Xbox One", "XboxOne_", button);
+                return GetXboxOneControllerButton("Xbox One", "XboxOne_", button);
             default:
             case ControllerType.XboxSeriesX:
-                return GetXboxControllerButton("Xbox Series X", "XboxSeriesX_", button);
+                return GetXboxSeriesControllerButton("Xbox Series X", "XboxSeriesX_", button);
 
             case ControllerType.PlayStation3:
                 return GetPlayStationControllerButton("PS3", button);
@@ -397,6 +397,43 @@ public static class KeyPromptHelper
                 break;
             default:
                 return GetPathForInvalidKey();
+        }
+
+        return $"res://assets/textures/gui/xelu_prompts/{folder}/{typePrefix}{buttonName}.png";
+    }
+
+    private static string GetXboxOneControllerButton(string folder, string typePrefix, JoyButton button)
+    {
+        string buttonName;
+
+        switch (button)
+        {
+            case JoyButton.Back:
+                buttonName = "Windows";
+                break;
+            case JoyButton.Start:
+                buttonName = "Menu";
+                break;
+
+            default:
+                return GetXboxControllerButton(folder, typePrefix, button);
+        }
+
+        return $"res://assets/textures/gui/xelu_prompts/{folder}/{typePrefix}{buttonName}.png";
+    }
+
+    private static string GetXboxSeriesControllerButton(string folder, string typePrefix, JoyButton button)
+    {
+        string buttonName;
+
+        switch (button)
+        {
+            case JoyButton.Back:
+                buttonName = "View";
+                break;
+
+            default:
+                return GetXboxOneControllerButton(folder, typePrefix, button);
         }
 
         return $"res://assets/textures/gui/xelu_prompts/{folder}/{typePrefix}{buttonName}.png";

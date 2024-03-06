@@ -333,6 +333,10 @@ public partial class PauseMenu : TopLevelContainer
 
     protected override void OnOpen()
     {
+        // Godot being very silly: https://github.com/godotengine/godot/issues/73908
+        if (animationPlayer == null!)
+            return;
+
         animationPlayer.Play("Open");
         Paused = true;
         exiting = false;

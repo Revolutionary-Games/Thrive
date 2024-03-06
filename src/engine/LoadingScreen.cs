@@ -51,7 +51,7 @@ public partial class LoadingScreen : Control
     private bool wasVisible;
 
     private string? loadingMessage;
-    private string? tip;
+    private string tip = string.Empty;
     private string loadingDescription = string.Empty;
     private string? artDescription;
 
@@ -103,7 +103,7 @@ public partial class LoadingScreen : Control
         }
     }
 
-    public string? Tip
+    public string Tip
     {
         get => tip;
         set

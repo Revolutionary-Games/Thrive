@@ -1,21 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://b6pjvrbt518oj"]
 
-[ext_resource path="res://src/engine/ChromaticFilter.cs" type="Script" id=1]
-[ext_resource path="res://shaders/Chromatic.gdshader" type="Shader" id=2]
-[ext_resource path="res://assets/textures/blank.png" type="Texture2D" id=3]
+[ext_resource type="Script" path="res://src/engine/ChromaticFilter.cs" id="1"]
+[ext_resource type="Shader" path="res://shaders/Chromatic.gdshader" id="2"]
+[ext_resource type="Texture2D" uid="uid://dtvbg17mj0i35" path="res://assets/textures/blank.png" id="3"]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 2 )
-shader_param/MAX_DIST_PX = null
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("2")
 
 [node name="ChromaticFilter" type="TextureRect"]
-material = SubResource( 1 )
+material = SubResource("1")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = ExtResource( 3 )
-expand = true
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("3")
+expand_mode = 1
+script = ExtResource("1")

@@ -43,6 +43,8 @@ public partial class GalleryViewer : CustomWindow
     private Button slideshowButton = null!;
 #pragma warning restore CA2213
 
+    private bool readyCalled;
+
     private bool tooltipsDetached;
 
     /// <summary>
@@ -92,6 +94,8 @@ public partial class GalleryViewer : CustomWindow
         tabButtons = GetNode<TabButtons>(TabButtonsPath);
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
         slideshowButton = GetNode<Button>(SlideshowButtonPath);
+
+        readyCalled = true;
     }
 
     public override void _EnterTree()
@@ -132,6 +136,10 @@ public partial class GalleryViewer : CustomWindow
     public override void _Notification(int what)
     {
         base._Notification(what);
+
+        // Workaround Godot 4 bug: https://github.com/godotengine/godot/issues/73908
+        if (!readyCalled)
+            return;
 
         if (what == NotificationTranslationChanged && hasBecomeVisibleAtLeastOnce)
         {

@@ -1,9 +1,9 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dodp28iio21ld"]
 
-[ext_resource path="res://shaders/SelectDistinctFromBackgroundColor.gdshader" type="Shader" id=1]
+[ext_resource type="Shader" path="res://shaders/SelectDistinctFromBackgroundColor.gdshader" id="1"]
 
 [resource]
-shader = ExtResource( 1 )
-shader_param/backgroundColour = Color( 0.75, 0.36, 0.92, 1 )
-shader_param/mainColour = Color( 0.0705882, 0.168627, 0.211765, 1 )
-shader_param/secondaryColour = Color( 0.55, 0.78, 0.87, 1 )
+shader = ExtResource("1")
+shader_parameter/backgroundColour = Color(0.75, 0.36, 0.92, 1)
+shader_parameter/mainColour = Color(0.0705882, 0.168627, 0.211765, 1)
+shader_parameter/secondaryColour = Color(0.55, 0.78, 0.87, 1)

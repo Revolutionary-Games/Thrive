@@ -178,7 +178,7 @@ public partial class MulticellularCamera : Node3D, IGodotEarlyNodeResolve
         arm!.Transform = new Transform3D(new Basis(rotation), Vector3.Zero);
     }
 
-    [RunOnAxis(new[] { "g.Zoom_in", "g.Zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
+    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
     public bool Zoom(double delta, float value)
     {
         if (!Current || !AllowPlayerInput)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 
 public partial class Localization : Node
@@ -28,6 +29,19 @@ public partial class Localization : Node
     /// <returns>The text for the key. If the key is invalid will return the key as-is.</returns>
     public static string Translate(string message)
     {
+#if DEBUG
+        if (message == null!)
+        {
+            GD.PrintErr("Trying to translate a null string");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
+
+        if (message == string.Empty)
+            return string.Empty;
+
         var local = instance;
 
         if (local == null)

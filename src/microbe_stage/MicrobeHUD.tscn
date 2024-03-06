@@ -384,6 +384,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
@@ -1289,9 +1291,11 @@ theme_override_fonts/font = ExtResource("2")
 text = "0.0 / 4"
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("59")]
-layout_mode = 0
-offset_top = -43.0
-offset_bottom = -8.0
+layout_mode = 1
+anchors_preset = 2
+offset_top = -48.0
+offset_bottom = -5.0
+grow_vertical = 0
 
 [node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1591,6 +1595,8 @@ libraries = {
 
 [node name="HUDMessages" parent="." instance=ExtResource("56")]
 layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 270.0
 offset_top = 90.0
 offset_right = -270.0
@@ -1615,9 +1621,13 @@ anchors_preset = 0
 
 [node name="PausePromptLabel" parent="PausePrompt" index="0"]
 layout_mode = 0
+offset_top = 0.0
+offset_bottom = 41.0
 
 [node name="PauseInfo" parent="PausePrompt" index="1"]
 layout_mode = 0
+offset_top = 0.0
+offset_bottom = 40.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(550, 69)

@@ -126,8 +126,11 @@ public partial class PlayButton : MarginContainer
         if (pauseButton == null || playButton == null)
             return;
 
-        pauseButton.TooltipText = Localization.Translate(pauseButtonTooltip);
-        playButton.TooltipText = Localization.Translate(playButtonTooltip);
+        if (pauseButtonTooltip != null)
+            pauseButton.TooltipText = Localization.Translate(pauseButtonTooltip);
+
+        if (playButtonTooltip != null)
+            playButton.TooltipText = Localization.Translate(playButtonTooltip);
     }
 
     private void OnButtonPressed(string what)
@@ -141,6 +144,10 @@ public partial class PlayButton : MarginContainer
         else if (what == "play")
         {
             Paused = false;
+        }
+        else
+        {
+            GD.PrintErr("Unknown \"what\" for play button press");
         }
 
         EmitSignal(SignalName.OnPressed, Paused);
