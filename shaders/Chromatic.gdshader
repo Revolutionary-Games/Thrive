@@ -2,6 +2,8 @@ shader_type canvas_item;
 
 uniform float MAX_DIST_PX;
 
+uniform sampler2D screenTexture : hint_screen_texture, filter_linear_mipmap;
+
 // Shader adapted from: https://www.shadertoy.com/view/XssGz8
 
 float remap(float t, float a, float b) 
@@ -122,7 +124,7 @@ vec3 render(vec2 uv, sampler2D tex)
 
 void fragment() 
 {
-    vec4 px = texture(SCREEN_TEXTURE, SCREEN_UV);
+    vec4 px = texture(screenTexture, SCREEN_UV);
     vec2 uv = SCREEN_UV;
     vec3 col = px.xyz;
     
@@ -136,8 +138,8 @@ void fragment()
     
     const int num_iter = 7;
     const float stepsiz = 1.0 / (float(num_iter)-1.0);
-    float rnd = fract(1.61803398875 + texture(SCREEN_TEXTURE,
-        FRAGCOORD.xy/vec2(textureSize(SCREEN_TEXTURE,0)), -10.0 ).x); // nrand( uv + fract(iTime) );
+    float rnd = fract(1.61803398875 + texture(screenTexture,
+        FRAGCOORD.xy/vec2(textureSize(screenTexture,0)), -10.0 ).x); // nrand( uv + fract(iTime) );
     float t = rnd * stepsiz;
 
     vec3 sumcol = vec3(0.0);
@@ -148,7 +150,7 @@ void fragment()
         vec3 w = spectrum_offset(t);
         sumw += w;
         vec2 uvd = distort(uv, t, min_distort, max_distort);
-        sumcol += w * render(uvd, SCREEN_TEXTURE);
+        sumcol += w * render(uvd, screenTexture);
         t += stepsiz;
     }
     sumcol.rgb /= sumw;

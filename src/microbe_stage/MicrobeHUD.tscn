@@ -579,6 +579,7 @@ show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
 step = 0.1
+show_percentage = false
 
 [node name="OxygenIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
 custom_minimum_size = Vector2(30, 25)
@@ -623,6 +624,7 @@ show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
 step = 0.1
+show_percentage = false
 
 [node name="CO2Icon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
 custom_minimum_size = Vector2(30, 25)
@@ -667,6 +669,7 @@ show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
 step = 0.1
+show_percentage = false
 
 [node name="NitrogenIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
 custom_minimum_size = Vector2(30, 25)
@@ -711,6 +714,7 @@ self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
+show_percentage = false
 
 [node name="TemperatureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
 custom_minimum_size = Vector2(30, 25)
@@ -755,6 +759,7 @@ self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
+show_percentage = false
 
 [node name="LightIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
 custom_minimum_size = Vector2(30, 25)
@@ -799,6 +804,7 @@ self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
+show_percentage = false
 
 [node name="PressureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
 custom_minimum_size = Vector2(30, 25)
@@ -933,6 +939,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="GlucoseIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
 custom_minimum_size = Vector2(25, 25)
@@ -971,6 +978,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="AmmoniaIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
 custom_minimum_size = Vector2(25, 25)
@@ -1009,6 +1017,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="PhospateIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
 custom_minimum_size = Vector2(25, 25)
@@ -1047,6 +1056,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="HydrogenSulfideIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
 custom_minimum_size = Vector2(25, 25)
@@ -1085,6 +1095,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="IronIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
 custom_minimum_size = Vector2(25, 25)
@@ -1123,6 +1134,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="IngestedMatterIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
 modulate = Color(0.882353, 0.882353, 0.882353, 1)
@@ -1215,6 +1227,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="OxyToxyIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
 custom_minimum_size = Vector2(25, 25)
@@ -1255,6 +1268,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="MucilageIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
 custom_minimum_size = Vector2(25, 25)
@@ -1293,7 +1307,9 @@ text = "0.0 / 4"
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("59")]
 layout_mode = 1
 anchors_preset = 2
+offset_left = 0.0
 offset_top = -48.0
+offset_right = 445.0
 offset_bottom = -5.0
 grow_vertical = 0
 

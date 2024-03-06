@@ -11,12 +11,19 @@ using Godot;
 /// </remarks>
 public partial class TopLevelContainer : Control
 {
+    private readonly Callable onRectSizeCallable;
+
     private bool mouseUnCaptureActive;
     private bool previousVisibilityState;
 
     private bool hasBeenRemovedFromTree;
 
     private bool readyCalled;
+
+    public TopLevelContainer()
+    {
+        onRectSizeCallable = new Callable(this, nameof(ApplyRectSettings));
+    }
 
     /// <summary>
     ///   Emitted when this window is closed or hidden.
@@ -99,7 +106,7 @@ public partial class TopLevelContainer : Control
             case NotificationEnterTree:
             {
                 TopLevel = true;
-                GetTree().Root.Connect(Viewport.SignalName.SizeChanged, new Callable(this, nameof(ApplyRectSettings)));
+                GetTree().Root.Connect(Viewport.SignalName.SizeChanged, onRectSizeCallable);
 
                 // Special actions when re-entering the tree (and not when initially being added to the tree)
                 if (hasBeenRemovedFromTree)
@@ -117,7 +124,7 @@ public partial class TopLevelContainer : Control
 
             case NotificationExitTree:
             {
-                GetTree().Root.Connect(Viewport.SignalName.SizeChanged, new Callable(this, nameof(ApplyRectSettings)));
+                GetTree().Root.Disconnect(Viewport.SignalName.SizeChanged, onRectSizeCallable);
 
                 MouseUnCaptureActive = false;
                 hasBeenRemovedFromTree = true;

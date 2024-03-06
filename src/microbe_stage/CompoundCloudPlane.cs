@@ -40,6 +40,12 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     [JsonProperty]
     private Vector2I position = new(0, 0);
 
+    /// <summary>
+    ///   To allow multithreaded operations a cached world position is needed
+    /// </summary>
+    [JsonProperty]
+    private Vector3 cachedWorldPosition;
+
     [JsonProperty]
     public int Resolution { get; private set; }
 
@@ -103,6 +109,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     public void UpdatePosition(Vector2I newPosition)
     {
+        cachedWorldPosition = Position;
+
         // Whoever made the modulus operator return negatives: i hate u.
         int newX = ((newPosition.X % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
@@ -232,7 +240,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     {
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
-        var pos = position;
+        var pos = new Vector2(cachedWorldPosition.X, cachedWorldPosition.Z);
 
         if (position.X != 0)
         {
@@ -318,7 +326,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     {
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
-        var pos = position;
+        var pos = new Vector2(cachedWorldPosition.X, cachedWorldPosition.Z);
 
         for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
         {
@@ -638,10 +646,10 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     public bool ContainsPositionWithRadius(Vector3 worldPosition,
         float radius)
     {
-        if (worldPosition.X + radius < position.X - Constants.CLOUD_WIDTH ||
-            worldPosition.X - radius >= position.X + Constants.CLOUD_WIDTH ||
-            worldPosition.Z + radius < position.Y - Constants.CLOUD_HEIGHT ||
-            worldPosition.Z - radius >= position.Y + Constants.CLOUD_HEIGHT)
+        if (worldPosition.X + radius < cachedWorldPosition.X - Constants.CLOUD_WIDTH ||
+            worldPosition.X - radius >= cachedWorldPosition.X + Constants.CLOUD_WIDTH ||
+            worldPosition.Z + radius < cachedWorldPosition.Z - Constants.CLOUD_HEIGHT ||
+            worldPosition.Z - radius >= cachedWorldPosition.Z + Constants.CLOUD_HEIGHT)
             return false;
 
         return true;
@@ -652,12 +660,12 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     /// </summary>
     public void ConvertToCloudLocal(Vector3 worldPosition, out int x, out int y)
     {
-        var topLeftRelative = new Vector2(worldPosition.X, worldPosition.Z) - position;
+        var topLeftRelative = worldPosition - cachedWorldPosition;
 
         // Floor is used here because otherwise the last coordinate is wrong
         x = ((int)Math.Floor((topLeftRelative.X + Constants.CLOUD_WIDTH) / Resolution)
             + position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
-        y = ((int)Math.Floor((topLeftRelative.Y + Constants.CLOUD_HEIGHT) / Resolution)
+        y = ((int)Math.Floor((topLeftRelative.Z + Constants.CLOUD_HEIGHT) / Resolution)
             + position.Y * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
     }
 
@@ -673,7 +681,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             Constants.CLOUD_WIDTH,
             0,
             cloudY * Resolution + ((4 - position.Y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
-            Constants.CLOUD_HEIGHT) + new Vector3(position.X, 0, position.Y);
+            Constants.CLOUD_HEIGHT) + cachedWorldPosition;
 
         // ReSharper restore PossibleLossOfFraction
     }
@@ -933,7 +941,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         }
     }
 
-    private void PartialUpdateCenter(int x0, int y0, int width, int height, float delta, Vector2I pos)
+    private void PartialUpdateCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
         PartialDiffuseCenter(x0 + Constants.CLOUD_EDGE_WIDTH / 2, y0 + Constants.CLOUD_EDGE_WIDTH / 2, width
             - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta);

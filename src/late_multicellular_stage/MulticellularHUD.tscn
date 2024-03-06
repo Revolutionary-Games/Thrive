@@ -374,6 +374,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
@@ -576,6 +578,7 @@ show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
 step = 0.1
+show_percentage = false
 
 [node name="OxygenIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
 custom_minimum_size = Vector2(30, 25)
@@ -620,6 +623,7 @@ show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
 step = 0.1
+show_percentage = false
 
 [node name="CO2Icon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
 custom_minimum_size = Vector2(30, 25)
@@ -664,6 +668,7 @@ show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
 step = 0.1
+show_percentage = false
 
 [node name="NitrogenIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
 custom_minimum_size = Vector2(30, 25)
@@ -708,6 +713,7 @@ self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
+show_percentage = false
 
 [node name="TemperatureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
 custom_minimum_size = Vector2(30, 25)
@@ -752,6 +758,7 @@ self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
+show_percentage = false
 
 [node name="LightIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
 custom_minimum_size = Vector2(30, 25)
@@ -796,6 +803,7 @@ self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
+show_percentage = false
 
 [node name="PressureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
 custom_minimum_size = Vector2(30, 25)
@@ -932,6 +940,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="GlucoseIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
 custom_minimum_size = Vector2(25, 25)
@@ -970,6 +979,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="AmmoniaIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
 custom_minimum_size = Vector2(25, 25)
@@ -1008,6 +1018,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="PhospateIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
 custom_minimum_size = Vector2(25, 25)
@@ -1046,6 +1057,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="HydrogenSulfideIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
 custom_minimum_size = Vector2(25, 25)
@@ -1084,6 +1096,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="IronIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
 custom_minimum_size = Vector2(25, 25)
@@ -1175,6 +1188,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="OxyToxyIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
 custom_minimum_size = Vector2(25, 25)
@@ -1215,6 +1229,7 @@ custom_minimum_size = Vector2(220, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 step = 0.1
+show_percentage = false
 
 [node name="MucilageIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
 custom_minimum_size = Vector2(25, 25)
@@ -1252,7 +1267,11 @@ text = "0.0 / 4"
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("69")]
 layout_mode = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
 offset_top = -43.0
+offset_right = 445.0
 offset_bottom = -8.0
 
 [node name="BottomRight" type="Control" parent="."]
@@ -1581,6 +1600,9 @@ tooltip_text = "TOGGLE_ENGULF"
 theme_override_styles/normal = SubResource("34")
 theme_override_styles/hover = SubResource("33")
 theme_override_styles/pressed = SubResource("33")
+theme_override_styles/normal = SubResource("34")
+theme_override_styles/hover = SubResource("33")
+theme_override_styles/pressed = SubResource("33")
 ActionIcon = ExtResource("28")
 ActionName = "g_interact"
 
@@ -1605,6 +1627,9 @@ tooltip_text = "TOGGLE_ENGULF"
 theme_override_styles/normal = SubResource("34")
 theme_override_styles/hover = SubResource("33")
 theme_override_styles/pressed = SubResource("33")
+theme_override_styles/normal = SubResource("34")
+theme_override_styles/hover = SubResource("33")
+theme_override_styles/pressed = SubResource("33")
 ActionIcon = ExtResource("71")
 ActionName = "g_toggle_engulf"
 
@@ -1622,6 +1647,9 @@ theme_override_styles/normal = SubResource("34")
 theme_override_styles/hover = SubResource("33")
 theme_override_styles/pressed = SubResource("33")
 toggle_mode = true
+theme_override_styles/normal = SubResource("34")
+theme_override_styles/hover = SubResource("33")
+theme_override_styles/pressed = SubResource("33")
 ActionIcon = ExtResource("76")
 ActionName = "g_pack_commands"
 
@@ -1653,9 +1681,13 @@ anchors_preset = 0
 
 [node name="PausePromptLabel" parent="PausePrompt" index="0"]
 layout_mode = 0
+offset_top = 0.0
+offset_bottom = 41.0
 
 [node name="PauseInfo" parent="PausePrompt" index="1"]
 layout_mode = 0
+offset_top = 0.0
+offset_bottom = 40.0
 
 [node name="InventoryScreen" parent="." instance=ExtResource("29")]
 anchors_preset = 0
@@ -1663,9 +1695,16 @@ anchors_preset = 0
 [node name="PatchNameOverlay" parent="." instance=ExtResource("12")]
 visible = false
 layout_mode = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 130.0
 
 [node name="HUDMessages" parent="." instance=ExtResource("25")]
 layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 270.0
 offset_top = 90.0
 offset_right = -270.0
@@ -1677,14 +1716,14 @@ anchors_preset = 0
 [node name="MoveToLandConfirmation" parent="." instance=ExtResource("17")]
 custom_minimum_size = Vector2(450, 0)
 anchors_preset = 0
-DialogText = "MOVING_TO_LAND_PROTOTYPE"
 WindowTitle = "MOVING_TO_LAND_PROTOTYPE_TITLE"
+DialogText = "MOVING_TO_LAND_PROTOTYPE"
 
 [node name="MoveToAwakeningConfirm" parent="." instance=ExtResource("17")]
 custom_minimum_size = Vector2(450, 0)
 anchors_preset = 0
-DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
+DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= ["expand"]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= ["compress"]]
