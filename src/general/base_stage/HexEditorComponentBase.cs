@@ -413,7 +413,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false, OnlyUnhandled = false)]
-    public bool PanCameraWithMouse(float dummy)
+    public bool PanCameraWithMouse(double dummy)
     {
         _ = dummy;
 

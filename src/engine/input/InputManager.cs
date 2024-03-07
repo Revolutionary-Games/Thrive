@@ -334,7 +334,7 @@ public partial class InputManager : Node
                 }
 
                 bool thisInstanceResult;
-                object invokeResult;
+                object? invokeResult;
 
                 try
                 {
@@ -351,6 +351,15 @@ public partial class InputManager : Node
                         GD.PrintErr("Failed to perform input method invoke: ", e);
                     }
 
+                    DestroyedListeners.Add(instance);
+                    continue;
+                }
+                catch (ArgumentException e)
+                {
+                    GD.PrintErr("Failed to perform input method invoke due to parameter conversion: ", e);
+                    GD.PrintErr($"Target method failed to invoke is: {method.DeclaringType?.FullName}.{method.Name}");
+
+                    // Is probably good to put this here to ensure the error doesn't get printed infinitely
                     DestroyedListeners.Add(instance);
                     continue;
                 }

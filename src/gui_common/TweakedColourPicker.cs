@@ -58,7 +58,7 @@ public partial class TweakedColourPicker : ColorPicker
     private Color colorBeforePicking;
     private double pickerTimeElapsed;
 
-    private PresetGroupStorage groupStorage = null!;
+    private PresetGroupStorage? groupStorage;
 
     private delegate void AddPresetDelegate(Color colour);
 
@@ -156,6 +156,7 @@ public partial class TweakedColourPicker : ColorPicker
         }
     }
 
+    // TODO: fix this with Godot 4
     /// <summary>
     ///   Hide Godot property PresetsEnabled to avoid unexpected changes
     ///   which may cause the hidden native buttons reappear.
@@ -167,6 +168,7 @@ public partial class TweakedColourPicker : ColorPicker
         base._Ready();
 
         // Hide replaced native controls. Can't delete them because it will crash Godot.
+        // TODO: fix this: this no longer has the same child layout
         var baseControl = GetChild(4);
         baseControl.GetChild<Control>(4).Hide();
         GetChild<Control>(5).Hide();
@@ -232,8 +234,12 @@ public partial class TweakedColourPicker : ColorPicker
 
     public override void _ExitTree()
     {
-        groupStorage.AddPresetDelegate -= OnGroupAddPreset;
-        groupStorage.ErasePresetDelegate -= OnGroupErasePreset;
+        if (groupStorage != null)
+        {
+            groupStorage.AddPresetDelegate -= OnGroupAddPreset;
+            groupStorage.ErasePresetDelegate -= OnGroupErasePreset;
+        }
+
         base._ExitTree();
     }
 

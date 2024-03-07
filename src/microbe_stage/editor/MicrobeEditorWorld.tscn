@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://hxrn73ihp8r4"]
+[gd_scene load_steps=7 format=3 uid="uid://hxrn73ihp8r4"]
 
 [ext_resource type="PackedScene" uid="uid://cpxcni1cii4k8" path="res://assets/models/EditorArrow.tscn" id="1"]
+[ext_resource type="Shader" path="res://shaders/EditorHexGrid.gdshader" id="3_yr5pr"]
+[ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="4_vutib"]
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="5"]
 
 [sub_resource type="PlaneMesh" id="3"]
 size = Vector2(15, 15)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kek8v"]
+render_priority = -2
+shader = ExtResource("3_yr5pr")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/lineWidth = 0.02
+shader_parameter/edgeLength = 1.299
+shader_parameter/maskTexture = ExtResource("4_vutib")
 
 [node name="MicrobeEditorWorld" type="Node"]
 
@@ -20,12 +30,14 @@ transform = Transform3D(-0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 
 
 [node name="Grid" type="MeshInstance3D" parent="."]
 mesh = SubResource("3")
+surface_material_override/0 = SubResource("ShaderMaterial_kek8v")
 
 [node name="EditorLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-light_energy = 0.5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.40354, 8.30518, 4.37077)
+light_energy = 2.0
+light_indirect_energy = 1.5
 shadow_enabled = true
-omni_range = 100.0
+omni_range = 166.598
 omni_attenuation = 0.420448
 
 [node name="DynamicallySpawned" type="Node3D" parent="."]
