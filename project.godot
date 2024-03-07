@@ -515,6 +515,7 @@ limits/message_queue/max_size_kb=8192
 [rendering]
 
 textures/canvas_textures/default_texture_filter=2
+textures/default_filters/anisotropic_filtering_level=3
 anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/msaa_3d=1
 environment/defaults/default_environment="res://default_env.tres"

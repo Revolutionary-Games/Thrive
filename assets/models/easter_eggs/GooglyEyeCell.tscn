@@ -6,6 +6,31 @@
 
 [node name="GooglyEyeCell" instance=ExtResource("5")]
 
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(0.715526, 0, 0, 0.698587)
+bones/1/rotation = Quaternion(-0.026646, -2.22011e-16, -3.01093e-18, 0.999645)
+bones/2/rotation = Quaternion(0.00636665, -1.19207e-07, -7.58964e-10, 0.99998)
+bones/3/rotation = Quaternion(-0.0111843, 0.00253269, -0.417772, 0.908479)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.0100045, 0, 0.466935, 0.884235)
+bones/5/rotation = Quaternion(-0.00957091, -0.00223601, 0.474131, 0.880399)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-0.0127528, -1.93572e-09, -0.539377, 0.841968)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.000361432, 9.66393e-08, 0.715278, 0.69884)
+bones/8/rotation = Quaternion(-0.00465239, 0.000372341, -0.131091, 0.991359)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(-0.000509198, 7.58263e-10, -0.0228849, 0.999738)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(-0.00020406, 2.56134e-09, -0.0091711, 0.999958)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-4.60981e-08, -4.67567e-08, -0.707107, 0.707107)
+bones/12/rotation = Quaternion(-0.00375706, -0.000322642, 0.0885624, 0.996064)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(-0.000666653, -8.13471e-10, 0.0306662, 0.999529)
+bones/14/rotation = Quaternion(0.00025267, 4.5198e-13, -0.0116229, 0.999932)
+bones/15/rotation = Quaternion(-0.773242, 0.0104473, 0.00856556, 0.633967)
+
 [node name="Cube" parent="Armature/Skeleton3D" index="0"]
 material_override = ExtResource("1")
 
@@ -13,4 +38,4 @@ material_override = ExtResource("1")
 surface_material_override/0 = ExtResource("3_xuugk")
 
 [node name="AnimationPlayer" parent="." index="1"]
-autoplay = "GooglyEyeCell"
+autoplay = "GooglyEyeCellIdle"
