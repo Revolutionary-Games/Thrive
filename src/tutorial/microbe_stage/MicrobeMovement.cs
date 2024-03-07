@@ -78,10 +78,9 @@ namespace Tutorial
                         }
                         else
                         {
-                            var rotationDegrees = -((RotationEventArgs)args).RotationInDegrees.Y;
-                            var lerped = Mathf.LerpAngle(Mathf.DegToRad(keyPromptRotation),
-                                Mathf.DegToRad(rotationDegrees), 0.1f);
-                            keyPromptRotation = Mathf.RadToDeg(lerped);
+                            var rotationDegrees = -((RotationEventArgs)args).RotationInRadians.Y;
+                            var lerped = Mathf.LerpAngle(keyPromptRotation, rotationDegrees, 0.1f);
+                            keyPromptRotation = lerped;
                         }
 
                         consumed = true;

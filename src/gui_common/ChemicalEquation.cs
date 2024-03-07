@@ -125,8 +125,7 @@ public partial class ChemicalEquation : VBoxContainer
             // TODO: should we at some point subtract like 100000*360 from the spinner rotation to avoid float range
             // exceeding?
 
-            // Now uses the same math as LoadingScreen as a spinner glitch was fixed there
-            spinner!.Rotation = (int)currentSpinnerRotation % 360;
+            spinner!.RotationDegrees = (int)currentSpinnerRotation % 360;
         }
 
         if (AutoRefreshProcess)

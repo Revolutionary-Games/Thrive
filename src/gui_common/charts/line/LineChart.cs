@@ -816,7 +816,7 @@ public partial class LineChart : VBoxContainer
         mouseCollider.Scale = new Vector2(firstPoint.Coordinate.DistanceTo(secondPoint.Coordinate) - firstPoint.Size.X,
             ((LineChartData)dataSets[datasetName]).LineWidth + 10);
 
-        mouseCollider.Rotation = Mathf.RadToDeg(firstPoint.Coordinate.AngleToPoint(secondPoint.Coordinate));
+        mouseCollider.Rotation = firstPoint.Coordinate.AngleToPoint(secondPoint.Coordinate);
 
         mouseCollider.Visible = dataSets[datasetName].Draw;
     }

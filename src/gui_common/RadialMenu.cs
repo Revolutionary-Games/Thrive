@@ -353,7 +353,7 @@ public partial class RadialMenu : CenterContainer
         var mouseAngle = mouseDirection.Angle();
 
         // In the indicator rotation coordinates the mouse is a quarter circle off
-        indicator.Rotation = Mathf.RadToDeg(mouseAngle) + 90;
+        indicator.Rotation = mouseAngle + Mathf.Pi * 0.5f;
 
         indicator.Position = new Vector2(Mathf.Cos(mouseAngle), Mathf.Sin(mouseAngle)) *
             RadialCircleStart + indicatorOffset;

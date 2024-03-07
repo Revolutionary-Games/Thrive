@@ -308,7 +308,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
         get => microbeMovementKeyPrompts.Rotation;
         set
         {
-            if (Math.Abs(value - microbeMovementKeyPrompts.Rotation) < 0.01f)
+            if (Math.Abs(value - microbeMovementKeyPrompts.Rotation) < 0.001f)
                 return;
 
             microbeMovementKeyPrompts.Rotation = value;

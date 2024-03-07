@@ -31,7 +31,7 @@ public partial class LoadingScreen : Control
     ///   How fast the loading indicator spins
     /// </summary>
     [Export]
-    public float SpinnerSpeed = 180.0f;
+    public double SpinnerSpeed = Math.PI;
 
     private static LoadingScreen? instance;
 
@@ -160,7 +160,7 @@ public partial class LoadingScreen : Control
         // Spin the spinner
         totalElapsed += delta;
 
-        spinner.Rotation = (int)(totalElapsed * SpinnerSpeed) % 360;
+        spinner.RotationDegrees = (int)(totalElapsed * SpinnerSpeed) % Mathf.Tau;
     }
 
     /// <summary>

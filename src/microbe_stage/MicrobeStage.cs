@@ -229,8 +229,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
-                new RotationEventArgs(playerPosition.Rotation,
-                    playerPosition.Rotation.GetEuler() * MathUtils.RADIANS_TO_DEGREES), this);
+                new RotationEventArgs(playerPosition.Rotation, playerPosition.Rotation.GetEuler()), this);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
                 new CompoundBagEventArgs(Player.Get<CompoundStorage>().Compounds), this);
