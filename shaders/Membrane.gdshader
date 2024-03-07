@@ -14,7 +14,7 @@ uniform sampler2D normalTexture;
 uniform sampler2D dissolveTexture : source_color;
 uniform float dissolveValue : hint_range(0, 1);
 
-uniform float healthFraction = 0.5f;
+uniform float healthFraction : hint_range(0, 1) = 0.5f;
 uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 
 
@@ -45,8 +45,8 @@ void fragment(){
 
     vec4 dissolveTex = texture(dissolveTexture, UV);
 
-    float cutoff = dot(dissolveTex.rgb, vec3(0.6, 0.6, 0.6)) -
-        float(-0.15 + clamp(dissolveValue, 0, 1));
+    float cutoff = dot(dissolveTex.rgb, vec3(0.34, 0.34, 0.34)) -
+        float(-0.482 + clamp(dissolveValue, 0, 1));
 
     ALBEDO = final.rgb;
     NORMAL = (INV_VIEW_MATRIX * (MODEL_MATRIX * vec4(normals, 0.0))).xyz;
