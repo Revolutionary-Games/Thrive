@@ -1,64 +1,55 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://kewggbeyv0kg"]
 
-[ext_resource path="res://assets/textures/snowflake2.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://gc70w2bqq323" path="res://assets/textures/snowflake2.png" id="1"]
 
-[sub_resource type="Gradient" id=1]
-offsets = PackedFloat32Array( 0, 0.576577, 1 )
-colors = PackedColorArray( 0, 0, 0, 0, 1, 1, 1, 0.392157, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id="1"]
+offsets = PackedFloat32Array(0, 0.576577, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.392157, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("1")
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id="3"]
 max_value = 100.0
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 3.97727 ), 0.0, 0.0, 0, 0 ]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 3.97727), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id="4"]
+curve = SubResource("3")
 
-[sub_resource type="Curve" id=5]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.670968, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
-
-[sub_resource type="ParticleProcessMaterial" id=7]
+[sub_resource type="ParticleProcessMaterial" id="7"]
 emission_shape = 1
 emission_sphere_radius = 1.0
-direction = Vector3( 0, 0, 0 )
+direction = Vector3(0, 0, 0)
 spread = 180.0
 flatness = 0.5
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 2.0
-initial_velocity_random = 1.0
-linear_accel = 1.5
-linear_accel_random = 0.5
-damping = 0.1
-damping_random = 0.1
-damping_curve = SubResource( 4 )
-scale = 0.05
-scale_curve = SubResource( 6 )
-color_ramp = SubResource( 2 )
+initial_velocity_min = 1.5
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -0.03
+linear_accel_max = -0.01
+damping_curve = SubResource("4")
+color_ramp = SubResource("2")
 
-[sub_resource type="StandardMaterial3D" id=8]
-flags_transparent = true
+[sub_resource type="StandardMaterial3D" id="8"]
+transparency = 1
+blend_mode = 1
 vertex_color_use_as_albedo = true
-params_blend_mode = 1
-params_billboard_mode = 3
+albedo_color = Color(0.752941, 0.941176, 1, 1)
+albedo_texture = ExtResource("1")
+billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_color = Color( 0.752941, 0.941176, 1, 1 )
-albedo_texture = ExtResource( 1 )
 
-[sub_resource type="QuadMesh" id=9]
-material = SubResource( 8 )
+[sub_resource type="QuadMesh" id="9"]
+material = SubResource("8")
+size = Vector2(0.1, 0.1)
 
-[node name="CellBurstEffect" type="Particles"]
+[node name="CellBurstEffect" type="GPUParticles3D"]
 amount = 300
 lifetime = 5.0
 explosiveness = 1.0
 randomness = 1.0
-local_coords = false
-process_material = SubResource( 7 )
-draw_pass_1 = SubResource( 9 )
+process_material = SubResource("7")
+draw_pass_1 = SubResource("9")

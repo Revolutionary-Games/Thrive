@@ -1,29 +1,24 @@
-[gd_resource type="ParticleProcessMaterial" load_steps=5 format=2]
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://bxccofrrhkghm"]
 
-[sub_resource type="Gradient" id=1]
-offsets = PackedFloat32Array( 0, 0.496296, 1 )
-colors = PackedColorArray( 1, 1, 1, 0.0392157, 1, 1, 1, 0.556863, 1, 1, 1, 0.0392157 )
+[sub_resource type="Gradient" id="1"]
+offsets = PackedFloat32Array(0, 0.496296, 1)
+colors = PackedColorArray(1, 1, 1, 0.0392157, 1, 1, 1, 0.556863, 1, 1, 1, 0.0392157)
 
-[sub_resource type="GradientTexture2D" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("1")
 
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 0.918182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.454545 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="3"]
+_data = [Vector2(0, 0.918182), 0.0, 0.0, 0, 0, Vector2(1, 0.454545), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id="4"]
+curve = SubResource("3")
 
 [resource]
 emission_shape = 1
 emission_sphere_radius = 1.5
-flag_rotate_y = true
-direction = Vector3( 0, 0, 0 )
+direction = Vector3(0, 0, 0)
 spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity_random = 0.32
-radial_accel = 3.0
-radial_accel_random = 0.74
-scale = 0.5
-scale_random = 0.8
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("4")
+color_ramp = SubResource("2")

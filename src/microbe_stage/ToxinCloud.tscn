@@ -1,23 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://nrxvboo1uvg6"]
 
-[ext_resource path="res://src/microbe_stage/particles/burst.tres" type="Material" id=1]
-[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture2D" id=2]
+[ext_resource type="Material" uid="uid://bxccofrrhkghm" path="res://src/microbe_stage/particles/burst.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="2"]
 
-[sub_resource type="StandardMaterial3D" id=1]
-flags_transparent = true
-flags_unshaded = true
+[sub_resource type="StandardMaterial3D" id="1"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
-params_blend_mode = 1
-params_billboard_mode = 1
-albedo_color = Color( 0.580392, 0.0941176, 0.360784, 1 )
-albedo_texture = ExtResource( 2 )
+albedo_color = Color(0.580392, 0.0941176, 0.360784, 1)
+albedo_texture = ExtResource("2")
+billboard_mode = 1
 
-[sub_resource type="QuadMesh" id=2]
-material = SubResource( 1 )
-size = Vector2( 5, 5 )
+[sub_resource type="QuadMesh" id="2"]
+material = SubResource("1")
 
-[node name="ToxinCloud" type="Particles"]
+[node name="ToxinCloud" type="GPUParticles3D"]
 amount = 50
 lifetime = 2.0
-process_material = ExtResource( 1 )
-draw_pass_1 = SubResource( 2 )
+process_material = ExtResource("1")
+draw_pass_1 = SubResource("2")
