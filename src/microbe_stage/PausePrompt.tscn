@@ -1,35 +1,32 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://qwg2dluu8ow0"]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="FontFile" id=1]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
+[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" id="1"]
+[ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/new_fonts/Title-SemiBold-Huge.tres" id="2_llgsb"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 
 [node name="PausePrompt" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.697
-anchor_right = 0.5
-anchor_bottom = 0.776
-offset_left = -200.0
-offset_top = 48.16
-offset_right = 200.0
-offset_bottom = 70.16
+layout_mode = 3
+anchors_preset = 0
 mouse_filter = 2
 
 [node name="PausePromptLabel" type="Label" parent="."]
-offset_top = 18.0
-offset_right = 400.0
-offset_bottom = 59.0
-custom_minimum_size = Vector2( 0, 20 )
-theme_override_fonts/font = ExtResource( 1 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+offset_left = -66.0
+offset_top = -154.0
+offset_right = 63.0
+offset_bottom = -107.0
+theme_override_fonts/font = ExtResource("1")
 text = "PAUSED"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+label_settings = ExtResource("2_llgsb")
+horizontal_alignment = 1
 
-[node name="PauseInfo" parent="." instance=ExtResource( 5 )]
-offset_top = 60.0
-offset_right = 400.0
-offset_bottom = 100.0
-clip_contents = false
+[node name="PauseInfo" parent="." instance=ExtResource("5")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+offset_left = -150.0
+offset_top = -105.0
+offset_right = 150.0
+offset_bottom = -23.9995
 mouse_filter = 2
+fit_content = true

@@ -1,90 +1,92 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://dwkek50fju0fu"]
 
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture2D" id=1]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" type="FontFile" id=2]
-[ext_resource path="res://src/microbe_stage/PatchNameOverlay.cs" type="Script" id=3]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_um53y"]
+[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" id="2"]
+[ext_resource type="Script" path="res://src/microbe_stage/PatchNameOverlay.cs" id="3"]
+[ext_resource type="LabelSettings" uid="uid://cly2udph8cr5d" path="res://src/gui_common/new_fonts/Title-SemiBold-HugePlus.tres" id="3_ln4oc"]
 
-[sub_resource type="Gradient" id=33]
-offsets = PackedFloat32Array( 0, 0.1, 0.5, 0.9, 1 )
-colors = PackedColorArray( 0, 0, 0, 0, 0, 0, 0, 0.588235, 0, 0, 0, 0.627451, 0, 0, 0, 0.588235, 0, 0, 0, 0 )
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02uav"]
 
-[sub_resource type="GradientTexture2D" id=34]
-gradient = SubResource( 33 )
+[sub_resource type="Gradient" id="33"]
+offsets = PackedFloat32Array(0, 0.1, 0.5, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.588235, 0, 0, 0, 0.627451, 0, 0, 0, 0.588235, 0, 0, 0, 0)
 
-[sub_resource type="StyleBoxTexture" id=35]
-texture = SubResource( 34 )
-region_rect = Rect2( 0, 0, 2048, 1 )
+[sub_resource type="GradientTexture2D" id="34"]
+gradient = SubResource("33")
 
-[sub_resource type="StyleBoxTexture" id=36]
-texture = ExtResource( 1 )
-region_rect = Rect2( 0, 0, 429, 1 )
-
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id="37"]
 resource_name = "FadeInOut"
 length = 4.5
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 4.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ true, false ]
+"values": [true, false]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.7, 1.2, 3.5, 4.5 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.7, 1.2, 3.5, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p6wm2"]
+_data = {
+"FadeInOut": SubResource("37")
 }
 
 [node name="PatchNameOverlay" type="PanelContainer"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 130)
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_top = -65.0
 offset_bottom = 65.0
-custom_minimum_size = Vector2( 0, 130 )
+size_flags_horizontal = 3
 mouse_filter = 2
-theme_override_styles/panel = SubResource( 35 )
-script = ExtResource( 3 )
+theme = ExtResource("1_um53y")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_02uav")
+script = ExtResource("3")
 PatchLabelPath = NodePath("VBoxContainer/PatchLabel")
 PatchOverlayAnimatorPath = NodePath("AnimationPlayer")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("34")
+expand_mode = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 1280.0
-offset_bottom = 130.0
+layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
 [node name="PatchLabel" type="Label" parent="VBoxContainer"]
-offset_top = 28.0
-offset_right = 1280.0
-offset_bottom = 94.0
+layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource("2")
 text = "Insert Patch Name"
-align = 1
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("3_ln4oc")
+horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-offset_top = 98.0
-offset_right = 1280.0
-offset_bottom = 102.0
+layout_mode = 2
 mouse_filter = 2
-theme_override_styles/separator = SubResource( 36 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/FadeInOut = SubResource( 37 )
+libraries = {
+"": SubResource("AnimationLibrary_p6wm2")
+}

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b6pjvrbt518oj" path="res://src/engine/ChromaticFilter.tscn" id="67"]
 [ext_resource type="PackedScene" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" id="74"]
 [ext_resource type="PackedScene" path="res://src/engine/GuidanceLine.tscn" id="75"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/PatchNameOverlay.tscn" id="85"]
+[ext_resource type="PackedScene" uid="uid://dwkek50fju0fu" path="res://src/microbe_stage/PatchNameOverlay.tscn" id="85"]
 
 [node name="MicrobeStage" type="Node"]
 process_priority = -1
@@ -78,7 +78,6 @@ grow_vertical = 2
 
 [node name="PatchNameOverlay" parent="." instance=ExtResource("85")]
 visible = false
-anchors_preset = 14
 
 [node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false
@@ -93,8 +92,6 @@ size_flags_vertical = 6
 mouse_filter = 2
 
 [node name="PauseMenu" parent="." instance=ExtResource("11")]
-grow_horizontal = 2
-grow_vertical = 2
 
 [connection signal="OnEjectEngulfedButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EjectAllEngulfed"]
 [connection signal="OnFireToxinButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EmitToxin"]

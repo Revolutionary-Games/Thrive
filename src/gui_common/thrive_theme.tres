@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=79 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" load_steps=78 format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://bjchgyy3gt2vp" path="res://assets/textures/gui/bevel/grab.png" id="2"]
@@ -29,7 +29,6 @@
 [ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="27_037sv"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" id="28"]
 [ext_resource type="FontFile" uid="uid://cfp1hm2e4a87c" path="res://assets/fonts/NotoSans-Regular.ttf" id="28_sm4d1"]
-[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="29_v71j1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcn6x"]
 content_margin_left = 5.0
@@ -207,9 +206,9 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="52"]
 content_margin_left = 10.0
-content_margin_top = 10.0
+content_margin_top = 1.0
 content_margin_right = 10.0
-content_margin_bottom = 0.0
+content_margin_bottom = 1.0
 draw_center = false
 border_width_left = 1
 border_width_top = 1
@@ -225,7 +224,7 @@ corner_radius_bottom_left = 5
 content_margin_left = 10.0
 content_margin_top = 1.0
 content_margin_right = 10.0
-content_margin_bottom = 0.0
+content_margin_bottom = 1.0
 bg_color = Color(0, 0, 0, 0.784314)
 border_width_left = 1
 border_width_top = 1
@@ -241,7 +240,7 @@ corner_radius_bottom_left = 5
 content_margin_left = 10.0
 content_margin_top = 1.0
 content_margin_right = 10.0
-content_margin_bottom = 0.0
+content_margin_bottom = 1.0
 bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
@@ -514,7 +513,7 @@ corner_radius_bottom_left = 10
 expand_margin_top = 20.0
 
 [resource]
-default_font = ExtResource("29_v71j1")
+default_font = ExtResource("27_037sv")
 default_font_size = 20
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_color_disabled = Color(1, 1, 1, 1)
@@ -705,9 +704,8 @@ LineEdit/colors/font_color = Color(1, 1, 1, 1)
 LineEdit/colors/font_color_selected = Color(0, 0, 0, 1)
 LineEdit/colors/font_color_uneditable = Color(1, 1, 1, 1)
 LineEdit/colors/selection_color = Color(1, 1, 1, 0.537255)
-LineEdit/constants/minimum_spaces = 12
 LineEdit/font_sizes/font_size = 14
-LineEdit/fonts/font = ExtResource("10")
+LineEdit/fonts/font = ExtResource("27_037sv")
 LineEdit/icons/clear = null
 LineEdit/styles/focus = SubResource("52")
 LineEdit/styles/normal = SubResource("22")

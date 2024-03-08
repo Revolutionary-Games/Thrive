@@ -1,82 +1,62 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://u7o6febei0qr"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="FontFile" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="FontFile" id=3]
-[ext_resource path="res://src/gui_common/MouseHoverPanel.cs" type="Script" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=5]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" id="3"]
+[ext_resource type="Script" path="res://src/gui_common/MouseHoverPanel.cs" id="4"]
+[ext_resource type="LabelSettings" uid="uid://bhwhg2m8ntuvx" path="res://src/gui_common/new_fonts/Title-Bold-Smaller.tres" id="4_1ha7v"]
+[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Small.tres" id="5"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="5_ehek6"]
 
-[sub_resource type="Theme" id=1]
-default_font = ExtResource( 5 )
+[sub_resource type="Theme" id="1"]
+default_font = ExtResource("5")
 
 [node name="MouseHoverPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(250, 0)
 offset_right = 250.0
 offset_bottom = 73.0
-custom_minimum_size = Vector2( 250, 0 )
-mouse_filter = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme = ExtResource( 1 )
-script = ExtResource( 4 )
+mouse_filter = 2
+theme = ExtResource("1")
+script = ExtResource("4")
 CategoriesContainerPath = NodePath("MarginContainer/VBoxContainer/Categories")
 NothingHereContainerPath = NodePath("MarginContainer/VBoxContainer/NothingHere")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 249.0
-offset_bottom = 72.0
+layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-offset_left = 10.0
-offset_top = 5.0
-offset_right = 238.0
-offset_bottom = 61.0
+layout_mode = 2
 mouse_filter = 2
 
 [node name="MousePos" type="Label" parent="MarginContainer/VBoxContainer"]
-offset_right = 228.0
-offset_bottom = 19.0
-theme_override_fonts/font = ExtResource( 3 )
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3")
 text = "AT_CURSOR"
-align = 1
-__meta__ = {
-"_editor_description_": ""
-}
+label_settings = ExtResource("4_1ha7v")
+horizontal_alignment = 1
 
 [node name="TitleSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-offset_top = 23.0
-offset_right = 228.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 0, 5 )
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 mouse_filter = 2
 
 [node name="NothingHere" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 32.0
-offset_right = 228.0
-offset_bottom = 52.0
+layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
 
 [node name="NothingHereLabel" type="Label" parent="MarginContainer/VBoxContainer/NothingHere"]
-offset_left = 10.0
-offset_right = 228.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 0, 20 )
-theme_override_fonts/font = ExtResource( 2 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 text = "NOTHING_HERE"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+label_settings = ExtResource("5_ehek6")
 
 [node name="Categories" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 56.0
-offset_right = 228.0
-offset_bottom = 56.0
-theme = SubResource( 1 )
+layout_mode = 2
+theme = SubResource("1")

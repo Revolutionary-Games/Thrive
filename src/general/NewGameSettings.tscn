@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0315b3i5bs5s"]
+[gd_scene load_steps=21 format=3 uid="uid://b0315b3i5bs5s"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/general/NewGameSettings.cs" id="2"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" id="3"]
 [ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="5"]
+[ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="5_otvf3"]
 [ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/new_fonts/Body-Regular-AlmostTiny.tres" id="5_rnvau"]
 [ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="7"]
@@ -14,6 +15,9 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="13"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8kue3"]
+font = ExtResource("5_otvf3")
 
 [sub_resource type="StyleBoxEmpty" id="2"]
 
@@ -32,6 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1")
 script = ExtResource("2")
+Descending = null
 BasicOptionsPath = NodePath("CenterContainer/VBoxContainer/BasicOptions")
 AdvancedOptionsPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions")
 BasicButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Basic")
@@ -145,6 +150,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "LIFE_ORIGIN"
+label_settings = SubResource("LabelSettings_8kue3")
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)

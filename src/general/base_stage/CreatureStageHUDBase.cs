@@ -211,7 +211,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected AnimationPlayer compoundsGroupAnimationPlayer = null!;
     protected AnimationPlayer environmentGroupAnimationPlayer = null!;
     protected MouseHoverPanel mouseHoverPanel = null!;
-    protected Panel environmentPanel = null!;
+    protected PanelContainer environmentPanel = null!;
     protected GridContainer? environmentPanelBarContainer;
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
@@ -275,7 +275,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
-    private Panel compoundsPanel = null!;
+    private PanelContainer compoundsPanel = null!;
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
     private VBoxContainer environmentPanelVBoxContainer = null!;
@@ -372,7 +372,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         agentsPanel = GetNode<Control>(AgentsPanelPath);
         agentsPanelVBoxContainer = agentsPanel.GetNode<VBoxContainer>("VBoxContainer");
 
-        environmentPanel = GetNode<Panel>(EnvironmentPanelPath);
+        environmentPanel = GetNode<PanelContainer>(EnvironmentPanelPath);
         environmentPanelBarContainer = GetNode<GridContainer>(EnvironmentPanelBarContainerPath);
         environmentPanelVBoxContainer = environmentPanel.GetNode<VBoxContainer>("VBoxContainer");
         oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
@@ -382,7 +382,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         sunlightLabel = GetNode<ProgressBar>(SunlightPath);
         pressure = GetNode<ProgressBar>(PressurePath);
 
-        compoundsPanel = GetNode<Panel>(CompoundsPanelPath);
+        compoundsPanel = GetNode<PanelContainer>(CompoundsPanelPath);
         compoundsPanelBarContainer = GetNode<GridContainer>(CompoundsPanelBarContainerPath);
         compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
         glucoseBar = GetNode<ProgressBar>(GlucoseBarPath);

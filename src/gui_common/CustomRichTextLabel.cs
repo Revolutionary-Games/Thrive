@@ -392,7 +392,7 @@ public partial class CustomRichTextLabel : RichTextLabel
 
         var pairs = StringUtils.ParseKeyValuePairs(attributes);
 
-        string GetResizedImage(string imagePath, int width, int height, int ascent)
+        string GetResizedImage(string imagePath, int width, int height)
         {
             if (pairs.TryGetValue("size", out string? sizeInput))
             {
@@ -410,23 +410,10 @@ public partial class CustomRichTextLabel : RichTextLabel
                 }
             }
 
-            if (pairs.TryGetValue("ascent", out string ascentInput))
-                ascent = ascentInput.ToInt();
-
-            var ascentFont = "res://src/gui_common/fonts/dynamically_created/BBCode-Image-" +
-                $"VerticalCenterAlign-{ascent}.tres";
-
-            if (!ResourceLoader.Exists(ascentFont))
-            {
-                // TODO: Remove this horrible hack once proper bbcode vertical image alignment is available in Godot 4
-                GD.PrintErr($"Input Action: No ascent font found for {ascent}, creating a new one");
-                var newAscentFont = new FontFile { Ascent = ascent };
-                ResourceSaver.Save(ascentFont, newAscentFont);
-            }
-
-            return $"[font={ascentFont}][img={width}x{height}]{imagePath}[/img][/font]";
+            return $"[img={width}x{height}]{imagePath}[/img]";
         }
 
+        // TODO: this doesn't work. Do we need to somehow hack back the ascent fonts?
         string GetVerticallyAlignedImage(string imagePath,
             ImageVerticalAlignment verticalAlignment = ImageVerticalAlignment.Bottom,
             ImageAlignmentReferencePoint textAnchorPoint = ImageAlignmentReferencePoint.Bottom)
@@ -510,7 +497,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                 if (string.IsNullOrEmpty(input))
                     input = compound.Name;
 
-                output = $"[b]{input}[/b] {GetResizedImage(compound.IconPath, 20, 0, 3)}";
+                output = $"[b]{input}[/b] {GetVerticallyAlignedImage(compound.IconPath)}";
 
                 break;
             }
@@ -532,7 +519,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                 }
 
                 // TODO: add support for showing the overlay image / text saying the direction for axis type inputs
-                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input).Primary, 30, 0, 9);
+                output = GetVerticallyAlignedImage(KeyPromptHelper.GetPathForAction(input).Primary);
 
                 break;
             }
@@ -642,7 +629,7 @@ public partial class CustomRichTextLabel : RichTextLabel
 
                 if (!showName)
                 {
-                    output = GetResizedImage(resource.InventoryIcon, 20, 0, 3);
+                    output = GetVerticallyAlignedImage(resource.InventoryIcon);
                 }
                 else
                 {
@@ -650,7 +637,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                     if (string.IsNullOrEmpty(input))
                         input = resource.Name;
 
-                    output = $"[b]{input}[/b] {GetResizedImage(resource.InventoryIcon, 20, 0, 3)}";
+                    output = $"[b]{input}[/b] {GetVerticallyAlignedImage(resource.InventoryIcon)}";
                 }
 
                 break;
@@ -664,38 +651,37 @@ public partial class CustomRichTextLabel : RichTextLabel
                 {
                     case "ConditionInsufficient":
                     {
-                        output = GetResizedImage(GUICommon.Instance.RequirementInsufficientIconPath, 20, 0,
-                            3);
+                        output = GetVerticallyAlignedImage(GUICommon.Instance.RequirementInsufficientIconPath);
                         break;
                     }
 
                     case "ConditionFulfilled":
                     {
-                        output = GetResizedImage(GUICommon.Instance.RequirementFulfilledIconPath, 20, 0, 3);
+                        output = GetVerticallyAlignedImage(GUICommon.Instance.RequirementFulfilledIconPath);
                         break;
                     }
 
                     case "StorageIcon":
                     {
-                        output = GetResizedImage("res://assets/textures/gui/bevel/StorageIcon.png", 20, 0, 3);
+                        output = GetVerticallyAlignedImage("res://assets/textures/gui/bevel/StorageIcon.png");
                         break;
                     }
 
                     case "OsmoIcon":
                     {
-                        output = GetResizedImage("res://assets/textures/gui/bevel/osmoregulationIcon.png", 20, 0, 3);
+                        output = GetVerticallyAlignedImage("res://assets/textures/gui/bevel/osmoregulationIcon.png");
                         break;
                     }
 
                     case "MovementIcon":
                     {
-                        output = GetResizedImage("res://assets/textures/gui/bevel/SpeedIcon.png", 20, 0, 3);
+                        output = GetVerticallyAlignedImage("res://assets/textures/gui/bevel/SpeedIcon.png");
                         break;
                     }
 
                     case "MP":
                     {
-                        output = GetResizedImage("res://assets/textures/gui/bevel/MP.png", 20, 0, 3);
+                        output = GetVerticallyAlignedImage("res://assets/textures/gui/bevel/MP.png");
                         break;
                     }
 
