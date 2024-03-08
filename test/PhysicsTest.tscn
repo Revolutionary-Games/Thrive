@@ -1,24 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://ii0cd56itvdj"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://test/PhysicsTest.cs" type="Script" id=2]
-[ext_resource path="res://assets/textures/environment/Terrain_01_Normals.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/textures/environment/Terrain_01_Albedo.png" type="Texture2D" id=4]
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=6]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" path="res://test/PhysicsTest.cs" id="2"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/new_fonts/Body-Regular-Smaller.tres" id="4_aiyoe"]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="5"]
 
-[sub_resource type="PlaneMesh" id=1]
-size = Vector2( 200, 200 )
-
-[sub_resource type="StandardMaterial3D" id=2]
-albedo_texture = ExtResource( 4 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 3 )
-uv1_scale = Vector3( 40, 40, 40 )
+[sub_resource type="PlaneMesh" id="1"]
+size = Vector2(200, 200)
 
 [node name="PhysicsTest" type="Node"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 WorldVisualsPath = NodePath("RenderingRoot")
 CameraPath = NodePath("RenderingRoot/Camera3D")
 GUIWindowRootPath = NodePath("GUI/CustomWindow")
@@ -30,112 +21,98 @@ PhysicsBodiesCountLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/HFlowCont
 SpawnPatternInfoLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/HFlowContainer3/Pattern")
 
 [node name="GUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 
-[node name="CustomWindow" parent="GUI" instance=ExtResource( 5 )]
+[node name="CustomWindow" parent="GUI" instance=ExtResource("5")]
+visible = true
+anchors_preset = 0
 Resizable = true
 ShowCloseButton = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/CustomWindow"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 0
 offset_right = 80.0
 offset_bottom = 50.0
-custom_minimum_size = Vector2( 80, 50 )
 
 [node name="HFlowContainer" type="HFlowContainer" parent="GUI/CustomWindow/VBoxContainer"]
-offset_right = 101.0
-offset_bottom = 5.38925e+08
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer"]
-offset_right = 40.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource( 6 )
+layout_mode = 2
 text = "Test type:"
+label_settings = ExtResource("4_aiyoe")
 
 [node name="Control" type="Control" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="TestType" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer"]
-offset_right = 40.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 6 )
-align = 2
+label_settings = ExtResource("4_aiyoe")
 
 [node name="ExtraTestTypeInfo" type="Label" parent="GUI/CustomWindow/VBoxContainer"]
-offset_right = 40.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 6 )
-autowrap = true
+label_settings = ExtResource("4_aiyoe")
 
 [node name="PhysicsTiming" type="Label" parent="GUI/CustomWindow/VBoxContainer"]
-offset_right = 40.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 6 )
-autowrap = true
+label_settings = ExtResource("4_aiyoe")
 
 [node name="Frametime" type="Label" parent="GUI/CustomWindow/VBoxContainer"]
-offset_right = 40.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 6 )
+label_settings = ExtResource("4_aiyoe")
 
 [node name="HFlowContainer2" type="HFlowContainer" parent="GUI/CustomWindow/VBoxContainer"]
-offset_right = 101.0
-offset_bottom = 5.38925e+08
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer2"]
-offset_right = 40.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource( 6 )
+layout_mode = 2
 text = "Bodies:"
+label_settings = ExtResource("4_aiyoe")
 
 [node name="Control" type="Control" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer2"]
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="BodyCount" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer2"]
-offset_right = 40.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 6 )
-align = 2
+label_settings = ExtResource("4_aiyoe")
 
 [node name="HFlowContainer3" type="HFlowContainer" parent="GUI/CustomWindow/VBoxContainer"]
-offset_right = 101.0
-offset_bottom = 5.38925e+08
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer3"]
-offset_right = 40.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource( 6 )
+layout_mode = 2
 text = "Spawn pattern:"
+label_settings = ExtResource("4_aiyoe")
 
 [node name="Control" type="Control" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer3"]
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Pattern" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer3"]
-offset_right = 40.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 6 )
-align = 2
+label_settings = ExtResource("4_aiyoe")
 
 [node name="RenderingRoot" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="RenderingRoot"]
-transform = Transform3D( 1, 0, 0, 0, 0.834617, 0.55083, 0, -0.55083, 0.834617, 0, 5.382, 9.099 )
+transform = Transform3D(1, 0, 0, 0, 0.834617, 0.55083, 0, -0.55083, 0.834617, 0, 5.382, 9.099)
 current = true
 fov = 90.0
 near = 0.01
@@ -144,8 +121,7 @@ far = 200.0
 [node name="AudioListener3D" type="AudioListener3D" parent="RenderingRoot/Camera3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RenderingRoot"]
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+mesh = SubResource("1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="RenderingRoot"]
-transform = Transform3D( -0.737759, -0.346953, -0.579081, -0.241905, -0.664974, 0.706606, -0.630233, 0.661388, 0.406661, -2.47007, 1.82427, 1.47146 )
+transform = Transform3D(-0.737759, -0.346953, -0.579081, -0.241905, -0.664974, 0.706606, -0.630233, 0.661388, 0.406661, -2.47007, 1.82427, 1.47146)

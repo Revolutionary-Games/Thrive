@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using AutoEvo;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   An evolutionary tree showing species origins and mutations. Supports dragging and zooming.
@@ -105,8 +104,8 @@ public partial class EvolutionaryTree : Control
     private Control tree = null!;
 
     // Local copy of fonts
-    private Font latoSmallItalic = null!;
-    private Font latoSmallRegular = null!;
+    private LabelSettings bodyItalicFont = null!;
+    private LabelSettings bodyFont = null!;
 
     private PackedScene treeNodeScene = null!;
 #pragma warning restore CA2213
@@ -166,11 +165,10 @@ public partial class EvolutionaryTree : Control
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
 
         // Font size is adjusted dynamically so this needs to be a copy.
-        latoSmallItalic = (Font)GD.Load("res://src/gui_common/fonts/Lato-Italic-Small.tres").Duplicate();
-        smallFontSize = (int)latoSmallItalic.Get("size");
+        bodyItalicFont = GD.Load<LabelSettings>("res://src/gui_common/new_fonts/Body-Italic-Small.tres");
+        smallFontSize = bodyItalicFont.FontSize;
 
-        // LatoRegular is used in the timeline part which has a fixed size, so we don't need to clone.
-        latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres");
+        bodyFont = GD.Load<LabelSettings>("res://src/gui_common/new_fonts/Body-Regular-Small.tres");
     }
 
     public void Init(IEnumerable<Species> initialSpecies, uint playerSpeciesId = 1,
@@ -403,10 +401,10 @@ public partial class EvolutionaryTree : Control
                     + Localization.Translate("MEGA_YEARS");
             }
 
-            timeline.DrawString(latoSmallRegular,
-                new Vector2(x, TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH * 2 + Constants.FONT_SIZE_SMALL), localizedText,
+            timeline.DrawString(bodyFont.Font,
+                new Vector2(x, TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH * 2 + bodyFont.FontSize), localizedText,
                 HorizontalAlignment.Center, -1,
-                Constants.FONT_SIZE_SMALL, Colors.Cyan);
+                bodyFont.FontSize, Colors.Cyan);
         }
     }
 
@@ -531,7 +529,7 @@ public partial class EvolutionaryTree : Control
             TreeDrawLine(lineStart, lineEnd);
         }
 
-        latoSmallItalic.Set("size", sizeFactor * smallFontSize);
+        var size = sizeFactor * smallFontSize;
 
         float speciesNameOffset = sizeFactor * SPECIES_NAME_OFFSET;
 
@@ -546,16 +544,16 @@ public partial class EvolutionaryTree : Control
 
             if (lastNode.LastGeneration)
             {
-                tree.DrawString(latoSmallItalic,
+                tree.DrawString(bodyItalicFont.Font,
                     new Vector2(lastNode.Position.X + sizeFactor * TreeNodeSize.X + speciesNameOffset,
                         lastNode.Center.Y), speciesNames[pair.Key], HorizontalAlignment.Left, -1,
-                    Constants.FONT_SIZE_SMALL, Colors.DarkRed);
+                    Mathf.RoundToInt(size), Colors.DarkRed);
             }
             else
             {
-                tree.DrawString(latoSmallItalic,
+                tree.DrawString(bodyItalicFont.Font,
                     new Vector2(treeRightPosition + speciesNameOffset, pair.Value.First().Center.Y),
-                    speciesNames[pair.Key], HorizontalAlignment.Left, -1, Constants.FONT_SIZE_SMALL);
+                    speciesNames[pair.Key], HorizontalAlignment.Left, -1, Mathf.RoundToInt(size));
             }
         }
     }

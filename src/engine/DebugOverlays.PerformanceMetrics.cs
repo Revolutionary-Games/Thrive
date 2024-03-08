@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using Godot;
 using Nito.Collections;
@@ -49,6 +50,16 @@ public partial class DebugOverlays
                 return;
 
             showPerformance = value;
+
+            if (showPerformance)
+            {
+                performanceMetrics.Show();
+            }
+            else
+            {
+                performanceMetrics.Hide();
+            }
+
             if (performanceMetricsCheckBox.ButtonPressed == showPerformance)
                 return;
 
@@ -86,7 +97,18 @@ public partial class DebugOverlays
         var currentProcess = Process.GetCurrentProcess();
 
         var processorTime = currentProcess.TotalProcessorTime;
-        var threads = currentProcess.Threads.Count;
+
+        int threads;
+        try
+        {
+            threads = currentProcess.Threads.Count;
+        }
+        catch (IOException)
+        {
+            // Seems like on Linux a read of this property can sometimes fail like this
+            threads = -1;
+        }
+
         var usedMemory = Math.Round(currentProcess.WorkingSet64 / (double)Constants.MEBIBYTE, 1);
         var usedVideoMemory = Math.Round(Performance.GetMonitor(Performance.Monitor.RenderVideoMemUsed) /
             Constants.MEBIBYTE, 1);

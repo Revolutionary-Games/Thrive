@@ -15,7 +15,10 @@ public partial class ThriveFeedDisplayer : VBoxContainer
     public Font TitleFont = null!;
 
     [Export]
-    public Font FooterFont = null!;
+    public int TitleFontSize = 20;
+
+    [Export]
+    public LabelSettings FooterFontSettings = null!;
 
     private Container newsContainer = null!;
     private Control loadingIndicator = null!;
@@ -194,6 +197,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
 
         // Big font for titles
         title.AddThemeFontOverride("normal_font", TitleFont);
+        title.AddThemeFontSizeOverride("normal_font_size", TitleFontSize);
 
         itemContentContainer.AddChild(title);
 
@@ -215,8 +219,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
                 Text = footerText,
             };
 
-            // Small font for footers
-            footerLabel.AddThemeFontOverride("font", FooterFont);
+            footerLabel.LabelSettings = FooterFontSettings;
 
             itemContentContainer.AddChild(footerLabel);
         }

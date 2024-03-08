@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=78 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" load_steps=79 format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://bjchgyy3gt2vp" path="res://assets/textures/gui/bevel/grab.png" id="2"]
@@ -26,15 +26,16 @@
 [ext_resource type="Texture2D" uid="uid://neft6bm1hlja" path="res://assets/textures/gui/bevel/radioB.png" id="25"]
 [ext_resource type="Texture2D" uid="uid://b7vu18mdc45jq" path="res://assets/textures/gui/bevel/radioAhover.png" id="26"]
 [ext_resource type="Texture2D" uid="uid://bi6kh0gp7vlje" path="res://assets/textures/gui/bevel/radioBhover.png" id="27"]
+[ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="27_037sv"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" id="28"]
-[ext_resource type="FontFile" uid="uid://br1ljx6dpi6gd" path="res://assets/fonts/Jura-DemiBold.ttf" id="29_cye76"]
+[ext_resource type="FontFile" uid="uid://cfp1hm2e4a87c" path="res://assets/fonts/NotoSans-Regular.ttf" id="28_sm4d1"]
 [ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="29_v71j1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcn6x"]
 content_margin_left = 5.0
-content_margin_top = 0.0
+content_margin_top = 5.0
 content_margin_right = 5.0
-content_margin_bottom = 0.0
+content_margin_bottom = 5.0
 bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
@@ -48,9 +49,9 @@ corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1sip"]
 content_margin_left = 5.0
-content_margin_top = 0.0
+content_margin_top = 5.0
 content_margin_right = 5.0
-content_margin_bottom = 0.0
+content_margin_bottom = 5.0
 draw_center = false
 border_width_left = 2
 border_width_top = 2
@@ -64,9 +65,9 @@ corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n1nb"]
 content_margin_left = 5.0
-content_margin_top = 0.0
+content_margin_top = 5.0
 content_margin_right = 5.0
-content_margin_bottom = 0.0
+content_margin_bottom = 5.0
 bg_color = Color(0, 0.435294, 0.52549, 1)
 border_width_left = 1
 border_width_top = 1
@@ -80,9 +81,9 @@ corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yykl3"]
 content_margin_left = 5.0
-content_margin_top = 0.0
+content_margin_top = 5.0
 content_margin_right = 5.0
-content_margin_bottom = 0.0
+content_margin_bottom = 5.0
 bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
 border_width_left = 1
 border_width_top = 1
@@ -96,9 +97,9 @@ corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urbf3"]
 content_margin_left = 5.0
-content_margin_top = 0.0
+content_margin_top = 5.0
 content_margin_right = 5.0
-content_margin_bottom = 0.0
+content_margin_bottom = 5.0
 bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_left = 1
 border_width_top = 1
@@ -521,7 +522,7 @@ Button/colors/font_color_hover = Color(1, 1, 1, 1)
 Button/colors/font_color_pressed = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
 Button/constants/hseparation = 2
-Button/fonts/font = ExtResource("8")
+Button/fonts/font = ExtResource("28_sm4d1")
 Button/styles/disabled = SubResource("StyleBoxFlat_rcn6x")
 Button/styles/focus = SubResource("StyleBoxFlat_t1sip")
 Button/styles/hover = SubResource("StyleBoxFlat_6n1nb")
@@ -531,10 +532,10 @@ CheckBox/colors/font_color = Color(1, 1, 1, 1)
 CheckBox/colors/font_color_disabled = Color(0.666667, 0.666667, 0.666667, 1)
 CheckBox/colors/font_color_hover = Color(1, 1, 1, 1)
 CheckBox/colors/font_color_hover_pressed = Color(1, 1, 1, 1)
-CheckBox/colors/font_color_pressed = Color(1, 1, 1, 1)
-CheckBox/constants/check_vadjust = 0
-CheckBox/constants/hseparation = 4
-CheckBox/fonts/font = ExtResource("8")
+CheckBox/colors/font_color_pressed = Color(0.94902, 0.968627, 1, 1)
+CheckBox/colors/font_pressed_color = Color(1, 1, 1, 1)
+CheckBox/constants/check_v_offset = 2
+CheckBox/fonts/font = ExtResource("28_sm4d1")
 CheckBox/icons/PressedClicked = ExtResource("19")
 CheckBox/icons/PressedHovered = ExtResource("20")
 CheckBox/icons/PressedNormal = ExtResource("5")
@@ -695,7 +696,7 @@ Label/constants/line_spacing = 3
 Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
-Label/fonts/font = ExtResource("29_cye76")
+Label/fonts/font = ExtResource("27_037sv")
 Label/styles/normal = null
 LineEdit/colors/clear_button_color = Color(1, 1, 1, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
@@ -874,7 +875,8 @@ TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
 TooltipLabel/colors/font_color_shadow = Color(0, 0, 0, 0)
 TooltipLabel/constants/shadow_offset_x = 1
 TooltipLabel/constants/shadow_offset_y = 1
-TooltipLabel/fonts/font = ExtResource("10")
+TooltipLabel/font_sizes/font_size = 16
+TooltipLabel/fonts/font = ExtResource("27_037sv")
 TooltipPanel/styles/panel = SubResource("34")
 Tree/colors/cursor_color = Color(0, 0, 0, 1)
 Tree/colors/custom_button_font_highlight = Color(0, 0, 0, 1)
@@ -948,8 +950,8 @@ Window/constants/custom_title_height = 26
 Window/constants/custom_titlebar_height = 28
 Window/constants/scaleborder_size = 4
 Window/constants/title_height = 16
-Window/fonts/custom_title_font = ExtResource("15")
-Window/fonts/title_font = ExtResource("11")
+Window/font_sizes/title_font_size = 16
+Window/fonts/title_font = ExtResource("28_sm4d1")
 Window/icons/close = null
 Window/icons/close_highlight = null
 Window/icons/custom_close = ExtResource("12")

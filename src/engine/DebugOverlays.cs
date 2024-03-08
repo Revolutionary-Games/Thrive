@@ -69,7 +69,7 @@ public partial class DebugOverlays : Control
         fpsCounter = GetNode<Control>(FPSCounterPath);
         performanceMetrics = GetNode<CustomWindow>(PerformanceMetricsPath);
         labelsLayer = GetNode<Control>(EntityLabelsPath);
-        smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
+        smallerFont = GD.Load<LabelSettings>("res://src/gui_common/new_fonts/Body-Regular-Tiny.tres");
         fpsLabel = GetNode<Label>(FPSLabelPath);
         deltaLabel = GetNode<Label>(DeltaLabelPath);
         metricsText = GetNode<Label>(MetricsTextPath);
@@ -175,17 +175,7 @@ public partial class DebugOverlays : Control
 
     private void OnPerformanceMetricsCheckBoxToggled(bool state)
     {
-        if (performanceMetrics.Visible == state)
-            return;
-
-        if (state)
-        {
-            performanceMetrics.Show();
-        }
-        else
-        {
-            performanceMetrics.Hide();
-        }
+        PerformanceMetricsVisible = state;
     }
 
     private void OnFpsCheckBoxToggled(bool state)

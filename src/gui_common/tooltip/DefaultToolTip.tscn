@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://cil2efpg6jdmd"]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=1]
-[ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.cs" type="Script" id=3]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="2_cgpu4"]
+[ext_resource type="Script" path="res://src/gui_common/tooltip/DefaultToolTip.cs" id="3"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0.129412, 0.141176, 0.980392)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -19,31 +19,24 @@ corner_radius_bottom_left = 5
 offset_right = 14.0
 offset_bottom = 14.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource( 1 )
-script = ExtResource( 3 )
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("3")
 DescriptionLabelPath = NodePath("../DefaultTooltip/MarginContainer/VBoxContainer/Description")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 13.0
-offset_bottom = 28.0
+layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 7.0
-offset_bottom = 22.0
+layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
-offset_right = 2.0
-offset_bottom = 17.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 1 )
+label_settings = ExtResource("2_cgpu4")

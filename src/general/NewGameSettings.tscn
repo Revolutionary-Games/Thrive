@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://b0315b3i5bs5s"]
+[gd_scene load_steps=19 format=3 uid="uid://b0315b3i5bs5s"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/general/NewGameSettings.cs" id="2"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" id="3"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomCheckBox.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="5"]
+[ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/new_fonts/Body-Regular-AlmostTiny.tres" id="5_rnvau"]
 [ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="8"]
@@ -12,19 +13,15 @@
 [ext_resource type="Texture2D" uid="uid://c6pe536xf5ime" path="res://assets/concept_art/planet_generation.jpg" id="10"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
-[ext_resource type="PackedScene" path="res://src/gui_common/TabButtons.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="13"]
 
 [sub_resource type="StyleBoxEmpty" id="2"]
-
-[sub_resource type="StyleBoxEmpty" id="3"]
-
-[sub_resource type="StyleBoxEmpty" id="4"]
 
 [sub_resource type="StyleBoxEmpty" id="6"]
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
-[sub_resource type="StyleBoxEmpty" id="1"]
+[sub_resource type="StyleBoxEmpty" id="4"]
 
 [node name="NewGameSettings" type="Control"]
 layout_mode = 3
@@ -114,10 +111,9 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "DIFFICULTY_PRESET"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
+[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/separator = SubResource("2")
 
 [node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
@@ -133,8 +129,8 @@ text = "LAWK_ONLY"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "LAWK_ONLY_EXPLANATION"
+label_settings = ExtResource("5_rnvau")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 layout_mode = 2
@@ -154,13 +150,12 @@ text = "LIFE_ORIGIN"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3")
 text = "LIFE_ORIGIN_EXPLANATION"
+label_settings = ExtResource("5_rnvau")
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
+[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/separator = SubResource("3")
 
 [node name="LifeOrigin" type="OptionButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 25)
@@ -183,24 +178,24 @@ layout_mode = 2
 layout_mode = 2
 text = "PLANET_RANDOM_SEED"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
+[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/separator = SubResource("4")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
 [node name="GameSeed" type="LineEdit" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
+editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(155, 0)
 layout_mode = 2
 tooltip_text = "RANDOM_SEED_TOOLTIP"
+text = "123456789"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
+[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/separator = SubResource("4")
 
 [node name="RandomizeButton" type="TextureButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
 custom_minimum_size = Vector2(31, 31)
@@ -211,6 +206,8 @@ texture_normal = ExtResource("6")
 texture_pressed = ExtResource("5")
 texture_hover = ExtResource("8")
 texture_disabled = ExtResource("7")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="CheckPerformanceSettingsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 layout_mode = 2
@@ -224,6 +221,7 @@ layout_mode = 2
 
 [node name="CustomRichTextLabel" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer" instance=ExtResource("11")]
 layout_mode = 2
+fit_content = true
 ExtendedBbcode = "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 
 [node name="TabButtons" parent="CenterContainer/VBoxContainer" instance=ExtResource("13")]
@@ -895,10 +893,9 @@ focus_next = NodePath("../Start")
 focus_previous = NodePath("../Basic")
 text = "ADVANCED_VIEW"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/separator = SubResource("1")
 
 [node name="Start" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

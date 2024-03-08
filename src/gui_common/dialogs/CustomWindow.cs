@@ -114,13 +114,14 @@ public partial class CustomWindow : TopLevelContainer
     private StyleBox titleBarPanel = null!;
     private StyleBox closeButtonHighlight = null!;
 
-    // TODO: switch away from the multiple font size files
     private Font? titleFont;
 #pragma warning restore CA2213
     private Color titleColor;
     private Color closeButtonColor;
 
     private DragType dragType = DragType.None;
+
+    private int titleFontSize;
 
     private int titleBarHeight;
     private int titleHeight;
@@ -231,7 +232,8 @@ public partial class CustomWindow : TopLevelContainer
         customPanel = GetThemeStylebox("custom_panel", "Window");
         titleBarPanel = GetThemeStylebox("custom_titlebar", "Window");
         titleBarHeight = decorate ? GetThemeConstant("custom_titlebar_height", "Window") : 0;
-        titleFont = GetThemeFont("custom_title_font", "Window");
+        titleFont = GetThemeFont("title_font", "Window");
+        titleFontSize = GetThemeFontSize("title_font_size", "Window");
         titleHeight = GetThemeConstant("custom_title_height", "Window");
         titleColor = GetThemeColor("custom_title_color", "Window");
         closeButtonColor = GetThemeColor("custom_close_color", "Window");
@@ -308,13 +310,12 @@ public partial class CustomWindow : TopLevelContainer
             new Rect2(new Vector2(3, -titleBarHeight + 3), new Vector2(Size.X - 6, titleBarHeight - 3)));
 
         // Draw title in the title bar
-        var fontHeight = titleFont!.GetHeight() - titleFont.GetDescent() * 2;
+        var fontHeight = titleFont!.GetHeight(titleFontSize) - titleFont.GetDescent(titleFontSize) * 2;
 
-        var titlePosition = new Vector2(Size.X * 0.5f, (-titleHeight + fontHeight) * 0.5f);
+        var titlePosition = new Vector2(0, (-titleHeight + fontHeight) * 0.5f);
 
-        // TODO: check that this is right. There used to be "(int)(Size.X - customPanel.GetMinimumSize().X)" here
         DrawString(titleFont, titlePosition, translatedWindowTitle, HorizontalAlignment.Center, Size.X,
-            Constants.FONT_SIZE_NORMAL, titleColor);
+            titleFontSize, titleColor);
 
         // Draw close button (if this window has a close button)
         if (closeButton != null)

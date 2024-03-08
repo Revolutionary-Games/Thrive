@@ -1,8 +1,8 @@
-[gd_scene load_steps=57 format=3 uid="uid://c1fc2aip6oiqt"]
+[gd_scene load_steps=56 format=3 uid="uid://c1fc2aip6oiqt"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://src/general/OptionsMenu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/general/OptionsMenu.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="4"]
 [ext_resource type="Script" path="res://src/gui_common/VersionNumber.cs" id="5"]
 [ext_resource type="Script" path="res://src/general/MainMenu.cs" id="6"]
@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" path="res://src/modding/ModManager.tscn" id="14"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="15"]
 [ext_resource type="PackedScene" path="res://src/gui_common/art_gallery/GalleryViewer.tscn" id="17"]
-[ext_resource type="PackedScene" path="res://src/general/NewGameSettings.tscn" id="18"]
+[ext_resource type="PackedScene" uid="uid://b0315b3i5bs5s" path="res://src/general/NewGameSettings.tscn" id="18"]
 [ext_resource type="Texture2D" uid="uid://ciclkggyignhj" path="res://assets/textures/gui/social_media/youtubeHover.png" id="19"]
 [ext_resource type="Texture2D" uid="uid://m2p4ad5ej2xn" path="res://assets/textures/gui/social_media/youtube.png" id="20"]
 [ext_resource type="Texture2D" uid="uid://bpa6jbubd1t1d" path="res://assets/textures/gui/social_media/youtubeActive.png" id="21"]
@@ -48,7 +48,6 @@
 [ext_resource type="Texture2D" uid="uid://cv8wlkju42uh3" path="res://assets/textures/gui/social_media/revolutionaryGamesActive.png" id="47"]
 [ext_resource type="Texture2D" uid="uid://cyk5xafa582ww" path="res://assets/textures/gui/social_media/revolutionaryGamesHover.png" id="48"]
 [ext_resource type="PackedScene" path="res://src/thriveopedia/Thriveopedia.tscn" id="49"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" id="50"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="56"]
 [ext_resource type="PackedScene" uid="uid://cpp1dl8aiumt7" path="res://src/gui_common/ThriveFeedDisplayer.tscn" id="57"]
 [ext_resource type="PackedScene" uid="uid://d0tfe6i1offy" path="res://src/gui_common/PatchNotesDisplayer.tscn" id="58"]
@@ -529,7 +528,7 @@ theme_override_styles/panel = SubResource("2")
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 267.0
-offset_bottom = 386.0
+offset_bottom = 456.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer"]
 layout_mode = 2
@@ -548,7 +547,7 @@ focus_neighbor_bottom = NodePath("../CommunityForumButton")
 focus_next = NodePath("../CommunityForumButton")
 focus_previous = NodePath("../VisitSuggestionsSite")
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("50")
+theme_override_font_sizes/font_size = 14
 text = "OFFICIAL_WEBSITE"
 
 [node name="CommunityForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
@@ -557,7 +556,7 @@ tooltip_text = "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath(".")
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("50")
+theme_override_font_sizes/font_size = 14
 text = "COMMUNITY_FORUM"
 
 [node name="DevelopmentForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
@@ -566,7 +565,7 @@ tooltip_text = "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath(".")
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("50")
+theme_override_font_sizes/font_size = 14
 text = "DEVELOPMENT_FORUM"
 
 [node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
@@ -575,7 +574,7 @@ tooltip_text = "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath(".")
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("50")
+theme_override_font_sizes/font_size = 14
 text = "DEVELOPMENT_WIKI"
 
 [node name="CommunityWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
@@ -584,7 +583,7 @@ tooltip_text = "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath(".")
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("50")
+theme_override_font_sizes/font_size = 14
 text = "COMMUNITY_WIKI"
 
 [node name="ReportBugButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
@@ -592,7 +591,7 @@ layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath(".")
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("50")
+theme_override_font_sizes/font_size = 14
 text = "REPORT_BUG"
 
 [node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
@@ -605,7 +604,7 @@ focus_neighbor_bottom = NodePath("../OfficialWebsiteButton")
 focus_next = NodePath("../OfficialWebsiteButton")
 focus_previous = NodePath("../CommunityWikiButton")
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("50")
+theme_override_font_sizes/font_size = 14
 text = "VISIT_SUGGESTIONS_SITE"
 
 [node name="FocusGrabber" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer" instance=ExtResource("56")]
@@ -744,9 +743,6 @@ stretch_mode = 5
 [node name="OptionsMenu" parent="." instance=ExtResource("3")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="SaveManagerGUI" parent="." instance=ExtResource("2")]
 visible = false
@@ -758,9 +754,6 @@ grow_vertical = 2
 [node name="NewGameSettings" parent="." instance=ExtResource("18")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Thriveopedia" parent="." instance=ExtResource("49")]
 visible = false

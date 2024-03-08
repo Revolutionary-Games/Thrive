@@ -14,7 +14,7 @@ public partial class DebugOverlays
     private readonly HashSet<Entity> seenEntities = new();
 
 #pragma warning disable CA2213
-    private Font smallerFont = null!;
+    private LabelSettings smallerFont = null!;
     private Camera3D? activeCamera;
 #pragma warning restore CA2213
 
@@ -187,7 +187,7 @@ public partial class DebugOverlays
         if (entity.Has<ToxinDamageSource>() || entity.Has<CompoundVenter>() || entity.Has<DamageOnTouch>())
         {
             // To reduce the labels overlapping each other
-            label.AddThemeFontOverride("font", smallerFont);
+            label.LabelSettings = smallerFont;
         }
     }
 
