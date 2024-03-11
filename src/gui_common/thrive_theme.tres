@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=78 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" load_steps=76 format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" id="1"]
 [ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_fiqxx"]
@@ -9,8 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://rwbebml2adio" path="res://assets/textures/gui/bevel/checkA.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bqqawdtjaf60f" path="res://assets/textures/gui/bevel/grabdisabled.png" id="7"]
 [ext_resource type="FontFile" uid="uid://m8ivcpj1jdq" path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" id="8"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Small.tres" id="10"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" id="11"]
 [ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="12"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" id="13"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" id="14"]
@@ -20,15 +18,15 @@
 [ext_resource type="Texture2D" uid="uid://di0aky3imukve" path="res://assets/textures/gui/bevel/checkAhover.png" id="18"]
 [ext_resource type="Texture2D" uid="uid://cfeu73wy2ton4" path="res://assets/textures/gui/bevel/checkBclick.png" id="19"]
 [ext_resource type="Texture2D" uid="uid://l2w3q2v8mr0e" path="res://assets/textures/gui/bevel/checkBhover.png" id="20"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Small.tres" id="21"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Italic-Small.tres" id="22"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-BoldItalic-Small.tres" id="23"]
+[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="23_s6elw"]
 [ext_resource type="Texture2D" uid="uid://2pv6otrocwru" path="res://assets/textures/gui/bevel/radioA.png" id="24"]
+[ext_resource type="FontFile" uid="uid://wd77bwcss1cf" path="res://assets/fonts/Lato-BoldItalic.ttf" id="24_3nnl8"]
 [ext_resource type="Texture2D" uid="uid://neft6bm1hlja" path="res://assets/textures/gui/bevel/radioB.png" id="25"]
+[ext_resource type="FontFile" uid="uid://dblvrxw3ue372" path="res://assets/fonts/Lato-Italic.ttf" id="25_al3xa"]
 [ext_resource type="Texture2D" uid="uid://b7vu18mdc45jq" path="res://assets/textures/gui/bevel/radioAhover.png" id="26"]
+[ext_resource type="FontVariation" uid="uid://k7u2fkgwhsf0" path="res://assets/fonts/variants/RobotoMono-Regular.tres" id="26_un81c"]
 [ext_resource type="Texture2D" uid="uid://bi6kh0gp7vlje" path="res://assets/textures/gui/bevel/radioBhover.png" id="27"]
 [ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="27_037sv"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" id="28"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcn6x"]
 content_margin_left = 5.0
@@ -564,7 +562,7 @@ CheckButton/colors/font_color_hover_pressed = Color(1, 1, 1, 1)
 CheckButton/colors/font_color_pressed = Color(0, 0, 0, 1)
 CheckButton/constants/check_vadjust = 0
 CheckButton/constants/hseparation = 1
-CheckButton/fonts/font = ExtResource("11")
+CheckButton/fonts/font = ExtResource("1_fiqxx")
 CheckButton/icons/off = null
 CheckButton/icons/off_disabled = null
 CheckButton/icons/on = null
@@ -590,7 +588,7 @@ ColorPickerButton/colors/font_color = Color(0, 0, 0, 1)
 ColorPickerButton/colors/font_color_disabled = Color(0, 0, 0, 1)
 ColorPickerButton/colors/font_color_hover = Color(0, 0, 0, 1)
 ColorPickerButton/colors/font_color_pressed = Color(0, 0, 0, 1)
-ColorPickerButton/fonts/font = ExtResource("8")
+ColorPickerButton/fonts/font = ExtResource("1_fiqxx")
 ColorPickerButton/icons/bg = null
 ColorPickerButton/styles/disabled = null
 ColorPickerButton/styles/focus = null
@@ -636,7 +634,7 @@ GraphNode/constants/close_offset = 18
 GraphNode/constants/port_offset = 3
 GraphNode/constants/separation = 1
 GraphNode/constants/title_offset = 20
-GraphNode/fonts/title_font = ExtResource("8")
+GraphNode/fonts/title_font = ExtResource("1_fiqxx")
 GraphNode/icons/close = null
 GraphNode/icons/port = null
 GraphNode/icons/resizer = null
@@ -681,7 +679,7 @@ ItemList/constants/hseparation = 4
 ItemList/constants/icon_margin = 4
 ItemList/constants/line_separation = 2
 ItemList/constants/vseparation = 2
-ItemList/fonts/font = ExtResource("8")
+ItemList/fonts/font = ExtResource("1_fiqxx")
 ItemList/styles/bg = SubResource("20")
 ItemList/styles/bg_focus = null
 ItemList/styles/cursor = null
@@ -714,7 +712,7 @@ LinkButton/colors/font_color = Color(0.215686, 0.588235, 0.882353, 1)
 LinkButton/colors/font_color_hover = Color(0.215686, 0.368627, 0.882353, 1)
 LinkButton/colors/font_color_pressed = Color(0.215686, 0.368627, 0.882353, 1)
 LinkButton/constants/underline_spacing = 2
-LinkButton/fonts/font = ExtResource("8")
+LinkButton/fonts/font = ExtResource("1_fiqxx")
 LinkButton/styles/focus = null
 MarginContainer/constants/margin_bottom = 0
 MarginContainer/constants/margin_left = 0
@@ -725,7 +723,8 @@ MenuButton/colors/font_color_disabled = Color(1, 1, 1, 1)
 MenuButton/colors/font_color_hover = Color(1, 1, 1, 1)
 MenuButton/colors/font_color_pressed = Color(1, 1, 1, 1)
 MenuButton/constants/hseparation = 3
-MenuButton/fonts/font = ExtResource("10")
+MenuButton/font_sizes/font_size = 14
+MenuButton/fonts/font = ExtResource("27_037sv")
 MenuButton/styles/disabled = null
 MenuButton/styles/focus = SubResource("53")
 MenuButton/styles/hover = SubResource("24")
@@ -737,8 +736,8 @@ OptionButton/colors/font_color_hover = Color(1, 1, 1, 1)
 OptionButton/colors/font_color_pressed = Color(1, 1, 1, 1)
 OptionButton/constants/arrow_margin = 10
 OptionButton/constants/hseparation = 2
-OptionButton/font_sizes/font_size = 16
-OptionButton/fonts/font = ExtResource("10")
+OptionButton/font_sizes/font_size = 14
+OptionButton/fonts/font = ExtResource("27_037sv")
 OptionButton/icons/arrow = null
 OptionButton/styles/disabled = null
 OptionButton/styles/focus = SubResource("53")
@@ -754,7 +753,9 @@ PopupMenu/colors/font_color_disabled = Color(0.4, 0.4, 0.4, 0.8)
 PopupMenu/colors/font_color_hover = Color(1, 1, 1, 1)
 PopupMenu/constants/hseparation = 2
 PopupMenu/constants/vseparation = 4
-PopupMenu/fonts/font = ExtResource("10")
+PopupMenu/font_sizes/font_separator_size = 14
+PopupMenu/font_sizes/font_size = 14
+PopupMenu/fonts/font = ExtResource("27_037sv")
 PopupMenu/icons/checked = ExtResource("5")
 PopupMenu/icons/radio_checked = ExtResource("5")
 PopupMenu/icons/radio_unchecked = ExtResource("6")
@@ -769,7 +770,7 @@ PopupMenu/styles/separator = SubResource("30")
 PopupPanel/styles/panel = SubResource("29")
 ProgressBar/colors/font_color = Color(1, 1, 1, 1)
 ProgressBar/colors/font_color_shadow = Color(0, 0, 0, 1)
-ProgressBar/fonts/font = ExtResource("8")
+ProgressBar/fonts/font = ExtResource("1_fiqxx")
 ProgressBar/styles/bg = SubResource("49")
 ProgressBar/styles/fg = SubResource("50")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
@@ -782,11 +783,16 @@ RichTextLabel/constants/shadow_offset_x = 1
 RichTextLabel/constants/shadow_offset_y = 1
 RichTextLabel/constants/table_hseparation = 3
 RichTextLabel/constants/table_vseparation = 3
-RichTextLabel/fonts/bold_font = ExtResource("21")
-RichTextLabel/fonts/bold_italics_font = ExtResource("23")
-RichTextLabel/fonts/italics_font = ExtResource("22")
-RichTextLabel/fonts/mono_font = ExtResource("8")
-RichTextLabel/fonts/normal_font = ExtResource("10")
+RichTextLabel/font_sizes/bold_font_size = 14
+RichTextLabel/font_sizes/bold_italics_font_size = 14
+RichTextLabel/font_sizes/italics_font_size = 14
+RichTextLabel/font_sizes/mono_font_size = 14
+RichTextLabel/font_sizes/normal_font_size = 14
+RichTextLabel/fonts/bold_font = ExtResource("23_s6elw")
+RichTextLabel/fonts/bold_italics_font = ExtResource("24_3nnl8")
+RichTextLabel/fonts/italics_font = ExtResource("25_al3xa")
+RichTextLabel/fonts/mono_font = ExtResource("26_un81c")
+RichTextLabel/fonts/normal_font = ExtResource("27_037sv")
 RichTextLabel/styles/focus = null
 RichTextLabel/styles/normal = null
 ScrollContainer/styles/bg = null
@@ -798,7 +804,7 @@ TabBar/constants/hseparation = 4
 TabBar/constants/label_valign_bg = 2
 TabBar/constants/label_valign_fg = 0
 TabBar/constants/top_margin = 24
-TabBar/fonts/font = ExtResource("8")
+TabBar/fonts/font = ExtResource("1_fiqxx")
 TabBar/icons/close = null
 TabBar/icons/decrement = null
 TabBar/icons/decrement_highlight = null
@@ -818,7 +824,7 @@ TabContainer/constants/label_valign_bg = 2
 TabContainer/constants/label_valign_fg = 0
 TabContainer/constants/side_margin = 8
 TabContainer/constants/top_margin = 24
-TabContainer/fonts/font = ExtResource("8")
+TabContainer/fonts/font = ExtResource("1_fiqxx")
 TabContainer/icons/decrement = null
 TabContainer/icons/decrement_highlight = null
 TabContainer/icons/increment = null
@@ -860,7 +866,7 @@ TextEdit/constants/completion_max_width = 50
 TextEdit/constants/completion_scroll_width = 3
 TextEdit/constants/line_spacing = 7
 TextEdit/font_sizes/font_size = 14
-TextEdit/fonts/font = ExtResource("10")
+TextEdit/fonts/font = ExtResource("27_037sv")
 TextEdit/icons/fold = null
 TextEdit/icons/folded = null
 TextEdit/icons/space = null
@@ -893,8 +899,9 @@ Tree/constants/item_margin = 14
 Tree/constants/scroll_border = 0
 Tree/constants/scroll_speed = 12
 Tree/constants/vseparation = 6
-Tree/fonts/font = ExtResource("28")
-Tree/fonts/title_button_font = ExtResource("8")
+Tree/font_sizes/font_size = 18
+Tree/fonts/font = ExtResource("27_037sv")
+Tree/fonts/title_button_font = ExtResource("1_fiqxx")
 Tree/icons/arrow = null
 Tree/icons/arrow_collapsed = null
 Tree/icons/checked = null

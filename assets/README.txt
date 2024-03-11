@@ -18,7 +18,13 @@ The following fonts are licensed under the SIL Open Font License
 - Lato Copyright (c) 2010-2014 by tyPoland Lukasz Dziedzic (team@latofonts.com) with Reserved Font Name "Lato"
 - Noto Copyright 2022 The Noto Project Authors (https://github.com/notofonts/latin-greek-cyrillic)
 
-SIL license text is included in "OFL.txt" file.
+SIL license text is included in the "OFL.txt" file.
+
+The following fonts are licensed under the Apache License Version 2.0
+
+- Roboto Mono
+
+Apache license text is included in the "Apache.txt" file.
 
 In a packaged version of the game the assets may be included inside an
 archive file format instead of as separate plain files.
