@@ -14,9 +14,9 @@ The following are the assets not covered by that license
 
 The following fonts are licensed under the SIL Open Font License
 
-- Jura.ttf (Copyright (c) 2009, 2010, 2011 Daniel Johnson (<il.basso.buffo@gmail.com>))
-- Lato.ttf (Copyright (c) 2010-2011 by tyPoland Lukasz Dziedzic with Reserved Font Name "Lato")
-- Noto (Copyright (c) Google)
+- Jura Copyright 2019 The Jura Project Authors (https://github.com/ossobuffo/jura)
+- Lato Copyright (c) 2010-2014 by tyPoland Lukasz Dziedzic (team@latofonts.com) with Reserved Font Name "Lato"
+- Noto Copyright 2022 The Noto Project Authors (https://github.com/notofonts/latin-greek-cyrillic)
 
 SIL license text is included in "OFL.txt" file.
 

@@ -1,6 +1,7 @@
 [gd_resource type="Theme" load_steps=78 format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" id="1"]
+[ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_fiqxx"]
 [ext_resource type="Texture2D" uid="uid://bjchgyy3gt2vp" path="res://assets/textures/gui/bevel/grab.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://jmv0trrypl21" path="res://assets/textures/gui/bevel/grabhover.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bo70v3237p6iv" path="res://assets/textures/gui/bevel/hSeparatorCentered.png" id="4"]
@@ -28,7 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://bi6kh0gp7vlje" path="res://assets/textures/gui/bevel/radioBhover.png" id="27"]
 [ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="27_037sv"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" id="28"]
-[ext_resource type="FontFile" uid="uid://cfp1hm2e4a87c" path="res://assets/fonts/NotoSans-Regular.ttf" id="28_sm4d1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcn6x"]
 content_margin_left = 5.0
@@ -521,7 +521,7 @@ Button/colors/font_color_hover = Color(1, 1, 1, 1)
 Button/colors/font_color_pressed = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
 Button/constants/hseparation = 2
-Button/fonts/font = ExtResource("28_sm4d1")
+Button/fonts/font = ExtResource("1_fiqxx")
 Button/styles/disabled = SubResource("StyleBoxFlat_rcn6x")
 Button/styles/focus = SubResource("StyleBoxFlat_t1sip")
 Button/styles/hover = SubResource("StyleBoxFlat_6n1nb")
@@ -534,7 +534,7 @@ CheckBox/colors/font_color_hover_pressed = Color(1, 1, 1, 1)
 CheckBox/colors/font_color_pressed = Color(0.94902, 0.968627, 1, 1)
 CheckBox/colors/font_pressed_color = Color(1, 1, 1, 1)
 CheckBox/constants/check_v_offset = 2
-CheckBox/fonts/font = ExtResource("28_sm4d1")
+CheckBox/fonts/font = ExtResource("1_fiqxx")
 CheckBox/icons/PressedClicked = ExtResource("19")
 CheckBox/icons/PressedHovered = ExtResource("20")
 CheckBox/icons/PressedNormal = ExtResource("5")
@@ -949,7 +949,7 @@ Window/constants/custom_titlebar_height = 28
 Window/constants/scaleborder_size = 4
 Window/constants/title_height = 16
 Window/font_sizes/title_font_size = 16
-Window/fonts/title_font = ExtResource("28_sm4d1")
+Window/fonts/title_font = ExtResource("1_fiqxx")
 Window/icons/close = null
 Window/icons/close_highlight = null
 Window/icons/custom_close = ExtResource("12")
