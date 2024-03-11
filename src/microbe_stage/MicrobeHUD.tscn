@@ -47,7 +47,7 @@
 [ext_resource type="PackedScene" path="res://src/microbe_stage/gui/WinBox.tscn" id="53"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/gui/ExtinctionBox.tscn" id="54"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/MicrobeCheatMenu.tscn" id="55"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/gui/HUDMessages.tscn" id="56"]
+[ext_resource type="PackedScene" uid="uid://uw3crqw21uu" path="res://src/microbe_stage/gui/HUDMessages.tscn" id="56"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="57"]
 [ext_resource type="PackedScene" path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" id="58"]
 [ext_resource type="PackedScene" uid="uid://bdwkyuskd3u3r" path="res://src/microbe_stage/HUDBottomBar.tscn" id="59"]
@@ -1470,9 +1470,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -89.0
-offset_top = -239.0
+offset_top = -237.0
 offset_right = -9.0
-offset_bottom = -181.0
+offset_bottom = -182.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 0
@@ -1484,15 +1484,15 @@ theme_override_styles/panel = SubResource("29")
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_constants/margin_left = 5
+theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 3
 
 [node name="VBox" type="VBoxContainer" parent="BottomRight/DataValue/Margin"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 0
+theme_override_constants/separation = 9
 alignment = 1
 
 [node name="HPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
@@ -1724,13 +1724,9 @@ libraries = {
 
 [node name="HUDMessages" parent="." instance=ExtResource("56")]
 layout_mode = 1
-anchors_preset = 10
-anchor_bottom = 0.0
-offset_left = 270.0
-offset_top = 90.0
-offset_right = -1550.0
-offset_bottom = -525.0
+offset_top = 108.0
 grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ProcessPanel" parent="." instance=ExtResource("61")]
 anchors_preset = 0
@@ -1848,12 +1844,15 @@ ActionIcon = ExtResource("21")
 ActionName = "g_secrete_slime"
 
 [node name="HintText" type="Label" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 10
 anchor_right = 1.0
 offset_top = 35.0
 offset_bottom = 59.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="RadialPopup" parent="." instance=ExtResource("1")]
 anchors_preset = 0

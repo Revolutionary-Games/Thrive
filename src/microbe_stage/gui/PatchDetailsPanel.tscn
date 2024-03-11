@@ -110,10 +110,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "SELECT_A_PATCH"
 label_settings = ExtResource("3_xknfg")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="UnknownPatch" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 visible = false
@@ -121,10 +124,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "UNKNOWN_PATCH"
 label_settings = ExtResource("3_xknfg")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="PatchDetailsContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -243,7 +249,7 @@ label_settings = ExtResource("15_ng6rp")
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
@@ -281,6 +287,7 @@ expand_mode = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light3D"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light3D/VBoxContainer"]
@@ -294,7 +301,7 @@ label_settings = ExtResource("15_ng6rp")
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light3D/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
@@ -497,7 +504,7 @@ label_settings = ExtResource("15_ng6rp")
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
@@ -521,7 +528,7 @@ label_settings = ExtResource("15_ng6rp")
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
@@ -545,7 +552,7 @@ label_settings = ExtResource("15_ng6rp")
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
@@ -569,7 +576,7 @@ label_settings = ExtResource("15_ng6rp")
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
@@ -593,7 +600,7 @@ label_settings = ExtResource("15_ng6rp")
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 

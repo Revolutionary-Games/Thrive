@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bwegwjlcioasf"]
+[gd_scene load_steps=26 format=3 uid="uid://bwegwjlcioasf"]
 
 [ext_resource type="Texture2D" uid="uid://myvmqsv45fl2" path="res://assets/textures/gui/bevel/redoButton.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dwsqu6nwbwg5s" path="res://assets/textures/gui/bevel/undoButton.png" id="2"]
@@ -23,7 +23,6 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="21"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs" id="22"]
 [ext_resource type="Texture2D" uid="uid://dggmsgyoxac4d" path="res://assets/textures/gui/bevel/buttonDisabled.png" id="23"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Italic-Small.tres" id="24"]
 
 [sub_resource type="Animation" id="22"]
 resource_name = "invalidSpeciesNameFlash"
@@ -138,15 +137,13 @@ mouse_filter = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="SpeciesName" type="LineEdit" parent="HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(240, 27)
 layout_mode = 2
-size_flags_vertical = 4
 focus_mode = 1
 mouse_filter = 1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("24")
 placeholder_text = "SPECIES_NAME_DOT_DOT_DOT"
 max_length = 60
 caret_blink = true

@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://uw3crqw21uu"]
 
-[ext_resource path="res://src/microbe_stage/gui/HUDMessages.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="FontFile" id=2]
+[ext_resource type="Script" path="res://src/microbe_stage/gui/HUDMessages.cs" id="1"]
+[ext_resource type="LabelSettings" uid="uid://b28iighoel0qm" path="res://src/gui_common/new_fonts/Body-Bold-Small-Shadow.tres" id="2_stloo"]
 
 [node name="HUDMessages" type="VBoxContainer"]
 process_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 size_flags_horizontal = 3
-script = ExtResource( 1 )
-MessageFont = ExtResource( 2 )
+mouse_filter = 2
+script = ExtResource("1")
+MessageFontSettings = ExtResource("2_stloo")

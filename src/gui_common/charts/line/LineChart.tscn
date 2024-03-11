@@ -1,42 +1,43 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=15 format=3 uid="uid://mmqt0mcw2if3"]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="FontFile" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/searchButtonHover.png" type="Texture2D" id=2]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
-[ext_resource path="res://src/gui_common/charts/line/LineChart.cs" type="Script" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/vSeparatorUp.png" type="Texture2D" id=6]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="FontFile" id=7]
-[ext_resource path="res://assets/textures/gui/bevel/searchButton.png" type="Texture2D" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/searchButtonActive.png" type="Texture2D" id=9]
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="FontFile" id=11]
+[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://c8fnery2jphca" path="res://assets/textures/gui/bevel/searchButtonHover.png" id="2"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
+[ext_resource type="LabelSettings" uid="uid://csw4xjfy4y0dk" path="res://src/gui_common/new_fonts/Title-SemiBold-Small.tres" id="3_hb582"]
+[ext_resource type="Script" path="res://src/gui_common/charts/line/LineChart.cs" id="4"]
+[ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://c8u4uaeedwcs3" path="res://assets/textures/gui/bevel/vSeparatorUp.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://d2v0q7sf3ickp" path="res://assets/textures/gui/bevel/searchButton.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://doeuoye8slhmb" path="res://assets/textures/gui/bevel/searchButtonActive.png" id="9"]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="10"]
+[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Small.tres" id="11"]
 
-[sub_resource type="Theme" id=1]
-default_font = ExtResource( 1 )
+[sub_resource type="Theme" id="1"]
+default_font = ExtResource("1")
 
-[sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 6 )
-region_rect = Rect2( 0, 0, 1, 258 )
+[sub_resource type="StyleBoxTexture" id="2"]
+texture = ExtResource("6")
+region_rect = Rect2(0, 0, 1, 258)
 
-[sub_resource type="StyleBoxTexture" id=3]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 258, 1 )
+[sub_resource type="StyleBoxTexture" id="3"]
+texture = ExtResource("5")
+region_rect = Rect2(0, 0, 258, 1)
 
 [node name="LineChart" type="VBoxContainer"]
+custom_minimum_size = Vector2(0, 95)
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -720.0
 offset_right = 1280.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_minimum_size = Vector2( 0, 95 )
-mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 3 )
+mouse_filter = 2
+theme = ExtResource("3")
 theme_override_constants/separation = 0
-script = ExtResource( 4 )
+script = ExtResource("4")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -50,214 +51,168 @@ ExtraLegendContainerPath = NodePath("ChartPopup/MarginContainer/VBoxContainer/HB
 InspectButtonPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 1280.0
-offset_bottom = 4.0
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_top = 2
+layout_mode = 2
 theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
 [node name="LegendContainer" type="HBoxContainer" parent="MarginContainer"]
 visible = false
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 1278.0
-offset_bottom = 2.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_top = 4.0
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="yAxisLabel" type="Label" parent="VBoxContainer"]
-offset_right = 9.0
-offset_bottom = 18.0
-custom_minimum_size = Vector2( 0, 15 )
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
 size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource( 7 )
 text = "y"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("3_hb582")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-offset_top = 22.0
-offset_right = 1280.0
-offset_bottom = 716.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
-offset_right = 1280.0
-offset_bottom = 694.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-offset_right = 1248.0
-offset_bottom = 694.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_right = 10
+mouse_filter = 2
 theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 10
 
 [node name="ChartContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer"]
-offset_left = 2.0
-offset_right = 1238.0
-offset_bottom = 694.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/v_separation = -2
+mouse_filter = 2
 theme_override_constants/h_separation = -3
+theme_override_constants/v_separation = -2
 columns = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Ordinate" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
-offset_right = 6.0
-offset_bottom = 694.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/separation = 2
 
 [node name="Labels" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate"]
-offset_bottom = 694.0
+layout_mode = 2
 size_flags_vertical = 3
-theme = SubResource( 1 )
+theme = SubResource("1")
 theme_override_constants/separation = 0
 
 [node name="Line" type="VSeparator" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate"]
-offset_left = 2.0
-offset_right = 6.0
-offset_bottom = 694.0
+layout_mode = 2
 mouse_filter = 2
-theme_override_styles/separator = SubResource( 2 )
+theme_override_styles/separator = SubResource("2")
 
 [node name="Drawer" type="Control" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
-offset_left = 3.0
-offset_right = 1236.0
-offset_bottom = 694.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Origin" type="Control" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
-offset_top = 692.0
-offset_right = 6.0
-offset_bottom = 696.0
+layout_mode = 2
 mouse_filter = 2
 
 [node name="Abscissa" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
-offset_left = 3.0
-offset_top = 692.0
-offset_right = 1236.0
-offset_bottom = 696.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa"]
-offset_right = 1233.0
-offset_bottom = 4.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Line" type="HSeparator" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer"]
-offset_right = 1233.0
-offset_bottom = 4.0
+layout_mode = 2
 mouse_filter = 2
-theme_override_styles/separator = SubResource( 3 )
+theme_override_styles/separator = SubResource("3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer"]
-offset_top = 4.0
-offset_right = 1233.0
-offset_bottom = 4.0
+layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = -7
 
 [node name="Labels" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer"]
-offset_right = 1233.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
-theme = SubResource( 1 )
+mouse_filter = 2
+theme = SubResource("1")
 theme_override_constants/separation = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
-offset_top = 694.0
-offset_right = 6.0
-offset_bottom = 694.0
+layout_mode = 2
 mouse_filter = 2
 
 [node name="xAxisLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-offset_left = 1252.0
-offset_top = 676.0
-offset_right = 1259.0
-offset_bottom = 694.0
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource( 7 )
 text = "x"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("3_hb582")
 
 [node name="InspectButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-offset_left = 1263.0
-offset_right = 1280.0
-offset_bottom = 17.0
-custom_minimum_size = Vector2( 17, 17 )
-tooltip_text = "INSPECT"
+custom_minimum_size = Vector2(17, 17)
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 9 )
-texture_hover = ExtResource( 2 )
-expand = true
+tooltip_text = "INSPECT"
+texture_normal = ExtResource("8")
+texture_pressed = ExtResource("9")
+texture_hover = ExtResource("2")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="ChartPopup" parent="." instance=ExtResource( 10 )]
-offset_top = 120.0
-offset_right = 1280.0
-offset_bottom = 720.0
-custom_minimum_size = Vector2( 1000, 600 )
-exclusive = true
+[node name="ChartPopup" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(1000, 600)
+layout_mode = 2
 Resizable = true
+exclusive = true
 
 [node name="MarginContainer" type="MarginContainer" parent="ChartPopup"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ChartPopup/MarginContainer"]
-offset_right = 57.0
-offset_bottom = 40.0
+layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ChartPopup/MarginContainer/VBoxContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="GridContainer" type="GridContainer" parent="ChartPopup/MarginContainer/VBoxContainer/HBoxContainer"]
-offset_right = 40.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 15
 columns = 6
 
 [node name="Button" type="Button" parent="ChartPopup/MarginContainer/VBoxContainer/HBoxContainer"]
-offset_right = 53.0
-offset_bottom = 35.0
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource( 11 )
+theme_override_fonts/font = ExtResource("11")
 text = "CLOSE"
 
 [connection signal="draw" from="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer" to="." method="RenderChart"]

@@ -1,88 +1,69 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://de2sohb3fjvc1"]
 
-[ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture2D" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButton.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenuActive.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture2D" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture2D" id=7]
-[ext_resource path="res://assets/textures/gui/bevel/helpButtonHover.png" type="Texture2D" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButtonActive.png" type="Texture2D" id=9]
-[ext_resource path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.cs" type="Script" id=10]
+[ext_resource type="Texture2D" uid="uid://bhp3uahplsxpb" path="res://assets/textures/gui/bevel/MainMenu.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cxqnywb8xdvnb" path="res://assets/textures/gui/bevel/helpButton.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cp3nxr3dfb88o" path="res://assets/textures/gui/bevel/statisticsButton.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://qqpvmk0a71tk" path="res://assets/textures/gui/bevel/MainMenuActive.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://oq2xa0j5c6af" path="res://assets/textures/gui/bevel/MainMenuHover.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://0wqh6lnuc71d" path="res://assets/textures/gui/bevel/statisticsButtonHover.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://dbudy6jb7bhad" path="res://assets/textures/gui/bevel/helpButtonHover.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://dt32f5t6b4u1u" path="res://assets/textures/gui/bevel/statisticsButtonActive.png" id="9"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.cs" id="10"]
 
 [node name="EditorCommonBottomLeftButtons" type="MarginContainer"]
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -55.0
 offset_right = 155.0
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
-script = ExtResource( 10 )
+script = ExtResource("10")
 MenuButtonPath = NodePath("HBoxContainer/MenuButton")
 HelpButtonPath = NodePath("HBoxContainer/HelpButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 10.0
-offset_top = 5.0
-offset_right = 155.0
-offset_bottom = 50.0
+layout_mode = 2
 theme_override_constants/separation = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MenuButton" type="TextureButton" parent="HBoxContainer"]
-offset_top = 5.0
-offset_right = 50.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 50, 35 )
+custom_minimum_size = Vector2(50, 35)
+layout_mode = 2
+size_flags_vertical = 4
 focus_mode = 0
 mouse_filter = 1
-size_flags_vertical = 4
-texture_normal = ExtResource( 1 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource("1")
+texture_pressed = ExtResource("5")
+texture_hover = ExtResource("6")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="StatisticsButton" type="TextureButton" parent="HBoxContainer"]
-offset_left = 55.0
-offset_top = 5.0
-offset_right = 90.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 35, 35 )
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_vertical = 4
 tooltip_text = "STATISTICS"
 focus_mode = 0
 mouse_filter = 1
-size_flags_vertical = 4
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 9 )
-texture_hover = ExtResource( 7 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource("3")
+texture_pressed = ExtResource("9")
+texture_hover = ExtResource("7")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="HelpButton" type="TextureButton" parent="HBoxContainer"]
-offset_left = 95.0
-offset_top = 5.0
-offset_right = 130.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 35, 35 )
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_vertical = 4
 focus_mode = 0
 mouse_filter = 1
-size_flags_vertical = 4
-texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 8 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource("2")
+texture_pressed = ExtResource("4")
+texture_hover = ExtResource("8")
+ignore_texture_size = true
+stretch_mode = 5
 
 [connection signal="pressed" from="HBoxContainer/MenuButton" to="." method="OnMenuButtonPressed"]
 [connection signal="pressed" from="HBoxContainer/StatisticsButton" to="." method="OnStatisticsButtonPressed"]

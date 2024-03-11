@@ -1,36 +1,30 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://bhy1rrdfux74j"]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="FontFile" id=2]
-[ext_resource path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.cs" type="Script" id=3]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.cs" id="3"]
+[ext_resource type="LabelSettings" uid="uid://dd3w1mc3ion6w" path="res://src/gui_common/new_fonts/Body-Bold-AlmostSmall.tres" id="3_jhdqu"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="4_2uv7j"]
 
 [node name="ModifierInfo" type="HBoxContainer"]
 offset_right = 28.0
 offset_bottom = 20.0
 size_flags_horizontal = 3
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="Icon" type="TextureRect" parent="."]
-offset_right = 20.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 20, 20 )
-expand = true
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Name" type="Label" parent="."]
-offset_left = 24.0
-offset_right = 24.0
-offset_bottom = 19.0
-theme_override_fonts/font = ExtResource( 2 )
+layout_mode = 2
+label_settings = ExtResource("3_jhdqu")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 28.0
-offset_right = 28.0
-offset_bottom = 20.0
+layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="Value" type="Label" parent="HBoxContainer"]
-offset_top = 1.0
-offset_bottom = 18.0
-theme_override_fonts/font = ExtResource( 1 )
-align = 1
+layout_mode = 2
+label_settings = ExtResource("4_2uv7j")

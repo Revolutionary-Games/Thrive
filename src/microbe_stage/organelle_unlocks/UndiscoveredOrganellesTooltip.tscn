@@ -1,72 +1,62 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://bodu55ie6kdkq"]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-BiggerPlus.tres" type="FontFile" id=1]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.cs" type="Script" id=7]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=9]
+[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-BiggerPlus.tres" id="1"]
+[ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/new_fonts/Title-SemiBold-Bigger.tres" id="4_olxfy"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="6"]
+[ext_resource type="Script" path="res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.cs" id="7"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0.129412, 0.141176, 0.980392)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="UndiscoveredOrganellesTooltip" type="PanelContainer"]
+custom_minimum_size = Vector2(350, 0)
 offset_right = 350.0
 offset_bottom = 155.0
-custom_minimum_size = Vector2( 350, 0 )
 mouse_filter = 2
-theme = ExtResource( 9 )
-theme_override_styles/panel = SubResource( 1 )
-script = ExtResource( 7 )
-__meta__ = {
-"_editor_description_": ""
-}
+theme = ExtResource("9")
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("7")
 NameLabelPath = NodePath("MarginContainer/VBoxContainer/Header/Title")
 UnlockTextPath = NodePath("MarginContainer/VBoxContainer/UnlockText")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 392.0
-offset_bottom = 154.0
+layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_top = 15
 theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 376.0
-offset_bottom = 138.0
+layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 15
 
 [node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_right = 361.0
-offset_bottom = 31.0
+layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
-offset_right = 361.0
-offset_bottom = 31.0
-custom_minimum_size = Vector2( 230, 0 )
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 1 )
+theme_override_fonts/font = ExtResource("1")
 text = "UNDISCOVERED_ORGANELLES"
-align = 1
+label_settings = ExtResource("4_olxfy")
+horizontal_alignment = 1
 
-[node name="UnlockText" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
-offset_top = 46.0
-offset_right = 361.0
-offset_bottom = 68.0
+[node name="UnlockText" parent="MarginContainer/VBoxContainer" instance=ExtResource("6")]
+layout_mode = 2
 mouse_filter = 2
+fit_content = true

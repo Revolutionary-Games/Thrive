@@ -1,66 +1,82 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://c5rgjinnhip87"]
 
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
-[ext_resource path="res://src/microbe_stage/editor/CellEditorComponent.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn" type="PackedScene" id=39]
-[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=52]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=53]
-[ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn" type="PackedScene" id=85]
+[ext_resource type="PackedScene" uid="uid://hxrn73ihp8r4" path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" id="1"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditor.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://cwot2e52r7lx0" path="res://src/microbe_stage/editor/CellEditorComponent.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://d0qfhc2op1auc" path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://qdqcbnri7vsw" path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://r0oqu6luui0h" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn" id="39"]
+[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="52"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="53"]
+[ext_resource type="PackedScene" path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn" id="85"]
 
 [node name="MicrobeEditor" type="Node"]
 process_priority = -1
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_vertical_guides_": [  ]
-}
-PauseMenuPath = NodePath("PauseMenu")
-EditorGUIBaseNodePath = NodePath("MicrobeEditorGUI")
-EditorTabSelectorPath = NodePath("MicrobeEditorGUI/MicrobeEditorTabButtons")
+script = ExtResource("2")
 ReportTabPath = NodePath("MicrobeEditorGUI/Report")
 PatchMapTabPath = NodePath("MicrobeEditorGUI/PatchMap")
 CellEditorTabPath = NodePath("MicrobeEditorGUI/CellEditor")
+PauseMenuPath = NodePath("PauseMenu")
+EditorGUIBaseNodePath = NodePath("MicrobeEditorGUI")
+EditorTabSelectorPath = NodePath("MicrobeEditorGUI/MicrobeEditorTabButtons")
 
-[node name="EditorWorld" parent="." instance=ExtResource( 1 )]
+[node name="EditorWorld" parent="." instance=ExtResource("1")]
 
 [node name="MicrobeEditorGUI" type="Control" parent="."]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 53 )
+mouse_filter = 2
+theme = ExtResource("53")
 
-[node name="CellEditor" parent="MicrobeEditorGUI" instance=ExtResource( 3 )]
+[node name="CellEditor" parent="MicrobeEditorGUI" instance=ExtResource("3")]
 visible = false
+layout_mode = 1
+offset_top = 0.0
+offset_bottom = 0.0
 CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
 EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
 EditorGridPath = NodePath("../../EditorWorld/Grid")
 CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
 
-[node name="Report" parent="MicrobeEditorGUI" instance=ExtResource( 6 )]
+[node name="Report" parent="MicrobeEditorGUI" instance=ExtResource("6")]
+layout_mode = 1
 offset_top = 0.0
 
-[node name="PatchMap" parent="MicrobeEditorGUI" instance=ExtResource( 7 )]
+[node name="PatchMap" parent="MicrobeEditorGUI" instance=ExtResource("7")]
 visible = false
+layout_mode = 1
 
-[node name="MicrobeEditorTabButtons" parent="MicrobeEditorGUI" instance=ExtResource( 5 )]
+[node name="MicrobeEditorTabButtons" parent="MicrobeEditorGUI" instance=ExtResource("5")]
+layout_mode = 0
 offset_right = 350.0
 offset_bottom = 45.0
 
-[node name="EditorCommonBottomLeftButtons" parent="MicrobeEditorGUI" instance=ExtResource( 4 )]
+[node name="EditorCommonBottomLeftButtons" parent="MicrobeEditorGUI" instance=ExtResource("4")]
+layout_mode = 1
+offset_top = -54.0
+offset_right = 154.0
+grow_vertical = 0
 
-[node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" instance=ExtResource( 39 )]
+[node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" instance=ExtResource("39")]
+anchors_preset = 0
 offset_left = 10.0
 offset_top = 30.0
 
-[node name="TutorialGUI" parent="." instance=ExtResource( 85 )]
+[node name="TutorialGUI" parent="." instance=ExtResource("85")]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 EditorEntryReportPath = NodePath("../TutorialGUI/EditorEntryReport")
 PatchMapPath = NodePath("../TutorialGUI/PatchMapTutorial")
 CellEditorIntroductionPath = NodePath("../TutorialGUI/CellEditorIntro")
@@ -69,7 +85,7 @@ CellEditorUndoHighlightPath = NodePath("../TutorialGUI/UndoButtonHighlight")
 CellEditorRedoPath = NodePath("../TutorialGUI/RedoTutorial")
 CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 
-[node name="PauseMenu" parent="." instance=ExtResource( 52 )]
+[node name="PauseMenu" parent="." instance=ExtResource("52")]
 HelpCategory = "MicrobeEditor"
 
 [connection signal="OnTabSelected" from="MicrobeEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]

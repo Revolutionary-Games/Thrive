@@ -1,12 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://qdqcbnri7vsw"]
+[gd_scene load_steps=22 format=3 uid="uid://qdqcbnri7vsw"]
 
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" id="1"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="2"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-Small.tres" id="3"]
+[ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/new_fonts/Title-SemiBold-AlmostHuge.tres" id="3_ocn33"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/TimelineTab.cs" id="4"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
+[ext_resource type="LabelSettings" uid="uid://cdmmfuswkgrko" path="res://src/gui_common/new_fonts/Title-Regular-Big.tres" id="5_q5opo"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" id="6"]
 [ext_resource type="Texture2D" uid="uid://0fnkn8lpg3y7" path="res://assets/textures/gui/bevel/scrollPanelVerticalFade.png" id="7"]
+[ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/new_fonts/Body-Bold-Smaller.tres" id="7_8c2s4"]
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-Big.tres" id="8"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="10"]
@@ -14,7 +15,7 @@
 [ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" id="56"]
 [ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="57"]
 [ext_resource type="Texture2D" uid="uid://c7cgjvfo1in67" path="res://assets/textures/gui/bevel/Temperature.png" id="62"]
-[ext_resource type="PackedScene" path="res://src/gui_common/charts/line/LineChart.tscn" id="103"]
+[ext_resource type="PackedScene" uid="uid://mmqt0mcw2if3" path="res://src/gui_common/charts/line/LineChart.tscn" id="103"]
 
 [sub_resource type="StyleBoxFlat" id="29"]
 bg_color = Color(0, 0, 0, 0.588235)
@@ -84,6 +85,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -0.200001
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("9")
 script = ExtResource("11")
 AutoEvoSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton")
@@ -155,8 +158,9 @@ clip_text = true
 [node name="PatchName" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("56")
 text = "PATCH_NAME"
+label_settings = ExtResource("3_ocn33")
+vertical_alignment = 1
 
 [node name="TimeIndicator" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
@@ -164,13 +168,15 @@ layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("8")
+label_settings = ExtResource("5_q5opo")
+horizontal_alignment = 1
 
 [node name="AutoEvoButton" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_vertical = 8
 focus_mode = 0
-theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 14
 toggle_mode = true
 action_mode = 0
 text = "AUTO_EVO"
@@ -180,7 +186,7 @@ custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_vertical = 8
 focus_mode = 0
-theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 14
 disabled = true
 toggle_mode = true
 action_mode = 0
@@ -191,7 +197,7 @@ custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_vertical = 8
 focus_mode = 0
-theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 14
 toggle_mode = true
 action_mode = 0
 text = "TIMELINE"
@@ -220,8 +226,8 @@ size_flags_vertical = 3
 
 [node name="GlucoseReduction" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1")
 text = "The amount of glucose has been reduced to ... of the previous amount."
+label_settings = ExtResource("7_8c2s4")
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
@@ -230,8 +236,8 @@ theme_override_styles/separator = SubResource("30")
 
 [node name="Label" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1")
 text = "AUTO_EVO_RESULTS"
+label_settings = ExtResource("7_8c2s4")
 
 [node name="AutoEvoResults" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2")]
 layout_mode = 2
@@ -242,8 +248,8 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1")
 text = "EXTERNAL_EFFECTS"
+label_settings = ExtResource("7_8c2s4")
 
 [node name="ExternalEffectsList" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2")]
 layout_mode = 2
@@ -503,7 +509,6 @@ focus_neighbor_top = NodePath("../../MarginContainer/HSplitContainer/PanelContai
 focus_next = NodePath(".")
 focus_previous = NodePath("../../MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("27")
 theme_override_styles/hover = SubResource("41")
 theme_override_styles/focus = SubResource("42")

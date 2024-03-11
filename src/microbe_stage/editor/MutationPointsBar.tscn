@@ -1,10 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://seoiqsheiljf"]
+[gd_scene load_steps=12 format=3 uid="uid://seoiqsheiljf"]
 
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Small.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="2"]
 [ext_resource type="Material" uid="uid://dodp28iio21ld" path="res://src/microbe_stage/editor/MutationPointsTextMaterial.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="4"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="4_6f2eg"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/MutationPointsBar.cs" id="5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqa1m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cj4jd"]
+bg_color = Color(0.294118, 0.152941, 0.356863, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qheyi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1jjy"]
+bg_color = Color(0.745098, 0.356863, 0.921569, 1)
 
 [sub_resource type="Animation" id="7"]
 tracks/0/type = "value"
@@ -92,8 +102,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 mouse_filter = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_dqa1m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cj4jd")
 step = 0.1
 value = 100.0
+show_percentage = false
 
 [node name="MPBarMain" type="ProgressBar" parent="MarginContainer"]
 show_behind_parent = true
@@ -101,8 +114,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 mouse_filter = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_qheyi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1jjy")
 step = 0.1
 value = 100.0
+show_percentage = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MPBarMain"]
 layout_mode = 0
@@ -116,8 +132,8 @@ theme_override_constants/margin_left = 20
 [node name="MPLabel" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer"]
 material = ExtResource("3")
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1")
 text = "MUTATION_POINTS"
+label_settings = ExtResource("4_6f2eg")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MPBarMain/HBoxContainer"]
 layout_mode = 2
@@ -132,8 +148,8 @@ alignment = 2
 material = ExtResource("3")
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("1")
 text = "100"
+label_settings = ExtResource("4_6f2eg")
 
 [node name="MpArrow" type="TextureRect" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
 visible = false
@@ -150,15 +166,15 @@ visible = false
 material = ExtResource("3")
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("1")
 text = "100)"
+label_settings = ExtResource("4_6f2eg")
 
 [node name="BaseMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
 material = ExtResource("3")
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("1")
 text = "/ 100"
+label_settings = ExtResource("4_6f2eg")
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="MarginContainer/MPBarMain"]
 libraries = {
