@@ -26,7 +26,7 @@ public partial class ResourceDisplayBar : HBoxContainer
 
 #pragma warning disable CA2213
     [Export]
-    public Font AmountLabelFont = null!;
+    public LabelSettings AmountLabelFont = null!;
 
     private Container earlyResourcesContainer = null!;
     private Container lateResourcesContainer = null!;
@@ -46,7 +46,7 @@ public partial class ResourceDisplayBar : HBoxContainer
         scienceAmountLabel = GetNode<Label>(ScienceAmountLabelPath);
 
         scienceIndicatorContainer.Visible = false;
-        scienceAmountLabel.AddThemeFontOverride("font", AmountLabelFont);
+        scienceAmountLabel.LabelSettings = AmountLabelFont;
 
         // TODO: remove once this is used
         lateResourcesContainer.Visible = false;
@@ -124,7 +124,7 @@ public partial class ResourceDisplayBar : HBoxContainer
         private string? previousAmount;
         private bool previousMax;
 
-        public DisplayAmount(WorldResource resource, Color maxColour, Color normalColour, Font font)
+        public DisplayAmount(WorldResource resource, Color maxColour, Color normalColour, LabelSettings font)
         {
             this.maxColour = maxColour;
             this.normalColour = normalColour;
@@ -132,9 +132,10 @@ public partial class ResourceDisplayBar : HBoxContainer
             amountLabel = new Label
             {
                 Text = "0",
+                VerticalAlignment = VerticalAlignment.Center,
             };
 
-            amountLabel.AddThemeFontOverride("font", font);
+            amountLabel.LabelSettings = font;
 
             // TODO: reserving space for the characters would help to have the display jitter less
 

@@ -1,18 +1,19 @@
-[gd_scene load_steps=22 format=3 uid="uid://qdqcbnri7vsw"]
+[gd_scene load_steps=23 format=3 uid="uid://qdqcbnri7vsw"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/new_fonts/Title-SemiBold-AlmostHuge.tres" id="3_ocn33"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/TimelineTab.cs" id="4"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
 [ext_resource type="LabelSettings" uid="uid://cdmmfuswkgrko" path="res://src/gui_common/new_fonts/Title-Regular-Big.tres" id="5_q5opo"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" id="6"]
 [ext_resource type="Texture2D" uid="uid://0fnkn8lpg3y7" path="res://assets/textures/gui/bevel/scrollPanelVerticalFade.png" id="7"]
 [ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/new_fonts/Body-Bold-Smaller.tres" id="7_8c2s4"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-Big.tres" id="8"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9"]
+[ext_resource type="LabelSettings" uid="uid://bcafkdnj1p8bc" path="res://src/gui_common/new_fonts/Title-Bold-Normal.tres" id="9_8hrmr"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="10"]
+[ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/new_fonts/Body-Regular-AlmostSmaller.tres" id="10_16cw6"]
+[ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="10_dmd4f"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.cs" id="11"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" id="56"]
+[ext_resource type="LabelSettings" uid="uid://2wocwdhy8088" path="res://src/gui_common/new_fonts/Title-SemiBold-AlmostSmaller.tres" id="11_xdyjp"]
 [ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="57"]
 [ext_resource type="Texture2D" uid="uid://c7cgjvfo1in67" path="res://assets/textures/gui/bevel/Temperature.png" id="62"]
 [ext_resource type="PackedScene" uid="uid://mmqt0mcw2if3" path="res://src/gui_common/charts/line/LineChart.tscn" id="103"]
@@ -167,7 +168,6 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("8")
 label_settings = ExtResource("5_q5opo")
 horizontal_alignment = 1
 
@@ -285,6 +285,9 @@ LocalEventsContainerPath = NodePath("MarginContainer/ScrollContainer/MarginConta
 ScrollContainerPath = NodePath("MarginContainer/ScrollContainer")
 LocalFilterButtonPath = NodePath("MarginContainer/MarginContainer/HBoxContainer/LocalFilter")
 GlobalFilterButtonPath = NodePath("MarginContainer/MarginContainer/HBoxContainer/GlobalFilter")
+TimePeriodTitleFont = ExtResource("9_8hrmr")
+EventLabelNormalFont = ExtResource("10_16cw6")
+EventLabelBoldFont = ExtResource("11_xdyjp")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
 layout_mode = 2
@@ -329,7 +332,8 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
 tooltip_text = "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-theme_override_fonts/font = ExtResource("6")
+theme_override_fonts/font = ExtResource("10_dmd4f")
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 action_mode = 0
 text = "GLOBAL_INITIAL_LETTER"
@@ -339,7 +343,8 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
 tooltip_text = "TIMELINE_LOCAL_FILTER_TOOLTIP"
-theme_override_fonts/font = ExtResource("6")
+theme_override_fonts/font = ExtResource("10_dmd4f")
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 action_mode = 0
 text = "LOCAL_INITIAL_LETTER"
@@ -376,6 +381,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer"]
 layout_mode = 2
+horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer"]
 layout_mode = 2
@@ -392,8 +398,9 @@ theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("56")
 text = "STATISTICS"
+label_settings = ExtResource("3_ocn33")
+horizontal_alignment = 1
 
 [node name="SpeciesPopulation" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
 layout_mode = 2

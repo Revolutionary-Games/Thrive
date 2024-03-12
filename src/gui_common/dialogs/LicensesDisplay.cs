@@ -10,6 +10,14 @@ public partial class LicensesDisplay : CustomWindow
     [Export]
     public NodePath? TextsContainerPath;
 
+#pragma warning disable CA2213
+    [Export]
+    public LabelSettings HeadingFont = null!;
+
+    [Export]
+    public LabelSettings ContentFont = null!;
+#pragma warning restore CA2213
+
     private List<(string Heading, Func<string> Content)> licensesToShow = null!;
 
     private bool licensesLoaded;
@@ -120,7 +128,7 @@ public partial class LicensesDisplay : CustomWindow
         foreach (var licenseTuple in licensesToShow)
         {
             var heading = new Label { Text = licenseTuple.Heading };
-            heading.AddThemeFontOverride("font", GetThemeFont("lato_bold_regular", "Fonts"));
+            heading.LabelSettings = HeadingFont;
             textsContainer.AddChild(heading);
 
             var content = new Label
@@ -130,7 +138,7 @@ public partial class LicensesDisplay : CustomWindow
                 AutowrapMode = TextServer.AutowrapMode.WordSmart,
             };
 
-            content.AddThemeFontOverride("font", GetThemeFont("lato_normal", "Fonts"));
+            content.LabelSettings = ContentFont;
             textsContainer.AddChild(content);
 
             textsContainer.AddChild(new Control { CustomMinimumSize = new Vector2(0, 5) });

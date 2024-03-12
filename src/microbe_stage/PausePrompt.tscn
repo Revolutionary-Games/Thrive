@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://qwg2dluu8ow0"]
+[gd_scene load_steps=3 format=3 uid="uid://qwg2dluu8ow0"]
 
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" id="1"]
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/new_fonts/Title-SemiBold-Huge.tres" id="2_llgsb"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 
@@ -16,7 +15,6 @@ offset_left = -66.0
 offset_top = -154.0
 offset_right = 63.0
 offset_bottom = -107.0
-theme_override_fonts/font = ExtResource("1")
 text = "PAUSED"
 label_settings = ExtResource("2_llgsb")
 horizontal_alignment = 1

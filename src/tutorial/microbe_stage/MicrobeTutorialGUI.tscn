@@ -1,27 +1,29 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://d116aks100ulm"]
 
-[ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="FontFile" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="FontFile" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="FontFile" id=6]
-[ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
-[ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/gui_common/dialogs/TutorialDialog.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" type="PackedScene" id=14]
+[ext_resource type="Script" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="PackedScene" path="res://src/gui_common/KeyPrompt.tscn" id="3"]
+[ext_resource type="Script" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
+[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="9"]
+[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="9_ib522"]
+[ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://src/gui_common/ControlHighlight.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
+[ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource( 2 )
-script = ExtResource( 1 )
+theme = ExtResource("2")
+script = ExtResource("1")
 MicrobeWelcomeMessagePath = NodePath("MicrobeWelcome")
 MicrobeMovementKeyPromptsPath = NodePath("MicrobeMovementTutorial/KeyPrompts")
 MicrobeMovementPopupPath = NodePath("MicrobeMovementTutorial/ExplainingPopup")
@@ -45,9 +47,12 @@ EngulfedExplanationPath = NodePath("EngulfedTutorial")
 EngulfmentFullCapacityPath = NodePath("EngulfmentFullCapacity")
 EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 
-[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 14 )]
+[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("14")]
+anchors_preset = 0
 
-[node name="MicrobeWelcome" parent="." instance=ExtResource( 13 )]
+[node name="MicrobeWelcome" parent="." instance=ExtResource("13")]
+custom_minimum_size = Vector2(450, 400)
+anchors_preset = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -56,88 +61,73 @@ offset_left = -1280.0
 offset_top = -360.0
 offset_right = -830.0
 offset_bottom = 40.0
-custom_minimum_size = Vector2( 450, 400 )
-script = ExtResource( 7 )
-__meta__ = {
-"_editor_description_": ""
-}
-Exclusive = true
-ExclusiveAllowCloseOnEscape = false
-WindowTitle = "TUTORIAL"
+script = ExtResource("7")
+LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "MICROBE_STAGE_INITIAL"
 DescriptionForController = ""
 ShowDelay = 0.0
-LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
+WindowTitle = "TUTORIAL"
+Exclusive = true
+ExclusiveAllowCloseOnEscape = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome"]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 15.0
 offset_top = 15.0
 offset_right = 435.0
 offset_bottom = 385.0
-custom_minimum_size = Vector2( 230, 230 )
-scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome/ScrollContainer"]
-offset_right = 870.0
-offset_bottom = 770.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="MicrobeWelcome/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
-offset_right = 870.0
-offset_bottom = 24.0
-theme_override_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
+[node name="CustomRichTextLabel" parent="MicrobeWelcome/ScrollContainer/VBoxContainer" instance=ExtResource("9")]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 16
+fit_content = true
 
 [node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-offset_top = 28.0
-offset_right = 870.0
-offset_bottom = 710.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-offset_top = 714.0
-offset_right = 870.0
-offset_bottom = 734.0
+layout_mode = 2
 
 [node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
-offset_right = 10.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 10, 0 )
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
 
-[node name="CheckBox" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
-offset_left = 14.0
-offset_right = 174.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource( 5 )
-pressed = true
+[node name="CheckBox" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("8")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "SHOW_TUTORIALS"
 
-[node name="FocusGrabber" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
-offset_left = 178.0
-offset_right = 178.0
-offset_bottom = 20.0
+[node name="FocusGrabber" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("12")]
+layout_mode = 2
 Priority = 2
 NodeToGiveFocusTo = NodePath("../../Button")
 GrabFocusWhenBecomingVisible = true
 
 [node name="Button" type="Button" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-offset_left = 354.0
-offset_top = 738.0
-offset_right = 515.0
-offset_bottom = 770.0
+layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource( 6 )
+theme_override_fonts/font = ExtResource("9_ib522")
 text = "BEGIN_THRIVING"
 
 [node name="MicrobeMovementTutorial" type="Control" parent="."]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="ExplainingPopup" parent="MicrobeMovementTutorial" instance=ExtResource( 10 )]
+[node name="ExplainingPopup" parent="MicrobeMovementTutorial" instance=ExtResource("10")]
+custom_minimum_size = Vector2(260, 274)
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -146,12 +136,12 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 95.0
-custom_minimum_size = Vector2( 260, 274 )
 Description = "MICROBE_STAGE_CONTROL_TEXT"
 DescriptionForController = "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 
 [node name="KeyPrompts" type="Control" parent="MicrobeMovementTutorial"]
 visible = false
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -160,49 +150,52 @@ offset_left = -640.0
 offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
-pivot_offset = Vector2( 640, 360 )
+pivot_offset = Vector2(640, 360)
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Forward" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+[node name="Forward" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource("3")]
 visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
 offset_left = 620.0
 offset_top = 280.0
 offset_right = -628.0
 offset_bottom = -408.0
-custom_minimum_size = Vector2( 40, 40 )
 ActionName = "g_move_forward"
 
-[node name="Backwards" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+[node name="Backwards" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource("3")]
 visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
 offset_left = 620.0
 offset_top = 400.0
 offset_right = -628.0
 offset_bottom = -288.0
-custom_minimum_size = Vector2( 40, 40 )
 ActionName = "g_move_backwards"
 
-[node name="Left" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+[node name="Left" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource("3")]
 visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
 offset_left = 560.0
 offset_top = 340.0
 offset_right = -688.0
 offset_bottom = -348.0
-custom_minimum_size = Vector2( 40, 40 )
 ActionName = "g_move_left"
 
-[node name="Right" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+[node name="Right" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource("3")]
 visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
 offset_left = 680.0
 offset_top = 340.0
 offset_right = -568.0
 offset_bottom = -348.0
-custom_minimum_size = Vector2( 40, 40 )
 ActionName = "g_move_right"
 
-[node name="GlucoseTutorial" parent="." instance=ExtResource( 10 )]
+[node name="GlucoseTutorial" parent="." instance=ExtResource("10")]
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -213,7 +206,9 @@ offset_right = 0.0
 offset_bottom = 61.0
 Description = "MICROBE_STAGE_COLLECT_TEXT"
 
-[node name="DayNightTutorial" parent="." instance=ExtResource( 10 )]
+[node name="DayNightTutorial" parent="." instance=ExtResource("10")]
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -224,7 +219,9 @@ offset_right = 0.0
 offset_bottom = 61.0
 Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
 
-[node name="OrganelleDivisionTutorial" parent="." instance=ExtResource( 10 )]
+[node name="OrganelleDivisionTutorial" parent="." instance=ExtResource("10")]
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -235,7 +232,9 @@ offset_right = 0.0
 offset_bottom = 61.0
 Description = "MICROBE_STAGE_ORGANELLE_DIVISION"
 
-[node name="BecomeMulticellularTutorial" parent="." instance=ExtResource( 10 )]
+[node name="BecomeMulticellularTutorial" parent="." instance=ExtResource("10")]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 0.45
 anchor_right = 1.0
@@ -246,7 +245,9 @@ offset_right = 0.0
 offset_bottom = 61.0
 Description = "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 
-[node name="StayingAliveTutorial" parent="." instance=ExtResource( 10 )]
+[node name="StayingAliveTutorial" parent="." instance=ExtResource("10")]
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -257,7 +258,10 @@ offset_right = 0.0
 offset_bottom = 61.0
 Description = "MICROBE_STAGE_HEALTH_TEXT"
 
-[node name="ReproductionTutorial" parent="." instance=ExtResource( 10 )]
+[node name="ReproductionTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(260, 270)
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -266,17 +270,20 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 91.0
-custom_minimum_size = Vector2( 260, 270 )
 Description = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 
-[node name="EditorButtonHighlight" parent="." instance=ExtResource( 11 )]
+[node name="EditorButtonHighlight" parent="." instance=ExtResource("11")]
 visible = false
+anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 490.0
 offset_bottom = 490.0
 
-[node name="EditorButtonTutorial" parent="." instance=ExtResource( 10 )]
+[node name="EditorButtonTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(260, 260)
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -285,11 +292,12 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
-custom_minimum_size = Vector2( 260, 260 )
-PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+PreventsMouseCaptureWhileOpen = true
 
-[node name="UnbindTutorial" parent="." instance=ExtResource( 10 )]
+[node name="UnbindTutorial" parent="." instance=ExtResource("10")]
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -298,10 +306,12 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
-PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
+PreventsMouseCaptureWhileOpen = true
 
-[node name="CheckHelpMenu" parent="." instance=ExtResource( 13 )]
+[node name="CheckHelpMenu" parent="." instance=ExtResource("13")]
+custom_minimum_size = Vector2(260, 240)
+anchors_preset = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -310,51 +320,42 @@ offset_left = -260.0
 offset_top = -189.0
 offset_right = 0.0
 offset_bottom = 51.0
-custom_minimum_size = Vector2( 260, 240 )
-script = ExtResource( 7 )
-__meta__ = {
-"_editor_description_": ""
-}
-WindowTitle = "TUTORIAL"
+script = ExtResource("7")
+LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 DescriptionForController = ""
 ShowDelay = 0.5
-LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
+WindowTitle = "TUTORIAL"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CheckHelpMenu"]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_minimum_size = Vector2( 230, 230 )
-scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CheckHelpMenu/ScrollContainer"]
-offset_right = 260.0
-offset_bottom = 240.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="CheckHelpMenu/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
-offset_right = 260.0
-offset_bottom = 24.0
-theme_override_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
+[node name="CustomRichTextLabel" parent="CheckHelpMenu/ScrollContainer/VBoxContainer" instance=ExtResource("9")]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 16
+fit_content = true
 
 [node name="Control" type="Control" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
-offset_top = 28.0
-offset_right = 260.0
-offset_bottom = 204.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
-offset_left = 26.0
-offset_top = 208.0
-offset_right = 234.0
-offset_bottom = 240.0
+layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource( 6 )
+theme_override_font_sizes/font_size = 18
 text = "TUTORIAL_VIEW_NOW"
 
-[node name="EngulfmentFullCapacity" parent="." instance=ExtResource( 10 )]
+[node name="EngulfmentFullCapacity" parent="." instance=ExtResource("10")]
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -365,7 +366,9 @@ offset_right = 0.0
 offset_bottom = 61.0
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 
-[node name="EngulfmentTutorial" parent="." instance=ExtResource( 10 )]
+[node name="EngulfmentTutorial" parent="." instance=ExtResource("10")]
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -376,7 +379,10 @@ offset_right = 0.0
 offset_bottom = 61.0
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 
-[node name="EngulfedTutorial" parent="." instance=ExtResource( 10 )]
+[node name="EngulfedTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(260, 275)
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -385,11 +391,13 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
-custom_minimum_size = Vector2( 260, 275 )
-PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
+PreventsMouseCaptureWhileOpen = true
 
-[node name="LeaveColonyTutorial" parent="." instance=ExtResource( 10 )]
+[node name="LeaveColonyTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(260, 275)
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -398,61 +406,56 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 96.0
-custom_minimum_size = Vector2( 260, 275 )
 Description = "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 
-[node name="EarlyMulticellularWelcome" parent="." instance=ExtResource( 10 )]
+[node name="EarlyMulticellularWelcome" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(450, 460)
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -830.0
 offset_bottom = -260.0
-custom_minimum_size = Vector2( 450, 460 )
+Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 Exclusive = true
 PreventsMouseCaptureWhileOpen = true
-Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 
-[node name="VBoxContainer" parent="EarlyMulticellularWelcome/ScrollContainer" index="0"]
-offset_right = 450.0
-offset_bottom = 460.0
-
-[node name="CustomRichTextLabel" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="0"]
-offset_right = 450.0
-offset_bottom = 24.0
+[node name="ScrollContainer" parent="EarlyMulticellularWelcome" index="0"]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 230.0
+offset_bottom = 230.0
 
 [node name="Control" type="Control" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="1"]
-offset_top = 28.0
-offset_right = 450.0
-offset_bottom = 424.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="2"]
-offset_left = 125.0
-offset_top = 428.0
-offset_right = 325.0
-offset_bottom = 460.0
+layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource( 6 )
+theme_override_fonts/font = ExtResource("9_ib522")
+theme_override_font_sizes/font_size = 18
 text = "CONTINUE_THRIVING"
 
 [connection signal="hidden" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
-[connection signal="hidden" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
-[connection signal="hidden" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
-[connection signal="hidden" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= [ "DayNightTutorial" ]]
-[connection signal="hidden" from="OrganelleDivisionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "OrganelleDivisionTutorial" ]]
-[connection signal="hidden" from="BecomeMulticellularTutorial" to="." method="OnSpecificCloseClicked" binds= [ "BecomeMulticellularTutorial" ]]
-[connection signal="hidden" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
-[connection signal="hidden" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
-[connection signal="hidden" from="EditorButtonTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorPress" ]]
-[connection signal="hidden" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
-[connection signal="hidden" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
+[connection signal="hidden" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= ["MicrobeMovementExplain"]]
+[connection signal="hidden" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= ["GlucoseCollecting"]]
+[connection signal="hidden" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= ["DayNightTutorial"]]
+[connection signal="hidden" from="OrganelleDivisionTutorial" to="." method="OnSpecificCloseClicked" binds= ["OrganelleDivisionTutorial"]]
+[connection signal="hidden" from="BecomeMulticellularTutorial" to="." method="OnSpecificCloseClicked" binds= ["BecomeMulticellularTutorial"]]
+[connection signal="hidden" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeStayingAlive"]]
+[connection signal="hidden" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeReproduction"]]
+[connection signal="hidden" from="EditorButtonTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEditorPress"]]
+[connection signal="hidden" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeUnbind"]]
+[connection signal="hidden" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= ["CheckTheHelpMenu"]]
 [connection signal="pressed" from="CheckHelpMenu/ScrollContainer/VBoxContainer/Button" to="." method="CheckHelpMenuPressed"]
-[connection signal="hidden" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentStorageFull" ]]
-[connection signal="hidden" from="EngulfmentTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentExplanation" ]]
-[connection signal="hidden" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfedExplanation" ]]
-[connection signal="hidden" from="LeaveColonyTutorial" to="." method="OnSpecificCloseClicked" binds= [ "LeaveColonyTutorial" ]]
-[connection signal="hidden" from="EarlyMulticellularWelcome" to="." method="OnSpecificCloseClicked" binds= [ "EarlyMulticellularWelcome" ]]
-[connection signal="pressed" from="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "EarlyMulticellularWelcome" ]]
+[connection signal="hidden" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEngulfmentStorageFull"]]
+[connection signal="hidden" from="EngulfmentTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEngulfmentExplanation"]]
+[connection signal="hidden" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEngulfedExplanation"]]
+[connection signal="hidden" from="LeaveColonyTutorial" to="." method="OnSpecificCloseClicked" binds= ["LeaveColonyTutorial"]]
+[connection signal="hidden" from="EarlyMulticellularWelcome" to="." method="OnSpecificCloseClicked" binds= ["EarlyMulticellularWelcome"]]
+[connection signal="pressed" from="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["EarlyMulticellularWelcome"]]
 
 [editable path="EarlyMulticellularWelcome"]

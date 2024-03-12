@@ -1,59 +1,50 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://cu0aej2ck4gej"]
 
-[ext_resource path="res://src/engine/input/key_mapping/InputActionItem.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="FontFile" id=3]
+[ext_resource type="Script" path="res://src/engine/input/key_mapping/InputActionItem.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/new_fonts/Body-Regular-Smaller.tres" id="3_6n4v0"]
 
-[sub_resource type="StyleBoxEmpty" id=1]
-
-[sub_resource type="StyleBoxEmpty" id=2]
-
-[sub_resource type="StyleBoxEmpty" id=3]
-
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id="4"]
 content_margin_left = 7.0
-content_margin_right = 7.0
 content_margin_top = 0.0
+content_margin_right = 7.0
 content_margin_bottom = 2.0
 
+[sub_resource type="StyleBoxEmpty" id="1"]
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+
+[sub_resource type="StyleBoxEmpty" id="3"]
+
 [node name="InputActionItem" type="VBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 2 )
-script = ExtResource( 1 )
+theme = ExtResource("2")
+script = ExtResource("1")
 AddInputEventPath = NodePath("InputEventsContainer/AddEventButton")
 InputActionHeaderPath = NodePath("InputActionHeader")
 InputEventsContainerPath = NodePath("InputEventsContainer")
 
 [node name="InputActionHeader" type="Label" parent="."]
-offset_right = 1280.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource( 3 )
+layout_mode = 2
 text = "Title goes here"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("3_6n4v0")
 
 [node name="InputEventsContainer" type="HBoxContainer" parent="."]
-offset_top = 24.0
-offset_right = 1280.0
-offset_bottom = 51.0
+layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="AddEventButton" type="Button" parent="InputEventsContainer"]
-offset_right = 26.0
-offset_bottom = 27.0
-focus_neighbor_right = NodePath(".")
+layout_mode = 2
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_focus_color = Color( 0.184314, 0.588235, 0.184314, 1 )
-theme_override_colors/font_color = Color( 0, 1, 0, 1 )
-theme_override_styles/hover = SubResource( 1 )
-theme_override_styles/pressed = SubResource( 2 )
-theme_override_styles/focus = SubResource( 3 )
-theme_override_styles/normal = SubResource( 4 )
+focus_neighbor_right = NodePath(".")
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_focus_color = Color(0.184314, 0.588235, 0.184314, 1)
+theme_override_styles/normal = SubResource("4")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("2")
+theme_override_styles/focus = SubResource("3")
 text = "+"
-__meta__ = {
-"_editor_description_": ""
-}
 
 [connection signal="pressed" from="InputEventsContainer/AddEventButton" to="." method="OnAddEventButtonPressed"]

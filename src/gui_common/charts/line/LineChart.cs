@@ -138,6 +138,8 @@ public partial class LineChart : VBoxContainer
     private TextureButton inspectButton = null!;
     private CustomWindow chartPopup = null!;
     private LineChart? childChart;
+
+    private LabelSettings legendLabelSettings = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -263,6 +265,8 @@ public partial class LineChart : VBoxContainer
         defaultIconLegendTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/blankCircle.png");
         hLineTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
         vLineTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/vSeparatorUp.png");
+
+        legendLabelSettings = GD.Load<LabelSettings>("res://src/gui_common/new_fonts/Body-Regular-Small.tres");
 
         SetupChartChild();
         UpdateAxesName();
@@ -631,7 +635,7 @@ public partial class LineChart : VBoxContainer
 
         var label = new Label { Text = name };
 
-        label.AddThemeFontOverride("font", GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Small.tres"));
+        label.LabelSettings = legendLabelSettings;
 
         parent.AddChild(rect);
         parent.AddChild(label);

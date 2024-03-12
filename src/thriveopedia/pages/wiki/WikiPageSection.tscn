@@ -1,46 +1,36 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://dr0t26smimaix"]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="FontFile" id=1]
-[ext_resource path="res://src/thriveopedia/pages/wiki/WikiPageSection.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=3]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
+[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/WikiPageSection.cs" id="2"]
+[ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/new_fonts/Title-SemiBold-Normal.tres" id="3_jl68p"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 
 [node name="WikiPageSection" type="VBoxContainer"]
 offset_right = 476.0
 offset_bottom = 73.0
-theme = ExtResource( 5 )
-script = ExtResource( 2 )
+theme = ExtResource("5")
+script = ExtResource("2")
 HeadingPath = NodePath("Heading")
 SeparatorPath = NodePath("HSeparator")
 BodyPath = NodePath("Body")
 
 [node name="Heading" type="Label" parent="."]
-offset_right = 476.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource( 1 )
+layout_mode = 2
+label_settings = ExtResource("3_jl68p")
 
 [node name="HSeparator" type="HSeparator" parent="."]
-modulate = Color( 1, 1, 1, 0.25098 )
-offset_top = 29.0
-offset_right = 476.0
-offset_bottom = 33.0
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
 
 [node name="Spacer" type="Control" parent="."]
-offset_top = 37.0
-offset_right = 476.0
-offset_bottom = 47.0
-custom_minimum_size = Vector2( 0, 10 )
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
-[node name="Body" parent="." instance=ExtResource( 4 )]
-offset_top = 51.0
-offset_right = 476.0
-offset_bottom = 73.0
-theme_override_fonts/normal_font = ExtResource( 3 )
-ExtendedBbcode = ""
+[node name="Body" parent="." instance=ExtResource("4")]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 16
+fit_content = true
 
 [node name="Spacer2" type="Control" parent="."]
-offset_top = 77.0
-offset_right = 476.0
-offset_bottom = 87.0
-custom_minimum_size = Vector2( 0, 10 )
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2

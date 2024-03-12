@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Godot;
 
-public partial class CreditsScroll : Container
+public partial class CreditsScroll : Control
 {
     private const bool ShowAssociationName = true;
     private const bool ShowFullLicenseTexts = false;
@@ -88,10 +88,10 @@ public partial class CreditsScroll : Container
     public NodePath DevelopersHeadingPath { get; set; } = null!;
 
     [Export]
-    public Font TeamNameFont { get; set; } = null!;
+    public LabelSettings TeamNameFont { get; set; } = null!;
 
     [Export]
-    public Font SectionNameFont { get; set; } = null!;
+    public LabelSettings SectionNameFont { get; set; } = null!;
 
     public override void _Ready()
     {
@@ -565,7 +565,8 @@ public partial class CreditsScroll : Container
         }
     }
 
-    private DynamicPart CreateDynamicPart(int offset, IEnumerable<string> texts, int columns, Font? overrideFont = null)
+    private DynamicPart CreateDynamicPart(int offset, IEnumerable<string> texts, int columns,
+        LabelSettings? overrideFont = null)
     {
         if (columns <= 1)
         {
@@ -604,7 +605,7 @@ public partial class CreditsScroll : Container
             var label = new CustomExpandingWordWrappedLabel(columnText.ToString());
 
             if (overrideFont != null)
-                label.AddThemeFontOverride("font", overrideFont);
+                label.LabelSettings = overrideFont;
 
             hBox.AddChild(label);
         }
@@ -615,17 +616,19 @@ public partial class CreditsScroll : Container
         return dynamicPart;
     }
 
-    private DynamicPart CreateDynamicPart(int offset, string text, Font? overrideFont = null)
+    private DynamicPart CreateDynamicPart(int offset, string text, LabelSettings? overrideFont = null)
     {
-        var label = new DynamicPart(offset, new Label
+        var godotLabel = new Label
         {
             Text = text,
             CustomMinimumSize = new Vector2(Size.X, 0),
             HorizontalAlignment = HorizontalAlignment.Center,
-        });
+        };
 
         if (overrideFont != null)
-            label.Control.AddThemeFontOverride("font", overrideFont);
+            godotLabel.LabelSettings = overrideFont;
+
+        var label = new DynamicPart(offset, godotLabel);
 
         AddDynamicItem(label);
         return label;

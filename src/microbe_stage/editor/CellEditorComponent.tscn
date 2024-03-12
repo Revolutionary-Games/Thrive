@@ -1,17 +1,16 @@
-[gd_scene load_steps=64 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=61 format=3 uid="uid://cwot2e52r7lx0"]
 
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Small.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="6"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="7"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" id="8"]
 [ext_resource type="FontVariation" uid="uid://cik4lxxj7fi2t" path="res://assets/fonts/variants/Jura-Regular.tres" id="8_07qd0"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="9"]
+[ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/new_fonts/Title-SemiBold-Smaller.tres" id="8_mt8w8"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://c027xyogk08vx" path="res://src/microbe_stage/editor/CellStatsIndicator.tscn" id="12"]
 [ext_resource type="Texture2D" uid="uid://dbudy6jb7bhad" path="res://assets/textures/gui/bevel/helpButtonHover.png" id="13"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="14"]
 [ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/new_fonts/Title-Regular-Bigger.tres" id="14_fllwv"]
 [ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="15"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="16"]
@@ -21,10 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://ddrj66x85n0tb" path="res://assets/textures/gui/bevel/autoEvoPending.png" id="20"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="22"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Small.tres" id="23"]
 [ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="24"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/new_fonts/Body-Bold-Small.tres" id="24_ekuel"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" id="25"]
 [ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/new_fonts/Body-Regular-AlmostSmall.tres" id="25_68vjv"]
 [ext_resource type="Texture2D" uid="uid://b6s4ekosu7unk" path="res://assets/textures/gui/bevel/SizeIcon.png" id="26"]
 [ext_resource type="Texture2D" uid="uid://bmu3av0d807dw" path="res://assets/textures/gui/bevel/StorageIcon.png" id="27"]
@@ -37,10 +34,10 @@
 [ext_resource type="Texture2D" uid="uid://bssy7badj4d0y" path="res://assets/textures/gui/bevel/sliderTick.png" id="35"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="42"]
-[ext_resource type="PackedScene" path="res://src/gui_common/TweakedColourPicker.tscn" id="43"]
+[ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="43"]
 [ext_resource type="PackedScene" path="res://src/gui_common/SegmentedBar.tscn" id="44"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="45"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" id="47"]
+[ext_resource type="PackedScene" uid="uid://jdsjx1iyga8d" path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" id="47"]
 
 [sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 5.0
@@ -713,8 +710,8 @@ layout_mode = 2
 [node name="RigidityLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("8")
 text = "FLUIDITY_RIGIDITY"
+label_settings = ExtResource("8_mt8w8")
 
 [node name="HSeparator2" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -727,8 +724,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("8")
 text = "FLUID"
+label_settings = ExtResource("8_mt8w8")
 
 [node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -736,8 +733,8 @@ size_flags_horizontal = 3
 
 [node name="Label2" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("8")
 text = "RIGID"
+label_settings = ExtResource("8_mt8w8")
 
 [node name="RigiditySlider" type="HSlider" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -763,8 +760,8 @@ layout_mode = 2
 [node name="ColourLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("8")
 text = "COLOUR"
+label_settings = ExtResource("8_mt8w8")
 
 [node name="HSeparator3" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
@@ -810,7 +807,6 @@ theme_override_constants/margin_right = 10
 
 [node name="Title" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Header"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("25")
 text = "ORGANISM_STATISTICS"
 label_settings = ExtResource("14_fllwv")
 
@@ -912,7 +908,6 @@ theme_override_constants/separation = 0
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("23")
 text = "ATP_BALANCE"
 label_settings = ExtResource("24_ekuel")
 
@@ -954,7 +949,6 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1")
 text = "00000"
 label_settings = ExtResource("28_qclxk")
 
@@ -1164,7 +1158,6 @@ libraries = {
 
 [node name="NegativeAtpWarning" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(500, 0)
-anchors_preset = 0
 offset_right = 500.0
 offset_bottom = 85.0
 DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
@@ -1172,7 +1165,6 @@ WindowTitle = "NEGATIVE_ATP_BALANCE"
 
 [node name="IslandError" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(600, 0)
-anchors_preset = 0
 offset_right = 600.0
 offset_bottom = 85.0
 HideCancelButton = true
@@ -1186,7 +1178,8 @@ offset_top = -1.41425
 offset_bottom = -1.41425
 
 [node name="OrganellePopupMenu" parent="." instance=ExtResource("47")]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.15625
 anchor_bottom = 0.183333
 offset_right = 0.0
@@ -1247,13 +1240,13 @@ text = "CLOSE"
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Current" ]]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton" to="." method="OnLightLevelButtonPressed" binds= [ "Day" ]]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Night" ]]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Average" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= [ "Structure" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane" to="." method="SetSelectionMenuTab" binds= [ "Membrane" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= [ "Behaviour" ]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton" to="." method="OnLightLevelButtonPressed" binds= ["Current"]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton" to="." method="OnLightLevelButtonPressed" binds= ["Day"]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton" to="." method="OnLightLevelButtonPressed" binds= ["Night"]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton" to="." method="OnLightLevelButtonPressed" binds= ["Average"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= ["Structure"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane" to="." method="SetSelectionMenuTab" binds= ["Membrane"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
 [connection signal="text_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/SearchBar" to="." method="OnSearchBoxTextChanged"]
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigidityChanged"]
 [connection signal="color_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker" to="." method="OnColorChanged"]

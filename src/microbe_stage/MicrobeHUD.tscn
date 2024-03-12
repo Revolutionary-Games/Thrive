@@ -1,7 +1,6 @@
-[gd_scene load_steps=100 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=99 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/RadialPopup.tscn" id="1"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" id="3"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="Texture2D" uid="uid://drrdhfwd5s8e2" path="res://assets/textures/gui/bevel/actions/EngulfEject.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="9"]
@@ -44,19 +43,19 @@
 [ext_resource type="Texture2D" uid="uid://budtxbmecqr3l" path="res://assets/textures/gui/bevel/dataValueBackground.png" id="44"]
 [ext_resource type="Texture2D" uid="uid://8d406o0epyui" path="res://assets/textures/gui/bevel/oxytoxy.png" id="45"]
 [ext_resource type="Texture2D" uid="uid://bd4c6guswatde" path="res://assets/textures/gui/bevel/LargeTwoPressed.png" id="46"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/gui/WinBox.tscn" id="53"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/gui/ExtinctionBox.tscn" id="54"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/MicrobeCheatMenu.tscn" id="55"]
+[ext_resource type="PackedScene" uid="uid://cp23vdxwoeegx" path="res://src/microbe_stage/gui/WinBox.tscn" id="53"]
+[ext_resource type="PackedScene" uid="uid://b2uw1x2g8awbf" path="res://src/microbe_stage/gui/ExtinctionBox.tscn" id="54"]
+[ext_resource type="PackedScene" uid="uid://b1ucm37efll76" path="res://src/microbe_stage/MicrobeCheatMenu.tscn" id="55"]
 [ext_resource type="PackedScene" uid="uid://uw3crqw21uu" path="res://src/microbe_stage/gui/HUDMessages.tscn" id="56"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="57"]
 [ext_resource type="PackedScene" path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" id="58"]
 [ext_resource type="PackedScene" uid="uid://bdwkyuskd3u3r" path="res://src/microbe_stage/HUDBottomBar.tscn" id="59"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" id="60"]
+[ext_resource type="PackedScene" uid="uid://g70pm5ndiqf2" path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" id="60"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessPanel.tscn" id="61"]
+[ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/new_fonts/Title-SemiBold-Bigger.tres" id="61_5q73x"]
 [ext_resource type="PackedScene" uid="uid://qwg2dluu8ow0" path="res://src/microbe_stage/PausePrompt.tscn" id="62"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/StagePrototypeConfirm.tscn" id="64"]
 [ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="65"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/EmptyFont.tres" id="66"]
 [ext_resource type="Texture2D" uid="uid://mqpv4yc0m4r5" path="res://assets/textures/gui/bevel/HealthBar.png" id="67"]
 [ext_resource type="Texture2D" uid="uid://buv5vjrf4hx0h" path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" id="68"]
 [ext_resource type="Texture2D" uid="uid://dagkk6puhnfvu" path="res://assets/textures/gui/bevel/ReproductionBar.png" id="69"]
@@ -566,7 +565,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_fonts/font = ExtResource("66")
 theme_override_styles/normal = SubResource("5")
 theme_override_styles/hover = SubResource("3")
 theme_override_styles/pressed = SubResource("4")
@@ -580,7 +578,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_fonts/font = ExtResource("66")
 theme_override_styles/normal = SubResource("9")
 theme_override_styles/hover = SubResource("7")
 theme_override_styles/pressed = SubResource("8")
@@ -942,7 +939,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_fonts/font = ExtResource("66")
 theme_override_styles/normal = SubResource("5")
 theme_override_styles/hover = SubResource("3")
 theme_override_styles/pressed = SubResource("4")
@@ -956,7 +952,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_fonts/font = ExtResource("66")
 theme_override_styles/normal = SubResource("18")
 theme_override_styles/hover = SubResource("16")
 theme_override_styles/pressed = SubResource("17")
@@ -1736,7 +1731,6 @@ offset_right = -872.0
 offset_bottom = -48.0
 
 [node name="MicrobeCheatMenu" parent="." instance=ExtResource("55")]
-anchors_preset = 0
 offset_left = 10.0
 offset_top = 30.0
 offset_right = 207.0
@@ -1850,7 +1844,7 @@ anchor_right = 1.0
 offset_top = 35.0
 offset_bottom = 59.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("3")
+label_settings = ExtResource("61_5q73x")
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -1859,7 +1853,6 @@ anchors_preset = 0
 
 [node name="StagePrototypeConfirm" parent="." instance=ExtResource("64")]
 custom_minimum_size = Vector2(450, 0)
-anchors_preset = 0
 offset_right = 300.0
 offset_bottom = 97.0
 

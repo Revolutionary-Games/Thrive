@@ -1,42 +1,35 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://d1s1rhn11i6si"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=3]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs" id="2"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="3_t3oq1"]
 
 [node name="LysosomeUpgradeGUI" type="VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -880.0
 offset_bottom = -650.0
-custom_minimum_size = Vector2( 400, 0 )
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
+theme = ExtResource("1")
+script = ExtResource("2")
 EnzymesPath = NodePath("OptionButton")
 EnzymeDescriptionPath = NodePath("Label2")
 
 [node name="Label" type="Label" parent="."]
-offset_right = 400.0
-offset_bottom = 17.0
-theme_override_fonts/font = ExtResource( 3 )
+layout_mode = 2
 text = "SELECT_ENZYME"
+label_settings = ExtResource("3_t3oq1")
 
 [node name="OptionButton" type="OptionButton" parent="."]
-offset_top = 21.0
-offset_right = 400.0
-offset_bottom = 40.0
+layout_mode = 2
 
 [node name="Spacer" type="Control" parent="."]
-offset_top = 44.0
-offset_right = 400.0
-offset_bottom = 49.0
-custom_minimum_size = Vector2( 0, 5 )
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="Label2" type="Label" parent="."]
-offset_top = 53.0
-offset_right = 400.0
-offset_bottom = 70.0
-theme_override_fonts/font = ExtResource( 3 )
-autowrap = true
+layout_mode = 2
+label_settings = ExtResource("3_t3oq1")
 
 [connection signal="item_selected" from="OptionButton" to="." method="OnEnzymeSelected"]

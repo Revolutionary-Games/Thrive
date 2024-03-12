@@ -20,7 +20,7 @@ public partial class InteractablePopup : Control
 
 #pragma warning disable CA2213
     [Export]
-    public Font InteractionButtonFont = null!;
+    public LabelSettings InteractionButtonFont = null!;
 
     private CustomWindow popup = null!;
     private Container buttonsContainer = null!;
@@ -82,7 +82,8 @@ public partial class InteractablePopup : Control
                     Localization.Translate(interactionType.GetAttribute<DescriptionAttribute>().Description),
             };
 
-            button.AddThemeFontOverride("font", InteractionButtonFont);
+            button.AddThemeFontOverride("font", InteractionButtonFont.Font);
+            button.AddThemeFontSizeOverride("font_size", InteractionButtonFont.FontSize);
 
             buttonsContainer.AddChild(button);
 

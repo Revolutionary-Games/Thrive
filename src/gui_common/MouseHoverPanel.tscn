@@ -1,14 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://u7o6febei0qr"]
+[gd_scene load_steps=7 format=3 uid="uid://u7o6febei0qr"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" id="3"]
 [ext_resource type="Script" path="res://src/gui_common/MouseHoverPanel.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://bhwhg2m8ntuvx" path="res://src/gui_common/new_fonts/Title-Bold-Smaller.tres" id="4_1ha7v"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Small.tres" id="5"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="5_ehek6"]
+[ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="5_xjvdp"]
 
 [sub_resource type="Theme" id="1"]
-default_font = ExtResource("5")
+default_font = ExtResource("5_xjvdp")
+default_font_size = 14
 
 [node name="MouseHoverPanel" type="PanelContainer"]
 custom_minimum_size = Vector2(250, 0)
@@ -36,7 +36,6 @@ mouse_filter = 2
 
 [node name="MousePos" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "AT_CURSOR"
 label_settings = ExtResource("4_1ha7v")
 horizontal_alignment = 1

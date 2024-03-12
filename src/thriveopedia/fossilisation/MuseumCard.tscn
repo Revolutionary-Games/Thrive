@@ -1,137 +1,114 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://v2omwwjlcdsq"]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=1]
-[ext_resource path="res://assets/misc/icon.png" type="Texture2D" id=2]
-[ext_resource path="res://src/thriveopedia/fossilisation/MuseumCard.cs" type="Script" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture2D" id=9]
+[ext_resource type="Texture2D" uid="uid://w21wmrogs2g5" path="res://assets/misc/icon.png" id="2"]
+[ext_resource type="LabelSettings" uid="uid://dsxjdgavbi2j5" path="res://src/gui_common/new_fonts/Body-Regular-Small-Black.tres" id="2_jn0qd"]
+[ext_resource type="Script" path="res://src/thriveopedia/fossilisation/MuseumCard.cs" id="4"]
+[ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="9"]
 
-[sub_resource type="StyleBoxFlat" id=27]
-bg_color = Color( 0, 0.129412, 0.141176, 0.752941 )
+[sub_resource type="StyleBoxEmpty" id="29"]
+
+[sub_resource type="StyleBoxFlat" id="27"]
+bg_color = Color(0, 0.129412, 0.141176, 0.752941)
 draw_center = false
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxEmpty" id=29]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.0666667, 1, 0.835294, 1 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_bottom = 3
-border_color = Color( 0, 0, 0, 1 )
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 
 [node name="MuseumCard" type="Button"]
+custom_minimum_size = Vector2(170, 182)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1110.0
 offset_bottom = -538.0
-custom_minimum_size = Vector2( 170, 182 )
-theme_override_styles/hover = SubResource( 27 )
-theme_override_styles/pressed = SubResource( 27 )
-theme_override_styles/normal = SubResource( 29 )
+theme_override_styles/normal = SubResource("29")
+theme_override_styles/hover = SubResource("27")
+theme_override_styles/pressed = SubResource("27")
 toggle_mode = true
 action_mode = 0
-script = ExtResource( 4 )
+script = ExtResource("4")
 SpeciesNameLabelPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
 SpeciesPreviewPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/PreviewImage")
 DeleteButtonPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Delete")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_top = 2
 theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 168.0
-offset_bottom = 180.0
+layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
-offset_right = 166.0
-offset_bottom = 24.0
+layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource("1")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
-offset_right = 166.0
-offset_bottom = 21.0
+layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_top = 2
 theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 164.0
-offset_bottom = 19.0
+layout_mode = 2
 mouse_filter = 1
-theme_override_colors/font_color = Color( 0, 0, 0, 1 )
-theme_override_fonts/font = ExtResource( 1 )
 text = "INSERT_TITLE"
-align = 1
+label_settings = ExtResource("2_jn0qd")
 clip_text = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 164.0
-offset_bottom = 19.0
+layout_mode = 2
 alignment = 2
 
 [node name="Delete" type="TextureButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-self_modulate = Color( 0, 0, 0, 1 )
-offset_left = 148.0
-offset_right = 162.0
-offset_bottom = 17.0
-custom_minimum_size = Vector2( 14, 14 )
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
 focus_mode = 0
 mouse_filter = 1
-texture_normal = ExtResource( 9 )
-expand = true
+texture_normal = ExtResource("9")
+ignore_texture_size = true
 stretch_mode = 5
-__meta__ = {
-"_editor_description_": "This can't be focused because there's no focus style on this and the hover style is pretty hacky"
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 24.0
-offset_right = 166.0
-offset_bottom = 178.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/margin_bottom = 5
 
 [node name="PreviewMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
-offset_right = 166.0
-offset_bottom = 149.0
+layout_mode = 2
 mouse_filter = 2
 
 [node name="PreviewImage" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin"]
-offset_right = 166.0
-offset_bottom = 149.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource( 2 )
-expand = true
+mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
 stretch_mode = 6
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]

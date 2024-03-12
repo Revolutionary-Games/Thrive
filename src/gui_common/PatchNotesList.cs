@@ -132,13 +132,13 @@ public partial class PatchNotesList : VBoxContainer
 
 #pragma warning disable CA2213
     [Export]
-    public Font TitleFont { get; set; } = null!;
+    public LabelSettings TitleFont { get; set; } = null!;
 
     [Export]
-    public Font SubHeadingFont { get; set; } = null!;
+    public LabelSettings SubHeadingFont { get; set; } = null!;
 
     [Export]
-    public Font TrailingVisitLinkFont { get; set; } = null!;
+    public LabelSettings TrailingVisitLinkFont { get; set; } = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
@@ -248,7 +248,7 @@ public partial class PatchNotesList : VBoxContainer
         var bulletPointTemplateText = Localization.Translate("PATCH_NOTE_BULLET_POINT");
         var linkVisitTemplate = Localization.Translate("PATCH_NOTE_LINK_VISIT_TEXT");
 
-        var subHeadingFontPath = SubHeadingFont.ResourcePath;
+        var subHeadingFontPath = SubHeadingFont.Font.ResourcePath;
 
         // This could use the same approach as ThriveFeedDisplayer to build only one object per frame, but
         // as this is usually empty or just shows the latest patch notes, that wouldn't help in the common case at all
@@ -286,7 +286,8 @@ public partial class PatchNotesList : VBoxContainer
             // This uses rich text purely to be clickable
             var title = customRichTextScene.Instantiate<CustomRichTextLabel>();
             title.Text = titleText;
-            title.AddThemeFontOverride("normal_font", TitleFont);
+            title.AddThemeFontOverride("normal_font", TitleFont.Font);
+            title.AddThemeFontSizeOverride("normal_font_size", TitleFont.FontSize);
 
             itemContentContainer.AddChild(title);
 
@@ -296,7 +297,7 @@ public partial class PatchNotesList : VBoxContainer
             stringBuilder.Append('\n');
             stringBuilder.Append('\n');
 
-            stringBuilder.Append($"[font={subHeadingFontPath}]");
+            stringBuilder.Append($"[font name={subHeadingFontPath} size={SubHeadingFont.FontSize}]");
             stringBuilder.Append(changesHeading);
             stringBuilder.Append('\n');
             stringBuilder.Append("[/font]");
@@ -321,7 +322,8 @@ public partial class PatchNotesList : VBoxContainer
 
                 visitLink.Text = linkVisitTemplate.FormatSafe(versionPatchNotes.ReleaseLink);
 
-                visitLink.AddThemeFontOverride("normal_font", TrailingVisitLinkFont);
+                visitLink.AddThemeFontOverride("normal_font", TrailingVisitLinkFont.Font);
+                visitLink.AddThemeFontSizeOverride("normal_font_size", TrailingVisitLinkFont.FontSize);
 
                 itemContentContainer.AddChild(visitLink);
             }

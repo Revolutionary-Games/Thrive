@@ -1,23 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cl64wvnxs6ivs"]
 
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="FontFile" id=3]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=5]
+[ext_resource type="Script" path="res://src/gui_common/dialogs/CustomConfirmationDialog.cs" id="1"]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
 
-[node name="CustomConfirmationDialog" instance=ExtResource( 2 )]
-script = ExtResource( 1 )
-Exclusive = true
+[node name="CustomConfirmationDialog" instance=ExtResource("2")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1")
+HideOnOk = true
+CenterText = true
+NodeToGiveFocusOnOpen = null
 HideCancelButton = false
 DialogText = ""
 ConfirmText = "OK"
 CancelText = "CANCEL"
-HideOnOk = true
-CenterText = true
-NodeToGiveFocusOnOpen = null
+Exclusive = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
 offset_right = 148.0
@@ -25,73 +27,58 @@ offset_bottom = 84.0
 theme_override_constants/separation = 0
 
 [node name="Spacer" type="Control" parent="VBoxContainer" index="0"]
-offset_right = 133.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" parent="VBoxContainer" index="1" instance=ExtResource( 4 )]
-offset_right = 133.0
+[node name="Label" parent="VBoxContainer" index="1" instance=ExtResource("4")]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+fit_content = true
 
 [node name="Spacer2" type="Control" parent="VBoxContainer" index="2"]
-offset_top = 22.0
-offset_right = 133.0
-offset_bottom = 22.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Spacer3" type="Control" parent="VBoxContainer" index="3"]
-offset_top = 22.0
-offset_right = 133.0
-offset_bottom = 37.0
-custom_minimum_size = Vector2( 0, 15 )
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="FocusGrabber" parent="VBoxContainer" index="4" instance=ExtResource( 5 )]
-offset_top = 37.0
-offset_right = 133.0
-offset_bottom = 37.0
-SkipOverridingFocusForElements = [ NodePath("../..") ]
+[node name="FocusGrabber" parent="VBoxContainer" index="4" instance=ExtResource("5")]
+layout_mode = 2
 Priority = 11
 NodeToGiveFocusTo = NodePath("../HBoxContainer/CancelButton")
 AlwaysOverrideFocus = true
 GrabFocusWhenBecomingVisible = true
+SkipOverridingFocusForElements = [NodePath("../..")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" index="5"]
-offset_top = 37.0
-offset_right = 133.0
-offset_bottom = 69.0
+layout_mode = 2
 
 [node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer" index="0"]
-offset_bottom = 32.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer" index="1"]
-offset_left = 4.0
-offset_right = 84.0
-offset_bottom = 32.0
-theme_override_fonts/font = ExtResource( 3 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
 text = "CANCEL"
 
 [node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer" index="2"]
-offset_left = 88.0
-offset_right = 88.0
-offset_bottom = 32.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer" index="3"]
-offset_left = 92.0
-offset_right = 129.0
-offset_bottom = 32.0
-theme_override_fonts/font = ExtResource( 3 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
 text = "OK"
 
 [node name="Spacer3" type="Control" parent="VBoxContainer/HBoxContainer" index="4"]
-offset_left = 133.0
-offset_right = 133.0
-offset_bottom = 32.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="OnCloseButtonPressed"]

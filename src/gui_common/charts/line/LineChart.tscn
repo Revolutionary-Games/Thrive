@@ -1,19 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://mmqt0mcw2if3"]
+[gd_scene load_steps=14 format=3 uid="uid://mmqt0mcw2if3"]
 
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://c8fnery2jphca" path="res://assets/textures/gui/bevel/searchButtonHover.png" id="2"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
 [ext_resource type="LabelSettings" uid="uid://csw4xjfy4y0dk" path="res://src/gui_common/new_fonts/Title-SemiBold-Small.tres" id="3_hb582"]
 [ext_resource type="Script" path="res://src/gui_common/charts/line/LineChart.cs" id="4"]
+[ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="4_f7n6i"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://c8u4uaeedwcs3" path="res://assets/textures/gui/bevel/vSeparatorUp.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://d2v0q7sf3ickp" path="res://assets/textures/gui/bevel/searchButton.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://doeuoye8slhmb" path="res://assets/textures/gui/bevel/searchButtonActive.png" id="9"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="10"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Small.tres" id="11"]
 
 [sub_resource type="Theme" id="1"]
-default_font = ExtResource("1")
+default_font = ExtResource("4_f7n6i")
+default_font_size = 12
 
 [sub_resource type="StyleBoxTexture" id="2"]
 texture = ExtResource("6")
@@ -38,9 +38,6 @@ mouse_filter = 2
 theme = ExtResource("3")
 theme_override_constants/separation = 0
 script = ExtResource("4")
-__meta__ = {
-"_edit_use_anchors_": false
-}
 HorizontalLabelPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/xAxisLabel")
 VerticalLabelPath = NodePath("VBoxContainer/yAxisLabel")
 VerticalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/Labels")
@@ -187,7 +184,7 @@ stretch_mode = 5
 custom_minimum_size = Vector2(1000, 600)
 layout_mode = 2
 Resizable = true
-exclusive = true
+Exclusive = true
 
 [node name="MarginContainer" type="MarginContainer" parent="ChartPopup"]
 layout_mode = 0
@@ -212,7 +209,7 @@ columns = 6
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("11")
+theme_override_font_sizes/font_size = 14
 text = "CLOSE"
 
 [connection signal="draw" from="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer" to="." method="RenderChart"]

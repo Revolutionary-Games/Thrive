@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4sg6uyc17d4s"]
+[gd_scene load_steps=6 format=3 uid="uid://c4sg6uyc17d4s"]
 
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Small.tres" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/new_fonts/Body-Bold-Small.tres" id="3_8errd"]
 [ext_resource type="Script" path="res://src/gui_common/art_gallery/GalleryDetailsTooltip.cs" id="4"]
@@ -65,7 +64,6 @@ custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("1")
 text = "Insert title"
 label_settings = ExtResource("5_3f83p")
 
@@ -84,7 +82,6 @@ custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("1")
 text = "Insert description"
 label_settings = ExtResource("5_3f83p")
 
@@ -103,6 +100,5 @@ custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("1")
 text = "Insert artist"
 label_settings = ExtResource("5_3f83p")

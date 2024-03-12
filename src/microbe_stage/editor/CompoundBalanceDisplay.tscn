@@ -1,11 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://sxqf3o1pkl0n"]
 
 [ext_resource type="Script" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.cs" id="1"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Small.tres" id="2"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/new_fonts/Body-Bold-Small.tres" id="2_uuwk2"]
+[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="3_oyn8i"]
 
 [sub_resource type="Theme" id="1"]
-default_font = ExtResource("2")
+default_font = ExtResource("3_oyn8i")
+default_font_size = 14
 
 [node name="CompoundBalanceDisplay" type="VBoxContainer"]
 anchors_preset = 15

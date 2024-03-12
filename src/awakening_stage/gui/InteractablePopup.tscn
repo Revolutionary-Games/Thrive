@@ -1,65 +1,63 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://bo86k7ooatxyu"]
 
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/awakening_stage/gui/InteractablePopup.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=3]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="Script" path="res://src/awakening_stage/gui/InteractablePopup.cs" id="2"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="4_ig0ml"]
 
 [node name="InteractablePopup" type="Control"]
 visible = false
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-script = ExtResource( 2 )
+script = ExtResource("2")
 PopupPath = NodePath("CustomWindow")
 ButtonsContainerPath = NodePath("CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer/ButtonContainer")
 CancelButtonPath = NodePath("CustomWindow/VBoxContainer/Cancel")
 ExtraInfoLabelPath = NodePath("CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer/ExtraInfo")
-InteractionButtonFont = ExtResource( 3 )
+InteractionButtonFont = ExtResource("4_ig0ml")
 
-[node name="CustomWindow" parent="." instance=ExtResource( 1 )]
+[node name="CustomWindow" parent="." instance=ExtResource("1")]
+anchors_preset = 0
 offset_right = 0.0
 offset_bottom = 0.0
-Exclusive = true
 Resizable = true
+Exclusive = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CustomWindow"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-custom_minimum_size = Vector2( 300, 400 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CustomWindow/VBoxContainer"]
-offset_right = 300.0
-offset_bottom = 361.0
+layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
-scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CustomWindow/VBoxContainer/ScrollContainer"]
-offset_right = 300.0
-offset_bottom = 361.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ExtraInfo" type="Label" parent="CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer"]
 visible = false
-offset_right = 40.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 3 )
-autowrap = true
+label_settings = ExtResource("4_ig0ml")
 
 [node name="ButtonContainer" type="VBoxContainer" parent="CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer"]
-offset_right = 300.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
 
 [node name="Cancel" type="Button" parent="CustomWindow/VBoxContainer"]
-offset_left = 105.0
-offset_top = 365.0
-offset_right = 194.0
-offset_bottom = 400.0
+layout_mode = 2
 size_flags_horizontal = 4
 text = "CANCEL"
 

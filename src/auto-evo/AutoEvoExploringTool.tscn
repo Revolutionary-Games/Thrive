@@ -1,30 +1,28 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=3 uid="uid://cgryi0yvh11d8"]
 
-[ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="FontFile" id=4]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="FontFile" id=6]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="FontFile" id=7]
-[ext_resource path="res://assets/concept_art/even-more-cells.jpg" type="Texture2D" id=8]
-[ext_resource path="res://src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=12]
-[ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture2D" id=18]
-[ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture2D" id=19]
-[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=20]
-[ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=21]
+[ext_resource type="Script" path="res://src/auto-evo/AutoEvoExploringTool.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
+[ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/new_fonts/Body-Bold-Smaller.tres" id="5_6c001"]
+[ext_resource type="Texture2D" uid="uid://djklaunps1oyd" path="res://assets/concept_art/even-more-cells.jpg" id="8"]
+[ext_resource type="PackedScene" uid="uid://rfg25u72afai" path="res://src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="11"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/new_fonts/Body-Regular-Smaller.tres" id="11_crtm0"]
+[ext_resource type="Script" path="res://src/gui_common/CustomDropDown.cs" id="12"]
+[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="13"]
+[ext_resource type="PackedScene" path="res://src/auto-evo/EvolutionaryTree.tscn" id="14"]
+[ext_resource type="PackedScene" path="res://src/gui_common/DraggableScrollContainer.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="17"]
+[ext_resource type="Texture2D" uid="uid://b84h4mjojeb7q" path="res://assets/textures/gui/bevel/plusButton.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://bwcvbcn15kctq" path="res://assets/textures/gui/bevel/plusButtonHover.png" id="19"]
+[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="20"]
+[ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="21"]
 
-[sub_resource type="ButtonGroup" id=1]
-resource_name = "TabsButtonGroup"
+[sub_resource type="ButtonGroup" id="ButtonGroup_cxjso"]
 
 [node name="AutoEvoExploringTool" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 WorldEditorPath = NodePath("GUI/VBoxContainer/WorldEditor")
 ConfigEditorPath = NodePath("GUI/VBoxContainer/ConfigEditor")
 HistoryReportSplitPath = NodePath("GUI/VBoxContainer/HistoryReportSplit")
@@ -75,751 +73,528 @@ ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
 ExportSuccessNotificationDialogPath = NodePath("ExportSuccessNotificationDialog")
 
 [node name="BackGround" type="TextureRect" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 8 )
-expand = true
+texture = ExtResource("8")
+expand_mode = 1
 stretch_mode = 7
 
 [node name="GUI" type="MarginContainer" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 2 )
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_top = 30
+theme = ExtResource("2")
 theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
-offset_left = 50.0
-offset_top = 30.0
-offset_right = 1230.0
-offset_bottom = 690.0
+layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TabButtons" parent="GUI/VBoxContainer" instance=ExtResource( 21 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1180.0
-offset_bottom = 35.0
+[node name="TabButtons" parent="GUI/VBoxContainer" instance=ExtResource("21")]
+layout_mode = 2
 
 [node name="WorldButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
-offset_right = 79.0
-offset_bottom = 35.0
+layout_mode = 2
 toggle_mode = true
-pressed = true
-group = SubResource( 1 )
+button_pressed = true
+button_group = SubResource("ButtonGroup_cxjso")
 text = "WORLD"
 
 [node name="ConfigButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
-offset_left = 83.0
-offset_right = 166.0
-offset_bottom = 35.0
+layout_mode = 2
 toggle_mode = true
-group = SubResource( 1 )
+button_group = SubResource("ButtonGroup_cxjso")
 text = "CONFIG"
 
 [node name="MapButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
-offset_left = 170.0
-offset_right = 221.0
-offset_bottom = 35.0
+layout_mode = 2
 toggle_mode = true
-group = SubResource( 1 )
+button_group = SubResource("ButtonGroup_cxjso")
 text = "MAP"
 
 [node name="ReportButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
-offset_left = 225.0
-offset_right = 309.0
-offset_bottom = 35.0
+layout_mode = 2
 toggle_mode = true
-group = SubResource( 1 )
+button_group = SubResource("ButtonGroup_cxjso")
 text = "REPORT"
 
 [node name="ViewerButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
-offset_left = 313.0
-offset_right = 395.0
-offset_bottom = 35.0
+layout_mode = 2
 toggle_mode = true
-group = SubResource( 1 )
+button_group = SubResource("ButtonGroup_cxjso")
 text = "VIEWER"
 
 [node name="WorldEditor" type="HBoxContainer" parent="GUI/VBoxContainer"]
-offset_top = 45.0
-offset_right = 1180.0
-offset_bottom = 615.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
 [node name="AllWorldsStatPanel" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor"]
-offset_right = 413.0
-offset_bottom = 570.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 412.0
-offset_bottom = 569.0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
+layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 401.0
-offset_bottom = 558.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer"]
-offset_right = 391.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource( 4 )
+layout_mode = 2
 text = "ALL_WORLDS_GENERAL_STATISTICS"
+label_settings = ExtResource("5_6c001")
 
-[node name="AllWorldsStatLabel" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer" instance=ExtResource( 5 )]
-offset_top = 24.0
-offset_right = 391.0
-offset_bottom = 548.0
-focus_mode = 2
+[node name="AllWorldsStatLabel" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer" instance=ExtResource("5")]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-fit_content_height = false
+focus_mode = 2
 selection_enabled = true
 
 [node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor"]
-offset_left = 433.0
-offset_right = 847.0
-offset_bottom = 570.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 413.0
-offset_bottom = 569.0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
+layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 402.0
-offset_bottom = 558.0
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer"]
-offset_right = 392.0
-offset_bottom = 548.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
-offset_right = 392.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource( 4 )
+layout_mode = 2
 text = "WORLD_GENERAL_STATISTICS"
+label_settings = ExtResource("5_6c001")
 
-[node name="CurrentWorldStatLabel" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 5 )]
-offset_top = 24.0
-offset_right = 392.0
-offset_bottom = 548.0
-focus_mode = 2
+[node name="CurrentWorldStatLabel" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5")]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-fit_content_height = false
+focus_mode = 2
 selection_enabled = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor"]
-offset_left = 867.0
-offset_right = 1180.0
-offset_bottom = 570.0
+layout_mode = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer"]
-offset_right = 313.0
-offset_bottom = 42.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 312.0
-offset_bottom = 41.0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
+layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 301.0
-offset_bottom = 30.0
+layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
-offset_right = 181.0
-offset_bottom = 20.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 4 )
 text = "CURRENT_WORLD"
+label_settings = ExtResource("5_6c001")
 
 [node name="WorldsListMenu" type="MenuButton" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
-offset_left = 201.0
-offset_right = 251.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 50, 0 )
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 focus_mode = 2
 text = "0"
 flat = false
-script = ExtResource( 12 )
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+script = ExtResource("12")
 
 [node name="NewWorldButton" type="TextureButton" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
-offset_left = 271.0
-offset_right = 291.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 20, 20 )
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
 tooltip_text = "INIT_NEW_WORLD_TOOLTIP"
-texture_normal = ExtResource( 18 )
-texture_pressed = ExtResource( 19 )
-texture_hover = ExtResource( 19 )
-expand = true
-__meta__ = {
-"_editor_description_": ""
-}
+texture_normal = ExtResource("18")
+texture_pressed = ExtResource("19")
+texture_hover = ExtResource("19")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Control" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer"]
-offset_top = 46.0
-offset_right = 313.0
-offset_bottom = 138.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer"]
-offset_top = 142.0
-offset_right = 313.0
-offset_bottom = 570.0
-custom_minimum_size = Vector2( 310, 0 )
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 312.0
-offset_bottom = 427.0
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_top = 20
+layout_mode = 2
 theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer"]
-offset_left = 15.0
-offset_top = 20.0
-offset_right = 296.0
-offset_bottom = 406.0
+layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_right = 281.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource( 4 )
+layout_mode = 2
 text = "AUTO_EVO_STATUS_COLON"
+label_settings = ExtResource("5_6c001")
 
 [node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 30.0
-offset_right = 281.0
-offset_bottom = 50.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 7 )
 text = "READY"
-align = 2
-__meta__ = {
-"_editor_description_": ""
-}
+label_settings = ExtResource("11_crtm0")
 
 [node name="HSeparator3" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 60.0
-offset_right = 281.0
-offset_bottom = 64.0
+layout_mode = 2
 
 [node name="RunStep" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 74.0
-offset_right = 281.0
-offset_bottom = 106.0
-theme_override_fonts/font = ExtResource( 6 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
 text = "RUN_ONE_STEP"
 
 [node name="RunGeneration" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 116.0
-offset_right = 281.0
-offset_bottom = 148.0
-theme_override_fonts/font = ExtResource( 6 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
 text = "FINISH_ONE_GENERATION"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 158.0
-offset_right = 281.0
-offset_bottom = 190.0
+layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="FinishXGenerationsSpin" type="SpinBox" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-offset_right = 75.0
-offset_bottom = 32.0
-custom_minimum_size = Vector2( 75, 0 )
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
 min_value = 2.0
 value = 10.0
-align = 1
 
 [node name="FinishXGenerations" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-offset_left = 85.0
-offset_right = 281.0
-offset_bottom = 32.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 6 )
+theme_override_font_sizes/font_size = 18
 text = "Finish 10 Generations"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 200.0
-offset_right = 281.0
-offset_bottom = 232.0
+layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="RunXWorldsSpin" type="SpinBox" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
-offset_right = 75.0
-offset_bottom = 32.0
-custom_minimum_size = Vector2( 75, 0 )
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
 min_value = 2.0
 value = 5.0
-align = 1
 
 [node name="RunXWorlds" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
-offset_left = 85.0
-offset_right = 281.0
-offset_bottom = 32.0
-tooltip_text = "RUN_X_WORLDS_TOOLTIP"
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 6 )
+tooltip_text = "RUN_X_WORLDS_TOOLTIP"
+theme_override_font_sizes/font_size = 18
 text = "Run 5 worlds"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="Abort" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 242.0
-offset_right = 281.0
-offset_bottom = 274.0
-theme_override_fonts/font = ExtResource( 6 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
 text = "ABORT"
 
 [node name="HSeparator2" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 284.0
-offset_right = 281.0
-offset_bottom = 288.0
+layout_mode = 2
 
 [node name="PlayWithThis" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 298.0
-offset_right = 281.0
-offset_bottom = 330.0
-theme_override_fonts/font = ExtResource( 6 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
 text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="HSeparator" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 340.0
-offset_right = 281.0
-offset_bottom = 344.0
+layout_mode = 2
 
 [node name="WorldExportButton" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 354.0
-offset_right = 281.0
-offset_bottom = 386.0
+layout_mode = 2
 tooltip_text = "EXPORT_ALL_WORLDS_TOOLTIP"
-theme_override_fonts/font = ExtResource( 6 )
+theme_override_font_sizes/font_size = 18
 text = "EXPORT_ALL_WORLDS"
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="ConfigEditor" type="Control" parent="GUI/VBoxContainer"]
 visible = false
-offset_top = 564.0
-offset_right = 1180.0
-offset_bottom = 615.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/ConfigEditor"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 1179.0
-offset_bottom = 50.0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
+layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 1168.0
-offset_bottom = 39.0
-scroll_horizontal_enabled = false
+layout_mode = 2
 
 [node name="ConfigEditorContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer"]
-offset_right = 1158.0
-offset_bottom = 527.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="AllowSpeciesToNotMutate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
-offset_right = 1152.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource( 7 )
+[node name="AllowSpeciesToNotMutate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "ALLOW_SPECIES_TO_NOT_MUTATE"
 
-[node name="AllowSpeciesToNotMigrate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
-offset_top = 24.0
-offset_right = 1152.0
-offset_bottom = 44.0
-theme_override_fonts/font = ExtResource( 7 )
+[node name="AllowSpeciesToNotMigrate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "ALLOW_SPECIES_TO_NOT_MIGRATE"
 
 [node name="BiodiversityAttemptFillChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-offset_top = 48.0
-offset_right = 1152.0
-offset_bottom = 79.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
-offset_top = 5.0
-offset_right = 1076.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 7 )
 text = "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+label_settings = ExtResource("11_crtm0")
 
 [node name="BiodiversityAttemptFillChance" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
-offset_left = 1080.0
-offset_right = 1152.0
-offset_bottom = 31.0
+layout_mode = 2
 max_value = 1.0
 step = 0.01
 
 [node name="BiodiversityFromNeighbourPatchChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-offset_top = 83.0
-offset_right = 1152.0
-offset_bottom = 114.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
-offset_top = 5.0
-offset_right = 1076.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 7 )
 text = "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+label_settings = ExtResource("11_crtm0")
 
 [node name="BiodiversityFromNeighbourPatchChance" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
-offset_left = 1080.0
-offset_right = 1152.0
-offset_bottom = 31.0
+layout_mode = 2
 max_value = 1.0
 step = 0.01
 
-[node name="BiodiversityNearbyPatchIsFreePopulation" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
-offset_top = 118.0
-offset_right = 1152.0
-offset_bottom = 138.0
-theme_override_fonts/font = ExtResource( 7 )
+[node name="BiodiversityNearbyPatchIsFreePopulation" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 
-[node name="BiodiversitySplitIsMutated" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
-offset_top = 142.0
-offset_right = 1152.0
-offset_bottom = 162.0
-theme_override_fonts/font = ExtResource( 7 )
+[node name="BiodiversitySplitIsMutated" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "BIODIVERSITY_SPLIT_IS_MUTATED"
 
 [node name="LowBiodiversityLimit" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-offset_top = 166.0
-offset_right = 1152.0
-offset_bottom = 197.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
-offset_top = 5.0
-offset_right = 1076.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 7 )
 text = "LOW_BIODIVERSITY_LIMIT"
+label_settings = ExtResource("11_crtm0")
 
 [node name="LowBiodiversityLimit" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
-offset_left = 1080.0
-offset_right = 1152.0
-offset_bottom = 31.0
+layout_mode = 2
 
 [node name="MaximumSpeciesInPatch" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-offset_top = 201.0
-offset_right = 1152.0
-offset_bottom = 232.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
-offset_top = 5.0
-offset_right = 1076.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 7 )
 text = "MAXIMUM_SPECIES_IN_PATCH"
+label_settings = ExtResource("11_crtm0")
 
 [node name="MaximumSpeciesInPatch" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
-offset_left = 1080.0
-offset_right = 1152.0
-offset_bottom = 31.0
+layout_mode = 2
 
 [node name="MoveAttemptsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-offset_top = 236.0
-offset_right = 1152.0
-offset_bottom = 267.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
-offset_top = 5.0
-offset_right = 1076.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 7 )
 text = "MOVE_ATTEMPTS_PER_SPECIES"
+label_settings = ExtResource("11_crtm0")
 
 [node name="MoveAttemptsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
-offset_left = 1080.0
-offset_right = 1152.0
-offset_bottom = 31.0
+layout_mode = 2
 
 [node name="MutationsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-offset_top = 271.0
-offset_right = 1152.0
-offset_bottom = 302.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
-offset_top = 5.0
-offset_right = 1076.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 7 )
 text = "MUTATIONS_PER_SPECIES"
+label_settings = ExtResource("11_crtm0")
 
 [node name="MutationsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
-offset_left = 1080.0
-offset_right = 1152.0
-offset_bottom = 31.0
+layout_mode = 2
 
 [node name="NewBiodiversityIncreasingSpeciesPopulation" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-offset_top = 306.0
-offset_right = 1152.0
-offset_bottom = 337.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
-offset_top = 5.0
-offset_right = 1076.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 7 )
 text = "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+label_settings = ExtResource("11_crtm0")
 
 [node name="NewBiodiversityIncreasingSpeciesPopulation" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
-offset_left = 1080.0
-offset_right = 1152.0
-offset_bottom = 31.0
+layout_mode = 2
 max_value = 1000.0
 step = 10.0
 
-[node name="ProtectMigrationsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
-offset_top = 341.0
-offset_right = 1152.0
-offset_bottom = 361.0
-theme_override_fonts/font = ExtResource( 7 )
+[node name="ProtectMigrationsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 
-[node name="ProtectNewCellsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
-offset_top = 365.0
-offset_right = 1152.0
-offset_bottom = 385.0
-theme_override_fonts/font = ExtResource( 7 )
+[node name="ProtectNewCellsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 
-[node name="RefundMigrationsInExtinctions" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
-offset_top = 389.0
-offset_right = 1152.0
-offset_bottom = 409.0
-theme_override_fonts/font = ExtResource( 7 )
+[node name="RefundMigrationsInExtinctions" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 
-[node name="StrictNicheCompetition" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
-offset_top = 413.0
-offset_right = 1152.0
-offset_bottom = 433.0
-theme_override_fonts/font = ExtResource( 7 )
+[node name="StrictNicheCompetition" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "STRICT_NICHE_COMPETITION"
 
 [node name="SpeciesSplitByMutationThresholdPopulationAmount" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-offset_top = 437.0
-offset_right = 1152.0
-offset_bottom = 468.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
-offset_top = 5.0
-offset_right = 1076.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 7 )
 text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+label_settings = ExtResource("11_crtm0")
 
 [node name="SpeciesSplitByMutationThresholdPopulationAmount" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
-offset_left = 1080.0
-offset_right = 1152.0
-offset_bottom = 31.0
+layout_mode = 2
 max_value = 1000.0
 step = 10.0
 
 [node name="SpeciesSplitByMutationThresholdPopulationFraction" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-offset_top = 472.0
-offset_right = 1152.0
-offset_bottom = 503.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
-offset_top = 5.0
-offset_right = 1076.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 7 )
 text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+label_settings = ExtResource("11_crtm0")
 
 [node name="SpeciesSplitByMutationThresholdPopulationFraction" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
-offset_left = 1080.0
-offset_right = 1152.0
-offset_bottom = 31.0
+layout_mode = 2
 
-[node name="UseBiodiversityForceSplit" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
-offset_top = 507.0
-offset_right = 1152.0
-offset_bottom = 527.0
-theme_override_fonts/font = ExtResource( 7 )
+[node name="UseBiodiversityForceSplit" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "USE_BIODIVERSITY_FORCE_SPLIT"
 
 [node name="HistoryReportSplit" type="VBoxContainer" parent="GUI/VBoxContainer"]
 visible = false
-offset_top = 335.0
-offset_right = 1180.0
-offset_bottom = 615.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
 [node name="UpperSplit" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit"]
-offset_right = 1180.0
-offset_bottom = 42.0
+layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="GenerationPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit"]
-offset_right = 580.0
-offset_bottom = 42.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 579.0
-offset_bottom = 41.0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
+layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 568.0
-offset_bottom = 30.0
+layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer"]
-offset_right = 111.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource( 4 )
+layout_mode = 2
 text = "GENERATIONS"
+label_settings = ExtResource("5_6c001")
 
 [node name="HistoryListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer"]
-offset_left = 131.0
-offset_right = 310.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 100, 0 )
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 text = "SELECT_A_GENERATION"
 flat = false
-script = ExtResource( 12 )
-__meta__ = {
-"_editor_description_": ""
-}
+script = ExtResource("12")
 
 [node name="SpeciesSelectPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit"]
-offset_left = 600.0
-offset_right = 1180.0
-offset_bottom = 42.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 579.0
-offset_bottom = 41.0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
+layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 568.0
-offset_bottom = 30.0
+layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
-offset_right = 62.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource( 4 )
+layout_mode = 2
 text = "SPECIES"
+label_settings = ExtResource("5_6c001")
 
 [node name="SpeciesListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
-offset_left = 82.0
-offset_right = 225.0
-offset_bottom = 20.0
+layout_mode = 2
 focus_mode = 2
 text = "SELECT_A_SPECIES"
 flat = false
-script = ExtResource( 12 )
-__meta__ = {
-"_editor_description_": ""
-}
+script = ExtResource("12")
 
 [node name="PatchMap" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
-offset_top = 52.0
-offset_right = 1180.0
-offset_bottom = 570.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -827,101 +602,75 @@ size_flags_vertical = 3
 theme_override_constants/separation = 20
 
 [node name="PatchMap" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer"]
-offset_right = 814.0
-offset_bottom = 228.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 813.0
-offset_bottom = 227.0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
+layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer" instance=ExtResource( 16 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 802.0
-offset_bottom = 216.0
+[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer" instance=ExtResource("16")]
+layout_mode = 2
 ContentPath = NodePath("PatchMapDrawer")
 
-[node name="PatchMapDrawer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" instance=ExtResource( 13 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 792.0
-offset_bottom = 206.0
+[node name="PatchMapDrawer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" instance=ExtResource("13")]
+layout_mode = 2
 DrawDefaultMapIfEmpty = false
 
-[node name="PatchDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer" instance=ExtResource( 17 )]
-offset_left = 834.0
-offset_right = 1180.0
-offset_bottom = 518.0
+[node name="PatchDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer" instance=ExtResource("17")]
+layout_mode = 2
 MoveToPatchButtonVisible = false
 
 [node name="Report" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
 visible = false
-offset_top = 52.0
-offset_right = 1180.0
-offset_bottom = 280.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ResultsPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 1179.0
-offset_bottom = 227.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 1168.0
-offset_bottom = 216.0
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer"]
-offset_right = 1158.0
-offset_bottom = 206.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label2" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-offset_right = 1158.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource( 4 )
+layout_mode = 2
 text = "AUTO_EVO_RESULTS"
+label_settings = ExtResource("5_6c001")
 
-[node name="ResultsLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
-offset_top = 24.0
-offset_right = 1158.0
-offset_bottom = 46.0
+[node name="ResultsLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+layout_mode = 2
 
 [node name="Viewer" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
 visible = false
-offset_top = 52.0
-offset_right = 1180.0
-offset_bottom = 280.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -929,96 +678,71 @@ size_flags_vertical = 3
 theme_override_constants/separation = 20
 
 [node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
-offset_right = 808.0
-offset_bottom = 228.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 807.0
-offset_bottom = 227.0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
+layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 796.0
-offset_bottom = 216.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-offset_right = 764.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource( 4 )
+layout_mode = 2
 text = "EVOLUTIONARY_TREE"
+label_settings = ExtResource("5_6c001")
 
-[node name="EvolutionaryTree" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 14 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 24.0
-offset_right = 786.0
-offset_bottom = 206.0
+[node name="EvolutionaryTree" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
-offset_left = 806.0
-offset_right = 1180.0
-offset_bottom = 228.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 351.0
-offset_bottom = 227.0
-custom_minimum_size = Vector2( 350, 0 )
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource( 9 )]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 362.0
-offset_bottom = 346.0
+[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("9")]
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
-offset_top = 625.0
-offset_right = 1180.0
-offset_bottom = 660.0
+layout_mode = 2
 
 [node name="BackButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer"]
-offset_right = 62.0
-offset_bottom = 35.0
+layout_mode = 2
 text = "BACK"
 
-[node name="FocusGrabber" parent="GUI/VBoxContainer/HBoxContainer" instance=ExtResource( 20 )]
-offset_left = 66.0
-offset_right = 66.0
-offset_bottom = 35.0
+[node name="FocusGrabber" parent="GUI/VBoxContainer/HBoxContainer" instance=ExtResource("20")]
+layout_mode = 2
 NodeToGiveFocusTo = NodePath("../BackButton")
 
-[node name="ExitConfirmationDialog" parent="." instance=ExtResource( 11 )]
-custom_minimum_size = Vector2( 400, 0 )
-WindowTitle = "CONFIRM_EXIT"
+[node name="ExitConfirmationDialog" parent="." instance=ExtResource("11")]
+custom_minimum_size = Vector2(400, 0)
 DialogText = "RETURN_TO_MENU_WARNING"
+WindowTitle = "CONFIRM_EXIT"
 
-[node name="ExportSuccessNotificationDialog" parent="." instance=ExtResource( 11 )]
-custom_minimum_size = Vector2( 400, 0 )
+[node name="ExportSuccessNotificationDialog" parent="." instance=ExtResource("11")]
+custom_minimum_size = Vector2(400, 0)
+HideCancelButton = true
 WindowTitle = "EXPORT_SUCCESS"
 Movable = false
-HideCancelButton = true
 
-[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/WorldButton" to="." method="ChangeTab" binds= [ "World" ]]
-[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ "Config" ]]
-[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/MapButton" to="." method="ChangeTab" binds= [ "Map" ]]
-[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ "Report" ]]
-[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ "Viewer" ]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/WorldButton" to="." method="ChangeTab" binds= ["World"]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= ["Config"]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/MapButton" to="." method="ChangeTab" binds= ["Map"]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= ["Report"]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= ["Viewer"]]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/NewWorldButton" to="." method="InitNewWorld"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunGeneration" to="." method="OnFinishOneGenerationButtonPressed"]

@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/general/OptionsMenu.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="4"]
 [ext_resource type="Script" path="res://src/gui_common/VersionNumber.cs" id="5"]
 [ext_resource type="Script" path="res://src/general/MainMenu.cs" id="6"]
 [ext_resource type="Texture2D" uid="uid://dv5ipphdtx82d" path="res://assets/textures/gui/BG_Menu02.png" id="7"]
@@ -11,12 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://c4w1n4rgao7br" path="res://assets/textures/gui/BG_Menu01.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://d03rhbygf4qvw" path="res://assets/textures/gui/BG_Menu03.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://dpxsicy6au2mh" path="res://assets/misc/thrive_logo_big.png" id="10"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CreditsScroll.tscn" id="11"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/LicensesDisplay.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://cqwy12d33agr4" path="res://src/gui_common/CreditsScroll.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://c120hjc04sice" path="res://src/gui_common/dialogs/LicensesDisplay.tscn" id="12"]
 [ext_resource type="Texture2D" uid="uid://bv0644lcfansy" path="res://assets/textures/gui/social_media/discord.png" id="13"]
-[ext_resource type="PackedScene" path="res://src/modding/ModManager.tscn" id="14"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="15"]
-[ext_resource type="PackedScene" path="res://src/gui_common/art_gallery/GalleryViewer.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://d06pkd2hx1syf" path="res://src/modding/ModManager.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="15"]
+[ext_resource type="PackedScene" uid="uid://dt2b7uvqkvrng" path="res://src/gui_common/art_gallery/GalleryViewer.tscn" id="17"]
 [ext_resource type="PackedScene" uid="uid://b0315b3i5bs5s" path="res://src/general/NewGameSettings.tscn" id="18"]
 [ext_resource type="Texture2D" uid="uid://ciclkggyignhj" path="res://assets/textures/gui/social_media/youtubeHover.png" id="19"]
 [ext_resource type="Texture2D" uid="uid://m2p4ad5ej2xn" path="res://assets/textures/gui/social_media/youtube.png" id="20"]
@@ -47,11 +47,11 @@
 [ext_resource type="Texture2D" uid="uid://bpb83abxkwuoi" path="res://assets/textures/gui/social_media/revolutionaryGames.png" id="46"]
 [ext_resource type="Texture2D" uid="uid://cv8wlkju42uh3" path="res://assets/textures/gui/social_media/revolutionaryGamesActive.png" id="47"]
 [ext_resource type="Texture2D" uid="uid://cyk5xafa582ww" path="res://assets/textures/gui/social_media/revolutionaryGamesHover.png" id="48"]
-[ext_resource type="PackedScene" path="res://src/thriveopedia/Thriveopedia.tscn" id="49"]
+[ext_resource type="PackedScene" uid="uid://bt4wq0ddch84i" path="res://src/thriveopedia/Thriveopedia.tscn" id="49"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="56"]
 [ext_resource type="PackedScene" uid="uid://cpp1dl8aiumt7" path="res://src/gui_common/ThriveFeedDisplayer.tscn" id="57"]
 [ext_resource type="PackedScene" uid="uid://d0tfe6i1offy" path="res://src/gui_common/PatchNotesDisplayer.tscn" id="58"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.tscn" id="59"]
+[ext_resource type="PackedScene" uid="uid://3vnrqlyumqtd" path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.tscn" id="59"]
 
 [sub_resource type="StyleBoxFlat" id="2"]
 content_margin_left = 5.0
@@ -528,7 +528,7 @@ theme_override_styles/panel = SubResource("2")
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 267.0
-offset_bottom = 456.0
+offset_bottom = 386.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer"]
 layout_mode = 2
@@ -758,19 +758,13 @@ layout_mode = 1
 [node name="Thriveopedia" parent="." instance=ExtResource("49")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="LicensesDisplay" parent="." instance=ExtResource("12")]
-layout_mode = 3
-anchors_preset = 0
 offset_top = 28.0
 offset_bottom = 628.0
 
 [node name="GalleryViewer" parent="." instance=ExtResource("17")]
 layout_mode = 1
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -787,9 +781,7 @@ size_flags_vertical = 3
 theme = ExtResource("1")
 
 [node name="CreditsScroll" parent="CreditsView" instance=ExtResource("11")]
-layout_mode = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
 AutoStart = false
 
 [node name="Back" type="Button" parent="CreditsView"]
@@ -814,9 +806,6 @@ NodeToGiveFocusTo = NodePath("../Back")
 [node name="ModManager" parent="." instance=ExtResource("14")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 libraries = {
@@ -825,8 +814,6 @@ libraries = {
 
 [node name="GLES2Popup" parent="." instance=ExtResource("4")]
 custom_minimum_size = Vector2(680, 0)
-layout_mode = 3
-anchors_preset = 0
 offset_top = 28.0
 offset_right = 680.0
 offset_bottom = 148.0
@@ -836,8 +823,6 @@ WindowTitle = "GLES2_MODE_WARNING"
 
 [node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(550, 0)
-layout_mode = 3
-anchors_preset = 0
 offset_right = 163.0
 offset_bottom = 97.0
 DialogType = 1
@@ -849,8 +834,6 @@ Exclusive = false
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource("4")]
 custom_minimum_size = Vector2(550, 370)
-layout_mode = 3
-anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 HideCancelButton = true
@@ -859,16 +842,12 @@ WindowTitle = "SAFE_MODE_TITLE"
 
 [node name="ModFailureDialog" parent="." instance=ExtResource("15")]
 custom_minimum_size = Vector2(400, 350)
-layout_mode = 3
-anchors_preset = 0
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 ExceptionInfo = ""
 WindowTitle = "MOD_LOAD_ERRORS"
 
 [node name="ThanksForBuyingDialog" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(500, 0)
-layout_mode = 3
-anchors_preset = 0
 offset_right = 163.0
 offset_bottom = 97.0
 NoticeType = 1
@@ -879,8 +858,6 @@ WindowTitle = "THANK_YOU_TITLE"
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource("4")]
 custom_minimum_size = Vector2(500, 0)
-layout_mode = 3
-anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 HideCancelButton = true
@@ -889,8 +866,6 @@ WindowTitle = "STEAM_INIT_FAILED"
 
 [node name="LowPerformanceDialog" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(500, 0)
-layout_mode = 3
-anchors_preset = 0
 NoticeType = 2
 DialogType = 1
 PermanentDismissType = 1

@@ -40,7 +40,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
 #pragma warning disable CA2213
     private PackedScene modifierInfoScene = null!;
-    private Font latoBoldFont = null!;
+    private LabelSettings noProcessesFont = null!;
 
     private Label? nameLabel;
     private Label? mpLabel;
@@ -179,7 +179,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         moreInfo = GetNode<VBoxContainer>(MoreInfoPath);
 
         modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
-        latoBoldFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Bold-Smaller.tres");
+        noProcessesFont = GD.Load<LabelSettings>("res://src/gui_common/new_fonts/Body-Bold-Smaller.tres");
 
         UpdateName();
         UpdateDescription();
@@ -232,9 +232,12 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         {
             processList.QueueFreeChildren();
 
-            var noProcessLabel = new Label();
-            noProcessLabel.AddThemeFontOverride("font", latoBoldFont);
-            noProcessLabel.Text = Localization.Translate("NO_ORGANELLE_PROCESSES");
+            var noProcessLabel = new Label
+            {
+                LabelSettings = noProcessesFont,
+                Text = "NO_ORGANELLE_PROCESSES",
+            };
+
             processList.AddChild(noProcessLabel);
             return;
         }

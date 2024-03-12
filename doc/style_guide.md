@@ -566,7 +566,7 @@ Godot usage
 
 - We have rewritten several controls to workaround Godot bugs or limitations,
   and add custom features. All these rewritten/customized controls are placed
-  in "res://src/gui_common/". Currently there are `CustomCheckBox`,
+  in `res://src/gui_common/`. Currently there are `CustomCheckBox`,
   `TopLevelContainer`, `CustomWindow`, `CustomConfirmationDialog`, `ErrorDialog`,
   `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
   `TweakedColourPicker`. Consider using these custom types rather than the
@@ -605,12 +605,17 @@ Godot usage
   code.
 
 - When using fonts, don't directly load the .ttf file with an embedded
-  font in a scene file. Instead create a font definition in
+  font in a scene file. Instead create a label settings in
   `src/gui_common/fonts` folder and use that. This is needed because
-  all fonts must have fallback fonts defined for translations that use
-  character sets that aren't in the main fonts, for example
+  fonts need to have settings like fallback fonts set, for example
   Chinese. All fonts should be TrueType (`.ttf`) and stored in
-  `assets/fonts`.
+  `assets/fonts`. For variable weight fonts the variants created from
+  the font should be placed in `assets/fonts/variants`. For buttons
+  that cannot use label settings, it is preferrably to just set a
+  theme font size override, but when really needed the override font
+  can be set, but care needs to be taken that this points to a proper
+  font. For variable weight fonts only the variants should be used and
+  not the base font directly.
 
 - All images used in the GUI should have mipmaps on in the import
   options.

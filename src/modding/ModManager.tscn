@@ -1,24 +1,27 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://d06pkd2hx1syf"]
 
-[ext_resource path="res://src/modding/ModManager.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="FontFile" id=5]
-[ext_resource path="res://src/modding/NewModGUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="FontFile" id=8]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="FontFile" id=9]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="FontFile" id=10]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="FontFile" id=11]
-[ext_resource path="res://src/modding/ModUploader.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=13]
+[ext_resource type="Script" path="res://src/modding/ModManager.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="4"]
+[ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/new_fonts/Body-Regular-AlmostSmall.tres" id="4_sp5px"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="5_b1wkc"]
+[ext_resource type="PackedScene" uid="uid://df5b2gnvubofe" path="res://src/modding/NewModGUI.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="7"]
+[ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/new_fonts/Body-Bold-Smaller.tres" id="10_m12ca"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/new_fonts/Body-Regular-Smaller.tres" id="11_kax5m"]
+[ext_resource type="PackedScene" uid="uid://ehx86lo13kcg" path="res://src/modding/ModUploader.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="13"]
 
 [node name="ModManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 2 )
-script = ExtResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
 LeftArrowPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Left")
 RightArrowPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Right")
 AvailableModsContainerPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Left/AvailableMods")
@@ -62,6 +65,7 @@ ModErrorDialogPath = NodePath("LoadUnloadErrors")
 RestartRequiredPath = NodePath("RestartRequired")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -71,523 +75,366 @@ offset_right = -16.0
 offset_bottom = -6.0
 
 [node name="Back" type="Button" parent="HBoxContainer"]
-offset_right = 150.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 150, 40 )
-mouse_filter = 1
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 text = "BACK"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="FocusGrabber" parent="HBoxContainer" instance=ExtResource( 13 )]
-offset_left = 154.0
-offset_right = 154.0
-offset_bottom = 40.0
+[node name="FocusGrabber" parent="HBoxContainer" instance=ExtResource("13")]
+layout_mode = 2
 NodeToGiveFocusTo = NodePath("../Back")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = -47.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-offset_left = 215.0
-offset_top = 34.0
-offset_right = 1065.0
-offset_bottom = 639.0
-custom_minimum_size = Vector2( 850, 0 )
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="UpperPart" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-offset_right = 850.0
-offset_bottom = 265.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Left" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
-offset_right = 348.0
-offset_bottom = 265.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
-offset_right = 348.0
-offset_bottom = 25.0
+layout_mode = 2
 text = "AVAILABLE_MODS"
-align = 1
 
 [node name="AvailableMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
-offset_top = 29.0
-offset_right = 348.0
-offset_bottom = 229.0
-custom_minimum_size = Vector2( 300, 200 )
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-fixed_icon_size = Vector2( 32, 32 )
+fixed_icon_size = Vector2i(32, 32)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
-offset_top = 233.0
-offset_right = 348.0
-offset_bottom = 265.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
-offset_right = 172.0
-offset_bottom = 32.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 11 )
+theme_override_font_sizes/font_size = 18
 text = "REFRESH"
 
 [node name="Browse" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
-offset_left = 176.0
-offset_right = 348.0
-offset_bottom = 32.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 11 )
+theme_override_font_sizes/font_size = 18
 text = "OPEN_FOLDER"
 
 [node name="Center" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
-offset_left = 352.0
-offset_right = 498.0
-offset_bottom = 265.0
+layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Center"]
-offset_top = 91.0
-offset_right = 146.0
-offset_bottom = 174.0
+layout_mode = 2
 
 [node name="Right" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
-offset_right = 146.0
-offset_bottom = 35.0
+layout_mode = 2
 disabled = true
 text = "RIGHT_ARROW"
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
-offset_top = 39.0
-offset_right = 146.0
-offset_bottom = 44.0
-custom_minimum_size = Vector2( 0, 5 )
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="Left" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
-offset_top = 48.0
-offset_right = 146.0
-offset_bottom = 83.0
+layout_mode = 2
 disabled = true
 text = "LEFT_ARROW"
 
 [node name="Right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
-offset_left = 502.0
-offset_right = 850.0
-offset_bottom = 265.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
-offset_right = 348.0
-offset_bottom = 25.0
+layout_mode = 2
 text = "ENABLED_MODS"
-align = 1
 
 [node name="ActiveMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
-offset_top = 29.0
-offset_right = 348.0
-offset_bottom = 229.0
-custom_minimum_size = Vector2( 300, 200 )
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-fixed_icon_size = Vector2( 32, 32 )
+fixed_icon_size = Vector2i(32, 32)
 
 [node name="DisableAll" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
-offset_top = 233.0
-offset_right = 348.0
-offset_bottom = 265.0
-theme_override_fonts/font = ExtResource( 11 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
 disabled = true
 text = "DISABLE_ALL"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
-offset_top = 269.0
-offset_right = 850.0
-offset_bottom = 274.0
-custom_minimum_size = Vector2( 0, 5 )
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
-offset_top = 278.0
-offset_right = 850.0
-offset_bottom = 485.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 849.0
-offset_bottom = 206.0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
+layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="CurrentlySelected" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 838.0
-offset_bottom = 195.0
+layout_mode = 2
 
 [node name="NameLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
-offset_right = 828.0
-offset_bottom = 32.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
-offset_top = 3.0
-offset_right = 154.0
-offset_bottom = 28.0
+layout_mode = 2
 text = "SELECTED_MOD"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
-offset_left = 158.0
-offset_right = 161.0
-offset_bottom = 32.0
-custom_minimum_size = Vector2( 3, 0 )
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
 
 [node name="Icon" type="TextureRect" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
-offset_left = 165.0
-offset_right = 197.0
-offset_bottom = 32.0
-custom_minimum_size = Vector2( 32, 32 )
-expand = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+expand_mode = 1
 stretch_mode = 7
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
-offset_left = 201.0
-offset_top = 3.0
-offset_right = 328.0
-offset_bottom = 28.0
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "My cool mod"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="AuthorLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
-offset_top = 36.0
-offset_right = 828.0
-offset_bottom = 61.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
-offset_right = 134.0
-offset_bottom = 25.0
+layout_mode = 2
 text = "MOD_AUTHOR"
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
-offset_left = 138.0
-offset_right = 711.0
-offset_bottom = 25.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
-offset_left = 715.0
-offset_right = 828.0
-offset_bottom = 25.0
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Some dude"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="VersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
-offset_top = 65.0
-offset_right = 828.0
-offset_bottom = 92.0
+layout_mode = 2
 
 [node name="ModVersion" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
-offset_right = 175.0
-offset_bottom = 27.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
-offset_top = 1.0
-offset_right = 138.0
-offset_bottom = 26.0
+layout_mode = 2
 text = "MOD_VERSION"
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
-offset_left = 142.0
-offset_right = 145.0
-offset_bottom = 27.0
-custom_minimum_size = Vector2( 3, 0 )
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ModVersion" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
-offset_left = 149.0
-offset_top = 1.0
-offset_right = 175.0
-offset_bottom = 26.0
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "1.0"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
-offset_left = 179.0
-offset_right = 326.0
-offset_bottom = 27.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ThriveVersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
-offset_left = 330.0
-offset_right = 828.0
-offset_bottom = 27.0
+layout_mode = 2
 alignment = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine"]
-offset_right = 300.0
-offset_bottom = 27.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 299.0
-offset_bottom = 26.0
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_top = 3
+layout_mode = 2
 theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
 [node name="ModThriveVersion" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer"]
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 295.0
-offset_bottom = 22.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
-offset_right = 251.0
-offset_bottom = 19.0
-theme_override_fonts/font = ExtResource( 8 )
+layout_mode = 2
 text = "RECOMMENDED_THRIVE_VERSION"
+label_settings = ExtResource("4_sp5px")
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
-offset_left = 255.0
-offset_right = 255.0
-offset_bottom = 19.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Recommended" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
-offset_left = 259.0
-offset_right = 292.0
-offset_bottom = 19.0
-theme_override_fonts/font = ExtResource( 8 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "0.5.6"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("4_sp5px")
 
 [node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine"]
-offset_left = 304.0
-offset_right = 498.0
-offset_bottom = 27.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 193.0
-offset_bottom = 26.0
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_top = 3
+layout_mode = 2
 theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
 [node name="ModMinimumThrive" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer"]
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 189.0
-offset_bottom = 22.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
-offset_right = 145.0
-offset_bottom = 19.0
-theme_override_fonts/font = ExtResource( 8 )
+layout_mode = 2
 text = "MINIMUM_VERSION"
+label_settings = ExtResource("4_sp5px")
 
 [node name="Control2" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
-offset_left = 149.0
-offset_right = 149.0
-offset_bottom = 19.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Minimum" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
-offset_left = 153.0
-offset_right = 186.0
-offset_bottom = 19.0
-theme_override_fonts/font = ExtResource( 8 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "0.5.6"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("4_sp5px")
 
 [node name="DescriptionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
-offset_top = 96.0
-offset_right = 828.0
-offset_bottom = 149.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
-offset_top = 14.0
-offset_right = 182.0
-offset_bottom = 39.0
+layout_mode = 2
 text = "MOD_DESCRIPTION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
-offset_left = 186.0
-offset_right = 828.0
-offset_bottom = 53.0
+layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine/HBoxContainer"]
-offset_right = 642.0
-offset_bottom = 53.0
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 text = "Mod description goes here that can get a bit long sometimes so this needs a bit of space here to allow it to fit here"
-align = 2
-autowrap = true
+autowrap_mode = 3
 max_lines_visible = 3
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="ButtonsLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
-offset_top = 153.0
-offset_right = 828.0
-offset_bottom = 185.0
+layout_mode = 2
 
 [node name="MoreInfo" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine"]
-offset_right = 109.0
-offset_bottom = 32.0
+layout_mode = 2
 size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource( 11 )
+theme_override_font_sizes/font_size = 18
 disabled = true
 text = "MORE_INFO"
 
 [node name="Url" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine"]
-offset_left = 113.0
-offset_right = 262.0
-offset_bottom = 32.0
-theme_override_fonts/font = ExtResource( 11 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
 disabled = true
 text = "OPEN_MOD_URL"
 
 [node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer"]
-offset_top = 489.0
-offset_right = 850.0
-offset_bottom = 494.0
-custom_minimum_size = Vector2( 0, 5 )
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-offset_top = 498.0
-offset_right = 850.0
-offset_bottom = 530.0
+layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Workshop" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
-offset_left = 517.0
-offset_right = 710.0
-offset_bottom = 32.0
-theme_override_fonts/font = ExtResource( 11 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
 text = "BROWSE_WORKSHOP"
 
 [node name="Upload" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
-offset_left = 714.0
-offset_right = 796.0
-offset_bottom = 32.0
+layout_mode = 2
 focus_mode = 0
-theme_override_fonts/font = ExtResource( 11 )
+theme_override_font_sizes/font_size = 18
 text = "UPLOAD"
 
 [node name="New" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
-offset_left = 800.0
-offset_right = 850.0
-offset_bottom = 32.0
+editor_description = "This is not focusable due to controller input getting stuck in the new form"
+layout_mode = 2
 focus_mode = 0
-theme_override_fonts/font = ExtResource( 11 )
+theme_override_font_sizes/font_size = 18
 text = "NEW"
-__meta__ = {
-"_editor_description_": "This is not focusable due to controller input getting stuck in the new form"
-}
 
 [node name="Spacer3" type="Control" parent="CenterContainer/VBoxContainer"]
-offset_top = 534.0
-offset_right = 850.0
-offset_bottom = 539.0
-custom_minimum_size = Vector2( 0, 5 )
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-offset_top = 543.0
-offset_right = 850.0
-offset_bottom = 560.0
-theme_override_fonts/font = ExtResource( 5 )
+layout_mode = 2
 text = "MOD_LOAD_UNLOAD_CAVEATS"
-align = 1
-autowrap = true
+label_settings = ExtResource("5_b1wkc")
 
 [node name="Spacer4" type="Control" parent="CenterContainer/VBoxContainer"]
-offset_top = 564.0
-offset_right = 850.0
-offset_bottom = 569.0
-custom_minimum_size = Vector2( 0, 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-offset_top = 573.0
-offset_right = 850.0
-offset_bottom = 605.0
+layout_mode = 2
 alignment = 1
 
 [node name="LoadAll" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 visible = false
-offset_left = 560.0
-offset_top = 20.0
-offset_right = 821.0
-offset_bottom = 59.0
+layout_mode = 2
 size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource( 11 )
+theme_override_font_sizes/font_size = 18
 text = "ENABLE_ALL_COMPATIBLE"
 
 [node name="Apply" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-offset_left = 345.0
-offset_right = 504.0
-offset_bottom = 32.0
+layout_mode = 2
 size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource( 11 )
 disabled = true
 text = "APPLY_CHANGES"
 
-[node name="NewModGUI" parent="." instance=ExtResource( 6 )]
+[node name="NewModGUI" parent="." instance=ExtResource("6")]
 visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="UnAppliedChangesWarning" parent="." instance=ExtResource( 3 )]
+[node name="UnAppliedChangesWarning" parent="." instance=ExtResource("3")]
+custom_minimum_size = Vector2(500, 0)
 offset_left = -500.0
 offset_top = -143.0
 offset_right = 0.0
 offset_bottom = 0.0
-custom_minimum_size = Vector2( 500, 0 )
-WindowTitle = "UNAPPLIED_MOD_CHANGES"
 DialogText = "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 ConfirmText = "DISCARD_CHANGES"
+WindowTitle = "UNAPPLIED_MOD_CHANGES"
 
-[node name="ModFullInfo" parent="." instance=ExtResource( 4 )]
+[node name="ModFullInfo" parent="." instance=ExtResource("4")]
+anchors_preset = 0
 offset_left = -580.0
 offset_top = -416.0
 offset_right = 0.0
@@ -596,432 +443,294 @@ WindowTitle = "FULL_MOD_INFO"
 Resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
 offset_right = 565.0
 offset_bottom = 401.0
 size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ModFullInfo/VBoxContainer"]
-offset_right = 550.0
-offset_bottom = 350.0
-custom_minimum_size = Vector2( 550, 350 )
+custom_minimum_size = Vector2(550, 350)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer"]
-offset_right = 550.0
-offset_bottom = 1030.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer"]
-offset_right = 540.0
-offset_bottom = 1030.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_right = 534.0
-offset_bottom = 48.0
+layout_mode = 2
 
 [node name="Label2" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_NAME"
+label_settings = ExtResource("10_m12ca")
 
 [node name="Name" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Name goes here..."
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer15" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 63.0
-offset_right = 534.0
-offset_bottom = 111.0
+layout_mode = 2
 
 [node name="Label16" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_INTERNAL_NAME"
+label_settings = ExtResource("10_m12ca")
 
 [node name="InternalName" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Internal name goes here..."
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 126.0
-offset_right = 534.0
-offset_bottom = 174.0
+layout_mode = 2
 
 [node name="Label3" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_AUTHOR"
+label_settings = ExtResource("10_m12ca")
 
 [node name="Author" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Author goes here..."
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 189.0
-offset_right = 534.0
-offset_bottom = 237.0
+layout_mode = 2
 
 [node name="Label4" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_VERSION"
+label_settings = ExtResource("10_m12ca")
 
 [node name="Version" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "1.0"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 252.0
-offset_right = 534.0
-offset_bottom = 300.0
+layout_mode = 2
 
 [node name="Label5" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_DESCRIPTION"
+label_settings = ExtResource("10_m12ca")
 
 [node name="Description" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Mod description"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 315.0
-offset_right = 534.0
-offset_bottom = 363.0
+layout_mode = 2
 
 [node name="Label6" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_EXTENDED_DESCRIPTION"
+label_settings = ExtResource("10_m12ca")
 
 [node name="LongDescription" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Longer mod description"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer16" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 315.0
-offset_right = 534.0
-offset_bottom = 363.0
+layout_mode = 2
 
 [node name="IsWorkshop" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Is from workshop"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 378.0
-offset_right = 534.0
-offset_bottom = 426.0
+layout_mode = 2
 
 [node name="Label7" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_ICON_FILE"
+label_settings = ExtResource("10_m12ca")
 
 [node name="IconFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "mod_icon.png"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 441.0
-offset_right = 534.0
-offset_bottom = 489.0
+layout_mode = 2
 
 [node name="Label8" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_INFO_URL"
+label_settings = ExtResource("10_m12ca")
 
 [node name="InfoURL" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "some URL"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 504.0
-offset_right = 534.0
-offset_bottom = 552.0
+layout_mode = 2
 
 [node name="Label9" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_LICENSE"
+label_settings = ExtResource("10_m12ca")
 
 [node name="License" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "MIT"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer9" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 567.0
-offset_right = 534.0
-offset_bottom = 615.0
+layout_mode = 2
 
 [node name="Label10" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_RECOMMENDED_THRIVE"
+label_settings = ExtResource("10_m12ca")
 
 [node name="RecommendedThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "0.5.6"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer10" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 630.0
-offset_right = 534.0
-offset_bottom = 678.0
+layout_mode = 2
 
 [node name="Label11" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_MINIMUM_THRIVE"
+label_settings = ExtResource("10_m12ca")
 
 [node name="MinimumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "0.5.6-alpha"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer11" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 693.0
-offset_right = 534.0
-offset_bottom = 741.0
+layout_mode = 2
 
 [node name="Label12" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_MAXIMUM_THRIVE"
+label_settings = ExtResource("10_m12ca")
 
 [node name="MaximumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "0.5.6"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer12" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 756.0
-offset_right = 534.0
-offset_bottom = 804.0
+layout_mode = 2
 
 [node name="Label13" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_PCK_NAME"
+label_settings = ExtResource("10_m12ca")
 
 [node name="PckName" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "ModName.pck"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer13" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 819.0
-offset_right = 534.0
-offset_bottom = 867.0
+layout_mode = 2
 
 [node name="Label14" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_ASSEMBLY"
+label_settings = ExtResource("10_m12ca")
 
 [node name="ModAssembly" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Mod.dll"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer14" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 882.0
-offset_right = 534.0
-offset_bottom = 930.0
+layout_mode = 2
 
 [node name="Label15" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_ASSEMBLY_CLASS"
+label_settings = ExtResource("10_m12ca")
 
 [node name="AssemblyModClass" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "ModClass"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="VBoxContainer17" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-offset_top = 882.0
-offset_right = 534.0
-offset_bottom = 930.0
+layout_mode = 2
 
 [node name="Label15" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17"]
-offset_right = 534.0
-offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+layout_mode = 2
 text = "MOD_AUTO_HARMONY"
+label_settings = ExtResource("10_m12ca")
 
 [node name="UseHarmony" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17"]
-offset_top = 26.0
-offset_right = 534.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Harmony"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("11_kax5m")
 
 [node name="Button" type="Button" parent="ModFullInfo/VBoxContainer"]
-offset_left = 242.0
-offset_top = 354.0
-offset_right = 307.0
-offset_bottom = 386.0
+layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource( 9 )
+theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
-[node name="CreateModError" parent="." instance=ExtResource( 7 )]
+[node name="CreateModError" parent="." instance=ExtResource("7")]
 offset_left = -67.0
 offset_top = -87.0
 offset_right = 0.0
 offset_bottom = 0.0
+ExceptionInfo = ""
 WindowTitle = "MOD_CREATION_FAILED"
 Resizable = false
-ExceptionInfo = ""
 
-[node name="ModUploader" parent="." instance=ExtResource( 12 )]
+[node name="ModUploader" parent="." instance=ExtResource("12")]
 visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
-[node name="LoadUnloadErrors" parent="." instance=ExtResource( 7 )]
-custom_minimum_size = Vector2( 400, 350 )
+[node name="LoadUnloadErrors" parent="." instance=ExtResource("7")]
+custom_minimum_size = Vector2(400, 350)
 ErrorMessage = "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 ExceptionInfo = ""
 
-[node name="RestartRequired" parent="." instance=ExtResource( 3 )]
-custom_minimum_size = Vector2( 400, 0 )
-WindowTitle = "RESTART_REQUIRED"
+[node name="RestartRequired" parent="." instance=ExtResource("3")]
+custom_minimum_size = Vector2(400, 0)
 HideCancelButton = true
 DialogText = "MOD_LOAD_UNLOAD_RESTART"
+WindowTitle = "RESTART_REQUIRED"
 
 [connection signal="pressed" from="HBoxContainer/Back" to="." method="BackPressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/UpperPart/Left/AvailableMods" to="." method="AvailableModSelected"]

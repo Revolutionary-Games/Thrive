@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://oslha78a5bb"]
+[gd_scene load_steps=11 format=3 uid="uid://oslha78a5bb"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="2"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" id="3"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/EmptyFont.tres" id="4"]
-[ext_resource type="PackedScene" path="res://src/gui_common/PlaybackControls.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dj12vy45xfnoj" path="res://src/gui_common/PlaybackControls.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://src/general/OrbitCamera.tscn" id="6"]
 [ext_resource type="Script" path="res://src/gui_common/art_gallery/SlideScreen.cs" id="7"]
 [ext_resource type="PackedScene" uid="uid://cgdp2u78cxxe7" path="res://src/gui_common/CrossFadableTextureRect.tscn" id="8"]
@@ -32,6 +30,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 0.0
 offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1")
 script = ExtResource("7")
 SlideTextureRectPath = NodePath("Overlay/SlideableTextureRect")
@@ -54,7 +54,6 @@ theme_override_styles/panel = SubResource("2")
 
 [node name="SlideableTextureRect" parent="Overlay" index="0" instance=ExtResource("8")]
 layout_mode = 2
-expand_mode = 1
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Overlay" index="1"]
 layout_mode = 2
@@ -83,7 +82,6 @@ custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("4")
 
 [node name="TextureRect" type="TextureRect" parent="Overlay/MarginContainer/CloseButton" index="0"]
 custom_minimum_size = Vector2(18, 18)
@@ -99,6 +97,7 @@ offset_bottom = 9.0
 mouse_filter = 2
 texture = ExtResource("2")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="Toolbar" type="MarginContainer" parent="Overlay" index="3"]
 layout_mode = 2
@@ -124,14 +123,14 @@ alignment = 1
 [node name="PreviousButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="0"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 18
 text = "<"
 
 [node name="SlideshowModeButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 18
 toggle_mode = true
 text = "SLIDESHOW"
 
@@ -143,7 +142,7 @@ size_flags_vertical = 4
 [node name="NextButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="3"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 18
 text = ">"
 
 [connection signal="Faded" from="Overlay/SlideableTextureRect" to="." method="UpdateScreen"]

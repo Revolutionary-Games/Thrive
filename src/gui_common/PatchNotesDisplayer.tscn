@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0tfe6i1offy"]
+[gd_scene load_steps=6 format=3 uid="uid://d0tfe6i1offy"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="PackedScene" path="res://src/gui_common/PatchNotesList.tscn" id="3"]
 [ext_resource type="Script" path="res://src/gui_common/PatchNotesDisplayer.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/new_fonts/Title-SemiBold-Big.tres" id="4_o16iy"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" id="5"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/new_fonts/Body-Regular-Smaller.tres" id="5_gf8j8"]
 
 [node name="PatchNotesDisplayer" type="VBoxContainer"]
@@ -23,7 +22,6 @@ ViewAllButtonOutsideScrollPath = NodePath("All")
 
 [node name="NotesTitle" type="Label" parent="."]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5")
 text = "PATCH_NOTES_TITLE"
 label_settings = ExtResource("4_o16iy")
 

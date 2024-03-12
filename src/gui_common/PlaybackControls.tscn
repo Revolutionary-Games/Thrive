@@ -1,109 +1,103 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://dj12vy45xfnoj"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/PlayButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/gui_common/PlaybackControls.cs" type="Script" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="FontFile" id=4]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://7fwavluq5q7o" path="res://src/gui_common/PlayButton.tscn" id="2"]
+[ext_resource type="Script" path="res://src/gui_common/PlaybackControls.cs" id="3"]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id="1"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0, 0.435294, 0.52549, 1 )
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.00392157, 0.956863, 0.905882, 1 )
+border_color = Color(0.0666667, 0.6, 0.537255, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id="2"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.0666667, 1, 0.835294, 1 )
+bg_color = Color(0, 0.435294, 0.52549, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.00392157, 0.956863, 0.905882, 1 )
+border_color = Color(0.00392157, 0.956863, 0.905882, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxTexture" id=4]
-
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id="3"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.164706, 0.215686, 0.235294, 1 )
+bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.360784, 0.552941, 0.52549, 1 )
+border_color = Color(0.00392157, 0.956863, 0.905882, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id="5"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 0.6, 0.537255, 1 )
+border_color = Color(0.360784, 0.552941, 0.52549, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxTexture" id="4"]
 
 [node name="PlaybackControls" type="HBoxContainer"]
 offset_right = 29.0
 offset_bottom = 25.0
 size_flags_vertical = 8
-theme = ExtResource( 1 )
-script = ExtResource( 3 )
+theme = ExtResource("1")
+script = ExtResource("3")
 
 [node name="PlaybackSlider" type="HSlider" parent="."]
-offset_top = 5.0
-offset_bottom = 20.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme = ExtResource( 1 )
 step = 0.01
 ticks_on_borders = true
 
-[node name="PlayButton" parent="." instance=ExtResource( 2 )]
-offset_left = 4.0
-offset_right = 29.0
+[node name="PlayButton" parent="." instance=ExtResource("2")]
+layout_mode = 2
 size_flags_vertical = 4
 
 [node name="StopButton" type="Button" parent="."]
-offset_left = 33.0
-offset_right = 73.0
-offset_bottom = 25.0
-custom_minimum_size = Vector2( 25, 25 )
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
 size_flags_vertical = 4
-theme_override_fonts/font = ExtResource( 4 )
-theme_override_styles/hover = SubResource( 2 )
-theme_override_styles/pressed = SubResource( 3 )
-theme_override_styles/focus = SubResource( 4 )
-theme_override_styles/disabled = SubResource( 5 )
-theme_override_styles/normal = SubResource( 1 )
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/disabled = SubResource("5")
+theme_override_styles/focus = SubResource("4")
 text = "STOP"
 
 [connection signal="value_changed" from="PlaybackSlider" to="." method="OnSliderChanged"]

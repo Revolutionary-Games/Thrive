@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://bodu55ie6kdkq"]
+[gd_scene load_steps=6 format=3 uid="uid://bodu55ie6kdkq"]
 
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-BiggerPlus.tres" id="1"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/new_fonts/Title-SemiBold-Bigger.tres" id="4_olxfy"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="6"]
 [ext_resource type="Script" path="res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.cs" id="7"]
@@ -51,7 +50,6 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1")
 text = "UNDISCOVERED_ORGANELLES"
 label_settings = ExtResource("4_olxfy")
 horizontal_alignment = 1

@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwkek50fju0fu"]
+[gd_scene load_steps=9 format=3 uid="uid://dwkek50fju0fu"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_um53y"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" id="2"]
 [ext_resource type="Script" path="res://src/microbe_stage/PatchNameOverlay.cs" id="3"]
 [ext_resource type="LabelSettings" uid="uid://cly2udph8cr5d" path="res://src/gui_common/new_fonts/Title-SemiBold-HugePlus.tres" id="3_ln4oc"]
 
@@ -77,7 +76,6 @@ alignment = 1
 [node name="PatchLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("2")
 text = "Insert Patch Name"
 label_settings = ExtResource("3_ln4oc")
 horizontal_alignment = 1

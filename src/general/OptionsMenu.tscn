@@ -1,20 +1,19 @@
-[gd_scene load_steps=26 format=3 uid="uid://khgb1ctp1e5o"]
+[gd_scene load_steps=25 format=3 uid="uid://khgb1ctp1e5o"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/general/OptionsMenu.cs" id="2"]
 [ext_resource type="Script" path="res://src/engine/input/key_mapping/InputGroupList.cs" id="3"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" id="4"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" id="5"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="6"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" id="7"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="6"]
 [ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/new_fonts/Body-Regular-AlmostTiny.tres" id="7_etww0"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="8"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/new_fonts/Title-SemiBold-Normal.tres" id="8_jegpj"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="10"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="11"]
-[ext_resource type="PackedScene" path="res://src/engine/input/ControllerDeadzoneConfiguration.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://00dm1uexdc6n" path="res://src/engine/input/ControllerDeadzoneConfiguration.tscn" id="12"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/new_fonts/Body-Regular-Smaller.tres" id="12_ajn4i"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="13"]
+[ext_resource type="FontFile" uid="uid://br1ljx6dpi6gd" path="res://assets/fonts/Jura-DemiBold.ttf" id="13_3wl4t"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://d0tfe6i1offy" path="res://src/gui_common/PatchNotesDisplayer.tscn" id="15"]
 
@@ -278,7 +277,6 @@ text = "MULTISAMPLE_ANTI_ALIASING"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4")
 text = "HIGHER_VALUES_WORSEN_PERFORMANCE"
 label_settings = ExtResource("7_etww0")
 
@@ -1677,8 +1675,8 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="CenterContainer/BackConfirm/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("5")
 text = "UNSAVED_CHANGE_WARNING"
+label_settings = ExtResource("12_ajn4i")
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/BackConfirm/VBoxContainer"]
 layout_mode = 2
@@ -1693,12 +1691,13 @@ size_flags_vertical = 3
 
 [node name="SaveButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7")
+theme_override_fonts/font = ExtResource("13_3wl4t")
+theme_override_font_sizes/font_size = 18
 text = "SAVE_AND_CONTINUE"
 
 [node name="DiscardButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7")
+theme_override_font_sizes/font_size = 18
 text = "DISCARD_AND_CONTINUE"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
@@ -1708,7 +1707,7 @@ theme_override_styles/separator = SubResource("7")
 
 [node name="CancelButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7")
+theme_override_font_sizes/font_size = 18
 text = "CANCEL"
 
 [node name="ConflictDialog" parent="CenterContainer" instance=ExtResource("6")]
@@ -1763,11 +1762,13 @@ size_flags_horizontal = 4
 
 [node name="Close" type="Button" parent="CenterContainer/PatchNotesBox/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7")
+theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
 [node name="ControllerDeadzoneConfiguration" parent="." instance=ExtResource("12")]
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= ["Graphics"]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= ["Sound"]]

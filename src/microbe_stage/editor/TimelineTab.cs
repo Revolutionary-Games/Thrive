@@ -22,6 +22,15 @@ public partial class TimelineTab : PanelContainer
     public NodePath GlobalFilterButtonPath = null!;
 
 #pragma warning disable CA2213
+    [Export]
+    public LabelSettings TimePeriodTitleFont = null!;
+
+    [Export]
+    public LabelSettings EventLabelNormalFont = null!;
+
+    [Export]
+    public LabelSettings EventLabelBoldFont = null!;
+
     private readonly PackedScene customRichTextLabelScene;
 
     private readonly StyleBoxTexture eventHighlightStyleBox;
@@ -101,7 +110,12 @@ public partial class TimelineTab : PanelContainer
             foreach (var entry in editor.CurrentGame.GameWorld.EventsLog)
             {
                 var section = new TimelineSection(customRichTextLabelScene, eventHighlightStyleBox,
-                    (entry.Key, entry.Value));
+                    (entry.Key, entry.Value))
+                {
+                    TitleFont = TimePeriodTitleFont,
+                    NormalFont = EventLabelNormalFont,
+                    BoldFont = EventLabelBoldFont,
+                };
 
                 cachedGlobalTimelineElements.Add(section);
                 globalEventsContainer.AddChild(section);
@@ -117,7 +131,12 @@ public partial class TimelineTab : PanelContainer
         {
             var snapshot = targetPatch.History[i];
             var section = new TimelineSection(customRichTextLabelScene, eventHighlightStyleBox,
-                (snapshot.TimePeriod, snapshot.EventsLog));
+                (snapshot.TimePeriod, snapshot.EventsLog))
+            {
+                TitleFont = TimePeriodTitleFont,
+                NormalFont = EventLabelNormalFont,
+                BoldFont = EventLabelBoldFont,
+            };
 
             cachedLocalTimelineElements.Add(section);
             localEventsContainer.AddChild(section);
@@ -198,6 +217,12 @@ public partial class TimelineTab : PanelContainer
 
     private partial class TimelineSection : VBoxContainer
     {
+#pragma warning disable CA2213
+        public LabelSettings TitleFont = null!;
+        public LabelSettings NormalFont = null!;
+        public LabelSettings BoldFont = null!;
+#pragma warning restore CA2213
+
         private readonly PackedScene customRichTextLabelScene;
         private readonly StyleBoxTexture eventHighlightStyleBox;
 
@@ -232,7 +257,7 @@ public partial class TimelineTab : PanelContainer
                 VerticalAlignment = VerticalAlignment.Center,
             };
 
-            timePeriodLabel.AddThemeFontOverride("font", GetThemeFont("jura_bold", "Fonts"));
+            timePeriodLabel.LabelSettings = TitleFont;
 
             headerContainer.AddChild(spacer);
             headerContainer.AddChild(timePeriodLabel);
@@ -269,8 +294,12 @@ public partial class TimelineTab : PanelContainer
                 eventLabel.ExtendedBbcode = entry.Description.ToString();
                 eventLabel.FitContent = true;
 
-                eventLabel.AddThemeFontOverride("normal_font", GetThemeFont("jura_almost_smaller", "Fonts"));
-                eventLabel.AddThemeFontOverride("bold_font", GetThemeFont("jura_demibold_almost_smaller", "Fonts"));
+                eventLabel.AddThemeFontOverride("normal_font", NormalFont.Font);
+                eventLabel.AddThemeFontSizeOverride("normal_font_size", NormalFont.FontSize);
+
+                eventLabel.AddThemeFontOverride("bold_font", BoldFont.Font);
+                eventLabel.AddThemeFontSizeOverride("bold_font_size", BoldFont.FontSize);
+
                 eventLabel.AddThemeConstantOverride("line_separation", 0);
 
                 if (iconRect != null)
@@ -287,7 +316,8 @@ public partial class TimelineTab : PanelContainer
                 var noneLabel = new Label { Text = Localization.Translate("NO_EVENTS_RECORDED") };
 
                 noneLabelContainer.AddThemeConstantOverride("separation", 5);
-                noneLabel.AddThemeFontOverride("font", GetThemeFont("jura_almost_smaller", "Fonts"));
+                noneLabel.AddThemeFontOverride("normal_font", NormalFont.Font);
+                noneLabel.AddThemeFontSizeOverride("normal_font_size", NormalFont.FontSize);
 
                 noneLabelContainer.AddChild(noneLabelSpacer);
                 noneLabelContainer.AddChild(noneLabel);

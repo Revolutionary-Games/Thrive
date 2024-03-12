@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfb6b7xghtydh"]
+[gd_scene load_steps=8 format=3 uid="uid://bfb6b7xghtydh"]
 
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" id="2"]
 [ext_resource type="Script" path="res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.cs" id="3"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/new_fonts/Title-SemiBold-AlmostHuge.tres" id="3_qkpyp"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/new_fonts/Body-Regular-Tiny.tres" id="4_r1gjg"]
@@ -83,7 +82,6 @@ expand_icon = true
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_fonts/font = ExtResource("2")
 text = "UNKNOWN_ORGANELLE_SYMBOL"
 label_settings = ExtResource("3_qkpyp")
 horizontal_alignment = 1

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1qj43lbtctnv"]
+[gd_scene load_steps=7 format=3 uid="uid://c1qj43lbtctnv"]
 
 [ext_resource type="Texture2D" uid="uid://7jgoa2v32ke5" path="res://assets/textures/gui/bevel/vents.png" id="1"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/PatchMapNode.cs" id="2"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" id="3"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/new_fonts/Title-SemiBold-AlmostHuge.tres" id="4_tygy2"]
 
 [sub_resource type="StyleBoxFlat" id="3"]
@@ -80,7 +79,6 @@ stretch_mode = 6
 [node name="UnknownLabel" type="Label" parent="MarginContainer/MarginContainer"]
 visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "UNKNOWN_SHORT"
 label_settings = ExtResource("4_tygy2")
 horizontal_alignment = 1

@@ -1,6 +1,5 @@
-[gd_resource type="Theme" load_steps=76 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" load_steps=69 format=3 uid="uid://b4cx0o110g4b6"]
 
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" id="1"]
 [ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_fiqxx"]
 [ext_resource type="Texture2D" uid="uid://bjchgyy3gt2vp" path="res://assets/textures/gui/bevel/grab.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://jmv0trrypl21" path="res://assets/textures/gui/bevel/grabhover.png" id="3"]
@@ -8,13 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bpbly7mykbmoc" path="res://assets/textures/gui/bevel/checkB.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://rwbebml2adio" path="res://assets/textures/gui/bevel/checkA.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bqqawdtjaf60f" path="res://assets/textures/gui/bevel/grabdisabled.png" id="7"]
-[ext_resource type="FontFile" uid="uid://m8ivcpj1jdq" path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" id="8"]
 [ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="12"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" id="13"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" id="14"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" id="15"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" id="16"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" id="17"]
 [ext_resource type="Texture2D" uid="uid://di0aky3imukve" path="res://assets/textures/gui/bevel/checkAhover.png" id="18"]
 [ext_resource type="Texture2D" uid="uid://cfeu73wy2ton4" path="res://assets/textures/gui/bevel/checkBclick.png" id="19"]
 [ext_resource type="Texture2D" uid="uid://l2w3q2v8mr0e" path="res://assets/textures/gui/bevel/checkBhover.png" id="20"]
@@ -602,15 +595,6 @@ FileDialog/icons/folder = null
 FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
-Fonts/fonts/jura_almost_smaller = ExtResource("1")
-Fonts/fonts/jura_bold = ExtResource("8")
-Fonts/fonts/jura_demibold_almost_smaller = ExtResource("17")
-Fonts/fonts/jura_demibold_bigger = ExtResource("13")
-Fonts/fonts/jura_normal = ExtResource("14")
-Fonts/fonts/large = ExtResource("8")
-Fonts/fonts/lato_bold_normal = ExtResource("16")
-Fonts/fonts/lato_normal = ExtResource("15")
-Fonts/fonts/normal = ExtResource("8")
 GraphEdit/colors/activity = Color(0, 0, 0, 1)
 GraphEdit/colors/grid_major = Color(0, 0, 0, 1)
 GraphEdit/colors/grid_minor = Color(0, 0, 0, 1)

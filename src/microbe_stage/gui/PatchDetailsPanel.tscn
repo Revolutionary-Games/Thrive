@@ -1,10 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://bjl5o7oy7yr15"]
+[gd_scene load_steps=33 format=3 uid="uid://bjl5o7oy7yr15"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="1"]
-[ext_resource type="FontFile" uid="uid://m8ivcpj1jdq" path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" id="3"]
 [ext_resource type="LabelSettings" uid="uid://b6d3jtfqx07xn" path="res://src/gui_common/new_fonts/Title-Semibold-AlmostHuge.tres" id="3_xknfg"]
 [ext_resource type="Script" path="res://src/microbe_stage/gui/PatchDetailsPanel.cs" id="4"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" id="5"]
 [ext_resource type="LabelSettings" uid="uid://tgseeon8t360" path="res://src/gui_common/new_fonts/Title-Bold-Smaller-Green.tres" id="5_133c0"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/new_fonts/Title-SemiBold-Bigger.tres" id="5_xv7pc"]
 [ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="6"]
@@ -19,7 +17,6 @@
 [ext_resource type="LabelSettings" uid="uid://8jxma2e6x3qd" path="res://src/gui_common/new_fonts/Title-Regular-Smaller.tres" id="13_tweyr"]
 [ext_resource type="Texture2D" uid="uid://dv67e1fovg0r2" path="res://assets/textures/gui/bevel/hydrogensulfide.png" id="14"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/new_fonts/Body-Regular-Smaller.tres" id="15_ng6rp"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-Small.tres" id="18"]
 [ext_resource type="Texture2D" uid="uid://b84h4mjojeb7q" path="res://assets/textures/gui/bevel/plusButton.png" id="19"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/new_fonts/Body-Regular-Tiny.tres" id="19_6m1o4"]
 [ext_resource type="Texture2D" uid="uid://cwrk1w3l7u6t4" path="res://assets/textures/gui/bevel/minusButton.png" id="20"]
@@ -31,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bwcvbcn15kctq" path="res://assets/textures/gui/bevel/plusButtonHover.png" id="26"]
 [ext_resource type="Script" path="res://src/gui_common/CollapsibleList.cs" id="27"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="28"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" id="29"]
+[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="28_nglrj"]
 
 [sub_resource type="StyleBoxTexture" id="32"]
 texture = ExtResource("24")
@@ -39,7 +36,8 @@ texture_margin_top = 1.0
 region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="Theme" id="33"]
-default_font = ExtResource("18")
+default_font = ExtResource("28_nglrj")
+default_font_size = 14
 
 [sub_resource type="StyleBoxTexture" id="34"]
 texture = ExtResource("9")
@@ -157,14 +155,12 @@ horizontal_alignment = 1
 
 [node name="Biome" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "Biome: BIOME HERE"
 label_settings = ExtResource("7_o264b")
 horizontal_alignment = 1
 
 [node name="Depth" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "200-340m below sea level"
 label_settings = ExtResource("7_o264b")
 horizontal_alignment = 1
@@ -308,7 +304,6 @@ expand_mode = 1
 [node name="LightMaxLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light3D/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("29")
 text = "LIGHT_MAX"
 label_settings = ExtResource("19_6m1o4")
 
@@ -639,8 +634,8 @@ stretch_mode = 5
 
 [node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5")
 text = "SPECIES_PRESENT"
+label_settings = ExtResource("13_tweyr")
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
