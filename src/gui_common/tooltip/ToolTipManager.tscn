@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4vme2vxaxfkw"]
+[gd_scene load_steps=17 format=3 uid="uid://b4vme2vxaxfkw"]
 
 [ext_resource type="PackedScene" uid="uid://cil2efpg6jdmd" path="res://src/gui_common/tooltip/DefaultToolTip.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bhy1rrdfux74j" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/editor/tooltips/SpeciesPreviewTooltip.tscn" id="3"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="4"]
 [ext_resource type="PackedScene" uid="uid://bl77ntlowknmp" path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn" id="5"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://dgnaltjd8hysi" path="res://assets/textures/gui/bevel/parts/PilusIcon.png" id="15"]
 [ext_resource type="Texture2D" uid="uid://bvqcyxabp8g4g" path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" id="16"]
 [ext_resource type="Script" path="res://src/gui_common/tooltip/ToolTipManager.cs" id="23"]
-[ext_resource type="FontFile" path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" id="27"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0.129412, 0.141176, 1)
@@ -40,6 +39,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("4")
 
@@ -71,6 +72,10 @@ DisplayDelay = 0.0
 [node name="speciesPreview" parent="GroupHolder/default" instance=ExtResource("3")]
 visible = false
 layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="mainMenu" type="Control" parent="GroupHolder"]
 anchors_preset = 0
@@ -673,11 +678,6 @@ Description = "THERMOPLAST_DESCRIPTION"
 MutationPointCost = 40
 RequiresNucleus = true
 ThriveopediaPageName = "thermoplast"
-
-[node name="Label" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessList" index="0"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("27")
-text = "NO_ORGANELLE_PROCESSES"
 
 [node name="storage" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource("2")]
 layout_mode = 2
