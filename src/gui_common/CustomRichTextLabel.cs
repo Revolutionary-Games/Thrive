@@ -392,7 +392,9 @@ public partial class CustomRichTextLabel : RichTextLabel
 
         var pairs = StringUtils.ParseKeyValuePairs(attributes);
 
-        string GetResizedImage(string imagePath, int width, int height)
+        string GetResizedImage(string imagePath,
+            int width, int height, ImageVerticalAlignment verticalAlignment = ImageVerticalAlignment.Center,
+            ImageAlignmentReferencePoint textAnchorPoint = ImageAlignmentReferencePoint.Center)
         {
             if (pairs.TryGetValue("size", out string? sizeInput))
             {
@@ -404,20 +406,14 @@ public partial class CustomRichTextLabel : RichTextLabel
                 }
                 else
                 {
-                    var split = sizeInput.Split("x");
+                    var split = sizeInput.Split("x", 2);
                     width = split[0].ToInt();
                     height = split[1].ToInt();
                 }
             }
 
-            return $"[img={width}x{height}]{imagePath}[/img]";
-        }
+            // TODO: allow bbcode override for the vertical alignment or text anchor point?
 
-        // TODO: this doesn't work. Do we need to somehow hack back the ascent fonts?
-        string GetVerticallyAlignedImage(string imagePath,
-            ImageVerticalAlignment verticalAlignment = ImageVerticalAlignment.Bottom,
-            ImageAlignmentReferencePoint textAnchorPoint = ImageAlignmentReferencePoint.Bottom)
-        {
             string vertical;
 
             switch (verticalAlignment)
@@ -438,7 +434,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             // Automatic reference if the same point is used
             if ((int)textAnchorPoint == (int)verticalAlignment)
             {
-                return $"[img={vertical}]{imagePath}[/img]";
+                return $"[img {vertical} width={width} height={height}]{imagePath}[/img]";
             }
 
             string reference;
@@ -461,7 +457,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                     throw new ArgumentOutOfRangeException(nameof(textAnchorPoint), textAnchorPoint, null);
             }
 
-            return $"[img={vertical},{reference}]{imagePath}[/img]";
+            return $"[img {vertical},{reference} width={width} height={height}]{imagePath}[/img]";
         }
 
         switch (bbcode)
@@ -497,7 +493,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                 if (string.IsNullOrEmpty(input))
                     input = compound.Name;
 
-                output = $"[b]{input}[/b] {GetVerticallyAlignedImage(compound.IconPath)}";
+                output = $"[b]{input}[/b] {GetResizedImage(compound.IconPath, 20, 0)}";
 
                 break;
             }
@@ -519,7 +515,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                 }
 
                 // TODO: add support for showing the overlay image / text saying the direction for axis type inputs
-                output = GetVerticallyAlignedImage(KeyPromptHelper.GetPathForAction(input).Primary);
+                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input).Primary, 30, 0);
 
                 break;
             }
@@ -629,7 +625,7 @@ public partial class CustomRichTextLabel : RichTextLabel
 
                 if (!showName)
                 {
-                    output = GetVerticallyAlignedImage(resource.InventoryIcon);
+                    output = GetResizedImage(resource.InventoryIcon, 20, 0);
                 }
                 else
                 {
@@ -637,7 +633,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                     if (string.IsNullOrEmpty(input))
                         input = resource.Name;
 
-                    output = $"[b]{input}[/b] {GetVerticallyAlignedImage(resource.InventoryIcon)}";
+                    output = $"[b]{input}[/b] {GetResizedImage(resource.InventoryIcon, 20, 0)}";
                 }
 
                 break;
@@ -651,37 +647,37 @@ public partial class CustomRichTextLabel : RichTextLabel
                 {
                     case "ConditionInsufficient":
                     {
-                        output = GetVerticallyAlignedImage(GUICommon.Instance.RequirementInsufficientIconPath);
+                        output = GetResizedImage(GUICommon.Instance.RequirementInsufficientIconPath, 20, 0);
                         break;
                     }
 
                     case "ConditionFulfilled":
                     {
-                        output = GetVerticallyAlignedImage(GUICommon.Instance.RequirementFulfilledIconPath);
+                        output = GetResizedImage(GUICommon.Instance.RequirementFulfilledIconPath, 20, 0);
                         break;
                     }
 
                     case "StorageIcon":
                     {
-                        output = GetVerticallyAlignedImage("res://assets/textures/gui/bevel/StorageIcon.png");
+                        output = GetResizedImage("res://assets/textures/gui/bevel/StorageIcon.png", 20, 0);
                         break;
                     }
 
                     case "OsmoIcon":
                     {
-                        output = GetVerticallyAlignedImage("res://assets/textures/gui/bevel/osmoregulationIcon.png");
+                        output = GetResizedImage("res://assets/textures/gui/bevel/osmoregulationIcon.png", 20, 0);
                         break;
                     }
 
                     case "MovementIcon":
                     {
-                        output = GetVerticallyAlignedImage("res://assets/textures/gui/bevel/SpeedIcon.png");
+                        output = GetResizedImage("res://assets/textures/gui/bevel/SpeedIcon.png", 20, 0);
                         break;
                     }
 
                     case "MP":
                     {
-                        output = GetVerticallyAlignedImage("res://assets/textures/gui/bevel/MP.png");
+                        output = GetResizedImage("res://assets/textures/gui/bevel/MP.png", 20, 0);
                         break;
                     }
 
