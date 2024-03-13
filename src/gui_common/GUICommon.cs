@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.

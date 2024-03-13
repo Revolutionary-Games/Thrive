@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using Godot;
 
 /// <summary>
 ///   Contains helper methods for classes that want to translate some of their properties or fields

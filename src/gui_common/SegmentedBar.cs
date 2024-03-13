@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   A ProgressBar that is split up into IconProgressBars, data is stored in a dictionary

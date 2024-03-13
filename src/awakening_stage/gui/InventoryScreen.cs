@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Player inventory and crafting screen for the awakening stage

@@ -1,53 +1,52 @@
-﻿namespace Systems
+﻿namespace Systems;
+
+using System;
+using Components;
+using DefaultEcs;
+using DefaultEcs.System;
+
+/// <summary>
+///   Makes sure the player's physics body is never allowed to sleep. This makes sure the microbe stage doesn't get
+///   stuck as microbe movement cannot be applied if the physics world has only sleeping bodies (as the body
+///   control apply operation will be skipped).
+/// </summary>
+/// <remarks>
+///   <para>
+///     Marked as just reading the physics as the body property modify locks the body on the native code side.
+///   </para>
+/// </remarks>
+[With(typeof(PlayerMarker))]
+[With(typeof(Physics))]
+[ReadsComponent(typeof(PlayerMarker))]
+[ReadsComponent(typeof(Physics))]
+[RunsAfter(typeof(PhysicsBodyCreationSystem))]
+[RunsAfter(typeof(PhysicsBodyDisablingSystem))]
+[RuntimeCost(0.25f)]
+public sealed class DisallowPlayerBodySleepSystem : AEntitySetSystem<float>
 {
-    using System;
-    using Components;
-    using DefaultEcs;
-    using DefaultEcs.System;
+    private readonly PhysicalWorld physicalWorld;
+    private WeakReference<NativePhysicsBody>? appliedSleepDisableTo;
 
-    /// <summary>
-    ///   Makes sure the player's physics body is never allowed to sleep. This makes sure the microbe stage doesn't get
-    ///   stuck as microbe movement cannot be applied if the physics world has only sleeping bodies (as the body
-    ///   control apply operation will be skipped).
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Marked as just reading the physics as the body property modify locks the body on the native code side.
-    ///   </para>
-    /// </remarks>
-    [With(typeof(PlayerMarker))]
-    [With(typeof(Physics))]
-    [ReadsComponent(typeof(PlayerMarker))]
-    [ReadsComponent(typeof(Physics))]
-    [RunsAfter(typeof(PhysicsBodyCreationSystem))]
-    [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
-    [RuntimeCost(0.25f)]
-    public sealed class DisallowPlayerBodySleepSystem : AEntitySetSystem<float>
+    public DisallowPlayerBodySleepSystem(PhysicalWorld physicalWorld, World world) : base(world, null)
     {
-        private readonly PhysicalWorld physicalWorld;
-        private WeakReference<NativePhysicsBody>? appliedSleepDisableTo;
+        this.physicalWorld = physicalWorld;
+    }
 
-        public DisallowPlayerBodySleepSystem(PhysicalWorld physicalWorld, World world) : base(world, null)
+    protected override void Update(float delta, in Entity entity)
+    {
+        ref var physics = ref entity.Get<Physics>();
+
+        if (!physics.IsBodyEffectivelyEnabled())
+            return;
+
+        if (appliedSleepDisableTo != null && appliedSleepDisableTo.TryGetTarget(out var appliedTo) &&
+            ReferenceEquals(appliedTo, physics.Body))
         {
-            this.physicalWorld = physicalWorld;
+            return;
         }
 
-        protected override void Update(float delta, in Entity entity)
-        {
-            ref var physics = ref entity.Get<Physics>();
-
-            if (!physics.IsBodyEffectivelyEnabled())
-                return;
-
-            if (appliedSleepDisableTo != null && appliedSleepDisableTo.TryGetTarget(out var appliedTo) &&
-                ReferenceEquals(appliedTo, physics.Body))
-            {
-                return;
-            }
-
-            // Apply no sleep to the new body
-            physicalWorld.SetBodyAllowSleep(physics.Body!, false);
-            appliedSleepDisableTo = new WeakReference<NativePhysicsBody>(physics.Body!);
-        }
+        // Apply no sleep to the new body
+        physicalWorld.SetBodyAllowSleep(physics.Body!, false);
+        appliedSleepDisableTo = new WeakReference<NativePhysicsBody>(physics.Body!);
     }
 }

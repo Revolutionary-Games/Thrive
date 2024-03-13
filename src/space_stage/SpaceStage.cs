@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   The main class handling the space stage functions (and also the ascension stage as that just adds some extra

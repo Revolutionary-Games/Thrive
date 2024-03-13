@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using Godot;
-using Godot.Collections;
 using Container = Godot.Container;
 
 public partial class InteractablePopup : Control

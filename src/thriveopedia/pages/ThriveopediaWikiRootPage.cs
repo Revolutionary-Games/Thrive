@@ -1,5 +1,3 @@
-using Godot;
-
 /// <summary>
 ///   Root page for the wiki section of the Thriveopedia. Contains links to major pages within the wiki.
 /// </summary>

@@ -1,6 +1,4 @@
-﻿using Godot;
-
-/// <summary>
+﻿/// <summary>
 ///   Confirms the player wants to descend and allows picking the descension perk
 /// </summary>
 public partial class AscensionCongratulationsPopup : CustomConfirmationDialog

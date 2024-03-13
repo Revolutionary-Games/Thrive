@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel;
 using System.Text;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   A display of <see cref="TechWeb"/> status and available technologies to select something to research

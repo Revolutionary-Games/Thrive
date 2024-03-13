@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   A widget containing a list of saves

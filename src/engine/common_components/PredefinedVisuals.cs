@@ -1,26 +1,25 @@
-﻿namespace Components
+﻿namespace Components;
+
+using Newtonsoft.Json;
+
+/// <summary>
+///   Entity uses a predefined visual that is automatically loaded by
+///   <see cref="Systems.PredefinedVisualLoaderSystem"/>. This is much better to use for save compatibility than
+///   directly setting the visuals when creating en entity as that can't be automatically redone when loading a
+///   save.
+/// </summary>
+[JSONDynamicTypeAllowed]
+public struct PredefinedVisuals
 {
-    using Newtonsoft.Json;
+    /// <summary>
+    ///   Specifies what this entity should display as its visuals
+    /// </summary>
+    public VisualResourceIdentifier VisualIdentifier;
 
     /// <summary>
-    ///   Entity uses a predefined visual that is automatically loaded by
-    ///   <see cref="Systems.PredefinedVisualLoaderSystem"/>. This is much better to use for save compatibility than
-    ///   directly setting the visuals when creating en entity as that can't be automatically redone when loading a
-    ///   save.
+    ///   Don't touch this, used by the system for handling this. Not saved so that after load the visual is
+    ///   properly reloaded.
     /// </summary>
-    [JSONDynamicTypeAllowed]
-    public struct PredefinedVisuals
-    {
-        /// <summary>
-        ///   Specifies what this entity should display as its visuals
-        /// </summary>
-        public VisualResourceIdentifier VisualIdentifier;
-
-        /// <summary>
-        ///   Don't touch this, used by the system for handling this. Not saved so that after load the visual is
-        ///   properly reloaded.
-        /// </summary>
-        [JsonIgnore]
-        public VisualResourceIdentifier LoadedInstance;
-    }
+    [JsonIgnore]
+    public VisualResourceIdentifier LoadedInstance;
 }

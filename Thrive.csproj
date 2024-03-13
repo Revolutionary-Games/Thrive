@@ -14,7 +14,9 @@
   </PropertyGroup>
   <!-- Ignore the subproject source files -->
   <PropertyGroup>
-    <DefaultItemExcludes>$(DefaultItemExcludes);Scripts\**\*;RevolutionaryGamesCommon\**\*</DefaultItemExcludes>
+    <DefaultItemExcludes>
+      $(DefaultItemExcludes);Scripts\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
+    </DefaultItemExcludes>
   </PropertyGroup>
   <!-- Non-Steam build needs to skip this file -->
   <ItemGroup>
@@ -35,10 +37,11 @@
     <PackageReference Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageReference Include="Lib.Harmony" Version="2.2.2" />
     <PackageReference Include="YamlDotNet" Version="15.1.2" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
-    <Content Include="Directory.Build.props" />
     <Content Include="export_presets.cfg" />
     <Content Include="global.json" />
     <Content Include="README.md" />
@@ -74,5 +77,12 @@
   <ItemGroup>
     <ProjectReference Include="RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
     <ProjectReference Include="third_party\ThirdParty.csproj" />
+  </ItemGroup>
+  <!-- StyleCop Analyzers configuration -->
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)RevolutionaryGamesCommon/StyleCop.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)RevolutionaryGamesCommon/stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 </Project>

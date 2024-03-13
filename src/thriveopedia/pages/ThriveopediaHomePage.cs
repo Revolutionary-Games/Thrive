@@ -1,5 +1,3 @@
-using Godot;
-
 /// <summary>
 ///   Thriveopedia page displaying welcome information and links to websites.
 /// </summary>

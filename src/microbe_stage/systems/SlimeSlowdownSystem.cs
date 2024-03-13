@@ -1,53 +1,52 @@
-﻿namespace Systems
+﻿namespace Systems;
+
+using Components;
+using DefaultEcs;
+using DefaultEcs.System;
+using DefaultEcs.Threading;
+
+/// <summary>
+///   Handles slowing down cells that are currently moving through slime (and don't have slime jets themselves)
+/// </summary>
+[With(typeof(MicrobeControl))]
+[With(typeof(OrganelleContainer))]
+[With(typeof(WorldPosition))]
+[Without(typeof(AttachedToEntity))]
+[ReadsComponent(typeof(OrganelleContainer))]
+[ReadsComponent(typeof(WorldPosition))]
+[RunsAfter(typeof(OrganelleComponentFetchSystem))]
+[RunsBefore(typeof(MicrobeMovementSystem))]
+[RuntimeCost(7)]
+public sealed class SlimeSlowdownSystem : AEntitySetSystem<float>
 {
-    using Components;
-    using DefaultEcs;
-    using DefaultEcs.System;
-    using DefaultEcs.Threading;
+    private readonly IReadonlyCompoundClouds compoundCloudSystem;
 
-    /// <summary>
-    ///   Handles slowing down cells that are currently moving through slime (and don't have slime jets themselves)
-    /// </summary>
-    [With(typeof(MicrobeControl))]
-    [With(typeof(OrganelleContainer))]
-    [With(typeof(WorldPosition))]
-    [Without(typeof(AttachedToEntity))]
-    [ReadsComponent(typeof(OrganelleContainer))]
-    [ReadsComponent(typeof(WorldPosition))]
-    [RunsAfter(typeof(OrganelleComponentFetchSystem))]
-    [RunsBefore(typeof(MicrobeMovementSystem))]
-    [RuntimeCost(7)]
-    public sealed class SlimeSlowdownSystem : AEntitySetSystem<float>
+    private readonly Compound mucilage;
+
+    public SlimeSlowdownSystem(IReadonlyCompoundClouds compoundCloudSystem, World world, IParallelRunner runner) :
+        base(world, runner)
     {
-        private readonly IReadonlyCompoundClouds compoundCloudSystem;
+        this.compoundCloudSystem = compoundCloudSystem;
 
-        private readonly Compound mucilage;
+        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
+    }
 
-        public SlimeSlowdownSystem(IReadonlyCompoundClouds compoundCloudSystem, World world, IParallelRunner runner) :
-            base(world, runner)
+    protected override void Update(float delta, in Entity entity)
+    {
+        ref var control = ref entity.Get<MicrobeControl>();
+
+        ref var organelles = ref entity.Get<OrganelleContainer>();
+
+        // Cells with jets aren't affected by mucilage
+        if (organelles.SlimeJets is { Count: > 0 })
         {
-            this.compoundCloudSystem = compoundCloudSystem;
-
-            mucilage = SimulationParameters.Instance.GetCompound("mucilage");
+            control.SlowedBySlime = false;
+            return;
         }
 
-        protected override void Update(float delta, in Entity entity)
-        {
-            ref var control = ref entity.Get<MicrobeControl>();
+        ref var position = ref entity.Get<WorldPosition>();
 
-            ref var organelles = ref entity.Get<OrganelleContainer>();
-
-            // Cells with jets aren't affected by mucilage
-            if (organelles.SlimeJets is { Count: > 0 })
-            {
-                control.SlowedBySlime = false;
-                return;
-            }
-
-            ref var position = ref entity.Get<WorldPosition>();
-
-            control.SlowedBySlime = compoundCloudSystem.AmountAvailable(mucilage, position.Position, 1.0f) >
-                Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT;
-        }
+        control.SlowedBySlime = compoundCloudSystem.AmountAvailable(mucilage, position.Position, 1.0f) >
+            Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT;
     }
 }

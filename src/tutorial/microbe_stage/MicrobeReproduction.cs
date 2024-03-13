@@ -1,64 +1,63 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Tells the player how to reproduce if they have taken a long while
+/// </summary>
+public class MicrobeReproduction : TutorialPhase
 {
-    using System;
+    public override string ClosedByName => "MicrobeReproduction";
 
-    /// <summary>
-    ///   Tells the player how to reproduce if they have taken a long while
-    /// </summary>
-    public class MicrobeReproduction : TutorialPhase
+    public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
-        public override string ClosedByName => "MicrobeReproduction";
+        gui.ReproductionTutorialVisible = ShownCurrently;
+    }
 
-        public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.ReproductionTutorialVisible = ShownCurrently;
+            case TutorialEventType.MicrobePlayerReadyToEdit:
+                if (ShownCurrently)
+                    Hide();
+
+                break;
+            case TutorialEventType.EnteredMicrobeEditor:
+                if (ShownCurrently)
+                    Hide();
+
+                // Show this next time after the editor in case the player got to the editor early
+                if (!HasBeenShown)
+                    ReportPreviousTutorialComplete();
+
+                break;
         }
 
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
+        return false;
+    }
+
+    public override void Hide()
+    {
+        base.Hide();
+        ProcessWhileHidden = false;
+    }
+
+    public void ReportPreviousTutorialComplete()
+    {
+        if (ProcessWhileHidden)
+            return;
+
+        ProcessWhileHidden = true;
+        Time = 0;
+    }
+
+    protected override void OnProcess(TutorialState overallState, float delta)
+    {
+        if (Time > Constants.MICROBE_REPRODUCTION_TUTORIAL_DELAY && !HasBeenShown && !overallState.TutorialActive())
         {
-            switch (eventType)
-            {
-                case TutorialEventType.MicrobePlayerReadyToEdit:
-                    if (ShownCurrently)
-                        Hide();
-
-                    break;
-                case TutorialEventType.EnteredMicrobeEditor:
-                    if (ShownCurrently)
-                        Hide();
-
-                    // Show this next time after the editor in case the player got to the editor early
-                    if (!HasBeenShown)
-                        ReportPreviousTutorialComplete();
-
-                    break;
-            }
-
-            return false;
-        }
-
-        public override void Hide()
-        {
-            base.Hide();
-            ProcessWhileHidden = false;
-        }
-
-        public void ReportPreviousTutorialComplete()
-        {
-            if (ProcessWhileHidden)
-                return;
-
-            ProcessWhileHidden = true;
-            Time = 0;
-        }
-
-        protected override void OnProcess(TutorialState overallState, float delta)
-        {
-            if (Time > Constants.MICROBE_REPRODUCTION_TUTORIAL_DELAY && !HasBeenShown && !overallState.TutorialActive())
-            {
-                Show();
-            }
+            Show();
         }
     }
 }

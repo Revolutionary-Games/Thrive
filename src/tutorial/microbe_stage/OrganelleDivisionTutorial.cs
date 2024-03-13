@@ -1,45 +1,44 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Tells the player about organelle division
+/// </summary>
+public class OrganelleDivisionTutorial : TutorialPhase
 {
-    using System;
+    public override string ClosedByName => "OrganelleDivisionTutorial";
 
-    /// <summary>
-    ///   Tells the player about organelle division
-    /// </summary>
-    public class OrganelleDivisionTutorial : TutorialPhase
+    public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
-        public override string ClosedByName => "OrganelleDivisionTutorial";
+        gui.OrganelleDivisionTutorialVisible = ShownCurrently;
+    }
 
-        public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.OrganelleDivisionTutorialVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.MicrobeNonCytoplasmOrganelleDivided:
             {
-                case TutorialEventType.MicrobeNonCytoplasmOrganelleDivided:
+                if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
-                    if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
-                    {
-                        Show();
-                        return true;
-                    }
-
-                    break;
+                    Show();
+                    return true;
                 }
-            }
 
-            return false;
+                break;
+            }
         }
 
-        protected override void OnProcess(TutorialState overallState, float delta)
+        return false;
+    }
+
+    protected override void OnProcess(TutorialState overallState, float delta)
+    {
+        if (Time > Constants.HIDE_MICROBE_ORGANELLE_DIVISION_TUTORIAL_AFTER)
         {
-            if (Time > Constants.HIDE_MICROBE_ORGANELLE_DIVISION_TUTORIAL_AFTER)
-            {
-                Hide();
-            }
+            Hide();
         }
     }
 }

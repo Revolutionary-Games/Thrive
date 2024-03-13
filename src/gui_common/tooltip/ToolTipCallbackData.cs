@@ -24,6 +24,7 @@ public partial class ToolTipCallbackData : RefCounted
     ///   Callables need to be stored for disconnecting them to work
     /// </summary>
     internal Callable EnterCallable { get; set; }
+
     internal Callable ExitCallable { get; set; }
     internal Callable ExitTreeCallable { get; set; }
 
@@ -74,5 +75,4 @@ public partial class ToolTipCallbackData : RefCounted
 
         base.Dispose(disposing);
     }
-
 }

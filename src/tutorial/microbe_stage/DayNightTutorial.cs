@@ -1,45 +1,44 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Tells the player about the day and night cycle
+/// </summary>
+public class DayNightTutorial : TutorialPhase
 {
-    using System;
+    public override string ClosedByName => "DayNightTutorial";
 
-    /// <summary>
-    ///   Tells the player about the day and night cycle
-    /// </summary>
-    public class DayNightTutorial : TutorialPhase
+    public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
-        public override string ClosedByName => "DayNightTutorial";
+        gui.DayNightTutorialVisible = ShownCurrently;
+    }
 
-        public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.DayNightTutorialVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.MicrobePlayerEnterSunlightPatch:
             {
-                case TutorialEventType.MicrobePlayerEnterSunlightPatch:
+                if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
-                    if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
-                    {
-                        Show();
-                        return true;
-                    }
-
-                    break;
+                    Show();
+                    return true;
                 }
-            }
 
-            return false;
+                break;
+            }
         }
 
-        protected override void OnProcess(TutorialState overallState, float delta)
+        return false;
+    }
+
+    protected override void OnProcess(TutorialState overallState, float delta)
+    {
+        if (Time > Constants.HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER)
         {
-            if (Time > Constants.HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER)
-            {
-                Hide();
-            }
+            Hide();
         }
     }
 }

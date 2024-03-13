@@ -1,58 +1,57 @@
-﻿namespace AutoEvo
+﻿namespace AutoEvo;
+
+using System;
+using System.Collections.Generic;
+
+/// <summary>
+///   Step that calculate the populations for all species
+/// </summary>
+public class CalculatePopulation : IRunStep
 {
-    using System;
-    using System.Collections.Generic;
+    private readonly IAutoEvoConfiguration configuration;
+    private readonly PatchMap map;
+    private readonly WorldGenerationSettings worldSettings;
+    private readonly List<Species>? extraSpecies;
+    private readonly List<Species>? excludedSpecies;
+    private readonly bool collectEnergyInfo;
 
-    /// <summary>
-    ///   Step that calculate the populations for all species
-    /// </summary>
-    public class CalculatePopulation : IRunStep
+    public CalculatePopulation(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
+        PatchMap map, List<Species>? extraSpecies = null, List<Species>? excludedSpecies = null,
+        bool collectEnergyInfo = false)
     {
-        private readonly IAutoEvoConfiguration configuration;
-        private readonly PatchMap map;
-        private readonly WorldGenerationSettings worldSettings;
-        private readonly List<Species>? extraSpecies;
-        private readonly List<Species>? excludedSpecies;
-        private readonly bool collectEnergyInfo;
+        this.configuration = configuration;
+        this.worldSettings = worldSettings;
+        this.map = map;
+        this.extraSpecies = extraSpecies;
+        this.excludedSpecies = excludedSpecies;
+        this.collectEnergyInfo = collectEnergyInfo;
+    }
 
-        public CalculatePopulation(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
-            PatchMap map, List<Species>? extraSpecies = null, List<Species>? excludedSpecies = null,
-            bool collectEnergyInfo = false)
+    public int TotalSteps => 1;
+
+    public bool CanRunConcurrently { get; set; } = true;
+
+    public bool RunStep(RunResults results)
+    {
+        // ReSharper disable RedundantArgumentDefaultValue
+        var config = new SimulationConfiguration(configuration, map, worldSettings)
         {
-            this.configuration = configuration;
-            this.worldSettings = worldSettings;
-            this.map = map;
-            this.extraSpecies = extraSpecies;
-            this.excludedSpecies = excludedSpecies;
-            this.collectEnergyInfo = collectEnergyInfo;
-        }
+            Results = results,
+            CollectEnergyInformation = collectEnergyInfo,
+        };
 
-        public int TotalSteps => 1;
+        // ReSharper restore RedundantArgumentDefaultValue
 
-        public bool CanRunConcurrently { get; set; } = true;
+        if (extraSpecies != null)
+            config.ExtraSpecies = extraSpecies;
 
-        public bool RunStep(RunResults results)
-        {
-            // ReSharper disable RedundantArgumentDefaultValue
-            var config = new SimulationConfiguration(configuration, map, worldSettings)
-            {
-                Results = results,
-                CollectEnergyInformation = collectEnergyInfo,
-            };
+        if (excludedSpecies != null)
+            config.ExcludedSpecies = excludedSpecies;
 
-            // ReSharper restore RedundantArgumentDefaultValue
+        // Directly feed the population results to the main results object
 
-            if (extraSpecies != null)
-                config.ExtraSpecies = extraSpecies;
+        PopulationSimulation.Simulate(config, null, new Random());
 
-            if (excludedSpecies != null)
-                config.ExcludedSpecies = excludedSpecies;
-
-            // Directly feed the population results to the main results object
-
-            PopulationSimulation.Simulate(config, null, new Random());
-
-            return true;
-        }
+        return true;
     }
 }

@@ -1,37 +1,36 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Notifies the player when they do not modify their cell
+/// </summary>
+public class MadeNoChangesTutorial : TutorialPhase
 {
-    using System;
+    public override string ClosedByName => "MadeNoChangesTutorial";
 
-    /// <summary>
-    ///   Notifies the player when they do not modify their cell
-    /// </summary>
-    public class MadeNoChangesTutorial : TutorialPhase
+    public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
-        public override string ClosedByName => "MadeNoChangesTutorial";
+        gui.MadeNoChangesTutorialVisible = ShownCurrently;
+    }
 
-        public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.MadeNoChangesTutorialVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.MicrobeEditorNoChangesMade:
             {
-                case TutorialEventType.MicrobeEditorNoChangesMade:
+                if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
-                    if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
-                    {
-                        Show();
-                        return true;
-                    }
-
-                    break;
+                    Show();
+                    return true;
                 }
-            }
 
-            return false;
+                break;
+            }
         }
+
+        return false;
     }
 }

@@ -1,15 +1,14 @@
-﻿namespace Components
-{
-    using Systems;
+﻿namespace Components;
 
-    /// <summary>
-    ///   Marks entity as being affected by <see cref="FluidCurrentsSystem"/>. Additionally
-    ///   <see cref="ManualPhysicsControl"/> and <see cref="WorldPosition"/> are required components.
-    ///   This exists as currents need to be skipped for microbes for now as we don't have visualizations for the
-    ///   currents.
-    /// </summary>
-    [JSONDynamicTypeAllowed]
-    public struct CurrentAffected
-    {
-    }
+using Systems;
+
+/// <summary>
+///   Marks entity as being affected by <see cref="FluidCurrentsSystem"/>. Additionally
+///   <see cref="ManualPhysicsControl"/> and <see cref="WorldPosition"/> are required components.
+///   This exists as currents need to be skipped for microbes for now as we don't have visualizations for the
+///   currents.
+/// </summary>
+[JSONDynamicTypeAllowed]
+public struct CurrentAffected
+{
 }

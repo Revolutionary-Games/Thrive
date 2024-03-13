@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Base type for all menus where selecting a building / structure to be built can be done

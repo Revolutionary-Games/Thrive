@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Godot;
-using Array = Godot.Collections.Array;
 using DataSetDictionary = System.Collections.Generic.Dictionary<string, ChartDataSet>;
 
 /// <summary>
