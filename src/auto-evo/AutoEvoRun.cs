@@ -380,64 +380,14 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            // TODO: No one should be allowed to update the SpeciesInPatch.
-            // If this happens, the root cause must be addressed.
+            steps.Enqueue(new GenerateMiche(entry.Value, new SimulationCache(worldSettings), map.CurrentPatch == entry.Value));
+        }
 
-            // Iterate over a copy to be secure from changes to the dictionary.
-            var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
-            foreach (var speciesEntry in speciesInPatchCopy)
-            {
-                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
-                if (speciesEntry.Key == null)
-                    throw new Exception("Species key in a patch is null");
+        foreach (var entry in map.Patches)
+        {
+            steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings)));
 
-                if (alreadyHandledSpecies.Contains(speciesEntry.Key))
-                    continue;
-
-                alreadyHandledSpecies.Add(speciesEntry.Key);
-
-                // The player species doesn't get random mutations. And also doesn't spread automatically
-                if (speciesEntry.Key.PlayerSpecies)
-                {
-                }
-                else
-                {
-                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
-                        random, autoEvoConfiguration.MutationsPerSpecies,
-                        autoEvoConfiguration.AllowSpeciesToNotMutate,
-                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
-                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
-
-                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
-                        random, autoEvoConfiguration.MoveAttemptsPerSpecies,
-                        autoEvoConfiguration.AllowSpeciesToNotMigrate));
-                }
-            }
-
-            // Verify the length.
-            if (speciesInPatchCopy.Count != entry.Value.SpeciesInPatch.Count)
-            {
-                GD.PrintErr("Auto-evo: Issue #1880 occured (Collection was modified).");
-            }
-            else
-            {
-                // Check that each entry is still the same.
-                foreach (var speciesEntry in speciesInPatchCopy)
-                {
-                    if (!entry.Value.SpeciesInPatch.TryGetValue(speciesEntry.Key, out long value)
-                        || speciesEntry.Value != value)
-                    {
-                        GD.PrintErr("Auto-evo: Issue #1880 occured (Collection was modified).");
-                        break;
-                    }
-                }
-            }
-
-            if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
-                random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
-            {
-                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, worldSettings, map, entry.Value, random));
-            }
+            steps.Enqueue(new MigrateSpecies(entry.Value, new SimulationCache(worldSettings)));
         }
 
         // The new populations don't depend on the mutations, this is so that when
@@ -448,14 +398,7 @@ public class AutoEvoRun
         steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, null, true)
             { CanRunConcurrently = false });
 
-        // Due to species splitting migrations may end up being invalid
-        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
-        // numbers
-        steps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
-
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
-
-        steps.Enqueue(new ForceExtinction(map.Patches.Values.ToList(), autoEvoConfiguration));
     }
 
     /// <summary>
