@@ -1,0 +1,272 @@
+[gd_scene load_steps=19 format=3 uid="uid://cf65ovetig4om"]
+
+[ext_resource type="LabelSettings" uid="uid://2wocwdhy8088" path="res://src/gui_common/new_fonts/Title-SemiBold-AlmostSmaller.tres" id="1_8bbgm"]
+[ext_resource type="Script" path="res://src/microbe_stage/gui/EnvironmentPanel.cs" id="1_vxpah"]
+[ext_resource type="Texture2D" uid="uid://56lvdt8x5ts8" path="res://assets/textures/gui/bevel/expandPanel.png" id="2_pmqaf"]
+[ext_resource type="Texture2D" uid="uid://bxlnimt4nkhqo" path="res://assets/textures/gui/bevel/expandPanelActive.png" id="3_j0hv2"]
+[ext_resource type="Texture2D" uid="uid://cttqx2e3xihkj" path="res://assets/textures/gui/bevel/compressPanel.png" id="4_c57f8"]
+[ext_resource type="Texture2D" uid="uid://ce6xjoyccianl" path="res://assets/textures/gui/bevel/compressPanelActive.png" id="5_pdfn1"]
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0, 0.129412, 0.141176, 0.784314)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxTexture" id="5"]
+texture = ExtResource("2_pmqaf")
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="StyleBoxTexture" id="3"]
+texture = ExtResource("2_pmqaf")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+region_rect = Rect2(0, 0, 20, 20)
+modulate_color = Color(0, 0.435294, 0.52549, 1)
+
+[sub_resource type="StyleBoxTexture" id="4"]
+texture = ExtResource("3_j0hv2")
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_1u4ht"]
+
+[sub_resource type="StyleBoxTexture" id="9"]
+texture = ExtResource("4_c57f8")
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="StyleBoxTexture" id="7"]
+texture = ExtResource("4_c57f8")
+region_rect = Rect2(0, 0, 20, 20)
+modulate_color = Color(0, 0.435294, 0.52549, 1)
+
+[sub_resource type="StyleBoxTexture" id="8"]
+texture = ExtResource("5_pdfn1")
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="Animation" id="Animation_s0kx8"]
+resource_name = "Hide"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -200.0]
+}
+
+[sub_resource type="Animation" id="Animation_k44qq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ccids"]
+resource_name = "Show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-200.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bjeaw"]
+_data = {
+"Hide": SubResource("Animation_s0kx8"),
+"RESET": SubResource("Animation_k44qq"),
+"Show": SubResource("Animation_ccids")
+}
+
+[node name="EnvironmentPanel" type="VBoxContainer" node_paths=PackedStringArray("expandButton", "compressButton", "primaryBarContainer", "panelHideAnimationPlayer")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -234.0
+offset_right = 199.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+alignment = 2
+script = ExtResource("1_vxpah")
+expandButton = NodePath("EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton")
+compressButton = NodePath("EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton")
+primaryBarContainer = NodePath("EnvironmentPanelPanel/VBoxContainer/Body/BarContainer")
+panelHideAnimationPlayer = NodePath("PanelAnimationPlayer")
+
+[node name="EnvironmentPanelPanel" type="PanelContainer" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(197, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EnvironmentPanelPanel"]
+custom_minimum_size = Vector2(195, 0)
+layout_mode = 2
+
+[node name="Header" type="MarginContainer" parent="EnvironmentPanelPanel/VBoxContainer"]
+custom_minimum_size = Vector2(195, 35)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EnvironmentPanelPanel/VBoxContainer/Header"]
+custom_minimum_size = Vector2(174, 0)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ENVIRONMENT"
+label_settings = ExtResource("1_8bbgm")
+
+[node name="EnvironmentExpandButton" type="Button" parent="EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/hover = SubResource("3")
+theme_override_styles/pressed = SubResource("4")
+toggle_mode = true
+button_pressed = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_1u4ht")
+
+[node name="EnvironmentCompressButton" type="Button" parent="EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("9")
+theme_override_styles/hover = SubResource("7")
+theme_override_styles/pressed = SubResource("8")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_1u4ht")
+
+[node name="HSeparator" type="HSeparator" parent="EnvironmentPanelPanel/VBoxContainer"]
+custom_minimum_size = Vector2(197, 0)
+layout_mode = 2
+
+[node name="Body" type="MarginContainer" parent="EnvironmentPanelPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="BarContainer" type="GridContainer" parent="EnvironmentPanelPanel/VBoxContainer/Body"]
+layout_mode = 2
+
+[node name="PanelAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bjeaw")
+}
+
+[connection signal="pressed" from="EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="." method="OnExpandPressed"]
+[connection signal="pressed" from="EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="." method="OnCompressPressed"]

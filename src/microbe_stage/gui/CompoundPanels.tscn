@@ -1,0 +1,762 @@
+[gd_scene load_steps=25 format=3 uid="uid://bk6re4dgb8r3n"]
+
+[ext_resource type="Script" path="res://src/microbe_stage/gui/CompoundPanels.cs" id="1_x6jrf"]
+[ext_resource type="Texture2D" uid="uid://b6tpqpuuux2xy" path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" id="1_xxq2g"]
+[ext_resource type="LabelSettings" uid="uid://2wocwdhy8088" path="res://src/gui_common/new_fonts/Title-SemiBold-AlmostSmaller.tres" id="2_a755s"]
+[ext_resource type="Texture2D" uid="uid://56lvdt8x5ts8" path="res://assets/textures/gui/bevel/expandPanel.png" id="3_g8oxc"]
+[ext_resource type="Texture2D" uid="uid://bxlnimt4nkhqo" path="res://assets/textures/gui/bevel/expandPanelActive.png" id="4_mf4n6"]
+[ext_resource type="Texture2D" uid="uid://cttqx2e3xihkj" path="res://assets/textures/gui/bevel/compressPanel.png" id="5_iprbg"]
+[ext_resource type="Texture2D" uid="uid://ce6xjoyccianl" path="res://assets/textures/gui/bevel/compressPanelActive.png" id="6_6f8qr"]
+[ext_resource type="Texture2D" uid="uid://bvqcyxabp8g4g" path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" id="14_hu0kk"]
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0, 0.129412, 0.141176, 0.784314)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxTexture" id="5"]
+texture = ExtResource("3_g8oxc")
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="StyleBoxTexture" id="3"]
+texture = ExtResource("3_g8oxc")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+region_rect = Rect2(0, 0, 20, 20)
+modulate_color = Color(0, 0.435294, 0.52549, 1)
+
+[sub_resource type="StyleBoxTexture" id="4"]
+texture = ExtResource("4_mf4n6")
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_31tdv"]
+
+[sub_resource type="StyleBoxTexture" id="18"]
+texture = ExtResource("5_iprbg")
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="StyleBoxTexture" id="16"]
+texture = ExtResource("5_iprbg")
+region_rect = Rect2(0, 0, 20, 20)
+modulate_color = Color(0, 0.435294, 0.52549, 1)
+
+[sub_resource type="StyleBoxTexture" id="17"]
+texture = ExtResource("6_6f8qr")
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="Animation" id="Animation_4cpjp"]
+resource_name = "AddAgents"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AgentsPanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AgentsPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SmoothPopup:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SmoothPopup:custom_minimum_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 100)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AgentsPanel:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-200.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_mc3hp"]
+resource_name = "HideAgents"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AgentsPanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AgentsPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SmoothPopup:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AgentsPanel:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -200.0]
+}
+
+[sub_resource type="Animation" id="Animation_xenqi"]
+resource_name = "HideBoth"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -260.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CompoundsPanel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AgentsPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AgentsPanel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CompoundsPanel:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SmoothPopup:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_h4ygb"]
+resource_name = "HideOnlyCompounds"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -260.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CompoundsPanel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AgentsPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CompoundsPanel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qc1gx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CompoundsPanel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AgentsPanel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AgentsPanel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CompoundsPanel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SmoothPopup:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SmoothPopup:custom_minimum_size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AgentsPanel:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dwfay"]
+resource_name = "ShowBoth"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CompoundsPanel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AgentsPanel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AgentsPanel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CompoundsPanel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-260.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SmoothPopup:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dyqfp"]
+resource_name = "ShowOnlyCompounds"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CompoundsPanel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AgentsPanel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CompoundsPanel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-260.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SmoothPopup:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1orya"]
+_data = {
+"AddAgents": SubResource("Animation_4cpjp"),
+"HideAgents": SubResource("Animation_mc3hp"),
+"HideBoth": SubResource("Animation_xenqi"),
+"HideOnlyCompounds": SubResource("Animation_h4ygb"),
+"RESET": SubResource("Animation_qc1gx"),
+"ShowBoth": SubResource("Animation_dwfay"),
+"ShowOnlyCompounds": SubResource("Animation_dyqfp")
+}
+
+[node name="CompoundPanels" type="VBoxContainer" node_paths=PackedStringArray("agentsContainer", "agentsParentContainer", "expandButton", "compressButton", "primaryBarContainer", "panelHideAnimationPlayer")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -147.0
+offset_right = 256.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+alignment = 2
+script = ExtResource("1_x6jrf")
+agentsContainer = NodePath("AgentsPanel/VBoxContainer/Body/BarContainer")
+agentsParentContainer = NodePath("AgentsPanel")
+expandButton = NodePath("CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton")
+compressButton = NodePath("CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton")
+primaryBarContainer = NodePath("CompoundsPanel/VBoxContainer/Body/BarContainer")
+panelHideAnimationPlayer = NodePath("PanelAnimationPlayer")
+
+[node name="CompoundsPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CompoundsPanel"]
+custom_minimum_size = Vector2(252, 0)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Header" type="MarginContainer" parent="CompoundsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CompoundsPanel/VBoxContainer/Header"]
+custom_minimum_size = Vector2(197, 0)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Icon" type="TextureRect" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("1_xxq2g")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(145, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "COMPOUNDS"
+label_settings = ExtResource("2_a755s")
+
+[node name="CompoundExpandButton" type="Button" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/hover = SubResource("3")
+theme_override_styles/pressed = SubResource("4")
+toggle_mode = true
+button_pressed = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_31tdv")
+
+[node name="CompoundCompressButton" type="Button" parent="CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("18")
+theme_override_styles/hover = SubResource("16")
+theme_override_styles/pressed = SubResource("17")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_31tdv")
+
+[node name="HSeparator" type="HSeparator" parent="CompoundsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(254, 0)
+layout_mode = 2
+
+[node name="Body" type="MarginContainer" parent="CompoundsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="BarContainer" type="GridContainer" parent="CompoundsPanel/VBoxContainer/Body"]
+layout_mode = 2
+theme_override_constants/v_separation = 5
+
+[node name="SmoothPopup" type="Control" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="AgentsPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AgentsPanel"]
+layout_mode = 2
+
+[node name="Header" type="MarginContainer" parent="AgentsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(230, 35)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AgentsPanel/VBoxContainer/Header"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="AgentsPanel/VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_hu0kk")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="AgentsPanel/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "AGENTS"
+label_settings = ExtResource("2_a755s")
+
+[node name="HSeparator" type="HSeparator" parent="AgentsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(254, 0)
+layout_mode = 2
+
+[node name="Body" type="MarginContainer" parent="AgentsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BarContainer" type="GridContainer" parent="AgentsPanel/VBoxContainer/Body"]
+layout_mode = 2
+
+[node name="PanelAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1orya")
+}
+
+[connection signal="pressed" from="CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="." method="OnExpandPressed"]
+[connection signal="pressed" from="CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="." method="OnCompressPressed"]

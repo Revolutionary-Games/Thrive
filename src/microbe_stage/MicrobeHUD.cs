@@ -22,9 +22,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     public NodePath MacroscopicButtonPath = null!;
 
     [Export]
-    public NodePath IngestedMatterBarPath = null!;
-
-    [Export]
     public NodePath BindingModeHotkeyPath = null!;
 
     [Export]
@@ -50,7 +47,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private CustomWindow multicellularConfirmPopup = null!;
     private Button macroscopicButton = null!;
 
-    private ProgressBar ingestedMatterBar = null!;
+    private CompoundProgressBar ingestedMatterBar = null!;
 
     private CustomWindow? winBox;
 #pragma warning restore CA2213
@@ -89,12 +86,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Signal]
     public delegate void OnEjectEngulfedButtonPressedEventHandler();
 
-    protected override string? UnPauseHelpText => Localization.Translate("PAUSE_PROMPT");
+    protected override string UnPauseHelpText => Localization.Translate("PAUSE_PROMPT");
 
     public override void _Ready()
     {
         base._Ready();
-        ingestedMatterBar = GetNode<ProgressBar>(IngestedMatterBarPath);
+
+        var barScene = GD.Load<PackedScene>("res://src/microbe_stage/gui/CompoundProgressBar.tscn");
+
+        ingestedMatterBar = CompoundProgressBar.Create(barScene,
+            GD.Load<Texture2D>("res://assets/textures/gui/bevel/ingestedmatter.png"),
+            new LocalizedString("INGESTED_MATTER"), 0, 1);
+
+        compoundsPanel.AddPrimaryBar(ingestedMatterBar);
 
         multicellularButton = GetNode<Button>(MulticellularButtonPath);
         multicellularConfirmPopup = GetNode<CustomWindow>(MulticellularConfirmPopupPath);
@@ -336,7 +340,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
-    protected override bool SpecialHandleBar(ProgressBar bar)
+    protected override bool SpecialHandleBar(CompoundProgressBar bar)
     {
         if (bar == ingestedMatterBar)
         {
@@ -381,9 +385,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             maxSize = stage.Player.Get<Engulfer>().EngulfStorageSize;
         }
 
-        ingestedMatterBar.MaxValue = maxSize;
-        GUICommon.SmoothlyUpdateBar(ingestedMatterBar, GetPlayerUsedIngestionCapacity(), delta);
-        ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
+        ingestedMatterBar.UpdateValue(GetPlayerUsedIngestionCapacity(), maxSize);
     }
 
     protected override ProcessStatistics? GetPlayerProcessStatistics()
@@ -539,7 +541,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 MulticellularButtonPath.Dispose();
                 MulticellularConfirmPopupPath.Dispose();
                 MacroscopicButtonPath.Dispose();
-                IngestedMatterBarPath.Dispose();
                 BindingModeHotkeyPath.Dispose();
                 UnbindAllHotkeyPath.Dispose();
             }

@@ -13,6 +13,11 @@ public static class StringUtils
     ///   Truncates large numbers with suffix added (e.g. M for million).
     ///   Adapted from https://stackoverflow.com/a/30181106 to allow negatives and translation.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: see if it would be possible to make a variant of this method that writes to a StringBuilder
+    ///   </para>
+    /// </remarks>
     public static string FormatNumber(this double number, bool withSuffix = true)
     {
         if (number is >= 1000000000 or <= -1000000000)
@@ -213,6 +218,26 @@ public static class StringUtils
         return value.ToString("F1", CultureInfo.CurrentCulture);
     }
 
+    /// <summary>
+    ///   Format variant that writes the result to a <see cref="StringBuilder"/>
+    /// </summary>
+    public static void ThreeDigitFormat(double value, StringBuilder result)
+    {
+        if (value is >= 1000 or <= -1000)
+        {
+            result.Append(FormatNumber(value));
+            return;
+        }
+
+        if (value is >= 100 or <= -100)
+        {
+            result.Append(value.ToString("F0", CultureInfo.CurrentCulture));
+            return;
+        }
+
+        result.Append(value.ToString("F1", CultureInfo.CurrentCulture));
+    }
+
     public static string ThreeDigitFormat(long value)
     {
         if (value is >= 1000 or <= -1000)
@@ -268,6 +293,16 @@ public static class StringUtils
     public static string SlashSeparatedNumbersFormat(long numerator, long denominator)
     {
         return ThreeDigitFormat(numerator) + " / " + ThreeDigitFormat(denominator);
+    }
+
+    /// <summary>
+    ///   Variant of this method that directly puts the result into a <see cref="StringBuilder"/>
+    /// </summary>
+    public static void SlashSeparatedNumbersFormat(double numerator, double denominator, StringBuilder result)
+    {
+        ThreeDigitFormat(numerator, result);
+        result.Append(" / ");
+        ThreeDigitFormat(denominator, result);
     }
 
     /// <summary>

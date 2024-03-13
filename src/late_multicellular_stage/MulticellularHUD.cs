@@ -157,7 +157,7 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         return c => bag.IsUseful(c);
     }
 
-    protected override bool SpecialHandleBar(ProgressBar bar)
+    protected override bool SpecialHandleBar(CompoundProgressBar bar)
     {
         return false;
     }

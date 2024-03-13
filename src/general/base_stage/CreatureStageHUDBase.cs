@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Components;
 using Godot;
-using Godot.Collections;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -16,16 +15,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     where TStage : GodotObject, ICreatureStage
 {
     [Export]
-    public NodePath? CompoundsGroupAnimationPlayerPath;
-
-    [Export]
-    public NodePath EnvironmentGroupAnimationPlayerPath = null!;
-
-    [Export]
-    public NodePath LeftPanelsPath = null!;
-
-    [Export]
-    public NodePath MouseHoverPanelPath = null!;
+    public NodePath? MouseHoverPanelPath;
 
     [Export]
     public NodePath AtpLabelPath = null!;
@@ -41,63 +31,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [Export]
     public NodePath EditorButtonPath = null!;
-
-    [Export]
-    public NodePath EnvironmentPanelPath = null!;
-
-    [Export]
-    public NodePath OxygenBarPath = null!;
-
-    [Export]
-    public NodePath Co2BarPath = null!;
-
-    [Export]
-    public NodePath NitrogenBarPath = null!;
-
-    [Export]
-    public NodePath TemperaturePath = null!;
-
-    [Export]
-    public NodePath SunlightPath = null!;
-
-    [Export]
-    public NodePath PressurePath = null!;
-
-    [Export]
-    public NodePath EnvironmentPanelBarContainerPath = null!;
-
-    [Export]
-    public NodePath CompoundsPanelPath = null!;
-
-    [Export]
-    public NodePath GlucoseBarPath = null!;
-
-    [Export]
-    public NodePath AmmoniaBarPath = null!;
-
-    [Export]
-    public NodePath PhosphateBarPath = null!;
-
-    [Export]
-    public NodePath HydrogenSulfideBarPath = null!;
-
-    [Export]
-    public NodePath IronBarPath = null!;
-
-    [Export]
-    public NodePath EnvironmentPanelExpandButtonPath = null!;
-
-    [Export]
-    public NodePath EnvironmentPanelCompressButtonPath = null!;
-
-    [Export]
-    public NodePath CompoundsPanelExpandButtonPath = null!;
-
-    [Export]
-    public NodePath CompoundsPanelCompressButtonPath = null!;
-
-    [Export]
-    public NodePath CompoundsPanelBarContainerPath = null!;
 
     [Export]
     public NodePath AtpBarPath = null!;
@@ -135,18 +68,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [Export]
     public NodePath MicrobeControlRadialPath = null!;
-
-    [Export]
-    public NodePath AgentsPanelPath = null!;
-
-    [Export]
-    public NodePath OxytoxyBarPath = null!;
-
-    [Export]
-    public NodePath MucilageBarPath = null!;
-
-    [Export]
-    public NodePath AgentsPanelBarContainerPath = null!;
 
     [Export]
     public NodePath FireToxinHotkeyPath = null!;
@@ -191,6 +112,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     protected readonly Color defaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
 
+    protected readonly Color ingestedMatterBarColour = new(0.88f, 0.49f, 0.49f);
+
     protected readonly List<Compound> allAgents = new();
 
     protected Compound ammonia = null!;
@@ -208,36 +131,37 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected Compound temperature = null!;
 
 #pragma warning disable CA2213
-    protected AnimationPlayer compoundsGroupAnimationPlayer = null!;
-    protected AnimationPlayer environmentGroupAnimationPlayer = null!;
     protected MouseHoverPanel mouseHoverPanel = null!;
-    protected PanelContainer environmentPanel = null!;
-    protected GridContainer? environmentPanelBarContainer;
+
+    [Export]
+    protected EnvironmentPanel environmentPanel = null!;
+
+    [Export]
+    protected CompoundPanels compoundsPanel = null!;
+
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
     protected ActionButton ejectEngulfedHotkey = null!;
     protected ActionButton signalingAgentsHotkey = null!;
 
-    protected ProgressBar oxygenBar = null!;
-    protected ProgressBar co2Bar = null!;
-    protected ProgressBar nitrogenBar = null!;
-    protected ProgressBar temperatureBar = null!;
-    protected ProgressBar sunlightLabel = null!;
+    protected CompoundProgressBar oxygenBar = null!;
+    protected CompoundProgressBar co2Bar = null!;
+    protected CompoundProgressBar nitrogenBar = null!;
+    protected CompoundProgressBar temperatureBar = null!;
+    protected CompoundProgressBar sunlightBar = null!;
 
     // TODO: implement changing pressure conditions
-    // ReSharper disable once NotAccessedField.Local
-    protected ProgressBar pressure = null!;
+    protected CompoundProgressBar pressureBar = null!;
 
-    protected GridContainer? compoundsPanelBarContainer;
-    protected ProgressBar glucoseBar = null!;
-    protected ProgressBar ammoniaBar = null!;
-    protected ProgressBar phosphateBar = null!;
-    protected ProgressBar hydrogenSulfideBar = null!;
-    protected ProgressBar ironBar = null!;
-    protected Button environmentPanelExpandButton = null!;
-    protected Button environmentPanelCompressButton = null!;
-    protected Button compoundsPanelExpandButton = null!;
-    protected Button compoundsPanelCompressButton = null!;
+    // TODO: switch to dynamically creating the following bars to allow better extensibility in terms of compound types
+    protected CompoundProgressBar glucoseBar = null!;
+    protected CompoundProgressBar ammoniaBar = null!;
+    protected CompoundProgressBar phosphateBar = null!;
+    protected CompoundProgressBar hydrogenSulfideBar = null!;
+    protected CompoundProgressBar ironBar = null!;
+    protected CompoundProgressBar oxytoxyBar = null!;
+    protected CompoundProgressBar mucilageBar = null!;
+
     protected TextureProgressBar atpBar = null!;
     protected TextureProgressBar healthBar = null!;
     protected TextureProgressBar ammoniaReproductionBar = null!;
@@ -268,37 +192,21 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     /// </summary>
     protected TStage? stage;
 
-    private readonly System.Collections.Generic.Dictionary<Compound, float> gatheredCompounds = new();
-    private readonly System.Collections.Generic.Dictionary<Compound, float> totalNeededCompounds = new();
+    private readonly List<(Compound Compound, CompoundProgressBar Bar)> compoundBars = new();
 
-    private readonly NodePath minSizeXReference = new("custom_minimum_size:x");
+    private readonly Dictionary<Compound, float> gatheredCompounds = new();
+    private readonly Dictionary<Compound, float> totalNeededCompounds = new();
 
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
-    private PanelContainer compoundsPanel = null!;
+
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
-    private VBoxContainer environmentPanelVBoxContainer = null!;
-    private VBoxContainer compoundsPanelVBoxContainer = null!;
-    private Control agentsPanel = null!;
-    private VBoxContainer agentsPanelVBoxContainer = null!;
-    private ProgressBar oxytoxyBar = null!;
-    private ProgressBar mucilageBar = null!;
+
     private CustomWindow? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
     private ProcessPanel processPanel = null!;
 #pragma warning restore CA2213
-
-    private Array<Node> compoundBars = null!;
-
-    private bool environmentCompressed;
-    private bool compoundCompressed;
-
-    // The values of the two following variables are the opposite of the expected values.
-    // I.e. their values are true when their respective panels are collapsed.
-    private bool compoundsPanelActive;
-
-    private bool environmentPanelActive;
 
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
@@ -335,28 +243,20 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [JsonProperty]
     public bool EnvironmentPanelCompressed
     {
-        get => environmentCompressed;
+        get => environmentPanel.PanelCompressed;
         set
         {
-            if (environmentCompressed == value)
-                return;
-
-            environmentCompressed = value;
-            UpdateEnvironmentPanelState();
+            environmentPanel.PanelCompressed = value;
         }
     }
 
     [JsonProperty]
     public bool CompoundsPanelCompressed
     {
-        get => compoundCompressed;
+        get => compoundsPanel.PanelCompressed;
         set
         {
-            if (compoundCompressed == value)
-                return;
-
-            compoundCompressed = value;
-            UpdateCompoundsPanelState();
+            compoundsPanel.PanelCompressed = value;
         }
     }
 
@@ -364,40 +264,10 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         base._Ready();
 
-        compoundBars = GetTree().GetNodesInGroup("CompoundBar");
-
         winExtinctBoxHolder = GetNode<Control>("../WinExtinctBoxHolder");
 
         mouseHoverPanel = GetNode<MouseHoverPanel>(MouseHoverPanelPath);
-        agentsPanel = GetNode<Control>(AgentsPanelPath);
-        agentsPanelVBoxContainer = agentsPanel.GetNode<VBoxContainer>("VBoxContainer");
 
-        environmentPanel = GetNode<PanelContainer>(EnvironmentPanelPath);
-        environmentPanelBarContainer = GetNode<GridContainer>(EnvironmentPanelBarContainerPath);
-        environmentPanelVBoxContainer = environmentPanel.GetNode<VBoxContainer>("VBoxContainer");
-        oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
-        co2Bar = GetNode<ProgressBar>(Co2BarPath);
-        nitrogenBar = GetNode<ProgressBar>(NitrogenBarPath);
-        temperatureBar = GetNode<ProgressBar>(TemperaturePath);
-        sunlightLabel = GetNode<ProgressBar>(SunlightPath);
-        pressure = GetNode<ProgressBar>(PressurePath);
-
-        compoundsPanel = GetNode<PanelContainer>(CompoundsPanelPath);
-        compoundsPanelBarContainer = GetNode<GridContainer>(CompoundsPanelBarContainerPath);
-        compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
-        glucoseBar = GetNode<ProgressBar>(GlucoseBarPath);
-        ammoniaBar = GetNode<ProgressBar>(AmmoniaBarPath);
-        phosphateBar = GetNode<ProgressBar>(PhosphateBarPath);
-        hydrogenSulfideBar = GetNode<ProgressBar>(HydrogenSulfideBarPath);
-        ironBar = GetNode<ProgressBar>(IronBarPath);
-
-        environmentPanelExpandButton = GetNode<Button>(EnvironmentPanelExpandButtonPath);
-        environmentPanelCompressButton = GetNode<Button>(EnvironmentPanelCompressButtonPath);
-        compoundsPanelExpandButton = GetNode<Button>(CompoundsPanelExpandButtonPath);
-        compoundsPanelCompressButton = GetNode<Button>(CompoundsPanelCompressButtonPath);
-
-        oxytoxyBar = GetNode<ProgressBar>(OxytoxyBarPath);
-        mucilageBar = GetNode<ProgressBar>(MucilageBarPath);
         atpBar = GetNode<TextureProgressBar>(AtpBarPath);
         healthBar = GetNode<TextureProgressBar>(HealthBarPath);
         ammoniaReproductionBar = GetNode<TextureProgressBar>(AmmoniaReproductionBarPath);
@@ -406,8 +276,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
-        compoundsGroupAnimationPlayer = GetNode<AnimationPlayer>(CompoundsGroupAnimationPlayerPath);
-        environmentGroupAnimationPlayer = GetNode<AnimationPlayer>(EnvironmentGroupAnimationPlayerPath);
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchNameOverlay = GetNode<PatchNameOverlay>(PatchOverlayPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
@@ -446,17 +314,81 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         temperature = SimulationParameters.Instance.GetCompound("temperature");
 
+        // Setup bars. In the future it'd be nice to setup bars as needed for the player for allowing easily adding
+        // new compound types
+        var barScene = GD.Load<PackedScene>("res://src/microbe_stage/gui/CompoundProgressBar.tscn");
+
+        // Environment bars
+        oxygenBar = CompoundProgressBar.CreatePercentageDisplay(barScene, oxygen, 0, true);
+        co2Bar = CompoundProgressBar.CreatePercentageDisplay(barScene, carbondioxide, 0, true);
+        nitrogenBar = CompoundProgressBar.CreatePercentageDisplay(barScene, nitrogen, 0, true);
+
+        // Is it a good idea to show the chemical formulas like this (with subscripts)?
+        oxygenBar.DisplayedName = new LocalizedString("O\u2082");
+        co2Bar.DisplayedName = new LocalizedString("CO\u2082");
+        nitrogenBar.DisplayedName = new LocalizedString("N\u2082");
+
+        temperatureBar = CompoundProgressBar.CreateSimpleWithUnit(barScene, temperature, 0,
+            temperature.Unit ?? throw new Exception("Temperature unit not set"));
+        temperatureBar.DisplayedName = new LocalizedString("TEMPERATURE_SHORT");
+
+        sunlightBar = CompoundProgressBar.CreatePercentageDisplay(barScene, sunlight, 0, true);
+        sunlightBar.DisplayedName = new LocalizedString("LIGHT");
+
+        // TODO: set value from patch
+        pressureBar = CompoundProgressBar.CreateSimpleWithUnit(barScene,
+            GD.Load<Texture2D>("res://assets/textures/gui/bevel/Pressure.png"), new LocalizedString("PRESSURE_SHORT"),
+            200, "kPa");
+
+        environmentPanel.AddPrimaryBar(oxygenBar);
+        environmentPanel.AddPrimaryBar(co2Bar);
+        environmentPanel.AddPrimaryBar(nitrogenBar);
+        environmentPanel.AddPrimaryBar(temperatureBar);
+        environmentPanel.AddPrimaryBar(sunlightBar);
+        environmentPanel.AddPrimaryBar(pressureBar);
+
+        // Compound bars
+        glucoseBar = CompoundProgressBar.Create(barScene, glucose, 0, 1);
+        ammoniaBar = CompoundProgressBar.Create(barScene, ammonia, 0, 1);
+        phosphateBar = CompoundProgressBar.Create(barScene, phosphates, 0, 1);
+        hydrogenSulfideBar = CompoundProgressBar.Create(barScene, hydrogensulfide, 0, 1);
+        ironBar = CompoundProgressBar.Create(barScene, iron, 0, 1);
+
+        compoundsPanel.AddPrimaryBar(glucoseBar);
+        compoundBars.Add((glucose, glucoseBar));
+
+        compoundsPanel.AddPrimaryBar(ammoniaBar);
+        compoundBars.Add((ammonia, ammoniaBar));
+
+        compoundsPanel.AddPrimaryBar(phosphateBar);
+        compoundBars.Add((phosphates, phosphateBar));
+
+        compoundsPanel.AddPrimaryBar(hydrogenSulfideBar);
+        compoundBars.Add((hydrogensulfide, hydrogenSulfideBar));
+
+        compoundsPanel.AddPrimaryBar(ironBar);
+        compoundBars.Add((iron, ironBar));
+
+        // Agent bars
+        oxytoxyBar = CompoundProgressBar.Create(barScene, oxytoxy, 0, 1);
+        mucilageBar = CompoundProgressBar.Create(barScene, mucilage, 0, 1);
+
+        compoundsPanel.AddAgentBar(oxytoxyBar);
+        compoundBars.Add((oxytoxy, oxytoxyBar));
+
+        compoundsPanel.AddAgentBar(mucilageBar);
+        compoundBars.Add((mucilage, mucilageBar));
+
+        // Fossilization setup
         fossilisationButtonLayer = GetNode<Control>(FossilisationButtonLayerPath);
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
 
         // Make sure fossilization layer update won't run if it isn't open
         fossilisationButtonLayer.Visible = false;
 
+        // TODO: move these to be gotten as a method in SimulationParameters
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
-
-        UpdateEnvironmentPanelState();
-        UpdateCompoundsPanelState();
     }
 
     public void Init(TStage containedInStage)
@@ -491,7 +423,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         UpdatePopulation();
         UpdateProcessPanel();
-        UpdatePanelSizing(convertedDelta);
 
         UpdateFossilisationButtons();
     }
@@ -649,31 +580,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     public void UpdateEnvironmentalBars(BiomeConditions biome)
     {
-        var oxygenPercentage = biome.CurrentCompoundAmounts[oxygen].Ambient * 100;
-        var co2Percentage = biome.CurrentCompoundAmounts[carbondioxide].Ambient * 100;
-        var nitrogenPercentage = biome.CurrentCompoundAmounts[nitrogen].Ambient * 100;
-        var sunlightPercentage = Math.Round(biome.CurrentCompoundAmounts[sunlight].Ambient * 100, 0);
-        var averageTemperature = biome.CurrentCompoundAmounts[temperature].Ambient;
+        oxygenBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[oxygen].Ambient);
+        co2Bar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[carbondioxide].Ambient);
+        nitrogenBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[nitrogen].Ambient);
 
-        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
-        var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
+        sunlightBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[sunlight].Ambient);
 
-        oxygenBar.MaxValue = 100;
-        oxygenBar.Value = oxygenPercentage;
-        oxygenBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(oxygenPercentage);
-
-        co2Bar.MaxValue = 100;
-        co2Bar.Value = co2Percentage;
-        co2Bar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(co2Percentage);
-
-        nitrogenBar.MaxValue = 100;
-        nitrogenBar.Value = nitrogenPercentage;
-        nitrogenBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(nitrogenPercentage);
-
-        sunlightLabel.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(sunlightPercentage);
-        temperatureBar.GetNode<Label>("Value").Text = unitFormat.FormatSafe(averageTemperature, temperature.Unit);
+        temperatureBar.CurrentValue = biome.CurrentCompoundAmounts[temperature].Ambient;
 
         // TODO: pressure?
+        // pressureBar.CurrentValue = ?
     }
 
     public override void PauseButtonPressed(bool buttonState)
@@ -747,108 +663,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         fossilisationButtonLayer.Visible = false;
     }
 
-    protected void UpdateEnvironmentPanelState()
-    {
-        if (environmentPanelBarContainer == null)
-            return;
-
-        var bars = environmentPanelBarContainer.GetChildren();
-
-        if (environmentCompressed)
-        {
-            environmentPanelCompressButton.ButtonPressed = true;
-            environmentPanelBarContainer.Columns = 2;
-            environmentPanelBarContainer.AddThemeConstantOverride("vseparation", 20);
-            environmentPanelBarContainer.AddThemeConstantOverride("hseparation", 17);
-
-            var tween = CreateTween();
-            tween.SetParallel();
-
-            foreach (var bar in bars.OfType<ProgressBar>())
-            {
-                tween.TweenProperty(bar, minSizeXReference, 73, 0.3);
-
-                // TODO: create NodePaths for the following to avoid object allocations
-                bar.GetNode<Label>("Label").Hide();
-                bar.GetNode<Label>("Value").HorizontalAlignment = HorizontalAlignment.Center;
-            }
-        }
-
-        if (!environmentCompressed)
-        {
-            environmentPanelExpandButton.ButtonPressed = true;
-            environmentPanelBarContainer.Columns = 1;
-            environmentPanelBarContainer.AddThemeConstantOverride("vseparation", 4);
-            environmentPanelBarContainer.AddThemeConstantOverride("hseparation", 0);
-
-            var tween = CreateTween();
-            tween.SetParallel();
-
-            foreach (var bar in bars.OfType<ProgressBar>())
-            {
-                tween.TweenProperty(bar, minSizeXReference, 162, 0.3);
-
-                // TODO: create NodePaths for the following to avoid object allocations
-                bar.GetNode<Label>("Label").Show();
-                bar.GetNode<Label>("Value").HorizontalAlignment = HorizontalAlignment.Right;
-            }
-        }
-    }
-
-    protected void UpdateCompoundsPanelState()
-    {
-        if (compoundsPanelBarContainer == null)
-            return;
-
-        var bars = compoundsPanelBarContainer.GetChildren();
-
-        if (compoundCompressed)
-        {
-            compoundsPanelCompressButton.ButtonPressed = true;
-            compoundsPanelBarContainer.AddThemeConstantOverride("vseparation", 20);
-            compoundsPanelBarContainer.AddThemeConstantOverride("hseparation", 14);
-
-            if (bars.Count < 4)
-            {
-                compoundsPanelBarContainer.Columns = 2;
-            }
-            else
-            {
-                compoundsPanelBarContainer.Columns = 3;
-            }
-
-            var tween = CreateTween();
-            tween.SetParallel();
-
-            foreach (var bar in bars.OfType<ProgressBar>())
-            {
-                tween.TweenProperty(bar, minSizeXReference, 64, 0.3);
-
-                // TODO: create NodePaths for the following to avoid object allocations
-                bar.GetNode<Label>("Label").Hide();
-            }
-        }
-
-        if (!compoundCompressed)
-        {
-            compoundsPanelExpandButton.ButtonPressed = true;
-            compoundsPanelBarContainer.Columns = 1;
-            compoundsPanelBarContainer.AddThemeConstantOverride("vseparation", 5);
-            compoundsPanelBarContainer.AddThemeConstantOverride("hseparation", 0);
-
-            var tween = CreateTween();
-            tween.SetParallel();
-
-            foreach (var bar in bars.OfType<ProgressBar>())
-            {
-                tween.TweenProperty(bar, minSizeXReference, 220, 0.3);
-
-                // TODO: create NodePaths for the following to avoid object allocations
-                bar.GetNode<Label>("Label").Show();
-            }
-        }
-    }
-
     protected virtual void UpdateHealth(float delta)
     {
         var hp = 0.0f;
@@ -918,7 +732,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     /// </summary>
     /// <param name="bar">The bar to handle</param>
     /// <returns>True if handled, in which case default handling is skipped</returns>
-    protected virtual bool SpecialHandleBar(ProgressBar bar)
+    protected virtual bool SpecialHandleBar(CompoundProgressBar bar)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
@@ -969,43 +783,15 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         var compounds = GetPlayerStorage();
 
-        // TODO: only call the string formatting if the value is changed to save on memory allocations a lot
-        glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
-        GUICommon.SmoothlyUpdateBar(glucoseBar, compounds.GetCompoundAmount(glucose), delta);
+        foreach (var (compound, bar) in compoundBars)
+        {
+            // Probably can save on performance here by not updating hidden bars and hoping that when bars become
+            // visible they will be updated immediately for the player to not notice
+            if (!bar.Visible)
+                continue;
 
-        // TODO: switch to getting the labels in _Ready to avoid a bunch of unnecessary memory allocations
-        glucoseBar.GetNode<Label>("Value").Text =
-            StringUtils.SlashSeparatedNumbersFormat(glucoseBar.Value, glucoseBar.MaxValue);
-
-        ammoniaBar.MaxValue = compounds.GetCapacityForCompound(ammonia);
-        GUICommon.SmoothlyUpdateBar(ammoniaBar, compounds.GetCompoundAmount(ammonia), delta);
-        ammoniaBar.GetNode<Label>("Value").Text =
-            StringUtils.SlashSeparatedNumbersFormat(ammoniaBar.Value, ammoniaBar.MaxValue);
-
-        phosphateBar.MaxValue = compounds.GetCapacityForCompound(phosphates);
-        GUICommon.SmoothlyUpdateBar(phosphateBar, compounds.GetCompoundAmount(phosphates), delta);
-        phosphateBar.GetNode<Label>("Value").Text =
-            StringUtils.SlashSeparatedNumbersFormat(phosphateBar.Value, phosphateBar.MaxValue);
-
-        hydrogenSulfideBar.MaxValue = compounds.GetCapacityForCompound(hydrogensulfide);
-        GUICommon.SmoothlyUpdateBar(hydrogenSulfideBar, compounds.GetCompoundAmount(hydrogensulfide), delta);
-        hydrogenSulfideBar.GetNode<Label>("Value").Text =
-            StringUtils.SlashSeparatedNumbersFormat(hydrogenSulfideBar.Value, hydrogenSulfideBar.MaxValue);
-
-        ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
-        GUICommon.SmoothlyUpdateBar(ironBar, compounds.GetCompoundAmount(iron), delta);
-        ironBar.GetNode<Label>("Value").Text =
-            StringUtils.SlashSeparatedNumbersFormat(ironBar.Value, ironBar.MaxValue);
-
-        oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
-        GUICommon.SmoothlyUpdateBar(oxytoxyBar, compounds.GetCompoundAmount(oxytoxy), delta);
-        oxytoxyBar.GetNode<Label>("Value").Text =
-            StringUtils.SlashSeparatedNumbersFormat(oxytoxyBar.Value, oxytoxyBar.MaxValue);
-
-        mucilageBar.MaxValue = compounds.GetCapacityForCompound(mucilage);
-        GUICommon.SmoothlyUpdateBar(mucilageBar, compounds.GetCompoundAmount(mucilage), delta);
-        mucilageBar.GetNode<Label>("Value").Text =
-            StringUtils.SlashSeparatedNumbersFormat(mucilageBar.Value, mucilageBar.MaxValue);
+            bar.UpdateValue(compounds.GetCompoundAmount(compound), compounds.GetCapacityForCompound(compound));
+        }
     }
 
     protected void UpdateReproductionProgress()
@@ -1094,27 +880,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    protected void UpdatePanelSizing(float delta)
-    {
-        environmentPanelVBoxContainer.Size = new Vector2(environmentPanelVBoxContainer.CustomMinimumSize.X, 0);
-        compoundsPanelVBoxContainer.Size = new Vector2(compoundsPanelVBoxContainer.CustomMinimumSize.X, 0);
-        agentsPanelVBoxContainer.Size = new Vector2(agentsPanelVBoxContainer.CustomMinimumSize.X, 0);
-
-        // Multiply interpolation value with delta time to make it not be affected by framerate
-        var environmentPanelSize = environmentPanel.CustomMinimumSize.Lerp(
-            new Vector2(environmentPanel.CustomMinimumSize.X, environmentPanelVBoxContainer.Size.Y), 5 * delta);
-
-        var compoundsPanelSize = compoundsPanel.CustomMinimumSize.Lerp(
-            new Vector2(compoundsPanel.CustomMinimumSize.X, compoundsPanelVBoxContainer.Size.Y), 5 * delta);
-
-        var agentsPanelSize = agentsPanel.CustomMinimumSize.Lerp(
-            new Vector2(agentsPanel.CustomMinimumSize.X, agentsPanelVBoxContainer.Size.Y), 5 * delta);
-
-        environmentPanel.CustomMinimumSize = environmentPanelSize;
-        compoundsPanel.CustomMinimumSize = compoundsPanelSize;
-        agentsPanel.CustomMinimumSize = agentsPanelSize;
-    }
-
     /// <summary>
     ///   Updates the mouse hover indicator / player look at box (inspector panel) with stuff.
     /// </summary>
@@ -1177,36 +942,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         if (disposing)
         {
-            if (CompoundsGroupAnimationPlayerPath != null)
+            if (MouseHoverPanelPath != null)
             {
-                CompoundsGroupAnimationPlayerPath.Dispose();
-                EnvironmentGroupAnimationPlayerPath.Dispose();
-                LeftPanelsPath.Dispose();
                 MouseHoverPanelPath.Dispose();
                 AtpLabelPath.Dispose();
                 HpLabelPath.Dispose();
                 PopulationLabelPath.Dispose();
                 PatchOverlayPath.Dispose();
                 EditorButtonPath.Dispose();
-                EnvironmentPanelPath.Dispose();
-                OxygenBarPath.Dispose();
-                Co2BarPath.Dispose();
-                NitrogenBarPath.Dispose();
-                TemperaturePath.Dispose();
-                SunlightPath.Dispose();
-                PressurePath.Dispose();
-                EnvironmentPanelBarContainerPath.Dispose();
-                CompoundsPanelPath.Dispose();
-                GlucoseBarPath.Dispose();
-                AmmoniaBarPath.Dispose();
-                PhosphateBarPath.Dispose();
-                HydrogenSulfideBarPath.Dispose();
-                IronBarPath.Dispose();
-                EnvironmentPanelExpandButtonPath.Dispose();
-                EnvironmentPanelCompressButtonPath.Dispose();
-                CompoundsPanelExpandButtonPath.Dispose();
-                CompoundsPanelCompressButtonPath.Dispose();
-                CompoundsPanelBarContainerPath.Dispose();
                 AtpBarPath.Dispose();
                 HealthBarPath.Dispose();
                 AmmoniaReproductionBarPath.Dispose();
@@ -1220,18 +963,12 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 SecreteSlimeHotkeyPath.Dispose();
                 SignallingAgentsHotkeyPath.Dispose();
                 MicrobeControlRadialPath.Dispose();
-                AgentsPanelPath.Dispose();
-                OxytoxyBarPath.Dispose();
-                MucilageBarPath.Dispose();
-                AgentsPanelBarContainerPath.Dispose();
                 FireToxinHotkeyPath.Dispose();
                 BottomLeftBarPath.Dispose();
                 HUDMessagesPath.Dispose();
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }
-
-            minSizeXReference.Dispose();
         }
 
         base.Dispose(disposing);
@@ -1253,25 +990,20 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         if (ShouldShowAgentsPanel())
         {
-            agentsPanel.Show();
+            compoundsPanel.ShowAgents = true;
         }
         else
         {
-            agentsPanel.Hide();
+            compoundsPanel.ShowAgents = false;
         }
 
         if (compoundBars == null)
             throw new InvalidOperationException("This HUD is not initialized");
 
-        // TODO: this iteration causes quite many new enumerator allocations. Maybe it'd be better to just get an
-        // explicit list in _Ready?
-        foreach (var bar in compoundBars.OfType<ProgressBar>())
+        foreach (var (compound, bar) in compoundBars)
         {
             if (SpecialHandleBar(bar))
                 continue;
-
-            // This bar.Name call also causes quite a bit of allocations
-            var compound = SimulationParameters.Instance.GetCompound(bar.Name);
 
             if (isUseful.Invoke(compound))
             {
@@ -1326,62 +1058,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         hotBar.Visible = displayed;
     }
 
-    private void EnvironmentButtonPressed(bool wantedState)
+    private void CompoundButtonPressed(bool pressed)
     {
-        if (environmentPanelActive == !wantedState)
-            return;
-
-        if (!environmentPanelActive)
-        {
-            environmentPanelActive = true;
-            environmentGroupAnimationPlayer.Play("HideEnvironmentPanel");
-        }
-        else
-        {
-            environmentPanelActive = false;
-            environmentGroupAnimationPlayer.Play("ShowEnvironmentPanel");
-        }
+        compoundsPanel.ShowPanel = pressed;
     }
 
-    private void CompoundButtonPressed(bool wantedState)
+    private void EnvironmentButtonPressed(bool pressed)
     {
-        if (compoundsPanelActive == !wantedState)
-            return;
-
-        if (!compoundsPanelActive)
-        {
-            compoundsPanelActive = true;
-            compoundsGroupAnimationPlayer.Play("HideCompoundsPanels");
-        }
-        else
-        {
-            compoundsPanelActive = false;
-            compoundsGroupAnimationPlayer.Play("ShowCompoundsPanels");
-        }
-    }
-
-    private void OnEnvironmentPanelSizeButtonPressed(string mode)
-    {
-        if (mode == "compress")
-        {
-            EnvironmentPanelCompressed = true;
-        }
-        else if (mode == "expand")
-        {
-            EnvironmentPanelCompressed = false;
-        }
-    }
-
-    private void OnCompoundsPanelSizeButtonPressed(string mode)
-    {
-        if (mode == "compress")
-        {
-            CompoundsPanelCompressed = true;
-        }
-        else if (mode == "expand")
-        {
-            CompoundsPanelCompressed = false;
-        }
+        environmentPanel.ShowPanel = pressed;
     }
 
     private void HelpButtonPressed()

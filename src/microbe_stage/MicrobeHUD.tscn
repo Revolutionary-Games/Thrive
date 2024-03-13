@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=57 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -6,42 +6,23 @@
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bvqcyxabp8g4g" path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" id="10"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeHUD.cs" id="13"]
-[ext_resource type="LabelSettings" uid="uid://2wocwdhy8088" path="res://src/gui_common/new_fonts/Title-SemiBold-AlmostSmaller.tres" id="13_pq8xp"]
+[ext_resource type="PackedScene" uid="uid://cf65ovetig4om" path="res://src/microbe_stage/gui/EnvironmentPanel.tscn" id="13_wltm2"]
 [ext_resource type="Texture2D" uid="uid://c2stsavjp3bxy" path="res://assets/textures/gui/bevel/PhosphatesBW.png" id="14"]
+[ext_resource type="PackedScene" uid="uid://bk6re4dgb8r3n" path="res://src/microbe_stage/gui/CompoundPanels.tscn" id="14_hlko5"]
 [ext_resource type="Texture2D" uid="uid://bf55j5u0k0oc1" path="res://assets/textures/gui/bevel/AmmoniaInv.png" id="15"]
 [ext_resource type="Texture2D" uid="uid://bp6urdgi1p1hq" path="res://assets/textures/gui/bevel/PhosphateInv.png" id="16"]
 [ext_resource type="Texture2D" uid="uid://b7f3dnt4j7gnw" path="res://assets/textures/gui/bevel/AmmoniaBW.png" id="17"]
 [ext_resource type="AudioStream" uid="uid://c5u3d8rsbm0lu" path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" id="18"]
-[ext_resource type="Texture2D" uid="uid://b6tpqpuuux2xy" path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" id="19"]
-[ext_resource type="Texture2D" uid="uid://b7qop16m6aok5" path="res://assets/textures/gui/bevel/mucilage.png" id="20"]
 [ext_resource type="Texture2D" uid="uid://siahiwtfm578" path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://c732snfs7i3xx" path="res://assets/textures/gui/bevel/LargeTwoNormal.png" id="22"]
 [ext_resource type="Texture2D" uid="uid://cbc1ld512pl71" path="res://assets/textures/gui/bevel/LargeTwoHover.png" id="23"]
-[ext_resource type="Texture2D" uid="uid://bxlnimt4nkhqo" path="res://assets/textures/gui/bevel/expandPanelActive.png" id="24"]
-[ext_resource type="Texture2D" uid="uid://ce6xjoyccianl" path="res://assets/textures/gui/bevel/compressPanelActive.png" id="25"]
-[ext_resource type="Texture2D" uid="uid://7s7g0xtqqtgi" path="res://assets/textures/gui/bevel/ingestedmatter.png" id="26"]
-[ext_resource type="Texture2D" uid="uid://bsk2vo17bhwbv" path="res://assets/textures/gui/bevel/ammonia.png" id="27"]
-[ext_resource type="Texture2D" uid="uid://dv67e1fovg0r2" path="res://assets/textures/gui/bevel/hydrogensulfide.png" id="28"]
-[ext_resource type="Texture2D" uid="uid://56lvdt8x5ts8" path="res://assets/textures/gui/bevel/expandPanel.png" id="29"]
-[ext_resource type="Texture2D" uid="uid://dlucsppj73dkc" path="res://assets/textures/gui/bevel/iron.png" id="30"]
-[ext_resource type="Texture2D" uid="uid://dy74vv7vysixm" path="res://assets/textures/gui/bevel/oxygen.png" id="31"]
-[ext_resource type="Texture2D" uid="uid://bjgfupcxx2nop" path="res://assets/textures/gui/bevel/Pressure.png" id="32"]
-[ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="33"]
-[ext_resource type="Texture2D" uid="uid://dify8alf16jac" path="res://assets/textures/gui/bevel/phosphates.png" id="34"]
-[ext_resource type="Texture2D" uid="uid://c7cgjvfo1in67" path="res://assets/textures/gui/bevel/Temperature.png" id="35"]
-[ext_resource type="Texture2D" uid="uid://cifmy0gatcl1q" path="res://assets/textures/gui/bevel/glucose.png" id="36"]
-[ext_resource type="Texture2D" uid="uid://bpaa6v4n78ipl" path="res://assets/textures/gui/bevel/carbondioxide.png" id="37"]
 [ext_resource type="Texture2D" uid="uid://dcc6nq6ig4etg" path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" id="38"]
-[ext_resource type="Texture2D" uid="uid://cttqx2e3xihkj" path="res://assets/textures/gui/bevel/compressPanel.png" id="39"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/new_fonts/Title-SemiBold-Tiny.tres" id="39_2oma1"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/new_fonts/Body-Regular-Tiny.tres" id="39_nfpcw"]
-[ext_resource type="Texture2D" uid="uid://d0nvs2bcnmdsd" path="res://assets/textures/gui/bevel/nitrogen.png" id="40"]
-[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="40_whndg"]
 [ext_resource type="Texture2D" uid="uid://8q2icxsubpdy" path="res://assets/textures/gui/bevel/atp.png" id="41"]
 [ext_resource type="Texture2D" uid="uid://on8072s1tlly" path="res://assets/textures/gui/bevel/Hitpoints.png" id="42"]
 [ext_resource type="Texture2D" uid="uid://o0q204t8ees3" path="res://assets/textures/gui/bevel/AtpBar.png" id="43"]
 [ext_resource type="Texture2D" uid="uid://budtxbmecqr3l" path="res://assets/textures/gui/bevel/dataValueBackground.png" id="44"]
-[ext_resource type="Texture2D" uid="uid://8d406o0epyui" path="res://assets/textures/gui/bevel/oxytoxy.png" id="45"]
 [ext_resource type="Texture2D" uid="uid://bd4c6guswatde" path="res://assets/textures/gui/bevel/LargeTwoPressed.png" id="46"]
 [ext_resource type="PackedScene" uid="uid://cp23vdxwoeegx" path="res://src/microbe_stage/gui/WinBox.tscn" id="53"]
 [ext_resource type="PackedScene" uid="uid://b2uw1x2g8awbf" path="res://src/microbe_stage/gui/ExtinctionBox.tscn" id="54"]
@@ -63,105 +44,13 @@
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="71"]
 [ext_resource type="Texture2D" uid="uid://cbxkq166e7veg" path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" id="72"]
 
-[sub_resource type="StyleBoxFlat" id="2"]
-bg_color = Color(0, 0.129412, 0.141176, 0.784314)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
-
-[sub_resource type="StyleBoxTexture" id="5"]
-texture = ExtResource("29")
-region_rect = Rect2(0, 0, 20, 20)
-
-[sub_resource type="StyleBoxTexture" id="3"]
-texture = ExtResource("29")
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-region_rect = Rect2(0, 0, 20, 20)
-modulate_color = Color(0, 0.435294, 0.52549, 1)
-
-[sub_resource type="StyleBoxTexture" id="4"]
-texture = ExtResource("24")
-region_rect = Rect2(0, 0, 20, 20)
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_1u4ht"]
-
-[sub_resource type="StyleBoxTexture" id="9"]
-texture = ExtResource("39")
-region_rect = Rect2(0, 0, 20, 20)
-
-[sub_resource type="StyleBoxTexture" id="7"]
-texture = ExtResource("39")
-region_rect = Rect2(0, 0, 20, 20)
-modulate_color = Color(0, 0.435294, 0.52549, 1)
-
-[sub_resource type="StyleBoxTexture" id="8"]
-texture = ExtResource("25")
-region_rect = Rect2(0, 0, 20, 20)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1vyx"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm8vs"]
-bg_color = Color(0, 0.596078, 0.764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4fex"]
-bg_color = Color(0.141176, 0.278431, 0.682353, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j46y2"]
-bg_color = Color(0.407843, 0.698039, 0.431373, 1)
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_31tdv"]
-
-[sub_resource type="StyleBoxTexture" id="18"]
-texture = ExtResource("39")
-region_rect = Rect2(0, 0, 20, 20)
-
-[sub_resource type="StyleBoxTexture" id="16"]
-texture = ExtResource("39")
-region_rect = Rect2(0, 0, 20, 20)
-modulate_color = Color(0, 0.435294, 0.52549, 1)
-
-[sub_resource type="StyleBoxTexture" id="17"]
-texture = ExtResource("25")
-region_rect = Rect2(0, 0, 20, 20)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty1vy"]
-bg_color = Color(0.631373, 0.396078, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4maoy"]
-bg_color = Color(0.380392, 0.141176, 0.8, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1t8i"]
-bg_color = Color(0.462745, 0.470588, 0.184314, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xev8i"]
-bg_color = Color(0.541176, 0.141176, 0.0745098, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3g6sj"]
-bg_color = Color(0.882353, 0.498039, 0.498039, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sewcy"]
-bg_color = Color(0.623529, 0.0745098, 0.376471, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3gtf7"]
-bg_color = Color(0, 0.498039, 0.4, 1)
-
 [sub_resource type="Animation" id="39"]
 resource_name = "HideCompoundsPanels"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:modulate")
+tracks/0/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -173,7 +62,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:visible")
+tracks/1/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -185,7 +74,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:position:x")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -201,7 +90,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:modulate")
+tracks/0/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -213,7 +102,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:visible")
+tracks/1/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -225,7 +114,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:position:x")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -247,7 +136,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:modulate")
+tracks/0/path = NodePath("BottomLeft/LeftPanels/EnvironmentPanel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -259,7 +148,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:visible")
+tracks/1/path = NodePath("BottomLeft/LeftPanels/EnvironmentPanel:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -271,7 +160,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:position:x")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentPanel:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -287,7 +176,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:modulate")
+tracks/0/path = NodePath("BottomLeft/LeftPanels/EnvironmentPanel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -299,7 +188,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:visible")
+tracks/1/path = NodePath("BottomLeft/LeftPanels/EnvironmentPanel:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -311,7 +200,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:position:x")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentPanel:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -408,7 +297,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control"]
+[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -425,38 +314,15 @@ script = ExtResource("13")
 MulticellularButtonPath = NodePath("BottomRight/VBoxContainer/Control/Multicellular")
 MulticellularConfirmPopupPath = NodePath("StagePrototypeConfirm")
 MacroscopicButtonPath = NodePath("BottomRight/VBoxContainer/Control/Macroscopic")
-IngestedMatterBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested")
 BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
 UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
 WinBoxScene = ExtResource("53")
-CompoundsGroupAnimationPlayerPath = NodePath("CompoundsPanelAnimationPlayer")
-EnvironmentGroupAnimationPlayerPath = NodePath("EnvironmentPanelAnimationPlayer")
-LeftPanelsPath = NodePath("BottomLeft/LeftPanels")
 MouseHoverPanelPath = NodePath("TopRight/MouseHoverPanel")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
 PatchOverlayPath = NodePath("../PatchNameOverlay")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
-EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel")
-OxygenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
-Co2BarPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide")
-NitrogenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen")
-TemperaturePath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature")
-SunlightPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight")
-PressurePath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure")
-EnvironmentPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer")
-CompoundsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel")
-GlucoseBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose")
-AmmoniaBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia")
-PhosphateBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates")
-HydrogenSulfideBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide")
-IronBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron")
-EnvironmentPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton")
-EnvironmentPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton")
-CompoundsPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton")
-CompoundsPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton")
-CompoundsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
 AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
@@ -469,10 +335,6 @@ EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Engulfment")
 SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("RadialPopup")
-AgentsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel")
-OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
-MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
-AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 EjectEngulfedHotkeyPath = NodePath("ScrollContainer/HotBar/EjectEngulfed")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
@@ -484,6 +346,8 @@ AmmoniaInv = ExtResource("15")
 PhosphatesInv = ExtResource("16")
 ExtinctionBoxScene = ExtResource("54")
 PatchExtinctionBoxScene = ExtResource("60")
+environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
+compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 PausePromptPath = NodePath("PausePrompt")
 PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 HUDMessagesPath = NodePath("HUDMessages")
@@ -513,861 +377,27 @@ offset_right = 455.0
 mouse_filter = 2
 
 [node name="LeftPanels" type="VBoxContainer" parent="BottomLeft"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 14.0
-offset_right = 264.0
-offset_bottom = 581.0
-grow_vertical = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.139
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 5.84801
+offset_right = 267.0
+offset_bottom = -50.0
+grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="EnvironmentGroup" type="VBoxContainer" parent="BottomLeft/LeftPanels"]
+[node name="EnvironmentPanel" parent="BottomLeft/LeftPanels" instance=ExtResource("13_wltm2")]
 layout_mode = 2
 
-[node name="EnvironmentPanel" type="PanelContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup"]
-clip_contents = true
-custom_minimum_size = Vector2(197, 234)
+[node name="CompoundPanels" parent="BottomLeft/LeftPanels" instance=ExtResource("14_hlko5")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("2")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel"]
-custom_minimum_size = Vector2(195, 0)
-layout_mode = 2
-
-[node name="Header" type="MarginContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
-custom_minimum_size = Vector2(195, 35)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header"]
-custom_minimum_size = Vector2(174, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 6
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "ENVIRONMENT"
-label_settings = ExtResource("13_pq8xp")
-
-[node name="EnvironmentExpandButton" type="Button" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
-custom_minimum_size = Vector2(18, 18)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("5")
-theme_override_styles/hover = SubResource("3")
-theme_override_styles/pressed = SubResource("4")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_1u4ht")
-
-[node name="EnvironmentCompressButton" type="Button" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
-custom_minimum_size = Vector2(18, 18)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("9")
-theme_override_styles/hover = SubResource("7")
-theme_override_styles/pressed = SubResource("8")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_1u4ht")
-
-[node name="HSeparator" type="HSeparator" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
-custom_minimum_size = Vector2(197, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Body" type="MarginContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 22
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_bottom = 10
-
-[node name="BarContainer" type="GridContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body"]
-layout_mode = 2
-
-[node name="Oxygen" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
-show_behind_parent = true
-custom_minimum_size = Vector2(162, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_cm8vs")
-step = 0.1
-show_percentage = false
-
-[node name="OxygenIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
-custom_minimum_size = Vector2(30, 25)
-layout_mode = 0
-offset_left = -15.0
-offset_right = 10.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("31")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -12.5
-offset_right = 38.0
-offset_bottom = 12.5
-text = "O₂"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
-custom_minimum_size = Vector2(55, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = -12.5
-offset_right = -6.99998
-offset_bottom = 12.5
-grow_horizontal = 0
-text = "0%"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="CarbonDioxide" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
-show_behind_parent = true
-custom_minimum_size = Vector2(162, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_m4fex")
-step = 0.1
-show_percentage = false
-
-[node name="CO2Icon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
-custom_minimum_size = Vector2(30, 25)
-layout_mode = 0
-offset_left = -15.0
-offset_right = 10.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("37")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -12.5
-offset_right = 46.0
-offset_bottom = 12.5
-text = "CO₂"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
-custom_minimum_size = Vector2(55, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = -12.5
-offset_right = -6.99998
-offset_bottom = 12.5
-grow_horizontal = 0
-text = "0%"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Nitrogen" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
-show_behind_parent = true
-custom_minimum_size = Vector2(162, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_j46y2")
-step = 0.1
-show_percentage = false
-
-[node name="NitrogenIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
-custom_minimum_size = Vector2(30, 25)
-layout_mode = 0
-offset_left = -15.0
-offset_right = 10.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("40")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -12.5
-offset_right = 49.0
-offset_bottom = 12.5
-text = "N₂"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
-custom_minimum_size = Vector2(55, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = -12.5
-offset_right = -6.99998
-offset_bottom = 12.5
-grow_horizontal = 0
-text = "0%"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Temperature" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
-self_modulate = Color(1, 1, 1, 0)
-show_behind_parent = true
-custom_minimum_size = Vector2(162, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-show_percentage = false
-
-[node name="TemperatureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
-custom_minimum_size = Vector2(30, 25)
-layout_mode = 0
-offset_left = -15.0
-offset_right = 10.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("35")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -12.5
-offset_right = 60.0
-offset_bottom = 12.5
-text = "TEMPERATURE_SHORT"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
-custom_minimum_size = Vector2(55, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = -12.5
-offset_right = -6.99998
-offset_bottom = 12.5
-grow_horizontal = 0
-text = "55° C"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Sunlight" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
-self_modulate = Color(1, 1, 1, 0)
-show_behind_parent = true
-custom_minimum_size = Vector2(162, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-show_percentage = false
-
-[node name="LightIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
-custom_minimum_size = Vector2(30, 25)
-layout_mode = 0
-offset_left = -15.0
-offset_right = 10.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("33")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -12.5
-offset_right = 66.0
-offset_bottom = 12.5
-text = "LIGHT"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
-custom_minimum_size = Vector2(55, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = -12.5
-offset_right = -6.99998
-offset_bottom = 12.5
-grow_horizontal = 0
-text = "0%"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Pressure" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
-self_modulate = Color(1, 1, 1, 0)
-show_behind_parent = true
-custom_minimum_size = Vector2(162, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-show_percentage = false
-
-[node name="PressureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
-custom_minimum_size = Vector2(30, 25)
-layout_mode = 0
-offset_left = -15.0
-offset_right = 10.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("32")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -12.5
-offset_right = 69.0
-offset_bottom = 12.5
-text = "PRESSURE_SHORT"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
-custom_minimum_size = Vector2(55, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = -12.5
-offset_right = -4.0
-offset_bottom = 12.5
-grow_horizontal = 0
-text = "200 kPa"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="CompoundsGroup" type="VBoxContainer" parent="BottomLeft/LeftPanels"]
-layout_mode = 2
-
-[node name="CompoundsPanel" type="PanelContainer" parent="BottomLeft/LeftPanels/CompoundsGroup"]
-clip_contents = true
-custom_minimum_size = Vector2(254, 219)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("2")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel"]
-custom_minimum_size = Vector2(252, 0)
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="Header" type="MarginContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header"]
-custom_minimum_size = Vector2(197, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 6
-
-[node name="Icon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("19")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
-custom_minimum_size = Vector2(145, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "COMPOUNDS"
-label_settings = ExtResource("13_pq8xp")
-
-[node name="CompoundExpandButton" type="Button" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
-custom_minimum_size = Vector2(18, 18)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("5")
-theme_override_styles/hover = SubResource("3")
-theme_override_styles/pressed = SubResource("4")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_31tdv")
-
-[node name="CompoundCompressButton" type="Button" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
-custom_minimum_size = Vector2(18, 18)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("18")
-theme_override_styles/hover = SubResource("16")
-theme_override_styles/pressed = SubResource("17")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_31tdv")
-
-[node name="HSeparator" type="HSeparator" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer"]
-custom_minimum_size = Vector2(254, 0)
-layout_mode = 2
-
-[node name="Body" type="MarginContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 22
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 15
-
-[node name="BarContainer" type="GridContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body"]
-layout_mode = 2
-theme_override_constants/v_separation = 5
-
-[node name="glucose" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
-show_behind_parent = true
-custom_minimum_size = Vector2(220, 25)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-step = 0.1
-show_percentage = false
-
-[node name="GlucoseIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 0
-offset_left = -12.0
-offset_right = 13.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-texture = ExtResource("36")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-offset_left = 20.0
-offset_right = 83.0
-offset_bottom = 25.0
-text = "GLUCOSE"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -44.0
-offset_right = -4.0
-offset_bottom = 25.0
-grow_horizontal = 0
-text = "0.0 / 4"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="ammonia" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
-show_behind_parent = true
-custom_minimum_size = Vector2(220, 25)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ty1vy")
-step = 0.1
-show_percentage = false
-
-[node name="AmmoniaIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 0
-offset_left = -12.0
-offset_right = 13.0
-offset_bottom = 25.0
-size_flags_horizontal = 0
-texture = ExtResource("27")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-offset_left = 20.0
-offset_right = 81.0
-offset_bottom = 25.0
-text = "AMMONIA"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -44.0
-offset_right = -4.0
-offset_bottom = 25.0
-grow_horizontal = 0
-text = "0.0 / 4"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="phosphates" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
-show_behind_parent = true
-custom_minimum_size = Vector2(220, 25)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_4maoy")
-step = 0.1
-show_percentage = false
-
-[node name="PhospateIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 0
-offset_left = -12.0
-offset_right = 13.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-texture = ExtResource("34")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-offset_left = 20.0
-offset_right = 95.0
-offset_bottom = 25.0
-text = "PHOSPHATE"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -44.0
-offset_right = -3.99998
-offset_bottom = 25.0
-grow_horizontal = 0
-text = "0.0 / 4"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="hydrogensulfide" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
-show_behind_parent = true
-custom_minimum_size = Vector2(220, 25)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_m1t8i")
-step = 0.1
-show_percentage = false
-
-[node name="HydrogenSulfideIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 0
-offset_left = -12.0
-offset_right = 13.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-texture = ExtResource("28")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-offset_left = 20.0
-offset_right = 141.0
-offset_bottom = 25.0
-text = "HYDROGEN_SULFIDE"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -44.0
-offset_right = -3.99998
-offset_bottom = 25.0
-grow_horizontal = 0
-text = "0.0 / 4"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="iron" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
-show_behind_parent = true
-custom_minimum_size = Vector2(220, 25)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xev8i")
-step = 0.1
-show_percentage = false
-
-[node name="IronIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 0
-offset_left = -12.0
-offset_right = 13.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-texture = ExtResource("30")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-offset_left = 20.0
-offset_right = 47.0
-offset_bottom = 25.0
-text = "IRON"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -44.0
-offset_right = -3.99998
-offset_bottom = 25.0
-grow_horizontal = 0
-text = "0.0 / 4"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="ingested" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
-show_behind_parent = true
-custom_minimum_size = Vector2(220, 25)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_3g6sj")
-step = 0.1
-show_percentage = false
-
-[node name="IngestedMatterIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
-modulate = Color(0.882353, 0.882353, 0.882353, 1)
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 0
-offset_left = -12.0
-offset_right = 13.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-texture = ExtResource("26")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-offset_left = 20.0
-offset_right = 47.0
-offset_bottom = 25.0
-text = "INGESTED_MATTER"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -44.0
-offset_right = -3.99998
-offset_bottom = 25.0
-grow_horizontal = 0
-text = "0.0 / 4"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="AgentsPanel" type="PanelContainer" parent="BottomLeft/LeftPanels/CompoundsGroup"]
-clip_contents = true
-custom_minimum_size = Vector2(254, 120)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("2")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel"]
-layout_mode = 2
-
-[node name="Header" type="MarginContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer"]
-custom_minimum_size = Vector2(230, 35)
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Header"]
-layout_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Header/HBoxContainer"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("10")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Header/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "AGENTS"
-label_settings = ExtResource("13_pq8xp")
-
-[node name="HSeparator" type="HSeparator" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer"]
-custom_minimum_size = Vector2(254, 0)
-layout_mode = 2
-
-[node name="Body" type="MarginContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 22
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="BarContainer" type="GridContainer" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body"]
-layout_mode = 2
-
-[node name="oxytoxy" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
-custom_minimum_size = Vector2(220, 25)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_sewcy")
-step = 0.1
-show_percentage = false
-
-[node name="OxyToxyIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 0
-anchor_left = -0.00454545
-anchor_right = -0.00454545
-offset_left = -12.0
-offset_right = 13.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("45")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-offset_left = 18.0
-offset_right = 97.0
-offset_bottom = 25.0
-text = "OXYTOXY_NT"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -45.0
-offset_right = -4.99998
-offset_bottom = 25.0
-grow_horizontal = 0
-text = "0.0 / 4"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="mucilage" type="ProgressBar" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
-custom_minimum_size = Vector2(220, 25)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_r1vyx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_3gtf7")
-step = 0.1
-show_percentage = false
-
-[node name="MucilageIcon" type="TextureRect" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 0
-anchor_left = -0.00454545
-anchor_right = -0.00454545
-offset_left = -12.0
-offset_right = 13.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("20")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-offset_left = 18.0
-offset_right = 97.0
-offset_bottom = 26.0
-text = "MUCILAGE"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 0
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -45.0
-offset_right = -4.99998
-offset_bottom = 25.0
-grow_horizontal = 0
-text = "0.0 / 4"
-label_settings = ExtResource("40_whndg")
-vertical_alignment = 1
+ShowAgents = false
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("59")]
 layout_mode = 1
@@ -1487,7 +517,7 @@ theme_override_constants/margin_bottom = 3
 [node name="VBox" type="VBoxContainer" parent="BottomRight/DataValue/Margin"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 9
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="HPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
@@ -1720,6 +750,7 @@ libraries = {
 [node name="HUDMessages" parent="." instance=ExtResource("56")]
 layout_mode = 1
 offset_top = 108.0
+offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1856,10 +887,6 @@ custom_minimum_size = Vector2(450, 0)
 offset_right = 300.0
 offset_bottom = 97.0
 
-[connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= ["expand"]]
-[connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= ["compress"]]
-[connection signal="pressed" from="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="." method="OnCompoundsPanelSizeButtonPressed" binds= ["expand"]]
-[connection signal="pressed" from="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="." method="OnCompoundsPanelSizeButtonPressed" binds= ["compress"]]
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
 [connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]

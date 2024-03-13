@@ -1300,6 +1300,13 @@ public static class Constants
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
 
+    public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.35f;
+
+    public const float COMPOUND_BAR_COMPACT_WIDTH = 64;
+    public const float COMPOUND_BAR_NORMAL_WIDTH = 220;
+    public const float COMPOUND_BAR_NARROW_COMPACT_WIDTH = 73;
+    public const float COMPOUND_BAR_NARROW_NORMAL_WIDTH = 162;
+
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
     public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 0.80f;

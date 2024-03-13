@@ -66,7 +66,15 @@ public class Compound : IRegistryType
     /// </summary>
     public bool Digestible;
 
+    /// <summary>
+    ///   Colour of this compound in the environment (microbe compound clouds for example)
+    /// </summary>
     public Color Colour;
+
+    /// <summary>
+    ///   Colour used to represent this compound in bars.
+    /// </summary>
+    public Color BarColour;
 
     /// <summary>
     ///   Loaded icon for display in GUIs
@@ -112,6 +120,12 @@ public class Compound : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Compound colour can't be black");
         }
+
+        // Use normal colour if not overridden
+        if (BarColour.R == 0 && BarColour.G == 0 && BarColour.B == 0)
+            BarColour = Colour;
+
+        BarColour.A = 1;
 
         if (Volume <= 0)
         {
