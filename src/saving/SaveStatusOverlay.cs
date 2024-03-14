@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using Godot;
 using Saving;
 
 /// <summary>
 ///   Controls the little popup text saying "saving" and "save complete"
 /// </summary>
-public class SaveStatusOverlay : Control
+public partial class SaveStatusOverlay : Control
 {
     [Export]
     public NodePath? StatusLabelPath;
@@ -36,7 +36,7 @@ public class SaveStatusOverlay : Control
     private CustomRichTextLabel errorJsonDebugLabel = null!;
 #pragma warning restore CA2213
 
-    private float hideTimer;
+    private double hideTimer;
     private bool hidden;
 
     /// <summary>
@@ -64,7 +64,7 @@ public class SaveStatusOverlay : Control
         hidden = true;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (hideTimer > 0)
         {
@@ -172,21 +172,20 @@ public class SaveStatusOverlay : Control
     private void SetJsonDebugLabelText()
     {
         errorJsonDebugLabel.ExtendedBbcode =
-            TranslationServer.Translate("SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE")
+            Localization.Translate("SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE")
                 .FormatSafe(DebugMeta, Constants.JSON_DEBUG_OUTPUT_FILE_NAME, FolderMeta);
     }
 
     private void SetJsonDebugLabelMissingFileText()
     {
         errorJsonDebugLabel.ExtendedBbcode =
-            TranslationServer.Translate("SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE")
+            Localization.Translate("SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE")
                 .FormatSafe(Constants.JSON_DEBUG_OUTPUT_FILE_NAME, FolderMeta);
     }
 
     private bool JsonDebugFileExists()
     {
-        using var directory = new Directory();
-        return directory.FileExists(Constants.JSON_DEBUG_OUTPUT_FILE);
+        return FileAccess.FileExists(Constants.JSON_DEBUG_OUTPUT_FILE);
     }
 
     private void OpenJsonDebugFile()

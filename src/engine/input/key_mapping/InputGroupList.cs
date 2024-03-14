@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -7,7 +7,7 @@ using Godot;
 ///   Holds the various <see cref="InputGroupItem">input groups</see> in one VBoxContainer.
 ///   Used by OptionsMenu>Inputs>InputGroupContainer
 /// </summary>
-public class InputGroupList : VBoxContainer
+public partial class InputGroupList : VBoxContainer
 {
     [Export]
     public NodePath? ConflictDialogPath;
@@ -155,7 +155,7 @@ public class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.DialogText = TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT")
+        conflictDialog.DialogText = Localization.Translate("KEY_BINDING_CHANGE_CONFLICT")
             .FormatSafe(inputActionItem.DisplayName, inputActionItem.DisplayName);
 
         conflictDialog.PopupCenteredShrink();

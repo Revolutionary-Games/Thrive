@@ -1,134 +1,98 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://l3t2irtebxii"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/general/HelpScreen.cs" type="Script" id=4]
-[ext_resource path="res://src/gui_common/HelpBox.tscn" type="PackedScene" id=5]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="3"]
+[ext_resource type="Script" path="res://src/general/HelpScreen.cs" id="4"]
+[ext_resource type="PackedScene" path="res://src/gui_common/HelpBox.tscn" id="5"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="5_80o6f"]
 
 [node name="HelpScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
-script = ExtResource( 4 )
+theme = ExtResource("1")
+script = ExtResource("4")
 LeftColumnPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/LeftColumn")
 RightColumnPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/RightColumn")
 TipMessageLabelPath = NodePath("CenterContainer/VBoxContainer/TipMessageLabel")
-HelpBoxScene = ExtResource( 5 )
 TimerPath = NodePath("Timer")
+HelpBoxScene = ExtResource("5")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 234.0
-margin_top = 36.0
-margin_right = 1046.0
-margin_bottom = 683.0
+layout_mode = 2
 size_flags_horizontal = 2
-custom_constants/separation = 15
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/separation = 15
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 812.0
-margin_bottom = 562.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 811.0
-margin_bottom = 561.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 805.0
-margin_bottom = 555.0
-custom_constants/separation = 0
+layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 800.0
-margin_bottom = 550.0
-rect_min_size = Vector2( 800, 550 )
+custom_minimum_size = Vector2(800, 550)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
-margin_right = 800.0
-margin_bottom = 10.0
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 795.0
-margin_bottom = 5.0
+layout_mode = 2
 size_flags_vertical = 3
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 790.0
+layout_mode = 2
 
 [node name="LeftColumn" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 393.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="RightColumn" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 397.0
-margin_right = 790.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 577.0
-margin_right = 812.0
-margin_bottom = 612.0
+layout_mode = 2
 
 [node name="CloseButton" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer"]
-margin_left = 368.0
-margin_right = 443.0
-margin_bottom = 35.0
+layout_mode = 2
 text = "CLOSE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/CenterContainer" instance=ExtResource( 3 )]
-margin_left = 406.0
-margin_top = 17.0
-margin_right = 406.0
-margin_bottom = 17.0
-SkipOverridingFocusForElements = [ NodePath("../../../..") ]
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/CenterContainer" instance=ExtResource("3")]
+layout_mode = 2
 Priority = 2
 NodeToGiveFocusTo = NodePath("../CloseButton")
 AlwaysOverrideFocus = true
+SkipOverridingFocusForElements = [NodePath("../../../..")]
 
 [node name="TipMessageLabel" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_top = 627.0
-margin_right = 812.0
-margin_bottom = 647.0
+modulate = Color(1, 1, 0, 1)
+layout_mode = 2
 size_flags_horizontal = 3
-custom_colors/font_color = Color( 1, 1, 0, 1 )
-custom_fonts/font = ExtResource( 2 )
 text = "Easter egg message goes here"
-align = 1
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("5_80o6f")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

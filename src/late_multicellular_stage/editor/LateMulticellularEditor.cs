@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -8,7 +8,7 @@ using Environment = Godot.Environment;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/late_multicellular_stage/editor/LateMulticellularEditor.tscn")]
 [DeserializedCallbackTarget]
-public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularStage>, IEditorReportData, ICellEditorData
+public partial class LateMulticellularEditor : EditorBase<EditorAction, MulticellularStage>, IEditorReportData, ICellEditorData
 {
     [Export]
     public NodePath? ReportTabPath;
@@ -58,10 +58,10 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     private CellEditorComponent cellEditorTab = null!;
 
     private MicrobeCamera cellEditorCamera = null!;
-    private Light cellEditorLight = null!;
+    private Light3D cellEditorLight = null!;
 
-    private Camera body3DEditorCamera = null!;
-    private Light bodyEditorLight = null!;
+    private Camera3D body3DEditorCamera = null!;
+    private Light3D bodyEditorLight = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
     private Environment? environment;
@@ -109,7 +109,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     protected override string MusicCategory => "LateMulticellularEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MulticellularStage;
-    protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MULTICELLULAR_EDITOR");
+    protected override string EditorLoadingMessage => Localization.Translate("LOADING_MULTICELLULAR_EDITOR");
     protected override bool HasInProgressAction => CanCancelAction;
 
     public void SendAutoEvoResultsToReportComponent()
@@ -204,12 +204,12 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         noCellTypeSelected = GetNode<Control>(NoCellTypeSelectedPath);
 
         cellEditorCamera = GetNode<MicrobeCamera>(CellEditorCameraPath);
-        cellEditorLight = GetNode<Light>(CellEditorLightPath);
+        cellEditorLight = GetNode<Light3D>(CellEditorLightPath);
 
         worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
 
-        body3DEditorCamera = GetNode<Camera>(Body3DEditorCameraPath);
-        bodyEditorLight = GetNode<Light>(BodyEditorLightPath);
+        body3DEditorCamera = GetNode<Camera3D>(Body3DEditorCameraPath);
+        bodyEditorLight = GetNode<Light3D>(BodyEditorLightPath);
     }
 
     protected override void InitEditor(bool fresh)
@@ -276,8 +276,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
         if (run.Results == null)
         {
-            reportTab.UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
-                TranslationServer.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
+            reportTab.UpdateAutoEvoResults(Localization.Translate("AUTO_EVO_FAILED"),
+                Localization.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
         }
 
         base.OnEditorReady();
@@ -469,9 +469,10 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
     private void UpdateBackgroundPanorama(Biome biome)
     {
-        var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
+        var sky = worldEnvironmentNode.Environment.Sky;
+        var skyMaterial = (PanoramaSkyMaterial)sky.SkyMaterial;
 
-        worldPanoramaSky.Panorama = GD.Load<Texture>(biome.Panorama);
+        skyMaterial.Panorama = GD.Load<Texture2D>(biome.Panorama);
 
         // TODO: update colour properties if really wanted (right now white ambient light is used to see things better
         // in the editor)
@@ -503,7 +504,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     {
         if (CanCancelAction)
         {
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
                 1.5f);
             return;
         }

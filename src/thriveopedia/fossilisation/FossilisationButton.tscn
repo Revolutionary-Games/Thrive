@@ -1,24 +1,26 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://br2qdth74t78h"]
 
-[ext_resource path="res://assets/textures/gui/bevel/fossilisationButtonHover.png" type="Texture" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/fossilisationButton.png" type="Texture" id=2]
-[ext_resource path="res://src/thriveopedia/fossilisation/FossilisationButton.cs" type="Script" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/fossilisationButtonAlreadyFossilised.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/fossilisationButtonActive.png" type="Texture" id=5]
+[ext_resource type="Texture2D" uid="uid://d2rvjwrr2g3f7" path="res://assets/textures/gui/bevel/fossilisationButtonHover.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://u7bjh83fe6r3" path="res://assets/textures/gui/bevel/fossilisationButton.png" id="2"]
+[ext_resource type="Script" path="res://src/thriveopedia/fossilisation/FossilisationButton.cs" id="3"]
+[ext_resource type="Texture2D" uid="uid://cdbs8v4l0xwb" path="res://assets/textures/gui/bevel/fossilisationButtonAlreadyFossilised.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dc30hltjoysie" path="res://assets/textures/gui/bevel/fossilisationButtonActive.png" id="5"]
 
 [node name="FossilisationButton" type="TextureButton"]
+custom_minimum_size = Vector2(35, 35)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1245.0
-margin_bottom = -685.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "FOSSILISATION_HINT"
+offset_right = -1245.0
+offset_bottom = -685.0
+tooltip_text = "FOSSILISATION_HINT"
 focus_mode = 0
-texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 1 )
-expand = true
-script = ExtResource( 3 )
-AlreadyFossilisedTexture = ExtResource( 4 )
+texture_normal = ExtResource("2")
+texture_pressed = ExtResource("5")
+texture_hover = ExtResource("1")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("3")
+AlreadyFossilisedTexture = ExtResource("4")
 
 [connection signal="pressed" from="." to="." method="OnPressed"]

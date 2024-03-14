@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
-using Path = System.IO.Path;
 
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
@@ -1300,6 +1300,13 @@ public static class Constants
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
 
+    public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.35f;
+
+    public const float COMPOUND_BAR_COMPACT_WIDTH = 64;
+    public const float COMPOUND_BAR_NORMAL_WIDTH = 220;
+    public const float COMPOUND_BAR_NARROW_COMPACT_WIDTH = 73;
+    public const float COMPOUND_BAR_NARROW_NORMAL_WIDTH = 162;
+
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
     public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 0.80f;
@@ -1577,7 +1584,7 @@ public static class Constants
         (FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT > REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT) ? 0 : -42;
 
     // Needed to be true by InputManager
-    private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;
+    private const uint GodotJoystickAxesStartAtZero = (JoyAxis.LeftX == 0) ? 0 : -42;
 
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823

@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
 ///   Screen for showing the player's technology options in the strategy stages
 /// </summary>
-public class ResearchScreen : CustomWindow
+public partial class ResearchScreen : CustomWindow
 {
     [Export]
     public NodePath? TechWebGUIPath;
@@ -19,7 +19,7 @@ public class ResearchScreen : CustomWindow
 #pragma warning restore CA2213
 
     [Signal]
-    public delegate void OnStartResearching(string technology);
+    public delegate void OnStartResearchingEventHandler(string technology);
 
     public TechWeb? AvailableTechnologies { get; set; }
 
@@ -35,15 +35,15 @@ public class ResearchScreen : CustomWindow
     {
         if (currentResearch == null)
         {
-            currentResearchProgressLabel.Text = TranslationServer.Translate("CURRENT_RESEARCH_NONE");
+            currentResearchProgressLabel.Text = Localization.Translate("CURRENT_RESEARCH_NONE");
             return;
         }
 
         var progressPercentage = Math.Round(currentResearch.OverallProgress * 100, 1);
 
-        currentResearchProgressLabel.Text = TranslationServer.Translate("CURRENT_RESEARCH_PROGRESS")
+        currentResearchProgressLabel.Text = Localization.Translate("CURRENT_RESEARCH_PROGRESS")
             .FormatSafe(currentResearch.Technology.Name,
-                TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(progressPercentage));
+                Localization.Translate("PERCENTAGE_VALUE").FormatSafe(progressPercentage));
     }
 
     protected override void OnOpen()
@@ -76,6 +76,6 @@ public class ResearchScreen : CustomWindow
 
     private void ForwardStartResearch(string technology)
     {
-        EmitSignal(nameof(OnStartResearching), technology);
+        EmitSignal(SignalName.OnStartResearching, technology);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
+public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
 {
     [Export]
     public NodePath? SpeciesPreviewPath;

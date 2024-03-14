@@ -46,7 +46,7 @@ public class RunOnInputWithStrengthAndRepeatAttribute : RunOnInputWithStrengthAt
         return false;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
         // It's probably faster to just set this to always zero here than spend another Godot call on checking if
         // the action was released (and we do this in process to have this down for at least a bit)

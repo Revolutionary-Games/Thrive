@@ -115,19 +115,19 @@ public class FocusFlowDynamicChildrenHelper
             }
 
             // These serve as base directions that get overwritten with more specific values
-            currentChild.FocusNeighbourBottom = focusDownControl;
-            currentChild.FocusNeighbourRight = focusRightControl;
+            currentChild.FocusNeighborBottom = focusDownControl;
+            currentChild.FocusNeighborRight = focusRightControl;
 
             if (toChildrenDirection is NavigationToChildrenDirection.None
                 or NavigationToChildrenDirection.VerticalToChildrenOnly)
             {
-                currentChild.FocusNeighbourTop = focusUpControl;
-                currentChild.FocusNeighbourLeft = focusLeftControl;
+                currentChild.FocusNeighborTop = focusUpControl;
+                currentChild.FocusNeighborLeft = focusLeftControl;
             }
             else
             {
-                currentChild.FocusNeighbourTop = ownerPath;
-                currentChild.FocusNeighbourLeft = ownerPath;
+                currentChild.FocusNeighborTop = ownerPath;
+                currentChild.FocusNeighborLeft = ownerPath;
             }
 
             // First child-owner focuses
@@ -145,27 +145,27 @@ public class FocusFlowDynamicChildrenHelper
                 {
                     case NavigationToChildrenDirection.Horizontal:
                     {
-                        currentChild.FocusNeighbourLeft = ownerPath;
+                        currentChild.FocusNeighborLeft = ownerPath;
 
-                        owner.FocusNeighbourRight = firstChildPath;
+                        owner.FocusNeighborRight = firstChildPath;
                         break;
                     }
 
                     case NavigationToChildrenDirection.Vertical:
                     {
-                        currentChild.FocusNeighbourTop = ownerPath;
+                        currentChild.FocusNeighborTop = ownerPath;
 
-                        owner.FocusNeighbourBottom = firstChildPath;
+                        owner.FocusNeighborBottom = firstChildPath;
                         break;
                     }
 
                     case NavigationToChildrenDirection.Both:
                     {
-                        currentChild.FocusNeighbourLeft = ownerPath;
-                        currentChild.FocusNeighbourTop = ownerPath;
+                        currentChild.FocusNeighborLeft = ownerPath;
+                        currentChild.FocusNeighborTop = ownerPath;
 
-                        owner.FocusNeighbourRight = firstChildPath;
-                        owner.FocusNeighbourBottom = firstChildPath;
+                        owner.FocusNeighborRight = firstChildPath;
+                        owner.FocusNeighborBottom = firstChildPath;
                         break;
                     }
 
@@ -174,8 +174,8 @@ public class FocusFlowDynamicChildrenHelper
                         if (nextNavigatesToChildren)
                             currentChild.FocusPrevious = focusPreviousControl;
 
-                        currentChild.FocusNeighbourLeft = focusLeftControl;
-                        currentChild.FocusNeighbourTop = focusUpControl;
+                        currentChild.FocusNeighborLeft = focusLeftControl;
+                        currentChild.FocusNeighborTop = focusUpControl;
                         break;
                     }
 
@@ -191,25 +191,25 @@ public class FocusFlowDynamicChildrenHelper
                 {
                     case NavigationInChildrenDirection.Horizontal:
                     {
-                        previousChild.FocusNeighbourRight = currentPath;
-                        currentChild.FocusNeighbourLeft = previousChildPath;
+                        previousChild.FocusNeighborRight = currentPath;
+                        currentChild.FocusNeighborLeft = previousChildPath;
                         break;
                     }
 
                     case NavigationInChildrenDirection.Vertical:
                     {
-                        previousChild.FocusNeighbourBottom = currentPath;
-                        currentChild.FocusNeighbourTop = previousChildPath;
+                        previousChild.FocusNeighborBottom = currentPath;
+                        currentChild.FocusNeighborTop = previousChildPath;
                         break;
                     }
 
                     case NavigationInChildrenDirection.Both:
                     {
-                        previousChild.FocusNeighbourRight = currentPath;
-                        currentChild.FocusNeighbourLeft = previousChildPath;
+                        previousChild.FocusNeighborRight = currentPath;
+                        currentChild.FocusNeighborLeft = previousChildPath;
 
-                        previousChild.FocusNeighbourBottom = currentPath;
-                        currentChild.FocusNeighbourTop = previousChildPath;
+                        previousChild.FocusNeighborBottom = currentPath;
+                        currentChild.FocusNeighborTop = previousChildPath;
                         break;
                     }
 
@@ -238,10 +238,10 @@ public class FocusFlowDynamicChildrenHelper
                 owner.FocusNext = focusNextControl;
             }
 
-            owner.FocusNeighbourLeft = focusLeftControl;
-            owner.FocusNeighbourRight = focusRightControl;
-            owner.FocusNeighbourTop = focusUpControl;
-            owner.FocusNeighbourBottom = focusDownControl;
+            owner.FocusNeighborLeft = focusLeftControl;
+            owner.FocusNeighborRight = focusRightControl;
+            owner.FocusNeighborTop = focusUpControl;
+            owner.FocusNeighborBottom = focusDownControl;
         }
         else
         {
@@ -253,9 +253,9 @@ public class FocusFlowDynamicChildrenHelper
             {
                 case NavigationToChildrenDirection.Horizontal:
                 {
-                    owner.FocusNeighbourRight = firstChildPath;
+                    owner.FocusNeighborRight = firstChildPath;
 
-                    previousChild.FocusNeighbourRight = focusRightControl;
+                    previousChild.FocusNeighborRight = focusRightControl;
 
                     // TODO: should left also navigate to the children (also update Both case)
                     // owner.FocusNeighbourLeft = previousChildPath;
@@ -264,20 +264,20 @@ public class FocusFlowDynamicChildrenHelper
 
                 case NavigationToChildrenDirection.Vertical:
                 {
-                    owner.FocusNeighbourBottom = firstChildPath;
+                    owner.FocusNeighborBottom = firstChildPath;
 
-                    previousChild.FocusNeighbourBottom = focusDownControl;
+                    previousChild.FocusNeighborBottom = focusDownControl;
                     break;
                 }
 
                 case NavigationToChildrenDirection.Both:
                 {
-                    owner.FocusNeighbourRight = firstChildPath;
-                    owner.FocusNeighbourBottom = firstChildPath;
+                    owner.FocusNeighborRight = firstChildPath;
+                    owner.FocusNeighborBottom = firstChildPath;
 
-                    previousChild.FocusNeighbourRight = focusRightControl;
+                    previousChild.FocusNeighborRight = focusRightControl;
 
-                    previousChild.FocusNeighbourBottom = focusDownControl;
+                    previousChild.FocusNeighborBottom = focusDownControl;
                     break;
                 }
 
@@ -286,13 +286,13 @@ public class FocusFlowDynamicChildrenHelper
                     if (inChildrenDirection is NavigationInChildrenDirection.Both
                         or NavigationInChildrenDirection.Horizontal)
                     {
-                        previousChild.FocusNeighbourRight = focusRightControl;
+                        previousChild.FocusNeighborRight = focusRightControl;
                     }
 
                     if (inChildrenDirection is NavigationInChildrenDirection.Both
                         or NavigationInChildrenDirection.Vertical)
                     {
-                        previousChild.FocusNeighbourBottom = focusDownControl;
+                        previousChild.FocusNeighborBottom = focusDownControl;
                     }
 
                     break;
@@ -300,7 +300,7 @@ public class FocusFlowDynamicChildrenHelper
 
                 case NavigationToChildrenDirection.VerticalToChildrenOnly:
                 {
-                    owner.FocusNeighbourBottom = firstChildPath;
+                    owner.FocusNeighborBottom = firstChildPath;
 
                     goto case NavigationToChildrenDirection.None;
                 }
@@ -332,20 +332,20 @@ public class FocusFlowDynamicChildrenHelper
                 {
                     case NavigationInChildrenDirection.Horizontal:
                     {
-                        control.FocusNeighbourLeft = selfPath;
+                        control.FocusNeighborLeft = selfPath;
                         break;
                     }
 
                     case NavigationInChildrenDirection.Vertical:
                     {
-                        control.FocusNeighbourTop = selfPath;
+                        control.FocusNeighborTop = selfPath;
                         break;
                     }
 
                     case NavigationInChildrenDirection.Both:
                     {
-                        control.FocusNeighbourLeft = selfPath;
-                        control.FocusNeighbourTop = selfPath;
+                        control.FocusNeighborLeft = selfPath;
+                        control.FocusNeighborTop = selfPath;
                         break;
                     }
 
@@ -367,20 +367,20 @@ public class FocusFlowDynamicChildrenHelper
             {
                 case NavigationInChildrenDirection.Horizontal:
                 {
-                    previousChild.FocusNeighbourRight = selfPath;
+                    previousChild.FocusNeighborRight = selfPath;
                     break;
                 }
 
                 case NavigationInChildrenDirection.Vertical:
                 {
-                    previousChild.FocusNeighbourBottom = selfPath;
+                    previousChild.FocusNeighborBottom = selfPath;
                     break;
                 }
 
                 case NavigationInChildrenDirection.Both:
                 {
-                    previousChild.FocusNeighbourRight = selfPath;
-                    previousChild.FocusNeighbourBottom = selfPath;
+                    previousChild.FocusNeighborRight = selfPath;
+                    previousChild.FocusNeighborBottom = selfPath;
                     break;
                 }
 
@@ -402,9 +402,9 @@ public class FocusFlowDynamicChildrenHelper
         focusPreviousControl = owner.ResolveToAbsolutePath(owner.FocusPrevious);
         focusNextControl = owner.ResolveToAbsolutePath(owner.FocusNext);
 
-        focusLeftControl = owner.ResolveToAbsolutePath(owner.FocusNeighbourLeft);
-        focusRightControl = owner.ResolveToAbsolutePath(owner.FocusNeighbourRight);
-        focusUpControl = owner.ResolveToAbsolutePath(owner.FocusNeighbourTop);
-        focusDownControl = owner.ResolveToAbsolutePath(owner.FocusNeighbourBottom);
+        focusLeftControl = owner.ResolveToAbsolutePath(owner.FocusNeighborLeft);
+        focusRightControl = owner.ResolveToAbsolutePath(owner.FocusNeighborRight);
+        focusUpControl = owner.ResolveToAbsolutePath(owner.FocusNeighborTop);
+        focusDownControl = owner.ResolveToAbsolutePath(owner.FocusNeighborBottom);
     }
 }

@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class MicrobeEditorCheatMenu : CheatMenu
+public partial class MicrobeEditorCheatMenu : CheatMenu
 {
     [Export]
     public NodePath? InfiniteMpPath;
@@ -17,7 +17,7 @@ public class MicrobeEditorCheatMenu : CheatMenu
 
     public override void ReloadGUI()
     {
-        infiniteMp.Pressed = CheatManager.InfiniteMP;
+        infiniteMp.ButtonPressed = CheatManager.InfiniteMP;
     }
 
     protected override void Dispose(bool disposing)

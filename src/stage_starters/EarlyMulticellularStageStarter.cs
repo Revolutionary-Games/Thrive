@@ -2,7 +2,7 @@
 using System.Linq;
 using Godot;
 
-public class EarlyMulticellularStageStarter : ComplexStageStarterBase
+public partial class EarlyMulticellularStageStarter : ComplexStageStarterBase
 {
     protected override MainGameState SimplyLoadableGameState => MainGameState.MicrobeStage;
 

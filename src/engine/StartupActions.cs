@@ -8,7 +8,7 @@ using Path = System.IO.Path;
 ///   This is the first autoloaded class. Used to perform some actions that should happen
 ///   as the first things in the game
 /// </summary>
-public class StartupActions : Node
+public partial class StartupActions : Node
 {
     private bool preventStartup;
 
@@ -21,9 +21,13 @@ public class StartupActions : Node
         // Add unhandled exception logger if debugger is not attached
         if (!Debugger.IsAttached)
         {
-            GD.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
-            GD.Print("Unhandled exception logger attached");
+            GD.PrintErr("TODO: reimplement unhandled exception logger");
+
+            // GD.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
+            // GD.Print("Unhandled exception logger attached");
         }
+
+        NativeInterop.SetDllImportResolver();
 
         GD.Print("Startup C# locale is: ", CultureInfo.CurrentCulture, " Godot locale is: ",
             TranslationServer.GetLocale());
@@ -47,7 +51,7 @@ public class StartupActions : Node
             {
                 if (!NativeInterop.CheckCPU())
                 {
-                    if (Engine.EditorHint)
+                    if (Engine.IsEditorHint())
                     {
                         GD.Print(
                             "Skipping native library load in editor as it is not available (CPU check lib missing)");
@@ -79,7 +83,7 @@ public class StartupActions : Node
             {
                 NativeInterop.Load();
             }
-            else if (Engine.EditorHint)
+            else if (Engine.IsEditorHint())
             {
                 GD.Print("Skipping native library load in editor as the CPU feature check couldn't pass");
                 loadNative = false;
@@ -97,7 +101,7 @@ public class StartupActions : Node
         {
             GD.Print($"Thrive native library load failed due to: {e.Message}");
 
-            if (Engine.EditorHint && e is DllNotFoundException)
+            if (Engine.IsEditorHint() && e is DllNotFoundException)
             {
                 loadNative = false;
                 GD.Print("Skipping native library load in editor as it is not available");

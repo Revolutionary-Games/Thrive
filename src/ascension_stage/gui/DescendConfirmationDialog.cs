@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class DescendConfirmationDialog : CustomConfirmationDialog
+public partial class DescendConfirmationDialog : CustomConfirmationDialog
 {
     private GameProperties? game;
 
@@ -47,7 +47,7 @@ public class DescendConfirmationDialog : CustomConfirmationDialog
         }
 
         var scene = GD.Load<PackedScene>("res://src/ascension_stage/gui/DescendSetupScreen.tscn")
-            .Instance<DescendSetupScreen>();
+            .Instantiate<DescendSetupScreen>();
         scene.CurrentGame = game;
 
         GD.Print("Switching to new game setup to finish descending");

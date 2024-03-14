@@ -30,7 +30,8 @@ using Newtonsoft.Json;
 ///     those few operations are merged into this class.
 ///   </para>
 /// </remarks>
-public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
+[GodotAbstract]
+public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
     IGodotEarlyNodeResolve
     where TAction : EditorAction
     where TStage : Node, IReturnableGameState
@@ -90,12 +91,16 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [JsonProperty]
     private float dayLightFraction = 1.0f;
 
+    protected EditorBase()
+    {
+    }
+
     /// <summary>
     ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
     ///   a one more level of parent nodes so that different editor components can have their things visible at
     ///   different times
     /// </summary>
-    public Spatial RootOfDynamicallySpawned { get; private set; } = null!;
+    public Node3D RootOfDynamicallySpawned { get; private set; } = null!;
 
     [JsonIgnore]
     public bool TransitionFinished { get; protected set; }
@@ -167,7 +172,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     [JsonProperty]
-    public bool Ready
+    public bool EditorReady
     {
         get => ready;
         set
@@ -178,20 +183,20 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     [JsonIgnore]
-    public abstract bool CanCancelAction { get; }
+    public virtual bool CanCancelAction => throw new GodotAbstractPropertyNotOverriddenException();
 
-    public abstract Species EditedBaseSpecies { get; }
+    public virtual Species EditedBaseSpecies => throw new GodotAbstractPropertyNotOverriddenException();
 
-    protected abstract string MusicCategory { get; }
+    protected virtual string MusicCategory => throw new GodotAbstractPropertyNotOverriddenException();
 
-    protected abstract MainGameState ReturnToState { get; }
+    protected virtual MainGameState ReturnToState => throw new GodotAbstractPropertyNotOverriddenException();
 
-    protected abstract string EditorLoadingMessage { get; }
+    protected virtual string EditorLoadingMessage => throw new GodotAbstractPropertyNotOverriddenException();
 
     /// <summary>
     ///   True when there is an inprogress action that prevents other actions from being done (and tab changes)
     /// </summary>
-    protected abstract bool HasInProgressAction { get; }
+    protected virtual bool HasInProgressAction => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void _Ready()
     {
@@ -211,7 +216,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         NodeReferencesResolved = true;
 
         world = GetNode("EditorWorld");
-        RootOfDynamicallySpawned = world.GetNode<Spatial>("DynamicallySpawned");
+        RootOfDynamicallySpawned = world.GetNode<Node3D>("DynamicallySpawned");
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
         editorGUIBaseNode = GetNode<Control>(EditorGUIBaseNodePath);
 
@@ -248,19 +253,19 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        if (!Ready)
+        if (!EditorReady)
         {
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
                 LoadingScreen.Instance.Show(EditorLoadingMessage, ReturnToState,
-                    TranslationServer.Translate("WAITING_FOR_AUTO_EVO") + " " +
+                    Localization.Translate("WAITING_FOR_AUTO_EVO") + " " +
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
                 return;
             }
 
-            Ready = true;
+            EditorReady = true;
             TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, OnEditorReady, false, false);
         }
 
@@ -386,7 +391,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     public void QuickSave()
     {
         // Can only save once the editor is ready
-        if (Ready)
+        if (EditorReady)
         {
             GD.Print("quick saving ", GetType().Name);
             PerformQuickSave();
@@ -399,7 +404,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         editorGUIBaseNode.Visible = !editorGUIBaseNode.Visible;
     }
 
-    public abstract bool CancelCurrentAction();
+    public virtual bool CancelCurrentAction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     public virtual int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
@@ -442,7 +450,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return EnqueueAction((TAction)action);
     }
 
-    public abstract void AddContextToActions(IEnumerable<CombinableActionData> editorActions);
+    public virtual void AddContextToActions(IEnumerable<CombinableActionData> editorActions)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     public bool CheckEnoughMPForAction(int cost)
     {
@@ -524,9 +535,15 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return OnFinishEditing(userOverrides);
     }
 
-    protected abstract void ResolveDerivedTypeNodeReferences();
+    protected virtual void ResolveDerivedTypeNodeReferences()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void InitEditorGUI(bool fresh);
+    protected virtual void InitEditorGUI(bool fresh)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual void InitEditor(bool fresh)
     {
@@ -554,7 +571,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             // For now we only show a loading screen if auto-evo is not ready yet
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
-                Ready = false;
+                EditorReady = false;
                 LoadingScreen.Instance.Show(EditorLoadingMessage, ReturnToState,
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
 
@@ -580,7 +597,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
         else
         {
-            if (Ready != true || CurrentGame == null)
+            if (EditorReady != true || CurrentGame == null)
                 throw new InvalidOperationException("loaded editor isn't in the ready state, or missing current game");
 
             // Make absolutely sure the current game doesn't have an auto-evo run
@@ -616,7 +633,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return RequestFinishEditingWithOverride(userOverrides);
     }
 
-    protected abstract IEnumerable<IEditorComponent> GetAllEditorComponents();
+    protected virtual IEnumerable<IEditorComponent> GetAllEditorComponents()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Sets up the editor when entering
@@ -651,14 +671,17 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         StartMusic();
     }
 
-    protected abstract void UpdateHistoryCallbackTargets(ActionHistory<TAction> actionHistory);
+    protected virtual void UpdateHistoryCallbackTargets(ActionHistory<TAction> actionHistory)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Called once auto-evo results are ready
     /// </summary>
     protected virtual void OnEditorReady()
     {
-        Ready = true;
+        EditorReady = true;
         LoadingScreen.Instance.Hide();
 
         GD.Print("Elapsing time on editor entry");
@@ -700,7 +723,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             // Make sure button status is reset so that it doesn't look like the wrong tab button is now active
             editorTabSelector?.SetCurrentTab(selectedEditorTab);
 
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
                 1.5f);
             return;
         }
@@ -711,7 +734,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         editorTabSelector?.SetCurrentTab(selectedEditorTab);
     }
 
-    protected abstract void ApplyEditorTab();
+    protected virtual void ApplyEditorTab()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected void ExitPressed()
     {
@@ -741,7 +767,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         DirtyMutationPointsCache();
     }
 
-    protected virtual void UpdateEditor(float delta)
+    protected virtual void UpdateEditor(double delta)
     {
         if (mutationPointsCache == null)
         {
@@ -751,14 +777,30 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
     }
 
-    protected abstract void ElapseEditorEntryTime();
+    protected virtual void ElapseEditorEntryTime()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void PerformAutoSave();
-    protected abstract void PerformQuickSave();
+    protected virtual void PerformAutoSave()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void SaveGame(string name);
+    protected virtual void PerformQuickSave()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract GameProperties StartNewGameForEditor();
+    protected virtual void SaveGame(string name)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual GameProperties StartNewGameForEditor()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual void SendFreebuildStatusToComponents()
     {
@@ -848,7 +890,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
             var scene = SceneManager.Instance.LoadScene(typeof(TStage).GetCustomAttribute<SceneLoadedClassAttribute>());
 
-            ReturnToStage = (TStage)scene.Instance();
+            ReturnToStage = (TStage)scene.Instantiate();
             ReturnToStage.CurrentGame = CurrentGame;
         }
     }

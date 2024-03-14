@@ -1,27 +1,26 @@
-﻿namespace AutoEvo
+﻿namespace AutoEvo;
+
+using System.Collections.Generic;
+
+public class RemoveInvalidMigrations : IRunStep
 {
-    using System.Collections.Generic;
+    private readonly IReadOnlyCollection<Species> speciesToCheck;
 
-    public class RemoveInvalidMigrations : IRunStep
+    public RemoveInvalidMigrations(IReadOnlyCollection<Species> speciesToCheck)
     {
-        private readonly IReadOnlyCollection<Species> speciesToCheck;
+        this.speciesToCheck = speciesToCheck;
+    }
 
-        public RemoveInvalidMigrations(IReadOnlyCollection<Species> speciesToCheck)
+    public int TotalSteps => 1;
+    public bool CanRunConcurrently => false;
+
+    public bool RunStep(RunResults results)
+    {
+        foreach (var species in speciesToCheck)
         {
-            this.speciesToCheck = speciesToCheck;
+            results.RemoveMigrationsForSplitPatches(species);
         }
 
-        public int TotalSteps => 1;
-        public bool CanRunConcurrently => false;
-
-        public bool RunStep(RunResults results)
-        {
-            foreach (var species in speciesToCheck)
-            {
-                results.RemoveMigrationsForSplitPatches(species);
-            }
-
-            return true;
-        }
+        return true;
     }
 }

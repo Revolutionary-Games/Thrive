@@ -2,9 +2,9 @@
 
 [ext_resource path="res://src/space_stage/PlacedSpaceStructure.cs" type="Script" id=1]
 
-[node name="PlacedSpaceStructure" type="Spatial"]
+[node name="PlacedSpaceStructure" type="Node3D"]
 script = ExtResource( 1 )
 
-[node name="Visuals" type="Spatial" parent="."]
+[node name="Visuals" type="Node3D" parent="."]
 
-[node name="Scaffolding" type="Spatial" parent="."]
+[node name="Scaffolding" type="Node3D" parent="."]

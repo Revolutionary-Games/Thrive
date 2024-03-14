@@ -20,7 +20,7 @@ using Godot;
 ///     Handles the + button for adding new bindings.
 ///   </para>
 /// </remarks>
-public class InputActionItem : VBoxContainer
+public partial class InputActionItem : VBoxContainer
 {
     [Export]
     public NodePath? AddInputEventPath;
@@ -199,7 +199,7 @@ public class InputActionItem : VBoxContainer
         if (target == null)
             throw new ArgumentException("associatedGroup has no associated list");
 
-        var inputActionItem = (InputActionItem)target.InputActionItemScene.Instance();
+        var inputActionItem = (InputActionItem)target.InputActionItemScene.Instantiate();
 
         inputActionItem.InputName = data.InputName;
         inputActionItem.DisplayName = data.Name;
@@ -230,7 +230,7 @@ public class InputActionItem : VBoxContainer
     /// </summary>
     private void OnAddEventButtonPressed()
     {
-        var newInput = (InputEventItem)GroupList!.InputEventItemScene.Instance();
+        var newInput = (InputEventItem)GroupList!.InputEventItemScene.Instantiate();
         newInput.AssociatedAction = new WeakReference<InputActionItem>(this);
         newInput.JustAdded = true;
         Inputs.Add(newInput);

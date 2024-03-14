@@ -121,13 +121,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return TranslationServer.Translate("ABORTED_DOT");
+                return Localization.Translate("ABORTED_DOT");
 
             if (Finished)
-                return TranslationServer.Translate("FINISHED_DOT");
+                return Localization.Translate("FINISHED_DOT");
 
             if (!started)
-                return TranslationServer.Translate("NOT_STARTED_DOT");
+                return Localization.Translate("NOT_STARTED_DOT");
 
             int total = totalSteps;
 
@@ -136,11 +136,11 @@ public class AutoEvoRun
                 var percentage = CompletionFraction * 100;
 
                 // {0:F1}% done. {1:n0}/{2:n0} steps. [Paused.]
-                return TranslationServer.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total)
-                    + (Running ? string.Empty : " " + TranslationServer.Translate("OPERATION_PAUSED_DOT"));
+                return Localization.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total)
+                    + (Running ? string.Empty : " " + Localization.Translate("OPERATION_PAUSED_DOT"));
             }
 
-            return TranslationServer.Translate("STARTING");
+            return Localization.Translate("STARTING");
         }
     }
 

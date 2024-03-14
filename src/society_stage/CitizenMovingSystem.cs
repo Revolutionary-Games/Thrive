@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -99,7 +99,7 @@ public class CitizenMovingSystem
         {
             // Visiting incomplete buildings is also fine, so we don't check here for completeness
 
-            var position = structure.GlobalTranslation;
+            var position = structure.GlobalPosition;
 
             var offset = structure.RotatedExtraInteractionOffset();
 
@@ -116,8 +116,8 @@ public class CitizenMovingSystem
 
             for (int i = 0; i < 4; ++i)
             {
-                result.Add(new Vector3(first.x + random.NextFloat() * 40, 0, first.z + random.NextFloat() * 40));
-                result.Add(new Vector3(first.x - random.NextFloat() * 40, 0, first.z - random.NextFloat() * 40));
+                result.Add(new Vector3(first.X + random.NextFloat() * 40, 0, first.Z + random.NextFloat() * 40));
+                result.Add(new Vector3(first.X - random.NextFloat() * 40, 0, first.Z - random.NextFloat() * 40));
             }
         }
 
@@ -142,7 +142,7 @@ public class CitizenMovingSystem
             var housingComponent = structure.GetComponent<HousingComponent>();
             if (housingComponent != null)
             {
-                var position = structure.GlobalTranslation;
+                var position = structure.GlobalPosition;
 
                 var offset = structure.RotatedExtraInteractionOffset();
 

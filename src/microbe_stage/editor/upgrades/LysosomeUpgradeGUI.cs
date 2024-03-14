@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
+public partial class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
     public NodePath? EnzymesPath;

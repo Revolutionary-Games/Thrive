@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Shows the info and controls for a single city
 /// </summary>
-public class CityScreen : CustomWindow
+public partial class CityScreen : CustomWindow
 {
     [Export]
     public NodePath? ShortStatsLabelPath;
@@ -39,7 +39,7 @@ public class CityScreen : CustomWindow
 
     private PlacedCity? managedCity;
 
-    private float elapsed = 1;
+    private double elapsed = 1;
 
     public override void _Ready()
     {
@@ -62,7 +62,7 @@ public class CityScreen : CustomWindow
                 availableBuildingsContainer, CreateAvailableConstructionItem);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -131,7 +131,7 @@ public class CityScreen : CustomWindow
         var foodBalance = managedCity.CalculateFoodProduction() - managedCity.CalculateFoodConsumption();
 
         // Update the bottom stats bar
-        shortStatsLabel.Text = TranslationServer.Translate("CITY_SHORT_STATISTICS")
+        shortStatsLabel.Text = Localization.Translate("CITY_SHORT_STATISTICS")
             .FormatSafe(StringUtils.ThreeDigitFormat(managedCity.Population),
                 StringUtils.FormatPositiveWithLeadingPlus(StringUtils.ThreeDigitFormat(foodBalance), foodBalance),
                 researchSpeed);
@@ -168,7 +168,7 @@ public class CityScreen : CustomWindow
 
             if (usedIndex >= activeBuildQueueItems.Count)
             {
-                itemGUI = queueItemScene.Instance<BuildQueueItemGUI>();
+                itemGUI = queueItemScene.Instantiate<BuildQueueItemGUI>();
                 buildQueueContainer.AddChild(itemGUI);
                 activeBuildQueueItems.Add(itemGUI);
             }
@@ -200,7 +200,7 @@ public class CityScreen : CustomWindow
 
     private AvailableConstructionProjectItem CreateAvailableConstructionItem(ICityConstructionProject project)
     {
-        var item = availableConstructionItemScene.Instance<AvailableConstructionProjectItem>();
+        var item = availableConstructionItemScene.Instantiate<AvailableConstructionProjectItem>();
         item.ConstructionProject = project;
         item.OnItemSelectedHandler += OnConstructionSelected;
 

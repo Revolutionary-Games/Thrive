@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
@@ -10,7 +10,7 @@ using Godot;
 ///     Used by OptionsMenu>Inputs>InputGroupContainer>InputGroupItem>InputActionItem>InputEventItem
 ///   </para>
 /// </remarks>
-public class InputEventItem : MarginContainer
+public partial class InputEventItem : MarginContainer
 {
     [Export]
     public NodePath? ButtonPath;
@@ -103,7 +103,7 @@ public class InputEventItem : MarginContainer
 
         // ESC must not be re-assignable or removable, otherwise it can't be added back because ESC is the only key
         // reserved this way to serve as the way to cancel a rebind action.
-        if (AssociatedEvent?.Code == (uint)KeyList.Escape)
+        if (AssociatedEvent?.Code == (uint)Key.Escape)
         {
             button.Disabled = true;
             xButton.Disabled = true;
@@ -149,7 +149,7 @@ public class InputEventItem : MarginContainer
             return;
 
         // Ignore some unbindable inputs event types
-        if (@event is InputEventMIDI or InputEventScreenDrag or InputEventScreenTouch or InputEventGesture
+        if (@event is InputEventMidi or InputEventScreenDrag or InputEventScreenTouch or InputEventGesture
             or InputEventMouseMotion)
         {
             return;
@@ -160,7 +160,7 @@ public class InputEventItem : MarginContainer
         {
             if (xButton.IsHovered() && !xButton.Disabled)
             {
-                GetTree().SetInputAsHandled();
+                GetViewport().SetInputAsHandled();
 
                 Delete();
 
@@ -172,7 +172,7 @@ public class InputEventItem : MarginContainer
 
             if (button.IsHovered() && !WaitingForInput && mouseEvent.Pressed && !button.Disabled)
             {
-                GetTree().SetInputAsHandled();
+                GetViewport().SetInputAsHandled();
                 OnButtonPressed(mouseEvent);
                 return;
             }
@@ -183,18 +183,18 @@ public class InputEventItem : MarginContainer
             {
                 // TODO: show somewhere in the GUI that this is for unbinding inputs
 
-                GetTree().SetInputAsHandled();
+                GetViewport().SetInputAsHandled();
                 OnButtonPressed(new InputEventMouseButton
                 {
-                    ButtonIndex = (int)ButtonList.Right,
+                    ButtonIndex = MouseButton.Right,
                 });
             }
             else if (joypadButton.IsActionPressed("ui_accept"))
             {
-                GetTree().SetInputAsHandled();
+                GetViewport().SetInputAsHandled();
                 OnButtonPressed(new InputEventMouseButton
                 {
-                    ButtonIndex = (int)ButtonList.Left,
+                    ButtonIndex = MouseButton.Left,
                 });
             }
         }
@@ -215,11 +215,11 @@ public class InputEventItem : MarginContainer
             if (!key.Pressed)
                 return;
 
-            switch (key.Scancode)
+            switch (key.Keycode)
             {
-                case (uint)KeyList.Escape:
+                case Key.Escape:
                 {
-                    GetTree().SetInputAsHandled();
+                    GetViewport().SetInputAsHandled();
 
                     WaitingForInput = false;
                     if (alternativeButtonContentToText != null)
@@ -242,9 +242,9 @@ public class InputEventItem : MarginContainer
 
                 // TODO: allow binding these (probably need to wait a bit to see if a second keypress is coming soon)
                 // See: https://github.com/Revolutionary-Games/Thrive/issues/3887
-                case (uint)KeyList.Alt:
-                case (uint)KeyList.Shift:
-                case (uint)KeyList.Control:
+                case Key.Alt:
+                case Key.Shift:
+                case Key.Ctrl:
                     return;
             }
         }
@@ -268,7 +268,7 @@ public class InputEventItem : MarginContainer
                 return;
 
             // TODO: should we allow binding L2 and R2 as axis inputs
-            if (controllerAxis.Axis is (int)JoystickList.R2 or (int)JoystickList.L2)
+            if (controllerAxis.Axis is JoyAxis.TriggerLeft or JoyAxis.TriggerRight)
                 return;
 
             // TODO: controller device keybinding mode setting
@@ -288,7 +288,7 @@ public class InputEventItem : MarginContainer
             return;
         }
 
-        GetTree().SetInputAsHandled();
+        GetViewport().SetInputAsHandled();
 
         // Check conflicts, and don't proceed if there is a conflict
         if (CheckNewKeyConflicts(@event, groupList, old))
@@ -324,7 +324,7 @@ public class InputEventItem : MarginContainer
         if (associatedAction.GroupList == null)
             throw new ArgumentException("Action doesn't have group list", nameof(associatedAction));
 
-        var result = (InputEventItem)associatedAction.GroupList.InputEventItemScene.Instance();
+        var result = (InputEventItem)associatedAction.GroupList.InputEventItemScene.Instantiate();
 
         result.AssociatedAction = new WeakReference<InputActionItem>(associatedAction);
         result.AssociatedEvent = @event;
@@ -425,11 +425,11 @@ public class InputEventItem : MarginContainer
 
         switch (@event.ButtonIndex)
         {
-            case (int)ButtonList.Left:
+            case MouseButton.Left:
                 wasPressingButton = true;
                 OnRebindButtonPressed();
                 break;
-            case (int)ButtonList.Right:
+            case MouseButton.Right:
                 Delete();
                 break;
         }
@@ -438,7 +438,7 @@ public class InputEventItem : MarginContainer
     private void OnRebindButtonPressed()
     {
         WaitingForInput = true;
-        button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
+        button.Text = Localization.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
 
         if (alternativeButtonContentToText != null)
@@ -461,7 +461,7 @@ public class InputEventItem : MarginContainer
         if (AssociatedEvent == null)
         {
             button.Text = "error";
-            button.HintTooltip = string.Empty;
+            button.TooltipText = string.Empty;
             return;
         }
 
@@ -478,17 +478,17 @@ public class InputEventItem : MarginContainer
 
             button.AddChild(alternativeButtonContentToText);
 
-            button.RectMinSize = new Vector2(alternativeButtonContentToText.RectSize.x + 1,
-                alternativeButtonContentToText.RectSize.y + 1);
+            button.CustomMinimumSize = new Vector2(alternativeButtonContentToText.Size.X + 1,
+                alternativeButtonContentToText.Size.Y + 1);
 
             // To guard against broken inputs being entirely unknown, show the name of the key on hover
-            button.HintTooltip = AssociatedEvent.ToString();
+            button.TooltipText = AssociatedEvent.ToString();
         }
         else
         {
             button.Text = AssociatedEvent.ToString();
-            button.RectMinSize = new Vector2(0, 0);
-            button.HintTooltip = string.Empty;
+            button.CustomMinimumSize = new Vector2(0, 0);
+            button.TooltipText = string.Empty;
         }
     }
 

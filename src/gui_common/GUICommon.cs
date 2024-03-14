@@ -1,37 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Godot;
-using Array = Godot.Collections.Array;
-using Object = Godot.Object;
-using Path = System.IO.Path;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
 /// </summary>
-public class GUICommon : Node
+public partial class GUICommon : Node
 {
     private static GUICommon? instance;
 
+    private readonly NodePath valueReference = new("value");
+    private readonly NodePath modulateAlphaReference = new("modulate:a");
+
 #pragma warning disable CA2213
     private AudioStream buttonPressSound = null!;
-    private Texture? requirementFulfilledIcon;
-    private Texture? requirementInsufficientIcon;
+    private Texture2D? requirementFulfilledIcon;
+    private Texture2D? requirementInsufficientIcon;
 #pragma warning restore CA2213
 
     private GUICommon()
     {
         instance = this;
-
-        Tween = new Tween();
-        AddChild(Tween);
     }
 
     public static GUICommon Instance => instance ?? throw new InstanceNotLoadedYetException();
-
-    /// <summary>
-    ///   General purpose Tween node for use in various places.
-    /// </summary>
-    public Tween Tween { get; }
 
     /// <summary>
     ///   Access to the logical size of the GUI drawing area for non-GUI components
@@ -59,10 +52,10 @@ public class GUICommon : Node
     {
         var child = control.GetChild<Control>(0);
 
-        return child.RectMinSize;
+        return child.CustomMinimumSize;
     }
 
-    public static void SmoothlyUpdateBar(Range bar, float target, float delta)
+    public static void SmoothlyUpdateBar(Godot.Range bar, float target, float delta)
     {
         if (delta <= 0)
         {
@@ -77,18 +70,18 @@ public class GUICommon : Node
     /// <summary>
     ///   Loads a Texture from predefined GUI asset texture folder path.
     /// </summary>
-    public static Texture? LoadGuiTexture(string file)
+    public static Texture2D? LoadGuiTexture(string file)
     {
         var assumedPath = Path.Combine(Constants.ASSETS_GUI_BEVEL_FOLDER, file);
 
-        if (ResourceLoader.Exists(assumedPath, "Texture"))
-            return GD.Load<Texture>(assumedPath);
+        if (ResourceLoader.Exists(assumedPath, "Texture2D"))
+            return GD.Load<Texture2D>(assumedPath);
 
         // Fail-safe if file itself is the absolute path
-        if (ResourceLoader.Exists(file, "Texture"))
-            return GD.Load<Texture>(file);
+        if (ResourceLoader.Exists(file, "Texture2D"))
+            return GD.Load<Texture2D>(file);
 
-        return GD.Load(file) as Texture;
+        return GD.Load(file) as Texture2D;
     }
 
     public static string RequirementFulfillmentIconRichText(bool fulfilled)
@@ -116,7 +109,7 @@ public class GUICommon : Node
         base._Ready();
 
         // Keep this node running even while paused
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
 
         buttonPressSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
@@ -152,56 +145,53 @@ public class GUICommon : Node
             AudioSources.Add(player);
         }
 
-        player.VolumeDb = GD.Linear2Db(volume);
+        player.VolumeDb = Mathf.LinearToDb(volume);
         player.Stream = sound;
         player.Play();
     }
 
     /// <summary>
-    ///   Smoothly interpolates the value of a TextureProgress bar.
+    ///   Smoothly interpolates the value of a progress bar.
     /// </summary>
-    public void TweenBarValue(TextureProgress bar, float targetValue, float maxValue, float speed)
+    public void TweenBarValue(Godot.Range bar, double targetValue, double maxValue, double speed)
     {
         bar.MaxValue = maxValue;
-        Tween.InterpolateProperty(bar, "value", bar.Value, targetValue, speed,
-            Tween.TransitionType.Cubic, Tween.EaseType.Out);
-        Tween.Start();
+
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Cubic);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(bar, valueReference, targetValue, speed);
     }
 
-    /// <summary>
-    ///   Smoothly interpolates the value of a ProgressBar.
-    /// </summary>
-    public void TweenBarValue(ProgressBar bar, float targetValue, float maxValue, float speed)
-    {
-        bar.MaxValue = maxValue;
-        Tween.InterpolateProperty(bar, "value", bar.Value, targetValue, speed,
-            Tween.TransitionType.Cubic, Tween.EaseType.Out);
-        Tween.Start();
-    }
-
-    public void ModulateFadeIn(Control control, float duration, float delay = 0,
+    public void ModulateFadeIn(Control control, double duration, double delay = 0,
         Tween.TransitionType transitionType = Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In)
     {
         // Make sure the control is visible
         control.Show();
 
-        Tween.InterpolateProperty(control, "modulate:a", null, 1, duration, transitionType, easeType, delay);
-        Tween.Start();
+        var tween = CreateTween();
+        tween.SetTrans(transitionType);
+        tween.SetEase(easeType);
+
+        tween.TweenProperty(control, modulateAlphaReference, 1, duration).SetDelay(delay);
     }
 
-    public void ModulateFadeOut(Control control, float duration, float delay = 0, Tween.TransitionType transitionType =
+    public void ModulateFadeOut(Control control, double duration, double delay = 0, Tween.TransitionType transitionType =
         Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In, bool hideOnFinished = true)
     {
         if (!control.Visible)
             return;
 
-        Tween.InterpolateProperty(control, "modulate:a", null, 0, duration, transitionType, easeType, delay);
-        Tween.Start();
+        var tween = CreateTween();
+        tween.SetTrans(transitionType);
+        tween.SetEase(easeType);
 
-        if (!Tween.IsConnected("tween_completed", this, nameof(HideControlOnFadeOutComplete)) && hideOnFinished)
+        tween.TweenProperty(control, modulateAlphaReference, 0, duration).SetDelay(delay);
+
+        if (hideOnFinished)
         {
-            Tween.Connect("tween_completed", this, nameof(HideControlOnFadeOutComplete),
-                new Array { control }, (int)ConnectFlags.Oneshot);
+            tween.TweenCallback(Callable.From(control.Hide));
         }
     }
 
@@ -216,13 +206,13 @@ public class GUICommon : Node
     /// <summary>
     ///   Creates an icon from the given texture.
     /// </summary>
-    public TextureRect CreateIcon(Texture texture, float sizeX = 20.0f, float sizeY = 20.0f)
+    public TextureRect CreateIcon(Texture2D texture, float sizeX = 20.0f, float sizeY = 20.0f)
     {
         var element = new TextureRect
         {
-            Expand = true,
-            RectMinSize = new Vector2(sizeX, sizeY),
-            SizeFlagsVertical = (int)Control.SizeFlags.ShrinkCenter,
+            ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
+            CustomMinimumSize = new Vector2(sizeX, sizeY),
+            SizeFlagsVertical = Control.SizeFlags.ShrinkCenter,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
             Texture = texture,
         };
@@ -233,14 +223,14 @@ public class GUICommon : Node
     /// <summary>
     ///   Loads a cached version of the generic icon texture representing a condition fulfilled or unfulfilled.
     /// </summary>
-    public Texture GetRequirementFulfillmentIcon(bool fulfilled)
+    public Texture2D GetRequirementFulfillmentIcon(bool fulfilled)
     {
         if (fulfilled)
         {
-            return requirementFulfilledIcon ??= GD.Load<Texture>(RequirementFulfilledIconPath);
+            return requirementFulfilledIcon ??= GD.Load<Texture2D>(RequirementFulfilledIconPath);
         }
 
-        return requirementInsufficientIcon ??= GD.Load<Texture>(RequirementInsufficientIconPath);
+        return requirementInsufficientIcon ??= GD.Load<Texture2D>(RequirementInsufficientIconPath);
     }
 
     /// <summary>
@@ -269,13 +259,5 @@ public class GUICommon : Node
     internal void ReportViewportRect(Rect2 size)
     {
         ViewportRect = size;
-    }
-
-    private void HideControlOnFadeOutComplete(Object obj, NodePath key, Control control)
-    {
-        _ = obj;
-        _ = key;
-
-        control.Hide();
     }
 }

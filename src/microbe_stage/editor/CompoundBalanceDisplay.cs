@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Shows Compound balance information
 /// </summary>
-public class CompoundBalanceDisplay : VBoxContainer
+public partial class CompoundBalanceDisplay : VBoxContainer
 {
     [Export]
     public NodePath? CompoundListContainerPath;

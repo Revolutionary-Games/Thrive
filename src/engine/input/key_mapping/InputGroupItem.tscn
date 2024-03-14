@@ -1,55 +1,36 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://wwpityxotg0w"]
 
-[ext_resource path="res://src/engine/input/key_mapping/InputGroupItem.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=3]
+[ext_resource type="Script" path="res://src/engine/input/key_mapping/InputGroupItem.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="3_nhauy"]
 
 [node name="InputGroupItem" type="VBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 2 )
-script = ExtResource( 1 )
+theme = ExtResource("2")
+script = ExtResource("1")
 InputGroupHeaderPath = NodePath("VBoxContainer/InputGroupHeader")
 InputActionsContainerPath = NodePath("VBoxContainer/PanelContainer/MarginContainer/InputActionsContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 51.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="InputGroupHeader" type="Label" parent="VBoxContainer"]
-margin_right = 1280.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 3 )
+layout_mode = 2
 text = "Group name goes here"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("3_nhauy")
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
-margin_top = 29.0
-margin_right = 1280.0
-margin_bottom = 51.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 1279.0
-margin_bottom = 21.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="InputActionsContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1268.0
-margin_bottom = 10.0
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
+theme_override_constants/separation = 10

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 using Saving;
 
@@ -60,9 +60,7 @@ public static class SaveUpgrader
                         Constants.SAVE_EXTENSION_WITH_DOT.Length) +
                     Constants.SAVE_BACKUP_SUFFIX;
 
-                using var folder = new Directory();
-
-                if (folder.Rename(SaveFileInfo.SaveNameToPath(toSave), SaveFileInfo.SaveNameToPath(fromSave)) !=
+                if (DirAccess.RenameAbsolute(SaveFileInfo.SaveNameToPath(toSave), SaveFileInfo.SaveNameToPath(fromSave)) !=
                     Error.Ok)
                 {
                     throw new Exception("Failed to rename save to backup name");

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using Godot;
-using Path = System.IO.Path;
 
 /// <summary>
 ///   Partial class: Data export functionality of the auto-evo exploring tool
@@ -30,7 +30,7 @@ public partial class AutoEvoExploringTool
         }
 
         worldExportButton.Disabled = false;
-        exportSuccessNotificationDialog.DialogText = TranslationServer.Translate("WORLD_EXPORT_SUCCESS_MESSAGE")
+        exportSuccessNotificationDialog.DialogText = Localization.Translate("WORLD_EXPORT_SUCCESS_MESSAGE")
             .FormatSafe(ProjectSettings.GlobalizePath(exportPath));
 
         exportSuccessNotificationDialog.PopupCenteredShrink();
@@ -41,8 +41,13 @@ public partial class AutoEvoExploringTool
     private void ExportCurrentWorldSpeciesHistory(string basePath)
     {
         var path = Path.Combine(basePath, "species_history.csv");
-        var file = new File();
-        file.Open(path, File.ModeFlags.Write);
+
+        using var file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Write);
+        if (file == null)
+        {
+            GD.PrintErr("Couldn't open target file for world history writing");
+            return;
+        }
 
         // Generate headers
         var header = new List<string> { "Name", "Generation", "Split from", "Population", "Color" };
@@ -115,8 +120,13 @@ public partial class AutoEvoExploringTool
     private void ExportCurrentWorldPopulationHistory(string path)
     {
         path = Path.Combine(path, "population_history.csv");
-        var file = new File();
-        file.Open(path, File.ModeFlags.Write);
+
+        using var file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Write);
+        if (file == null)
+        {
+            GD.PrintErr("Couldn't open target file for population history writing");
+            return;
+        }
 
         var header = new[] { "Generation", "Patch", "Species", "Population" };
         file.StoreCsvLine(header);
@@ -145,8 +155,13 @@ public partial class AutoEvoExploringTool
     private void ExportCurrentWorldPatchHistory(string basePath)
     {
         var path = Path.Combine(basePath, "patch_history.csv");
-        var file = new File();
-        file.Open(path, File.ModeFlags.Write);
+
+        using var file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Write);
+        if (file == null)
+        {
+            GD.PrintErr("Couldn't open target file for patch history writing");
+            return;
+        }
 
         var header = new List<string> { "Name", "Generation", "Type" };
 

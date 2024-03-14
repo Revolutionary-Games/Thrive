@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
 
 /// <summary>
 ///   The panel that shows what the player is hovering over/inspecting.
 /// </summary>
-public class MouseHoverPanel : PanelContainer
+public partial class MouseHoverPanel : PanelContainer
 {
     [Export]
     public NodePath? CategoriesContainerPath;
@@ -19,7 +18,7 @@ public class MouseHoverPanel : PanelContainer
     private Container nothingHereContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private Dictionary<string, MouseHoverCategory> categories = new();
+    private System.Collections.Generic.Dictionary<string, MouseHoverCategory> categories = new();
 
     /// <summary>
     ///   The array of category controls ordered based on their position in the scene tree.
@@ -29,7 +28,7 @@ public class MouseHoverPanel : PanelContainer
     ///     TODO: this being a Godot.Array causes the enumeration of this to allocate memory each time
     ///   </para>
     /// </remarks>
-    private Array categoryControls = new();
+    private Array<Node> categoryControls = new();
 
     public override void _Ready()
     {
@@ -37,7 +36,7 @@ public class MouseHoverPanel : PanelContainer
         nothingHereContainer = GetNode<Container>(NothingHereContainerPath);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         var visibleEntriesCount = 0;
 
@@ -89,7 +88,7 @@ public class MouseHoverPanel : PanelContainer
     /// <param name="icon">The icon representing the inspectable.</param>
     /// <returns>The control created for the inspectable.</returns>
     /// <exception cref="System.InvalidOperationException">If the given category doesn't exist.</exception>
-    public InspectedEntityLabel AddItem(string category, string text, Texture? icon = null)
+    public InspectedEntityLabel AddItem(string category, string text, Texture2D? icon = null)
     {
         if (!categories.TryGetValue(category, out MouseHoverCategory categoryControl))
             throw new InvalidOperationException("Can't add item, category doesn't exist for \"" + category + "\"");
@@ -127,12 +126,11 @@ public class MouseHoverPanel : PanelContainer
             {
                 CategoriesContainerPath.Dispose();
                 NothingHereContainerPath.Dispose();
-                categoryControls.Dispose();
             }
         }
     }
 
-    public class MouseHoverCategory : VBoxContainer
+    public partial class MouseHoverCategory : VBoxContainer
     {
 #pragma warning disable CA2213 // Disposable fields should be disposed
         private Label titleLabel;
@@ -155,11 +153,11 @@ public class MouseHoverPanel : PanelContainer
             titleLabel = new Label
             {
                 Text = title.ToString(),
-                RectMinSize = new Vector2(0, 20),
+                CustomMinimumSize = new Vector2(0, 20),
             };
 
             container = new VBoxContainer();
-            separator = new HSeparator { RectMinSize = new Vector2(0, 5) };
+            separator = new HSeparator { CustomMinimumSize = new Vector2(0, 5) };
         }
 
         public int TotalEntriesCount => totalEntityLabels;
@@ -175,7 +173,7 @@ public class MouseHoverPanel : PanelContainer
             AddChild(separator);
 
             var titleMargin = new MarginContainer();
-            titleMargin.AddConstantOverride("margin_left", 10);
+            titleMargin.AddThemeConstantOverride("offset_left", 10);
 
             titleMargin.AddChild(titleLabel);
             AddChild(titleMargin);

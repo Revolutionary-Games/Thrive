@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Listens for any controller axis inputs and creates <see cref="ControllerAxisVisualizer"/>s to show them
 /// </summary>
-public class ControllerInputAxisVisualizationContainer : HFlowContainer
+public partial class ControllerInputAxisVisualizationContainer : HFlowContainer
 {
     /// <summary>
     ///   Automatically creates even axes below odd axes to make the horizontal and vertical controller axis mappings
@@ -51,7 +51,7 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
             FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Both);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -71,7 +71,7 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
 
         if (@event is InputEventJoypadMotion joypadMotion)
         {
-            HandleController(joypadMotion.Axis, joypadMotion.AxisValue);
+            HandleController((int)(joypadMotion.Axis - JoyAxis.LeftX), joypadMotion.AxisValue);
         }
 
         InputManager.ForwardInput(@event);
@@ -165,7 +165,7 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
             return axisVisualizer;
 
         // Need to create a new visualizer
-        axisVisualizer = (ControllerAxisVisualizer)visualizerScene.Instance();
+        axisVisualizer = (ControllerAxisVisualizer)visualizerScene.Instantiate();
 
         AddChild(axisVisualizer);
         axisVisualizers.Add(axis, axisVisualizer);

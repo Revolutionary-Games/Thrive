@@ -1,101 +1,87 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://cp23vdxwoeegx"]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Humongous.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=3]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="3"]
+[ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="3_bvn5i"]
+[ext_resource type="LabelSettings" uid="uid://bh5jgkxx1boyf" path="res://src/gui_common/fonts/Thrive-Humongous.tres" id="3_j7klg"]
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0, 0, 0, 0.196078 )
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0, 0, 0, 0.196078)
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "FadeIn"
 length = 0.5
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[node name="WinBox" instance=ExtResource( 3 )]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4wi48"]
+_data = {
+"FadeIn": SubResource("2")
+}
+
+[node name="WinBox" instance=ExtResource("3")]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 mouse_filter = 2
-popup_exclusive = true
-FullRect = true
 Movable = false
-ExclusiveAllowCloseOnEscape = false
 ShowCloseButton = false
 Decorate = false
+ExclusiveAllowCloseOnEscape = false
+FullRect = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." index="0"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" index="0"]
-margin_top = 210.0
-margin_right = 1280.0
-margin_bottom = 510.0
-rect_min_size = Vector2( 0, 300 )
-mouse_filter = 2
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-custom_styles/panel = SubResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+mouse_filter = 2
+theme_override_styles/panel = SubResource("3")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" index="0"]
-margin_right = 1280.0
-margin_bottom = 300.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/margin_right = 150
-custom_constants/margin_left = 150
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" index="0"]
-margin_left = 150.0
-margin_right = 1130.0
-margin_bottom = 300.0
+layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
-margin_top = 100.0
-margin_right = 980.0
-margin_bottom = 166.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 2
 text = "WIN_BOX_TITLE"
-align = 1
-valign = 1
+label_settings = ExtResource("3_j7klg")
 
 [node name="Message" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
-margin_top = 170.0
-margin_right = 980.0
-margin_bottom = 199.0
-custom_fonts/font = ExtResource( 1 )
+layout_mode = 2
 text = "WIN_TEXT"
-align = 1
-valign = 1
-autowrap = true
+label_settings = ExtResource("3_bvn5i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_4wi48")
+}
 autoplay = "FadeIn"
-anims/FadeIn = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="." index="2"]
 wait_time = 15.0

@@ -119,7 +119,7 @@ public class RunOnKeyAttribute : InputAttribute
         return result;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
         if (!HeldDown && !primed)
             return;

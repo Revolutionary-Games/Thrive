@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   The scene where the player species becomes ascended before entering the actual gameplay of the ascension stage
 /// </summary>
-public class AscensionCeremony : Node
+public partial class AscensionCeremony : Node
 {
     [Export]
     public float SpeciesWalkSpeed = 3.0f;
@@ -17,7 +17,7 @@ public class AscensionCeremony : Node
     public NodePath? GateWalkerSpawnPointPath;
 
     [Export]
-    public List<NodePath> ObserverSpawnPointPaths = new();
+    public Godot.Collections.Array<NodePath> ObserverSpawnPointPaths = new();
 
     [Export]
     public NodePath RootOfDynamicallySpawnedPath = null!;
@@ -46,16 +46,16 @@ public class AscensionCeremony : Node
     [Export]
     public NodePath WorldCameraToDisablePath = null!;
 
-    private readonly List<Spatial> observerSpawnPoints = new();
+    private readonly List<Node3D> observerSpawnPoints = new();
 
 #pragma warning disable CA2213
-    private Spatial gateWalkerSpawn = null!;
+    private Node3D gateWalkerSpawn = null!;
 
     private Node rootOfDynamicallySpawned = null!;
 
-    private Spatial rampStartPoint = null!;
-    private Spatial rampEndPoint = null!;
-    private Spatial ascensionPoint = null!;
+    private Node3D rampStartPoint = null!;
+    private Node3D rampEndPoint = null!;
+    private Node3D ascensionPoint = null!;
 
     private CreditsScroll creditsDisplay = null!;
     private Control creditsSkipInfoContainer = null!;
@@ -63,12 +63,12 @@ public class AscensionCeremony : Node
 
     private ColorRect customScreenBlanker = null!;
 
-    private Camera worldCameraToDisable = null!;
+    private Camera3D worldCameraToDisable = null!;
 
     private MulticellularCreature? gateWalker;
 #pragma warning restore CA2213
 
-    private float stateTimer;
+    private double stateTimer;
 
     private State currentState;
 
@@ -90,17 +90,17 @@ public class AscensionCeremony : Node
 
     public override void _Ready()
     {
-        gateWalkerSpawn = GetNode<Spatial>(GateWalkerSpawnPointPath);
+        gateWalkerSpawn = GetNode<Node3D>(GateWalkerSpawnPointPath);
         foreach (var spawnPointPath in ObserverSpawnPointPaths)
         {
-            observerSpawnPoints.Add(GetNode<Spatial>(spawnPointPath));
+            observerSpawnPoints.Add(GetNode<Node3D>(spawnPointPath));
         }
 
         rootOfDynamicallySpawned = GetNode<Node>(RootOfDynamicallySpawnedPath);
 
-        rampStartPoint = GetNode<Spatial>(RampStartPointPath);
-        rampEndPoint = GetNode<Spatial>(RampEndPointPath);
-        ascensionPoint = GetNode<Spatial>(AscensionPointPath);
+        rampStartPoint = GetNode<Node3D>(RampStartPointPath);
+        rampEndPoint = GetNode<Node3D>(RampEndPointPath);
+        ascensionPoint = GetNode<Node3D>(AscensionPointPath);
 
         creditsDisplay = GetNode<CreditsScroll>(CreditsDisplayPath);
         creditsSkipInfoContainer = GetNode<Control>(CreditsSkipInfoContainerPath);
@@ -108,7 +108,7 @@ public class AscensionCeremony : Node
 
         customScreenBlanker = GetNode<ColorRect>(CustomScreenBlankerPath);
 
-        worldCameraToDisable = GetNode<Camera>(WorldCameraToDisablePath);
+        worldCameraToDisable = GetNode<Camera3D>(WorldCameraToDisablePath);
 
         // Setup a new game if not already started
         if (CurrentGame == null)
@@ -139,7 +139,7 @@ public class AscensionCeremony : Node
             ReturnToScene?.QueueFree();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (currentState is State.FadingOut or State.Credits)
         {
@@ -157,7 +157,7 @@ public class AscensionCeremony : Node
         {
             case State.WalkingToRamp:
             {
-                if (WalkTowards(rampStartPoint.GlobalTranslation, delta))
+                if (WalkTowards(rampStartPoint.GlobalPosition, delta))
                     currentState = State.ClimbingRamp;
 
                 break;
@@ -165,7 +165,7 @@ public class AscensionCeremony : Node
 
             case State.ClimbingRamp:
             {
-                if (WalkTowards(rampEndPoint.GlobalTranslation, delta))
+                if (WalkTowards(rampEndPoint.GlobalPosition, delta))
                     currentState = State.WalkingToAscension;
 
                 break;
@@ -173,7 +173,7 @@ public class AscensionCeremony : Node
 
             case State.WalkingToAscension:
             {
-                if (WalkTowards(ascensionPoint.GlobalTranslation, delta))
+                if (WalkTowards(ascensionPoint.GlobalPosition, delta))
                 {
                     // Stop the music a bit before switching to the credits theme
                     Jukebox.Instance.Stop(true);
@@ -191,7 +191,7 @@ public class AscensionCeremony : Node
                 // TODO: some kind of actual ascending animation
                 if (gateWalker != null)
                 {
-                    gateWalker.GlobalTranslation += new Vector3(0, 300 * delta, 0);
+                    gateWalker.GlobalPosition += new Vector3(0, 300 * (float)delta, 0);
                 }
 
                 stateTimer += delta;
@@ -219,7 +219,7 @@ public class AscensionCeremony : Node
 
                 customScreenBlanker.Visible = true;
 
-                var alpha = Math.Min(1, stateTimer / ScreenFadeDuration);
+                var alpha = Math.Min(1, (float)(stateTimer / ScreenFadeDuration));
                 customScreenBlanker.Color = new Color(0, 0, 0, alpha);
 
                 if (stateTimer > ScreenFadeDuration)
@@ -280,18 +280,19 @@ public class AscensionCeremony : Node
 
         var playerSpecies = CurrentGame!.GameWorld.PlayerSpecies;
 
-        gateWalker = SpawnHelpers.SpawnCreature(playerSpecies, gateWalkerSpawn.GlobalTranslation,
+        gateWalker = SpawnHelpers.SpawnCreature(playerSpecies, gateWalkerSpawn.GlobalPosition,
             rootOfDynamicallySpawned, actorScene, false, dummySpawner, CurrentGame);
 
         // We control the walker through code
-        gateWalker.Mode = RigidBody.ModeEnum.Kinematic;
+        gateWalker.Freeze = true;
+        gateWalker.FreezeMode = RigidBody3D.FreezeModeEnum.Kinematic;
 
-        gateWalker.LookAt(rampStartPoint.GlobalTranslation, Vector3.Up);
+        gateWalker.LookAt(rampStartPoint.GlobalPosition, Vector3.Up);
 
         // TODO: could pick a rotating set of species if the player empire is composed of multiple species
         foreach (var spawnPoint in observerSpawnPoints)
         {
-            SpawnObserver(spawnPoint.GlobalTranslation, dummySpawner, actorScene, playerSpecies);
+            SpawnObserver(spawnPoint.GlobalPosition, dummySpawner, actorScene, playerSpecies);
         }
     }
 
@@ -301,17 +302,18 @@ public class AscensionCeremony : Node
         var observer = SpawnHelpers.SpawnCreature(observerSpecies, location,
             rootOfDynamicallySpawned, observerScene, false, dummySpawner, CurrentGame!);
 
-        var lookAt = ascensionPoint.GlobalTranslation;
+        var lookAt = ascensionPoint.GlobalPosition;
 
         // Need to look at the gate without pitching up or down
-        lookAt.y = 0;
+        lookAt.Y = 0;
 
         // Make the observer not move and look at the gate
-        observer.Mode = RigidBody.ModeEnum.Kinematic;
+        observer.Freeze = true;
+        observer.FreezeMode = RigidBody3D.FreezeModeEnum.Kinematic;
         observer.LookAt(lookAt, Vector3.Up);
     }
 
-    private bool WalkTowards(Vector3 point, float delta)
+    private bool WalkTowards(Vector3 point, double delta)
     {
         if (gateWalker == null)
         {
@@ -319,17 +321,17 @@ public class AscensionCeremony : Node
             return true;
         }
 
-        var current = gateWalker.GlobalTranslation;
+        var current = gateWalker.GlobalPosition;
 
         var direction = point - current;
 
         if (direction.Length() < SpeciesWalkSpeed * delta)
         {
-            gateWalker.GlobalTranslation = point;
+            gateWalker.GlobalPosition = point;
             return true;
         }
 
-        gateWalker.GlobalTranslation += direction.Normalized() * SpeciesWalkSpeed * delta;
+        gateWalker.GlobalPosition += direction.Normalized() * SpeciesWalkSpeed * (float)delta;
         return false;
     }
 

@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Shows a version label
 /// </summary>
-public class VersionNumber : Label
+public partial class VersionNumber : Label
 {
     [Export]
     public bool ShowDevBuildInfo = true;
@@ -35,6 +35,6 @@ public class VersionNumber : Label
         }
 
         var time = info.BuiltAt.ToLocalTime().ToString("G", CultureInfo.CurrentCulture);
-        Text = TranslationServer.Translate("DEVBUILD_VERSION_INFO").FormatSafe(info.Commit, info.Branch, time, version);
+        Text = Localization.Translate("DEVBUILD_VERSION_INFO").FormatSafe(info.Commit, info.Branch, time, version);
     }
 }

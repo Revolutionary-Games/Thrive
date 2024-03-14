@@ -3,7 +3,7 @@
 /// <summary>
 ///   Controls for manipulating <see cref="AudioStreamPlayer"/>'s playback.
 /// </summary>
-public class PlaybackControls : HBoxContainer
+public partial class PlaybackControls : HBoxContainer
 {
 #pragma warning disable CA2213
     private HSlider? playbackSlider;
@@ -16,10 +16,10 @@ public class PlaybackControls : HBoxContainer
     private bool? lastState;
 
     [Signal]
-    public delegate void Started();
+    public delegate void StartedEventHandler();
 
     [Signal]
-    public delegate void Stopped();
+    public delegate void StoppedEventHandler();
 
     public AudioStreamPlayer? AudioPlayer { get; set; }
 
@@ -63,7 +63,7 @@ public class PlaybackControls : HBoxContainer
         StopPlayback();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (AudioPlayer?.Stream == null)
             return;
@@ -111,7 +111,7 @@ public class PlaybackControls : HBoxContainer
             return 0;
         }
 
-        return (float)((value / AudioPlayer.Stream.GetLength()) * playbackSlider.MaxValue);
+        return (float)(value / AudioPlayer.Stream.GetLength() * playbackSlider.MaxValue);
     }
 
     private float PlaybackPosFromProgress(float value)
@@ -122,7 +122,7 @@ public class PlaybackControls : HBoxContainer
             return 0;
         }
 
-        return (float)((value * AudioPlayer.Stream.GetLength()) / playbackSlider.MaxValue);
+        return (float)(value * AudioPlayer.Stream.GetLength() / playbackSlider.MaxValue);
     }
 
     private void UpdatePlaybackState()
@@ -137,11 +137,11 @@ public class PlaybackControls : HBoxContainer
         {
             if (!Playing)
             {
-                EmitSignal(nameof(Stopped));
+                EmitSignal(SignalName.Stopped);
             }
             else
             {
-                EmitSignal(nameof(Started));
+                EmitSignal(SignalName.Started);
             }
 
             lastState = Playing;

@@ -3,7 +3,7 @@
 /// <summary>
 ///   Helper class to contain callbacks for the custom tooltips to make them react to things.
 /// </summary>
-public class ToolTipCallbackData : Reference
+public partial class ToolTipCallbackData : RefCounted
 {
     public ToolTipCallbackData(Control toolTipable, ICustomToolTip tooltip, bool autoUnregisterOnTreeExit)
     {
@@ -19,6 +19,14 @@ public class ToolTipCallbackData : Reference
     public bool AutoUnregisterOnTreeExit { get; set; }
 
     internal bool Unregistered { get; set; }
+
+    /// <summary>
+    ///   Callables need to be stored for disconnecting them to work
+    /// </summary>
+    internal Callable EnterCallable { get; set; }
+
+    internal Callable ExitCallable { get; set; }
+    internal Callable ExitTreeCallable { get; set; }
 
     public void OnMouseEnter()
     {

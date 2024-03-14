@@ -62,7 +62,7 @@ public abstract class InputAttribute : Attribute
     ///   Processes input actions that aren't triggered on key events directly
     /// </summary>
     /// <param name="delta">The time since the last call of OnProcess</param>
-    public abstract void OnProcess(float delta);
+    public abstract void OnProcess(double delta);
 
     /// <summary>
     ///   Called when the games window lost it's focus.

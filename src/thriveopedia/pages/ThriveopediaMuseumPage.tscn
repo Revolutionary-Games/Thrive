@@ -1,14 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://d0yvsh6srh74l"]
 
-[ext_resource path="res://src/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/thriveopedia/pages/ThriveopediaMuseumPage.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/SpeciesDetailsPanel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=8]
+[ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaMuseumPage.cs" id="2"]
+[ext_resource type="PackedScene" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="4"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_8ikvd"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="8"]
 
-[node name="ThriveopediaMuseumPage" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
-DisplayBackground = false
+[node name="ThriveopediaMuseumPage" instance=ExtResource("1")]
+anchors_preset = 15
+script = ExtResource("2")
 CardContainerPath = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HFlowContainer")
 WelcomeLabelPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/WelcomeLabelContainer")
 SpeciesPreviewContainerPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer")
@@ -17,161 +17,124 @@ LeaveGameConfirmationDialogPath = NodePath("UnsavedProgressWarning")
 FossilDirectoryWarningBoxPath = NodePath("NoDirectoryDialog")
 DeleteConfirmationDialogPath = NodePath("DeleteWarning")
 DeletionFailedDialogPath = NodePath("FossilDeletionFailedDialog")
+DisplayBackground = false
+
+[node name="MarginContainer" parent="." index="0"]
+layout_mode = 2
+
+[node name="ScrollContainer" parent="MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
+layout_mode = 2
+
+[node name="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" index="0"]
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." index="1"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 935.0
-margin_bottom = 599.0
-custom_constants/separation = 15
+layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="SpeciesListPanel" type="PanelContainer" parent="HBoxContainer" index="0"]
-margin_right = 545.0
-margin_bottom = 598.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesListPanel" index="0"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 544.0
-margin_bottom = 597.0
-rect_min_size = Vector2( 350, 0 )
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 533.0
-margin_bottom = 586.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer" index="0"]
-margin_right = 523.0
-margin_bottom = 537.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 513.0
-margin_bottom = 527.0
+layout_mode = 2
 size_flags_horizontal = 3
-scroll_horizontal_enabled = false
 
 [node name="HFlowContainer" type="HFlowContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
-margin_right = 503.0
-margin_bottom = 517.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer" index="1"]
-margin_top = 541.0
-margin_right = 523.0
-margin_bottom = 576.0
+layout_mode = 2
 
 [node name="FossilFolder" type="Button" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/CenterContainer" index="0"]
-margin_left = 96.0
-margin_right = 426.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 330, 0 )
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 action_mode = 0
 text = "OPEN_FOSSIL_FOLDER"
 
 [node name="SpeciesDetailsPanel" type="PanelContainer" parent="HBoxContainer" index="1"]
-margin_left = 560.0
-margin_right = 934.0
-margin_bottom = 598.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesDetailsPanel" index="0"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 373.0
-margin_bottom = 597.0
-rect_min_size = Vector2( 350, 0 )
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 362.0
-margin_bottom = 586.0
+layout_mode = 2
 
-[node name="SpeciesDetailsPanel" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer" index="0" instance=ExtResource( 4 )]
-margin_bottom = 537.0
+[node name="SpeciesDetailsPanel" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer" index="0" instance=ExtResource("4")]
+layout_mode = 2
 
 [node name="OpenInFreebuildButton" type="Button" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer" index="1"]
-margin_top = 541.0
-margin_right = 352.0
-margin_bottom = 576.0
+layout_mode = 2
 text = "OPEN_IN_FREEBUILD"
 
 [node name="WelcomeLabelContainer" type="CenterContainer" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer" index="1"]
 visible = false
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 362.0
-margin_bottom = 586.0
+layout_mode = 2
 
 [node name="WelcomeLabel" type="Label" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/WelcomeLabelContainer" index="0"]
-margin_left = 51.0
-margin_top = 279.0
-margin_right = 301.0
-margin_bottom = 296.0
-rect_min_size = Vector2( 250, 0 )
-custom_fonts/font = ExtResource( 3 )
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
 text = "MUSEUM_WELCOME_TEXT"
-align = 1
-autowrap = true
+label_settings = ExtResource("4_8ikvd")
 
-[node name="UnsavedProgressWarning" parent="." index="2" instance=ExtResource( 8 )]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 935.0
-margin_bottom = 599.0
-rect_min_size = Vector2( 391, 0 )
+[node name="UnsavedProgressWarning" parent="." index="2" instance=ExtResource("8")]
+custom_minimum_size = Vector2(391, 0)
+layout_mode = 2
 WindowTitle = "CONFIRM_EXIT"
 
-[node name="NoDirectoryDialog" parent="." index="3" instance=ExtResource( 8 )]
-margin_left = 340.0
-margin_top = 360.0
-margin_right = 940.0
-margin_bottom = 360.0
-rect_min_size = Vector2( 300, 0 )
-WindowTitle = "NO_FOSSIL_DIRECTORY"
+[node name="NoDirectoryDialog" parent="." index="3" instance=ExtResource("8")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
 HideCancelButton = true
 DialogText = "TRY_FOSSILISING_SOME_SPECIES"
+WindowTitle = "NO_FOSSIL_DIRECTORY"
 
-[node name="DeleteWarning" parent="." index="4" instance=ExtResource( 8 )]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 935.0
-margin_bottom = 599.0
-rect_min_size = Vector2( 391, 0 )
-WindowTitle = "CONFIRM_DELETE"
+[node name="DeleteWarning" parent="." index="4" instance=ExtResource("8")]
+custom_minimum_size = Vector2(391, 0)
+layout_mode = 2
 DialogText = "DELETE_FOSSIL_CONFIRMATION"
+WindowTitle = "CONFIRM_DELETE"
 
-[node name="FossilDeletionFailedDialog" parent="." index="5" instance=ExtResource( 8 )]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 935.0
-margin_bottom = 599.0
-rect_min_size = Vector2( 391, 0 )
-WindowTitle = "FOSSIL_DELETION_FAILED"
+[node name="FossilDeletionFailedDialog" parent="." index="5" instance=ExtResource("8")]
+custom_minimum_size = Vector2(391, 0)
+layout_mode = 2
 HideCancelButton = true
 DialogText = "FOSSIL_DELETION_FAILED_DESCRIPTION"
+WindowTitle = "FOSSIL_DELETION_FAILED"
 
 [connection signal="pressed" from="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/CenterContainer/FossilFolder" to="." method="OnOpenFossilFolder"]
 [connection signal="pressed" from="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/OpenInFreebuildButton" to="." method="OnOpenInFreebuildPressed"]

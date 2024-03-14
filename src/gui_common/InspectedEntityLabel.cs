@@ -1,19 +1,19 @@
 ﻿using Godot;
 
-public class InspectedEntityLabel : HBoxContainer
+public partial class InspectedEntityLabel : HBoxContainer
 {
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private Label textLabel;
     private Label? descriptionLabel;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private Texture? icon;
+    private Texture2D? icon;
 
-    public InspectedEntityLabel(string text, Texture? icon = null)
+    public InspectedEntityLabel(string text, Texture2D? icon = null)
     {
         this.icon = icon;
 
-        textLabel = new Label { SizeFlagsHorizontal = (int)SizeFlags.ExpandFill };
+        textLabel = new Label { SizeFlagsHorizontal = SizeFlags.ExpandFill };
         SetText(text);
     }
 

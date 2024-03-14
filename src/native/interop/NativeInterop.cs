@@ -1,14 +1,23 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using Godot;
+using SharedBase.Utilities;
 
 /// <summary>
 ///   Calling interface from C# to the native code side of things for the native module
 /// </summary>
 public static class NativeInterop
 {
+    // Need these delegate holders to keep delegates alive
+    private static readonly NativeMethods.OnLogMessage LogMessageCallback = ForwardMessage;
+
+    private static readonly NativeMethods.OnLineDraw LineDrawCallback = ForwardLineDraw;
+    private static readonly NativeMethods.OnTriangleDraw TriangleDrawCallback = ForwardTriangleDraw;
+
     private static bool loadCalled;
     private static bool debugDrawIsPossible;
     private static bool nativeLoadSucceeded;
@@ -32,7 +41,7 @@ public static class NativeInterop
         // things for the initial settings
         _ = settings;
 
-        NativeMethods.SetLogForwardingCallback(ForwardMessage);
+        NativeMethods.SetLogForwardingCallback(LogMessageCallback);
 
         var result = NativeMethods.InitThriveLibrary();
 
@@ -43,7 +52,7 @@ public static class NativeInterop
 
         try
         {
-            debugDrawIsPossible = NativeMethods.SetDebugDrawerCallbacks(ForwardLineDraw, ForwardTriangleDraw);
+            debugDrawIsPossible = NativeMethods.SetDebugDrawerCallbacks(LineDrawCallback, TriangleDrawCallback);
         }
         catch (Exception e)
         {
@@ -99,6 +108,17 @@ public static class NativeInterop
     }
 
     /// <summary>
+    ///   Sets the custom import resolver that understands where Thrive libraries are installed to.
+    /// </summary>
+    /// <param name="forAssembly">The assembly to set the resolver for, defaults to the calling assembly</param>
+    public static void SetDllImportResolver(Assembly? forAssembly = null)
+    {
+        forAssembly ??= Assembly.GetCallingAssembly();
+
+        NativeLibrary.SetDllImportResolver(forAssembly, DllImportResolver);
+    }
+
+    /// <summary>
     ///   Checks that current CPU is sufficiently new (has the required instruction set extensions) for running the
     ///   Thrive native module
     /// </summary>
@@ -145,7 +165,7 @@ public static class NativeInterop
         }
         catch (DllNotFoundException e)
         {
-            if (Engine.EditorHint)
+            if (Engine.IsEditorHint())
             {
                 GD.Print("Cannot load early check library within the editor concept due to it missing");
                 return false;
@@ -305,6 +325,87 @@ public static class NativeInterop
             throw new Exception(
                 $"Unexpected size for type {typeof(T).FullName}, expected size to be: {expected} but it is {size}");
         }
+    }
+
+    private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
+    {
+        if (!NativeConstants.GetLibraryFromName(libraryName, out var library))
+        {
+#if DEBUG
+            GD.Print("Loading non-thrive library: ", libraryName);
+#endif
+            return NativeLibrary.Load(libraryName, assembly, searchPath);
+        }
+
+        var currentPlatform = PlatformUtilities.GetCurrentPlatform();
+
+        // TODO: different name when no avx is detected
+
+        // Would be complicated to inline due to the conditional compilation
+        // ReSharper disable once InlineOutVariableDeclaration
+        IntPtr loaded;
+
+        // TODO: add a flag / some kind of option to skip loading the debug library
+
+#if DEBUG
+        if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
+                NativeConstants.GetLibraryVersion(library), false, true), out loaded))
+        {
+            return loaded;
+        }
+
+        if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
+                NativeConstants.GetLibraryVersion(library), false, true), out loaded))
+        {
+            GD.Print("Loaded a distributable debug library, this is not optimal but likely works");
+            return loaded;
+        }
+#endif
+
+        if (!Engine.IsEditorHint())
+        {
+            // Load from libs directory, needed when the game is packaged
+            if (LoadLibraryIfExists(Path.Join(NativeConstants.PackagedLibraryFolder,
+                    NativeConstants.GetLibraryDllName(library, currentPlatform)), out loaded))
+            {
+                return loaded;
+            }
+        }
+        else
+        {
+            if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
+                    NativeConstants.GetLibraryVersion(library), false, false), out loaded))
+            {
+                return loaded;
+            }
+
+            GD.Print("Library not found yet at expected paths, trying a distributable version");
+
+            if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
+                    NativeConstants.GetLibraryVersion(library), true, false), out loaded))
+            {
+                return loaded;
+            }
+        }
+
+        GD.PrintErr("Couldn't find library at expected path, falling back to default load behaviour, " +
+            "which is unlikely to find anything");
+
+        return NativeLibrary.Load(libraryName, assembly, searchPath);
+    }
+
+    private static bool LoadLibraryIfExists(string libraryPath, out IntPtr loaded)
+    {
+        if (File.Exists(libraryPath))
+        {
+            var full = Path.GetFullPath(libraryPath);
+
+            loaded = NativeLibrary.Load(full);
+            return true;
+        }
+
+        loaded = IntPtr.Zero;
+        return false;
     }
 }
 

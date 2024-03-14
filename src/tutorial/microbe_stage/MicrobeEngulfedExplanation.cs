@@ -1,39 +1,38 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+public class MicrobeEngulfedExplanation : TutorialPhase
 {
-    using System;
+    public override string ClosedByName => "MicrobeEngulfedExplanation";
 
-    public class MicrobeEngulfedExplanation : TutorialPhase
+    public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
-        public override string ClosedByName => "MicrobeEngulfedExplanation";
+        gui.EngulfedExplanationVisible = ShownCurrently;
+    }
 
-        public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.EngulfedExplanationVisible = ShownCurrently;
+            case TutorialEventType.MicrobePlayerIsEngulfed:
+            {
+                if (!HasBeenShown && !overallState.TutorialActive())
+                    Show();
+
+                break;
+            }
         }
 
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
+        return false;
+    }
+
+    protected override void OnProcess(TutorialState overallState, float delta)
+    {
+        if (Time > Constants.HIDE_MICROBE_ENGULFED_TUTORIAL_AFTER)
         {
-            switch (eventType)
-            {
-                case TutorialEventType.MicrobePlayerIsEngulfed:
-                {
-                    if (!HasBeenShown && !overallState.TutorialActive())
-                        Show();
-
-                    break;
-                }
-            }
-
-            return false;
-        }
-
-        protected override void OnProcess(TutorialState overallState, float delta)
-        {
-            if (Time > Constants.HIDE_MICROBE_ENGULFED_TUTORIAL_AFTER)
-            {
-                Hide();
-            }
+            Hide();
         }
     }
 }

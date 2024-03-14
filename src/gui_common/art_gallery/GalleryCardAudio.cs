@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-public class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
+public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 {
     [Export]
     public NodePath? PlaybackControlsPath;

@@ -1,48 +1,47 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Introduction to the cell editor
+/// </summary>
+public class CellEditorIntroduction : TutorialPhase
 {
-    using System;
+    private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
-    /// <summary>
-    ///   Introduction to the cell editor
-    /// </summary>
-    public class CellEditorIntroduction : TutorialPhase
+    public override string ClosedByName => "CellEditorIntroduction";
+
+    public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
-        private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
+        gui.CellEditorIntroductionVisible = ShownCurrently;
+    }
 
-        public override string ClosedByName => "CellEditorIntroduction";
-
-        public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.CellEditorIntroductionVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.MicrobeEditorTabChanged:
             {
-                case TutorialEventType.MicrobeEditorTabChanged:
+                if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab)
                 {
-                    if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab)
-                    {
-                        Show();
-                    }
-
-                    break;
+                    Show();
                 }
 
-                case TutorialEventType.MicrobeEditorOrganellePlaced:
-                {
-                    if (ShownCurrently)
-                    {
-                        Hide();
-                    }
-
-                    break;
-                }
+                break;
             }
 
-            return false;
+            case TutorialEventType.MicrobeEditorOrganellePlaced:
+            {
+                if (ShownCurrently)
+                {
+                    Hide();
+                }
+
+                break;
+            }
         }
+
+        return false;
     }
 }

@@ -1,37 +1,36 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://d386dbkjbq2rh"]
 
-[ext_resource path="res://src/engine/LoadingScreen.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/CrossFadableTextureRect.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/misc/icon.png" type="Texture" id=3]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=5]
-[ext_resource path="res://shaders/UVFlipper.shader" type="Shader" id=6]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=7]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=8]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.cs" type="Script" id=9]
+[ext_resource type="Script" path="res://src/engine/LoadingScreen.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://cgdp2u78cxxe7" path="res://src/gui_common/CrossFadableTextureRect.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://w21wmrogs2g5" path="res://assets/misc/icon.png" id="3"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="4"]
+[ext_resource type="Shader" path="res://shaders/UVFlipper.gdshader" id="6"]
+[ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="6_rw556"]
+[ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="7_dhkod"]
+[ext_resource type="Script" path="res://src/gui_common/CustomRichTextLabel.cs" id="9"]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 6 )
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("6")
 
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.401316, 1 )
-colors = PoolColorArray( 0.0117647, 0.027451, 0.0392157, 1, 0, 0, 0.00392157, 0, 0, 0, 0, 0 )
+[sub_resource type="Gradient" id="2"]
+offsets = PackedFloat32Array(0, 0.401316, 1)
+colors = PackedColorArray(0.0117647, 0.027451, 0.0392157, 1, 0, 0, 0.00392157, 0, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
-
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="GradientTexture2D" id="3"]
+gradient = SubResource("2")
 
 [node name="LoadingScreen" type="Control"]
-pause_mode = 2
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 4 )
-script = ExtResource( 1 )
+theme = ExtResource("4")
+script = ExtResource("1")
 ArtworkPath = NodePath("CoolArt")
 ArtDescriptionPath = NodePath("CenterContainer/ArtDescription")
 LoadingMessagePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/LoadingMessage")
@@ -41,159 +40,97 @@ RandomizeTimerPath = NodePath("Timer")
 SpinnerPath = NodePath("MarginContainer/HBoxContainer/Spinner/TextureRect")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 1)
 
-[node name="CoolArt" parent="." instance=ExtResource( 2 )]
+[node name="CoolArt" parent="." instance=ExtResource("2")]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 stretch_mode = 7
 
 [node name="FadeGradient" type="TextureRect" parent="."]
-material = SubResource( 1 )
+material = SubResource("1")
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 3 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = SubResource("3")
+expand_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -181.0
-margin_bottom = -81.0
+offset_top = -181.0
+offset_bottom = -81.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ArtDescription" type="Label" parent="CenterContainer"]
-material = SubResource( 4 )
-margin_left = 240.0
-margin_top = 37.0
-margin_right = 1040.0
-margin_bottom = 62.0
-rect_min_size = Vector2( 800, 0 )
+layout_mode = 2
 text = "Shown image description goes here"
-align = 1
-valign = 2
-autowrap = true
+horizontal_alignment = 1
 max_lines_visible = 4
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -84.0
+offset_top = -84.0
 grow_vertical = 0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1270.0
-margin_bottom = 74.0
-grow_horizontal = 0
-custom_constants/separation = 15
+layout_mode = 2
+theme_override_constants/separation = 15
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TipLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
-margin_top = 42.0
-margin_right = 650.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 650, 0 )
-rect_clip_content = false
-mouse_filter = 2
+custom_minimum_size = Vector2(650, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 8
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
-custom_constants/line_separation = 5
-custom_fonts/bold_font = ExtResource( 8 )
-custom_fonts/normal_font = ExtResource( 5 )
+mouse_filter = 2
 bbcode_enabled = true
 text = "TIP: not set"
-fit_content_height = true
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
+fit_content = true
+script = ExtResource("9")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 1103.0
-margin_top = 16.0
-margin_right = 1181.0
-margin_bottom = 64.0
-grow_horizontal = 0
-size_flags_vertical = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="LoadingMessage" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_right = 78.0
-margin_bottom = 22.0
-grow_horizontal = 0
-custom_fonts/font = ExtResource( 7 )
+layout_mode = 2
 text = "LOADING"
-align = 2
+label_settings = ExtResource("6_rw556")
 
 [node name="LoadingDescription" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 26.0
-margin_right = 78.0
-margin_bottom = 48.0
-grow_horizontal = 0
-custom_fonts/font = ExtResource( 7 )
-align = 2
+layout_mode = 2
+label_settings = ExtResource("7_dhkod")
 
 [node name="Spinner" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 1196.0
-margin_right = 1260.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
 size_flags_vertical = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Spinner"]
-margin_right = 64.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
-rect_pivot_offset = Vector2( 32, 32 )
-texture = ExtResource( 3 )
-expand = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3")
+expand_mode = 1
 stretch_mode = 6
-__meta__ = {
-"_editor_description_": "This also doesn't resize"
-}
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 
-[connection signal="hide" from="." to="." method="OnBecomeHidden"]
+[connection signal="hidden" from="." to="." method="OnBecomeHidden"]
 [connection signal="timeout" from="Timer" to="." method="RandomizeContent"]

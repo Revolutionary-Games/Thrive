@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Shows a list of processes in a container
 /// </summary>
-public class ProcessList : VBoxContainer
+public partial class ProcessList : VBoxContainer
 {
 #pragma warning disable CA2213
     private PackedScene chemicalEquationScene = null!;
@@ -44,7 +44,7 @@ public class ProcessList : VBoxContainer
             new ChildObjectCache<StrictProcessDisplayInfoEquality, ChemicalEquation>(this, CreateEquation);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!IsVisibleInTree())
             return;
@@ -74,7 +74,7 @@ public class ProcessList : VBoxContainer
 
     private ChemicalEquation CreateEquation(StrictProcessDisplayInfoEquality process)
     {
-        var equation = (ChemicalEquation)chemicalEquationScene.Instance();
+        var equation = chemicalEquationScene.Instantiate<ChemicalEquation>();
         equation.ShowSpinner = ShowSpinners;
         equation.EquationFromProcess = process.DisplayInfo;
         equation.DefaultTitleColour = ProcessesTitleColour;

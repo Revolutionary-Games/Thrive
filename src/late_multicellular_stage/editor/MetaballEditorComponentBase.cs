@@ -4,7 +4,8 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
-public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAction, TMetaball> :
+[GodotAbstract]
+public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TAction, TMetaball> :
     EditorComponentWithActionsBase<TEditor, TCombinedAction>,
     ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
@@ -34,9 +35,9 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     protected EditorCamera3D? camera;
 
     [JsonIgnore]
-    protected MeshInstance editorArrow = null!;
+    protected MeshInstance3D editorArrow = null!;
 
-    protected MeshInstance editorGround = null!;
+    protected MeshInstance3D editorGround = null!;
 
     protected AudioStream hexPlacementSound = null!;
 #pragma warning restore CA2213
@@ -67,6 +68,8 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     private const float DefaultHoverAlpha = 0.8f;
     private const float CannotPlaceHoverAlpha = 0.2f;
 
+    private readonly NodePath positionReference = new("position");
+
     private readonly List<Plane> cursorHitWorldPlanes = new()
     {
         new Plane(new Vector3(0, 0, -1), 0.0f),
@@ -84,6 +87,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
 
     private IEnumerable<(Vector3 Position, TMetaball? Parent)>? mouseHoverPositions;
+
+    protected MetaballEditorComponentBase()
+    {
+    }
 
     /// <summary>
     ///   The symmetry setting of the editor.
@@ -137,11 +144,11 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     public override bool CanCancelAction => CanCancelMove;
 
     [JsonIgnore]
-    public abstract bool HasIslands { get; }
+    public virtual bool HasIslands => throw new GodotAbstractPropertyNotOverriddenException();
 
     public bool IsLoadedFromSave { get; set; }
 
-    protected abstract bool ForceHideHover { get; }
+    protected virtual bool ForceHideHover => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void _Ready()
     {
@@ -165,10 +172,11 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         }
 
         camera = GetNode<EditorCamera3D>(CameraPath);
-        editorArrow = GetNode<MeshInstance>(EditorArrowPath);
-        editorGround = GetNode<MeshInstance>(EditorGroundPath);
+        editorArrow = GetNode<MeshInstance3D>(EditorArrowPath);
+        editorGround = GetNode<MeshInstance3D>(EditorGroundPath);
 
-        camera.Connect(nameof(EditorCamera3D.OnPositionChanged), this, nameof(OnCameraPositionChanged));
+        camera.Connect(EditorCamera3D.SignalName.OnPositionChanged,
+            new Callable(this, nameof(OnCameraPositionChanged)));
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
@@ -218,7 +226,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         hoverMetaballData.Clear();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -478,19 +486,29 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         if (animateMovement)
         {
             // TODO: check that this works
-            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation", editorArrow.Translation,
-                arrowPosition, Constants.EDITOR_ARROW_INTERPOLATE_SPEED,
-                Tween.TransitionType.Expo, Tween.EaseType.Out);
-            GUICommon.Instance.Tween.Start();
+
+            var tween = CreateTween();
+            tween.SetTrans(Tween.TransitionType.Expo);
+            tween.SetEase(Tween.EaseType.Out);
+
+            tween.TweenProperty(editorArrow, positionReference, arrowPosition,
+                Constants.EDITOR_ARROW_INTERPOLATE_SPEED);
         }
         else
         {
-            editorArrow.Translation = arrowPosition;
+            editorArrow.Position = arrowPosition;
         }
     }
 
-    protected abstract MetaballLayout<TMetaball> CreateLayout();
-    protected abstract IMetaballDisplayer<TMetaball> CreateMetaballDisplayer();
+    protected virtual MetaballLayout<TMetaball> CreateLayout()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual IMetaballDisplayer<TMetaball> CreateMetaballDisplayer()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual void LoadMetaballDisplayers()
     {
@@ -622,7 +640,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         {
             // TODO: check if the math is faster if we roll our custom sphere intersection rather than call into native
             // Godot code here
-            var potentialIntersection = Geometry.SegmentIntersectsSphere(rayOrigin, rayEnd, testedMetaball.Position,
+            var potentialIntersection = Geometry3D.SegmentIntersectsSphere(rayOrigin, rayEnd, testedMetaball.Position,
                 testedMetaball.Size * 0.5f);
 
             if (potentialIntersection.Length < 1)
@@ -647,7 +665,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
         foreach (var plane in cursorHitWorldPlanes)
         {
-            var intersection = plane.IntersectRay(rayOrigin, rayNormal);
+            var intersection = plane.IntersectsRay(rayOrigin, rayNormal);
 
             if (intersection != null)
             {
@@ -737,7 +755,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         throw new NotImplementedException();
     }
 
-    protected abstract void PerformActiveAction();
+    protected virtual void PerformActiveAction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual bool DoesActionEndInProgressAction(TCombinedAction action)
     {
@@ -754,13 +775,30 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     /// </param>
     /// <param name="metaball">The move data to try to move to the position</param>
     /// <returns>True if valid</returns>
-    protected abstract bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? rotation, TMetaball metaball);
+    protected virtual bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? rotation, TMetaball metaball)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void OnMoveActionStarted();
-    protected abstract void PerformMove(Vector3 position, TMetaball parent);
-    protected abstract TAction? TryCreateMetaballRemoveAction(TMetaball metaball, ref int alreadyDeleted);
+    protected virtual void OnMoveActionStarted()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract float CalculateEditorArrowZPosition();
+    protected virtual void PerformMove(Vector3 position, TMetaball parent)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual TAction? TryCreateMetaballRemoveAction(TMetaball metaball, ref int alreadyDeleted)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual float CalculateEditorArrowZPosition()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual void UpdateCancelState()
     {
@@ -783,12 +821,14 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
                 EditorGroundPath.Dispose();
                 IslandErrorPath.Dispose();
             }
+
+            positionReference.Dispose();
         }
 
         base.Dispose(disposing);
     }
 
-    private void OnCameraPositionChanged(Transform newPosition)
+    private void OnCameraPositionChanged(Transform3D newPosition)
     {
         // TODO: implement camera position saving
     }

@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   Data for drag and drop of items. Has to be a Godot reference to work
 /// </summary>
-public class InventoryDragData : Reference
+public partial class InventoryDragData : RefCounted
 {
     public InventoryDragData(InventorySlot fromSlot, IInventoryItem item)
     {

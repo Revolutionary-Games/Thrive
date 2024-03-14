@@ -1,14 +1,13 @@
-﻿using System;
+using System;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   The main class handling the space stage functions (and also the ascension stage as that just adds some extra
 ///   tools)
 /// </summary>
-public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
+public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 {
     [Export]
     public NodePath? NameLabelSystemPath;
@@ -38,7 +37,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     private PackedScene fleetScene = null!;
     private PackedScene structureScene = null!;
 
-    private Spatial? structureToPlaceGhost;
+    private Node3D? structureToPlaceGhost;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -67,7 +66,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     private bool fadingOutToAscension;
 
     [JsonProperty]
-    private float ascendAnimationElapsed;
+    private double ascendAnimationElapsed;
 
     [JsonProperty]
     private Vector3 ascendAnimationStart;
@@ -130,7 +129,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         structureSystem = new SpaceStructureSystem(rootOfDynamicallySpawned);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -150,8 +149,8 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             {
                 ascendAnimationElapsed += delta;
 
-                strategicCamera.WorldLocation = ascendAnimationStart.LinearInterpolate(ascendAnimationEnd,
-                    Math.Min(1, ascendAnimationElapsed / Constants.SPACE_ASCEND_ANIMATION_DURATION));
+                strategicCamera.WorldLocation = ascendAnimationStart.Lerp(ascendAnimationEnd,
+                    (float)Math.Min(1, ascendAnimationElapsed / Constants.SPACE_ASCEND_ANIMATION_DURATION));
 
                 if (AnimateCameraZoomTowards(strategicCamera.MinZoomLevel, delta,
                         Constants.SPACE_ASCEND_ANIMATION_ZOOM_SPEED) &&
@@ -178,7 +177,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             {
                 // TODO: placement validity checks (placement restrictions and hitting other structures), show the
                 // ghost differently when can't place
-                structureToPlaceGhost.GlobalTranslation = GetPlayerCursorPointedWorldPosition();
+                structureToPlaceGhost.GlobalPosition = GetPlayerCursorPointedWorldPosition();
             }
 
             // TODO: prototype code that can be entirely removed once the relevant feature is done
@@ -211,7 +210,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         Jukebox.Instance.PlayCategory("SpaceStage");
     }
 
-    public PlacedPlanet AddPlanet(Transform location, bool playerPlanet)
+    public PlacedPlanet AddPlanet(Transform3D location, bool playerPlanet)
     {
         if (CurrentGame == null)
             throw new InvalidOperationException("Current game not set");
@@ -226,35 +225,27 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         }
 
         var planet = SpawnHelpers.SpawnPlanet(location, rootOfDynamicallySpawned, planetScene, playerPlanet, techWeb);
-
-        var binds = new Array();
-        binds.Add(planet);
-        planet.Connect(nameof(PlacedPlanet.OnSelected), this, nameof(OpenPlanetInfo), binds);
+        planet.Connect(PlacedPlanet.SignalName.OnSelected, new Callable(this, nameof(OpenPlanetInfo)));
 
         return planet;
     }
 
-    public SpaceFleet AddFleet(Transform location, UnitType initialShip, bool playerFleet)
+    public SpaceFleet AddFleet(Transform3D location, UnitType initialShip, bool playerFleet)
     {
         var fleet = SpawnHelpers.SpawnFleet(location, rootOfDynamicallySpawned, fleetScene, playerFleet, initialShip);
 
-        var binds = new Array();
-        binds.Add(fleet);
-        fleet.Connect(nameof(SpaceFleet.OnSelected), this, nameof(OpenFleetInfo), binds);
+        fleet.Connect(SpaceFleet.SignalName.OnSelected, new Callable(this, nameof(OpenFleetInfo)));
 
         return fleet;
     }
 
-    public PlacedSpaceStructure AddStructure(SpaceStructureDefinition structureDefinition, Transform location,
+    public PlacedSpaceStructure AddStructure(SpaceStructureDefinition structureDefinition, Transform3D location,
         bool playerOwned)
     {
         var structure = SpawnHelpers.SpawnSpaceStructure(structureDefinition, location, rootOfDynamicallySpawned,
-            structureScene,
-            playerOwned);
+            structureScene, playerOwned);
 
-        var binds = new Array();
-        binds.Add(structure);
-        structure.Connect(nameof(PlacedSpaceStructure.OnSelected), this, nameof(OpenStructureInfo), binds);
+        structure.Connect(PlacedSpaceStructure.SignalName.OnSelected, new Callable(this, nameof(OpenStructureInfo)));
 
         return structure;
     }
@@ -264,14 +255,14 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         CurrentGame = GameProperties.StartSpaceStageGame(new WorldGenerationSettings());
 
         // Spawn an initial planet
-        var planet = AddPlanet(Transform.Identity, true);
+        var planet = AddPlanet(Transform3D.Identity, true);
 
         base.StartNewGame();
 
         // Initial spaceship like when coming from industrial
         var initialShip = SimulationParameters.Instance.GetUnitType("simpleSpaceRocket");
 
-        AddFleet(new Transform(Basis.Identity, planet.GlobalTranslation + new Vector3(15, 0, 0)), initialShip,
+        AddFleet(new Transform3D(Basis.Identity, planet.GlobalPosition + new Vector3(15, 0, 0)), initialShip,
             true);
     }
 
@@ -286,9 +277,9 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             TakeInitialResourcesFrom(SocietyResources);
 
         if (spawnPlanet)
-            AddPlanet(Transform.Identity, true);
+            AddPlanet(Transform3D.Identity, true);
 
-        var fleet = AddFleet(new Transform(Basis.Identity, new Vector3(6, 0, 0)),
+        var fleet = AddFleet(new Transform3D(Basis.Identity, new Vector3(6, 0, 0)),
             spacecraft, true);
 
         // Focus the camera initially on the ship to make the stage transition smoother
@@ -339,7 +330,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         structureTypeToPlace = structureDefinition;
         structurePlacingFleet = fleetToConstructWith;
 
-        structureToPlaceGhost = structureTypeToPlace.GhostScene.Instance<Spatial>();
+        structureToPlaceGhost = structureTypeToPlace.GhostScene.Instantiate<Node3D>();
 
         rootOfDynamicallySpawned.AddChild(structureToPlaceGhost);
     }
@@ -381,7 +372,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     /// <param name="fleet">The fleet to zoom out from</param>
     public void ZoomOutFromFleet(SpaceFleet fleet)
     {
-        strategicCamera.WorldLocation = fleet.GlobalTranslation;
+        strategicCamera.WorldLocation = fleet.GlobalPosition;
 
         targetZoomOutLevel = strategicCamera.ZoomLevel;
         minZoomLevelToRestore = strategicCamera.MinZoomLevel;
@@ -409,12 +400,12 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         if (CurrentGame!.Ascended)
         {
             GD.Print("Player is already ascended");
-            HUD.HUDMessages.ShowMessage(TranslationServer.Translate("ALREADY_ASCENDED"));
+            HUD.HUDMessages.ShowMessage(Localization.Translate("ALREADY_ASCENDED"));
             return;
         }
 
         minZoomLevelToRestore = strategicCamera.MinZoomLevel;
-        ascendAnimationEnd = ascensionGate.GlobalTranslation;
+        ascendAnimationEnd = ascensionGate.GlobalPosition;
 
         ascensionMoveConfirmationPopup.PopupCenteredShrink();
         PauseManager.Instance.AddPause(nameof(ascensionMoveConfirmationPopup));
@@ -545,9 +536,9 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         // TODO: more intelligent calculation for the distance from which building is possible
         float buildDistance = 5;
 
-        var structureToFleet = structurePlacingFleet.GlobalTranslation - structure.GlobalTranslation;
+        var structureToFleet = structurePlacingFleet.GlobalPosition - structure.GlobalPosition;
 
-        var placeToBuildFrom = structure.GlobalTranslation + structureToFleet.Normalized() * buildDistance;
+        var placeToBuildFrom = structure.GlobalPosition + structureToFleet.Normalized() * buildDistance;
 
         structurePlacingFleet.QueueOrder(new FleetMovementOrder(structurePlacingFleet, placeToBuildFrom));
         structurePlacingFleet.QueueOrder(new FleetBuildOrder(structurePlacingFleet, structure, SocietyResources));
@@ -580,7 +571,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         foreach (var fleet in rootOfDynamicallySpawned.GetChildrenToProcess<SpaceFleet>(Constants
                      .SPACE_FLEET_ENTITY_GROUP))
         {
-            var distance = fleet.GlobalTranslation.DistanceSquaredTo(location);
+            var distance = fleet.GlobalPosition.DistanceSquaredTo(location);
 
             if (distance <= radiusSquared)
             {
@@ -620,7 +611,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         GD.Print("Switching to ascension ceremony scene");
 
         var ascensionScene =
-            SceneManager.Instance.LoadScene(MainGameState.AscensionCeremony).Instance<AscensionCeremony>();
+            SceneManager.Instance.LoadScene(MainGameState.AscensionCeremony).Instantiate<AscensionCeremony>();
         ascensionScene.CurrentGame = CurrentGame;
 
         var us = (SpaceStage?)SceneManager.Instance.SwitchToScene(ascensionScene, true);

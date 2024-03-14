@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 using Newtonsoft.Json;
 
@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 ///   Planet that is placed in the space stage scene. For now uses just placeholder graphics
 /// </summary>
 [DeserializedCallbackTarget]
-public class PlacedPlanet : Spatial, IEntityWithNameLabel
+public partial class PlacedPlanet : Node3D, IEntityWithNameLabel
 {
     private static readonly Lazy<PackedScene> LabelScene =
         new(() => GD.Load<PackedScene>("res://src/industrial_stage/gui/CityNameLabel.tscn"));
@@ -21,7 +21,7 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
     ///   Emitted when this planet is selected by the player
     /// </summary>
     [Signal]
-    public delegate void OnSelected();
+    public delegate void OnSelectedEventHandler(PlacedPlanet planet);
 
     public enum ColonizationState
     {
@@ -60,7 +60,7 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     public override void _Ready()
     {
@@ -82,7 +82,7 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
         availableTechnology = cityAvailableTechnologies;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
     }
 
@@ -122,7 +122,7 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
 
     public void OnSelectedThroughLabel()
     {
-        EmitSignal(nameof(OnSelected));
+        EmitSignal(SignalName.OnSelected, this);
     }
 
     public void OnDestroyed()

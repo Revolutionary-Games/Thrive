@@ -37,16 +37,16 @@ public class MembraneType : IRegistryType
     public int EditorButtonOrder;
 
     [JsonIgnore]
-    public Texture LoadedAlbedoTexture = null!;
+    public Texture2D LoadedAlbedoTexture = null!;
 
     [JsonIgnore]
-    public Texture LoadedNormalTexture = null!;
+    public Texture2D LoadedNormalTexture = null!;
 
     [JsonIgnore]
-    public Texture LoadedDamagedTexture = null!;
+    public Texture2D LoadedDamagedTexture = null!;
 
     [JsonIgnore]
-    public Texture? LoadedIcon;
+    public Texture2D? LoadedIcon;
 
     public string InternalName { get; set; } = null!;
 
@@ -70,19 +70,18 @@ public class MembraneType : IRegistryType
                 "Empty albedo, normal, or damaged texture");
         }
 
-        var directory = new Directory();
-
+#if DEBUG
         string[] membranes = { AlbedoTexture, NormalTexture, DamagedTexture };
 
         foreach (var resource in membranes)
         {
-            // When exported only the .import files exist, so this check is done accordingly
-            if (!directory.FileExists(resource + ".import"))
+            if (!FileAccess.FileExists(resource))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Membrane uses non-existent image: " + resource);
             }
         }
+#endif
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
@@ -93,11 +92,11 @@ public class MembraneType : IRegistryType
     /// </summary>
     public void Resolve()
     {
-        LoadedAlbedoTexture = GD.Load<Texture>(AlbedoTexture);
-        LoadedNormalTexture = GD.Load<Texture>(NormalTexture);
-        LoadedDamagedTexture = GD.Load<Texture>(DamagedTexture);
+        LoadedAlbedoTexture = GD.Load<Texture2D>(AlbedoTexture);
+        LoadedNormalTexture = GD.Load<Texture2D>(NormalTexture);
+        LoadedDamagedTexture = GD.Load<Texture2D>(DamagedTexture);
 
-        LoadedIcon = GD.Load<Texture>(IconPath);
+        LoadedIcon = GD.Load<Texture2D>(IconPath);
     }
 
     public void ApplyTranslations()

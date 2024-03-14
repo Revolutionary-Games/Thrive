@@ -11,13 +11,13 @@ ProgressBarPath = NodePath("ProgressBar")
 NameLabelPath = NodePath("HBoxContainer/ThingInQueue")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 14.0
+offset_right = 1280.0
+offset_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="ThingInQueue" type="Label" parent="HBoxContainer"]
-margin_right = 1280.0
-margin_bottom = 14.0
+offset_right = 1280.0
+offset_bottom = 14.0
 size_flags_horizontal = 3
 text = "Item name"
 autowrap = true
@@ -27,10 +27,10 @@ __meta__ = {
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-margin_top = 18.0
-margin_right = 1280.0
-margin_bottom = 22.0
-rect_min_size = Vector2( 0, 4 )
+offset_top = 18.0
+offset_right = 1280.0
+offset_bottom = 22.0
+custom_minimum_size = Vector2( 0, 4 )
 size_flags_horizontal = 3
 max_value = 1.0
 percent_visible = false

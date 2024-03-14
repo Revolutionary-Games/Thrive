@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Text.RegularExpressions;
 using Godot;
 
 /// <summary>
 ///   Dialog for fossilising (saving) a given species.
 /// </summary>
-public class FossilisationDialog : CustomWindow
+public partial class FossilisationDialog : CustomWindow
 {
     [Export]
     public NodePath? NameEditPath;
@@ -44,7 +44,7 @@ public class FossilisationDialog : CustomWindow
     private bool saveQueued;
 
     [Signal]
-    public delegate void OnSpeciesFossilised();
+    public delegate void OnSpeciesFossilisedEventHandler();
 
     /// <summary>
     ///   The species currently open in the dialog.
@@ -76,7 +76,7 @@ public class FossilisationDialog : CustomWindow
         speciesPreview.KeepPlainImageInMemory = true;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -153,10 +153,10 @@ public class FossilisationDialog : CustomWindow
         else
         {
             // Prevents user from doing other actions with an invalid name
-            GetTree().SetInputAsHandled();
+            GetViewport().SetInputAsHandled();
 
             // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
 
             speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
         }
@@ -186,7 +186,7 @@ public class FossilisationDialog : CustomWindow
         if (FossilisedSpecies.IsSpeciesAlreadyFossilised(speciesName))
         {
             overwriteNameConfirmationDialog.DialogText =
-                TranslationServer.Translate("OVERWRITE_SPECIES_NAME_CONFIRMATION");
+                Localization.Translate("OVERWRITE_SPECIES_NAME_CONFIRMATION");
             overwriteNameConfirmationDialog.PopupCenteredShrink();
             return;
         }
@@ -250,7 +250,7 @@ public class FossilisationDialog : CustomWindow
             return;
         }
 
-        EmitSignal(nameof(OnSpeciesFossilised));
+        EmitSignal(SignalName.OnSpeciesFossilised);
 
         Hide();
     }

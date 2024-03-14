@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class EditorCommonBottomLeftButtons : MarginContainer
+public partial class EditorCommonBottomLeftButtons : MarginContainer
 {
     [Export]
     public NodePath? MenuButtonPath;
@@ -14,10 +14,10 @@ public class EditorCommonBottomLeftButtons : MarginContainer
 #pragma warning restore CA2213
 
     [Signal]
-    public delegate void OnOpenMenu();
+    public delegate void OnOpenMenuEventHandler();
 
     [Signal]
-    public delegate void OnOpenHelp();
+    public delegate void OnOpenHelpEventHandler();
 
     public override void _Ready()
     {
@@ -47,13 +47,13 @@ public class EditorCommonBottomLeftButtons : MarginContainer
     private void OnMenuButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnOpenMenu));
+        EmitSignal(SignalName.OnOpenMenu);
     }
 
     private void OnHelpButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnOpenHelp));
+        EmitSignal(SignalName.OnOpenHelp);
     }
 
     private void OnStatisticsButtonPressed()

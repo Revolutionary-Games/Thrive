@@ -1,13 +1,11 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Godot;
-using Array = Godot.Collections.Array;
 using Container = Godot.Container;
 
 /// <summary>
 ///   Info and possible actions on a space structure
 /// </summary>
-public class SpaceStructureInfoPopup : CustomWindow
+public partial class SpaceStructureInfoPopup : CustomWindow
 {
     [Export]
     public NodePath? StructureStatusTextLabelPath;
@@ -21,11 +19,11 @@ public class SpaceStructureInfoPopup : CustomWindow
     private Container interactionButtonContainer = null!;
 #pragma warning restore CA2213
 
-    private ChildObjectCache<Enum, CreatedInteractionButton> interactionButtons = null!;
+    private ChildObjectCache<InteractionType, CreatedInteractionButton> interactionButtons = null!;
 
     private EntityReference<PlacedSpaceStructure> managedStructure = new();
 
-    private float elapsed = 1;
+    private double elapsed = 1;
 
     public override void _Ready()
     {
@@ -35,10 +33,11 @@ public class SpaceStructureInfoPopup : CustomWindow
         interactionButtonContainer = GetNode<Container>(InteractionButtonContainerPath);
 
         interactionButtons =
-            new ChildObjectCache<Enum, CreatedInteractionButton>(interactionButtonContainer, CreateInteractionButton);
+            new ChildObjectCache<InteractionType, CreatedInteractionButton>(interactionButtonContainer,
+                CreateInteractionButton);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -136,21 +135,15 @@ public class SpaceStructureInfoPopup : CustomWindow
             else if (button.Disabled)
             {
                 button.Disabled = false;
-                button.Text = TranslationServer.Translate(type.GetAttribute<DescriptionAttribute>().Description);
+                button.Text = Localization.Translate(type.GetAttribute<DescriptionAttribute>().Description);
             }
         }
 
         interactionButtons.DeleteUnmarked();
     }
 
-    private void OnActionSelected(string action)
+    private void OnActionSelected(InteractionType action)
     {
-        if (!Enum.TryParse(action, out InteractionType parsedAction))
-        {
-            GD.PrintErr("Could not parse interaction type: ", action);
-            return;
-        }
-
         var target = managedStructure.Value;
 
         if (target == null)
@@ -159,31 +152,28 @@ public class SpaceStructureInfoPopup : CustomWindow
             return;
         }
 
-        if (!target.PerformAction(parsedAction))
+        if (!target.PerformAction(action))
         {
-            GD.PrintErr("Failed to perform interaction on space structure: ", parsedAction);
+            GD.PrintErr("Failed to perform interaction on space structure: ", action);
         }
     }
 
-    private CreatedInteractionButton CreateInteractionButton(Enum child)
+    private CreatedInteractionButton CreateInteractionButton(InteractionType type)
     {
         var button = new CreatedInteractionButton
         {
             // TODO: make this react to language change (probably needs a new attribute to save the thing and a
             // listener for language change event
-            Text = TranslationServer.Translate(child.GetAttribute<DescriptionAttribute>().Description),
+            Text = Localization.Translate(type.GetAttribute<DescriptionAttribute>().Description),
             SizeFlagsHorizontal = 0,
         };
 
-        var binds = new Array();
-        binds.Add(child.ToString());
-
-        button.Connect("pressed", this, nameof(OnActionSelected), binds);
+        button.Connect(BaseButton.SignalName.Pressed, Callable.From(() => OnActionSelected(type)));
 
         return button;
     }
 
-    private class CreatedInteractionButton : Button
+    private partial class CreatedInteractionButton : Button
     {
     }
 }

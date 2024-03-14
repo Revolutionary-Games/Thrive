@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using Godot;
-using Object = Godot.Object;
+using Range = Godot.Range;
 
 /// <summary>
 ///   A scroll container which can be also moved by clicking and dragging.
 /// </summary>
-public class DraggableScrollContainer : ScrollContainer
+public partial class DraggableScrollContainer : ScrollContainer
 {
     /// <summary>
     ///   If set to null, the first child is used.
@@ -31,19 +31,16 @@ public class DraggableScrollContainer : ScrollContainer
 
 #pragma warning disable CA2213
     private Control content = null!;
-    private Tween tween = null!;
 #pragma warning restore CA2213
 
     private bool showScrollbars;
     private float contentScale = 1;
 
-    private Action? onPanned;
-
     /// <summary>
     ///   Unwanted scrolling happens while zooming with mouse wheel, this is used to reset the scroll values back to
     ///   its last state before zooming started.
     /// </summary>
-    private Int2 lastScrollValues;
+    private Vector2I lastScrollValues;
 
     [Export]
     public float DragSensitivity { get; set; } = 1.0f;
@@ -89,12 +86,10 @@ public class DraggableScrollContainer : ScrollContainer
         ContentPath ??= GetChild(2).GetPath();
 
         content = GetNode<Control>(ContentPath);
-        tween = new Tween();
-        AddChild(tween);
 
         // Workaround a bug in Godot (https://github.com/godotengine/godot/issues/22936).
-        GetVScrollbar().Connect("value_changed", this, nameof(OnScrollStarted));
-        GetHScrollbar().Connect("value_changed", this, nameof(OnScrollStarted));
+        GetVScrollBar().Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnScrollStarted)));
+        GetHScrollBar().Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnScrollStarted)));
 
         UpdateScrollbars();
     }
@@ -115,12 +110,12 @@ public class DraggableScrollContainer : ScrollContainer
     {
         base._Draw();
 
-        content.RectPivotOffset = new Vector2(ScrollHorizontal, ScrollVertical) + GetRect().End * 0.5f;
+        content.PivotOffset = new Vector2(ScrollHorizontal, ScrollVertical) + GetRect().End * 0.5f;
         contentScale = Mathf.Clamp(contentScale, MinZoom, MaxZoom);
         var pairValue = new Vector2(contentScale, contentScale);
 
-        if (content.RectScale != pairValue)
-            content.RectScale = pairValue;
+        if (content.Scale != pairValue)
+            content.Scale = pairValue;
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -132,11 +127,11 @@ public class DraggableScrollContainer : ScrollContainer
         }
 
         var mouse = GetGlobalMousePosition();
-        var min = RectGlobalPosition;
-        var max = min + RectSize;
+        var min = GlobalPosition;
+        var max = min + Size;
 
         // Don't allow drag motion to continue outside this control
-        if (mouse.x < min.x || mouse.y < min.y || mouse.x > max.x || mouse.y > max.y)
+        if (mouse.X < min.X || mouse.Y < min.Y || mouse.X > max.X || mouse.Y > max.Y)
         {
             dragging = false;
             return;
@@ -144,18 +139,18 @@ public class DraggableScrollContainer : ScrollContainer
 
         if (@event is InputEventMouseButton
             {
-                Pressed: true, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
+                Pressed: true, ButtonIndex: MouseButton.Left or MouseButton.Right,
             })
         {
             dragging = true;
         }
         else if (@event is InputEventMouseButton buttonDown && buttonDown.Pressed)
         {
-            if (buttonDown.ButtonIndex == (int)ButtonList.WheelUp)
+            if (buttonDown.ButtonIndex == MouseButton.WheelUp)
             {
                 Zoom(contentScale + ZoomFactor * ZoomStep);
             }
-            else if (buttonDown.ButtonIndex == (int)ButtonList.WheelDown)
+            else if (buttonDown.ButtonIndex == MouseButton.WheelDown)
             {
                 Zoom(contentScale - ZoomFactor * ZoomStep);
             }
@@ -166,8 +161,8 @@ public class DraggableScrollContainer : ScrollContainer
             // vice versa.
             var scaleInverse = 1 / contentScale;
 
-            ImmediatePan(new Vector2(ScrollHorizontal - (int)(motion.Relative.x * scaleInverse) * DragSensitivity,
-                ScrollVertical - (int)(motion.Relative.y * scaleInverse) * DragSensitivity));
+            ImmediatePan(new Vector2(ScrollHorizontal - (int)(motion.Relative.X * scaleInverse) * DragSensitivity,
+                ScrollVertical - (int)(motion.Relative.Y * scaleInverse) * DragSensitivity));
         }
     }
 
@@ -181,7 +176,7 @@ public class DraggableScrollContainer : ScrollContainer
 
         if (@event is InputEventMouseButton
             {
-                Pressed: false, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
+                Pressed: false, ButtonIndex: MouseButton.Left or MouseButton.Right,
             })
         {
             dragging = false;
@@ -191,20 +186,26 @@ public class DraggableScrollContainer : ScrollContainer
     public void Zoom(float value, float lerpDuration = 0.1f)
     {
         zooming = true;
-        tween.InterpolateMethod(this, nameof(ImmediateZoom), contentScale, value, lerpDuration,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        tween.Start();
+
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenMethod(new Callable(this, nameof(ImmediateZoom)), contentScale, value, lerpDuration);
     }
 
     public void Pan(Vector2 coordinates, Action? onPanned = null, float lerpDuration = 0.1f)
     {
         var initial = new Vector2(ScrollHorizontal, ScrollVertical);
-        tween.InterpolateMethod(this, nameof(ImmediatePan), initial, coordinates, lerpDuration,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        tween.Start();
 
-        this.onPanned = onPanned;
-        tween.CheckAndConnect("tween_completed", this, nameof(OnPanningStopped), null, (uint)ConnectFlags.Oneshot);
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenMethod(new Callable(this, nameof(ImmediatePan)), initial, coordinates, lerpDuration);
+
+        if (onPanned != null)
+            tween.TweenCallback(Callable.From(onPanned));
     }
 
     public void ResetZoom()
@@ -232,18 +233,18 @@ public class DraggableScrollContainer : ScrollContainer
     private void ImmediateZoom(float value)
     {
         contentScale = value;
-        Update();
+        QueueRedraw();
     }
 
     private void ImmediatePan(Vector2 coordinates)
     {
-        ScrollHorizontal = (int)coordinates.x;
-        ScrollVertical = (int)coordinates.y;
+        ScrollHorizontal = (int)coordinates.X;
+        ScrollVertical = (int)coordinates.Y;
     }
 
     private void UpdateScrollbars()
     {
-        GetHScrollbar().RectScale = GetVScrollbar().RectScale = ShowScrollbars ? Vector2.One : Vector2.Zero;
+        GetHScrollBar().Scale = GetVScrollBar().Scale = ShowScrollbars ? Vector2.One : Vector2.Zero;
     }
 
     private void OnScrollStarted(float value)
@@ -252,21 +253,13 @@ public class DraggableScrollContainer : ScrollContainer
 
         if (zooming)
         {
-            ScrollHorizontal = lastScrollValues.x;
-            ScrollVertical = lastScrollValues.y;
+            ScrollHorizontal = lastScrollValues.X;
+            ScrollVertical = lastScrollValues.Y;
             zooming = false;
         }
         else
         {
-            lastScrollValues = new Int2(ScrollHorizontal, ScrollVertical);
+            lastScrollValues = new Vector2I(ScrollHorizontal, ScrollVertical);
         }
-    }
-
-    private void OnPanningStopped(Object @object, NodePath key)
-    {
-        _ = @object;
-        _ = key;
-
-        onPanned?.Invoke();
     }
 }

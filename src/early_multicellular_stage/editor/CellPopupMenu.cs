@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class CellPopupMenu : HexPopupMenu
+public partial class CellPopupMenu : HexPopupMenu
 {
     private List<HexWithData<CellTemplate>>? selectedCells;
 
@@ -55,7 +55,7 @@ public class CellPopupMenu : HexPopupMenu
         }
         else
         {
-            titleLabel.Text = TranslationServer.Translate("MULTIPLE_CELLS");
+            titleLabel.Text = Localization.Translate("MULTIPLE_CELLS");
         }
     }
 

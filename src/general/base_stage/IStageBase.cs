@@ -10,6 +10,9 @@ public interface IStageBase : ILoadableGameState, ICurrentGameInfo
 
     public GameWorld GameWorld { get; }
 
+    [JsonIgnore]
+    public MainGameState GameState { get; }
+
     /// <summary>
     ///   Called by the HUD when the stage has faded in from a black screen
     /// </summary>

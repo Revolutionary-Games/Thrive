@@ -55,14 +55,14 @@ public class MembraneShapeGenerator
         for (int i = 0; i < hexCount; ++i)
         {
             var pos = hexPositions[i];
-            if (Mathf.Abs(pos.x) + 1 > cellDimensions)
+            if (Mathf.Abs(pos.X) + 1 > cellDimensions)
             {
-                cellDimensions = (int)Mathf.Abs(pos.x) + 1;
+                cellDimensions = (int)Mathf.Abs(pos.X) + 1;
             }
 
-            if (Mathf.Abs(pos.y) + 1 > cellDimensions)
+            if (Mathf.Abs(pos.Y) + 1 > cellDimensions)
             {
-                cellDimensions = (int)Mathf.Abs(pos.y) + 1;
+                cellDimensions = (int)Mathf.Abs(pos.Y) + 1;
             }
         }
 
@@ -158,7 +158,7 @@ public class MembraneShapeGenerator
             float currentRadians = multiplier * i / end;
 
             var sourceVertex = vertices2D[i % end];
-            vertices[writeIndex] = new Vector3(sourceVertex.x, height / 2, sourceVertex.y);
+            vertices[writeIndex] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
 
             uvs[writeIndex] = center +
                 new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2;
@@ -240,7 +240,7 @@ public class MembraneShapeGenerator
 
         arrays[(int)Mesh.ArrayType.Vertex] = vertices;
         arrays[(int)Mesh.ArrayType.Index] = indices;
-        arrays[(int)Mesh.ArrayType.TexUv] = uvs;
+        arrays[(int)Mesh.ArrayType.TexUV] = uvs;
 
         // Create the mesh
         var generatedMesh = new ArrayMesh();
@@ -331,7 +331,7 @@ public class MembraneShapeGenerator
             var direction = (nextPoint - point).Normalized();
 
             // Turn 90 degrees
-            direction = new Vector2(-direction.y, direction.x);
+            direction = new Vector2(-direction.Y, direction.X);
 
             var movement = direction * Mathf.Sin(waveFrequency * i) * waveHeight;
 

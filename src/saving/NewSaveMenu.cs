@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using Godot;
@@ -7,7 +7,7 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Menu for managing making a new save
 /// </summary>
-public class NewSaveMenu : Control
+public partial class NewSaveMenu : Control
 {
     [Export]
     public NodePath? SaveListPath;
@@ -35,10 +35,10 @@ public class NewSaveMenu : Control
     private bool usingSelectedSaveName;
 
     [Signal]
-    public delegate void OnClosed();
+    public delegate void OnClosedEventHandler();
 
     [Signal]
-    public delegate void OnSaveNameChosen(string name);
+    public delegate void OnSaveNameChosenEventHandler(string name);
 
     public override void _Ready()
     {
@@ -95,7 +95,7 @@ public class NewSaveMenu : Control
     private void ShowOverwriteConfirm(string name)
     {
         // The chosen filename ({0}) already exists. Overwrite?
-        overwriteConfirm.DialogText = TranslationServer.Translate("CHOSEN_FILENAME_ALREADY_EXISTS").FormatSafe(name);
+        overwriteConfirm.DialogText = Localization.Translate("CHOSEN_FILENAME_ALREADY_EXISTS").FormatSafe(name);
         overwriteConfirm.PopupCenteredShrink();
     }
 
@@ -103,7 +103,7 @@ public class NewSaveMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnClosed));
+        EmitSignal(SignalName.OnClosed);
     }
 
     private void SaveButtonPressed()
@@ -146,7 +146,7 @@ public class NewSaveMenu : Control
             return;
         }
 
-        EmitSignal(nameof(OnSaveNameChosen), name);
+        EmitSignal(SignalName.OnSaveNameChosen, name);
     }
 
     private string GetSaveName()
@@ -212,7 +212,7 @@ public class NewSaveMenu : Control
         }
         else
         {
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SAVE_NAME_POPUP"), 2.5f);
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("INVALID_SAVE_NAME_POPUP"), 2.5f);
         }
     }
 

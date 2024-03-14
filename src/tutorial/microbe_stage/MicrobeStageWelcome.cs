@@ -1,74 +1,73 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+using Newtonsoft.Json;
+
+/// <summary>
+///   A welcome popup to the stage
+/// </summary>
+public class MicrobeStageWelcome : TutorialPhase
 {
-    using System;
-    using Newtonsoft.Json;
+    private Action? patchNamePopup;
 
-    /// <summary>
-    ///   A welcome popup to the stage
-    /// </summary>
-    public class MicrobeStageWelcome : TutorialPhase
+    [JsonProperty]
+    private WorldGenerationSettings.LifeOrigin gameLifeOrigin;
+
+    private WorldGenerationSettings.LifeOrigin appliedGUILifeOrigin = WorldGenerationSettings.LifeOrigin.Vent;
+
+    public MicrobeStageWelcome()
     {
-        private Action? patchNamePopup;
+        Pauses = true;
+    }
 
-        [JsonProperty]
-        private WorldGenerationSettings.LifeOrigin gameLifeOrigin;
+    public override string ClosedByName => "MicrobeStageWelcome";
 
-        private WorldGenerationSettings.LifeOrigin appliedGUILifeOrigin = WorldGenerationSettings.LifeOrigin.Vent;
-
-        public MicrobeStageWelcome()
+    public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    {
+        if (ShownCurrently && gameLifeOrigin != appliedGUILifeOrigin)
         {
-            Pauses = true;
+            gui.SetWelcomeTextForLifeOrigin(gameLifeOrigin);
+            appliedGUILifeOrigin = gameLifeOrigin;
         }
 
-        public override string ClosedByName => "MicrobeStageWelcome";
+        gui.MicrobeWelcomeVisible = ShownCurrently;
+    }
 
-        public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            if (ShownCurrently && gameLifeOrigin != appliedGUILifeOrigin)
+            case TutorialEventType.EnteredMicrobeStage:
             {
-                gui.SetWelcomeTextForLifeOrigin(gameLifeOrigin);
-                appliedGUILifeOrigin = gameLifeOrigin;
-            }
-
-            gui.MicrobeWelcomeVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
-            {
-                case TutorialEventType.EnteredMicrobeStage:
+                foreach (var eventArg in ((AggregateEventArgs)args).Args)
                 {
-                    foreach (var eventArg in ((AggregateEventArgs)args).Args)
+                    if (eventArg is CallbackEventArgs callbackEventArgs)
                     {
-                        if (eventArg is CallbackEventArgs callbackEventArgs)
-                        {
-                            patchNamePopup = callbackEventArgs.Data;
-                        }
-                        else if (eventArg is GameWorldEventArgs gameWorldEventArgs)
-                        {
-                            gameLifeOrigin = gameWorldEventArgs.World.WorldSettings.Origin;
-                        }
+                        patchNamePopup = callbackEventArgs.Data;
                     }
-
-                    if (!HasBeenShown && CanTrigger)
+                    else if (eventArg is GameWorldEventArgs gameWorldEventArgs)
                     {
-                        Show();
-                        return true;
+                        gameLifeOrigin = gameWorldEventArgs.World.WorldSettings.Origin;
                     }
-
-                    break;
                 }
+
+                if (!HasBeenShown && CanTrigger)
+                {
+                    Show();
+                    return true;
+                }
+
+                break;
             }
-
-            return false;
         }
 
-        public override void Hide()
-        {
-            patchNamePopup?.Invoke();
-            base.Hide();
-        }
+        return false;
+    }
+
+    public override void Hide()
+    {
+        patchNamePopup?.Invoke();
+        base.Hide();
     }
 }

@@ -8,15 +8,15 @@ rough = true
 bounce = 0.2
 absorbent = true
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape3D" id=1]
 
-[node name="MulticellularCreature" type="RigidBody"]
+[node name="MulticellularCreature" type="RigidBody3D"]
 process_priority = 1
 physics_material_override = SubResource( 2 )
 script = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.50421, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.50421, 0 )
 shape = SubResource( 1 )
 
 [node name="MetaballDisplayer" parent="." instance=ExtResource( 1 )]

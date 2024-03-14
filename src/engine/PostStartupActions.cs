@@ -1,21 +1,21 @@
-﻿using System.Globalization;
+using System.Globalization;
 using Godot;
 
 /// <summary>
 ///   This is the last autoloaded class to perform some actions there
 /// </summary>
-public class PostStartupActions : Node
+public partial class PostStartupActions : Node
 {
     private PostStartupActions()
     {
-        if (Engine.EditorHint)
+        if (Engine.IsEditorHint())
         {
             // Skip these actions when running in the Godot editor
             return;
         }
 
         // Queue window title set as setting it in the autoloads doesn't work yet
-        Invoke.Instance.Perform(() => { OS.SetWindowTitle("Thrive - " + Constants.Version); });
+        Invoke.Instance.Perform(() => { DisplayServer.WindowSetTitle("Thrive - " + Constants.Version); });
     }
 
     public override void _Ready()

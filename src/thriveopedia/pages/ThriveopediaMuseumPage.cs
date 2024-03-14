@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
 ///   Thriveopedia page displaying fossilised (saved) organisms.
 /// </summary>
-public class ThriveopediaMuseumPage : ThriveopediaPage
+public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPage
 {
     [Export]
     public NodePath? CardContainerPath;
@@ -44,10 +44,10 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     private MuseumCard? cardToBeDeleted;
 
-    public override string PageName => "Museum";
-    public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
+    public string PageName => "Museum";
+    public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
 
-    public override string? ParentPageName => null;
+    public string? ParentPageName => null;
 
     public override void _Ready()
     {
@@ -77,13 +77,14 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             if (savedSpecies == null)
                 continue;
 
-            var card = (MuseumCard)museumCardScene.Instance();
+            var card = museumCardScene.Instantiate<MuseumCard>();
             card.FossilName = savedSpecies.Name;
             card.SavedSpecies = savedSpecies.Species;
             card.FossilPreviewImage = savedSpecies.PreviewImage;
 
-            card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
-            card.Connect(nameof(MuseumCard.OnSpeciesDeleted), this, nameof(DeleteSpecies));
+            card.Connect(MuseumCard.SignalName.OnSpeciesSelected,
+                new Callable(this, nameof(UpdateSpeciesPreview)));
+            card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
 
             cardContainer.AddChild(card);
         }
@@ -121,7 +122,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         foreach (MuseumCard otherCard in cardContainer.GetChildren())
         {
             if (otherCard != card)
-                otherCard.Pressed = false;
+                otherCard.ButtonPressed = false;
         }
 
         var species = card.SavedSpecies;
@@ -139,7 +140,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         // If we're opening from a game in progress, warn the player
         if (CurrentGame != null)
         {
-            leaveGameConfirmationDialog.DialogText = TranslationServer.Translate("OPEN_FOSSIL_IN_FREEBUILD_WARNING");
+            leaveGameConfirmationDialog.DialogText = Localization.Translate("OPEN_FOSSIL_IN_FREEBUILD_WARNING");
             leaveGameConfirmationDialog.PopupCenteredShrink();
             return;
         }
@@ -163,14 +164,14 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     private void TransitionToFreebuild(Species startingSpecies)
     {
-        EmitSignal(nameof(OnSceneChanged));
+        EmitSignal(SignalName.OnSceneChanged);
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
             MainMenu.OnEnteringGame();
 
             // Instantiate a new editor scene
-            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+            var editor = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate<MicrobeEditor>();
 
             // Start freebuild game with the selected species
             editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true,

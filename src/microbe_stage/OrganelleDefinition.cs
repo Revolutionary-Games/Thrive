@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 using UnlockConstraints;
 
 /// <summary>
@@ -17,7 +18,7 @@ using UnlockConstraints;
 ///     organelles.json.
 ///   </para>
 /// </remarks>
-[TypeConverter(typeof(OrganelleDefinitionStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(OrganelleDefinitionStringConverter)}")]
 #pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
 public class OrganelleDefinition : IRegistryType
 #pragma warning restore CA1001
@@ -67,7 +68,7 @@ public class OrganelleDefinition : IRegistryType
     ///   Loaded icon for display in GUIs
     /// </summary>
     [JsonIgnore]
-    public Texture? LoadedIcon;
+    public Texture2D? LoadedIcon;
 
     /// <summary>
     ///   Density of this organelle. Note that densities should fall into just a few categories to ensure that cached
@@ -458,8 +459,7 @@ public class OrganelleDefinition : IRegistryType
 #if DEBUG
         if (!string.IsNullOrEmpty(CorpseChunkScene))
         {
-            using var directory = new Directory();
-            if (!directory.FileExists(CorpseChunkScene))
+            if (!FileAccess.FileExists(CorpseChunkScene))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Corpse chunk scene path doesn't exist");
@@ -485,7 +485,7 @@ public class OrganelleDefinition : IRegistryType
 
         if (!string.IsNullOrEmpty(IconPath))
         {
-            LoadedIcon = GD.Load<Texture>(IconPath);
+            LoadedIcon = GD.Load<Texture2D>(IconPath);
         }
 
         // Resolve process names

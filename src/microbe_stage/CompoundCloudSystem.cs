@@ -10,7 +10,7 @@ using Systems;
 ///   Manages spawning and processing compound clouds
 /// </summary>
 [RuntimeCost(35)]
-public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked
+public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked
 {
     [JsonProperty]
     private int neededCloudsAtOnePosition;
@@ -31,7 +31,7 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
     private Vector3 cloudGridCenter;
 
     [JsonProperty]
-    private float elapsed;
+    private double elapsed;
 
     [JsonIgnore]
     private float currentBrightness = 1.0f;
@@ -68,7 +68,7 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
         // We need to dynamically spawn more / delete some if this doesn't match
         while (clouds.Count < neededCloudsAtOnePosition)
         {
-            var createdCloud = (CompoundCloudPlane)cloudScene.Instance();
+            var createdCloud = cloudScene.Instantiate<CompoundCloudPlane>();
             clouds.Add(createdCloud);
             AddChild(createdCloud);
         }
@@ -126,11 +126,11 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
 
             clouds[i].Init(fluidSystem, renderPriority, cloud1, cloud2, cloud3, cloud4);
             --renderPriority;
-            clouds[i].Translation = new Vector3(0, 0, 0);
+            clouds[i].Position = new Vector3(0, 0, 0);
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         elapsed += delta;
 
@@ -138,8 +138,8 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
         // are a major performance sink
         if (elapsed >= Settings.Instance.CloudUpdateInterval)
         {
-            UpdateCloudContents(elapsed);
-            elapsed = 0.0f;
+            UpdateCloudContents((float)elapsed);
+            elapsed = 0;
         }
     }
 
@@ -399,9 +399,9 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
     {
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves
-        return new Vector3((int)Math.Round(pos.x / (Constants.CLOUD_X_EXTENT / 3)),
+        return new Vector3((int)Math.Round(pos.X / (Constants.CLOUD_X_EXTENT / 3)),
             0,
-            (int)Math.Round(pos.z / (Constants.CLOUD_Y_EXTENT / 3)));
+            (int)Math.Round(pos.Z / (Constants.CLOUD_Y_EXTENT / 3)));
     }
 
     /// <summary>
@@ -412,8 +412,8 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
         foreach (var cloud in clouds)
         {
             // TODO: make sure the cloud knows where we moved.
-            cloud.Translation = cloudGridCenter * Constants.CLOUD_Y_EXTENT / 3;
-            cloud.UpdatePosition(new Int2((int)cloudGridCenter.x, (int)cloudGridCenter.z));
+            cloud.Position = cloudGridCenter * Constants.CLOUD_Y_EXTENT / 3;
+            cloud.UpdatePosition(new Vector2I((int)cloudGridCenter.X, (int)cloudGridCenter.Z));
         }
     }
 

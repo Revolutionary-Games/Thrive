@@ -3,12 +3,12 @@
 /// <summary>
 ///   Toggles fullscreen mode on a key press
 /// </summary>
-public class FullScreenToggle : NodeWithInput
+public partial class FullScreenToggle : NodeWithInput
 {
     public override void _Ready()
     {
         // Keep this node running while paused
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     [RunOnKeyDown("toggle_fullscreen", OnlyUnhandled = false)]

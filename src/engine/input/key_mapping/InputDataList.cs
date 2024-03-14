@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public class InputDataList : ICloneable
 {
-    public InputDataList(Dictionary<string, List<SpecifiedInputKey?>> data)
+    public InputDataList(Dictionary<string, List<SpecifiedInputKey>> data)
     {
         Data = data;
     }
@@ -20,19 +20,19 @@ public class InputDataList : ICloneable
     /// <summary>
     ///   The key map, key is the godot action name and the list contains the keys that are used to trigger that action
     /// </summary>
-    public Dictionary<string, List<SpecifiedInputKey?>> Data { get; }
+    public Dictionary<string, List<SpecifiedInputKey>> Data { get; }
 
-    public List<SpecifiedInputKey?> this[string index] => Data[index];
+    public List<SpecifiedInputKey> this[string index] => Data[index];
 
     public object Clone()
     {
-        var result = new Dictionary<string, List<SpecifiedInputKey?>>();
+        var result = new Dictionary<string, List<SpecifiedInputKey>>();
         foreach (var keyValuePair in Data)
         {
-            result[keyValuePair.Key] = new List<SpecifiedInputKey?>();
+            result[keyValuePair.Key] = new List<SpecifiedInputKey>();
             foreach (var inputEventWithModifiers in keyValuePair.Value)
             {
-                result[keyValuePair.Key].Add((SpecifiedInputKey?)inputEventWithModifiers?.Clone());
+                result[keyValuePair.Key].Add((SpecifiedInputKey)inputEventWithModifiers.Clone());
             }
         }
 
@@ -49,14 +49,17 @@ public class InputDataList : ICloneable
             // Skip destroying ui actions to keep the UI usable even with bad inputs
             // This doesn't seem to happen and luckily it seems controller navigation is intact for loading settings
             // made in previous versions
+            // TODO: this might need changes when ui keys are fully rebindable
             if (action.Key.StartsWith("ui_") && action.Value.Count < 1)
             {
                 GD.PrintErr("Skipping clearing an UI input action");
                 return;
             }
 
+            var keyName = new StringName(action.Key);
+
             // Clear all old input keys
-            InputMap.ActionEraseEvents(action.Key);
+            InputMap.ActionEraseEvents(keyName);
 
             // Register the new input keys
             foreach (var inputEvent in action.Value)
@@ -65,7 +68,7 @@ public class InputDataList : ICloneable
                 if (inputEvent == null)
                     return;
 
-                InputMap.ActionAddEvent(action.Key, inputEvent.ToInputEvent());
+                InputMap.ActionAddEvent(keyName, inputEvent.ToInputEvent());
             }
         }
 

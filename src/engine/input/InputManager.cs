@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,7 +12,7 @@ using Godot;
 ///     This is an AutoLoad class.
 ///   </para>
 /// </remarks>
-public class InputManager : Node
+public partial class InputManager : Node
 {
     private static readonly List<WeakReference> DestroyedListeners = new();
     private static InputManager? staticInstance;
@@ -44,8 +44,10 @@ public class InputManager : Node
     /// </remarks>
     private ActiveInputMethod usedInputMethod = ActiveInputMethod.Keyboard;
 
-    private float inputChangeDelay;
+    private double inputChangeDelay;
     private bool queuedInputChange;
+
+    private double timeSinceExpiredClear;
 
     /// <summary>
     ///   Used to detect when the used controller
@@ -68,9 +70,7 @@ public class InputManager : Node
 
         LoadAttributes(new[] { Assembly.GetExecutingAssembly() });
 
-        PauseMode = PauseModeEnum.Process;
-
-        StartTimer();
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     /// <summary>
@@ -188,7 +188,8 @@ public class InputManager : Node
     {
         base._Ready();
 
-        Input.Singleton.Connect("joy_connection_changed", this, nameof(OnConnectedControllersChanged));
+        Input.Singleton.Connect(Input.SignalName.JoyConnectionChanged,
+            new Callable(this, nameof(OnConnectedControllersChanged)));
 
         DoPostLoad();
 
@@ -223,7 +224,7 @@ public class InputManager : Node
     ///   Calls all OnProcess methods of all input attributes
     /// </summary>
     /// <param name="delta">The time since the last _Process call</param>
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (staticInstance == null)
             throw new InstanceNotLoadedYetException();
@@ -241,6 +242,13 @@ public class InputManager : Node
             }
         }
 
+        timeSinceExpiredClear += delta;
+        if (timeSinceExpiredClear > 1)
+        {
+            timeSinceExpiredClear = 0;
+            ClearExpiredReferences();
+        }
+
         foreach (var attribute in staticInstance.attributes)
             attribute.Key.OnProcess(delta);
     }
@@ -249,7 +257,7 @@ public class InputManager : Node
     {
         // If the window goes out of focus, we don't receive the key released events
         // We reset our held down keys if the player tabs out while pressing a key
-        if (what == NotificationWmFocusOut)
+        if (what == NotificationWMWindowFocusOut)
         {
             OnFocusLost();
         }
@@ -326,7 +334,7 @@ public class InputManager : Node
                 }
 
                 bool thisInstanceResult;
-                object invokeResult;
+                object? invokeResult;
 
                 try
                 {
@@ -343,6 +351,15 @@ public class InputManager : Node
                         GD.PrintErr("Failed to perform input method invoke: ", e);
                     }
 
+                    DestroyedListeners.Add(instance);
+                    continue;
+                }
+                catch (ArgumentException e)
+                {
+                    GD.PrintErr("Failed to perform input method invoke due to parameter conversion: ", e);
+                    GD.PrintErr($"Target method failed to invoke is: {method.DeclaringType?.FullName}.{method.Name}");
+
+                    // Is probably good to put this here to ensure the error doesn't get printed infinitely
                     DestroyedListeners.Add(instance);
                     continue;
                 }
@@ -394,7 +411,7 @@ public class InputManager : Node
 
         Settings.Instance.ControllerAxisDeadzoneAxes.OnChanged += _ => LoadControllerDeadzones();
 
-        GetTree().Root.Connect("size_changed", this, nameof(OnWindowSizeChanged));
+        GetTree().Root.Connect(Viewport.SignalName.SizeChanged, new Callable(this, nameof(OnWindowSizeChanged)));
         UpdateWindowSizeForInputs();
 
         foreach (var attribute in attributes)
@@ -421,7 +438,7 @@ public class InputManager : Node
         }
         else
         {
-            WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
+            WindowSizeForInputs = DisplayServer.WindowGetSize().AsFloats() * DisplayServer.ScreenGetScale();
         }
     }
 
@@ -437,7 +454,7 @@ public class InputManager : Node
             if (@event is InputEventJoypadMotion joypadMotion)
             {
                 // Apply controller axis deadzone
-                var motionAxis = joypadMotion.Axis;
+                var motionAxis = (int)(joypadMotion.Axis - JoyAxis.LeftX);
                 controllerAxisDeadzones.TryGetValue(motionAxis, out float deadzone);
 
                 if (Math.Abs(joypadMotion.AxisValue) < deadzone)
@@ -492,21 +509,7 @@ public class InputManager : Node
 
         // Define input as consumed to Godot if something reacted to it
         if (handled)
-            GetTree().SetInputAsHandled();
-    }
-
-    private void StartTimer()
-    {
-        // TODO: switch this to using a timer variable like elsewhere in the code
-        var timer = new Timer
-        {
-            Autostart = true,
-            OneShot = false,
-            PauseMode = PauseModeEnum.Process,
-            WaitTime = 1,
-        };
-        timer.Connect("timeout", this, nameof(ClearExpiredReferences));
-        AddChild(timer);
+            GetViewport().SetInputAsHandled();
     }
 
     private void UpdateUsedInputMethodType(InputEvent @event)
@@ -616,9 +619,9 @@ public class InputManager : Node
     {
         var values = Settings.Instance.ControllerAxisDeadzoneAxes.Value;
 
-        if (values.Count != (int)JoystickList.AxisMax)
+        if (values.Count != (int)JoyAxis.Max)
         {
-            GD.PrintErr("Mismatching number of controller axis deadzones. Expected: ", (int)JoystickList.AxisMax,
+            GD.PrintErr("Mismatching number of controller axis deadzones. Expected: ", (int)JoyAxis.Max,
                 " actually configured: ", values.Count);
         }
 

@@ -1,141 +1,140 @@
-﻿namespace Systems
+﻿namespace Systems;
+
+using System;
+using System.Collections.Generic;
+using Components;
+using DefaultEcs;
+using DefaultEcs.System;
+using Godot;
+using World = DefaultEcs.World;
+
+/// <summary>
+///   Handles disabling and enabling the physics body for an entity (disabled bodies don't exist in the physical
+///   world at all)
+/// </summary>
+[With(typeof(Physics))]
+[WritesToComponent(typeof(ManualPhysicsControl))]
+[ReadsComponent(typeof(WorldPosition))]
+[RunsAfter(typeof(PhysicsBodyCreationSystem))]
+[RuntimeCost(0.5f)]
+[RunsOnMainThread]
+public sealed class PhysicsBodyDisablingSystem : AEntitySetSystem<float>
 {
-    using System;
-    using System.Collections.Generic;
-    using Components;
-    using DefaultEcs;
-    using DefaultEcs.System;
-    using Godot;
-    using World = DefaultEcs.World;
+    private readonly PhysicalWorld physicalWorld;
+
+    private readonly HashSet<NativePhysicsBody> disabledBodies = new();
+
+    public PhysicsBodyDisablingSystem(PhysicalWorld physicalWorld, World world) : base(world, null)
+    {
+        this.physicalWorld = physicalWorld;
+    }
 
     /// <summary>
-    ///   Handles disabling and enabling the physics body for an entity (disabled bodies don't exist in the physical
-    ///   world at all)
+    ///   Forgets about a disabled body on entity. Needs to be called before
+    ///   <see cref="PhysicsBodyCreationSystem.OnEntityDestroyed"/> so that this can see the body to be destroyed
     /// </summary>
-    [With(typeof(Physics))]
-    [WritesToComponent(typeof(ManualPhysicsControl))]
-    [ReadsComponent(typeof(WorldPosition))]
-    [RunsAfter(typeof(PhysicsBodyCreationSystem))]
-    [RuntimeCost(0.5f)]
-    [RunsOnMainThread]
-    public sealed class PhysicsBodyDisablingSystem : AEntitySetSystem<float>
+    public void OnEntityDestroyed(in Entity entity)
     {
-        private readonly PhysicalWorld physicalWorld;
+        if (!entity.Has<Physics>())
+            return;
 
-        private readonly HashSet<NativePhysicsBody> disabledBodies = new();
+        ref var physics = ref entity.Get<Physics>();
 
-        public PhysicsBodyDisablingSystem(PhysicalWorld physicalWorld, World world) : base(world, null)
+        if (physics.Body != null)
         {
-            this.physicalWorld = physicalWorld;
+            disabledBodies.Remove(physics.Body);
         }
+    }
 
-        /// <summary>
-        ///   Forgets about a disabled body on entity. Needs to be called before
-        ///   <see cref="PhysicsBodyCreationSystem.OnEntityDestroyed"/> so that this can see the body to be destroyed
-        /// </summary>
-        public void OnEntityDestroyed(in Entity entity)
+    /// <summary>
+    ///   Needs to be called when a body is deleted so that state tracking for body disabling can remove it
+    /// </summary>
+    /// <param name="body">The deleted body</param>
+    public void OnBodyDeleted(NativePhysicsBody body)
+    {
+        disabledBodies.Remove(body);
+    }
+
+    public override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
+    }
+
+    protected override void Update(float delta, in Entity entity)
+    {
+        ref var physics = ref entity.Get<Physics>();
+
+        // Skip objects that are up to date
+        if (physics.InternalDisableState == physics.BodyDisabled)
+            return;
+
+        var body = physics.Body;
+        if (body == null)
+            return;
+
+        if (physics.InternalDisableState)
         {
-            if (!entity.Has<Physics>())
-                return;
+            // Need to restore body
+            physics.InternalDisableState = false;
 
-            ref var physics = ref entity.Get<Physics>();
-
-            if (physics.Body != null)
+            // In case the body was recreated, then we need to skip this (as the body instance was not removed
+            // from the world by us)
+            if (disabledBodies.Remove(body))
             {
-                disabledBodies.Remove(physics.Body);
-            }
-        }
+                physicalWorld.AddBody(body);
 
-        /// <summary>
-        ///   Needs to be called when a body is deleted so that state tracking for body disabling can remove it
-        /// </summary>
-        /// <param name="body">The deleted body</param>
-        public void OnBodyDeleted(NativePhysicsBody body)
-        {
-            disabledBodies.Remove(body);
-        }
-
-        public override void Dispose()
-        {
-            Dispose(true);
-            base.Dispose();
-        }
-
-        protected override void Update(float delta, in Entity entity)
-        {
-            ref var physics = ref entity.Get<Physics>();
-
-            // Skip objects that are up to date
-            if (physics.InternalDisableState == physics.BodyDisabled)
-                return;
-
-            var body = physics.Body;
-            if (body == null)
-                return;
-
-            if (physics.InternalDisableState)
-            {
-                // Need to restore body
-                physics.InternalDisableState = false;
-
-                // In case the body was recreated, then we need to skip this (as the body instance was not removed
-                // from the world by us)
-                if (disabledBodies.Remove(body))
+                if (entity.Has<WorldPosition>())
                 {
-                    physicalWorld.AddBody(body);
-
-                    if (entity.Has<WorldPosition>())
-                    {
-                        // Set new position to update the body to be where it should be now after not tracking its
-                        // position for a while (due to it being disabled)
-                        ref var newPosition = ref entity.Get<WorldPosition>();
-                        physicalWorld.SetBodyPositionAndRotation(body, newPosition.Position, newPosition.Rotation);
-                    }
+                    // Set new position to update the body to be where it should be now after not tracking its
+                    // position for a while (due to it being disabled)
+                    ref var newPosition = ref entity.Get<WorldPosition>();
+                    physicalWorld.SetBodyPositionAndRotation(body, newPosition.Position, newPosition.Rotation);
+                }
 
 #if DEBUG
-                    if (body.IsDetached)
-                        throw new Exception("Body is still detached after re-enabling");
+                if (body.IsDetached)
+                    throw new Exception("Body is still detached after re-enabling");
 #endif
-                }
+            }
 
-                // TODO: should physics speed on the body or on the component be reset here?
+            // TODO: should physics speed on the body or on the component be reset here?
 
-                // Reset physics applied impulse which may have accumulated to be very large
-                if (entity.Has<ManualPhysicsControl>())
-                {
-                    ref var manual = ref entity.Get<ManualPhysicsControl>();
-                    manual.ResetAccumulatedForce();
-                }
+            // Reset physics applied impulse which may have accumulated to be very large
+            if (entity.Has<ManualPhysicsControl>())
+            {
+                ref var manual = ref entity.Get<ManualPhysicsControl>();
+                manual.ResetAccumulatedForce();
+            }
+        }
+        else
+        {
+            // Disable the body
+            physics.InternalDisableState = true;
+
+            if (disabledBodies.Add(body))
+            {
+                physicalWorld.DetachBody(body);
+
+#if DEBUG
+                if (!body.IsDetached)
+                    throw new Exception("Body didn't detach");
+#endif
             }
             else
             {
-                // Disable the body
-                physics.InternalDisableState = true;
-
-                if (disabledBodies.Add(body))
-                {
-                    physicalWorld.DetachBody(body);
-
-#if DEBUG
-                    if (!body.IsDetached)
-                        throw new Exception("Body didn't detach");
-#endif
-                }
-                else
-                {
-                    GD.PrintErr("Body that was to be disabled was already disabled somehow");
-                }
+                GD.PrintErr("Body that was to be disabled was already disabled somehow");
             }
         }
+    }
 
-        private void Dispose(bool disposing)
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
         {
-            if (disposing)
-            {
-                disabledBodies.Clear();
+            disabledBodies.Clear();
 
-                // The bodies are destroyed by the creation system / the world. Also see OnEntityDestroyed
-            }
+            // The bodies are destroyed by the creation system / the world. Also see OnEntityDestroyed
         }
     }
 }

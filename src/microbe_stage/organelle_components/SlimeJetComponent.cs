@@ -84,9 +84,9 @@ public class SlimeJetComponent : IOrganelleComponent
     {
         force = queuedForce;
 
-        queuedForce.x = 0;
-        queuedForce.y = 0;
-        queuedForce.z = 0;
+        queuedForce.X = 0;
+        queuedForce.Y = 0;
+        queuedForce.Z = 0;
     }
 
     public Vector3 GetDirection()
@@ -120,7 +120,7 @@ public class SlimeJetComponent : IOrganelleComponent
         {
             var extraRotation = entity.Get<AttachedToEntity>().RelativeRotation;
 
-            return extraRotation.Xform(direction) * force;
+            return extraRotation * direction * force;
         }
 
         return direction * force;

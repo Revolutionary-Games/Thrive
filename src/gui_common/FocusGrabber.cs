@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class FocusGrabber : Control
+public partial class FocusGrabber : Control
 {
     [Export(PropertyHint.None, "Active highest priority grabber gets the focus")]
     public int Priority;
@@ -24,19 +24,19 @@ public class FocusGrabber : Control
     [Export]
     public bool GrabFocusWhenBecomingVisible;
 
-    private float elapsed;
+    private double elapsed;
     private bool reportedState;
-    private List<NodePath>? skipOverridingFocusForElements;
+    private Godot.Collections.Array<NodePath>? skipOverridingFocusForElements;
     private IEnumerable<string> skipOverridingStringConverted = Array.Empty<string>();
 
     private bool wantsToGrabFocusOnce;
 
     /// <summary>
-    ///   Any paths listed here (and child paths as well) will skip the focus override. This allows creating areas that
+    ///   Any <see cref="NodePath"/> listed here (and child paths as well) will skip the focus override. This allows creating areas that
     ///   steal focus from other parts of the GUI when they are visible.
     /// </summary>
     [Export]
-    public List<NodePath>? SkipOverridingFocusForElements
+    public Godot.Collections.Array<NodePath>? SkipOverridingFocusForElements
     {
         get => skipOverridingFocusForElements;
         set
@@ -70,7 +70,7 @@ public class FocusGrabber : Control
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         elapsed += delta;
 

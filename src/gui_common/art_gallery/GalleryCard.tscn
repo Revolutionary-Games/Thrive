@@ -1,110 +1,95 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://c4i1ie8aqbswd"]
 
-[ext_resource path="res://src/gui_common/art_gallery/GalleryCard.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/TestIcon.png" type="Texture" id=3]
+[ext_resource type="Script" path="res://src/gui_common/art_gallery/GalleryCard.cs" id="1"]
+[ext_resource type="Texture2D" uid="uid://dc8fijpvkdiv2" path="res://assets/textures/gui/bevel/TestIcon.png" id="3"]
+[ext_resource type="LabelSettings" uid="uid://dsxjdgavbi2j5" path="res://src/gui_common/fonts/Body-Regular-Small-Black.tres" id="3_64d7j"]
 
-[sub_resource type="StyleBoxFlat" id=27]
-bg_color = Color( 0, 0.129412, 0.141176, 0.752941 )
+[sub_resource type="StyleBoxEmpty" id="29"]
+
+[sub_resource type="StyleBoxFlat" id="27"]
+bg_color = Color(0, 0.129412, 0.141176, 0.752941)
 draw_center = false
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxEmpty" id=29]
-
-[sub_resource type="StyleBoxFlat" id=30]
-bg_color = Color( 0.0666667, 1, 0.835294, 1 )
+[sub_resource type="StyleBoxFlat" id="30"]
+bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_bottom = 3
-border_color = Color( 0, 0, 0, 1 )
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 
 [node name="GalleryCard" type="Button"]
-margin_right = 172.0
-margin_bottom = 182.0
-rect_min_size = Vector2( 172, 182 )
-custom_styles/hover = SubResource( 27 )
-custom_styles/pressed = SubResource( 27 )
-custom_styles/normal = SubResource( 29 )
+custom_minimum_size = Vector2(172, 182)
+offset_right = 172.0
+offset_bottom = 182.0
+theme_override_styles/normal = SubResource("29")
+theme_override_styles/hover = SubResource("27")
+theme_override_styles/pressed = SubResource("27")
 toggle_mode = true
 action_mode = 0
-script = ExtResource( 1 )
+script = ExtResource("1")
 TitleLabelPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
 TextureRectPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/TextureRect")
-MissingTexture = ExtResource( 3 )
+MissingTexture = ExtResource("3")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-custom_constants/margin_right = 2
-custom_constants/margin_top = 2
-custom_constants/margin_left = 2
-custom_constants/margin_bottom = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 170.0
-margin_bottom = 180.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/separation = 0
+theme_override_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 168.0
-margin_bottom = 24.0
+layout_mode = 2
 mouse_filter = 2
-custom_styles/panel = SubResource( 30 )
+theme_override_styles/panel = SubResource("30")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
-margin_right = 168.0
-margin_bottom = 21.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/margin_right = 2
-custom_constants/margin_top = 2
-custom_constants/margin_left = 2
-custom_constants/margin_bottom = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 166.0
-margin_bottom = 19.0
+layout_mode = 2
 mouse_filter = 1
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 2 )
 text = "INSERT_TITLE"
-align = 1
+label_settings = ExtResource("3_64d7j")
+horizontal_alignment = 1
 clip_text = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 168.0
-margin_bottom = 178.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_vertical = 3
-custom_constants/margin_bottom = 5
+mouse_filter = 2
+theme_override_constants/margin_bottom = 5
 
 [node name="PreviewMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
-margin_right = 168.0
-margin_bottom = 149.0
+layout_mode = 2
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin"]
-margin_right = 168.0
-margin_bottom = 149.0
+layout_mode = 2
 mouse_filter = 2
-expand = true
+expand_mode = 1
 stretch_mode = 7
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]

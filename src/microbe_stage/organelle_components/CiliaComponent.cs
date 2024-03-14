@@ -20,7 +20,7 @@ public class CiliaComponent : IOrganelleComponent
     private int ciliaPullCount;
 
     private float timeSinceRotationSample;
-    private Quat? previousCellRotation;
+    private Quaternion? previousCellRotation;
 
     private PullingCiliaData? sharedPullData;
 
@@ -121,7 +121,7 @@ public class CiliaComponent : IOrganelleComponent
         // Skip applying speed if this happens before the organelle graphics are loaded
         if (parentOrganelle.OrganelleAnimation != null)
         {
-            parentOrganelle.OrganelleAnimation.PlaybackSpeed = currentSpeed;
+            parentOrganelle.OrganelleAnimation.SpeedScale = currentSpeed;
             animationDirty = false;
         }
     }
@@ -330,7 +330,7 @@ public class CiliaComponent : IOrganelleComponent
 
         // TODO: this will need a size parameter if cilia can ever be placed on prokaryotes
         return PhysicsShape.CreateSphere(Constants.CILIA_PULLING_FORCE_FIELD_RADIUS +
-            (count * Constants.CILIA_PULL_RADIUS_PER_CILIA));
+            count * Constants.CILIA_PULL_RADIUS_PER_CILIA);
     }
 
     /// <summary>

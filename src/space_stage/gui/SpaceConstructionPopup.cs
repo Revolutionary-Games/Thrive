@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Godot;
@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   Allows selecting a thing for a space fleet to build
 /// </summary>
-public class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStructureDefinition>
+public partial class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStructureDefinition>
 {
     private readonly List<SpaceStructureDefinition> validDefinitions = new();
 
@@ -36,8 +36,9 @@ public class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStructureDe
 
             createdButtonHolder.UpdateResourceCost(availableResources, stringBuilder, stringBuilder2);
 
-            HandleAddingStructureSelector(structureContent, !createdButtonHolder.Disabled, nameof(OnStructureSelected),
-                availableStructure.InternalName, button, ref firstButton);
+            HandleAddingStructureSelector(structureContent, !createdButtonHolder.Disabled,
+                () => OnStructureSelected(availableStructure.InternalName),
+                button, ref firstButton);
         }
 
         // TODO: sort the buttons based on some criteria
@@ -86,13 +87,13 @@ public class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStructureDe
 
             if (!canStart)
             {
-                customRichTextLabel.ExtendedBbcode = TranslationServer.Translate(
+                customRichTextLabel.ExtendedBbcode = Localization.Translate(
                         "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES")
                     .FormatSafe(structureDefinition.Name, stringBuilder.ToString(), stringBuilder2.ToString());
             }
             else
             {
-                customRichTextLabel.ExtendedBbcode = TranslationServer.Translate("STRUCTURE_SELECTION_MENU_ENTRY")
+                customRichTextLabel.ExtendedBbcode = Localization.Translate("STRUCTURE_SELECTION_MENU_ENTRY")
                     .FormatSafe(structureDefinition.Name, stringBuilder.ToString(), stringBuilder2.ToString());
             }
         }

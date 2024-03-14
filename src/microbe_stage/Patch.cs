@@ -4,12 +4,13 @@ using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
+using Saving.Serializers;
 
 /// <summary>
 ///   A patch is an instance of a Biome with some species in it
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
 [UseThriveSerializer]

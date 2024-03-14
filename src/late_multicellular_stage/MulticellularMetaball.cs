@@ -72,7 +72,7 @@ public class MulticellularMetaball : Metaball
 
     public override int GetHashCode()
     {
-        return (CellType.GetHashCode() * 29) ^ base.GetHashCode();
+        return CellType.GetHashCode() * 29 ^ base.GetHashCode();
     }
 
     protected bool Equals(MulticellularMetaball other)

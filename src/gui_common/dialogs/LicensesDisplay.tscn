@@ -1,116 +1,93 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://c120hjc04sice"]
 
-[ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=6]
+[ext_resource type="Script" path="res://src/gui_common/dialogs/LicensesDisplay.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="LabelSettings" uid="uid://cwi2hxs06xut5" path="res://src/gui_common/fonts/Body-Bold-Normal.tres" id="4_158nk"]
+[ext_resource type="LabelSettings" uid="uid://ddq0a7mi3w0bd" path="res://src/gui_common/fonts/Mono-Regular-Smaller.tres" id="4_cbphf"]
+[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="6"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.0470588, 0.105882, 0.109804, 1 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.0470588, 0.105882, 0.109804, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="LicensesDisplay" instance=ExtResource( 6 )]
-margin_right = 900.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 900, 600 )
-script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": ""
-}
-Exclusive = true
+[node name="LicensesDisplay" instance=ExtResource("6")]
+custom_minimum_size = Vector2(900, 600)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 900.0
+offset_bottom = 600.0
+script = ExtResource("1")
+TextsContainerPath = NodePath("VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer/VBoxContainer/Texts")
+HeadingFont = ExtResource("4_158nk")
+ContentFont = ExtResource("4_cbphf")
 WindowTitle = "THRIVE_LICENSES"
 Resizable = true
-TextsContainerPath = NodePath("VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer/VBoxContainer/Texts")
+Exclusive = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 885.0
-margin_bottom = 585.0
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 885.0
+offset_bottom = 585.0
+theme_override_constants/separation = 10
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" index="0"]
-margin_right = 870.0
-margin_bottom = 528.0
+layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource( 2 )
-custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme = ExtResource("2")
+theme_override_styles/panel = SubResource("1")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" index="0"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 869.0
-margin_bottom = 527.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_bottom = 5
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="LicensesDisplay" type="ScrollContainer" parent="VBoxContainer/PanelContainer/MarginContainer" index="0"]
-margin_top = 5.0
-margin_right = 863.0
-margin_bottom = 521.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay" index="0"]
-margin_right = 863.0
-margin_bottom = 516.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 853.0
-margin_bottom = 511.0
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer/VBoxContainer" index="0"]
-margin_right = 837.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 3 )
+layout_mode = 2
 text = "LICENSES_COVERING_THRIVE"
-align = 1
+label_settings = ExtResource("4_158nk")
 
 [node name="Texts" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer/VBoxContainer" index="1"]
-margin_top = 35.0
-margin_right = 837.0
-margin_bottom = 70040.0
+layout_mode = 2
 
-[node name="FocusGrabber" parent="VBoxContainer" index="1" instance=ExtResource( 5 )]
+[node name="FocusGrabber" parent="VBoxContainer" index="1" instance=ExtResource("5")]
+layout_mode = 2
 Priority = 3
 NodeToGiveFocusTo = NodePath("../CloseButton")
 
 [node name="CloseButton" type="Button" parent="VBoxContainer" index="2"]
-margin_left = 385.0
-margin_top = 538.0
-margin_right = 485.0
-margin_bottom = 570.0
-rect_min_size = Vector2( 100, 0 )
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 size_flags_horizontal = 4
-custom_fonts/font = ExtResource( 4 )
+theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
 [connection signal="pressed" from="VBoxContainer/CloseButton" to="." method="OnCloseButtonPressed"]

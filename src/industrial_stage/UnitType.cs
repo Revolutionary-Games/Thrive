@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   An archetype of an unit the player has. These define the fundamental thing that something is but the plan is to
@@ -14,12 +15,12 @@ using Newtonsoft.Json;
 ///     For now this implements the <see cref="ICityConstructionProject"/> interface for simplicity for the prototypes
 ///   </para>
 /// </remarks>
-[TypeConverter(typeof(UnitTypeStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(UnitTypeStringConverter)}")]
 public class UnitType : IRegistryType, ICityConstructionProject
 {
     private readonly Lazy<PackedScene> visualScene;
     private readonly Lazy<PackedScene> spaceVisuals;
-    private readonly Lazy<Texture> icon;
+    private readonly Lazy<Texture2D> icon;
 
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
@@ -32,7 +33,7 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
         visualScene = new Lazy<PackedScene>(LoadWorldScene);
         spaceVisuals = new Lazy<PackedScene>(LoadSpaceWorldScene);
-        icon = new Lazy<Texture>(LoadIcon);
+        icon = new Lazy<Texture2D>(LoadIcon);
     }
 
     [JsonProperty]
@@ -67,7 +68,7 @@ public class UnitType : IRegistryType, ICityConstructionProject
     public PackedScene WorldRepresentationSpace => spaceVisuals.Value;
 
     [JsonIgnore]
-    public Texture Icon => icon.Value;
+    public Texture2D Icon => icon.Value;
 
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
@@ -83,21 +84,21 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
     public void Check(string name)
     {
-        using var file = new File();
-
         if (string.IsNullOrEmpty(Name))
             throw new InvalidRegistryDataException(name, GetType().Name, "Name is not set");
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
 
-        if (string.IsNullOrEmpty(VisualScene) || !file.FileExists(VisualScene))
+        if (string.IsNullOrEmpty(VisualScene) || !FileAccess.FileExists(VisualScene))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing world representation scene");
 
         if (string.IsNullOrWhiteSpace(SpaceVisuals))
             SpaceVisuals = VisualScene;
 
-        if (!file.FileExists(SpaceVisuals))
+#if DEBUG
+        if (!FileAccess.FileExists(SpaceVisuals))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing space visuals scene scene");
+#endif
 
         if (string.IsNullOrEmpty(UnitIcon))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing icon");
@@ -137,8 +138,8 @@ public class UnitType : IRegistryType, ICityConstructionProject
         return GD.Load<PackedScene>(SpaceVisuals);
     }
 
-    private Texture LoadIcon()
+    private Texture2D LoadIcon()
     {
-        return GD.Load<Texture>(UnitIcon);
+        return GD.Load<Texture2D>(UnitIcon);
     }
 }

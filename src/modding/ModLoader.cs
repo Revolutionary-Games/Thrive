@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +10,7 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Handles loading mods, and auto-loading mods, and also showing related errors etc. popups
 /// </summary>
-public class ModLoader : Node
+public partial class ModLoader : Node
 {
     private static ModLoader? instance;
     private static ModInterface? modInterface;
@@ -33,7 +33,8 @@ public class ModLoader : Node
     {
         instance = this;
 
-        // Make sure we reference something from Harmony so that our builds are forced to always include it
+        // TODO: this causes an immediate crash in Godot 4
+        /*// Make sure we reference something from Harmony so that our builds are forced to always include it
         try
         {
             var harmony = new Harmony("com.revolutionarygamesstudio.thrive.dummyHarmony");
@@ -43,7 +44,8 @@ public class ModLoader : Node
         {
             GD.PrintErr("Harmony doesn't seem to be working. Don't expect any Harmony using mods to work. Exception: ",
                 e);
-        }
+        }*/
+        GD.Print("TODO: re-add harmony init");
 
         // The reason why mods aren't loaded here already is that this object can't be attached to the scene here yet
         // so we delay mod loading until this has been attached to the main scene tree
@@ -74,16 +76,16 @@ public class ModLoader : Node
     /// <returns>The mod details if the mod could be loaded</returns>
     public static FullModDetails? LoadModInfo(string name, bool failureIsError = true)
     {
-        using var currentDirectory = new Directory();
-
         foreach (var location in Constants.ModLocations)
         {
             var modsFolder = Path.Combine(location, name);
 
-            if (!currentDirectory.DirExists(modsFolder))
+            using var folder = DirAccess.Open(modsFolder);
+
+            if (folder == null)
                 continue;
 
-            if (currentDirectory.FileExists(Path.Combine(modsFolder, Constants.MOD_INFO_FILE_NAME)))
+            if (folder.FileExists(Path.Combine(modsFolder, Constants.MOD_INFO_FILE_NAME)))
             {
                 var info = ModManager.LoadModInfo(modsFolder);
 
@@ -117,17 +119,15 @@ public class ModLoader : Node
 
         var result = new List<FullModDetails>();
 
-        using var directory = new Directory();
-
         foreach (var location in steamHandler.GetWorkshopItemFolders())
         {
-            if (!directory.DirExists(location))
+            if (!DirAccess.DirExistsAbsolute(location))
             {
                 GD.PrintErr("Workshop item folder doesn't exist: ", location);
                 continue;
             }
 
-            if (directory.FileExists(Path.Combine(location, Constants.MOD_INFO_FILE_NAME)))
+            if (FileAccess.FileExists(Path.Combine(location, Constants.MOD_INFO_FILE_NAME)))
             {
                 var info = ModManager.LoadModInfo(location);
 
@@ -162,7 +162,7 @@ public class ModLoader : Node
         initialLoad = false;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -239,20 +239,14 @@ public class ModLoader : Node
 
     private static ModInfo? LoadFirstInstalledModInfo()
     {
-        using var currentDirectory = new Directory();
-
         foreach (var location in Constants.ModLocations)
         {
-            if (!currentDirectory.DirExists(location))
+            using var currentDirectory = DirAccess.Open(location);
+
+            if (currentDirectory == null)
                 continue;
 
-            if (currentDirectory.Open(location) != Error.Ok)
-            {
-                GD.PrintErr("Failed to open potential mod folder for reading at: ", location);
-                continue;
-            }
-
-            if (currentDirectory.ListDirBegin(true, true) != Error.Ok)
+            if (currentDirectory.ListDirBegin() != Error.Ok)
             {
                 GD.PrintErr("Failed to begin directory listing");
                 continue;
@@ -299,7 +293,7 @@ public class ModLoader : Node
         if (info == null)
         {
             GD.PrintErr("Can't load mod due to failed info reading: ", name);
-            modErrors.Add(TranslationServer.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name));
+            modErrors.Add(Localization.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name));
             return;
         }
 
@@ -321,7 +315,7 @@ public class ModLoader : Node
             catch (Exception e)
             {
                 GD.PrintErr("Could not load mod assembly due to exception: ", e);
-                modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION").FormatSafe(name, e));
+                modErrors.Add(Localization.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION").FormatSafe(name, e));
                 return;
             }
 
@@ -336,7 +330,7 @@ public class ModLoader : Node
         if (!loadedSomething)
         {
             GD.Print("A mod contained no loadable resources");
-            modErrors.Add(TranslationServer.Translate("MOD_HAS_NO_LOADABLE_RESOURCES").FormatSafe(name));
+            modErrors.Add(Localization.Translate("MOD_HAS_NO_LOADABLE_RESOURCES").FormatSafe(name));
         }
     }
 
@@ -347,7 +341,7 @@ public class ModLoader : Node
         if (info == null)
         {
             GD.PrintErr("Can't unload mod due to failed info reading: ", name);
-            modErrors.Add(TranslationServer.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name));
+            modErrors.Add(Localization.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name));
             return;
         }
 
@@ -360,13 +354,13 @@ public class ModLoader : Node
                 if (!mod.Unload())
                 {
                     GD.PrintErr("Mod's (", name, ") assembly unload method call failed");
-                    modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED").FormatSafe(name));
+                    modErrors.Add(Localization.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED").FormatSafe(name));
                 }
             }
             catch (Exception e)
             {
                 GD.PrintErr("Mod's (", name, ") assembly unload method call failed with an exception: ", e);
-                modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION")
+                modErrors.Add(Localization.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION")
                     .FormatSafe(name, e));
             }
 
@@ -447,18 +441,18 @@ public class ModLoader : Node
         if (type == null)
         {
             GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
-            modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND").FormatSafe(name, className));
+            modErrors.Add(Localization.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND").FormatSafe(name, className));
             return false;
         }
 
         try
         {
-            var mod = (IMod)Activator.CreateInstance(type);
+            var mod = (IMod?)Activator.CreateInstance(type);
 
             if (!mod.Initialize(modInterface!, info.Info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");
-                modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED").FormatSafe(name));
+                modErrors.Add(Localization.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED").FormatSafe(name));
             }
 
             loadedModAssemblies.Add(name, mod);
@@ -472,7 +466,7 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") initialization failed with an exception: ", e);
-            modErrors.Add(TranslationServer.Translate("MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION").FormatSafe(name, e));
+            modErrors.Add(Localization.Translate("MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION").FormatSafe(name, e));
         }
 
         return true;
@@ -495,7 +489,7 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") harmony loading failed with an exception: ", e);
-            modErrors.Add(TranslationServer.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION").FormatSafe(name, e));
+            modErrors.Add(Localization.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION").FormatSafe(name, e));
         }
     }
 
@@ -516,7 +510,7 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") harmony unload failed with an exception: ", e);
-            modErrors.Add(TranslationServer.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION").FormatSafe(name, e));
+            modErrors.Add(Localization.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION").FormatSafe(name, e));
         }
     }
 
@@ -527,7 +521,7 @@ public class ModLoader : Node
         if (!FileHelpers.Exists(path))
         {
             GD.PrintErr(".pck loading failed due to the .pck file not existing: ", path);
-            modErrors.Add(TranslationServer.Translate("PCK_LOAD_FAILED_DOES_NOT_EXIST")
+            modErrors.Add(Localization.Translate("PCK_LOAD_FAILED_DOES_NOT_EXIST")
                 .FormatSafe(Path.GetFileName(path)));
             return;
         }
@@ -535,7 +529,7 @@ public class ModLoader : Node
         if (!ProjectSettings.LoadResourcePack(path))
         {
             GD.PrintErr(".pck loading failed");
-            modErrors.Add(TranslationServer.Translate("PCK_LOAD_FAILED").FormatSafe(Path.GetFileName(path)));
+            modErrors.Add(Localization.Translate("PCK_LOAD_FAILED").FormatSafe(Path.GetFileName(path)));
         }
     }
 

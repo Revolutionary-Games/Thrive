@@ -4,7 +4,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Common HUD things for every HUD in the game
 /// </summary>
-public abstract class HUDBase : Control, IStageHUD
+[GodotAbstract]
+public partial class HUDBase : Control, IStageHUD
 {
     [Export]
     public NodePath? MenuPath;
@@ -17,6 +18,10 @@ public abstract class HUDBase : Control, IStageHUD
     private HUDMessages hudMessages = null!;
 #pragma warning restore CA2213
 
+    protected HUDBase()
+    {
+    }
+
     [JsonIgnore]
     public HUDMessages HUDMessages => hudMessages;
 
@@ -28,7 +33,15 @@ public abstract class HUDBase : Control, IStageHUD
         hudMessages = GetNode<HUDMessages>(HUDMessagesPath);
     }
 
-    public abstract void OnEnterStageTransition(bool longerDuration, bool returningFromEditor);
+    public virtual void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    public Control? GetFocusOwner()
+    {
+        return GetViewport().GuiGetFocusOwner();
+    }
 
     protected void AddFadeIn(IStageBase stageBase, bool longerDuration)
     {

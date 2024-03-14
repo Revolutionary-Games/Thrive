@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class PlayButton : MarginContainer
+public partial class PlayButton : MarginContainer
 {
 #pragma warning disable CA2213
     private Button? pauseButton;
@@ -12,7 +12,7 @@ public class PlayButton : MarginContainer
     private bool paused;
 
     [Signal]
-    public delegate void OnPressed(bool paused);
+    public delegate void OnPressedEventHandler(bool paused);
 
     [Export]
     public string? PauseButtonTooltip
@@ -87,7 +87,7 @@ public class PlayButton : MarginContainer
         playButton.SetPressedNoSignal(paused);
         playButton.Visible = paused;
 
-        var styleBox = (StyleBoxFlat)playButton.GetStylebox("normal");
+        var styleBox = (StyleBoxFlat)playButton.GetThemeStylebox("normal");
         styleBox.BgColor = PauseButtonMode ? new Color(0.067f, 1.0f, 0.835f) : new Color(0.067f, 0.169f, 0.212f);
     }
 
@@ -126,8 +126,11 @@ public class PlayButton : MarginContainer
         if (pauseButton == null || playButton == null)
             return;
 
-        pauseButton.HintTooltip = TranslationServer.Translate(pauseButtonTooltip);
-        playButton.HintTooltip = TranslationServer.Translate(playButtonTooltip);
+        if (pauseButtonTooltip != null)
+            pauseButton.TooltipText = Localization.Translate(pauseButtonTooltip);
+
+        if (playButtonTooltip != null)
+            playButton.TooltipText = Localization.Translate(playButtonTooltip);
     }
 
     private void OnButtonPressed(string what)
@@ -142,7 +145,11 @@ public class PlayButton : MarginContainer
         {
             Paused = false;
         }
+        else
+        {
+            GD.PrintErr("Unknown \"what\" for play button press");
+        }
 
-        EmitSignal(nameof(OnPressed), Paused);
+        EmitSignal(SignalName.OnPressed, Paused);
     }
 }

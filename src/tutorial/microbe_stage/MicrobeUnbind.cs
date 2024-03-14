@@ -1,58 +1,57 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Tells the player how unbinding works
+/// </summary>
+public class MicrobeUnbind : TutorialPhase
 {
-    using System;
+    public override string ClosedByName => "MicrobeUnbind";
 
-    /// <summary>
-    ///   Tells the player how unbinding works
-    /// </summary>
-    public class MicrobeUnbind : TutorialPhase
+    public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
-        public override string ClosedByName => "MicrobeUnbind";
+        gui.UnbindTutorialVisible = ShownCurrently;
+    }
 
-        public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.UnbindTutorialVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.MicrobePlayerUnbindEnabled:
             {
-                case TutorialEventType.MicrobePlayerUnbindEnabled:
+                if (!HasBeenShown && CanTrigger)
                 {
-                    if (!HasBeenShown && CanTrigger)
-                    {
-                        Show();
-                        return true;
-                    }
-
-                    break;
+                    Show();
+                    return true;
                 }
 
-                case TutorialEventType.MicrobePlayerDied:
-                {
-                    if (ShownCurrently)
-                    {
-                        Hide();
-                        HasBeenShown = false;
-                    }
-
-                    break;
-                }
-
-                case TutorialEventType.MicrobePlayerUnbound:
-                {
-                    if (ShownCurrently)
-                    {
-                        Hide();
-                    }
-
-                    break;
-                }
+                break;
             }
 
-            return false;
+            case TutorialEventType.MicrobePlayerDied:
+            {
+                if (ShownCurrently)
+                {
+                    Hide();
+                    HasBeenShown = false;
+                }
+
+                break;
+            }
+
+            case TutorialEventType.MicrobePlayerUnbound:
+            {
+                if (ShownCurrently)
+                {
+                    Hide();
+                }
+
+                break;
+            }
         }
+
+        return false;
     }
 }

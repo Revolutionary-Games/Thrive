@@ -11,7 +11,7 @@ public static class ColorUtils
     /// </summary>
     public static bool IsLuminuous(this Color color)
     {
-        var luminance = (0.299f * color.r8 + 0.587f * color.g8 + 0.114f * color.b8) / 255.0f;
+        var luminance = (0.299f * color.R8 + 0.587f * color.G8 + 0.114f * color.B8) / 255.0f;
 
         if (luminance > 0.5f)
             return true;
@@ -26,6 +26,6 @@ public static class ColorUtils
     /// <returns>If the current colour is a raw one</returns>
     public static bool IsRaw(this Color colour)
     {
-        return colour.r > 1 || colour.g > 1 || colour.b > 1;
+        return colour.R > 1 || colour.G > 1 || colour.B > 1;
     }
 }

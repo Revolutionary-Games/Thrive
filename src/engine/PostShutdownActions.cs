@@ -9,7 +9,7 @@
 ///     be removed from the scene tree. That is handled by <see cref="SceneManager"/>.
 ///   </para>
 /// </remarks>
-public class PostShutdownActions : Node
+public partial class PostShutdownActions : Node
 {
     public override void _ExitTree()
     {

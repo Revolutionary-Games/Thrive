@@ -26,8 +26,6 @@ using SharedBase.Utilities;
 /// </summary>
 public class NativeLibs
 {
-    private const string LibraryFolder = "native_libs";
-    private const string DistributableFolderName = "distributable";
     private const string GodotEditorLibraryFolder = ".mono/temp/bin/Debug";
     private const string GodotReleaseLibraryFolder = ".mono/assemblies/Release";
 
@@ -100,25 +98,12 @@ public class NativeLibs
         }
     }
 
-    public enum Library
-    {
-        /// <summary>
-        ///   The main native side library that is pure C++ and doesn't depend on Godot
-        /// </summary>
-        ThriveNative,
-
-        /// <summary>
-        ///   Library for early checking that everything is fine before loading <see cref="ThriveNative"/>
-        /// </summary>
-        EarlyCheck,
-    }
-
     public async Task<bool> Run(CancellationToken cancellationToken)
     {
         // Make sure this base folder exists
-        Directory.CreateDirectory(LibraryFolder);
+        Directory.CreateDirectory(NativeConstants.LibraryFolder);
 
-        await PackageTool.EnsureGodotIgnoreFileExistsInFolder(LibraryFolder);
+        await PackageTool.EnsureGodotIgnoreFileExistsInFolder(NativeConstants.LibraryFolder);
 
         foreach (var operation in options.Operations)
         {
@@ -140,7 +125,7 @@ public class NativeLibs
     /// </param>
     public bool CopyToThriveRelease(string releaseFolder, PackagePlatform platform, bool useDistributableLibraries)
     {
-        var libraries = options.Libraries ?? Enum.GetValues<Library>();
+        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
 
         if (!Directory.Exists(releaseFolder))
         {
@@ -152,6 +137,8 @@ public class NativeLibs
         }
 
         // Godot doesn't by default put anything in the mono folder so we need to create it
+        throw new NotImplementedException("TODO: redo this");
+
         var targetFolder = Path.Join(releaseFolder, GodotReleaseLibraryFolder);
         Directory.CreateDirectory(targetFolder);
 
@@ -170,58 +157,6 @@ public class NativeLibs
 
         ColourConsole.WriteSuccessLine($"Native libraries for {platform} copied to {releaseFolder}");
         return true;
-    }
-
-    private string GetLibraryVersion(Library library)
-    {
-        switch (library)
-        {
-            case Library.ThriveNative:
-                return NativeConstants.Version.ToString();
-            case Library.EarlyCheck:
-                return NativeConstants.EarlyCheck.ToString();
-            default:
-                throw new ArgumentOutOfRangeException(nameof(library), library, null);
-        }
-    }
-
-    private string GetLibraryDllName(Library library, PackagePlatform platform)
-    {
-        switch (library)
-        {
-            case Library.ThriveNative:
-                switch (platform)
-                {
-                    case PackagePlatform.Linux:
-                        return "libthrive_native.so";
-                    case PackagePlatform.Windows:
-                        return "libthrive_native.dll";
-                    case PackagePlatform.Windows32:
-                        throw new NotSupportedException("32-bit support is not done currently");
-                    case PackagePlatform.Mac:
-                        throw new NotImplementedException("TODO: name for this");
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
-                }
-
-            case Library.EarlyCheck:
-                switch (platform)
-                {
-                    case PackagePlatform.Linux:
-                        return "libearly_checks.so";
-                    case PackagePlatform.Windows:
-                        return "libearly_checks.dll";
-                    case PackagePlatform.Windows32:
-                        throw new NotSupportedException("32-bit support is not done currently");
-                    case PackagePlatform.Mac:
-                        throw new NotImplementedException("TODO: name for this");
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
-                }
-
-            default:
-                throw new ArgumentOutOfRangeException(nameof(library), library, null);
-        }
     }
 
     private async Task<bool> RunOperation(Program.NativeLibOptions.OperationMode operation,
@@ -279,10 +214,10 @@ public class NativeLibs
     }
 
     private async Task<bool> OperateOnAllLibraries(
-        Func<Library, PackagePlatform, CancellationToken, Task<bool>> operation,
+        Func<NativeConstants.Library, PackagePlatform, CancellationToken, Task<bool>> operation,
         CancellationToken cancellationToken)
     {
-        var libraries = options.Libraries ?? Enum.GetValues<Library>();
+        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
 
         foreach (var library in libraries)
         {
@@ -307,10 +242,10 @@ public class NativeLibs
     /// <param name="cancellationToken">Cancellation for the operation</param>
     /// <returns>The result value</returns>
     private async Task<T> OperateOnAllLibrariesWithResult<T>(
-        Func<Library, PackagePlatform, CancellationToken, Task<T>> operation,
+        Func<NativeConstants.Library, PackagePlatform, CancellationToken, Task<T>> operation,
         CancellationToken cancellationToken)
     {
-        var libraries = options.Libraries ?? Enum.GetValues<Library>();
+        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
 
         bool resultSet = false;
         T result = default!;
@@ -339,8 +274,9 @@ public class NativeLibs
         return result;
     }
 
-    private async Task<bool> OperateOnAllPlatforms(Library library,
-        Func<Library, PackagePlatform, CancellationToken, Task<bool>> operation, CancellationToken cancellationToken)
+    private async Task<bool> OperateOnAllPlatforms(NativeConstants.Library library,
+        Func<NativeConstants.Library, PackagePlatform, CancellationToken, Task<bool>> operation,
+        CancellationToken cancellationToken)
     {
         foreach (var platform in platforms)
         {
@@ -357,8 +293,9 @@ public class NativeLibs
         return true;
     }
 
-    private async Task<T> OperateOnAllPlatformsWithResult<T>(Library library,
-        Func<Library, PackagePlatform, CancellationToken, Task<T>> operation, CancellationToken cancellationToken)
+    private async Task<T> OperateOnAllPlatformsWithResult<T>(NativeConstants.Library library,
+        Func<NativeConstants.Library, PackagePlatform, CancellationToken, Task<T>> operation,
+        CancellationToken cancellationToken)
     {
         bool resultSet = false;
         T result = default!;
@@ -402,10 +339,12 @@ public class NativeLibs
         return true;
     }
 
-    private Task<bool> CheckLibrary(Library library, PackagePlatform platform, bool distributableVersion,
+    private Task<bool> CheckLibrary(NativeConstants.Library library, PackagePlatform platform,
+        bool distributableVersion,
         CancellationToken cancellationToken)
     {
-        var file = GetPathToLibraryDll(library, platform, GetLibraryVersion(library), distributableVersion);
+        var file = NativeConstants.GetPathToLibraryDll(library, platform, NativeConstants.GetLibraryVersion(library),
+            distributableVersion, options.DebugLibrary);
 
         if (File.Exists(file))
         {
@@ -420,9 +359,11 @@ public class NativeLibs
         return Task.FromResult(false);
     }
 
-    private Task<bool> InstallLibraryForEditor(Library library, PackagePlatform platform,
+    private Task<bool> InstallLibraryForEditor(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
+        throw new NotImplementedException("TODO: probably remove this whole thing");
+        /*
         var target = GodotEditorLibraryFolder;
 
         if (!Directory.Exists(target))
@@ -468,13 +409,16 @@ public class NativeLibs
 
         ColourConsole.WriteSuccessLine($"Successfully linked {library} on {platform}");
         return Task.FromResult(true);
+        */
     }
 
-    private bool CopyLibraryFiles(Library library, PackagePlatform platform, bool useDistributableLibraries,
+    private bool CopyLibraryFiles(NativeConstants.Library library, PackagePlatform platform,
+        bool useDistributableLibraries,
         string target)
     {
         // TODO: other files?
-        var file = GetPathToLibraryDll(library, platform, GetLibraryVersion(library), useDistributableLibraries);
+        var file = NativeConstants.GetPathToLibraryDll(library, platform, NativeConstants.GetLibraryVersion(library),
+            useDistributableLibraries, options.DebugLibrary);
 
         if (!File.Exists(file))
         {
@@ -492,7 +436,7 @@ public class NativeLibs
         return true;
     }
 
-    private async Task<bool> BuildLocally(Library library, PackagePlatform platform,
+    private async Task<bool> BuildLocally(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
         if (platform != PlatformUtilities.GetCurrentPlatform())
@@ -523,7 +467,8 @@ public class NativeLibs
         // Ensure Godot doesn't try to import anything funny from the build folder
         await PackageTool.EnsureGodotIgnoreFileExistsInFolder(buildFolder);
 
-        var installPath = Path.GetFullPath(GetLocalCMakeInstallTarget(platform, GetLibraryVersion(library)));
+        var installPath =
+            Path.GetFullPath(GetLocalCMakeInstallTarget(platform, NativeConstants.GetLibraryVersion(library)));
 
         var startInfo = new ProcessStartInfo("cmake")
         {
@@ -653,14 +598,14 @@ public class NativeLibs
         // as well to their version files. This tries to remove the extra files.
         foreach (var file in Directory.EnumerateFiles(installPath, "*.*", SearchOption.AllDirectories))
         {
-            foreach (var otherLibrary in Enum.GetValues<Library>())
+            foreach (var otherLibrary in Enum.GetValues<NativeConstants.Library>())
             {
                 if (otherLibrary == library)
                     continue;
 
                 // TODO: skip libraries not compiled at the same time if any are added in the future
 
-                var name = GetLibraryDllName(otherLibrary, platform);
+                var name = NativeConstants.GetLibraryDllName(otherLibrary, platform);
 
                 if (file.Contains(name))
                 {
@@ -829,7 +774,7 @@ public class NativeLibs
         }
 
         ColourConsole.WriteSuccessLine("Build inside container succeeded");
-        var libraries = options.Libraries ?? Enum.GetValues<Library>();
+        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
 
         if (!options.DebugLibrary)
         {
@@ -861,10 +806,12 @@ public class NativeLibs
 
         foreach (var library in libraries)
         {
-            var version = GetLibraryVersion(library);
+            var version = NativeConstants.GetLibraryVersion(library);
 
             var source = GetPathToDistributableTempDll(library, platform);
-            var target = GetPathToLibraryDll(library, platform, version, true);
+
+            bool debug = options.DebugLibrary;
+            var target = NativeConstants.GetPathToLibraryDll(library, platform, version, true, debug);
 
             var targetFolder = Path.GetDirectoryName(target);
 
@@ -877,7 +824,7 @@ public class NativeLibs
 
             ColourConsole.WriteDebugLine($"Copied {source} -> {target}");
 
-            if (!options.DebugLibrary)
+            if (!debug)
             {
                 await BinaryHelpers.Strip(target, cancellationToken);
 
@@ -896,11 +843,13 @@ public class NativeLibs
         return true;
     }
 
-    private async Task<bool?> CheckAndUpload(Library library, PackagePlatform platform,
+    private async Task<bool?> CheckAndUpload(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
-        var version = GetLibraryVersion(library);
-        var file = GetPathToLibraryDll(library, platform, version, true);
+        var version = NativeConstants.GetLibraryVersion(library);
+
+        bool debug = options.DebugLibrary;
+        var file = NativeConstants.GetPathToLibraryDll(library, platform, version, true, debug);
 
         if (!File.Exists(file))
         {
@@ -909,8 +858,6 @@ public class NativeLibs
             // For now this is not considered an error
             return null;
         }
-
-        bool debug = options.DebugLibrary;
 
         if (string.IsNullOrEmpty(options.Key))
         {
@@ -979,18 +926,18 @@ public class NativeLibs
         throw new Exception($"Unknown result code from offer response: {response.StatusCode}");
     }
 
-    private async Task<Uri> GetBaseRemoteUrlForLibrary(Library library)
+    private async Task<Uri> GetBaseRemoteUrlForLibrary(NativeConstants.Library library)
     {
         switch (library)
         {
-            case Library.ThriveNative:
+            case NativeConstants.Library.ThriveNative:
             {
                 var nativeId = await thriveNativePrecompiledId.Value;
 
                 return new Uri(new Uri(options.Url), $"api/v1/PrecompiledObject/{nativeId}/versions/");
             }
 
-            case Library.EarlyCheck:
+            case NativeConstants.Library.EarlyCheck:
             {
                 var nativeId = await earlyCheckPrecompiledId.Value;
 
@@ -1032,7 +979,8 @@ public class NativeLibs
         return data.Id;
     }
 
-    private async Task<bool> UploadLibraryToServer(Library library, PackagePlatform platform, string filePath,
+    private async Task<bool> UploadLibraryToServer(NativeConstants.Library library, PackagePlatform platform,
+        string filePath,
         PrecompiledObjectVersionDTO precompiledData, CancellationToken cancellationToken)
     {
         // Prepare a compressed version for upload
@@ -1191,11 +1139,13 @@ public class NativeLibs
         return uploader.Run(cancellationToken);
     }
 
-    private async Task<bool> DownloadLibraryIfMissing(Library library, PackagePlatform platform,
+    private async Task<bool> DownloadLibraryIfMissing(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
-        var version = GetLibraryVersion(library);
-        var file = GetPathToLibraryDll(library, platform, version, true);
+        var version = NativeConstants.GetLibraryVersion(library);
+
+        bool debug = options.DebugLibrary;
+        var file = NativeConstants.GetPathToLibraryDll(library, platform, version, true, debug);
 
         if (File.Exists(file))
         {
@@ -1209,8 +1159,6 @@ public class NativeLibs
             throw new Exception("Failed to determine the folder the library should be in");
 
         Directory.CreateDirectory(directory);
-
-        bool debug = options.DebugLibrary;
 
         PrecompiledTag tags = 0;
 
@@ -1294,56 +1242,9 @@ public class NativeLibs
         return false;
     }
 
-    /// <summary>
-    ///   Path to the library's root where all version specific folders are added
-    /// </summary>
-    private string GetPathToLibrary(Library library, PackagePlatform platform, string version,
-        bool distributableVersion)
-    {
-        if (distributableVersion)
-        {
-            return Path.Combine(LibraryFolder, DistributableFolderName, platform.ToString().ToLowerInvariant(),
-                library.ToString(), version, options.DebugLibrary ? "debug" : "release");
-        }
-
-        // TODO: should the paths for the libraries include the library name? (cmake is used to compile all at once)
-
-        // The paths are a bit convoluted to easily be able to install with cmake to the target
-        return Path.Combine(LibraryFolder, platform.ToString().ToLowerInvariant(), version,
-            options.DebugLibrary ? "debug" : "release");
-    }
-
     private string GetLocalCMakeInstallTarget(PackagePlatform platform, string version)
     {
-        return Path.Combine(LibraryFolder, platform.ToString().ToLowerInvariant(), version);
-    }
-
-    private string GetPathToLibraryDll(Library library, PackagePlatform platform, string version,
-        bool distributableVersion)
-    {
-        var basePath = GetPathToLibrary(library, platform, version, distributableVersion);
-
-        if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
-        {
-            return Path.Combine(basePath, "bin", GetLibraryDllName(library, platform));
-        }
-
-        // This is for Linux
-        return Path.Combine(basePath, "lib", GetLibraryDllName(library, platform));
-    }
-
-    private string GetPathToDistributableTempDll(Library library, PackagePlatform platform)
-    {
-        var basePath = Path.Combine(GetDistributableBuildFolderBase(platform),
-            options.DebugLibrary ? "debug" : "release");
-
-        if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
-        {
-            return Path.Combine(basePath, "bin", GetLibraryDllName(library, platform));
-        }
-
-        // This is for Linux
-        return Path.Combine(basePath, "lib", GetLibraryDllName(library, platform));
+        return Path.Combine(NativeConstants.LibraryFolder, platform.ToString().ToLowerInvariant(), version);
     }
 
     private string GetDistributableBuildFolderBase(PackagePlatform platform)
@@ -1397,6 +1298,20 @@ public class NativeLibs
         }
 
         ColourConsole.WriteDebugLine($"Created link {linkFile} -> {linkTo}");
+    }
+
+    private string GetPathToDistributableTempDll(NativeConstants.Library library, PackagePlatform platform)
+    {
+        var basePath = Path.Combine(GetDistributableBuildFolderBase(platform),
+            options.DebugLibrary ? "debug" : "release");
+
+        if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
+        {
+            return Path.Combine(basePath, "bin", NativeConstants.GetLibraryDllName(library, platform));
+        }
+
+        // This is for Linux
+        return Path.Combine(basePath, "lib", NativeConstants.GetLibraryDllName(library, platform));
     }
 
     private string GetNativeBuildFolder()

@@ -1,174 +1,173 @@
-﻿namespace AutoEvo
+﻿namespace AutoEvo;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+/// <summary>
+///   Attempts to increase the biodiversity of a patch by force-splitting an existing species there or creating a
+///   new offshoot species from a nearby patch
+/// </summary>
+public class IncreaseBiodiversity : IRunStep
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    private readonly PatchMap map;
+    private readonly Patch patch;
+    private readonly IAutoEvoConfiguration configuration;
+    private readonly Random random;
+    private readonly SimulationCache cache;
 
-    /// <summary>
-    ///   Attempts to increase the biodiversity of a patch by force-splitting an existing species there or creating a
-    ///   new offshoot species from a nearby patch
-    /// </summary>
-    public class IncreaseBiodiversity : IRunStep
+    private readonly Mutations mutations = new();
+    private readonly List<Hex> workingMemory1 = new();
+    private readonly List<Hex> workingMemory2 = new();
+
+    private bool tryCurrentPatch = true;
+    private bool createdASpecies;
+
+    private WorldGenerationSettings worldSettings;
+
+    public IncreaseBiodiversity(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
+        PatchMap map, Patch patch, Random random)
     {
-        private readonly PatchMap map;
-        private readonly Patch patch;
-        private readonly IAutoEvoConfiguration configuration;
-        private readonly Random random;
-        private readonly SimulationCache cache;
+        this.worldSettings = worldSettings;
+        this.map = map;
+        this.patch = patch;
+        this.configuration = configuration;
+        this.random = new Random(random.Next());
+        cache = new SimulationCache(worldSettings);
+    }
 
-        private readonly Mutations mutations = new();
-        private readonly List<Hex> workingMemory1 = new();
-        private readonly List<Hex> workingMemory2 = new();
+    public int TotalSteps => 2;
+    public bool CanRunConcurrently => true;
 
-        private bool tryCurrentPatch = true;
-        private bool createdASpecies;
-
-        private WorldGenerationSettings worldSettings;
-
-        public IncreaseBiodiversity(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
-            PatchMap map, Patch patch, Random random)
+    public bool RunStep(RunResults results)
+    {
+        if (tryCurrentPatch)
         {
-            this.worldSettings = worldSettings;
-            this.map = map;
-            this.patch = patch;
-            this.configuration = configuration;
-            this.random = new Random(random.Next());
-            cache = new SimulationCache(worldSettings);
+            CheckCurrentPatchSpecies(results);
+
+            tryCurrentPatch = false;
+            return false;
         }
 
-        public int TotalSteps => 2;
-        public bool CanRunConcurrently => true;
+        if (createdASpecies)
+            return true;
 
-        public bool RunStep(RunResults results)
+        CheckNeighbourPatchSpecies(results);
+
+        return true;
+    }
+
+    private void CheckCurrentPatchSpecies(RunResults results)
+    {
+        foreach (var candidateSpecies in patch.SpeciesInPatch.OrderBy(_ => random.Next()))
         {
-            if (tryCurrentPatch)
-            {
-                CheckCurrentPatchSpecies(results);
+            if (candidateSpecies.Value < configuration.NewBiodiversityIncreasingSpeciesPopulation)
+                continue;
 
-                tryCurrentPatch = false;
-                return false;
+            var found = TryBiodiversitySplit(candidateSpecies.Key, true);
+
+            if (found == null)
+                continue;
+
+            OnSpeciesCreated(found, candidateSpecies.Key, results);
+
+            if (configuration.UseBiodiversityForceSplit)
+            {
+                // TODO: implement this
+                throw new NotImplementedException("Marking biodiversity increase as split is not implemented");
             }
 
-            if (createdASpecies)
-                return true;
-
-            CheckNeighbourPatchSpecies(results);
-
-            return true;
+            break;
         }
+    }
 
-        private void CheckCurrentPatchSpecies(RunResults results)
+    private void CheckNeighbourPatchSpecies(RunResults results)
+    {
+        var alreadyCheckedSpecies = new HashSet<Species>(patch.SpeciesInPatch.Select(p => p.Key));
+
+        foreach (var neighbour in patch.Adjacent)
         {
-            foreach (var candidateSpecies in patch.SpeciesInPatch.OrderBy(_ => random.Next()))
+            foreach (var candidateSpecies in neighbour.SpeciesInPatch)
             {
-                if (candidateSpecies.Value < configuration.NewBiodiversityIncreasingSpeciesPopulation)
+                if (candidateSpecies.Value < configuration.NewBiodiversityIncreasingSpeciesPopulation ||
+                    alreadyCheckedSpecies.Contains(candidateSpecies.Key))
                     continue;
 
-                var found = TryBiodiversitySplit(candidateSpecies.Key, true);
+                if (random.NextDouble() > configuration.BiodiversityFromNeighbourPatchChance)
+                    continue;
+
+                alreadyCheckedSpecies.Add(candidateSpecies.Key);
+
+                var found = TryBiodiversitySplit(candidateSpecies.Key, false);
 
                 if (found == null)
                     continue;
 
                 OnSpeciesCreated(found, candidateSpecies.Key, results);
 
-                if (configuration.UseBiodiversityForceSplit)
+                if (!configuration.BiodiversityNearbyPatchIsFreePopulation)
                 {
                     // TODO: implement this
-                    throw new NotImplementedException("Marking biodiversity increase as split is not implemented");
+                    throw new NotImplementedException(
+                        "adding population penalty to neighbour patch is not implemented");
                 }
 
                 break;
             }
         }
+    }
 
-        private void CheckNeighbourPatchSpecies(RunResults results)
+    private MicrobeSpecies? TryBiodiversitySplit(Species splitFrom, bool inCurrentPatch)
+    {
+        // TODO: multicellular handling
+        if (splitFrom is not MicrobeSpecies fromMicrobe)
+            return null;
+
+        var config = new SimulationConfiguration(configuration, map, worldSettings,
+            Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+
+        var split = (MicrobeSpecies)fromMicrobe.Clone();
+
+        if (configuration.BiodiversitySplitIsMutated)
         {
-            var alreadyCheckedSpecies = new HashSet<Species>(patch.SpeciesInPatch.Select(p => p.Key));
-
-            foreach (var neighbour in patch.Adjacent)
-            {
-                foreach (var candidateSpecies in neighbour.SpeciesInPatch)
-                {
-                    if (candidateSpecies.Value < configuration.NewBiodiversityIncreasingSpeciesPopulation ||
-                        alreadyCheckedSpecies.Contains(candidateSpecies.Key))
-                        continue;
-
-                    if (random.NextDouble() > configuration.BiodiversityFromNeighbourPatchChance)
-                        continue;
-
-                    alreadyCheckedSpecies.Add(candidateSpecies.Key);
-
-                    var found = TryBiodiversitySplit(candidateSpecies.Key, false);
-
-                    if (found == null)
-                        continue;
-
-                    OnSpeciesCreated(found, candidateSpecies.Key, results);
-
-                    if (!configuration.BiodiversityNearbyPatchIsFreePopulation)
-                    {
-                        // TODO: implement this
-                        throw new NotImplementedException(
-                            "adding population penalty to neighbour patch is not implemented");
-                    }
-
-                    break;
-                }
-            }
+            mutations.CreateMutatedSpecies(fromMicrobe, split, worldSettings.AIMutationMultiplier,
+                worldSettings.LAWK, workingMemory1, workingMemory2);
         }
 
-        private MicrobeSpecies? TryBiodiversitySplit(Species splitFrom, bool inCurrentPatch)
+        // Set the starting population in the patch
+        split.Population = configuration.NewBiodiversityIncreasingSpeciesPopulation;
+
+        config.ExtraSpecies.Add(split);
+        config.PatchesToRun.Add(patch);
+
+        if (inCurrentPatch)
         {
-            // TODO: multicellular handling
-            if (splitFrom is not MicrobeSpecies fromMicrobe)
-                return null;
-
-            var config = new SimulationConfiguration(configuration, map, worldSettings,
-                Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
-
-            var split = (MicrobeSpecies)fromMicrobe.Clone();
-
-            if (configuration.BiodiversitySplitIsMutated)
-            {
-                mutations.CreateMutatedSpecies(fromMicrobe, split, worldSettings.AIMutationMultiplier,
-                    worldSettings.LAWK, workingMemory1, workingMemory2);
-            }
-
-            // Set the starting population in the patch
-            split.Population = configuration.NewBiodiversityIncreasingSpeciesPopulation;
-
-            config.ExtraSpecies.Add(split);
-            config.PatchesToRun.Add(patch);
-
-            if (inCurrentPatch)
-            {
-                // TODO: should we apply the population reduction to splitFrom?
-            }
-
-            PopulationSimulation.Simulate(config, cache, random);
-
-            var population = config.Results.GetPopulationInPatch(split, patch);
-
-            if (population < configuration.NewBiodiversityIncreasingSpeciesPopulation)
-                return null;
-
-            // TODO: could compare the original species population here to determine if this change is beneficial to
-            // it as well (in which case a non-force species split could be done)
-
-            // Successfully found a species to create in order to increase biodiversity
-            return split;
+            // TODO: should we apply the population reduction to splitFrom?
         }
 
-        private void OnSpeciesCreated(Species species, Species fromSpecies, RunResults results)
-        {
-            results.AddNewSpecies(species,
-                new[]
-                {
-                    new KeyValuePair<Patch, long>(patch, configuration.NewBiodiversityIncreasingSpeciesPopulation),
-                },
-                RunResults.NewSpeciesType.FillNiche, fromSpecies);
+        PopulationSimulation.Simulate(config, cache, random);
 
-            createdASpecies = true;
-        }
+        var population = config.Results.GetPopulationInPatch(split, patch);
+
+        if (population < configuration.NewBiodiversityIncreasingSpeciesPopulation)
+            return null;
+
+        // TODO: could compare the original species population here to determine if this change is beneficial to
+        // it as well (in which case a non-force species split could be done)
+
+        // Successfully found a species to create in order to increase biodiversity
+        return split;
+    }
+
+    private void OnSpeciesCreated(Species species, Species fromSpecies, RunResults results)
+    {
+        results.AddNewSpecies(species,
+            new[]
+            {
+                new KeyValuePair<Patch, long>(patch, configuration.NewBiodiversityIncreasingSpeciesPopulation),
+            },
+            RunResults.NewSpeciesType.FillNiche, fromSpecies);
+
+        createdASpecies = true;
     }
 }

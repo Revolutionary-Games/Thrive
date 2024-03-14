@@ -125,7 +125,7 @@ public class TutorialState : ITutorialInput
     // End of tutorial state variables
 
     [JsonProperty]
-    public float TotalElapsed { get; private set; }
+    public double TotalElapsed { get; private set; }
 
     /// <summary>
     ///   True if any of the tutorials are active that want to pause the game

@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   HUD for the space stage. Very similar to <see cref="SocietyHUD"/>
 /// </summary>
-public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionReceiver<SpaceStructureDefinition>
+public partial class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionReceiver<SpaceStructureDefinition>
 {
     // TODO: merge the common parts with the society stage hud into its own sub-scenes
     [Export]
@@ -41,7 +41,7 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
     private bool wasAscended;
 
     [Signal]
-    public delegate void OnDescendPressed();
+    public delegate void OnDescendPressedEventHandler();
 
     // TODO: real button referencing text for this
     protected override string UnPauseHelpText => "TODO: unpause text for this stage";
@@ -69,11 +69,11 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
 
         // Setup multi level god tools signals, these are done this way as they would be pretty annoying to hook up
         // all over the place purely through Godot
-        fleetPopup.Connect(nameof(StrategicUnitScreen<SpaceFleet>.OnOpenGodTools), containedInStage,
-            nameof(StageBase.OpenGodToolsForEntity));
+        fleetPopup.Connect(StrategicUnitScreen<SpaceFleet>.SignalName.OnOpenGodTools, new Callable(containedInStage,
+            nameof(StageBase.OpenGodToolsForEntity)));
 
-        planetScreenPopup.Connect(nameof(PlanetScreen.OnOpenGodTools), containedInStage,
-            nameof(StageBase.OpenGodToolsForEntity));
+        planetScreenPopup.Connect(PlanetScreen.SignalName.OnOpenGodTools, new Callable(containedInStage,
+            nameof(StageBase.OpenGodToolsForEntity)));
     }
 
     public void OnAscended()
@@ -178,6 +178,6 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnDescendPressed));
+        EmitSignal(SignalName.OnDescendPressed);
     }
 }

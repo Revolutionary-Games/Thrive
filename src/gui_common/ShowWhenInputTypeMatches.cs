@@ -10,7 +10,7 @@ using Godot;
 ///     untested currently
 ///   </para>
 /// </remarks>
-public class ShowWhenInputTypeMatches : Control
+public partial class ShowWhenInputTypeMatches : Control
 {
     /// <summary>
     ///   The input method to check and make this visible based on

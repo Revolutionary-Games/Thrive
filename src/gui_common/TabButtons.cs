@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Manages showing tab buttons and making them keyboard and controller navigable
 /// </summary>
-public class TabButtons : HBoxContainer
+public partial class TabButtons : HBoxContainer
 {
     /// <summary>
     ///   When true the tab left and right change buttons loop to the other side when the end is reached
@@ -305,7 +305,7 @@ public class TabButtons : HBoxContainer
                     return;
                 }
 
-                if (button.Pressed)
+                if (button.ButtonPressed)
                 {
                     foundPressed = true;
                 }
@@ -333,7 +333,7 @@ public class TabButtons : HBoxContainer
         {
             if (potentialButton is Button button)
             {
-                if (button.Pressed)
+                if (button.ButtonPressed)
                 {
                     // When we find a pressed button, we want to move to press the previously seen button
                     if (previousButton != null)
@@ -371,7 +371,7 @@ public class TabButtons : HBoxContainer
         switch (TabChangeTriggerMethod)
         {
             case PressType.SetPressedState:
-                button.Pressed = true;
+                button.ButtonPressed = true;
                 break;
             case PressType.PressedSignal:
                 button.EmitSignal("pressed");
@@ -382,8 +382,8 @@ public class TabButtons : HBoxContainer
 
                 // If the button doesn't move to pressed state, set it here. This makes some differently made tab
                 // controlled buttons work (auto-evo exploring tool, for example)
-                if (button.Pressed != true)
-                    button.Pressed = true;
+                if (button.ButtonPressed != true)
+                    button.ButtonPressed = true;
 
                 break;
             default:

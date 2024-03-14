@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Godot.Collections;
 using Nito.Collections;
 
 /// <summary>
 ///   Handles a stack of <see cref="TopLevelContainer"/>s that block GUI inputs.
 /// </summary>
-public class ModalManager : NodeWithInput
+public partial class ModalManager : NodeWithInput
 {
     private static ModalManager? instance;
 
@@ -33,7 +32,7 @@ public class ModalManager : NodeWithInput
     {
         instance = this;
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     public static ModalManager Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -48,10 +47,10 @@ public class ModalManager : NodeWithInput
         canvasLayer = GetNode<CanvasLayer>("CanvasLayer");
         activeModalContainer = canvasLayer.GetNode<Control>("ActiveModalContainer");
 
-        activeModalContainer.SetAsToplevel(true);
+        activeModalContainer.TopLevel = true;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (modalsDirty)
         {
@@ -79,9 +78,8 @@ public class ModalManager : NodeWithInput
         modalStack.AddToFront(popup);
         modalsDirty = true;
 
-        var binds = new Array { popup };
-        popup.CheckAndConnect(nameof(TopLevelContainer.Closed), this, nameof(OnModalLost), binds,
-            (uint)ConnectFlags.Oneshot);
+        popup.CheckAndConnect(TopLevelContainer.SignalName.Closed, Callable.From(() => OnModalLost(popup)),
+            (uint)ConnectFlags.OneShot);
     }
 
     /// <summary>
@@ -101,10 +99,12 @@ public class ModalManager : NodeWithInput
         // This is emitted before closing to allow window using components to differentiate between "cancel" and
         // "any other reason for closing" in case some logic can be simplified by handling just those two situations.
         if (popup is CustomWindow dialog)
-            dialog.EmitSignal(nameof(CustomWindow.Cancelled));
+            dialog.EmitSignal(CustomWindow.SignalName.Canceled);
 
         popup.Close();
-        popup.Notification(Control.NotificationModalClose);
+
+        // TODO: make sure removing this is not a problem (looks like this signal no longer exists at all)
+        // popup.Notification(Control.NotificationModalClose);
 
         return true;
     }
@@ -170,7 +170,7 @@ public class ModalManager : NodeWithInput
             if (!modal.Visible)
             {
                 modal.Open();
-                modal.Notification(Popup.NotificationPostPopup);
+                modal.Notification((int)MissingGodotNotifications.NotificationPostPopup);
             }
         }
 
@@ -192,8 +192,8 @@ public class ModalManager : NodeWithInput
 
             // Don't count mouse wheel, this is the original Godot behavior
             if (modalStack.Count <= 0 || mouseButton.ButtonIndex is
-                    (int)ButtonList.WheelDown or (int)ButtonList.WheelUp or
-                    (int)ButtonList.WheelLeft or (int)ButtonList.WheelRight)
+                    MouseButton.WheelDown or MouseButton.WheelUp or
+                    MouseButton.WheelLeft or MouseButton.WheelRight)
             {
                 return;
             }
@@ -203,11 +203,13 @@ public class ModalManager : NodeWithInput
             if (!top.Exclusive)
             {
                 if (top is CustomWindow dialog)
-                    dialog.EmitSignal(nameof(CustomWindow.Cancelled));
+                    dialog.EmitSignal(CustomWindow.SignalName.Canceled);
 
                 // The crux of the custom modal system, to have an overridable hide behavior!
                 top.Close();
-                top.Notification(Control.NotificationModalClose);
+
+                // TODO: make sure removing this is not a problem (looks like this signal no longer exists at all)
+                // top.Notification(Control.NotificationModalClose);
             }
         }
     }

@@ -10,7 +10,7 @@
 [ext_resource path="res://src/gui_common/TransitionManager.cs" type="Script" id=8]
 
 [node name="ScreenOverlays" type="Node"]
-pause_mode = 2
+process_mode = 3
 process_priority = 2000
 
 [node name="NormalOverlays" type="CanvasLayer" parent="."]
@@ -20,7 +20,7 @@ layer = 125
 visible = false
 
 [node name="TransitionManager" type="Control" parent="NormalOverlays"]
-pause_mode = 2
+process_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -43,8 +43,8 @@ layer = 128
 [node name="ScreenFilter" parent="Effects" instance=ExtResource( 1 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 mouse_filter = 2
 
 [node name="ColourblindScreenFilter" parent="Effects" instance=ExtResource( 4 )]

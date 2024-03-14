@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
@@ -9,7 +9,7 @@ using Godot;
 ///     Note a lot of this functionality is duplicated from PatchMapEditorComponent.
 ///   </para>
 /// </remarks>
-public class ThriveopediaPatchMapPage : ThriveopediaPage
+public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaPage
 {
     [Export]
     public NodePath? MapDrawerPath;
@@ -28,12 +28,12 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
 
     private Patch playerPatchOnEntry = null!;
 
-    public override string PageName => "PatchMap";
-    public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE");
+    public string PageName => "PatchMap";
+    public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE");
 
     public Action<Patch>? OnSelectedPatchChanged { get; set; }
 
-    public override string ParentPageName => "CurrentWorld";
+    public string ParentPageName => "CurrentWorld";
 
     public override void _Ready()
     {
@@ -143,7 +143,7 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
 
     private void UpdateSeedLabel()
     {
-        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
+        seedLabel.Text = Localization.Translate("SEED_LABEL")
             .FormatSafe(CurrentGame!.GameWorld.WorldSettings.Seed);
     }
 }

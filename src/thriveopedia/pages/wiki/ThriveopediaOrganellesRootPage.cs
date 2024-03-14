@@ -1,10 +1,10 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   Parent page for organelle pages in the Thriveopedia. Content comes from the organelle category in the online
 ///   wiki. Also contains a grid of buttons linking to all organelle pages.
 /// </summary>
-public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
+public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 {
     [Export]
     public NodePath? OrganelleListContainerPath;
@@ -16,7 +16,7 @@ public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
     public override string PageName => "OrganellesRoot";
 
-    public override string TranslatedPageName => TranslationServer.Translate("ORGANELLES");
+    public override string TranslatedPageName => Localization.Translate("ORGANELLES");
 
     public override string ParentPageName => "WikiRoot";
 
@@ -38,7 +38,7 @@ public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
         foreach (var organelle in wiki.Organelles)
         {
-            var button = (OrganelleLinkButton)linkButtonScene.Instance();
+            var button = linkButtonScene.Instantiate<OrganelleLinkButton>();
             button.Organelle = SimulationParameters.Instance.GetOrganelleType(organelle.InternalName);
             button.OpenLink = () => ThriveopediaManager.OpenPage(organelle.InternalName);
             organelleListContainer.AddChild(button);

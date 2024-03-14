@@ -3,7 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Godot;
 
-public class PatchNotesList : VBoxContainer
+public partial class PatchNotesList : VBoxContainer
 {
     private bool showAll = true;
 
@@ -132,13 +132,13 @@ public class PatchNotesList : VBoxContainer
 
 #pragma warning disable CA2213
     [Export]
-    public Font TitleFont { get; set; } = null!;
+    public LabelSettings TitleFont { get; set; } = null!;
 
     [Export]
-    public Font SubHeadingFont { get; set; } = null!;
+    public LabelSettings SubHeadingFont { get; set; } = null!;
 
     [Export]
-    public Font TrailingVisitLinkFont { get; set; } = null!;
+    public LabelSettings TrailingVisitLinkFont { get; set; } = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
@@ -165,7 +165,7 @@ public class PatchNotesList : VBoxContainer
         };
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (thingsToShowComputeResults != null)
         {
@@ -244,11 +244,11 @@ public class PatchNotesList : VBoxContainer
     {
         var stringBuilder = new StringBuilder();
 
-        var changesHeading = TranslationServer.Translate("PATCH_NOTE_CHANGES_HEADING");
-        var bulletPointTemplateText = TranslationServer.Translate("PATCH_NOTE_BULLET_POINT");
-        var linkVisitTemplate = TranslationServer.Translate("PATCH_NOTE_LINK_VISIT_TEXT");
+        var changesHeading = Localization.Translate("PATCH_NOTE_CHANGES_HEADING");
+        var bulletPointTemplateText = Localization.Translate("PATCH_NOTE_BULLET_POINT");
+        var linkVisitTemplate = Localization.Translate("PATCH_NOTE_LINK_VISIT_TEXT");
 
-        var subHeadingFontPath = SubHeadingFont.ResourcePath;
+        var subHeadingFontPath = SubHeadingFont.Font.ResourcePath;
 
         // This could use the same approach as ThriveFeedDisplayer to build only one object per frame, but
         // as this is usually empty or just shows the latest patch notes, that wouldn't help in the common case at all
@@ -259,7 +259,7 @@ public class PatchNotesList : VBoxContainer
             if (StyleWithBackground)
             {
                 var panel = new PanelContainer();
-                panel.AddStyleboxOverride("panel", itemBackground);
+                panel.AddThemeStyleboxOverride("panel", itemBackground);
 
                 itemContainer = panel;
             }
@@ -284,9 +284,10 @@ public class PatchNotesList : VBoxContainer
             }
 
             // This uses rich text purely to be clickable
-            var title = customRichTextScene.Instance<CustomRichTextLabel>();
-            title.BbcodeText = titleText;
-            title.AddFontOverride("normal_font", TitleFont);
+            var title = customRichTextScene.Instantiate<CustomRichTextLabel>();
+            title.Text = titleText;
+            title.AddThemeFontOverride("normal_font", TitleFont.Font);
+            title.AddThemeFontSizeOverride("normal_font_size", TitleFont.FontSize);
 
             itemContentContainer.AddChild(title);
 
@@ -296,7 +297,7 @@ public class PatchNotesList : VBoxContainer
             stringBuilder.Append('\n');
             stringBuilder.Append('\n');
 
-            stringBuilder.Append($"[font={subHeadingFontPath}]");
+            stringBuilder.Append($"[font name={subHeadingFontPath} size={SubHeadingFont.FontSize}]");
             stringBuilder.Append(changesHeading);
             stringBuilder.Append('\n');
             stringBuilder.Append("[/font]");
@@ -308,20 +309,21 @@ public class PatchNotesList : VBoxContainer
                 stringBuilder.Append('\n');
             }
 
-            var bodyTextDisplayer = customRichTextScene.Instance<CustomRichTextLabel>();
+            var bodyTextDisplayer = customRichTextScene.Instantiate<CustomRichTextLabel>();
 
-            bodyTextDisplayer.BbcodeText = stringBuilder.ToString();
+            bodyTextDisplayer.Text = stringBuilder.ToString();
             stringBuilder.Clear();
 
             itemContentContainer.AddChild(bodyTextDisplayer);
 
             if (AddTrailingLinkToPatchNotesToViewIt)
             {
-                var visitLink = customRichTextScene.Instance<CustomRichTextLabel>();
+                var visitLink = customRichTextScene.Instantiate<CustomRichTextLabel>();
 
-                visitLink.BbcodeText = linkVisitTemplate.FormatSafe(versionPatchNotes.ReleaseLink);
+                visitLink.Text = linkVisitTemplate.FormatSafe(versionPatchNotes.ReleaseLink);
 
-                visitLink.AddFontOverride("normal_font", TrailingVisitLinkFont);
+                visitLink.AddThemeFontOverride("normal_font", TrailingVisitLinkFont.Font);
+                visitLink.AddThemeFontSizeOverride("normal_font_size", TrailingVisitLinkFont.FontSize);
 
                 itemContentContainer.AddChild(visitLink);
             }

@@ -5,7 +5,8 @@ using Newtonsoft.Json;
 ///   Separate HUD base that adds pausing, this is separate as both strategy and creature HUDs want pausing but maybe
 ///   there's something that won't want pausing in the future
 /// </summary>
-public abstract class HUDWithPausing : HUDBase
+[GodotAbstract]
+public partial class HUDWithPausing : HUDBase
 {
     [Export]
     public NodePath? PausePromptPath;
@@ -18,6 +19,10 @@ public abstract class HUDWithPausing : HUDBase
     private CustomRichTextLabel pauseInfo = null!;
 #pragma warning restore CA2213
 
+    protected HUDWithPausing()
+    {
+    }
+
     /// <summary>
     ///   For toggling paused with the pause button.
     /// </summary>
@@ -27,7 +32,7 @@ public abstract class HUDWithPausing : HUDBase
     /// <summary>
     ///   If this returns non-null value the help text / prompt for unpausing is shown when paused
     /// </summary>
-    protected abstract string? UnPauseHelpText { get; }
+    protected virtual string? UnPauseHelpText => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void _Ready()
     {

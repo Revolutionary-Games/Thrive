@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using Godot;
 
-public class AvailableConstructionProjectItem : HBoxContainer
+public partial class AvailableConstructionProjectItem : HBoxContainer
 {
     [Export]
     public NodePath? ButtonPath;

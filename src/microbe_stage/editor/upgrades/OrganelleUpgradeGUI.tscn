@@ -22,55 +22,55 @@ Resizable = true
 ShowCloseButton = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="ModifyPopup"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ModifyPopup/VBoxContainer2"]
-margin_right = 400.0
-margin_bottom = 320.0
-rect_min_size = Vector2( 400, 320 )
+offset_right = 400.0
+offset_bottom = 320.0
+custom_minimum_size = Vector2( 400, 320 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer"]
-margin_right = 400.0
-margin_bottom = 320.0
+offset_right = 400.0
+offset_bottom = 320.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 15
+theme_override_constants/margin_right = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer"]
-margin_right = 385.0
-margin_bottom = 320.0
+offset_right = 385.0
+offset_bottom = 320.0
 
 [node name="DefaultUpgradeSelector" type="VBoxContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 385.0
-margin_bottom = 320.0
+offset_right = 385.0
+offset_bottom = 320.0
 
 [node name="UpgradeButtonsContainer" type="HFlowContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector"]
-margin_right = 385.0
+offset_right = 385.0
 size_flags_horizontal = 3
 
 [node name="Control" type="Control" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector"]
-margin_top = 4.0
-margin_right = 385.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 0, 10 )
+offset_top = 4.0
+offset_right = 385.0
+offset_bottom = 14.0
+custom_minimum_size = Vector2( 0, 10 )
 
 [node name="OrganelleSpecificContent" type="VBoxContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 385.0
-margin_bottom = 320.0
+offset_right = 385.0
+offset_bottom = 320.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Control" type="Control" parent="ModifyPopup/VBoxContainer2"]
-margin_top = 324.0
-margin_right = 400.0
-margin_bottom = 364.0
-rect_min_size = Vector2( 0, 40 )
+offset_top = 324.0
+offset_right = 400.0
+offset_bottom = 364.0
+custom_minimum_size = Vector2( 0, 40 )
 mouse_filter = 2
 
 [connection signal="Confirmed" from="ModifyPopup" to="." method="OnAccept"]
-[connection signal="hide" from="ModifyPopup" to="." method="OnCancel"]
+[connection signal="hidden" from="ModifyPopup" to="." method="OnCancel"]

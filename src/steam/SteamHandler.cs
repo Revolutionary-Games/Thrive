@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +10,7 @@ using Godot;
 ///   If Steam library is not loaded most methods in here do nothing to allow easily calling them without checking
 ///   first.
 /// </summary>
-public class SteamHandler : Node, ISteamSignalReceiver
+public partial class SteamHandler : Node, ISteamSignalReceiver
 {
     /// <summary>
     ///   All valid tags. Need to be the same as: https://partner.steamgames.com/apps/workshoptags/1779200
@@ -73,7 +73,7 @@ public class SteamHandler : Node, ISteamSignalReceiver
 
     public override void _Ready()
     {
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
 
         OnSteamInit();
     }
@@ -86,7 +86,7 @@ public class SteamHandler : Node, ISteamSignalReceiver
         steamClient = null;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         steamClient?.Process(delta);
     }

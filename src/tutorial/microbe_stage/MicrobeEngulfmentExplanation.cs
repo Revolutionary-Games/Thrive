@@ -1,69 +1,68 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+using Godot;
+using Newtonsoft.Json;
+
+public class MicrobeEngulfmentExplanation : TutorialPhase
 {
-    using System;
-    using Godot;
-    using Newtonsoft.Json;
+    [JsonProperty]
+    private Vector3? chunkPosition;
 
-    public class MicrobeEngulfmentExplanation : TutorialPhase
+    public MicrobeEngulfmentExplanation()
     {
-        [JsonProperty]
-        private Vector3? chunkPosition;
+        UsesPlayerPositionGuidance = true;
+    }
 
-        public MicrobeEngulfmentExplanation()
+    public override string ClosedByName => "MicrobeEngulfmentExplanation";
+
+    public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    {
+        gui.EngulfmentExplanationVisible = ShownCurrently;
+    }
+
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            UsesPlayerPositionGuidance = true;
-        }
-
-        public override string ClosedByName => "MicrobeEngulfmentExplanation";
-
-        public override void ApplyGUIState(MicrobeTutorialGUI gui)
-        {
-            gui.EngulfmentExplanationVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.MicrobeChunksNearPlayer:
             {
-                case TutorialEventType.MicrobeChunksNearPlayer:
+                var data = (EntityPositionEventArgs)args;
+
+                if (!HasBeenShown && data.EntityPosition.HasValue && CanTrigger && !overallState.TutorialActive())
                 {
-                    var data = (EntityPositionEventArgs)args;
-
-                    if (!HasBeenShown && data.EntityPosition.HasValue && CanTrigger && !overallState.TutorialActive())
-                    {
-                        Show();
-                    }
-
-                    if (data.EntityPosition.HasValue && ShownCurrently)
-                    {
-                        chunkPosition = data.EntityPosition.Value;
-                        return true;
-                    }
-
-                    break;
+                    Show();
                 }
 
-                case TutorialEventType.MicrobePlayerEngulfing:
+                if (data.EntityPosition.HasValue && ShownCurrently)
                 {
-                    if (!ShownCurrently)
-                        break;
-
-                    // Tutorial is now complete
-                    Hide();
+                    chunkPosition = data.EntityPosition.Value;
                     return true;
                 }
+
+                break;
             }
 
-            return false;
+            case TutorialEventType.MicrobePlayerEngulfing:
+            {
+                if (!ShownCurrently)
+                    break;
+
+                // Tutorial is now complete
+                Hide();
+                return true;
+            }
         }
 
-        public override Vector3 GetPositionGuidance()
-        {
-            if (chunkPosition != null)
-                return chunkPosition.Value;
+        return false;
+    }
 
-            throw new InvalidOperationException("engulfment tutorial doesn't have position set");
-        }
+    public override Vector3 GetPositionGuidance()
+    {
+        if (chunkPosition != null)
+            return chunkPosition.Value;
+
+        throw new InvalidOperationException("engulfment tutorial doesn't have position set");
     }
 }

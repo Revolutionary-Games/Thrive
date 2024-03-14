@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Godot;
 
-public class PatchDetailsPanel : PanelContainer
+public partial class PatchDetailsPanel : PanelContainer
 {
     [Export]
     public NodePath? NothingSelectedPath;
@@ -125,8 +125,8 @@ public class PatchDetailsPanel : PanelContainer
     private TextureRect ammoniaSituation = null!;
     private TextureRect phosphateSituation = null!;
 
-    private Texture increaseIcon = null!;
-    private Texture decreaseIcon = null!;
+    private Texture2D increaseIcon = null!;
+    private Texture2D decreaseIcon = null!;
 #pragma warning restore CA2213
 
     private Compound ammoniaCompound = null!;
@@ -225,8 +225,8 @@ public class PatchDetailsPanel : PanelContainer
         phosphatesCompound = SimulationParameters.Instance.GetCompound("phosphates");
         sunlightCompound = SimulationParameters.Instance.GetCompound("sunlight");
 
-        increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
-        decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
+        increaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/increase.png");
+        decreaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/decrease.png");
 
         UpdateMoveToPatchButton();
     }
@@ -313,14 +313,14 @@ public class PatchDetailsPanel : PanelContainer
         name.Text = SelectedPatch!.Name.ToString();
 
         // Biome: {0}
-        biome.Text = TranslationServer.Translate("BIOME_LABEL").FormatSafe(SelectedPatch.BiomeTemplate.Name);
+        biome.Text = Localization.Translate("BIOME_LABEL").FormatSafe(SelectedPatch.BiomeTemplate.Name);
 
         // {0}-{1}m below sea level
         depth.Text = new LocalizedString("BELOW_SEA_LEVEL", SelectedPatch.Depth[0], SelectedPatch.Depth[1]).ToString();
         playerHere.Visible = CurrentPatch == SelectedPatch;
 
-        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
-        var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
+        var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
 
         // Atmospheric gasses
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
@@ -332,7 +332,7 @@ public class PatchDetailsPanel : PanelContainer
         light.Text =
             unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch,
                 sunlightCompound.InternalName))), "lx");
-        lightMax.Text = TranslationServer.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
+        lightMax.Text = Localization.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
             unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx"));
         lightMax.Visible = maxLightLevel > 0;
 
@@ -361,7 +361,7 @@ public class PatchDetailsPanel : PanelContainer
 
         foreach (var species in SelectedPatch.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName))
         {
-            speciesList.AppendLine(TranslationServer.Translate("SPECIES_WITH_POPULATION").FormatSafe(
+            speciesList.AppendLine(Localization.Translate("SPECIES_WITH_POPULATION").FormatSafe(
                 species.FormattedNameBbCode, SelectedPatch.GetSpeciesSimulationPopulation(species)));
         }
 

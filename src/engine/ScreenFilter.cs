@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class ScreenFilter : ColorRect
+public partial class ScreenFilter : ColorRect
 {
     private ShaderMaterial? material;
 

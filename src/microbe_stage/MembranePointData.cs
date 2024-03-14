@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Buffers;
 using System.Collections.Generic;
 using Godot;
@@ -204,7 +204,7 @@ public sealed class MembraneCollisionShape : ICacheableData
             for (int i = 0; i < pointCount; ++i)
             {
                 var point = points[i];
-                hash ^= i * 17 + JVecF3.GetCompatibleHashCode(point.x, 0, point.y);
+                hash ^= i * 17 + JVecF3.GetCompatibleHashCode(point.X, 0, point.Y);
             }
 
             hash ^= isBacteria ? 7907 : 7867;
@@ -254,7 +254,7 @@ public sealed class MembraneCollisionShape : ICacheableData
             var point = points[i];
             var otherPoint = otherMembranePoints[i];
 
-            if (!point.X.Equals(otherPoint.x) || !point.Z.Equals(otherPoint.y))
+            if (!point.X.Equals(otherPoint.X) || !point.Z.Equals(otherPoint.Y))
                 return false;
         }
 

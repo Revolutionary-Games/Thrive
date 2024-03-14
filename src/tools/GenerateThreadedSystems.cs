@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +16,7 @@ using File = System.IO.File;
 ///   main module as this needs to be able to load for example <see cref="MicrobeWorldSimulation"/> that depends on
 ///   Godot types.
 /// </summary>
-public class GenerateThreadedSystems : Node
+public partial class GenerateThreadedSystems : Node
 {
     /// <summary>
     ///   How many threads to use when generating threaded system run. Needs to be at least 2. Too high number splits
@@ -201,7 +201,7 @@ public class GenerateThreadedSystems : Node
         TaskExecutor.Instance.AddTask(new Task(Run));
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (done)
             GetTree().Quit();

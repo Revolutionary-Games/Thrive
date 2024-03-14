@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   String that can be localized on demand for different locales.
@@ -17,7 +18,7 @@ using Newtonsoft.Json;
 ///   </para>
 /// </remarks>
 [JSONDynamicTypeAllowed]
-[TypeConverter(typeof(LocalizedStringTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(LocalizedStringTypeConverter)}")]
 public class LocalizedString : IFormattable, IEquatable<LocalizedString>
 {
     [JsonProperty]
@@ -89,19 +90,19 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
     {
         if (formatStringArgs == null || formatStringArgs.Length == 0)
         {
-            return format ?? TranslationServer.Translate(translationKey);
+            return format ?? Localization.Translate(translationKey);
         }
 
         try
         {
             return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
-                format ?? TranslationServer.Translate(translationKey), formatStringArgs);
+                format ?? Localization.Translate(translationKey), formatStringArgs);
         }
         catch (FormatException e)
         {
             GD.PrintErr("Invalid translation format in string ", translationKey, " for current language, exception: ",
                 e);
-            return TranslationServer.Translate(translationKey);
+            return Localization.Translate(translationKey);
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Godot;
-using Godot.Collections;
 using Container = Godot.Container;
 
-public class InteractablePopup : Control
+public partial class InteractablePopup : Control
 {
     [Export]
     public NodePath? PopupPath;
@@ -20,7 +19,7 @@ public class InteractablePopup : Control
 
 #pragma warning disable CA2213
     [Export]
-    public Font InteractionButtonFont = null!;
+    public LabelSettings InteractionButtonFont = null!;
 
     private CustomWindow popup = null!;
     private Container buttonsContainer = null!;
@@ -79,10 +78,11 @@ public class InteractablePopup : Control
             {
                 SizeFlagsHorizontal = 0,
                 Text = textOverride ??
-                    TranslationServer.Translate(interactionType.GetAttribute<DescriptionAttribute>().Description),
+                    Localization.Translate(interactionType.GetAttribute<DescriptionAttribute>().Description),
             };
 
-            button.AddFontOverride("font", InteractionButtonFont);
+            button.AddThemeFontOverride("font", InteractionButtonFont.Font);
+            button.AddThemeFontSizeOverride("font_size", InteractionButtonFont.FontSize);
 
             buttonsContainer.AddChild(button);
 
@@ -92,9 +92,7 @@ public class InteractablePopup : Control
                 continue;
             }
 
-            var binds = new Array();
-            binds.Add(interactionType);
-            button.Connect("pressed", this, nameof(OptionSelected), binds);
+            button.Connect(BaseButton.SignalName.Pressed, Callable.From(() => OptionSelected(interactionType)));
 
             firstButton ??= button;
         }
@@ -122,7 +120,7 @@ public class InteractablePopup : Control
         if (!popup.Visible)
             return false;
 
-        var focused = GetFocusOwner();
+        var focused = GetViewport().GuiGetFocusOwner();
 
         if (focused == null)
             return false;

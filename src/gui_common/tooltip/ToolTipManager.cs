@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Holds and handles a collection of custom tooltip Controls.
 /// </summary>
-public class ToolTipManager : CanvasLayer
+public partial class ToolTipManager : CanvasLayer
 {
     /// <summary>
     ///   This must be in sync with the name of the default group node in the ToolTipManager scene.
@@ -27,8 +27,8 @@ public class ToolTipManager : CanvasLayer
 #pragma warning restore CA2213
 
     private bool display;
-    private float displayTimer;
-    private float hideTimer;
+    private double displayTimer;
+    private double hideTimer;
 
     /// <summary>
     ///   Flags whether MainToolTip should be shown temporarily (automatically hides once timer reaches threshold).
@@ -122,7 +122,7 @@ public class ToolTipManager : CanvasLayer
         FetchToolTips();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (MainToolTip == null)
             return;
@@ -359,7 +359,7 @@ public class ToolTipManager : CanvasLayer
     /// <summary>
     ///   Adjusts <see cref="MainToolTip"/>'s position and size.
     /// </summary>
-    private void UpdateCurrentTooltip(float delta)
+    private void UpdateCurrentTooltip(double delta)
     {
         if (MainToolTip == null)
             return;
@@ -380,9 +380,9 @@ public class ToolTipManager : CanvasLayer
                 var control = ToolTipHelper.GetControlAssociatedWithToolTip(MainToolTip);
                 if (control != null)
                 {
-                    position = new Vector2(control.RectGlobalPosition.x + control.RectSize.x,
-                        control.RectGlobalPosition.y);
-                    offset = new Vector2(0, control.RectSize.y);
+                    position = new Vector2(control.GlobalPosition.X + control.Size.X,
+                        control.GlobalPosition.Y);
+                    offset = new Vector2(0, control.Size.Y);
                 }
                 else
                 {
@@ -398,31 +398,31 @@ public class ToolTipManager : CanvasLayer
         }
 
         var screenRect = GetViewport().GetVisibleRect();
-        var newPos = new Vector2(position.x + offset.x, position.y + offset.y);
-        var tooltipSize = MainToolTip.ToolTipNode.RectSize;
+        var newPos = new Vector2(position.X + offset.X, position.Y + offset.Y);
+        var tooltipSize = MainToolTip.ToolTipNode.Size;
 
-        if (newPos.x + tooltipSize.x > screenRect.Size.x)
+        if (newPos.X + tooltipSize.X > screenRect.Size.X)
         {
-            newPos.x -= tooltipSize.x + offset.x;
+            newPos.X -= tooltipSize.X + offset.X;
 
-            if (newPos.x < screenRect.Position.x)
-                newPos.x = position.x + offset.x;
+            if (newPos.X < screenRect.Position.X)
+                newPos.X = position.X + offset.X;
         }
 
-        if (newPos.y + tooltipSize.y > screenRect.Size.y)
+        if (newPos.Y + tooltipSize.Y > screenRect.Size.Y)
         {
-            newPos.y -= tooltipSize.y + offset.y;
+            newPos.Y -= tooltipSize.Y + offset.Y;
 
-            if (newPos.y < screenRect.Position.y)
-                newPos.y = position.y + offset.y;
+            if (newPos.Y < screenRect.Position.Y)
+                newPos.Y = position.Y + offset.Y;
         }
 
         // Clamp tooltip position so it doesn't go offscreen
         // TODO: Take into account viewport (window) resizing for the offsetting.
-        MainToolTip.ToolTipNode.RectPosition = new Vector2(Mathf.Clamp(newPos.x, 0, screenRect.Size.x - tooltipSize.x),
-            Mathf.Clamp(newPos.y, 0, screenRect.Size.y - tooltipSize.y));
+        MainToolTip.ToolTipNode.Position = new Vector2(Mathf.Clamp(newPos.X, 0, Math.Max(screenRect.Size.X - tooltipSize.X, 0)),
+            Mathf.Clamp(newPos.Y, 0, Math.Max(screenRect.Size.Y - tooltipSize.Y, 0)));
 
-        MainToolTip.ToolTipNode.RectSize = Vector2.Zero;
+        MainToolTip.ToolTipNode.Size = Vector2.Zero;
 
         // Handle temporary tooltips/popup
         if (currentIsTemporary && hideTimer >= 0)

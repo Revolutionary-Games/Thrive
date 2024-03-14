@@ -1,13 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
 using Godot;
+using Saving.Serializers;
 
 /// <summary>
 ///   Definition of a compound in the game. For all other simulation
 ///   parameters that refer to a compound, there must be an existing
 ///   entry of this type
 /// </summary>
-[TypeConverter(typeof(CompoundStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(CompoundStringConverter)}")]
 public class Compound : IRegistryType
 {
     /// <summary>
@@ -65,12 +66,20 @@ public class Compound : IRegistryType
     /// </summary>
     public bool Digestible;
 
+    /// <summary>
+    ///   Colour of this compound in the environment (microbe compound clouds for example)
+    /// </summary>
     public Color Colour;
+
+    /// <summary>
+    ///   Colour used to represent this compound in bars.
+    /// </summary>
+    public Color BarColour;
 
     /// <summary>
     ///   Loaded icon for display in GUIs
     /// </summary>
-    public Texture? LoadedIcon;
+    public Texture2D? LoadedIcon;
 
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
@@ -96,23 +105,27 @@ public class Compound : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "Gas compound cannot be a cloud type as well");
 
         // Guards against uninitialized alpha
-#pragma warning disable RECS0018
-        if (Colour.a == 0.0f)
-#pragma warning restore RECS0018
-            Colour.a = 1;
+        if (Colour.A == 0.0f)
+            Colour.A = 1;
 
-        if (Math.Abs(Colour.a - 1.0f) > MathUtils.EPSILON)
+        if (Math.Abs(Colour.A - 1.0f) > MathUtils.EPSILON)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Compound colour cannot have alpha other than 1");
         }
 
-        if (Math.Abs(Colour.r) < MathUtils.EPSILON &&
-            Math.Abs(Colour.g) < MathUtils.EPSILON && Math.Abs(Colour.b) < MathUtils.EPSILON)
+        if (Math.Abs(Colour.R) < MathUtils.EPSILON &&
+            Math.Abs(Colour.G) < MathUtils.EPSILON && Math.Abs(Colour.B) < MathUtils.EPSILON)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Compound colour can't be black");
         }
+
+        // Use normal colour if not overridden
+        if (BarColour.R == 0 && BarColour.G == 0 && BarColour.B == 0)
+            BarColour = Colour;
+
+        BarColour.A = 1;
 
         if (Volume <= 0)
         {
@@ -130,7 +143,7 @@ public class Compound : IRegistryType
 
     public void Resolve()
     {
-        LoadedIcon = GD.Load<Texture>(IconPath);
+        LoadedIcon = GD.Load<Texture2D>(IconPath);
     }
 
     public void ApplyTranslations()

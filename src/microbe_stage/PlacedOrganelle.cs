@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Godot;
@@ -22,7 +22,7 @@ public class PlacedOrganelle : IPositionedOrganelle
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft;
 
-    private Quat cachedExternalOrientation = Quat.Identity;
+    private Quaternion cachedExternalOrientation = Quaternion.Identity;
     private Vector3 cachedExternalPosition = Vector3.Zero;
 
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation, OrganelleUpgrades? upgrades)
@@ -67,7 +67,7 @@ public class PlacedOrganelle : IPositionedOrganelle
     ///   The graphics child node of this organelle
     /// </summary>
     [JsonIgnore]
-    public Spatial? OrganelleGraphics { get; private set; }
+    public Node3D? OrganelleGraphics { get; private set; }
 
     /// <summary>
     ///   Animation player this organelle has
@@ -259,7 +259,7 @@ public class PlacedOrganelle : IPositionedOrganelle
     ///   Called by <see cref="MicrobeVisualsSystem"/> when graphics have been created for this organelle
     /// </summary>
     /// <param name="visualsInstance">The graphics initialized from this organelle's type's specified scene</param>
-    public void ReportCreatedGraphics(Spatial visualsInstance)
+    public void ReportCreatedGraphics(Node3D visualsInstance)
     {
         if (OrganelleGraphics != null)
             throw new InvalidOperationException("Can't set organelle graphics multiple times");
@@ -342,11 +342,11 @@ public class PlacedOrganelle : IPositionedOrganelle
         }
     }
 
-    public Transform CalculateVisualsTransform()
+    public Transform3D CalculateVisualsTransform()
     {
         var scale = CalculateTransformScale();
 
-        return new Transform(
+        return new Transform3D(
             new Basis(MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(new Vector3(scale, scale, scale)),
             Hex.AxialToCartesian(Position) + Definition.ModelOffset);
 
@@ -355,7 +355,7 @@ public class PlacedOrganelle : IPositionedOrganelle
         // OrganelleGraphics.RotateY(Orientation * -60 * MathUtils.DEGREES_TO_RADIANS);
     }
 
-    public Transform CalculateVisualsTransformExternal(Vector3 externalPosition, Quat orientation)
+    public Transform3D CalculateVisualsTransformExternal(Vector3 externalPosition, Quaternion orientation)
     {
         var scale = CalculateTransformScale();
 
@@ -364,8 +364,8 @@ public class PlacedOrganelle : IPositionedOrganelle
 
         // TODO: check that the rotation of ModelOffset works correctly here (also in
         // CalculateVisualsTransformExternalCached)
-        return new Transform(new Basis(orientation).Scaled(new Vector3(scale, scale, scale)),
-            externalPosition + orientation.Xform(Definition.ModelOffset));
+        return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scale)),
+            externalPosition + orientation * Definition.ModelOffset);
     }
 
     /// <summary>
@@ -374,21 +374,21 @@ public class PlacedOrganelle : IPositionedOrganelle
     ///   complicate things there if it needed to re-calculate this information)
     /// </summary>
     /// <returns>The organelle transform</returns>
-    public Transform CalculateVisualsTransformExternalCached()
+    public Transform3D CalculateVisualsTransformExternalCached()
     {
         var scale = CalculateTransformScale();
 
         // TODO: check that the rotation of ModelOffset works correctly here
-        return new Transform(new Basis(cachedExternalOrientation).Scaled(new Vector3(scale, scale, scale)),
-            cachedExternalPosition + cachedExternalOrientation.Xform(Definition.ModelOffset));
+        return new Transform3D(new Basis(cachedExternalOrientation).Scaled(new Vector3(scale, scale, scale)),
+            cachedExternalPosition + cachedExternalOrientation * Definition.ModelOffset);
     }
 
-    public (Vector3 Position, Quat Rotation) CalculatePhysicsExternalTransform(Vector3 externalPosition,
-        Quat orientation, bool isBacteria)
+    public (Vector3 Position, Quaternion Rotation) CalculatePhysicsExternalTransform(Vector3 externalPosition,
+        Quaternion orientation, bool isBacteria)
     {
         // The shape needs to be rotated 90 degrees to point forward for (so that the pilus is not a vertical column
         // but is instead a stabby thing)
-        var extraRotation = new Quat(new Vector3(1, 0, 0), Mathf.Pi * 0.5f);
+        var extraRotation = new Quaternion(new Vector3(1, 0, 0), Mathf.Pi * 0.5f);
 
         // Maybe should have a variable for physics shape offset if different organelles need different things
         var offset = new Vector3(0, 0, -1.0f);
@@ -399,10 +399,10 @@ public class PlacedOrganelle : IPositionedOrganelle
             // TODO: find the root cause and fix properly why this kind of very specific tweak is needed
             var length = externalPosition.Length() * Constants.BACTERIA_PILUS_ATTACH_ADJUSTMENT_MULTIPLIER;
 
-            offset.z += length;
+            offset.Z += length;
         }
 
-        return (externalPosition + orientation.Xform(offset), orientation * extraRotation);
+        return (externalPosition + orientation * offset, orientation * extraRotation);
     }
 
     private void InitializeComponents()

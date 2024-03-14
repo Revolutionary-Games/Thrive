@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/late_multicellular_stage/editor/EditorCamera3D.cs" type="Script" id=1]
 
-[node name="EditorCamera3D" type="Camera"]
+[node name="EditorCamera3D" type="Camera3D"]
 fov = 90.0
 near = 0.01
 script = ExtResource( 1 )

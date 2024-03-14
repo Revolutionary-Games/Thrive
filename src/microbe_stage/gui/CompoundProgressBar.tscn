@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://clnc61bm71h04"]
+
+[ext_resource type="Script" path="res://src/microbe_stage/gui/CompoundProgressBar.cs" id="1_dosnj"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="2_xwjgn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cwyqo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d25jo"]
+resource_local_to_scene = true
+
+[node name="CompoundProgressBar" type="Control" node_paths=PackedStringArray("icon", "progressBar", "nameLabel", "amountLabel")]
+editor_description = "This needs to be a plain control to allow positioning the value to appear above the icon when compact"
+custom_minimum_size = Vector2(220, 25)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 25.0
+size_flags_horizontal = 3
+script = ExtResource("1_dosnj")
+icon = NodePath("Icon")
+progressBar = NodePath("Bar")
+nameLabel = NodePath("Bar/Name")
+amountLabel = NodePath("Value")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+offset_right = 25.0
+offset_bottom = 25.0
+size_flags_horizontal = 0
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Bar" type="ProgressBar" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_cwyqo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_d25jo")
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
+[node name="Name" type="Label" parent="Bar"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 0
+offset_left = 20.0
+offset_right = 83.0
+offset_bottom = 25.0
+text = "Glucose"
+label_settings = ExtResource("2_xwjgn")
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="."]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -44.0
+offset_right = -4.0
+offset_bottom = 25.0
+grow_horizontal = 0
+text = "0.0 / 4"
+label_settings = ExtResource("2_xwjgn")
+vertical_alignment = 1

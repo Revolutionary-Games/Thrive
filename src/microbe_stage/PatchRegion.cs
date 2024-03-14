@@ -67,8 +67,8 @@ public class PatchRegion
         get => new(Width, Height);
         set
         {
-            Width = value.x;
-            Height = value.y;
+            Width = value.X;
+            Height = value.Y;
         }
     }
 
