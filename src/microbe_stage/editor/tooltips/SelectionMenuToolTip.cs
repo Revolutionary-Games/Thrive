@@ -179,7 +179,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         moreInfo = GetNode<VBoxContainer>(MoreInfoPath);
 
         modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
-        noProcessesFont = GD.Load<LabelSettings>("res://src/gui_common/new_fonts/Body-Bold-Smaller.tres");
+        noProcessesFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Bold-Smaller.tres");
 
         UpdateName();
         UpdateDescription();

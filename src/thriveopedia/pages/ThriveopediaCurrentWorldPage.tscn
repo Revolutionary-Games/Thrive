@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
 [ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs" id="2"]
-[ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/new_fonts/Title-SemiBold-Normal.tres" id="3_4isgi"]
+[ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="3_4isgi"]
 
 [node name="ThriveopediaCurrentWorldPage" instance=ExtResource("1")]
 anchors_preset = 15

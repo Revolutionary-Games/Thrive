@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="2"]
 [ext_resource type="Script" path="res://src/engine/DebugOverlays.cs" id="3"]
-[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="3_fussq"]
-[ext_resource type="LabelSettings" uid="uid://u7fwx3p3shvk" path="res://src/gui_common/new_fonts/Body-Regular-Small-Shadow.tres" id="6_2giyi"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_fussq"]
+[ext_resource type="LabelSettings" uid="uid://u7fwx3p3shvk" path="res://src/gui_common/fonts/Body-Regular-Small-Shadow.tres" id="6_2giyi"]
 
 [node name="DebugOverlay" type="Control"]
 layout_mode = 3

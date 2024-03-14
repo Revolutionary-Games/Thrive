@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://g70pm5ndiqf2"]
 
 [ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="3"]
-[ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/new_fonts/Title-SemiBold-Bigger.tres" id="3_dudgs"]
-[ext_resource type="LabelSettings" uid="uid://bh5jgkxx1boyf" path="res://src/gui_common/new_fonts/Thrive-Humongous.tres" id="3_xy8f2"]
+[ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="3_dudgs"]
+[ext_resource type="LabelSettings" uid="uid://bh5jgkxx1boyf" path="res://src/gui_common/fonts/Thrive-Humongous.tres" id="3_xy8f2"]
 [ext_resource type="Script" path="res://src/microbe_stage/gui/PatchExtinctionBox.cs" id="4"]
 [ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://src/gui_common/DraggableScrollContainer.tscn" id="7"]

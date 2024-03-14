@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="1"]
 [ext_resource type="Script" path="res://src/benchmark/microbe/MicrobeBenchmark.cs" id="2"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="4"]
-[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="4_s44il"]
-[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/new_fonts/Body-Bold-Small.tres" id="5_5gxef"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_s44il"]
+[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="5_5gxef"]
 
 [node name="MicrobeBenchmark" type="Node"]
 script = ExtResource("2")

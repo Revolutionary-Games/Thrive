@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" path="res://src/engine/input/ControllerDeadzoneConfiguration.cs" id="2"]
 [ext_resource type="PackedScene" path="res://src/engine/input/ControllerInputAxisVisualizationContainer.tscn" id="3"]
-[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/new_fonts/Body-Regular-Smaller.tres" id="3_3jtjp"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_3jtjp"]
 
 [node name="ControllerDeadzoneConfiguration" instance=ExtResource("1")]
 layout_mode = 3

@@ -165,10 +165,10 @@ public partial class EvolutionaryTree : Control
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
 
         // Font size is adjusted dynamically so this needs to be a copy.
-        bodyItalicFont = GD.Load<LabelSettings>("res://src/gui_common/new_fonts/Body-Italic-Small.tres");
+        bodyItalicFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Italic-Small.tres");
         smallFontSize = bodyItalicFont.FontSize;
 
-        bodyFont = GD.Load<LabelSettings>("res://src/gui_common/new_fonts/Body-Regular-Small.tres");
+        bodyFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Regular-Small.tres");
     }
 
     public void Init(IEnumerable<Species> initialSpecies, uint playerSpeciesId = 1,

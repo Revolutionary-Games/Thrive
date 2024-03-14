@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://jlvayy8csjto"]
 
 [ext_resource type="Script" path="res://src/gui_common/PatchNotesList.cs" id="1"]
-[ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/new_fonts/Body-Bold-Smaller.tres" id="2_spkih"]
-[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/new_fonts/Body-Regular-Smaller.tres" id="3_u33wb"]
-[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/new_fonts/Body-Regular-Tiny.tres" id="4_ykufq"]
+[ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="2_spkih"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_u33wb"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_ykufq"]
 
 [node name="PatchNotesList" type="VBoxContainer"]
 anchors_preset = 15

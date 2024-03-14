@@ -265,7 +265,7 @@ public partial class LineChart : VBoxContainer
         hLineTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
         vLineTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/vSeparatorUp.png");
 
-        legendLabelSettings = GD.Load<LabelSettings>("res://src/gui_common/new_fonts/Body-Regular-Small.tres");
+        legendLabelSettings = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Regular-Small.tres");
 
         SetupChartChild();
         UpdateAxesName();

@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://src/gui_common/CreditsScroll.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://dpxsicy6au2mh" path="res://assets/misc/thrive_logo_big.png" id="3"]
-[ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/new_fonts/Title-SemiBold-Bigger.tres" id="3_xqvak"]
-[ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/new_fonts/Title-SemiBold-Huge.tres" id="6_8g7ur"]
-[ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/new_fonts/Title-SemiBold-AlmostHuge.tres" id="7_86jbp"]
+[ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="3_xqvak"]
+[ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="6_8g7ur"]
+[ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="7_86jbp"]
 
 [node name="CreditsScroll" type="Control"]
 clip_contents = true

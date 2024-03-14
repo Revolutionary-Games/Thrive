@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpkascihholu2"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
-[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/new_fonts/Body-Regular-Small.tres" id="3_tov8j"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_tov8j"]
 [ext_resource type="Script" path="res://src/engine/input/ControllerAxisVisualizer.cs" id="4"]
-[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/new_fonts/Body-Regular-Tiny.tres" id="4_146wt"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_146wt"]
 
 [node name="ControllerAxisVisualizer" type="MarginContainer"]
 offset_right = 273.0

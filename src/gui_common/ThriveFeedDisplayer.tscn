@@ -3,9 +3,9 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/gui_common/ThriveFeedDisplayer.cs" id="3"]
 [ext_resource type="FontFile" uid="uid://cfp1hm2e4a87c" path="res://assets/fonts/NotoSans-Regular.ttf" id="3_qktpx"]
-[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/new_fonts/Body-Regular-Tiny.tres" id="4_fuesv"]
-[ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/new_fonts/Title-SemiBold-Big.tres" id="6_gap0o"]
-[ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/new_fonts/Body-Regular-AlmostSmaller.tres" id="8_l5q4e"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_fuesv"]
+[ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="6_gap0o"]
+[ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="8_l5q4e"]
 
 [node name="ThriveFeedDisplayer" type="VBoxContainer"]
 anchors_preset = 15
