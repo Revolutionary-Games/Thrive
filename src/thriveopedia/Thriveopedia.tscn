@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cvmrcu607sgr"]
+[gd_scene load_steps=27 format=3 uid="uid://bt4wq0ddch84i"]
 
 [ext_resource type="Script" path="res://src/thriveopedia/Thriveopedia.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -146,7 +146,7 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_16l4m"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4nf6r"]
 _data = {
 "Collapse": SubResource("1"),
 "Expand": SubResource("2"),
@@ -342,7 +342,7 @@ size_flags_vertical = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer"]
 libraries = {
-"": SubResource("AnimationLibrary_16l4m")
+"": SubResource("AnimationLibrary_4nf6r")
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]

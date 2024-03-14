@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://da335qi1hhyma"]
+[gd_scene load_steps=27 format=3 uid="uid://bwegwjlcioasf"]
 
 [ext_resource type="Texture2D" uid="uid://myvmqsv45fl2" path="res://assets/textures/gui/bevel/redoButton.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dwsqu6nwbwg5s" path="res://assets/textures/gui/bevel/undoButton.png" id="2"]
@@ -41,7 +41,7 @@ tracks/0/keys = {
 "values": [Color(1, 0.301961, 0.301961, 1), Color(1, 1, 1, 1), Color(1, 0.301961, 0.301961, 1), Color(1, 1, 1, 1), Color(1, 0.301961, 0.301961, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vc36j"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b77ra"]
 _data = {
 "invalidSpeciesNameFlash": SubResource("22")
 }
@@ -153,7 +153,7 @@ caret_blink = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/HBoxContainer/SpeciesName"]
 libraries = {
-"": SubResource("AnimationLibrary_vc36j")
+"": SubResource("AnimationLibrary_b77ra")
 }
 
 [node name="RandomizeButton" type="TextureButton" parent="HBoxContainer/HBoxContainer"]
