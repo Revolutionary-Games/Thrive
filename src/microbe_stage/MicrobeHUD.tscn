@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://b1ucm37efll76" path="res://src/microbe_stage/MicrobeCheatMenu.tscn" id="55"]
 [ext_resource type="PackedScene" uid="uid://uw3crqw21uu" path="res://src/microbe_stage/gui/HUDMessages.tscn" id="56"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="57"]
-[ext_resource type="PackedScene" path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" id="58"]
+[ext_resource type="PackedScene" uid="uid://br2qdth74t78h" path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" id="58"]
 [ext_resource type="PackedScene" uid="uid://bdwkyuskd3u3r" path="res://src/microbe_stage/HUDBottomBar.tscn" id="59"]
 [ext_resource type="PackedScene" uid="uid://g70pm5ndiqf2" path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" id="60"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessPanel.tscn" id="61"]
@@ -381,9 +381,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.139
 anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = 5.84801
-offset_right = 267.0
+offset_left = 2.0
+offset_top = 5.848
+offset_right = 258.0
 offset_bottom = -50.0
 grow_vertical = 2
 size_flags_horizontal = 0
@@ -401,10 +401,8 @@ ShowAgents = false
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("59")]
 layout_mode = 1
-offset_left = 10.0
-offset_top = -48.0
-offset_right = 455.0
-offset_bottom = -5.0
+offset_top = -46.0
+offset_bottom = -3.0
 ShowCompoundPanelToggles = true
 ShowSuicideButton = true
 ShowProcessesButton = true
