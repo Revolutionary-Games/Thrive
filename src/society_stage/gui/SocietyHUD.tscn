@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://qwg2dluu8ow0" path="res://src/microbe_stage/PausePrompt.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://uw3crqw21uu" path="res://src/microbe_stage/gui/HUDMessages.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://src/society_stage/gui/ResourceDisplayBar.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://duhmbx8qnpcao" path="res://src/society_stage/gui/ResourceDisplayBar.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://myc8kb3pyj03" path="res://assets/textures/gui/bevel/actions/BuildStructure.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://c732snfs7i3xx" path="res://assets/textures/gui/bevel/LargeTwoNormal.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://dcc6nq6ig4etg" path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" id="10"]
@@ -48,6 +48,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2")
 script = ExtResource("12")
@@ -95,10 +97,11 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="HUDBottomBar" parent="." instance=ExtResource("16")]
-layout_mode = 0
-anchors_preset = 0
-offset_top = -43.0
-offset_bottom = -8.0
+layout_mode = 1
+offset_left = 0.0
+offset_top = -35.0
+offset_right = 445.0
+offset_bottom = 0.0
 ShowCompoundPanelToggles = false
 ShowSuicideButton = false
 ShowProcessesButton = false
@@ -159,6 +162,8 @@ visible = false
 [node name="HUDMessages" parent="." instance=ExtResource("6")]
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 270.0
 offset_top = 90.0
 offset_right = -270.0
