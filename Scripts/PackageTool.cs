@@ -128,7 +128,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
         }
 
-        thriveVersion = AssemblyInfoReader.ReadVersionFromAssemblyInfo(true);
+        thriveVersion = AssemblyInfoReader.ReadVersionFromCsproj("Thrive.csproj", true);
     }
 
     protected override IReadOnlyCollection<PackagePlatform> ValidPlatforms => ThrivePlatforms;
