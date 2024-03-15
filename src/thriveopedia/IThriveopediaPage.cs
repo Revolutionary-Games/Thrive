@@ -30,10 +30,10 @@ public interface IThriveopediaPage
 
     public Node PageNode { get; }
 
-    void Hide();
-    void Show();
+    public void Hide();
+    public void Show();
 
-    void OnThriveopediaOpened();
+    public void OnThriveopediaOpened();
 
-    void OnNavigationPanelSizeChanged(bool collapsed);
+    public void OnNavigationPanelSizeChanged(bool collapsed);
 }
