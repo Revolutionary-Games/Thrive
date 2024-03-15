@@ -2,6 +2,9 @@
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Label in the world on a fleet, can be pressed to select it
+/// </summary>
 public partial class FleetNameLabel : Button, IEntityNameLabel
 {
     private string translationTemplate = null!;

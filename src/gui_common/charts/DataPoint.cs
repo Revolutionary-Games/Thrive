@@ -88,9 +88,9 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     public Color MarkerColour { get; set; }
 
     /// <summary>
-    ///   Used to hide marker visual while still keeping it interactable
+    ///   Used to hide marker (when set to <c>false</c>) visual while still keeping it interactable
     /// </summary>
-    public bool Draw { get; set; } = true;
+    public bool DrawMarker { get; set; } = true;
 
     public static bool operator ==(DataPoint? lhs, DataPoint? rhs)
     {
@@ -116,13 +116,13 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     ///   parameters.
     /// </summary>
     public static DataPoint GetDataPoint(double x, double y, MarkerIcon iconType = MarkerIcon.Circle, float size = 7,
-        Color markerColour = default, bool draw = true, Vector2 coordinate = default)
+        Color markerColour = default, bool drawMarker = true, Vector2 coordinate = default)
     {
         if (DataPointCache.Count == 0)
         {
             return new DataPoint(x, y)
             {
-                IconType = iconType, PointSize = size, MarkerColour = markerColour, Draw = draw,
+                IconType = iconType, PointSize = size, MarkerColour = markerColour, DrawMarker = drawMarker,
                 coordinate = coordinate,
             };
         }
@@ -133,7 +133,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         point.IconType = iconType;
         point.PointSize = size;
         point.MarkerColour = markerColour;
-        point.Draw = draw;
+        point.DrawMarker = drawMarker;
         point.coordinate = coordinate;
         point.Visible = true;
         return point;
@@ -171,7 +171,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 
     public override void _Draw()
     {
-        if (!Draw)
+        if (!DrawMarker)
             return;
 
         var vectorSize = new Vector2(PointSize, PointSize);
@@ -276,7 +276,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
             MarkerFillerColour = MarkerFillerColour,
             MarkerFillerHighlightedColour = MarkerFillerHighlightedColour,
             MarkerColour = MarkerColour,
-            Draw = Draw,
+            DrawMarker = DrawMarker,
         };
 
         return result;

@@ -1,6 +1,9 @@
 using System;
 using Godot;
 
+/// <summary>
+///   The top level tabs of the <see cref="MicrobeEditor"/> (and <see cref="EarlyMulticellularEditor"/>)
+/// </summary>
 public partial class MicrobeEditorTabButtons : MarginContainer
 {
     [Export]

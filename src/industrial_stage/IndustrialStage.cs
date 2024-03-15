@@ -1,7 +1,6 @@
 using System;
 using Godot;
 using Newtonsoft.Json;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   The main class handling the industrial stage functions
@@ -138,8 +137,6 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
 
         var city = SpawnHelpers.SpawnCity(location, rootOfDynamicallySpawned, cityScene, playerCity, techWeb);
 
-        var binds = new Array();
-        binds.Add(city);
         city.Connect(PlacedCity.SignalName.OnSelected, Callable.From(() => OpenCityInfo(city)));
 
         return city;

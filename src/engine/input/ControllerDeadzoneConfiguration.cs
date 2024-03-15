@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
+/// <summary>
+///   Popup that has controller deadzone configuration options for the player to use
+/// </summary>
 public partial class ControllerDeadzoneConfiguration : CustomWindow
 {
     [Export]

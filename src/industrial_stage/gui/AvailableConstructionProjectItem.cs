@@ -1,6 +1,9 @@
 using System;
 using Godot;
 
+/// <summary>
+///   A single item listing an available construction project for a city
+/// </summary>
 public partial class AvailableConstructionProjectItem : HBoxContainer
 {
     [Export]

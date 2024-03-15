@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using Godot;
 
+/// <summary>
+///   Shows the game credits by scrolling them up from the bottom of the screen
+/// </summary>
 public partial class CreditsScroll : Control
 {
     private const bool ShowAssociationName = true;

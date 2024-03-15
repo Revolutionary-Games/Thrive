@@ -232,6 +232,7 @@ public partial class ProceduralDataCache : Node
 
     private void CleanOldCacheEntriesIn<TKey, T>(Dictionary<TKey, CacheEntry<T>> entries, float keepTime)
         where T : ICacheableData
+        where TKey : notnull
     {
         if (entries.Count < 1)
             return;
@@ -250,6 +251,7 @@ public partial class ProceduralDataCache : Node
 
     private void ClearCacheData<TKey, T>(Dictionary<TKey, CacheEntry<T>> entries)
         where T : ICacheableData
+        where TKey : notnull
     {
         foreach (var entry in entries)
         {

@@ -32,12 +32,12 @@ public partial class CityScreen : CustomWindow
 
     private PackedScene queueItemScene = null!;
     private PackedScene availableConstructionItemScene = null!;
+
+    private PlacedCity? managedCity;
 #pragma warning restore CA2213
 
     private ChildObjectCache<ICityConstructionProject, AvailableConstructionProjectItem>
         createdConstructionProjectButtons = null!;
-
-    private PlacedCity? managedCity;
 
     private double elapsed = 1;
 

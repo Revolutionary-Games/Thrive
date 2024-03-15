@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   Grabs keyboard navigation focus with specific rules to a node that makes sense in the GUI
+/// </summary>
 public partial class FocusGrabber : Control
 {
     [Export(PropertyHint.None, "Active highest priority grabber gets the focus")]

@@ -44,7 +44,7 @@ public partial class ShowWhenInputTypeMatches : Control
         KeyPromptHelper.IconsChanged -= OnInputTypeChanged;
     }
 
-    private void OnInputTypeChanged(object sender, EventArgs e)
+    private void OnInputTypeChanged(object? sender, EventArgs e)
     {
         CheckVisibility();
     }

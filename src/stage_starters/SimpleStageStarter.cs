@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Stage starter that can simply swap to the scene specified by <see cref="StageToSwitchTo"/> to get there.
+/// </summary>
 public partial class SimpleStageStarter : Node
 {
     [Export]

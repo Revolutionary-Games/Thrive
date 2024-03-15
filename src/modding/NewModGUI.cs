@@ -4,6 +4,9 @@ using Godot;
 using Newtonsoft.Json;
 using Path = System.IO.Path;
 
+/// <summary>
+///   GUI for setting up the basic structure of a mod (when done creates the folder and files for the new mod)
+/// </summary>
 public partial class NewModGUI : Control
 {
     [Export]
@@ -261,7 +264,7 @@ public partial class NewModGUI : Control
         }
         else
         {
-            if (Uri.TryCreate(infoUrl.Text, UriKind.Absolute, out Uri parsed))
+            if (Uri.TryCreate(infoUrl.Text, UriKind.Absolute, out var parsed))
             {
                 editedInfo.InfoUrl = parsed;
             }

@@ -1,6 +1,9 @@
 ﻿using System;
 using Godot;
 
+/// <summary>
+///   Various tests for metaballs
+/// </summary>
 public partial class MetaballTest : Node
 {
 #pragma warning disable CA2213

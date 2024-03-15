@@ -827,8 +827,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     protected virtual void CalculatePlayerReproductionProgress(
-        System.Collections.Generic.Dictionary<Compound, float> gatheredCompounds,
-        System.Collections.Generic.Dictionary<Compound, float> totalNeededCompounds)
+        Dictionary<Compound, float> gatheredCompounds, Dictionary<Compound, float> totalNeededCompounds)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

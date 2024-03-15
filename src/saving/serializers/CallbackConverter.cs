@@ -15,7 +15,7 @@ public class CallbackConverter : JsonConverter
     {
         string type;
         MethodInfo method;
-        object target;
+        object? target;
 
         if (value is MulticastDelegate @delegate)
         {
@@ -40,7 +40,14 @@ public class CallbackConverter : JsonConverter
         serializer.Serialize(writer, type);
 
         writer.WritePropertyName("TargetType");
-        serializer.Serialize(writer, target.GetType().AssemblyQualifiedNameWithoutVersion());
+        if (target != null)
+        {
+            serializer.Serialize(writer, target.GetType().AssemblyQualifiedNameWithoutVersion());
+        }
+        else
+        {
+            writer.WriteNull();
+        }
 
         writer.WritePropertyName("Target");
         serializer.Serialize(writer, target);
@@ -68,6 +75,9 @@ public class CallbackConverter : JsonConverter
                 throw new JsonException("Object to read callback from is null");
 
             type = item["CallbackType"]!.ToObject<string>() ?? throw new JsonException("missing CallbackType");
+
+            // TODO: handling for static methods (when target is null)
+
             targetTypeName = item["TargetType"]!.ToObject<string>() ?? throw new JsonException("missing TargetType");
 
             if (targetTypeName == null)

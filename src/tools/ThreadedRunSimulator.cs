@@ -736,7 +736,7 @@ public class ThreadedRunSimulator
 
         private class ThreadIdComparer : IComparer<Thread>
         {
-            public int Compare(Thread x, Thread y)
+            public int Compare(Thread? x, Thread? y)
             {
                 if (ReferenceEquals(x, y))
                     return 0;

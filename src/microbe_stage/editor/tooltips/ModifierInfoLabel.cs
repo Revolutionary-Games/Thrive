@@ -10,13 +10,14 @@ public partial class ModifierInfoLabel : HBoxContainer
     private Label? nameLabel;
     private Label? valueLabel;
     private TextureRect? icon;
+
+    private Texture2D? iconTexture;
 #pragma warning restore CA2213
 
     private string displayName = string.Empty;
     private string modifierValue = string.Empty;
     private Color modifierNameColor = Colors.White;
     private Color modifierValueColor = Colors.White;
-    private Texture2D? iconTexture;
 
     private bool showValue = true;
 

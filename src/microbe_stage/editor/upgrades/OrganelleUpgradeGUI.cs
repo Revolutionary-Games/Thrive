@@ -2,6 +2,10 @@
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   Upgrade GUI that can be opened for organelle. This manages loading custom elements for different organelle types
+///   and provides the base upgrade selection.
+/// </summary>
 public partial class OrganelleUpgradeGUI : Control
 {
     [Export]

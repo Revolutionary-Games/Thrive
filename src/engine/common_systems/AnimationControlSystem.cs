@@ -88,7 +88,7 @@ public sealed class AnimationControlSystem : AEntitySetSystem<float>
         if (childCount == 1)
         {
             // There might be one level of indirection
-            if (!playerPath!.StartsWith("Node3D"))
+            if (!playerPath.StartsWith("Node3D"))
             {
                 // TODO: how to suppress errors if this is wrong
                 var attempt = spatial.GetChild(0).GetNode<AnimationPlayer>(playerPath);

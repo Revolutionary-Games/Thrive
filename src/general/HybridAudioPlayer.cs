@@ -14,10 +14,12 @@ public partial class HybridAudioPlayer : Node3D
 #pragma warning disable CA2213
     private AudioStreamPlayer3D? player3D;
     private AudioStreamPlayer? playerNonPositional;
+
+    private AudioStream? stream;
 #pragma warning restore CA2213
 
     private bool positional;
-    private AudioStream? stream;
+
     private float volume = 1.0f;
     private string bus = "SFX";
 

@@ -29,7 +29,7 @@ public partial class Invoke : Node
     public override void _Process(double delta)
     {
         // Move the queued invokes to a temp list
-        while (nextFrameInvokes.TryTake(out Action tmp))
+        while (nextFrameInvokes.TryTake(out var tmp))
         {
             tempActionList.Add(tmp);
         }
@@ -52,7 +52,7 @@ public partial class Invoke : Node
         tempActionList.Clear();
 
         // And then run the actions that are allowed to run as soon as possible
-        while (queuedInvokes.TryTake(out Action action))
+        while (queuedInvokes.TryTake(out var action))
         {
             try
             {

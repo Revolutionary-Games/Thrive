@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Game over screen for the player when they are extinct
+/// </summary>
 public partial class ExtinctionBox : CustomWindow
 {
     [Export]

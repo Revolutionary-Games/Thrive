@@ -2,6 +2,10 @@ using System;
 using System.Text.RegularExpressions;
 using Godot;
 
+/// <summary>
+///   The common bottom left buttons for the main "layout" of the body type editor.
+///   Not to be confused with <see cref="EditorCommonBottomLeftButtons"/>
+/// </summary>
 public partial class EditorComponentBottomLeftButtons : MarginContainer
 {
     [Export]

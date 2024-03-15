@@ -368,14 +368,14 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         bool reproductionStageComplete =
             ProcessBaseReproductionCost(baseReproduction.MissingCompoundsForBaseReproduction, compounds,
                 ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
-                consumeInReverseOrder, compoundWorkData.Value);
+                consumeInReverseOrder, compoundWorkData.Value!);
 
         // For this stage and all others below, reproductionStageComplete tracks whether the previous reproduction
         // stage completed, i.e. whether we should proceed with the next stage
         if (reproductionStageComplete)
         {
             // Organelles that are ready to split
-            var organellesToAdd = organellesToSplit.Value;
+            var organellesToAdd = organellesToSplit.Value!;
 
             // Grow all the organelles, except the unique organelles which are given compounds last
             // Manual loops are used here as profiling showed the reproduction system enumerator allocations caused
@@ -523,8 +523,8 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         // for this organelle
         var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(q, r), 0, organelle.Upgrades);
 
-        var workData1 = hexWorkData.Value;
-        var workData2 = hexWorkData2.Value;
+        var workData1 = hexWorkData.Value!;
+        var workData2 = hexWorkData2.Value!;
 
         // Spiral search for space for the organelle
         int radius = 1;
@@ -614,8 +614,8 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
             ref var cellProperties = ref entity.Get<CellProperties>();
 
-            var workData1 = hexWorkData.Value;
-            var workData2 = hexWorkData2.Value;
+            var workData1 = hexWorkData.Value!;
+            var workData2 = hexWorkData2.Value!;
 
             // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
             organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),

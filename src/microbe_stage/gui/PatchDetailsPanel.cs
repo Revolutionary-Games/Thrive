@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using Godot;
 
+/// <summary>
+///   Shows details about a <see cref="Patch"/> in the GUI
+/// </summary>
 public partial class PatchDetailsPanel : PanelContainer
 {
     [Export]

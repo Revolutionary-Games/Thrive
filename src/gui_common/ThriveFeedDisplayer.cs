@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 
+/// <summary>
+///   Displays a Thrive news feed that is fetched from the internet
+/// </summary>
 public partial class ThriveFeedDisplayer : VBoxContainer
 {
     [Export]
@@ -76,12 +79,6 @@ public partial class ThriveFeedDisplayer : VBoxContainer
             while (newsEnumerator.MoveNext())
             {
                 var feedItem = newsEnumerator.Current;
-
-                if (feedItem == null)
-                {
-                    GD.PrintErr("Feed item enumerator item is unexpectedly null");
-                    continue;
-                }
 
                 CreateFeedItemGUI(feedItem);
 

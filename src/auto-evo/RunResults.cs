@@ -101,7 +101,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     /// <param name="species">The species to check</param>
     public void RemoveMigrationsForSplitPatches(Species species)
     {
-        SpeciesResult result;
+        SpeciesResult? result;
 
         lock (results)
         {

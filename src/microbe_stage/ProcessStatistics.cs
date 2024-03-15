@@ -274,9 +274,9 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         precomputedEnvironmentInputs = null;
     }
 
-    public bool Equals(IProcessDisplayInfo other)
+    public bool Equals(IProcessDisplayInfo? other)
     {
-        return Equals((object)other);
+        return Equals((object?)other);
     }
 
     public override bool Equals(object? obj)
@@ -369,9 +369,9 @@ public class AverageProcessStatistics : IProcessDisplayInfo
     public float CurrentSpeed { get; set; }
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
 
-    public bool Equals(IProcessDisplayInfo other)
+    public bool Equals(IProcessDisplayInfo? other)
     {
-        return Equals((object)other);
+        return Equals((object?)other);
     }
 
     public override bool Equals(object? obj)

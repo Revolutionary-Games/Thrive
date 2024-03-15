@@ -13,6 +13,7 @@ public static class DictionaryUtils
     /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
     /// <typeparam name="T">Type of dictionary items.</typeparam>
     public static T? Random<TKey, T>(this Dictionary<TKey, T>? items, Random random)
+        where TKey : notnull
     {
         if (items == null || items.Count < 1)
             return default;
@@ -30,6 +31,7 @@ public static class DictionaryUtils
     /// <returns>The sum.</returns>
     /// <param name="items">Dictionary to sum things in</param>
     public static float SumValues<T>(this Dictionary<T, float> items)
+        where T : notnull
     {
         float sum = 0.0f;
 
@@ -49,6 +51,7 @@ public static class DictionaryUtils
     /// <param name="items">Items to add things to. As well as the result</param>
     /// <param name="valuesToAdd">Values to add to items.</param>
     public static void Merge<T>(this Dictionary<T, float> items, IReadOnlyDictionary<T, float> valuesToAdd)
+        where T : notnull
     {
         foreach (var entry in valuesToAdd)
         {
@@ -58,6 +61,7 @@ public static class DictionaryUtils
     }
 
     public static void Merge<T>(this Dictionary<T, float> items, Dictionary<T, float> valuesToAdd)
+        where T : notnull
     {
         foreach (var entry in valuesToAdd)
         {
@@ -71,6 +75,7 @@ public static class DictionaryUtils
     /// </summary>
     public static IReadOnlyDictionary<T, int> AsMerged<T>(this IReadOnlyDictionary<T, int> items1,
         IReadOnlyDictionary<T, int> items2)
+        where T : notnull
     {
         var result = items1.CloneShallow();
 
@@ -90,6 +95,7 @@ public static class DictionaryUtils
     /// <param name="dictionary">Dictionary to divide the values in.</param>
     /// <param name="divisor">The divisor to use.</param>
     public static void DivideBy<T>(this Dictionary<T, float> dictionary, float divisor)
+        where T : notnull
     {
         // Looks like there isn't really a better way than having to make a copy of the keys
         foreach (var key in dictionary.Keys.ToList())
@@ -99,6 +105,7 @@ public static class DictionaryUtils
     }
 
     public static Dictionary<TKey, TValue> CloneShallow<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> dictionary)
+        where TKey : notnull
     {
         var result = new Dictionary<TKey, TValue>(dictionary.Count);
 
@@ -111,6 +118,7 @@ public static class DictionaryUtils
     }
 
     public static Dictionary<TKey, TValue> CloneShallow<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)
+        where TKey : notnull
     {
         var result = new Dictionary<TKey, TValue>(dictionary.Count);
 

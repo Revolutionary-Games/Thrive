@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   The primary art gallery class
+/// </summary>
 public partial class GalleryViewer : CustomWindow
 {
     public const string ALL_CATEGORY = "All";
@@ -41,6 +44,8 @@ public partial class GalleryViewer : CustomWindow
     private OptionButton assetsCategoryDropdown = null!;
     private SlideScreen slideScreen = null!;
     private Button slideshowButton = null!;
+
+    private GalleryCard? lastSelected;
 #pragma warning restore CA2213
 
     private bool readyCalled;
@@ -67,8 +72,6 @@ public partial class GalleryViewer : CustomWindow
     private int activeAudioPlayers;
 
     private bool initialized;
-
-    private GalleryCard? lastSelected;
 
     /// <summary>
     ///   List of gallery cards based on the current gallery and asset category.
@@ -411,7 +414,7 @@ public partial class GalleryViewer : CustomWindow
                 continue;
             }
 
-            if (gallery.AssetCategories.TryGetValue(entry.Value, out AssetCategory category))
+            if (gallery.AssetCategories.TryGetValue(entry.Value, out var category))
                 assetsCategoryDropdown.AddItem(category.Name, entry.Key);
         }
 
@@ -428,7 +431,7 @@ public partial class GalleryViewer : CustomWindow
         if (index == previouslySelectedAssetCategoryIndex || string.IsNullOrEmpty(currentGallery))
             return;
 
-        if (galleries[currentGallery!].TryGetValue(index, out string category))
+        if (galleries[currentGallery!].TryGetValue(index, out var category))
         {
             UpdateGalleryTile(category);
             previouslySelectedAssetCategoryIndex = index;
@@ -447,10 +450,13 @@ public partial class GalleryViewer : CustomWindow
         slideScreen.OpenModal();
     }
 
-    private void OnPlaybackStarted(object sender, EventArgs args)
+    private void OnPlaybackStarted(object? sender, EventArgs args)
     {
         if (CurrentCards == null)
             return;
+
+        if (sender == null)
+            throw new ArgumentException("Invalid event sender");
 
         // Assume sender is of playback type, as it should be
         var playback = (IGalleryCardPlayback)sender;
@@ -460,7 +466,7 @@ public partial class GalleryViewer : CustomWindow
         activeAudioPlayers++;
     }
 
-    private void OnPlaybackStopped(object sender, EventArgs args)
+    private void OnPlaybackStopped(object? sender, EventArgs args)
     {
         activeAudioPlayers--;
 

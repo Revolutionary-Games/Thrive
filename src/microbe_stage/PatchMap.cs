@@ -112,17 +112,10 @@ public class PatchMap : ISaveLoadable
         // Verify all adjacent patches are valid
         foreach (var entry in Patches)
         {
-            if (entry.Value == null)
-                return false;
-
-            if (!incomingLinks.ContainsKey(entry.Value))
-                incomingLinks[entry.Value] = false;
+            incomingLinks.TryAdd(entry.Value, false);
 
             foreach (var neighbour in entry.Value.Adjacent)
             {
-                if (neighbour == null)
-                    return false;
-
                 if (!ContainsPatch(neighbour))
                 {
                     GD.PrintErr("Patch ", entry.Value.Name, " links to non-existing patch: ",

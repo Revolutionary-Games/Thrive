@@ -5,7 +5,9 @@ using Godot;
 /// </summary>
 public partial class ChromaticFilter : TextureRect
 {
+#pragma warning disable CA2213
     private ShaderMaterial? material;
+#pragma warning restore CA2213
 
     public override void _EnterTree()
     {

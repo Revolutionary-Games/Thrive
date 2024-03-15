@@ -1,6 +1,9 @@
 ﻿using System;
 using Godot;
 
+/// <summary>
+///   PhotoStudio related class for displaying cell hexes for photographing
+/// </summary>
 public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
 {
     private float radius;

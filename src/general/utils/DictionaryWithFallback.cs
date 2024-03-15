@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -151,7 +152,7 @@ public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>, I
         return primary.Remove(key);
     }
 
-    public bool TryGetValue(TKey key, out TValue value)
+    public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value)
     {
         if (primary.TryGetValue(key, out value))
             return true;
@@ -166,8 +167,7 @@ public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>, I
     private void ResetPrimaryIfMatchesFallback(TKey key)
     {
         // TODO: this method shows up in profiling as allocating memory, but I cannot figure out how -hhyyrylainen
-        if (primary.TryGetValue(key, out var primaryValue) && fallback.TryGetValue(key, out var fallbackValue) &&
-            primaryValue is not null)
+        if (primary.TryGetValue(key, out var primaryValue) && fallback.TryGetValue(key, out var fallbackValue))
         {
             if (primaryValue.Equals(fallbackValue))
             {

@@ -128,7 +128,7 @@ public partial class EvolutionaryTree : Control
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     <see cref="Control.RectScale"/> is not used here so that we know the drawn parts.
+    ///     <see cref="Control.Scale"/> is not used here so that we know the drawn parts.
     ///   </para>
     /// </remarks>
     private float sizeFactor = 1.0f;

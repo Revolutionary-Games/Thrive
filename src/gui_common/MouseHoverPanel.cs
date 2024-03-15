@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -43,7 +44,7 @@ public partial class MouseHoverPanel : PanelContainer
         MouseHoverCategory? firstVisibleCategory = null;
 
         // TODO: avoid the enumerator allocation here
-        foreach (MouseHoverCategory category in categoryControls)
+        foreach (var category in categoryControls.OfType<MouseHoverCategory>())
         {
             var entriesCount = category.TotalEntriesCount;
             category.Visible = entriesCount > 0;
@@ -71,7 +72,7 @@ public partial class MouseHoverPanel : PanelContainer
 
     public void MoveCategory(string internalName, int position)
     {
-        if (!categories.TryGetValue(internalName, out MouseHoverCategory categoryControl))
+        if (!categories.TryGetValue(internalName, out var categoryControl))
             throw new InvalidOperationException("Category doesn't exist for \"" + internalName + "\"");
 
         categoriesContainer.MoveChild(categoryControl, position);
@@ -90,7 +91,7 @@ public partial class MouseHoverPanel : PanelContainer
     /// <exception cref="System.InvalidOperationException">If the given category doesn't exist.</exception>
     public InspectedEntityLabel AddItem(string category, string text, Texture2D? icon = null)
     {
-        if (!categories.TryGetValue(category, out MouseHoverCategory categoryControl))
+        if (!categories.TryGetValue(category, out var categoryControl))
             throw new InvalidOperationException("Can't add item, category doesn't exist for \"" + category + "\"");
 
         var label = new InspectedEntityLabel(text, icon);
@@ -112,7 +113,7 @@ public partial class MouseHoverPanel : PanelContainer
                 categoryControl.Value.ClearEntries();
             }
         }
-        else if (categories.TryGetValue(category, out MouseHoverCategory categoryControl))
+        else if (categories.TryGetValue(category, out var categoryControl))
         {
             categoryControl.ClearEntries();
         }
@@ -130,6 +131,9 @@ public partial class MouseHoverPanel : PanelContainer
         }
     }
 
+    /// <summary>
+    ///   Category of items in the hover panel, each category has a title and one or more items in it
+    /// </summary>
     public partial class MouseHoverCategory : VBoxContainer
     {
 #pragma warning disable CA2213 // Disposable fields should be disposed

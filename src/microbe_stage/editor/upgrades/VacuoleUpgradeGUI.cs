@@ -2,6 +2,9 @@
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   Upgrade GUI for the vacuole that allows specializing it
+/// </summary>
 public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using Godot;
 
+/// <summary>
+///   A radial type menu (https://en.wikipedia.org/wiki/Pie_menu) for selecting from a given set of items. Note that
+///   for easier use of this class, use <see cref="RadialPopup"/>.
+/// </summary>
 public partial class RadialMenu : CenterContainer
 {
     [Export]

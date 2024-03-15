@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Shows the current patch name on screen briefly before fading out
+/// </summary>
 public partial class PatchNameOverlay : PanelContainer
 {
     [Export]

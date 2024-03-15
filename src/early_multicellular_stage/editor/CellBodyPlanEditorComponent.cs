@@ -943,7 +943,7 @@ public partial class CellBodyPlanEditorComponent :
         OnCurrentActionChanged();
 
         // After clearing the selected cell, emit a signal to let the editor know
-        EmitSignal(SignalName.OnCellTypeToEditSelected, new Variant(), false);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant), false);
     }
 
     private void OnCellsChanged()

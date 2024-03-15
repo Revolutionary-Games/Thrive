@@ -137,7 +137,7 @@ public partial class InventorySlot : Button
     public override Variant _GetDragData(Vector2 position)
     {
         if (Item == null || Locked)
-            return new Variant();
+            return default(Variant);
 
         SetDragPreview(CreateDragPreviewForItem(Item));
 

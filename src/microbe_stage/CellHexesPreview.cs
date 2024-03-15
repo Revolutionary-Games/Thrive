@@ -1,4 +1,7 @@
-﻿public partial class CellHexesPreview : PhotographablePreview
+﻿/// <summary>
+///   Shows a visualization of a cell's hexes in the GUI
+/// </summary>
+public partial class CellHexesPreview : PhotographablePreview
 {
     private MicrobeSpecies? microbeSpecies;
 

@@ -177,8 +177,9 @@ public partial class GUICommon : Node
         tween.TweenProperty(control, modulateAlphaReference, 1, duration).SetDelay(delay);
     }
 
-    public void ModulateFadeOut(Control control, double duration, double delay = 0, Tween.TransitionType transitionType =
-        Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In, bool hideOnFinished = true)
+    public void ModulateFadeOut(Control control, double duration, double delay = 0,
+        Tween.TransitionType transitionType =
+            Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In, bool hideOnFinished = true)
     {
         if (!control.Visible)
             return;
@@ -259,5 +260,16 @@ public partial class GUICommon : Node
     internal void ReportViewportRect(Rect2 size)
     {
         ViewportRect = size;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            valueReference.Dispose();
+            modulateAlphaReference.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 }

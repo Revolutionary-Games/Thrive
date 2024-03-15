@@ -17,12 +17,13 @@ public partial class PhysicsTest : Node
     [Export]
     public double CameraZoomSpeed = 11.4f;
 
-    /// <summary>
-    ///   Sets MultiMesh position data with a single array assignment. Faster when all of the data has changed, but
-    ///   slower when a lot of the data has not changed.
-    /// </summary>
-    [Export]
-    public bool UseSingleVectorMultiMeshUpdate;
+    // This option is deprecated in Godot
+    // /// <summary>
+    // ///   Sets MultiMesh position data with a single array assignment. Faster when all of the data has changed, but
+    // ///   slower when a lot of the data has not changed.
+    // /// </summary>
+    // [Export]
+    // public bool UseSingleVectorMultiMeshUpdate;
 
     [Export]
     public bool CreateMicrobeAsSpheres;
@@ -213,28 +214,11 @@ public partial class PhysicsTest : Node
 
             var count = sphereBodies.Count;
 
-            if (!UseSingleVectorMultiMeshUpdate)
+            // There used to be a variant of this that used sphereMultiMesh.TransformArray that was faster in Godot 3
+            // when all items needed to be updated
+            for (int i = 0; i < count; ++i)
             {
-                for (int i = 0; i < count; ++i)
-                {
-                    sphereMultiMesh.SetInstanceTransform(i, physicalWorld.ReadBodyTransform(sphereBodies[i]));
-                }
-            }
-            else
-            {
-                var transformData = new Vector3[count * 4];
-
-                for (int i = 0; i < count; ++i)
-                {
-                    var transform = physicalWorld.ReadBodyTransform(sphereBodies[i]);
-
-                    transformData[i * 4] = transform[0];
-                    transformData[i * 4 + 1] = transform[1];
-                    transformData[i * 4 + 2] = transform[2];
-                    transformData[i * 4 + 3] = transform[3];
-                }
-
-                sphereMultiMesh.TransformArray = transformData;
+                sphereMultiMesh.SetInstanceTransform(i, physicalWorld.ReadBodyTransform(sphereBodies[i]));
             }
 
             UpdateBodyCountGUI(count);
@@ -377,7 +361,8 @@ public partial class PhysicsTest : Node
         return newShapeOwnerId;
     }
 
-    private static uint CreateNewOwnerId(CollisionObject3D oldParent, CollisionObject3D newParent, Transform3D transform,
+    private static uint CreateNewOwnerId(CollisionObject3D oldParent, CollisionObject3D newParent,
+        Transform3D transform,
         uint oldShapeOwnerId)
     {
         var shape = oldParent.ShapeOwnerGetShape(oldShapeOwnerId, 0);
@@ -714,7 +699,8 @@ public partial class PhysicsTest : Node
             var shape = PhysicsShape.CreateMicrobeShape(testMicrobeOrganellePositions!, 1000, false,
                 CreateMicrobeAsSpheres);
 
-            var body = physicalWorld.CreateMovingBodyWithAxisLock(shape, location, Quaternion.Identity, Vector3.Up, true);
+            var body = physicalWorld.CreateMovingBodyWithAxisLock(shape, location, Quaternion.Identity, Vector3.Up,
+                true);
 
             physicalWorld.SetDamping(body, MicrobeDamping);
 

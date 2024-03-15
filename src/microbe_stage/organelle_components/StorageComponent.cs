@@ -40,7 +40,7 @@ public class StorageComponentUpgrades : IComponentSpecificUpgrades
 
     public Compound? SpecializedFor { get; set; }
 
-    public bool Equals(IComponentSpecificUpgrades other)
+    public bool Equals(IComponentSpecificUpgrades? other)
     {
         if (other is not StorageComponentUpgrades otherVacuole)
             return false;

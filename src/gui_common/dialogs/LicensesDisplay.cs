@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Godot;
 
+/// <summary>
+///   Shows the game licenses
+/// </summary>
 // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 // [Tool]
 public partial class LicensesDisplay : CustomWindow

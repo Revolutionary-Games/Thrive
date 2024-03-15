@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   A dialog that has a checkbox for the user to select to never get this type of popup again
+/// </summary>
 public partial class PermanentlyDismissibleDialog : CustomConfirmationDialog
 {
     [Export]

@@ -4,6 +4,9 @@ using System.Linq;
 using Godot;
 using Path = System.IO.Path;
 
+/// <summary>
+///   GUI for allowing the player to upload a mod
+/// </summary>
 public partial class ModUploader : Control
 {
     [Export]

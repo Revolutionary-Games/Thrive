@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
 
 /// <summary>
 ///   A custom <see cref="Control"/> that displays a list of options. Opening and closing can be animated.
@@ -28,7 +29,7 @@ public partial class CustomPopupMenu : TopLevelContainer
 
     public void RemapDynamicChildren()
     {
-        foreach (Control child in GetChildren())
+        foreach (var child in GetChildren().OfType<Control>())
         {
             if (child.Equals(panelContainer))
                 continue;

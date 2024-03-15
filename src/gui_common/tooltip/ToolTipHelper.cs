@@ -220,7 +220,8 @@ public static class ToolTipHelper
 
     private static ToolTipCallbackData GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
     {
-        return ToolTipCallbacks.Find(c => c.ToolTipable == control && c.ToolTip == tooltip);
+        return ToolTipCallbacks.Find(c => c.ToolTipable == control && c.ToolTip == tooltip) ??
+            throw new ArgumentException("No tooltip callback data exists for the given control and tooltip");
     }
 
     private static IEnumerable<ToolTipCallbackData> GetAllToolTipsForControl(Control control)

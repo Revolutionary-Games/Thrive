@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Shows various details a bout a species for the player
+/// </summary>
 public partial class SpeciesDetailsPanel : MarginContainer
 {
     [Export]

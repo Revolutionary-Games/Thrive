@@ -17,13 +17,13 @@ public partial class InputGroupList : VBoxContainer
 
     private IEnumerable<InputGroupItem>? activeInputGroupList;
 
-    private InputEventItem? latestDialogCaller;
-    private InputEventItem? latestDialogConflict;
-    private InputEvent? latestDialogNewEvent;
-
 #pragma warning disable CA2213
     private CustomConfirmationDialog conflictDialog = null!;
     private CustomConfirmationDialog resetInputsDialog = null!;
+
+    private InputEventItem? latestDialogCaller;
+    private InputEventItem? latestDialogConflict;
+    private InputEvent? latestDialogNewEvent;
 #pragma warning restore CA2213
 
     private FocusFlowDynamicChildrenHelper focusHelper = null!;
@@ -97,7 +97,8 @@ public partial class InputGroupList : VBoxContainer
             return Settings.GetDefaultControls();
 
         return new InputDataList(ActiveInputGroupList.SelectMany(p => p.Actions)
-            .ToDictionary(p => p.InputName, p => p.Inputs.Select(x => x.AssociatedEvent).ToList()));
+            .ToDictionary(p => p.InputName,
+                p => p.Inputs.Where(x => x.AssociatedEvent != null).Select(x => x.AssociatedEvent!).ToList()));
     }
 
     /// <summary>

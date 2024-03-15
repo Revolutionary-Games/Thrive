@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -246,7 +247,7 @@ public partial class ToolTipManager : CanvasLayer
             return;
         }
 
-        tooltips[retrievedGroup]?.Remove(tooltip);
+        tooltips[retrievedGroup].Remove(tooltip);
     }
 
     /// <summary>
@@ -263,7 +264,7 @@ public partial class ToolTipManager : CanvasLayer
 
         var tooltipList = tooltips[groupNode];
 
-        if (tooltipList == null || tooltipList.Count <= 0)
+        if (tooltipList.Count <= 0)
             return;
 
         var intermediateList = new List<ICustomToolTip>(tooltipList);
@@ -451,11 +452,11 @@ public partial class ToolTipManager : CanvasLayer
     /// </summary>
     private void FetchToolTips()
     {
-        foreach (Control group in groupHolder.GetChildren())
+        foreach (var group in groupHolder.GetChildren().OfType<Control>())
         {
             var collectedTooltips = new List<ICustomToolTip>();
 
-            foreach (ICustomToolTip tooltip in group.GetChildren())
+            foreach (var tooltip in group.GetChildren().OfType<ICustomToolTip>())
             {
                 tooltip.ToolTipNode.Visible = false;
                 collectedTooltips.Add(tooltip);

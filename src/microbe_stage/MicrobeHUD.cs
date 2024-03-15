@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Components;
 using DefaultEcs;
 using Godot;
@@ -231,7 +232,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
+        foreach (var button in fossilisationButtonLayer.GetChildren().OfType<FossilisationButton>())
         {
             var species = button.AttachedEntity.Get<SpeciesMember>().Species;
             var alreadyFossilised =

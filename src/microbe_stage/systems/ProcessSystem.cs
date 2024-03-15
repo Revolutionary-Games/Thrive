@@ -539,7 +539,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         bag.ClampNegativeCompoundAmounts();
         bag.FixNaNCompounds();
 
-        processStatistics?.RemoveUnused(temporaryWorkData.Value);
+        processStatistics?.RemoveUnused(temporaryWorkData.Value!);
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,

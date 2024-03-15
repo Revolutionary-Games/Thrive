@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   Popup menu when right clicking a metaball in the editor
+/// </summary>
 public partial class MetaballPopupMenu : HexPopupMenu
 {
     private List<MulticellularMetaball>? selectedMetaballs;

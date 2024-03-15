@@ -55,7 +55,7 @@ public partial class PlacedSpaceStructure : Node3D, IEntityWithNameLabel
     }
 
     [JsonIgnore]
-    public string? StructureExtraDescription
+    public string StructureExtraDescription
     {
         get
         {

@@ -449,6 +449,13 @@ public partial class ModLoader : Node
         {
             var mod = (IMod?)Activator.CreateInstance(type);
 
+            if (mod == null)
+            {
+                GD.PrintErr("Mod's (", name, ") class instance creation resulted in null");
+                modErrors.Add(Localization.Translate("MOD_ASSEMBLY_CLASS_CREATION_FAILED").FormatSafe(name));
+                return false;
+            }
+
             if (!mod.Initialize(modInterface!, info.Info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");

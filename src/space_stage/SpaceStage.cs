@@ -38,6 +38,8 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     private PackedScene structureScene = null!;
 
     private Node3D? structureToPlaceGhost;
+
+    private SpaceFleet? structurePlacingFleet;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -49,7 +51,6 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     private SpaceStructureSystem structureSystem = null!;
 
     private SpaceStructureDefinition? structureTypeToPlace;
-    private SpaceFleet? structurePlacingFleet;
 
     [JsonProperty]
     private bool zoomingOutFromFleet;

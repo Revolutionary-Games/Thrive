@@ -139,12 +139,12 @@ public partial class LineChart : VBoxContainer
     private LineChart? childChart;
 
     private LabelSettings legendLabelSettings = null!;
-#pragma warning restore CA2213
 
     /// <summary>
     ///   Useful for any operations in the child chart involving the parent chart.
     /// </summary>
     private LineChart? parentChart;
+#pragma warning restore CA2213
 
     private string xAxisName = string.Empty;
     private string yAxisName = string.Empty;
@@ -599,7 +599,7 @@ public partial class LineChart : VBoxContainer
         // Update the legend
         DataSetsLegend?.OnDataSetVisibilityChange(visible, name);
 
-        if (StoredDatasetsVisibilityStatus.TryGetValue(ChartName, out Dictionary<string, bool> value))
+        if (StoredDatasetsVisibilityStatus.TryGetValue(ChartName, out var value))
         {
             value[name] = visible;
         }
@@ -707,7 +707,7 @@ public partial class LineChart : VBoxContainer
     /// </summary>
     private void DrawOrdinateLines()
     {
-        foreach (Control tick in verticalLabelsContainer.GetChildren())
+        foreach (var tick in verticalLabelsContainer.GetChildren().OfType<Control>())
         {
             drawArea.DrawTextureRect(hLineTexture,
                 new Rect2(new Vector2(0, tick.Position.Y + tick.Size.Y * 0.5f), drawArea.Size.X, 1), false,
@@ -1191,6 +1191,9 @@ public partial class LineChart : VBoxContainer
 
     // Subclasses
 
+    /// <summary>
+    ///   Shows an icon on a dataset legend
+    /// </summary>
     public partial class DatasetsIconLegend : RefCounted, IDataSetsLegend
     {
         protected readonly LineChart chart;
@@ -1304,9 +1307,14 @@ public partial class LineChart : VBoxContainer
         }
     }
 
+    /// <summary>
+    ///   Shows a dropdown of selectable items to show in dataset
+    /// </summary>
     public partial class DataSetsDropdownLegend : RefCounted, IDataSetsLegend
     {
+#pragma warning disable CA2213
         protected LineChart chart;
+#pragma warning restore CA2213
 
         public DataSetsDropdownLegend(LineChart chart)
         {
@@ -1395,6 +1403,9 @@ public partial class LineChart : VBoxContainer
         }
     }
 
+    /// <summary>
+    ///   Icon for a dataset
+    /// </summary>
     public partial class DatasetIcon : TextureButton
     {
         public readonly string DataName;

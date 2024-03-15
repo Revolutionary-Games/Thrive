@@ -161,7 +161,7 @@ public partial class TweakedColourPicker : ColorPicker
     ///   Hide Godot property PresetsEnabled to avoid unexpected changes
     ///   which may cause the hidden native buttons reappear.
     /// </summary>
-    private new bool PresetsEnabled { get => PresetsEditable; set => PresetsEditable = value; }
+    private bool PresetsEnabled { get => PresetsEditable; set => PresetsEditable = value; }
 
     public override void _Ready()
     {
@@ -310,6 +310,12 @@ public partial class TweakedColourPicker : ColorPicker
     /// <param name="colour">Colour of the preset to be added</param>
     public new void AddPreset(Color colour)
     {
+        if (groupStorage == null)
+        {
+            GD.PrintErr("Group storage no initialized, cannot add preset");
+            return;
+        }
+
         // Broadcast to all group numbers.
         groupStorage.AddPreset(colour);
     }
@@ -321,6 +327,12 @@ public partial class TweakedColourPicker : ColorPicker
     /// <param name="colour">Colour of the preset to be removed</param>
     public new void ErasePreset(Color colour)
     {
+        if (groupStorage == null)
+        {
+            GD.PrintErr("Group storage no initialized, cannot remove a preset");
+            return;
+        }
+
         groupStorage.ErasePreset(colour);
     }
 

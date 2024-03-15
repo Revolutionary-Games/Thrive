@@ -2,6 +2,9 @@
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Editor for the behaviour of a (microbe) species
+/// </summary>
 [DeserializedCallbackTarget]
 [IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn", UsesEarlyResolve = false)]

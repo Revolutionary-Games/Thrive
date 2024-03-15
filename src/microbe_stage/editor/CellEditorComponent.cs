@@ -1541,7 +1541,7 @@ public partial class CellEditorComponent :
             var organelle = organelles[i];
             var oldOrganelle = organellePositions.FirstOrDefault(p => p.Hex == hex);
             var occupied = false;
-            if (oldOrganelle != default && organelle != null)
+            if (oldOrganelle != default)
             {
                 if (organelle.Definition.MPCost > oldOrganelle.Organelle?.Definition.MPCost)
                 {

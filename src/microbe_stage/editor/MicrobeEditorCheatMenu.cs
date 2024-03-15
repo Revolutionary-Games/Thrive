@@ -1,5 +1,8 @@
 using Godot;
 
+/// <summary>
+///   Cheat menu for the <see cref="MicrobeEditor"/>
+/// </summary>
 public partial class MicrobeEditorCheatMenu : CheatMenu
 {
     [Export]

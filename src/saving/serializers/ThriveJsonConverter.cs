@@ -562,7 +562,12 @@ public abstract class BaseThriveConverter : JsonConverter
                 if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
                         out var data))
                 {
-                    ApplyOnlyChildProperties(value, field.GetValue(instance), serializer, data!);
+                    var target = field.GetValue(instance);
+
+                    if (target == null)
+                        throw new JsonException($"Cannot copy child properties to a null value of field: {field.Name}");
+
+                    ApplyOnlyChildProperties(value, target, serializer, data!);
                 }
                 else
                 {
@@ -587,7 +592,15 @@ public abstract class BaseThriveConverter : JsonConverter
                 }
                 else
                 {
-                    ApplyOnlyChildProperties(value, property.GetValue(instance), serializer, data!);
+                    var target = property.GetValue(instance);
+
+                    if (target == null)
+                    {
+                        throw new JsonException(
+                            $"Cannot copy child properties to a null value of property: {property.Name}");
+                    }
+
+                    ApplyOnlyChildProperties(value, target, serializer, data!);
                 }
             }
         }
@@ -724,7 +737,7 @@ public abstract class BaseThriveConverter : JsonConverter
                 if (SkipIfGodotNodeType(property.Name, type))
                     continue;
 
-                object memberValue;
+                object? memberValue;
                 try
                 {
                     memberValue = property.GetValue(value, null);
@@ -978,7 +991,15 @@ public abstract class BaseThriveConverter : JsonConverter
             if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
                     out var recursiveChildData))
             {
-                ApplyOnlyChildProperties(field.GetValue(newData), field.GetValue(target), serializer,
+                var recursiveTarget = field.GetValue(target);
+
+                if (recursiveTarget == null)
+                {
+                    throw new JsonException(
+                        $"Cannot recursively copy child properties to a null value of field: {field.Name}");
+                }
+
+                ApplyOnlyChildProperties(field.GetValue(newData), recursiveTarget, serializer,
                     recursiveChildData!, true);
             }
         }
@@ -988,7 +1009,15 @@ public abstract class BaseThriveConverter : JsonConverter
             if (UsesOnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
                     out var recursiveChildData))
             {
-                ApplyOnlyChildProperties(property.GetValue(newData), property.GetValue(target), serializer,
+                var recursiveTarget = property.GetValue(target);
+
+                if (recursiveTarget == null)
+                {
+                    throw new JsonException(
+                        $"Cannot recursively copy child properties to a null value of property: {property.Name}");
+                }
+
+                ApplyOnlyChildProperties(property.GetValue(newData), recursiveTarget, serializer,
                     recursiveChildData!, true);
             }
         }

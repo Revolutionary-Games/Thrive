@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -220,7 +221,8 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     public ModifierInfoLabel GetModifierInfo(string nodeName)
     {
-        return modifierInfos.Find(m => m.Name == nodeName);
+        return modifierInfos.Find(m => m.Name == nodeName) ??
+            throw new ArgumentException("No modifier info found with name");
     }
 
     /// <summary>
@@ -368,6 +370,12 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         if (descriptionLabel == null)
             return;
 
+        if (Description == null)
+        {
+            descriptionLabel.ExtendedBbcode = null;
+            return;
+        }
+
         descriptionLabel.ExtendedBbcode = Localization.Translate(Description);
     }
 
@@ -419,7 +427,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     private void UpdateLists()
     {
-        foreach (ModifierInfoLabel item in modifierInfoList.GetChildren())
+        foreach (var item in modifierInfoList.GetChildren().OfType<ModifierInfoLabel>())
         {
             modifierInfos.Add(item);
         }

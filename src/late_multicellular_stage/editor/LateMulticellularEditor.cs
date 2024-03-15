@@ -5,6 +5,9 @@ using Godot;
 using Newtonsoft.Json;
 using Environment = Godot.Environment;
 
+/// <summary>
+///   Late multicellular (macroscopic) main editor class
+/// </summary>
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/late_multicellular_stage/editor/LateMulticellularEditor.tscn")]
 [DeserializedCallbackTarget]

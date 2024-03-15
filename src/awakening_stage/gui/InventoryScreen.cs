@@ -92,6 +92,10 @@ public partial class InventoryScreen : ControlWithInput
 
     private PackedScene inventorySlotScene = null!;
     private PackedScene recipeListItemScene = null!;
+
+    private InventorySlot? previouslySelectedSlot;
+    private InventorySlot? slotSwapFrom;
+    private InventorySlot? slotSwapTo;
 #pragma warning restore CA2213
 
     private ChildObjectCache<CraftingRecipe, RecipeListItem> shownAvailableRecipes = null!;
@@ -101,10 +105,7 @@ public partial class InventoryScreen : ControlWithInput
     private IAvailableRecipes? craftingDataSource;
     private CraftingRecipe? selectedRecipe;
 
-    private InventorySlot? previouslySelectedSlot;
     private double timeUntilSlotSwap = -1;
-    private InventorySlot? slotSwapFrom;
-    private InventorySlot? slotSwapTo;
 
     private bool groundPanelManuallyHidden;
     private bool craftingPanelManuallyHidden = true;
