@@ -299,8 +299,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
 
                         if (patch.AddSpecies(entry.Key, populationEntry.Value) != true)
                         {
-                            GD.PrintErr(
-                                "RunResults has new species with invalid patch or it was failed to be added");
+                            GD.PrintErr("RunResults has new species with invalid patch or it was failed to be added");
                         }
                     }
                 }

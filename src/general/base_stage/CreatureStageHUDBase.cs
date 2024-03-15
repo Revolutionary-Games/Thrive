@@ -242,20 +242,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public bool EnvironmentPanelCompressed
     {
         get => environmentPanel.PanelCompressed;
-        set
-        {
-            environmentPanel.PanelCompressed = value;
-        }
+        set => environmentPanel.PanelCompressed = value;
     }
 
     [JsonProperty]
     public bool CompoundsPanelCompressed
     {
         get => compoundsPanel.PanelCompressed;
-        set
-        {
-            compoundsPanel.PanelCompressed = value;
-        }
+        set => compoundsPanel.PanelCompressed = value;
     }
 
     public override void _Ready()
@@ -824,8 +818,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         CheckPhosphateProgressHighlight(fractionOfPhosphates);
     }
 
-    protected virtual void CalculatePlayerReproductionProgress(
-        Dictionary<Compound, float> gatheredCompounds, Dictionary<Compound, float> totalNeededCompounds)
+    protected virtual void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
+        Dictionary<Compound, float> totalNeededCompounds)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

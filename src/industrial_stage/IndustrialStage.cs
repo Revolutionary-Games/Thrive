@@ -359,8 +359,8 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
             {
                 HandleRocketMovingUp(delta);
 
-                strategicCamera.WorldLocation = strategicCamera.WorldLocation.Lerp(
-                    toSpaceAnimatedUnit!.GlobalPosition, Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
+                strategicCamera.WorldLocation = strategicCamera.WorldLocation.Lerp(toSpaceAnimatedUnit!.GlobalPosition,
+                    Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
 
                 if (toSpaceAnimatedUnit.GlobalPosition.Y > Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT)
                 {
@@ -375,8 +375,8 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
             case StageMovePhase.FadingOut:
             {
                 HandleRocketMovingUp(delta);
-                strategicCamera.WorldLocation = strategicCamera.WorldLocation.Lerp(
-                    toSpaceAnimatedUnit!.GlobalPosition, Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
+                strategicCamera.WorldLocation = strategicCamera.WorldLocation.Lerp(toSpaceAnimatedUnit!.GlobalPosition,
+                    Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
 
                 // TODO: maybe already fade out the stars in somehow? (or maybe even in the previous step)
                 break;

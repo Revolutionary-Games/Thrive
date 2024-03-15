@@ -706,8 +706,7 @@ public static class MicrobeColonyHelpers
     {
         if (entityWorld.Processing)
         {
-            throw new InvalidOperationException(
-                "Cannot unbind all with this method while running a world simulation");
+            throw new InvalidOperationException("Cannot unbind all with this method while running a world simulation");
         }
 
         // Extra debugs checks to ensure the unbind function doesn't have serious bugs with incorrect component

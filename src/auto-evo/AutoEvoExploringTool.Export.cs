@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using Godot;
+using FileAccess = Godot.FileAccess;
 
 /// <summary>
 ///   Partial class: Data export functionality of the auto-evo exploring tool
@@ -42,7 +43,7 @@ public partial class AutoEvoExploringTool
     {
         var path = Path.Combine(basePath, "species_history.csv");
 
-        using var file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Write);
+        using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
         if (file == null)
         {
             GD.PrintErr("Couldn't open target file for world history writing");
@@ -121,7 +122,7 @@ public partial class AutoEvoExploringTool
     {
         path = Path.Combine(path, "population_history.csv");
 
-        using var file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Write);
+        using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
         if (file == null)
         {
             GD.PrintErr("Couldn't open target file for population history writing");
@@ -156,7 +157,7 @@ public partial class AutoEvoExploringTool
     {
         var path = Path.Combine(basePath, "patch_history.csv");
 
-        using var file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Write);
+        using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
         if (file == null)
         {
             GD.PrintErr("Couldn't open target file for patch history writing");

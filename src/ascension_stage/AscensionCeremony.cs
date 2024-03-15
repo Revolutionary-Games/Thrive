@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   The scene where the player species becomes ascended before entering the actual gameplay of the ascension stage
@@ -17,7 +18,7 @@ public partial class AscensionCeremony : Node
     public NodePath? GateWalkerSpawnPointPath;
 
     [Export]
-    public Godot.Collections.Array<NodePath> ObserverSpawnPointPaths = new();
+    public Array<NodePath> ObserverSpawnPointPaths = new();
 
     [Export]
     public NodePath RootOfDynamicallySpawnedPath = null!;

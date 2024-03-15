@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Godot;
+using Range = Godot.Range;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
@@ -55,7 +56,7 @@ public partial class GUICommon : Node
         return child.CustomMinimumSize;
     }
 
-    public static void SmoothlyUpdateBar(Godot.Range bar, float target, float delta)
+    public static void SmoothlyUpdateBar(Range bar, float target, float delta)
     {
         if (delta <= 0)
         {
@@ -153,7 +154,7 @@ public partial class GUICommon : Node
     /// <summary>
     ///   Smoothly interpolates the value of a progress bar.
     /// </summary>
-    public void TweenBarValue(Godot.Range bar, double targetValue, double maxValue, double speed)
+    public void TweenBarValue(Range bar, double targetValue, double maxValue, double speed)
     {
         bar.MaxValue = maxValue;
 
