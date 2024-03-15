@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://5m75uu7qtg8x"]
+[gd_scene load_steps=45 format=3 uid="uid://5m75uu7qtg8x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="6"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bf55j5u0k0oc1" path="res://assets/textures/gui/bevel/AmmoniaInv.png" id="20"]
 [ext_resource type="Texture2D" uid="uid://bp6urdgi1p1hq" path="res://assets/textures/gui/bevel/PhosphateInv.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://b7f3dnt4j7gnw" path="res://assets/textures/gui/bevel/AmmoniaBW.png" id="23"]
+[ext_resource type="PackedScene" uid="uid://jjb8ei8wuuk" path="res://src/gui_common/EditorEntryButton.tscn" id="23_cmgam"]
 [ext_resource type="Texture2D" uid="uid://siahiwtfm578" path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" id="24"]
 [ext_resource type="PackedScene" uid="uid://uw3crqw21uu" path="res://src/microbe_stage/gui/HUDMessages.tscn" id="25"]
 [ext_resource type="Texture2D" uid="uid://budtxbmecqr3l" path="res://assets/textures/gui/bevel/dataValueBackground.png" id="26"]
@@ -28,20 +29,14 @@
 [ext_resource type="Texture2D" uid="uid://drrdhfwd5s8e2" path="res://assets/textures/gui/bevel/actions/EngulfEject.png" id="33"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="38_ueybo"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_veaul"]
-[ext_resource type="Texture2D" uid="uid://c732snfs7i3xx" path="res://assets/textures/gui/bevel/LargeTwoNormal.png" id="42"]
-[ext_resource type="Texture2D" uid="uid://dcc6nq6ig4etg" path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" id="45"]
-[ext_resource type="Texture2D" uid="uid://cbc1ld512pl71" path="res://assets/textures/gui/bevel/LargeTwoHover.png" id="46"]
 [ext_resource type="Texture2D" uid="uid://8q2icxsubpdy" path="res://assets/textures/gui/bevel/atp.png" id="47"]
-[ext_resource type="Texture2D" uid="uid://bd4c6guswatde" path="res://assets/textures/gui/bevel/LargeTwoPressed.png" id="54"]
 [ext_resource type="Texture2D" uid="uid://o0q204t8ees3" path="res://assets/textures/gui/bevel/AtpBar.png" id="55"]
 [ext_resource type="Texture2D" uid="uid://mqpv4yc0m4r5" path="res://assets/textures/gui/bevel/HealthBar.png" id="56"]
-[ext_resource type="Texture2D" uid="uid://dagkk6puhnfvu" path="res://assets/textures/gui/bevel/ReproductionBar.png" id="57"]
 [ext_resource type="Texture2D" uid="uid://on8072s1tlly" path="res://assets/textures/gui/bevel/Hitpoints.png" id="60"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="60_duh62"]
 [ext_resource type="PackedScene" uid="uid://bdwkyuskd3u3r" path="res://src/microbe_stage/HUDBottomBar.tscn" id="69"]
 [ext_resource type="PackedScene" uid="uid://b2uw1x2g8awbf" path="res://src/microbe_stage/gui/ExtinctionBox.tscn" id="70"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="71"]
-[ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="72"]
 [ext_resource type="Texture2D" uid="uid://buv5vjrf4hx0h" path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" id="76"]
 [ext_resource type="PackedScene" uid="uid://qwg2dluu8ow0" path="res://src/microbe_stage/PausePrompt.tscn" id="77"]
 [ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="78"]
@@ -57,39 +52,6 @@ border_color = Color(0.533333, 0.745098, 0.815686, 0.392157)
 [sub_resource type="StyleBoxTexture" id="29"]
 texture = ExtResource("26")
 region_rect = Rect2(0, 0, 86, 52)
-
-[sub_resource type="Animation" id="30"]
-length = 5.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Highlight:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2.5, 3.5, 5),
-"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Highlight/PointLight2D:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 2.1, 4.4, 5),
-"transitions": PackedFloat32Array(1, 2, 1, 2),
-"update": 0,
-"values": [0.0, 0.8, 0.8, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_t0883"]
-_data = {
-"EditorButtonFlash": SubResource("30")
-}
 
 [sub_resource type="StyleBoxFlat" id="34"]
 bg_color = Color(0.168627, 0.0470588, 0.552941, 1)
@@ -146,9 +108,9 @@ PatchOverlayPath = NodePath("PatchNameOverlay")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
-AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
-PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar")
-EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/PointLight2D")
+AmmoniaReproductionBarPath = NodePath("")
+PhosphateReproductionBarPath = NodePath("")
+EditorButtonFlashPath = NodePath("")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
 HotBarPath = NodePath("ScrollContainer/HotBar")
@@ -408,123 +370,11 @@ offset_bottom = 176.5
 texture = ExtResource("47")
 expand_mode = 1
 
-[node name="EditorButton" type="TextureButton" parent="BottomRight"]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 0
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -178.0
-offset_top = -178.0
-offset_right = -18.0
-offset_bottom = -18.0
-focus_mode = 0
-disabled = true
-texture_normal = ExtResource("42")
-texture_pressed = ExtResource("54")
-texture_hover = ExtResource("46")
-texture_disabled = ExtResource("45")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Highlight" type="TextureRect" parent="BottomRight/EditorButton"]
-visible = false
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource("46")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="PointLight2D" type="PointLight2D" parent="BottomRight/EditorButton/Highlight"]
-position = Vector2(79.2703, 78.2703)
-scale = Vector2(0.845357, 0.845357)
-energy = 0.0
-texture = ExtResource("72")
-
-[node name="ReproductionBar" type="Control" parent="BottomRight/EditorButton"]
+[node name="EditorButton" parent="BottomRight" instance=ExtResource("23_cmgam")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="BarBackground" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = 70.0
-texture = ExtResource("57")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="AmmoniaReproductionBar" type="TextureProgressBar" parent="BottomRight/EditorButton/ReproductionBar"]
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = 70.0
-step = 0.1
-fill_mode = 5
-nine_patch_stretch = true
-texture_progress = ExtResource("57")
-tint_progress = Color(1, 0.627451, 0.121569, 1)
-radial_fill_degrees = 180.0
-
-[node name="PhosphateReproductionBar" type="TextureProgressBar" parent="BottomRight/EditorButton/ReproductionBar"]
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = 70.0
-step = 0.1
-fill_mode = 5
-nine_patch_stretch = true
-texture_progress = ExtResource("57")
-tint_progress = Color(0.690196, 0.423529, 1, 1)
-radial_initial_angle = 180.0
-radial_fill_degrees = 180.0
-
-[node name="AmmoniaIcon" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
-layout_mode = 0
-offset_left = 70.0
-offset_top = 5.5
-offset_right = 90.0
-offset_bottom = 25.5
-texture = ExtResource("20")
-expand_mode = 1
-
-[node name="PhosphateIcon" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
-layout_mode = 0
-offset_left = 70.0
-offset_top = 134.5
-offset_right = 90.0
-offset_bottom = 154.5
-texture = ExtResource("21")
-expand_mode = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/EditorButton"]
-libraries = {
-"": SubResource("AnimationLibrary_t0883")
-}
+anchors_preset = -1
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="ProcessPanel" parent="." instance=ExtResource("13")]
 anchors_preset = 0
@@ -700,8 +550,6 @@ WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 [connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnMoveToLandPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnAwakenPressed"]
-[connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
-[connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Interact" to="." method="ForwardInteractButton"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Inventory" to="." method="ForwardOpenInventory"]
