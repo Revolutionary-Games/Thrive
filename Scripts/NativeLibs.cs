@@ -26,9 +26,6 @@ using SharedBase.Utilities;
 /// </summary>
 public class NativeLibs
 {
-    private const string GodotEditorLibraryFolder = ".mono/temp/bin/Debug";
-    private const string GodotReleaseLibraryFolder = ".mono/assemblies/Release";
-
     private const string BuilderImageName = "localhost/thrive/native-builder:latest";
     private const string BuilderImageNameCross = "localhost/thrive/native-builder-cross:latest";
     private const string FolderToWriteDistributableBuildIn = "build/distributable_build";
@@ -136,10 +133,7 @@ public class NativeLibs
             return false;
         }
 
-        // Godot doesn't by default put anything in the mono folder so we need to create it
-        throw new NotImplementedException("TODO: redo this");
-
-        var targetFolder = Path.Join(releaseFolder, GodotReleaseLibraryFolder);
+        var targetFolder = Path.Join(releaseFolder, NativeConstants.PackagedLibraryFolder);
         Directory.CreateDirectory(targetFolder);
 
         foreach (var library in libraries)
@@ -362,54 +356,10 @@ public class NativeLibs
     private Task<bool> InstallLibraryForEditor(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
-        throw new NotImplementedException("TODO: probably remove this whole thing");
-        /*
-        var target = GodotEditorLibraryFolder;
+        ColourConsole.WriteWarningLine("This is a deprecated operation. Godot 4 now allows directly loading " +
+            "from the library from its storage path so no install is required.");
 
-        if (!Directory.Exists(target))
-        {
-            ColourConsole.WriteWarningLine($"Target folder to install native library in doesn't exist: {target}");
-            ColourConsole.WriteInfoLine(
-                "Trying to install anyway but the install location might be wrong and Godot might not " +
-                "find the library");
-
-            Directory.CreateDirectory(target);
-        }
-
-        ColourConsole.WriteDebugLine("Trying to install locally compiled version first");
-        var linkTo = GetPathToLibraryDll(library, platform, GetLibraryVersion(library), false);
-        var originalLinkTo = linkTo;
-
-        if (!File.Exists(linkTo))
-        {
-            // Fall back to distributable version
-            ColourConsole.WriteNormalLine("Falling back to attempting distributable version");
-            linkTo = GetPathToLibraryDll(library, platform, GetLibraryVersion(library), true);
-
-            if (!File.Exists(linkTo))
-            {
-                ColourConsole.WriteErrorLine(
-                    $"Expected library doesn't exist (please 'Fetch' or 'Build' first): {originalLinkTo}");
-                ColourConsole.WriteNormalLine("Distributable version also didn't exist");
-                return Task.FromResult(false);
-            }
-
-            ColourConsole.WriteSuccessLine("Distributable version of library detected");
-        }
-
-        var linkFile = Path.Join(target, GetLibraryDllName(library, platform));
-
-        CreateLinkTo(linkFile, linkTo);
-
-        if (platform != PlatformUtilities.GetCurrentPlatform())
-        {
-            ColourConsole.WriteWarningLine(
-                "Linking non-current platform library, this is likely not what's desired for the Godot Editor");
-        }
-
-        ColourConsole.WriteSuccessLine($"Successfully linked {library} on {platform}");
         return Task.FromResult(true);
-        */
     }
 
     private bool CopyLibraryFiles(NativeConstants.Library library, PackagePlatform platform,
