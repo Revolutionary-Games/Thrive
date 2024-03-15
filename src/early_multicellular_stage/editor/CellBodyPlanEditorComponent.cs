@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -846,7 +846,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnModifyPressed()
     {
-        EmitSignal(SignalName.OnCellTypeToEditSelected, cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName, true);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName,
+            true);
     }
 
     /// <summary>
@@ -870,7 +871,8 @@ public partial class CellBodyPlanEditorComponent :
                 cellTypeSelectionList.AddItem(control);
                 cellTypeSelectionButtons.Add(cellType.TypeName, control);
 
-                control.Connect(MicrobePartSelection.SignalName.OnPartSelected, new Callable(this, nameof(OnCellToPlaceSelected)));
+                control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
+                    new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
             control.MPCost = cellType.MPCost;

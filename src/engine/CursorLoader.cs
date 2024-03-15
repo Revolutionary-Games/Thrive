@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Replaces default cursor shapes with custom made. Default cursor is set in Project Settings (this sets other

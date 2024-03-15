@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   EvolutionaryTreeNode represents a selectable node where a species come about, mutates, or extincts

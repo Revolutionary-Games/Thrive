@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -420,7 +420,8 @@ public partial class ToolTipManager : CanvasLayer
 
         // Clamp tooltip position so it doesn't go offscreen
         // TODO: Take into account viewport (window) resizing for the offsetting.
-        MainToolTip.ToolTipNode.Position = new Vector2(Mathf.Clamp(newPos.X, 0, Math.Max(screenRect.Size.X - tooltipSize.X, 0)),
+        MainToolTip.ToolTipNode.Position = new Vector2(
+            Mathf.Clamp(newPos.X, 0, Math.Max(screenRect.Size.X - tooltipSize.X, 0)),
             Mathf.Clamp(newPos.Y, 0, Math.Max(screenRect.Size.Y - tooltipSize.Y, 0)));
 
         MainToolTip.ToolTipNode.Size = Vector2.Zero;

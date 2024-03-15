@@ -1,4 +1,4 @@
-// This file contains all the different microbe stage spawner types
+﻿// This file contains all the different microbe stage spawner types
 // just so that they are in one place.
 
 using System;
@@ -838,7 +838,8 @@ public static class SpawnHelpers
 
             // Randomize rotation by constructing a new Transform that has the basis rotated, note that this loses the
             // scale, but entities shouldn't anyway be allowed to have a root node scale
-            location = new Transform3D(new Basis(location.Basis.GetRotationQuaternion() * RandomRotationForResourceEntity(random)),
+            location = new Transform3D(
+                new Basis(location.Basis.GetRotationQuaternion() * RandomRotationForResourceEntity(random)),
                 location.Origin);
         }
 
@@ -865,7 +866,8 @@ public static class SpawnHelpers
         {
             random ??= new Random();
 
-            resourceEntity.Transform = new Transform3D(new Basis(RandomRotationForResourceEntity(random)), Vector3.Zero);
+            resourceEntity.Transform =
+                new Transform3D(new Basis(RandomRotationForResourceEntity(random)), Vector3.Zero);
         }
 
         resourceEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
@@ -1015,7 +1017,8 @@ public static class SpawnHelpers
 
     private static Quaternion RandomRotationForResourceEntity(Random random)
     {
-        return new Quaternion(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
+        return new Quaternion(
+            new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
             random.NextFloat() * Mathf.Pi + 0.01f);
     }
 }

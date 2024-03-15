@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Microbe patch map GUI
 /// </summary>
 [IgnoreNoMethodsTakingInput]

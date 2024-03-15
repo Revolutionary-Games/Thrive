@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -335,7 +335,8 @@ public partial class Thriveopedia : ControlWithInput
         if (page.ParentPageName != null && !allPages.Keys.Any(p => p.PageName == page.ParentPageName))
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
 
-        page.PageNode.Connect(ThriveopediaPage.SignalName.OnSceneChanged, new Callable(this, nameof(HandleSceneChanged)));
+        page.PageNode.Connect(ThriveopediaPage.SignalName.OnSceneChanged,
+            new Callable(this, nameof(HandleSceneChanged)));
         pageContainer.AddChild(page.PageNode);
 
         var treeItem = CreateTreeItem(page, page.ParentPageName);

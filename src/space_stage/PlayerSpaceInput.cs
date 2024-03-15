@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Handles input for the space stage
 /// </summary>
 public partial class PlayerSpaceInput : NodeWithInput

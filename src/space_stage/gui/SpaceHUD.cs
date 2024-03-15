@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   HUD for the space stage. Very similar to <see cref="SocietyHUD"/>

@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Parent page for organelle pages in the Thriveopedia. Content comes from the organelle category in the online

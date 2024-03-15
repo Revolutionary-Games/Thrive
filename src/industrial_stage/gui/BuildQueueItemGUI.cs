@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Display for an item in a build queue based on data from <see cref="IBuildQueueProgressItem"/>

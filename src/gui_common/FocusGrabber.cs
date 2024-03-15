@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -35,8 +35,8 @@ public partial class FocusGrabber : Control
     private bool wantsToGrabFocusOnce;
 
     /// <summary>
-    ///   Any <see cref="NodePath"/> listed here (and child paths as well) will skip the focus override. This allows creating areas that
-    ///   steal focus from other parts of the GUI when they are visible.
+    ///   Any <see cref="NodePath"/> listed here (and child paths as well) will skip the focus override. This allows
+    ///   creating areas that steal focus from other parts of the GUI when they are visible.
     /// </summary>
     [Export]
     public Godot.Collections.Array<NodePath>? SkipOverridingFocusForElements
