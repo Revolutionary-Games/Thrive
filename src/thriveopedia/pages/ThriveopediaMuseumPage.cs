@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -40,9 +41,9 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
     private CustomConfirmationDialog deleteConfirmationDialog = null!;
     private CustomConfirmationDialog deletionFailedDialog = null!;
     private PackedScene museumCardScene = null!;
-#pragma warning restore CA2213
 
     private MuseumCard? cardToBeDeleted;
+#pragma warning restore CA2213
 
     public string PageName => "Museum";
     public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
@@ -119,7 +120,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
         }
 
         // Deselect all other cards to prevent highlights hanging around.
-        foreach (MuseumCard otherCard in cardContainer.GetChildren())
+        foreach (var otherCard in cardContainer.GetChildren().OfType<MuseumCard>())
         {
             if (otherCard != card)
                 otherCard.ButtonPressed = false;
@@ -164,7 +165,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
     private void TransitionToFreebuild(Species startingSpecies)
     {
-        EmitSignal(SignalName.OnSceneChanged);
+        EmitSignal(ThriveopediaPage.SignalName.OnSceneChanged);
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {

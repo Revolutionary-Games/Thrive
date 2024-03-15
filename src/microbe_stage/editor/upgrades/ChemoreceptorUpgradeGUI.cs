@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   Upgrade GUI for the chemoreceptor to configure what it detects
+/// </summary>
 public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]

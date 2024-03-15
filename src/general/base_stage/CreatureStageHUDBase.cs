@@ -223,8 +223,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
     }
 
-    // TODO: check if this is still true with Godot 4
-    // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
     public delegate void OnOpenMenuEventHandler();
 
@@ -244,20 +242,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public bool EnvironmentPanelCompressed
     {
         get => environmentPanel.PanelCompressed;
-        set
-        {
-            environmentPanel.PanelCompressed = value;
-        }
+        set => environmentPanel.PanelCompressed = value;
     }
 
     [JsonProperty]
     public bool CompoundsPanelCompressed
     {
         get => compoundsPanel.PanelCompressed;
-        set
-        {
-            compoundsPanel.PanelCompressed = value;
-        }
+        set => compoundsPanel.PanelCompressed = value;
     }
 
     public override void _Ready()
@@ -826,9 +818,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         CheckPhosphateProgressHighlight(fractionOfPhosphates);
     }
 
-    protected virtual void CalculatePlayerReproductionProgress(
-        System.Collections.Generic.Dictionary<Compound, float> gatheredCompounds,
-        System.Collections.Generic.Dictionary<Compound, float> totalNeededCompounds)
+    protected virtual void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
+        Dictionary<Compound, float> totalNeededCompounds)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

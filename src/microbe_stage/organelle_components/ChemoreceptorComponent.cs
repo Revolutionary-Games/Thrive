@@ -109,7 +109,7 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
     public float SearchAmount { get; set; }
     public Color LineColour { get; set; }
 
-    public bool Equals(IComponentSpecificUpgrades other)
+    public bool Equals(IComponentSpecificUpgrades? other)
     {
         if (other is not ChemoreceptorUpgrades otherChemoreceptor)
             return false;

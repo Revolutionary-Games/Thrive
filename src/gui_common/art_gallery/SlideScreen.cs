@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -312,6 +312,8 @@ public partial class SlideScreen : TopLevelContainer
                 ModelViewerCameraPath.Dispose();
                 PlaybackControlsPath.Dispose();
             }
+
+            modulateAlphaReference.Dispose();
         }
 
         base.Dispose(disposing);

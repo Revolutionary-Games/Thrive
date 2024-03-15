@@ -10,9 +10,10 @@ public partial class CellTypeSelection : MicrobePartSelection
 
 #pragma warning disable CA2213
     private Texture2D placeholderIcon = null!;
-#pragma warning restore CA2213
 
     private Texture2D? cellImage;
+#pragma warning restore CA2213
+
     private ImageTask? imageTask;
 
     public CellType CellType

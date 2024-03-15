@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Handles input for the industrial stage
 /// </summary>
 public partial class PlayerIndustrialInput : NodeWithInput

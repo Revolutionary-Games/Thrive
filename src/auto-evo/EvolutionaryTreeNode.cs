@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   EvolutionaryTreeNode represents a selectable node where a species come about, mutates, or extincts
@@ -41,11 +41,6 @@ public partial class EvolutionaryTreeNode : TextureButton
     }
 
     public EvolutionaryTreeNode? ParentNode { get; set; }
-
-    /// <summary>
-    ///   The internal position in a <see cref="EvolutionaryTree"/>
-    /// </summary>
-    public Vector2 Position { get; set; }
 
     public Vector2 Center => Position + Size / 2;
 

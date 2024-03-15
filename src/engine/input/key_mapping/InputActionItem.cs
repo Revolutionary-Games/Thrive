@@ -236,23 +236,38 @@ public partial class InputActionItem : VBoxContainer
         Inputs.Add(newInput);
     }
 
-    private void OnInputsChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void OnInputsChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         switch (e.Action)
         {
             case NotifyCollectionChangedAction.Add:
-                foreach (InputEventItem newItem in e.NewItems)
+
+                if (e.NewItems != null)
                 {
-                    inputEventsContainer.AddChild(newItem);
+                    foreach (InputEventItem newItem in e.NewItems)
+                    {
+                        inputEventsContainer.AddChild(newItem);
+                    }
+                }
+                else
+                {
+                    GD.PrintErr("Collection notify add action doesn't have a new items list");
                 }
 
                 inputEventsContainer.MoveChild(addInputEvent, Inputs.Count);
 
                 break;
             case NotifyCollectionChangedAction.Remove:
-                foreach (InputEventItem oldItem in e.OldItems)
+                if (e.OldItems != null)
                 {
-                    inputEventsContainer.RemoveChild(oldItem);
+                    foreach (InputEventItem oldItem in e.OldItems)
+                    {
+                        inputEventsContainer.RemoveChild(oldItem);
+                    }
+                }
+                else
+                {
+                    GD.PrintErr("Collection notify remove action doesn't have an old items list");
                 }
 
                 break;

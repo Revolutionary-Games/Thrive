@@ -278,8 +278,12 @@ public class Program
         return tool.Run(tokenSource.Token).Result;
     }
 
+    // TODO: check if this should be removed
     private static int RunProjectValidMaker(GodotProjectValidMakerOptions options)
     {
+        ColourConsole.WriteWarningLine("This tool is deprecated and likely won't do anything sensible with " +
+            "Godot 4 version of Thrive");
+
         CommandLineHelpers.HandleDefaultOptions(options);
 
         ColourConsole.WriteInfoLine("Attempting to make Thrive Godot project valid for C# compile...");
@@ -488,6 +492,6 @@ public class Program
         public FileTypeToGenerate Type { get; set; }
     }
 
-    [Verb("make-project-valid", HelpText = "Makes the Godot project valid for C# compile")]
+    [Verb("make-project-valid", HelpText = "Makes the Godot project valid for C# compile (deprecated)")]
     public class GodotProjectValidMakerOptions : ScriptOptionsBase;
 }

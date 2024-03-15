@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -6,6 +6,9 @@ using System.Linq;
 using Godot;
 using Container = Godot.Container;
 
+/// <summary>
+///   New game settings screen
+/// </summary>
 public partial class NewGameSettings : ControlWithInput
 {
     /// <summary>

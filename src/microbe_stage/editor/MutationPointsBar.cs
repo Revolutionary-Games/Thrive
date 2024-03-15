@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Mutation points bar that shows the remaining mutation points in the editor
+/// </summary>
 public partial class MutationPointsBar : HBoxContainer
 {
     [Export]

@@ -14,7 +14,7 @@ using Environment = System.Environment;
 public class Settings
 {
     private static readonly List<string>
-        AvailableLocales = TranslationServer.GetLoadedLocales().Cast<string>().ToList();
+        AvailableLocales = TranslationServer.GetLoadedLocales().ToList();
 
     private static readonly string DefaultLanguageValue = GetSupportedLocale(TranslationServer.GetLocale());
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
@@ -476,7 +476,7 @@ public class Settings
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This should have <see cref="JoystickList.AxisMax"/> values in here to have one for each supported axis.
+    ///     This should have <see cref="JoyAxis.Max"/> values in here to have one for each supported axis.
     ///   </para>
     /// </remarks>
     [JsonProperty]
@@ -837,7 +837,7 @@ public class Settings
         }
         else
         {
-            language = GetSupportedLocale(language!);
+            language = GetSupportedLocale(language);
             cultureInfo = GetCultureInfo(language);
         }
 
@@ -874,8 +874,8 @@ public class Settings
         foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
         {
             // Returns if any of the properties don't match.
-            object thisValue = property.GetValue(this);
-            object objValue = property.GetValue(obj);
+            var thisValue = property.GetValue(this);
+            var objValue = property.GetValue(obj);
 
             if (thisValue != objValue && thisValue?.Equals(objValue) != true)
             {
@@ -1052,9 +1052,23 @@ public class Settings
 
             // Since the properties we want to copy are SettingValue generics we use the IAssignableSetting
             // interface and AssignFrom method to convert the property to the correct concrete class.
-            var setting = (IAssignableSetting)property.GetValue(this);
+            var setting = (IAssignableSetting?)property.GetValue(this);
 
-            setting.AssignFrom(property.GetValue(settings));
+            if (setting == null)
+            {
+                GD.PrintErr("Trying to copy a value into a null setting");
+                continue;
+            }
+
+            var source = property.GetValue(settings);
+
+            if (source == null)
+            {
+                GD.Print("Not updating setting as the new value to set wrapper is null");
+                continue;
+            }
+
+            setting.AssignFrom(source);
         }
     }
 }

@@ -58,7 +58,7 @@ public static class LastPlayedVersion
         try
         {
             // Parsing the first part as valid version number needs to work
-            Version.Parse(version!.Split('-').First());
+            Version.Parse(version.Split('-').First());
 
             // Version comparison needs to work
             if (VersionUtils.Compare("1.0.0", version) == int.MaxValue)

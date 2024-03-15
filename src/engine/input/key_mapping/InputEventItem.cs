@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -492,7 +492,7 @@ public partial class InputEventItem : MarginContainer
         }
     }
 
-    private void OnIconsChanged(object sender, EventArgs eventArgs)
+    private void OnIconsChanged(object? sender, EventArgs eventArgs)
     {
         if (AssociatedEvent != null && alternativeButtonContentToText != null)
         {
@@ -500,7 +500,7 @@ public partial class InputEventItem : MarginContainer
         }
     }
 
-    private void OnControllerChanged(object sender, EventArgs eventArgs)
+    private void OnControllerChanged(object? sender, EventArgs eventArgs)
     {
         // This avoids duplicate refresh with the general icons changed signal
         if (KeyPromptHelper.InputMethod == ActiveInputMethod.Controller)

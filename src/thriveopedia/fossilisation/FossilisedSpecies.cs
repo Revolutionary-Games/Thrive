@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -223,11 +223,11 @@ public class FossilisedSpecies
             throw new IOException("Couldn't find fossil content in fossil file");
         }
 
-        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr!) ??
+        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr) ??
             throw new JsonException("FossilisedSpeciesInformation is null");
 
         // Use the info file to deserialize the species to the correct type
-        var speciesResult = ThriveJsonConverter.Instance.DeserializeObject<Species>(fossilStr!) ??
+        var speciesResult = ThriveJsonConverter.Instance.DeserializeObject<Species>(fossilStr) ??
             throw new JsonException("Fossil data is null");
 
         Image? previewImage = null;

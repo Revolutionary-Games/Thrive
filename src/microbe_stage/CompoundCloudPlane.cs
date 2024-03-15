@@ -9,6 +9,10 @@ using Vector2 = Godot.Vector2;
 using Vector3 = Godot.Vector3;
 using Vector4 = System.Numerics.Vector4;
 
+/// <summary>
+///   A single compound cloud plane that handles fluid simulation for 4 compound types at a single grid square location
+///   (can be repositioned as the player moves)
+/// </summary>
 [SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn", UsesEarlyResolve = false)]
 public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 {

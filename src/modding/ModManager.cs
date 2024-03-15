@@ -1006,7 +1006,8 @@ public partial class ModManager : Control
             return;
         }
 
-        using var file = FileAccess.Open(Path.Combine(parsedData.Folder, Constants.MOD_INFO_FILE_NAME), FileAccess.ModeFlags.Write);
+        using var file = FileAccess.Open(Path.Combine(parsedData.Folder, Constants.MOD_INFO_FILE_NAME),
+            FileAccess.ModeFlags.Write);
         if (file == null)
         {
             modCreateErrorDialog.ErrorMessage = Localization.Translate("ERROR_CREATING_INFO_FILE");

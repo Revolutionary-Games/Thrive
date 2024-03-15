@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -210,7 +210,7 @@ public partial class SceneManager : Node
                 "The specified class to load a scene for didn't have SceneLoadedClassAttribute");
         }
 
-        return LoadScene(sceneLoaded!.ScenePath);
+        return LoadScene(sceneLoaded.ScenePath);
     }
 
     /// <summary>

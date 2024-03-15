@@ -19,8 +19,10 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
 
     private Vector3? lastCursorWorldPos;
 
+#pragma warning disable CA2213
     private CompoundCloudSystem? clouds;
     private MicrobeCamera? camera;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   All compounds the user is hovering over with delay to reduce flickering.

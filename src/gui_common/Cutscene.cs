@@ -7,9 +7,10 @@ public partial class Cutscene : Control, ITransition
 {
 #pragma warning disable CA2213
     private VideoStreamPlayer? cutsceneVideoPlayer;
-#pragma warning restore CA2213
 
     private VideoStream? stream;
+#pragma warning restore CA2213
+
     private float volume;
 
     [Signal]

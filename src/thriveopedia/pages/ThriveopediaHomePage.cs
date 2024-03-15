@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Thriveopedia page displaying welcome information and links to websites.
 /// </summary>
 public partial class ThriveopediaHomePage : ThriveopediaPage, IThriveopediaPage

@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Components;
 using DefaultEcs;
 using Godot;
@@ -60,13 +61,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private int? playerColonySize;
 
     private bool playerWasDigested;
-
-    // These signals need to be copied to inheriting classes for Godot editor to pick them up
-    [Signal]
-    public new delegate void OnOpenMenuEventHandler();
-
-    [Signal]
-    public new delegate void OnOpenMenuToHelpEventHandler();
 
     [Signal]
     public delegate void OnToggleEngulfButtonPressedEventHandler();
@@ -231,7 +225,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
+        foreach (var button in fossilisationButtonLayer.GetChildren().OfType<FossilisationButton>())
         {
             var species = button.AttachedEntity.Get<SpeciesMember>().Species;
             var alreadyFossilised =

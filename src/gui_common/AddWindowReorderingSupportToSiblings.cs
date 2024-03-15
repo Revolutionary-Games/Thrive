@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -53,7 +53,6 @@ public partial class AddWindowReorderingSupportToSiblings : Control
     public int AutomaticWindowReorderingDepth = 5;
 
     private readonly Callable onWindowReorderCallable;
-    private readonly Callable onWindowOpenCallable;
 
     /// <summary>
     ///   Pairs containing window reordering nodes and what sibling of theirs is an ancestor of this class.

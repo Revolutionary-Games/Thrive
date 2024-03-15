@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   A "card" preview shown in the art gallery
+/// </summary>
 public partial class GalleryCard : Button
 {
     [Export]

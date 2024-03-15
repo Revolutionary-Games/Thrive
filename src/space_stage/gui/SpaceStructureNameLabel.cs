@@ -2,6 +2,9 @@
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Label on a structure in space, can be clicked to select it
+/// </summary>
 public partial class SpaceStructureNameLabel : Button, IEntityNameLabel
 {
     private string translationTemplate = null!;

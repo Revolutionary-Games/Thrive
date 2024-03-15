@@ -153,7 +153,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
                             baseReproduction.MissingCompoundsForBaseReproduction, compounds,
                             ref remainingAllowedCompoundUse,
                             ref remainingFreeCompounds, status.ConsumeReproductionCompoundsReverse,
-                            temporaryWorkData.Value,
+                            temporaryWorkData.Value!,
                             multicellularGrowth.CompoundsUsedForMulticellularGrowth))
                     {
                         // Not ready yet for budding

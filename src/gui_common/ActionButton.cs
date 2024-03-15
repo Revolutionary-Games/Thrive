@@ -9,11 +9,12 @@ public partial class ActionButton : Button
     private Panel highlight = null!;
     private TextureRect? iconRect;
     private KeyPrompt? keyPrompt;
+
+    private Texture2D? actionIcon;
 #pragma warning restore CA2213
 
     private bool highlighted;
 
-    private Texture2D? actionIcon;
     private string actionName = string.Empty;
 
     public bool Highlighted

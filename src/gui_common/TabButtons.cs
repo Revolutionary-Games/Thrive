@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -397,7 +398,7 @@ public partial class TabButtons : HBoxContainer
     /// </summary>
     private void AdjustSceneAddedChildren()
     {
-        foreach (Control child in GetChildren())
+        foreach (var child in GetChildren().OfType<Control>())
         {
             // Move all children that aren't our own scene set children to the buttons container
             if (child.Equals(leftContainer) || child.Equals(rightContainer) || child.Equals(tabButtonsContainer) ||

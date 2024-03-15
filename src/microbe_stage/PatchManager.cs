@@ -363,9 +363,18 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private class MicrobeSpawnerComparer : EqualityComparer<CreatedSpawner>
     {
-        public override bool Equals(CreatedSpawner x, CreatedSpawner y)
+        public override bool Equals(CreatedSpawner? x, CreatedSpawner? y)
         {
-            if (ReferenceEquals(x, y) || ReferenceEquals(x.Spawner, y.Spawner))
+            if (ReferenceEquals(x, y))
+                return true;
+
+            if (ReferenceEquals(x, null))
+                return false;
+
+            if (ReferenceEquals(y, null))
+                return false;
+
+            if (ReferenceEquals(x.Spawner, y.Spawner))
                 return true;
 
             if (x.Spawner is MicrobeSpawner microbeSpawner1 && y.Spawner is MicrobeSpawner microbeSpawner2)

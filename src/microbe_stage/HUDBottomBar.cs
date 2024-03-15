@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   The common HUD bottom left buttons
+/// </summary>
 public partial class HUDBottomBar : HBoxContainer
 {
     /// <summary>

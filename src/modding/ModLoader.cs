@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -448,6 +448,13 @@ public partial class ModLoader : Node
         try
         {
             var mod = (IMod?)Activator.CreateInstance(type);
+
+            if (mod == null)
+            {
+                GD.PrintErr("Mod's (", name, ") class instance creation resulted in null");
+                modErrors.Add(Localization.Translate("MOD_ASSEMBLY_CLASS_CREATION_FAILED").FormatSafe(name));
+                return false;
+            }
 
             if (!mod.Initialize(modInterface!, info.Info))
             {

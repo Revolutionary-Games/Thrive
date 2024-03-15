@@ -36,7 +36,7 @@ public class MembraneShapeGenerator
     /// <returns>A generator that can be used by the calling thread</returns>
     public static MembraneShapeGenerator GetThreadSpecificGenerator()
     {
-        return ThreadLocalGenerator.Value;
+        return ThreadLocalGenerator.Value!;
     }
 
     /// <summary>

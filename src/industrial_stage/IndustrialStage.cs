@@ -1,7 +1,6 @@
-using System;
+﻿using System;
 using Godot;
 using Newtonsoft.Json;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   The main class handling the industrial stage functions
@@ -138,8 +137,6 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
 
         var city = SpawnHelpers.SpawnCity(location, rootOfDynamicallySpawned, cityScene, playerCity, techWeb);
 
-        var binds = new Array();
-        binds.Add(city);
         city.Connect(PlacedCity.SignalName.OnSelected, Callable.From(() => OpenCityInfo(city)));
 
         return city;
@@ -362,8 +359,8 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
             {
                 HandleRocketMovingUp(delta);
 
-                strategicCamera.WorldLocation = strategicCamera.WorldLocation.Lerp(
-                    toSpaceAnimatedUnit!.GlobalPosition, Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
+                strategicCamera.WorldLocation = strategicCamera.WorldLocation.Lerp(toSpaceAnimatedUnit!.GlobalPosition,
+                    Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
 
                 if (toSpaceAnimatedUnit.GlobalPosition.Y > Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT)
                 {
@@ -378,8 +375,8 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
             case StageMovePhase.FadingOut:
             {
                 HandleRocketMovingUp(delta);
-                strategicCamera.WorldLocation = strategicCamera.WorldLocation.Lerp(
-                    toSpaceAnimatedUnit!.GlobalPosition, Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
+                strategicCamera.WorldLocation = strategicCamera.WorldLocation.Lerp(toSpaceAnimatedUnit!.GlobalPosition,
+                    Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
 
                 // TODO: maybe already fade out the stars in somehow? (or maybe even in the previous step)
                 break;

@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   A visual preview of how a species looks like in-game
+/// </summary>
 public partial class SpeciesPreview : PhotographablePreview
 {
     private Species? previewSpecies;

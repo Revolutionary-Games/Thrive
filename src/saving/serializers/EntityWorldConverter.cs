@@ -166,9 +166,10 @@ public class EntityWorldConverter : JsonConverter
             return existing;
 
         var forwarder =
-            (IComponentForwarder)Activator.CreateInstance(typeof(ComponentForwarder<>).MakeGenericType(type));
+            (IComponentForwarder?)Activator.CreateInstance(typeof(ComponentForwarder<>).MakeGenericType(type));
 
-        componentForwarders[type] = forwarder;
+        componentForwarders[type] = forwarder ??
+            throw new InvalidOperationException("Failed to create instance of component forwarder for type");
         return forwarder;
     }
 

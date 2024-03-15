@@ -1,6 +1,9 @@
 ﻿using System;
 using Godot;
 
+/// <summary>
+///   Audio type art gallery item
+/// </summary>
 public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 {
     [Export]

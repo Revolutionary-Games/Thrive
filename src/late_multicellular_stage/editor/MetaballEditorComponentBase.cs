@@ -4,6 +4,13 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Editor component that specializes in metaball-based stuff editing
+/// </summary>
+/// <typeparam name="TEditor">Type of editor this class can be put in</typeparam>
+/// <typeparam name="TCombinedAction">Type of editor action this class works with</typeparam>
+/// <typeparam name="TAction">Type of single action this works with</typeparam>
+/// <typeparam name="TMetaball">Type of metaballs this editor works with</typeparam>
 [GodotAbstract]
 public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TAction, TMetaball> :
     EditorComponentWithActionsBase<TEditor, TCombinedAction>,

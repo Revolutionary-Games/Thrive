@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -667,7 +667,7 @@ public partial class CellEditorComponent
         ///     Only works if there aren't duplicate entries of osmoregulation or baseMovement.
         ///   </para>
         /// </remarks>
-        public int Compare(string stringA, string stringB)
+        public int Compare(string? stringA, string? stringB)
         {
             if (stringA == "osmoregulation")
             {

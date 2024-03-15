@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using Godot;
 
 /// <summary>
 ///   Contains helper methods for classes that want to translate some of their properties or fields
@@ -57,7 +58,12 @@ public static class TranslationHelper
 
             var data = (TranslateFromAttribute)attributes[0];
 
-            SetValue((string)field.GetValue(instance), type, instance, data);
+            var value = (string?)field.GetValue(instance);
+
+            if (value == null)
+                GD.PrintErr("Copying a null translation from field value");
+
+            SetValue(value, type, instance, data);
         }
 
         foreach (var property in type.GetProperties(VALID_VISIBILITY_FOR_CHECKS))
@@ -69,7 +75,12 @@ public static class TranslationHelper
 
             var data = (TranslateFromAttribute)attributes[0];
 
-            SetValue((string)property.GetValue(instance), type, instance, data);
+            var value = (string?)property.GetValue(instance);
+
+            if (value == null)
+                GD.PrintErr("Copying a null translation from property value");
+
+            SetValue(value, type, instance, data);
         }
     }
 
@@ -111,7 +122,7 @@ public static class TranslationHelper
         return (string?)property.GetValue(instance);
     }
 
-    private static void SetValue(string value, Type type, object instance, TranslateFromAttribute data)
+    private static void SetValue(string? value, Type type, object instance, TranslateFromAttribute data)
     {
         // Try field first
         var field = GetTargetField(type, data);

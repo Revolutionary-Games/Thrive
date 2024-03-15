@@ -209,7 +209,7 @@ public class InProgressObjectDeserialization
 
         // Search in not consumed reads first
         var value = pendingCustomFields?.FirstOrDefault(t =>
-            t!.Value.Name!.Equals(name, StringComparison.OrdinalIgnoreCase));
+            t!.Value.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
 
         if (value != null)
         {
@@ -234,7 +234,7 @@ public class InProgressObjectDeserialization
         if (allowCustomFieldRead && pendingCustomFields != null)
         {
             alreadyReadValue = pendingCustomFields.FirstOrDefault(t =>
-                t!.Value.Name!.Equals(lookForName, StringComparison.OrdinalIgnoreCase));
+                t!.Value.Name.Equals(lookForName, StringComparison.OrdinalIgnoreCase));
 
             if (alreadyReadValue != null)
             {
@@ -244,7 +244,7 @@ public class InProgressObjectDeserialization
         }
 
         alreadyReadValue = readButNotConsumedProperties?.FirstOrDefault(t =>
-            t!.Value.Name!.Equals(lookForName, StringComparison.OrdinalIgnoreCase));
+            t!.Value.Name.Equals(lookForName, StringComparison.OrdinalIgnoreCase));
 
         if (alreadyReadValue != null)
         {
@@ -530,6 +530,9 @@ public class InProgressObjectDeserialization
         // We need to read enough attributes to be able to call the constructor
         foreach (var param in constructorParameterInfo)
         {
+            if (param.Name == null)
+                throw new JsonException("Selected JSON constructor parameters must all have names");
+
             var fieldName = DetermineKey(param.Name, out _, out var fieldInfo, out var propertyInfo);
 
             if (fieldName == null)

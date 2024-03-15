@@ -37,15 +37,13 @@ jobs:
     image: thrive/godot-ci:v22
     cache:
       loadFrom:
-        - v6-{Branch}-jetbrains
-        - v6-master-jetbrains
-      writeTo: v6-{Branch}-jetbrains
+        - v7-{Branch}-jetbrains
+        - v7-master-jetbrains
+      writeTo: v7-{Branch}-jetbrains
       shared:
-        .git/lfs: v6-lfs
-        .import: v10-import
-        builds: v5-jetbrains-dummy-builds
+        .git/lfs: v7-lfs
       system:
-        /root/.nuget: v5-nuget
+        /root/.nuget: v6-nuget
     artifacts:
       paths:
         - files_to_check.txt
@@ -61,10 +59,8 @@ jobs:
             echo Changed files:
             cat files_to_check.txt
       - run:
-          name: Make project valid for compile
-          command: dotnet run --project Scripts -- make-project-valid
-      - run:
-          command: dotnet restore Thrive.sln
+          name: Make sure Thrive is compiled
+          command: dotnet build Thrive.sln
       - run:
            command: dotnet tool restore
       # Makes sure that there aren't any changes at this point to not make the CI trip up on them
@@ -98,13 +94,13 @@ jobs:
     image: thrive/godot-ci:v22
     cache:
       loadFrom:
-        - v6-{Branch}-format
-        - v6-master-format
-      writeTo: v6-{Branch}-format
+        - v7-{Branch}-format
+        - v7-master-format
+      writeTo: v7-{Branch}-format
       shared:
-        .git/lfs: v6-lfs
+        .git/lfs: v7-lfs
       system:
-        /root/.nuget: v5-nuget
+        /root/.nuget: v6-nuget
     artifacts:
       paths:
         - format_diff.patch

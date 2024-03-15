@@ -1,4 +1,4 @@
-public enum AssetType
+﻿public enum AssetType
 {
     Texture2D,
     ModelScene,

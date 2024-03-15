@@ -33,9 +33,10 @@ public class RandomConverter : JsonConverter
 
         var converted = (Random)value;
 
-        var seedArray = (int[])seedArrayInfo.GetValue(converted);
-        var iNext = (int)iNextInfo.GetValue(converted);
-        var iNextP = (int)iNextPInfo.GetValue(converted);
+        var seedArray = (int[]?)seedArrayInfo.GetValue(converted) ??
+            throw new JsonException("Missing random seed array");
+        var iNext = (int?)iNextInfo.GetValue(converted) ?? throw new JsonException("Missing random next");
+        var iNextP = (int?)iNextPInfo.GetValue(converted) ?? throw new JsonException("Missing random next p");
 
         writer.WriteStartObject();
 

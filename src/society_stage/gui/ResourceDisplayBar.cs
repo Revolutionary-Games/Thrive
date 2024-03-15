@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using Godot;
 
+/// <summary>
+///   Displays the amount of stored resource in the strategy stages
+/// </summary>
 public partial class ResourceDisplayBar : HBoxContainer
 {
     [Export]

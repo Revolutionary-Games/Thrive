@@ -146,7 +146,7 @@ public partial class KeyPrompt : CenterContainer
         secondaryIcon.CustomMinimumSize = size;
     }
 
-    private void OnIconsChanged(object sender, EventArgs args)
+    private void OnIconsChanged(object? sender, EventArgs args)
     {
         Refresh();
     }

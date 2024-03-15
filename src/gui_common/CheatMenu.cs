@@ -125,7 +125,7 @@ public partial class CheatMenu : CustomWindow
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    private void OnHideCheatMenus(object s, EventArgs e)
+    private void OnHideCheatMenus(object? s, EventArgs e)
     {
         Hide();
     }

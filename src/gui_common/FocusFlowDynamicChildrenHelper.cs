@@ -108,7 +108,7 @@ public class FocusFlowDynamicChildrenHelper
 
             if (reversePathsEnumerator != null)
             {
-                if (!reversePathsEnumerator.MoveNext() || reversePathsEnumerator.Current == null)
+                if (!reversePathsEnumerator.MoveNext())
                     throw new ArgumentException("Invalid back navigation items", nameof(childNavigationTargets));
 
                 reversePath = reversePathsEnumerator.Current.GetPath();

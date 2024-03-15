@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
@@ -175,12 +175,12 @@ public class Save
         if (string.IsNullOrEmpty(saveStr))
             throw new IOException("couldn't find save content in save file");
 
-        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
+        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr) ??
             throw new JsonException("SaveInformation object was deserialized as null");
 
         // Don't use the normal deserialization as we don't want to actually create the game state, instead we want
         // a JSON structure
-        var saveResult = JObject.Parse(saveStr!);
+        var saveResult = JObject.Parse(saveStr);
 
         var imageResult = new Image();
 
@@ -295,7 +295,7 @@ public class Save
             }
 
             // This deserializes a huge tree of objects
-            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr!) ??
+            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr) ??
                 throw new JsonException("Save data is null");
         }
 
@@ -317,7 +317,7 @@ public class Save
             throw new IOException("couldn't find info content in save");
         }
 
-        return ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
+        return ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr) ??
             throw new JsonException("SaveInformation is null");
     }
 
