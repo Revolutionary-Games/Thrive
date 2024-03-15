@@ -128,7 +128,8 @@ public static class ToolTipHelper
         if (!control.IsToolTipRegistered(tooltip))
             return;
 
-        var data = GetToolTipCallbackData(control, tooltip);
+        var data = GetToolTipCallbackData(control, tooltip) ??
+            throw new ArgumentException("No tooltip callback data exists for the given control and tooltip");
 
         control.Disconnect(Control.SignalName.MouseEntered, data.EnterCallable);
         control.Disconnect(Control.SignalName.MouseExited, data.ExitCallable);
@@ -218,10 +219,9 @@ public static class ToolTipHelper
         }
     }
 
-    private static ToolTipCallbackData GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
+    private static ToolTipCallbackData? GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
     {
-        return ToolTipCallbacks.Find(c => c.ToolTipable == control && c.ToolTip == tooltip) ??
-            throw new ArgumentException("No tooltip callback data exists for the given control and tooltip");
+        return ToolTipCallbacks.Find(c => c.ToolTipable == control && c.ToolTip == tooltip);
     }
 
     private static IEnumerable<ToolTipCallbackData> GetAllToolTipsForControl(Control control)

@@ -219,10 +219,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         modifierInfos.Add(modifierInfo);
     }
 
-    public ModifierInfoLabel GetModifierInfo(string nodeName)
+    public ModifierInfoLabel? GetModifierInfo(string nodeName)
     {
-        return modifierInfos.Find(m => m.Name == nodeName) ??
-            throw new ArgumentException("No modifier info found with name");
+        return modifierInfos.Find(m => m.Name == nodeName);
     }
 
     /// <summary>
