@@ -62,13 +62,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private bool playerWasDigested;
 
-    // These signals need to be copied to inheriting classes for Godot editor to pick them up
-    [Signal]
-    public new delegate void OnOpenMenuEventHandler();
-
-    [Signal]
-    public new delegate void OnOpenMenuToHelpEventHandler();
-
     [Signal]
     public delegate void OnToggleEngulfButtonPressedEventHandler();
 

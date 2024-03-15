@@ -48,13 +48,6 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
 
     private float? lastBrainPower;
 
-    // These signals need to be copied to inheriting classes for Godot editor to pick them up
-    [Signal]
-    public new delegate void OnOpenMenuEventHandler();
-
-    [Signal]
-    public new delegate void OnOpenMenuToHelpEventHandler();
-
     [Signal]
     public delegate void OnInteractButtonPressedEventHandler();
 

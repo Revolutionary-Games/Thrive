@@ -223,8 +223,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
     }
 
-    // TODO: check if this is still true with Godot 4
-    // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
     public delegate void OnOpenMenuEventHandler();
 
