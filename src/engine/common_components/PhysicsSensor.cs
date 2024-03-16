@@ -8,7 +8,7 @@ using DefaultEcs;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Physics object that detects objects inside it (similar to Godot <see cref="Godot.Area"/>)
+///   Physics object that detects objects inside it (similar to Godot <see cref="Godot.Area3D"/>)
 /// </summary>
 [JSONDynamicTypeAllowed]
 public struct PhysicsSensor

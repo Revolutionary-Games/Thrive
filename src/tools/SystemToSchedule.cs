@@ -463,7 +463,7 @@ public class SystemToSchedule
     // items on either side of that block of non-sortables need to be sorted around the block
     public class SystemRequirementsBasedComparer : IComparer<SystemToSchedule>
     {
-        public int Compare(SystemToSchedule x, SystemToSchedule y)
+        public int Compare(SystemToSchedule? x, SystemToSchedule? y)
         {
             if (ReferenceEquals(x, y))
                 return 0;

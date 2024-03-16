@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -42,9 +42,9 @@ public partial class PatchMapNode : MarginContainer
     private Panel? markPanel;
     private Panel? adjacentHighlightPanel;
     private Label? unknownLabel;
-#pragma warning restore CA2213
 
     private Texture2D? patchIcon;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   True if mouse is hovering on this node

@@ -1,4 +1,4 @@
-namespace Systems;
+﻿namespace Systems;
 
 using System;
 using System.Buffers;

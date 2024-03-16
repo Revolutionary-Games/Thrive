@@ -1,4 +1,4 @@
-namespace Systems;
+﻿namespace Systems;
 
 using System;
 using System.Collections.Generic;
@@ -130,7 +130,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
             if (entity.Has<MicrobeColony>())
             {
                 // Skip creating shape if some colony member isn't ready yet
-                colonyMembranes = temporaryColonyMemberMembranes.Value;
+                colonyMembranes = temporaryColonyMemberMembranes.Value!;
                 ref var colony = ref entity.Get<MicrobeColony>();
 
                 foreach (var member in colony.ColonyMembers)
@@ -251,7 +251,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
     {
         UpdateRotationRate(ref organelles);
 
-        var combinedData = temporaryCombinedShapeData.Value;
+        var combinedData = temporaryCombinedShapeData.Value!;
 
 #if DEBUG
         if (combinedData.Count > 0)
@@ -274,7 +274,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
             var members = colony.ColonyMembers;
             int memberCount = members.Length;
 
-            memberOrganelles = temporaryColonyMemberOrganelles.Value;
+            memberOrganelles = temporaryColonyMemberOrganelles.Value!;
 
             // The bodies need to be added colony member list order
             for (int i = 0; i < memberCount; ++i)

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -47,13 +47,6 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
 #pragma warning restore CA2213
 
     private float? lastBrainPower;
-
-    // These signals need to be copied to inheriting classes for Godot editor to pick them up
-    [Signal]
-    public new delegate void OnOpenMenuEventHandler();
-
-    [Signal]
-    public new delegate void OnOpenMenuToHelpEventHandler();
 
     [Signal]
     public delegate void OnInteractButtonPressedEventHandler();

@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Linq;
 using Godot;
 using Tutorial;
 
@@ -144,7 +145,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
             microbeMovementKeyPrompts.Visible = value;
 
             // Apply visible to children to make the key prompts visible. This saves a lot of processing time overall
-            foreach (Control child in microbeMovementKeyPrompts.GetChildren())
+            foreach (var child in microbeMovementKeyPrompts.GetChildren().OfType<Control>())
             {
                 child.Visible = value;
             }

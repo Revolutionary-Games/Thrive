@@ -1,8 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Godot.Collections;
+using Array = System.Array;
 
+/// <summary>
+///   Grabs keyboard navigation focus with specific rules to a node that makes sense in the GUI
+/// </summary>
 public partial class FocusGrabber : Control
 {
     [Export(PropertyHint.None, "Active highest priority grabber gets the focus")]
@@ -26,17 +31,17 @@ public partial class FocusGrabber : Control
 
     private double elapsed;
     private bool reportedState;
-    private Godot.Collections.Array<NodePath>? skipOverridingFocusForElements;
+    private Array<NodePath>? skipOverridingFocusForElements;
     private IEnumerable<string> skipOverridingStringConverted = Array.Empty<string>();
 
     private bool wantsToGrabFocusOnce;
 
     /// <summary>
-    ///   Any <see cref="NodePath"/> listed here (and child paths as well) will skip the focus override. This allows creating areas that
-    ///   steal focus from other parts of the GUI when they are visible.
+    ///   Any <see cref="NodePath"/> listed here (and child paths as well) will skip the focus override. This allows
+    ///   creating areas that steal focus from other parts of the GUI when they are visible.
     /// </summary>
     [Export]
-    public Godot.Collections.Array<NodePath>? SkipOverridingFocusForElements
+    public Array<NodePath>? SkipOverridingFocusForElements
     {
         get => skipOverridingFocusForElements;
         set

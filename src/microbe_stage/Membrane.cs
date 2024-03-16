@@ -6,13 +6,13 @@ using Godot;
 /// </summary>
 public partial class Membrane : MeshInstance3D
 {
-    [Export]
-    public ShaderMaterial? MaterialToEdit;
-
     // It used to be the case that membrane could be previewed in the Godot editor, if anyone is still interested in
     // that feature, please reimplement it
 
 #pragma warning disable CA2213
+    [Export]
+    public ShaderMaterial? MaterialToEdit;
+
     private Texture2D? albedoTexture;
 
     /// <summary>

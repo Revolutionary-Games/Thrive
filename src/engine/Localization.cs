@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 
+/// <summary>
+///   Access to translated text. Acts as a wrapper around the Godot standard <see cref="TranslationServer"/> to allow
+///   caching string name instances to allow text lookup without other code needing to hold on to a bunch of string
+///   name objects.
+/// </summary>
 public partial class Localization : Node
 {
     private static Localization? instance;
@@ -36,6 +41,8 @@ public partial class Localization : Node
 
             if (Debugger.IsAttached)
                 Debugger.Break();
+
+            return string.Empty;
         }
 #endif
 

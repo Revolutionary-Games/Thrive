@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
+/// <summary>
+///   A popup that integrates <see cref="RadialMenu"/> into one full package.
+/// </summary>
 public partial class RadialPopup : CustomWindow
 {
     [Export]
@@ -55,7 +58,7 @@ public partial class RadialPopup : CustomWindow
     protected override void OnHidden()
     {
         base.OnHidden();
-        EmitSignal(SignalName.Canceled);
+        EmitSignal(CustomWindow.SignalName.Canceled);
         Radial.Visible = false;
     }
 

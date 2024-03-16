@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   HUD for the space stage. Very similar to <see cref="SocietyHUD"/>
@@ -34,9 +34,9 @@ public partial class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSele
     private SpaceStructureInfoPopup structurePopup = null!;
 
     private Button descendButton = null!;
-#pragma warning restore CA2213
 
     private SpaceFleet? fleetToConstructWith;
+#pragma warning restore CA2213
 
     private bool wasAscended;
 

@@ -111,14 +111,13 @@ public class FindBestMigration : VariantTryingStep
                 if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
                     continue;
 
-                // Select a random adjacent target patch
-                // TODO: could prefer patches this species is not already
-                // in or about to go extinct, or really anything other
-                // than random selection
-                var target = patch.Adjacent.ToList().Random(random);
-
-                if (target == null)
+                if (patch.Adjacent.Count < 1)
                     continue;
+
+                // Select a random adjacent target patch
+                // TODO: could prefer patches this species is not already in or about to go extinct, or really anything
+                // other than random selection
+                var target = patch.Adjacent.ToList().Random(random);
 
                 // Calculate random amount of population to send
                 int moveAmount = (int)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,

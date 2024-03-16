@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -300,7 +300,8 @@ public partial class SteamHandler : Node, ISteamSignalReceiver
             return;
         }
 
-        RegisterSteamClient((ISteamClient)Activator.CreateInstance(type));
+        RegisterSteamClient((ISteamClient?)Activator.CreateInstance(type) ??
+            throw new Exception("Failed to create Steam client class type"));
     }
 
     private void ThrowIfNotLoaded()

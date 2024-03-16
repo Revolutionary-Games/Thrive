@@ -35,10 +35,7 @@ public static class SaveUpgradeSteps
 
     public static ISaveUpgradeStep? GetUpgradeStepForVersion(string version)
     {
-        if (!SupportedUpgrades.TryGetValue(version, out ISaveUpgradeStep step))
-            return null;
-
-        return step;
+        return SupportedUpgrades.GetValueOrDefault(version);
     }
 
     /// <summary>
@@ -672,7 +669,15 @@ internal abstract class BaseJSONUpgradeStep : ISaveUpgradeStep
 
         foreach (var property in BaseThriveConverter.PropertiesOf(saveInfo))
         {
-            info[property.Name] = JToken.FromObject(property.GetValue(saveInfo));
+            var value = property.GetValue(saveInfo);
+
+            if (value == null)
+            {
+                GD.PrintErr($"Save info structure copy failed, property \"{property.Name}\" is null");
+                continue;
+            }
+
+            info[property.Name] = JToken.FromObject(value);
         }
     }
 }

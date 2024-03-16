@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Formatted section of the main article content of a Thriveopedia page. Consists of a single rich text body and an

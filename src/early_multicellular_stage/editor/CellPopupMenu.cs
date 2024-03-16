@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   Right click popup menu that opens when clicked on a body plan cell
+/// </summary>
 public partial class CellPopupMenu : HexPopupMenu
 {
     private List<HexWithData<CellTemplate>>? selectedCells;

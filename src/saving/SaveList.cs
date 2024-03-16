@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
@@ -192,7 +193,7 @@ public partial class SaveList : ScrollContainer
 
     public IEnumerable<SaveListItem> GetSelectedItems()
     {
-        foreach (SaveListItem child in savesList.GetChildren())
+        foreach (var child in savesList.GetChildren().OfType<SaveListItem>())
         {
             if (child.Selectable && child.Selected)
                 yield return child;

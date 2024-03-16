@@ -7,6 +7,11 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Editor component that specializes in hex-based stuff editing
 /// </summary>
+/// <typeparam name="TEditor">Type of editor this class can be put in</typeparam>
+/// <typeparam name="TCombinedAction">Type of editor action this class works with</typeparam>
+/// <typeparam name="TAction">Type of single action this works with</typeparam>
+/// <typeparam name="THexMove">Type of hex move action</typeparam>
+/// <typeparam name="TContext">Extra action context data this manages on actions</typeparam>
 [GodotAbstract]
 public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
     EditorComponentWithActionsBase<TEditor, TCombinedAction>,
@@ -1103,6 +1108,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
                 CameraFollowPath.Dispose();
                 IslandErrorPath.Dispose();
             }
+
+            positionZReference.Dispose();
         }
 
         base.Dispose(disposing);

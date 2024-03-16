@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Tooltip showing the art details in the art gallery
+/// </summary>
 public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 {
     [Export]

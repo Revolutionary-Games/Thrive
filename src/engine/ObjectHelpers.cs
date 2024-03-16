@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 public static class ObjectHelpers
 {

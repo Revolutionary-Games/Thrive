@@ -1,7 +1,10 @@
-using System;
+﻿using System;
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Camera for the 3D editor scenes
+/// </summary>
 public partial class EditorCamera3D : Camera3D
 {
     /// <summary>

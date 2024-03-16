@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -14,8 +14,9 @@ using Godot;
 /// </remarks>
 public partial class InputManager : Node
 {
-    private static readonly List<WeakReference> DestroyedListeners = new();
     private static InputManager? staticInstance;
+
+    private readonly List<WeakReference> destroyedListeners = new();
 
     private readonly Dictionary<int, float> controllerAxisDeadzones = new();
 
@@ -23,6 +24,8 @@ public partial class InputManager : Node
     ///   Used to send just one 0 event for a controller axis that is released and goes into the deadzone
     /// </summary>
     private readonly Dictionary<int, bool> deadzonedControllerAxes = new();
+
+    private readonly List<WeakReference> temporaryItemsToDelete = new();
 
     /// <summary>
     ///   A list of all loaded attributes
@@ -127,9 +130,39 @@ public partial class InputManager : Node
 
         int removed = 0;
 
+        var removeList = staticInstance.temporaryItemsToDelete;
+
         foreach (var attribute in staticInstance.attributes)
         {
-            removed += attribute.Value.RemoveAll(p => !p.IsAlive || p.Target.Equals(instance));
+            foreach (var weakReference in attribute.Value)
+            {
+                if (!weakReference.IsAlive)
+                {
+                    removeList.Add(weakReference);
+                    continue;
+                }
+
+                var target = weakReference.Target;
+
+                if (target == null || target.Equals(instance))
+                {
+                    removeList.Add(weakReference);
+                }
+            }
+
+            if (removeList.Count > 0)
+            {
+                foreach (var toRemove in removeList)
+                {
+                    attribute.Value.Remove(toRemove);
+                }
+
+                removed += removeList.Count;
+
+                removeList.Clear();
+            }
+
+            staticInstance.temporaryItemsToDelete.Clear();
         }
 
         if (removed < 1)
@@ -202,7 +235,7 @@ public partial class InputManager : Node
             {
                 // Apply button style from initial controller
 
-                int controllerId = (int)controllers[0];
+                int controllerId = controllers[0];
                 lastUsedControllerName = Input.GetJoyName(controllerId);
                 lastUsedControllerId = controllerId;
 
@@ -300,6 +333,9 @@ public partial class InputManager : Node
         if (method == null)
             return true;
 
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         var result = false;
 
         if (method.IsStatic)
@@ -321,7 +357,9 @@ public partial class InputManager : Node
         }
         else
         {
-            var instances = staticInstance!.attributes[attribute];
+            var destroyed = staticInstance.destroyedListeners;
+
+            var instances = staticInstance.attributes[attribute];
 
             // Call the method for each instance
             foreach (var instance in instances)
@@ -329,7 +367,7 @@ public partial class InputManager : Node
                 if (!instance.IsAlive)
                 {
                     // if the WeakReference is no longer valid
-                    DestroyedListeners.Add(instance);
+                    destroyed.Add(instance);
                     continue;
                 }
 
@@ -351,7 +389,7 @@ public partial class InputManager : Node
                         GD.PrintErr("Failed to perform input method invoke: ", e);
                     }
 
-                    DestroyedListeners.Add(instance);
+                    destroyed.Add(instance);
                     continue;
                 }
                 catch (ArgumentException e)
@@ -360,7 +398,7 @@ public partial class InputManager : Node
                     GD.PrintErr($"Target method failed to invoke is: {method.DeclaringType?.FullName}.{method.Name}");
 
                     // Is probably good to put this here to ensure the error doesn't get printed infinitely
-                    DestroyedListeners.Add(instance);
+                    destroyed.Add(instance);
                     continue;
                 }
 
@@ -382,14 +420,14 @@ public partial class InputManager : Node
                 }
             }
 
-            if (DestroyedListeners.Count > 0)
+            if (destroyed.Count > 0)
             {
-                foreach (var destroyedListener in DestroyedListeners)
+                foreach (var destroyedListener in destroyed)
                 {
                     instances.Remove(destroyedListener);
                 }
 
-                DestroyedListeners.Clear();
+                destroyed.Clear();
             }
         }
 

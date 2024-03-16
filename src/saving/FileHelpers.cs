@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using Godot;
 using DirAccess = Godot.DirAccess;
 using FileAccess = Godot.FileAccess;

@@ -1,7 +1,10 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using Godot;
 
+/// <summary>
+///   Item in the crafting recipe list that can be selected to be crafted
+/// </summary>
 public partial class RecipeListItem : Button
 {
     [Export(PropertyHint.ColorNoAlpha)]

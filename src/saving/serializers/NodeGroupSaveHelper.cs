@@ -25,12 +25,13 @@ public static class NodeGroupSaveHelper
 
         try
         {
-            var groups = value.GetGroups().Cast<string>().ToList();
+            var groups = value.GetGroups().Select(g => g.ToString());
 
             // Ignore inbuilt groups
-            groups.RemoveAll(g => g.StartsWith("_") || IgnoredGroups.Contains(g));
+            groups = groups.Where(g => !g.StartsWith("_") && !IgnoredGroups.Contains(g));
 
-            serializer.Serialize(writer, groups.Count > 0 ? groups : null);
+            // TODO: check that this works properly
+            serializer.Serialize(writer, groups);
         }
         catch (ObjectDisposedException e)
         {

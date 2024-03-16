@@ -4,6 +4,9 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   Shows a timeline of world or local patch events on a long timescale (from auto-evo data)
+/// </summary>
 public partial class TimelineTab : PanelContainer
 {
     [Export]
@@ -309,7 +312,7 @@ public partial class TimelineTab : PanelContainer
                 AddChild(itemContainer);
             }
 
-            if (data.Events?.Any() == false)
+            if (data.Events.Any() == false)
             {
                 var noneLabelContainer = new HBoxContainer();
                 var noneLabelSpacer = new Control { CustomMinimumSize = new Vector2(25, 25) };

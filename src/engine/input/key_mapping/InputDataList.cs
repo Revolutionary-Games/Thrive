@@ -64,9 +64,8 @@ public class InputDataList : ICloneable
             // Register the new input keys
             foreach (var inputEvent in action.Value)
             {
-                // If the game is waiting for an input for this thing, skip trying to apply it
-                if (inputEvent == null)
-                    return;
+                // It used to be the case that input event could be null here for pending inputs, that is no longer the
+                // case (instead they are missing from the list)
 
                 InputMap.ActionAddEvent(keyName, inputEvent.ToInputEvent());
             }

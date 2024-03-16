@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   A play / pause control. Click toggles between play and pause states.
+/// </summary>
 public partial class PlayButton : MarginContainer
 {
 #pragma warning disable CA2213

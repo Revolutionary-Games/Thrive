@@ -14,7 +14,7 @@ public partial class ModalManager : NodeWithInput
     ///   Contains the original parents of modal windows. Used to return them to the right place in the scene after
     ///   they are no longer displayed.
     /// </summary>
-    private readonly System.Collections.Generic.Dictionary<TopLevelContainer, Node> originalParents = new();
+    private readonly Dictionary<TopLevelContainer, Node> originalParents = new();
 
     private readonly Deque<TopLevelContainer> modalStack = new();
     private readonly Queue<TopLevelContainer> demotedModals = new();
@@ -131,7 +131,7 @@ public partial class ModalManager : NodeWithInput
         {
             var modal = demotedModals.Dequeue();
 
-            if (!originalParents.TryGetValue(modal, out Node parent))
+            if (!originalParents.TryGetValue(modal, out var parent))
             {
                 modal.ReParent(this);
                 continue;

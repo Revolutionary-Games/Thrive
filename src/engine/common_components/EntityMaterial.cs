@@ -14,7 +14,7 @@ public struct EntityMaterial
 
     /// <summary>
     ///   If not null then <see cref="AutoRetrieveFromSpatial"/> uses this as the relative path from the
-    ///   <see cref="Spatial"/> node to where the material is retrieved from
+    ///   <see cref="Node3D"/> node to where the material is retrieved from
     /// </summary>
     public string? AutoRetrieveModelPath;
 

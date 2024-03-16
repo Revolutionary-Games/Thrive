@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -106,12 +107,19 @@ public partial class CollapsibleList : VBoxContainer
     public T GetItem<T>(string name)
         where T : Control
     {
-        return (T)items.Find(i => i.Name == name);
+        return (T?)items.Find(i => i.Name == name) ?? throw new ArgumentException("No item found with name");
     }
 
     public void RemoveItem(string name)
     {
         var found = items.Find(i => i.Name == name);
+
+        if (found == null)
+        {
+            GD.PrintErr("Cannot remove item by name from collapsible list, it was not found: ", name);
+            return;
+        }
+
         found.QueueFree();
         items.Remove(found);
     }
@@ -195,7 +203,7 @@ public partial class CollapsibleList : VBoxContainer
     /// </summary>
     private void UpdateLists()
     {
-        foreach (Control item in itemContainer!.GetChildren())
+        foreach (var item in itemContainer!.GetChildren().OfType<Control>())
         {
             items.Add(item);
         }

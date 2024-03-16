@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -846,7 +846,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnModifyPressed()
     {
-        EmitSignal(SignalName.OnCellTypeToEditSelected, cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName, true);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName,
+            true);
     }
 
     /// <summary>
@@ -870,7 +871,8 @@ public partial class CellBodyPlanEditorComponent :
                 cellTypeSelectionList.AddItem(control);
                 cellTypeSelectionButtons.Add(cellType.TypeName, control);
 
-                control.Connect(MicrobePartSelection.SignalName.OnPartSelected, new Callable(this, nameof(OnCellToPlaceSelected)));
+                control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
+                    new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
             control.MPCost = cellType.MPCost;
@@ -943,7 +945,7 @@ public partial class CellBodyPlanEditorComponent :
         OnCurrentActionChanged();
 
         // After clearing the selected cell, emit a signal to let the editor know
-        EmitSignal(SignalName.OnCellTypeToEditSelected, new Variant(), false);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant), false);
     }
 
     private void OnCellsChanged()

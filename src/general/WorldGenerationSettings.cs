@@ -157,8 +157,7 @@ public class WorldGenerationSettings
     /// </summary>
     public string GetTranslatedPlanetString()
     {
-        return Localization.Translate("PLANET_DETAILS_STRING").FormatSafe(
-            TranslationHelper.TranslateFeatureFlag(LAWK),
+        return Localization.Translate("PLANET_DETAILS_STRING").FormatSafe(TranslationHelper.TranslateFeatureFlag(LAWK),
             Localization.Translate(Origin.GetAttribute<DescriptionAttribute>().Description),
             TranslationHelper.TranslateFeatureFlag(DayNightCycleEnabled),
             DayLength,

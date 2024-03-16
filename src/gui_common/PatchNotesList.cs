@@ -3,6 +3,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Godot;
 
+/// <summary>
+///   Shows the game patch notes (optionally with the full history)
+/// </summary>
 public partial class PatchNotesList : VBoxContainer
 {
     private bool showAll = true;

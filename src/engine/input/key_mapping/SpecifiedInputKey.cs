@@ -76,7 +76,7 @@ public class SpecifiedInputKey : ICloneable
             {
                 var (button, device) = UnpackCodeAndDevice(Code);
 
-                container.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerButton((JoyButton)button)));
+                container.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerButton(button)));
 
                 if (device >= 0)
                     GD.Print("TODO: displaying device restriction");
@@ -93,9 +93,9 @@ public class SpecifiedInputKey : ICloneable
 
                 var (axis, direction, device) = UnpackAxis(Code);
 
-                overlayPositioner.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerAxis((JoyAxis)axis)));
+                overlayPositioner.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerAxis(axis)));
 
-                var directionImage = KeyPromptHelper.GetPathForControllerAxisDirection((JoyAxis)axis, direction);
+                var directionImage = KeyPromptHelper.GetPathForControllerAxisDirection(axis, direction);
 
                 if (directionImage != null)
                 {

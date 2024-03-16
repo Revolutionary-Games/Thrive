@@ -569,9 +569,12 @@ public class AutoEvoRun
                         // sensitive while auto-evo runs this value needs to be reduced
                         int maxTasksAtOnce = 1000;
 
-                        while (runSteps.Peek()?.CanRunConcurrently == true && maxTasksAtOnce > 0)
+                        while (runSteps.TryPeek(out var step) && step.CanRunConcurrently && maxTasksAtOnce > 0)
                         {
-                            var step = runSteps.Dequeue();
+                            var step2 = runSteps.Dequeue();
+
+                            if (step != step2)
+                                throw new Exception("Dequeued an unexpected item");
 
                             concurrentStepTasks.Add(new Task(() => RunSingleStepToCompletion(step)));
                             --maxTasksAtOnce;

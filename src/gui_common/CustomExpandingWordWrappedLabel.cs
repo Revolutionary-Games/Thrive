@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Custom label with word wrap which dynamically expands to fill space.

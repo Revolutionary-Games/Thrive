@@ -1,6 +1,9 @@
 ﻿using System;
 using Godot;
 
+/// <summary>
+///   Started for ascension stage (basically starts <see cref="MainGameState.SpaceStage"/> with ascended mode enabled)
+/// </summary>
 public partial class AscensionStageStarter : ComplexStageStarterBase
 {
     protected override MainGameState SimplyLoadableGameState => throw new InvalidOperationException("Should be unused");

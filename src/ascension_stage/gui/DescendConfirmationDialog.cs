@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Popup asking the player if they really want to descend back to the microbe stage
+/// </summary>
 public partial class DescendConfirmationDialog : CustomConfirmationDialog
 {
     private GameProperties? game;

@@ -2,6 +2,10 @@
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   Direct starter for early multicellular (basically <see cref="MainGameState.MicrobeStage"/> with multicellular
+///   species)
+/// </summary>
 public partial class EarlyMulticellularStageStarter : ComplexStageStarterBase
 {
     protected override MainGameState SimplyLoadableGameState => MainGameState.MicrobeStage;

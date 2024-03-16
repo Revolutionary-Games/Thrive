@@ -18,10 +18,11 @@ public partial class CellBillboard : Node3D
 
 #pragma warning disable CA2213
     private MeshInstance3D? quad;
+
+    private Texture2D? cellImage;
 #pragma warning restore CA2213
 
     private StandardMaterial3D material = null!;
-    private Texture2D? cellImage;
     private ImageTask? imageTask;
 
     private bool dirty = true;

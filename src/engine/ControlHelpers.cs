@@ -66,7 +66,8 @@ public static class ControlHelpers
     /// </param>
     public static void BecomeFocusForwarder(this Control control, bool adjustNextNodePreviousLinks = true)
     {
-        control.Connect(Control.SignalName.FocusEntered, Callable.From(() => GUICommon.Instance.ProxyFocusForward(control)));
+        control.Connect(Control.SignalName.FocusEntered,
+            Callable.From(() => GUICommon.Instance.ProxyFocusForward(control)));
 
         if (!adjustNextNodePreviousLinks)
             return;

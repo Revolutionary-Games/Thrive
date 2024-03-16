@@ -1,8 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using Godot;
 using Container = Godot.Container;
 
+/// <summary>
+///   Popup when the player interacts with an interactable in the world that wants to show possible interaction actions
+/// </summary>
 public partial class InteractablePopup : Control
 {
     [Export]

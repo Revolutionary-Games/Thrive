@@ -1015,7 +1015,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     /// <returns>Enumerable of all microbes of Player's species</returns>
     private IEnumerable<Entity> GetAllPlayerSpeciesMicrobes()
     {
-        if (Player == null)
+        if (Player == default)
             throw new InvalidOperationException("Could not get player species microbes: no Player object");
 
         var species = Player.Get<SpeciesMember>().ID;
@@ -1030,7 +1030,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         }
     }
 
-    private void OnSpawnEnemyCheatUsed(object sender, EventArgs e)
+    private void OnSpawnEnemyCheatUsed(object? sender, EventArgs e)
     {
         if (!HasPlayer)
             return;
@@ -1059,7 +1059,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
     }
 
-    private void OnDuplicatePlayerCheatUsed(object sender, EventArgs e)
+    private void OnDuplicatePlayerCheatUsed(object? sender, EventArgs e)
     {
         if (!HasAlivePlayer)
         {

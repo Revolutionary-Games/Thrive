@@ -1,14 +1,18 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Environment = Godot.Environment;
 
+/// <summary>
+///   Late multicellular (macroscopic) main editor class
+/// </summary>
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/late_multicellular_stage/editor/LateMulticellularEditor.tscn")]
 [DeserializedCallbackTarget]
-public partial class LateMulticellularEditor : EditorBase<EditorAction, MulticellularStage>, IEditorReportData, ICellEditorData
+public partial class LateMulticellularEditor : EditorBase<EditorAction, MulticellularStage>, IEditorReportData,
+    ICellEditorData
 {
     [Export]
     public NodePath? ReportTabPath;

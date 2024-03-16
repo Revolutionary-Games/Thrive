@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   A custom Control type which defines top-level Controls that also behaves like a Popup.

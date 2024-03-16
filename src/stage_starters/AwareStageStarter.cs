@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Direct starter for aware (basically <see cref="MainGameState.MulticellularStage"/> with aware species)
+/// </summary>
 public partial class AwareStageStarter : ComplexStageStarterBase
 {
     protected override MainGameState SimplyLoadableGameState => MainGameState.MulticellularStage;

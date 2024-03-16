@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   A dedicated screen where the player setup the settings they want to play with when starting a new game from a

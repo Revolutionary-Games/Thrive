@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -326,12 +326,12 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     public NodePath PatchNotesDisplayerPath = null!;
 
-    private static readonly Lazy<List<string>> LanguagesCache = new(() => TranslationServer.GetLoadedLocales()
-        .Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture).ToList());
+    private static readonly Lazy<List<string>> LanguagesCache = new(() =>
+        TranslationServer.GetLoadedLocales().OrderBy(i => i, StringComparer.InvariantCulture).ToList());
 
     // TODO: this should be refreshed periodically to support user plugging in new devices
     private static readonly List<string> AudioOutputDevicesCache = AudioServer
-        .GetOutputDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
+        .GetOutputDeviceList().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
 #pragma warning disable CA2213

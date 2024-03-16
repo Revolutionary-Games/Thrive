@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -55,7 +55,7 @@ public partial class PlacedSpaceStructure : Node3D, IEntityWithNameLabel
     }
 
     [JsonIgnore]
-    public string? StructureExtraDescription
+    public string StructureExtraDescription
     {
         get
         {

@@ -1,5 +1,9 @@
 ﻿using Godot;
 
+/// <summary>
+///   The bottom left buttons that are common to all editor types. Not to be confused with
+///   <see cref="EditorComponentBottomLeftButtons"/>.
+/// </summary>
 public partial class EditorCommonBottomLeftButtons : MarginContainer
 {
     [Export]

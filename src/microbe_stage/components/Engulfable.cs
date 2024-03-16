@@ -122,8 +122,8 @@ public static class EngulfableHelpers
     ///   The extra compounds to add (this also shouldn't have any 0 values in it for clarity). Or null if there
     ///   aren't any extra digestible compounds.
     /// </returns>
-    public static Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds(
-        this ref Engulfable engulfable, in Entity entity)
+    public static Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds(this ref Engulfable engulfable,
+        in Entity entity)
     {
         // Extra digestible compounds for microbes
         if (entity.Has<OrganelleContainer>() && entity.Has<CompoundStorage>())

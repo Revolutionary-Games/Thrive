@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -16,10 +16,11 @@ public partial class MicrobePartSelection : MarginContainer
     private TextureRect? iconRect;
     private Control? recentlyUnlockedControl;
     private Label? nameLabel;
+
+    private Texture2D? partIcon;
 #pragma warning restore CA2213
 
     private int mpCost;
-    private Texture2D? partIcon;
     private string name = "Error: unset";
     private bool locked;
     private bool recentlyUnlocked;

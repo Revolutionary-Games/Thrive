@@ -18,8 +18,12 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
     /// </summary>
     public IComponentSpecificUpgrades? CustomUpgradeData { get; set; }
 
-    public bool Equals(OrganelleUpgrades other)
+    public bool Equals(OrganelleUpgrades? other)
     {
+        // TODO: allow default value to equal null, see: https://github.com/Revolutionary-Games/Thrive/issues/4091
+        if (other == null)
+            return false;
+
         if (!UnlockedFeatures.SequenceEqual(other.UnlockedFeatures))
             return false;
 

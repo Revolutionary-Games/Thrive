@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///  Signal numbers that are no longer exposed from Godot for some reason
+///   Signal numbers that are no longer exposed from Godot for some reason
 /// </summary>
 /// <remarks>
 ///   <para>

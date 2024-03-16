@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   3D model type art gallery item
+/// </summary>
 public partial class GalleryCardModel : GalleryCard
 {
     private ImageTask? imageTask;

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Godot;
@@ -85,7 +85,7 @@ public partial class ControllerAxisVisualizer : MarginContainer
         verticalRawDisplayer = GetNode<Control>(VerticalRawDisplayerPath);
         verticalDeadzoneDisplayer = GetNode<Control>(VerticalDeadzoneDisplayerPath);
 
-        drawerNode.Connect(CanvasItem.SignalName.Draw, new Callable(this, nameof(Draw)));
+        drawerNode.Connect(CanvasItem.SignalName.Draw, new Callable(this, nameof(OnDrawerDraw)));
 
         SetVerticalAxisDisplay(false);
     }
@@ -237,7 +237,7 @@ public partial class ControllerAxisVisualizer : MarginContainer
         base.Dispose(disposing);
     }
 
-    private void Draw()
+    private void OnDrawerDraw()
     {
         var size = drawerNode.Size;
         var center = size / 2;
