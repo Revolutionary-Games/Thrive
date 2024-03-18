@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Buffers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using DefaultEcs;
@@ -132,8 +131,8 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
             // at once, so all of our very briefly dangling pointers will be fixed very soon.
             NotifyCollisionRecordingStopped();
 
-            // TODO: could always round this up to next 1 KiB of memory use as the pinned object heap rounds up the sizes
-            // anyway
+            // TODO: could always round this up to next 1 KiB of memory use as the pinned object heap rounds up the
+            // sizes anyway
             activeCollisions = GC.AllocateUninitializedArray<PhysicsCollision>(maxCollisions, true);
         }
 
