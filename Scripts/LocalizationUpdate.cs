@@ -100,7 +100,6 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "WindowTitle",
         "dialog_text",
         "hint_tooltip",
-        "items",
         "placeholder_text",
         "text",
         "window_title",
