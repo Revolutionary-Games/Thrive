@@ -169,7 +169,7 @@ public static class SteamBuild
                 yield return $"    {STEAM_ENABLED_COMMENT}";
 
                 if (verbose)
-                    ColourConsole.WriteInfoLine($"Adding steamworks reference");
+                    ColourConsole.WriteInfoLine("Adding steamworks reference");
 
                 yield return $"    {SteamAssemblyReference(platform)}";
 
