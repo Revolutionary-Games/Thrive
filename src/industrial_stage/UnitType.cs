@@ -89,14 +89,14 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
 
-        if (string.IsNullOrEmpty(VisualScene) || !FileAccess.FileExists(VisualScene))
+        if (string.IsNullOrEmpty(VisualScene) || !ResourceLoader.Exists(VisualScene))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing world representation scene");
 
         if (string.IsNullOrWhiteSpace(SpaceVisuals))
             SpaceVisuals = VisualScene;
 
 #if DEBUG
-        if (!FileAccess.FileExists(SpaceVisuals))
+        if (!ResourceLoader.Exists(SpaceVisuals))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing space visuals scene scene");
 #endif
 
