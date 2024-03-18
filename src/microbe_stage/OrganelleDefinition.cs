@@ -459,7 +459,7 @@ public class OrganelleDefinition : IRegistryType
 #if DEBUG
         if (!string.IsNullOrEmpty(CorpseChunkScene))
         {
-            if (!FileAccess.FileExists(CorpseChunkScene))
+            if (!ResourceLoader.Exists(CorpseChunkScene))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Corpse chunk scene path doesn't exist");

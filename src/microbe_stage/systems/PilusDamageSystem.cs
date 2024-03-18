@@ -41,7 +41,7 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
             ref var collision = ref collisions![i];
 
             // Only process just started collisions for pilus damage
-            if (!collision.JustStarted)
+            if (collision.JustStarted != 1)
                 continue;
 
             if (!collision.SecondEntity.Has<MicrobePhysicsExtraData>())

@@ -166,10 +166,10 @@ public class PhysicalWorld : IDisposable
     /// </param>
     public void DestroyBody(NativePhysicsBody body, bool dispose = true)
     {
+        NativeMethods.DestroyPhysicalWorldBody(AccessWorldInternal(), body.AccessBodyInternal());
+
         // As the body will be forcefully destroyed, all the collision writing resources can be freed
         body.NotifyCollisionRecordingStopped();
-
-        NativeMethods.DestroyPhysicalWorldBody(AccessWorldInternal(), body.AccessBodyInternal());
 
         if (dispose)
             body.Dispose();
@@ -418,8 +418,7 @@ public class PhysicalWorld : IDisposable
         if (maxRecordedCollisions < 1)
             throw new ArgumentException("Need to record at least one collision", nameof(maxRecordedCollisions));
 
-        var (collisionsArray, arrayAddress) =
-            body.SetupCollisionRecording(maxRecordedCollisions);
+        var (collisionsArray, arrayAddress) = body.SetupCollisionRecording(maxRecordedCollisions);
 
         receiverOfAddressOfCollisionCount = NativeMethods.PhysicsBodyEnableCollisionRecording(AccessWorldInternal(),
             body.AccessBodyInternal(), arrayAddress, maxRecordedCollisions);
@@ -435,8 +434,8 @@ public class PhysicalWorld : IDisposable
 
     public void BodyStopCollisionRecording(NativePhysicsBody body)
     {
-        body.NotifyCollisionRecordingStopped();
         NativeMethods.PhysicsBodyDisableCollisionRecording(AccessWorldInternal(), body.AccessBodyInternal());
+        body.NotifyCollisionRecordingStopped();
     }
 
     public void BodyAddCollisionFilter(NativePhysicsBody body, OnCollisionFilterCallback filterCallback)

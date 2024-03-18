@@ -11,11 +11,14 @@ using SharedBase.Models;
 
 public static class SteamBuild
 {
-    private const string STEAM_CLIENT_FILE_PATH = @"src\steam\SteamClient.cs";
-    private const string STEAMWORKS_REFERENCE_START = @"<Reference Include=""Steamworks.NET"">";
+    private const string IGNORE_STEAM_CLIENT_MARKER = @"<Compile Remove=""src\steam\SteamClient.cs""";
+    private const string STEAM_CLIENT_INSERT_ENABLE = "Steam build needs to";
+    private const string DISABLE_STEAM_LINE = "    " + IGNORE_STEAM_CLIENT_MARKER + " />";
+    private const string ITEM_GROUP = "<ItemGroup>";
 
-    private const string CSPROJ_COMPILE_LINE = "<Compile Include=";
-    private const string CSPROJ_SYSTEM_REFERENCE = @"<Reference Include=""System""";
+    private const string STEAM_ENABLED_COMMENT = "<!-- Steam build enabled -->";
+
+    private const string STEAMWORKS_REFERENCE_START = @"<Reference Include=""Steamworks.NET"">";
 
     private const string THRIVE_CSPROJ = "Thrive.csproj";
 
@@ -29,6 +32,8 @@ public static class SteamBuild
     {
         switch (platform)
         {
+            // TODO: M1 mac compiled support?
+            // case SteamPlatform.Linux.Mac:
             case SteamPlatform.Linux:
                 return @"third_party\linux\Steamworks.NET.dll";
             case SteamPlatform.Windows:
@@ -48,7 +53,7 @@ public static class SteamBuild
     {
         var content = await File.ReadAllTextAsync(THRIVE_CSPROJ, Encoding.UTF8, cancellationToken);
 
-        return content.Contains(STEAM_CLIENT_FILE_PATH);
+        return !content.Contains(IGNORE_STEAM_CLIENT_MARKER);
     }
 
     public static async Task<bool> IsSteamworksReferenced(SteamPlatform platform, CancellationToken cancellationToken)
@@ -102,11 +107,11 @@ public static class SteamBuild
 
         if (enabled)
         {
-            content = ProcessAddingClientLine(platform.Value, content, verbose);
+            content = ProcessEnablingSteam(platform.Value, content, verbose);
         }
         else
         {
-            content = ProcessRemovingClientLine(content, verbose);
+            content = ProcessDisablingSteam(content, verbose);
         }
 
         // Important to not emit the BOM here
@@ -135,11 +140,10 @@ public static class SteamBuild
         }
     }
 
-    private static IEnumerable<string> ProcessAddingClientLine(SteamPlatform platform, IEnumerable<string> lines,
+    private static IEnumerable<string> ProcessEnablingSteam(SteamPlatform platform, IEnumerable<string> lines,
         bool verbose)
     {
-        bool added = false;
-        bool foundCompile = false;
+        bool removed = false;
 
         bool addedSteamworks = false;
 
@@ -149,66 +153,56 @@ public static class SteamBuild
         {
             ++lineNumber;
 
-            if (added && addedSteamworks)
+            if (removed && addedSteamworks)
             {
                 yield return line;
 
                 continue;
             }
 
-            if (foundCompile && !line.Contains(CSPROJ_COMPILE_LINE) && !added)
+            if (line.Contains(IGNORE_STEAM_CLIENT_MARKER))
             {
                 if (verbose)
-                    ColourConsole.WriteInfoLine($"Inserting special file file after line {lineNumber}");
+                    ColourConsole.WriteInfoLine($"Removed Steam client suppress reference on line {lineNumber}");
 
-                yield return $"    <Compile Include=\"{STEAM_CLIENT_FILE_PATH}\" />";
+                // Replace with the assembly reference
+                yield return $"    {STEAM_ENABLED_COMMENT}";
 
-                added = true;
-            }
-            else if (line.Contains(CSPROJ_COMPILE_LINE) && !foundCompile)
-            {
                 if (verbose)
-                    ColourConsole.WriteNormalLine($"Found first compile file reference on line {lineNumber}");
-                foundCompile = true;
-            }
-
-            if (!addedSteamworks && line.Contains(CSPROJ_SYSTEM_REFERENCE))
-            {
-                if (verbose)
-                {
-                    ColourConsole.WriteInfoLine(
-                        $"Found system reference on line {lineNumber} adding steamworks reference");
-                }
+                    ColourConsole.WriteInfoLine($"Adding steamworks reference");
 
                 yield return $"    {SteamAssemblyReference(platform)}";
 
                 addedSteamworks = true;
+                removed = true;
+
+                continue;
             }
 
             yield return line;
         }
 
-        if (!added)
-            throw new Exception("Could not add Steam handler compile directive");
+        if (!removed)
+            throw new Exception("Could not remove Steam handler ignore compile line");
 
         if (!addedSteamworks)
             throw new Exception("Could not add Steamworks reference");
     }
 
-    private static IEnumerable<string> ProcessRemovingClientLine(IEnumerable<string> lines, bool verbose)
+    private static IEnumerable<string> ProcessDisablingSteam(IEnumerable<string> lines, bool verbose)
     {
         int lineNumber = 0;
+        bool addedClientIgnore = false;
+        bool clientIgnorePrimed = false;
 
         foreach (var line in lines)
         {
             ++lineNumber;
 
-            if (line.Contains(STEAM_CLIENT_FILE_PATH))
+            if (!addedClientIgnore)
             {
-                if (verbose)
-                    ColourConsole.WriteInfoLine($"Removed Steam client compile reference on line {lineNumber}");
-
-                continue;
+                if (line.Contains(STEAM_CLIENT_INSERT_ENABLE))
+                    clientIgnorePrimed = true;
             }
 
             if (line.Contains(STEAMWORKS_REFERENCE_START))
@@ -219,7 +213,26 @@ public static class SteamBuild
                 continue;
             }
 
+            if (line.Contains(STEAM_ENABLED_COMMENT))
+            {
+                if (verbose)
+                    ColourConsole.WriteInfoLine($"Removing Steam enabled comment on line {lineNumber}");
+
+                continue;
+            }
+
             yield return line;
+
+            if (clientIgnorePrimed && line.Contains(ITEM_GROUP))
+            {
+                if (verbose)
+                    ColourConsole.WriteInfoLine($"Adding Steam client suppress reference after line {lineNumber}");
+
+                yield return DISABLE_STEAM_LINE;
+
+                clientIgnorePrimed = false;
+                addedClientIgnore = true;
+            }
         }
     }
 }

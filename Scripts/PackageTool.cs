@@ -17,8 +17,7 @@ using SharedBase.Utilities;
 
 public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
-    private const string EXPECTED_THRIVE_DATA_FOLDER = "data_Thrive";
-    private const string EXPECTED_THRIVE_WASM = "Thrive.wasm";
+    private const string EXPECTED_THRIVE_PCK_FILE = "Thrive.pck";
 
     private const string STEAM_BUILD_MESSAGE = "This is the Steam build. This can only be distributed by " +
         "Revolutionary Games Studio (under a special license) due to Steam being incompatible with the GPL license!";
@@ -71,7 +70,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "gitmodules",
         "default_bus_layout.tres",
         "default_env.tres",
-        "Directory.Build.props",
         "export_presets.cfg",
         "global.json",
         "LICENSE.txt",
@@ -80,11 +78,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "Thrive.sln",
         "Thrive.sln.DotSettings",
         "doc",
-        "Properties",
         "shaders",
         "simulation_parameters",
         "src",
-        "third_party/Directory.Build.props",
         "third_party/ThirdParty.csproj",
         "third_party/FastNoiseLite.cs",
         "third_party/StyleCop.ruleset",
@@ -275,7 +271,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         var startInfo = new ProcessStartInfo("godot");
         startInfo.ArgumentList.Add("--no-window");
-        startInfo.ArgumentList.Add("--export");
+        startInfo.ArgumentList.Add("--export-release");
         startInfo.ArgumentList.Add(target);
         startInfo.ArgumentList.Add(targetFile);
 
@@ -287,26 +283,33 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             return false;
         }
 
-        if (platform == PackagePlatform.Web)
-        {
-            var expectedWebFile = Path.Join(folder, EXPECTED_THRIVE_WASM);
+        var expectedFile = Path.Join(folder, ThriveProperties.GetThriveExecutableName(platform));
 
-            if (!File.Exists(expectedWebFile))
+        if (!File.Exists(expectedFile))
+        {
+            ColourConsole.WriteErrorLine($"Expected Thrive executable ({expectedFile}) was not created on export. " +
+                "Are export templates installed?");
+            return false;
+        }
+
+        if (platform != PackagePlatform.Mac)
+        {
+            // Check .pck file exists
+            var expectedPck = Path.Join(folder, EXPECTED_THRIVE_PCK_FILE);
+
+            if (!File.Exists(expectedPck))
             {
-                ColourConsole.WriteErrorLine($"Expected web file ({expectedWebFile}) was not created on export. " +
+                ColourConsole.WriteErrorLine($"Expected pck file ({expectedPck}) was not created on export. " +
                     "Are export templates installed?");
                 return false;
             }
-        }
-        else if (platform != PackagePlatform.Mac)
-        {
-            var expectedDataFolder = Path.Join(folder, EXPECTED_THRIVE_DATA_FOLDER);
+
+            var expectedDataFolder = Path.Join(folder, ThriveProperties.GetDataFolderName(platform));
 
             if (!Directory.Exists(expectedDataFolder))
             {
-                ColourConsole.WriteErrorLine(
-                    $"Expected data folder ({expectedDataFolder}) was not created on export. " +
-                    "Are export templates installed?");
+                ColourConsole.WriteErrorLine($"Expected data folder ({expectedDataFolder}) was not created on " +
+                    $"export. Are export templates installed? Or did code build fail?");
                 return false;
             }
         }

@@ -92,12 +92,10 @@ public class Asset
             MeshNodePath = ".";
         }
 
-        if (Type is AssetType.ModelScene or AssetType.VideoPlayback && !FileHelpers.Exists(ResourcePath))
-            throw new FileNotFoundException("The given scene or video file in ResourcePath doesn't exist");
-
-        // When exported only the .import files exist, so this check is done accordingly
-        if (Type is AssetType.Texture2D or AssetType.AudioPlayback && !FileHelpers.Exists(ResourcePath + ".import"))
-            throw new FileNotFoundException("The given image or audio file in ResourcePath doesn't exist");
+#if DEBUG
+        if (!ResourceLoader.Exists(ResourcePath))
+            throw new FileNotFoundException("The given asset in ResourcePath doesn't exist");
+#endif
 
         FileName = ResourcePath.GetFile().GetBaseName();
     }

@@ -525,7 +525,7 @@ public partial class ModLoader : Node
     {
         GD.Print("Loading mod .pck file: ", path);
 
-        if (!FileHelpers.Exists(path))
+        if (!FileAccess.FileExists(path))
         {
             GD.PrintErr(".pck loading failed due to the .pck file not existing: ", path);
             modErrors.Add(Localization.Translate("PCK_LOAD_FAILED_DOES_NOT_EXIST")

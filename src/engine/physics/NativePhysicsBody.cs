@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Buffers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using DefaultEcs;
@@ -23,9 +22,10 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     /// </remarks>
     public bool Marked = true;
 
-    private static readonly ArrayPool<PhysicsCollision> CollisionDataBufferPool =
+    // TODO: re-add pooling here?
+    /*private static readonly ArrayPool<PhysicsCollision> CollisionDataBufferPool =
         ArrayPool<PhysicsCollision>.Create(Constants.MAX_COLLISION_CACHE_BUFFER_RETURN_SIZE,
-            Constants.MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGTH);
+            Constants.MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGTH);*/
 
     private static readonly int EntityDataSize = Marshal.SizeOf<Entity>();
 
@@ -36,8 +36,6 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     ///   piece of memory to ensure the native code side can directly write here with pointers
     /// </summary>
     private PhysicsCollision[]? activeCollisions;
-
-    private GCHandle activeCollisionsPinHandle;
 
     private IntPtr nativeInstance;
 
@@ -126,24 +124,29 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     internal (PhysicsCollision[] CollisionsArray, IntPtr ArrayAddress)
         SetupCollisionRecording(int maxCollisions)
     {
-        // Ensure no previous state. This is safe as each physics body can only be recording one set of collisions
-        // at once, so all of our very briefly dangling pointers will be fixed very soon.
-        NotifyCollisionRecordingStopped();
+        // Can re-use collision recording array if the max count is still low enough
+        if (activeCollisions == null || activeCollisions.Length < maxCollisions)
+        {
+            // Ensure no previous state. This is safe as each physics body can only be recording one set of collisions
+            // at once, so all of our very briefly dangling pointers will be fixed very soon.
+            NotifyCollisionRecordingStopped();
 
-        activeCollisions = CollisionDataBufferPool.Rent(maxCollisions);
-        activeCollisionsPinHandle = GCHandle.Alloc(activeCollisions, GCHandleType.Pinned);
+            // TODO: could always round this up to next 1 KiB of memory use as the pinned object heap rounds up the
+            // sizes anyway
+            activeCollisions = GC.AllocateUninitializedArray<PhysicsCollision>(maxCollisions, true);
+        }
 
-        return (activeCollisions, activeCollisionsPinHandle.AddrOfPinnedObject());
+        return (activeCollisions, Marshal.UnsafeAddrOfPinnedArrayElement(activeCollisions, 0));
     }
 
     internal void NotifyCollisionRecordingStopped()
     {
+        // ReSharper disable once RedundantCheckBeforeAssignment
         if (activeCollisions != null)
         {
-            CollisionDataBufferPool.Return(activeCollisions);
+            // TODO: return to pool?
+            // CollisionDataBufferPool.Return(activeCollisions);
             activeCollisions = null;
-
-            activeCollisionsPinHandle.Free();
         }
     }
 
