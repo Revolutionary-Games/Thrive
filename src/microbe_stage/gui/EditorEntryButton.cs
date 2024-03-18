@@ -6,19 +6,19 @@ using Godot;
 public partial class EditorEntryButton : TextureButton
 {
     [Export]
-    public TextureRect Highlight = null!;
+    private TextureRect highlight = null!;
 
     [Export]
-    public AnimationPlayer ButtonAnimationPlayer = null!;
+    private AnimationPlayer buttonAnimationPlayer = null!;
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            if (Highlight != null)
+            if (highlight != null)
             {
-                Highlight.Dispose();
-                ButtonAnimationPlayer.Dispose();
+                highlight.Dispose();
+                buttonAnimationPlayer.Dispose();
             }
         }
     }
@@ -28,8 +28,8 @@ public partial class EditorEntryButton : TextureButton
         if (Disabled)
             return;
 
-        Highlight.Hide();
-        ButtonAnimationPlayer.Stop();
+        highlight.Hide();
+        buttonAnimationPlayer.Stop();
     }
 
     private void OnEditorButtonMouseExit()
@@ -37,7 +37,7 @@ public partial class EditorEntryButton : TextureButton
         if (Disabled)
             return;
 
-        Highlight.Show();
-        ButtonAnimationPlayer.Play();
+        highlight.Show();
+        buttonAnimationPlayer.Play();
     }
 }
