@@ -890,6 +890,7 @@ text = "GENERATION_COLON"
 label_settings = ExtResource("24_ekuel")
 
 [node name="Value" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "n/a"
 label_settings = ExtResource("25_68vjv")
@@ -1051,6 +1052,7 @@ text = "BEST_PATCH_COLON"
 label_settings = ExtResource("24_ekuel")
 
 [node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "n/a"
@@ -1066,6 +1068,7 @@ text = "WORST_PATCH_COLON"
 label_settings = ExtResource("24_ekuel")
 
 [node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "n/a"

@@ -139,6 +139,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 
 [node name="PatchName" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
+editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -154,12 +155,14 @@ label_settings = ExtResource("5_133c0")
 horizontal_alignment = 1
 
 [node name="Biome" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Biome: BIOME HERE"
 label_settings = ExtResource("7_o264b")
 horizontal_alignment = 1
 
 [node name="Depth" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "200-340m below sea level"
 label_settings = ExtResource("7_o264b")
@@ -238,8 +241,9 @@ texture = ExtResource("25")
 expand_mode = 1
 
 [node name="TemperatureLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "Temperature"
+text = "52 C"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
@@ -263,8 +267,9 @@ texture = ExtResource("23")
 expand_mode = 1
 
 [node name="PressureLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "Pressure"
+text = "102 kPA"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Light3D" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
@@ -291,7 +296,7 @@ layout_mode = 2
 
 [node name="LightLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light3D/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Light3D"
+text = "100%"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light3D/VBoxContainer/HBoxContainer"]
@@ -380,6 +385,7 @@ texture = ExtResource("12")
 expand_mode = 1
 
 [node name="OxygenLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Oxygen"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Oxygen"
 label_settings = ExtResource("15_ng6rp")
@@ -398,8 +404,9 @@ texture = ExtResource("7")
 expand_mode = 1
 
 [node name="NitrogenLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "Nitrogen"
+text = "NITROGEN"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="CO2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
@@ -416,8 +423,9 @@ texture = ExtResource("8")
 expand_mode = 1
 
 [node name="CO2Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/CO2"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "CO2"
+text = "CO₂"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Compounds" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
@@ -492,8 +500,9 @@ texture = ExtResource("14")
 expand_mode = 1
 
 [node name="HydrogenSulfideLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "Hydrogen Sulfide"
+text = "12%"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
@@ -516,8 +525,9 @@ texture = ExtResource("13")
 expand_mode = 1
 
 [node name="AmmoniaLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "Ammonia"
+text = "5%"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
@@ -540,8 +550,9 @@ texture = ExtResource("10")
 expand_mode = 1
 
 [node name="GlucoseLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "Glucose"
+text = "9%"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
@@ -564,8 +575,9 @@ texture = ExtResource("21")
 expand_mode = 1
 
 [node name="PhosphateLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "Phosphate"
+text = "5%"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
@@ -588,8 +600,9 @@ texture = ExtResource("11")
 expand_mode = 1
 
 [node name="IronLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "Iron"
+text = "5%"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]

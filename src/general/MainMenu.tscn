@@ -168,6 +168,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="StoreUser" type="Label" parent="."]
+editor_description = "PLACEHOLDER"
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -185,6 +186,7 @@ label_settings = ExtResource("7_1nsb2")
 max_lines_visible = 1
 
 [node name="VersionNumber" type="Label" parent="."]
+editor_description = "PLACEHOLDER"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -399,6 +401,7 @@ mouse_filter = 1
 text = "BENCHMARKS"
 
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/Tools"]
+editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -498,6 +501,7 @@ mouse_filter = 1
 text = "MICROBE_BENCHMARK"
 
 [node name="unknown" type="Button" parent="MenuContainers/Menus/Benchmarks"]
+editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
