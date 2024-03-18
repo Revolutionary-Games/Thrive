@@ -125,11 +125,17 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     internal (PhysicsCollision[] CollisionsArray, IntPtr ArrayAddress)
         SetupCollisionRecording(int maxCollisions)
     {
-        // Ensure no previous state. This is safe as each physics body can only be recording one set of collisions
-        // at once, so all of our very briefly dangling pointers will be fixed very soon.
-        NotifyCollisionRecordingStopped();
+        // Can re-use collision recording array if the max count is still low enough
+        if (activeCollisions == null || activeCollisions.Length < maxCollisions)
+        {
+            // Ensure no previous state. This is safe as each physics body can only be recording one set of collisions
+            // at once, so all of our very briefly dangling pointers will be fixed very soon.
+            NotifyCollisionRecordingStopped();
 
-        activeCollisions = GC.AllocateUninitializedArray<PhysicsCollision>(maxCollisions, true);
+            // TODO: could always round this up to next 1 KiB of memory use as the pinned object heap rounds up the sizes
+            // anyway
+            activeCollisions = GC.AllocateUninitializedArray<PhysicsCollision>(maxCollisions, true);
+        }
 
         return (activeCollisions, Marshal.UnsafeAddrOfPinnedArrayElement(activeCollisions, 0));
     }
