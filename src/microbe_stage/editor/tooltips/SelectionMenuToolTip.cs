@@ -439,4 +439,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
         moreInfo.Visible = thriveopediaPageName != null;
     }
+
+    private void DummyKeepTranslations()
+    {
+        TranslationServer.Translate("NO_ORGANELLE_PROCESSES");
+    }
 }

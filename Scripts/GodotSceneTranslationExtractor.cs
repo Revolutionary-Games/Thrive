@@ -29,13 +29,16 @@ public class GodotSceneTranslationExtractor : TranslationExtractorBase
     /// </summary>
     private const string TooltipPlaceHolderMarker = "TOOLTIP_PLACEHOLDER";
 
-    private const string TooltipPropertyName = "hint_tooltip";
+    private const string TooltipPropertyName = "tooltip_text";
 
     private const string EditorDescriptionName = "editor_description";
 
     private const int ItemListStride = 5;
 
     private static readonly Regex GodotPropertyStr = new(@"^([A-Za-z0-9_]+)\s*=\s*""(.+)""$", RegexOptions.Compiled);
+
+    private static readonly Regex GodotSubItemPropertyStr =
+        new(@"^.+/item_\d+/([A-Za-z0-9_]+)\s*=\s*""(.+)""$", RegexOptions.Compiled);
 
     private readonly IReadOnlyCollection<string> propertiesToLookFor;
 
@@ -110,6 +113,16 @@ public class GodotSceneTranslationExtractor : TranslationExtractorBase
                     HandleEditorDescription(match.Groups[2].Value);
                 }
                 else
+                {
+                    HandleProperty(match.Groups[1].Value, match.Groups[2].Value, path, lineNumber);
+                }
+            }
+            else
+            {
+                // Try matching configured sub-item property from Godot editor
+                match = GodotSubItemPropertyStr.Match(line);
+
+                if (match.Success)
                 {
                     HandleProperty(match.Groups[1].Value, match.Groups[2].Value, path, lineNumber);
                 }

@@ -12,6 +12,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1")
 script = ExtResource("3")
@@ -236,6 +238,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="PreviewSelector" type="FileDialog" parent="."]
+title = "SELECT_PREVIEW_IMAGE"
 mode_overrides_title = false
 access = 2
 
