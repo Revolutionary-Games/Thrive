@@ -5,13 +5,31 @@ using Godot;
 /// </summary>
 public partial class EditorEntryButton : TextureButton
 {
+    [Export]
+    public TextureRect Highlight = null!;
+
+    [Export]
+    public AnimationPlayer ButtonAnimationPlayer = null!;
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (Highlight != null)
+            {
+                Highlight.Dispose();
+                ButtonAnimationPlayer.Dispose();
+            }
+        }
+    }
+
     private void OnEditorButtonMouseEnter()
     {
         if (Disabled)
             return;
 
-        GetNode<TextureRect>("Highlight").Hide();
-        GetNode<AnimationPlayer>("AnimationPlayer").Stop();
+        Highlight.Hide();
+        ButtonAnimationPlayer.Stop();
     }
 
     private void OnEditorButtonMouseExit()
@@ -19,7 +37,7 @@ public partial class EditorEntryButton : TextureButton
         if (Disabled)
             return;
 
-        GetNode<TextureRect>("Highlight").Show();
-        GetNode<AnimationPlayer>("AnimationPlayer").Play();
+        Highlight.Show();
+        ButtonAnimationPlayer.Play();
     }
 }
