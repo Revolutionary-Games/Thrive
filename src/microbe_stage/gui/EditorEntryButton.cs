@@ -5,23 +5,13 @@ using Godot;
 /// </summary>
 public partial class EditorEntryButton : TextureButton
 {
+#pragma warning disable CA2213
     [Export]
     private TextureRect highlight = null!;
 
     [Export]
     private AnimationPlayer buttonAnimationPlayer = null!;
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (highlight != null)
-            {
-                highlight.Dispose();
-                buttonAnimationPlayer.Dispose();
-            }
-        }
-    }
+#pragma warning restore CA2213
 
     private void OnEditorButtonMouseEnter()
     {
