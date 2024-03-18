@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://jjb8ei8wuuk"]
+[gd_scene load_steps=12 format=3 uid="uid://jjb8ei8wuuk"]
 
 [ext_resource type="Texture2D" uid="uid://c732snfs7i3xx" path="res://assets/textures/gui/bevel/LargeTwoNormal.png" id="1_ixss3"]
 [ext_resource type="Texture2D" uid="uid://bd4c6guswatde" path="res://assets/textures/gui/bevel/LargeTwoPressed.png" id="2_suams"]
 [ext_resource type="Texture2D" uid="uid://cbc1ld512pl71" path="res://assets/textures/gui/bevel/LargeTwoHover.png" id="3_kbqhu"]
 [ext_resource type="Texture2D" uid="uid://dcc6nq6ig4etg" path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" id="4_4niqg"]
+[ext_resource type="Script" path="res://src/microbe_stage/EditorEntryButton.cs" id="5_kxl0r"]
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="5_vcgwd"]
 [ext_resource type="Texture2D" uid="uid://dagkk6puhnfvu" path="res://assets/textures/gui/bevel/ReproductionBar.png" id="6_nj585"]
 [ext_resource type="Texture2D" uid="uid://bf55j5u0k0oc1" path="res://assets/textures/gui/bevel/AmmoniaInv.png" id="7_wu333"]
@@ -64,6 +65,7 @@ texture_hover = ExtResource("3_kbqhu")
 texture_disabled = ExtResource("4_4niqg")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("5_kxl0r")
 
 [node name="Highlight" type="TextureRect" parent="."]
 visible = false
@@ -194,3 +196,6 @@ stretch_mode = 5
 libraries = {
 "": SubResource("AnimationLibrary_xveqw")
 }
+
+[connection signal="mouse_entered" from="." to="." method="OnEditorButtonMouseEnter"]
+[connection signal="mouse_exited" from="." to="." method="OnEditorButtonMouseExit"]
