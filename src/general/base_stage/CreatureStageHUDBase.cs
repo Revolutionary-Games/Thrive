@@ -316,9 +316,15 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         nitrogenBar = CompoundProgressBar.CreatePercentageDisplay(barScene, nitrogen, 0, true);
 
         // Is it a good idea to show the chemical formulas like this (with subscripts)?
-        oxygenBar.DisplayedName = new LocalizedString("O\u2082");
-        co2Bar.DisplayedName = new LocalizedString("CO\u2082");
-        nitrogenBar.DisplayedName = new LocalizedString("N\u2082");
+
+        // Need to use separate strings here so that the localization system doesn't see these
+        var oxygenNotTranslated = "O\u2082";
+        var co2NotTranslated = "CO\u2082";
+        var nitrogenNotTranslated = "N\u2082";
+
+        oxygenBar.DisplayedName = new LocalizedString(oxygenNotTranslated);
+        co2Bar.DisplayedName = new LocalizedString(co2NotTranslated);
+        nitrogenBar.DisplayedName = new LocalizedString(nitrogenNotTranslated);
 
         temperatureBar = CompoundProgressBar.CreateSimpleWithUnit(barScene, temperature, 0,
             temperature.Unit ?? throw new Exception("Temperature unit not set"));
