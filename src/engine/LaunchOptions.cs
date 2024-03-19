@@ -10,6 +10,7 @@ public static class LaunchOptions
     private static readonly Lazy<string[]> GodotLaunchOptions = new(OS.GetCmdlineArgs);
     private static readonly Lazy<bool> DisableVideosOption = new(ReadDisableVideo);
     private static readonly Lazy<bool> SkipCPUCheckOption = new(ReadSkipCPUCheck);
+    private static readonly Lazy<bool> DisableAvxOption = new(ReadDisableAvx);
 
     private static readonly Lazy<bool> LaunchedThroughLauncherHolder = new(ReadLaunchedThroughLauncher);
     private static readonly Lazy<bool> LaunchingLauncherIsHiddenHolder = new(ReadLaunchingLauncherIsHidden);
@@ -19,6 +20,8 @@ public static class LaunchOptions
     public static bool VideosEnabled => !DisableVideosOption.Value;
 
     public static bool SkipCPUCheck => SkipCPUCheckOption.Value;
+
+    public static bool ForceDisableAvx => DisableAvxOption.Value;
 
     public static bool LaunchedThroughLauncher => LaunchedThroughLauncherHolder.Value;
 
@@ -52,6 +55,16 @@ public static class LaunchOptions
 
         if (value)
             GD.Print("CPU feature check is disabled with a command line option");
+
+        return value;
+    }
+
+    private static bool ReadDisableAvx()
+    {
+        bool value = GodotLaunchOptions.Value.Any(o => o == Constants.DISABLE_CPU_AVX_OPTION);
+
+        if (value)
+            GD.Print("AVX CPU feature usage is disabled with a command line option");
 
         return value;
     }

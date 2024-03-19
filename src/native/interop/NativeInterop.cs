@@ -192,6 +192,14 @@ public static class NativeInterop
         NativeMethods.ShutdownThriveLibrary();
     }
 
+    /// <summary>
+    ///   Disable loading avx-enabled libraries even if AVX was detected as being available
+    /// </summary>
+    public static void DisableAvx()
+    {
+        disableAvx = true;
+    }
+
     public static bool RegisterDebugDrawer(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
     {
         if (!debugDrawIsPossible)
