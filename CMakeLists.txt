@@ -50,6 +50,15 @@ if(WIN32)
   set(CMAKE_SHARED_LIBRARY_PREFIX_CXX "lib")
 endif()
 
+if(NOT THRIVE_AVX)
+  message(STATUS "Building without AVX support")
+  set(CMAKE_SHARED_LIBRARY_SUFFIX "_without_avx")
+  set(CMAKE_STATIC_LIBRARY_SUFFIX "_without_avx")
+else()
+  set(CMAKE_SHARED_LIBRARY_SUFFIX "")
+  set(CMAKE_STATIC_LIBRARY_SUFFIX "")
+endif()
+
 # static building
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 set(BUILD_SHARED_LIBS OFF)

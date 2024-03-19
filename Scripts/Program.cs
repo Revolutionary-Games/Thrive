@@ -373,6 +373,10 @@ public class Program
             HelpText = "Set to work on debug versions of the libraries")]
         public bool DebugLibrary { get; set; }
 
+        [Option("disable-avx", Required = false, Default = false,
+            HelpText = "Disable building locally with AVX (container builds always make both variants)")]
+        public bool DisableLocalAvx { get; set; }
+
         [Option('t', "platform", Required = false, Default = null,
             HelpText = "Use to override detected platforms for selected operation")]
         public IList<PackagePlatform>? Platforms { get; set; } = new List<PackagePlatform>();
