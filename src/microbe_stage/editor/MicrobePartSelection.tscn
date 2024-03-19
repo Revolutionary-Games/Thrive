@@ -123,11 +123,12 @@ text = "UNLOCKED_NEW_ORGANELLE"
 vertical_alignment = 1
 
 [node name="Name" type="Label" parent="VBoxContainer"]
+editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/line_spacing = -3
-text = "PART NAME"
+text = "Cytoplasm"
 label_settings = ExtResource("3_ykdou")
 horizontal_alignment = 1
 

@@ -63,6 +63,7 @@ text = "FPS"
 label_settings = ExtResource("3_fussq")
 
 [node name="Delta" type="Label" parent="PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Delta: 0.002311"
 label_settings = ExtResource("3_fussq")
@@ -164,6 +165,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 
 [node name="FPSDisplayLabel" type="Label" parent="FPSCounter"]
+editor_description = "PLACEHOLDER"
 modulate = Color(0, 1, 0.12549, 1)
 layout_mode = 0
 offset_right = 60.0

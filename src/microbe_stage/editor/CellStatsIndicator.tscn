@@ -26,6 +26,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Description" type="Label" parent="."]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "CELL_STAT_PLACEHOLDER"
 label_settings = ExtResource("2_756k6")
@@ -36,6 +37,7 @@ size_flags_horizontal = 3
 alignment = 2
 
 [node name="Value" type="Label" parent="HBoxContainer"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "n/a"
 label_settings = ExtResource("3_crdng")

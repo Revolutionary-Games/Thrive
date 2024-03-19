@@ -72,6 +72,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ArtDescription" type="Label" parent="CenterContainer"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Shown image description goes here"
 horizontal_alignment = 1
@@ -95,6 +96,7 @@ theme_override_constants/separation = 15
 alignment = 2
 
 [node name="TipLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(650, 0)
 layout_mode = 2
 size_flags_horizontal = 2

@@ -1,53 +1,36 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://blv3j6t53xjq2"]
 
-[ext_resource path="res://src/gui_common/RadialMenu.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/radialIndicator.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/textures/gui/radialMenuHighlightBackground.png" type="Texture2D" id=4]
+[ext_resource type="Script" path="res://src/gui_common/RadialMenu.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://cxmly28y6m2ry" path="res://assets/textures/gui/bevel/radialIndicator.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cq08hpsflrx3k" path="res://assets/textures/gui/radialMenuHighlightBackground.png" id="4"]
 
 [node name="RadialMenu" type="CenterContainer"]
 process_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 2 )
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme = ExtResource("2")
+script = ExtResource("1")
 CenterLabelPath = NodePath("CenterLabel")
 DynamicLabelsContainerPath = NodePath("DynamicLabels")
 IndicatorPath = NodePath("Indicator")
-HoveredItemHighlightBackground = ExtResource( 4 )
+HoveredItemHighlightBackground = ExtResource("4")
 
 [node name="CenterLabel" type="Label" parent="."]
-offset_left = 540.0
-offset_top = 347.0
-offset_right = 740.0
-offset_bottom = 372.0
-custom_minimum_size = Vector2( 200, 0 )
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 text = "Pick something"
-align = 1
-valign = 1
-autowrap = true
 max_lines_visible = 4
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="Indicator" type="TextureRect" parent="."]
-offset_left = 624.0
-offset_top = 344.0
-offset_right = 656.0
-offset_bottom = 376.0
-custom_minimum_size = Vector2( 32, 32 )
-pivot_offset = Vector2( 16, 32 )
-texture = ExtResource( 3 )
-expand = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("3")
+expand_mode = 1
 
 [node name="DynamicLabels" type="Control" parent="."]
-offset_left = 640.0
-offset_top = 360.0
-offset_right = 640.0
-offset_bottom = 360.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
