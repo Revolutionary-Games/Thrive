@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-18 17:25+0200\n"
+"POT-Creation-Date: 2024-03-19 09:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,11 +50,11 @@ msgid "ABYSSOPELAGIC"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:282
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:286
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:248
 msgid "ACTION_AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:284
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:246
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
@@ -273,8 +273,8 @@ msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:349
-#: ../src/microbe_stage/MicrobeHUD.tscn:531
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:311
+#: ../src/microbe_stage/MicrobeHUD.tscn:493
 msgid "ATP"
 msgstr ""
 
@@ -448,12 +448,12 @@ msgid "BATHYPELAGIC"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:679
-#: ../src/microbe_stage/MicrobeHUD.tscn:464
+#: ../src/microbe_stage/MicrobeHUD.tscn:426
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:635
-#: ../src/microbe_stage/MicrobeHUD.tscn:457
+#: ../src/microbe_stage/MicrobeHUD.tscn:419
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -587,7 +587,7 @@ msgstr ""
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:25
 msgid "BUILD_CITY"
 msgstr ""
 
@@ -596,8 +596,8 @@ msgstr ""
 msgid "BUILD_QUEUE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:574
-#: ../src/society_stage/gui/SocietyHUD.tscn:133
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:424
+#: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
 msgstr ""
 
@@ -2014,7 +2014,7 @@ msgstr ""
 msgid "EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:609
+#: ../src/microbe_stage/gui/EditorEntryButton.tscn:59
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -2030,8 +2030,8 @@ msgstr ""
 msgid "EJECT_ENGULFED"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:616
-#: ../src/microbe_stage/MicrobeHUD.tscn:811
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:466
+#: ../src/microbe_stage/MicrobeHUD.tscn:625
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr ""
 
@@ -2332,8 +2332,8 @@ msgstr ""
 msgid "FIRE_TOXIN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:591
-#: ../src/microbe_stage/MicrobeHUD.tscn:821
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:441
+#: ../src/microbe_stage/MicrobeHUD.tscn:635
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
 
@@ -2680,7 +2680,7 @@ msgstr ""
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:200
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:162
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -4153,15 +4153,15 @@ msgstr ""
 msgid "MOVE_TO_ANY_PATCH"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:273
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:235
 msgid "MOVE_TO_LAND"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:463
+#: ../src/microbe_stage/MicrobeHUD.tscn:425
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:456
+#: ../src/microbe_stage/MicrobeHUD.tscn:418
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -4173,19 +4173,19 @@ msgstr ""
 msgid "MOVE_UP_OR_JUMP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:691
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:541
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:692
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:542
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:686
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:536
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:687
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:537
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
@@ -4601,7 +4601,7 @@ msgstr ""
 msgid "OPEN_ORGANELLE_MENU"
 msgstr ""
 
-#: ../src/society_stage/gui/SocietyHUD.tscn:139
+#: ../src/society_stage/gui/SocietyHUD.tscn:135
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr ""
 
@@ -5082,9 +5082,9 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:299
-#: ../src/microbe_stage/MicrobeHUD.tscn:477
-#: ../src/society_stage/gui/SocietyHUD.tscn:197
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:261
+#: ../src/microbe_stage/MicrobeHUD.tscn:439
+#: ../src/society_stage/gui/SocietyHUD.tscn:193
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -5649,8 +5649,8 @@ msgstr ""
 msgid "SECRETE_SLIME"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:608
-#: ../src/microbe_stage/MicrobeHUD.tscn:863
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:458
+#: ../src/microbe_stage/MicrobeHUD.tscn:677
 msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
@@ -5791,7 +5791,7 @@ msgstr ""
 msgid "SIGNALING_AGENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:852
+#: ../src/microbe_stage/MicrobeHUD.tscn:666
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr ""
 
@@ -6542,7 +6542,7 @@ msgstr ""
 msgid "TOGGLE_BINDING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:831
+#: ../src/microbe_stage/MicrobeHUD.tscn:645
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr ""
 
@@ -6551,12 +6551,12 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:49
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:557
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:581
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:407
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:431
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:799
+#: ../src/microbe_stage/MicrobeHUD.tscn:613
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr ""
 
@@ -6572,7 +6572,7 @@ msgstr ""
 msgid "TOGGLE_HUD_HIDE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:567
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:417
 msgid "TOGGLE_INVENTORY"
 msgstr ""
 
@@ -6787,7 +6787,7 @@ msgstr ""
 msgid "UNBIND_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:842
+#: ../src/microbe_stage/MicrobeHUD.tscn:656
 msgid "UNBIND_ALL_TOOLTIP"
 msgstr ""
 
