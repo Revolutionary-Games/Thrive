@@ -13,6 +13,9 @@ public partial class CursorLoader : Node
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         hoverCursor = GD.Load<Resource>("res://assets/textures/gui/cursors/cursor_hover.png");
         Input.SetCustomMouseCursor(hoverCursor, Input.CursorShape.PointingHand);
     }

@@ -81,6 +81,9 @@ public partial class SimulationParameters : Node
     {
         base._Ready();
 
+        if (Engine.IsEditorHint())
+            return;
+
         // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
         instance = this;
 

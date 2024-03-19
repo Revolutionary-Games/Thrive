@@ -48,6 +48,14 @@ public partial class ResourceManager : Node
         LoadingIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/IconGenerating.png");
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
+    }
+
     public override void _Process(double delta)
     {
         base._Process(delta);

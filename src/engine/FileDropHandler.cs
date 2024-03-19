@@ -9,6 +9,9 @@ public partial class FileDropHandler : Node
 {
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         GetTree().Root.Connect(Window.SignalName.FilesDropped, new Callable(this, nameof(OnFilesDropped)));
     }
 

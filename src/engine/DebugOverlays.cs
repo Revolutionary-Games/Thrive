@@ -90,6 +90,9 @@ public partial class DebugOverlays : Control
         base._ExitTree();
 
         InputManager.UnregisterReceiver(this);
+
+        if (instance == this)
+            instance = null;
     }
 
     public override void _Process(double delta)

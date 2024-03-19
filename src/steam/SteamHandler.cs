@@ -28,6 +28,9 @@ public partial class SteamHandler : Node, ISteamSignalReceiver
 
     public SteamHandler()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
     }
 
@@ -74,6 +77,9 @@ public partial class SteamHandler : Node, ISteamSignalReceiver
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         ProcessMode = ProcessModeEnum.Always;
 
         OnSteamInit();

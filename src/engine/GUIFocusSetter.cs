@@ -16,6 +16,9 @@ public partial class GUIFocusSetter : Control
 
     private GUIFocusSetter()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
         MouseFilter = MouseFilterEnum.Ignore;
         ProcessMode = ProcessModeEnum.Always;

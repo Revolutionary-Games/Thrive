@@ -48,6 +48,9 @@ public partial class ProceduralDataCache : Node
         {
             ClearCacheData(membraneCollisions);
         }
+
+        if (instance == this)
+            instance = null;
     }
 
     public override void _Process(double delta)

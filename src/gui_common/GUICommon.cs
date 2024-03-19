@@ -116,6 +116,14 @@ public partial class GUICommon : Node
         buttonPressSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
+    }
+
     /// <summary>
     ///   Play the button click sound effect.
     /// </summary>

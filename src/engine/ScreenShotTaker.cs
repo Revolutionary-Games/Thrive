@@ -34,6 +34,14 @@ public partial class ScreenShotTaker : NodeWithInput
         ProcessMode = ProcessModeEnum.Always;
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
+    }
+
     [RunOnKeyDown("screenshot", OnlyUnhandled = false)]
     public void TakeScreenshotPressed()
     {

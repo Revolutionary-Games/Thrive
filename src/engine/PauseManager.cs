@@ -15,6 +15,9 @@ public partial class PauseManager : Node
 
     private PauseManager()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
     }
 

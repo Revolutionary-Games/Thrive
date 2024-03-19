@@ -51,6 +51,14 @@ public partial class ModalManager : NodeWithInput
         activeModalContainer.TopLevel = true;
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
+    }
+
     public override void _Process(double delta)
     {
         if (modalsDirty)

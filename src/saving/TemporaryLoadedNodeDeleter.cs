@@ -30,6 +30,14 @@ public partial class TemporaryLoadedNodeDeleter : Node
         ProcessMode = ProcessModeEnum.Always;
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
+    }
+
     public override void _Process(double delta)
     {
         if (HoldDeletion)

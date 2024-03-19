@@ -46,6 +46,9 @@ public partial class Jukebox : Node
     /// </summary>
     private Jukebox()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
     }
 
@@ -78,6 +81,12 @@ public partial class Jukebox : Node
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+        {
+            paused = true;
+            return;
+        }
+
         categories = SimulationParameters.Instance.GetMusicCategories();
 
         ProcessMode = ProcessModeEnum.Always;

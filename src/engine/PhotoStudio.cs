@@ -109,6 +109,9 @@ public partial class PhotoStudio : SubViewport
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
 
         base._Ready();

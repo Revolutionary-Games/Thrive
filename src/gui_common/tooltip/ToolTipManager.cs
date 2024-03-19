@@ -46,6 +46,9 @@ public partial class ToolTipManager : CanvasLayer
 
     private ToolTipManager()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
     }
 
