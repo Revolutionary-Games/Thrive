@@ -11,6 +11,7 @@ using FileAccess = Godot.FileAccess;
 /// <summary>
 ///   Contains definitions for global game configuration like Compounds, Organelles etc.
 /// </summary>
+[GodotAutoload]
 public partial class SimulationParameters : Node
 {
     public const string AUTO_EVO_CONFIGURATION_NAME = "AutoEvoConfiguration";

@@ -4,6 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles signal from Godot when files are dragged and dropped onto the game window
 /// </summary>
+[GodotAutoload]
 public partial class FileDropHandler : Node
 {
     public override void _Ready()

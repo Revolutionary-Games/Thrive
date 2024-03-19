@@ -5,6 +5,7 @@ using Godot;
 /// <summary>
 ///   Keeps a list of nodes that should be deleted if they aren't later reported to be useful after all
 /// </summary>
+[GodotAutoload]
 public partial class TemporaryLoadedNodeDeleter : Node
 {
     private static TemporaryLoadedNodeDeleter? instance;

@@ -4,6 +4,7 @@ using Godot;
 /// <summary>
 ///   Singleton managing changing game scenes
 /// </summary>
+[GodotAutoload]
 public partial class SceneManager : Node
 {
     private static SceneManager? instance;

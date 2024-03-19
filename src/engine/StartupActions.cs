@@ -8,6 +8,7 @@ using Path = System.IO.Path;
 ///   This is the first autoloaded class. Used to perform some actions that should happen
 ///   as the first things in the game
 /// </summary>
+[GodotAutoload]
 public partial class StartupActions : Node
 {
     private bool preventStartup;

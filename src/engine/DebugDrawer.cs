@@ -4,6 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles drawing debug lines
 /// </summary>
+[GodotAutoload]
 public partial class DebugDrawer : ControlWithInput
 {
 #pragma warning disable CA2213

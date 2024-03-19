@@ -12,6 +12,7 @@ using Godot;
 ///     This is an AutoLoad class.
 ///   </para>
 /// </remarks>
+[GodotAutoload]
 public partial class InputManager : Node
 {
     private static InputManager? staticInstance;

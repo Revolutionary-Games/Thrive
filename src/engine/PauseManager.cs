@@ -4,6 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles pausing and resuming the game based on named pause locks
 /// </summary>
+[GodotAutoload]
 public partial class PauseManager : Node
 {
     private static PauseManager? instance;

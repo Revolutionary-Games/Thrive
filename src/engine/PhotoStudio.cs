@@ -13,6 +13,7 @@ using Godot;
 ///     delete old resources after like 30 days)
 ///   </para>
 /// </remarks>
+[GodotAutoload]
 public partial class PhotoStudio : SubViewport
 {
     [Export]

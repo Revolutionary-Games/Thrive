@@ -6,6 +6,7 @@ using Godot;
 /// <summary>
 ///   Runs actions on the main thread before the next update
 /// </summary>
+[GodotAutoload]
 public partial class Invoke : Node
 {
     private static Invoke? instance;

@@ -7,6 +7,7 @@ using Range = Godot.Range;
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
 /// </summary>
+[GodotAutoload]
 public partial class GUICommon : Node
 {
     private static GUICommon? instance;

@@ -5,6 +5,7 @@ using Godot;
 /// <summary>
 ///   Stores procedurally generated data to speed up things by not requiring it to be recomputed
 /// </summary>
+[GodotAutoload]
 public partial class ProceduralDataCache : Node
 {
     private static ProceduralDataCache? instance;

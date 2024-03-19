@@ -8,6 +8,7 @@ using Godot;
 ///   caching string name instances to allow text lookup without other code needing to hold on to a bunch of string
 ///   name objects.
 /// </summary>
+[GodotAutoload]
 public partial class Localization : Node
 {
     private static Localization? instance;

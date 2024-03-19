@@ -17,6 +17,7 @@ using Nito.Collections;
 ///     Godot 4.0 should make background loading much more doable so this should be reworked at that time.
 ///   </para>
 /// </remarks>
+[GodotAutoload]
 public partial class ResourceManager : Node
 {
     private static ResourceManager? instance;

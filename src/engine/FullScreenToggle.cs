@@ -3,6 +3,7 @@
 /// <summary>
 ///   Toggles fullscreen mode on a key press
 /// </summary>
+[GodotAutoload]
 public partial class FullScreenToggle : NodeWithInput
 {
     public override void _Ready()

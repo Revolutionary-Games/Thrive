@@ -4,6 +4,7 @@
 ///   Main script for debugging.
 ///   Partial class: Override functions, debug panel
 /// </summary>
+[GodotAutoload]
 public partial class DebugOverlays : Control
 {
     [Export]

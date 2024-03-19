@@ -7,6 +7,7 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Singleton handling screenshot taking
 /// </summary>
+[GodotAutoload]
 public partial class ScreenShotTaker : NodeWithInput
 {
     private static ScreenShotTaker? instance;

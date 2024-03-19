@@ -10,6 +10,7 @@ using Godot;
 ///   If Steam library is not loaded most methods in here do nothing to allow easily calling them without checking
 ///   first.
 /// </summary>
+[GodotAutoload]
 public partial class SteamHandler : Node, ISteamSignalReceiver
 {
     /// <summary>

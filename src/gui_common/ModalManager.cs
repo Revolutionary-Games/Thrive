@@ -6,6 +6,7 @@ using Nito.Collections;
 /// <summary>
 ///   Handles a stack of <see cref="TopLevelContainer"/>s that block GUI inputs.
 /// </summary>
+[GodotAutoload]
 public partial class ModalManager : NodeWithInput
 {
     private static ModalManager? instance;

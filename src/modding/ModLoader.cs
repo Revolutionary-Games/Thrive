@@ -10,6 +10,7 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Handles loading mods, and auto-loading mods, and also showing related errors etc. popups
 /// </summary>
+[GodotAutoload]
 public partial class ModLoader : Node
 {
     private static ModLoader? instance;

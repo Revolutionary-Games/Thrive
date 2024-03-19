@@ -6,6 +6,7 @@ using Godot;
 /// <summary>
 ///   Manages playing music. Autoload singleton
 /// </summary>
+[GodotAutoload]
 public partial class Jukebox : Node
 {
     private const float FADE_TIME = 1.0f;
