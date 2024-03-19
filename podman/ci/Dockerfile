@@ -11,19 +11,16 @@ RUN wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}
     && wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz \
     && mkdir .p ~/.cache \
     && mkdir -p ~/.config/godot \
-    && mkdir -p ~/.local/share/godot/templates/${GODOT_VERSION}.stable.mono \
+    && mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono \
     && unzip Godot_v${GODOT_VERSION}-stable_mono_linux_x86_64.zip \
     && mv Godot_v${GODOT_VERSION}-stable_mono_linux_x86_64 godot_dir \
     && mv godot_dir/* /usr/local/bin/ \
     && ln -s /usr/local/bin/Godot_v${GODOT_VERSION}-stable_mono_linux.x86_64 /usr/local/bin/godot \
     && unzip Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz \
-    && mkdir -p ~/.local/share/godot/templates/${GODOT_VERSION}.stable.mono \
-    && mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.stable.mono/ \
+    && mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono \
+    && mv templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono/ \
     && rm -f Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz Godot_v${GODOT_VERSION}-stable_mono_linux_x86_64.zip \
     && rm -rf templates godot_dir
-
-# Editor settings to use the right build tool
-COPY editor_settings-3.tres /root/.config/godot/editor_settings-3.tres
 
 # Godot pck tool
 ENV PCK_TOOL_VERSION "v1.9"
