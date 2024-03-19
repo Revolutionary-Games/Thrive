@@ -1,18 +1,33 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://7ok6pq37xfp2"]
 
-[ext_resource path="res://src/society_stage/gui/SocietyHUD.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/industrial_stage/gui/IndustrialHUD.cs" type="Script" id=2]
-[ext_resource path="res://src/industrial_stage/gui/CityScreen.tscn" type="PackedScene" id=3]
+[ext_resource type="PackedScene" uid="uid://bs5shdurovke8" path="res://src/society_stage/gui/SocietyHUD.tscn" id="1"]
+[ext_resource type="Script" path="res://src/industrial_stage/gui/IndustrialHUD.cs" id="2"]
+[ext_resource type="PackedScene" path="res://src/industrial_stage/gui/CityScreen.tscn" id="3"]
 
-[node name="IndustrialHUD" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="IndustrialHUD" instance=ExtResource("1")]
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2")
 CityScreenPopupPath = NodePath("CityScreen")
 
 [node name="BottomRight" parent="." index="0"]
 visible = false
 
+[node name="HUDBottomBar" parent="." index="1"]
+layout_mode = 1
+anchors_preset = 2
+offset_left = 0.0
+offset_top = -35.0
+offset_right = 445.0
+offset_bottom = 0.0
+
 [node name="Build" parent="ScrollContainer/HotBar" index="0"]
 tooltip_text = "BUILD_CITY"
 disabled = true
 
-[node name="CityScreen" parent="." index="8" instance=ExtResource( 3 )]
+[node name="HUDMessages" parent="." index="6"]
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="CityScreen" parent="." index="8" instance=ExtResource("3")]
+anchors_preset = 0
