@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=3 uid="uid://bjl5o7oy7yr15"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="1"]
-[ext_resource type="LabelSettings" uid="uid://b6d3jtfqx07xn" path="res://src/gui_common/fonts/Title-Semibold-AlmostHuge.tres" id="3_xknfg"]
+[ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_lpicf"]
 [ext_resource type="Script" path="res://src/microbe_stage/gui/PatchDetailsPanel.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://tgseeon8t360" path="res://src/gui_common/fonts/Title-Bold-Smaller-Green.tres" id="5_133c0"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="5_xv7pc"]
@@ -112,7 +112,7 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "SELECT_A_PATCH"
-label_settings = ExtResource("3_xknfg")
+label_settings = ExtResource("3_lpicf")
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -126,7 +126,7 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "UNKNOWN_PATCH"
-label_settings = ExtResource("3_xknfg")
+label_settings = ExtResource("3_lpicf")
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -406,7 +406,7 @@ expand_mode = 1
 [node name="NitrogenLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "NITROGEN"
+text = "Nitrogen"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="CO2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
