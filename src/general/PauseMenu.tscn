@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://src/general/PauseMenu.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="PackedScene" path="res://src/saving/SaveList.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://src/general/HelpScreen.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://l3t2irtebxii" path="res://src/general/HelpScreen.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://src/saving/NewSaveMenu.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://src/general/OptionsMenu.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://src/thriveopedia/Thriveopedia.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/general/OptionsMenu.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://bt4wq0ddch84i" path="res://src/thriveopedia/Thriveopedia.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://src/gui_common/TopLevelContainer.tscn" id="10"]
 
@@ -136,6 +136,8 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 theme = ExtResource("2")
 script = ExtResource("1")
@@ -263,19 +265,26 @@ layout_mode = 2
 [node name="HelpScreen" parent="." index="2" instance=ExtResource("4")]
 visible = false
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 Category = "MicrobeStage"
 
 [node name="OptionsMenu" parent="." index="3" instance=ExtResource("6")]
 visible = false
-anchors_preset = 0
+layout_mode = 1
 
 [node name="Thriveopedia" parent="." index="4" instance=ExtResource("8")]
 visible = false
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="UnsavedProgressWarning" parent="." index="5" instance=ExtResource("7")]
 custom_minimum_size = Vector2(391, 0)
-anchors_preset = 0
 offset_right = 391.0
 WindowTitle = "CONFIRM_EXIT"
 
