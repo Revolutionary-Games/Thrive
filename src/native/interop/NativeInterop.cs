@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
+using DevCenterCommunication.Models.Enums;
 using Godot;
 using SharedBase.Utilities;
 
@@ -17,6 +19,8 @@ public static class NativeInterop
 
     private static readonly NativeMethods.OnLineDraw LineDrawCallback = ForwardLineDraw;
     private static readonly NativeMethods.OnTriangleDraw TriangleDrawCallback = ForwardTriangleDraw;
+
+    private static bool disableAvx;
 
     private static bool loadCalled;
     private static bool debugDrawIsPossible;
@@ -127,34 +131,29 @@ public static class NativeInterop
     {
         try
         {
-            // This API is not really going to change so this is fine to do first before the version check
-            var result = NativeMethods.CheckRequiredCPUFeatures();
+            var result = CheckCPUFeaturesFull();
 
-            var version = NativeMethods.CheckEarlyAPIVersion();
-
-            if (version != NativeConstants.EarlyCheck)
-            {
-                GD.PrintErr($"Early check library version ({version}), doesn't match expected version: " +
-                    $"{NativeConstants.EarlyCheck}, will continue anyway");
-            }
-
+            // If can support the full speed library all is well
             if (result == CPUCheckResult.CPUCheckSuccess)
+            {
+                disableAvx = false;
                 return true;
+            }
 
             // Try the compatibility library
             var originalResult = result;
 
-            result = NativeMethods.CheckCompatibilityLibraryCPUFeatures();
+            result = CheckCPUFeaturesCompatibility();
 
             if (result == CPUCheckResult.CPUCheckSuccess)
             {
                 GD.Print("Cannot use full-speed Thrive native library due to: " +
                     GetMissingFeatureList(originalResult));
 
-                GD.Print("The upcoming compatibility library would be compatible with current CPU");
-                GD.PrintErr("This is not yet available but should be in the next release, unless we forget");
+                GD.Print("Using slower Thrive native library that doesn't rely on as new CPU instructions");
 
-                return false;
+                disableAvx = true;
+                return true;
             }
 
             GD.PrintErr("Current CPU detected as not sufficient for Thrive");
@@ -226,6 +225,33 @@ public static class NativeInterop
             return;
 
         NativeMethods.SetNativeExecutorThreads(threads);
+    }
+
+    private static CPUCheckResult CheckCPUFeaturesFull()
+    {
+        var result = CPUCheckResult.CPUCheckSuccess;
+
+        // TODO: should this check Avx2.X64.IsSupported instead or also?
+        if (!Avx2.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingAvx2;
+
+        if (!Avx.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingAvx;
+
+        return result | CheckCPUFeaturesCompatibility();
+    }
+
+    private static CPUCheckResult CheckCPUFeaturesCompatibility()
+    {
+        var result = CPUCheckResult.CPUCheckSuccess;
+
+        if (!Sse42.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingSse42;
+
+        if (!Sse41.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingSse41;
+
+        return result;
     }
 
     private static string GetMissingFeatureList(CPUCheckResult result)
@@ -327,6 +353,14 @@ public static class NativeInterop
         }
     }
 
+    private static PrecompiledTag GetTag(bool debug)
+    {
+        if (disableAvx)
+            return debug ? (PrecompiledTag.Debug | PrecompiledTag.WithoutAvx) : PrecompiledTag.WithoutAvx;
+
+        return debug ? PrecompiledTag.Debug : PrecompiledTag.None;
+    }
+
     private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
     {
         if (!NativeConstants.GetLibraryFromName(libraryName, out var library))
@@ -349,13 +383,13 @@ public static class NativeInterop
 
 #if DEBUG
         if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
-                NativeConstants.GetLibraryVersion(library), false, true), out loaded))
+                NativeConstants.GetLibraryVersion(library), false, GetTag(true)), out loaded))
         {
             return loaded;
         }
 
         if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
-                NativeConstants.GetLibraryVersion(library), false, true), out loaded))
+                NativeConstants.GetLibraryVersion(library), true, GetTag(true)), out loaded))
         {
             GD.Print("Loaded a distributable debug library, this is not optimal but likely works");
             return loaded;
@@ -366,7 +400,7 @@ public static class NativeInterop
         {
             // Load from libs directory, needed when the game is packaged
             if (LoadLibraryIfExists(Path.Join(NativeConstants.PackagedLibraryFolder,
-                    NativeConstants.GetLibraryDllName(library, currentPlatform)), out loaded))
+                    NativeConstants.GetLibraryDllName(library, currentPlatform, GetTag(false))), out loaded))
             {
                 return loaded;
             }
@@ -374,7 +408,7 @@ public static class NativeInterop
         else
         {
             if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
-                    NativeConstants.GetLibraryVersion(library), false, false), out loaded))
+                    NativeConstants.GetLibraryVersion(library), false, GetTag(false)), out loaded))
             {
                 return loaded;
             }
@@ -382,7 +416,7 @@ public static class NativeInterop
             GD.Print("Library not found yet at expected paths, trying a distributable version");
 
             if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
-                    NativeConstants.GetLibraryVersion(library), true, false), out loaded))
+                    NativeConstants.GetLibraryVersion(library), true, GetTag(false)), out loaded))
             {
                 return loaded;
             }

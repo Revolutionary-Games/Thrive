@@ -22,6 +22,10 @@
   <ItemGroup>
     <Compile Remove="src\steam\SteamClient.cs" />
   </ItemGroup>
+  <!-- In case the hot reload in Godot editor would fail with the system JSON referenced, this single file is picked out -->
+  <ItemGroup>
+    <Compile Include="RevolutionaryGamesCommon\DevCenterCommunication\Models\Enums\PrecompiledTag.cs"/>
+  </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
     <Folder Include="src\auto-evo\steps\" />

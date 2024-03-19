@@ -83,7 +83,7 @@ public partial class StartupActions : Node
             }
             else
             {
-                GD.Print("Skipping CPU type check, please do not report any crashes due to illegal CPU " +
+                GD.Print("Skipping CPU feature check, please do not report any crashes due to illegal CPU " +
                     "instruction problems (as that indicates missing CPU feature this check would test)");
             }
 

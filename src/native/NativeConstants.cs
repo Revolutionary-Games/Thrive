@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using DevCenterCommunication.Models.Enums;
 using SharedBase.Models;
 
 /// <summary>
@@ -62,7 +63,7 @@ public class NativeConstants
         return false;
     }
 
-    public static string GetLibraryDllName(Library library, PackagePlatform platform)
+    public static string GetLibraryDllName(Library library, PackagePlatform platform, PrecompiledTag tags)
     {
         switch (library)
         {
@@ -70,8 +71,14 @@ public class NativeConstants
                 switch (platform)
                 {
                     case PackagePlatform.Linux:
+                        if ((tags & PrecompiledTag.WithoutAvx) != 0)
+                            return "libthrive_native_without_avx.so";
+
                         return "libthrive_native.so";
                     case PackagePlatform.Windows:
+                        if ((tags & PrecompiledTag.WithoutAvx) != 0)
+                            return "libthrive_native_without_avx.dll";
+
                         return "libthrive_native.dll";
                     case PackagePlatform.Windows32:
                         throw new NotSupportedException("32-bit support is not done currently");
@@ -102,29 +109,29 @@ public class NativeConstants
     }
 
     public static string GetPathToLibraryDll(Library library, PackagePlatform platform, string version,
-        bool distributableVersion, bool debug)
+        bool distributableVersion, PrecompiledTag tags)
     {
-        var basePath = GetPathToLibrary(library, platform, version, distributableVersion, debug);
+        var basePath = GetPathToLibrary(library, platform, version, distributableVersion, tags);
 
         if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
         {
-            return Path.Combine(basePath, "bin", GetLibraryDllName(library, platform));
+            return Path.Combine(basePath, "bin", GetLibraryDllName(library, platform, tags));
         }
 
         // This is for Linux
-        return Path.Combine(basePath, "lib", GetLibraryDllName(library, platform));
+        return Path.Combine(basePath, "lib", GetLibraryDllName(library, platform, tags));
     }
 
     /// <summary>
     ///   Path to the library's root where all version specific folders are added
     /// </summary>
     private static string GetPathToLibrary(Library library, PackagePlatform platform, string version,
-        bool distributableVersion, bool debug)
+        bool distributableVersion, PrecompiledTag tags)
     {
         if (distributableVersion)
         {
             return Path.Combine(LibraryFolder, DistributableFolderName, platform.ToString().ToLowerInvariant(),
-                library.ToString(), version, debug ? "debug" : "release");
+                library.ToString(), version, (tags & PrecompiledTag.Debug) != 0 ? "debug" : "release");
         }
 
         // TODO: should the paths for the libraries include the library name? (cmake is used to compile all at once,
@@ -132,6 +139,6 @@ public class NativeConstants
 
         // The paths are a bit convoluted to easily be able to install with cmake to the target
         return Path.Combine(LibraryFolder, platform.ToString().ToLowerInvariant(), version,
-            debug ? "debug" : "release");
+            (tags & PrecompiledTag.Debug) != 0 ? "debug" : "release");
     }
 }
