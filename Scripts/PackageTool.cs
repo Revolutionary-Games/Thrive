@@ -270,7 +270,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         var targetFile = Path.Join(folder, "Thrive" + ThriveProperties.GodotTargetExtension(platform));
 
         var startInfo = new ProcessStartInfo("godot");
-        startInfo.ArgumentList.Add("--no-window");
+        startInfo.ArgumentList.Add("--headless");
         startInfo.ArgumentList.Add("--export-release");
         startInfo.ArgumentList.Add(target);
         startInfo.ArgumentList.Add(targetFile);
