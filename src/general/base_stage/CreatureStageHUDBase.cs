@@ -808,7 +808,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             GD.PrintErr("can't get reproduction phosphates progress: ", e);
         }
 
-        EmitSignal(SignalName.OnUpdateReproductionProgressBars, fractionOfAmmonia, fractionOfPhosphates, AmmoniaBW, PhosphatesBW);
+        EmitSignal(SignalName.OnUpdateReproductionProgressBars, fractionOfAmmonia, fractionOfPhosphates,
+            AmmoniaBW, PhosphatesBW);
     }
 
     protected virtual void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,

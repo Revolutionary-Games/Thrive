@@ -32,7 +32,8 @@ public partial class EditorEntryButton : TextureButton
         editorButtonFlash.Visible = enabled;
     }
 
-    private void UpdateReproductionProgressBars(float fractionOfAmmonia, float fractionOfPhosphates, Texture2D ammoniaBW, Texture2D phosphatesBW)
+    private void UpdateReproductionProgressBars(float fractionOfAmmonia, float fractionOfPhosphates,
+        Texture2D ammoniaBW, Texture2D phosphatesBW)
     {
         ammoniaReproductionBar.Value = fractionOfAmmonia * ammoniaReproductionBar.MaxValue;
         phosphateReproductionBar.Value = fractionOfPhosphates * phosphateReproductionBar.MaxValue;
