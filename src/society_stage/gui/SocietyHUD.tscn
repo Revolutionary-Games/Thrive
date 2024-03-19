@@ -98,15 +98,11 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="HUDBottomBar" parent="." instance=ExtResource("16")]
-layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
 offset_left = 0.0
-offset_top = -43.0
+offset_top = -35.0
 offset_right = 445.0
-offset_bottom = -8.0
-grow_vertical = 1
+offset_bottom = 0.0
 ShowCompoundPanelToggles = false
 ShowSuicideButton = false
 ShowProcessesButton = false

@@ -1076,24 +1076,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         ThriveopediaManager.OpenPage("CurrentWorld");
     }
 
-    private void OnEditorButtonMouseEnter()
-    {
-        if (editorButton.Disabled)
-            return;
-
-        editorButton.GetNode<TextureRect>("Highlight").Hide();
-        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
-    }
-
-    private void OnEditorButtonMouseExit()
-    {
-        if (editorButton.Disabled)
-            return;
-
-        editorButton.GetNode<TextureRect>("Highlight").Show();
-        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play();
-    }
-
     private void UpdateFossilisationButtons()
     {
         if (!fossilisationButtonLayer.Visible)
