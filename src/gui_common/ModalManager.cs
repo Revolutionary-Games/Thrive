@@ -6,6 +6,7 @@ using Nito.Collections;
 /// <summary>
 ///   Handles a stack of <see cref="TopLevelContainer"/>s that block GUI inputs.
 /// </summary>
+[GodotAutoload]
 public partial class ModalManager : NodeWithInput
 {
     private static ModalManager? instance;
@@ -48,6 +49,14 @@ public partial class ModalManager : NodeWithInput
         activeModalContainer = canvasLayer.GetNode<Control>("ActiveModalContainer");
 
         activeModalContainer.TopLevel = true;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
     }
 
     public override void _Process(double delta)

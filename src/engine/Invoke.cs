@@ -6,6 +6,7 @@ using Godot;
 /// <summary>
 ///   Runs actions on the main thread before the next update
 /// </summary>
+[GodotAutoload]
 public partial class Invoke : Node
 {
     private static Invoke? instance;
@@ -25,6 +26,14 @@ public partial class Invoke : Node
     }
 
     public static Invoke Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
+    }
 
     public override void _Process(double delta)
     {

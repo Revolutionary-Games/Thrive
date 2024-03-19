@@ -4,6 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles drawing debug lines
 /// </summary>
+[GodotAutoload]
 public partial class DebugDrawer : ControlWithInput
 {
 #pragma warning disable CA2213
@@ -88,6 +89,9 @@ public partial class DebugDrawer : ControlWithInput
 
     private DebugDrawer()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
     }
 
@@ -119,6 +123,9 @@ public partial class DebugDrawer : ControlWithInput
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         lineDrawer = GetNode<MeshInstance3D>("LineDrawer");
         triangleDrawer = GetNode<MeshInstance3D>("TriangleDrawer");
 

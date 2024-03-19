@@ -12,6 +12,7 @@ using Godot;
 ///     This is an AutoLoad class.
 ///   </para>
 /// </remarks>
+[GodotAutoload]
 public partial class InputManager : Node
 {
     private static InputManager? staticInstance;
@@ -71,6 +72,9 @@ public partial class InputManager : Node
     {
         staticInstance = this;
 
+        if (Engine.IsEditorHint())
+            return;
+
         LoadAttributes(new[] { Assembly.GetExecutingAssembly() });
 
         ProcessMode = ProcessModeEnum.Always;
@@ -112,6 +116,9 @@ public partial class InputManager : Node
         if (!registered)
         {
             if (instance.GetType().GetCustomAttribute<IgnoreNoMethodsTakingInputAttribute>() != null)
+                return;
+
+            if (Engine.IsEditorHint())
                 return;
 
             GD.PrintErr("Object registered to receive input, but it has no input attributes on its methods (type: ",
@@ -221,6 +228,9 @@ public partial class InputManager : Node
     {
         base._Ready();
 
+        if (Engine.IsEditorHint())
+            return;
+
         Input.Singleton.Connect(Input.SignalName.JoyConnectionChanged,
             new Callable(this, nameof(OnConnectedControllersChanged)));
 
@@ -251,6 +261,14 @@ public partial class InputManager : Node
         }
 
         Settings.Instance.ControllerPromptType.OnChanged += _ => ApplyInputPromptTypes();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (staticInstance == this)
+            staticInstance = null;
     }
 
     /// <summary>
