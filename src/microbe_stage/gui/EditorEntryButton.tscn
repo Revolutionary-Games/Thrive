@@ -43,7 +43,7 @@ _data = {
 "EditorButtonFlash": SubResource("30")
 }
 
-[node name="EditorButton" type="TextureButton" node_paths=PackedStringArray("Highlight", "ButtonAnimationPlayer")]
+[node name="EditorButton" type="TextureButton" node_paths=PackedStringArray("highlight", "buttonAnimationPlayer")]
 custom_minimum_size = Vector2(160, 160)
 anchors_preset = 3
 anchor_left = 1.0
@@ -66,8 +66,8 @@ texture_disabled = ExtResource("4_4niqg")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("5_kxl0r")
-Highlight = NodePath("Highlight")
-ButtonAnimationPlayer = NodePath("AnimationPlayer")
+highlight = NodePath("Highlight")
+buttonAnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="Highlight" type="TextureRect" parent="."]
 visible = false

@@ -108,9 +108,6 @@ PatchOverlayPath = NodePath("PatchNameOverlay")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
-AmmoniaReproductionBarPath = NodePath("")
-PhosphateReproductionBarPath = NodePath("")
-EditorButtonFlashPath = NodePath("")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
 HotBarPath = NodePath("ScrollContainer/HotBar")
@@ -541,6 +538,8 @@ custom_minimum_size = Vector2(450, 0)
 DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 
+[connection signal="OnSetEditorButtonFlashEffect" from="." to="BottomRight/EditorButton" method="SetEditorButtonFlashEffect"]
+[connection signal="OnUpdateReproductionProgressBars" from="." to="BottomRight/EditorButton" method="UpdateReproductionProgressBars"]
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
 [connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]

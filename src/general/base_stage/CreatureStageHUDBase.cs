@@ -39,15 +39,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public NodePath HealthBarPath = null!;
 
     [Export]
-    public NodePath AmmoniaReproductionBarPath = null!;
-
-    [Export]
-    public NodePath PhosphateReproductionBarPath = null!;
-
-    [Export]
-    public NodePath EditorButtonFlashPath = null!;
-
-    [Export]
     public NodePath ProcessPanelPath = null!;
 
     [Export]
@@ -164,9 +155,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     protected TextureProgressBar atpBar = null!;
     protected TextureProgressBar healthBar = null!;
-    protected TextureProgressBar ammoniaReproductionBar = null!;
-    protected TextureProgressBar phosphateReproductionBar = null!;
-    protected PointLight2D editorButtonFlash = null!;
     protected Label atpLabel = null!;
     protected Label hpLabel = null!;
     protected Label populationLabel = null!;
@@ -229,6 +217,12 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [Signal]
     public delegate void OnOpenMenuToHelpEventHandler();
 
+    [Signal]
+    public delegate void OnSetEditorButtonFlashEffectEventHandler();
+
+    [Signal]
+    public delegate void OnUpdateReproductionProgressBarsEventHandler();
+
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
     /// </summary>
@@ -262,9 +256,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         atpBar = GetNode<TextureProgressBar>(AtpBarPath);
         healthBar = GetNode<TextureProgressBar>(HealthBarPath);
-        ammoniaReproductionBar = GetNode<TextureProgressBar>(AmmoniaReproductionBarPath);
-        phosphateReproductionBar = GetNode<TextureProgressBar>(PhosphateReproductionBarPath);
-        editorButtonFlash = GetNode<PointLight2D>(EditorButtonFlashPath);
 
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
@@ -684,7 +675,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     protected void SetEditorButtonFlashEffect(bool enabled)
     {
-        editorButtonFlash.Visible = enabled;
+        EmitSignal(SignalName.OnSetEditorButtonFlashEffect, enabled);
     }
 
     protected void UpdatePopulation()
@@ -817,11 +808,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             GD.PrintErr("can't get reproduction phosphates progress: ", e);
         }
 
-        ammoniaReproductionBar.Value = fractionOfAmmonia * ammoniaReproductionBar.MaxValue;
-        phosphateReproductionBar.Value = fractionOfPhosphates * phosphateReproductionBar.MaxValue;
-
-        CheckAmmoniaProgressHighlight(fractionOfAmmonia);
-        CheckPhosphateProgressHighlight(fractionOfPhosphates);
+        EmitSignal(SignalName.OnUpdateReproductionProgressBars, fractionOfAmmonia, fractionOfPhosphates, AmmoniaBW, PhosphatesBW);
     }
 
     protected virtual void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
@@ -949,9 +936,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 EditorButtonPath.Dispose();
                 AtpBarPath.Dispose();
                 HealthBarPath.Dispose();
-                AmmoniaReproductionBarPath.Dispose();
-                PhosphateReproductionBarPath.Dispose();
-                EditorButtonFlashPath.Dispose();
                 ProcessPanelPath.Dispose();
                 HintTextPath.Dispose();
                 HotBarPath.Dispose();
@@ -1011,24 +995,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 bar.Hide();
             }
         }
-    }
-
-    private void CheckAmmoniaProgressHighlight(float fractionOfAmmonia)
-    {
-        if (fractionOfAmmonia < 1.0f)
-            return;
-
-        ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
-        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
-    }
-
-    private void CheckPhosphateProgressHighlight(float fractionOfPhosphates)
-    {
-        if (fractionOfPhosphates < 1.0f)
-            return;
-
-        phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
-        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
     }
 
     private void ProcessPanelButtonPressed()
