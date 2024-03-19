@@ -7,6 +7,7 @@ using Range = Godot.Range;
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
 /// </summary>
+[GodotAutoload]
 public partial class GUICommon : Node
 {
     private static GUICommon? instance;
@@ -113,6 +114,14 @@ public partial class GUICommon : Node
         ProcessMode = ProcessModeEnum.Always;
 
         buttonPressSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
     }
 
     /// <summary>

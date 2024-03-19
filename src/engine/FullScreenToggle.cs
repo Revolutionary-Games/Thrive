@@ -3,10 +3,12 @@
 /// <summary>
 ///   Toggles fullscreen mode on a key press
 /// </summary>
+[GodotAutoload]
 public partial class FullScreenToggle : NodeWithInput
 {
     public override void _Ready()
     {
+        // TODO: isn't this unnecessary?
         // Keep this node running while paused
         ProcessMode = ProcessModeEnum.Always;
     }

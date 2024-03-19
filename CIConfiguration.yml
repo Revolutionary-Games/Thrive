@@ -16,9 +16,10 @@ jobs:
       system:
         /root/.nuget: v5-nuget
     steps:
-      - run:
-          name: Make project valid for compile
-          command: dotnet run --project Scripts -- make-project-valid
+      # TODO: should fix this with "--headless --build-solutions --quit" for Godot 3
+      # - run:
+      #     name: Make project valid for compile
+      #     command: dotnet run --project Scripts -- make-project-valid
       - run:
            command: dotnet restore Thrive.sln
       - run:
@@ -28,11 +29,14 @@ jobs:
           name: Download native libraries
           command: dotnet run --project Scripts -- native Fetch
       - run:
-          name: Create builds
-          command: dotnet run --project Scripts -- package --dehydrated
-      - run:
-          name: Upload devbuilds
-          command: dotnet run --project Scripts -- upload
+          name: SKIP BUILD FOR NOW (NOT WORKING FOR GODOT 4 YET)
+          command: "echo Build skipped. TODO: fix this for Godot 4"
+      # - run:
+      #     name: Create builds
+      #     command: dotnet run --project Scripts -- package --dehydrated
+      # - run:
+      #     name: Upload devbuilds
+      #     command: dotnet run --project Scripts -- upload
   jetbrains:
     image: thrive/godot-ci:v22
     cache:

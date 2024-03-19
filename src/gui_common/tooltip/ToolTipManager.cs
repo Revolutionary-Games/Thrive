@@ -6,6 +6,7 @@ using Godot;
 /// <summary>
 ///   Holds and handles a collection of custom tooltip Controls.
 /// </summary>
+[GodotAutoload]
 public partial class ToolTipManager : CanvasLayer
 {
     /// <summary>
@@ -45,6 +46,9 @@ public partial class ToolTipManager : CanvasLayer
 
     private ToolTipManager()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
     }
 

@@ -10,6 +10,7 @@ using Godot;
 ///   If Steam library is not loaded most methods in here do nothing to allow easily calling them without checking
 ///   first.
 /// </summary>
+[GodotAutoload]
 public partial class SteamHandler : Node, ISteamSignalReceiver
 {
     /// <summary>
@@ -27,6 +28,9 @@ public partial class SteamHandler : Node, ISteamSignalReceiver
 
     public SteamHandler()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
     }
 
@@ -73,6 +77,9 @@ public partial class SteamHandler : Node, ISteamSignalReceiver
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         ProcessMode = ProcessModeEnum.Always;
 
         OnSteamInit();

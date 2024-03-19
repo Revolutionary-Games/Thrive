@@ -10,6 +10,7 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Handles loading mods, and auto-loading mods, and also showing related errors etc. popups
 /// </summary>
+[GodotAutoload]
 public partial class ModLoader : Node
 {
     private static ModLoader? instance;
@@ -31,6 +32,9 @@ public partial class ModLoader : Node
 
     private ModLoader()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
 
         // TODO: this causes an immediate crash in Godot 4
@@ -151,6 +155,12 @@ public partial class ModLoader : Node
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+        {
+            firstExecute = false;
+            return;
+        }
+
         base._Ready();
 
         if (modInterface != null)

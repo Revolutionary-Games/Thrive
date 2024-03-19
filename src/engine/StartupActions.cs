@@ -8,12 +8,20 @@ using Path = System.IO.Path;
 ///   This is the first autoloaded class. Used to perform some actions that should happen
 ///   as the first things in the game
 /// </summary>
+[GodotAutoload]
 public partial class StartupActions : Node
 {
     private bool preventStartup;
 
     private StartupActions()
     {
+        // Editor doesn't need these info prints or native library
+        if (Engine.IsEditorHint())
+        {
+            GD.Print("Thrive code loaded into the Godot editor, skipping various autoload operations");
+            return;
+        }
+
         // Print game version
         // TODO: for devbuilds it would be nice to print the hash here
         GD.Print("This is Thrive version: ", Constants.Version, " (see below for exact build info)");
