@@ -572,7 +572,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             // Always ignore some files despite their sizes
             var fileWithoutPath = file.Replace($"{folder}/", string.Empty);
-            if (DehydrateIgnoreFiles.Any(i => i.EndsWith(fileWithoutPath)))
+            if (DehydrateIgnoreFiles.Any(i => fileWithoutPath.EndsWith(i)))
             {
                 if (ColourConsole.DebugPrintingEnabled)
                     ColourConsole.WriteDebugLine($"Ignoring file in dehydration: {file}");
