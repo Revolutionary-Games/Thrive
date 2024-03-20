@@ -66,9 +66,9 @@ public partial class StartupActions : Node
                     }
                     else
                     {
-                        // Thrive needs SSE4.1, SSE4.2, and AVX (1) currently, this is not told to the player to avoid
+                        // Thrive needs SSE4.1, SSE4.2, this is not told to the player to avoid
                         // confusion with what they are missing
-                        GD.Print("Thrive requires a new enough CPU to have various extension instruction sets, " +
+                        GD.PrintErr("Thrive requires a new enough CPU to have various extension instruction sets, " +
                             "see above for what is detected as missing");
                         GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
                             "required instruction set extensions is required");
@@ -83,8 +83,14 @@ public partial class StartupActions : Node
             }
             else
             {
-                GD.Print("Skipping CPU type check, please do not report any crashes due to illegal CPU " +
+                GD.Print("Skipping CPU feature check, please do not report any crashes due to illegal CPU " +
                     "instruction problems (as that indicates missing CPU feature this check would test)");
+            }
+
+            if (LaunchOptions.ForceDisableAvx)
+            {
+                GD.Print("Disabling AVX due to command line option");
+                NativeInterop.DisableAvx();
             }
 
             if (loadNative)

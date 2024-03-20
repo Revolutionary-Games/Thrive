@@ -85,7 +85,7 @@ public class GodotProjectValidMaker
         await PackageTool.EnsureGodotIgnoreFileExistsInFolder(DummyBuildsFolder);
 
         var startInfo = new ProcessStartInfo("godot");
-        startInfo.ArgumentList.Add("--headless");
+        startInfo.ArgumentList.Add(PackageTool.GODOT_HEADLESS_FLAG);
         startInfo.ArgumentList.Add("--export");
         startInfo.ArgumentList.Add(DummyTargetName);
         startInfo.ArgumentList.Add(DummyBuildRelativePath);
