@@ -30,9 +30,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public NodePath PatchOverlayPath = null!;
 
     [Export]
-    public NodePath EditorButtonPath = null!;
-
-    [Export]
     public NodePath AtpBarPath = null!;
 
     [Export]
@@ -130,6 +127,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [Export]
     protected CompoundPanels compoundsPanel = null!;
 
+    [Export]
+    protected EditorEntryButton editorButton = null!;
+
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
     protected ActionButton ejectEngulfedHotkey = null!;
@@ -159,7 +159,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected Label hpLabel = null!;
     protected Label populationLabel = null!;
     protected PatchNameOverlay patchNameOverlay = null!;
-    protected TextureButton editorButton = null!;
     protected Label hintText = null!;
     protected RadialPopup packControlRadial = null!;
 
@@ -217,12 +216,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [Signal]
     public delegate void OnOpenMenuToHelpEventHandler();
 
-    [Signal]
-    public delegate void OnSetEditorButtonFlashEffectEventHandler();
-
-    [Signal]
-    public delegate void OnUpdateReproductionProgressBarsEventHandler();
-
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
     /// </summary>
@@ -261,7 +254,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         hpLabel = GetNode<Label>(HpLabelPath);
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchNameOverlay = GetNode<PatchNameOverlay>(PatchOverlayPath);
-        editorButton = GetNode<TextureButton>(EditorButtonPath);
         hintText = GetNode<Label>(HintTextPath);
         hotBar = GetNode<HBoxContainer>(HotBarPath);
 
@@ -675,7 +667,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     protected void SetEditorButtonFlashEffect(bool enabled)
     {
-        EmitSignal(SignalName.OnSetEditorButtonFlashEffect, enabled);
+        editorButton.SetEditorButtonFlashEffect(enabled);
     }
 
     protected void UpdatePopulation()
@@ -808,8 +800,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             GD.PrintErr("can't get reproduction phosphates progress: ", e);
         }
 
-        EmitSignal(SignalName.OnUpdateReproductionProgressBars, fractionOfAmmonia, fractionOfPhosphates,
-            AmmoniaBW, PhosphatesBW);
+        editorButton.UpdateReproductionProgressBars(fractionOfAmmonia, fractionOfPhosphates, AmmoniaBW, PhosphatesBW);
     }
 
     protected virtual void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
@@ -934,7 +925,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 HpLabelPath.Dispose();
                 PopulationLabelPath.Dispose();
                 PatchOverlayPath.Dispose();
-                EditorButtonPath.Dispose();
                 AtpBarPath.Dispose();
                 HealthBarPath.Dispose();
                 ProcessPanelPath.Dispose();

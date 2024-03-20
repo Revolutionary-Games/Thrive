@@ -27,12 +27,12 @@ public partial class EditorEntryButton : TextureButton
     [Export]
     private PointLight2D editorButtonFlash = null!;
 #pragma warning restore CA2213
-    private void SetEditorButtonFlashEffect(bool enabled)
+    public void SetEditorButtonFlashEffect(bool enabled)
     {
         editorButtonFlash.Visible = enabled;
     }
 
-    private void UpdateReproductionProgressBars(float fractionOfAmmonia, float fractionOfPhosphates,
+    public void UpdateReproductionProgressBars(float fractionOfAmmonia, float fractionOfPhosphates,
         Texture2D ammoniaBW, Texture2D phosphatesBW)
     {
         ammoniaReproductionBar.Value = fractionOfAmmonia * ammoniaReproductionBar.MaxValue;

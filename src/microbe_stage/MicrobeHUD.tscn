@@ -259,7 +259,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel")]
+[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -284,7 +284,6 @@ AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
 PatchOverlayPath = NodePath("../PatchNameOverlay")
-EditorButtonPath = NodePath("BottomRight/EditorButton")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
 ProcessPanelPath = NodePath("ProcessPanel")
@@ -307,6 +306,7 @@ ExtinctionBoxScene = ExtResource("54")
 PatchExtinctionBoxScene = ExtResource("60")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
+editorButton = NodePath("BottomRight/EditorButton")
 PausePromptPath = NodePath("PausePrompt")
 PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 HUDMessagesPath = NodePath("HUDMessages")
@@ -697,8 +697,6 @@ custom_minimum_size = Vector2(450, 0)
 offset_right = 300.0
 offset_bottom = 97.0
 
-[connection signal="OnSetEditorButtonFlashEffect" from="." to="BottomRight/EditorButton" method="SetEditorButtonFlashEffect"]
-[connection signal="OnUpdateReproductionProgressBars" from="." to="BottomRight/EditorButton" method="UpdateReproductionProgressBars"]
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
 [connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
