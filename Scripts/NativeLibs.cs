@@ -30,6 +30,13 @@ public class NativeLibs
     private const string BuilderImageNameCross = "localhost/thrive/native-builder-cross:latest";
     private const string FolderToWriteDistributableBuildIn = "build/distributable_build";
 
+    /// <summary>
+    ///   Default libraries to operate on when nothing is explicitly selected. This no longer includes the early checks
+    ///   library as a pure C# solution is used instead.
+    /// </summary>
+    private static readonly IList<NativeConstants.Library> DefaultLibraries = new[]
+        { NativeConstants.Library.ThriveNative };
+
     private readonly Program.NativeLibOptions options;
 
     private readonly IList<PackagePlatform> platforms;
@@ -122,7 +129,7 @@ public class NativeLibs
     /// </param>
     public bool CopyToThriveRelease(string releaseFolder, PackagePlatform platform, bool useDistributableLibraries)
     {
-        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
+        var libraries = options.Libraries ?? DefaultLibraries;
 
         if (!Directory.Exists(releaseFolder))
         {
@@ -224,7 +231,7 @@ public class NativeLibs
         Func<NativeConstants.Library, PackagePlatform, CancellationToken, Task<bool>> operation,
         CancellationToken cancellationToken)
     {
-        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
+        var libraries = options.Libraries ?? DefaultLibraries;
 
         foreach (var library in libraries)
         {
@@ -252,7 +259,7 @@ public class NativeLibs
         Func<NativeConstants.Library, PackagePlatform, CancellationToken, Task<T>> operation,
         CancellationToken cancellationToken)
     {
-        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
+        var libraries = options.Libraries ?? DefaultLibraries;
 
         bool resultSet = false;
         T result = default!;
@@ -609,13 +616,15 @@ public class NativeLibs
 
         Directory.CreateDirectory(compileInstallFolder);
 
+        var thriveContainerFolder = "/thrive";
+
         var startInfo = new ProcessStartInfo("podman");
 
         startInfo.ArgumentList.Add("run");
         startInfo.ArgumentList.Add("--rm");
         startInfo.ArgumentList.Add("-t");
 
-        startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:/thrive:ro,z");
+        startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:{thriveContainerFolder}:ro,z");
         startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(compileInstallFolder)}:/install-target:rw,z");
 
         if (options.Verbose)
@@ -633,7 +642,7 @@ public class NativeLibs
         shCommandBuilder.Append("mkdir /build && cd build && ");
 
         // Cmake configure inside the container
-        shCommandBuilder.Append("cmake /thrive ");
+        shCommandBuilder.Append($"cmake {thriveContainerFolder} ");
         shCommandBuilder.Append("-G Ninja ");
 
         // ReSharper disable StringLiteralTypo
@@ -719,13 +728,14 @@ public class NativeLibs
         // Cmake build inside the container, once without AVX and once with
         for (int i = 0; i < 2; ++i)
         {
-            shCommandBuilder.Append("&& cmake ");
-
             if (i > 0)
             {
                 // No AVX build
+                shCommandBuilder.Append($"&& cmake {thriveContainerFolder} ");
                 shCommandBuilder.Append("-DTHRIVE_AVX=OFF ");
             }
+
+            shCommandBuilder.Append("&& cmake ");
 
             shCommandBuilder.Append("--build ");
             shCommandBuilder.Append(". ");
@@ -740,6 +750,7 @@ public class NativeLibs
 
             // TODO: add option to not use all cores
             shCommandBuilder.Append(Environment.ProcessorCount.ToString());
+            shCommandBuilder.Append(' ');
         }
 
         startInfo.ArgumentList.Add(shCommandBuilder.ToString());
@@ -757,7 +768,7 @@ public class NativeLibs
         }
 
         ColourConsole.WriteSuccessLine("Build inside container succeeded");
-        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
+        var libraries = options.Libraries ?? DefaultLibraries;
 
         var baseTag = options.DebugLibrary ? PrecompiledTag.Debug : PrecompiledTag.None;
 

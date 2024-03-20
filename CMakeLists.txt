@@ -52,11 +52,8 @@ endif()
 
 if(NOT THRIVE_AVX)
   message(STATUS "Building without AVX support")
-  set(CMAKE_SHARED_LIBRARY_SUFFIX "_without_avx")
-  set(CMAKE_STATIC_LIBRARY_SUFFIX "_without_avx")
-else()
-  set(CMAKE_SHARED_LIBRARY_SUFFIX "")
-  set(CMAKE_STATIC_LIBRARY_SUFFIX "")
+  set(CMAKE_SHARED_LIBRARY_SUFFIX "_without_avx${CMAKE_SHARED_LIBRARY_SUFFIX}")
+  set(CMAKE_STATIC_LIBRARY_SUFFIX "_without_avx${CMAKE_STATIC_LIBRARY_SUFFIX}")
 endif()
 
 # static building
@@ -154,5 +151,9 @@ include_directories(${PROJECT_BINARY_DIR})
 # Add the subfolders that define the actual things to build
 add_subdirectory(third_party)
 
-add_subdirectory(src/native/early_checks)
+if(THRIVE_AVX)
+  # Early checks is not compiled in non-avx mode
+  add_subdirectory(src/native/early_checks)
+endif()
+
 add_subdirectory(src/native)

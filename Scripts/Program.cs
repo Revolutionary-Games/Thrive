@@ -353,8 +353,6 @@ public class Program
             {
                 yield return new Example("download all available libraries",
                     new NativeLibOptions { Operations = new[] { OperationMode.Fetch } });
-                yield return new Example("install library locally to make Godot Editor debugging work",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Install } });
                 yield return new Example("compile libraries locally",
                     new NativeLibOptions { Operations = new[] { OperationMode.Build } });
                 yield return new Example("prepare library versions for distribution or uploading with podman",
