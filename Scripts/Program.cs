@@ -444,8 +444,8 @@ public class Program
             HelpText = "Set to a valid DevCenter key (not user token) to use non-anonymous uploading.")]
         public string? Key { get; set; }
 
-        [Option('k', "key", Required = false, Default = Uploader.DEFAULT_DEVCENTER_URL, MetaValue = "DEVCENTER_URL",
-            HelpText = "DevCenter URL to upload to.")]
+        [Option('u', "devcenter-url", Required = false, Default = Uploader.DEFAULT_DEVCENTER_URL,
+            MetaValue = "DEVCENTER_URL", HelpText = "DevCenter URL to upload to.")]
         public string Url { get; set; } = Uploader.DEFAULT_DEVCENTER_URL;
 
         [Option('r', "retries", Required = false, Default = 3, MetaValue = "COUNT",
