@@ -47,11 +47,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "source.7z",
         "revision.txt",
         "ThriveAssetsLICENSE.txt",
+        "ThriveAssetsREADME.txt",
         "GodotLicense.txt",
-        "runtime_licenses.txt",
+        "RuntimeLicenses.txt",
         "gpl.txt",
         "LICENSE.txt",
         "README.txt",
+        "Thrive.dll",
+        "Thrive.pdb",
     };
 
     private static readonly IReadOnlyCollection<FileToPackage> LicenseFiles = new List<FileToPackage>
@@ -568,8 +571,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         foreach (var file in Directory.EnumerateFiles(folder, "*.*", SearchOption.AllDirectories))
         {
             // Always ignore some files despite their sizes
-            if (DehydrateIgnoreFiles.Contains(file.Replace($"{folder}/", string.Empty)))
+            var fileWithoutPath = file.Replace($"{folder}/", string.Empty);
+            if (DehydrateIgnoreFiles.Any(i => i.EndsWith(fileWithoutPath)))
+            {
+                if (ColourConsole.DebugPrintingEnabled)
+                    ColourConsole.WriteDebugLine($"Ignoring file in dehydration: {file}");
+
                 continue;
+            }
 
             if (ColourConsole.DebugPrintingEnabled)
                 ColourConsole.WriteDebugLine($"Dehydrating: {file}");

@@ -17,7 +17,7 @@ public static class Dehydration
     public const string DEHYDRATED_META_SUFFIX = ".meta.json";
 
     private const long DEHYDRATE_FILE_SIZE_THRESHOLD = 100000;
-    private const string DEHYDRATE_IGNORE_FILE_TYPES = @"\.po,\.pot,\.txt,\.md,\.tscn,Thrive\.dll,Thrive\.pdb";
+    private const string DEHYDRATE_IGNORE_FILE_TYPES = @"\.po,\.pot,\.txt,\.md,uid_cache\.bin";
 
     public static async Task DehydrateThrivePck(string pck, string extractFolder, DehydrateCache cache,
         CancellationToken cancellationToken)
@@ -110,7 +110,12 @@ public static class Dehydration
     {
         // .pck files are handled separately
         if (file.EndsWith(".pck"))
+        {
+            if (ColourConsole.DebugPrintingEnabled)
+                ColourConsole.WriteDebugLine(".pck dehydrating is done separately, skipping current file");
+
             return Task.CompletedTask;
+        }
 
         if (new FileInfo(file).Length < DEHYDRATE_FILE_SIZE_THRESHOLD)
             return Task.CompletedTask;
