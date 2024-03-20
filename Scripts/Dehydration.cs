@@ -19,7 +19,7 @@ public static class Dehydration
     private const long DEHYDRATE_FILE_SIZE_THRESHOLD = 100000;
     private const string DEHYDRATE_IGNORE_FILE_TYPES = @"\.po,\.pot,\.txt,\.md,uid_cache\.bin";
 
-    public static async Task DehydrateThrivePck(string pck, string extractFolder, DehydrateCache cache,
+    public static async Task DehydrateThrivePck(string pck, string extractFolder, DehydrateCacheV2 cache,
         CancellationToken cancellationToken)
     {
         Directory.CreateDirectory(extractFolder);
@@ -78,7 +78,7 @@ public static class Dehydration
     /// <param name="file">The file to dehydrate</param>
     /// <param name="cache">Cache structure to add the file to</param>
     /// <param name="cancellationToken">Cancellation</param>
-    public static async Task DehydrateFile(string file, DehydrateCache cache, CancellationToken cancellationToken)
+    public static async Task DehydrateFile(string file, DehydrateCacheV2 cache, CancellationToken cancellationToken)
     {
         var hash = FileUtilities.HashToHex(await FileUtilities.CalculateSha3OfFile(file, cancellationToken));
 
@@ -105,7 +105,7 @@ public static class Dehydration
     /// <param name="file">The file to check</param>
     /// <param name="cache">Cache to add to if dehydrated</param>
     /// <param name="cancellationToken">Cancellation</param>
-    public static Task PerformDehydrationOnFileIfNeeded(string file, DehydrateCache cache,
+    public static Task PerformDehydrationOnFileIfNeeded(string file, DehydrateCacheV2 cache,
         CancellationToken cancellationToken)
     {
         // .pck files are handled separately
@@ -123,7 +123,7 @@ public static class Dehydration
         return DehydrateFile(file, cache, cancellationToken);
     }
 
-    public static async Task WriteMetaFile(string name, DehydrateCache cache, string thriveVersion,
+    public static async Task WriteMetaFile(string name, IDehydrateCache cache, string thriveVersion,
         string godotPlatform, string buildZipFile, CancellationToken cancellationToken)
     {
         var info = new DehydratedInfo(cache.Hashes(), await GetBranchCICompatible(cancellationToken), thriveVersion,

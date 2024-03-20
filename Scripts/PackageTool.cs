@@ -109,7 +109,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private bool checkedGodot;
     private bool steamMode;
 
-    private DehydrateCache? cacheForNextMetaToWrite;
+    private IDehydrateCache? cacheForNextMetaToWrite;
 
     public PackageTool(Program.PackageOptions options) : base(options)
     {
@@ -373,7 +373,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (!options.Dehydrated)
         {
-            var potentialCache = Path.Join(folder, DehydrateCache.CacheFileName);
+            var potentialCache = Path.Join(folder, IDehydrateCache.CacheFileName);
 
             if (File.Exists(potentialCache))
             {
@@ -488,8 +488,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
             // Write meta file needed for upload
             await Dehydration.WriteMetaFile(Path.GetFileNameWithoutExtension(folderOrArchive), cacheForNextMetaToWrite,
-                thriveVersion,
-                ThriveProperties.GodotTargetFromPlatform(platform, steamMode), target, cancellationToken);
+                thriveVersion, ThriveProperties.GodotTargetFromPlatform(platform, steamMode), target,
+                cancellationToken);
 
             cacheForNextMetaToWrite = null;
 
@@ -557,11 +557,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         var extractFolder = Path.Join(options.OutputFolder, "temp_extracted", Path.GetFileName(folder));
 
-        var pckCache = new DehydrateCache(extractFolder);
+        var pckCache = new DehydrateCacheV2(extractFolder);
 
         await Dehydration.DehydrateThrivePck(pck, extractFolder, pckCache, cancellationToken);
 
-        var normalCache = new DehydrateCache(folder);
+        var normalCache = new DehydrateCacheV2(folder);
 
         cancellationToken.ThrowIfCancellationRequested();
 
