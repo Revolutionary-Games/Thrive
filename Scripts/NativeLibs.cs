@@ -147,10 +147,15 @@ public class NativeLibs
         {
             ColourConsole.WriteDebugLine($"Copying native library: {library} to {targetFolder}");
 
-            if (!CopyLibraryFiles(library, platform, useDistributableLibraries, targetFolder))
+            var baseTag = GetTag(false);
+
+            foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
             {
-                ColourConsole.WriteErrorLine($"Error copying library {library}");
-                return false;
+                if (!CopyLibraryFiles(library, platform, useDistributableLibraries, targetFolder, tag))
+                {
+                    ColourConsole.WriteErrorLine($"Error copying library {library}");
+                    return false;
+                }
             }
 
             ColourConsole.WriteNormalLine($"Copied library {library}");
@@ -382,11 +387,11 @@ public class NativeLibs
     }
 
     private bool CopyLibraryFiles(NativeConstants.Library library, PackagePlatform platform,
-        bool useDistributableLibraries, string target)
+        bool useDistributableLibraries, string target, PrecompiledTag tags)
     {
         // TODO: other files?
         var file = NativeConstants.GetPathToLibraryDll(library, platform, NativeConstants.GetLibraryVersion(library),
-            useDistributableLibraries, GetTag(!useDistributableLibraries));
+            useDistributableLibraries, tags);
 
         if (!File.Exists(file))
         {

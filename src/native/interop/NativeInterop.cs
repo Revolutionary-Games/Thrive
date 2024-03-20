@@ -26,6 +26,8 @@ public static class NativeInterop
     private static bool debugDrawIsPossible;
     private static bool nativeLoadSucceeded;
 
+    private static bool printedDistributableNotice;
+
     public delegate void OnLineDraw(Vector3 from, Vector3 to, Color colour);
 
     public delegate void OnTriangleDraw(Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, Color colour);
@@ -413,24 +415,26 @@ public static class NativeInterop
                 return loaded;
             }
         }
-        else
+
+        if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
+                NativeConstants.GetLibraryVersion(library), false, GetTag(false)), out loaded))
         {
-            if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
-                    NativeConstants.GetLibraryVersion(library), false, GetTag(false)), out loaded))
-            {
-                return loaded;
-            }
-
-            GD.Print("Library not found yet at expected paths, trying a distributable version");
-
-            if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
-                    NativeConstants.GetLibraryVersion(library), true, GetTag(false)), out loaded))
-            {
-                return loaded;
-            }
+            return loaded;
         }
 
-        GD.PrintErr("Couldn't find library at expected path, falling back to default load behaviour, " +
+        if (!printedDistributableNotice)
+        {
+            GD.Print("Library not found yet at expected paths, trying a distributable version");
+            printedDistributableNotice = true;
+        }
+
+        if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
+                NativeConstants.GetLibraryVersion(library), true, GetTag(false)), out loaded))
+        {
+            return loaded;
+        }
+
+        GD.PrintErr("Couldn't find library at any expected path, falling back to default load behaviour, " +
             "which is unlikely to find anything");
 
         return NativeLibrary.Load(libraryName, assembly, searchPath);

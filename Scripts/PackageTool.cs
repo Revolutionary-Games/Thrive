@@ -17,6 +17,10 @@ using SharedBase.Utilities;
 
 public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
+    // TODO: disabled due to Godot bug: https://github.com/godotengine/godot/issues/89674
+    // public const string GODOT_HEADLESS_FLAG = "--headless";
+    public const string GODOT_HEADLESS_FLAG = "";
+
     private const string EXPECTED_THRIVE_PCK_FILE = "Thrive.pck";
 
     private const string STEAM_BUILD_MESSAGE = "This is the Steam build. This can only be distributed by " +
@@ -270,7 +274,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         var targetFile = Path.Join(folder, "Thrive" + ThriveProperties.GodotTargetExtension(platform));
 
         var startInfo = new ProcessStartInfo("godot");
-        startInfo.ArgumentList.Add("--headless");
+        startInfo.ArgumentList.Add(GODOT_HEADLESS_FLAG);
         startInfo.ArgumentList.Add("--export-release");
         startInfo.ArgumentList.Add(target);
         startInfo.ArgumentList.Add(targetFile);
