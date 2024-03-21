@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 09:09+0200\n"
+"POT-Creation-Date: 2024-03-21 14:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -394,7 +394,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:421 ../src/general/MainMenu.tscn:480
 #: ../src/general/MainMenu.tscn:519 ../src/general/MainMenu.tscn:804
 #: ../src/general/NewGameSettings.tscn:876 ../src/general/OptionsMenu.tscn:1617
-#: ../src/general/PauseMenu.tscn:249
+#: ../src/general/PauseMenu.tscn:251
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:65
 #: ../src/modding/ModManager.tscn:82 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
@@ -677,7 +677,7 @@ msgstr ""
 msgid "CANNOT_WRITE_SAVE"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:296 ../src/modding/ModLoader.cs:344
+#: ../src/modding/ModLoader.cs:306 ../src/modding/ModLoader.cs:354
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
@@ -1073,7 +1073,7 @@ msgid "CONFIRM_DELETE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:735
-#: ../src/general/PauseMenu.tscn:280
+#: ../src/general/PauseMenu.tscn:289
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
 msgid "CONFIRM_EXIT"
 msgstr ""
@@ -1575,7 +1575,7 @@ msgstr ""
 msgid "DEBUG_COORDINATES"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.cs:198
+#: ../src/engine/DebugOverlays.cs:202
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
@@ -2184,7 +2184,7 @@ msgstr ""
 msgid "EXISTING_BUILDINGS"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:225
+#: ../src/general/PauseMenu.tscn:227
 msgid "EXIT"
 msgstr ""
 
@@ -2648,11 +2648,11 @@ msgstr ""
 msgid "HEALTH"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:202
+#: ../src/general/PauseMenu.tscn:204
 msgid "HELP"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:201 ../src/microbe_stage/HUDBottomBar.tscn:136
+#: ../src/general/PauseMenu.tscn:203 ../src/microbe_stage/HUDBottomBar.tscn:136
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3503,12 +3503,12 @@ msgstr ""
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:307 ../src/general/PauseMenu.tscn:190
+#: ../src/general/MainMenu.tscn:307 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:109
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:305 ../src/general/PauseMenu.tscn:189
+#: ../src/general/MainMenu.tscn:305 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3961,31 +3961,31 @@ msgstr ""
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:455
+#: ../src/modding/ModLoader.cs:465
 msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:444
+#: ../src/modding/ModLoader.cs:454
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:462
+#: ../src/modding/ModLoader.cs:472
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:476
+#: ../src/modding/ModLoader.cs:486
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:318
+#: ../src/modding/ModLoader.cs:328
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:357
+#: ../src/modding/ModLoader.cs:367
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:363
+#: ../src/modding/ModLoader.cs:373
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
@@ -4011,15 +4011,15 @@ msgstr ""
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:499
+#: ../src/modding/ModLoader.cs:509
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:520
+#: ../src/modding/ModLoader.cs:530
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:333
+#: ../src/modding/ModLoader.cs:343
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
@@ -4637,11 +4637,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:213
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:215
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:212
+#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4884,7 +4884,7 @@ msgid "PATCH_NAME"
 msgstr ""
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
-#: ../src/gui_common/PatchNotesDisplayer.tscn:40
+#: ../src/gui_common/PatchNotesDisplayer.tscn:41
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr ""
 
@@ -4921,7 +4921,7 @@ msgstr ""
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:177
+#: ../src/general/PauseMenu.tscn:179
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr ""
 
@@ -4933,11 +4933,11 @@ msgstr ""
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:539
+#: ../src/modding/ModLoader.cs:549
 msgid "PCK_LOAD_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:531
+#: ../src/modding/ModLoader.cs:541
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr ""
 
@@ -5185,7 +5185,7 @@ msgid "QUIT"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:343 ../src/general/MainMenu.tscn:350
-#: ../src/general/PauseMenu.tscn:224
+#: ../src/general/PauseMenu.tscn:226
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -5249,7 +5249,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:599 ../src/general/PauseMenu.tscn:207
+#: ../src/general/MainMenu.tscn:599 ../src/general/PauseMenu.tscn:209
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -5364,7 +5364,7 @@ msgstr ""
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:178
+#: ../src/general/PauseMenu.tscn:180
 msgid "RESUME"
 msgstr ""
 
@@ -5372,12 +5372,12 @@ msgstr ""
 msgid "RESUME_TOOLTIP"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:219
+#: ../src/general/PauseMenu.tscn:221
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:115
 msgid "RETURN_TO_MENU"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:218
+#: ../src/general/PauseMenu.tscn:220
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
@@ -5513,11 +5513,11 @@ msgstr ""
 msgid "SAVE_FAILED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:184
+#: ../src/general/PauseMenu.tscn:186
 msgid "SAVE_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:183
+#: ../src/general/PauseMenu.tscn:185
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -6425,7 +6425,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:442 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:442 ../src/general/PauseMenu.tscn:198
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6437,7 +6437,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:195
+#: ../src/general/PauseMenu.tscn:197
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6844,10 +6844,6 @@ msgstr ""
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:131
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr ""
-
 #: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:85
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr ""
@@ -6861,7 +6857,7 @@ msgstr ""
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1674
+#: ../src/general/OptionsMenu.cs:1682
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
@@ -7080,8 +7076,8 @@ msgstr ""
 msgid "VIEWER"
 msgstr ""
 
-#: ../src/gui_common/PatchNotesDisplayer.tscn:49
-#: ../src/gui_common/PatchNotesDisplayer.tscn:55
+#: ../src/gui_common/PatchNotesDisplayer.tscn:51
+#: ../src/gui_common/PatchNotesDisplayer.tscn:57
 msgid "VIEW_ALL"
 msgstr ""
 

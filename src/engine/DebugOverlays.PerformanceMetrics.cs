@@ -127,9 +127,7 @@ public partial class DebugOverlays
                     entityCount, Math.Round(entityWeight, 1),
                     Math.Round(spawnHistory.Sum(), 1), Math.Round(despawnHistory.Sum(), 1),
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
-                    OS.GetName() == Constants.OS_WINDOWS_NAME ?
-                        Localization.Translate("UNKNOWN_ON_WINDOWS") :
-                        mibFormat.FormatSafe(usedMemory),
+                    mibFormat.FormatSafe(usedMemory),
                     mibFormat.FormatSafe(usedVideoMemory),
                     Performance.GetMonitor(Performance.Monitor.RenderTotalObjectsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderTotalDrawCallsInFrame),
