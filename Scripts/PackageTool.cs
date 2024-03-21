@@ -47,11 +47,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "source.7z",
         "revision.txt",
         "ThriveAssetsLICENSE.txt",
+        "ThriveAssetsREADME.txt",
         "GodotLicense.txt",
-        "runtime_licenses.txt",
+        "RuntimeLicenses.txt",
         "gpl.txt",
         "LICENSE.txt",
         "README.txt",
+        "Thrive.dll",
+        "Thrive.pdb",
     };
 
     private static readonly IReadOnlyCollection<FileToPackage> LicenseFiles = new List<FileToPackage>
@@ -106,7 +109,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private bool checkedGodot;
     private bool steamMode;
 
-    private DehydrateCache? cacheForNextMetaToWrite;
+    private IDehydrateCache? cacheForNextMetaToWrite;
 
     public PackageTool(Program.PackageOptions options) : base(options)
     {
@@ -370,7 +373,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (!options.Dehydrated)
         {
-            var potentialCache = Path.Join(folder, DehydrateCache.CacheFileName);
+            var potentialCache = Path.Join(folder, IDehydrateCache.CacheFileName);
 
             if (File.Exists(potentialCache))
             {
@@ -485,8 +488,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
             // Write meta file needed for upload
             await Dehydration.WriteMetaFile(Path.GetFileNameWithoutExtension(folderOrArchive), cacheForNextMetaToWrite,
-                thriveVersion,
-                ThriveProperties.GodotTargetFromPlatform(platform, steamMode), target, cancellationToken);
+                thriveVersion, ThriveProperties.GodotTargetFromPlatform(platform, steamMode), target,
+                cancellationToken);
 
             cacheForNextMetaToWrite = null;
 
@@ -554,11 +557,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         var extractFolder = Path.Join(options.OutputFolder, "temp_extracted", Path.GetFileName(folder));
 
-        var pckCache = new DehydrateCache(extractFolder);
+        var pckCache = new DehydrateCacheV2(extractFolder);
 
         await Dehydration.DehydrateThrivePck(pck, extractFolder, pckCache, cancellationToken);
 
-        var normalCache = new DehydrateCache(folder);
+        var normalCache = new DehydrateCacheV2(folder);
 
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -568,8 +571,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         foreach (var file in Directory.EnumerateFiles(folder, "*.*", SearchOption.AllDirectories))
         {
             // Always ignore some files despite their sizes
-            if (DehydrateIgnoreFiles.Contains(file.Replace($"{folder}/", string.Empty)))
+            var fileWithoutPath = file.Replace($"{folder}/", string.Empty);
+            if (DehydrateIgnoreFiles.Any(i => fileWithoutPath.EndsWith(i)))
+            {
+                if (ColourConsole.DebugPrintingEnabled)
+                    ColourConsole.WriteDebugLine($"Ignoring file in dehydration: {file}");
+
                 continue;
+            }
 
             if (ColourConsole.DebugPrintingEnabled)
                 ColourConsole.WriteDebugLine($"Dehydrating: {file}");

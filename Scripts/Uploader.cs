@@ -201,15 +201,24 @@ public class Uploader
 
     private async Task PerformUploads(CancellationToken cancellationToken)
     {
-        ColourConsole.WriteInfoLine("Fetching tokens for dehydrated objects");
+        List<ThingToUpload> thingsToUpload;
 
-        // TODO: if there is ton to upload, it might not be a good idea to fetch all of the tokens at once
-        var thingsToUpload = await FetchObjectUploadTokens(cancellationToken);
+        if (dehydratedToUpload.Count > 0)
+        {
+            ColourConsole.WriteInfoLine("Fetching tokens for dehydrated objects");
 
-        ColourConsole.WriteInfoLine("Uploading dehydrated objects");
-        await UploadThingsInChunks(thingsToUpload, cancellationToken);
+            // TODO: if there is ton to upload, it might not be a good idea to fetch all of the tokens at once
+            thingsToUpload = await FetchObjectUploadTokens(cancellationToken);
 
-        cancellationToken.ThrowIfCancellationRequested();
+            ColourConsole.WriteInfoLine("Uploading dehydrated objects");
+            await UploadThingsInChunks(thingsToUpload, cancellationToken);
+
+            cancellationToken.ThrowIfCancellationRequested();
+        }
+        else
+        {
+            ColourConsole.WriteNormalLine("No dehydrated objects to upload");
+        }
 
         ColourConsole.WriteInfoLine("Fetching tokens for devbuilds");
         thingsToUpload = await FetchDevBuildUploadTokens(cancellationToken);
