@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://jjb8ei8wuuk"]
+[gd_scene load_steps=14 format=3 uid="uid://jjb8ei8wuuk"]
 
 [ext_resource type="Texture2D" uid="uid://c732snfs7i3xx" path="res://assets/textures/gui/bevel/LargeTwoNormal.png" id="1_ixss3"]
 [ext_resource type="Texture2D" uid="uid://bd4c6guswatde" path="res://assets/textures/gui/bevel/LargeTwoPressed.png" id="2_suams"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://src/microbe_stage/gui/EditorEntryButton.cs" id="5_kxl0r"]
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="5_vcgwd"]
 [ext_resource type="Texture2D" uid="uid://dagkk6puhnfvu" path="res://assets/textures/gui/bevel/ReproductionBar.png" id="6_nj585"]
+[ext_resource type="Texture2D" uid="uid://b7f3dnt4j7gnw" path="res://assets/textures/gui/bevel/AmmoniaBW.png" id="6_xsh47"]
+[ext_resource type="Texture2D" uid="uid://c2stsavjp3bxy" path="res://assets/textures/gui/bevel/PhosphatesBW.png" id="7_ayhxp"]
 [ext_resource type="Texture2D" uid="uid://bf55j5u0k0oc1" path="res://assets/textures/gui/bevel/AmmoniaInv.png" id="7_wu333"]
 [ext_resource type="Texture2D" uid="uid://bp6urdgi1p1hq" path="res://assets/textures/gui/bevel/PhosphateInv.png" id="8_yin80"]
 
@@ -43,7 +45,7 @@ _data = {
 "EditorButtonFlash": SubResource("30")
 }
 
-[node name="EditorButton" type="TextureButton" node_paths=PackedStringArray("highlight", "buttonAnimationPlayer", "ammoniaIcon", "ammoniaReproductionBar", "phosphateIcon", "phosphateReproductionBar", "editorButtonFlash")]
+[node name="EditorButton" type="TextureButton" node_paths=PackedStringArray("highlight", "buttonAnimationPlayer", "ammoniaIcon", "ammoniaReproductionBar", "phosphateIcon", "phosphateReproductionBar", "reproductionBar", "editorButtonFlash")]
 custom_minimum_size = Vector2(160, 160)
 anchors_preset = 3
 anchor_left = 1.0
@@ -66,12 +68,17 @@ texture_disabled = ExtResource("4_4niqg")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("5_kxl0r")
+ammoniaBW = ExtResource("6_xsh47")
+phosphatesBW = ExtResource("7_ayhxp")
+ammoniaInv = ExtResource("7_wu333")
+phosphatesInv = ExtResource("8_yin80")
 highlight = NodePath("Highlight")
 buttonAnimationPlayer = NodePath("AnimationPlayer")
 ammoniaIcon = NodePath("ReproductionBar/AmmoniaIcon")
 ammoniaReproductionBar = NodePath("ReproductionBar/AmmoniaReproductionBar")
 phosphateIcon = NodePath("ReproductionBar/PhosphateIcon")
 phosphateReproductionBar = NodePath("ReproductionBar/PhosphateReproductionBar")
+reproductionBar = NodePath("ReproductionBar")
 editorButtonFlash = NodePath("Highlight/PointLight2D")
 
 [node name="Highlight" type="TextureRect" parent="."]
