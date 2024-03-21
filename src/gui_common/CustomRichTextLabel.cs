@@ -717,7 +717,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             }
             else if (metaString.StartsWith("thriveopedia", StringComparison.Ordinal))
             {
-                var pageName = metaString.Split("thriveopedia:")[1];
+                var pageName = metaString.Split("thriveopedia:", 2)[1];
                 ThriveopediaManager.OpenPage(pageName);
             }
         }
