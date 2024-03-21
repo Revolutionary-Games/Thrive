@@ -16,6 +16,7 @@ public partial class PostStartupActions : Node
         }
 
         // Queue window title set as setting it in the autoloads doesn't work yet
+        // TODO: when playing a devbuild use Constants.VersionFull here
         Invoke.Instance.Perform(() => { DisplayServer.WindowSetTitle("Thrive - " + Constants.Version); });
     }
 
@@ -27,7 +28,7 @@ public partial class PostStartupActions : Node
 
         if (info == null)
         {
-            GD.Print("No build info file exists, can't tell exact commit");
+            GD.Print("No build info file exists, no more build info exists");
         }
         else
         {

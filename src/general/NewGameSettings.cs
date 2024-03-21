@@ -958,9 +958,15 @@ public partial class NewGameSettings : ControlWithInput
         _ = pressed;
     }
 
-    private void PerformanceNoteLinkClicked(object meta)
+    private void PerformanceNoteLinkClicked(Variant meta)
     {
-        _ = meta;
+        if (meta.VariantType != Variant.Type.String)
+        {
+            GD.PrintErr("Unexpected new game info text meta clicked");
+            return;
+        }
+
+        // TODO: check that the meta has the correct content?
 
         EmitSignal(SignalName.OnWantToSwitchToOptionsMenu);
     }

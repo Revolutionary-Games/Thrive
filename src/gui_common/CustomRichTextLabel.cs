@@ -105,12 +105,12 @@ public partial class CustomRichTextLabel : RichTextLabel
         // Make sure bbcode is enabled
         BbcodeEnabled = true;
 
-        Connect("meta_clicked", new Callable(this, nameof(OnMetaClicked)));
+        Connect(RichTextLabel.SignalName.MetaClicked, new Callable(this, nameof(OnMetaClicked)));
 
         if (EnableTooltipsForMetaTags)
         {
-            Connect("meta_hover_started", new Callable(this, nameof(OnMetaHoverStarted)));
-            Connect("meta_hover_ended", new Callable(this, nameof(OnMetaHoverEnded)));
+            Connect(RichTextLabel.SignalName.MetaHoverStarted, new Callable(this, nameof(OnMetaHoverStarted)));
+            Connect(RichTextLabel.SignalName.MetaHoverEnded, new Callable(this, nameof(OnMetaHoverEnded)));
         }
     }
 
@@ -700,10 +700,12 @@ public partial class CustomRichTextLabel : RichTextLabel
         ParseCustomTags();
     }
 
-    private void OnMetaClicked(object meta)
+    private void OnMetaClicked(Variant meta)
     {
-        if (meta is string metaString)
+        if (meta.VariantType == Variant.Type.String)
         {
+            var metaString = meta.AsString();
+
             // TODO: should there be stronger validation than this? that this is actually an URL? Maybe Uri.TryParse
             if (metaString.StartsWith("http", StringComparison.Ordinal))
             {
@@ -715,18 +717,23 @@ public partial class CustomRichTextLabel : RichTextLabel
             }
             else if (metaString.StartsWith("thriveopedia", StringComparison.Ordinal))
             {
-                var pageName = metaString.Split("thriveopedia:")[1];
+                var pageName = metaString.Split("thriveopedia:", 2)[1];
                 ThriveopediaManager.OpenPage(pageName);
             }
         }
     }
 
-    private void OnMetaHoverStarted(object meta)
+    private void OnMetaHoverStarted(Variant meta)
     {
         if (!EnableTooltipsForMetaTags)
             return;
 
-        if (meta is string metaString && metaString.StartsWith("species:", StringComparison.Ordinal))
+        if (meta.VariantType != Variant.Type.String)
+            return;
+
+        var metaString = meta.AsString();
+
+        if (metaString.StartsWith("species:", StringComparison.Ordinal))
         {
             if (!GetSpeciesFromMeta(metaString, out var species))
                 return;
@@ -744,12 +751,17 @@ public partial class CustomRichTextLabel : RichTextLabel
         }
     }
 
-    private void OnMetaHoverEnded(object meta)
+    private void OnMetaHoverEnded(Variant meta)
     {
         if (!EnableTooltipsForMetaTags)
             return;
 
-        if (meta is string metaString && metaString.StartsWith("species:", StringComparison.Ordinal))
+        if (meta.VariantType != Variant.Type.String)
+            return;
+
+        var metaString = meta.AsString();
+
+        if (metaString.StartsWith("species:", StringComparison.Ordinal))
         {
             if (!GetSpeciesFromMeta(metaString, out var species))
                 return;
