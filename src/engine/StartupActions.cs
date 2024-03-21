@@ -24,7 +24,7 @@ public partial class StartupActions : Node
 
         // Print game version
         // TODO: for devbuilds it would be nice to print the hash here
-        GD.Print("This is Thrive version: ", Constants.Version, " (see below for exact build info)");
+        GD.Print("This is Thrive version: ", Constants.VersionFull, " (see below for more build info)");
 
         // Add unhandled exception logger if debugger is not attached
         if (!Debugger.IsAttached)

@@ -1671,8 +1671,15 @@ public partial class OptionsMenu : ControlWithInput
 
         if (info == null)
         {
-            commitLabel.Text = Localization.Translate("UNKNOWN_VERSION");
             builtAtLabel.Text = string.Empty;
+
+            if (!string.IsNullOrEmpty(Constants.VersionCommit))
+            {
+                commitLabel.Text = Constants.VersionCommit;
+                return;
+            }
+
+            commitLabel.Text = Localization.Translate("UNKNOWN_VERSION");
             return;
         }
 
