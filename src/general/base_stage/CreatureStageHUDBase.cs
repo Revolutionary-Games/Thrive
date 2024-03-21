@@ -411,7 +411,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
 
-        // TODO: switch these to be fetched just once in _Ready
         editorButton.ShowReproductionDialog();
 
         HUDMessages.ShowMessage(Localization.Translate("NOTICE_READY_TO_EDIT"), DisplayDuration.Long);

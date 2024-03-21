@@ -68,6 +68,7 @@ public partial class EditorEntryButton : TextureButton
 
     public void ShowReproductionDialog()
     {
+        Disabled = false;
         highlight.Show();
         phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
         ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
@@ -81,7 +82,6 @@ public partial class EditorEntryButton : TextureButton
         if (!Disabled)
             Disabled = true;
 
-        // TODO: switch these to be fetched just once in _Ready
         highlight.Hide();
         reproductionBar.Show();
         phosphateReproductionBar.TintProgress = new Color(0.69f, 0.42f, 1, 1);
