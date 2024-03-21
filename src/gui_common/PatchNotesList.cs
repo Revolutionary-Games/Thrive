@@ -288,6 +288,7 @@ public partial class PatchNotesList : VBoxContainer
 
             // This uses rich text purely to be clickable
             var title = customRichTextScene.Instantiate<CustomRichTextLabel>();
+            title.FitContent = true;
             title.Text = titleText;
             title.AddThemeFontOverride("normal_font", TitleFont.Font);
             title.AddThemeFontSizeOverride("normal_font_size", TitleFont.FontSize);
@@ -313,6 +314,7 @@ public partial class PatchNotesList : VBoxContainer
             }
 
             var bodyTextDisplayer = customRichTextScene.Instantiate<CustomRichTextLabel>();
+            bodyTextDisplayer.FitContent = true;
 
             bodyTextDisplayer.Text = stringBuilder.ToString();
             stringBuilder.Clear();
@@ -322,6 +324,7 @@ public partial class PatchNotesList : VBoxContainer
             if (AddTrailingLinkToPatchNotesToViewIt)
             {
                 var visitLink = customRichTextScene.Instantiate<CustomRichTextLabel>();
+                visitLink.FitContent = true;
 
                 visitLink.Text = linkVisitTemplate.FormatSafe(versionPatchNotes.ReleaseLink);
 
