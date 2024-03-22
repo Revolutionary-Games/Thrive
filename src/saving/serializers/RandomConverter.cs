@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
@@ -231,21 +232,17 @@ public class RandomConverter : JsonConverter
                 switch (name)
                 {
                     case JsonField0:
-                        initialValueStorage32[0] =
-                            (uint)(reader.Value ?? throw new JsonException("Read integer is null"));
+                        initialValueStorage32[0] = ReadValue32(reader);
                         break;
 
                     case JsonField1:
-                        initialValueStorage32[1] =
-                            (uint)(reader.Value ?? throw new JsonException("Read integer is null"));
+                        initialValueStorage32[1] = ReadValue32(reader);
                         break;
                     case JsonField2:
-                        initialValueStorage32[2] =
-                            (uint)(reader.Value ?? throw new JsonException("Read integer is null"));
+                        initialValueStorage32[2] = ReadValue32(reader);
                         break;
                     case JsonField3:
-                        initialValueStorage32[3] =
-                            (uint)(reader.Value ?? throw new JsonException("Read integer is null"));
+                        initialValueStorage32[3] = ReadValue32(reader);
                         break;
 
                     default:
@@ -259,21 +256,17 @@ public class RandomConverter : JsonConverter
                 switch (name)
                 {
                     case JsonField0:
-                        initialValueStorage64[0] =
-                            (ulong)(reader.Value ?? throw new JsonException("Read integer is null"));
+                        initialValueStorage64[0] = ReadValue64(reader);
                         break;
 
                     case JsonField1:
-                        initialValueStorage64[1] =
-                            (ulong)(reader.Value ?? throw new JsonException("Read integer is null"));
+                        initialValueStorage64[1] = ReadValue64(reader);
                         break;
                     case JsonField2:
-                        initialValueStorage64[2] =
-                            (ulong)(reader.Value ?? throw new JsonException("Read integer is null"));
+                        initialValueStorage64[2] = ReadValue64(reader);
                         break;
                     case JsonField3:
-                        initialValueStorage64[3] =
-                            (ulong)(reader.Value ?? throw new JsonException("Read integer is null"));
+                        initialValueStorage64[3] = ReadValue64(reader);
                         break;
 
                     default:
@@ -336,6 +329,38 @@ public class RandomConverter : JsonConverter
     public override bool CanConvert(Type objectType)
     {
         return xoshiro32BitBase.IsAssignableFrom(objectType) || xoshiro64BitBase.IsAssignableFrom(objectType);
+    }
+
+    private static ulong ReadValue64(JsonReader reader)
+    {
+        switch (reader.Value ?? throw new JsonException("Read integer is null"))
+        {
+            case BigInteger bigInteger:
+                return (ulong)bigInteger;
+            case ulong alreadyCorrect:
+                return alreadyCorrect;
+            case long almostCorrect:
+                return (ulong)almostCorrect;
+            case int basicNumber:
+                return (ulong)basicNumber;
+        }
+
+        throw new JsonException($"Unknown value type to convert to ulong: {reader.Value.GetType()}");
+    }
+
+    private static uint ReadValue32(JsonReader reader)
+    {
+        switch (reader.Value ?? throw new JsonException("Read integer is null"))
+        {
+            case BigInteger bigInteger:
+                return (uint)bigInteger;
+            case uint alreadyCorrect:
+                return alreadyCorrect;
+            case int almostCorrect:
+                return (uint)almostCorrect;
+        }
+
+        throw new JsonException($"Unknown value type to convert to uint: {reader.Value.GetType()}");
     }
 
     private XoshiroBase ReadOldRandomAsDefault(JsonReader reader, Type objectType)
