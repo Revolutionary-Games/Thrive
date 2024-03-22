@@ -78,7 +78,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel")]
+[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -105,12 +105,8 @@ AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
 PatchOverlayPath = NodePath("PatchNameOverlay")
-EditorButtonPath = NodePath("BottomRight/EditorButton")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
-AmmoniaReproductionBarPath = NodePath("")
-PhosphateReproductionBarPath = NodePath("")
-EditorButtonFlashPath = NodePath("")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
 HotBarPath = NodePath("ScrollContainer/HotBar")
@@ -131,6 +127,7 @@ ExtinctionBoxScene = ExtResource("70")
 PatchExtinctionBoxScene = ExtResource("16")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
+editorButton = NodePath("BottomRight/EditorButton")
 PausePromptPath = NodePath("PausePrompt")
 PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 HUDMessagesPath = NodePath("HUDMessages")
