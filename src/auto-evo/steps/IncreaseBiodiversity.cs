@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Attempts to increase the biodiversity of a patch by force-splitting an existing species there or creating a
@@ -32,7 +33,7 @@ public class IncreaseBiodiversity : IRunStep
         this.map = map;
         this.patch = patch;
         this.configuration = configuration;
-        this.random = new Random(random.Next());
+        this.random = new XoShiRo256starstar(random.NextInt64());
         cache = new SimulationCache(worldSettings);
     }
 

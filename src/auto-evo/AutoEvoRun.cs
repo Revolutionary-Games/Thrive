@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
+using Xoshiro.PRNG64;
 using Thread = System.Threading.Thread;
 
 /// <summary>
@@ -369,7 +370,8 @@ public class AutoEvoRun
     /// </summary>
     protected virtual void GatherInfo(Queue<IRunStep> steps)
     {
-        var random = new Random();
+        // TODO: allow passing in a seed
+        var random = new XoShiRo256starstar();
 
         var alreadyHandledSpecies = new HashSet<Species>();
 

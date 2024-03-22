@@ -8,6 +8,11 @@ using Newtonsoft.Json.Linq;
 /// <summary>
 ///   Common utility functions for various types to save the Godot groups they are in
 /// </summary>
+/// <remarks>
+///   <para>
+///     This is currently unused as no dynamically changing group allocations need to be tracked in saves.
+///   </para>
+/// </remarks>
 public static class NodeGroupSaveHelper
 {
     public const string GROUP_JSON_PROPERTY_NAME = "NodeGroups";

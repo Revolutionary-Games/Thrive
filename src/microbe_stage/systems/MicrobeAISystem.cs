@@ -8,6 +8,7 @@ using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
 using Godot;
+using Xoshiro.PRNG64;
 using World = DefaultEcs.World;
 
 /// <summary>
@@ -61,7 +62,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     /// <summary>
     ///   Stored random instances for use by the individual AI methods which may run in multiple threads
     /// </summary>
-    private readonly List<Random> thinkRandoms = new();
+    private readonly List<XoShiRo256starstar> thinkRandoms = new();
 
     // New access to the world stuff for AI to see
     private readonly EntitySet microbesSet;
@@ -80,7 +81,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private Vector3? potentiallyKnownPlayerPosition;
 
-    private Random aiThinkRandomSource = new();
+    private XoShiRo256starstar aiThinkRandomSource = new();
 
     private bool printedPlayerControlMessage;
 
@@ -113,14 +114,14 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         phosphates = simulationParameters.GetCompound("phosphates");
     }
 
-    public void OverrideAIRandomSeed(int seed)
+    public void OverrideAIRandomSeed(long seed)
     {
         lock (thinkRandoms)
         {
             thinkRandoms.Clear();
             usedAIThinkRandomIndex = 0;
 
-            aiThinkRandomSource = new Random(seed);
+            aiThinkRandomSource = new XoShiRo256starstar(seed);
         }
     }
 
@@ -1176,7 +1177,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         {
             while (usedAIThinkRandomIndex >= thinkRandoms.Count)
             {
-                thinkRandoms.Add(new Random(aiThinkRandomSource.Next()));
+                thinkRandoms.Add(new XoShiRo256starstar(aiThinkRandomSource.Next()));
             }
 
             return thinkRandoms[usedAIThinkRandomIndex++];

@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Manages the help screen GUI
@@ -29,13 +30,13 @@ public partial class HelpScreen : Control
     [Export]
     public PackedScene HelpBoxScene = null!;
 
+    private readonly Random random = new XoShiRo128starstar();
+
     private VBoxContainer leftColumn = null!;
     private VBoxContainer rightColumn = null!;
     private Label tipMessageLabel = null!;
     private Timer timer = null!;
 #pragma warning restore CA2213
-
-    private Random random = null!;
 
     [Signal]
     public delegate void HelpScreenClosedEventHandler();
@@ -46,8 +47,6 @@ public partial class HelpScreen : Control
         rightColumn = GetNode<VBoxContainer>(RightColumnPath);
         tipMessageLabel = GetNode<Label>(TipMessageLabelPath);
         timer = GetNode<Timer>(TimerPath);
-
-        random = new Random();
 
         if (!string.IsNullOrEmpty(Category))
         {

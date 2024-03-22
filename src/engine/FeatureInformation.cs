@@ -7,27 +7,45 @@ using Godot;
 /// </summary>
 public static class FeatureInformation
 {
-    public const string PlatformWindows = "Windows";
-    public const string PlatformLinux = "Linux";
-    public const string PlatformMac = "OSX";
+    private const string PlatformWindows = "windows";
+    private const string PlatformLinux = "linux";
+
+    // TODO: check that this is correct for Godot 4
+    private const string PlatformMac = "osx";
 
     private static readonly Lazy<OS.RenderingDriver> CachedDriver = new(DetectRenderer);
 
+    private static readonly Lazy<string> ResolvedOS = new(GetOSHelper);
+
     private static readonly string[] SimpleFeaturePlatforms =
     {
-        "Android",
-        "HTML5",
+        PlatformLinux,
         PlatformWindows,
         PlatformMac,
+
+        // TODO: check that these are correct for Godot 4
+        "android",
+        "html5",
         "iOS",
     };
 
     public static string GetOS()
     {
-        // TODO: fix this for Godot 4
-        if (OS.HasFeature("X11"))
-            return PlatformLinux;
+        return ResolvedOS.Value;
+    }
 
+    public static OS.RenderingDriver GetVideoDriver()
+    {
+        return CachedDriver.Value;
+    }
+
+    public static bool IsLinux()
+    {
+        return GetOS() == PlatformLinux;
+    }
+
+    private static string GetOSHelper()
+    {
         foreach (var feature in SimpleFeaturePlatforms)
         {
             if (OS.HasFeature(feature))
@@ -36,11 +54,6 @@ public static class FeatureInformation
 
         GD.PrintErr("unknown current OS");
         return "unknown";
-    }
-
-    public static OS.RenderingDriver GetVideoDriver()
-    {
-        return CachedDriver.Value;
     }
 
     private static OS.RenderingDriver DetectRenderer()

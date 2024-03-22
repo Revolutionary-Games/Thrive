@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Manages playing music. Autoload singleton
@@ -563,7 +564,7 @@ public partial class Jukebox : Node
         }
         else
         {
-            var random = new Random();
+            var random = new XoShiRo128starstar();
             int nextIndex;
 
             if (mode == TrackList.Order.Random)

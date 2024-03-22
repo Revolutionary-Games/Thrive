@@ -84,7 +84,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
         if (string.IsNullOrEmpty(UnitName))
         {
             UnitName = Localization.Translate("FLEET_NAME_FROM_PLACE").FormatSafe(
-                SimulationParameters.Instance.PatchMapNameGenerator.Next(new Random()).RegionName);
+                SimulationParameters.Instance.PatchMapNameGenerator.Next(null).RegionName);
         }
 
         visualsParent.Scale = new Vector3(Constants.SPACE_FLEET_MODEL_SCALE, Constants.SPACE_FLEET_MODEL_SCALE,

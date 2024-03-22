@@ -128,7 +128,7 @@ public partial class StartupActions : Node
                 GD.PrintErr("Please do not report to us the next unhandled exception error about this, unless " +
                     "this is an official Thrive release that has this issue");
 
-                if (FeatureInformation.GetOS() == FeatureInformation.PlatformLinux)
+                if (FeatureInformation.IsLinux())
                 {
                     GD.PrintErr("On Linux please verify you have new enough GLIBC version as otherwise the library " +
                         "is unloadable. Updating your distro to the latest version should resolve the issue as long " +

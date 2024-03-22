@@ -450,7 +450,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
 
             rootOfDynamicallySpawned.AddChild(tree);
             tree.GlobalTransform =
-                new Transform3D(new Basis(new Quaternion(new Vector3(0, 1, 0), Mathf.Pi * random.NextFloat())),
+                new Transform3D(new Basis(new Quaternion(new Vector3(0, 1, 0), Mathf.Pi * random.NextSingle())),
                     position);
 
             tree.AddToGroup(Constants.INTERACTABLE_GROUP);

@@ -8,6 +8,8 @@ using Components;
 using DefaultEcs;
 using DefaultEcs.Command;
 using Godot;
+using Xoshiro.PRNG32;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Helpers for making different types of spawners
@@ -690,7 +692,7 @@ public static class SpawnHelpers
 
                 case MulticellularSpawnState.ChanceForFullColony:
                 {
-                    random ??= new Random();
+                    random ??= new XoShiRo256plus();
 
                     // Chance to spawn fully grown or partially grown
                     if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
@@ -834,7 +836,7 @@ public static class SpawnHelpers
 
         if (randomizeRotation)
         {
-            random ??= new Random();
+            random ??= new XoShiRo128plus();
 
             // Randomize rotation by constructing a new Transform that has the basis rotated, note that this loses the
             // scale, but entities shouldn't anyway be allowed to have a root node scale
@@ -864,7 +866,7 @@ public static class SpawnHelpers
 
         if (randomizeRotation)
         {
-            random ??= new Random();
+            random ??= new XoShiRo128plus();
 
             resourceEntity.Transform =
                 new Transform3D(new Basis(RandomRotationForResourceEntity(random)), Vector3.Zero);
@@ -1018,8 +1020,8 @@ public static class SpawnHelpers
     private static Quaternion RandomRotationForResourceEntity(Random random)
     {
         return new Quaternion(
-            new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
-            random.NextFloat() * Mathf.Pi + 0.01f);
+            new Vector3(random.NextSingle() + 0.01f, random.NextSingle(), random.NextSingle()).Normalized(),
+            random.NextSingle() * Mathf.Pi + 0.01f);
     }
 }
 

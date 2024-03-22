@@ -26,7 +26,13 @@ public class BaseNodeConverter : BaseThriveConverter
             case "_ImportPath":
             // TODO: this may cause problems if we ever want to allow objects to dynamically change their pause mode
             case "ProcessMode":
+            case "ProcessPhysicsPriority":
+            case "ProcessThreadGroup":
+            case "ProcessThreadGroupOrder":
+            case "ProcessThreadMessages":
+
             case "Owner":
+            case "UniqueNameInOwner":
             // TODO: or process priority
             case "ProcessPriority":
             case "NativeInstance":
@@ -51,6 +57,19 @@ public class BaseNodeConverter : BaseThriveConverter
             // These are very big objects when saved, and probably can't be properly loaded, so these are ignored
             case "Material":
             case "MaterialOverride":
+            // Name as a StringName cannot be saved without a custom converter
+            case "Name":
+            // Bunch of new Control node things that aren't saved
+            case "Theme":
+            case "ShortcutContext":
+            case "FocusNeighborLeft":
+            case "FocusNeighborTop":
+            case "FocusNeighborRight":
+            case "FocusNeighborBottom":
+            case "FocusNext":
+            case "FocusPrevious":
+            // Node groups are no longer saved as they are now never important to change dynamically
+            case "NodeGroups":
                 return true;
             default:
                 return false;
@@ -60,22 +79,6 @@ public class BaseNodeConverter : BaseThriveConverter
     public override bool CanConvert(Type objectType)
     {
         return typeof(Node).IsAssignableFrom(objectType);
-    }
-
-    protected override void OnConfigureObjectLoad(InProgressObjectDeserialization objectLoad)
-    {
-        objectLoad.RegisterExtraField(NodeGroupSaveHelper.GROUP_JSON_PROPERTY_NAME);
-    }
-
-    protected override void WriteCustomExtraFields(JsonWriter writer, object value, JsonSerializer serializer)
-    {
-        NodeGroupSaveHelper.WriteGroups(writer, (Node)value, serializer);
-    }
-
-    protected override void ReadCustomExtraFields(InProgressObjectDeserialization objectLoad, object instance,
-        Type objectType, object? existingValue, JsonSerializer serializer)
-    {
-        NodeGroupSaveHelper.ReadGroups(objectLoad, (Node)instance);
     }
 
     protected override bool SkipMember(string name)

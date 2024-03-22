@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Handles spawning and making citizens move around to appear busy to the player
@@ -10,7 +11,7 @@ public class CitizenMovingSystem
 {
     private readonly Node worldRoot;
 
-    private readonly Random random = new();
+    private readonly Random random = new XoShiRo128starstar();
 
     private PackedScene citizenScene = null!;
 
@@ -116,8 +117,8 @@ public class CitizenMovingSystem
 
             for (int i = 0; i < 4; ++i)
             {
-                result.Add(new Vector3(first.X + random.NextFloat() * 40, 0, first.Z + random.NextFloat() * 40));
-                result.Add(new Vector3(first.X - random.NextFloat() * 40, 0, first.Z - random.NextFloat() * 40));
+                result.Add(new Vector3(first.X + random.NextSingle() * 40, 0, first.Z + random.NextSingle() * 40));
+                result.Add(new Vector3(first.X - random.NextSingle() * 40, 0, first.Z - random.NextSingle() * 40));
             }
         }
 
@@ -159,6 +160,6 @@ public class CitizenMovingSystem
             return Vector3.Zero;
         }
 
-        return potentialPoints.Random(new Random());
+        return potentialPoints.Random(new XoShiRo128starstar());
     }
 }
