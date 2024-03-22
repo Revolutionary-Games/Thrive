@@ -32,6 +32,7 @@ public class BaseNodeConverter : BaseThriveConverter
             case "ProcessThreadMessages":
 
             case "Owner":
+            case "UniqueNameInOwner":
             // TODO: or process priority
             case "ProcessPriority":
             case "NativeInstance":
