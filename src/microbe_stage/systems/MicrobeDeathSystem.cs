@@ -118,6 +118,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         int chunksToSpawn = Math.Max(1, organelleContainer.HexCount / Constants.CORPSE_CHUNK_DIVISOR);
 
         // An enumerator to step through all available organelles in a random order when making chunks
+        // TODO: fix the closure allocation here
         using var organellesAvailableEnumerator =
             organelleContainer.Organelles.Organelles.OrderBy(_ => random.Next()).GetEnumerator();
 

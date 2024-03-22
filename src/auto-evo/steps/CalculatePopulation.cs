@@ -1,7 +1,7 @@
 ﻿namespace AutoEvo;
 
-using System;
 using System.Collections.Generic;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Step that calculate the populations for all species
@@ -50,7 +50,9 @@ public class CalculatePopulation : IRunStep
 
         // Directly feed the population results to the main results object
 
-        PopulationSimulation.Simulate(config, null, new Random());
+        // TODO: allow passing in a random seed
+
+        PopulationSimulation.Simulate(config, null, new XoShiRo256starstar());
 
         return true;
     }

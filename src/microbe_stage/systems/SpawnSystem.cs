@@ -10,6 +10,7 @@ using DefaultEcs.System;
 using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Spawns AI cells and other environmental things as the player moves around
@@ -42,7 +43,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     private ShuffleBag<Spawner> spawnTypes;
 
     [JsonProperty]
-    private Random random;
+    private XoShiRo256starstar random;
 
     /// <summary>
     ///   This is used to spawn only a few entities per frame with minimal changes needed to code that wants to
@@ -75,7 +76,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
         this.world = world;
         spawnedEntitiesSet = world.EntitySystem.GetEntities().With<Spawned>().With<WorldPosition>().AsSet();
 
-        random = new Random();
+        random = new XoShiRo256starstar();
 
         spawnTypes = new ShuffleBag<Spawner>(random);
     }
@@ -84,7 +85,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     ///   Used to construct temporary instance to copy data from to the real instance when loading from a save
     /// </summary>
     [JsonConstructor]
-    public SpawnSystem(Random random)
+    public SpawnSystem(XoShiRo256starstar random)
     {
         this.random = random;
 
@@ -479,9 +480,9 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
                 sector.Y * Constants.SPAWN_SECTOR_SIZE);
 
             // Distance from the sector center.
-            var displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE -
+            var displacement = new Vector3(random.NextSingle() * Constants.SPAWN_SECTOR_SIZE -
                 Constants.SPAWN_SECTOR_SIZE * 0.5f, 0,
-                random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - Constants.SPAWN_SECTOR_SIZE * 0.5f);
+                random.NextSingle() * Constants.SPAWN_SECTOR_SIZE - Constants.SPAWN_SECTOR_SIZE * 0.5f);
 
             spawns += SpawnWithSpawner(spawnType, sectorCenter + displacement, ref spawnsLeftThisFrame);
         }
@@ -494,7 +495,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
     private void SpawnMicrobesAroundPlayer(Vector3 playerLocation, ref float spawnsLeftThisFrame)
     {
-        var angle = random.NextFloat() * 2 * Mathf.Pi;
+        var angle = random.NextSingle() * 2 * Mathf.Pi;
 
         float spawns = 0.0f;
         foreach (var spawnType in spawnTypes)
@@ -528,7 +529,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     {
         float spawns = 0.0f;
 
-        if (random.NextFloat() > spawnType.Density)
+        if (random.NextSingle() > spawnType.Density)
         {
             return spawns;
         }

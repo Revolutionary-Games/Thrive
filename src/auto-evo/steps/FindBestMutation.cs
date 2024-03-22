@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Step that finds the best mutation for a single species
@@ -32,7 +33,7 @@ public class FindBestMutation : VariantTryingStep
         this.worldSettings = worldSettings;
         this.map = map;
         this.species = species;
-        this.random = new Random(random.Next());
+        this.random = new XoShiRo256starstar(random.NextInt64());
         this.splitThresholdFraction = splitThresholdFraction;
         this.splitThresholdAmount = splitThresholdAmount;
         cache = new SimulationCache(worldSettings);

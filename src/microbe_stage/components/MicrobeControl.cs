@@ -180,7 +180,7 @@ public static class MicrobeControlHelpers
         if ((organelleInfo.SlimeJets?.Count ?? 0) > 0)
         {
             // Randomise the time spent ejecting slime, from 0 to 3 seconds
-            control.QueuedSlimeSecretionTime = 3 * random.NextFloat();
+            control.QueuedSlimeSecretionTime = 3 * random.NextSingle();
         }
     }
 }

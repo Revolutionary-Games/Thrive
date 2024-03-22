@@ -6,6 +6,7 @@ using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Something that can be engulfed by a microbe
@@ -294,7 +295,7 @@ public static class EngulfableHelpers
 
                     MicrobeDeathSystem.SpawnCorpseChunks(ref organelleContainer,
                         entity.Get<CompoundStorage>().Compounds, spawnSystem, worldSimulation, recorder,
-                        position.Position, new Random(), customizeCallback, null);
+                        position.Position, new XoShiRo128starstar(), customizeCallback, null);
 
                     SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 

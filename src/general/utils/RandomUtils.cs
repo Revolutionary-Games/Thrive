@@ -6,15 +6,6 @@
 public static class RandomUtils
 {
     /// <summary>
-    ///   Next float (similar to NextDouble)
-    /// </summary>
-    /// <returns>The float between 0 and 1.</returns>
-    public static float NextFloat(this Random random)
-    {
-        return (float)random.NextDouble();
-    }
-
-    /// <summary>
     ///   Returns a random float in range
     /// </summary>
     /// <returns>The next random float in range (min, max)</returns>
@@ -23,6 +14,6 @@ public static class RandomUtils
     /// <param name="max">Maximum value</param>
     public static float Next(this Random random, float min, float max)
     {
-        return random.NextFloat() * (max - min) + min;
+        return random.NextSingle() * (max - min) + min;
     }
 }

@@ -37,7 +37,7 @@ public partial class PlacedCity : Node3D, IEntityWithNameLabel
     // TODO: automatically take a name from one of the planet's patches
     [JsonProperty]
     public string CityName { get; } =
-        SimulationParameters.Instance.PatchMapNameGenerator.Next(new Random()).ContinentName;
+        SimulationParameters.Instance.PatchMapNameGenerator.Next(null).ContinentName;
 
     [JsonProperty]
     public int Population { get; set; } = 1;

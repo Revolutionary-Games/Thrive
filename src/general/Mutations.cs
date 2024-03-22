@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Godot;
 using Newtonsoft.Json;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Generates mutations for species
@@ -28,17 +29,17 @@ public class Mutations
     };
 
     [JsonProperty]
-    private Random random;
+    private XoShiRo256starstar random;
 
     [JsonConstructor]
-    public Mutations(Random random)
+    public Mutations(XoShiRo256starstar random)
     {
         this.random = random;
     }
 
     public Mutations()
     {
-        random = new Random();
+        random = new XoShiRo256starstar();
     }
 
     // TODO: proper unit testing (note the code here relies on Godot colour type)
@@ -56,7 +57,7 @@ public class Mutations
 
         // Create the mutated species
         {
-            var mutator = new Mutations(new Random(seed));
+            var mutator = new Mutations(new XoShiRo256starstar(seed));
 
             var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
                 workMemory2, steps);
@@ -65,7 +66,7 @@ public class Mutations
         }
 
         {
-            var mutator = new Mutations(new Random(seed));
+            var mutator = new Mutations(new XoShiRo256starstar(seed + 1));
 
             var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
                 workMemory2, steps);
@@ -74,7 +75,7 @@ public class Mutations
         }
 
         {
-            var mutator = new Mutations(new Random(seed + 1));
+            var mutator = new Mutations(new XoShiRo256starstar(seed + 2));
 
             var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
                 workMemory2, steps);

@@ -4,6 +4,7 @@ using System.Linq;
 using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   All data regarding the game world of a thrive playthrough
@@ -252,9 +253,18 @@ public class GameWorld : ISaveLoadable
     /// <summary>
     ///   Generates a few random species in all patches
     /// </summary>
-    public void GenerateRandomSpeciesForFreeBuild()
+    public void GenerateRandomSpeciesForFreeBuild(long seed = 0)
     {
-        var random = new Random();
+        Random random;
+
+        if (seed == 0)
+        {
+            random = new XoShiRo256starstar();
+        }
+        else
+        {
+            random = new XoShiRo256starstar(seed);
+        }
 
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Contains logic for generating PatchMap objects
@@ -10,7 +11,7 @@ public static class PatchMapGenerator
 {
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies, Random? random = null)
     {
-        random ??= new Random(settings.Seed);
+        random ??= new XoShiRo256starstar(settings.Seed);
 
         var map = new PatchMap();
 

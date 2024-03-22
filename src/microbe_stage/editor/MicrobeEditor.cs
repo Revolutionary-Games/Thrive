@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Main class of the microbe editor
@@ -377,7 +378,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     {
         var newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
 
-        var random = new Random();
+        var random = new XoShiRo128starstar();
 
         var population = random.Next(Constants.INITIAL_SPLIT_POPULATION_MIN,
             Constants.INITIAL_SPLIT_POPULATION_MAX + 1);

@@ -2,6 +2,7 @@
 using System.Linq;
 using Godot;
 using Godot.Collections;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Class managing the main menu and everything in it
@@ -535,7 +536,7 @@ public partial class MainMenu : NodeWithInput
     /// </summary>
     private void RandomizeBackground()
     {
-        var random = new Random();
+        var random = new XoShiRo128starstar();
 
         // Some of the 3D backgrounds render very incorrectly in GLES2 so they are disabled
         // TODO: check if the 3D backgrounds look now fine in opengl mode

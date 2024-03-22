@@ -2,6 +2,7 @@
 
 using System;
 using System.Linq;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Step that finds the best migration for a single species
@@ -23,7 +24,7 @@ public class FindBestMigration : VariantTryingStep
         this.worldSettings = worldSettings;
         this.map = map;
         this.species = species;
-        this.random = new Random(random.Next());
+        this.random = new XoShiRo256starstar(random.NextInt64());
         cache = new SimulationCache(worldSettings);
     }
 

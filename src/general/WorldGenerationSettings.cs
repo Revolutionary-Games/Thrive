@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Player configurable options for creating the game world
@@ -66,7 +67,7 @@ public class WorldGenerationSettings
     /// <summary>
     ///   Random seed for generating this game's planet
     /// </summary>
-    public int Seed { get; set; } = new Random().Next();
+    public long Seed { get; set; } = new XoShiRo256starstar().Next64();
 
     // The following are helper proxies to the values from the difficulty
     [JsonIgnore]
