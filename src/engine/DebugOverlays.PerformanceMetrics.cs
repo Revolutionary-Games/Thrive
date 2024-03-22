@@ -114,13 +114,6 @@ public partial class DebugOverlays
             Constants.MEBIBYTE, 1);
         var mibFormat = Localization.Translate("MIB_VALUE");
 
-        // These don't seem to work:
-        // Performance.GetMonitor(Performance.Monitor.Physics3dActiveObjects),
-        // Performance.GetMonitor(Performance.Monitor.Physics3dCollisionPairs),
-        // Performance.GetMonitor(Performance.Monitor.Physics3dIslandCount),
-
-        // TODO: check if memory use can finally be gotten on Windows
-
         metricsText.Text =
             new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
                     Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess),
