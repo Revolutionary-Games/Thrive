@@ -208,6 +208,10 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private ProcessPanel processPanel = null!;
 #pragma warning restore CA2213
 
+    // Used for save load to apply these properties
+    private bool temporaryEnvironmentCompressed;
+    private bool temporaryCompoundCompressed;
+
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
@@ -241,15 +245,48 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [JsonProperty]
     public bool EnvironmentPanelCompressed
     {
-        get => environmentPanel.PanelCompressed;
-        set => environmentPanel.PanelCompressed = value;
+        get
+        {
+            // Save load compatibility
+            if (environmentPanel == null!)
+                return temporaryEnvironmentCompressed;
+
+            return environmentPanel.PanelCompressed;
+        }
+        set
+        {
+            // Save load compatibility
+            if (environmentPanel == null!)
+            {
+                temporaryEnvironmentCompressed = value;
+                return;
+            }
+
+            environmentPanel.PanelCompressed = value;
+        }
     }
 
     [JsonProperty]
     public bool CompoundsPanelCompressed
     {
-        get => compoundsPanel.PanelCompressed;
-        set => compoundsPanel.PanelCompressed = value;
+        get
+        {
+            // Save load compatibility
+            if (compoundsPanel == null!)
+                return temporaryCompoundCompressed;
+
+            return compoundsPanel.PanelCompressed;
+        }
+        set
+        {
+            if (compoundsPanel == null!)
+            {
+                temporaryCompoundCompressed = value;
+                return;
+            }
+
+            compoundsPanel.PanelCompressed = value;
+        }
     }
 
     public override void _Ready()
@@ -387,6 +424,10 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // TODO: move these to be gotten as a method in SimulationParameters
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
+
+        // Apply potentially different GUI state from save
+        EnvironmentPanelCompressed = temporaryEnvironmentCompressed;
+        CompoundsPanelCompressed = temporaryCompoundCompressed;
     }
 
     public void Init(TStage containedInStage)
