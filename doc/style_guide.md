@@ -261,6 +261,13 @@ Code style rules
 
 - `uint` type should not be used without a very good reason.
 
+- `System.Random` should be avoided as its state cannot be
+  saved. Instead use the random number types in the `Xoshiro`
+  namespace (check the documentation on the types for which generators
+  are suitable for what kinds of numeric types). General advice is to
+  use 128-bit generators for 32-bit types (`int`, `float`) and 256-bit
+  generators for 64-bit types (`long`, `double`).
+
 - Unrelated uses should not share the same variable. Instead they
   should locally define their own variable instance.
 
