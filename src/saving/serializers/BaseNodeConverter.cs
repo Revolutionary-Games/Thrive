@@ -1,6 +1,5 @@
 ﻿using System;
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Base class for Godot Node derived types converters
