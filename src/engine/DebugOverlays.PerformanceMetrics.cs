@@ -114,22 +114,13 @@ public partial class DebugOverlays
             Constants.MEBIBYTE, 1);
         var mibFormat = Localization.Translate("MIB_VALUE");
 
-        // These don't seem to work:
-        // Performance.GetMonitor(Performance.Monitor.Physics3dActiveObjects),
-        // Performance.GetMonitor(Performance.Monitor.Physics3dCollisionPairs),
-        // Performance.GetMonitor(Performance.Monitor.Physics3dIslandCount),
-
-        // TODO: check if memory use can finally be gotten on Windows
-
         metricsText.Text =
             new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
                     Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess),
                     entityCount, Math.Round(entityWeight, 1),
                     Math.Round(spawnHistory.Sum(), 1), Math.Round(despawnHistory.Sum(), 1),
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
-                    OS.GetName() == Constants.OS_WINDOWS_NAME ?
-                        Localization.Translate("UNKNOWN_ON_WINDOWS") :
-                        mibFormat.FormatSafe(usedMemory),
+                    mibFormat.FormatSafe(usedMemory),
                     mibFormat.FormatSafe(usedVideoMemory),
                     Performance.GetMonitor(Performance.Monitor.RenderTotalObjectsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderTotalDrawCallsInFrame),

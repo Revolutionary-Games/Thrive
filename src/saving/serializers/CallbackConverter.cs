@@ -53,7 +53,7 @@ public class CallbackConverter : JsonConverter
         serializer.Serialize(writer, target);
 
         writer.WritePropertyName("Method");
-        serializer.Serialize(writer, method);
+        serializer.Serialize(writer, method.Name);
 
         writer.WriteEndObject();
     }
@@ -64,6 +64,7 @@ public class CallbackConverter : JsonConverter
         if (reader.TokenType != JsonToken.StartObject)
             return null;
 
+        // TODO: switch to a reader approach like other newer converters
         var item = JObject.Load(reader);
 
         string type;
@@ -110,7 +111,7 @@ public class CallbackConverter : JsonConverter
         try
         {
             target = item["Target"]!.ToObject(targetType, serializer) ?? throw new JsonException("missing Target");
-            methodName = item["Method"]!["Name"]!.ToObject<string>() ?? throw new JsonException("missing MethodName");
+            methodName = item["Method"]!.ToObject<string>() ?? throw new JsonException("missing Method name");
         }
         catch (Exception e) when (
             e is NullReferenceException or ArgumentNullException)

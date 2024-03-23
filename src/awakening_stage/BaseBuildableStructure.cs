@@ -130,13 +130,13 @@ public class BaseBuildableStructure : IRegistryType
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
 
 #if DEBUG
-        if (string.IsNullOrEmpty(WorldRepresentationScene) || !FileAccess.FileExists(WorldRepresentationScene))
+        if (string.IsNullOrEmpty(WorldRepresentationScene) || !ResourceLoader.Exists(WorldRepresentationScene))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing world representation scene");
 
-        if (string.IsNullOrEmpty(GhostScenePath) || !FileAccess.FileExists(GhostScenePath))
+        if (string.IsNullOrEmpty(GhostScenePath) || !ResourceLoader.Exists(GhostScenePath))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing ghost scene");
 
-        if (string.IsNullOrEmpty(ScaffoldingScenePath) || !FileAccess.FileExists(ScaffoldingScenePath))
+        if (string.IsNullOrEmpty(ScaffoldingScenePath) || !ResourceLoader.Exists(ScaffoldingScenePath))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing scaffolding scene");
 #endif
 

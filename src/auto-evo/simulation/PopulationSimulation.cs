@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Main class for the population simulation part.
@@ -27,7 +28,7 @@ public static class PopulationSimulation
         // to IRunStep.RunStep might not be worth the effort at all
         var cache = existingCache ?? new SimulationCache(parameters.WorldSettings);
 
-        var random = new Random(randomSource.Next());
+        var random = new XoShiRo256starstar(randomSource.NextInt64());
 
         var speciesToSimulate = CopyInitialPopulationsToResults(parameters);
 

@@ -117,6 +117,8 @@ ModifyButtonPath = NodePath("PanelContainer/VBoxContainer/Modify")
 
 [node name="PanelContainer" parent="." index="0"]
 layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="VBoxContainer" parent="PanelContainer" index="0"]
 layout_mode = 2
@@ -174,6 +176,7 @@ text = "DELETE"
 label_settings = ExtResource("5_clp5b")
 
 [node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="2"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "-15 MP"
@@ -220,6 +223,7 @@ text = "MOVE"
 label_settings = ExtResource("5_clp5b")
 
 [node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="2"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "-2 MP/hex"

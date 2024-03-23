@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Tests / stress tests the physics system
@@ -575,7 +576,7 @@ public partial class PhysicsTest : Node
 
     private void SetupMicrobeTest()
     {
-        var random = new Random(234546798);
+        var random = new XoShiRo256starstar(234546798);
 
         physicalWorld.RemoveGravity();
 
@@ -705,7 +706,7 @@ public partial class PhysicsTest : Node
             physicalWorld.SetDamping(body, MicrobeDamping);
 
             // Add an initial impulse
-            physicalWorld.GiveImpulse(body, new Vector3(random.NextFloat(), random.NextFloat(), random.NextFloat()));
+            physicalWorld.GiveImpulse(body, new Vector3(random.NextSingle(), random.NextSingle(), random.NextSingle()));
 
             microbeAnalogueBodies.Add(body);
             testMicrobesToProcess.Add(new TestMicrobeAnalogue(body, random.Next()));
@@ -927,15 +928,15 @@ public partial class PhysicsTest : Node
                 }
                 else
                 {
-                    movementDirection = new Vector3(random.NextFloat() * 2 - 1 + 0.001f, 0,
-                        random.NextFloat() * 2 - 1 - 0.001f).Normalized();
+                    movementDirection = new Vector3(random.NextSingle() * 2 - 1 + 0.001f, 0,
+                        random.NextSingle() * 2 - 1 - 0.001f).Normalized();
                 }
             }
         }
 
         private void SetLookDirection()
         {
-            lookDirection = new Quaternion(Vector3.Up, random.NextFloat() * 2 * Mathf.Pi);
+            lookDirection = new Quaternion(Vector3.Up, random.NextSingle() * 2 * Mathf.Pi);
         }
     }
 }

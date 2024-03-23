@@ -5,6 +5,7 @@ using Godot;
 /// <summary>
 ///   Keeps a list of nodes that should be deleted if they aren't later reported to be useful after all
 /// </summary>
+[GodotAutoload]
 public partial class TemporaryLoadedNodeDeleter : Node
 {
     private static TemporaryLoadedNodeDeleter? instance;
@@ -27,6 +28,14 @@ public partial class TemporaryLoadedNodeDeleter : Node
     public override void _Ready()
     {
         ProcessMode = ProcessModeEnum.Always;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
     }
 
     public override void _Process(double delta)

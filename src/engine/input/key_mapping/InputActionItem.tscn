@@ -27,6 +27,7 @@ InputActionHeaderPath = NodePath("InputActionHeader")
 InputEventsContainerPath = NodePath("InputEventsContainer")
 
 [node name="InputActionHeader" type="Label" parent="."]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Title goes here"
 label_settings = ExtResource("3_6n4v0")

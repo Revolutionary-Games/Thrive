@@ -7,6 +7,7 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Singleton handling screenshot taking
 /// </summary>
+[GodotAutoload]
 public partial class ScreenShotTaker : NodeWithInput
 {
     private static ScreenShotTaker? instance;
@@ -31,6 +32,14 @@ public partial class ScreenShotTaker : NodeWithInput
     {
         // Keep this node running while paused
         ProcessMode = ProcessModeEnum.Always;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
     }
 
     [RunOnKeyDown("screenshot", OnlyUnhandled = false)]

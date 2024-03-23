@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Godot;
+using FileAccess = Godot.FileAccess;
 using Path = System.IO.Path;
 
 /// <summary>
@@ -112,7 +113,7 @@ public partial class NewSaveMenu : Control
 
         var name = GetSaveName();
 
-        if (FileHelpers.Exists(Path.Combine(Constants.SAVE_FOLDER, name)))
+        if (FileAccess.FileExists(Path.Combine(Constants.SAVE_FOLDER, name)))
         {
             ShowOverwriteConfirm(name);
         }
@@ -140,7 +141,7 @@ public partial class NewSaveMenu : Control
             return;
         }
 
-        if (!FileHelpers.Exists(path) && FileHelpers.TryWriteFile(path) != Error.Ok)
+        if (!FileAccess.FileExists(path) && FileHelpers.TryWriteFile(path) != Error.Ok)
         {
             attemptWriteFailAccept.PopupCenteredShrink();
             return;

@@ -1346,6 +1346,7 @@ public static class Constants
     public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
 
     public const string SKIP_CPU_CHECK_OPTION = "--skip-cpu-check";
+    public const string DISABLE_CPU_AVX_OPTION = "--disable-avx";
 
     public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
     public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
@@ -1589,15 +1590,28 @@ public static class Constants
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823
 
-    /// <summary>
-    ///   This needs to be a separate field to make this only be calculated once needed the first time
-    /// </summary>
-    private static readonly string GameVersion = FetchVersion();
+    private const string VERSION_HASH_SUFFIX_REGEX = @"\+[0-9a-f]+$";
+
+    private static readonly Lazy<string> GameVersion = new(FetchVersion);
+
+    private static readonly Lazy<string> GameVersionSimple = new(FetchVersionWithoutHashSuffix);
+
+    private static readonly Lazy<string?> VersionCommitInternal = new(FetchVersionJustCommit);
 
     /// <summary>
     ///   Game version
     /// </summary>
-    public static string Version => GameVersion;
+    public static string Version => GameVersionSimple.Value;
+
+    /// <summary>
+    ///   Game version including all suffixes like current commit
+    /// </summary>
+    public static string VersionFull => GameVersion.Value;
+
+    /// <summary>
+    ///   Just the commit hash part of the <see cref="VersionFull"/>
+    /// </summary>
+    public static string? VersionCommit => VersionCommitInternal.Value;
 
     public static string UserFolderAsNativePath => OS.GetUserDataDir().Replace('\\', '/');
 
@@ -1617,5 +1631,27 @@ public static class Constants
             GD.Print("Error getting version: ", error);
             return "error (" + error.GetType().Name + ")";
         }
+    }
+
+    private static string FetchVersionWithoutHashSuffix()
+    {
+        var suffixRegex = new Regex(VERSION_HASH_SUFFIX_REGEX);
+
+        return suffixRegex.Replace(VersionFull, string.Empty);
+    }
+
+    private static string? FetchVersionJustCommit()
+    {
+        var suffixRegex = new Regex(VERSION_HASH_SUFFIX_REGEX);
+
+        var match = suffixRegex.Match(VersionFull);
+
+        if (!match.Success)
+        {
+            GD.PrintErr("Version doesn't include commit hash");
+            return null;
+        }
+
+        return match.Value.TrimStart('+');
     }
 }

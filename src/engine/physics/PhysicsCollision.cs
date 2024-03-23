@@ -7,7 +7,7 @@ using DefaultEcs;
 ///   defined on the C++ side.
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct PhysicsCollision
+public readonly struct PhysicsCollision
 {
     /// <summary>
     ///   When a sub shape data is equal to this, the shape is unknown and not a sub-shape. This must match what the
@@ -53,9 +53,10 @@ public struct PhysicsCollision
     public readonly float PenetrationAmount;
 
     /// <summary>
-    ///   True on the first physics update this collision appeared (always true in the collision filter)
+    ///   True on the first physics update this collision appeared (always true in the collision filter).
+    ///   Bool is not blittable type so this uses a byte instead.
     /// </summary>
-    public readonly bool JustStarted;
+    public readonly byte JustStarted;
 
     // ReSharper restore UnassignedReadonlyField
 }

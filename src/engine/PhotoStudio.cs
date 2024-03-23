@@ -13,6 +13,7 @@ using Godot;
 ///     delete old resources after like 30 days)
 ///   </para>
 /// </remarks>
+[GodotAutoload]
 public partial class PhotoStudio : SubViewport
 {
     [Export]
@@ -108,6 +109,9 @@ public partial class PhotoStudio : SubViewport
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
 
         base._Ready();

@@ -187,6 +187,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
 
         // This uses rich text purely to be clickable
         var title = customRichTextScene.Instantiate<CustomRichTextLabel>();
+        title.FitContent = true;
 
         // We don't generate custom bbcode when converting html so we use the simpler form here
         // but we need to use the custom rich text label to ensure the links are clickable
@@ -199,6 +200,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
         itemContentContainer.AddChild(title);
 
         var textDisplayer = customRichTextScene.Instantiate<CustomRichTextLabel>();
+        textDisplayer.FitContent = true;
 
         // Make the feed look nicer with less repeating content by stripping the last part of the text
         var content = Constants.NewsFeedRegexDeleteContent.Replace(feedItem.ContentBbCode, "\n");

@@ -9,6 +9,7 @@ using DefaultEcs;
 using DefaultEcs.Command;
 using DefaultEcs.System;
 using Godot;
+using Xoshiro.PRNG32;
 using World = DefaultEcs.World;
 
 /// <summary>
@@ -69,7 +70,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
     private readonly Compound atp;
 
-    private readonly Random random = new();
+    private readonly XoShiRo128plus random = new();
 
     /// <summary>
     ///   Holds <see cref="Endosome"/> graphics instances. The second level dictionary maps from the engulfed
@@ -536,8 +537,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         // Additional compounds have already been set by the original ingestion action
 
         var engulfableFinalPosition = CalculateEngulfableTargetPosition(ref engulferCellProperties,
-            ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetRadius, new Random(),
-            out var relativePosition, out var boundingBoxSize);
+            ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetRadius,
+            new XoShiRo128plus(), out var relativePosition, out var boundingBoxSize);
 
         Vector3 originalScale;
 

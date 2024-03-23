@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG64;
 using Container = Godot.Container;
 
 /// <summary>
@@ -221,7 +222,7 @@ public partial class NewGameSettings : ControlWithInput
     /// </summary>
     private GameProperties? descendedGame;
 
-    private int latestValidSeed;
+    private long latestValidSeed;
 
     private IEnumerable<DifficultyPreset> difficultyPresets = null!;
     private DifficultyPreset normal = null!;
@@ -508,13 +509,23 @@ public partial class NewGameSettings : ControlWithInput
 
     private string GenerateNewRandomSeed()
     {
-        var random = new Random();
-        return random.Next().ToString();
+        var random = new XoShiRo256starstar();
+
+        string result;
+
+        // Generate seeds until valid (0 is not considered valid)
+        do
+        {
+            result = random.Next64U().ToString();
+        }
+        while (result == "0");
+
+        return result;
     }
 
     private void SetSeed(string text)
     {
-        bool valid = int.TryParse(text, out int seed) && seed > 0;
+        bool valid = long.TryParse(text, out var seed) && seed > 0;
         ReportValidityOfGameSeed(valid);
         if (valid)
             latestValidSeed = seed;
@@ -958,9 +969,15 @@ public partial class NewGameSettings : ControlWithInput
         _ = pressed;
     }
 
-    private void PerformanceNoteLinkClicked(object meta)
+    private void PerformanceNoteLinkClicked(Variant meta)
     {
-        _ = meta;
+        if (meta.VariantType != Variant.Type.String)
+        {
+            GD.PrintErr("Unexpected new game info text meta clicked");
+            return;
+        }
+
+        // TODO: check that the meta has the correct content?
 
         EmitSignal(SignalName.OnWantToSwitchToOptionsMenu);
     }

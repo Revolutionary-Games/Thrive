@@ -75,7 +75,7 @@ public class MembraneType : IRegistryType
 
         foreach (var resource in membranes)
         {
-            if (!FileAccess.FileExists(resource))
+            if (!ResourceLoader.Exists(resource))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Membrane uses non-existent image: " + resource);

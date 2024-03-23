@@ -152,16 +152,31 @@ public partial class CellEditorComponent
         float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float baseMobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
 
-        healthModifier.ModifierValue =
-            StringUtils.FormatPositiveWithLeadingPlus(healthChange.ToString("F0", CultureInfo.CurrentCulture),
-                healthChange);
+        if (healthModifier != null)
+        {
+            healthModifier.ModifierValue =
+                StringUtils.FormatPositiveWithLeadingPlus(healthChange.ToString("F0", CultureInfo.CurrentCulture),
+                    healthChange);
 
-        baseMobilityModifier.ModifierValue =
-            StringUtils.FormatPositiveWithLeadingPlus(baseMobilityChange.ToString("P0", CultureInfo.CurrentCulture),
-                baseMobilityChange);
+            healthModifier.AdjustValueColor(healthChange);
+        }
+        else
+        {
+            GD.PrintErr("Missing health modifier in rigidity tooltip");
+        }
 
-        healthModifier.AdjustValueColor(healthChange);
-        baseMobilityModifier.AdjustValueColor(baseMobilityChange);
+        if (baseMobilityModifier != null)
+        {
+            baseMobilityModifier.ModifierValue =
+                StringUtils.FormatPositiveWithLeadingPlus(baseMobilityChange.ToString("P0", CultureInfo.CurrentCulture),
+                    baseMobilityChange);
+
+            baseMobilityModifier.AdjustValueColor(baseMobilityChange);
+        }
+        else
+        {
+            GD.PrintErr("Missing base mobility modifier in rigidity tooltip");
+        }
     }
 
     private void UpdateSize(int size)

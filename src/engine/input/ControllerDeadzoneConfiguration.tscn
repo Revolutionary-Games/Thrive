@@ -12,6 +12,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 0.0
 offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2")
 VisualizationContainerPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/ControllerInputAxisVisualizationContainer")
 StartButtonPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Start")
@@ -72,6 +74,7 @@ focus_previous = NodePath("../Start")
 text = "RESET_DEADZONES"
 
 [node name="Result" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="2"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Controller deadzone configuration status goes here..."
 

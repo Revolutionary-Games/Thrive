@@ -4,6 +4,7 @@ using Godot;
 /// <summary>
 ///   Singleton managing changing game scenes
 /// </summary>
+[GodotAutoload]
 public partial class SceneManager : Node
 {
     private static SceneManager? instance;
@@ -19,8 +20,12 @@ public partial class SceneManager : Node
 
     private SceneManager()
     {
-        instance = this;
         shutdownActions = new PostShutdownActions();
+
+        if (Engine.IsEditorHint())
+            return;
+
+        instance = this;
     }
 
     public static SceneManager Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -54,6 +59,9 @@ public partial class SceneManager : Node
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         internalRootNode = GetTree().Root;
 
         // Need to do this with a delay to avoid a problem with the node setup

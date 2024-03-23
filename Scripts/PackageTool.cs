@@ -17,8 +17,11 @@ using SharedBase.Utilities;
 
 public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
-    private const string EXPECTED_THRIVE_DATA_FOLDER = "data_Thrive";
-    private const string EXPECTED_THRIVE_WASM = "Thrive.wasm";
+    // TODO: disabled due to Godot bug: https://github.com/godotengine/godot/issues/89674
+    // public const string GODOT_HEADLESS_FLAG = "--headless";
+    public const string GODOT_HEADLESS_FLAG = "";
+
+    private const string EXPECTED_THRIVE_PCK_FILE = "Thrive.pck";
 
     private const string STEAM_BUILD_MESSAGE = "This is the Steam build. This can only be distributed by " +
         "Revolutionary Games Studio (under a special license) due to Steam being incompatible with the GPL license!";
@@ -44,11 +47,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "source.7z",
         "revision.txt",
         "ThriveAssetsLICENSE.txt",
+        "ThriveAssetsREADME.txt",
         "GodotLicense.txt",
-        "runtime_licenses.txt",
+        "RuntimeLicenses.txt",
         "gpl.txt",
         "LICENSE.txt",
         "README.txt",
+        "Thrive.dll",
+        "Thrive.pdb",
     };
 
     private static readonly IReadOnlyCollection<FileToPackage> LicenseFiles = new List<FileToPackage>
@@ -71,7 +77,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "gitmodules",
         "default_bus_layout.tres",
         "default_env.tres",
-        "Directory.Build.props",
         "export_presets.cfg",
         "global.json",
         "LICENSE.txt",
@@ -80,11 +85,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "Thrive.sln",
         "Thrive.sln.DotSettings",
         "doc",
-        "Properties",
         "shaders",
         "simulation_parameters",
         "src",
-        "third_party/Directory.Build.props",
         "third_party/ThirdParty.csproj",
         "third_party/FastNoiseLite.cs",
         "third_party/StyleCop.ruleset",
@@ -106,7 +109,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private bool checkedGodot;
     private bool steamMode;
 
-    private DehydrateCache? cacheForNextMetaToWrite;
+    private IDehydrateCache? cacheForNextMetaToWrite;
 
     public PackageTool(Program.PackageOptions options) : base(options)
     {
@@ -274,8 +277,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         var targetFile = Path.Join(folder, "Thrive" + ThriveProperties.GodotTargetExtension(platform));
 
         var startInfo = new ProcessStartInfo("godot");
-        startInfo.ArgumentList.Add("--no-window");
-        startInfo.ArgumentList.Add("--export");
+        startInfo.ArgumentList.Add(GODOT_HEADLESS_FLAG);
+        startInfo.ArgumentList.Add("--export-release");
         startInfo.ArgumentList.Add(target);
         startInfo.ArgumentList.Add(targetFile);
 
@@ -287,26 +290,33 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             return false;
         }
 
-        if (platform == PackagePlatform.Web)
-        {
-            var expectedWebFile = Path.Join(folder, EXPECTED_THRIVE_WASM);
+        var expectedFile = Path.Join(folder, ThriveProperties.GetThriveExecutableName(platform));
 
-            if (!File.Exists(expectedWebFile))
+        if (!File.Exists(expectedFile))
+        {
+            ColourConsole.WriteErrorLine($"Expected Thrive executable ({expectedFile}) was not created on export. " +
+                "Are export templates installed?");
+            return false;
+        }
+
+        if (platform != PackagePlatform.Mac)
+        {
+            // Check .pck file exists
+            var expectedPck = Path.Join(folder, EXPECTED_THRIVE_PCK_FILE);
+
+            if (!File.Exists(expectedPck))
             {
-                ColourConsole.WriteErrorLine($"Expected web file ({expectedWebFile}) was not created on export. " +
+                ColourConsole.WriteErrorLine($"Expected pck file ({expectedPck}) was not created on export. " +
                     "Are export templates installed?");
                 return false;
             }
-        }
-        else if (platform != PackagePlatform.Mac)
-        {
-            var expectedDataFolder = Path.Join(folder, EXPECTED_THRIVE_DATA_FOLDER);
+
+            var expectedDataFolder = Path.Join(folder, ThriveProperties.GetDataFolderName(platform));
 
             if (!Directory.Exists(expectedDataFolder))
             {
-                ColourConsole.WriteErrorLine(
-                    $"Expected data folder ({expectedDataFolder}) was not created on export. " +
-                    "Are export templates installed?");
+                ColourConsole.WriteErrorLine($"Expected data folder ({expectedDataFolder}) was not created on " +
+                    $"export. Are export templates installed? Or did code build fail?");
                 return false;
             }
         }
@@ -363,7 +373,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (!options.Dehydrated)
         {
-            var potentialCache = Path.Join(folder, DehydrateCache.CacheFileName);
+            var potentialCache = Path.Join(folder, IDehydrateCache.CacheFileName);
 
             if (File.Exists(potentialCache))
             {
@@ -478,8 +488,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
             // Write meta file needed for upload
             await Dehydration.WriteMetaFile(Path.GetFileNameWithoutExtension(folderOrArchive), cacheForNextMetaToWrite,
-                thriveVersion,
-                ThriveProperties.GodotTargetFromPlatform(platform, steamMode), target, cancellationToken);
+                thriveVersion, ThriveProperties.GodotTargetFromPlatform(platform, steamMode), target,
+                cancellationToken);
 
             cacheForNextMetaToWrite = null;
 
@@ -547,11 +557,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         var extractFolder = Path.Join(options.OutputFolder, "temp_extracted", Path.GetFileName(folder));
 
-        var pckCache = new DehydrateCache(extractFolder);
+        var pckCache = new DehydrateCacheV2(extractFolder);
 
         await Dehydration.DehydrateThrivePck(pck, extractFolder, pckCache, cancellationToken);
 
-        var normalCache = new DehydrateCache(folder);
+        var normalCache = new DehydrateCacheV2(folder);
 
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -561,8 +571,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         foreach (var file in Directory.EnumerateFiles(folder, "*.*", SearchOption.AllDirectories))
         {
             // Always ignore some files despite their sizes
-            if (DehydrateIgnoreFiles.Contains(file.Replace($"{folder}/", string.Empty)))
+            var fileWithoutPath = file.Replace($"{folder}/", string.Empty);
+            if (DehydrateIgnoreFiles.Any(i => fileWithoutPath.EndsWith(i)))
+            {
+                if (ColourConsole.DebugPrintingEnabled)
+                    ColourConsole.WriteDebugLine($"Ignoring file in dehydration: {file}");
+
                 continue;
+            }
 
             if (ColourConsole.DebugPrintingEnabled)
                 ColourConsole.WriteDebugLine($"Dehydrating: {file}");

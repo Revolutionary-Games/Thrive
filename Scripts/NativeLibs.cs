@@ -30,6 +30,13 @@ public class NativeLibs
     private const string BuilderImageNameCross = "localhost/thrive/native-builder-cross:latest";
     private const string FolderToWriteDistributableBuildIn = "build/distributable_build";
 
+    /// <summary>
+    ///   Default libraries to operate on when nothing is explicitly selected. This no longer includes the early checks
+    ///   library as a pure C# solution is used instead.
+    /// </summary>
+    private static readonly IList<NativeConstants.Library> DefaultLibraries = new[]
+        { NativeConstants.Library.ThriveNative };
+
     private readonly Program.NativeLibOptions options;
 
     private readonly IList<PackagePlatform> platforms;
@@ -122,7 +129,7 @@ public class NativeLibs
     /// </param>
     public bool CopyToThriveRelease(string releaseFolder, PackagePlatform platform, bool useDistributableLibraries)
     {
-        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
+        var libraries = options.Libraries ?? DefaultLibraries;
 
         if (!Directory.Exists(releaseFolder))
         {
@@ -140,10 +147,15 @@ public class NativeLibs
         {
             ColourConsole.WriteDebugLine($"Copying native library: {library} to {targetFolder}");
 
-            if (!CopyLibraryFiles(library, platform, useDistributableLibraries, targetFolder))
+            var baseTag = GetTag(false);
+
+            foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
             {
-                ColourConsole.WriteErrorLine($"Error copying library {library}");
-                return false;
+                if (!CopyLibraryFiles(library, platform, useDistributableLibraries, targetFolder, tag))
+                {
+                    ColourConsole.WriteErrorLine($"Error copying library {library}");
+                    return false;
+                }
             }
 
             ColourConsole.WriteNormalLine($"Copied library {library}");
@@ -151,6 +163,19 @@ public class NativeLibs
 
         ColourConsole.WriteSuccessLine($"Native libraries for {platform} copied to {releaseFolder}");
         return true;
+    }
+
+    private PrecompiledTag GetTag(bool localBuild)
+    {
+        var tag = PrecompiledTag.None;
+
+        if (options.DebugLibrary)
+            tag |= PrecompiledTag.Debug;
+
+        if (localBuild && options.DisableLocalAvx)
+            tag |= PrecompiledTag.WithoutAvx;
+
+        return tag;
     }
 
     private async Task<bool> RunOperation(Program.NativeLibOptions.OperationMode operation,
@@ -162,11 +187,11 @@ public class NativeLibs
         {
             case Program.NativeLibOptions.OperationMode.Check:
                 return await OperateOnAllLibraries(
-                    (library, platform, token) => CheckLibrary(library, platform, false, token),
+                    (library, platform, token) => CheckLibrary(library, platform, false, GetTag(true), token),
                     cancellationToken);
             case Program.NativeLibOptions.OperationMode.CheckDistributable:
                 return await OperateOnAllLibraries(
-                    (library, platform, token) => CheckLibrary(library, platform, true, token),
+                    (library, platform, token) => CheckLibrary(library, platform, true, GetTag(false), token),
                     cancellationToken);
 
             case Program.NativeLibOptions.OperationMode.Install:
@@ -211,7 +236,7 @@ public class NativeLibs
         Func<NativeConstants.Library, PackagePlatform, CancellationToken, Task<bool>> operation,
         CancellationToken cancellationToken)
     {
-        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
+        var libraries = options.Libraries ?? DefaultLibraries;
 
         foreach (var library in libraries)
         {
@@ -239,7 +264,7 @@ public class NativeLibs
         Func<NativeConstants.Library, PackagePlatform, CancellationToken, Task<T>> operation,
         CancellationToken cancellationToken)
     {
-        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
+        var libraries = options.Libraries ?? DefaultLibraries;
 
         bool resultSet = false;
         T result = default!;
@@ -334,11 +359,10 @@ public class NativeLibs
     }
 
     private Task<bool> CheckLibrary(NativeConstants.Library library, PackagePlatform platform,
-        bool distributableVersion,
-        CancellationToken cancellationToken)
+        bool distributableVersion, PrecompiledTag tags, CancellationToken cancellationToken)
     {
         var file = NativeConstants.GetPathToLibraryDll(library, platform, NativeConstants.GetLibraryVersion(library),
-            distributableVersion, options.DebugLibrary);
+            distributableVersion, tags);
 
         if (File.Exists(file))
         {
@@ -363,12 +387,11 @@ public class NativeLibs
     }
 
     private bool CopyLibraryFiles(NativeConstants.Library library, PackagePlatform platform,
-        bool useDistributableLibraries,
-        string target)
+        bool useDistributableLibraries, string target, PrecompiledTag tags)
     {
         // TODO: other files?
         var file = NativeConstants.GetPathToLibraryDll(library, platform, NativeConstants.GetLibraryVersion(library),
-            useDistributableLibraries, options.DebugLibrary);
+            useDistributableLibraries, tags);
 
         if (!File.Exists(file))
         {
@@ -435,6 +458,15 @@ public class NativeLibs
         else
         {
             startInfo.ArgumentList.Add("-DCMAKE_BUILD_TYPE=RelWithDebInfo");
+        }
+
+        if (options.DisableLocalAvx)
+        {
+            startInfo.ArgumentList.Add("-DTHRIVE_AVX=OFF");
+        }
+        else
+        {
+            startInfo.ArgumentList.Add("-DTHRIVE_AVX=ON");
         }
 
         if (!string.IsNullOrEmpty(options.Compiler) || !string.IsNullOrEmpty(options.CCompiler))
@@ -555,9 +587,10 @@ public class NativeLibs
 
                 // TODO: skip libraries not compiled at the same time if any are added in the future
 
-                var name = NativeConstants.GetLibraryDllName(otherLibrary, platform);
+                var name = NativeConstants.GetLibraryDllName(otherLibrary, platform, GetTag(true));
+                var nameSecondary = NativeConstants.GetLibraryDllName(otherLibrary, platform, GetTag(false));
 
-                if (file.Contains(name))
+                if (file.Contains(name) || file.Contains(nameSecondary))
                 {
                     // Don't delete unrelated type
                     if (!options.DebugLibrary && file.Contains("debug"))
@@ -588,13 +621,15 @@ public class NativeLibs
 
         Directory.CreateDirectory(compileInstallFolder);
 
+        var thriveContainerFolder = "/thrive";
+
         var startInfo = new ProcessStartInfo("podman");
 
         startInfo.ArgumentList.Add("run");
         startInfo.ArgumentList.Add("--rm");
         startInfo.ArgumentList.Add("-t");
 
-        startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:/thrive:ro,z");
+        startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:{thriveContainerFolder}:ro,z");
         startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(compileInstallFolder)}:/install-target:rw,z");
 
         if (options.Verbose)
@@ -612,7 +647,7 @@ public class NativeLibs
         shCommandBuilder.Append("mkdir /build && cd build && ");
 
         // Cmake configure inside the container
-        shCommandBuilder.Append("cmake /thrive ");
+        shCommandBuilder.Append($"cmake {thriveContainerFolder} ");
         shCommandBuilder.Append("-G Ninja ");
 
         // ReSharper disable StringLiteralTypo
@@ -629,6 +664,8 @@ public class NativeLibs
         }
 
         shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
+
+        shCommandBuilder.Append("-DTHRIVE_AVX=ON ");
 
         // We explicitly enable LTO with compiler flags when we want as CMake when testing LTO seems to ignore a bunch
         // of flags
@@ -693,21 +730,33 @@ public class NativeLibs
 
         // ReSharper restore StringLiteralTypo
 
-        // Cmake build inside the container
-        shCommandBuilder.Append("&& cmake ");
-        shCommandBuilder.Append("--build ");
-        shCommandBuilder.Append(". ");
-        shCommandBuilder.Append("--config ");
+        // Cmake build inside the container, once without AVX and once with
+        for (int i = 0; i < 2; ++i)
+        {
+            if (i > 0)
+            {
+                // No AVX build
+                shCommandBuilder.Append($"&& cmake {thriveContainerFolder} ");
+                shCommandBuilder.Append("-DTHRIVE_AVX=OFF ");
+            }
 
-        shCommandBuilder.Append(buildType);
+            shCommandBuilder.Append("&& cmake ");
 
-        shCommandBuilder.Append(" --target ");
-        shCommandBuilder.Append("install ");
+            shCommandBuilder.Append("--build ");
+            shCommandBuilder.Append(". ");
+            shCommandBuilder.Append("--config ");
 
-        shCommandBuilder.Append("-j ");
+            shCommandBuilder.Append(buildType);
 
-        // TODO: add option to not use all cores
-        shCommandBuilder.Append(Environment.ProcessorCount.ToString());
+            shCommandBuilder.Append(" --target ");
+            shCommandBuilder.Append("install ");
+
+            shCommandBuilder.Append("-j ");
+
+            // TODO: add option to not use all cores
+            shCommandBuilder.Append(Environment.ProcessorCount.ToString());
+            shCommandBuilder.Append(' ');
+        }
 
         startInfo.ArgumentList.Add(shCommandBuilder.ToString());
 
@@ -724,7 +773,9 @@ public class NativeLibs
         }
 
         ColourConsole.WriteSuccessLine("Build inside container succeeded");
-        var libraries = options.Libraries ?? Enum.GetValues<NativeConstants.Library>();
+        var libraries = options.Libraries ?? DefaultLibraries;
+
+        var baseTag = options.DebugLibrary ? PrecompiledTag.Debug : PrecompiledTag.None;
 
         if (!options.DebugLibrary)
         {
@@ -733,17 +784,20 @@ public class NativeLibs
 
             foreach (var library in libraries)
             {
-                var source = GetPathToDistributableTempDll(library, platform);
-
-                ColourConsole.WriteDebugLine($"Performing extraction on library: {source}");
-
-                if (!await symbolHandler.ExtractSymbols(source, "./",
-                        platform is PackagePlatform.Windows or PackagePlatform.Windows32, cancellationToken))
+                foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
                 {
-                    ColourConsole.WriteErrorLine(
-                        "Symbol extraction failed. Are breakpad tools installed at the expected path?");
+                    var source = GetPathToDistributableTempDll(library, platform, tag);
 
-                    return false;
+                    ColourConsole.WriteDebugLine($"Performing extraction on library: {source}");
+
+                    if (!await symbolHandler.ExtractSymbols(source, "./",
+                            platform is PackagePlatform.Windows or PackagePlatform.Windows32, cancellationToken))
+                    {
+                        ColourConsole.WriteErrorLine(
+                            "Symbol extraction failed. Are breakpad tools installed at the expected path?");
+
+                        return false;
+                    }
                 }
             }
         }
@@ -758,34 +812,36 @@ public class NativeLibs
         {
             var version = NativeConstants.GetLibraryVersion(library);
 
-            var source = GetPathToDistributableTempDll(library, platform);
-
-            bool debug = options.DebugLibrary;
-            var target = NativeConstants.GetPathToLibraryDll(library, platform, version, true, debug);
-
-            var targetFolder = Path.GetDirectoryName(target);
-
-            if (string.IsNullOrEmpty(targetFolder))
-                throw new Exception("Couldn't get folder from library install path");
-
-            Directory.CreateDirectory(targetFolder);
-
-            File.Copy(source, target, true);
-
-            ColourConsole.WriteDebugLine($"Copied {source} -> {target}");
-
-            if (!debug)
+            foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
             {
-                await BinaryHelpers.Strip(target, cancellationToken);
+                var target = NativeConstants.GetPathToLibraryDll(library, platform, version, true, tag);
 
-                ColourConsole.WriteNormalLine($"Stripped installed library at {target}");
-            }
-            else
-            {
-                ColourConsole.WriteDebugLine("Not stripping a debug library");
-            }
+                var targetFolder = Path.GetDirectoryName(target);
 
-            cancellationToken.ThrowIfCancellationRequested();
+                if (string.IsNullOrEmpty(targetFolder))
+                    throw new Exception("Couldn't get folder from library install path");
+
+                Directory.CreateDirectory(targetFolder);
+
+                var source = GetPathToDistributableTempDll(library, platform, tag);
+
+                File.Copy(source, target, true);
+
+                ColourConsole.WriteDebugLine($"Copied {source} -> {target}");
+
+                if (!options.DebugLibrary)
+                {
+                    await BinaryHelpers.Strip(target, cancellationToken);
+
+                    ColourConsole.WriteNormalLine($"Stripped installed library at {target}");
+                }
+                else
+                {
+                    ColourConsole.WriteDebugLine("Not stripping a debug library");
+                }
+
+                cancellationToken.ThrowIfCancellationRequested();
+            }
         }
 
         ColourConsole.WriteSuccessLine("Successfully prepared native libraries for distribution");
@@ -798,33 +854,51 @@ public class NativeLibs
     {
         var version = NativeConstants.GetLibraryVersion(library);
 
-        bool debug = options.DebugLibrary;
-        var file = NativeConstants.GetPathToLibraryDll(library, platform, version, true, debug);
+        var baseTag = options.DebugLibrary ? PrecompiledTag.Debug : PrecompiledTag.None;
 
-        if (!File.Exists(file))
+        bool uploaded = false;
+
+        foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
         {
-            ColourConsole.WriteWarningLine($"Skip checking uploading file that is missing locally: {file}");
+            var file = NativeConstants.GetPathToLibraryDll(library, platform, version, true, tag);
 
-            // For now this is not considered an error
-            return null;
+            if (!File.Exists(file))
+            {
+                ColourConsole.WriteWarningLine($"Skip checking uploading file that is missing locally: {file}");
+
+                // For now this is not considered an error
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(options.Key))
+            {
+                ColourConsole.WriteErrorLine("Key to access ThriveDevCenter is a required parameter");
+
+                // Explicit fail to stop trying
+                return false;
+            }
+
+            if ((tag & PrecompiledTag.Debug) != 0)
+            {
+                ColourConsole.WriteNormalLine("Uploading a debug version of the library");
+            }
+
+            var result = await UploadLocalLibrary(library, platform, version, tag, file, cancellationToken);
+
+            if (result == false)
+                return false;
+
+            if (result == true)
+                uploaded = true;
         }
 
-        if (string.IsNullOrEmpty(options.Key))
-        {
-            ColourConsole.WriteErrorLine("Key to access ThriveDevCenter is a required parameter");
+        return uploaded ? uploaded : null;
+    }
 
-            // Explicit fail to stop trying
-            return false;
-        }
-
-        PrecompiledTag tags = 0;
-
-        if (debug)
-        {
-            ColourConsole.WriteNormalLine("Uploading a debug version of the library");
-            tags = PrecompiledTag.Debug;
-        }
-
+    private async Task<bool?> UploadLocalLibrary(NativeConstants.Library library, PackagePlatform platform,
+        string version, PrecompiledTag tags, string file,
+        CancellationToken cancellationToken)
+    {
         using var httpClient = GetDevCenterClient();
 
         ColourConsole.WriteDebugLine($"Checking if we should upload {library}:{version}:{platform}:{tags}");
@@ -1094,30 +1168,40 @@ public class NativeLibs
     {
         var version = NativeConstants.GetLibraryVersion(library);
 
-        bool debug = options.DebugLibrary;
-        var file = NativeConstants.GetPathToLibraryDll(library, platform, version, true, debug);
+        var baseTag = options.DebugLibrary ? PrecompiledTag.Debug : PrecompiledTag.None;
 
-        if (File.Exists(file))
+        foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
         {
-            ColourConsole.WriteNormalLine($"Library already exists, skipping download of: {file}");
-            return true;
+            var file = NativeConstants.GetPathToLibraryDll(library, platform, version, true, tag);
+
+            if (File.Exists(file))
+            {
+                ColourConsole.WriteNormalLine($"Library already exists, skipping download of: {file}");
+                return true;
+            }
+
+            var directory = Path.GetDirectoryName(file);
+
+            if (string.IsNullOrEmpty(directory))
+                throw new Exception("Failed to determine the folder the library should be in");
+
+            Directory.CreateDirectory(directory);
+
+            if ((tag & PrecompiledTag.Debug) != 0)
+            {
+                ColourConsole.WriteNormalLine("Will try to download a debug version of the library");
+            }
+
+            if (await DownloadRemoteLibrary(library, platform, version, tag, file, cancellationToken) == false)
+                return false;
         }
 
-        var directory = Path.GetDirectoryName(file);
+        return true;
+    }
 
-        if (string.IsNullOrEmpty(directory))
-            throw new Exception("Failed to determine the folder the library should be in");
-
-        Directory.CreateDirectory(directory);
-
-        PrecompiledTag tags = 0;
-
-        if (debug)
-        {
-            ColourConsole.WriteNormalLine("Will try to download a debug version of the library");
-            tags = PrecompiledTag.Debug;
-        }
-
+    private async Task<bool> DownloadRemoteLibrary(NativeConstants.Library library, PackagePlatform platform,
+        string version, PrecompiledTag tags, string targetFile, CancellationToken cancellationToken)
+    {
         using var httpClient = GetDevCenterClient();
 
         ColourConsole.WriteNormalLine(
@@ -1162,7 +1246,7 @@ public class NativeLibs
                 download.EnsureSuccessStatusCode();
 
                 // Write asynchronously while downloading data to not need to store the entire thing in memory
-                await using var writer = File.Create(file);
+                await using var writer = File.Create(targetFile);
 
                 await using var readStream = await download.Content.ReadAsStreamAsync(cancellationToken);
 
@@ -1174,7 +1258,7 @@ public class NativeLibs
 
                 await writer.FlushAsync(cancellationToken);
 
-                var size = new FileInfo(file).Length;
+                var size = new FileInfo(targetFile).Length;
                 if (size < 1)
                     throw new Exception("Downloaded file is empty");
 
@@ -1250,18 +1334,19 @@ public class NativeLibs
         ColourConsole.WriteDebugLine($"Created link {linkFile} -> {linkTo}");
     }
 
-    private string GetPathToDistributableTempDll(NativeConstants.Library library, PackagePlatform platform)
+    private string GetPathToDistributableTempDll(NativeConstants.Library library, PackagePlatform platform,
+        PrecompiledTag tags)
     {
         var basePath = Path.Combine(GetDistributableBuildFolderBase(platform),
             options.DebugLibrary ? "debug" : "release");
 
         if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
         {
-            return Path.Combine(basePath, "bin", NativeConstants.GetLibraryDllName(library, platform));
+            return Path.Combine(basePath, "bin", NativeConstants.GetLibraryDllName(library, platform, tags));
         }
 
         // This is for Linux
-        return Path.Combine(basePath, "lib", NativeConstants.GetLibraryDllName(library, platform));
+        return Path.Combine(basePath, "lib", NativeConstants.GetLibraryDllName(library, platform, tags));
     }
 
     private string GetNativeBuildFolder()

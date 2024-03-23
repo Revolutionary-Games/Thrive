@@ -5,6 +5,7 @@ using DefaultEcs;
 /// <summary>
 ///   Holds operation info for delayed microbe colony operations
 /// </summary>
+[JSONDynamicTypeAllowed]
 public struct DelayedMicrobeColony
 {
     /// <summary>

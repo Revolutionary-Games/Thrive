@@ -170,7 +170,7 @@ public static class ToolTipHelper
 
     public static bool IsToolTipRegistered(this Control control, ICustomToolTip tooltip)
     {
-        return ToolTipCallbacks.Contains(GetToolTipCallbackData(control, tooltip));
+        return GetToolTipCallbackData(control, tooltip) != null;
     }
 
     public static int CountRegisteredToolTips()

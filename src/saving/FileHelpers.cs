@@ -33,16 +33,6 @@ public static class FileHelpers
     }
 
     /// <summary>
-    ///   Returns true if file exists
-    /// </summary>
-    /// <param name="path">Path to check</param>
-    /// <returns>True if exists, false otherwise</returns>
-    public static bool Exists(string path)
-    {
-        return FileAccess.FileExists(path);
-    }
-
-    /// <summary>
     ///   Tests if it is possible to create/write a file at the given path
     /// </summary>
     /// <param name="path">Path to file</param>

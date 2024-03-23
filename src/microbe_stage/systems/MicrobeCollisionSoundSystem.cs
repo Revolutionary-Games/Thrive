@@ -36,7 +36,7 @@ public sealed class MicrobeCollisionSoundSystem : AEntitySetSystem<float>
             ref var collision = ref collisions![i];
 
             // Only process just started collisions to not trigger the sound multiple times
-            if (!collision.JustStarted)
+            if (collision.JustStarted != 1)
                 continue;
 
             // TODO: should collisions with any physics entities count?

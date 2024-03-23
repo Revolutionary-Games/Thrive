@@ -353,8 +353,6 @@ public class Program
             {
                 yield return new Example("download all available libraries",
                     new NativeLibOptions { Operations = new[] { OperationMode.Fetch } });
-                yield return new Example("install library locally to make Godot Editor debugging work",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Install } });
                 yield return new Example("compile libraries locally",
                     new NativeLibOptions { Operations = new[] { OperationMode.Build } });
                 yield return new Example("prepare library versions for distribution or uploading with podman",
@@ -372,6 +370,10 @@ public class Program
         [Option('d', "debug", Required = false, Default = false,
             HelpText = "Set to work on debug versions of the libraries")]
         public bool DebugLibrary { get; set; }
+
+        [Option("disable-avx", Required = false, Default = false,
+            HelpText = "Disable building locally with AVX (container builds always make both variants)")]
+        public bool DisableLocalAvx { get; set; }
 
         [Option('t', "platform", Required = false, Default = null,
             HelpText = "Use to override detected platforms for selected operation")]
@@ -442,8 +444,8 @@ public class Program
             HelpText = "Set to a valid DevCenter key (not user token) to use non-anonymous uploading.")]
         public string? Key { get; set; }
 
-        [Option('k', "key", Required = false, Default = Uploader.DEFAULT_DEVCENTER_URL, MetaValue = "DEVCENTER_URL",
-            HelpText = "DevCenter URL to upload to.")]
+        [Option('u', "devcenter-url", Required = false, Default = Uploader.DEFAULT_DEVCENTER_URL,
+            MetaValue = "DEVCENTER_URL", HelpText = "DevCenter URL to upload to.")]
         public string Url { get; set; } = Uploader.DEFAULT_DEVCENTER_URL;
 
         [Option('r', "retries", Required = false, Default = 3, MetaValue = "COUNT",

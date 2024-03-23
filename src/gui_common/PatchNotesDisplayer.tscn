@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0tfe6i1offy"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://src/gui_common/PatchNotesList.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://jlvayy8csjto" path="res://src/gui_common/PatchNotesList.tscn" id="3"]
 [ext_resource type="Script" path="res://src/gui_common/PatchNotesDisplayer.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="4_o16iy"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="5_gf8j8"]
@@ -36,9 +36,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="LastPlayedInfo" type="Label" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "PATCH_NOTES_LAST_PLAYED_INFO"
 label_settings = ExtResource("5_gf8j8")
+autowrap_mode = 3
 
 [node name="PatchNotesList" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3")]
 layout_mode = 2

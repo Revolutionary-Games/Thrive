@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=50 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -14,16 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://b7f3dnt4j7gnw" path="res://assets/textures/gui/bevel/AmmoniaBW.png" id="17"]
 [ext_resource type="AudioStream" uid="uid://c5u3d8rsbm0lu" path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" id="18"]
 [ext_resource type="Texture2D" uid="uid://siahiwtfm578" path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" id="21"]
-[ext_resource type="Texture2D" uid="uid://c732snfs7i3xx" path="res://assets/textures/gui/bevel/LargeTwoNormal.png" id="22"]
-[ext_resource type="Texture2D" uid="uid://cbc1ld512pl71" path="res://assets/textures/gui/bevel/LargeTwoHover.png" id="23"]
-[ext_resource type="Texture2D" uid="uid://dcc6nq6ig4etg" path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" id="38"]
+[ext_resource type="PackedScene" uid="uid://jjb8ei8wuuk" path="res://src/microbe_stage/gui/EditorEntryButton.tscn" id="23_satig"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="39_2oma1"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_nfpcw"]
 [ext_resource type="Texture2D" uid="uid://8q2icxsubpdy" path="res://assets/textures/gui/bevel/atp.png" id="41"]
 [ext_resource type="Texture2D" uid="uid://on8072s1tlly" path="res://assets/textures/gui/bevel/Hitpoints.png" id="42"]
 [ext_resource type="Texture2D" uid="uid://o0q204t8ees3" path="res://assets/textures/gui/bevel/AtpBar.png" id="43"]
 [ext_resource type="Texture2D" uid="uid://budtxbmecqr3l" path="res://assets/textures/gui/bevel/dataValueBackground.png" id="44"]
-[ext_resource type="Texture2D" uid="uid://bd4c6guswatde" path="res://assets/textures/gui/bevel/LargeTwoPressed.png" id="46"]
 [ext_resource type="PackedScene" uid="uid://cp23vdxwoeegx" path="res://src/microbe_stage/gui/WinBox.tscn" id="53"]
 [ext_resource type="PackedScene" uid="uid://b2uw1x2g8awbf" path="res://src/microbe_stage/gui/ExtinctionBox.tscn" id="54"]
 [ext_resource type="PackedScene" uid="uid://b1ucm37efll76" path="res://src/microbe_stage/MicrobeCheatMenu.tscn" id="55"]
@@ -39,9 +36,7 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="65"]
 [ext_resource type="Texture2D" uid="uid://mqpv4yc0m4r5" path="res://assets/textures/gui/bevel/HealthBar.png" id="67"]
 [ext_resource type="Texture2D" uid="uid://buv5vjrf4hx0h" path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" id="68"]
-[ext_resource type="Texture2D" uid="uid://dagkk6puhnfvu" path="res://assets/textures/gui/bevel/ReproductionBar.png" id="69"]
 [ext_resource type="Texture2D" uid="uid://bqyawyqghdnxp" path="res://assets/textures/gui/bevel/unbind.png" id="70"]
-[ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="71"]
 [ext_resource type="Texture2D" uid="uid://cbxkq166e7veg" path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" id="72"]
 
 [sub_resource type="Animation" id="39"]
@@ -228,39 +223,6 @@ border_color = Color(0.533333, 0.745098, 0.815686, 0.392157)
 texture = ExtResource("44")
 region_rect = Rect2(0, 0, 86, 52)
 
-[sub_resource type="Animation" id="30"]
-length = 5.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Highlight:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2.5, 3.5, 5),
-"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Highlight/PointLight2D:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 2.1, 4.4, 5),
-"transitions": PackedFloat32Array(1, 2, 1, 2),
-"update": 0,
-"values": [0.0, 0.8, 0.8, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xveqw"]
-_data = {
-"EditorButtonFlash": SubResource("30")
-}
-
 [sub_resource type="StyleBoxFlat" id="46"]
 draw_center = false
 border_width_left = 2
@@ -297,7 +259,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel")]
+[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -322,12 +284,8 @@ AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
 PatchOverlayPath = NodePath("../PatchNameOverlay")
-EditorButtonPath = NodePath("BottomRight/EditorButton")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
-AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
-PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar")
-EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/PointLight2D")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
 HotBarPath = NodePath("ScrollContainer/HotBar")
@@ -348,6 +306,7 @@ ExtinctionBoxScene = ExtResource("54")
 PatchExtinctionBoxScene = ExtResource("60")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
+editorButton = NodePath("BottomRight/EditorButton")
 PausePromptPath = NodePath("PausePrompt")
 PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 HUDMessagesPath = NodePath("HUDMessages")
@@ -519,6 +478,7 @@ theme_override_constants/separation = 8
 alignment = 1
 
 [node name="HPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 mouse_filter = 0
 text = "Hitpoints"
@@ -591,159 +551,11 @@ offset_bottom = 176.5
 texture = ExtResource("41")
 expand_mode = 1
 
-[node name="EditorButton" type="TextureButton" parent="BottomRight"]
-custom_minimum_size = Vector2(160, 160)
+[node name="EditorButton" parent="BottomRight" instance=ExtResource("23_satig")]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -177.0
-offset_top = -180.0
-offset_right = -17.0
-offset_bottom = -20.0
-grow_horizontal = 0
-grow_vertical = 0
-tooltip_text = "EDITOR_BUTTON_TOOLTIP"
-focus_mode = 0
-disabled = true
-texture_normal = ExtResource("22")
-texture_pressed = ExtResource("46")
-texture_hover = ExtResource("23")
-texture_disabled = ExtResource("38")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Highlight" type="TextureRect" parent="BottomRight/EditorButton"]
-visible = false
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("23")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="PointLight2D" type="PointLight2D" parent="BottomRight/EditorButton/Highlight"]
-position = Vector2(79.2703, 78.2703)
-scale = Vector2(0.845357, 0.845357)
-energy = 0.0
-texture = ExtResource("71")
-
-[node name="ReproductionBar" type="Control" parent="BottomRight/EditorButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="BarBackground" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = 70.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("69")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="AmmoniaReproductionBar" type="TextureProgressBar" parent="BottomRight/EditorButton/ReproductionBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = 70.0
-grow_horizontal = 2
-grow_vertical = 2
-step = 0.1
-fill_mode = 5
-nine_patch_stretch = true
-texture_progress = ExtResource("69")
-tint_progress = Color(1, 0.627451, 0.121569, 1)
-radial_fill_degrees = 180.0
-
-[node name="PhosphateReproductionBar" type="TextureProgressBar" parent="BottomRight/EditorButton/ReproductionBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = 70.0
-grow_horizontal = 2
-grow_vertical = 2
-step = 0.1
-fill_mode = 5
-nine_patch_stretch = true
-texture_progress = ExtResource("69")
-tint_progress = Color(0.690196, 0.423529, 1, 1)
-radial_initial_angle = 180.0
-radial_fill_degrees = 180.0
-
-[node name="AmmoniaIcon" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -75.0
-offset_right = 10.0
-offset_bottom = -55.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("15")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="PhosphateIcon" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = 56.0
-offset_right = 10.0
-offset_bottom = 76.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("16")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/EditorButton"]
-libraries = {
-"": SubResource("AnimationLibrary_xveqw")
-}
+anchors_preset = -1
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="HUDMessages" parent="." instance=ExtResource("56")]
 layout_mode = 1
@@ -895,8 +707,6 @@ offset_bottom = 97.0
 [connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Multicellular" to="." method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Macroscopic" to="." method="OnBecomeMacroscopicPressed"]
-[connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
-[connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="hidden" from="ProcessPanel" to="." method="OnProcessPanelClosed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Engulfment" to="." method="OnEngulfmentPressed"]

@@ -68,7 +68,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("3")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -127,9 +127,13 @@ text = "DESCRIPTION"
 label_settings = ExtResource("6_1cduv")
 
 [node name="Description" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "DOT_DOT_DOT"
 label_settings = ExtResource("6_1cduv")
+autowrap_mode = 3
+max_lines_visible = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -149,6 +153,7 @@ text = "DOT_DOT_DOT"
 label_settings = ExtResource("6_1cduv")
 
 [node name="VersionWarning" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "( ! )"
 label_settings = ExtResource("6_1cduv")
@@ -164,8 +169,10 @@ label_settings = ExtResource("6_1cduv")
 
 [node name="Creator" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "DOT_DOT_DOT"
 label_settings = ExtResource("6_1cduv")
+text_overrun_behavior = 3
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
@@ -178,8 +185,10 @@ label_settings = ExtResource("6_1cduv")
 
 [node name="Platform" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "DOT_DOT_DOT"
 label_settings = ExtResource("6_1cduv")
+text_overrun_behavior = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

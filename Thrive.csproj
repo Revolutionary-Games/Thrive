@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Godot.NET.Sdk/4.2.1">
+<Project Sdk="Godot.NET.Sdk/4.2.2-rc.2">
   <PropertyGroup>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <TargetFramework>net6.0</TargetFramework>
@@ -22,6 +22,10 @@
   <ItemGroup>
     <Compile Remove="src\steam\SteamClient.cs" />
   </ItemGroup>
+  <!-- In case the hot reload in Godot editor would fail with the system JSON referenced, this single file is picked out -->
+  <ItemGroup>
+    <Compile Include="RevolutionaryGamesCommon\DevCenterCommunication\Models\Enums\PrecompiledTag.cs"/>
+  </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
     <Folder Include="src\auto-evo\steps\" />
@@ -35,7 +39,8 @@
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <PackageReference Include="SharpZipLib" Version="1.3.3" />
     <PackageReference Include="Nito.Collections.Deque" Version="1.2.1" />
-    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.1.1" />
+    <PackageReference Include="XoshiroPRNG.Net" Version="1.6.0" />
     <PackageReference Include="YamlDotNet" Version="15.1.2" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />

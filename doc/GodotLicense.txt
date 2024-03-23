@@ -2,8 +2,8 @@ Thrive uses Godot Engine (https://godotengine.org/)
 
 Godot license:
 
-Copyright (c) 2007-2021 Juan Linietsky, Ariel Manzur.
-Copyright (c) 2014-2021 Godot Engine contributors (cf. AUTHORS.md).
+Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md).
+Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -62,7 +62,7 @@ see the link above for updated versions:
 # (e.g. a public domain dedication), but as far as Godot Engine is concerned
 # the library is considered as a whole under the Zlib license.
 #
-# Nota: When linking dynamically against thirdparty libraries instead of
+# Note: When linking dynamically against thirdparty libraries instead of
 # building them into the Godot binary, you may remove the corresponding
 # license details from this file.
 
@@ -75,8 +75,8 @@ Source: https://github.com/godotengine/godot
 
 Files: *
 Comment: Godot Engine
-Copyright: 2007-2021, Juan Linietsky, Ariel Manzur.
- 2014-2021, Godot Engine contributors.
+Copyright: 2014-present, Godot Engine contributors
+ 2007-2014, Juan Linietsky, Ariel Manzur
 License: Expat
 
 Files: ./icon.png
@@ -91,88 +91,134 @@ Files: ./core/math/convex_hull.cpp
  ./core/math/convex_hull.h
 Comment: Bullet Continuous Collision Detection and Physics Library
 Copyright: 2011, Ole Kniemeyer, MAXON, www.maxon.net
- 2007-2021, Juan Linietsky, Ariel Manzur.
- 2014-2021, Godot Engine contributors.
+ 2014-present, Godot Engine contributors
+ 2007-2014, Juan Linietsky, Ariel Manzur
 License: Expat and Zlib
 
-Files: ./modules/fbx/fbx_parser/
-Comment: Open Asset Import Library (FBX parser)
-Copyright: 2006-2020, assimp team
- 2007-2021, Juan Linietsky, Ariel Manzur.
- 2014-2021, Godot Engine contributors.
-License: BSD-3-clause
+Files: ./modules/lightmapper_rd/lm_compute.glsl
+Comment: Joint Non-Local Means (JNLM) denoiser
+Copyright: 2020, Manuel Prandini
+ 2014-present, Godot Engine contributors
+ 2007-2014, Juan Linietsky, Ariel Manzur
+License: Expat
 
-Files: ./platform/android/java/lib/aidl/com/android/vending/licensing/
+Files: ./platform/android/java/lib/aidl/com/android/*
  ./platform/android/java/lib/res/layout/status_bar_ongoing_event_progress_bar.xml
- ./platform/android/java/lib/src/com/google/android/vending/expansion/downloader/
- ./platform/android/java/lib/src/com/google/android/vending/licensing/
+ ./platform/android/java/lib/src/com/google/android/*
  ./platform/android/java/lib/src/org/godotengine/godot/input/InputManagerCompat.java
  ./platform/android/java/lib/src/org/godotengine/godot/input/InputManagerV16.java
 Comment: The Android Open Source Project
-Copyright: 2008-2013, The Android Open Source Project
+Copyright: 2008-2016, The Android Open Source Project
+ 2002, Google, Inc.
 License: Apache-2.0
 
-Files: ./platform/android/java/src/com/android/vending/licensing/util/Base64.java
- ./platform/android/java/src/com/android/vending/licensing/util/Base64DecoderException.java
-Comment: The Android Open Source Project
-Copyright: 2002, Google Inc.
+Files: ./platform/android/java/lib/src/org/godotengine/godot/utils/ProcessPhoenix.java
+Comment: ProcessPhoenix
+Copyright: 2015, Jake Wharton
 License: Apache-2.0
 
-Files: ./platform/android/power_android.cpp
- ./platform/osx/power_osx.cpp
- ./platform/windows/power_windows.cpp
- ./platform/x11/power_x11.cpp
-Comment: Simple DirectMedia Layer
-Copyright: 1997-2017, Sam Lantinga
- 2007-2021, Juan Linietsky, Ariel Manzur.
- 2014-2021, Godot Engine contributors.
-License: Expat and Zlib
+Files: ./scene/animation/easing_equations.h
+Comment: Robert Penner's Easing Functions
+Copyright: 2001, Robert Penner
+ 2014-present, Godot Engine contributors
+ 2007-2014, Juan Linietsky, Ariel Manzur
+License: Expat
 
-Files: ./servers/physics/collision_solver_sat.cpp
+Files: ./servers/physics_2d/godot_joints_2d.cpp
+Comment: Chipmunk2D Joint Constraints
+Copyright: 2007, Scott Lembcke
+License: Expat
+
+Files: ./servers/physics_3d/collision_solver_3d_sat.cpp
 Comment: Open Dynamics Engine
 Copyright: 2001-2003, Russell L. Smith, Alen Ladavac, Nguyen Binh
 License: BSD-3-clause
 
-Files: ./servers/physics/gjk_epa.cpp
- ./servers/physics/joints/generic_6dof_joint_sw.cpp
- ./servers/physics/joints/generic_6dof_joint_sw.h
- ./servers/physics/joints/hinge_joint_sw.cpp
- ./servers/physics/joints/hinge_joint_sw.h
- ./servers/physics/joints/jacobian_entry_sw.h
- ./servers/physics/joints/pin_joint_sw.cpp
- ./servers/physics/joints/pin_joint_sw.h
- ./servers/physics/joints/slider_joint_sw.cpp
- ./servers/physics/joints/slider_joint_sw.h
- ./servers/physics/shape_sw.cpp
- ./servers/physics/shape_sw.h
+Files: ./servers/physics_3d/gjk_epa.cpp
+ ./servers/physics_3d/joints/generic_6dof_joint_3d_sw.cpp
+ ./servers/physics_3d/joints/generic_6dof_joint_3d_sw.h
+ ./servers/physics_3d/joints/hinge_joint_3d_sw.cpp
+ ./servers/physics_3d/joints/hinge_joint_3d_sw.h
+ ./servers/physics_3d/joints/jacobian_entry_3d_sw.h
+ ./servers/physics_3d/joints/pin_joint_3d_sw.cpp
+ ./servers/physics_3d/joints/pin_joint_3d_sw.h
+ ./servers/physics_3d/joints/slider_joint_3d_sw.cpp
+ ./servers/physics_3d/joints/slider_joint_3d_sw.h
+ ./servers/physics_3d/soft_body_3d_sw.cpp
+ ./servers/physics_3d/soft_body_3d_sw.h
+ ./servers/physics_3d/shape_3d_sw.cpp
+ ./servers/physics_3d/shape_3d_sw.h
 Comment: Bullet Continuous Collision Detection and Physics Library
 Copyright: 2003-2008, Erwin Coumans
- 2007-2021, Juan Linietsky, Ariel Manzur.
- 2014-2021, Godot Engine contributors.
+ 2014-present, Godot Engine contributors
+ 2007-2014, Juan Linietsky, Ariel Manzur
 License: Expat and Zlib
 
-Files: ./servers/physics/joints/cone_twist_joint_sw.cpp
- ./servers/physics/joints/cone_twist_joint_sw.h
+Files: ./servers/physics_3d/joints/cone_twist_joint_3d_sw.cpp
+ ./servers/physics_3d/joints/cone_twist_joint_3d_sw.h
 Comment: Bullet Continuous Collision Detection and Physics Library
 Copyright: 2007, Starbreeze Studios
- 2007-2021, Juan Linietsky, Ariel Manzur.
- 2014-2021, Godot Engine contributors.
+ 2014-present, Godot Engine contributors
+ 2007-2014, Juan Linietsky, Ariel Manzur
 License: Expat and Zlib
 
-Files: ./thirdparty/breakpad/
-Comment: Breakpad is a set of client and server components which implement a crash-reporting system.
-Copyright: 2006, Google Inc.
+Files: ./servers/rendering/renderer_rd/shaders/ss_effects_downsample.glsl
+ ./servers/rendering/renderer_rd/shaders/ssao_blur.glsl
+ ./servers/rendering/renderer_rd/shaders/ssao_importance_map.glsl
+ ./servers/rendering/renderer_rd/shaders/ssao_interleave.glsl
+ ./servers/rendering/renderer_rd/shaders/ssao.glsl
+ ./servers/rendering/renderer_rd/shaders/ssil_blur.glsl
+ ./servers/rendering/renderer_rd/shaders/ssil_importance_map.glsl
+ ./servers/rendering/renderer_rd/shaders/ssil_interleave.glsl
+ ./servers/rendering/renderer_rd/shaders/ssil.glsl
+Comment: Intel ASSAO and related files
+Copyright: 2016, Intel Corporation
+License: Expat
+
+Files: ./servers/rendering/renderer_rd/shaders/taa_resolve.glsl
+Comment: Temporal Anti-Aliasing resolve implementation
+Copyright: 2016, Panos Karabelas
+License: Expat
+
+Files: ./thirdparty/amd-fsr/
+Comment: AMD FidelityFX Super Resolution
+Copyright: 2021, Advanced Micro Devices, Inc.
+License: Expat
+
+Files: ./thirdparty/amd-fsr2/
+Comment: AMD FidelityFX Super Resolution 2
+Copyright: 2022-2023, Advanced Micro Devices, Inc.
+License: Expat
+
+Files: ./thirdparty/angle/
+Comment: ANGLE
+Copyright: 2018, The ANGLE Project Authors.
 License: BSD-3-clause
 
-Files: ./thirdparty/bullet/
-Comment: Bullet Continuous Collision Detection and Physics Library
-Copyright: 2003-2013, Erwin Coumans
-License: Zlib
+Files: ./thirdparty/astcenc/
+Comment: Arm ASTC Encoder
+Copyright: 2011-2024, Arm Limited
+License: Apache-2.0
+
+Files: ./thirdparty/basis_universal/
+Comment: Basis Universal
+Copyright: 2022, Binomial LLC.
+License: Apache-2.0
+
+Files: ./thirdparty/brotli/
+Comment: Brotli
+Copyright: 2009, 2010, 2013-2016 by the Brotli Authors.
+License: Expat
 
 Files: ./thirdparty/certs/ca-certificates.crt
 Comment: CA certificates
 Copyright: Mozilla Contributors
 License: MPL-2.0
+
+Files: ./thirdparty/clipper2/
+Comment: Clipper2
+Copyright: 2010-2023, Angus Johnson
+License: BSL-1.0
 
 Files: ./thirdparty/cvtt/
 Comment: Convection Texture Tools Stand-Alone Kernels
@@ -180,9 +226,24 @@ Copyright: 2018, Eric Lasota
  2018, Microsoft Corp.
 License: Expat
 
+Files: ./thirdparty/d3d12ma/
+Comment: D3D12 Memory Allocator
+Copyright: 2019-2022 Advanced Micro Devices, Inc.
+License: Expat
+
+Files: ./thirdparty/directx_headers/
+Comment: DirectX Headers
+Copyright: Microsoft Corporation
+License: Expat
+
+Files: ./thirdparty/doctest/
+Comment: doctest
+Copyright: 2016-2023, Viktor Kirilov
+License: Expat
+
 Files: ./thirdparty/embree/
 Comment: Embree
-Copyright: 2009-2021, Intel Corporation
+Copyright: 2009-2021 Intel Corporation
 License: Apache-2.0
 
 Files: ./thirdparty/enet/
@@ -190,42 +251,85 @@ Comment: ENet
 Copyright: 2002-2020, Lee Salzman
 License: Expat
 
-Files: ./thirdparty/etc2comp/
-Comment: Etc2Comp
-Copyright: 2015, Etc2Comp Authors
-License: Apache-2.0
+Files: ./thirdparty/etcpak/
+Comment: etcpak
+Copyright: 2013-2022, Bartosz Taudul
+License: BSD-3-clause
 
-Files: ./thirdparty/fonts/DroidSans*.ttf
+Files: ./thirdparty/fonts/DroidSans*.woff2
 Comment: DroidSans font
 Copyright: 2008, The Android Open Source Project
 License: Apache-2.0
 
-Files: ./thirdparty/fonts/NotoSans*.ttf
+Files: ./thirdparty/fonts/JetBrainsMono_Regular.woff2
+Comment: JetBrains Mono font
+Copyright: 2020, JetBrains s.r.o.
+License: OFL-1.1
+
+Files: ./thirdparty/fonts/NotoSans*.woff2
 Comment: Noto Sans font
 Copyright: 2012, Google Inc.
 License: OFL-1.1
 
-Files: ./thirdparty/fonts/Hack_Regular.ttf
-Comment: Hack font
-Copyright: 2018, Source Foundry Authors
-  2003, Bitstream Inc.
-License: Expat and Bitstream Vera Fonts Copyright
-
 Files: ./thirdparty/freetype/
 Comment: The FreeType Project
-Copyright: 1996-2020, David Turner, Robert Wilhelm, and Werner Lemberg.
+Copyright: 1996-2023, David Turner, Robert Wilhelm, and Werner Lemberg.
 License: FTL
 
 Files: ./thirdparty/glad/
 Comment: glad
-Copyright: 2013-2020, David Herberth
- 2007-2020 The Khronos Group Inc.
+Copyright: 2013-2022, David Herberth
+ 2013-2020, The Khronos Group Inc.
+License: CC0-1.0 and Apache-2.0
+
+Files: ./thirdparty/glslang/
+Comment: glslang
+Copyright: 2015-2020, Google, Inc.
+  2014-2020, The Khronos Group Inc
+  2002, NVIDIA Corporation.
+License: glslang
+
+Files: ./thirdparty/graphite/
+Comment: Graphite engine
+Copyright: 2010, SIL International
 License: Expat
+
+Files: ./thirdparty/harfbuzz/
+Comment: HarfBuzz text shaping library
+Copyright: 2010-2022, Google, Inc.
+ 2015-2020, Ebrahim Byagowi
+ 2019,2020, Facebook, Inc.
+ 2012, 2015, Mozilla Foundation
+ 2011, Codethink Limited
+ 2008, 2010, Nokia Corporation and/or its subsidiary(-ies)
+ 2009, Keith Stribley
+ 2011, Martin Hosken and SIL International
+ 2007, Chris Wilson
+ 2005-2006, 2020-2023, Behdad Esfahbod
+ 2004, 2007-2010, 2013, 2021-2023, Red Hat, Inc.
+ 1998-2005, David Turner and Werner Lemberg
+ 2016, Igalia, S.L.
+ 2022, Matthias Clasen
+ 2018, 2021, Khaled Hosny
+ 2018-2020, Adobe, Inc.
+ 2013-2015, Alexei Podtelezhnikov
+License: HarfBuzz
+
+Files: ./thirdparty/icu4c/
+Comment: International Components for Unicode
+Copyright: 1991-2021, Unicode
+License: Unicode
 
 Files: ./thirdparty/jpeg-compressor/
 Comment: jpeg-compressor
 Copyright: 2012, Rich Geldreich
 License: public-domain or Apache-2.0
+
+Files: ./thirdparty/libktx/
+Comment: KTX
+Copyright: 2013-2020, Mark Callow
+ 2010-2020 The Khronos Group, Inc.
+License: Apache-2.0
 
 Files: ./thirdparty/libogg/
 Comment: OggVorbis
@@ -234,22 +338,12 @@ License: BSD-3-clause
 
 Files: ./thirdparty/libpng/
 Comment: libpng
-Copyright: 1995-2019, The PNG Reference Library Authors.
- 2018-2019, Cosmin Truta.
+Copyright: 1995-2024, The PNG Reference Library Authors.
+ 2018-2024, Cosmin Truta.
  2000-2002, 2004, 2006-2018 Glenn Randers-Pehrson.
  1996-1997, Andreas Dilger.
  1995-1996, Guy Eric Schalnat, Group 42, Inc.
 License: Zlib
-
-Files: ./thirdparty/libsimplewebm/
-Comment: libsimplewebm
-Copyright: 2016, Błażej Szczygieł
-License: Expat
-
-Files: ./thirdparty/libsimplewebm/libwebm/
-Comment: The WebM Project
-Copyright: 2010, Google Inc.
-License: BSD-3-clause
 
 Files: ./thirdparty/libtheora/
 Comment: OggTheora
@@ -261,17 +355,6 @@ Comment: OggVorbis
 Copyright: 2002-2015, Xiph.org Foundation
 License: BSD-3-clause
 
-Files: ./thirdparty/libvpx/
-Comment: The WebM Project
-Copyright: 2010, The WebM Project authors.
-License: BSD-3-clause
-
-Files: ./thirdparty/libvpx/third_party/android/cpu-features.c
- ./thirdparty/libvpx/third_party/android/cpu-features.h
-Comment: The Android Open Source Project
-Copyright: 2010, The Android Open Source Project
-License: BSD-2-clause
-
 Files: ./thirdparty/libwebp/
 Comment: WebP codec
 Copyright: 2010, Google Inc.
@@ -282,14 +365,24 @@ Comment: Mbed TLS
 Copyright: The Mbed TLS Contributors
 License: Apache-2.0
 
+Files: ./thirdparty/meshoptimizer/
+Comment: meshoptimizer
+Copyright: 2016-2023, Arseny Kapoulkine
+License: Expat
+
+Files: ./thirdparty/mingw-std-threads/
+Comment: mingw-std-threads
+Copyright: 2016, Mega Limited
+License: BSD-2-clause
+
 Files: ./thirdparty/minimp3/
 Comment: MiniMP3
 Copyright: lieff
 License: CC0-1.0
 
 Files: ./thirdparty/miniupnpc/
-Comment: MiniUPnPc
-Copyright: 2005-2021, Thomas Bernard
+Comment: MiniUPnP Project
+Copyright: 2005-2024, Thomas Bernard
 License: BSD-3-clause
 
 Files: ./thirdparty/minizip/
@@ -305,22 +398,16 @@ Comment: Clipper
 Copyright: 2010-2017, Angus Johnson
 License: BSL-1.0
 
-Files: ./thirdparty/misc/easing_equations.cpp
-Comment: Robert Penner's Easing Functions
-Copyright: 2001, Robert Penner
-License: BSD-3-clause
+Files: ./thirdparty/misc/cubemap_coeffs.h
+Comment: Fast Filtering of Reflection Probes
+Copyright: 2016, Activision Publishing, Inc.
+License: Expat
 
 Files: ./thirdparty/misc/fastlz.c
  ./thirdparty/misc/fastlz.h
 Comment: FastLZ
 Copyright: 2005-2020, Ariya Hidayat
 License: Expat
-
-Files: ./thirdparty/misc/hq2x.cpp
- ./thirdparty/misc/hq2x.h
-Comment: hq2x implementation
-Copyright: 2016, Bruno Ribeiro
-License: Apache-2.0
 
 Files: ./thirdparty/misc/ifaddrs-android.cc
  ./thirdparty/misc/ifaddrs-android.h
@@ -334,11 +421,16 @@ Comment: Tangent Space Normal Maps implementation
 Copyright: 2011, Morten S. Mikkelsen
 License: Zlib
 
-Files: ./thirdparty/misc/open-simplex-noise.c
- ./thirdparty/misc/open-simplex-noise.h
-Comment: OpenSimplex Noise
-Copyright: 2014, Stephen M. Cameron
-License: public-domain or Unlicense
+Files: ./thirdparty/misc/ok_color.h
+ ./thirdparty/misc/ok_color_shader.h
+Comment: OK Lab color space
+Copyright: 2021, Björn Ottosson
+License: Expat
+
+Files: ./thirdparty/noise/FastNoiseLite.h
+Comment: FastNoise Lite
+Copyright: 2023, Jordan Peck and contributors
+License: Expat
 
 Files: ./thirdparty/misc/pcg.cpp
  ./thirdparty/misc/pcg.h
@@ -346,50 +438,59 @@ Comment: Minimal PCG32 implementation
 Copyright: 2014, M.E. O'Neill
 License: Apache-2.0
 
+Files: ./thirdparty/misc/polypartition.cpp
+ ./thirdparty/misc/polypartition.h
+Comment: PolyPartition / Triangulator
+Copyright: 2011-2021, Ivan Fratric and contributors
+License: Expat
+
+Files: ./thirdparty/misc/r128.c
+ ./thirdparty/misc/r128.h
+Comment: r128 library
+Copyright: Alan Hickman
+License: public-domain or Unlicense
+
 Files: ./thirdparty/misc/smaz.c
  ./thirdparty/misc/smaz.h
 Comment: SMAZ
 Copyright: 2006-2009, Salvatore Sanfilippo
 License: BSD-3-clause
 
-Files: ./thirdparty/misc/stb_vorbis.c
+Files: ./thirdparty/misc/smolv.cpp
+ ./thirdparty/misc/smolv.h
+Comment: SMOL-V
+Copyright: 2016-2020, Aras Pranckevicius
+License: public-domain or Unlicense or Expat
+
+Files: ./thirdparty/misc/stb_rect_pack.h
 Comment: stb libraries
 Copyright: Sean Barrett
 License: public-domain or Unlicense or Expat
-
-Files: ./thirdparty/misc/triangulator.cpp
- ./thirdparty/misc/triangulator.h
-Comment: PolyPartition
-Copyright: 2011, Ivan Fratric
-License: Expat
 
 Files: ./thirdparty/misc/yuv2rgb.h
 Comment: YUV2RGB
 Copyright: 2008-2011, Robin Watts
 License: BSD-2-clause
 
-Files: ./thirdparty/nanosvg/
-Comment: NanoSVG
-Copyright: 2013-2014, Mikko Mononen
-License: Zlib
+Files: ./thirdparty/msdfgen/
+Comment: Multi-channel signed distance field generator
+Copyright: 2016-2022, Viktor Chlumsky
+License: Expat
 
-Files: ./thirdparty/opus/
-Comment: Opus
-Copyright: 2001-2011, Xiph.Org, Skype Limited, Octasic,
- Jean-Marc Valin, Timothy B. Terriberry,
- CSIRO, Gregory Maxwell, Mark Borgerding,
- Erik de Castro Lopo
-License: BSD-3-clause
+Files: ./thirdparty/nvapi/nvapi_minimal.h
+Comment: Stripped down version of "nvapi.h" from the NVIDIA NVAPI SDK
+Copyright: 2019-2022, NVIDIA Corporation
+License: Expat
+
+Files: ./thirdparty/openxr/
+Comment: OpenXR Loader
+Copyright: 2020-2023, The Khronos Group Inc.
+License: Apache-2.0
 
 Files: ./thirdparty/pcre2/
 Comment: PCRE2
-Copyright: 1997-2020, University of Cambridge
- 2009-2020, Zoltan Herczeg
-License: BSD-3-clause
-
-Files: ./thirdparty/pvrtccompressor/
-Comment: PvrTcCompressor
-Copyright: 2014, Jeffrey Lim.
+Copyright: 1997-2024, University of Cambridge
+ 2009-2024, Zoltan Herczeg
 License: BSD-3-clause
 
 Files: ./thirdparty/recastnavigation/
@@ -397,22 +498,79 @@ Comment: Recast
 Copyright: 2009, Mikko Mononen
 License: Zlib
 
+Files: ./thirdparty/rvo2/
+Comment: RVO2
+Copyright: 2016, University of North Carolina at Chapel Hill
+License: Apache-2.0
+
+Files: ./thirdparty/spirv-reflect/
+Comment: SPIRV-Reflect
+Copyright: 2017-2022, Google Inc.
+License: Apache-2.0
+
 Files: ./thirdparty/squish/
 Comment: libSquish
 Copyright: 2006, Simon Brown
 License: Expat
 
+Files: ./thirdparty/thorvg/
+Comment: ThorVG
+Copyright: 2020-2024, The ThorVG Project
+License: Expat
+
 Files: ./thirdparty/tinyexr/
 Comment: TinyEXR
-Copyright: 2014-2020, Syoyo Fujita
+Copyright: 2014-2021, Syoyo Fujita
   2002, Industrial Light & Magic, a division of Lucas Digital Ltd. LLC
 License: BSD-3-clause
+
+Files: ./thirdparty/ufbx/
+Comment: ufbx
+Copyright: 2020, Samuli Raivio
+License: Expat
 
 Files: ./thirdparty/vhacd/
 Comment: V-HACD
 Copyright: 2011, Khaled Mamou
   2003-2009, Erwin Coumans
 License: BSD-3-clause
+
+Files: ./thirdparty/volk/
+Comment: volk
+Copyright: 2018-2024, Arseny Kapoulkine
+License: Expat
+
+Files: ./thirdparty/vulkan/
+Comment: Vulkan Headers
+Copyright: 2014-2024, The Khronos Group Inc.
+  2014-2023, Valve Corporation
+  2014-2023, LunarG, Inc.
+License: Apache-2.0
+
+Files: ./thirdparty/vulkan/vk_mem_alloc.h
+Comment: Vulkan Memory Allocator
+Copyright: 2017-2024, Advanced Micro Devices, Inc.
+License: Expat
+
+Files: ./thirdparty/wayland/
+Comment: Wayland core protocol
+Copyright: 2008-2012, Kristian Høgsberg
+  2010-2012, Intel Corporation
+  2011, Benjamin Franzke
+  2012, Collabora, Ltd.
+License: Expat
+
+Files: ./thirdparty/wayland-protocols/
+Comment: Wayland protocols that add functionality not available in the core protocol
+Copyright: 2008-2013, Kristian Høgsberg
+  2010-2013, Intel Corporation
+  2013,      Rafael Antognolli
+  2013,      Jasper St. Pierre
+  2014,      Jonas Ådahl
+  2014,      Jason Ekstrand
+  2014-2015, Collabora, Ltd.
+  2015,      Red Hat Inc.
+License: Expat
 
 Files: ./thirdparty/wslay/
 Comment: Wslay
@@ -428,12 +586,12 @@ License: Expat
 
 Files: ./thirdparty/zlib/
 Comment: zlib
-Copyright: 1995-2017, Jean-loup Gailly and Mark Adler
+Copyright: 1995-2024, Jean-loup Gailly and Mark Adler
 License: Zlib
 
 Files: ./thirdparty/zstd/
 Comment: Zstandard
-Copyright: 2016-2020, Facebook, Inc.
+Copyright: Meta Platforms, Inc. and affiliates.
 License: BSD-3-clause
 
 
@@ -1015,6 +1173,147 @@ License: Expat
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+License: glslang
+ Here, glslang proper means core GLSL parsing, HLSL parsing, and SPIR-V code
+ generation. Glslang proper requires use of a number of licenses, one that covers
+ preprocessing and others that covers non-preprocessing.
+ .
+ Bison was removed long ago. You can build glslang from the source grammar,
+ using tools of your choice, without using bison or any bison files.
+ .
+ Other parts, outside of glslang proper, include:
+ .
+ - gl_types.h, only needed for OpenGL-like reflection, and can be left out of
+   a parse and codegen project.  See it for its license.
+ .
+ - update_glslang_sources.py, which is not part of the project proper and does
+   not need to be used.
+ .
+ - the SPIR-V "remapper", which is optional, but has the same license as
+   glslang proper
+ .
+ - Google tests and SPIR-V tools, and anything in the external subdirectory
+   are external and optional; see them for their respective licenses.
+ .
+ --------------------------------------------------------------------------------
+ .
+ The core of glslang-proper, minus the preprocessor is licenced as follows:
+ .
+ --------------------------------------------------------------------------------
+ 3-Clause BSD License
+ --------------------------------------------------------------------------------
+ .
+ Copyright (C) 2015-2018 Google, Inc.
+ Copyright (C) <various other dates and companies>
+ .
+ All rights reserved.
+ .
+ See: <License: BSD-3-clause>.
+ .
+ --------------------------------------------------------------------------------
+ 2-Clause BSD License
+ --------------------------------------------------------------------------------
+ .
+ Copyright 2020 The Khronos Group Inc
+ .
+ See: <License: BSD-2-clause>.
+ .
+ --------------------------------------------------------------------------------
+ The MIT License
+ --------------------------------------------------------------------------------
+ .
+ Copyright 2020 The Khronos Group Inc
+ .
+ See: <License: Expat>.
+ .
+ --------------------------------------------------------------------------------
+ APACHE LICENSE, VERSION 2.0
+ --------------------------------------------------------------------------------
+ .
+ See: <License: Apache-2.0>.
+ .
+ --------------------------------------------------------------------------------
+ GPL 3 with special bison exception
+ --------------------------------------------------------------------------------
+ .
+ Bison implementation for Yacc-like parsers in C
+ .
+ Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
+ .
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ .
+ As a special exception, you may create a larger work that contains
+ part or all of the Bison parser skeleton and distribute that work
+ under terms of your choice, so long as that work isn't itself a
+ parser generator using the skeleton or a modified version thereof
+ as a parser skeleton.  Alternatively, if you modify or redistribute
+ the parser skeleton itself, you may (at your option) remove this
+ special exception, which will cause the skeleton and the resulting
+ Bison output files to be licensed under the GNU General Public
+ License without this special exception.
+ .
+ This special exception was added by the Free Software Foundation in
+ version 2.2 of Bison.
+ .
+ --------------------------------------------------------------------------------
+ ================================================================================
+ --------------------------------------------------------------------------------
+ .
+ The preprocessor has the core licenses stated above, plus an additional licence:
+ .
+ Copyright (c) 2002, NVIDIA Corporation.
+ .
+ NVIDIA Corporation("NVIDIA") supplies this software to you in
+ consideration of your agreement to the following terms, and your use,
+ installation, modification or redistribution of this NVIDIA software
+ constitutes acceptance of these terms.  If you do not agree with these
+ terms, please do not use, install, modify or redistribute this NVIDIA
+ software.
+ .
+ In consideration of your agreement to abide by the following terms, and
+ subject to these terms, NVIDIA grants you a personal, non-exclusive
+ license, under NVIDIA's copyrights in this original NVIDIA software (the
+ "NVIDIA Software"), to use, reproduce, modify and redistribute the
+ NVIDIA Software, with or without modifications, in source and/or binary
+ forms; provided that if you redistribute the NVIDIA Software, you must
+ retain the copyright notice of NVIDIA, this notice and the following
+ text and disclaimers in all such redistributions of the NVIDIA Software.
+ Neither the name, trademarks, service marks nor logos of NVIDIA
+ Corporation may be used to endorse or promote products derived from the
+ NVIDIA Software without specific prior written permission from NVIDIA.
+ Except as expressly stated in this notice, no other rights or licenses
+ express or implied, are granted by NVIDIA herein, including but not
+ limited to any patent rights that may be infringed by your derivative
+ works or by other works in which the NVIDIA Software may be
+ incorporated. No hardware is licensed hereunder.
+ .
+ THE NVIDIA SOFTWARE IS BEING PROVIDED ON AN "AS IS" BASIS, WITHOUT
+ WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+ INCLUDING WITHOUT LIMITATION, WARRANTIES OR CONDITIONS OF TITLE,
+ NON-INFRINGEMENT, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+ ITS USE AND OPERATION EITHER ALONE OR IN COMBINATION WITH OTHER
+ PRODUCTS.
+ .
+ IN NO EVENT SHALL NVIDIA BE LIABLE FOR ANY SPECIAL, INDIRECT,
+ INCIDENTAL, EXEMPLARY, CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+ TO, LOST PROFITS; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) OR ARISING IN ANY WAY
+ OUT OF THE USE, REPRODUCTION, MODIFICATION AND/OR DISTRIBUTION OF THE
+ NVIDIA SOFTWARE, HOWEVER CAUSED AND WHETHER UNDER THEORY OF CONTRACT,
+ TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF
+ NVIDIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 License: FTL
                     The FreeType Project LICENSE
                     ----------------------------
@@ -1177,6 +1476,46 @@ License: FTL
    David Turner      <david.turner@freetype.org>
    Robert Wilhelm    <robert.wilhelm@freetype.org>
    Werner Lemberg    <werner.lemberg@freetype.org>
+
+License: HarfBuzz
+ HarfBuzz is licensed under the so-called "Old MIT" license.  Details follow.
+ For parts of HarfBuzz that are licensed under different licenses see individual
+ files names COPYING in subdirectories where applicable.
+ .
+ Copyright (C) 2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020  Google, Inc.
+ Copyright (C) 2018,2019,2020  Ebrahim Byagowi
+ Copyright (C) 2019,2020  Facebook, Inc.
+ Copyright (C) 2012  Mozilla Foundation
+ Copyright (C) 2011  Codethink Limited
+ Copyright (C) 2008,2010  Nokia Corporation and/or its subsidiary(-ies)
+ Copyright (C) 2009  Keith Stribley
+ Copyright (C) 2009  Martin Hosken and SIL International
+ Copyright (C) 2007  Chris Wilson
+ Copyright (C) 2005,2006,2020,2021  Behdad Esfahbod
+ Copyright (C) 2005  David Turner
+ Copyright (C) 2004,2007,2008,2009,2010  Red Hat, Inc.
+ Copyright (C) 1998-2004  David Turner and Werner Lemberg
+ .
+ For full copyright notices consult the individual files in the package.
+ .
+ .
+ Permission is hereby granted, without written agreement and without
+ license or royalty fees, to use, copy, modify, and distribute this
+ software and its documentation for any purpose, provided that the
+ above copyright notice and the following two paragraphs appear in
+ all copies of this software.
+ .
+ IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE TO ANY PARTY FOR
+ DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES
+ ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN
+ IF THE COPYRIGHT HOLDER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+ DAMAGE.
+ .
+ THE COPYRIGHT HOLDER SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING,
+ BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS
+ ON AN "AS IS" BASIS, AND THE COPYRIGHT HOLDER HAS NO OBLIGATION TO
+ PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 
 License: MPL-2.0
  Mozilla Public License Version 2.0
@@ -1538,7 +1877,7 @@ License: MPL-2.0
  .
    This Source Code Form is subject to the terms of the Mozilla Public
    License, v. 2.0. If a copy of the MPL was not distributed with this
-   file, You can obtain one at http://mozilla.org/MPL/2.0/.
+   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  .
  If it is not possible or desirable to put the notice in a particular
  file, then You may include the notice in a location (such as a LICENSE
@@ -1635,6 +1974,41 @@ License: OFL-1.1
  INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
  DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE.
+
+License: Unicode
+ COPYRIGHT AND PERMISSION NOTICE (ICU 58 and later)
+ .
+ Copyright (C) 1991-2020 Unicode, Inc. All rights reserved.
+ Distributed under the Terms of Use in https://www.unicode.org/copyright.html.
+ .
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of the Unicode data files and any associated documentation
+ (the "Data Files") or Unicode software and any associated documentation
+ (the "Software") to deal in the Data Files or Software
+ without restriction, including without limitation the rights to use,
+ copy, modify, merge, publish, distribute, and/or sell copies of
+ the Data Files or Software, and to permit persons to whom the Data Files
+ or Software are furnished to do so, provided that either
+ (a) this copyright and permission notice appear with all copies
+ of the Data Files or Software, or
+ (b) this copyright and permission notice appear in associated
+ Documentation.
+ .
+ THE DATA FILES AND SOFTWARE ARE PROVIDED "AS IS", WITHOUT WARRANTY OF
+ ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT OF THIRD PARTY RIGHTS.
+ IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS
+ NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL
+ DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+ DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+ TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ PERFORMANCE OF THE DATA FILES OR SOFTWARE.
+ .
+ Except as contained in this notice, the name of a copyright holder
+ shall not be used in advertising or otherwise to promote the sale,
+ use or other dealings in these Data Files or Software without prior
+ written authorization of the copyright holder.
 
 License: Unlicense
  This is free and unencumbered software released into the public domain.

@@ -6,6 +6,7 @@ using System.Text;
 using Components;
 using DefaultEcs;
 using Godot;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Benchmarking tool for the microbe stage. Used for checking performance impact of changes or for players to see
@@ -125,7 +126,7 @@ public partial class MicrobeBenchmark : Node
 
     private EntitySet? microbeEntities;
 
-    private Random random = new(RANDOM_SEED);
+    private XoShiRo256starstar random = new(RANDOM_SEED);
 
     private int aiGroup1Seed;
     private int aiGroup2Seed;
@@ -439,7 +440,7 @@ public partial class MicrobeBenchmark : Node
     private void StartBenchmark()
     {
         internalPhaseCounter = 0;
-        random = new Random(RANDOM_SEED);
+        random = new XoShiRo256starstar(RANDOM_SEED);
 
         microbeStationaryResult = 0;
         microbeAIResult = 0;

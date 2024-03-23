@@ -68,7 +68,7 @@ public partial class PlacedPlanet : Node3D, IEntityWithNameLabel
 
         if (string.IsNullOrEmpty(PlanetName))
         {
-            var generatedPart = SimulationParameters.Instance.PatchMapNameGenerator.Next(new Random()).ContinentName;
+            var generatedPart = SimulationParameters.Instance.PatchMapNameGenerator.Next(null).ContinentName;
             PlanetName = $"{generatedPart} {StringUtils.NameIndexSuffix(0)}";
         }
 

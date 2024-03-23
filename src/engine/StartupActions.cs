@@ -8,15 +8,23 @@ using Path = System.IO.Path;
 ///   This is the first autoloaded class. Used to perform some actions that should happen
 ///   as the first things in the game
 /// </summary>
+[GodotAutoload]
 public partial class StartupActions : Node
 {
     private bool preventStartup;
 
     private StartupActions()
     {
+        // Editor doesn't need these info prints or native library
+        if (Engine.IsEditorHint())
+        {
+            GD.Print("Thrive code loaded into the Godot editor, skipping various autoload operations");
+            return;
+        }
+
         // Print game version
         // TODO: for devbuilds it would be nice to print the hash here
-        GD.Print("This is Thrive version: ", Constants.Version, " (see below for exact build info)");
+        GD.Print("This is Thrive version: ", Constants.VersionFull, " (see below for more build info)");
 
         // Add unhandled exception logger if debugger is not attached
         if (!Debugger.IsAttached)
@@ -58,9 +66,9 @@ public partial class StartupActions : Node
                     }
                     else
                     {
-                        // Thrive needs SSE4.1, SSE4.2, and AVX (1) currently, this is not told to the player to avoid
+                        // Thrive needs SSE4.1, SSE4.2, this is not told to the player to avoid
                         // confusion with what they are missing
-                        GD.Print("Thrive requires a new enough CPU to have various extension instruction sets, " +
+                        GD.PrintErr("Thrive requires a new enough CPU to have various extension instruction sets, " +
                             "see above for what is detected as missing");
                         GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
                             "required instruction set extensions is required");
@@ -75,8 +83,14 @@ public partial class StartupActions : Node
             }
             else
             {
-                GD.Print("Skipping CPU type check, please do not report any crashes due to illegal CPU " +
+                GD.Print("Skipping CPU feature check, please do not report any crashes due to illegal CPU " +
                     "instruction problems (as that indicates missing CPU feature this check would test)");
+            }
+
+            if (LaunchOptions.ForceDisableAvx)
+            {
+                GD.Print("Disabling AVX due to command line option");
+                NativeInterop.DisableAvx();
             }
 
             if (loadNative)
@@ -114,7 +128,7 @@ public partial class StartupActions : Node
                 GD.PrintErr("Please do not report to us the next unhandled exception error about this, unless " +
                     "this is an official Thrive release that has this issue");
 
-                if (FeatureInformation.GetOS() == FeatureInformation.PlatformLinux)
+                if (FeatureInformation.IsLinux())
                 {
                     GD.PrintErr("On Linux please verify you have new enough GLIBC version as otherwise the library " +
                         "is unloadable. Updating your distro to the latest version should resolve the issue as long " +

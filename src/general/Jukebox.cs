@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Manages playing music. Autoload singleton
 /// </summary>
+[GodotAutoload]
 public partial class Jukebox : Node
 {
     private const float FADE_TIME = 1.0f;
@@ -45,6 +47,9 @@ public partial class Jukebox : Node
     /// </summary>
     private Jukebox()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
     }
 
@@ -77,6 +82,12 @@ public partial class Jukebox : Node
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+        {
+            paused = true;
+            return;
+        }
+
         categories = SimulationParameters.Instance.GetMusicCategories();
 
         ProcessMode = ProcessModeEnum.Always;
@@ -553,7 +564,7 @@ public partial class Jukebox : Node
         }
         else
         {
-            var random = new Random();
+            var random = new XoShiRo128starstar();
             int nextIndex;
 
             if (mode == TrackList.Order.Random)

@@ -11,6 +11,7 @@ using FileAccess = Godot.FileAccess;
 /// <summary>
 ///   Contains definitions for global game configuration like Compounds, Organelles etc.
 /// </summary>
+[GodotAutoload]
 public partial class SimulationParameters : Node
 {
     public const string AUTO_EVO_CONFIGURATION_NAME = "AutoEvoConfiguration";
@@ -79,6 +80,9 @@ public partial class SimulationParameters : Node
     public override void _Ready()
     {
         base._Ready();
+
+        if (Engine.IsEditorHint())
+            return;
 
         // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
         instance = this;
