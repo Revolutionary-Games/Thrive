@@ -29,6 +29,12 @@
               clang
               lld
               cmake
+              # For packaging manually
+              zip
+              p7zip
+              # For Localization
+              poedit
+              gettext
             ];
           };
         });
