@@ -1,5 +1,5 @@
 {
-  description = "Nix Flake for Thrive";
+  description = "Nix Flake for Thrive Development";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
 
@@ -11,7 +11,7 @@
     in
     {
       # Launch into the shell environment with `nix develop`
-      # Building manually in this dev env can be done by following setup_instructions.md
+      # Building and running is possible by following setup_instructions.md
       devShells.x86_64-linux.default =
         pkgs.mkShell {
           packages = with pkgs; [
@@ -19,58 +19,14 @@
             git
             git-lfs
             dotnet-sdk_8
-            (nuget-to-nix.override { dotnet-sdk = dotnet-sdk_8; }) # This can update the deps.nix
             self.packages.x86_64-linux.godot4-dotnet-bin
+            # For compiling native libraries
+            stdenv
+            clang
+            lld
+            cmake
           ];
         };
-
-      # Can't import resources from command line
-      # https://github.com/godotengine/godot-proposals/issues/1362
-
-      # How to build Thrive
-      # - clone repo WITH SUBMODULES!
-      # - git lfs pull
-      # - dotnet restore / fetch nuget
-      # - Godot compile
-      # - Dotnet Fetch Install
-
-      # Fully build Thrive
-      # packages.x86_64-linux.default = pkgs.buildDotnetModule rec {
-      #   pname = "Thrive";
-      #   version = "0.0.0"; # TODO: the update to godot 4 does not have a release yet
-      #   src = pkgs.fetchgit {
-      #     url = "https://github.com/Revolutionary-Games/${pname}";
-      #     branchName = "13272caddcca2e00f7446188b5b0d1522f24d9b6";
-      #     sha256 = "sha256-qmtY00fnc2MB0jWcGcwd7l2NNgHANu+tPlfLfMZzqoU=";
-      #     fetchLFS = true;
-      #     fetchSubmodules = true;
-      #   };
-
-      #   projectFile = ./Thrive.sln;
-      #   nugetDeps = ./deps.nix;
-      #   dotnet-sdk = pkgs.dotnet-sdk_8;
-      #   dotnet-runtime = pkgs.dotnet-runtime_8;
-
-      #   # configurePhase = ''
-      #   #   dotnet run --project Scripts -- make-project-valid
-      #   #   dotnet restore Thrive.sln
-      #   # '';
-
-      #   # # godot --headless --export-release "Linux/X11"
-      #   # # dotnet run --project Scripts -- native Fetch
-      #   # buildPhase = ''
-      #   #   dotnet run --project Scripts -- check compile
-      #   #   dotnet run --project Scripts -- native Build
-      #   # '';
-
-      #   # installPhase = ''
-      #   #   dotnet run --project Scripts -- package --dehydrated
-      #   # '';
-
-      #   nativeBuildInputs = with pkgs; [
-      #     self.packages.x86_64-linux.godot4-dotnet-bin
-      #   ];
-      # };
 
       packages.x86_64-linux.godot4-dotnet-bin = pkgs.stdenv.mkDerivation rec {
           pname = "godot4-dotnet-bin";
