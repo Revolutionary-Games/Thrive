@@ -19,13 +19,7 @@
             git
             git-lfs
             dotnet-sdk_8
-            p7zip
             (nuget-to-nix.override { dotnet-sdk = dotnet-sdk_8; }) # This can update the deps.nix
-            jq
-            gawk
-            curl
-            gnugrep
-            xq-xml
             self.packages.x86_64-linux.godot4-dotnet-bin
           ];
         };
