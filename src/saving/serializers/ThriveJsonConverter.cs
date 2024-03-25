@@ -299,6 +299,8 @@ public abstract class BaseThriveConverter : JsonConverter
     private static readonly Type BaseDynamicTypeAllowedAttribute = typeof(JSONDynamicTypeAllowedAttribute);
     private static readonly Type JsonPropertyAttribute = typeof(JsonPropertyAttribute);
     private static readonly Type JsonIgnoreAttribute = typeof(JsonIgnoreAttribute);
+    private static readonly Type ExportAttribute = typeof(ExportAttribute);
+    private static readonly Type GodotNodeType = typeof(Node);
 
     protected BaseThriveConverter(ISaveContext? context)
     {
@@ -390,7 +392,7 @@ public abstract class BaseThriveConverter : JsonConverter
     {
         var customAttributeData = customAttributes.ToList();
 
-        bool export = customAttributeData.Any(a => a.AttributeType == typeof(ExportAttribute));
+        bool export = customAttributeData.Any(a => a.AttributeType == ExportAttribute);
 
         if (!export)
             return false;
@@ -400,7 +402,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
     public static bool IsIgnoredGodotMember(string name, Type type)
     {
-        return typeof(Node).IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name);
+        return GodotNodeType.IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name);
     }
 
     /// <summary>

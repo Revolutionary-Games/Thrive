@@ -1222,7 +1222,7 @@ public static class Constants
     public const string OS_WINDOWS_NAME = "Windows";
 
     /// <summary>
-    ///   This is just here to make it easier to debug saves
+    ///   This is just here to make it easier to debug saves JSON data
     /// </summary>
     public const Formatting SAVE_FORMATTING = Formatting.None;
 
