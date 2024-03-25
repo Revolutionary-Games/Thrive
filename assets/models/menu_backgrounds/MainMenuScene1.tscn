@@ -1,10 +1,10 @@
 [gd_scene load_steps=35 format=3 uid="uid://jatxjxj6uy0d"]
 
-[ext_resource type="PackedScene" path="res://assets/models/menu_backgrounds/MenuPlanet.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://7etncy6memi4" path="res://assets/models/menu_backgrounds/MenuPlanet.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://c2h4vpmx0juq8" path="res://assets/models/menu_backgrounds/StarsMesh.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://assets/models/menu_backgrounds/MenuPlanetClouds.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://assets/models/menu_backgrounds/MenuPlanetFakeAtmosphere.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cioaty38mki8x" path="res://assets/models/menu_backgrounds/MenuPlanetClouds.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bjhv73tanuowa" path="res://assets/models/menu_backgrounds/MenuPlanetFakeAtmosphere.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bu4uvavl0ieg2" path="res://assets/textures/iron_01.png" id="7"]
 [ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="8"]
@@ -139,7 +139,7 @@ shader_parameter/normalTexture = ExtResource("6")
 shader_parameter/dissolveTexture = ExtResource("9")
 
 [sub_resource type="QuadMesh" id="7"]
-size = Vector2(0.608, 0.496)
+size = Vector2(0.133, 0.271)
 center_offset = Vector3(0, 0.048, 0)
 
 [sub_resource type="Curve" id="8"]
@@ -152,7 +152,7 @@ offsets = PackedFloat32Array(0, 0.438776, 0.99095)
 colors = PackedColorArray(1, 1, 1, 0.294118, 1, 1, 1, 0, 1, 1, 1, 0)
 
 [sub_resource type="QuadMesh" id="27"]
-size = Vector2(0.56, 0.5)
+size = Vector2(0.245, 0.135)
 
 [sub_resource type="Curve" id="28"]
 bake_resolution = 128
@@ -353,10 +353,10 @@ transform = Transform3D(-0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.30
 environment = SubResource("1")
 
 [node name="starssphere" parent="." instance=ExtResource("2")]
-transform = Transform3D(3000, -0.73781, 0.523647, 0.733008, 2999.88, 27.3314, -0.530347, -27.3313, 2999.88, -12.7566, 0, 8.74701)
+transform = Transform3D(5000, -1.22968, 0.872746, 1.22168, 4999.8, 45.5524, -0.883912, -45.5522, 4999.8, -12.7566, 0, 8.74701)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.191429, 0.00534528, -0.981492, -0.0111873, 0.999932, 0.00326376, 0.981443, 0.0103555, 0.191476, -49.362, -4.916, 1.662)
+transform = Transform3D(0.191429, 0.00534531, -0.981492, -0.0111873, 0.999932, 0.00326378, 0.981443, 0.0103555, 0.191476, -49.362, -4.916, 1.662)
 current = true
 fov = 36.8
 far = 15000.0
@@ -389,6 +389,7 @@ libraries = {
 "": SubResource("AnimationLibrary_3b6d4")
 }
 autoplay = "PlanetRotation"
+speed_scale = 0.1
 
 [node name="Comet2" type="Node3D" parent="."]
 transform = Transform3D(0.798237, 0.0711368, -0.598129, -0.112538, 0.99313, -0.0320737, 0.591738, 0.0929148, 0.800758, -43.74, -5.796, -1.599)
