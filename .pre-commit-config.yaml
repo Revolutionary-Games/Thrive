@@ -6,4 +6,10 @@ repos:
       entry: dotnet run --project Scripts -- check --pre-commit --disable-colour
       language: system
       verbose: true
-      pass_filenames: false  
+      pass_filenames: false
+    - id: run_simple_tests
+      name: Run simple tests
+      entry: dotnet test test/code_tests
+      language: system
+      verbose: true
+      pass_filenames: false
