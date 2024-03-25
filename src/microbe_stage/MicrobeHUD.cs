@@ -13,21 +13,6 @@ using Newtonsoft.Json;
 [JsonObject(MemberSerialization.OptIn)]
 public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 {
-    [Export]
-    public NodePath? MulticellularButtonPath;
-
-    [Export]
-    public NodePath MulticellularConfirmPopupPath = null!;
-
-    [Export]
-    public NodePath MacroscopicButtonPath = null!;
-
-    [Export]
-    public NodePath BindingModeHotkeyPath = null!;
-
-    [Export]
-    public NodePath UnbindAllHotkeyPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public PackedScene WinBoxScene = null!;
@@ -41,11 +26,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private readonly Dictionary<(string Category, LocalizedString Name), int> hoveredEntities = new();
     private readonly Dictionary<Compound, InspectedEntityLabel> hoveredCompoundControls = new();
 
+    [Export]
     private ActionButton bindingModeHotkey = null!;
+
+    [Export]
     private ActionButton unbindAllHotkey = null!;
 
+    [Export]
     private Button multicellularButton = null!;
+
+    [Export]
     private CustomWindow multicellularConfirmPopup = null!;
+
+    [Export]
     private Button macroscopicButton = null!;
 
     private CompoundProgressBar ingestedMatterBar = null!;
@@ -93,13 +86,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             new LocalizedString("INGESTED_MATTER"), 0, 1);
 
         compoundsPanel.AddPrimaryBar(ingestedMatterBar);
-
-        multicellularButton = GetNode<Button>(MulticellularButtonPath);
-        multicellularConfirmPopup = GetNode<CustomWindow>(MulticellularConfirmPopupPath);
-        macroscopicButton = GetNode<Button>(MacroscopicButtonPath);
-
-        bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
-        unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
 
         mouseHoverPanel.AddCategory(COMPOUNDS_CATEGORY, new LocalizedString("COMPOUNDS_COLON"));
         mouseHoverPanel.AddCategory(SPECIES_CATEGORY, new LocalizedString("SPECIES_COLON"));
@@ -524,23 +510,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             if (hoveredEntity.Value > 1)
                 item.SetDescription(Localization.Translate("N_TIMES").FormatSafe(hoveredEntity.Value));
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MulticellularButtonPath != null)
-            {
-                MulticellularButtonPath.Dispose();
-                MulticellularConfirmPopupPath.Dispose();
-                MacroscopicButtonPath.Dispose();
-                BindingModeHotkeyPath.Dispose();
-                UnbindAllHotkeyPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>
