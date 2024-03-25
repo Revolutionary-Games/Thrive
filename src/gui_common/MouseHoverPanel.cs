@@ -8,14 +8,11 @@ using Godot.Collections;
 /// </summary>
 public partial class MouseHoverPanel : PanelContainer
 {
-    [Export]
-    public NodePath? CategoriesContainerPath;
-
-    [Export]
-    public NodePath NothingHereContainerPath = null!;
-
 #pragma warning disable CA2213 // Disposable fields should be disposed
+    [Export]
     private Container categoriesContainer = null!;
+
+    [Export]
     private Container nothingHereContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
@@ -31,12 +28,6 @@ public partial class MouseHoverPanel : PanelContainer
     /// </remarks>
     private Array<Node> categoryControls = new();
 
-    public override void _Ready()
-    {
-        categoriesContainer = GetNode<Container>(CategoriesContainerPath);
-        nothingHereContainer = GetNode<Container>(NothingHereContainerPath);
-    }
-
     public override void _Process(double delta)
     {
         var visibleEntriesCount = 0;
@@ -46,7 +37,7 @@ public partial class MouseHoverPanel : PanelContainer
         // TODO: avoid the enumerator allocation here
         foreach (var category in categoryControls.OfType<MouseHoverCategory>())
         {
-            var entriesCount = category.TotalEntriesCount;
+            var entriesCount = category.VisibleEntriesCount;
             category.Visible = entriesCount > 0;
             category.SeparatorVisible = firstVisibleCategory != null;
             visibleEntriesCount += entriesCount;
@@ -119,18 +110,6 @@ public partial class MouseHoverPanel : PanelContainer
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (CategoriesContainerPath != null)
-            {
-                CategoriesContainerPath.Dispose();
-                NothingHereContainerPath.Dispose();
-            }
-        }
-    }
-
     /// <summary>
     ///   Category of items in the hover panel, each category has a title and one or more items in it
     /// </summary>
@@ -165,6 +144,24 @@ public partial class MouseHoverPanel : PanelContainer
         }
 
         public int TotalEntriesCount => totalEntityLabels;
+
+        public int VisibleEntriesCount
+        {
+            get
+            {
+                int visibleCount = 0;
+
+                var children = container.GetChildren();
+                int count = children.Count;
+                for (int i = 0; i < count; ++i)
+                {
+                    if (children[i] is Control control && control.Visible)
+                        ++visibleCount;
+                }
+
+                return visibleCount;
+            }
+        }
 
         public bool SeparatorVisible
         {
