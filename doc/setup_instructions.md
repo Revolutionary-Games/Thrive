@@ -84,20 +84,22 @@ https://www.youtube.com/watch?v=HVsySz-h9r4
 ----------
 
 Next you need, .NET SDK. Recommended version currently is 8.0, but a
-newer version may also work.
+newer version may also work. You also need *runtime* 6.0 to run Thrive
+tests. This can be installed either with the sdk version 6.0 or just
+the plain runtime which saves some disk space.
 
 On Linux you can use your package manager to install that. The package
 might be called `dotnet-sdk-8.0`. For example on Fedora this can be
-installed with: `sudo dnf install dotnet-sdk-8.0`
+installed with: `sudo dnf install dotnet-sdk-8.0 dotnet-runtime-6.0`
 
 On Windows don't install Mono or MonoDevelop, it will break
 things. Dotnet is a good tool to use on Windows. You can download an
 installer for that from: https://dotnet.microsoft.com/en-us/download
 
 On mac you can install the dotnet sdk by downloading an installer from
-Microsoft's side. Important note for M1 mac users, you need to install
-the arm version, the x64 version doesn't work out of the box, so it is
-very much not recommended to be used.
+Microsoft's website. Important note for M1 mac users, you need to
+install the arm version, the x64 version doesn't work out of the box,
+so it is very much not recommended to be used.
 
 The SDK is also available through Homebrew but it will install the
 latest version (even if that's not yet officially the version used by
