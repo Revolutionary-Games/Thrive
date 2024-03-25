@@ -15,6 +15,12 @@ public partial class MainMenu : NodeWithInput
     [Export]
     public uint CurrentMenuIndex;
 
+    /// <summary>
+    ///   How many non-menu items there are in the menu container
+    /// </summary>
+    [Export]
+    public int NonMenuItemsFirst = 1;
+
     [Export]
     public NodePath? ThriveLogoPath;
 
@@ -714,7 +720,7 @@ public partial class MainMenu : NodeWithInput
         {
             menu.Hide();
 
-            if (menu.GetIndex() == CurrentMenuIndex)
+            if (menu.GetIndex() - NonMenuItemsFirst == CurrentMenuIndex)
             {
                 menu.Show();
                 thriveLogo.Show();
