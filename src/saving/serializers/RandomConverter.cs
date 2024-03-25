@@ -211,15 +211,6 @@ public class RandomConverter : JsonConverter
             if (name == null)
                 throw new JsonException("Expected JSON property name at this point");
 
-            // If seeing any of the old properties, then just return a new random
-            // ReSharper disable StringLiteralTypo
-            if (name is "inext" or "inextp" or "seedArray")
-            {
-                // ReSharper restore StringLiteralTypo
-
-                return ReadOldRandomAsDefault(reader, objectType);
-            }
-
             reader.Read();
 
             if (reader.TokenType != JsonToken.Integer)
@@ -361,43 +352,6 @@ public class RandomConverter : JsonConverter
         }
 
         throw new JsonException($"Unknown value type to convert to uint: {reader.Value.GetType()}");
-    }
-
-    private XoshiroBase ReadOldRandomAsDefault(JsonReader reader, Type objectType)
-    {
-        GD.Print("Reading old format random, ignoring data and just returning a fresh random instance");
-
-        // Read until the end of this object
-        int objectLevel = 1;
-
-        while (objectLevel > 0)
-        {
-            reader.Read();
-
-            if (reader.TokenType == JsonToken.StartObject)
-            {
-                ++objectLevel;
-            }
-            else if (reader.TokenType == JsonToken.EndObject)
-            {
-                --objectLevel;
-            }
-        }
-
-        // Create a blank time-seeded random of the right type
-        if (objectType == xoshiro256StarStar)
-            return new XoShiRo256starstar();
-
-        if (objectType == xoshiro256Plus)
-            return new XoShiRo256plus();
-
-        if (objectType == xoshiro128StarStar)
-            return new XoShiRo128starstar();
-
-        if (objectType == xoshiro128Plus)
-            return new XoShiRo128plus();
-
-        throw new UnknownXoshiroConcreteTypeException();
     }
 
     private class UnknownXoshiroConcreteTypeException : JsonException
