@@ -112,6 +112,9 @@ jobs:
       - run:
           command: dotnet restore Scripts/Scripts.csproj
       - run:
+          name: Simple Thrive code-only tests
+          command: dotnet test test/code_tests
+      - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
       - run:
