@@ -44,9 +44,16 @@ public class BaseNodeConverter : BaseThriveConverter
             case "GlobalRotation":
             case "Rotation":
             case "Scale":
+            case "Quaternion":
+            case "Basis":
+            // Maybe some editor stuff?
+            case "RotationEditMode":
+            case "RotationOrder":
             // Ignore this as this is parent relative and probably causes problems loading
             case "GlobalTransform":
             case "GlobalPosition":
+            case "GlobalBasis":
+            case "GlobalRotationDegrees":
             // Ignore physics properties that cause deprecation warnings
             case "Friction":
             case "Bounce":
@@ -56,8 +63,11 @@ public class BaseNodeConverter : BaseThriveConverter
             // These are very big objects when saved, and probably can't be properly loaded, so these are ignored
             case "Material":
             case "MaterialOverride":
+            case "MaterialOverlay":
+            case "Environment":
             // Name as a StringName cannot be saved without a custom converter
             case "Name":
+            case "VisibilityParent":
             // Bunch of new Control node things that aren't saved
             case "Theme":
             case "ShortcutContext":

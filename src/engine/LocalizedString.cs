@@ -36,7 +36,9 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
     public LocalizedString(string translationKey, params object[]? formatStringArgs)
     {
         this.translationKey = translationKey;
-        this.formatStringArgs = formatStringArgs;
+
+        if (formatStringArgs is { Length: > 0 })
+            this.formatStringArgs = formatStringArgs;
     }
 
     public override bool Equals(object? obj)

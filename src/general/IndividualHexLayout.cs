@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Allows placing individual hexes with data in a layout
@@ -14,6 +15,7 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>
     {
     }
 
+    [JsonConstructor]
     public IndividualHexLayout()
     {
     }

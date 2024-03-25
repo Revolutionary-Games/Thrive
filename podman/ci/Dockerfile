@@ -1,7 +1,7 @@
 FROM fedora:39
 
 RUN dnf install -y --setopt=deltarpm=false git git-lfs unzip wget dotnet-sdk-8.0 \
-    gettext p7zip && dnf clean all
+    dotnet-runtime-6.0 gettext p7zip && dnf clean all
 RUN git lfs install
 
 # Godot install

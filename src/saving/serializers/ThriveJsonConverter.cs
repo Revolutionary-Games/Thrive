@@ -170,6 +170,11 @@ public class ThriveJsonConverter : IDisposable
             // UseThriveSerializerAttribute when reference loops exist, this probably causes a stack overflow
             ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
 
+            // Skip writing null properties. This saves a bit of data and as saves are not manually edited shouldn't
+            // really miss out on anything by just having null values omitted. One potential pitfall is the requirement
+            // to not rely on a null value to be passed to a json constructor
+            NullValueHandling = NullValueHandling.Ignore,
+
             TraceWriter = GetTraceWriter(Settings.Instance.JSONDebugMode, JSONDebug.ErrorHasOccurred),
         };
     }
@@ -294,6 +299,8 @@ public abstract class BaseThriveConverter : JsonConverter
     private static readonly Type BaseDynamicTypeAllowedAttribute = typeof(JSONDynamicTypeAllowedAttribute);
     private static readonly Type JsonPropertyAttribute = typeof(JsonPropertyAttribute);
     private static readonly Type JsonIgnoreAttribute = typeof(JsonIgnoreAttribute);
+    private static readonly Type ExportAttribute = typeof(ExportAttribute);
+    private static readonly Type GodotNodeType = typeof(Node);
 
     protected BaseThriveConverter(ISaveContext? context)
     {
@@ -385,7 +392,7 @@ public abstract class BaseThriveConverter : JsonConverter
     {
         var customAttributeData = customAttributes.ToList();
 
-        bool export = customAttributeData.Any(a => a.AttributeType == typeof(ExportAttribute));
+        bool export = customAttributeData.Any(a => a.AttributeType == ExportAttribute);
 
         if (!export)
             return false;
@@ -395,7 +402,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
     public static bool IsIgnoredGodotMember(string name, Type type)
     {
-        return typeof(Node).IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name);
+        return GodotNodeType.IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name);
     }
 
     /// <summary>
@@ -838,6 +845,12 @@ public abstract class BaseThriveConverter : JsonConverter
         if (SkipMember(name))
             return;
 
+        if (serializer.NullValueHandling == NullValueHandling.Ignore && ReferenceEquals(memberValue, null))
+        {
+            // Skip writing a null
+            return;
+        }
+
         writer.WritePropertyName(name);
 
         // Special handle types (none currently)
@@ -846,6 +859,15 @@ public abstract class BaseThriveConverter : JsonConverter
         serializer.Serialize(writer, memberValue, memberType);
     }
 
+    /// <summary>
+    ///   Note that if the static type of the deserializer doesn't use custom fields, this cannot be read properly.
+    ///   As such using this is not recommended currently.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Further explanation: https://github.com/Revolutionary-Games/Thrive/issues/3721
+    ///   </para>
+    /// </remarks>
     protected virtual void WriteCustomExtraFields(JsonWriter writer, object value, JsonSerializer serializer)
     {
     }

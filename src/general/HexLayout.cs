@@ -36,6 +36,7 @@ public abstract class HexLayout<T> : ICollection<T>
         this.onRemoved = onRemoved;
     }
 
+    [JsonConstructor]
     public HexLayout()
     {
     }
