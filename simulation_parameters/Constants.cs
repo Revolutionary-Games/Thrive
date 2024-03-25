@@ -1300,7 +1300,7 @@ public static class Constants
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
 
-    public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.35f;
+    public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.20f;
 
     public const float COMPOUND_BAR_COMPACT_WIDTH = 64;
     public const float COMPOUND_BAR_NORMAL_WIDTH = 220;
