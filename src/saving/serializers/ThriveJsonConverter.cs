@@ -846,6 +846,15 @@ public abstract class BaseThriveConverter : JsonConverter
         serializer.Serialize(writer, memberValue, memberType);
     }
 
+    /// <summary>
+    ///   Note that if the static type of the deserializer doesn't use custom fields, this cannot be read properly.
+    ///   As such using this is not recommended currently.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Further explanation: https://github.com/Revolutionary-Games/Thrive/issues/3721
+    ///   </para>
+    /// </remarks>
     protected virtual void WriteCustomExtraFields(JsonWriter writer, object value, JsonSerializer serializer)
     {
     }
