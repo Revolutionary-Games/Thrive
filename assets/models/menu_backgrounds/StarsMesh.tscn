@@ -6,6 +6,8 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3qad"]
 cull_mode = 1
 albedo_texture = ExtResource("2_ikt5j")
+emission_enabled = true
+emission_texture = ExtResource("2_ikt5j")
 
 [node name="MenuPlanet" instance=ExtResource("1")]
 
