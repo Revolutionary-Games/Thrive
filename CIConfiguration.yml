@@ -2,7 +2,7 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v22
+    image: thrive/godot-ci:v23
     cache:
       loadFrom:
         - v9-{Branch}-build
@@ -38,7 +38,7 @@ jobs:
       #     name: Upload devbuilds
       #     command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v22
+    image: thrive/godot-ci:v23
     cache:
       loadFrom:
         - v7-{Branch}-jetbrains
@@ -95,7 +95,7 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_script:
-    image: thrive/godot-ci:v22
+    image: thrive/godot-ci:v23
     cache:
       loadFrom:
         - v7-{Branch}-format
@@ -111,6 +111,9 @@ jobs:
     steps:
       - run:
           command: dotnet restore Scripts/Scripts.csproj
+      - run:
+          name: Simple Thrive code-only tests
+          command: dotnet test test/code_tests
       - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite

@@ -993,6 +993,7 @@ public partial class ModManager : Control
         JsonSerializer.Create(new JsonSerializerSettings
         {
             Formatting = Formatting.Indented,
+            NullValueHandling = NullValueHandling.Include,
         }).Serialize(new JsonTextWriter(serialized) { Indentation = 4 }, parsedData.Info);
         var modInfoText = serialized.ToString();
 
