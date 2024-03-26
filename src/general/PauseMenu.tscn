@@ -277,11 +277,7 @@ layout_mode = 1
 
 [node name="Thriveopedia" parent="." index="4" instance=ExtResource("8")]
 visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 
 [node name="UnsavedProgressWarning" parent="." index="5" instance=ExtResource("7")]
 custom_minimum_size = Vector2(391, 0)
