@@ -44,6 +44,8 @@ public class InputDataList : ICloneable
     /// </summary>
     internal void ApplyToGodotInputMap()
     {
+        bool printedUIWarning = false;
+
         foreach (var action in Data)
         {
             // Skip destroying ui actions to keep the UI usable even with bad inputs
@@ -52,8 +54,13 @@ public class InputDataList : ICloneable
             // TODO: this might need changes when ui keys are fully rebindable
             if (action.Key.StartsWith("ui_") && action.Value.Count < 1)
             {
-                GD.PrintErr("Skipping clearing an UI input action");
-                return;
+                if (!printedUIWarning)
+                {
+                    GD.PrintErr("Skipping clearing an UI input action: ", action.Key);
+                    printedUIWarning = true;
+                }
+
+                continue;
             }
 
             var keyName = new StringName(action.Key);
