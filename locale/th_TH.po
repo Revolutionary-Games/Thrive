@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -333,15 +333,6 @@ msgstr ""
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
-
-msgid "BASSBOOST"
-msgstr "เพิ่มเสียงเบส"
-
-msgid "BASSDOWN"
-msgstr "เบสลง"
-
-msgid "BASSUP"
-msgstr "เบสขึ้น"
 
 msgid "BATHYPELAGIC"
 msgstr "โซนมืด"
@@ -1334,12 +1325,6 @@ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} 
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr "ซ้าย"
-
-msgid "DIRECTIONR"
-msgstr "ขวา"
-
 msgid "DISABLED"
 msgstr ""
 
@@ -2088,12 +2073,6 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr "ไฮโดรเจนซัลไฟด์"
 
-msgid "HYPERL"
-msgstr "ไฮเปอร์ซ้าย"
-
-msgid "HYPERR"
-msgstr "ไฮเปอร์ขวา"
-
 msgid "ICESHARD"
 msgstr "ชิ้นส่วนน้ำแข็ง"
 
@@ -2319,10 +2298,17 @@ msgstr ""
 msgid "KEY_BACK"
 msgstr "กลับ"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "กลับ"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "มีข้อขัดแย้งกับ {0}\n"
 "คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "ล้าง"
@@ -2345,6 +2331,10 @@ msgstr "รายการโปรด"
 msgid "KEY_FORWARD"
 msgstr "ไปข้างหน้า"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "บ้าน"
+
 msgid "KEY_HELP"
 msgstr "ช่วยเหลือ"
 
@@ -2354,14 +2344,30 @@ msgstr "บ้าน"
 msgid "KEY_HOMEPAGE"
 msgstr "โฮมเพจ"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "ช่วยเหลือ"
+
 msgid "KEY_INSERT"
 msgstr "แทรก"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "แทรก"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "รอ"
 
 msgid "KEY_LEFT"
 msgstr "ซ้าย"
 
 msgid "KEY_MENU"
 msgstr "เมนู"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "แท็บ"
 
 msgid "KEY_OPENURL"
 msgstr "เปิด URL"
@@ -4912,12 +4918,6 @@ msgstr ""
 msgid "SUNLIGHT"
 msgstr "แสงแดด"
 
-msgid "SUPERL"
-msgstr "ซ้ายสุด"
-
-msgid "SUPERR"
-msgstr "ขวาสุด"
-
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
@@ -5247,12 +5247,6 @@ msgstr "ช่วยแปลเกม"
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "ช่วยแปลเกม"
-
-msgid "TREBLEDOWN"
-msgstr "เสียงแหลมลง"
-
-msgid "TREBLEUP"
-msgstr "เสียงแหลมขึ้น"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -6798,6 +6792,39 @@ msgstr "ซูมเข้า"
 
 msgid "ZOOM_OUT"
 msgstr "ซูมออก"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "เพิ่มเสียงเบส"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "เบสลง"
+
+#~ msgid "BASSUP"
+#~ msgstr "เบสขึ้น"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "ซ้าย"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "ขวา"
+
+#~ msgid "HYPERL"
+#~ msgstr "ไฮเปอร์ซ้าย"
+
+#~ msgid "HYPERR"
+#~ msgstr "ไฮเปอร์ขวา"
+
+#~ msgid "SUPERL"
+#~ msgstr "ซ้ายสุด"
+
+#~ msgid "SUPERR"
+#~ msgstr "ขวาสุด"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "เสียงแหลมลง"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "เสียงแหลมขึ้น"
 
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"

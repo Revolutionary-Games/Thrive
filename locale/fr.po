@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -335,15 +335,6 @@ msgstr "Basique"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Retour à la vue de la configuration basique"
-
-msgid "BASSBOOST"
-msgstr "Boost de basse"
-
-msgid "BASSDOWN"
-msgstr "Basse vers le bas"
-
-msgid "BASSUP"
-msgstr "Basse vers le haut"
 
 msgid "BATHYPELAGIC"
 msgstr "Bathypélagique"
@@ -1381,12 +1372,6 @@ msgstr "Vitesse de digestion :"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-msgid "DIRECTIONL"
-msgstr "Vers la gauche"
-
-msgid "DIRECTIONR"
-msgstr "Vers la droite"
-
 msgid "DISABLED"
 msgstr "Désactivé"
 
@@ -2119,12 +2104,6 @@ msgstr "{0} (x{1})"
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfure d'Hydrogène"
 
-msgid "HYPERL"
-msgstr "Hyper Gauche"
-
-msgid "HYPERR"
-msgstr "Hyper Droite"
-
 msgid "ICESHARD"
 msgstr "Éclat de glace"
 
@@ -2344,10 +2323,17 @@ msgstr "Juin"
 msgid "KEY_BACK"
 msgstr "Revenir"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Revenir"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Il y a un conflit avec {0}.\n"
 "Voulez-vous enlever l'entrée de {1} ?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Effacer"
@@ -2370,6 +2356,10 @@ msgstr "Favoris"
 msgid "KEY_FORWARD"
 msgstr "Avancer"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Menu principal"
+
 msgid "KEY_HELP"
 msgstr "Aide"
 
@@ -2379,14 +2369,30 @@ msgstr "Menu principal"
 msgid "KEY_HOMEPAGE"
 msgstr "Page d'accueil"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Aide"
+
 msgid "KEY_INSERT"
 msgstr "Insérer"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insérer"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Veuillez patienter"
 
 msgid "KEY_LEFT"
 msgstr "Gauche"
 
 msgid "KEY_MENU"
 msgstr "Menu"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Ouvre l'URL"
@@ -4880,12 +4886,6 @@ msgstr "Suicide"
 msgid "SUNLIGHT"
 msgstr "Lumière du soleil"
 
-msgid "SUPERL"
-msgstr "Super gauche"
-
-msgid "SUPERR"
-msgstr "Super droite"
-
 msgid "SUPPORTER_PATRONS"
 msgstr "Supporters"
 
@@ -5213,12 +5213,6 @@ msgstr "Traducteurs"
 
 msgid "TRANSPARENCY"
 msgstr "Transparence"
-
-msgid "TREBLEDOWN"
-msgstr "Réduire le volume aigu"
-
-msgid "TREBLEUP"
-msgstr "Aigus vers le haut"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Essayez de fossiliser des espèces !"
@@ -6827,6 +6821,39 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "Boost de basse"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Basse vers le bas"
+
+#~ msgid "BASSUP"
+#~ msgstr "Basse vers le haut"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Vers la gauche"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Vers la droite"
+
+#~ msgid "HYPERL"
+#~ msgstr "Hyper Gauche"
+
+#~ msgid "HYPERR"
+#~ msgstr "Hyper Droite"
+
+#~ msgid "SUPERL"
+#~ msgstr "Super gauche"
+
+#~ msgid "SUPERR"
+#~ msgstr "Super droite"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Réduire le volume aigu"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Aigus vers le haut"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Inconnu sur Windows"

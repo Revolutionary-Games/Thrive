@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "ABORT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:124
+#: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "ABORTED_DOT"
 msgstr ""
 
@@ -50,11 +50,11 @@ msgid "ABYSSOPELAGIC"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:282
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:248
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:237
 msgid "ACTION_AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:246
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:235
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
@@ -121,7 +121,7 @@ msgstr ""
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:107
+#: ../src/microbe_stage/MicrobeHUD.cs:93
 msgid "AGENTS_COLON"
 msgstr ""
 
@@ -170,7 +170,8 @@ msgstr ""
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:245
+#: ../src/engine/input/key_mapping/KeyNames.cs:165
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:374
 msgid "ALT"
 msgstr ""
 
@@ -236,7 +237,7 @@ msgstr ""
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:456
+#: ../src/general/MainMenu.tscn:467
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -273,8 +274,8 @@ msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:311
-#: ../src/microbe_stage/MicrobeHUD.tscn:493
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:300
+#: ../src/microbe_stage/MicrobeHUD.tscn:482
 msgid "ATP"
 msgstr ""
 
@@ -315,7 +316,7 @@ msgstr ""
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:358
+#: ../src/auto-evo/AutoEvoRun.cs:359
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
@@ -328,7 +329,7 @@ msgstr ""
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:139
+#: ../src/auto-evo/AutoEvoRun.cs:140
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
@@ -340,13 +341,13 @@ msgstr ""
 msgid "AUTO_EVO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:392
+#: ../src/general/MainMenu.tscn:403
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:258
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:283
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
@@ -357,7 +358,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:259
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:284
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:215
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -391,8 +392,8 @@ msgid "AWARE_STAGE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:726
-#: ../src/general/MainMenu.tscn:421 ../src/general/MainMenu.tscn:480
-#: ../src/general/MainMenu.tscn:519 ../src/general/MainMenu.tscn:804
+#: ../src/general/MainMenu.tscn:432 ../src/general/MainMenu.tscn:491
+#: ../src/general/MainMenu.tscn:530 ../src/general/MainMenu.tscn:835
 #: ../src/general/NewGameSettings.tscn:876 ../src/general/OptionsMenu.tscn:1617
 #: ../src/general/PauseMenu.tscn:251
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:65
@@ -401,11 +402,11 @@ msgstr ""
 msgid "BACK"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:355
+#: ../src/engine/input/key_mapping/KeyNames.cs:277
 msgid "BACKSLASH"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:357
+#: ../src/engine/input/key_mapping/KeyNames.cs:157
 msgid "BACKSPACE"
 msgstr ""
 
@@ -431,29 +432,17 @@ msgstr ""
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:374
-msgid "BASSBOOST"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:376
-msgid "BASSDOWN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:375
-msgid "BASSUP"
-msgstr ""
-
 #: ../simulation_parameters/microbe_stage/biomes.json:613
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:679
-#: ../src/microbe_stage/MicrobeHUD.tscn:426
+#: ../src/microbe_stage/MicrobeHUD.cs:648
+#: ../src/microbe_stage/MicrobeHUD.tscn:415
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:635
-#: ../src/microbe_stage/MicrobeHUD.tscn:419
+#: ../src/microbe_stage/MicrobeHUD.cs:604
+#: ../src/microbe_stage/MicrobeHUD.tscn:408
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -491,7 +480,7 @@ msgstr ""
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:401
+#: ../src/general/MainMenu.tscn:412
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -596,12 +585,12 @@ msgstr ""
 msgid "BUILD_QUEUE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:424
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:413
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:163
+#: ../src/saving/SaveListItem.tscn:167
 msgid "BY"
 msgstr ""
 
@@ -681,7 +670,7 @@ msgstr ""
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:362
+#: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "CAPSLOCK"
 msgstr ""
 
@@ -690,27 +679,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:762
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:753
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:766
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:757
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:770
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:761
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:764
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:755
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:768
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:759
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:772
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:763
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -860,7 +849,7 @@ msgstr ""
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:129
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:130
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
@@ -991,19 +980,19 @@ msgstr ""
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:564
+#: ../src/general/MainMenu.tscn:587
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:559
+#: ../src/general/MainMenu.tscn:582
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:591
+#: ../src/general/MainMenu.tscn:614
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:586
+#: ../src/general/MainMenu.tscn:609
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1024,7 +1013,7 @@ msgstr ""
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:104
+#: ../src/microbe_stage/MicrobeHUD.cs:90
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
@@ -1082,19 +1071,19 @@ msgstr ""
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.tscn:200
+#: ../src/space_stage/SpaceStage.tscn:203
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.tscn:199
+#: ../src/space_stage/SpaceStage.tscn:202
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
 
-#: ../src/society_stage/SocietyStage.tscn:85
+#: ../src/society_stage/SocietyStage.tscn:86
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr ""
 
-#: ../src/society_stage/SocietyStage.tscn:86
+#: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr ""
 
@@ -1106,11 +1095,11 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:435 ../src/general/NewGameSettings.tscn:909
+#: ../src/general/NewGameSettings.cs:436 ../src/general/NewGameSettings.tscn:909
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:442
+#: ../src/general/NewGameSettings.cs:443
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
@@ -1134,48 +1123,48 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:289
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:305
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:428
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:444
 msgid "CONTROLLER_ANY_DEVICE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:199
+#: ../src/engine/input/key_mapping/KeyNames.cs:344
 msgid "CONTROLLER_AXIS_L2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:204
+#: ../src/engine/input/key_mapping/KeyNames.cs:349
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:179
+#: ../src/engine/input/key_mapping/KeyNames.cs:324
 msgid "CONTROLLER_AXIS_LEFT_X"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:182
+#: ../src/engine/input/key_mapping/KeyNames.cs:327
 msgid "CONTROLLER_AXIS_LEFT_Y"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:168
+#: ../src/engine/input/key_mapping/KeyNames.cs:313
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:172
+#: ../src/engine/input/key_mapping/KeyNames.cs:317
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:213
+#: ../src/engine/input/key_mapping/KeyNames.cs:358
 msgid "CONTROLLER_AXIS_R2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:218
+#: ../src/engine/input/key_mapping/KeyNames.cs:363
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:185
+#: ../src/engine/input/key_mapping/KeyNames.cs:330
 msgid "CONTROLLER_AXIS_RIGHT_X"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:188
+#: ../src/engine/input/key_mapping/KeyNames.cs:333
 msgid "CONTROLLER_AXIS_RIGHT_Y"
 msgstr ""
 
@@ -1183,145 +1172,145 @@ msgstr ""
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:262
+#: ../src/engine/input/key_mapping/KeyNames.cs:407
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:264
+#: ../src/engine/input/key_mapping/KeyNames.cs:409
 msgid "CONTROLLER_BUTTON_DPAD_LEFT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:266
+#: ../src/engine/input/key_mapping/KeyNames.cs:411
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:260
+#: ../src/engine/input/key_mapping/KeyNames.cs:405
 msgid "CONTROLLER_BUTTON_DPAD_UP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:337
+#: ../src/engine/input/key_mapping/KeyNames.cs:482
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:333
+#: ../src/engine/input/key_mapping/KeyNames.cs:478
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:247
+#: ../src/engine/input/key_mapping/KeyNames.cs:392
 msgid "CONTROLLER_BUTTON_MISC1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:249
+#: ../src/engine/input/key_mapping/KeyNames.cs:394
 msgid "CONTROLLER_BUTTON_PADDLE1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:251
+#: ../src/engine/input/key_mapping/KeyNames.cs:396
 msgid "CONTROLLER_BUTTON_PADDLE2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:253
+#: ../src/engine/input/key_mapping/KeyNames.cs:398
 msgid "CONTROLLER_BUTTON_PADDLE3"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:255
+#: ../src/engine/input/key_mapping/KeyNames.cs:400
 msgid "CONTROLLER_BUTTON_PADDLE4"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:275
+#: ../src/engine/input/key_mapping/KeyNames.cs:420
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:277
+#: ../src/engine/input/key_mapping/KeyNames.cs:422
 msgid "CONTROLLER_BUTTON_PS3_START"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:289
+#: ../src/engine/input/key_mapping/KeyNames.cs:434
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:287
+#: ../src/engine/input/key_mapping/KeyNames.cs:432
 msgid "CONTROLLER_BUTTON_PS_CROSS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:305
+#: ../src/engine/input/key_mapping/KeyNames.cs:450
 msgid "CONTROLLER_BUTTON_PS_L1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:301
+#: ../src/engine/input/key_mapping/KeyNames.cs:446
 msgid "CONTROLLER_BUTTON_PS_L3"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:299
+#: ../src/engine/input/key_mapping/KeyNames.cs:444
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:307
+#: ../src/engine/input/key_mapping/KeyNames.cs:452
 msgid "CONTROLLER_BUTTON_PS_R1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:303
+#: ../src/engine/input/key_mapping/KeyNames.cs:448
 msgid "CONTROLLER_BUTTON_PS_R3"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:295
+#: ../src/engine/input/key_mapping/KeyNames.cs:440
 msgid "CONTROLLER_BUTTON_PS_SHARE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:297
+#: ../src/engine/input/key_mapping/KeyNames.cs:442
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:291
+#: ../src/engine/input/key_mapping/KeyNames.cs:436
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:293
+#: ../src/engine/input/key_mapping/KeyNames.cs:438
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:339
+#: ../src/engine/input/key_mapping/KeyNames.cs:484
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:335
+#: ../src/engine/input/key_mapping/KeyNames.cs:480
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:257
+#: ../src/engine/input/key_mapping/KeyNames.cs:402
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:244
-#: ../src/engine/input/key_mapping/KeyNames.cs:309
-#: ../src/engine/input/key_mapping/KeyNames.cs:341
+#: ../src/engine/input/key_mapping/KeyNames.cs:389
+#: ../src/engine/input/key_mapping/KeyNames.cs:454
+#: ../src/engine/input/key_mapping/KeyNames.cs:486
 msgid "CONTROLLER_BUTTON_UNKNOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:319
+#: ../src/engine/input/key_mapping/KeyNames.cs:464
 msgid "CONTROLLER_BUTTON_XBOX_A"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:321
+#: ../src/engine/input/key_mapping/KeyNames.cs:466
 msgid "CONTROLLER_BUTTON_XBOX_B"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:327
+#: ../src/engine/input/key_mapping/KeyNames.cs:472
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:329
+#: ../src/engine/input/key_mapping/KeyNames.cs:474
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:331
+#: ../src/engine/input/key_mapping/KeyNames.cs:476
 msgid "CONTROLLER_BUTTON_XBOX_START"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:323
+#: ../src/engine/input/key_mapping/KeyNames.cs:468
 msgid "CONTROLLER_BUTTON_XBOX_X"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:325
+#: ../src/engine/input/key_mapping/KeyNames.cs:470
 msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
@@ -1346,7 +1335,7 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:225
+#: ../src/engine/input/key_mapping/KeyNames.cs:370
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
@@ -1436,7 +1425,7 @@ msgstr ""
 msgid "CREATED_AT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:177
+#: ../src/saving/SaveListItem.tscn:183
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
@@ -1480,11 +1469,12 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:338
+#: ../src/general/MainMenu.tscn:349
 msgid "CREDITS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:239
+#: ../src/engine/input/key_mapping/KeyNames.cs:163
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:368
 msgid "CTRL"
 msgstr ""
 
@@ -1566,7 +1556,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:360
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:361
 msgid "DEATH"
 msgstr ""
 
@@ -1613,7 +1603,7 @@ msgstr ""
 msgid "DELETE_ORGANELLE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:211
+#: ../src/saving/SaveListItem.tscn:219
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
@@ -1629,11 +1619,11 @@ msgstr ""
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:212
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:220
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr ""
 
-#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#: ../src/space_stage/gui/SpaceHUD.tscn:51
 msgid "DESCEND_BUTTON"
 msgstr ""
 
@@ -1673,11 +1663,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:573
+#: ../src/general/MainMenu.tscn:596
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:568
+#: ../src/general/MainMenu.tscn:591
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1685,15 +1675,15 @@ msgstr ""
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:582
+#: ../src/general/MainMenu.tscn:605
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:577
+#: ../src/general/MainMenu.tscn:600
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:290
+#: ../src/microbe_stage/MicrobeHUD.cs:276
 msgid "DEVOURED"
 msgstr ""
 
@@ -1706,7 +1696,7 @@ msgstr ""
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:143
+#: ../src/general/WorldGenerationSettings.cs:144
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:49
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
@@ -1717,7 +1707,7 @@ msgid "DIFFICULTY_PRESET"
 msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:48
-#: ../src/general/WorldGenerationSettings.cs:141
+#: ../src/general/WorldGenerationSettings.cs:142
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
@@ -1751,14 +1741,6 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:249
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:369
-msgid "DIRECTIONL"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:370
-msgid "DIRECTIONR"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:293
@@ -1801,7 +1783,7 @@ msgstr ""
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:715
+#: ../src/general/MainMenu.tscn:738
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
@@ -1858,8 +1840,8 @@ msgid "DONATIONS"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:103 ../src/saving/SaveListItem.tscn:117
-#: ../src/saving/SaveListItem.tscn:131 ../src/saving/SaveListItem.tscn:148
-#: ../src/saving/SaveListItem.tscn:168 ../src/saving/SaveListItem.tscn:182
+#: ../src/saving/SaveListItem.tscn:133 ../src/saving/SaveListItem.tscn:152
+#: ../src/saving/SaveListItem.tscn:173 ../src/saving/SaveListItem.tscn:189
 msgid "DOT_DOT_DOT"
 msgstr ""
 
@@ -2014,7 +1996,7 @@ msgstr ""
 msgid "EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/gui/EditorEntryButton.tscn:59
+#: ../src/microbe_stage/gui/EditorEntryButton.tscn:61
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -2030,8 +2012,8 @@ msgstr ""
 msgid "EJECT_ENGULFED"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:466
-#: ../src/microbe_stage/MicrobeHUD.tscn:625
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:455
+#: ../src/microbe_stage/MicrobeHUD.tscn:614
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr ""
 
@@ -2115,11 +2097,11 @@ msgstr ""
 msgid "ERROR"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1003
+#: ../src/modding/ModManager.cs:1004
 msgid "ERROR_CREATING_FOLDER"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1013
+#: ../src/modding/ModManager.cs:1014
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
@@ -2143,7 +2125,7 @@ msgstr ""
 msgid "ERROR_SAVING"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:356
+#: ../src/engine/input/key_mapping/KeyNames.cs:155
 msgid "ESCAPE"
 msgstr ""
 
@@ -2188,7 +2170,7 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:345
+#: ../src/general/MainMenu.tscn:356
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -2238,7 +2220,7 @@ msgstr ""
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:332
+#: ../src/general/MainMenu.tscn:343
 msgid "EXTRAS"
 msgstr ""
 
@@ -2246,7 +2228,7 @@ msgstr ""
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:726
+#: ../src/general/MainMenu.tscn:749
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
@@ -2312,7 +2294,7 @@ msgstr ""
 msgid "FIND_CURRENT_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:127
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "FINISHED_DOT"
 msgstr ""
 
@@ -2332,8 +2314,8 @@ msgstr ""
 msgid "FIRE_TOXIN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:441
-#: ../src/microbe_stage/MicrobeHUD.tscn:635
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:430
+#: ../src/microbe_stage/MicrobeHUD.tscn:624
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
 
@@ -2358,7 +2340,7 @@ msgstr ""
 msgid "FLEET_UNITS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:106
+#: ../src/microbe_stage/MicrobeHUD.cs:92
 msgid "FLOATING_CHUNKS_COLON"
 msgstr ""
 
@@ -2396,7 +2378,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:839
+#: ../src/general/NewGameSettings.cs:850
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr ""
 
@@ -2404,7 +2386,7 @@ msgstr ""
 msgid "FOG_OF_WAR_INTENSE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:845
+#: ../src/general/NewGameSettings.cs:856
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
@@ -2416,7 +2398,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:842
+#: ../src/general/NewGameSettings.cs:853
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
 
@@ -2456,12 +2438,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:555
+#: ../src/microbe_stage/MicrobeHUD.cs:524
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:554
+#: ../src/microbe_stage/MicrobeHUD.cs:523
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -2482,7 +2464,7 @@ msgstr ""
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:195
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:196
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:94
 #: ../src/engine/DebugOverlays.tscn:62
@@ -2542,15 +2524,15 @@ msgstr ""
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:682
+#: ../src/general/MainMenu.tscn:705
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:826
+#: ../src/general/MainMenu.tscn:857
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:825
+#: ../src/general/MainMenu.tscn:856
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -2680,7 +2662,7 @@ msgstr ""
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:162
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:151
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -2716,14 +2698,6 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:57
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:498
 msgid "HYDROGEN_SULFIDE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:367
-msgid "HYPERL"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:368
-msgid "HYPERR"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1811
@@ -2806,7 +2780,7 @@ msgstr ""
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:93
+#: ../src/microbe_stage/MicrobeHUD.cs:86
 msgid "INGESTED_MATTER"
 msgstr ""
 
@@ -2956,7 +2930,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:542
+#: ../src/saving/SaveHelper.cs:543
 msgid "IN_PROTOTYPE"
 msgstr ""
 
@@ -2969,7 +2943,7 @@ msgstr ""
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:660
+#: ../src/general/MainMenu.tscn:683
 msgid "ITCH_TOOLTIP"
 msgstr ""
 
@@ -3001,103 +2975,131 @@ msgstr ""
 msgid "JUNE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:140
+#: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_BACK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:156
+msgid "KEY_BACKTAB"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:159
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:131
-msgid "KEY_CLEAR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:129
-msgid "KEY_DELETE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:137
-msgid "KEY_DOWN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:133
-msgid "KEY_END"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:127
-msgid "KEY_ENTER"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:147
-msgid "KEY_FAVORITES"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:125
-msgid "KEY_FORWARD"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:139
-msgid "KEY_HELP"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:132
-msgid "KEY_HOME"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:146
-msgid "KEY_HOMEPAGE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:128
-msgid "KEY_INSERT"
+#: ../src/engine/input/key_mapping/KeyNames.cs:247
+msgid "KEY_BRING_UP_KEYBOARD"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
-msgid "KEY_LEFT"
+msgid "KEY_CLEAR"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:138
-msgid "KEY_MENU"
+#: ../src/engine/input/key_mapping/KeyNames.cs:132
+msgid "KEY_DELETE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:145
-msgid "KEY_OPENURL"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:130
-msgid "KEY_PAUSE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:148
-msgid "KEY_PRINT"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:142
-msgid "KEY_REFRESH"
+#: ../src/engine/input/key_mapping/KeyNames.cs:140
+msgid "KEY_DOWN"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
-msgid "KEY_RIGHT"
+msgid "KEY_END"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:143
-msgid "KEY_SEARCH"
+#: ../src/engine/input/key_mapping/KeyNames.cs:130
+msgid "KEY_ENTER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:144
-msgid "KEY_STANDBY"
+#: ../src/engine/input/key_mapping/KeyNames.cs:150
+msgid "KEY_FAVORITES"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:141
-msgid "KEY_STOP"
+#: ../src/engine/input/key_mapping/KeyNames.cs:128
+msgid "KEY_FORWARD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:126
-msgid "KEY_TAB"
+#: ../src/engine/input/key_mapping/KeyNames.cs:246
+msgid "KEY_GLOBE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:142
+msgid "KEY_HELP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
+msgid "KEY_HOME"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:149
+msgid "KEY_HOMEPAGE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:219
+msgid "KEY_HYPER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:131
+msgid "KEY_INSERT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:248
+msgid "KEY_JIS_EISU"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:249
+msgid "KEY_JIS_KANA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:137
+msgid "KEY_LEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:141
+msgid "KEY_MENU"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:164
+msgid "KEY_META"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:148
+msgid "KEY_OPENURL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:133
+msgid "KEY_PAUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:151
+msgid "KEY_PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:145
+msgid "KEY_REFRESH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:139
+msgid "KEY_RIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:146
+msgid "KEY_SEARCH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:147
+msgid "KEY_STANDBY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:144
+msgid "KEY_STOP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:129
+msgid "KEY_TAB"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_UP"
 msgstr ""
 
@@ -3105,67 +3107,67 @@ msgstr ""
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:407
+#: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "KP0"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:408
+#: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "KP1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:409
+#: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "KP2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:410
+#: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KP3"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:411
+#: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KP4"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:412
+#: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KP5"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:413
+#: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KP6"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:414
+#: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KP7"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:415
+#: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP8"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:416
+#: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP9"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:406
+#: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "KPADD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:403
+#: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "KPDIVIDE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:358
+#: ../src/engine/input/key_mapping/KeyNames.cs:158
 msgid "KPENTER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:402
+#: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "KPMULTIPLY"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:405
+#: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "KPPERIOD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:404
+#: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "KPSUBTRACT"
 msgstr ""
 
@@ -3193,75 +3195,75 @@ msgstr ""
 msgid "LATE_MULTICELLULAR"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:386
+#: ../src/engine/input/key_mapping/KeyNames.cs:230
 msgid "LAUNCH0"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:387
+#: ../src/engine/input/key_mapping/KeyNames.cs:231
 msgid "LAUNCH1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:388
+#: ../src/engine/input/key_mapping/KeyNames.cs:232
 msgid "LAUNCH2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:389
+#: ../src/engine/input/key_mapping/KeyNames.cs:233
 msgid "LAUNCH3"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:390
+#: ../src/engine/input/key_mapping/KeyNames.cs:234
 msgid "LAUNCH4"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:391
+#: ../src/engine/input/key_mapping/KeyNames.cs:235
 msgid "LAUNCH5"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:392
+#: ../src/engine/input/key_mapping/KeyNames.cs:236
 msgid "LAUNCH6"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:393
+#: ../src/engine/input/key_mapping/KeyNames.cs:237
 msgid "LAUNCH7"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:394
+#: ../src/engine/input/key_mapping/KeyNames.cs:238
 msgid "LAUNCH8"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:395
+#: ../src/engine/input/key_mapping/KeyNames.cs:239
 msgid "LAUNCH9"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:396
+#: ../src/engine/input/key_mapping/KeyNames.cs:240
 msgid "LAUNCHA"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:397
+#: ../src/engine/input/key_mapping/KeyNames.cs:241
 msgid "LAUNCHB"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:398
+#: ../src/engine/input/key_mapping/KeyNames.cs:242
 msgid "LAUNCHC"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:399
+#: ../src/engine/input/key_mapping/KeyNames.cs:243
 msgid "LAUNCHD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:400
+#: ../src/engine/input/key_mapping/KeyNames.cs:244
 msgid "LAUNCHE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:401
+#: ../src/engine/input/key_mapping/KeyNames.cs:245
 msgid "LAUNCHF"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:384
+#: ../src/engine/input/key_mapping/KeyNames.cs:228
 msgid "LAUNCHMAIL"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:385
+#: ../src/engine/input/key_mapping/KeyNames.cs:229
 msgid "LAUNCHMEDIA"
 msgstr ""
 
@@ -3339,11 +3341,11 @@ msgstr ""
 msgid "LEFT_ARROW"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:264
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:403
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:463
+#: ../src/general/MainMenu.tscn:474
 msgid "LICENSES"
 msgstr ""
 
@@ -3363,13 +3365,13 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:177
 #: ../src/general/NewGameSettings.tscn:707
-#: ../src/general/WorldGenerationSettings.cs:47
+#: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:175
 #: ../src/general/NewGameSettings.tscn:705
-#: ../src/general/WorldGenerationSettings.cs:44
+#: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
@@ -3380,11 +3382,11 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:173
 #: ../src/general/NewGameSettings.tscn:703
-#: ../src/general/WorldGenerationSettings.cs:41
+#: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:334
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:342
 msgid "LIGHT"
 msgstr ""
 
@@ -3464,7 +3466,7 @@ msgstr ""
 msgid "LIPASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:206 ../src/saving/SaveManagerGUI.tscn:51
+#: ../src/saving/SaveListItem.tscn:214 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr ""
 
@@ -3486,7 +3488,7 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:65
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
@@ -3503,12 +3505,12 @@ msgstr ""
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:307 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:109
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:305 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3544,11 +3546,11 @@ msgstr ""
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:877
+#: ../src/general/MainMenu.tscn:908
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:876
+#: ../src/general/MainMenu.tscn:907
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 
@@ -3614,23 +3616,23 @@ msgstr ""
 msgid "MAY"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:382
+#: ../src/engine/input/key_mapping/KeyNames.cs:226
 msgid "MEDIANEXT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:379
+#: ../src/engine/input/key_mapping/KeyNames.cs:223
 msgid "MEDIAPLAY"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:381
+#: ../src/engine/input/key_mapping/KeyNames.cs:225
 msgid "MEDIAPREVIOUS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:383
+#: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "MEDIARECORD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:380
+#: ../src/engine/input/key_mapping/KeyNames.cs:224
 msgid "MEDIASTOP"
 msgstr ""
 
@@ -3677,7 +3679,7 @@ msgstr ""
 msgid "METRICS"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:125
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:118
 #: ../src/engine/DebugOverlays.tscn:73
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -3696,7 +3698,7 @@ msgid "MICROBES_COUNT"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:40
-#: ../src/general/MainMenu.tscn:501
+#: ../src/general/MainMenu.tscn:512
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
@@ -3728,7 +3730,7 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:387
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -3857,7 +3859,7 @@ msgstr ""
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:266
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:405
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
@@ -3945,11 +3947,11 @@ msgstr ""
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:449
+#: ../src/general/MainMenu.tscn:460
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:835
+#: ../src/general/MainMenu.tscn:866
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4039,11 +4041,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:851
+#: ../src/general/MainMenu.tscn:882
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:849
+#: ../src/general/MainMenu.tscn:880
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -4153,15 +4155,15 @@ msgstr ""
 msgid "MOVE_TO_ANY_PATCH"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:235
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:224
 msgid "MOVE_TO_LAND"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:425
+#: ../src/microbe_stage/MicrobeHUD.tscn:414
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:418
+#: ../src/microbe_stage/MicrobeHUD.tscn:407
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -4173,19 +4175,19 @@ msgstr ""
 msgid "MOVE_UP_OR_JUMP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:541
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:530
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:542
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:531
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:536
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:525
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:537
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:526
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
@@ -4214,7 +4216,7 @@ msgstr ""
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:383
+#: ../src/general/MainMenu.tscn:394
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -4326,11 +4328,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:300
+#: ../src/general/MainMenu.tscn:311
 msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:295
+#: ../src/general/MainMenu.tscn:306
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4431,16 +4433,16 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1034
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1035
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:130
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1026
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1027
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:454
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:457
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4448,7 +4450,7 @@ msgstr ""
 msgid "NOT_FOUND_CHUNK"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:130
+#: ../src/auto-evo/AutoEvoRun.cs:131
 msgid "NOT_STARTED_DOT"
 msgstr ""
 
@@ -4473,7 +4475,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:867
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -4514,7 +4516,7 @@ msgstr ""
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:363
+#: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "NUMLOCK"
 msgstr ""
 
@@ -4524,7 +4526,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2427
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2439
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:149
-#: ../src/microbe_stage/MicrobeHUD.cs:471
+#: ../src/microbe_stage/MicrobeHUD.cs:457
 msgid "N_A"
 msgstr ""
 
@@ -4532,7 +4534,7 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:525
+#: ../src/microbe_stage/MicrobeHUD.cs:511
 #: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.cs:45
 msgid "N_TIMES"
 msgstr ""
@@ -4541,11 +4543,11 @@ msgstr ""
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:555
+#: ../src/general/MainMenu.tscn:578
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:546
+#: ../src/general/MainMenu.tscn:569
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4625,7 +4627,7 @@ msgstr ""
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:140
+#: ../src/auto-evo/AutoEvoRun.cs:141
 msgid "OPERATION_PAUSED_DOT"
 msgstr ""
 
@@ -4637,11 +4639,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:215
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4810,11 +4812,11 @@ msgstr ""
 msgid "OXYTOXY_SYNTHESIS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:361
+#: ../src/engine/input/key_mapping/KeyNames.cs:161
 msgid "PAGEDOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:360
+#: ../src/engine/input/key_mapping/KeyNames.cs:160
 msgid "PAGEUP"
 msgstr ""
 
@@ -4879,7 +4881,7 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:162
-#: ../src/microbe_stage/PatchMapGenerator.cs:817
+#: ../src/microbe_stage/PatchMapGenerator.cs:818
 msgid "PATCH_NAME"
 msgstr ""
 
@@ -4909,7 +4911,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:694
 msgid "PATREON_TOOLTIP"
 msgstr ""
 
@@ -4925,7 +4927,7 @@ msgstr ""
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:83
+#: ../src/microbe_stage/MicrobeHUD.cs:76
 msgid "PAUSE_PROMPT"
 msgstr ""
 
@@ -4946,8 +4948,8 @@ msgid "PEACEFUL"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
-#: ../src/general/NewGameSettings.cs:812
-#: ../src/general/WorldGenerationSettings.cs:148
+#: ../src/general/NewGameSettings.cs:823
+#: ../src/general/WorldGenerationSettings.cs:149
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:257
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:283
@@ -4956,7 +4958,7 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:421
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:496
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:325
-#: ../src/microbe_stage/MicrobeHUD.cs:296
+#: ../src/microbe_stage/MicrobeHUD.cs:282
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:157
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:160
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:172
@@ -5008,7 +5010,7 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:160
+#: ../src/general/WorldGenerationSettings.cs:161
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:68
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
@@ -5022,7 +5024,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:495
+#: ../src/microbe_stage/MicrobeHUD.cs:481
 msgid "PLAYER"
 msgstr ""
 
@@ -5042,7 +5044,7 @@ msgstr ""
 msgid "PLAYER_DUPLICATE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:523
+#: ../src/saving/SaveHelper.cs:524
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
@@ -5082,8 +5084,8 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:261
-#: ../src/microbe_stage/MicrobeHUD.tscn:439
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:250
+#: ../src/microbe_stage/MicrobeHUD.tscn:428
 #: ../src/society_stage/gui/SocietyHUD.tscn:193
 msgid "POPULATION_CAPITAL"
 msgstr ""
@@ -5112,11 +5114,11 @@ msgstr ""
 msgid "PRESSURE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:338
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:346
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:441
+#: ../src/engine/input/key_mapping/InputEventItem.cs:442
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
@@ -5180,11 +5182,11 @@ msgstr ""
 msgid "QUICK_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:355
+#: ../src/general/MainMenu.tscn:366
 msgid "QUIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:343 ../src/general/MainMenu.tscn:350
+#: ../src/general/MainMenu.tscn:354 ../src/general/MainMenu.tscn:361
 #: ../src/general/PauseMenu.tscn:226
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
@@ -5224,7 +5226,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:704
+#: ../src/general/MainMenu.tscn:727
 msgid "REDDIT_TOOLTIP"
 msgstr ""
 
@@ -5249,7 +5251,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:599 ../src/general/PauseMenu.tscn:209
+#: ../src/general/MainMenu.tscn:622 ../src/general/PauseMenu.tscn:209
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -5389,7 +5391,7 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:637
+#: ../src/general/MainMenu.tscn:660
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -5397,7 +5399,7 @@ msgstr ""
 msgid "RIGHT_ARROW"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:265
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:404
 msgid "RIGHT_MOUSE"
 msgstr ""
 
@@ -5476,11 +5478,11 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:844
+#: ../src/general/MainMenu.tscn:875
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:845
+#: ../src/general/MainMenu.tscn:876
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5577,15 +5579,15 @@ msgstr ""
 msgid "SAVING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:513 ../src/saving/SaveHelper.cs:569
+#: ../src/saving/SaveHelper.cs:514 ../src/saving/SaveHelper.cs:570
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:522 ../src/saving/SaveHelper.cs:541
+#: ../src/saving/SaveHelper.cs:523 ../src/saving/SaveHelper.cs:542
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:554
+#: ../src/saving/SaveHelper.cs:555
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
@@ -5625,7 +5627,7 @@ msgstr ""
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:364
+#: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -5649,8 +5651,8 @@ msgstr ""
 msgid "SECRETE_SLIME"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:458
-#: ../src/microbe_stage/MicrobeHUD.tscn:677
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:447
+#: ../src/microbe_stage/MicrobeHUD.tscn:666
 msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
@@ -5746,7 +5748,8 @@ msgstr ""
 msgid "SFX_VOLUME"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:251
+#: ../src/engine/input/key_mapping/KeyNames.cs:162
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:380
 msgid "SHIFT"
 msgstr ""
 
@@ -5791,7 +5794,7 @@ msgstr ""
 msgid "SIGNALING_AGENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:666
+#: ../src/microbe_stage/MicrobeHUD.tscn:655
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr ""
 
@@ -5803,27 +5806,27 @@ msgstr ""
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:170
+#: ../src/microbe_stage/MicrobeHUD.cs:156
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:169
+#: ../src/microbe_stage/MicrobeHUD.cs:155
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:167
+#: ../src/microbe_stage/MicrobeHUD.cs:153
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:166
+#: ../src/microbe_stage/MicrobeHUD.cs:152
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:168
+#: ../src/microbe_stage/MicrobeHUD.cs:154
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:173
+#: ../src/microbe_stage/MicrobeHUD.cs:159
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
@@ -5892,7 +5895,7 @@ msgstr ""
 msgid "SOUND_TEAM_LEADS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:354
+#: ../src/engine/input/key_mapping/KeyNames.cs:250
 msgid "SPACE"
 msgstr ""
 
@@ -5932,11 +5935,11 @@ msgstr ""
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:271
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:410
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:272
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:411
 msgid "SPECIAL_MOUSE_2"
 msgstr ""
 
@@ -5944,7 +5947,7 @@ msgstr ""
 msgid "SPECIES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:105
+#: ../src/microbe_stage/MicrobeHUD.cs:91
 msgid "SPECIES_COLON"
 msgstr ""
 
@@ -6010,7 +6013,7 @@ msgstr ""
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:144
 msgid "STARTING"
 msgstr ""
 
@@ -6092,15 +6095,15 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:869
+#: ../src/general/MainMenu.tscn:900
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:868
+#: ../src/general/MainMenu.tscn:899
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:649
+#: ../src/general/MainMenu.tscn:672
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
@@ -6140,7 +6143,7 @@ msgstr ""
 msgid "STORAGE_COLON"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:673
+#: ../src/general/MainMenu.cs:680
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -6229,14 +6232,6 @@ msgstr ""
 msgid "SUNLIGHT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:365
-msgid "SUPERL"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:366
-msgid "SUPERR"
-msgstr ""
-
 #: ../src/gui_common/CreditsScroll.cs:539
 msgid "SUPPORTER_PATRONS"
 msgstr ""
@@ -6253,7 +6248,7 @@ msgstr ""
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:359
+#: ../src/engine/input/key_mapping/KeyNames.cs:159
 msgid "SYSREQ"
 msgstr ""
 
@@ -6350,7 +6345,7 @@ msgstr ""
 msgid "TEMPERATURE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:331
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:339
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
@@ -6358,7 +6353,7 @@ msgstr ""
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:281 ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.cs:288 ../src/general/MainMenu.tscn:891
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6366,7 +6361,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:861
+#: ../src/general/MainMenu.tscn:892
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -6425,7 +6420,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:442 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:453 ../src/general/PauseMenu.tscn:198
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6542,7 +6537,7 @@ msgstr ""
 msgid "TOGGLE_BINDING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:645
+#: ../src/microbe_stage/MicrobeHUD.tscn:634
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr ""
 
@@ -6551,12 +6546,12 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:49
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:407
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:431
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:396
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:420
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:613
+#: ../src/microbe_stage/MicrobeHUD.tscn:602
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr ""
 
@@ -6572,7 +6567,7 @@ msgstr ""
 msgid "TOGGLE_HUD_HIDE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:417
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:406
 msgid "TOGGLE_INVENTORY"
 msgstr ""
 
@@ -6592,7 +6587,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:320
+#: ../src/general/MainMenu.tscn:331
 msgid "TOOLS"
 msgstr ""
 
@@ -6637,14 +6632,6 @@ msgstr ""
 
 #: ../src/engine/DebugOverlays.tscn:125
 msgid "TRANSPARENCY"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:378
-msgid "TREBLEDOWN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:377
-msgid "TREBLEUP"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:123
@@ -6763,7 +6750,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:737
+#: ../src/general/MainMenu.tscn:760
 msgid "TWITTER_TOOLTIP"
 msgstr ""
 
@@ -6787,7 +6774,7 @@ msgstr ""
 msgid "UNBIND_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:656
+#: ../src/microbe_stage/MicrobeHUD.tscn:645
 msgid "UNBIND_ALL_TOOLTIP"
 msgstr ""
 
@@ -6832,7 +6819,8 @@ msgstr ""
 msgid "UNIT_SIMPLE_ROCKET"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:417
+#: ../src/engine/input/key_mapping/KeyNames.cs:16
+#: ../src/engine/input/key_mapping/KeyNames.cs:17
 msgid "UNKNOWN"
 msgstr ""
 
@@ -6840,7 +6828,7 @@ msgstr ""
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:273
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:412
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
@@ -7051,7 +7039,7 @@ msgstr ""
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:143
+#: ../src/saving/SaveListItem.tscn:147
 msgid "VERSION_COLON"
 msgstr ""
 
@@ -7093,7 +7081,7 @@ msgstr ""
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:326
+#: ../src/general/MainMenu.tscn:337
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
@@ -7105,7 +7093,7 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:470 ../src/general/MainMenu.tscn:612
+#: ../src/general/MainMenu.tscn:481 ../src/general/MainMenu.tscn:635
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7113,15 +7101,15 @@ msgstr ""
 msgid "VOLCANIC_VENT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:371
+#: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "VOLUMEDOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:372
+#: ../src/engine/input/key_mapping/KeyNames.cs:221
 msgid "VOLUMEMUTE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:373
+#: ../src/engine/input/key_mapping/KeyNames.cs:222
 msgid "VOLUMEUP"
 msgstr ""
 
@@ -7145,19 +7133,19 @@ msgstr ""
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:268
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:407
 msgid "WHEEL_DOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:269
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:408
 msgid "WHEEL_LEFT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:270
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:409
 msgid "WHEEL_RIGHT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:267
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:406
 msgid "WHEEL_UP"
 msgstr ""
 
@@ -8470,7 +8458,7 @@ msgstr ""
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:172
+#: ../src/general/WorldGenerationSettings.cs:173
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:87
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
@@ -8503,7 +8491,7 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:693
+#: ../src/general/MainMenu.tscn:716
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 
