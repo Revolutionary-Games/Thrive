@@ -59,7 +59,7 @@ public class RandomConverterTests
 
         for (int i = 0; i < SequenceVerifyLength; ++i)
         {
-            Assert.Equal(original.Next64U(), deserialized!.Next64U());
+            Assert.Equal(original.Next64U(), deserialized.Next64U());
         }
     }
 }
