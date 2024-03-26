@@ -157,11 +157,13 @@ theme_override_constants/h_separation = 0
 clip_text = true
 
 [node name="PatchName" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "PATCH_NAME"
 label_settings = ExtResource("3_ocn33")
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="TimeIndicator" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
@@ -242,6 +244,7 @@ label_settings = ExtResource("7_8c2s4")
 
 [node name="AutoEvoResults" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2")]
 layout_mode = 2
+fit_content = true
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
@@ -254,6 +257,7 @@ label_settings = ExtResource("7_8c2s4")
 
 [node name="ExternalEffectsList" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2")]
 layout_mode = 2
+fit_content = true
 
 [node name="TopFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
 modulate = Color(1, 1, 1, 0.392157)
