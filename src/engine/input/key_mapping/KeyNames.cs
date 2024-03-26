@@ -148,6 +148,7 @@ internal static class KeyNames
             Key.Print => Localization.Translate("KEY_PRINT"),
 
             // Fallback to using the key name (in upper case) to translate. These must all be defined in Keys method
+            // TODO: maybe use OS.GetKeycodeString() here instead as a fallback?
             _ => Localization.Translate(keyCode.ToString().ToUpper(CultureInfo.InvariantCulture)),
         };
     }
