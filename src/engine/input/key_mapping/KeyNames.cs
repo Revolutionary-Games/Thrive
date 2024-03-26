@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Godot;
+﻿using Godot;
 
 internal static class KeyNames
 {
@@ -12,6 +11,10 @@ internal static class KeyNames
     {
         return keyCode switch
         {
+            // ReSharper disable CommentTypo
+            // ReSharper disable StringLiteralTypo
+            Key.None => Localization.Translate("UNKNOWN"),
+            Key.Unknown => Localization.Translate("UNKNOWN"),
             Key.Exclam => "!",
             Key.Quotedbl => "\"",
             Key.Numbersign => "#",
@@ -56,7 +59,7 @@ internal static class KeyNames
             Key.Yen => "¥",
             Key.Section => "§",
 
-            // TODO: removed keys figure out what to do
+            // TODO: removed key codes from Godot 4
             /*Key.Exclam => "¡",
             Key.Cent => "¢",
             Key.Sterling => "£",
@@ -147,9 +150,150 @@ internal static class KeyNames
             Key.Favorites => Localization.Translate("KEY_FAVORITES"),
             Key.Print => Localization.Translate("KEY_PRINT"),
 
-            // Fallback to using the key name (in upper case) to translate. These must all be defined in Keys method
-            // TODO: maybe use OS.GetKeycodeString() here instead as a fallback?
-            _ => Localization.Translate(keyCode.ToString().ToUpper(CultureInfo.InvariantCulture)),
+            // New keys with Godot 4
+
+            Key.Escape => Localization.Translate("ESCAPE"),
+            Key.Backtab => Localization.Translate("KEY_BACKTAB"),
+            Key.Backspace => Localization.Translate("BACKSPACE"),
+            Key.KpEnter => Localization.Translate("KPENTER"),
+            Key.Sysreq => Localization.Translate("SYSREQ"),
+            Key.Pageup => Localization.Translate("PAGEUP"),
+            Key.Pagedown => Localization.Translate("PAGEDOWN"),
+            Key.Shift => Localization.Translate("SHIFT"),
+            Key.Ctrl => Localization.Translate("CTRL"),
+            Key.Meta => Localization.Translate("KEY_META"),
+            Key.Alt => Localization.Translate("ALT"),
+            Key.Capslock => Localization.Translate("CAPSLOCK"),
+            Key.Numlock => Localization.Translate("NUMLOCK"),
+            Key.Scrolllock => Localization.Translate("SCROLLLOCK"),
+            Key.F1 => "F1",
+            Key.F2 => "F2",
+            Key.F3 => "F3",
+            Key.F4 => "F4",
+            Key.F5 => "F5",
+            Key.F6 => "F6",
+            Key.F7 => "F7",
+            Key.F8 => "F8",
+            Key.F9 => "F9",
+            Key.F10 => "F10",
+            Key.F11 => "F11",
+            Key.F12 => "F12",
+            Key.F13 => "F13",
+            Key.F14 => "F14",
+            Key.F15 => "F15",
+            Key.F16 => "F16",
+            Key.F17 => "F17",
+            Key.F18 => "F18",
+            Key.F19 => "F19",
+            Key.F20 => "F20",
+            Key.F21 => "F21",
+            Key.F22 => "F22",
+            Key.F23 => "F23",
+            Key.F24 => "F24",
+            Key.F25 => "F25",
+            Key.F26 => "F26",
+            Key.F27 => "F27",
+            Key.F28 => "F28",
+            Key.F29 => "F29",
+            Key.F30 => "F30",
+            Key.F31 => "F31",
+            Key.F32 => "F32",
+            Key.F33 => "F33",
+            Key.F34 => "F34",
+            Key.F35 => "F35",
+            Key.KpMultiply => Localization.Translate("KPMULTIPLY"),
+            Key.KpDivide => Localization.Translate("KPDIVIDE"),
+            Key.KpSubtract => Localization.Translate("KPSUBTRACT"),
+            Key.KpPeriod => Localization.Translate("KPPERIOD"),
+            Key.KpAdd => Localization.Translate("KPADD"),
+            Key.Kp0 => Localization.Translate("KP0"),
+            Key.Kp1 => Localization.Translate("KP1"),
+            Key.Kp2 => Localization.Translate("KP2"),
+            Key.Kp3 => Localization.Translate("KP3"),
+            Key.Kp4 => Localization.Translate("KP4"),
+            Key.Kp5 => Localization.Translate("KP5"),
+            Key.Kp6 => Localization.Translate("KP6"),
+            Key.Kp7 => Localization.Translate("KP7"),
+            Key.Kp8 => Localization.Translate("KP8"),
+            Key.Kp9 => Localization.Translate("KP9"),
+            Key.Hyper => Localization.Translate("KEY_HYPER"),
+            Key.Volumedown => Localization.Translate("VOLUMEDOWN"),
+            Key.Volumemute => Localization.Translate("VOLUMEMUTE"),
+            Key.Volumeup => Localization.Translate("VOLUMEUP"),
+            Key.Mediaplay => Localization.Translate("MEDIAPLAY"),
+            Key.Mediastop => Localization.Translate("MEDIASTOP"),
+            Key.Mediaprevious => Localization.Translate("MEDIAPREVIOUS"),
+            Key.Medianext => Localization.Translate("MEDIANEXT"),
+            Key.Mediarecord => Localization.Translate("MEDIARECORD"),
+            Key.Launchmail => Localization.Translate("LAUNCHMAIL"),
+            Key.Launchmedia => Localization.Translate("LAUNCHMEDIA"),
+            Key.Launch0 => Localization.Translate("LAUNCH0"),
+            Key.Launch1 => Localization.Translate("LAUNCH1"),
+            Key.Launch2 => Localization.Translate("LAUNCH2"),
+            Key.Launch3 => Localization.Translate("LAUNCH3"),
+            Key.Launch4 => Localization.Translate("LAUNCH4"),
+            Key.Launch5 => Localization.Translate("LAUNCH5"),
+            Key.Launch6 => Localization.Translate("LAUNCH6"),
+            Key.Launch7 => Localization.Translate("LAUNCH7"),
+            Key.Launch8 => Localization.Translate("LAUNCH8"),
+            Key.Launch9 => Localization.Translate("LAUNCH9"),
+            Key.Launcha => Localization.Translate("LAUNCHA"),
+            Key.Launchb => Localization.Translate("LAUNCHB"),
+            Key.Launchc => Localization.Translate("LAUNCHC"),
+            Key.Launchd => Localization.Translate("LAUNCHD"),
+            Key.Launche => Localization.Translate("LAUNCHE"),
+            Key.Launchf => Localization.Translate("LAUNCHF"),
+            Key.Globe => Localization.Translate("KEY_GLOBE"),
+            Key.Keyboard => Localization.Translate("KEY_BRING_UP_KEYBOARD"),
+            Key.JisEisu => Localization.Translate("KEY_JIS_EISU"),
+            Key.JisKana => Localization.Translate("KEY_JIS_KANA"),
+            Key.Space => Localization.Translate("SPACE"),
+            Key.A => "A",
+            Key.B => "B",
+            Key.C => "C",
+            Key.D => "D",
+            Key.E => "E",
+            Key.F => "F",
+            Key.G => "G",
+            Key.H => "H",
+            Key.I => "I",
+            Key.J => "J",
+            Key.K => "K",
+            Key.L => "L",
+            Key.M => "M",
+            Key.N => "N",
+            Key.O => "O",
+            Key.P => "P",
+            Key.Q => "Q",
+            Key.R => "R",
+            Key.S => "S",
+            Key.T => "T",
+            Key.U => "U",
+            Key.V => "V",
+            Key.W => "W",
+            Key.X => "X",
+            Key.Y => "Y",
+            Key.Z => "Z",
+            Key.Backslash => Localization.Translate("BACKSLASH"),
+
+            // Keys that no longer exist:
+            /*Localization.Translate("BASSBOOST")
+            Localization.Translate("BASSUP")
+            Localization.Translate("BASSDOWN")
+            Localization.Translate("TREBLEUP")
+            Localization.Translate("TREBLEDOWN")
+            Localization.Translate("SUPERL")
+            Localization.Translate("SUPERR")
+            Localization.Translate("DIRECTIONL")
+            Localization.Translate("DIRECTIONR")*/
+
+            // ReSharper restore CommentTypo
+            // ReSharper restore StringLiteralTypo
+
+            _ => OS.GetKeycodeString(keyCode),
+
+            // Old fallback code:
+            // Localization.Translate(keyCode.ToString().ToUpper(CultureInfo.InvariantCulture))
         };
     }
 
@@ -342,81 +486,5 @@ internal static class KeyNames
                         return Localization.Translate("CONTROLLER_BUTTON_UNKNOWN");
                 }
         }
-    }
-
-    // ReSharper disable once UnusedMember.Local
-    /// <summary>
-    ///   Useless method that only exists to tell the translation system specific strings
-    /// </summary>
-    private static void Keys()
-    {
-        // Names are from Godot so we need to have these as-is
-        // ReSharper disable StringLiteralTypo
-        Localization.Translate("SPACE");
-        Localization.Translate("BACKSLASH");
-        Localization.Translate("ESCAPE");
-        Localization.Translate("BACKSPACE");
-        Localization.Translate("KPENTER");
-        Localization.Translate("SYSREQ");
-        Localization.Translate("PAGEUP");
-        Localization.Translate("PAGEDOWN");
-        Localization.Translate("CAPSLOCK");
-        Localization.Translate("NUMLOCK");
-        Localization.Translate("SCROLLLOCK");
-        Localization.Translate("SUPERL");
-        Localization.Translate("SUPERR");
-        Localization.Translate("HYPERL");
-        Localization.Translate("HYPERR");
-        Localization.Translate("DIRECTIONL");
-        Localization.Translate("DIRECTIONR");
-        Localization.Translate("VOLUMEDOWN");
-        Localization.Translate("VOLUMEMUTE");
-        Localization.Translate("VOLUMEUP");
-        Localization.Translate("BASSBOOST");
-        Localization.Translate("BASSUP");
-        Localization.Translate("BASSDOWN");
-        Localization.Translate("TREBLEUP");
-        Localization.Translate("TREBLEDOWN");
-        Localization.Translate("MEDIAPLAY");
-        Localization.Translate("MEDIASTOP");
-        Localization.Translate("MEDIAPREVIOUS");
-        Localization.Translate("MEDIANEXT");
-        Localization.Translate("MEDIARECORD");
-        Localization.Translate("LAUNCHMAIL");
-        Localization.Translate("LAUNCHMEDIA");
-        Localization.Translate("LAUNCH0");
-        Localization.Translate("LAUNCH1");
-        Localization.Translate("LAUNCH2");
-        Localization.Translate("LAUNCH3");
-        Localization.Translate("LAUNCH4");
-        Localization.Translate("LAUNCH5");
-        Localization.Translate("LAUNCH6");
-        Localization.Translate("LAUNCH7");
-        Localization.Translate("LAUNCH8");
-        Localization.Translate("LAUNCH9");
-        Localization.Translate("LAUNCHA");
-        Localization.Translate("LAUNCHB");
-        Localization.Translate("LAUNCHC");
-        Localization.Translate("LAUNCHD");
-        Localization.Translate("LAUNCHE");
-        Localization.Translate("LAUNCHF");
-        Localization.Translate("KPMULTIPLY");
-        Localization.Translate("KPDIVIDE");
-        Localization.Translate("KPSUBTRACT");
-        Localization.Translate("KPPERIOD");
-        Localization.Translate("KPADD");
-        Localization.Translate("KP0");
-        Localization.Translate("KP1");
-        Localization.Translate("KP2");
-        Localization.Translate("KP3");
-        Localization.Translate("KP4");
-        Localization.Translate("KP5");
-        Localization.Translate("KP6");
-        Localization.Translate("KP7");
-        Localization.Translate("KP8");
-        Localization.Translate("KP9");
-        Localization.Translate("UNKNOWN");
-
-        // ReSharper restore StringLiteralTypo
     }
 }
