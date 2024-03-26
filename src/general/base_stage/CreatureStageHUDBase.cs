@@ -945,7 +945,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 MicrobeControlRadialPath.Dispose();
                 FireToxinHotkeyPath.Dispose();
                 BottomLeftBarPath.Dispose();
-                HUDMessagesPath.Dispose();
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }

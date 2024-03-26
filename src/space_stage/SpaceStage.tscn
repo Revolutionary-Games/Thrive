@@ -6,8 +6,8 @@
 [ext_resource type="Material" uid="uid://dcd6x2v3mfqfn" path="res://assets/models/menu_backgrounds/CometFireStart.tres" id="4"]
 [ext_resource type="Material" uid="uid://d1e2we22pcrbu" path="res://assets/models/menu_backgrounds/CometFireEnd.tres" id="5"]
 [ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="6"]
-[ext_resource type="PackedScene" path="res://src/space_stage/gui/SpaceHUD.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://src/general/PauseMenu.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://i8evqpkyb68h" path="res://src/space_stage/gui/SpaceHUD.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://src/space_stage/PlayerSpaceInput.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://src/industrial_stage/gui/StrategicEntityNameLabelSystem.tscn" id="10"]
 [ext_resource type="Texture2D" uid="uid://bu4uvavl0ieg2" path="res://assets/textures/iron_01.png" id="11"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="14"]
 [ext_resource type="PackedScene" path="res://src/ascension_stage/gui/AscensionCongratulationsPopup.tscn" id="15"]
 [ext_resource type="PackedScene" path="res://src/ascension_stage/gui/DescendConfirmationDialog.tscn" id="16"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="17"]
 [ext_resource type="PackedScene" path="res://src/ascension_stage/gui/GodToolsPopup.tscn" id="18"]
 
 [sub_resource type="Sky" id="2"]
@@ -182,37 +182,34 @@ color_ramp = SubResource("11")
 visible = false
 layout_mode = 3
 anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="SpaceHUD" parent="." instance=ExtResource("7")]
-layout_mode = 3
-anchors_preset = 15
-MenuPath = NodePath("../PauseMenu")
+[node name="SpaceHUD" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("7")]
+menu = NodePath("../PauseMenu")
 
 [node name="GodToolsPopup" parent="." instance=ExtResource("18")]
 layout_mode = 3
 anchors_preset = 1
+offset_left = -209.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 225.0
+grow_horizontal = 0
 
 [node name="AscensionConfirmation" parent="." instance=ExtResource("17")]
 custom_minimum_size = Vector2(400, 0)
-layout_mode = 3
-anchors_preset = 0
 DialogText = "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 WindowTitle = "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 
 [node name="AscensionCongratulationsPopup" parent="." instance=ExtResource("15")]
-layout_mode = 3
-anchors_preset = 0
 offset_right = 450.0
 offset_bottom = 300.0
 
 [node name="DescendConfirmationDialog" parent="." instance=ExtResource("16")]
-layout_mode = 3
-anchors_preset = 0
 offset_bottom = 500.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("8")]
-layout_mode = 3
-anchors_preset = 15
 
 [connection signal="OnDescendPressed" from="SpaceHUD" to="." method="OnDescendButtonPressed"]
 [connection signal="OnOpenMenu" from="SpaceHUD" to="PauseMenu" method="Open"]
