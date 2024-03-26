@@ -588,64 +588,6 @@ public static class StringUtils
         return spaceCount;
     }
 
-    // TODO: proper unit tests: https://github.com/Revolutionary-Games/Thrive/issues/1571
-    public static void TestRomanNumerals()
-    {
-        // ReSharper disable StringLiteralTypo
-        if (FormatAsRomanNumerals(1) != "I")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(3) != "III")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(4) != "IV")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(7) != "VII")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(14) != "XIV")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(39) != "XXXIX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(246) != "CCXLVI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(789) != "DCCLXXXIX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(2421) != "MMCDXXI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(160) != "CLX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(207) != "CCVII")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1009) != "MIX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1066) != "MLXVI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1776) != "MDCCLXXVI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1918) != "MCMXVIII")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1944) != "MCMXLIV")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(2023) != "MMXXIII")
-            throw new Exception();
-
-        // ReSharper restore StringLiteralTypo
-    }
-
     /// <summary>
     ///   Makes a string safe to store as a meta tag in rich text.
     /// </summary>
