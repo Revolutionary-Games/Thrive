@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://ga8wtlmr2tau"]
+[gd_scene load_steps=4 format=3 uid="uid://ga8wtlmr2tau"]
 
 [ext_resource type="Script" path="res://src/engine/PhotoStudio.cs" id="1"]
 
+[sub_resource type="Environment" id="Environment_o7qnf"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="World3D" id="World3D_t70mg"]
+environment = SubResource("Environment_o7qnf")
+
 [node name="PhotoStudio" type="SubViewport"]
 own_world_3d = true
+world_3d = SubResource("World3D_t70mg")
 transparent_bg = true
 handle_input_locally = false
 msaa_3d = 1
