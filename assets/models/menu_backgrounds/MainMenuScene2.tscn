@@ -189,6 +189,7 @@ libraries = {
 "": SubResource("AnimationLibrary_c77e2")
 }
 autoplay = "CameraAnimation"
+speed_scale = 0.5
 
 [node name="UnderwaterChimney" parent="." instance=ExtResource("1")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

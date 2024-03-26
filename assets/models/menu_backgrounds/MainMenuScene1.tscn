@@ -510,6 +510,7 @@ libraries = {
 "": SubResource("AnimationLibrary_vqvxl")
 }
 autoplay = "CameraAnimation"
+speed_scale = 0.5
 
 [node name="MenuPlanet2" parent="." instance=ExtResource("5")]
 transform = Transform3D(6.56578, 7.65375, -0.566638, 2.6564, -1.56676, 9.61766, 7.20033, -6.40124, -3.03151, 8.50901, -18.562, 18.955)
