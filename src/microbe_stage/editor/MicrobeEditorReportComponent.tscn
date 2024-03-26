@@ -157,11 +157,13 @@ theme_override_constants/h_separation = 0
 clip_text = true
 
 [node name="PatchName" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "PATCH_NAME"
 label_settings = ExtResource("3_ocn33")
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="TimeIndicator" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)

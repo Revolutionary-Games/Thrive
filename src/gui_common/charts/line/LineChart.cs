@@ -1428,6 +1428,7 @@ public partial class LineChart : VBoxContainer
             ButtonPressed = true;
             TextureNormal = data.Icon;
             StretchMode = StretchModeEnum.KeepAspectCentered;
+            IgnoreTextureSize = true;
             PivotOffset = CustomMinimumSize / 2;
 
             // Set the default icon's color
