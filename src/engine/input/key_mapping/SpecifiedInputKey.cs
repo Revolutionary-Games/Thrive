@@ -15,15 +15,21 @@ public class SpecifiedInputKey : ICloneable
     {
     }
 
-    public SpecifiedInputKey(InputEvent @event)
+    /// <summary>
+    ///   Constructs an input key from an event
+    /// </summary>
+    /// <param name="event">Event to use</param>
+    /// <param name="fromUserInput">Set to true when the user is rebinding inputs and this is from the user</param>
+    /// <exception cref="ArgumentException">If something is wrong with the event</exception>
+    public SpecifiedInputKey(InputEvent @event, bool fromUserInput)
     {
         switch (@event)
         {
             case InputEventKey inputKey:
-                ConstructFrom(inputKey);
+                ConstructFrom(inputKey, fromUserInput);
                 return;
             case InputEventMouseButton inputMouse:
-                ConstructFrom(inputMouse);
+                ConstructFrom(inputMouse, fromUserInput);
                 return;
             case InputEventJoypadButton inputControllerButton:
                 if (inputControllerButton.ButtonIndex < 0)
@@ -446,7 +452,7 @@ public class SpecifiedInputKey : ICloneable
         return toStringBuilder.ToString();
     }
 
-    private void ConstructFrom(InputEventWithModifiers @event)
+    private void ConstructFrom(InputEventWithModifiers @event, bool preferKeyLabel)
     {
         Control = @event.CtrlPressed || @event.MetaPressed;
         Alt = @event.AltPressed;
@@ -457,7 +463,7 @@ public class SpecifiedInputKey : ICloneable
             case InputEventKey inputKey:
             {
                 // TODO: unicode key value support?
-                if (inputKey.PhysicalKeycode != Key.None)
+                if (inputKey.PhysicalKeycode != Key.None && !preferKeyLabel)
                 {
                     // Physical key
                     Type = InputType.PhysicalKey;
@@ -523,8 +529,8 @@ public class SpecifiedInputKey : ICloneable
         return new TextureRect
         {
             Texture = GD.Load<Texture2D>(image),
-            ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
-            StretchMode = TextureRect.StretchModeEnum.Scale,
+            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
             CustomMinimumSize = small ? new Vector2(14, 14) : new Vector2(32, 32),
         };
     }

@@ -551,7 +551,7 @@ public class Settings
     {
         return new InputDataList(InputMap.GetActions()
             .ToDictionary(p => p.ToString(),
-                p => InputMap.ActionGetEvents(p).Select(x => new SpecifiedInputKey(x)).ToList()));
+                p => InputMap.ActionGetEvents(p).Select(x => new SpecifiedInputKey(x, false)).ToList()));
     }
 
     /// <summary>
