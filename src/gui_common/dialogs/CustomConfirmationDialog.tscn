@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl64wvnxs6ivs"]
+[gd_scene load_steps=6 format=3 uid="uid://cl64wvnxs6ivs"]
 
 [ext_resource type="Script" path="res://src/gui_common/dialogs/CustomConfirmationDialog.cs" id="1"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="5_pks4s"]
 
 [node name="CustomConfirmationDialog" instance=ExtResource("2")]
 layout_mode = 3
@@ -65,6 +66,7 @@ size_flags_horizontal = 3
 
 [node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer" index="1"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_pks4s")
 theme_override_font_sizes/font_size = 18
 text = "CANCEL"
 
@@ -74,6 +76,7 @@ size_flags_horizontal = 3
 
 [node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer" index="3"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_pks4s")
 theme_override_font_sizes/font_size = 18
 text = "OK"
 
