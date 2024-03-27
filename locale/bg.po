@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -332,15 +332,6 @@ msgstr "Основни"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Отваряне на основните настройки"
-
-msgid "BASSBOOST"
-msgstr "Клавиш „Bassboost“"
-
-msgid "BASSDOWN"
-msgstr "Клавиш „Bass Down“"
-
-msgid "BASSUP"
-msgstr "Клавиш „Bass Up“"
 
 msgid "BATHYPELAGIC"
 msgstr "Батиал"
@@ -1402,12 +1393,6 @@ msgstr "Хранителна скорост:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/с"
 
-msgid "DIRECTIONL"
-msgstr "Наляво"
-
-msgid "DIRECTIONR"
-msgstr "Надясно"
-
 msgid "DISABLED"
 msgstr "Изключено"
 
@@ -2149,12 +2134,6 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
-msgid "HYPERL"
-msgstr "Клавиш „Hyper Left“"
-
-msgid "HYPERR"
-msgstr "Клавиш „Hyper Right“"
-
 msgid "ICESHARD"
 msgstr "Леден къс"
 
@@ -2383,10 +2362,17 @@ msgstr "Юни"
 msgid "KEY_BACK"
 msgstr "Клавиш „Back“"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Клавиш „Back“"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Установен е конфликт с „{0}“.\n"
 "Искате ли да нулирате „{1}“?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Клавиш „Clear“"
@@ -2409,6 +2395,10 @@ msgstr "Клавиш „Favorites“"
 msgid "KEY_FORWARD"
 msgstr "Клавиш „Forward“"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Клавиш „Home“"
+
 msgid "KEY_HELP"
 msgstr "Клавиш „Help“"
 
@@ -2418,14 +2408,30 @@ msgstr "Клавиш „Home“"
 msgid "KEY_HOMEPAGE"
 msgstr "Клавиш „Homepage“"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Клавиш „Help“"
+
 msgid "KEY_INSERT"
 msgstr "Клавиш „Insert“"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Клавиш „Insert“"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Клавиш „Standby“"
 
 msgid "KEY_LEFT"
 msgstr "Стрелка наляво"
 
 msgid "KEY_MENU"
 msgstr "Клавиш „Menu“"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Клавиш „Tab“"
 
 msgid "KEY_OPENURL"
 msgstr "Клавиш „Open URL“"
@@ -4918,12 +4924,6 @@ msgstr "Извършване на самоубийство"
 msgid "SUNLIGHT"
 msgstr "Слънчева светлина"
 
-msgid "SUPERL"
-msgstr "Клавиш „Super Left“"
-
-msgid "SUPERR"
-msgstr "Клавиш „Super Right“"
-
 msgid "SUPPORTER_PATRONS"
 msgstr "Поддръжници"
 
@@ -5245,12 +5245,6 @@ msgstr "Преводачи"
 
 msgid "TRANSPARENCY"
 msgstr "Прозрачност"
-
-msgid "TREBLEDOWN"
-msgstr "Клавиш „Treble Down“"
-
-msgid "TREBLEUP"
-msgstr "Клавиш „Treble Up“"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Трябва да направите няколко вкаменелости!"
@@ -6844,6 +6838,39 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "Клавиш „Bassboost“"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Клавиш „Bass Down“"
+
+#~ msgid "BASSUP"
+#~ msgstr "Клавиш „Bass Up“"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Наляво"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Надясно"
+
+#~ msgid "HYPERL"
+#~ msgstr "Клавиш „Hyper Left“"
+
+#~ msgid "HYPERR"
+#~ msgstr "Клавиш „Hyper Right“"
+
+#~ msgid "SUPERL"
+#~ msgstr "Клавиш „Super Left“"
+
+#~ msgid "SUPERR"
+#~ msgstr "Клавиш „Super Right“"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Клавиш „Treble Down“"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Клавиш „Treble Up“"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Неизвестна"

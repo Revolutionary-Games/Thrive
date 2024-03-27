@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -333,15 +333,6 @@ msgstr "Базовий"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Повернутися до базового вікна налаштувань"
-
-msgid "BASSBOOST"
-msgstr "Підсилення басів"
-
-msgid "BASSDOWN"
-msgstr "Баси вниз"
-
-msgid "BASSUP"
-msgstr "Баси вгору"
 
 msgid "BATHYPELAGIC"
 msgstr "Придоння"
@@ -1378,12 +1369,6 @@ msgstr "Швидкість травлення:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/с"
 
-msgid "DIRECTIONL"
-msgstr "Вліво"
-
-msgid "DIRECTIONR"
-msgstr "Вправо"
-
 msgid "DISABLED"
 msgstr "Вимкнено"
 
@@ -2098,12 +2083,6 @@ msgstr "{0} (x{1})"
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сірководень"
 
-msgid "HYPERL"
-msgstr "Гіпер вліво"
-
-msgid "HYPERR"
-msgstr "Гіпер вправо"
-
 msgid "ICESHARD"
 msgstr "Крижані уламки"
 
@@ -2315,10 +2294,17 @@ msgstr "Червень"
 msgid "KEY_BACK"
 msgstr "Назад"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Назад"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Виявлено конфлікт з {0}\n"
 "Хочете видалити дані з {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "очистити"
@@ -2341,6 +2327,10 @@ msgstr "Вибране"
 msgid "KEY_FORWARD"
 msgstr "вперед"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Дім"
+
 msgid "KEY_HELP"
 msgstr "Допомогти"
 
@@ -2350,14 +2340,30 @@ msgstr "Дім"
 msgid "KEY_HOMEPAGE"
 msgstr "Домашня сторінка"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Допомогти"
+
 msgid "KEY_INSERT"
 msgstr "вставити"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "вставити"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Очікування"
 
 msgid "KEY_LEFT"
 msgstr "Вліво"
 
 msgid "KEY_MENU"
 msgstr "Меню"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Відкрити URL"
@@ -4798,12 +4804,6 @@ msgstr "Суїцид"
 msgid "SUNLIGHT"
 msgstr "Сонячне світло"
 
-msgid "SUPERL"
-msgstr "Супер вліво"
-
-msgid "SUPERR"
-msgstr "Супер Вправо"
-
 msgid "SUPPORTER_PATRONS"
 msgstr "Ті, що підтримали"
 
@@ -5115,12 +5115,6 @@ msgstr "Перекладачі"
 
 msgid "TRANSPARENCY"
 msgstr "Прозорість"
-
-msgid "TREBLEDOWN"
-msgstr "Зменшити частоту"
-
-msgid "TREBLEUP"
-msgstr "Збільшити частоту"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Спробуйте зробити декілька викопувань!"
@@ -6692,6 +6686,39 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "Підсилення басів"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Баси вниз"
+
+#~ msgid "BASSUP"
+#~ msgstr "Баси вгору"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Вліво"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Вправо"
+
+#~ msgid "HYPERL"
+#~ msgstr "Гіпер вліво"
+
+#~ msgid "HYPERR"
+#~ msgstr "Гіпер вправо"
+
+#~ msgid "SUPERL"
+#~ msgstr "Супер вліво"
+
+#~ msgid "SUPERR"
+#~ msgstr "Супер Вправо"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Зменшити частоту"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Збільшити частоту"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Невідомо на Windows"

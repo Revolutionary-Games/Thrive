@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -334,15 +334,6 @@ msgstr "Basis"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Ga terug naar basisinstellingenweergave"
-
-msgid "BASSBOOST"
-msgstr "Basversterking"
-
-msgid "BASSDOWN"
-msgstr "Bass Zachter"
-
-msgid "BASSUP"
-msgstr "Bass Harder"
 
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagisch"
@@ -1379,12 +1370,6 @@ msgstr "Verteringssnelheid:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-msgid "DIRECTIONL"
-msgstr "Links"
-
-msgid "DIRECTIONR"
-msgstr "Rechts"
-
 msgid "DISABLED"
 msgstr "Uitgeschakeld"
 
@@ -2106,12 +2091,6 @@ msgstr "{0} (x{1})"
 msgid "HYDROGEN_SULFIDE"
 msgstr "Waterstofsulfide"
 
-msgid "HYPERL"
-msgstr "Hyper links"
-
-msgid "HYPERR"
-msgstr "Hyper rechts"
-
 msgid "ICESHARD"
 msgstr "Ijsscherf"
 
@@ -2326,10 +2305,17 @@ msgstr "Juni"
 msgid "KEY_BACK"
 msgstr "Terug"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Terug"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Er is een conflict met {0}.\n"
 "Wil je de invoer van {1} verwijderen?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Wissen"
@@ -2352,6 +2338,10 @@ msgstr "Favorieten"
 msgid "KEY_FORWARD"
 msgstr "Voorwaarts"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Thuis"
+
 msgid "KEY_HELP"
 msgstr "Hulp"
 
@@ -2361,14 +2351,30 @@ msgstr "Thuis"
 msgid "KEY_HOMEPAGE"
 msgstr "Home-pagina"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Hulp"
+
 msgid "KEY_INSERT"
 msgstr "Invoegen"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Invoegen"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Stand-by"
 
 msgid "KEY_LEFT"
 msgstr "Links"
 
 msgid "KEY_MENU"
 msgstr "Menu"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Open URL"
@@ -4823,12 +4829,6 @@ msgstr "Verga meteen"
 msgid "SUNLIGHT"
 msgstr "Zonlicht"
 
-msgid "SUPERL"
-msgstr "Super Links"
-
-msgid "SUPERR"
-msgstr "Super Rechts"
-
 msgid "SUPPORTER_PATRONS"
 msgstr "Ondersteuners"
 
@@ -5145,12 +5145,6 @@ msgstr "Vertalers"
 
 msgid "TRANSPARENCY"
 msgstr "Transparantie"
-
-msgid "TREBLEDOWN"
-msgstr "Hoge tonen Zachter"
-
-msgid "TREBLEUP"
-msgstr "Hoge tonen Harder"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Probeer enkele soorten te fossilizeren!"
@@ -6730,6 +6724,39 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "Basversterking"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Bass Zachter"
+
+#~ msgid "BASSUP"
+#~ msgstr "Bass Harder"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Links"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Rechts"
+
+#~ msgid "HYPERL"
+#~ msgstr "Hyper links"
+
+#~ msgid "HYPERR"
+#~ msgstr "Hyper rechts"
+
+#~ msgid "SUPERL"
+#~ msgstr "Super Links"
+
+#~ msgid "SUPERR"
+#~ msgstr "Super Rechts"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Hoge tonen Zachter"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Hoge tonen Harder"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Onbekend op Windows"

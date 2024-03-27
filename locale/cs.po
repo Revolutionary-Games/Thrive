@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -326,15 +326,6 @@ msgstr "Základní"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Návrat k náhledu základního nastavení"
-
-msgid "BASSBOOST"
-msgstr "Bassboost"
-
-msgid "BASSDOWN"
-msgstr "Ubrat basy"
-
-msgid "BASSUP"
-msgstr "Přidat basy"
 
 msgid "BATHYPELAGIC"
 msgstr "Batypelagiál (hloubka oceánu do 4000m)"
@@ -1389,12 +1380,6 @@ msgstr "Rychlost trávení:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-msgid "DIRECTIONL"
-msgstr "Vlevo"
-
-msgid "DIRECTIONR"
-msgstr "Vpravo"
-
 msgid "DISABLED"
 msgstr "Vypnuto"
 
@@ -2173,12 +2158,6 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sirovodík"
 
-msgid "HYPERL"
-msgstr "Levý Hyper"
-
-msgid "HYPERR"
-msgstr "Pravý Hyper"
-
 msgid "ICESHARD"
 msgstr "Ledový střep"
 
@@ -2413,10 +2392,17 @@ msgstr "Červen"
 msgid "KEY_BACK"
 msgstr "Zpět"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Zpět"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Nalezen konflikt s {0}.\n"
 "Chcete odstranit vstup z {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Clear (smazat)"
@@ -2439,6 +2425,10 @@ msgstr "Oblíbené"
 msgid "KEY_FORWARD"
 msgstr "Dopředu"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Home"
+
 msgid "KEY_HELP"
 msgstr "Help"
 
@@ -2448,14 +2438,30 @@ msgstr "Home"
 msgid "KEY_HOMEPAGE"
 msgstr "Domovská stránka"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Help"
+
 msgid "KEY_INSERT"
 msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Provoz"
 
 msgid "KEY_LEFT"
 msgstr "Vlevo"
 
 msgid "KEY_MENU"
 msgstr "Menu"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tabulátor"
 
 msgid "KEY_OPENURL"
 msgstr "Otevřít URL"
@@ -4977,12 +4983,6 @@ msgstr "Spáchat sebevraždu"
 msgid "SUNLIGHT"
 msgstr "Sluneční svit"
 
-msgid "SUPERL"
-msgstr "Levá klávesa Windows/Command"
-
-msgid "SUPERR"
-msgstr "Pravá klávesa Windows/Command"
-
 msgid "SUPPORTER_PATRONS"
 msgstr "Podporovatelé"
 
@@ -5296,12 +5296,6 @@ msgstr "Překladatelé"
 
 msgid "TRANSPARENCY"
 msgstr "Průhlednost"
-
-msgid "TREBLEDOWN"
-msgstr "Ubrat výšky"
-
-msgid "TREBLEUP"
-msgstr "Přidat výšky"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -6896,6 +6890,39 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "Bassboost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Ubrat basy"
+
+#~ msgid "BASSUP"
+#~ msgstr "Přidat basy"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Vlevo"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Vpravo"
+
+#~ msgid "HYPERL"
+#~ msgstr "Levý Hyper"
+
+#~ msgid "HYPERR"
+#~ msgstr "Pravý Hyper"
+
+#~ msgid "SUPERL"
+#~ msgstr "Levá klávesa Windows/Command"
+
+#~ msgid "SUPERR"
+#~ msgstr "Pravá klávesa Windows/Command"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Ubrat výšky"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Přidat výšky"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Neznáme na Windows"

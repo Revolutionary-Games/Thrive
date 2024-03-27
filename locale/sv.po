@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -340,15 +340,6 @@ msgstr ""
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Självmord"
-
-msgid "BASSBOOST"
-msgstr "Basboost"
-
-msgid "BASSDOWN"
-msgstr "Sänk Bas"
-
-msgid "BASSUP"
-msgstr "Öka Bas"
 
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagisk"
@@ -1373,12 +1364,6 @@ msgstr "Hastighet:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr "Vänster"
-
-msgid "DIRECTIONR"
-msgstr "Höger"
-
 msgid "DISABLED"
 msgstr "Avstängt"
 
@@ -2163,12 +2148,6 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr "Svavelväte"
 
-msgid "HYPERL"
-msgstr "Hyper Vänster"
-
-msgid "HYPERR"
-msgstr "Hyper Höger"
-
 msgid "ICESHARD"
 msgstr "Isskärva"
 
@@ -2403,10 +2382,17 @@ msgstr "Juni"
 msgid "KEY_BACK"
 msgstr "Backåt"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Backåt"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "There is a conflict with {0}.\n"
 "Vill du ta bort inputen från {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Rensa"
@@ -2429,6 +2415,10 @@ msgstr "Favoriter"
 msgid "KEY_FORWARD"
 msgstr "Framåt"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Hem"
+
 msgid "KEY_HELP"
 msgstr "Hjälp"
 
@@ -2438,14 +2428,30 @@ msgstr "Hem"
 msgid "KEY_HOMEPAGE"
 msgstr "Startsida"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Hjälp"
+
 msgid "KEY_INSERT"
 msgstr "Inmata"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Inmata"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Standby"
 
 msgid "KEY_LEFT"
 msgstr "Vänster"
 
 msgid "KEY_MENU"
 msgstr "Meny"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Öppen URL"
@@ -5011,12 +5017,6 @@ msgstr "Självmord"
 msgid "SUNLIGHT"
 msgstr "Solljus"
 
-msgid "SUPERL"
-msgstr "Super Vänster"
-
-msgid "SUPERR"
-msgstr "Super Höger"
-
 msgid "SUPPORTER_PATRONS"
 msgstr "Supportrar"
 
@@ -5343,12 +5343,6 @@ msgstr "Översättare"
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "Översättare"
-
-msgid "TREBLEDOWN"
-msgstr "Sänk Treble"
-
-msgid "TREBLEUP"
-msgstr "Öka Treble"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -6896,6 +6890,39 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "Basboost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Sänk Bas"
+
+#~ msgid "BASSUP"
+#~ msgstr "Öka Bas"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Vänster"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Höger"
+
+#~ msgid "HYPERL"
+#~ msgstr "Hyper Vänster"
+
+#~ msgid "HYPERR"
+#~ msgstr "Hyper Höger"
+
+#~ msgid "SUPERL"
+#~ msgstr "Super Vänster"
+
+#~ msgid "SUPERR"
+#~ msgstr "Super Höger"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Sänk Treble"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Öka Treble"
 
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"

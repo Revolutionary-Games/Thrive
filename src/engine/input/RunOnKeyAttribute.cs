@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 /// <example>
 ///   [RunOnKey("g_cheat_glucose")]
-///   public void CheatGlucose(float delta)
+///   public void CheatGlucose(double delta)
 /// </example>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public class RunOnKeyAttribute : InputAttribute
@@ -32,7 +32,18 @@ public class RunOnKeyAttribute : InputAttribute
 
     public RunOnKeyAttribute(string inputName)
     {
-        InputName = inputName;
+        if (inputName.StartsWith(CAPTURED_MOUSE_AS_AXIS_PREFIX))
+        {
+            InputName = new StringName("unused");
+
+            // TODO: maybe split this actively
+            MultiPartInputName = CAPTURED_MOUSE_AS_AXIS_PREFIX;
+        }
+        else
+        {
+            InputName = inputName;
+            MultiPartInputName = null;
+        }
     }
 
     /// <summary>
@@ -44,7 +55,9 @@ public class RunOnKeyAttribute : InputAttribute
     ///   The internal godot input name. Except in some cases, <see cref="CAPTURED_MOUSE_AS_AXIS_PREFIX"/>.
     /// </summary>
     /// <example>ui_select</example>
-    public string InputName { get; }
+    public StringName InputName { get; }
+
+    public string? MultiPartInputName { get; }
 
     /// <summary>
     ///   If this is set to false the callback method is allowed to be called without the delta value (using 0.0f)

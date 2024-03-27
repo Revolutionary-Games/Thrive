@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -334,15 +334,6 @@ msgstr "Básico"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Retornar às configurações básicas"
-
-msgid "BASSBOOST"
-msgstr "Ampliação de grave"
-
-msgid "BASSDOWN"
-msgstr "Diminuir Grave"
-
-msgid "BASSUP"
-msgstr "Aumentar Grave"
 
 msgid "BATHYPELAGIC"
 msgstr "Batipelágico"
@@ -1380,12 +1371,6 @@ msgstr "Velocidade da Digestão:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-msgid "DIRECTIONL"
-msgstr "Esquerda"
-
-msgid "DIRECTIONR"
-msgstr "Direita"
-
 msgid "DISABLED"
 msgstr "Desativado"
 
@@ -2101,12 +2086,6 @@ msgstr "{0} (x{1})"
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfeto de Hidrogênio"
 
-msgid "HYPERL"
-msgstr "Hyper Esquerda"
-
-msgid "HYPERR"
-msgstr "Hyper Direita"
-
 msgid "ICESHARD"
 msgstr "Fragmento de gelo"
 
@@ -2318,10 +2297,17 @@ msgstr "Junho"
 msgid "KEY_BACK"
 msgstr "Voltar"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Voltar"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Há um conflito com {0}.\n"
 "Deseja elimimar a entrada de {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Limpar"
@@ -2344,6 +2330,10 @@ msgstr "Favoritos"
 msgid "KEY_FORWARD"
 msgstr "Avançar"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Home"
+
 msgid "KEY_HELP"
 msgstr "Ajuda"
 
@@ -2353,14 +2343,30 @@ msgstr "Home"
 msgid "KEY_HOMEPAGE"
 msgstr "Página Inicial"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Ajuda"
+
 msgid "KEY_INSERT"
 msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Modo de espera"
 
 msgid "KEY_LEFT"
 msgstr "Seta para esquerda"
 
 msgid "KEY_MENU"
 msgstr "Menu"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Abrir URL"
@@ -4800,12 +4806,6 @@ msgstr "Suicídio"
 msgid "SUNLIGHT"
 msgstr "Luz Solar"
 
-msgid "SUPERL"
-msgstr "Super Esquerda"
-
-msgid "SUPERR"
-msgstr "Super Direita"
-
 msgid "SUPPORTER_PATRONS"
 msgstr "Apoiadores"
 
@@ -5118,12 +5118,6 @@ msgstr "Tradutores"
 
 msgid "TRANSPARENCY"
 msgstr "Transparência"
-
-msgid "TREBLEDOWN"
-msgstr "Diminuir Agudos"
-
-msgid "TREBLEUP"
-msgstr "Aumentar Agudos"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Tente fossilizar algumas espécies!"
@@ -6723,6 +6717,39 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "Ampliação de grave"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Diminuir Grave"
+
+#~ msgid "BASSUP"
+#~ msgstr "Aumentar Grave"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Esquerda"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Direita"
+
+#~ msgid "HYPERL"
+#~ msgstr "Hyper Esquerda"
+
+#~ msgid "HYPERR"
+#~ msgstr "Hyper Direita"
+
+#~ msgid "SUPERL"
+#~ msgstr "Super Esquerda"
+
+#~ msgid "SUPERR"
+#~ msgstr "Super Direita"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Diminuir Agudos"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Aumentar Agudos"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Desconhecido no Windows"

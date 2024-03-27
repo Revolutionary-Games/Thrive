@@ -280,7 +280,8 @@ public partial class InputEventItem : MarginContainer
 
         try
         {
-            AssociatedEvent = new SpecifiedInputKey(@event);
+            // TODO: allow controlling if physical keys or key labels should be used when rebinding by the user
+            AssociatedEvent = new SpecifiedInputKey(@event, true);
         }
         catch (Exception e)
         {

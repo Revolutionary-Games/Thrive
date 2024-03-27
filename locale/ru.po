@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -333,15 +333,6 @@ msgstr "Упрощённый вид"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Вернуться к упрощённому виду настроек"
-
-msgid "BASSBOOST"
-msgstr "BassBoost"
-
-msgid "BASSDOWN"
-msgstr "Bass Down"
-
-msgid "BASSUP"
-msgstr "Bass Up"
 
 msgid "BATHYPELAGIC"
 msgstr "Батипелагический"
@@ -1378,12 +1369,6 @@ msgstr "Скорость усвоения:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/сек"
 
-msgid "DIRECTIONL"
-msgstr "Налево"
-
-msgid "DIRECTIONR"
-msgstr "Направо"
-
 msgid "DISABLED"
 msgstr "Отключено"
 
@@ -2098,12 +2083,6 @@ msgstr "{0} (x{1})"
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
-msgid "HYPERL"
-msgstr "Гипер Влево"
-
-msgid "HYPERR"
-msgstr "Гипер Вправо"
-
 msgid "ICESHARD"
 msgstr "Ледяной осколок"
 
@@ -2315,10 +2294,17 @@ msgstr "Июнь"
 msgid "KEY_BACK"
 msgstr "Назад"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Назад"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Здесь есть конфликт с {0}.\n"
 "Вы желаете удалить клавишу из {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Отчистить"
@@ -2341,6 +2327,10 @@ msgstr "Избранное"
 msgid "KEY_FORWARD"
 msgstr "Перемещение вперед"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Home"
+
 msgid "KEY_HELP"
 msgstr "Помощь"
 
@@ -2350,14 +2340,30 @@ msgstr "Home"
 msgid "KEY_HOMEPAGE"
 msgstr "Домашняя страница"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Помощь"
+
 msgid "KEY_INSERT"
 msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Ожидание"
 
 msgid "KEY_LEFT"
 msgstr "Стрелка влево"
 
 msgid "KEY_MENU"
 msgstr "Меню"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Открыть URL-ссылку"
@@ -4797,12 +4803,6 @@ msgstr "Самоубийство"
 msgid "SUNLIGHT"
 msgstr "Солнечный свет"
 
-msgid "SUPERL"
-msgstr "Супер Влево"
-
-msgid "SUPERR"
-msgstr "Супер Вправо"
-
 msgid "SUPPORTER_PATRONS"
 msgstr "Поддержка"
 
@@ -5114,12 +5114,6 @@ msgstr "Переводчики"
 
 msgid "TRANSPARENCY"
 msgstr "Прозрачность"
-
-msgid "TREBLEDOWN"
-msgstr "TrebleDown"
-
-msgid "TREBLEUP"
-msgstr "TrebleUp"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Попробуйте сохранить окаменелости некоторых видов!"
@@ -6677,6 +6671,39 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "BassBoost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Bass Down"
+
+#~ msgid "BASSUP"
+#~ msgstr "Bass Up"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Налево"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Направо"
+
+#~ msgid "HYPERL"
+#~ msgstr "Гипер Влево"
+
+#~ msgid "HYPERR"
+#~ msgstr "Гипер Вправо"
+
+#~ msgid "SUPERL"
+#~ msgstr "Супер Влево"
+
+#~ msgid "SUPERR"
+#~ msgstr "Супер Вправо"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "TrebleDown"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "TrebleUp"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Неизвестно для Windows"

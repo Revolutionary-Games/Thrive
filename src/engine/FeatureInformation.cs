@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Godot;
 
 /// <summary>
@@ -29,6 +30,7 @@ public static class FeatureInformation
         "iOS",
     };
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string GetOS()
     {
         return ResolvedOS.Value;
@@ -42,6 +44,11 @@ public static class FeatureInformation
     public static bool IsLinux()
     {
         return GetOS() == PlatformLinux;
+    }
+
+    public static bool IsMac()
+    {
+        return GetOS() == PlatformMac;
     }
 
     private static string GetOSHelper()
