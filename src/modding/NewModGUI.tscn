@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://df5b2gnvubofe"]
+[gd_scene load_steps=5 format=3 uid="uid://df5b2gnvubofe"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" path="res://src/modding/NewModGUI.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_paixo"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="4_bos37"]
 
 [node name="NewModGUI" type="Control"]
 layout_mode = 3
@@ -323,6 +324,7 @@ alignment = 1
 
 [node name="Create" type="Button" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bos37")
 theme_override_font_sizes/font_size = 18
 text = "CREATE"
 

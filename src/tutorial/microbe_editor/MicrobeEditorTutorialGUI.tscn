@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cahegn58i768h"]
+[gd_scene load_steps=10 format=3 uid="uid://cahegn58i768h"]
 
 [ext_resource type="Script" path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="9"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
 [ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
 [node name="MicrobeEditorTutorialGUI" type="Control"]
@@ -15,6 +16,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2")
 script = ExtResource("1")
@@ -52,6 +55,8 @@ offset_left = -533.0
 offset_top = -184.0
 offset_right = -173.0
 offset_bottom = 156.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "EDITOR_TUTORIAL_EDITOR_TEXT"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
@@ -68,6 +73,8 @@ offset_left = -533.0
 offset_top = -184.0
 offset_right = -173.0
 offset_bottom = 161.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 PreventsMouseCaptureWhileOpen = true
 
@@ -83,6 +90,8 @@ offset_left = -403.0
 offset_top = -134.0
 offset_right = -43.0
 offset_bottom = 206.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
@@ -99,6 +108,8 @@ offset_left = -403.0
 offset_top = -134.0
 offset_right = -43.0
 offset_bottom = 206.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 ShowDelay = 0.3
 ShowCloseButton = false
@@ -118,6 +129,7 @@ offset_left = -160.0
 offset_top = 91.0
 offset_right = 160.0
 offset_bottom = 345.0
+grow_horizontal = 2
 Description = "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 ShowDelay = 0.3
 ShowCloseButton = false
@@ -169,6 +181,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "GOT_IT"
 
@@ -188,6 +201,8 @@ offset_left = -180.0
 offset_top = -190.0
 offset_right = 180.0
 offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 ShowDelay = 0.7
 ShowCloseButton = false
@@ -205,6 +220,8 @@ offset_left = 263.143
 offset_top = -143.877
 offset_right = 623.143
 offset_bottom = 156.123
+grow_horizontal = 2
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 ShowDelay = 0.7
 ShowCloseButton = false
@@ -252,6 +269,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
@@ -267,6 +285,8 @@ offset_left = 216.0
 offset_top = -150.612
 offset_right = 576.0
 offset_bottom = 149.388
+grow_horizontal = 2
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
@@ -313,6 +333,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
@@ -359,6 +380,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
@@ -403,6 +425,8 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_jkhed")
+theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
 [node name="AtpBalanceBarHighlight" parent="." instance=ExtResource("3")]
@@ -450,6 +474,8 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_jkhed")
+theme_override_font_sizes/font_size = 18
 text = "GOT_IT"
 
 [connection signal="hidden" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEditorReport"]]

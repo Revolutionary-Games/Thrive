@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://rfg25u72afai"]
+[gd_scene load_steps=6 format=3 uid="uid://rfg25u72afai"]
 
 [ext_resource type="Script" path="res://src/gui_common/SpeciesDetailsPanelWithFossilisation.cs" id="1"]
-[ext_resource type="PackedScene" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b1boea8qjx6xx" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="2"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="4_33ll2"]
 [ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="6"]
 
 [node name="SpeciesDetailsPanelWithFossilisation" type="VBoxContainer"]
@@ -21,6 +22,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
+theme_override_fonts/font = ExtResource("4_33ll2")
 theme_override_font_sizes/font_size = 18
 disabled = true
 text = "FOSSILISE"
