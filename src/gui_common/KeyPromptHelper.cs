@@ -125,6 +125,7 @@ public static class KeyPromptHelper
     /// </returns>
     public static (string Primary, string? Overlay) GetPathForAction(string actionName)
     {
+        // TODO: cache for valid input actions: https://github.com/Revolutionary-Games/Thrive/issues/4983
         return GetPathForAction(InputMap.ActionGetEvents(actionName));
     }
 
