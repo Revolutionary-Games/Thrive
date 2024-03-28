@@ -176,7 +176,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         // TODO: different root for sounds?
         soundEffectSystem = new SoundEffectSystem(visualsParent, EntitySystem);
-        soundListenerSystem = new SoundListenerSystem(visualsParent, EntitySystem, nonParallelRunner);
+        soundListenerSystem = new SoundListenerSystem(visualsParent, EntitySystem);
         spatialAttachSystem = new SpatialAttachSystem(visualsParent, EntitySystem);
         spatialPositionSystem = new SpatialPositionSystem(EntitySystem);
 

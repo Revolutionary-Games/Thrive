@@ -27,7 +27,7 @@ public sealed class SoundListenerSystem : AEntitySetSystem<float>
 
     private bool printedError;
 
-    public SoundListenerSystem(Node listenerParentNode, World world, IParallelRunner runner) : base(world, runner)
+    public SoundListenerSystem(Node listenerParentNode, World world) : base(world, null)
     {
         listener = new AudioListener3D();
         listener.ClearCurrent();
