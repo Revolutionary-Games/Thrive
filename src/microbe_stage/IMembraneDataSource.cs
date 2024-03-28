@@ -103,7 +103,13 @@ public static class MembraneComputationHelpers
         }
 
         // Need to compute the data now, it doesn't exist in the cache
-        result = MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateShape(hexes, length, membraneType);
+        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+        var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
+
+        lock (generator)
+        {
+            result = generator.GenerateShape(hexes, length, membraneType);
+        }
 
         cache.WriteMembraneData(result);
         return result;

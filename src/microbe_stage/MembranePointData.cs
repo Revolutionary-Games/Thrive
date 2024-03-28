@@ -26,7 +26,15 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
         // Setup mesh to be generated (on the main thread) only when required
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
-            MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateMesh(this));
+        {
+            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
+
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+            lock (generator)
+            {
+                return generator.GenerateMesh(this);
+            }
+        });
 
         // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
         // might exist a reference to this class instance (that's why it is only released in the finalizer)
