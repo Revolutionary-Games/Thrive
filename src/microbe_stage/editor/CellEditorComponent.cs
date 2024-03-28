@@ -110,9 +110,6 @@ public partial class CellEditorComponent :
     public NodePath ATPBalancePanelPath = null!;
 
     [Export]
-    public NodePath ATPBalanceLabelPath = null!;
-
-    [Export]
     public NodePath ATPProductionLabelPath = null!;
 
     [Export]
@@ -147,6 +144,14 @@ public partial class CellEditorComponent :
 
     [Export]
     public NodePath RightPanelScrollContainerPath = null!;
+
+#pragma warning disable CA2213
+    [Export]
+    public LabelSettings ATPBalanceNormalText = null!;
+
+    [Export]
+    public LabelSettings ATPBalanceNotEnoughText = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Temporary hex memory for use by the main thread in this component
@@ -220,7 +225,10 @@ public partial class CellEditorComponent :
     private TweakedColourPicker membraneColorPicker = null!;
 
     private Control atpBalancePanel = null!;
+
+    [Export]
     private Label atpBalanceLabel = null!;
+
     private Label atpProductionLabel = null!;
     private Label atpConsumptionLabel = null!;
     private SegmentedBar atpProductionBar = null!;
@@ -627,7 +635,6 @@ public partial class CellEditorComponent :
         membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
 
         atpBalancePanel = GetNode<Control>(ATPBalancePanelPath);
-        atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
         atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
@@ -1379,7 +1386,6 @@ public partial class CellEditorComponent :
                 BestPatchLabelPath.Dispose();
                 MembraneColorPickerPath.Dispose();
                 ATPBalancePanelPath.Dispose();
-                ATPBalanceLabelPath.Dispose();
                 ATPProductionLabelPath.Dispose();
                 ATPConsumptionLabelPath.Dispose();
                 ATPProductionBarPath.Dispose();
