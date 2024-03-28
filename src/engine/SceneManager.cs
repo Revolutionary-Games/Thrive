@@ -234,6 +234,16 @@ public partial class SceneManager : Node
         alreadyQuit = true;
     }
 
+    public void QuitDueToError()
+    {
+        if (!alreadyQuit)
+            GD.PrintErr("Exiting Thrive due to a serious error");
+
+        GetTree().Quit();
+
+        alreadyQuit = true;
+    }
+
     /// <summary>
     ///   Ensures the shutdown node is last in tree order, this is needed for it to actually execute last
     /// </summary>

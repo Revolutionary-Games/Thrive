@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading;
 using DefaultEcs;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -105,6 +106,17 @@ public static class CollisionManagementHelpers
             return 0;
         }
 
-        return Marshal.ReadInt32(collisionManagement.ActiveCollisionCountPtr);
+        var count = Marshal.ReadInt32(collisionManagement.ActiveCollisionCountPtr);
+
+#if DEBUG
+        if (count > collisions.Length)
+        {
+            GD.PrintErr("Active collisions from native side read as having more items than possible, returning " +
+                $"{collisions.Length} instead of {count}");
+            return collisions.Length;
+        }
+#endif
+
+        return count;
     }
 }
