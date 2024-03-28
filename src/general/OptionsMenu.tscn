@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://khgb1ctp1e5o"]
+[gd_scene load_steps=26 format=3 uid="uid://khgb1ctp1e5o"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/general/OptionsMenu.cs" id="2"]
@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://00dm1uexdc6n" path="res://src/engine/input/ControllerDeadzoneConfiguration.tscn" id="12"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="12_ajn4i"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="13"]
-[ext_resource type="FontFile" uid="uid://br1ljx6dpi6gd" path="res://assets/fonts/Jura-DemiBold.ttf" id="13_3wl4t"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="13_8qfyf"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="14"]
+[ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="14_oqvj0"]
 [ext_resource type="PackedScene" uid="uid://d0tfe6i1offy" path="res://src/gui_common/PatchNotesDisplayer.tscn" id="15"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_pge5w"]
@@ -1696,12 +1697,13 @@ size_flags_vertical = 3
 
 [node name="SaveButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("13_3wl4t")
+theme_override_fonts/font = ExtResource("13_8qfyf")
 theme_override_font_sizes/font_size = 18
 text = "SAVE_AND_CONTINUE"
 
 [node name="DiscardButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("14_oqvj0")
 theme_override_font_sizes/font_size = 18
 text = "DISCARD_AND_CONTINUE"
 
@@ -1712,6 +1714,7 @@ theme_override_styles/separator = SubResource("7")
 
 [node name="CancelButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("13_8qfyf")
 theme_override_font_sizes/font_size = 18
 text = "CANCEL"
 
@@ -1767,6 +1770,7 @@ size_flags_horizontal = 4
 
 [node name="Close" type="Button" parent="CenterContainer/PatchNotesBox/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("13_8qfyf")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 

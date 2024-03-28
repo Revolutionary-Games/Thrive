@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d06pkd2hx1syf"]
+[gd_scene load_steps=14 format=3 uid="uid://d06pkd2hx1syf"]
 
 [ext_resource type="Script" path="res://src/modding/ModManager.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://df5b2gnvubofe" path="res://src/modding/NewModGUI.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="7"]
 [ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="10_m12ca"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="11_eeuir"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="11_kax5m"]
 [ext_resource type="PackedScene" uid="uid://ehx86lo13kcg" path="res://src/modding/ModUploader.tscn" id="12"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="13"]
@@ -703,6 +704,7 @@ label_settings = ExtResource("11_kax5m")
 [node name="Button" type="Button" parent="ModFullInfo/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("11_eeuir")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
@@ -720,6 +722,8 @@ visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="LoadUnloadErrors" parent="." instance=ExtResource("7")]
 custom_minimum_size = Vector2(400, 350)

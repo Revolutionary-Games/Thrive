@@ -1,0 +1,12 @@
+[gd_resource type="FontVariation" load_steps=3 format=3 uid="uid://cqork3l186w1c"]
+
+[ext_resource type="FontFile" uid="uid://fiilmsmyyajj" path="res://assets/fonts/Jura-Variable.ttf" id="1_k5844"]
+[ext_resource type="FontVariation" uid="uid://cm1rgg3hbt65t" path="res://assets/fonts/variants/NotoSans-Bold.tres" id="2_ujkp5"]
+
+[resource]
+fallbacks = Array[Font]([ExtResource("2_ujkp5")])
+base_font = ExtResource("1_k5844")
+variation_opentype = {
+2003265652: 700
+}
+variation_embolden = 0.5

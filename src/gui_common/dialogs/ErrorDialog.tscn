@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/gui_common/dialogs/ErrorDialog.cs" id="1"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
-[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="4_7mmp0"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="4_3f458"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="4_afnvo"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
@@ -77,7 +77,7 @@ label_settings = ExtResource("4_afnvo")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 9
-theme_override_fonts/font = ExtResource("4_7mmp0")
+theme_override_fonts/font = ExtResource("4_3f458")
 theme_override_font_sizes/font_size = 18
 text = "COPY_ERROR_TO_CLIPBOARD"
 
@@ -85,6 +85,7 @@ text = "COPY_ERROR_TO_CLIPBOARD"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_3f458")
 theme_override_font_sizes/font_size = 18
 text = "OK"
 
