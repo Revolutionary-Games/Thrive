@@ -30,8 +30,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
 
-    private readonly ThreadLocal<List<BioProcess>> temporaryWorkData = new(() => new List<BioProcess>());
-
     private BiomeConditions? biome;
 
     /// <summary>
@@ -461,12 +459,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         return GetAmbientInBiome(compound, biome, amountType);
     }
 
-    public override void Dispose()
-    {
-        Dispose(true);
-        base.Dispose();
-    }
-
     protected override void PreUpdate(float delta)
     {
         if (biome == null)
@@ -539,7 +531,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         bag.ClampNegativeCompoundAmounts();
         bag.FixNaNCompounds();
 
-        processStatistics?.RemoveUnused(temporaryWorkData.Value!);
+        processStatistics?.RemoveUnused();
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
@@ -711,14 +703,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated * inverseDelta);
 
             bag.AddCompound(entry.Key, outputGenerated);
-        }
-    }
-
-    private void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            temporaryWorkData.Dispose();
         }
     }
 }

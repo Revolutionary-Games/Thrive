@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
 
@@ -9,6 +10,13 @@ using Nito.Collections;
 /// </summary>
 public class ProcessStatistics
 {
+    /// <summary>
+    ///   Temporary memory to use for <see cref="RemoveUnused"/> to avoid small constant allocations. This is no longer
+    ///   a ThreadLocal in <see cref="Systems.ProcessSystem"/> as that was causing the game process to lock up in
+    ///   Godot 4.
+    /// </summary>
+    private List<BioProcess>? temporaryRemovedItems;
+
     /// <summary>
     ///   The processes and their associated speed statistics
     /// </summary>
@@ -34,23 +42,26 @@ public class ProcessStatistics
         }
     }
 
-    public void RemoveUnused(List<BioProcess> removedItemsStorage)
+    public void RemoveUnused()
     {
-        removedItemsStorage.Clear();
+        temporaryRemovedItems ??= new List<BioProcess>();
 
         foreach (var entry in Processes)
         {
             if (!entry.Value.Used)
-                removedItemsStorage.Add(entry.Key);
+                temporaryRemovedItems.Add(entry.Key);
         }
 
-        if (removedItemsStorage.Count > 0)
+        int count = temporaryRemovedItems.Count;
+        if (count > 0)
         {
-            int count = removedItemsStorage.Count;
             for (int i = 0; i < count; ++i)
             {
-                Processes.Remove(removedItemsStorage[i]);
+                if (!Processes.Remove(temporaryRemovedItems[i]))
+                    GD.PrintErr("Failed to remove item from ProcessStatistics");
             }
+
+            temporaryRemovedItems.Clear();
         }
     }
 
