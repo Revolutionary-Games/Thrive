@@ -10,7 +10,7 @@ using DefaultEcs.Threading;
 /// </summary>
 /// <remarks>
 ///   <para>
-///      See the TODOs on <see cref="FadeOutActionSystem"/> why this is marked as needing to run on the main thread.
+///     See the TODOs on <see cref="FadeOutActionSystem"/> why this is marked as needing to run on the main thread.
 ///   </para>
 /// </remarks>
 [With(typeof(TimedLife))]
