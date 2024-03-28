@@ -134,6 +134,8 @@ public partial class TopLevelContainer : Control
             case NotificationReady:
                 readyCalled = true;
                 Hide();
+
+                // TODO: Delay this? Or is there another way to prevent the uneven anchors warning?
                 ApplyRectSettings();
                 break;
         }

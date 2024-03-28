@@ -18,6 +18,11 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
 {
     private readonly PhysicalWorld physicalWorld;
 
+    // This doesn't actually need to be accessed, just needs to hold data so that callback objects that are given to
+    // the native side cannot be garbage collected
+    // ReSharper disable once CollectionNeverQueried.Local
+    private readonly Dictionary<Entity, PhysicalWorld.OnCollisionFilterCallback> activeCollisionFilterCallbacks = new();
+
     /// <summary>
     ///   Used for temporary storage during an update
     /// </summary>
@@ -30,21 +35,31 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
     }
 
     /// <summary>
-    ///   Stops collision recording for a removed entity
+    ///   Handles physics destroy actions for an entity that has done collision management
     /// </summary>
     public void OnEntityDestroyed(in Entity entity)
     {
         if (!entity.Has<CollisionManagement>())
             return;
 
+        lock (activeCollisionFilterCallbacks)
+        {
+            activeCollisionFilterCallbacks.Remove(entity);
+        }
+
         ref var collisionManagement = ref entity.Get<CollisionManagement>();
 
         if (collisionManagement.ActiveCollisions != null)
         {
-            ref var physics = ref entity.Get<Physics>();
+            collisionManagement.ActiveCollisions = null;
+            collisionManagement.ActiveCollisionCountPtr = IntPtr.Zero;
+
+            // Note the other systems handle destroying the physics body, which will also force disable the collision
+            // recording, so that is not required to be done here
+            /*ref var physics = ref entity.Get<Physics>();
 
             if (physics.Body != null)
-                physicalWorld.BodyStopCollisionRecording(physics.Body);
+                physicalWorld.BodyStopCollisionRecording(physics.Body);*/
         }
     }
 
@@ -136,19 +151,26 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
 
         if (wantedFilterState != collisionManagement.CollisionFilterCallbackRegistered)
         {
-            if (wantedFilterState)
-            {
-                // TODO: can we somehow ensure that if the filter is set to null then StateApplied is set to false?
-                // Because otherwise we might get delegate data corruption when called from the native side?
+            collisionManagement.CollisionFilterCallbackRegistered = wantedFilterState;
 
-                physicalWorld.BodyAddCollisionFilter(physicsBody, collisionManagement.CollisionFilter!);
-
-                collisionManagement.CollisionFilterCallbackRegistered = true;
-            }
-            else
+            lock (activeCollisionFilterCallbacks)
             {
-                physicalWorld.BodyDisableCollisionFilter(physicsBody);
-                collisionManagement.CollisionFilterCallbackRegistered = false;
+                if (wantedFilterState)
+                {
+                    var filter = collisionManagement.CollisionFilter!;
+
+                    // Make sure the filter delegate stays alive for the duration of the registration
+                    activeCollisionFilterCallbacks[entity] = filter;
+
+                    physicalWorld.BodyAddCollisionFilter(physicsBody, filter);
+                }
+                else
+                {
+                    physicalWorld.BodyDisableCollisionFilter(physicsBody);
+
+                    // No longer need to keep this callback object alive
+                    activeCollisionFilterCallbacks.Remove(entity);
+                }
             }
         }
     }

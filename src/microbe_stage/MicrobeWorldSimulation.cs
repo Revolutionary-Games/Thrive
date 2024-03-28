@@ -176,7 +176,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         // TODO: different root for sounds?
         soundEffectSystem = new SoundEffectSystem(visualsParent, EntitySystem);
-        soundListenerSystem = new SoundListenerSystem(visualsParent, EntitySystem, nonParallelRunner);
+        soundListenerSystem = new SoundListenerSystem(visualsParent, EntitySystem);
         spatialAttachSystem = new SpatialAttachSystem(visualsParent, EntitySystem);
         spatialPositionSystem = new SpatialPositionSystem(EntitySystem);
 
@@ -296,16 +296,16 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void InitSystemsEarly()
     {
-        IParallelRunner taskExecutor = TaskExecutor.Instance;
+        IParallelRunner parallelRunner = TaskExecutor.Instance;
 
         // See the similar if in Init to know why this is used
         if (GenerateThreadedSystems.UseCheckedComponentAccess)
         {
-            taskExecutor = new DefaultParallelRunner(1);
+            parallelRunner = new DefaultParallelRunner(1);
         }
 
-        entitySignalingSystem = new EntitySignalingSystem(EntitySystem, taskExecutor);
-        fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, taskExecutor);
+        entitySignalingSystem = new EntitySignalingSystem(EntitySystem, parallelRunner);
+        fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, parallelRunner);
 
         SpawnSystem = new SpawnSystem(this);
     }
@@ -350,8 +350,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
         base.OnEntityDestroyed(in entity);
 
-        // This doesn't seem to be required as the bodies are fully destroyed anyway so they can't record anything
-        // physicsCollisionManagementSystem.OnEntityDestroyed(entity);
+        physicsCollisionManagementSystem.OnEntityDestroyed(entity);
         physicsBodyDisablingSystem.OnEntityDestroyed(entity);
         physicsBodyCreationSystem.OnEntityDestroyed(entity);
         physicsSensorSystem.OnEntityDestroyed(entity);

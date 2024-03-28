@@ -113,12 +113,14 @@ text = "BENCHMARK_RESULTS_COLON"
 label_settings = ExtResource("5_5gxef")
 
 [node name="Results" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Some stuff: 0
 Other things: 1234"
 label_settings = ExtResource("5_5gxef")
+autowrap_mode = 3
 
 [node name="FinishedText" type="Label" parent="GUIContainer/VBoxContainer"]
 layout_mode = 2
