@@ -296,16 +296,16 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void InitSystemsEarly()
     {
-        IParallelRunner taskExecutor = TaskExecutor.Instance;
+        IParallelRunner parallelRunner = TaskExecutor.Instance;
 
         // See the similar if in Init to know why this is used
         if (GenerateThreadedSystems.UseCheckedComponentAccess)
         {
-            taskExecutor = new DefaultParallelRunner(1);
+            parallelRunner = new DefaultParallelRunner(1);
         }
 
-        entitySignalingSystem = new EntitySignalingSystem(EntitySystem, taskExecutor);
-        fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, taskExecutor);
+        entitySignalingSystem = new EntitySignalingSystem(EntitySystem, parallelRunner);
+        fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, parallelRunner);
 
         SpawnSystem = new SpawnSystem(this);
     }
