@@ -20,14 +20,17 @@ using World = DefaultEcs.World;
 /// <remarks>
 ///   <para>
 ///     This is really marked as needing to run on the main thread because this modifies particle emitter emitting
-///     setting of Godot.
+///     setting of Godot. NOTE: the callback is currently ran on the system that triggers the fade out to start
+///     this has various implications. See the TODO in the next section.
 ///   </para>
 /// </remarks>
 /// <remarks>
 ///   <para>
 ///     TODO: due to the way this accesses things through a callback, all the attributes here might need to be
 ///     copied to any of the systems that may trigger the callback. Fortunately this doesn't do very extensive
-///     writes so for now this is likely fine.
+///     writes so for now this is likely fine. A better way would be to queue the callback to trigger on this system
+///     once this system runs again on the main thread. Once done properly <see cref="TimedLifeSystem"/> can be marked
+///     as not needing to run on the main thread.
 ///   </para>
 /// </remarks>
 [With(typeof(FadeOutActions))]
@@ -95,6 +98,9 @@ public sealed class FadeOutActionSystem : AEntitySetSystem<float>
                 GD.PrintErr("Custom fade out actions fade time is zero");
                 return true;
             }
+
+            // TODO: the following should probably be queued to run on the main thread to solve problems related to
+            // accessing random components from a random system that happens to run the custom callback
 
             timedLife.FadeTimeRemaining = actions.FadeTime;
 

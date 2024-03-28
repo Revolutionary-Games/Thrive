@@ -8,8 +8,14 @@ using DefaultEcs.Threading;
 /// <summary>
 ///   System that deletes nodes that are in the timed group after their lifespan expires.
 /// </summary>
+/// <remarks>
+///   <para>
+///      See the TODOs on <see cref="FadeOutActionSystem"/> why this is marked as needing to run on the main thread.
+///   </para>
+/// </remarks>
 [With(typeof(TimedLife))]
 [RuntimeCost(0.25f)]
+[RunsOnMainThread]
 public sealed class TimedLifeSystem : AEntitySetSystem<float>
 {
     private readonly IEntityContainer entityContainer;
