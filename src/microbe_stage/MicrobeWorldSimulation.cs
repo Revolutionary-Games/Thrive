@@ -350,8 +350,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
         base.OnEntityDestroyed(in entity);
 
-        // This doesn't seem to be required as the bodies are fully destroyed anyway so they can't record anything
-        // physicsCollisionManagementSystem.OnEntityDestroyed(entity);
+        physicsCollisionManagementSystem.OnEntityDestroyed(entity);
         physicsBodyDisablingSystem.OnEntityDestroyed(entity);
         physicsBodyCreationSystem.OnEntityDestroyed(entity);
         physicsSensorSystem.OnEntityDestroyed(entity);
