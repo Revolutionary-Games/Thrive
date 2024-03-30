@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dew8qwd0buvnb"]
+[gd_scene load_steps=13 format=3 uid="uid://dew8qwd0buvnb"]
 
 [ext_resource type="Script" path="res://src/thriveopedia/fossilisation/FossilisationDialog.cs" id="1"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="3"]
 [ext_resource type="FontFile" uid="uid://dblvrxw3ue372" path="res://assets/fonts/Lato-Italic.ttf" id="3_cgult"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://b1boea8qjx6xx" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="10"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="10_wkor0"]
 [ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="12"]
 
@@ -132,6 +133,7 @@ size_flags_horizontal = 3
 [node name="FossiliseButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="3"]
 layout_mode = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("10_wkor0")
 theme_override_font_sizes/font_size = 18
 text = "FOSSILISE"
 

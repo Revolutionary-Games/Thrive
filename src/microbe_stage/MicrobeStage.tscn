@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bt2fv82h01ice" path="res://src/microbe_stage/MicrobeHUD.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="4"]
 [ext_resource type="Script" path="res://src/microbe_stage/PlayerMicrobeInput.cs" id="7"]
 [ext_resource type="Script" path="res://src/microbe_stage/CompoundCloudSystem.cs" id="10"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="11"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeInspectInfo.cs" id="22"]
 [ext_resource type="PackedScene" uid="uid://b6pjvrbt518oj" path="res://src/engine/ChromaticFilter.tscn" id="67"]
-[ext_resource type="PackedScene" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" id="74"]
+[ext_resource type="PackedScene" uid="uid://d116aks100ulm" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" id="74"]
 [ext_resource type="PackedScene" path="res://src/engine/GuidanceLine.tscn" id="75"]
 [ext_resource type="PackedScene" uid="uid://dwkek50fju0fu" path="res://src/microbe_stage/PatchNameOverlay.tscn" id="85"]
 
@@ -49,13 +49,12 @@ script = ExtResource("7")
 offset_left = -0.943848
 offset_right = -0.943848
 
-[node name="MicrobeHUD" parent="." instance=ExtResource("3")]
+[node name="MicrobeHUD" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("3")]
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
-MenuPath = NodePath("../PauseMenu")
+menu = NodePath("../PauseMenu")
 
 [node name="FossilisationDialog" parent="MicrobeHUD" instance=ExtResource("4")]
-anchors_preset = 0
 offset_left = 458.0
 offset_top = 120.0
 offset_right = 822.0
@@ -71,10 +70,6 @@ mouse_filter = 2
 
 [node name="TutorialGUI" parent="." instance=ExtResource("74")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="PatchNameOverlay" parent="." instance=ExtResource("85")]
 visible = false

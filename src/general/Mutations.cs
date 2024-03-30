@@ -42,7 +42,8 @@ public class Mutations
         random = new XoShiRo256starstar();
     }
 
-    // TODO: proper unit testing (note the code here relies on Godot colour type)
+    // TODO: proper unit testing (note the code here relies on Godot colour type, and loading the thrive simulation
+    // parameters). See: https://github.com/Revolutionary-Games/Thrive/issues/4963
     public static void TestConsistentGenerationWithSeed()
     {
         int seed = 234234565;

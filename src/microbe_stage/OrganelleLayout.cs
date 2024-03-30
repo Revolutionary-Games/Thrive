@@ -16,6 +16,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     {
     }
 
+    [JsonConstructor]
     public OrganelleLayout()
     {
     }

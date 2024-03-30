@@ -10,7 +10,7 @@
 default_font = ExtResource("5_xjvdp")
 default_font_size = 14
 
-[node name="MouseHoverPanel" type="PanelContainer"]
+[node name="MouseHoverPanel" type="PanelContainer" node_paths=PackedStringArray("categoriesContainer", "nothingHereContainer")]
 custom_minimum_size = Vector2(250, 0)
 offset_right = 250.0
 offset_bottom = 73.0
@@ -19,8 +19,8 @@ size_flags_vertical = 0
 mouse_filter = 2
 theme = ExtResource("1")
 script = ExtResource("4")
-CategoriesContainerPath = NodePath("MarginContainer/VBoxContainer/Categories")
-NothingHereContainerPath = NodePath("MarginContainer/VBoxContainer/NothingHere")
+categoriesContainer = NodePath("MarginContainer/VBoxContainer/Categories")
+nothingHereContainer = NodePath("MarginContainer/VBoxContainer/NothingHere")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

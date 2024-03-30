@@ -7,14 +7,11 @@ using Newtonsoft.Json;
 [GodotAbstract]
 public partial class HUDBase : Control, IStageHUD
 {
-    [Export]
-    public NodePath? MenuPath;
-
-    [Export]
-    public NodePath HUDMessagesPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     protected PauseMenu menu = null!;
+
+    [Export]
     private HUDMessages hudMessages = null!;
 #pragma warning restore CA2213
 
@@ -24,14 +21,6 @@ public partial class HUDBase : Control, IStageHUD
 
     [JsonIgnore]
     public HUDMessages HUDMessages => hudMessages;
-
-    public override void _Ready()
-    {
-        base._Ready();
-
-        menu = GetNode<PauseMenu>(MenuPath);
-        hudMessages = GetNode<HUDMessages>(HUDMessagesPath);
-    }
 
     public virtual void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
     {
@@ -50,19 +39,5 @@ public partial class HUDBase : Control, IStageHUD
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f,
             stageBase.OnFinishTransitioning);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MenuPath != null)
-            {
-                MenuPath.Dispose();
-                HUDMessagesPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 }

@@ -1,10 +1,10 @@
 [gd_scene load_steps=35 format=3 uid="uid://jatxjxj6uy0d"]
 
-[ext_resource type="PackedScene" path="res://assets/models/menu_backgrounds/MenuPlanet.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://assets/models/menu_backgrounds/StarsMesh.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://assets/models/IronRock1.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://assets/models/menu_backgrounds/MenuPlanetClouds.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://assets/models/menu_backgrounds/MenuPlanetFakeAtmosphere.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://7etncy6memi4" path="res://assets/models/menu_backgrounds/MenuPlanet.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c2h4vpmx0juq8" path="res://assets/models/menu_backgrounds/StarsMesh.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cioaty38mki8x" path="res://assets/models/menu_backgrounds/MenuPlanetClouds.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bjhv73tanuowa" path="res://assets/models/menu_backgrounds/MenuPlanetFakeAtmosphere.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bu4uvavl0ieg2" path="res://assets/textures/iron_01.png" id="7"]
 [ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="8"]
@@ -139,7 +139,7 @@ shader_parameter/normalTexture = ExtResource("6")
 shader_parameter/dissolveTexture = ExtResource("9")
 
 [sub_resource type="QuadMesh" id="7"]
-size = Vector2(0.128, 0.496)
+size = Vector2(0.133, 0.271)
 center_offset = Vector3(0, 0.048, 0)
 
 [sub_resource type="Curve" id="8"]
@@ -152,7 +152,7 @@ offsets = PackedFloat32Array(0, 0.438776, 0.99095)
 colors = PackedColorArray(1, 1, 1, 0.294118, 1, 1, 1, 0, 1, 1, 1, 0)
 
 [sub_resource type="QuadMesh" id="27"]
-size = Vector2(0.1, 0.5)
+size = Vector2(0.245, 0.135)
 
 [sub_resource type="Curve" id="28"]
 bake_resolution = 128
@@ -344,7 +344,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="38"]
 material = SubResource("39")
-size = Vector2(10000, 10000)
+size = Vector2(62, 62)
 
 [node name="MainMenuScene1" type="Node3D"]
 transform = Transform3D(-0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.305019, 0, 0, 0)
@@ -353,10 +353,10 @@ transform = Transform3D(-0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.30
 environment = SubResource("1")
 
 [node name="starssphere" parent="." instance=ExtResource("2")]
-transform = Transform3D(10000, -2.45936, 1.74526, 2.44336, 9999.59, 91.1048, -1.76759, -91.1044, 9999.59, -12.7566, 0, 8.74701)
+transform = Transform3D(5000, -1.22968, 0.872746, 1.22168, 4999.8, 45.5524, -0.883912, -45.5522, 4999.8, -12.7566, 0, 8.74701)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.191429, 0.0053453, -0.981492, -0.0111873, 0.999932, 0.00326377, 0.981443, 0.0103555, 0.191476, -49.362, -4.916, 1.662)
+transform = Transform3D(0.191429, 0.00534531, -0.981492, -0.0111873, 0.999932, 0.00326378, 0.981443, 0.0103555, 0.191476, -49.362, -4.916, 1.662)
 current = true
 fov = 36.8
 far = 15000.0
@@ -382,12 +382,14 @@ material = SubResource("19")
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 8.509, -18.562, 18.955)
 
 [node name="MenuPlanetClouds" parent="MenuPlanet" instance=ExtResource("4")]
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
 
 [node name="PlanetRotation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3b6d4")
 }
 autoplay = "PlanetRotation"
+speed_scale = 0.1
 
 [node name="Comet2" type="Node3D" parent="."]
 transform = Transform3D(0.798237, 0.0711368, -0.598129, -0.112538, 0.99313, -0.0320737, 0.591738, 0.0929148, 0.800758, -43.74, -5.796, -1.599)
@@ -407,7 +409,7 @@ speed_scale = 0.5
 fixed_fps = 100
 mesh = SubResource("7")
 spread = 180.0
-gravity = Vector3(100, 0, 0)
+gravity = Vector3(-20, 2, 7)
 scale_amount_curve = SubResource("8")
 color = Color(0, 0, 0, 1)
 color_ramp = SubResource("12")
@@ -422,7 +424,7 @@ speed_scale = 0.7
 fixed_fps = 100
 mesh = SubResource("27")
 spread = 180.0
-gravity = Vector3(100, 0, 0)
+gravity = Vector3(-20, 2, 7)
 scale_amount_curve = SubResource("28")
 color = Color(0, 0, 0, 1)
 color_ramp = SubResource("29")
@@ -445,7 +447,7 @@ speed_scale = 0.5
 fixed_fps = 100
 mesh = SubResource("7")
 spread = 180.0
-gravity = Vector3(100, 0, 0)
+gravity = Vector3(-20, 2, 7)
 scale_amount_curve = SubResource("8")
 color = Color(0, 0, 0, 1)
 color_ramp = SubResource("12")
@@ -460,7 +462,7 @@ speed_scale = 0.7
 fixed_fps = 100
 mesh = SubResource("27")
 spread = 180.0
-gravity = Vector3(100, 0, 0)
+gravity = Vector3(-20, 2, 7)
 scale_amount_curve = SubResource("28")
 color = Color(0, 0, 0, 1)
 color_ramp = SubResource("29")
@@ -483,7 +485,7 @@ speed_scale = 0.5
 fixed_fps = 100
 mesh = SubResource("7")
 spread = 180.0
-gravity = Vector3(100, 0, 0)
+gravity = Vector3(-20, 2, 7)
 scale_amount_curve = SubResource("8")
 color = Color(0, 0, 0, 1)
 color_ramp = SubResource("12")
@@ -498,7 +500,7 @@ speed_scale = 0.7
 fixed_fps = 100
 mesh = SubResource("27")
 spread = 180.0
-gravity = Vector3(100, 0, 0)
+gravity = Vector3(-20, 2, 7)
 scale_amount_curve = SubResource("28")
 color = Color(0, 0, 0, 1)
 color_ramp = SubResource("29")
@@ -508,9 +510,10 @@ libraries = {
 "": SubResource("AnimationLibrary_vqvxl")
 }
 autoplay = "CameraAnimation"
+speed_scale = 0.5
 
 [node name="MenuPlanet2" parent="." instance=ExtResource("5")]
-transform = Transform3D(-1.75385, 0, 9.94656, 0, 10.1, 0, -9.94656, 0, -1.75385, 8.509, -18.562, 18.955)
+transform = Transform3D(6.56578, 7.65375, -0.566638, 2.6564, -1.56676, 9.61766, 7.20033, -6.40124, -3.03151, 8.50901, -18.562, 18.955)
 
 [node name="FakeAtmoshereParticle" type="CPUParticles3D" parent="."]
 transform = Transform3D(-1041.89, 0, 5908.85, 0, 6000, 0, -5908.85, 0, -1041.89, 9.20349, -18.562, 18.8325)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=46 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -7,11 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvqcyxabp8g4g" path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" id="10"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeHUD.cs" id="13"]
 [ext_resource type="PackedScene" uid="uid://cf65ovetig4om" path="res://src/microbe_stage/gui/EnvironmentPanel.tscn" id="13_wltm2"]
-[ext_resource type="Texture2D" uid="uid://c2stsavjp3bxy" path="res://assets/textures/gui/bevel/PhosphatesBW.png" id="14"]
 [ext_resource type="PackedScene" uid="uid://bk6re4dgb8r3n" path="res://src/microbe_stage/gui/CompoundPanels.tscn" id="14_hlko5"]
-[ext_resource type="Texture2D" uid="uid://bf55j5u0k0oc1" path="res://assets/textures/gui/bevel/AmmoniaInv.png" id="15"]
-[ext_resource type="Texture2D" uid="uid://bp6urdgi1p1hq" path="res://assets/textures/gui/bevel/PhosphateInv.png" id="16"]
-[ext_resource type="Texture2D" uid="uid://b7f3dnt4j7gnw" path="res://assets/textures/gui/bevel/AmmoniaBW.png" id="17"]
 [ext_resource type="AudioStream" uid="uid://c5u3d8rsbm0lu" path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" id="18"]
 [ext_resource type="Texture2D" uid="uid://siahiwtfm578" path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" id="21"]
 [ext_resource type="PackedScene" uid="uid://jjb8ei8wuuk" path="res://src/microbe_stage/gui/EditorEntryButton.tscn" id="23_satig"]
@@ -259,7 +255,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton")]
+[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -273,11 +269,6 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme = ExtResource("5")
 script = ExtResource("13")
-MulticellularButtonPath = NodePath("BottomRight/VBoxContainer/Control/Multicellular")
-MulticellularConfirmPopupPath = NodePath("StagePrototypeConfirm")
-MacroscopicButtonPath = NodePath("BottomRight/VBoxContainer/Control/Macroscopic")
-BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
-UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
 WinBoxScene = ExtResource("53")
 MouseHoverPanelPath = NodePath("TopRight/MouseHoverPanel")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
@@ -298,18 +289,19 @@ EjectEngulfedHotkeyPath = NodePath("ScrollContainer/HotBar/EjectEngulfed")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
 FossilisationButtonScene = ExtResource("58")
 MicrobePickupOrganelleSound = ExtResource("18")
-AmmoniaBW = ExtResource("17")
-PhosphatesBW = ExtResource("14")
-AmmoniaInv = ExtResource("15")
-PhosphatesInv = ExtResource("16")
 ExtinctionBoxScene = ExtResource("54")
 PatchExtinctionBoxScene = ExtResource("60")
+bindingModeHotkey = NodePath("ScrollContainer/HotBar/BindingMode")
+unbindAllHotkey = NodePath("ScrollContainer/HotBar/UnbindAll")
+multicellularButton = NodePath("BottomRight/VBoxContainer/Control/Multicellular")
+multicellularConfirmPopup = NodePath("StagePrototypeConfirm")
+macroscopicButton = NodePath("BottomRight/VBoxContainer/Control/Macroscopic")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
-PausePromptPath = NodePath("PausePrompt")
-PauseInfoPath = NodePath("PausePrompt/PauseInfo")
-HUDMessagesPath = NodePath("HUDMessages")
+pausePrompt = NodePath("PausePrompt")
+pauseInfo = NodePath("PausePrompt/PauseInfo")
+hudMessages = NodePath("HUDMessages")
 
 [node name="TopRight" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -360,7 +352,9 @@ ShowAgents = false
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("59")]
 layout_mode = 1
+offset_left = 2.0
 offset_top = -46.0
+offset_right = 447.0
 offset_bottom = -3.0
 ShowCompoundPanelToggles = true
 ShowSuicideButton = true
@@ -613,6 +607,10 @@ theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
 theme_override_styles/disabled = SubResource("43")
 toggle_mode = true
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/disabled = SubResource("43")
 ActionIcon = ExtResource("9")
 ActionName = "g_toggle_engulf"
 
@@ -623,6 +621,9 @@ tooltip_text = "EJECT_ENGULFED_TOOLTIP"
 theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
 ActionIcon = ExtResource("7")
 ActionName = "g_eject_engulfed"
 
@@ -630,6 +631,9 @@ ActionName = "g_eject_engulfed"
 visible = false
 layout_mode = 2
 tooltip_text = "FIRE_TOXIN_TOOLTIP"
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
@@ -644,6 +648,9 @@ theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
 toggle_mode = true
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
 ActionIcon = ExtResource("72")
 ActionName = "g_toggle_binding"
 
@@ -651,6 +658,9 @@ ActionName = "g_toggle_binding"
 visible = false
 layout_mode = 2
 tooltip_text = "UNBIND_ALL_TOOLTIP"
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
@@ -665,6 +675,9 @@ theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
 toggle_mode = true
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
 ActionIcon = ExtResource("68")
 ActionName = "g_pack_commands"
 
@@ -672,6 +685,9 @@ ActionName = "g_pack_commands"
 visible = false
 layout_mode = 2
 tooltip_text = "SECRETE_SLIME_TOOLTIP"
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
@@ -718,3 +734,5 @@ offset_bottom = 97.0
 [connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
 [connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCanceled"]
 [connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularConfirmed"]
+
+[editable path="PausePrompt"]

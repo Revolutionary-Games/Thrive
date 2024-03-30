@@ -15,15 +15,21 @@ public class SpecifiedInputKey : ICloneable
     {
     }
 
-    public SpecifiedInputKey(InputEvent @event)
+    /// <summary>
+    ///   Constructs an input key from an event
+    /// </summary>
+    /// <param name="event">Event to use</param>
+    /// <param name="fromUserInput">Set to true when the user is rebinding inputs and this is from the user</param>
+    /// <exception cref="ArgumentException">If something is wrong with the event</exception>
+    public SpecifiedInputKey(InputEvent @event, bool fromUserInput)
     {
         switch (@event)
         {
             case InputEventKey inputKey:
-                ConstructFrom(inputKey);
+                ConstructFrom(inputKey, fromUserInput);
                 return;
             case InputEventMouseButton inputMouse:
-                ConstructFrom(inputMouse);
+                ConstructFrom(inputMouse, fromUserInput);
                 return;
             case InputEventJoypadButton inputControllerButton:
                 if (inputControllerButton.ButtonIndex < 0)
@@ -54,17 +60,139 @@ public class SpecifiedInputKey : ICloneable
         MouseButton,
         ControllerButton,
         ControllerAxis,
+
+        // Variants of "Key"
+        PhysicalKey,
+        KeyLabel,
     }
 
     public bool Control { get; set; }
     public bool Alt { get; set; }
     public bool Shift { get; set; }
     public InputType Type { get; set; }
-    public uint Code { get; set; }
+    public ulong Code { get; set; }
 
     [JsonIgnore]
     public bool PrefersGraphicalRepresentation =>
         Type is InputType.ControllerAxis or InputType.ControllerButton or InputType.MouseButton;
+
+    /// <summary>
+    ///   Packs an int and a sign into a single uint
+    /// </summary>
+    /// <param name="axis">The axis to pack, note that this needs to be less than 31 bits</param>
+    /// <param name="value">The direction value to pack</param>
+    /// <param name="device">The device to pack in, note that this needs to be less than 32 bits</param>
+    /// <returns>The packed value</returns>
+    public static ulong PackAxisWithDirection(int axis, float value, int device)
+    {
+        // For direction we just need to preserve the sign
+        ulong result = value < 0 ? 1U : 0U;
+
+        // For axis we preserve the sign with one bit
+        if (axis < 0)
+        {
+            result |= (0x1 << 1) | ((ulong)(axis * -1) << 2);
+        }
+        else
+        {
+            result |= (ulong)axis << 2;
+        }
+
+        // For device we also preserve a sign bit
+        if (device < 0)
+        {
+            result = (result & 0xffffffffL) | (0x1L << 32) | ((ulong)(device * -1) << 33);
+        }
+        else
+        {
+            result = (result & 0xffffffffL) | ((ulong)device << 33);
+        }
+
+        return result;
+    }
+
+    public static (JoyAxis Axis, float Direction, int Device) UnpackAxis(ulong packed)
+    {
+        float direction = 1;
+
+        if ((packed & 0x1) != 0)
+        {
+            direction *= -1;
+        }
+
+        int axis = (int)((packed & 0xfffcL) >> 2);
+
+        if ((packed & 0x2) != 0)
+        {
+            axis *= -1;
+        }
+
+        int device = (int)((packed & 0xffffffff00000000L) >> 33);
+
+        if ((packed & 0x100000000L) != 0)
+        {
+            device *= -1;
+        }
+
+        return ((JoyAxis)axis, direction, device);
+    }
+
+    /// <summary>
+    ///   Packs a code along with a device identifier
+    /// </summary>
+    /// <param name="code">The input code to pack, needs to be 31 bytes or less</param>
+    /// <param name="device">The device, needs to be 32 bytes or less</param>
+    /// <returns>The packed value</returns>
+    public static ulong PackCodeWithDevice(long code, int device)
+    {
+#if DEBUG
+        if (code >= 0xffffffffL)
+            throw new ArgumentException("Code too long to pack");
+#endif
+
+        ulong result;
+
+        // For code we preserve the sign with one bit
+        if (code < 0)
+        {
+            result = 0x1 | ((ulong)(code * -1) << 1);
+        }
+        else
+        {
+            result = (ulong)code << 1;
+        }
+
+        // For device we also preserve a sign bit
+        if (device < 0)
+        {
+            result = (result & 0xffffffffL) | (0x1L << 32) | ((ulong)(device * -1) << 33);
+        }
+        else
+        {
+            result = (result & 0xffffffffL) | ((ulong)device << 33);
+        }
+
+        return result;
+    }
+
+    public static (JoyButton Code, int Device) UnpackCodeAndDevice(ulong packed)
+    {
+        long code = (int)((packed & 0xfffffffeL) >> 1);
+
+        if ((packed & 0x1) != 0)
+        {
+            code *= -1;
+        }
+
+        int device = (int)((packed & 0xffffffff00000000L) >> 33);
+
+        if ((packed & 0x100000000L) != 0)
+        {
+            device *= -1;
+        }
+
+        return ((JoyButton)code, device);
+    }
 
     public Control GenerateGraphicalRepresentation()
     {
@@ -148,7 +276,7 @@ public class SpecifiedInputKey : ICloneable
     {
         switch (Type)
         {
-            case InputType.Key or InputType.MouseButton:
+            case InputType.Key or InputType.PhysicalKey or InputType.KeyLabel or InputType.MouseButton:
                 return ToInputEventWithModifiers();
 
             case InputType.ControllerButton:
@@ -158,6 +286,7 @@ public class SpecifiedInputKey : ICloneable
                 {
                     ButtonIndex = button,
                     Device = device,
+                    Pressed = true,
                 };
             }
 
@@ -199,10 +328,10 @@ public class SpecifiedInputKey : ICloneable
         return new SpecifiedInputKey
         {
             Alt = Alt,
+            Type = Type,
             Code = Code,
             Control = Control,
             Shift = Shift,
-            Type = Type,
         };
     }
 
@@ -214,7 +343,7 @@ public class SpecifiedInputKey : ICloneable
             hashCode = hashCode * 397 ^ Alt.GetHashCode();
             hashCode = hashCode * 397 ^ Shift.GetHashCode();
             hashCode = hashCode * 397 ^ (int)Type;
-            hashCode = hashCode * 397 ^ (int)Code;
+            hashCode = hashCode * 397 ^ Code.GetHashCode();
             return hashCode;
         }
     }
@@ -252,10 +381,20 @@ public class SpecifiedInputKey : ICloneable
             toStringBuilder.Append('+');
         }
 
-        if (Type == InputType.Key)
+        if (Type is InputType.Key or InputType.KeyLabel or InputType.PhysicalKey)
         {
             // If the key is not defined in KeyNames.cs, the string will just be returned unmodified by Translate()
-            toStringBuilder.Append(KeyNames.Translate((Key)Code));
+
+            var key = (Key)Code;
+
+            if (Type == InputType.PhysicalKey)
+            {
+                key = DisplayServer.KeyboardGetKeycodeFromPhysical(key);
+            }
+
+            // Key labels are hopefully already in a format that makes sense when translated
+
+            toStringBuilder.Append(KeyNames.Translate(key));
         }
         else if (Type == InputType.MouseButton)
         {
@@ -313,176 +452,46 @@ public class SpecifiedInputKey : ICloneable
         return toStringBuilder.ToString();
     }
 
-    /// <summary>
-    ///   Packs an int and a sign into a single uint
-    /// </summary>
-    /// <param name="axis">The axis to pack, note that this needs to be less than 14 bits</param>
-    /// <param name="value">The direction value to pack</param>
-    /// <param name="device">The device to pack in, note that this needs to be less than 15 bits</param>
-    /// <returns>The packed value</returns>
-    private static uint PackAxisWithDirection(int axis, float value, int device)
+    private void ConstructFrom(InputEventWithModifiers @event, bool preferKeyLabel)
     {
-        // For direction we just need to preserve the sign
-        uint result = value < 0 ? 1U : 0U;
-
-        // For axis we preserve the sign with one bit
-        if (axis < 0)
-        {
-            result |= (0x1 << 1) | ((uint)(axis * -1) << 2);
-        }
-        else
-        {
-            result |= (uint)axis << 2;
-        }
-
-        // For device we also preserve a sign bit
-        if (device < 0)
-        {
-            result = (result & 0xffff) | (0x1 << 16) | ((uint)(device * -1) << 17);
-        }
-        else
-        {
-            result = (result & 0xffff) | ((uint)device << 17);
-        }
-
-        return result;
-    }
-
-    private static (JoyAxis Axis, float Direction, int Device) UnpackAxis(uint packed)
-    {
-        float direction = 1;
-
-        if ((packed & 0x1) != 0)
-        {
-            direction *= -1;
-        }
-
-        int axis = (int)((packed & 0xfffc) >> 2);
-
-        if ((packed & 0x2) != 0)
-        {
-            axis *= -1;
-        }
-
-        int device = (int)((packed & 0xffff0000) >> 17);
-
-        if ((packed & 0x10000) != 0)
-        {
-            device *= -1;
-        }
-
-        return ((JoyAxis)axis, direction, device);
-    }
-
-    /// <summary>
-    ///   Packs a code along with a device identifier
-    /// </summary>
-    /// <param name="code">The input code to pack, needs to be 15 bytes or less</param>
-    /// <param name="device">The device, needs to be 15 bytes or less</param>
-    /// <returns>The packed value</returns>
-    private static uint PackCodeWithDevice(int code, int device)
-    {
-#if DEBUG
-        if (code > 0xffff)
-            throw new ArgumentException("Code too long to pack");
-#endif
-
-        uint result;
-
-        // For code we preserve the sign with one bit
-        if (code < 0)
-        {
-            result = 0x1 | ((uint)(code * -1) << 1);
-        }
-        else
-        {
-            result = (uint)code << 1;
-        }
-
-        // For device we also preserve a sign bit
-        if (device < 0)
-        {
-            result = (result & 0xffff) | (0x1 << 16) | ((uint)(device * -1) << 17);
-        }
-        else
-        {
-            result = (result & 0xffff) | ((uint)device << 17);
-        }
-
-        return result;
-    }
-
-    private static (JoyButton Code, int Device) UnpackCodeAndDevice(uint packed)
-    {
-        int code = (int)((packed & 0xfffe) >> 1);
-
-        if ((packed & 0x1) != 0)
-        {
-            code *= -1;
-        }
-
-        int device = (int)((packed & 0xffff0000) >> 17);
-
-        if ((packed & 0x10000) != 0)
-        {
-            device *= -1;
-        }
-
-        return ((JoyButton)code, device);
-    }
-
-    // TODO: proper unit testing
-    private static void TestCodePacking()
-    {
-        if (UnpackCodeAndDevice(PackCodeWithDevice(0, -1)) != (0, -1))
-            throw new Exception();
-
-        if (UnpackCodeAndDevice(PackCodeWithDevice(5, -1)) != ((JoyButton)5, -1))
-            throw new Exception();
-
-        if (UnpackCodeAndDevice(PackCodeWithDevice(-5, -1)) != ((JoyButton)(-5), -1))
-            throw new Exception();
-
-        if (UnpackCodeAndDevice(PackCodeWithDevice(5, 5)) != ((JoyButton)5, 5))
-            throw new Exception();
-
-        if (UnpackCodeAndDevice(PackCodeWithDevice(155, 128)) != ((JoyButton)155, 128))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(1, -1, -1)) != ((JoyAxis)1, -1, -1))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(-1, -1, -1)) != ((JoyAxis)(-1), -1, -1))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(1, 1, -1)) != ((JoyAxis)1, 1, -1))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(5, 1, -1)) != ((JoyAxis)5, 1, -1))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(5, 1, 15)) != ((JoyAxis)5, 1, 15))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(150, 1, 128)) != ((JoyAxis)150, 1, 128))
-            throw new Exception();
-    }
-
-    private void ConstructFrom(InputEventWithModifiers @event)
-    {
-        Control = @event.IsCommandOrControlPressed();
+        Control = @event.CtrlPressed || @event.MetaPressed;
         Alt = @event.AltPressed;
         Shift = @event.ShiftPressed;
+
         switch (@event)
         {
             case InputEventKey inputKey:
-                Type = InputType.Key;
-                Code = (uint)inputKey.Keycode;
+            {
+                // TODO: unicode key value support?
+                if (inputKey.PhysicalKeycode != Key.None && !preferKeyLabel)
+                {
+                    // Physical key
+                    Type = InputType.PhysicalKey;
+                    Code = (ulong)inputKey.PhysicalKeycode;
+                }
+                else if (inputKey.KeyLabel != Key.None)
+                {
+                    // Key label
+                    Type = InputType.KeyLabel;
+                    Code = (ulong)inputKey.KeyLabel;
+                }
+                else
+                {
+                    // A "normal" key code
+                    Type = InputType.Key;
+                    Code = (ulong)inputKey.Keycode;
+                }
+
                 break;
+            }
+
             case InputEventMouseButton inputMouse:
+            {
                 Type = InputType.MouseButton;
-                Code = (uint)inputMouse.ButtonIndex;
+                Code = (ulong)inputMouse.ButtonIndex;
                 break;
+            }
+
             default:
                 throw new ArgumentException("Unknown type of event to convert to input key");
         }
@@ -492,13 +501,25 @@ public class SpecifiedInputKey : ICloneable
     {
         InputEventWithModifiers result = Type switch
         {
-            InputType.Key => new InputEventKey { Keycode = (Key)Code },
-            InputType.MouseButton => new InputEventMouseButton { ButtonIndex = (MouseButton)Code },
+            InputType.Key => new InputEventKey { Keycode = (Key)Code, Pressed = true },
+            InputType.PhysicalKey => new InputEventKey { PhysicalKeycode = (Key)Code, Pressed = true },
+            InputType.KeyLabel => new InputEventKey { KeyLabel = (Key)Code, Pressed = true },
+            InputType.MouseButton => new InputEventMouseButton { ButtonIndex = (MouseButton)Code, Pressed = true },
             _ => throw new NotSupportedException("Unsupported InputType given"),
         };
 
         result.AltPressed = Alt;
-        result.CtrlPressed = Control;
+
+        // Handle automatic control to meta remapping
+        if (FeatureInformation.IsMac())
+        {
+            result.MetaPressed = Control;
+        }
+        else
+        {
+            result.CtrlPressed = Control;
+        }
+
         result.ShiftPressed = Shift;
         return result;
     }
@@ -508,8 +529,8 @@ public class SpecifiedInputKey : ICloneable
         return new TextureRect
         {
             Texture = GD.Load<Texture2D>(image),
-            ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
-            StretchMode = TextureRect.StretchModeEnum.Scale,
+            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
             CustomMinimumSize = small ? new Vector2(14, 14) : new Vector2(32, 32),
         };
     }

@@ -13,20 +13,8 @@ using Newtonsoft.Json;
 [JsonObject(MemberSerialization.OptIn)]
 public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 {
-    [Export]
-    public NodePath? MulticellularButtonPath;
-
-    [Export]
-    public NodePath MulticellularConfirmPopupPath = null!;
-
-    [Export]
-    public NodePath MacroscopicButtonPath = null!;
-
-    [Export]
-    public NodePath BindingModeHotkeyPath = null!;
-
-    [Export]
-    public NodePath UnbindAllHotkeyPath = null!;
+    [Export(PropertyHint.ColorNoAlpha)]
+    public Color IngestedMatterBarFillColour = new(0.88f, 0.49f, 0.49f);
 
 #pragma warning disable CA2213
     [Export]
@@ -41,11 +29,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private readonly Dictionary<(string Category, LocalizedString Name), int> hoveredEntities = new();
     private readonly Dictionary<Compound, InspectedEntityLabel> hoveredCompoundControls = new();
 
+    [Export]
     private ActionButton bindingModeHotkey = null!;
+
+    [Export]
     private ActionButton unbindAllHotkey = null!;
 
+    [Export]
     private Button multicellularButton = null!;
+
+    [Export]
     private CustomWindow multicellularConfirmPopup = null!;
+
+    [Export]
     private Button macroscopicButton = null!;
 
     private CompoundProgressBar ingestedMatterBar = null!;
@@ -91,15 +87,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ingestedMatterBar = CompoundProgressBar.Create(barScene,
             GD.Load<Texture2D>("res://assets/textures/gui/bevel/ingestedmatter.png"),
             new LocalizedString("INGESTED_MATTER"), 0, 1);
+        ingestedMatterBar.FillColour = IngestedMatterBarFillColour;
 
         compoundsPanel.AddPrimaryBar(ingestedMatterBar);
-
-        multicellularButton = GetNode<Button>(MulticellularButtonPath);
-        multicellularConfirmPopup = GetNode<CustomWindow>(MulticellularConfirmPopupPath);
-        macroscopicButton = GetNode<Button>(MacroscopicButtonPath);
-
-        bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
-        unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
+        ingestedMatterBar.Visible = false;
 
         mouseHoverPanel.AddCategory(COMPOUNDS_CATEGORY, new LocalizedString("COMPOUNDS_COLON"));
         mouseHoverPanel.AddCategory(SPECIES_CATEGORY, new LocalizedString("SPECIES_COLON"));
@@ -334,15 +325,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
-    protected override bool SpecialHandleBar(CompoundProgressBar bar)
+    protected override void UpdateBarVisibility(Func<Compound, bool> isUseful)
     {
-        if (bar == ingestedMatterBar)
-        {
-            bar.Visible = GetPlayerUsedIngestionCapacity() > 0;
-            return true;
-        }
+        base.UpdateBarVisibility(isUseful);
 
-        return false;
+        ingestedMatterBar.Visible = GetPlayerUsedIngestionCapacity() > 0;
     }
 
     protected override bool ShouldShowAgentsPanel()
@@ -524,23 +511,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             if (hoveredEntity.Value > 1)
                 item.SetDescription(Localization.Translate("N_TIMES").FormatSafe(hoveredEntity.Value));
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MulticellularButtonPath != null)
-            {
-                MulticellularButtonPath.Dispose();
-                MulticellularConfirmPopupPath.Dispose();
-                MacroscopicButtonPath.Dispose();
-                BindingModeHotkeyPath.Dispose();
-                UnbindAllHotkeyPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>

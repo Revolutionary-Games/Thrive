@@ -12,6 +12,11 @@ using World = DefaultEcs.World;
 /// <summary>
 ///   Loader for <see cref="PathLoadedSceneVisuals"/> into a <see cref="SpatialInstance"/>
 /// </summary>
+/// <remarks>
+///   <para>
+///     TODO: test is parallel scene loading now fine in Godot 4
+///   </para>
+/// </remarks>
 [With(typeof(PathLoadedSceneVisuals))]
 [With(typeof(SpatialInstance))]
 [RunsOnMainThread]

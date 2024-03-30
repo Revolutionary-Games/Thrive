@@ -30,7 +30,8 @@ in the "doc" folder as well as check Godot's
 [documentation](https://docs.godotengine.org/en/stable/). Note that
 you should check the [setup instructions](doc/setup_instructions.md)
 for which version of Godot you need, as well as the version of the
-Godot documentation you should read.
+Godot documentation you should read. As an introduction to Thrive
+code, you can read [architecture.md](doc/architecture.md).
 
 Please follow our [styleguide](doc/style_guide.md) when making your
 changes to Thrive. Note that our styleguide has a section on Git

@@ -25,6 +25,13 @@ using World = DefaultEcs.World;
 [RuntimeCost(0.5f, false)]
 public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
 {
+    /// <summary>
+    ///   Holds a persistent instance of the collision filter callback to not need to create multiple delegates, and
+    ///   to make doubly sure this callback won't be garbage collected while the native side still has a reference to
+    ///   it.
+    /// </summary>
+    private readonly PhysicalWorld.OnCollisionFilterCallback collisionFilter = FilterCollisions;
+
     public ToxinCollisionSystem(World world, IParallelRunner runner) : base(world, runner)
     {
     }
@@ -48,7 +55,7 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
             // TODO: make sure this system runs before the collision management to make sure no double data apply
             // happens
 
-            collisions.CollisionFilter = FilterCollisions;
+            collisions.CollisionFilter = collisionFilter;
 
             collisions.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_COLLISIONS_TINY);
 

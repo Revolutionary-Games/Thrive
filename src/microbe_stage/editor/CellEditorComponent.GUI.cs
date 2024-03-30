@@ -493,13 +493,13 @@ public partial class CellEditorComponent
         if (energyBalance.FinalBalance > 0)
         {
             atpBalanceLabel.Text = Localization.Translate("ATP_PRODUCTION");
-            atpBalanceLabel.AddThemeColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
+            atpBalanceLabel.LabelSettings = ATPBalanceNormalText;
         }
         else
         {
             atpBalanceLabel.Text = Localization.Translate("ATP_PRODUCTION") + " - " +
                 Localization.Translate("ATP_PRODUCTION_TOO_LOW");
-            atpBalanceLabel.AddThemeColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
+            atpBalanceLabel.LabelSettings = ATPBalanceNotEnoughText;
         }
 
         atpProductionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalProduction);

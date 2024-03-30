@@ -516,7 +516,7 @@ public partial class NewGameSettings : ControlWithInput
         // Generate seeds until valid (0 is not considered valid)
         do
         {
-            result = random.Next64U().ToString();
+            result = random.Next64().ToString();
         }
         while (result == "0");
 

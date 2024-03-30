@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c1fc2aip6oiqt"]
+[gd_scene load_steps=57 format=3 uid="uid://c1fc2aip6oiqt"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
@@ -89,31 +89,35 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuContainers/Menus:anchor_top")
+tracks/1/path = NodePath("MenuContainers/Menus/VBoxContainer/MenuSlideAnimator:custom_minimum_size")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(2, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.275, 0.45, 0.275]
+"values": [Vector2(0, 0), Vector2(0, 850), Vector2(0, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MenuContainers/Menus:anchor_bottom")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(2, 0.5, 1),
+
+[sub_resource type="Animation" id="Animation_qunue"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuContainers/Menus/VBoxContainer/MenuSlideAnimator:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.952, 1.2, 0.952]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wp2ig"]
 _data = {
-"MenuSlide": SubResource("1")
+"MenuSlide": SubResource("1"),
+"RESET": SubResource("Animation_qunue")
 }
 
 [node name="MainMenu" type="Control"]
@@ -128,11 +132,11 @@ script = ExtResource("6")
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ExtResource("8"), ExtResource("7"), ExtResource("9")]
 Menu3DBackgroundScenes = ["res://assets/models/menu_backgrounds/MainMenuScene1.tscn", "res://assets/models/menu_backgrounds/MainMenuScene2.tscn", "res://assets/models/menu_backgrounds/MainMenuScene3.tscn"]
-FreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildMicrobeEditor")
-MulticellularFreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildMulticellularEditor")
-AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/Tools/AutoEvoExploring")
-MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/Benchmarks/MicrobeBenchmark")
-ExitToLauncherButtonPath = NodePath("MenuContainers/Menus/MainMenu/Launcher")
+FreebuildButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor")
+MulticellularFreebuildButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor")
+AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring")
+MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark")
+ExitToLauncherButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/Launcher")
 CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
@@ -172,11 +176,10 @@ editor_description = "PLACEHOLDER"
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 0.065
 offset_left = 4.0
 offset_top = 4.0
 offset_right = -721.0
-offset_bottom = 0.199997
+offset_bottom = 47.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -235,10 +238,10 @@ stretch_mode = 6
 [node name="FeedPositioner" type="MarginContainer" parent="MenuContainers"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.597
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 45.0
+offset_left = -470.84
 offset_top = 195.0
 offset_right = -30.0
 offset_bottom = -125.0
@@ -275,21 +278,29 @@ size_flags_vertical = 3
 [node name="Menus" type="CenterContainer" parent="MenuContainers"]
 clip_contents = true
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.275
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.952
+anchor_bottom = 1.0
+offset_top = 189.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1")
 
-[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/Menus"]
+layout_mode = 2
+
+[node name="MenuSlideAnimator" type="Control" parent="MenuContainers/Menus/VBoxContainer"]
+layout_mode = 2
+
+[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" groups=["MenuItem"]]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="MenuContainers/Menus/MainMenu"]
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 layout_mode = 2
 
-[node name="NewGame" type="Button" parent="MenuContainers/Menus/MainMenu"]
+[node name="NewGame" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "NEW_GAME_BUTTON_TOOLTIP"
@@ -299,74 +310,74 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "NEW_GAME"
 
-[node name="LoadGame" type="Button" parent="MenuContainers/Menus/MainMenu"]
+[node name="LoadGame" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "LOAD_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
 text = "LOAD_GAME"
 
-[node name="Options" type="Button" parent="MenuContainers/Menus/MainMenu"]
+[node name="Options" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "OPTIONS_BUTTON_TOOLTIP"
 mouse_filter = 1
 text = "OPTIONS"
 
-[node name="Tools" type="Button" parent="MenuContainers/Menus/MainMenu"]
+[node name="Tools" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
 text = "TOOLS"
 
-[node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/MainMenu"]
+[node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
 text = "VIEW_SOURCE_CODE"
 
-[node name="Extras" type="Button" parent="MenuContainers/Menus/MainMenu"]
+[node name="Extras" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
 text = "EXTRAS"
 
-[node name="Credits" type="Button" parent="MenuContainers/Menus/MainMenu"]
+[node name="Credits" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
 text = "CREDITS"
 
-[node name="Launcher" type="Button" parent="MenuContainers/Menus/MainMenu"]
+[node name="Launcher" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "QUIT_BUTTON_TOOLTIP"
 mouse_filter = 1
 text = "EXIT_TO_LAUNCHER"
 
-[node name="Quit" type="Button" parent="MenuContainers/Menus/MainMenu"]
+[node name="Quit" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "QUIT_BUTTON_TOOLTIP"
-focus_neighbor_left = NodePath("../../../SocialMedia/TwitterButton")
+focus_neighbor_left = NodePath("../../../../SocialMedia/TwitterButton")
 focus_neighbor_bottom = NodePath(".")
-focus_next = NodePath("../../../SocialMedia/RevolutionaryGamesButton")
+focus_next = NodePath("../../../../SocialMedia/RevolutionaryGamesButton")
 mouse_filter = 1
 text = "QUIT"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/MainMenu" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/MainMenu" instance=ExtResource("56")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../NewGame")
 
-[node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
+[node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" groups=["MenuItem"]]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="MenuContainers/Menus/Tools"]
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 layout_mode = 2
 
-[node name="FreebuildMicrobeEditor" type="Button" parent="MenuContainers/Menus/Tools"]
+[node name="FreebuildMicrobeEditor" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -375,14 +386,14 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "MICROBE_FREEBUILD_EDITOR"
 
-[node name="FreebuildMulticellularEditor" type="Button" parent="MenuContainers/Menus/Tools"]
+[node name="FreebuildMulticellularEditor" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "MULTICELLULAR_FREEBUILD_EDITOR"
 
-[node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/Tools"]
+[node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -391,7 +402,7 @@ focus_next = NodePath("../Benchmarks")
 mouse_filter = 1
 text = "AUTO_EVO_EXPLORING_TOOL"
 
-[node name="Benchmarks" type="Button" parent="MenuContainers/Menus/Tools"]
+[node name="Benchmarks" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -400,7 +411,7 @@ focus_next = NodePath("../Back")
 mouse_filter = 1
 text = "BENCHMARKS"
 
-[node name="unknown3" type="Button" parent="MenuContainers/Menus/Tools"]
+[node name="unknown3" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
@@ -410,29 +421,29 @@ mouse_filter = 1
 disabled = true
 text = "???"
 
-[node name="Back" type="Button" parent="MenuContainers/Menus/Tools"]
+[node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
-focus_neighbor_left = NodePath("../../../SocialMedia/TwitterButton")
+focus_neighbor_left = NodePath("../../../../SocialMedia/TwitterButton")
 focus_neighbor_top = NodePath("../Benchmarks")
 focus_previous = NodePath("../Benchmarks")
 mouse_filter = 1
 text = "BACK"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/Tools" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Tools" instance=ExtResource("56")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../FreebuildMicrobeEditor")
 
-[node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
+[node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" groups=["MenuItem"]]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="MenuContainers/Menus/Extras"]
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/Extras"]
 layout_mode = 2
 
-[node name="Thriveopedia" type="Button" parent="MenuContainers/Menus/Extras"]
+[node name="Thriveopedia" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -441,57 +452,57 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "THRIVEOPEDIA"
 
-[node name="Mods" type="Button" parent="MenuContainers/Menus/Extras"]
+[node name="Mods" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "MODS"
 
-[node name="ArtGallery" type="Button" parent="MenuContainers/Menus/Extras"]
+[node name="ArtGallery" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "ART_GALLERY"
 
-[node name="Licenses" type="Button" parent="MenuContainers/Menus/Extras"]
+[node name="Licenses" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "LICENSES"
 
-[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/Extras"]
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "VISIT_SUGGESTIONS_SITE"
 
-[node name="Back" type="Button" parent="MenuContainers/Menus/Extras"]
+[node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
-focus_neighbor_left = NodePath("../../../SocialMedia/TwitterButton")
+focus_neighbor_left = NodePath("../../../../SocialMedia/TwitterButton")
 focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 mouse_filter = 1
 text = "BACK"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/Extras" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Extras" instance=ExtResource("56")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../Thriveopedia")
 
-[node name="Benchmarks" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
+[node name="Benchmarks" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" groups=["MenuItem"]]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="MenuContainers/Menus/Benchmarks"]
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
 layout_mode = 2
 
-[node name="MicrobeBenchmark" type="Button" parent="MenuContainers/Menus/Benchmarks"]
+[node name="MicrobeBenchmark" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -500,7 +511,7 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "MICROBE_BENCHMARK"
 
-[node name="unknown" type="Button" parent="MenuContainers/Menus/Benchmarks"]
+[node name="unknown" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
@@ -510,15 +521,15 @@ mouse_filter = 1
 disabled = true
 text = "???"
 
-[node name="Back" type="Button" parent="MenuContainers/Menus/Benchmarks"]
+[node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
-focus_neighbor_left = NodePath("../../../SocialMedia/TwitterButton")
+focus_neighbor_left = NodePath("../../../../SocialMedia/TwitterButton")
 mouse_filter = 1
 text = "BACK"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/Benchmarks" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Benchmarks" instance=ExtResource("56")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../MicrobeBenchmark")
 
@@ -529,19 +540,31 @@ theme = ExtResource("1")
 theme_override_styles/panel = SubResource("2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuContainers/WebsiteButtons"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 267.0
 offset_bottom = 386.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="OfficialWebsiteButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+[node name="OfficialWebsiteButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
@@ -554,7 +577,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "OFFICIAL_WEBSITE"
 
-[node name="CommunityForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+[node name="CommunityForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
@@ -563,7 +586,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "COMMUNITY_FORUM"
 
-[node name="DevelopmentForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+[node name="DevelopmentForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
@@ -572,7 +595,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "DEVELOPMENT_FORUM"
 
-[node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+[node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
@@ -581,7 +604,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "DEVELOPMENT_WIKI"
 
-[node name="CommunityWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+[node name="CommunityWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
@@ -590,7 +613,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "COMMUNITY_WIKI"
 
-[node name="ReportBugButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+[node name="ReportBugButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath(".")
@@ -598,7 +621,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "REPORT_BUG"
 
-[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 focus_neighbor_left = NodePath(".")
@@ -611,12 +634,12 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "VISIT_SUGGESTIONS_SITE"
 
-[node name="FocusGrabber" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("56")]
 layout_mode = 2
 Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
 AlwaysOverrideFocus = true
-SkipOverridingFocusForElements = [NodePath("../../..")]
+SkipOverridingFocusForElements = [NodePath("../../../..")]
 
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 layout_mode = 1
@@ -635,7 +658,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
-focus_previous = NodePath("../../Menus/MainMenu/Quit")
+focus_previous = NodePath("../../Menus/VBoxContainer/MainMenu/Quit")
 texture_normal = ExtResource("46")
 texture_pressed = ExtResource("47")
 texture_hover = ExtResource("48")
@@ -735,8 +758,8 @@ stretch_mode = 5
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "TWITTER_TOOLTIP"
-focus_neighbor_right = NodePath("../../Menus/MainMenu/Quit")
-focus_next = NodePath("../../Menus/MainMenu/Quit")
+focus_neighbor_right = NodePath("../../Menus/VBoxContainer/MainMenu/Quit")
+focus_next = NodePath("../../Menus/VBoxContainer/MainMenu/Quit")
 texture_normal = ExtResource("29")
 texture_pressed = ExtResource("27")
 texture_hover = ExtResource("33")
@@ -758,14 +781,22 @@ grow_vertical = 2
 [node name="NewGameSettings" parent="." instance=ExtResource("18")]
 visible = false
 layout_mode = 1
+Descending = false
 
 [node name="Thriveopedia" parent="." instance=ExtResource("49")]
 visible = false
 layout_mode = 1
 
 [node name="LicensesDisplay" parent="." instance=ExtResource("12")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_top = 28.0
-offset_bottom = 628.0
+offset_right = -380.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GalleryViewer" parent="." instance=ExtResource("17")]
 layout_mode = 1
@@ -877,35 +908,35 @@ DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
 WindowTitle = "LOW_MENU_PERFORMANCE"
 ShowCloseButton = false
 
-[connection signal="pressed" from="MenuContainers/Menus/MainMenu/NewGame" to="." method="NewGamePressed"]
-[connection signal="pressed" from="MenuContainers/Menus/MainMenu/LoadGame" to="." method="LoadGamePressed"]
-[connection signal="pressed" from="MenuContainers/Menus/MainMenu/Options" to="." method="OptionsPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/MainMenu/Tools" to="." method="ToolsPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/MainMenu/ViewSourceCode" to="." method="ViewSourceCodePressed"]
-[connection signal="pressed" from="MenuContainers/Menus/MainMenu/Extras" to="." method="ExtrasPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/MainMenu/Credits" to="." method="CreditsPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/MainMenu/Launcher" to="." method="QuitToLauncherPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/MainMenu/Quit" to="." method="QuitPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Tools/FreebuildMicrobeEditor" to="." method="FreebuildEditorPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Tools/FreebuildMulticellularEditor" to="." method="MulticellularFreebuildEditorPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Tools/AutoEvoExploring" to="." method="OnAutoEvoExploringPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Tools/Benchmarks" to="." method="BenchmarksPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Tools/Back" to="." method="BackFromToolsPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Extras/Thriveopedia" to="." method="ThriveopediaPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Extras/Mods" to="." method="ModsPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Extras/Licenses" to="." method="LicensesPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Extras/Back" to="." method="BackFromToolsPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Benchmarks/MicrobeBenchmark" to="." method="MicrobeBenchmarkPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Benchmarks/Back" to="." method="OnReturnFromBenchmarks"]
-[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://revolutionarygamesstudio.com/"]]
-[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://community.revolutionarygamesstudio.com/"]]
-[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://forum.revolutionarygamesstudio.com/"]]
-[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentWikiButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://wiki.revolutionarygamesstudio.com/"]]
-[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityWikiButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://thrive.fandom.com/wiki/Thrive_Wiki"]]
-[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/ReportBugButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://community.revolutionarygamesstudio.com/c/bug-reports/13"]]
-[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Options" to="." method="OptionsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Tools" to="." method="ToolsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/ViewSourceCode" to="." method="ViewSourceCodePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Extras" to="." method="ExtrasPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Credits" to="." method="CreditsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Launcher" to="." method="QuitToLauncherPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Quit" to="." method="QuitPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor" to="." method="FreebuildEditorPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor" to="." method="MulticellularFreebuildEditorPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring" to="." method="OnAutoEvoExploringPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Benchmarks" to="." method="BenchmarksPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Back" to="." method="BackFromToolsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Thriveopedia" to="." method="ThriveopediaPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Mods" to="." method="ModsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Licenses" to="." method="LicensesPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Back" to="." method="BackFromToolsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark" to="." method="MicrobeBenchmarkPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/Back" to="." method="OnReturnFromBenchmarks"]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://community.revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://forum.revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/DevelopmentWikiButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://wiki.revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/CommunityWikiButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://thrive.fandom.com/wiki/Thrive_Wiki"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/ReportBugButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://community.revolutionarygamesstudio.com/c/bug-reports/13"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/SocialMedia/RevolutionaryGamesButton" to="." method="OnWebsitesButtonPressed"]
 [connection signal="pressed" from="MenuContainers/SocialMedia/SteamButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://store.steampowered.com/app/1779200/Thrive/"]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/ItchButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://revolutionarygames.itch.io/thrive"]]

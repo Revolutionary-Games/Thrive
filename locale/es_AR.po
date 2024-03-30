@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2024-02-25 11:36+0000\n"
 "Last-Translator: Levi Monjeau <iamaoenguin@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -322,15 +322,6 @@ msgstr "Basico"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Volver al modo básico de vista"
-
-msgid "BASSBOOST"
-msgstr "tecla \"Bassboost\" (auliculares)"
-
-msgid "BASSDOWN"
-msgstr "tecla \"Bass Down\""
-
-msgid "BASSUP"
-msgstr "tecla \"Bass Up\""
 
 msgid "BATHYPELAGIC"
 msgstr "Batipelágico"
@@ -1275,12 +1266,6 @@ msgstr "población:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr "Izquierda"
-
-msgid "DIRECTIONR"
-msgstr "Derecha"
-
 msgid "DISABLED"
 msgstr "Desactivado"
 
@@ -2036,12 +2021,6 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfuro de hidrógeno"
 
-msgid "HYPERL"
-msgstr "tecla \"Hiper Izquierda\""
-
-msgid "HYPERR"
-msgstr "tecla \"Hiper Derecha\""
-
 #, fuzzy
 msgid "ICESHARD"
 msgstr "Estalactita"
@@ -2259,10 +2238,17 @@ msgstr ""
 msgid "KEY_BACK"
 msgstr "Borrar"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Borrar"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Hay un conflicto con el control {0}\n"
 "Queres quitarlo de la esa tecla de {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "tecla \"Clear\""
@@ -2285,6 +2271,10 @@ msgstr "tecla \"Favourites\""
 msgid "KEY_FORWARD"
 msgstr "tecla \"Foward\" (f9 aveces)"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "tecla \"Home\""
+
 msgid "KEY_HELP"
 msgstr "tecla \"Help\" (f1 normalmente)"
 
@@ -2294,14 +2284,30 @@ msgstr "tecla \"Home\""
 msgid "KEY_HOMEPAGE"
 msgstr "tecla \"Homepage\""
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "tecla \"Help\" (f1 normalmente)"
+
 msgid "KEY_INSERT"
 msgstr "tecla \"Insert\""
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "tecla \"Insert\""
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "tecla \"Standby\""
 
 msgid "KEY_LEFT"
 msgstr "Flechita a la izquierda"
 
 msgid "KEY_MENU"
 msgstr "tecla \"Menu\""
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tabulador"
 
 msgid "KEY_OPENURL"
 msgstr "tecla \"Open URL\""
@@ -4781,12 +4787,6 @@ msgstr ""
 msgid "SUNLIGHT"
 msgstr "Luz solar"
 
-msgid "SUPERL"
-msgstr "tecla \"Super Izquierda\""
-
-msgid "SUPERR"
-msgstr "tecla \"Super Derecha\""
-
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
@@ -5105,14 +5105,6 @@ msgstr ""
 
 msgid "TRANSPARENCY"
 msgstr ""
-
-#, fuzzy
-msgid "TREBLEDOWN"
-msgstr "Agudos hacia abajo"
-
-#, fuzzy
-msgid "TREBLEUP"
-msgstr "Triplicar"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
@@ -6587,6 +6579,41 @@ msgstr "Acercar la pantalla"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "tecla \"Bassboost\" (auliculares)"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "tecla \"Bass Down\""
+
+#~ msgid "BASSUP"
+#~ msgstr "tecla \"Bass Up\""
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Izquierda"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Derecha"
+
+#~ msgid "HYPERL"
+#~ msgstr "tecla \"Hiper Izquierda\""
+
+#~ msgid "HYPERR"
+#~ msgstr "tecla \"Hiper Derecha\""
+
+#~ msgid "SUPERL"
+#~ msgstr "tecla \"Super Izquierda\""
+
+#~ msgid "SUPERR"
+#~ msgstr "tecla \"Super Derecha\""
+
+#, fuzzy
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Agudos hacia abajo"
+
+#, fuzzy
+#~ msgid "TREBLEUP"
+#~ msgstr "Triplicar"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "x16"

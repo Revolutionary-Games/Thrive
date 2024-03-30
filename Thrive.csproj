@@ -15,7 +15,7 @@
   <!-- Ignore the subproject source files -->
   <PropertyGroup>
     <DefaultItemExcludes>
-      $(DefaultItemExcludes);Scripts\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
+      $(DefaultItemExcludes);Scripts\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
     </DefaultItemExcludes>
   </PropertyGroup>
   <!-- Non-Steam build needs to skip this file -->
@@ -24,7 +24,7 @@
   </ItemGroup>
   <!-- In case the hot reload in Godot editor would fail with the system JSON referenced, this single file is picked out -->
   <ItemGroup>
-    <Compile Include="RevolutionaryGamesCommon\DevCenterCommunication\Models\Enums\PrecompiledTag.cs"/>
+    <Compile Include="RevolutionaryGamesCommon\DevCenterCommunication\Models\Enums\PrecompiledTag.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />

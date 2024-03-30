@@ -377,7 +377,13 @@ public class Settings
     ///   It stores the godot actions like g_move_left and
     ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
     /// </summary>
-    [JsonProperty]
+    /// <remarks>
+    ///   <para>
+    ///     To guard against old key maps and bad data, the property name here can be incremented (and is incremented
+    ///     when necessary)
+    ///   </para>
+    /// </remarks>
+    [JsonProperty(PropertyName = "CurrentControls2")]
     public SettingValue<InputDataList> CurrentControls { get; private set; } =
         new(GetDefaultControls());
 
@@ -545,7 +551,7 @@ public class Settings
     {
         return new InputDataList(InputMap.GetActions()
             .ToDictionary(p => p.ToString(),
-                p => InputMap.ActionGetEvents(p).Select(x => new SpecifiedInputKey(x)).ToList()));
+                p => InputMap.ActionGetEvents(p).Select(x => new SpecifiedInputKey(x, false)).ToList()));
     }
 
     /// <summary>

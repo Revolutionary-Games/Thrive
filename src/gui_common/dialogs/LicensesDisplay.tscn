@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c120hjc04sice"]
+[gd_scene load_steps=9 format=3 uid="uid://c120hjc04sice"]
 
 [ext_resource type="Script" path="res://src/gui_common/dialogs/LicensesDisplay.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://ddq0a7mi3w0bd" path="res://src/gui_common/fonts/Mono-Regular-Smaller.tres" id="4_cbphf"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="6"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="7_ytd0c"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.0470588, 0.105882, 0.109804, 1)
@@ -87,6 +88,7 @@ NodeToGiveFocusTo = NodePath("../CloseButton")
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("7_ytd0c")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 

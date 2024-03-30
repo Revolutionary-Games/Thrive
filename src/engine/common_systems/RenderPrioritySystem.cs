@@ -3,7 +3,6 @@
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Applies <see cref="RenderPriorityOverride"/>
@@ -21,7 +20,7 @@ using DefaultEcs.Threading;
 [RunsOnMainThread]
 public sealed class RenderPrioritySystem : AEntitySetSystem<float>
 {
-    public RenderPrioritySystem(World world, IParallelRunner runner) : base(world, runner)
+    public RenderPrioritySystem(World world) : base(world, null)
     {
     }
 

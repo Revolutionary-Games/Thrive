@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 14:18+0200\n"
+"POT-Creation-Date: 2024-03-26 16:20+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -330,15 +330,6 @@ msgstr "Alap"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Visszatérés alap beállítási nézetbe"
-
-msgid "BASSBOOST"
-msgstr "Bassboost"
-
-msgid "BASSDOWN"
-msgstr "Basszus csökkentése"
-
-msgid "BASSUP"
-msgstr "Basszus növelése"
 
 msgid "BATHYPELAGIC"
 msgstr "Batipelágikus"
@@ -1336,12 +1327,6 @@ msgstr "Sebesség:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr "Bal"
-
-msgid "DIRECTIONR"
-msgstr "Jobb"
-
 msgid "DISABLED"
 msgstr "Kikapcsolva"
 
@@ -2134,12 +2119,6 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogén-szulfid"
 
-msgid "HYPERL"
-msgstr "Hyper Left"
-
-msgid "HYPERR"
-msgstr "Hyper Right"
-
 msgid "ICESHARD"
 msgstr "Jégdarab"
 
@@ -2373,10 +2352,17 @@ msgstr "Június"
 msgid "KEY_BACK"
 msgstr "Back"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Back"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Összeütközés van ezzel: {0}\n"
 "Szeretnéd eltávolítani a bemenetet innen: {1} ?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Clear"
@@ -2399,6 +2385,10 @@ msgstr "Kedvencek"
 msgid "KEY_FORWARD"
 msgstr "Forward"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Home"
+
 msgid "KEY_HELP"
 msgstr "Help"
 
@@ -2408,14 +2398,30 @@ msgstr "Home"
 msgid "KEY_HOMEPAGE"
 msgstr "Homepage"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Help"
+
 msgid "KEY_INSERT"
 msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Standby"
 
 msgid "KEY_LEFT"
 msgstr "Bal"
 
 msgid "KEY_MENU"
 msgstr "Menu"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Open URL"
@@ -4977,12 +4983,6 @@ msgstr "Öngyilkosság"
 msgid "SUNLIGHT"
 msgstr "Napfény"
 
-msgid "SUPERL"
-msgstr "Super Left"
-
-msgid "SUPERR"
-msgstr "Super Right"
-
 msgid "SUPPORTER_PATRONS"
 msgstr "Támogatók"
 
@@ -5295,12 +5295,6 @@ msgstr "Fordítók"
 
 msgid "TRANSPARENCY"
 msgstr "Átlátszóság"
-
-msgid "TREBLEDOWN"
-msgstr "Magas hangok csökkentése"
-
-msgid "TREBLEUP"
-msgstr "Magas hangok növelése"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -6871,6 +6865,39 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#~ msgid "BASSBOOST"
+#~ msgstr "Bassboost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Basszus csökkentése"
+
+#~ msgid "BASSUP"
+#~ msgstr "Basszus növelése"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Bal"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Jobb"
+
+#~ msgid "HYPERL"
+#~ msgstr "Hyper Left"
+
+#~ msgid "HYPERR"
+#~ msgstr "Hyper Right"
+
+#~ msgid "SUPERL"
+#~ msgstr "Super Left"
+
+#~ msgid "SUPERR"
+#~ msgstr "Super Right"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Magas hangok csökkentése"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Magas hangok növelése"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Ismeretlen a Windows-on"

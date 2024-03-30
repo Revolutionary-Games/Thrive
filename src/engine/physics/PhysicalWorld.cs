@@ -438,6 +438,13 @@ public class PhysicalWorld : IDisposable
         body.NotifyCollisionRecordingStopped();
     }
 
+    /// <summary>
+    ///   Add a collision filter callback for a body
+    /// </summary>
+    /// <param name="body">The body</param>
+    /// <param name="filterCallback">
+    ///   The filter. Note that this callable *must be* kept alive externally for this to work safely
+    /// </param>
     public void BodyAddCollisionFilter(NativePhysicsBody body, OnCollisionFilterCallback filterCallback)
     {
         NativeMethods.PhysicsBodyAddCollisionFilter(AccessWorldInternal(), body.AccessBodyInternal(), filterCallback);

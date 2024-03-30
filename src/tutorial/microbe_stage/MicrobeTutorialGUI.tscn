@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
 [ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="9"]
-[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="9_ib522"]
+[ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_s6a8v"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="10"]
 [ext_resource type="PackedScene" path="res://src/gui_common/ControlHighlight.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
@@ -115,7 +115,8 @@ GrabFocusWhenBecomingVisible = true
 [node name="Button" type="Button" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("9_ib522")
+theme_override_fonts/font = ExtResource("9_s6a8v")
+theme_override_font_sizes/font_size = 20
 text = "BEGIN_THRIVING"
 
 [node name="MicrobeMovementTutorial" type="Control" parent="."]
@@ -136,6 +137,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "MICROBE_STAGE_CONTROL_TEXT"
 DescriptionForController = "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 
@@ -204,6 +207,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "MICROBE_STAGE_COLLECT_TEXT"
 
 [node name="DayNightTutorial" parent="." instance=ExtResource("10")]
@@ -217,6 +222,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
 
 [node name="OrganelleDivisionTutorial" parent="." instance=ExtResource("10")]
@@ -230,6 +237,8 @@ offset_left = -298.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "MICROBE_STAGE_ORGANELLE_DIVISION"
 
 [node name="BecomeMulticellularTutorial" parent="." instance=ExtResource("10")]
@@ -256,6 +265,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "MICROBE_STAGE_HEALTH_TEXT"
 
 [node name="ReproductionTutorial" parent="." instance=ExtResource("10")]
@@ -270,6 +281,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 91.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 
 [node name="EditorButtonHighlight" parent="." instance=ExtResource("11")]
@@ -292,6 +305,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 PreventsMouseCaptureWhileOpen = true
 
@@ -306,6 +321,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 PreventsMouseCaptureWhileOpen = true
 
@@ -350,6 +367,7 @@ size_flags_vertical = 3
 [node name="Button" type="Button" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_s6a8v")
 theme_override_font_sizes/font_size = 18
 text = "TUTORIAL_VIEW_NOW"
 
@@ -364,6 +382,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 
 [node name="EngulfmentTutorial" parent="." instance=ExtResource("10")]
@@ -377,6 +397,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 
 [node name="EngulfedTutorial" parent="." instance=ExtResource("10")]
@@ -391,6 +413,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 PreventsMouseCaptureWhileOpen = true
 
@@ -406,6 +430,8 @@ offset_left = -260.0
 offset_top = -179.0
 offset_right = 0.0
 offset_bottom = 96.0
+grow_horizontal = 0
+grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 
 [node name="EarlyMulticellularWelcome" parent="." instance=ExtResource("10")]
@@ -416,6 +442,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -830.0
 offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
 Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 Exclusive = true
 PreventsMouseCaptureWhileOpen = true
@@ -433,7 +461,7 @@ size_flags_vertical = 3
 [node name="Button" type="Button" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="2"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("9_ib522")
+theme_override_fonts/font = ExtResource("9_s6a8v")
 theme_override_font_sizes/font_size = 18
 text = "CONTINUE_THRIVING"
 

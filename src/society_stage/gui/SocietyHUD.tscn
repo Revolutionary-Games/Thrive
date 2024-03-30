@@ -42,7 +42,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="SocietyHUD" type="Control"]
+[node name="SocietyHUD" type="Control" node_paths=PackedStringArray("pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -59,9 +59,9 @@ HotBarPath = NodePath("ScrollContainer/HotBar")
 BottomLeftBarPath = NodePath("HUDBottomBar")
 ResourceDisplayPath = NodePath("TopBar/HBoxContainer/ResourceDisplayBar")
 ResearchScreenPath = NodePath("ResearchScreen")
-PausePromptPath = NodePath("PausePrompt")
-PauseInfoPath = NodePath("PausePrompt/PauseInfo")
-HUDMessagesPath = NodePath("HUDMessages")
+pausePrompt = NodePath("PausePrompt")
+pauseInfo = NodePath("PausePrompt/PauseInfo")
+hudMessages = NodePath("HUDMessages")
 
 [node name="BottomRight" type="Control" parent="."]
 anchors_preset = 0
@@ -209,3 +209,5 @@ layout_mode = 2
 [connection signal="pressed" from="ScrollContainer/HotBar/Research" to="." method="OpenResearchScreen"]
 [connection signal="Closed" from="ResearchScreen" to="." method="ResearchScreenClosed"]
 [connection signal="OnStartResearching" from="ResearchScreen" to="." method="ForwardStartResearch"]
+
+[editable path="PausePrompt"]

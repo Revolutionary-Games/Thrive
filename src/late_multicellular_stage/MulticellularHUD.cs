@@ -150,11 +150,6 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         return c => bag.IsUseful(c);
     }
 
-    protected override bool SpecialHandleBar(CompoundProgressBar bar)
-    {
-        return false;
-    }
-
     protected override bool ShouldShowAgentsPanel()
     {
         throw new NotImplementedException();

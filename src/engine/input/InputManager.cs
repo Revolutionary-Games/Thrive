@@ -544,6 +544,8 @@ public partial class InputManager : Node
             // Skip attributes that have no active listener objects (if this is a key down)
             // TODO: only CallMethod currently removes the invalid references from the list so the object might be dead
             // already and we don't know that yet
+            // TODO: for efficiency causing a removed listener to trigger the key up once before being unregistered
+            // would be optimal
             if (isDown && entry.Value.Count < 1)
                 continue;
 

@@ -716,16 +716,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    /// <summary>
-    ///   Potentially special handling for a compound bar
-    /// </summary>
-    /// <param name="bar">The bar to handle</param>
-    /// <returns>True if handled, in which case default handling is skipped</returns>
-    protected virtual bool SpecialHandleBar(CompoundProgressBar bar)
-    {
-        throw new GodotAbstractMethodNotOverriddenException();
-    }
-
     protected virtual bool ShouldShowAgentsPanel()
     {
         throw new GodotAbstractMethodNotOverriddenException();
@@ -893,6 +883,36 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         ejectEngulfedHotkey.ButtonPressed = Input.IsActionPressed(ejectEngulfedHotkey.ActionName);
     }
 
+    /// <summary>
+    ///   Updates the different bars and panels that should be displayed to the screen
+    /// </summary>
+    protected virtual void UpdateBarVisibility(Func<Compound, bool> isUseful)
+    {
+        if (ShouldShowAgentsPanel())
+        {
+            compoundsPanel.ShowAgents = true;
+        }
+        else
+        {
+            compoundsPanel.ShowAgents = false;
+        }
+
+        if (compoundBars == null)
+            throw new InvalidOperationException("This HUD is not initialized");
+
+        foreach (var (compound, bar) in compoundBars)
+        {
+            if (isUseful.Invoke(compound))
+            {
+                bar.Show();
+            }
+            else
+            {
+                bar.Hide();
+            }
+        }
+    }
+
     protected void OpenMenu()
     {
         EmitSignal(SignalName.OnOpenMenu);
@@ -945,7 +965,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 MicrobeControlRadialPath.Dispose();
                 FireToxinHotkeyPath.Dispose();
                 BottomLeftBarPath.Dispose();
-                HUDMessagesPath.Dispose();
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }
@@ -961,39 +980,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         winExtinctBoxHolder.Hide();
         stage!.MoveToPatch(patch);
-    }
-
-    /// <summary>
-    ///   Updates the different bars and panels that should be displayed to the screen
-    /// </summary>
-    private void UpdateBarVisibility(Func<Compound, bool> isUseful)
-    {
-        if (ShouldShowAgentsPanel())
-        {
-            compoundsPanel.ShowAgents = true;
-        }
-        else
-        {
-            compoundsPanel.ShowAgents = false;
-        }
-
-        if (compoundBars == null)
-            throw new InvalidOperationException("This HUD is not initialized");
-
-        foreach (var (compound, bar) in compoundBars)
-        {
-            if (SpecialHandleBar(bar))
-                continue;
-
-            if (isUseful.Invoke(compound))
-            {
-                bar.Show();
-            }
-            else
-            {
-                bar.Hide();
-            }
-        }
     }
 
     private void ProcessPanelButtonPressed()
