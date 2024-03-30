@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1711124224,
-        "narHash": "sha256-l0zlN/3CiodvWDtfBOVxeTwYSRz93muVbXWSpaMjXxM=",
+        "lastModified": 1711668574,
+        "narHash": "sha256-u1dfs0ASQIEr1icTVrsKwg2xToIpn7ZXxW3RHfHxshg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "56528ee42526794d413d6f244648aaee4a7b56c0",
+        "rev": "219951b495fc2eac67b1456824cc1ec1fd2ee659",
         "type": "github"
       },
       "original": {
@@ -16,9 +16,26 @@
         "type": "github"
       }
     },
+    "nixpkgs-godot": {
+      "locked": {
+        "lastModified": 1706927015,
+        "narHash": "sha256-CYRrO0PvlOktfJw3dnAKfoUVbyQJzkezDbpvWfURSDU=",
+        "owner": "ilikefrogs101",
+        "repo": "nixpkgs",
+        "rev": "c5a292736465d4fa5536ab4ef265bee495aac7fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ilikefrogs101",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-godot": "nixpkgs-godot"
       }
     }
   },
