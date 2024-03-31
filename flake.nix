@@ -32,10 +32,9 @@
                 dotnet-sdk_8
                 ((pkgs-godot.callPackage "${nixpkgs-godot}/pkgs/development/tools/godot/4/mono" { }).override { withTouch = false; })
                 # For compiling native libraries
-                stdenv
-                clang
-                lld
                 cmake
+                clang_14
+                lld_17
                 # For packaging manually
                 zip
                 p7zip
