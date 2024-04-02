@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
@@ -237,6 +237,9 @@ public partial class Membrane : MeshInstance3D
     private void SetMesh()
     {
         Mesh = membraneData.GeneratedMesh;
+
+        // TODO: Make this not terrible
+        GetChild<MeshInstance3D>(0).Mesh = membraneData.GeneratedEngulfMesh;
         MaterialOverride = MaterialToEdit;
     }
 

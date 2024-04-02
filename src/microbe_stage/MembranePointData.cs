@@ -12,6 +12,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 {
     private readonly Lazy<(ArrayMesh Mesh, int SurfaceIndex)> finalMesh;
 
+    private readonly Lazy<(ArrayMesh Mesh, int SurfaceIndex)> finalEngulfMesh;
+
     private float radius;
 
     private bool radiusCalculated;
@@ -27,6 +29,9 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         // Setup mesh to be generated (on the main thread) only when required
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
             MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateMesh(this));
+
+        finalEngulfMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
+            MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateEngulfMesh(this));
 
         // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
         // might exist a reference to this class instance (that's why it is only released in the finalizer)
@@ -69,6 +74,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public ArrayMesh GeneratedMesh => finalMesh.Value.Mesh;
     public int SurfaceIndex => finalMesh.Value.SurfaceIndex;
+    public ArrayMesh GeneratedEngulfMesh => finalEngulfMesh.Value.Mesh;
+    public int EngulfSurfaceIndex => finalEngulfMesh.Value.SurfaceIndex;
 
     public float Radius
     {
@@ -128,6 +135,9 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     {
         if (finalMesh.IsValueCreated)
             finalMesh.Value.Mesh.Dispose();
+
+        if (finalEngulfMesh.IsValueCreated)
+            finalEngulfMesh.Value.Mesh.Dispose();
 
         ArrayPool<Vector2>.Shared.Return(Vertices2D);
     }
