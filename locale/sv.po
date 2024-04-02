@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-26 16:20+0200\n"
+"POT-Creation-Date: 2024-04-01 22:00+0200\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -692,10 +692,6 @@ msgstr "Färg"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Färgblindhets Rättning:"
 
-#, fuzzy
-msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr "Lägg till aktuell färg till paletten"
-
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Alpha kanal värdet för färgen"
 
@@ -704,11 +700,6 @@ msgstr "Blåa kanal värdet för färgen"
 
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Gröna kanal värdet för färgen"
-
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"Slå på eller av HSV-läge (Hue, Saturation, Value).\n"
-"Kan inte slås på i rå-läge."
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Nyansvärde, del av färgen"
@@ -722,13 +713,6 @@ msgstr ""
 "Färg: {0}\n"
 "Vänster musknapp: Använd denna palette\n"
 "Höger musknapp: Ta bort denna palette"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Slå på eller av rå-läget.\n"
-"I rå-läge kan du tvinga R, G, B\n"
-"färgvärdena att överskrida 1.0.\n"
-"Kan inte slås på i HSV-läge."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Röda kanal värdet för färgen"
@@ -2138,9 +2122,6 @@ msgstr ""
 
 msgid "HP_COLON"
 msgstr "Hälsa:"
-
-msgid "HSV"
-msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -4198,9 +4179,6 @@ msgstr "Slumpa artnamn"
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Fortsätt"
-
-msgid "RAW"
-msgstr "Rå"
 
 #, fuzzy
 msgid "RAW_VALUE_COLON"
@@ -6890,6 +6868,28 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "COLOUR_PICKER_ADD_PRESET"
+#~ msgstr "Lägg till aktuell färg till paletten"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Slå på eller av HSV-läge (Hue, Saturation, Value).\n"
+#~ "Kan inte slås på i rå-läge."
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Slå på eller av rå-läget.\n"
+#~ "I rå-läge kan du tvinga R, G, B\n"
+#~ "färgvärdena att överskrida 1.0.\n"
+#~ "Kan inte slås på i HSV-läge."
+
+#~ msgid "HSV"
+#~ msgstr "HSV"
+
+#~ msgid "RAW"
+#~ msgstr "Rå"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Basboost"

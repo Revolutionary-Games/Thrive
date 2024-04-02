@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-26 16:20+0200\n"
+"POT-Creation-Date: 2024-04-01 22:00+0200\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -658,9 +658,6 @@ msgstr "Колір"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Кольорокорекція:"
 
-msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr "Додати попередній колір, як поточний"
-
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Альфа канал кольору"
 
@@ -669,11 +666,6 @@ msgstr "Синый канал кольору"
 
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Зелений канал кольору"
-
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"Перемкнути режим HSV(відтінок, насичення...).\n"
-"Не можна увімкнути в сирому режимі."
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Значення відтінку, частки кольору"
@@ -686,13 +678,6 @@ msgstr ""
 "Колір:{0}\n"
 "ЛКП: Використати його зараз\n"
 "ПКМ: Видалити його зараз"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Перемкніть сирий режим, або наваки.\n"
-"у сирому режимі ви можете зробити R, G, B\n"
-"кольорового значення виходячі за межі 1.0.\n"
-"Неможливо в режимі HSV."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Червоний канал кольору"
@@ -2073,9 +2058,6 @@ msgstr "Горизонталь (Вісь: {0})"
 
 msgid "HP_COLON"
 msgstr "Здоров'я:"
-
-msgid "HSV"
-msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
@@ -4058,9 +4040,6 @@ msgstr "Випадкова назва виду"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Значення, яке використовує для генерації світу, що мусить бути дадатним, цілим числом"
-
-msgid "RAW"
-msgstr "Необроблений"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Вологість:"
@@ -6686,6 +6665,27 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "COLOUR_PICKER_ADD_PRESET"
+#~ msgstr "Додати попередній колір, як поточний"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Перемкнути режим HSV(відтінок, насичення...).\n"
+#~ "Не можна увімкнути в сирому режимі."
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Перемкніть сирий режим, або наваки.\n"
+#~ "у сирому режимі ви можете зробити R, G, B\n"
+#~ "кольорового значення виходячі за межі 1.0.\n"
+#~ "Неможливо в режимі HSV."
+
+#~ msgid "HSV"
+#~ msgstr "HSV"
+
+#~ msgid "RAW"
+#~ msgstr "Необроблений"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Підсилення басів"

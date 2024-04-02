@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-26 16:20+0200\n"
+"POT-Creation-Date: 2024-04-01 22:00+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -672,9 +672,6 @@ msgstr "Color"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Corrección de color para daltónicos:"
 
-msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr "Añadir color actual como predeterminado"
-
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Composición alfa del color"
 
@@ -683,11 +680,6 @@ msgstr "Azul"
 
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Verde"
-
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"Activar o desactivar el modo HSV (Matiz, Saturación, Brillo).\n"
-"No se puede activar cuando estás en modo Crudo"
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Matiz de color"
@@ -700,13 +692,6 @@ msgstr ""
 "Color: {0}\n"
 "Click Izquierdo: Usar este color predefinido\n"
 "Click Derecho: Eliminar este color predefinido"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Activa o desactiva el modo bruto.\n"
-"En modo bruto puedes modificar los valores R, G, B\n"
-"Los valores de color deben ser mayores a 1.0.\n"
-"No se puede activar cuando estás en modo HSV."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Rojo"
@@ -2140,9 +2125,6 @@ msgstr "Horizontal (Eje: {0})"
 
 msgid "HP_COLON"
 msgstr "HP:"
-
-msgid "HSV"
-msgstr "HSV"
 
 #, fuzzy
 msgid "HUD_MESSAGE_MULTIPLE"
@@ -4205,9 +4187,6 @@ msgstr "Nombre de especies aleatorio"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "El valor usado para generar el planeta, debe ser un numero positivo"
-
-msgid "RAW"
-msgstr "Bruto"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Valor bruto:"
@@ -6930,6 +6909,27 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#~ msgid "COLOUR_PICKER_ADD_PRESET"
+#~ msgstr "Añadir color actual como predeterminado"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Activar o desactivar el modo HSV (Matiz, Saturación, Brillo).\n"
+#~ "No se puede activar cuando estás en modo Crudo"
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Activa o desactiva el modo bruto.\n"
+#~ "En modo bruto puedes modificar los valores R, G, B\n"
+#~ "Los valores de color deben ser mayores a 1.0.\n"
+#~ "No se puede activar cuando estás en modo HSV."
+
+#~ msgid "HSV"
+#~ msgstr "HSV"
+
+#~ msgid "RAW"
+#~ msgstr "Bruto"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Refuerzo de graves"

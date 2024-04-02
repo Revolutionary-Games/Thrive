@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-26 16:20+0200\n"
+"POT-Creation-Date: 2024-04-01 22:00+0200\n"
 "PO-Revision-Date: 2024-03-26 16:22+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -658,9 +658,6 @@ msgstr "Colour"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Colourblind correction:"
 
-msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr "Add current colour as a preset"
-
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Alpha channel value of the colour"
 
@@ -669,11 +666,6 @@ msgstr "Blue channel value of the colour"
 
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Green channel value of the colour"
-
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"Switch HSV (Hue, Saturation, Value) mode on or off.\n"
-"Can't be turned on when in raw mode."
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Hue value, portion of colour"
@@ -686,13 +678,6 @@ msgstr ""
 "Colour: {0}\n"
 "Left mouse: Use this preset\n"
 "Right mouse: Delete this preset"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Switch raw mode on or off.\n"
-"In raw mode you can make the R, G, B\n"
-"colour values to go beyond 1.0.\n"
-"Can't be turned on in HSV mode."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Red channel value of the colour"
@@ -2027,9 +2012,6 @@ msgstr "Horizontal (Axis: {0})"
 
 msgid "HP_COLON"
 msgstr "HP:"
-
-msgid "HSV"
-msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
@@ -4000,9 +3982,6 @@ msgstr "Randomize species name"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "The value used for generating the world, which must be a positive integer"
-
-msgid "RAW"
-msgstr "Raw"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Raw:"
@@ -6766,6 +6745,27 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "COLOUR_PICKER_ADD_PRESET"
+#~ msgstr "Add current colour as a preset"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Switch HSV (Hue, Saturation, Value) mode on or off.\n"
+#~ "Can't be turned on when in raw mode."
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Switch raw mode on or off.\n"
+#~ "In raw mode you can make the R, G, B\n"
+#~ "colour values to go beyond 1.0.\n"
+#~ "Can't be turned on in HSV mode."
+
+#~ msgid "HSV"
+#~ msgstr "HSV"
+
+#~ msgid "RAW"
+#~ msgstr "Raw"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost"

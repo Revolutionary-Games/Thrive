@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-26 16:20+0200\n"
+"POT-Creation-Date: 2024-04-01 22:00+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -669,9 +669,6 @@ msgstr "Colore"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correzione colore (per daltonismo):"
 
-msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr "Aggiungi ai colori personalizzati"
-
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Valore alpha (di trasparenza) del colore"
 
@@ -680,11 +677,6 @@ msgstr "Valore di blu nel colore"
 
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Valore di verde nel colore"
-
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"Accendi/spegni la modalità HSV (Hue, Saturation, Value).\n"
-"Non compatibile con la modalità raw."
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "H: hue (tonalità): è la porzione di colore"
@@ -697,13 +689,6 @@ msgstr ""
 "Colore: {0}\n"
 "Tasto sinistro: Usa questo colore personalizzato\n"
 "Tasto destro: Elimina questo colore personalizzato"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Accendi/spegni la modalità raw.\n"
-"In modalità raw puoi impostare\n"
-"i valori di R, G e B oltre 1.0.\n"
-"Non compatibile con la modalità HSV."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Valore di rosso nel colore"
@@ -2098,9 +2083,6 @@ msgstr ""
 
 msgid "HP_COLON"
 msgstr "PS:"
-
-msgid "HSV"
-msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -4166,9 +4148,6 @@ msgstr "Casualizza il nome della specie"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Il valore usato per generare il mondo; deve essere un numero intero positivo"
-
-msgid "RAW"
-msgstr "Raw"
 
 #, fuzzy
 msgid "RAW_VALUE_COLON"
@@ -6858,6 +6837,27 @@ msgstr "Zoom avanti"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
+
+#~ msgid "COLOUR_PICKER_ADD_PRESET"
+#~ msgstr "Aggiungi ai colori personalizzati"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Accendi/spegni la modalità HSV (Hue, Saturation, Value).\n"
+#~ "Non compatibile con la modalità raw."
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Accendi/spegni la modalità raw.\n"
+#~ "In modalità raw puoi impostare\n"
+#~ "i valori di R, G e B oltre 1.0.\n"
+#~ "Non compatibile con la modalità HSV."
+
+#~ msgid "HSV"
+#~ msgstr "HSV"
+
+#~ msgid "RAW"
+#~ msgstr "Raw"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost (tasto audio)"

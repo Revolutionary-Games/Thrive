@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-26 16:20+0200\n"
+"POT-Creation-Date: 2024-04-01 22:00+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -654,9 +654,6 @@ msgstr "Barva"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekce barev:"
 
-msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr "Přidat současnou barvu jako předvolbu"
-
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Hodnota alfa kanálu barvy"
 
@@ -665,11 +662,6 @@ msgstr "Hodnota modrého kanálu barvy"
 
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Hodnota zeleného kanálu barvy"
-
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"Přepnout režim HSV (Odstín, Saturace, Jas).\n"
-"Nemůže být zapnuto v režimu RAW."
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Odstín"
@@ -682,13 +674,6 @@ msgstr ""
 "Barva: {0}\n"
 "Levé tlačítko myši: Použít tuto předvolbu\n"
 "Pravé tlačítko myši: Smazat tuto předvolbu"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Přepnout režim RAW.\n"
-"V režimu RAW můžete hodnoty R, G, B\n"
-"nastavit nad úroveň 1.0.\n"
-"Nelze spustit v režimu HSV."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Hodnota červeného kanálu barvy"
@@ -2148,9 +2133,6 @@ msgstr "Horizontální (Osa: {0})"
 
 msgid "HP_COLON"
 msgstr "HP:"
-
-msgid "HSV"
-msgstr "Barva - Saturace - Hodnota"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -4201,9 +4183,6 @@ msgstr "Náhodné jméno druhu"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
-
-msgid "RAW"
-msgstr "RAW"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Suroví:"
@@ -6890,6 +6869,27 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "COLOUR_PICKER_ADD_PRESET"
+#~ msgstr "Přidat současnou barvu jako předvolbu"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Přepnout režim HSV (Odstín, Saturace, Jas).\n"
+#~ "Nemůže být zapnuto v režimu RAW."
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Přepnout režim RAW.\n"
+#~ "V režimu RAW můžete hodnoty R, G, B\n"
+#~ "nastavit nad úroveň 1.0.\n"
+#~ "Nelze spustit v režimu HSV."
+
+#~ msgid "HSV"
+#~ msgstr "Barva - Saturace - Hodnota"
+
+#~ msgid "RAW"
+#~ msgstr "RAW"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-26 16:20+0200\n"
+"POT-Creation-Date: 2024-04-01 22:00+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -668,9 +668,6 @@ msgstr "Szín"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Színvakság javító:"
 
-msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr "Szín beállítása előre beállítottra"
-
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Alfa csatorna színértéke"
 
@@ -679,11 +676,6 @@ msgstr "A kék csatorna színértéke"
 
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "A zöld csatorna színértéke"
-
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"HVS (Színárnyalat, Telítettség, Érték) mód ki/be kapcsolása.\n"
-"Nem lehet bekapcsolni, ha nyers módban van."
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Színárnyalat értéke, szín része"
@@ -696,13 +688,6 @@ msgstr ""
 "Szín: {0}\n"
 "Bal egérgomb: beállítás használata\n"
 "Jobb egérgomb: beállítás törlése"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Nyers mód ki/be kapcsolása.\n"
-"Nyers módban a piros, zöld, kék\n"
-"színek értékét 1.0 felé állíthatod.\n"
-"HSV módban nem lehet bekapcsolni."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "A piros csatorna színértéke"
@@ -2109,9 +2094,6 @@ msgstr ""
 
 msgid "HP_COLON"
 msgstr "HP:"
-
-msgid "HSV"
-msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -4179,9 +4161,6 @@ msgstr "Faj nevének randomizálása"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
-
-msgid "RAW"
-msgstr "Nyers"
 
 #, fuzzy
 msgid "RAW_VALUE_COLON"
@@ -6865,6 +6844,27 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#~ msgid "COLOUR_PICKER_ADD_PRESET"
+#~ msgstr "Szín beállítása előre beállítottra"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "HVS (Színárnyalat, Telítettség, Érték) mód ki/be kapcsolása.\n"
+#~ "Nem lehet bekapcsolni, ha nyers módban van."
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Nyers mód ki/be kapcsolása.\n"
+#~ "Nyers módban a piros, zöld, kék\n"
+#~ "színek értékét 1.0 felé állíthatod.\n"
+#~ "HSV módban nem lehet bekapcsolni."
+
+#~ msgid "HSV"
+#~ msgstr "HSV"
+
+#~ msgid "RAW"
+#~ msgstr "Nyers"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost"
