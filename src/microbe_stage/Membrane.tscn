@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jgcbwcrqbblv"]
+[gd_scene load_steps=9 format=3 uid="uid://jgcbwcrqbblv"]
 
 [ext_resource type="Script" path="res://src/microbe_stage/Membrane.cs" id="1"]
 [ext_resource type="Shader" path="res://shaders/Membrane.gdshader" id="2"]
@@ -22,9 +22,13 @@ shader_parameter/albedoTexture = ExtResource("3")
 shader_parameter/damagedTexture = ExtResource("4")
 shader_parameter/dissolveTexture = ExtResource("5")
 
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_gt3ok"]
+
 [node name="Membrane" type="MeshInstance3D"]
 process_priority = 2
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, 0.034008)
 mesh = SubResource("1")
 script = ExtResource("1")
 MaterialToEdit = SubResource("2")
+
+[node name="EngulfMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaceholderMesh_gt3ok")

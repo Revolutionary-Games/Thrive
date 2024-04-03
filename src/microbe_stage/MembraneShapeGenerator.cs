@@ -136,11 +136,12 @@ public class MembraneShapeGenerator
     /// </summary>
     public (ArrayMesh Mesh, int SurfaceIndex) GenerateEngulfMesh(MembranePointData shapeData)
     {
+        // TODO: Possibly remove this message for this function. This function is also only used graphically.
         // TODO: should the 3D membrane generation already happen when GenerateMembranePoints is called?
         // That would reduce the load on the main thread when generating the final visual mesh, though the membrane
         // properties are also used in non-graphical context (species speed) so that'd result in quite a bit of
         // unnecessary computations
-        var mesh = BuildEngulfMesh(shapeData.Vertices2D, shapeData.VertexCount, shapeData.Type, out var surfaceIndex);
+        var mesh = BuildEngulfMesh(shapeData.Vertices2D, shapeData.VertexCount, out var surfaceIndex);
 
         return (mesh, surfaceIndex);
     }
@@ -268,13 +269,12 @@ public class MembraneShapeGenerator
     /// <summary>
     ///   Creates the engulf mesh object.
     /// </summary>
-    private static ArrayMesh BuildEngulfMesh(Vector2[] vertices2D, int vertexCount, MembraneType membraneType,
-        out int surfaceIndex)
+    private static ArrayMesh BuildEngulfMesh(Vector2[] vertices2D, int vertexCount, out int surfaceIndex)
     {
         // common variables
         const float height = 0.1f;
-        const float multiplier = 2.0f * Mathf.Pi;
-        const float engulfAnimationDistance = 1; // TODO: Move to consts
+        const float engulfAnimationDistance = 1.2f; // TODO: Move to consts
+
         var center = new Vector2(0.5f, 0.5f);
 
         // Engulf Mesh is a triangle strip extruded from the shape
@@ -291,28 +291,26 @@ public class MembraneShapeGenerator
         var vertices = new Vector3[trueVertexCount];
         var uvs = new Vector2[trueVertexCount];
 
-        for (int i = 0; i < trueVertexCount; i += 2)
+        for (int i = 0; i < vertexCount; ++i)
         {
-            // Finds the UV coordinates be projecting onto a plane and
-            // stretching to fit a circle.
+            var index = i * 2;
 
-            float currentRadians = multiplier * i / trueVertexCount;
-            var sourceVertex = vertices2D[i];
+            // This weird indexing is required to make the mesh respect winding order
+            // Otherwise it will get culled
+            var sourceVertex = vertices2D[vertexCount - i - 1];
+            var extrudeDir = sourceVertex - center;
 
-            var uv = center +
-                new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2;
+            Vector2 extrudedVertex = sourceVertex + extrudeDir * engulfAnimationDistance;
 
-            // We use the UV direction to extrude out the strip and to create a ring around the membrane
-            Vector2 extrudedVertex = sourceVertex + engulfAnimationDistance * uv;
+            indices[index] = index;
+            indices[index + 1] = index + 1;
 
-            indices[i] = i;
-            indices[i + 1] = i + 1;
+            vertices[index] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
+            vertices[index + 1] = new Vector3(extrudedVertex.X, height / 2, extrudedVertex.Y);
 
-            vertices[i] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
-            vertices[i + 1] = new Vector3(extrudedVertex.X, height / 2, extrudedVertex.Y);
-
-            uvs[i] = uv;
-            uvs[i + 1] = uv;
+            // UVs are actually used like a distance calculation here instead of actual uvs
+            uvs[index] = new Vector2(0, 0);
+            uvs[index + 1] = new Vector2(0, 1);
         }
 
         // Connect back to the start
