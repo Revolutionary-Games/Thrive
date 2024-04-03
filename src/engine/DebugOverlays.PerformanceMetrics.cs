@@ -92,7 +92,7 @@ public partial class DebugOverlays
     private void UpdateMetrics(double delta)
     {
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
-        deltaLabel.Text = new LocalizedString("FRAME_DURATION", delta).ToString();
+        deltaLabel.Text = new LocalizedString("FRAME_DURATION", Math.Round(delta, 8)).ToString();
 
         var currentProcess = Process.GetCurrentProcess();
 
@@ -126,7 +126,7 @@ public partial class DebugOverlays
                     Performance.GetMonitor(Performance.Monitor.RenderTotalDrawCallsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderTotalPrimitivesInFrame),
                     Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount),
-                    Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, threads, processorTime)
+                    Math.Round(Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, 3), threads, processorTime)
                 .ToString();
 
         entityWeight = 0.0f;
