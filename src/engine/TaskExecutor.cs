@@ -56,8 +56,7 @@ public class TaskExecutor : IParallelRunner
             ReApplyThreadCount();
         }
 
-        // Mono doesn't have this for some reason
-        // Thread.CurrentThread.Name = "main";
+        Thread.CurrentThread.Name = "TMain";
         GD.Print("TaskExecutor started with parallel job count: ", ParallelTasks);
     }
 
@@ -97,14 +96,18 @@ public class TaskExecutor : IParallelRunner
         get => ecsThrottling;
         set
         {
-            if (value > 0)
-            {
-                ecsThrottling = value;
-            }
-            else
-            {
-                ecsThrottling = 1;
-            }
+            // TODO: BUG: not currently updated as ECS update can calculate different threads before executing and
+            // during execution then another thread count is used. Meaning this is not multithreading safe property.
+            _ = value;
+
+            // if (value > 0)
+            // {
+            //     ecsThrottling = value;
+            // }
+            // else
+            // {
+            //     ecsThrottling = 1;
+            // }
         }
     }
 
@@ -200,14 +203,17 @@ public class TaskExecutor : IParallelRunner
     {
         int maxIndex = DegreeOfParallelism - 1;
 
-        Interlocked.Add(ref queuedParallelRunnableCount, maxIndex);
-
-        for (int i = 0; i < maxIndex; ++i)
+        if (maxIndex > 0)
         {
-            queuedTasks.Enqueue(new ThreadCommand(runnable, i, maxIndex));
-        }
+            Interlocked.Add(ref queuedParallelRunnableCount, maxIndex);
 
-        NotifyNewTasksAdded(maxIndex);
+            for (int i = 0; i < maxIndex; ++i)
+            {
+                queuedTasks.Enqueue(new ThreadCommand(runnable, i, maxIndex));
+            }
+
+            NotifyNewTasksAdded(maxIndex);
+        }
 
         // Current thread runs at the max index
         runnable.Run(maxIndex, maxIndex);
@@ -216,20 +222,24 @@ public class TaskExecutor : IParallelRunner
         if (maxIndex < 1)
             return;
 
-        Interlocked.MemoryBarrier();
-
         while (queuedParallelRunnableCount > 0)
         {
-            Interlocked.MemoryBarrier();
-
             // TODO: add this when we can to reduce hyperthreading resource use while waiting
             // System.Runtime.Intrinsics.X86.X86Base.Pause();
+
+            // Busy loop a bit before checking the variable again
+            for (int i = 0; i < 10; ++i)
+            {
+                _ = i;
+            }
         }
 
 #if DEBUG
         if (queuedParallelRunnableCount < 0)
             throw new Exception("After waiting for parallel runnables count got negative");
 #endif
+
+        Interlocked.MemoryBarrier();
     }
 
     /// <summary>
