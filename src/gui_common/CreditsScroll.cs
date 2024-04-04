@@ -601,6 +601,7 @@ public partial class CreditsScroll : Control
             // 0.7 == 15% shrink of middle spacing for 2 columns and move position to center.
             Position = new Vector2(columns == 2 ? Size.X * 0.15f : 0, 0),
             CustomMinimumSize = new Vector2(columns == 2 ? Size.X * 0.7f : Size.X, 0),
+            SizeFlagsVertical = SizeFlags.ShrinkBegin,
         };
 
         foreach (var columnText in splitTexts)
@@ -646,7 +647,7 @@ public partial class CreditsScroll : Control
         // If past team leads need to be marked might need to use rich text label or some other approach there.
         // And this method might need to be split into separate implementations as not all places would need that.
         var memberLabel = CreateDynamicPart(offset, people, columns);
-        offset += (int)memberLabel.Height + ExtraOffsetAfterTeam;
+        offset += (int)Math.Round((memberLabel.Height + ExtraOffsetAfterTeam) / columns);
 
         return offset;
     }

@@ -20,6 +20,8 @@ public partial class CustomExpandingWordWrappedLabel : Label
         Text = text;
         HorizontalAlignment = HorizontalAlignment.Center;
         SizeFlagsHorizontal = SizeFlags.ExpandFill;
+        CustomMinimumSize = new Vector2(50, 0);
+        SizeFlagsVertical = SizeFlags.ShrinkBegin;
     }
 
     public override void _Notification(int what)
