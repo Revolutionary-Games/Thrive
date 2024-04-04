@@ -273,7 +273,7 @@ public class MembraneShapeGenerator
     {
         // common variables
         const float height = 0.1f;
-        const float engulfAnimationDistance = 1.2f; // TODO: Move to consts
+        const float engulfAnimationDistance = 1f; // TODO: Move to consts
 
         var center = new Vector2(0.5f, 0.5f);
 
