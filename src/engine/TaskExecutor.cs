@@ -94,21 +94,20 @@ public class TaskExecutor : IParallelRunner
     public int ECSThrottling
     {
         get => ecsThrottling;
-        set
-        {
+        set =>
+
             // TODO: BUG: not currently updated as ECS update can calculate different threads before executing and
             // during execution then another thread count is used. Meaning this is not multithreading safe property.
             _ = value;
 
-            // if (value > 0)
-            // {
-            //     ecsThrottling = value;
-            // }
-            // else
-            // {
-            //     ecsThrottling = 1;
-            // }
-        }
+        // if (value > 0)
+        // {
+        //     ecsThrottling = value;
+        // }
+        // else
+        // {
+        //     ecsThrottling = 1;
+        // }
     }
 
     /// <summary>

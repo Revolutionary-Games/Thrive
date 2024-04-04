@@ -97,7 +97,8 @@ public class SimpleBarrier
             }
 
             // TODO: check if it would be a better idea to use this (which might allow using one less atomic variable):
-            /*// Add is used here to ensure no problems occur if another thread has already arrived at this barrier again
+            /*// Add is used here to ensure no problems occur if another thread has already arrived at this barrier
+            // again
             Interlocked.Add(ref waitingThreads, -threadCount);*/
         }
 

@@ -13,7 +13,7 @@ public class ProcessStatistics
     /// <summary>
     ///   Temporary memory to use for <see cref="RemoveUnused"/> to avoid small constant allocations. This is no longer
     ///   a ThreadLocal in <see cref="Systems.ProcessSystem"/> as that was causing the game process to lock up in
-    ///   Godot 4.
+    ///   Godot 4 (for unknown reasons). See: https://github.com/Revolutionary-Games/Thrive/issues/4989 for context.
     /// </summary>
     private List<BioProcess>? temporaryRemovedItems;
 

@@ -126,7 +126,8 @@ public partial class DebugOverlays
                     Performance.GetMonitor(Performance.Monitor.RenderTotalDrawCallsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderTotalPrimitivesInFrame),
                     Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount),
-                    Math.Round(Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, 3), threads, processorTime)
+                    Math.Round(Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, 3), threads,
+                    processorTime)
                 .ToString();
 
         entityWeight = 0.0f;
