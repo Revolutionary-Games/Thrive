@@ -39,9 +39,6 @@ offset_right = 446.0
 offset_bottom = -2.0
 grow_vertical = 0
 script = ExtResource("26")
-ShowCompoundPanelToggles = null
-ShowSuicideButton = null
-ShowProcessesButton = null
 PauseButtonPath = NodePath("PauseButtonMargin/PlayButton")
 CompoundsButtonPath = NodePath("CompoundsButton")
 EnvironmentButtonPath = NodePath("EnvironmentButton")
@@ -67,7 +64,6 @@ size_flags_vertical = 8
 layout_mode = 2
 PauseButtonTooltip = "PAUSE_TOOLTIP"
 PlayButtonTooltip = "RESUME_TOOLTIP"
-Paused = null
 PauseButtonMode = true
 
 [node name="EnvironmentButton" type="TextureButton" parent="."]
