@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4dyrcb6l1u3o"]
+[gd_scene load_steps=11 format=3 uid="uid://c4dyrcb6l1u3o"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="2"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="2_gkxar"]
 [ext_resource type="Script" path="res://src/engine/DebugOverlays.cs" id="3"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_fussq"]
+[ext_resource type="LabelSettings" uid="uid://bl7dig4lq5ko" path="res://src/gui_common/fonts/Body-Regular-Small-Red.tres" id="4_rmq2c"]
+[ext_resource type="LabelSettings" uid="uid://cw40l6f6fo8ml" path="res://src/gui_common/fonts/Body-Regular-Small-Green.tres" id="5_jl51v"]
 [ext_resource type="LabelSettings" uid="uid://u7fwx3p3shvk" path="res://src/gui_common/fonts/Body-Regular-Small-Shadow.tres" id="6_2giyi"]
+[ext_resource type="LabelSettings" uid="uid://c7r7hod24qer8" path="res://src/gui_common/fonts/Body-Regular-Small-Blue.tres" id="6_05a1v"]
+[ext_resource type="LabelSettings" uid="uid://dj8uej1eg2iuh" path="res://src/gui_common/fonts/Body-Regular-Small-Orange.tres" id="7_8xdu2"]
 
 [node name="DebugOverlay" type="Control"]
 layout_mode = 3
@@ -19,6 +24,12 @@ FPSCounterPath = NodePath("FPSCounter")
 PerformanceMetricsPath = NodePath("PerformanceMetrics")
 EntityLabelsPath = NodePath("EntityLabels")
 InspectorDialogPath = NodePath("Inspector")
+entityLabelSmallFont = ExtResource("2_gkxar")
+entityLabelDefaultFont = ExtResource("3_fussq")
+entityDeadFont = ExtResource("4_rmq2c")
+entityBindingFont = ExtResource("5_jl51v")
+entityEngulfingFont = ExtResource("6_05a1v")
+entityUnbindingFont = ExtResource("7_8xdu2")
 FPSDisplayLabelPath = NodePath("FPSCounter/FPSDisplayLabel")
 FPSLabelPath = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer/FPS")
 DeltaLabelPath = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer/Delta")

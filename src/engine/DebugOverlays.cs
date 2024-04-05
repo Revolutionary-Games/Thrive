@@ -70,7 +70,6 @@ public partial class DebugOverlays : Control
         fpsCounter = GetNode<Control>(FPSCounterPath);
         performanceMetrics = GetNode<CustomWindow>(PerformanceMetricsPath);
         labelsLayer = GetNode<Control>(EntityLabelsPath);
-        smallerFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Regular-Tiny.tres");
         fpsLabel = GetNode<Label>(FPSLabelPath);
         deltaLabel = GetNode<Label>(DeltaLabelPath);
         metricsText = GetNode<Label>(MetricsTextPath);

@@ -24,7 +24,7 @@ using Godot;
 [RunsOnMainThread]
 public sealed class TintColourApplyingSystem : AEntitySetSystem<float>
 {
-    private readonly StringName tintName = new("tint");
+    private readonly StringName tintParameterName = new("tint");
 
     public TintColourApplyingSystem(World world) : base(world, null)
     {
@@ -56,14 +56,14 @@ public sealed class TintColourApplyingSystem : AEntitySetSystem<float>
         {
             if (materials.Length > 0)
             {
-                materials[0].SetShaderParameter(tintName, currentColour);
+                materials[0].SetShaderParameter(tintParameterName, currentColour);
             }
         }
         else
         {
             foreach (var material in materials)
             {
-                material.SetShaderParameter(tintName, currentColour);
+                material.SetShaderParameter(tintParameterName, currentColour);
             }
         }
 
@@ -74,7 +74,7 @@ public sealed class TintColourApplyingSystem : AEntitySetSystem<float>
     {
         if (disposing)
         {
-            tintName.Dispose();
+            tintParameterName.Dispose();
         }
     }
 }

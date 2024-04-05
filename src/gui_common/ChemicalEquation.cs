@@ -7,20 +7,23 @@ using Godot;
 /// </summary>
 public partial class ChemicalEquation : VBoxContainer
 {
-    [Export]
-    public NodePath? TitlePath;
-
-    [Export]
-    public NodePath SpinnerPath = null!;
-
-    [Export]
-    public NodePath FirstLineContainerPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
+    public LabelSettings DefaultTitleFont = null!;
+
+    [Export]
     private Label? title;
+
+    [Export]
     private TextureRect? spinner;
+
+    [Export]
     private HBoxContainer firstLineContainer = null!;
 
+    [Export]
+    private LabelSettings speedLimitedTitleFont = null!;
+
+    [Export]
     private Texture2D equationArrowTexture = null!;
 
     // Dynamically generated controls
@@ -86,20 +89,6 @@ public partial class ChemicalEquation : VBoxContainer
 
     public float SpinnerBaseSpeed { get; set; } = Constants.DEFAULT_PROCESS_SPINNER_SPEED;
 
-    public Color DefaultTitleColour
-    {
-        get => defaultTitleColour;
-        set
-        {
-            if (defaultTitleColour == value)
-                return;
-
-            defaultTitleColour = value;
-            if (title != null)
-                UpdateHeader();
-        }
-    }
-
     /// <summary>
     ///   If true the title color will be changed to red if EquationFromProcess has any limiting compounds.
     /// </summary>
@@ -107,12 +96,6 @@ public partial class ChemicalEquation : VBoxContainer
 
     public override void _Ready()
     {
-        title = GetNode<Label>(TitlePath);
-        spinner = GetNode<TextureRect>(SpinnerPath);
-        firstLineContainer = GetNode<HBoxContainer>(FirstLineContainerPath);
-
-        equationArrowTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/WhiteArrow.png");
-
         UpdateEquation();
     }
 
@@ -142,21 +125,6 @@ public partial class ChemicalEquation : VBoxContainer
             if (environmentSeparator != null)
                 environmentSeparator.Text = GetEnvironmentLabelText();
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (TitlePath != null)
-            {
-                TitlePath.Dispose();
-                SpinnerPath.Dispose();
-                FirstLineContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateEquation()
@@ -216,10 +184,11 @@ public partial class ChemicalEquation : VBoxContainer
         if (MarkRedOnLimitingCompounds && EquationFromProcess.LimitingCompounds is { Count: > 0 })
         {
             title.AddThemeColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+            title.LabelSettings = speedLimitedTitleFont;
         }
         else
         {
-            title.AddThemeColorOverride("font_color", DefaultTitleColour);
+            title.LabelSettings = DefaultTitleFont;
         }
     }
 
@@ -257,9 +226,11 @@ public partial class ChemicalEquation : VBoxContainer
             {
                 equationArrow = new TextureRect
                 {
-                    ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
+                    ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                     CustomMinimumSize = new Vector2(20, 20),
                     Texture = equationArrowTexture,
+                    StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
+                    SizeFlagsVertical = SizeFlags.ShrinkBegin,
                 };
                 firstLineContainer.AddChild(equationArrow);
             }
