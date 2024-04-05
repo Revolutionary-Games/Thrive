@@ -61,9 +61,6 @@ public partial class MainMenu : NodeWithInput
     public NodePath LicensesDisplayPath = null!;
 
     [Export]
-    public NodePath GLES2PopupPath = null!;
-
-    [Export]
     public NodePath SteamFailedPopupPath = null!;
 
     [Export]
@@ -159,7 +156,9 @@ public partial class MainMenu : NodeWithInput
     private TextureButton itchButton = null!;
     private TextureButton patreonButton = null!;
 
-    private CustomConfirmationDialog gles2Popup = null!;
+    [Export]
+    private CustomConfirmationDialog openGlPopup = null!;
+
     private ErrorDialog modLoadFailures = null!;
 
     private CustomConfirmationDialog steamFailedPopup = null!;
@@ -432,7 +431,6 @@ public partial class MainMenu : NodeWithInput
                 CreditsContainerPath.Dispose();
                 CreditsScrollPath.Dispose();
                 LicensesDisplayPath.Dispose();
-                GLES2PopupPath.Dispose();
                 SteamFailedPopupPath.Dispose();
                 ModLoadFailuresPath.Dispose();
                 SafeModeWarningPath.Dispose();
@@ -503,7 +501,6 @@ public partial class MainMenu : NodeWithInput
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
-        gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
         safeModeWarning = GetNode<CustomWindow>(SafeModeWarningPath);
         steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
@@ -521,7 +518,7 @@ public partial class MainMenu : NodeWithInput
         thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
 
         if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3 && !IsReturningToMenu)
-            gles2Popup.PopupCenteredShrink();
+            openGlPopup.PopupCenteredShrink();
 
         UpdateStoreVersionStatus();
         UpdateLauncherState();
@@ -845,7 +842,7 @@ public partial class MainMenu : NodeWithInput
     /// </summary>
     private bool AreAnyMenuPopupsOpen()
     {
-        return gles2Popup.Visible || modLoadFailures.Visible || steamFailedPopup.Visible || safeModeWarning.Visible
+        return openGlPopup.Visible || modLoadFailures.Visible || steamFailedPopup.Visible || safeModeWarning.Visible
             || modsInstalledButNotEnabledWarning.Visible || thanksDialog.Visible || lowPerformanceWarning.Visible;
     }
 

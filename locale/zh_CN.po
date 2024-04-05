@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 09:52+0300\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2024-03-28 12:34+0000\n"
 "Last-Translator: Unkown_lpy <Unkown_lpy@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1919,12 +1919,6 @@ msgstr "世代："
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2模式警告"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -3553,6 +3547,14 @@ msgstr ""
 "由于Thrive尚在早期开发中，存档兼容性并不是首要目标。\n"
 "你很可能会碰上各种问题，但它们不会是我们的首要解决对象。\n"
 "你确定要强行载入这个存档吗？"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "GLES2模式警告"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
 msgid "OPEN_FOLDER"
 msgstr "打开文件夹"
