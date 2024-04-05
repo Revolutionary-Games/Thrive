@@ -25,8 +25,16 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
 {
     // private readonly Lazy<Texture> noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
 
+    private readonly StringName dissolveValueName = new("dissolveValue");
+
     public MicrobeShaderSystem(World world) : base(world, null)
     {
+    }
+
+    public override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -76,7 +84,7 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
 
         foreach (var material in entityMaterial.Materials)
         {
-            material.SetShaderParameter("dissolveValue", shaderParameters.DissolveValue);
+            material.SetShaderParameter(dissolveValueName, shaderParameters.DissolveValue);
 
             // Dissolve texture must be set in the material set on the object otherwise the dissolve animation
             // won't play correctly. It used to be the case that the old C# code set the noise texture here but
@@ -84,5 +92,13 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
         }
 
         shaderParameters.ParametersApplied = true;
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            dissolveValueName.Dispose();
+        }
     }
 }
