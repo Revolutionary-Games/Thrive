@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Used to display a modifier info as UI element on a selection menu tooltip
@@ -6,20 +7,35 @@
 /// </summary>
 public partial class ModifierInfoLabel : HBoxContainer
 {
+    private readonly Lazy<LabelSettings> positiveModifierColour;
+    private readonly Lazy<LabelSettings> negativeModifierColour;
+
 #pragma warning disable CA2213
     private Label? nameLabel;
     private Label? valueLabel;
     private TextureRect? icon;
+
+    private LabelSettings modifierNameColor = null!;
+    private LabelSettings modifierValueColor = null!;
+    private LabelSettings? originalModifier;
 
     private Texture2D? iconTexture;
 #pragma warning restore CA2213
 
     private string displayName = string.Empty;
     private string modifierValue = string.Empty;
-    private Color modifierNameColor = Colors.White;
-    private Color modifierValueColor = Colors.White;
 
     private bool showValue = true;
+
+    public ModifierInfoLabel()
+    {
+        // This is a bit of a mess due to Godot 4 conversion, but for now this is enough and keeps AdjustValueColor
+        // API the same
+        positiveModifierColour =
+            new Lazy<LabelSettings>(() => originalModifier!.CloneWithDifferentColour(new Color(0, 1, 0)));
+        negativeModifierColour =
+            new Lazy<LabelSettings>(() => originalModifier!.CloneWithDifferentColour(new Color(1, 0.3f, 0.3f)));
+    }
 
     [Export]
     public string DisplayName
@@ -44,7 +60,7 @@ public partial class ModifierInfoLabel : HBoxContainer
     }
 
     [Export]
-    public Color ModifierNameColor
+    public LabelSettings ModifierNameColor
     {
         get => modifierNameColor;
         set
@@ -55,7 +71,7 @@ public partial class ModifierInfoLabel : HBoxContainer
     }
 
     [Export]
-    public Color ModifierValueColor
+    public LabelSettings ModifierValueColor
     {
         get => modifierValueColor;
         set
@@ -116,17 +132,20 @@ public partial class ModifierInfoLabel : HBoxContainer
     /// </param>
     public void AdjustValueColor(float value, bool inverted = false)
     {
+        originalModifier ??= ModifierValueColor;
+
         if (value > 0)
         {
-            ModifierValueColor = inverted ? new Color(1, 0.3f, 0.3f) : new Color(0, 1, 0);
+            ModifierValueColor = inverted ? negativeModifierColour.Value : positiveModifierColour.Value;
         }
         else if (value == 0)
         {
-            ModifierValueColor = new Color(1, 1, 1);
+            if (originalModifier != null)
+                ModifierValueColor = originalModifier;
         }
         else
         {
-            ModifierValueColor = inverted ? new Color(0, 1, 0) : new Color(1, 0.3f, 0.3f);
+            ModifierValueColor = inverted ? positiveModifierColour.Value : negativeModifierColour.Value;
         }
     }
 
@@ -142,7 +161,7 @@ public partial class ModifierInfoLabel : HBoxContainer
             return;
 
         nameLabel.Text = displayName;
-        nameLabel.AddThemeColorOverride("font_color", modifierNameColor);
+        nameLabel.LabelSettings = modifierNameColor;
     }
 
     private void UpdateValue()
@@ -154,7 +173,7 @@ public partial class ModifierInfoLabel : HBoxContainer
 
         valueLabel.Text = modifierValue;
 
-        valueLabel.AddThemeColorOverride("font_color", modifierValueColor);
+        valueLabel.LabelSettings = modifierValueColor;
     }
 
     private void UpdateIcon()
