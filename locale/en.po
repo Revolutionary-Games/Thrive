@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 09:52+0300\n"
-"PO-Revision-Date: 2024-03-26 16:22+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
+"PO-Revision-Date: 2024-04-05 10:13+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1919,12 +1919,6 @@ msgstr "Generation:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Visit our GitHub repository"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 Mode Warning"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "You are running Thrive with GLES2. This is severely untested and is likely to cause issues. Try to update your video drivers and/or force AMD or Nvidia graphics to be used to run Thrive."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -3553,6 +3547,12 @@ msgstr ""
 "As Thrive is currently early in development save compatibility is not a priority.\n"
 "You may report any issues you encounter, but they aren't the highest priority right now.\n"
 "Do you want to try loading the save anyway?"
+
+msgid "OPENGL_MODE_WARNING"
+msgstr "OpenGL Mode Warning"
+
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "You are running Thrive with OpenGL. This is severely untested and is likely to cause issues. Make sure you are using a new enough GPU or integrated graphics and try to update your video drivers. For laptops you may need to force dedicated AMD or Nvidia graphics to be used to run Thrive instead of integrated graphics."
 
 msgid "OPEN_FOLDER"
 msgstr "Open Folder"
