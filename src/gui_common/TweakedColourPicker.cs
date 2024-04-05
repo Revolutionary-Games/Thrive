@@ -124,6 +124,11 @@ public partial class TweakedColourPicker : ColorPicker
         }
 
         sliderA.TooltipText = Localization.Translate("COLOUR_PICKER_A_TOOLTIP");
+
+        // Dummy translations for later use
+        Localization.Translate("COLOUR_PICKER_PRESET_TOOLTIP");
+        Localization.Translate("COLOUR_PICKER_ADD_PRESET");
+        Localization.Translate("COLOUR_PICKER_PRESET_TOOLTIP");
     }
 
     private void HideAlphaSlider(long dummyIndex)
