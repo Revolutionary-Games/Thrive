@@ -22,9 +22,9 @@ public partial class ProcessList : VBoxContainer
     public bool ShowSpinners { get; set; } = true;
 
     /// <summary>
-    ///   The default color for all the process titles in this list.
+    ///   The default color for all the process titles in this list. TODO: test that this works still
     /// </summary>
-    public Color ProcessesTitleColour { get; set; } = Colors.White;
+    public LabelSettings? ProcessesTitleColour { get; set; }
 
     /// <summary>
     ///   If true the color of one of the process titles in this list will be changed to red
@@ -76,9 +76,13 @@ public partial class ProcessList : VBoxContainer
     {
         var equation = chemicalEquationScene.Instantiate<ChemicalEquation>();
         equation.ShowSpinner = ShowSpinners;
-        equation.EquationFromProcess = process.DisplayInfo;
-        equation.DefaultTitleColour = ProcessesTitleColour;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
+
+        if (ProcessesTitleColour != null)
+            equation.DefaultTitleFont = ProcessesTitleColour;
+
+        // This creates processes already so this needs to be done last
+        equation.EquationFromProcess = process.DisplayInfo;
 
         return equation;
     }
