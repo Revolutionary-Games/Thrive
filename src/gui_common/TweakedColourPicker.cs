@@ -13,23 +13,6 @@ using Godot;
 /// </remarks>
 public partial class TweakedColourPicker : ColorPicker
 {
-    /// <summary>
-    ///   This is where presets are stored after a colour picker exited scene tree.
-    ///   <remarks>
-    ///     <para>
-    ///       The Key is the group name; <br />
-    ///       The Value is the preset storage.
-    ///     </para>
-    ///   </remarks>
-    /// </summary>
-    private static readonly Dictionary<string, PresetGroupStorage> PresetsStorage = new();
-
-    /// <summary>
-    ///   This is the local storage of its preset children
-    ///   so that we don't need to call GetChildren() when deleting one.
-    /// </summary>
-    private readonly List<TweakedColourPickerPreset> presets = new();
-
 #pragma warning disable CA2213
     private HSlider sliderROrH = null!;
     private HSlider sliderGOrS = null!;
@@ -42,44 +25,16 @@ public partial class TweakedColourPicker : ColorPicker
     private Button pickerButton = null!;
 #pragma warning restore CA2213
 
-    // TODO:
-    private ColorModeType mode = ColorModeType.Rgb;
-
     [Export]
     public string PresetGroup { get; private set; } = "default";
 
-    /// <summary>
-    ///   Change the picker's colour mode.
-    /// </summary>
-    [Export]
-    public new ColorModeType ColorMode
-    {
-        get => base.ColorMode;
-        set
-        {
-            mode = value;
-            if (value != ColorModeType.Raw)
-                ValidateRgbColor();
-
-            base.ColorMode = mode;
-            UpdateTooltips();
-        }
-    }
-
-    // TODO: fix this with Godot 4
-    /// <summary>
-    ///   Hide Godot property PresetsEnabled to avoid unexpected changes
-    ///   which may cause the hidden native buttons reappear.
-    /// </summary>
     public override void _Ready()
     {
         base._Ready();
 
-        // Hide replaced native controls. Can't delete them because it will crash Godot.
-        // TODO: fix this: this no longer has the same child layout
         var baseControl = GetChild(0, true).GetChild(0);
 
-        // Hide RGB/HSV/RAW buttons
+        // Hide RGB/HSV/RAW buttons. Can't delete them because it will crash Godot.
         baseControl.GetChild(2).GetChild<Control>(0).Hide();
         baseControl.GetChild(2).GetChild<Control>(1).Hide();
         baseControl.GetChild(2).GetChild<Control>(2).Hide();
@@ -95,6 +50,7 @@ public partial class TweakedColourPicker : ColorPicker
         pickerButton = baseControl.GetChild(1).GetChild<Button>(0);
 
         baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().IndexPressed += HideAlphaSlider;
+        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().IndexPressed += UpdateTooltips;
         HideAlphaSlider(1);
 
         // Disable RAW option in a dropdown menu
@@ -108,7 +64,7 @@ public partial class TweakedColourPicker : ColorPicker
         sliderGOrS.Scrollable = false;
         sliderBOrV.Scrollable = false;
 
-        UpdateTooltips();
+        UpdateTooltips(1);
     }
 
     /// <summary>
@@ -146,11 +102,11 @@ public partial class TweakedColourPicker : ColorPicker
         SetColour(colour);
     }
 
-    private void UpdateTooltips()
+    private void UpdateTooltips(long dummyIndex)
     {
         pickerButton.TooltipText = Localization.Translate("COLOUR_PICKER_PICK_COLOUR");
 
-        if (mode == ColorModeType.Hsv)
+        if (ColorMode == ColorModeType.Hsv)
         {
             sliderROrH.TooltipText = Localization.Translate("COLOUR_PICKER_H_TOOLTIP");
             sliderGOrS.TooltipText = Localization.Translate("COLOUR_PICKER_S_TOOLTIP");
@@ -158,14 +114,14 @@ public partial class TweakedColourPicker : ColorPicker
         }
         else
         {
-            if (mode == ColorModeType.Rgb)
+            if (ColorMode == ColorModeType.Rgb)
             {
                 sliderROrH.TooltipText = Localization.Translate("COLOUR_PICKER_R_TOOLTIP");
                 sliderGOrS.TooltipText = Localization.Translate("COLOUR_PICKER_G_TOOLTIP");
                 sliderBOrV.TooltipText = Localization.Translate("COLOUR_PICKER_B_TOOLTIP");
             }
 
-            // TODO: Add text for OKHSL mode
+            // TODO: Add tooltips for OKHSL mode
         }
 
         sliderA.TooltipText = Localization.Translate("COLOUR_PICKER_A_TOOLTIP");
@@ -176,57 +132,5 @@ public partial class TweakedColourPicker : ColorPicker
         sliderA.Hide();
         labelA.Hide();
         spinboxA.Hide();
-    }
-
-    private partial class TweakedColourPickerPreset : ColorRect
-    {
-        private readonly TweakedColourPicker owner;
-
-        public TweakedColourPickerPreset(TweakedColourPicker owner, Color colour)
-        {
-            this.owner = owner;
-            Color = colour;
-
-            // Init the GUI part of the ColorRect
-            OffsetTop = OffsetBottom = OffsetLeft = OffsetRight = 6.0f;
-            CustomMinimumSize = new Vector2(20, 20);
-            SizeFlagsHorizontal = SizeFlags.ShrinkEnd;
-            SizeFlagsVertical = SizeFlags.ShrinkCenter;
-            UpdateTooltip();
-        }
-
-        public override void _Notification(int what)
-        {
-            if (what == NotificationTranslationChanged)
-                UpdateTooltip();
-
-            base._Notification(what);
-        }
-
-        private void UpdateTooltip()
-        {
-            TooltipText = Localization.Translate("COLOUR_PICKER_PRESET_TOOLTIP")
-                .FormatSafe(Color.IsRaw() ? "argb(" + Color + ")" : "#" + Color.ToHtml());
-        }
-    }
-
-    private class PresetGroupStorage : IEnumerable<Color>
-    {
-        private readonly List<Color> colours;
-
-        public PresetGroupStorage(IEnumerable<Color> colours)
-        {
-            this.colours = colours.ToList();
-        }
-
-        public IEnumerator<Color> GetEnumerator()
-        {
-            return colours.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
     }
 }
