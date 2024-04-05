@@ -541,10 +541,10 @@ public partial class MainMenu : NodeWithInput
     {
         var random = new XoShiRo128starstar();
 
-        // Some of the 3D backgrounds render very incorrectly in GLES2 so they are disabled
-        // TODO: check if the 3D backgrounds look now fine in opengl mode
-        if (Settings.Instance
-            .Menu3DBackgroundEnabled /*&& FeatureInformation.GetVideoDriver() != OS.RenderingDriver.Opengl3*/)
+        // Some of the 3D backgrounds render very incorrectly in opengl so they are disabled (even with Godot 4 this
+        // hasn't improved a lot)
+        if (Settings.Instance.Menu3DBackgroundEnabled &&
+            FeatureInformation.GetVideoDriver() != OS.RenderingDriver.Opengl3)
         {
             SetBackgroundScene(Menu3DBackgroundScenes.Random(random));
         }
