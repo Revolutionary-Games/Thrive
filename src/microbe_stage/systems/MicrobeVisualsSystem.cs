@@ -421,7 +421,12 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         {
             var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
 
-            var cacheEntry = generator.GenerateShape(ref generationParameters);
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+            MembranePointData cacheEntry;
+            lock (generator)
+            {
+                cacheEntry = generator.GenerateShape(ref generationParameters);
+            }
 
             // Cache entry now owns the array data that was in the generationParameters and will return it to the
             // pool when the cache disposes it

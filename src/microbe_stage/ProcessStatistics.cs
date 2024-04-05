@@ -13,7 +13,7 @@ public class ProcessStatistics
     /// <summary>
     ///   Temporary memory to use for <see cref="RemoveUnused"/> to avoid small constant allocations. This is no longer
     ///   a ThreadLocal in <see cref="Systems.ProcessSystem"/> as that was causing the game process to lock up in
-    ///   Godot 4.
+    ///   Godot 4 (for unknown reasons). See: https://github.com/Revolutionary-Games/Thrive/issues/4989 for context.
     /// </summary>
     private List<BioProcess>? temporaryRemovedItems;
 
@@ -36,32 +36,38 @@ public class ProcessStatistics
 
     public void MarkAllUnused()
     {
-        foreach (var entry in Processes)
+        lock (Processes)
         {
-            entry.Value.Used = false;
+            foreach (var entry in Processes)
+            {
+                entry.Value.Used = false;
+            }
         }
     }
 
     public void RemoveUnused()
     {
-        temporaryRemovedItems ??= new List<BioProcess>();
-
-        foreach (var entry in Processes)
+        lock (Processes)
         {
-            if (!entry.Value.Used)
-                temporaryRemovedItems.Add(entry.Key);
-        }
+            temporaryRemovedItems ??= new List<BioProcess>();
 
-        int count = temporaryRemovedItems.Count;
-        if (count > 0)
-        {
-            for (int i = 0; i < count; ++i)
+            foreach (var entry in Processes)
             {
-                if (!Processes.Remove(temporaryRemovedItems[i]))
-                    GD.PrintErr("Failed to remove item from ProcessStatistics");
+                if (!entry.Value.Used)
+                    temporaryRemovedItems.Add(entry.Key);
             }
 
-            temporaryRemovedItems.Clear();
+            int count = temporaryRemovedItems.Count;
+            if (count > 0)
+            {
+                for (int i = 0; i < count; ++i)
+                {
+                    if (!Processes.Remove(temporaryRemovedItems[i]))
+                        GD.PrintErr("Failed to remove item from ProcessStatistics");
+                }
+
+                temporaryRemovedItems.Clear();
+            }
         }
     }
 
@@ -72,16 +78,19 @@ public class ProcessStatistics
             throw new ArgumentException("Invalid process marked used");
 #endif
 
-        if (Processes.TryGetValue(forProcess, out var entry))
+        lock (Processes)
         {
+            if (Processes.TryGetValue(forProcess, out var entry))
+            {
+                entry.Used = true;
+                return entry;
+            }
+
+            entry = new SingleProcessStatistics(forProcess);
+            Processes[forProcess] = entry;
             entry.Used = true;
             return entry;
         }
-
-        entry = new SingleProcessStatistics(forProcess);
-        Processes[forProcess] = entry;
-        entry.Used = true;
-        return entry;
     }
 }
 

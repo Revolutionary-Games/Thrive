@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -42,7 +41,10 @@ using World = DefaultEcs.World;
 [RuntimeCost(4, false)]
 public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
 {
-    private readonly ThreadLocal<List<Compound>> temporaryWorkData = new(() => new List<Compound>());
+    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+    // private readonly ThreadLocal<List<Compound>> temporaryWorkData = new(() => new List<Compound>());
+
+    private readonly List<Compound> temporaryWorkData = new();
 
     private readonly IWorldSimulation worldSimulation;
     private readonly ISpawnSystem spawnSystem;
@@ -149,15 +151,19 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
                 {
                     // Apply the base reproduction cost at this point after growing the full layout
 
-                    if (!MicrobeReproductionSystem.ProcessBaseReproductionCost(
-                            baseReproduction.MissingCompoundsForBaseReproduction, compounds,
-                            ref remainingAllowedCompoundUse,
-                            ref remainingFreeCompounds, status.ConsumeReproductionCompoundsReverse,
-                            temporaryWorkData.Value!,
-                            multicellularGrowth.CompoundsUsedForMulticellularGrowth))
+                    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+                    lock (temporaryWorkData)
                     {
-                        // Not ready yet for budding
-                        return;
+                        if (!MicrobeReproductionSystem.ProcessBaseReproductionCost(
+                                baseReproduction.MissingCompoundsForBaseReproduction, compounds,
+                                ref remainingAllowedCompoundUse,
+                                ref remainingFreeCompounds, status.ConsumeReproductionCompoundsReverse,
+                                temporaryWorkData,
+                                multicellularGrowth.CompoundsUsedForMulticellularGrowth))
+                        {
+                            // Not ready yet for budding
+                            return;
+                        }
                     }
 
                     // Budding cost is after the base reproduction cost has been overcome
@@ -327,7 +333,8 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     {
         if (disposing)
         {
-            temporaryWorkData.Dispose();
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+            // temporaryWorkData.Dispose();
         }
     }
 }
