@@ -120,7 +120,7 @@ _data = {
 "RESET": SubResource("Animation_qunue")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("openGlPopup")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -140,7 +140,6 @@ ExitToLauncherButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu
 CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
-GLES2PopupPath = NodePath("GLES2Popup")
 SteamFailedPopupPath = NodePath("SteamFailedDialog")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 SafeModeWarningPath = NodePath("SafeModeWarningDialog")
@@ -160,6 +159,7 @@ PatchNotesDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/P
 FeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 MenusPath = NodePath("MenuContainers/Menus")
+openGlPopup = NodePath("OpenGLWarningPopup")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -545,8 +545,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 5.0
-offset_right = 267.0
-offset_bottom = 386.0
+offset_right = -5.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -846,14 +846,14 @@ libraries = {
 "": SubResource("AnimationLibrary_wp2ig")
 }
 
-[node name="GLES2Popup" parent="." instance=ExtResource("4")]
+[node name="OpenGLWarningPopup" parent="." instance=ExtResource("4")]
 custom_minimum_size = Vector2(680, 0)
 offset_top = 28.0
 offset_right = 680.0
 offset_bottom = 148.0
 HideCancelButton = true
-DialogText = "GLES2_MODE_WARNING_TEXT"
-WindowTitle = "GLES2_MODE_WARNING"
+DialogText = "OPENGL_MODE_WARNING_EXPLANATION"
+WindowTitle = "OPENGL_MODE_WARNING"
 
 [node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(550, 0)
