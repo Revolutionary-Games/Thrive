@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Tweaked colour picker allows for tooltip texts translations and has a customized theming.
