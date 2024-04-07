@@ -9,6 +9,8 @@ uniform float waviness = 20.f;
 uniform float waveSpeed = 15.f;
 uniform float waveCutoff = 0.4f;
 
+uniform float fade = 0.f;
+
 uniform vec3 tint : source_color = vec3(0.5, 0.5, 0.95);
 
 void vertex(){
@@ -26,5 +28,5 @@ void fragment() {
     vec3 final = vec3(waves) * tint;
     
     ALBEDO = final;
-	ALPHA = round(waves - waveCutoff) * (1.f - UV.y);
+	ALPHA = round(waves - waveCutoff) * (1.f - UV.y) * fade;
 }

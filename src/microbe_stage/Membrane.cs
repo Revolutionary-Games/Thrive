@@ -19,6 +19,7 @@ public partial class Membrane : MeshInstance3D
     private readonly StringName healthParameterName = new("healthFraction");
     private readonly StringName wigglynessParameterName = new("wigglyNess");
     private readonly StringName movementWigglynessParameterName = new("movementWigglyNess");
+    private readonly StringName fadeParameterName = new("fade");
 
     [Export]
     private MeshInstance3D engulfAnimationMeshInstance = null!;
@@ -39,6 +40,7 @@ public partial class Membrane : MeshInstance3D
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
+    private double engulfFade = 1.0f;
 
     /// <summary>
     ///   When true the material properties need to be reapplied
@@ -208,9 +210,30 @@ public partial class Membrane : MeshInstance3D
         return crosses;
     }
 
-    public void EnableEngulfAnimation(bool enable)
+    public void EnableEngulfAnimation(bool enable, double delta)
     {
-        engulfAnimationMeshInstance.Visible = enable;
+        if (enable && engulfFade < 1)
+        {
+            engulfFade += delta / 0.5;
+            engulfFade = Math.Min(engulfFade, 1);
+        }
+        else if (!enable && engulfFade > 0)
+        {
+            engulfFade -= delta / 0.5;
+            engulfFade = Math.Max(engulfFade, 0);
+        }
+
+        if (engulfFade != 0)
+        {
+            EngulfShaderMaterial?.SetShaderParameter(fadeParameterName, engulfFade);
+            engulfAnimationMeshInstance.Visible = true;
+        }
+        else
+        {
+            // Turning of visability when fade is 0 stops the shader from
+            // being run when it can't be seen anyway.
+            engulfAnimationMeshInstance.Visible = false;
+        }
     }
 
     /// <summary>
