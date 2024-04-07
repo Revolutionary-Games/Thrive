@@ -269,7 +269,6 @@ public partial class Membrane : MeshInstance3D
         Mesh = membraneData.GeneratedMesh;
         MaterialOverride = MembraneShaderMaterial;
 
-        // TODO: Make this not terrible
         engulfAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
         engulfAnimationMeshInstance.MaterialOverride = EngulfShaderMaterial;
     }

@@ -82,6 +82,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public ArrayMesh GeneratedMesh => finalMesh.Value.Mesh;
     public int SurfaceIndex => finalMesh.Value.SurfaceIndex;
+
     public ArrayMesh GeneratedEngulfMesh => finalEngulfMesh.Value.Mesh;
     public int EngulfSurfaceIndex => finalEngulfMesh.Value.SurfaceIndex;
 
