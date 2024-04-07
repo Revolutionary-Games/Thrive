@@ -268,24 +268,29 @@ public partial class Membrane : MeshInstance3D
 
     private void ApplyWiggly()
     {
-        if (MembraneShaderMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null)
             return;
 
         float wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
 
         MembraneShaderMaterial.SetShaderParameter("wigglyNess", Mathf.Min(WigglyNess, wigglyNessToApply));
+        EngulfShaderMaterial.SetShaderParameter("wigglyNess", Mathf.Min(WigglyNess, wigglyNessToApply));
     }
 
     private void ApplyMovementWiggly()
     {
-        if (MembraneShaderMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null)
             return;
 
         float wigglyNessToApply =
             MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
 
-        MembraneShaderMaterial.SetShaderParameter("movementWigglyNess", Mathf.Min(MovementWigglyNess, wigglyNessToApply));
+        MembraneShaderMaterial.SetShaderParameter("movementWigglyNess",
+            Mathf.Min(MovementWigglyNess, wigglyNessToApply));
+
+        EngulfShaderMaterial.SetShaderParameter("movementWigglyNess",
+            Mathf.Min(MovementWigglyNess, wigglyNessToApply));
     }
 
     private void ApplyHealth()

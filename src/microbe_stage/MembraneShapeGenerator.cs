@@ -273,7 +273,7 @@ public class MembraneShapeGenerator
     {
         // common variables
         const float height = 0.1f;
-        const float engulfAnimationDistance = 1f; // TODO: Move to consts
+        const float engulfAnimationDistance = 1.0f; // TODO: Move to consts
 
         var center = new Vector2(0.5f, 0.5f);
 
@@ -318,7 +318,6 @@ public class MembraneShapeGenerator
         indices[trueVertexCount] = 0;
         indices[trueVertexCount + 1] = 1;
 
-        // TODO: Determine if this comment actually applies to both meshes
         // Godot might do this automatically
         // // Set the bounds to get frustum culling and LOD to work correctly.
         // // TODO: make this more accurate by calculating the actual extents

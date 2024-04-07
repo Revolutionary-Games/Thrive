@@ -1,13 +1,24 @@
 shader_type spatial;
 
+// Set to 0 to disable wiggle
+uniform float wigglyNess = 1.f;
+
+uniform float movementWigglyNess = 1.f;
+
 uniform float waviness = 20.f;
 uniform float waveSpeed = 10.f;
 uniform float waveCutoff = 0.3f;
 
 uniform vec3 tint : source_color = vec3(1, 1, 1);
 
-void vertex() {
-	// Called for every vertex the material is visible on.
+void vertex(){
+    vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    float size = length(VERTEX);
+    
+    VERTEX.x += sin(worldVertex.z * movementWigglyNess + TIME / 4.0f) / 10.f
+        * wigglyNess * size;
+    VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
+        * wigglyNess * size;
 }
 
 void fragment() {
@@ -18,8 +29,3 @@ void fragment() {
     ALBEDO = final;
 	ALPHA = round(waves - waveCutoff) * (1.f - UV.y);
 }
-
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}
