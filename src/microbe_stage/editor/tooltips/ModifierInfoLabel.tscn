@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhy1rrdfux74j"]
+[gd_scene load_steps=5 format=3 uid="uid://bhy1rrdfux74j"]
 
+[ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall.tres" id="2_1r5af"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.cs" id="3"]
 [ext_resource type="LabelSettings" uid="uid://dd3w1mc3ion6w" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall.tres" id="3_jhdqu"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_2uv7j"]
@@ -9,6 +10,8 @@ offset_right = 28.0
 offset_bottom = 20.0
 size_flags_horizontal = 3
 script = ExtResource("3")
+ModifierNameColor = ExtResource("2_1r5af")
+ModifierValueColor = ExtResource("3_jhdqu")
 
 [node name="Icon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(20, 20)

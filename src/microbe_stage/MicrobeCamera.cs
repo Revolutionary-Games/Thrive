@@ -63,6 +63,8 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     [Export]
     public float LightLevelInterpolateSpeed = 4;
 
+    private readonly StringName lightLevelParameter = new("lightLevel");
+
 #pragma warning disable CA2213
 
     /// <summary>
@@ -310,6 +312,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
         for (int i = 0; i < 4; ++i)
         {
+            // TODO: switch this loop away to reuse StringName instances if this causes significant allocations
             materialToUpdate.SetShaderParameter($"layer{i:n0}", GD.Load<Texture2D>(background.Textures[i]));
         }
 
@@ -322,6 +325,16 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         AddChild(backgroundParticles);
 
         OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            lightLevelParameter.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnDisplayBackgroundParticlesChanged(bool displayed)
@@ -403,6 +416,6 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             lastSetLightLevel = lightLevel;
         }
 
-        materialToUpdate.SetShaderParameter("lightLevel", lastSetLightLevel);
+        materialToUpdate.SetShaderParameter(lightLevelParameter, lastSetLightLevel);
     }
 }

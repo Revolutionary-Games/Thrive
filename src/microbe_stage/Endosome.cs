@@ -7,6 +7,8 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class Endosome : Node3D, IEntity
 {
+    private readonly StringName tintParameterName = new("tint");
+
     [JsonProperty]
     private Color tint = Colors.White;
 
@@ -58,6 +60,7 @@ public partial class Endosome : Node3D, IEntity
         if (material == null)
             GD.PrintErr("Material is not found from the EngulfedObjectHolder mesh for Endosome");
 
+        // TODO: check if this could now be done in Godot 4
         // This has to be done here because setting this in Godot editor truncates
         // the number to only 3 decimal places.
         material?.SetShaderParameter("jiggleAmount", 0.0001f);
@@ -71,10 +74,20 @@ public partial class Endosome : Node3D, IEntity
         AliveMarker.Alive = false;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            tintParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void ApplyTint()
     {
         var material = Mesh?.MaterialOverride as ShaderMaterial;
-        material?.SetShaderParameter("tint", tint);
+        material?.SetShaderParameter(tintParameterName, tint);
     }
 
     private void ApplyRenderPriority()

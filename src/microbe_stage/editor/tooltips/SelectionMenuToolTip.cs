@@ -42,6 +42,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 #pragma warning disable CA2213
     private PackedScene modifierInfoScene = null!;
     private LabelSettings noProcessesFont = null!;
+    private LabelSettings processTitleFont = null!;
 
     private Label? nameLabel;
     private Label? mpLabel;
@@ -181,6 +182,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
         modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
         noProcessesFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Bold-Smaller.tres");
+        processTitleFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Bold-Smaller-Gold.tres");
 
         UpdateName();
         UpdateDescription();
@@ -229,6 +231,8 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     /// </summary>
     public void WriteOrganelleProcessList(List<ProcessSpeedInformation>? processes)
     {
+        processList.ProcessesTitleColour = processTitleFont;
+
         if (processes == null || processes.Count <= 0)
         {
             processList.QueueFreeChildren();
@@ -244,7 +248,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         }
 
         processList.ShowSpinners = false;
-        processList.ProcessesTitleColour = new Color(1.0f, 0.83f, 0.0f);
         processList.MarkRedOnLimitingCompounds = true;
         processList.ProcessesToShow = processes;
     }

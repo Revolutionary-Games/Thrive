@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4vme2vxaxfkw"]
+[gd_scene load_steps=18 format=3 uid="uid://b4vme2vxaxfkw"]
 
 [ext_resource type="PackedScene" uid="uid://cil2efpg6jdmd" path="res://src/gui_common/tooltip/DefaultToolTip.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bhy1rrdfux74j" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ctdcp7ts77dhd" path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://bmu3av0d807dw" path="res://assets/textures/gui/bevel/StorageIcon.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bqq2yi8f6l4lt" path="res://assets/textures/gui/bevel/DigestionIcon.png" id="10"]
+[ext_resource type="LabelSettings" uid="uid://bhs4dgsx2ut6q" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall-Red.tres" id="10_xjuqe"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="13"]
 [ext_resource type="Texture2D" uid="uid://dgnaltjd8hysi" path="res://assets/textures/gui/bevel/parts/PilusIcon.png" id="15"]
@@ -259,14 +260,13 @@ ThriveopediaPageName = "cytoplasm"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+1"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="metabolosome" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -287,14 +287,13 @@ custom_minimum_size = Vector2(210, 0)
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chromatophore" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -310,14 +309,13 @@ ThriveopediaPageName = "chromatophore"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chemoSynthesizingProteins" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -336,14 +334,13 @@ custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="rusticyanin" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -359,14 +356,13 @@ ThriveopediaPageName = "rusticyanin"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="nitrogenase" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -382,14 +378,13 @@ ThriveopediaPageName = "nitrogenase"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="oxytoxyProteins" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -406,14 +401,13 @@ ThriveopediaPageName = "oxytoxyProteins"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="thermosynthase" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -446,14 +440,13 @@ step = 1.0
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="VScrollBar2" type="VScrollBar" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/Description" index="1"]
@@ -485,21 +478,19 @@ ThriveopediaPageName = "flagellum"
 layout_mode = 2
 DisplayName = "SPEED"
 ModifierValue = "+0.7"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("7")
 
 [node name="storage" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="slimeJet" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -515,14 +506,13 @@ ThriveopediaPageName = "slimeJet"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="pilus" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -538,7 +528,7 @@ ThriveopediaPageName = "pilus"
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chemoreceptor" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -554,7 +544,7 @@ ThriveopediaPageName = "chemoreceptor"
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="cilia" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -571,7 +561,7 @@ ThriveopediaPageName = "cilia"
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="bindingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -588,14 +578,13 @@ ThriveopediaPageName = "bindingAgent"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+1"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="nucleus" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -611,14 +600,13 @@ ThriveopediaPageName = "nucleus"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+4"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+10"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="mitochondrion" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -635,14 +623,13 @@ ThriveopediaPageName = "mitochondrion"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+1"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chloroplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -659,14 +646,13 @@ ThriveopediaPageName = "chloroplast"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+1.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+3"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="thermoplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -683,14 +669,13 @@ ThriveopediaPageName = "thermoplast"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+1"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chemoplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -707,14 +692,13 @@ ThriveopediaPageName = "chemoplast"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+1"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -731,14 +715,13 @@ ThriveopediaPageName = "nitrogenfixingplastid"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+1"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="vacuole" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -756,14 +739,13 @@ ThriveopediaPageName = "vacuole"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+8"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="oxytoxy" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -780,14 +762,13 @@ ThriveopediaPageName = "oxytoxy"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+1"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="signalingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -804,14 +785,13 @@ ThriveopediaPageName = "signalingAgent"
 layout_mode = 2
 DisplayName = "STORAGE"
 ModifierValue = "+1"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="bioluminescentVacuole" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -848,14 +828,12 @@ ThriveopediaPageName = "lysosome"
 layout_mode = 2
 DisplayName = "DIGESTION_SPEED"
 ModifierValue = "+0.05"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("8")
 
 [node name="digestionEfficiency" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "DIGESTION_EFFICIENCY"
 ModifierValue = "+4.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("10")
 
 [node name="storage" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -863,7 +841,6 @@ layout_mode = 2
 mouse_filter = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
-ModifierValueColor = Color(0, 1, 0, 1)
 ModifierIcon = ExtResource("9")
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
@@ -871,7 +848,7 @@ layout_mode = 2
 mouse_filter = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = Color(1, 0.301961, 0.301961, 1)
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="axon" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -948,6 +925,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -984,6 +962,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -1020,6 +999,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -1040,13 +1020,11 @@ ModifierIcon = ExtResource("15")
 [node name="canEngulf" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
-ModifierNameColor = Color(1, 0.301961, 0.301961, 1)
 ShowValue = false
 
 [node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
-ModifierNameColor = Color(0, 1, 0, 1)
 ShowValue = false
 
 [node name="chitin" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
@@ -1073,6 +1051,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -1093,13 +1072,11 @@ ModifierIcon = ExtResource("16")
 [node name="canEngulf" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
-ModifierNameColor = Color(1, 0.301961, 0.301961, 1)
 ShowValue = false
 
 [node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
-ModifierNameColor = Color(0, 1, 0, 1)
 ShowValue = false
 
 [node name="calciumCarbonate" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
@@ -1126,6 +1103,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -1151,7 +1129,6 @@ ModifierIcon = ExtResource("16")
 [node name="canEngulf" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
-ModifierNameColor = Color(1, 0.301961, 0.301961, 1)
 ShowValue = false
 
 [node name="silica" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
@@ -1179,6 +1156,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
+ModifierValueColor = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -1204,7 +1182,6 @@ ModifierIcon = ExtResource("16")
 [node name="canEngulf" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
-ModifierNameColor = Color(1, 0.301961, 0.301961, 1)
 ShowValue = false
 
 [node name="processesProduction" type="Control" parent="GroupHolder"]

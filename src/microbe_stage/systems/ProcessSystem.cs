@@ -1,4 +1,8 @@
-﻿namespace Systems;
+﻿#if DEBUG
+#define CHECK_USED_STATISTICS
+#endif
+
+namespace Systems;
 
 using System;
 using System.Collections.Generic;
@@ -28,6 +32,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 {
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
+
+#if CHECK_USED_STATISTICS
+    private readonly List<ProcessStatistics> usedStatistics = new();
+#endif
 
     private BiomeConditions? biome;
 
@@ -466,6 +474,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         inverseDelta = 1.0f / delta;
+
+#if CHECK_USED_STATISTICS
+        lock (usedStatistics)
+        {
+            usedStatistics.Clear();
+        }
+#endif
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -504,7 +519,20 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         var processStatistics = processor.ProcessStatistics;
 
-        processStatistics?.MarkAllUnused();
+        if (processStatistics != null)
+        {
+#if CHECK_USED_STATISTICS
+            lock (usedStatistics)
+            {
+                if (usedStatistics.Contains(processStatistics))
+                    throw new Exception("Re-use of process statistics detected");
+
+                usedStatistics.Add(processStatistics);
+            }
+#endif
+
+            processStatistics.MarkAllUnused();
+        }
 
         if (processor.ActiveProcesses != null)
         {
@@ -521,9 +549,22 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 var processData = process.Process;
 
                 var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process.Process);
-                currentProcessStatistics?.BeginFrame(delta);
 
-                RunProcess(delta, processData, bag, process, currentProcessStatistics);
+                if (currentProcessStatistics != null)
+                {
+                    // For some reason in Godot 4 using the process statistics without locks, freezes up the whole
+                    // process (this is not the only problem, but seems to be the fastest problem to trigger and
+                    // freeze the game)
+                    lock (currentProcessStatistics)
+                    {
+                        currentProcessStatistics.BeginFrame(delta);
+                        RunProcess(delta, processData, bag, process, currentProcessStatistics);
+                    }
+                }
+                else
+                {
+                    RunProcess(delta, processData, bag, process, null);
+                }
             }
         }
 

@@ -16,9 +16,13 @@ public partial class Membrane : MeshInstance3D
     [Export]
     public ShaderMaterial? EngulfShaderMaterial;
 
+    private readonly StringName healthParameterName = new("healthFraction");
+    private readonly StringName wigglynessParameterName = new("wigglyNess");
+    private readonly StringName movementWigglynessParameterName = new("movementWigglyNess");
+
     [Export]
     private MeshInstance3D engulfAnimationMeshInstance = null!;
-
+#pragma warning disable CA2213
     private Texture2D? albedoTexture;
 
     /// <summary>
@@ -244,6 +248,18 @@ public partial class Membrane : MeshInstance3D
         return new Vector3(closestSoFar.X, 0, closestSoFar.Y);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            healthParameterName.Dispose();
+            wigglynessParameterName.Dispose();
+            movementWigglynessParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Applies the mesh to us from the shared cache data (first membrane to apply the mesh causes the mesh to be
     ///   created)
@@ -274,8 +290,11 @@ public partial class Membrane : MeshInstance3D
         float wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
 
-        MembraneShaderMaterial.SetShaderParameter("wigglyNess", Mathf.Min(WigglyNess, wigglyNessToApply));
-        EngulfShaderMaterial.SetShaderParameter("wigglyNess", Mathf.Min(WigglyNess, wigglyNessToApply));
+        MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName,
+            Mathf.Min(WigglyNess, wigglyNessToApply));
+
+        EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName,
+            Mathf.Min(WigglyNess, wigglyNessToApply));
     }
 
     private void ApplyMovementWiggly()
@@ -286,16 +305,16 @@ public partial class Membrane : MeshInstance3D
         float wigglyNessToApply =
             MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
 
-        MembraneShaderMaterial.SetShaderParameter("movementWigglyNess",
+        MembraneShaderMaterial.SetShaderParameter(movementWigglynessParameterName,
             Mathf.Min(MovementWigglyNess, wigglyNessToApply));
 
-        EngulfShaderMaterial.SetShaderParameter("movementWigglyNess",
+        EngulfShaderMaterial.SetShaderParameter(movementWigglynessParameterName,
             Mathf.Min(MovementWigglyNess, wigglyNessToApply));
     }
 
     private void ApplyHealth()
     {
-        MembraneShaderMaterial?.SetShaderParameter("healthFraction", HealthFraction);
+        MembraneShaderMaterial?.SetShaderParameter(healthParameterName, HealthFraction);
     }
 
     private void ApplyTextures()

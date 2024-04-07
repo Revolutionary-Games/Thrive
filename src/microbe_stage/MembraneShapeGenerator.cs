@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -10,7 +9,11 @@ using Array = Godot.Collections.Array;
 /// </summary>
 public class MembraneShapeGenerator
 {
-    private static readonly ThreadLocal<MembraneShapeGenerator> ThreadLocalGenerator =
+    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+    // private static readonly ThreadLocal<MembraneShapeGenerator> ThreadLocalGenerator =
+    //    new(() => new MembraneShapeGenerator());
+
+    private static readonly Lazy<MembraneShapeGenerator> ThreadLocalGenerator =
         new(() => new MembraneShapeGenerator());
 
     /// <summary>
@@ -36,7 +39,7 @@ public class MembraneShapeGenerator
     /// <returns>A generator that can be used by the calling thread</returns>
     public static MembraneShapeGenerator GetThreadSpecificGenerator()
     {
-        return ThreadLocalGenerator.Value!;
+        return ThreadLocalGenerator.Value;
     }
 
     /// <summary>

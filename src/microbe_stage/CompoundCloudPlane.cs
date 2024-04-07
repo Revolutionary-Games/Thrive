@@ -35,6 +35,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     // TODO: give each cloud (compound type) a viscosity value in the JSON file and use it instead.
     private const float VISCOSITY = 0.0525f;
 
+    private readonly StringName brightnessParameterName = new("BrightnessMultiplier");
+    private readonly StringName uvOffsetParameterName = new("UVOffset");
+
     private Image? image;
     private ImageTexture texture = null!;
     private FluidCurrentsSystem? fluidSystem;
@@ -775,7 +778,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     public void SetBrightness(float brightness)
     {
         var material = (ShaderMaterial)Material;
-        material.SetShaderParameter("BrightnessMultiplier", brightness);
+        material.SetShaderParameter(brightnessParameterName, brightness);
     }
 
     protected override void Dispose(bool disposing)
@@ -784,6 +787,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         {
             if (image != null)
             {
+                brightnessParameterName.Dispose();
+                uvOffsetParameterName.Dispose();
                 image.Dispose();
                 texture.Dispose();
             }
@@ -996,7 +1001,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         var material = (ShaderMaterial)Material;
 
         // No clue how this math ends up with the right UV offsets - hhyyrylainen
-        material.SetShaderParameter("UVOffset", new Vector2(position.X / (float)Constants.CLOUD_SQUARES_PER_SIDE,
+        material.SetShaderParameter(uvOffsetParameterName, new Vector2(
+            position.X / (float)Constants.CLOUD_SQUARES_PER_SIDE,
             position.Y / (float)Constants.CLOUD_SQUARES_PER_SIDE));
     }
 }

@@ -48,6 +48,11 @@ public partial class GenerateThreadedSystems : Node
     /// </summary>
     public static bool DebugGuardComponentWrites = false;
 
+    /// <summary>
+    ///   When true forces use of system barrier class (currently this seems to prevent some thread deadlocking)
+    /// </summary>
+    public static bool ForceUseSystemBarrier = true;
+
     public static bool UseMultithreadingToDoMoreSimulations = true;
 
     public static int MaxThreadToUse = 8;
@@ -139,7 +144,7 @@ public partial class GenerateThreadedSystems : Node
     {
     }
 
-    private string BarrierType => DebugGuardComponentWrites ? "Barrier" : "SimpleBarrier";
+    private string BarrierType => DebugGuardComponentWrites || ForceUseSystemBarrier ? "Barrier" : "SimpleBarrier";
 
     public static void EnsureOneBlankLine(List<string> lines, bool acceptBlockStart = true, bool acceptComments = true)
     {
