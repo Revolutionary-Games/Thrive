@@ -647,7 +647,7 @@ public partial class CreditsScroll : Control
         // If past team leads need to be marked might need to use rich text label or some other approach there.
         // And this method might need to be split into separate implementations as not all places would need that.
         var memberLabel = CreateDynamicPart(offset, people, columns);
-        offset += (int)Math.Round((memberLabel.Height + ExtraOffsetAfterTeam) / columns);
+        offset += (int)memberLabel.Height + ExtraOffsetAfterTeam;
 
         return offset;
     }

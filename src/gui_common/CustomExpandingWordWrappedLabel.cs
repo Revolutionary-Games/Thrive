@@ -22,6 +22,7 @@ public partial class CustomExpandingWordWrappedLabel : Label
         SizeFlagsHorizontal = SizeFlags.ExpandFill;
         CustomMinimumSize = new Vector2(50, 0);
         SizeFlagsVertical = SizeFlags.ShrinkBegin;
+        Size = Vector2.Zero;
     }
 
     public override void _Notification(int what)
