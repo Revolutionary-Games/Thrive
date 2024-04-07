@@ -11,6 +11,7 @@
 size = Vector3(2, 0.539, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dmoyr"]
+resource_local_to_scene = true
 render_priority = 18
 shader = ExtResource("2")
 shader_parameter/wigglyNess = 1.0
@@ -23,6 +24,7 @@ shader_parameter/damagedTexture = ExtResource("4")
 shader_parameter/dissolveTexture = ExtResource("5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v717i"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("6_w5050")
 shader_parameter/waviness = 20.0
@@ -32,12 +34,14 @@ shader_parameter/tint = Color(0.501961, 0.486275, 0.964706, 1)
 
 [sub_resource type="PlaceholderMesh" id="PlaceholderMesh_gt3ok"]
 
-[node name="Membrane" type="MeshInstance3D"]
+[node name="Membrane" type="MeshInstance3D" node_paths=PackedStringArray("engulfAnimationMeshInstance")]
 process_priority = 2
 mesh = SubResource("1")
 script = ExtResource("1")
 MembraneShaderMaterial = SubResource("ShaderMaterial_dmoyr")
 EngulfShaderMaterial = SubResource("ShaderMaterial_v717i")
+engulfAnimationMeshInstance = NodePath("EngulfMesh")
 
 [node name="EngulfMesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("PlaceholderMesh_gt3ok")

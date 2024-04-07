@@ -195,6 +195,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
+        cellProperties.CreatedMembrane?.EnableEngulfAnimation(actuallyEngulfing);
+
         if (actuallyEngulfing)
         {
             // Drain atp

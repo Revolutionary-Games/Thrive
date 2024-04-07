@@ -16,6 +16,9 @@ public partial class Membrane : MeshInstance3D
     [Export]
     public ShaderMaterial? EngulfShaderMaterial;
 
+    [Export]
+    private MeshInstance3D engulfAnimationMeshInstance = null!;
+
     private Texture2D? albedoTexture;
 
     /// <summary>
@@ -153,6 +156,9 @@ public partial class Membrane : MeshInstance3D
         if (MembraneShaderMaterial == null)
             throw new Exception("MembraneShaderMaterial on Membrane is not set");
 
+        if (EngulfShaderMaterial == null)
+            throw new Exception("EngulfShaderMaterial on Membrane is not set");
+
         SetMesh();
     }
 
@@ -196,6 +202,11 @@ public partial class Membrane : MeshInstance3D
         }
 
         return crosses;
+    }
+
+    public void EnableEngulfAnimation(bool enable)
+    {
+        engulfAnimationMeshInstance.Visible = enable;
     }
 
     /// <summary>
@@ -243,8 +254,8 @@ public partial class Membrane : MeshInstance3D
         MaterialOverride = MembraneShaderMaterial;
 
         // TODO: Make this not terrible
-        GetChild<MeshInstance3D>(0).Mesh = membraneData.GeneratedEngulfMesh;
-        GetChild<MeshInstance3D>(0).MaterialOverride = EngulfShaderMaterial;
+        engulfAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
+        engulfAnimationMeshInstance.MaterialOverride = EngulfShaderMaterial;
     }
 
     private void ApplyAllMaterialParameters()
