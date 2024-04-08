@@ -22,7 +22,9 @@ public partial class TweakedColourPicker : ColorPicker
     private Button pickerButton = null!;
 #pragma warning restore CA2213
 
-    [Export]
+    /// <summary>
+    ///   Currently our customized presets are (almost) completely removed.
+    /// </summary>
     public string PresetGroup { get; private set; } = "default";
 
     public override void _Ready()
@@ -46,8 +48,8 @@ public partial class TweakedColourPicker : ColorPicker
         spinboxA = baseControl.GetChild(4).GetChild(0).GetChild<Control>(14);
         pickerButton = baseControl.GetChild(1).GetChild<Button>(0);
 
-        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().IndexPressed += HideAlphaSlider;
-        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().IndexPressed += UpdateTooltips;
+        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(PopupMenu.SignalName.IndexPressed, new Callable(this, nameof(HideAlphaSlider)));
+        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(PopupMenu.SignalName.IndexPressed, new Callable(this, nameof(UpdateTooltips)));
         HideAlphaSlider(1);
 
         // Disable RAW option in a dropdown menu
