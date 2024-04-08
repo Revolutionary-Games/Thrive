@@ -62,6 +62,7 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
                     {
                         ref var cellProperties = ref entity.Get<CellProperties>();
 
+                        // Makes the engulf animation fade out during dissolve
                         cellProperties.CreatedMembrane?.HandleEngulfAnimation(false, delta);
                     }
 
