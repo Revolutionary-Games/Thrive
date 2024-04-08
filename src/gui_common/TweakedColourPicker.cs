@@ -48,9 +48,11 @@ public partial class TweakedColourPicker : ColorPicker
         spinboxA = baseControl.GetChild(4).GetChild(0).GetChild<Control>(14);
         pickerButton = baseControl.GetChild(1).GetChild<Button>(0);
 
-        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(PopupMenu.SignalName.IndexPressed, new Callable(this, nameof(HideAlphaSlider)));
-        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(PopupMenu.SignalName.IndexPressed, new Callable(this, nameof(UpdateTooltips)));
-        HideAlphaSlider(1);
+        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(
+            PopupMenu.SignalName.IndexPressed, new Callable(this, nameof(HideAlphaSlider)));
+        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(
+            PopupMenu.SignalName.IndexPressed, new Callable(this, nameof(UpdateTooltips)));
+        HideAlphaSlider();
 
         // Disable RAW option in a dropdown menu
         baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().SetItemDisabled(2, true);
@@ -63,7 +65,7 @@ public partial class TweakedColourPicker : ColorPicker
         sliderGOrS.Scrollable = false;
         sliderBOrV.Scrollable = false;
 
-        UpdateTooltips(1);
+        UpdateTooltips();
     }
 
     /// <summary>
@@ -101,7 +103,7 @@ public partial class TweakedColourPicker : ColorPicker
         SetColour(colour);
     }
 
-    private void UpdateTooltips(long dummyIndex)
+    private void UpdateTooltips()
     {
         pickerButton.TooltipText = Localization.Translate("COLOUR_PICKER_PICK_COLOUR");
 
@@ -131,7 +133,7 @@ public partial class TweakedColourPicker : ColorPicker
         Localization.Translate("COLOUR_PICKER_PRESET_TOOLTIP");
     }
 
-    private void HideAlphaSlider(long dummyIndex)
+    private void HideAlphaSlider()
     {
         sliderA.Hide();
         labelA.Hide();
