@@ -654,11 +654,14 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
             // Panoramas don't exist yet when above water so we need this null check
             if (worldEnvironmentNode.Environment != null)
             {
-                var sky = worldEnvironmentNode.Environment.Sky;
-                var skyMaterial = (PanoramaSkyMaterial)sky.SkyMaterial;
+                var skyMaterial = new Sky();
+                var panoramaMaterial = new PanoramaSkyMaterial();
 
-                skyMaterial.Panorama =
-                    GD.Load<Texture2D>(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
+                panoramaMaterial.Panorama = GD.Load<Texture2D>(
+                    CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
+                skyMaterial.SkyMaterial = panoramaMaterial;
+
+                worldEnvironmentNode.Environment.Sky = skyMaterial;
             }
         }
 

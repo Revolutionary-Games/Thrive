@@ -42,7 +42,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
     public NodePath BodyEditorLightPath = null!;
 
     [Export]
-    public NodePath WorldEnvironmentNodePath = null!;
+    private WorldEnvironment worldEnvironmentNode = null!;
 
 #pragma warning disable CA2213
     [JsonProperty]
@@ -67,7 +67,6 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
     private Camera3D body3DEditorCamera = null!;
     private Light3D bodyEditorLight = null!;
 
-    private WorldEnvironment worldEnvironmentNode = null!;
     private Environment? environment;
 
     private Control noCellTypeSelected = null!;
@@ -209,8 +208,6 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
         cellEditorCamera = GetNode<MicrobeCamera>(CellEditorCameraPath);
         cellEditorLight = GetNode<Light3D>(CellEditorLightPath);
-
-        worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
 
         body3DEditorCamera = GetNode<Camera3D>(Body3DEditorCameraPath);
         bodyEditorLight = GetNode<Light3D>(BodyEditorLightPath);
@@ -448,7 +445,6 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
                 NoCellTypeSelectedPath.Dispose();
                 CellEditorCameraPath.Dispose();
                 CellEditorLightPath.Dispose();
-                WorldEnvironmentNodePath.Dispose();
                 Body3DEditorCameraPath.Dispose();
                 BodyEditorLightPath.Dispose();
             }
@@ -473,10 +469,13 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
     private void UpdateBackgroundPanorama(Biome biome)
     {
-        var sky = worldEnvironmentNode.Environment.Sky;
-        var skyMaterial = (PanoramaSkyMaterial)sky.SkyMaterial;
+        var skyMaterial = new Sky();
+        var panoramaMaterial = new PanoramaSkyMaterial();
 
-        skyMaterial.Panorama = GD.Load<Texture2D>(biome.Panorama);
+        panoramaMaterial.Panorama = GD.Load<Texture2D>(biome.Panorama);
+        skyMaterial.SkyMaterial = panoramaMaterial;
+
+        worldEnvironmentNode.Environment.Sky = skyMaterial;
 
         // TODO: update colour properties if really wanted (right now white ambient light is used to see things better
         // in the editor)
