@@ -1,16 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3vq1x8lvthvt"]
+[gd_scene load_steps=9 format=3 uid="uid://d3vq1x8lvthvt"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/gui_common/ChemicalEquation.cs" id="2"]
 [ext_resource type="Texture2D" uid="uid://cyrha88k4ioqh" path="res://assets/textures/gui/bevel/ProcessProcessing.png" id="3"]
 [ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="4_77wn0"]
+[ext_resource type="LabelSettings" uid="uid://4teclbsvoawb" path="res://src/gui_common/fonts/Body-Bold-Smaller-Red.tres" id="4_vbkf3"]
+[ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="5_tr4hc"]
 [ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="5_wdgi7"]
 
 [sub_resource type="Theme" id="1"]
 default_font = ExtResource("5_wdgi7")
 default_font_size = 18
 
-[node name="ChemicalEquation" type="VBoxContainer"]
+[node name="ChemicalEquation" type="VBoxContainer" node_paths=PackedStringArray("title", "spinner", "firstLineContainer")]
 process_priority = 7
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,9 +20,12 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 theme = ExtResource("1")
 script = ExtResource("2")
-TitlePath = NodePath("HBoxContainer/Label")
-SpinnerPath = NodePath("HBoxContainer/Spinner")
-FirstLineContainerPath = NodePath("FirstLine")
+DefaultTitleFont = ExtResource("4_77wn0")
+title = NodePath("HBoxContainer/Label")
+spinner = NodePath("HBoxContainer/Spinner")
+firstLineContainer = NodePath("FirstLine")
+speedLimitedTitleFont = ExtResource("4_vbkf3")
+equationArrowTexture = ExtResource("5_tr4hc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

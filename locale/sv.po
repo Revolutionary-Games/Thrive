@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:20+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -705,6 +705,11 @@ msgstr "Blåa kanal värdet för färgen"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Gröna kanal värdet för färgen"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Slå på eller av HSV-läge (Hue, Saturation, Value).\n"
+"Kan inte slås på i rå-läge."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Nyansvärde, del av färgen"
 
@@ -717,6 +722,13 @@ msgstr ""
 "Färg: {0}\n"
 "Vänster musknapp: Använd denna palette\n"
 "Höger musknapp: Ta bort denna palette"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Slå på eller av rå-läget.\n"
+"I rå-läge kan du tvinga R, G, B\n"
+"färgvärdena att överskrida 1.0.\n"
+"Kan inte slås på i HSV-läge."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Röda kanal värdet för färgen"
@@ -2015,12 +2027,6 @@ msgstr "generation:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Självmord"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 Läges Varning"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
-
 msgid "GLES3"
 msgstr ""
 
@@ -2126,6 +2132,9 @@ msgstr ""
 
 msgid "HP_COLON"
 msgstr "Hälsa:"
+
+msgid "HSV"
+msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -3694,6 +3703,14 @@ msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
 #, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "GLES2 Läges Varning"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
+
+#, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Öppna Logmapp"
 
@@ -4183,6 +4200,9 @@ msgstr "Slumpa artnamn"
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Fortsätt"
+
+msgid "RAW"
+msgstr "Rå"
 
 #, fuzzy
 msgid "RAW_VALUE_COLON"
@@ -6872,24 +6892,6 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Slå på eller av HSV-läge (Hue, Saturation, Value).\n"
-#~ "Kan inte slås på i rå-läge."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Slå på eller av rå-läget.\n"
-#~ "I rå-läge kan du tvinga R, G, B\n"
-#~ "färgvärdena att överskrida 1.0.\n"
-#~ "Kan inte slås på i HSV-läge."
-
-#~ msgid "HSV"
-#~ msgstr "HSV"
-
-#~ msgid "RAW"
-#~ msgstr "Rå"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Basboost"

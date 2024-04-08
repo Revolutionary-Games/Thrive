@@ -32,6 +32,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     private readonly Lazy<PackedScene> membraneScene =
         new(() => GD.Load<PackedScene>("res://src/microbe_stage/Membrane.tscn"));
 
+    private readonly StringName tintParameterName = new("tint");
+
     private readonly List<ShaderMaterial> tempMaterialsList = new();
     private readonly List<PlacedOrganelle> tempVisualsToDelete = new();
 
@@ -67,19 +69,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
     public override void Dispose()
     {
+        Dispose(true);
         base.Dispose();
-
-        var maxWait = TimeSpan.FromSeconds(10);
-        foreach (var task in activeGenerationTasks)
-        {
-            if (!task.Wait(maxWait))
-            {
-                GD.PrintErr("Failed to wait for a background membrane generation task to finish on " +
-                    "dispose");
-            }
-        }
-
-        activeGenerationTasks.Clear();
     }
 
     protected override void PreUpdate(float delta)
@@ -367,7 +358,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             int count = tempMaterialsList.Count;
             for (int i = start; i < count; ++i)
             {
-                tempMaterialsList[i].SetShaderParameter("tint", organelleColour);
+                tempMaterialsList[i].SetShaderParameter(tintParameterName, organelleColour);
             }
         }
 
@@ -421,7 +412,12 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         {
             var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
 
-            var cacheEntry = generator.GenerateShape(ref generationParameters);
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+            MembranePointData cacheEntry;
+            lock (generator)
+            {
+                cacheEntry = generator.GenerateShape(ref generationParameters);
+            }
 
             // Cache entry now owns the array data that was in the generationParameters and will return it to the
             // pool when the cache disposes it
@@ -443,5 +439,25 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         }
 
         Interlocked.Decrement(ref runningMembraneTaskCount);
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            tintParameterName.Dispose();
+        }
+
+        var maxWait = TimeSpan.FromSeconds(10);
+        foreach (var task in activeGenerationTasks)
+        {
+            if (!task.Wait(maxWait))
+            {
+                GD.PrintErr("Failed to wait for a background membrane generation task to finish on " +
+                    "dispose");
+            }
+        }
+
+        activeGenerationTasks.Clear();
     }
 }

@@ -40,6 +40,9 @@ void PhysicsBody::SetCollisionRecordingTarget(CollisionRecordListType target, in
 
     if (collisionRecordingTarget == nullptr && maxCollisionsToRecord > 0)
         LOG_ERROR("Collision recording will record into null pointer");
+
+    if (collisionRecordingTarget != nullptr && maxCollisionsToRecord < 1)
+        LOG_WARNING("Collision recording count is less than one, nothing will be recorded");
 }
 
 void PhysicsBody::ClearCollisionRecordingTarget() noexcept

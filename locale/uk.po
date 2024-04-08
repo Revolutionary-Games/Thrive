@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:20+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -670,6 +670,11 @@ msgstr "Синый канал кольору"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Зелений канал кольору"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Перемкнути режим HSV(відтінок, насичення...).\n"
+"Не можна увімкнути в сирому режимі."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Значення відтінку, частки кольору"
 
@@ -681,6 +686,13 @@ msgstr ""
 "Колір:{0}\n"
 "ЛКП: Використати його зараз\n"
 "ПКМ: Видалити його зараз"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Перемкніть сирий режим, або наваки.\n"
+"у сирому режимі ви можете зробити R, G, B\n"
+"кольорового значення виходячі за межі 1.0.\n"
+"Неможливо в режимі HSV."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Червоний канал кольору"
@@ -1953,12 +1965,6 @@ msgstr "Генерація:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Відвідайте наше сховище у GitHub"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "Режим попереджень GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Ви граєте у Thrive за допомогою GLES2. Це не є перевіреним та може викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати графіку від Nvidia або AMD для запуску Thrive."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2061,6 +2067,9 @@ msgstr "Горизонталь (Вісь: {0})"
 
 msgid "HP_COLON"
 msgstr "Здоров'я:"
+
+msgid "HSV"
+msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
@@ -3596,6 +3605,14 @@ msgstr ""
 "Ви можете повідомити про будь-яку проблему, але наразі вони не в пріоритет.\n"
 "Ви хочете спробувати завантажити його всеодно?"
 
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Режим попереджень GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Ви граєте у Thrive за допомогою GLES2. Це не є перевіреним та може викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати графіку від Nvidia або AMD для запуску Thrive."
+
 msgid "OPEN_FOLDER"
 msgstr "Відкрити теку"
 
@@ -4043,6 +4060,9 @@ msgstr "Випадкова назва виду"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Значення, яке використовує для генерації світу, що мусить бути дадатним, цілим числом"
+
+msgid "RAW"
+msgstr "Необроблений"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Вологість:"
@@ -6668,24 +6688,6 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Перемкнути режим HSV(відтінок, насичення...).\n"
-#~ "Не можна увімкнути в сирому режимі."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Перемкніть сирий режим, або наваки.\n"
-#~ "у сирому режимі ви можете зробити R, G, B\n"
-#~ "кольорового значення виходячі за межі 1.0.\n"
-#~ "Неможливо в режимі HSV."
-
-#~ msgid "HSV"
-#~ msgstr "HSV"
-
-#~ msgid "RAW"
-#~ msgstr "Необроблений"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Підсилення басів"

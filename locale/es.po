@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:20+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -684,6 +684,11 @@ msgstr "Azul"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Verde"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Activar o desactivar el modo HSV (Matiz, Saturación, Brillo).\n"
+"No se puede activar cuando estás en modo Crudo"
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Matiz de color"
 
@@ -695,6 +700,13 @@ msgstr ""
 "Color: {0}\n"
 "Click Izquierdo: Usar este color predefinido\n"
 "Click Derecho: Eliminar este color predefinido"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Activa o desactiva el modo bruto.\n"
+"En modo bruto puedes modificar los valores R, G, B\n"
+"Los valores de color deben ser mayores a 1.0.\n"
+"No se puede activar cuando estás en modo HSV."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Rojo"
@@ -2016,12 +2028,6 @@ msgstr "Generación:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Visita nuestro repositorio de GitHub"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "Advertencia del modo GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2128,6 +2134,9 @@ msgstr "Horizontal (Eje: {0})"
 
 msgid "HP_COLON"
 msgstr "HP:"
+
+msgid "HSV"
+msgstr "HSV"
 
 #, fuzzy
 msgid "HUD_MESSAGE_MULTIPLE"
@@ -3714,6 +3723,14 @@ msgstr ""
 "Puedes reportar problemas que encuentres, pero no son la mayor prioridad ahora mismo.\n"
 "¿ Aún así deseas intentar cargar la partida?"
 
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Advertencia del modo GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
+
 msgid "OPEN_FOLDER"
 msgstr "Abrir carpeta"
 
@@ -4190,6 +4207,9 @@ msgstr "Nombre de especies aleatorio"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "El valor usado para generar el planeta, debe ser un numero positivo"
+
+msgid "RAW"
+msgstr "Bruto"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Valor bruto:"
@@ -6912,24 +6932,6 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Activar o desactivar el modo HSV (Matiz, Saturación, Brillo).\n"
-#~ "No se puede activar cuando estás en modo Crudo"
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Activa o desactiva el modo bruto.\n"
-#~ "En modo bruto puedes modificar los valores R, G, B\n"
-#~ "Los valores de color deben ser mayores a 1.0.\n"
-#~ "No se puede activar cuando estás en modo HSV."
-
-#~ msgid "HSV"
-#~ msgstr "HSV"
-
-#~ msgid "RAW"
-#~ msgstr "Bruto"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Refuerzo de graves"

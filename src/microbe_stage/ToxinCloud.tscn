@@ -14,6 +14,7 @@ billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="2"]
 material = SubResource("1")
+size = Vector2(3, 3)
 
 [node name="ToxinCloud" type="GPUParticles3D"]
 amount = 50

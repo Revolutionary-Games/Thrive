@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:20+0200\n"
-"PO-Revision-Date: 2024-03-21 09:57+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
+"PO-Revision-Date: 2024-03-27 22:32+0000\n"
+"Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -670,6 +670,11 @@ msgstr "Rengin mavi kanal değeri"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Rengin yeşil kanal değeri"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"HSV (Renk Tonu, Doygunluk, Değer) modunu aç veya kapat.\n"
+"Raw moddayken kullanılamaz."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Renk tonu değeri, renk bileşeninin bir kısmı"
 
@@ -681,6 +686,13 @@ msgstr ""
 "Renk: {0}\n"
 "Sol fare tuşu: Bu ön ayarı kullan\n"
 "Sağ fare tulu: Bu ön ayarı sil"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Raw modu aç veya kapat.\n"
+"Raw modda K, Y, M renk değerlerinin 1.0'ın\n"
+"ötesine gitmesini sağlayabilirsiniz.\n"
+"HSV modundayken kullanılamaz."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Rengin kırmızı kanal değeri"
@@ -1907,12 +1919,6 @@ msgstr "Kuşak:"
 msgid "GITHUB_TOOLTIP"
 msgstr "GitHub depomuzu ziyaret edin"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 Mod Uyarısı"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Thrive'ı GLES2 ile çalıştırmaktasınız. Bu mod ciddi derecede test edilmemiştir ve bu modun sorunlara neden olması muhtemeldir. Ekran kartlarını güncelleştirmeyi deneyin ve/veya Thrive'ı çalıştırırken oyunu AMD ya da Nvidia grafiklerini kullanmaya zorlayın."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2015,6 +2021,9 @@ msgstr "Yatay (Eksen: {0})"
 
 msgid "HP_COLON"
 msgstr "HP:"
+
+msgid "HSV"
+msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
@@ -2233,9 +2242,8 @@ msgstr "Haziran"
 msgid "KEY_BACK"
 msgstr "Geri"
 
-#, fuzzy
 msgid "KEY_BACKTAB"
-msgstr "Geri"
+msgstr "Backtab"
 
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
@@ -2243,7 +2251,7 @@ msgstr ""
 "{1} girişini kaldırmak ister misiniz?"
 
 msgid "KEY_BRING_UP_KEYBOARD"
-msgstr ""
+msgstr "Klavyeyi Göster Tuşu"
 
 msgid "KEY_CLEAR"
 msgstr "Temizle"
@@ -2266,9 +2274,8 @@ msgstr "Favoriler"
 msgid "KEY_FORWARD"
 msgstr "İleri"
 
-#, fuzzy
 msgid "KEY_GLOBE"
-msgstr "Home"
+msgstr "Küre Tuşu"
 
 msgid "KEY_HELP"
 msgstr "Help"
@@ -2279,20 +2286,17 @@ msgstr "Home"
 msgid "KEY_HOMEPAGE"
 msgstr "Homepage"
 
-#, fuzzy
 msgid "KEY_HYPER"
-msgstr "Help"
+msgstr "Hyper"
 
 msgid "KEY_INSERT"
 msgstr "Insert"
 
-#, fuzzy
 msgid "KEY_JIS_EISU"
-msgstr "Insert"
+msgstr "JIS Eisu Tuşu"
 
-#, fuzzy
 msgid "KEY_JIS_KANA"
-msgstr "Bekleme Tuşu"
+msgstr "JIS Kana Tuşu"
 
 msgid "KEY_LEFT"
 msgstr "Sol yön tuşu"
@@ -2300,9 +2304,8 @@ msgstr "Sol yön tuşu"
 msgid "KEY_MENU"
 msgstr "Menu"
 
-#, fuzzy
 msgid "KEY_META"
-msgstr "Tab"
+msgstr "Meta"
 
 msgid "KEY_OPENURL"
 msgstr "Open URL"
@@ -2760,7 +2763,6 @@ msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:com
 msgid "METRICS"
 msgstr "Performans Ölçümleri"
 
-#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "İşlem Süresi: {0} s\n"
@@ -2771,12 +2773,13 @@ msgstr ""
 "Kullanılan Bellek: {7}\n"
 "GPU Belleği: {8}\n"
 "İşlenen Nesneler: {9}\n"
-"İşlenen Temeller: {10}\n"
-"Artık Düğümler: {11}\n"
-"Ses Gecikmesi: {12} ms\n"
-"Toplam İş Parçacığı: {13}\n"
+"Toplam Çizim Çağrısı: {10}\n"
+"İşlenen Temeller: {11}\n"
+"Artık Düğümler: {12}\n"
+"Ses Gecikmesi: {13} ms\n"
+"Toplam İş Parçacığı: {14}\n"
 "Toplam CPU Süresi:\n"
-"{14}"
+"{15}"
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
@@ -3545,6 +3548,14 @@ msgstr ""
 "Karşılaştığınız sorunları rapor edebilirsiniz ancak şu an bunlar da en büyük öncelik değil.\n"
 "Yine de kaydı yüklemeyi denemek ister misiniz?"
 
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "GLES2 Mod Uyarısı"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Thrive'ı GLES2 ile çalıştırmaktasınız. Bu mod ciddi derecede test edilmemiştir ve bu modun sorunlara neden olması muhtemeldir. Ekran kartlarını güncelleştirmeyi deneyin ve/veya Thrive'ı çalıştırırken oyunu AMD ya da Nvidia grafiklerini kullanmaya zorlayın."
+
 msgid "OPEN_FOLDER"
 msgstr "Klasörü Aç"
 
@@ -3782,9 +3793,8 @@ msgstr "— {0}"
 msgid "PATCH_NOTE_CHANGES_HEADING"
 msgstr "Değişiklikler:"
 
-#, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr "Bu sürümün tüm ayrıntılarını [color=#3796e1][url={0}]Github[/url][/color] üzerinde görüntüle"
+msgstr "Bu sürümün tüm ayrıntılarını [color=#3796e1][url={0}]GitHub[/url][/color] üzerinde görüntüle"
 
 msgid "PATREON_TOOLTIP"
 msgstr "Patreon sayfamızı ziyaret edin"
@@ -3992,6 +4002,9 @@ msgstr "Tür adını rastgele seç"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Dünya oluşturmak için kullanılan değer pozitif bir tam sayı olmalıdır"
+
+msgid "RAW"
+msgstr "Raw"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Ham:"
@@ -6755,57 +6768,6 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "HSV (Renk Tonu, Doygunluk, Değer) modunu aç veya kapat.\n"
-#~ "Raw moddayken kullanılamaz."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Raw modu aç veya kapat.\n"
-#~ "Raw modda K, Y, M renk değerlerinin 1.0'ın\n"
-#~ "ötesine gitmesini sağlayabilirsiniz.\n"
-#~ "HSV modundayken kullanılamaz."
-
-#~ msgid "HSV"
-#~ msgstr "HSV"
-
-#~ msgid "RAW"
-#~ msgstr "Raw"
-
-#~ msgid "BASSBOOST"
-#~ msgstr "Bas Yükseltici"
-
-#~ msgid "BASSDOWN"
-#~ msgstr "Bası Azalt"
-
-#~ msgid "BASSUP"
-#~ msgstr "Bası Arttır"
-
-#~ msgid "DIRECTIONL"
-#~ msgstr "Left"
-
-#~ msgid "DIRECTIONR"
-#~ msgstr "Right"
-
-#~ msgid "HYPERL"
-#~ msgstr "Hyper Left"
-
-#~ msgid "HYPERR"
-#~ msgstr "Hyper Right"
-
-#~ msgid "SUPERL"
-#~ msgstr "Super Left"
-
-#~ msgid "SUPERR"
-#~ msgstr "Super Right"
-
-#~ msgid "TREBLEDOWN"
-#~ msgstr "Treble Down"
-
-#~ msgid "TREBLEUP"
-#~ msgstr "Treble Up"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Windows'ta bilinmiyor"

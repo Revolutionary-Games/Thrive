@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:20+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -678,6 +678,11 @@ msgstr "Hodnota modrého kanála farby"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Hodnota zeleného kanála farby"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Zapnúť alebo vypnúť režim OSJ (Odtieň, Saturácia, Jas).\n"
+"Nemôže byť zapnutý v režime raw."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Odtieň - časť farby"
 
@@ -689,6 +694,12 @@ msgstr ""
 "Farba: {0}\n"
 "Ľavé tlačidlo myši: Použiť toto prednastavenie\n"
 "Pravé tlačidlo myši: Vymazať toto prednastavenie"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Zapnúť alebo vypnúť režim raw.\n"
+"V režime raw môžeš hodnoty R, G, B nastaviť nad úroveň 1.0.\n"
+"Nemôže byť zapnutý v režime OSJ."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Hodnota červeného kanála farby"
@@ -1931,12 +1942,6 @@ msgstr "Generácia:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Opustiť hru"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "Varovanie režimu GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Spúšťaš Thrive pomocou vykresľovača GLES2. Táto možnosť nie je otestovaná a môže spôsobiť problémy. Skús si aktualizovať svoje grafické ovládače alebo vynútiť použitie AMD alebo Nvidia grafiky pre spustenie Thrive."
-
 msgid "GLES3"
 msgstr ""
 
@@ -2039,6 +2044,9 @@ msgstr ""
 
 msgid "HP_COLON"
 msgstr "HP:"
+
+msgid "HSV"
+msgstr "OSJ"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -3537,6 +3545,14 @@ msgstr "OK"
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Varovanie režimu GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Spúšťaš Thrive pomocou vykresľovača GLES2. Táto možnosť nie je otestovaná a môže spôsobiť problémy. Skús si aktualizovať svoje grafické ovládače alebo vynútiť použitie AMD alebo Nvidia grafiky pre spustenie Thrive."
+
 msgid "OPEN_FOLDER"
 msgstr "Otvoriť priečinok"
 
@@ -4005,6 +4021,9 @@ msgstr "Náhodné meno druhu"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
+
+msgid "RAW"
+msgstr "Raw"
 
 #, fuzzy
 msgid "RAW_VALUE_COLON"
@@ -6530,23 +6549,6 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Zapnúť alebo vypnúť režim OSJ (Odtieň, Saturácia, Jas).\n"
-#~ "Nemôže byť zapnutý v režime raw."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Zapnúť alebo vypnúť režim raw.\n"
-#~ "V režime raw môžeš hodnoty R, G, B nastaviť nad úroveň 1.0.\n"
-#~ "Nemôže byť zapnutý v režime OSJ."
-
-#~ msgid "HSV"
-#~ msgstr "OSJ"
-
-#~ msgid "RAW"
-#~ msgstr "Raw"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost"

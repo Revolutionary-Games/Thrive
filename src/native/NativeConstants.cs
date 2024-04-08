@@ -9,7 +9,7 @@ using SharedBase.Models;
 /// </summary>
 public class NativeConstants
 {
-    public const int Version = 12;
+    public const int Version = 13;
     public const int EarlyCheck = 2;
 
     public const string LibraryFolder = "native_libs";

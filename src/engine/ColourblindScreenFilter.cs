@@ -7,6 +7,8 @@ public partial class ColourblindScreenFilter : TextureRect
 {
     private static ColourblindScreenFilter? instance;
 
+    private readonly StringName modeParameterName = new("mode");
+
 #pragma warning disable CA2213
     private ShaderMaterial screenFilterMaterial = null!;
 #pragma warning restore CA2213
@@ -44,6 +46,16 @@ public partial class ColourblindScreenFilter : TextureRect
         }
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            modeParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void SetNormal()
     {
         Material = null;
@@ -53,14 +65,14 @@ public partial class ColourblindScreenFilter : TextureRect
     private void SetRedGreen()
     {
         Material = screenFilterMaterial;
-        screenFilterMaterial.SetShaderParameter("mode", 1);
+        screenFilterMaterial.SetShaderParameter(modeParameterName, 1);
         Show();
     }
 
     private void SetBlueYellow()
     {
         Material = screenFilterMaterial;
-        screenFilterMaterial.SetShaderParameter("mode", 2);
+        screenFilterMaterial.SetShaderParameter(modeParameterName, 2);
         Show();
     }
 }

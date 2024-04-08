@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:20+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -670,6 +670,11 @@ msgstr "ערך הצבע הכחול בצבע הנתון"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "ערך הצבע הירוק בצבע הנתון"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"שנה HSV (גוון, רוויה וערך) למצב כבוי או דלוק.\n"
+"לא ניתן להדליק מצב \"טרי\"."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "ערך הגוון, חלק מהצבע"
 
@@ -681,6 +686,13 @@ msgstr ""
 "צבע: {0}\n"
 "עכבר שמאלי: להשתמש בקבוע זה\n"
 "עכבר ימני: מחק קבוע זה"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"חלף מצב \"טרי\" כבוי או דלוק.\n"
+"במצב \"טרי\" אתה יכול לעשות את R,G,B\n"
+"ערך הצבע יכול ללכת מעל 1.0.\n"
+"לא ניתן להדליק את מצב HSV."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "ערך הצבע האדום בצבע הנתון"
@@ -1988,12 +2000,6 @@ msgstr "דור:"
 msgid "GITHUB_TOOLTIP"
 msgstr "צפו בספריית GitHub שלנו"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "אזהרת GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2101,6 +2107,9 @@ msgstr "אופקי (ציר: {0})"
 
 msgid "HP_COLON"
 msgstr "חיים:"
+
+msgid "HSV"
+msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -3674,6 +3683,14 @@ msgstr ""
 "אתה יכול לדווח על כל בעיה שנתקלת, אבל זה אינו בעדיפות גבוהה כרגע.\n"
 "האם ברצונך להמשיך לטעון שמירה זו?"
 
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "אזהרת GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
+
 msgid "OPEN_FOLDER"
 msgstr "פתח תיקייה"
 
@@ -4142,6 +4159,9 @@ msgstr "שם מין אקראי"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
+
+msgid "RAW"
+msgstr "\"טרי\""
 
 msgid "RAW_VALUE_COLON"
 msgstr "לא מעובד:"
@@ -6818,24 +6838,6 @@ msgstr "להתמקד"
 
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "שנה HSV (גוון, רוויה וערך) למצב כבוי או דלוק.\n"
-#~ "לא ניתן להדליק מצב \"טרי\"."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "חלף מצב \"טרי\" כבוי או דלוק.\n"
-#~ "במצב \"טרי\" אתה יכול לעשות את R,G,B\n"
-#~ "ערך הצבע יכול ללכת מעל 1.0.\n"
-#~ "לא ניתן להדליק את מצב HSV."
-
-#~ msgid "HSV"
-#~ msgstr "HSV"
-
-#~ msgid "RAW"
-#~ msgstr "\"טרי\""
 
 #~ msgid "BASSBOOST"
 #~ msgstr "מקש Bassboost"

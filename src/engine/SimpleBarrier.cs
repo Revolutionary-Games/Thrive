@@ -4,6 +4,11 @@ using System.Threading;
 /// <summary>
 ///   A simple thread synchronization barrier
 /// </summary>
+/// <remarks>
+///   <para>
+///     WARNING: in Godot 4 this seems to be related to process lock up and is likely not safe to use
+///   </para>
+/// </remarks>
 public class SimpleBarrier
 {
     private const int BUSY_LOOP_COUNT = 25;
@@ -13,7 +18,8 @@ public class SimpleBarrier
 
     private int waitingThreads;
 
-    private int releasedThreads;
+    private int blockedThreads;
+    private int threadsInWaitLoop;
 
     /// <summary>
     ///   Setup a new barrier with a given thread count
@@ -32,6 +38,10 @@ public class SimpleBarrier
 
     public void SignalAndWait()
     {
+        // Mark this thread as blocked until released from this method
+        Interlocked.Increment(ref blockedThreads);
+        Interlocked.Increment(ref threadsInWaitLoop);
+
         // New thread arriving at the barrier, increment the count
         int readCount = Interlocked.Increment(ref waitingThreads);
 
@@ -68,34 +78,43 @@ public class SimpleBarrier
             }
         }
 
-        // Threads have all arrived, and are being released
+        // Threads have all arrived and should be leaving the above loop, all threads need to wait until all are
+        // ready to leave
+        readCount = Interlocked.Decrement(ref threadsInWaitLoop);
+
+        while (readCount != 0)
+        {
+            readCount = threadsInWaitLoop;
+        }
+
+        // Reset the state for the next loop. This is now safe as no thread can still be trying to read the wait
+        // count in the first loop of this method.
+        if (managerThread)
+        {
+            if (Interlocked.CompareExchange(ref waitingThreads, 0, threadCount) != threadCount)
+            {
+                throw new Exception("Barrier wait reset after wait complete failed");
+            }
+
+            // TODO: check if it would be a better idea to use this (which might allow using one less atomic variable):
+            /*// Add is used here to ensure no problems occur if another thread has already arrived at this barrier
+            // again
+            Interlocked.Add(ref waitingThreads, -threadCount);*/
+        }
+
+        // State is now ready for release so all threads can now be released
+
+        readCount = Interlocked.Decrement(ref blockedThreads);
+
+        // All threads need to wait until all threads have been released to not cause any threads to be left behind
+        // and no thread being able to reach this barrier again to mess with waitingThreads variable before it is reset
+        while (readCount != 0)
+        {
+            // All threads should be releasing very fast, so just keep trying to read the variable
+            readCount = blockedThreads;
+        }
 
         // Ensure that after the barrier all thread writes and reads are seen by all threads
         Interlocked.MemoryBarrier();
-
-        // Use another atomic variable to control state reset on thread release
-        readCount = Interlocked.Increment(ref releasedThreads);
-
-        // The last thread to arrive is the one that needs to clean up the waiting state
-        if (managerThread)
-        {
-            // Wait until all threads are leaving the loop making it safe to modify the wait count without trapping
-            // any threads in the wait above
-            while (readCount != threadCount)
-            {
-                readCount = releasedThreads;
-            }
-
-            // Add is used here to ensure no problems occur if another thread has already arrived at this barrier again
-            Interlocked.Add(ref waitingThreads, -threadCount);
-
-            // Reset the release variable state as well for the next barrier cycle
-            if (Interlocked.CompareExchange(ref releasedThreads, 0, threadCount) != threadCount)
-            {
-                throw new Exception("Barrier released thread count was unexpected");
-            }
-
-            Interlocked.MemoryBarrier();
-        }
     }
 }

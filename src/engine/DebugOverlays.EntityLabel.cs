@@ -14,7 +14,24 @@ public partial class DebugOverlays
     private readonly HashSet<Entity> seenEntities = new();
 
 #pragma warning disable CA2213
-    private LabelSettings smallerFont = null!;
+    [Export]
+    private LabelSettings entityLabelSmallFont = null!;
+
+    [Export]
+    private LabelSettings entityLabelDefaultFont = null!;
+
+    [Export]
+    private LabelSettings entityDeadFont = null!;
+
+    [Export]
+    private LabelSettings entityBindingFont = null!;
+
+    [Export]
+    private LabelSettings entityEngulfingFont = null!;
+
+    [Export]
+    private LabelSettings entityUnbindingFont = null!;
+
     private Camera3D? activeCamera;
 #pragma warning restore CA2213
 
@@ -78,7 +95,7 @@ public partial class DebugOverlays
     {
         if (!entity.IsAlive)
         {
-            label.AddThemeColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+            label.LabelSettings = entityDeadFont;
             return false;
         }
 
@@ -90,25 +107,25 @@ public partial class DebugOverlays
             {
                 case MicrobeState.Binding:
                 {
-                    label.AddThemeColorOverride("font_color", new Color(0.2f, 0.5f, 0.0f));
+                    label.LabelSettings = entityBindingFont;
                     break;
                 }
 
                 case MicrobeState.Engulf:
                 {
-                    label.AddThemeColorOverride("font_color", new Color(0.2f, 0.5f, 1.0f));
+                    label.LabelSettings = entityEngulfingFont;
                     break;
                 }
 
                 case MicrobeState.Unbinding:
                 {
-                    label.AddThemeColorOverride("font_color", new Color(1.0f, 0.5f, 0.2f));
+                    label.LabelSettings = entityUnbindingFont;
                     break;
                 }
 
                 default:
                 {
-                    label.AddThemeColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
+                    label.LabelSettings = entityLabelDefaultFont;
                     break;
                 }
             }
@@ -187,12 +204,13 @@ public partial class DebugOverlays
         if (entity.Has<ToxinDamageSource>() || entity.Has<CompoundVenter>() || entity.Has<DamageOnTouch>())
         {
             // To reduce the labels overlapping each other
-            label.LabelSettings = smallerFont;
+            label.LabelSettings = entityLabelSmallFont;
         }
     }
 
     private void OnEntityRemoved(Entity entity)
     {
+        // TODO: pooling for entity labels?
         if (entityLabels.TryGetValue(entity, out var label))
         {
             label.DetachAndQueueFree();

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:20+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -693,6 +693,11 @@ msgstr "Стойност на синьото"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Стойност на зеленото"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Превключване на ОНС (oттенък, наситеност и стойност).\n"
+"Не може да се използва заедно с необработените цветове."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Оттенък — част от цвета"
 
@@ -704,6 +709,13 @@ msgstr ""
 "Цвят: {0}\n"
 "Ляв бутон: Използване на шаблона\n"
 "Десен бутон: Изтриване на шаблона"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Превключване на необработените цветове.\n"
+"Стойностите на Ч, З, С\n"
+"може да надвишат 1,0.\n"
+"Не може да се използва заедно с ОНС."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Стойност на червеното"
@@ -2001,12 +2013,6 @@ msgstr "Поколение:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "Предупреждение за GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2112,6 +2118,9 @@ msgstr "Хоризонтална ос: {0}"
 
 msgid "HP_COLON"
 msgstr "ТЗ:"
+
+msgid "HSV"
+msgstr "ОНС"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -3675,6 +3684,14 @@ msgstr ""
 "Ако искате, може да докладвате за потенциалните проблеми.\n"
 "Искате ли да го заредите въпреки това?"
 
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Предупреждение за GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
+
 msgid "OPEN_FOLDER"
 msgstr "Местоположение"
 
@@ -4142,6 +4159,9 @@ msgstr "Произволно наименование"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Идентификаторът трябва да е положително цяло число"
+
+msgid "RAW"
+msgstr "НЦ"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Стойност:"
@@ -6820,24 +6840,6 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Превключване на ОНС (oттенък, наситеност и стойност).\n"
-#~ "Не може да се използва заедно с необработените цветове."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Превключване на необработените цветове.\n"
-#~ "Стойностите на Ч, З, С\n"
-#~ "може да надвишат 1,0.\n"
-#~ "Не може да се използва заедно с ОНС."
-
-#~ msgid "HSV"
-#~ msgstr "ОНС"
-
-#~ msgid "RAW"
-#~ msgstr "НЦ"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Клавиш „Bassboost“"

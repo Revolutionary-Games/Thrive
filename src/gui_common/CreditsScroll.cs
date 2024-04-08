@@ -601,6 +601,7 @@ public partial class CreditsScroll : Control
             // 0.7 == 15% shrink of middle spacing for 2 columns and move position to center.
             Position = new Vector2(columns == 2 ? Size.X * 0.15f : 0, 0),
             CustomMinimumSize = new Vector2(columns == 2 ? Size.X * 0.7f : Size.X, 0),
+            SizeFlagsVertical = SizeFlags.ShrinkBegin,
         };
 
         foreach (var columnText in splitTexts)

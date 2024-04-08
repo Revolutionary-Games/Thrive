@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:20+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2023-10-12 00:43+0000\n"
 "Last-Translator: Irmantas <irmantas_i@yahoo.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -670,6 +670,11 @@ msgstr "Mėlynos spalvos kanalo reikšmė"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Žalios spalvos kanalo reikšmė"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Įjunkite arba išjunkite HSV (atspalvis, sodrumas, vertė) režimą.\n"
+"Negalima įjungti, kai veikiate raw režimu."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Atspalvio vertė, spalvos dalis"
 
@@ -681,6 +686,13 @@ msgstr ""
 "Spalva: {0}\n"
 "Kairysis pelės klavišas: Naudoti šį išankstinį nustatymą\n"
 "Dešinysis pelės klavišas: Ištrinti šį išankstinį nustatymą"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Įjunkite arba išjunkite raw režimą.\n"
+"Įjungę raw duomenų režimą galite nustatyti R, G, B\n"
+"spalvų reikšmes viršyti 1,0.\n"
+"Negalima įjungti HSV režimu."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Raudonos spalvos kanalo reikšmė"
@@ -1922,12 +1934,6 @@ msgstr ""
 msgid "GITHUB_TOOLTIP"
 msgstr "Baigti žaidimą"
 
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-
 msgid "GLES3"
 msgstr ""
 
@@ -2029,6 +2035,9 @@ msgstr ""
 
 msgid "HP_COLON"
 msgstr ""
+
+msgid "HSV"
+msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -3408,6 +3417,13 @@ msgstr "Gerai"
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
+msgid "OPENGL_MODE_WARNING"
+msgstr ""
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "(pradžios vieta)"
+
 msgid "OPEN_FOLDER"
 msgstr ""
 
@@ -3848,6 +3864,10 @@ msgstr "Atsitiktinai parinkti rūšies pavadinimą"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#, fuzzy
+msgid "RAW"
+msgstr "Neap."
 
 #, fuzzy
 msgid "RAW_VALUE_COLON"
@@ -6207,25 +6227,6 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Įjunkite arba išjunkite HSV (atspalvis, sodrumas, vertė) režimą.\n"
-#~ "Negalima įjungti, kai veikiate raw režimu."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Įjunkite arba išjunkite raw režimą.\n"
-#~ "Įjungę raw duomenų režimą galite nustatyti R, G, B\n"
-#~ "spalvų reikšmes viršyti 1,0.\n"
-#~ "Negalima įjungti HSV režimu."
-
-#~ msgid "HSV"
-#~ msgstr "HSV"
-
-#, fuzzy
-#~ msgid "RAW"
-#~ msgstr "Neap."
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Žemų dažnių stiprinimas"
