@@ -41,9 +41,6 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
     [Export]
     public NodePath BodyEditorLightPath = null!;
 
-    [Export]
-    private WorldEnvironment worldEnvironmentNode = null!;
-
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -60,6 +57,9 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private CellEditorComponent cellEditorTab = null!;
+
+    [Export]
+    private WorldEnvironment worldEnvironmentNode = null!;
 
     private MicrobeCamera cellEditorCamera = null!;
     private Light3D cellEditorLight = null!;
