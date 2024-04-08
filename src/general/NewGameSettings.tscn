@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b0315b3i5bs5s"]
+[gd_scene load_steps=22 format=3 uid="uid://b0315b3i5bs5s"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/general/NewGameSettings.cs" id="2"]
@@ -18,6 +18,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kue3"]
 font = ExtResource("5_otvf3")
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_48p0t"]
 
 [sub_resource type="StyleBoxEmpty" id="2"]
 
@@ -238,7 +240,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(130, 35)
 layout_mode = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_48p0t")
 text = "DIFFICULTY"
 
 [node name="PlanetButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
@@ -246,6 +250,7 @@ custom_minimum_size = Vector2(130, 35)
 layout_mode = 2
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_48p0t")
 text = "PLANET"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
@@ -253,6 +258,7 @@ custom_minimum_size = Vector2(130, 35)
 layout_mode = 2
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_48p0t")
 text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
@@ -665,6 +671,7 @@ layout_mode = 2
 [node name="LAWKAdvanced" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer" instance=ExtResource("4")]
 layout_mode = 2
 size_flags_horizontal = 0
+button_pressed = true
 text = "LAWK_ONLY"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer"]
@@ -842,6 +849,7 @@ layout_mode = 2
 [node name="IncludeMulticellular" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2" instance=ExtResource("4")]
 layout_mode = 2
 size_flags_horizontal = 0
+button_pressed = true
 text = "INCLUDE_MULTICELLULAR_PROTOTYPE"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
@@ -856,6 +864,7 @@ layout_mode = 2
 [node name="EasterEggs" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3" instance=ExtResource("4")]
 layout_mode = 2
 size_flags_horizontal = 0
+button_pressed = true
 text = "EASTER_EGGS"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3"]
@@ -917,6 +926,9 @@ text = "START_GAME"
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnGameSeedChangedFromBasic"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnRandomisedGameSeedPressed"]
 [connection signal="meta_clicked" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer/CustomRichTextLabel" to="." method="PerformanceNoteLinkClicked"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= ["Difficulty"]]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PlanetButton" to="." method="ChangeSettingsTab" binds= ["Planet"]]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= ["Miscellaneous"]]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/MPMultiplier" to="." method="OnMPMultiplierValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer/AIMutationRate" to="." method="OnAIMutationRateValueChanged"]
