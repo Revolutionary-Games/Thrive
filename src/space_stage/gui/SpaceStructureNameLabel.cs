@@ -2,7 +2,10 @@
 using Godot;
 using Newtonsoft.Json;
 
-public class SpaceStructureNameLabel : Button, IEntityNameLabel
+/// <summary>
+///   Label on a structure in space, can be clicked to select it
+/// </summary>
+public partial class SpaceStructureNameLabel : Button, IEntityNameLabel
 {
     private string translationTemplate = null!;
 
@@ -54,7 +57,7 @@ public class SpaceStructureNameLabel : Button, IEntityNameLabel
 
     private void UpdateTranslationTemplate()
     {
-        translationTemplate = TranslationServer.Translate("NAME_LABEL_STRUCTURE_UNFINISHED");
+        translationTemplate = Localization.Translate("NAME_LABEL_STRUCTURE_UNFINISHED");
     }
 
     private void ForwardSelection()

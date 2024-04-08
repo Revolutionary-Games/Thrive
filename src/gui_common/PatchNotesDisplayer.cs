@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles displaying the patch notes from the previous version to the current one
 /// </summary>
-public class PatchNotesDisplayer : VBoxContainer
+public partial class PatchNotesDisplayer : VBoxContainer
 {
     [Export]
     public bool InsideDialogStyle;
@@ -111,12 +111,12 @@ public class PatchNotesDisplayer : VBoxContainer
         // Setup text to show how many new versions there are
         if (newVersions == 1)
         {
-            newVersionsCountLabel.Text = TranslationServer.Translate("PATCH_NOTES_LAST_PLAYED_INFO")
+            newVersionsCountLabel.Text = Localization.Translate("PATCH_NOTES_LAST_PLAYED_INFO")
                 .FormatSafe(lastPlayed);
         }
         else
         {
-            newVersionsCountLabel.Text = TranslationServer.Translate("PATCH_NOTES_LAST_PLAYED_INFO_PLURAL")
+            newVersionsCountLabel.Text = Localization.Translate("PATCH_NOTES_LAST_PLAYED_INFO_PLURAL")
                 .FormatSafe(lastPlayed, newVersions);
         }
 

@@ -1,350 +1,284 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://jdsjx1iyga8d"]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/CustomPopupMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/editorButtonDelete.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/editorButtonMove.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/editorButtonModify.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=7]
-[ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.cs" type="Script" id=8]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="DynamicFont" id=10]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomPopupMenu.tscn" id="3"]
+[ext_resource type="LabelSettings" uid="uid://qifcx75shbjt" path="res://src/gui_common/fonts/Title-Regular-Normal.tres" id="3_yrfoj"]
+[ext_resource type="Texture2D" uid="uid://l60kj8dx3bqo" path="res://assets/textures/gui/bevel/editorButtonDelete.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://by7m0vqg4h3a2" path="res://assets/textures/gui/bevel/editorButtonMove.png" id="5"]
+[ext_resource type="LabelSettings" uid="uid://8jxma2e6x3qd" path="res://src/gui_common/fonts/Title-Regular-Smaller.tres" id="5_clp5b"]
+[ext_resource type="Texture2D" uid="uid://bnjwq8dr4oqja" path="res://assets/textures/gui/bevel/editorButtonModify.png" id="6"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/OrganellePopupMenu.cs" id="8"]
 
-[sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 7 )
-region_rect = Rect2( 0, 0, 258, 1 )
-expand_margin_left = 4.0
-expand_margin_right = 4.0
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.772549, 0.309804, 0.368627, 1 )
+[sub_resource type="StyleBoxFlat" id="6"]
+bg_color = Color(0.760784, 0.0784314, 0.164706, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.921569, 0.403922, 0.470588, 1 )
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.772549, 0.309804, 0.368627, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.419608, 0.203922, 0.227451, 1 )
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.921569, 0.403922, 0.470588, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.760784, 0.0784314, 0.164706, 1 )
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(0.419608, 0.203922, 0.227451, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0, 0.435294, 0.52549, 1 )
+[sub_resource type="StyleBoxFlat" id="10"]
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 0.0666667, 1, 0.835294, 1 )
+[sub_resource type="StyleBoxFlat" id="7"]
+bg_color = Color(0, 0.435294, 0.52549, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 0.164706, 0.215686, 0.235294, 1 )
+[sub_resource type="StyleBoxFlat" id="8"]
+bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.360784, 0.552941, 0.52549, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=10]
-bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
+[sub_resource type="StyleBoxFlat" id="9"]
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.360784, 0.552941, 0.52549, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="OrganellePopupMenu" instance=ExtResource( 3 )]
-margin_bottom = 139.0
-rect_min_size = Vector2( 220, 139 )
-script = ExtResource( 8 )
+[node name="OrganellePopupMenu" instance=ExtResource("3")]
+custom_minimum_size = Vector2(220, 139)
+layout_mode = 3
+anchors_preset = 0
+offset_bottom = 139.0
+script = ExtResource("8")
 TitleLabelPath = NodePath("PanelContainer/VBoxContainer/MarginContainer/SelectedOrganelleName")
 DeleteButtonPath = NodePath("PanelContainer/VBoxContainer/Delete")
 MoveButtonPath = NodePath("PanelContainer/VBoxContainer/Move")
 ModifyButtonPath = NodePath("PanelContainer/VBoxContainer/Modify")
 
+[node name="PanelContainer" parent="." index="0"]
+layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="VBoxContainer" parent="PanelContainer" index="0"]
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" index="0"]
-margin_left = -5.0
-margin_top = -5.0
-margin_right = 205.0
-margin_bottom = 20.0
-custom_constants/margin_right = 10
-custom_constants/margin_left = 5
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 10
 
 [node name="SelectedOrganelleName" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer" index="0"]
-margin_left = 5.0
-margin_right = 200.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 10 )
-autowrap = true
+layout_mode = 2
+label_settings = ExtResource("3_yrfoj")
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" index="1"]
-margin_left = -5.0
-margin_top = 24.0
-margin_right = 205.0
-margin_bottom = 28.0
-custom_styles/separator = SubResource( 2 )
+layout_mode = 2
 
 [node name="Delete" type="Button" parent="PanelContainer/VBoxContainer" index="2"]
-margin_left = -5.0
-margin_top = 32.0
-margin_right = 205.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 0, 28 )
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
 focus_mode = 0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("6")
+theme_override_styles/hover = SubResource("3")
+theme_override_styles/pressed = SubResource("4")
+theme_override_styles/disabled = SubResource("5")
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Delete" index="0"]
-margin_right = 210.0
-margin_bottom = 28.0
+layout_mode = 0
+offset_right = 210.0
+offset_bottom = 35.0
 mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Delete/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 205.0
-margin_bottom = 25.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/separation = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/separation = 7
 
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="0"]
-margin_top = 2.0
-margin_right = 16.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 16, 16 )
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 0
 mouse_filter = 2
-size_flags_vertical = 4
-texture = ExtResource( 4 )
-expand = true
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Name" type="Label" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="1"]
-margin_left = 23.0
-margin_right = 78.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 2
 text = "DELETE"
+label_settings = ExtResource("5_clp5b")
 
 [node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="2"]
-margin_left = 85.0
-margin_top = 1.0
-margin_right = 195.0
-margin_bottom = 18.0
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
 text = "-15 MP"
-align = 2
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("5_clp5b")
 
 [node name="Move" type="Button" parent="PanelContainer/VBoxContainer" index="3"]
-margin_left = -5.0
-margin_top = 64.0
-margin_right = 205.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 0, 28 )
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
 focus_mode = 0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/disabled = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("10")
+theme_override_styles/hover = SubResource("7")
+theme_override_styles/pressed = SubResource("8")
+theme_override_styles/disabled = SubResource("9")
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Move" index="0"]
-margin_right = 210.0
-margin_bottom = 28.0
+layout_mode = 0
+offset_right = 210.0
+offset_bottom = 28.0
 mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Move/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 205.0
-margin_bottom = 25.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/separation = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/separation = 7
 
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="0"]
-margin_top = 2.0
-margin_right = 16.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 16, 16 )
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 0
 mouse_filter = 2
-size_flags_vertical = 4
-texture = ExtResource( 5 )
-expand = true
+texture = ExtResource("5")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Name" type="Label" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="1"]
-margin_left = 23.0
-margin_right = 66.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 2
 text = "MOVE"
+label_settings = ExtResource("5_clp5b")
 
 [node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="2"]
-margin_left = 73.0
-margin_top = 1.0
-margin_right = 195.0
-margin_bottom = 18.0
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
 text = "-2 MP/hex"
-align = 2
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("5_clp5b")
 
 [node name="Modify" type="Button" parent="PanelContainer/VBoxContainer" index="4"]
-margin_left = -5.0
-margin_top = 96.0
-margin_right = 205.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 0, 28 )
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
 focus_mode = 0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/disabled = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("10")
+theme_override_styles/hover = SubResource("7")
+theme_override_styles/pressed = SubResource("8")
+theme_override_styles/disabled = SubResource("9")
 disabled = true
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Modify" index="0"]
-margin_right = 210.0
-margin_bottom = 28.0
+layout_mode = 0
+offset_right = 210.0
+offset_bottom = 28.0
 mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Modify/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 205.0
-margin_bottom = 25.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/separation = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/separation = 7
 
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="0"]
-margin_top = 2.0
-margin_right = 16.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 16, 16 )
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 0
 mouse_filter = 2
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-expand = true
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Name" type="Label" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="1"]
-margin_left = 23.0
-margin_right = 79.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 2
 text = "MODIFY"
+label_settings = ExtResource("5_clp5b")
 
 [node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="2"]
-margin_left = 86.0
-margin_top = 1.0
-margin_right = 195.0
-margin_bottom = 18.0
+layout_mode = 2
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
-align = 2
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("5_clp5b")
 
-[connection signal="button_down" from="PanelContainer/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= [ "Delete", true ]]
-[connection signal="button_up" from="PanelContainer/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= [ "Delete", false ]]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= ["Delete", true]]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= ["Delete", false]]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Delete" to="." method="OnDeletePressed"]
-[connection signal="button_down" from="PanelContainer/VBoxContainer/Move" to="." method="UpdateButtonContentsColour" binds= [ "Move", true ]]
-[connection signal="button_up" from="PanelContainer/VBoxContainer/Move" to="." method="UpdateButtonContentsColour" binds= [ "Move", false ]]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/Move" to="." method="UpdateButtonContentsColour" binds= ["Move", true]]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/Move" to="." method="UpdateButtonContentsColour" binds= ["Move", false]]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Move" to="." method="OnMovePressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Modify" to="." method="OnModifyPressed"]

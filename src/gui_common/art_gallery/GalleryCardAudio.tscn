@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/gui_common/PlaybackControls.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/musicNote.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/musicNote.png" type="Texture2D" id=2]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryCardAudio.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryCard.tscn" type="PackedScene" id=4]
 
@@ -12,28 +12,28 @@ MissingTexture = ExtResource( 2 )
 PlaybackControlsPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PlaybackControls")
 
 [node name="MarginContainer" parent="MarginContainer/VBoxContainer" index="1"]
-custom_constants/margin_right = 5
-custom_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_left = 5
 
 [node name="PreviewMargin" parent="MarginContainer/VBoxContainer/MarginContainer" index="0"]
-margin_left = 5.0
-margin_right = 163.0
-custom_constants/margin_right = 30
-custom_constants/margin_top = 35
-custom_constants/margin_left = 30
-custom_constants/margin_bottom = 35
+offset_left = 5.0
+offset_right = 163.0
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_bottom = 35
 
 [node name="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin" index="0"]
-margin_left = 30.0
-margin_top = 35.0
-margin_right = 128.0
-margin_bottom = 114.0
+offset_left = 30.0
+offset_top = 35.0
+offset_right = 128.0
+offset_bottom = 114.0
 
 [node name="PlaybackControls" parent="MarginContainer/VBoxContainer/MarginContainer" index="1" instance=ExtResource( 1 )]
-margin_left = 5.0
-margin_top = 124.0
-margin_right = 163.0
-margin_bottom = 149.0
+offset_left = 5.0
+offset_top = 124.0
+offset_right = 163.0
+offset_bottom = 149.0
 
 [connection signal="Started" from="MarginContainer/VBoxContainer/MarginContainer/PlaybackControls" to="." method="OnStarted"]
 [connection signal="Stopped" from="MarginContainer/VBoxContainer/MarginContainer/PlaybackControls" to="." method="OnStopped"]

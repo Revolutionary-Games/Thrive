@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
 ///   Custom widget for microbe editor's collapsible/expandable item list box
 /// </summary>
-public class CollapsibleList : VBoxContainer
+public partial class CollapsibleList : VBoxContainer
 {
     [Export]
     public NodePath? TitleLabelPath;
@@ -21,9 +23,6 @@ public class CollapsibleList : VBoxContainer
     [Export]
     public NodePath ItemContainerPath = null!;
 
-    [Export]
-    public NodePath TweenPath = null!;
-
     private readonly List<Control> items = new();
 
     private string title = string.Empty;
@@ -37,7 +36,6 @@ public class CollapsibleList : VBoxContainer
     private MarginContainer clipBox = null!;
     private TextureButton collapseButton = null!;
     private TextureButton expandButton = null!;
-    private Tween tween = null!;
 #pragma warning restore CA2213
 
     private int cachedTopMarginValue;
@@ -85,9 +83,8 @@ public class CollapsibleList : VBoxContainer
         clipBox = GetNode<MarginContainer>(ClipBoxPath);
         collapseButton = GetNode<TextureButton>(CollapseButtonPath);
         expandButton = GetNode<TextureButton>(ExpandButtonPath);
-        tween = GetNode<Tween>(TweenPath);
 
-        cachedTopMarginValue = clipBox.GetConstant("margin_top");
+        cachedTopMarginValue = clipBox.GetThemeConstant("margin_top");
 
         UpdateItemContainer();
         UpdateTitle();
@@ -104,20 +101,39 @@ public class CollapsibleList : VBoxContainer
 
         // Readjusts the clip box height
         if (Collapsed)
-            clipBox.AddConstantOverride("margin_top", -(int)itemContainer.RectSize.y);
+            clipBox.AddThemeConstantOverride("margin_top", -(int)itemContainer.Size.Y);
     }
 
     public T GetItem<T>(string name)
         where T : Control
     {
-        return (T)items.Find(match => match.Name == name);
+        return (T?)items.Find(i => i.Name == name) ?? throw new ArgumentException("No item found with name");
     }
 
     public void RemoveItem(string name)
     {
-        var found = items.Find(item => item.Name == name);
-        found.DetachAndQueueFree();
+        var found = items.Find(i => i.Name == name);
+
+        if (found == null)
+        {
+            GD.PrintErr("Cannot remove item by name from collapsible list, it was not found: ", name);
+            return;
+        }
+
+        found.QueueFree();
         items.Remove(found);
+    }
+
+    public void RemoveAllOfType<T>()
+        where T : Control
+    {
+        var found = items.FindAll(i => i is T);
+
+        foreach (var item in found)
+        {
+            item.QueueFree();
+            items.Remove(item);
+        }
     }
 
     public void ClearItems()
@@ -144,7 +160,6 @@ public class CollapsibleList : VBoxContainer
                 ExpandButtonPath.Dispose();
                 ClipBoxPath.Dispose();
                 ItemContainerPath.Dispose();
-                TweenPath.Dispose();
             }
         }
 
@@ -188,7 +203,7 @@ public class CollapsibleList : VBoxContainer
     /// </summary>
     private void UpdateLists()
     {
-        foreach (Control item in itemContainer!.GetChildren())
+        foreach (var item in itemContainer!.GetChildren().OfType<Control>())
         {
             items.Add(item);
         }
@@ -204,29 +219,41 @@ public class CollapsibleList : VBoxContainer
 
     private void Collapse()
     {
+        if (isCollapsing)
+            GD.PrintErr("Duplicate collapsible list collapse call");
+
         collapseButton.Hide();
         expandButton.Show();
 
-        tween.InterpolateProperty(clipBox, "custom_constants/margin_top", cachedTopMarginValue,
-            -clipBox.RectSize.y, 0.3f, Tween.TransitionType.Sine, Tween.EaseType.Out);
-        tween.Start();
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.SetEase(Tween.EaseType.Out);
 
-        tween.Connect("tween_all_completed", this, nameof(OnCollapsingFinished), null,
-            (int)ConnectFlags.Oneshot);
+        tween.TweenProperty(clipBox, "custom_constants/margin_top", -clipBox.Size.Y, 0.3).From(cachedTopMarginValue);
+
+        tween.TweenCallback(new Callable(this, nameof(OnCollapsingFinished)));
 
         isCollapsing = true;
     }
 
     private void Expand()
     {
+        if (itemContainer == null)
+            throw new InvalidOperationException("Not initialized");
+
+        if (itemContainer.Visible)
+            GD.PrintErr("Collapsible list expanded while it was already visible");
+
         collapseButton.Show();
         expandButton.Hide();
 
-        itemContainer!.Show();
+        itemContainer.Show();
 
-        tween.InterpolateProperty(clipBox, "custom_constants/margin_top", null, cachedTopMarginValue, 0.3f,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        tween.Start();
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(clipBox, "custom_constants/margin_top", cachedTopMarginValue, 0.3);
     }
 
     // GUI Callbacks

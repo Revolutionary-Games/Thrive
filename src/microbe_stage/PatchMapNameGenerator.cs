@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
+using Xoshiro.PRNG32;
 
 public class PatchMapNameGenerator : IRegistryType
 {
@@ -27,8 +27,10 @@ public class PatchMapNameGenerator : IRegistryType
     /// <summary>
     ///   Generates and returns a new region name (along with a continent name, non-genitive)
     /// </summary>
-    public (string ContinentName, string RegionName) Next(Random random)
+    public (string ContinentName, string RegionName) Next(Random? random)
     {
+        random ??= new XoShiRo128starstar();
+
         int nameLength = random.Next(syllablesLowerLimit, syllablesHigherLimit + 1);
         if (nameLength == 4)
         {

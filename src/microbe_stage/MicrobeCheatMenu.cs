@@ -3,7 +3,7 @@
 /// <summary>
 ///   Handles the microbe cheat menu
 /// </summary>
-public class MicrobeCheatMenu : CheatMenu
+public partial class MicrobeCheatMenu : CheatMenu
 {
     [Export]
     public NodePath? InfiniteCompoundsPath;
@@ -13,6 +13,9 @@ public class MicrobeCheatMenu : CheatMenu
 
     [Export]
     public NodePath DisableAIPath = null!;
+
+    [Export]
+    public NodePath UnlimitGrowthSpeedPath = null!;
 
     [Export]
     public NodePath LockTimePath = null!;
@@ -39,6 +42,7 @@ public class MicrobeCheatMenu : CheatMenu
     private CustomCheckBox infiniteCompounds = null!;
     private CustomCheckBox godMode = null!;
     private CustomCheckBox disableAI = null!;
+    private CustomCheckBox unlimitGrowthSpeed = null!;
     private CustomCheckBox lockTime = null!;
     private Slider speed = null!;
     private Button playerDivide = null!;
@@ -53,6 +57,7 @@ public class MicrobeCheatMenu : CheatMenu
         infiniteCompounds = GetNode<CustomCheckBox>(InfiniteCompoundsPath);
         godMode = GetNode<CustomCheckBox>(GodModePath);
         disableAI = GetNode<CustomCheckBox>(DisableAIPath);
+        unlimitGrowthSpeed = GetNode<CustomCheckBox>(UnlimitGrowthSpeedPath);
         lockTime = GetNode<CustomCheckBox>(LockTimePath);
         speed = GetNode<Slider>(SpeedSliderPath);
         playerDivide = GetNode<Button>(PlayerDividePath);
@@ -61,21 +66,23 @@ public class MicrobeCheatMenu : CheatMenu
         manuallySetTime = GetNode<CustomCheckBox>(ManuallySetTimePath);
         targetTime = GetNode<Slider>(TargetTimePath);
 
-        playerDivide.Connect("pressed", this, nameof(OnPlayerDivideClicked));
-        spawnEnemy.Connect("pressed", this, nameof(OnSpawnEnemyClicked));
-        despawnAllEntities.Connect("pressed", this, nameof(OnDespawnAllEntitiesClicked));
+        playerDivide.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnPlayerDivideClicked)));
+        spawnEnemy.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnSpawnEnemyClicked)));
+        despawnAllEntities.Connect(BaseButton.SignalName.Pressed,
+            new Callable(this, nameof(OnDespawnAllEntitiesClicked)));
 
         base._Ready();
     }
 
     public override void ReloadGUI()
     {
-        infiniteCompounds.Pressed = CheatManager.InfiniteCompounds;
-        godMode.Pressed = CheatManager.GodMode;
-        disableAI.Pressed = CheatManager.NoAI;
-        lockTime.Pressed = CheatManager.LockTime;
+        infiniteCompounds.ButtonPressed = CheatManager.InfiniteCompounds;
+        godMode.ButtonPressed = CheatManager.GodMode;
+        disableAI.ButtonPressed = CheatManager.NoAI;
+        unlimitGrowthSpeed.ButtonPressed = CheatManager.UnlimitedGrowthSpeed;
+        lockTime.ButtonPressed = CheatManager.LockTime;
         speed.Value = CheatManager.Speed;
-        manuallySetTime.Pressed = CheatManager.ManuallySetTime;
+        manuallySetTime.ButtonPressed = CheatManager.ManuallySetTime;
         targetTime.Value = CheatManager.DayNightFraction;
     }
 
@@ -88,6 +95,7 @@ public class MicrobeCheatMenu : CheatMenu
                 InfiniteCompoundsPath.Dispose();
                 GodModePath.Dispose();
                 DisableAIPath.Dispose();
+                UnlimitGrowthSpeedPath.Dispose();
                 LockTimePath.Dispose();
                 SpeedSliderPath.Dispose();
                 PlayerDividePath.Dispose();
@@ -114,5 +122,10 @@ public class MicrobeCheatMenu : CheatMenu
     private void OnDespawnAllEntitiesClicked()
     {
         CheatManager.DespawnAllEntities();
+    }
+
+    private void SetUnlimitGrowthSpeed(bool isOn)
+    {
+        CheatManager.UnlimitedGrowthSpeed = isOn;
     }
 }

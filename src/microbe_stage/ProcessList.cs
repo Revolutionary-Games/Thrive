@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Shows a list of processes in a container
 /// </summary>
-public class ProcessList : VBoxContainer
+public partial class ProcessList : VBoxContainer
 {
 #pragma warning disable CA2213
     private PackedScene chemicalEquationScene = null!;
@@ -22,9 +22,9 @@ public class ProcessList : VBoxContainer
     public bool ShowSpinners { get; set; } = true;
 
     /// <summary>
-    ///   The default color for all the process titles in this list.
+    ///   The default color for all the process titles in this list. TODO: test that this works still
     /// </summary>
-    public Color ProcessesTitleColour { get; set; } = Colors.White;
+    public LabelSettings? ProcessesTitleColour { get; set; }
 
     /// <summary>
     ///   If true the color of one of the process titles in this list will be changed to red
@@ -44,7 +44,7 @@ public class ProcessList : VBoxContainer
             new ChildObjectCache<StrictProcessDisplayInfoEquality, ChemicalEquation>(this, CreateEquation);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!IsVisibleInTree())
             return;
@@ -74,11 +74,15 @@ public class ProcessList : VBoxContainer
 
     private ChemicalEquation CreateEquation(StrictProcessDisplayInfoEquality process)
     {
-        var equation = (ChemicalEquation)chemicalEquationScene.Instance();
+        var equation = chemicalEquationScene.Instantiate<ChemicalEquation>();
         equation.ShowSpinner = ShowSpinners;
-        equation.EquationFromProcess = process.DisplayInfo;
-        equation.DefaultTitleColour = ProcessesTitleColour;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
+
+        if (ProcessesTitleColour != null)
+            equation.DefaultTitleFont = ProcessesTitleColour;
+
+        // This creates processes already so this needs to be done last
+        equation.EquationFromProcess = process.DisplayInfo;
 
         return equation;
     }

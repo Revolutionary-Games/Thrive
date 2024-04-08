@@ -1,51 +1,50 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+using Newtonsoft.Json;
+
+public class CheckTheHelpMenu : TutorialPhase
 {
-    using System;
-    using Newtonsoft.Json;
+    public const string TUTORIAL_NAME = "CheckTheHelpMenu";
 
-    public class CheckTheHelpMenu : TutorialPhase
+    private const int TriggersOnNthSwimmingSession = 3;
+
+    public CheckTheHelpMenu()
     {
-        public const string TUTORIAL_NAME = "CheckTheHelpMenu";
+        CanTrigger = false;
+    }
 
-        private const int TriggersOnNthSwimmingSession = 3;
+    public override string ClosedByName => TUTORIAL_NAME;
 
-        public CheckTheHelpMenu()
+    [JsonProperty]
+    public int NumberOfMicrobeStageEntries { get; set; }
+
+    public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    {
+        gui.CheckTheHelpMenuVisible = ShownCurrently;
+    }
+
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            CanTrigger = false;
-        }
-
-        public override string ClosedByName => TUTORIAL_NAME;
-
-        [JsonProperty]
-        public int NumberOfMicrobeStageEntries { get; set; }
-
-        public override void ApplyGUIState(MicrobeTutorialGUI gui)
-        {
-            gui.CheckTheHelpMenuVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.EnteredMicrobeStage:
             {
-                case TutorialEventType.EnteredMicrobeStage:
+                if (!HasBeenShown)
                 {
-                    if (!HasBeenShown)
+                    ++NumberOfMicrobeStageEntries;
+                    if (NumberOfMicrobeStageEntries >= TriggersOnNthSwimmingSession &&
+                        !overallState.TutorialActive())
                     {
-                        ++NumberOfMicrobeStageEntries;
-                        if (NumberOfMicrobeStageEntries >= TriggersOnNthSwimmingSession &&
-                            !overallState.TutorialActive())
-                        {
-                            Show();
-                        }
+                        Show();
                     }
-
-                    break;
                 }
-            }
 
-            return false;
+                break;
+            }
         }
+
+        return false;
     }
 }

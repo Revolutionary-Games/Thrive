@@ -8,7 +8,7 @@ using Godot;
 /// <summary>
 ///   For extra functionality added on top of normal RichTextLabel. Includes custom bbcode parser.
 /// </summary>
-public class CustomRichTextLabel : RichTextLabel
+public partial class CustomRichTextLabel : RichTextLabel
 {
     private string? extendedBbcode;
 
@@ -50,6 +50,27 @@ public class CustomRichTextLabel : RichTextLabel
     }
 
     /// <summary>
+    ///   Vertical alignment of an image
+    /// </summary>
+    public enum ImageVerticalAlignment
+    {
+        Top = 0,
+        Center,
+        Bottom,
+    }
+
+    /// <summary>
+    ///   Where in the text the image references its alignment to
+    /// </summary>
+    public enum ImageAlignmentReferencePoint
+    {
+        Top = 0,
+        Center,
+        Bottom,
+        Baseline,
+    }
+
+    /// <summary>
     ///   This supports custom bbcode tags specific to Thrive (for example: [thrive:compound type="glucose"]
     ///   [/thrive:compound])
     /// </summary>
@@ -73,12 +94,24 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    /// <summary>
+    ///   Note: must be set before attached to the scene or otherwise this won't apply correct signals
+    /// </summary>
+    [Export]
+    public bool EnableTooltipsForMetaTags { get; set; } = true;
+
     public override void _Ready()
     {
         // Make sure bbcode is enabled
         BbcodeEnabled = true;
 
-        Connect("meta_clicked", this, nameof(OnMetaClicked));
+        Connect(RichTextLabel.SignalName.MetaClicked, new Callable(this, nameof(OnMetaClicked)));
+
+        if (EnableTooltipsForMetaTags)
+        {
+            Connect(RichTextLabel.SignalName.MetaHoverStarted, new Callable(this, nameof(OnMetaHoverStarted)));
+            Connect(RichTextLabel.SignalName.MetaHoverEnded, new Callable(this, nameof(OnMetaHoverEnded)));
+        }
     }
 
     public override void _ExitTree()
@@ -108,7 +141,7 @@ public class CustomRichTextLabel : RichTextLabel
 #pragma warning disable CA2245 // Necessary for workaround
         Invoke.Instance.QueueForObject(() =>
         {
-            var bbCode = BbcodeText;
+            var bbCode = Text;
 
             // Only run this once to not absolutely tank performance with long rich text labels
             if (heightWorkaroundRanForString == bbCode)
@@ -116,9 +149,32 @@ public class CustomRichTextLabel : RichTextLabel
 
             heightWorkaroundRanForString = bbCode;
 
-            BbcodeText = bbCode;
+            Text = bbCode;
         }, this);
 #pragma warning restore CA2245
+    }
+
+    private static bool GetSpeciesFromMeta(string metaString, out Species? species)
+    {
+        // TODO: is there a way to avoid this extra memory allocation?
+        var speciesCode = metaString.Substring("species:".Length);
+
+        if (!uint.TryParse(speciesCode, out var speciesId))
+        {
+            GD.PrintErr("Invalid species meta format, not a number");
+            species = null;
+            return false;
+        }
+
+        species = ThriveopediaManager.GetActiveSpeciesData(speciesId);
+
+        if (species == null)
+        {
+            GD.PrintErr("Could not find active species data to show in tooltip");
+            return false;
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -129,25 +185,25 @@ public class CustomRichTextLabel : RichTextLabel
     {
         if (extendedBbcode == null)
         {
-            BbcodeText = null;
+            Text = null;
             return;
         }
 
         var old = extendedBbcode;
-        var translated = TranslationServer.Translate(extendedBbcode);
+        var translated = Localization.Translate(extendedBbcode);
         reactToLanguageChange = old != translated;
 
         try
         {
             // Parse our custom tags into standard tags and display that text
-            BbcodeText = ParseCustomTagsString(translated);
+            Text = ParseCustomTagsString(translated);
         }
         catch (Exception e)
         {
             GD.PrintErr("Failed to parse bbcode string due to exception: ", e);
 
             // Just display the raw markup for now
-            BbcodeText = translated;
+            Text = translated;
         }
     }
 
@@ -283,8 +339,8 @@ public class CustomRichTextLabel : RichTextLabel
                     var closingTagStartIndex = extendedBbcode.IndexOf("[", lastStartingTagEndIndex,
                         StringComparison.InvariantCulture);
 
-                    var input = extendedBbcode.Substring(
-                        lastStartingTagEndIndex + 1, closingTagStartIndex - lastStartingTagEndIndex - 1);
+                    var input = extendedBbcode.Substring(lastStartingTagEndIndex + 1,
+                        closingTagStartIndex - lastStartingTagEndIndex - 1);
 
                     if (Enum.TryParse(bbcode, true, out ThriveBbCode parsedTag))
                     {
@@ -336,9 +392,11 @@ public class CustomRichTextLabel : RichTextLabel
 
         var pairs = StringUtils.ParseKeyValuePairs(attributes);
 
-        string GetResizedImage(string imagePath, int width, int height, int ascent)
+        string GetResizedImage(string imagePath,
+            int width, int height, ImageVerticalAlignment verticalAlignment = ImageVerticalAlignment.Center,
+            ImageAlignmentReferencePoint textAnchorPoint = ImageAlignmentReferencePoint.Center)
         {
-            if (pairs.TryGetValue("size", out string sizeInput))
+            if (pairs.TryGetValue("size", out string? sizeInput))
             {
                 var separator = sizeInput.Find("x");
 
@@ -348,27 +406,58 @@ public class CustomRichTextLabel : RichTextLabel
                 }
                 else
                 {
-                    var split = sizeInput.Split("x");
+                    var split = sizeInput.Split("x", 2);
                     width = split[0].ToInt();
                     height = split[1].ToInt();
                 }
             }
 
-            if (pairs.TryGetValue("ascent", out string ascentInput))
-                ascent = ascentInput.ToInt();
+            // TODO: allow bbcode override for the vertical alignment or text anchor point?
 
-            var ascentFont = "res://src/gui_common/fonts/dynamically_created/BBCode-Image-" +
-                $"VerticalCenterAlign-{ascent}.tres";
+            string vertical;
 
-            if (!ResourceLoader.Exists(ascentFont))
+            switch (verticalAlignment)
             {
-                // TODO: Remove this horrible hack once proper bbcode vertical image alignment is available in Godot 4
-                GD.PrintErr($"Input Action: No ascent font found for {ascent}, creating a new one");
-                var newAscentFont = new BitmapFont { Ascent = ascent };
-                ResourceSaver.Save(ascentFont, newAscentFont);
+                case ImageVerticalAlignment.Top:
+                    vertical = "top";
+                    break;
+                case ImageVerticalAlignment.Center:
+                    vertical = "center";
+                    break;
+                case ImageVerticalAlignment.Bottom:
+                    vertical = "bottom";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(verticalAlignment), verticalAlignment, null);
             }
 
-            return $"[font={ascentFont}][img={width}x{height}]{imagePath}[/img][/font]";
+            // Automatic reference if the same point is used
+            if ((int)textAnchorPoint == (int)verticalAlignment)
+            {
+                return $"[img {vertical} width={width} height={height}]{imagePath}[/img]";
+            }
+
+            string reference;
+
+            switch (textAnchorPoint)
+            {
+                case ImageAlignmentReferencePoint.Top:
+                    reference = "top";
+                    break;
+                case ImageAlignmentReferencePoint.Center:
+                    reference = "center";
+                    break;
+                case ImageAlignmentReferencePoint.Bottom:
+                    reference = "bottom";
+                    break;
+                case ImageAlignmentReferencePoint.Baseline:
+                    reference = "baseline";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(textAnchorPoint), textAnchorPoint, null);
+            }
+
+            return $"[img {vertical},{reference} width={width} height={height}]{imagePath}[/img]";
         }
 
         switch (bbcode)
@@ -377,7 +466,7 @@ public class CustomRichTextLabel : RichTextLabel
             {
                 var internalName = string.Empty;
 
-                if (pairs.TryGetValue("type", out string value))
+                if (pairs.TryGetValue("type", out string? value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
@@ -404,13 +493,14 @@ public class CustomRichTextLabel : RichTextLabel
                 if (string.IsNullOrEmpty(input))
                     input = compound.Name;
 
-                output = $"[b]{input}[/b] {GetResizedImage(compound.IconPath, 20, 0, 3)}";
+                output = $"[b]{input}[/b] {GetResizedImage(compound.IconPath, 20, 0)}";
 
                 break;
             }
 
             case ThriveBbCode.Input:
             {
+                // TODO: cache for valid input actions: https://github.com/Revolutionary-Games/Thrive/issues/4983
                 if (!InputMap.HasAction(input))
                 {
                     GD.PrintErr($"Input action: \"{input}\" doesn't exist, referenced in bbcode");
@@ -426,7 +516,7 @@ public class CustomRichTextLabel : RichTextLabel
                 }
 
                 // TODO: add support for showing the overlay image / text saying the direction for axis type inputs
-                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input).Primary, 30, 0, 9);
+                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input).Primary, 30, 0);
 
                 break;
             }
@@ -434,7 +524,7 @@ public class CustomRichTextLabel : RichTextLabel
             case ThriveBbCode.Constant:
             {
                 var parsedAttributes = StringUtils.ParseKeyValuePairs(attributes);
-                parsedAttributes.TryGetValue("format", out string format);
+                parsedAttributes.TryGetValue("format", out string? format);
 
                 switch (input)
                 {
@@ -446,22 +536,22 @@ public class CustomRichTextLabel : RichTextLabel
 
                     case "ENGULF_COMPOUND_ABSORBING_PER_SECOND":
                     {
-                        output = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND.ToString(
-                            format, CultureInfo.CurrentCulture);
+                        output = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND.ToString(format,
+                            CultureInfo.CurrentCulture);
                         break;
                     }
 
                     case "ENZYME_DIGESTION_SPEED_UP_FRACTION":
                     {
-                        output = (Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * 100).ToString(
-                            format, CultureInfo.CurrentCulture);
+                        output = (Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * 100).ToString(format,
+                            CultureInfo.CurrentCulture);
                         break;
                     }
 
                     case "ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION":
                     {
-                        output = (Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * 100).ToString(
-                            format, CultureInfo.CurrentCulture);
+                        output = (Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * 100).ToString(format,
+                            CultureInfo.CurrentCulture);
                         break;
                     }
 
@@ -503,7 +593,7 @@ public class CustomRichTextLabel : RichTextLabel
             {
                 var internalName = string.Empty;
 
-                if (pairs.TryGetValue("type", out string value))
+                if (pairs.TryGetValue("type", out string? value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
@@ -536,7 +626,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                 if (!showName)
                 {
-                    output = GetResizedImage(resource.InventoryIcon, 20, 0, 3);
+                    output = GetResizedImage(resource.InventoryIcon, 20, 0);
                 }
                 else
                 {
@@ -544,7 +634,7 @@ public class CustomRichTextLabel : RichTextLabel
                     if (string.IsNullOrEmpty(input))
                         input = resource.Name;
 
-                    output = $"[b]{input}[/b] {GetResizedImage(resource.InventoryIcon, 20, 0, 3)}";
+                    output = $"[b]{input}[/b] {GetResizedImage(resource.InventoryIcon, 20, 0)}";
                 }
 
                 break;
@@ -558,14 +648,37 @@ public class CustomRichTextLabel : RichTextLabel
                 {
                     case "ConditionInsufficient":
                     {
-                        output = GetResizedImage(GUICommon.Instance.RequirementInsufficientIconPath, 20, 0,
-                            3);
+                        output = GetResizedImage(GUICommon.Instance.RequirementInsufficientIconPath, 20, 0);
                         break;
                     }
 
                     case "ConditionFulfilled":
                     {
-                        output = GetResizedImage(GUICommon.Instance.RequirementFulfilledIconPath, 20, 0, 3);
+                        output = GetResizedImage(GUICommon.Instance.RequirementFulfilledIconPath, 20, 0);
+                        break;
+                    }
+
+                    case "StorageIcon":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/StorageIcon.png", 20, 0);
+                        break;
+                    }
+
+                    case "OsmoIcon":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/osmoregulationIcon.png", 20, 0);
+                        break;
+                    }
+
+                    case "MovementIcon":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/SpeedIcon.png", 20, 0);
+                        break;
+                    }
+
+                    case "MP":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/MP.png", 20, 0);
                         break;
                     }
 
@@ -583,15 +696,17 @@ public class CustomRichTextLabel : RichTextLabel
         return output;
     }
 
-    private void OnInputsRemapped(object sender, EventArgs args)
+    private void OnInputsRemapped(object? sender, EventArgs args)
     {
         ParseCustomTags();
     }
 
-    private void OnMetaClicked(object meta)
+    private void OnMetaClicked(Variant meta)
     {
-        if (meta is string metaString)
+        if (meta.VariantType == Variant.Type.String)
         {
+            var metaString = meta.AsString();
+
             // TODO: should there be stronger validation than this? that this is actually an URL? Maybe Uri.TryParse
             if (metaString.StartsWith("http", StringComparison.Ordinal))
             {
@@ -600,6 +715,64 @@ public class CustomRichTextLabel : RichTextLabel
                 {
                     GD.PrintErr("Opening the link failed");
                 }
+            }
+            else if (metaString.StartsWith("thriveopedia", StringComparison.Ordinal))
+            {
+                var pageName = metaString.Split("thriveopedia:", 2)[1];
+                ThriveopediaManager.OpenPage(pageName);
+            }
+        }
+    }
+
+    private void OnMetaHoverStarted(Variant meta)
+    {
+        if (!EnableTooltipsForMetaTags)
+            return;
+
+        if (meta.VariantType != Variant.Type.String)
+            return;
+
+        var metaString = meta.AsString();
+
+        if (metaString.StartsWith("species:", StringComparison.Ordinal))
+        {
+            if (!GetSpeciesFromMeta(metaString, out var species))
+                return;
+
+            if (species is not MicrobeSpecies)
+                return;
+
+            var tooltip = ToolTipManager.Instance.GetToolTip<SpeciesPreviewTooltip>("speciesPreview");
+            if (tooltip != null)
+            {
+                tooltip.PreviewSpecies = species;
+                ToolTipManager.Instance.MainToolTip = tooltip;
+                ToolTipManager.Instance.Display = true;
+            }
+        }
+    }
+
+    private void OnMetaHoverEnded(Variant meta)
+    {
+        if (!EnableTooltipsForMetaTags)
+            return;
+
+        if (meta.VariantType != Variant.Type.String)
+            return;
+
+        var metaString = meta.AsString();
+
+        if (metaString.StartsWith("species:", StringComparison.Ordinal))
+        {
+            if (!GetSpeciesFromMeta(metaString, out var species))
+                return;
+
+            // Hide tooltip if it was currently showing the tooltip for this species preview
+            var tooltip = ToolTipManager.Instance.GetToolTip<SpeciesPreviewTooltip>("speciesPreview");
+            if (tooltip != null && ToolTipManager.Instance.MainToolTip == tooltip && tooltip.PreviewSpecies == species)
+            {
+                ToolTipManager.Instance.MainToolTip = null;
+                ToolTipManager.Instance.Display = false;
             }
         }
     }

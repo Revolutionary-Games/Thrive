@@ -11,5 +11,5 @@ public interface IEntity : IAliveTracked
     ///   The Node that this entity is in the game world as
     /// </summary>
     [JsonIgnore]
-    public Spatial EntityNode { get; }
+    public Node3D EntityNode { get; }
 }

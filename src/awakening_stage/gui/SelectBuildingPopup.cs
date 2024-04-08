@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   Allows selecting a structure type from a list of available ones
 /// </summary>
-public class SelectBuildingPopup : StructureToBuildPopupBase<StructureDefinition>
+public partial class SelectBuildingPopup : StructureToBuildPopupBase<StructureDefinition>
 {
     private readonly List<StructureDefinition> validDefinitions = new();
 
@@ -44,8 +44,8 @@ public class SelectBuildingPopup : StructureToBuildPopupBase<StructureDefinition
             // createdButtons.Add(availableStructure, createdButtonHolder);
             createdButtonHolder.UpdateResourceCost(allResources, stringBuilder, stringBuilder2);
 
-            HandleAddingStructureSelector(structureContent, !createdButtonHolder.Disabled, nameof(OnStructureSelected),
-                availableStructure.InternalName, button, ref firstButton);
+            HandleAddingStructureSelector(structureContent, !createdButtonHolder.Disabled,
+                () => OnStructureSelected(availableStructure.InternalName), button, ref firstButton);
         }
 
         // TODO: sort the buttons based on some criteria
@@ -94,13 +94,13 @@ public class SelectBuildingPopup : StructureToBuildPopupBase<StructureDefinition
 
             if (!canStart)
             {
-                customRichTextLabel.ExtendedBbcode = TranslationServer.Translate(
+                customRichTextLabel.ExtendedBbcode = Localization.Translate(
                         "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES")
                     .FormatSafe(structureDefinition.Name, stringBuilder.ToString(), stringBuilder2.ToString());
             }
             else
             {
-                customRichTextLabel.ExtendedBbcode = TranslationServer.Translate("STRUCTURE_SELECTION_MENU_ENTRY")
+                customRichTextLabel.ExtendedBbcode = Localization.Translate("STRUCTURE_SELECTION_MENU_ENTRY")
                     .FormatSafe(structureDefinition.Name, stringBuilder.ToString(), stringBuilder2.ToString());
             }
         }

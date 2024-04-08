@@ -62,7 +62,7 @@ public abstract class InputAttribute : Attribute
     ///   Processes input actions that aren't triggered on key events directly
     /// </summary>
     /// <param name="delta">The time since the last call of OnProcess</param>
-    public abstract void OnProcess(float delta);
+    public abstract void OnProcess(double delta);
 
     /// <summary>
     ///   Called when the games window lost it's focus.
@@ -119,8 +119,31 @@ public abstract class InputAttribute : Attribute
     /// </summary>
     /// <param name="parameters">The parameters the method will be called with</param>
     /// <returns>Returns whether the event was consumed or not. Methods returning a boolean can control this.</returns>
-    protected bool CallMethod(params object[] parameters)
+    protected bool CallMethod(object[] parameters)
     {
-        return InputManager.CallMethod(this, parameters);
+        return InputManager.CallMethod(this, false, parameters);
+    }
+
+    /// <summary>
+    ///   Calls the associated method and gives an error if it tries to control the consuming of input.
+    /// </summary>
+    protected void CallDelayedMethod(object[] parameters)
+    {
+        InputManager.CallMethod(this, true, parameters);
+    }
+
+    // TODO: find a way to avoid the boxing as object for parameters here somehow
+    protected void PrepareMethodParameters(ref object[]? parameters, int size, object firstParameter)
+    {
+        if (parameters == null || parameters.Length != size)
+            parameters = new object[size];
+
+        parameters[0] = firstParameter;
+    }
+
+    protected void PrepareMethodParametersEmpty(ref object[]? parameters)
+    {
+        if (parameters == null || parameters.Length != 0)
+            parameters = Array.Empty<object>();
     }
 }

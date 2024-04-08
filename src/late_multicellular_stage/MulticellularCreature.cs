@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularCreature.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterInventory, IEntity,
+public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, ICharacterInventory, IEntity,
     IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource
 {
     private static readonly Vector3 SwimUpForce = new(0, 20, 0);
@@ -37,7 +37,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
 #pragma warning disable CA2213
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
 
-    private Spatial? buildingToPlaceGhost;
+    private Node3D? buildingToPlaceGhost;
 #pragma warning restore CA2213
 
     // TODO: a real system for determining the hand and equipment slots
@@ -140,7 +140,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     [JsonIgnore]
     public bool IsLoadedFromSave { get; set; }
@@ -184,17 +184,17 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
         _Ready();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
         // TODO: implement growth
         OnReproductionStatus?.Invoke(this, true);
 
-        UpdateActionStatus(delta);
+        UpdateActionStatus((float)delta);
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
 
@@ -202,13 +202,14 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
         {
             // TODO: apply buoyancy (if this is underwater)
 
-            if (Translation.y < targetSwimLevel)
-                ApplyCentralImpulse(Mass * SwimUpForce * delta);
+            if (Position.Y < targetSwimLevel)
+                ApplyCentralImpulse(Mass * SwimUpForce * (float)delta);
 
             if (MovementDirection != Vector3.Zero)
             {
                 // TODO: movement force calculation
-                ApplyCentralImpulse(Mass * MovementDirection * delta);
+                ApplyCentralImpulse(Mass * MovementDirection * (float)delta * 2 *
+                    (Mathf.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
             }
         }
         else
@@ -216,7 +217,8 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             if (MovementDirection != Vector3.Zero)
             {
                 // TODO: movement force calculation
-                ApplyCentralImpulse(Mass * MovementDirection * delta * 50);
+                ApplyCentralImpulse(Mass * MovementDirection * (float)delta * 15 *
+                    (Mathf.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
             }
         }
 
@@ -277,7 +279,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
 
     public MulticellularCreature SpawnOffspring()
     {
-        var currentPosition = GlobalTransform.origin;
+        var currentPosition = GlobalTransform.Origin;
 
         // TODO: calculate size somehow
         var separation = new Vector3(10, 0, 0);
@@ -347,7 +349,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
         // TODO: implement sound playing, should probably create a helper method to share with Microbe
 
         /*// Find a player not in use or create a new one if none are available.
-        var player = otherAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
+        var player = otherAudioPlayers.Find(p => !p.Playing);
 
         if (player == null)
         {
@@ -363,30 +365,30 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             otherAudioPlayers.Add(player);
         }
 
-        player.UnitDb = GD.Linear2Db(volume);
+        player.VolumeDb = Mathf.LinearToDb(volume);
         player.Stream = sound;
         player.Play();*/
     }
 
-    public void SwimUpOrJump(float delta)
+    public void SwimUpOrJump(double delta)
     {
         if (MovementMode == MovementMode.Swimming)
         {
-            targetSwimLevel += upDownSwimSpeed * delta;
+            targetSwimLevel += upDownSwimSpeed * (float)delta;
         }
         else
         {
             // TODO: only allow jumping when touching the ground
             // TODO: suppress jump when the user just interacted with a dialog to confirm something, maybe jump should
             // use the on press key thing to only trigger jumping once?
-            ApplyCentralImpulse(new Vector3(0, 1, 0) * delta * 12000);
+            ApplyCentralImpulse(new Vector3(0, 1, 0) * (float)delta * 12000);
         }
     }
 
-    public void SwimDownOrCrouch(float delta)
+    public void SwimDownOrCrouch(double delta)
     {
         // TODO: crouching
-        targetSwimLevel -= upDownSwimSpeed * delta;
+        targetSwimLevel -= upDownSwimSpeed * (float)delta;
     }
 
     /// <summary>
@@ -408,7 +410,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
         {
             bool full = !FitsInCarryingCapacity(target);
             yield return (InteractionType.Pickup, !full,
-                full ? TranslationServer.Translate("INTERACTION_PICK_UP_CANNOT_FULL") : null);
+                full ? Localization.Translate("INTERACTION_PICK_UP_CANNOT_FULL") : null);
         }
 
         if (target is ResourceEntity)
@@ -431,8 +433,8 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             }
             else
             {
-                var message = TranslationServer.Translate("INTERACTION_HARVEST_CANNOT_MISSING_TOOL").FormatSafe(
-                    TranslationServer.Translate(missingTool.GetAttribute<DescriptionAttribute>().Description));
+                var message = Localization.Translate("INTERACTION_HARVEST_CANNOT_MISSING_TOOL").FormatSafe(
+                    Localization.Translate(missingTool.GetAttribute<DescriptionAttribute>().Description));
 
                 yield return (InteractionType.Harvest, false, message);
             }
@@ -445,7 +447,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             yield return (InteractionType.DepositResources, takesItems,
                 takesItems ?
                     null :
-                    TranslationServer.Translate("INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"));
+                    Localization.Translate("INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"));
         }
 
         if (target is IConstructable { Completed: false } constructable)
@@ -455,7 +457,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             yield return (InteractionType.Construct, canBeBuilt,
                 canBeBuilt ?
                     null :
-                    TranslationServer.Translate("INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"));
+                    Localization.Translate("INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"));
         }
 
         // Add the extra interactions the entity provides
@@ -740,7 +742,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
         buildingTypeToPlace = structureDefinition;
 
         // Show the ghost where it is about to be placed
-        buildingToPlaceGhost = buildingTypeToPlace.GhostScene.Instance<Spatial>();
+        buildingToPlaceGhost = buildingTypeToPlace.GhostScene.Instantiate<Node3D>();
 
         // TODO: should we add the ghost to our child or keep it in the world?
         GetParent().AddChild(buildingToPlaceGhost);
@@ -843,13 +845,16 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
         item.InteractionDisabled = true;
 
         // Surprise surprise, the physics detach bug can also hit here
-        if (targetNode is RigidBody entityPhysics)
-            entityPhysics.Mode = ModeEnum.Kinematic;
+        if (targetNode is RigidBody3D entityPhysics)
+        {
+            entityPhysics.Freeze = true;
+            entityPhysics.FreezeMode = FreezeModeEnum.Kinematic;
+        }
 
         return true;
     }
 
-    private void HandleEntityDrop(IInteractableEntity item, Spatial entityNode)
+    private void HandleEntityDrop(IInteractableEntity item, Node3D entityNode)
     {
         // TODO: drop position based on creature size, and also confirm the drop point is free from other physics
         // objects
@@ -871,23 +876,23 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             entityNode.ReParent(world);
         }
 
-        entityNode.GlobalTranslation = ourTransform.origin + ourTransform.basis.Quat().Xform(offset);
+        entityNode.GlobalPosition = ourTransform.Origin + ourTransform.Basis.GetRotationQuaternion() * offset;
 
         // Allow others to interact with the object again
         item.InteractionDisabled = false;
 
-        if (entityNode is RigidBody entityPhysics)
-            entityPhysics.Mode = ModeEnum.Rigid;
+        if (entityNode is RigidBody3D entityPhysics)
+            entityPhysics.Freeze = false;
     }
 
-    private void SetItemPositionInSlot(InventorySlotData slot, Spatial node)
+    private void SetItemPositionInSlot(InventorySlotData slot, Node3D node)
     {
         // TODO: inventory carried items should not be shown in the world
 
         // TODO: better positioning and actually attaching it to the place the object is carried in
         var offset = new Vector3(-0.5f, 2.7f, 1.5f + 2.5f * slot.Id);
 
-        node.Translation = offset;
+        node.Position = offset;
     }
 
     private void StartAction(IInteractableEntity target, float totalDuration)
@@ -899,7 +904,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
         actionTarget = new EntityReference<IInteractableEntity>(target);
         performedActionTime = 0;
         totalActionRequiredTime = totalDuration;
-        startedActionPosition = GlobalTranslation;
+        startedActionPosition = GlobalPosition;
     }
 
     private void UpdateActionStatus(float delta)
@@ -908,7 +913,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             return;
 
         // If moved too much, cancel
-        if (GlobalTranslation.DistanceSquaredTo(startedActionPosition) > Constants.ACTION_CANCEL_DISTANCE)
+        if (GlobalPosition.DistanceSquaredTo(startedActionPosition) > Constants.ACTION_CANCEL_DISTANCE)
         {
             // TODO: play an action cancel sound
             CancelCurrentAction();
@@ -960,20 +965,20 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
         }
     }
 
-    private Transform GetStructurePlacementLocation()
+    private Transform3D GetStructurePlacementLocation()
     {
         if (buildingTypeToPlace == null)
             throw new InvalidOperationException("No structure type selected");
 
-        var relative = new Vector3(0, 0, 1) * buildingTypeToPlace.WorldSize.z * 1.3f;
+        var relative = new Vector3(0, 0, 1) * buildingTypeToPlace.WorldSize.Z * 1.3f;
 
         // TODO: a raycast to get the structure on the ground
         // Also for player creature, taking the camera direction into account instead of the creature rotation would
         // be better
         var transform = GlobalTransform;
-        var rotation = transform.basis.Quat();
+        var rotation = transform.Basis.GetRotationQuaternion();
 
-        var worldTransform = new Transform(new Basis(rotation), transform.origin + rotation.Xform(relative));
+        var worldTransform = new Transform3D(new Basis(rotation), transform.Origin + rotation * relative);
         return worldTransform;
     }
 }

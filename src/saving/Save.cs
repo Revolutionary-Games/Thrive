@@ -6,8 +6,7 @@ using Godot;
 using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Directory = Godot.Directory;
-using File = Godot.File;
+using FileAccess = Godot.FileAccess;
 
 /// <summary>
 ///   A class representing a single saved game
@@ -176,12 +175,12 @@ public class Save
         if (string.IsNullOrEmpty(saveStr))
             throw new IOException("couldn't find save content in save file");
 
-        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
+        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr) ??
             throw new JsonException("SaveInformation object was deserialized as null");
 
         // Don't use the normal deserialization as we don't want to actually create the game state, instead we want
         // a JSON structure
-        var saveResult = JObject.Parse(saveStr!);
+        var saveResult = JObject.Parse(saveStr);
 
         var imageResult = new Image();
 
@@ -241,8 +240,8 @@ public class Save
 
     private static void WriteDataToSaveFile(string target, string justInfo, string serialized, Image? screenshot)
     {
-        using var file = new File();
-        if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
+        using var file = FileAccess.Open(target, FileAccess.ModeFlags.Write);
+        if (file == null)
         {
             GD.PrintErr("Cannot open file for writing: ", target);
             throw new IOException("Cannot open: " + target);
@@ -272,11 +271,8 @@ public class Save
     private static (SaveInformation? Info, Save? Save, Image? Screenshot) LoadFromFile(string file, bool info,
         bool save, bool screenshot, Action? readFinished)
     {
-        using (var directory = new Directory())
-        {
-            if (!directory.FileExists(file))
-                throw new ArgumentException("save with the given name doesn't exist");
-        }
+        if (!FileAccess.FileExists(file))
+            throw new ArgumentException("save with the given name doesn't exist");
 
         var (infoStr, saveStr, screenshotData) = LoadDataFromFile(file, info, save, screenshot);
 
@@ -299,7 +295,7 @@ public class Save
             }
 
             // This deserializes a huge tree of objects
-            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr!) ??
+            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr) ??
                 throw new JsonException("Save data is null");
         }
 
@@ -321,7 +317,7 @@ public class Save
             throw new IOException("couldn't find info content in save");
         }
 
-        return ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
+        return ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr) ??
             throw new JsonException("SaveInformation is null");
     }
 
@@ -349,10 +345,8 @@ public class Save
             throw new ArgumentException("no things to load specified from save");
         }
 
-        using var reader = new File();
-        reader.Open(file, File.ModeFlags.Read);
-
-        if (!reader.IsOpen())
+        using var reader = FileAccess.Open(file, FileAccess.ModeFlags.Read);
+        if (reader == null)
             throw new ArgumentException("couldn't open the file for reading");
 
         using var stream = new GodotFileStream(reader);

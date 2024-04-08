@@ -2,7 +2,10 @@
 using System.Linq;
 using Godot;
 
-public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
+/// <summary>
+///   Upgrade GUI for the vacuole that allows specializing it
+/// </summary>
+public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
     public NodePath? CompoundsPath;
@@ -58,7 +61,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades configuration)
         {
             Compound? specialization = shownChoices.Find(c => c == configuration.SpecializedFor);
-            isSpecializedCheckbox.Pressed = specialization != null;
+            isSpecializedCheckbox.ButtonPressed = specialization != null;
 
             compounds.Selected = specialization != null ?
                 shownChoices.IndexOf(specialization) :
@@ -67,7 +70,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         else
         {
             compounds.Selected = defaultCompoundIndex;
-            isSpecializedCheckbox.Pressed = false;
+            isSpecializedCheckbox.ButtonPressed = false;
         }
 
         UpdateGUI();
@@ -86,7 +89,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             compounds.Selected = 0;
 
         organelleUpgrades.CustomUpgradeData = new StorageComponentUpgrades(
-            isSpecializedCheckbox.Pressed ? shownChoices[compounds.Selected] : null);
+            isSpecializedCheckbox.ButtonPressed ? shownChoices[compounds.Selected] : null);
 
         return true;
     }
@@ -121,13 +124,13 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private void UpdateGUI()
     {
         // Update visibility of the compound selection
-        compoundSelection.Visible = isSpecializedCheckbox.Pressed;
+        compoundSelection.Visible = isSpecializedCheckbox.ButtonPressed;
 
         if (shownChoices == null)
             return;
 
         float capacity = SimulationParameters.Instance.GetOrganelleType("vacuole").Components.Storage!.Capacity;
-        if (!isSpecializedCheckbox.Pressed)
+        if (!isSpecializedCheckbox.ButtonPressed)
         {
             var text = new LocalizedString("VACUOLE_NOT_SPECIALIZED_DESCRIPTION", capacity);
             description.Text = text.ToString();

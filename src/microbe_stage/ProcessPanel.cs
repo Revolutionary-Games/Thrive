@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Controls the process panel contents
 /// </summary>
-public class ProcessPanel : CustomWindow
+public partial class ProcessPanel : CustomWindow
 {
     [Export]
     public NodePath? ProcessListPath;
@@ -31,7 +31,7 @@ public class ProcessPanel : CustomWindow
         closeButtonContainer.Visible = ShowCustomCloseButton;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!IsVisibleInTree())
             return;

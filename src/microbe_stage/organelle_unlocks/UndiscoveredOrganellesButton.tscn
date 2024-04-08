@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfb6b7xghtydh"]
+
+[ext_resource type="Script" path="res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.cs" id="3"]
+[ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_qkpyp"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_r1gjg"]
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0.435294, 0.52549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.0666667, 1, 0.835294, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="UndiscoveredOrganelles" type="MarginContainer"]
+offset_right = 80.0
+offset_bottom = 103.0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("4")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("2")
+theme_override_styles/disabled = SubResource("3")
+disabled = true
+action_mode = 0
+expand_icon = true
+
+[node name="QuestionMark" type="Label" parent="VBoxContainer/Button"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "UNKNOWN_ORGANELLE_SYMBOL"
+label_settings = ExtResource("3_qkpyp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Count" type="Label" parent="VBoxContainer/Button"]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -3.0
+offset_top = 2.0
+offset_right = -3.0
+offset_bottom = 16.0
+grow_horizontal = 0
+
+[node name="Name" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = -3
+text = "UNDISCOVERED_ORGANELLES"
+label_settings = ExtResource("4_r1gjg")
+horizontal_alignment = 1

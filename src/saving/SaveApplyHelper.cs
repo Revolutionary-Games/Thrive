@@ -122,7 +122,7 @@ public static class SaveApplyHelper
     public static Delegate ReTargetCallback<T>(Delegate callback, T newInstance)
     {
         MethodInfo method;
-        object target;
+        object? target;
 
         if (callback is MulticastDelegate @delegate)
         {

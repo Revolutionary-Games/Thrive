@@ -137,7 +137,6 @@ public class InProgressSave : IDisposable
         oldestSave = null;
         ulong oldestModifiedTime = ulong.MaxValue;
 
-        using var file = new File();
         foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
         {
             var match = Regex.Match(name, matchRegex);
@@ -155,7 +154,7 @@ public class InProgressSave : IDisposable
                 if (found > highestNumber)
                     highestNumber = found;
 
-                var modified = file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, name));
+                var modified = FileAccess.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, name));
 
                 if (modified < oldestModifiedTime)
                 {
@@ -204,7 +203,7 @@ public class InProgressSave : IDisposable
                     ColourblindScreenFilter.Instance.Show();
                 }
 
-                SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVING_DOT_DOT_DOT"),
+                SaveStatusOverlay.Instance.ShowMessage(Localization.Translate("SAVING_DOT_DOT_DOT"),
                     Mathf.Inf);
 
                 state = State.SaveData;
@@ -243,8 +242,8 @@ public class InProgressSave : IDisposable
                 }
                 else
                 {
-                    SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVE_FAILED"));
-                    SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_SAVING"),
+                    SaveStatusOverlay.Instance.ShowMessage(Localization.Translate("SAVE_FAILED"));
+                    SaveStatusOverlay.Instance.ShowError(Localization.Translate("ERROR_SAVING"),
                         message, exceptionOrFailureMessage, false, false, null, exceptionOrMessageIsException);
                 }
 

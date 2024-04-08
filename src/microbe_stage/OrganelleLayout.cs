@@ -16,6 +16,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     {
     }
 
+    [JsonConstructor]
     public OrganelleLayout()
     {
     }
@@ -55,35 +56,36 @@ public class OrganelleLayout<T> : HexLayout<T>
         }
     }
 
-    /// <summary>
-    ///   The highest assigned render priority from all of the organelles.
-    /// </summary>
-    [JsonIgnore]
-    public int MaxRenderPriority => Organelles.Max(o => Hex.GetRenderPriority(o.Position));
-
-    public override bool CanPlace(T hex)
+    public override bool CanPlace(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
     {
-        return CanPlace(hex, false);
+        return CanPlace(hex, false, temporaryStorage);
     }
 
-    public bool CanPlace(T organelle, bool allowCytoplasmOverlap)
+    public bool CanPlace(T organelle, bool allowCytoplasmOverlap, List<Hex> temporaryStorage)
     {
-        return CanPlace(organelle.Definition, organelle.Position, organelle.Orientation, allowCytoplasmOverlap);
+        return CanPlace(organelle.Definition, organelle.Position, organelle.Orientation, temporaryStorage,
+            allowCytoplasmOverlap);
     }
 
     /// <summary>
     ///   Returns true if organelle can be placed at location
     /// </summary>
     public bool CanPlace(OrganelleDefinition organelleType, Hex position, int orientation,
-        bool allowCytoplasmOverlap = false)
+        List<Hex> temporaryStorage, bool allowCytoplasmOverlap = false)
     {
         // Check for overlapping hexes with existing organelles
-        foreach (var hex in organelleType.GetRotatedHexes(orientation))
+        var hexes = organelleType.GetRotatedHexes(orientation);
+        int hexCount = hexes.Count;
+
+        // Use an explicit loop to ensure no extra memory allocations as this method is called a ton
+        for (int i = 0; i < hexCount; ++i)
         {
-            var overlapping = GetElementAt(hex + position);
+            var overlapping = GetElementAt(hexes[i] + position, temporaryStorage);
             if (overlapping != null && (allowCytoplasmOverlap == false ||
                     overlapping.Definition.InternalName != "cytoplasm"))
+            {
                 return false;
+            }
         }
 
         // Basic placing doesn't have the restriction that the
@@ -91,48 +93,56 @@ public class OrganelleLayout<T> : HexLayout<T>
         return true;
     }
 
-    public override bool CanPlaceAndIsTouching(T hex)
+    public override bool CanPlaceAndIsTouching(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
     {
-        return CanPlaceAndIsTouching(hex, false, false);
+        return CanPlaceAndIsTouching(hex, false, temporaryStorage, temporaryStorage2, false);
     }
 
-    public bool CanPlaceAndIsTouching(T organelle,
-        bool allowCytoplasmOverlap,
-        bool allowReplacingLastCytoplasm = false)
+    public bool CanPlaceAndIsTouching(T organelle, bool allowCytoplasmOverlap, List<Hex> temporaryStorage,
+        List<Hex> temporaryStorage2, bool allowReplacingLastCytoplasm = false)
     {
-        if (!CanPlace(organelle, allowCytoplasmOverlap))
+        if (!CanPlace(organelle, allowCytoplasmOverlap, temporaryStorage))
             return false;
 
-        return IsTouchingExistingHex(organelle) || (allowReplacingLastCytoplasm && IsReplacingLast(organelle));
+        return IsTouchingExistingHex(organelle, temporaryStorage, temporaryStorage2) ||
+            (allowReplacingLastCytoplasm && IsReplacingLast(organelle, temporaryStorage));
     }
 
-    public void RepositionToOrigin()
+    public bool RepositionToOrigin()
     {
         var centerOfMass = CenterOfMass;
+
+        // Skip if center of mass is already correct
+        if (centerOfMass.Q == 0 && centerOfMass.R == 0)
+            return false;
 
         foreach (var organelle in Organelles)
         {
             // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
             organelle.Position -= centerOfMass;
         }
+
+        return true;
     }
 
-    protected override IEnumerable<Hex> GetHexComponentPositions(T hex)
+    protected override void GetHexComponentPositions(T hex, List<Hex> result)
     {
-        return hex.Definition.GetRotatedHexes(hex.Orientation);
+        result.Clear();
+
+        result.AddRange(hex.Definition.GetRotatedHexes(hex.Orientation));
     }
 
     /// <summary>
     ///   Returns true if the specified organelle is replacing the last hex of cytoplasm.
     /// </summary>
-    private bool IsReplacingLast(T organelle)
+    private bool IsReplacingLast(T organelle, List<Hex> temporaryStorage)
     {
         if (Count != 1)
             return false;
 
-        var replacedOrganelle = GetElementAt(organelle.Position);
+        var replacedOrganelle = GetElementAt(organelle.Position, temporaryStorage);
 
-        if ((replacedOrganelle != null) && (replacedOrganelle.Definition.InternalName == "cytoplasm"))
+        if (replacedOrganelle != null && replacedOrganelle.Definition.InternalName == "cytoplasm")
             return true;
 
         return false;

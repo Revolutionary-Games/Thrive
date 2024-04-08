@@ -1,10 +1,11 @@
 ﻿using System;
 using Godot;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Manages the help screen GUI
 /// </summary>
-public class HelpScreen : Control
+public partial class HelpScreen : Control
 {
     /// <summary>
     ///   The category which this help screen belongs to
@@ -29,16 +30,16 @@ public class HelpScreen : Control
     [Export]
     public PackedScene HelpBoxScene = null!;
 
+    private readonly Random random = new XoShiRo128starstar();
+
     private VBoxContainer leftColumn = null!;
     private VBoxContainer rightColumn = null!;
     private Label tipMessageLabel = null!;
     private Timer timer = null!;
 #pragma warning restore CA2213
 
-    private Random random = null!;
-
     [Signal]
-    public delegate void HelpScreenClosed();
+    public delegate void HelpScreenClosedEventHandler();
 
     public override void _Ready()
     {
@@ -46,8 +47,6 @@ public class HelpScreen : Control
         rightColumn = GetNode<VBoxContainer>(RightColumnPath);
         tipMessageLabel = GetNode<Label>(TipMessageLabelPath);
         timer = GetNode<Timer>(TimerPath);
-
-        random = new Random();
 
         if (!string.IsNullOrEmpty(Category))
         {
@@ -81,7 +80,7 @@ public class HelpScreen : Control
         {
             var helpTexts = SimulationParameters.Instance.GetHelpTexts("EasterEgg");
 
-            tipMessageLabel.Text = TranslationServer.Translate(helpTexts.Messages.Random(random).Message);
+            tipMessageLabel.Text = Localization.Translate(helpTexts.Messages.Random(random).Message);
             tipMessageLabel.Show();
 
             timer.Start(20);
@@ -114,9 +113,9 @@ public class HelpScreen : Control
 
         foreach (var text in helpTexts.Messages)
         {
-            var message = TranslationServer.Translate(text.Message);
+            var message = Localization.Translate(text.Message);
 
-            var helpBox = HelpBoxScene.Instance();
+            var helpBox = HelpBoxScene.Instantiate();
             helpBox.GetNode<CustomRichTextLabel>("MarginContainer/CustomRichTextLabel").ExtendedBbcode = message;
 
             if (text.Column == HelpText.TextColumn.Left)
@@ -146,6 +145,6 @@ public class HelpScreen : Control
 
     private void OnCloseButtonPressed()
     {
-        EmitSignal(nameof(HelpScreenClosed));
+        EmitSignal(SignalName.HelpScreenClosed);
     }
 }

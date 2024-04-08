@@ -2,12 +2,13 @@
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   Represents a late multicellular species that is 3D and composed of placed tissues
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
@@ -30,6 +31,9 @@ public class LateMulticellularSpecies : Species
 
     [JsonProperty]
     public float BrainPower { get; private set; }
+
+    [JsonProperty]
+    public float MuscularPower { get; private set; }
 
     /// <summary>
     ///   Where this species reproduces, used to control also where individuals of this species spawn and where the
@@ -76,14 +80,15 @@ public class LateMulticellularSpecies : Species
         RepositionToOrigin();
         UpdateInitialCompounds();
         CalculateBrainPower();
+        CalculateMuscularPower();
 
         // Note that a few stage transitions are explicit for the player so the editor will override this
         SetTypeFromBrainPower();
     }
 
-    public override void RepositionToOrigin()
+    public override bool RepositionToOrigin()
     {
-        BodyLayout.RepositionToGround();
+        return BodyLayout.RepositionToGround();
     }
 
     public override void UpdateInitialCompounds()
@@ -190,6 +195,22 @@ public class LateMulticellularSpecies : Species
         return result;
     }
 
+    private static float CalculateMuscularPowerFromLayout(MetaballLayout<MulticellularMetaball> layout, float scale)
+    {
+        float result = 0;
+
+        foreach (var metaball in layout)
+        {
+            if (metaball.CellType.IsMuscularTissueType())
+            {
+                // TODO: check that volume scaling in physically sensible way (using GetVolume) is what we want here
+                result += metaball.GetVolume(scale);
+            }
+        }
+
+        return result;
+    }
+
     private void SetTypeFromBrainPower()
     {
         MulticellularType = CalculateMulticellularTypeFromLayout(BodyLayout, Scale);
@@ -219,5 +240,10 @@ public class LateMulticellularSpecies : Species
     private void CalculateBrainPower()
     {
         BrainPower = CalculateBrainPowerFromLayout(BodyLayout, Scale);
+    }
+
+    private void CalculateMuscularPower()
+    {
+        MuscularPower = CalculateMuscularPowerFromLayout(BodyLayout, Scale);
     }
 }

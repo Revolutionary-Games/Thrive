@@ -1,61 +1,63 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://00nfh32p4ex6"]
 
-[ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=1]
-[ext_resource path="res://assets/textures/Thermoplast_insideDiffuse.png" type="Texture" id=2]
-[ext_resource path="res://assets/models/organelles/Thermoplast_Particles.mesh" type="ArrayMesh" id=3]
-[ext_resource path="res://assets/models/organelles/Thermoplast_Inside.mesh" type="ArrayMesh" id=4]
-[ext_resource path="res://assets/models/organelles/Thermoplast_Membrane.mesh" type="ArrayMesh" id=5]
-[ext_resource path="res://assets/textures/Thermoplast_particlesEmission.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/Thermoplast_membraneAlbedo.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=8]
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://dwesr8e25ddrf" path="res://assets/textures/Thermoplast_insideDiffuse.png" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://detmahw8b8yl6" path="res://assets/models/organelles/Thermoplast_Particles.mesh" id="3"]
+[ext_resource type="ArrayMesh" uid="uid://xbmie0l5gj7q" path="res://assets/models/organelles/Thermoplast_Inside.mesh" id="4"]
+[ext_resource type="ArrayMesh" uid="uid://di3ghvtdq6ngn" path="res://assets/models/organelles/Thermoplast_Membrane.mesh" id="5"]
+[ext_resource type="Texture2D" uid="uid://bstbqrrrojhhs" path="res://assets/textures/Thermoplast_particlesEmission.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b04hstwatv8gh" path="res://assets/textures/Thermoplast_membraneAlbedo.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="8"]
 
-
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id="4"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/dissolveValue = null
-shader_param/fresnelValue = 1.0
-shader_param/fresnelActive = false
-shader_param/outlineWidth = null
-shader_param/growColor = null
-shader_param/tint = Color( 1, 1, 1, 1 )
-shader_param/texture = ExtResource( 2 )
-shader_param/dissolveTexture = ExtResource( 8 )
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/dissolveValue = null
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = null
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("2")
+shader_parameter/dissolveTexture = ExtResource("8")
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = ExtResource( 1 )
-shader_param/dissolveValue = null
-shader_param/fresnelValue = 1.0
-shader_param/fresnelActive = true
-shader_param/outlineWidth = null
-shader_param/growColor = null
-shader_param/tint = Color( 1, 1, 1, 1 )
-shader_param/texture = ExtResource( 7 )
+[sub_resource type="ShaderMaterial" id="5"]
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/dissolveValue = null
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = true
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = null
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("7")
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = ExtResource( 1 )
-shader_param/dissolveValue = null
-shader_param/fresnelValue = 1.0
-shader_param/fresnelActive = false
-shader_param/outlineWidth = null
-shader_param/growColor = null
-shader_param/tint = Color( 1, 1, 1, 1 )
-shader_param/texture = ExtResource( 6 )
-shader_param/dissolveTexture = ExtResource( 8 )
+[sub_resource type="ShaderMaterial" id="6"]
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/dissolveValue = null
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = null
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("6")
+shader_parameter/dissolveTexture = ExtResource("8")
 
-[node name="ThermoplastInside" type="MeshInstance"]
-material_override = SubResource( 4 )
-mesh = ExtResource( 4 )
-material/0 = SubResource( 4 )
+[node name="ThermoplastInside" type="MeshInstance3D"]
+material_override = SubResource("4")
+mesh = ExtResource("4")
 
-[node name="ThermoplastMembrane" type="MeshInstance" parent="."]
-transform = Transform( 0.697468, 0, 0, 0, 0.697468, 0, 0, 0, 0.896833, 0, 0, 0 )
-material_override = SubResource( 5 )
-mesh = ExtResource( 5 )
-material/0 = SubResource( 5 )
+[node name="ThermoplastMembrane" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.697468, 0, 0, 0, 0.697468, 0, 0, 0, 0.896833, 0, 0, 0)
+material_override = SubResource("5")
+mesh = ExtResource("5")
 
-[node name="ThermoplastParticles" type="MeshInstance" parent="."]
-transform = Transform( 0.664977, 0, 0, 0, 0.664977, 0, 0, 0, 0.855055, 0, 0, 0 )
-material_override = SubResource( 6 )
-mesh = ExtResource( 3 )
-material/0 = SubResource( 6 )
+[node name="ThermoplastParticles" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.664977, 0, 0, 0, 0.664977, 0, 0, 0, 0.855055, 0, 0, 0)
+material_override = SubResource("6")
+mesh = ExtResource("3")

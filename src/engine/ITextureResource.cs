@@ -5,5 +5,5 @@
 /// </summary>
 public interface ITextureResource : IResource
 {
-    public Texture LoadedTexture { get; }
+    public Texture2D LoadedTexture { get; }
 }

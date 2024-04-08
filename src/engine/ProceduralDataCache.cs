@@ -5,7 +5,8 @@ using Godot;
 /// <summary>
 ///   Stores procedurally generated data to speed up things by not requiring it to be recomputed
 /// </summary>
-public class ProceduralDataCache : Node
+[GodotAutoload]
+public partial class ProceduralDataCache : Node
 {
     private static ProceduralDataCache? instance;
 
@@ -18,7 +19,7 @@ public class ProceduralDataCache : Node
     private MainGameState previousState = MainGameState.Invalid;
 
     private float currentTime;
-    private float timeSinceClean;
+    private double timeSinceClean;
 
     private ProceduralDataCache()
     {
@@ -47,14 +48,18 @@ public class ProceduralDataCache : Node
         {
             ClearCacheData(membraneCollisions);
         }
+
+        if (instance == this)
+            instance = null;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
+        timeSinceClean += delta;
+
         // This is just incidentally used inside lock blocks
         // ReSharper disable once InconsistentlySynchronizedField
-        currentTime += delta;
-        timeSinceClean += delta;
+        currentTime += (float)delta;
 
         if (!(timeSinceClean > Constants.PROCEDURAL_CACHE_CLEAN_INTERVAL))
             return;
@@ -231,6 +236,7 @@ public class ProceduralDataCache : Node
 
     private void CleanOldCacheEntriesIn<TKey, T>(Dictionary<TKey, CacheEntry<T>> entries, float keepTime)
         where T : ICacheableData
+        where TKey : notnull
     {
         if (entries.Count < 1)
             return;
@@ -249,6 +255,7 @@ public class ProceduralDataCache : Node
 
     private void ClearCacheData<TKey, T>(Dictionary<TKey, CacheEntry<T>> entries)
         where T : ICacheableData
+        where TKey : notnull
     {
         foreach (var entry in entries)
         {

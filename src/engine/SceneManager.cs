@@ -4,11 +4,13 @@ using Godot;
 /// <summary>
 ///   Singleton managing changing game scenes
 /// </summary>
-public class SceneManager : Node
+[GodotAutoload]
+public partial class SceneManager : Node
 {
     private static SceneManager? instance;
 
-    private bool alreadyQuit;
+    private static bool alreadyQuit;
+    private static bool shouldQuitSoon;
 
 #pragma warning disable CA2213
     private Node internalRootNode = null!;
@@ -18,14 +20,48 @@ public class SceneManager : Node
 
     private SceneManager()
     {
-        instance = this;
         shutdownActions = new PostShutdownActions();
+
+        if (Engine.IsEditorHint())
+            return;
+
+        instance = this;
     }
 
     public static SceneManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
+    public static bool QuitOrQuitting => alreadyQuit || shouldQuitSoon;
+
+    public static void QuitDueToProblem(Node callingNode)
+    {
+        NotifyEarlyQuit();
+        GD.PrintErr("Closing Thrive \"normally\" due to a detected problem");
+
+        if (instance == null)
+        {
+            callingNode.GetTree().Quit();
+        }
+        else
+        {
+            instance.GetTree().Quit();
+        }
+
+        alreadyQuit = true;
+    }
+
+    /// <summary>
+    ///   Notify that <see cref="QuitDueToProblem"/> is going to be called soon
+    /// </summary>
+    public static void NotifyEarlyQuit()
+    {
+        shouldQuitSoon = true;
+    }
+
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         internalRootNode = GetTree().Root;
 
         // Need to do this with a delay to avoid a problem with the node setup
@@ -43,7 +79,7 @@ public class SceneManager : Node
     /// <returns>The scene that was switched to</returns>
     public Node SwitchToScene(MainGameState state)
     {
-        var scene = LoadScene(state).Instance();
+        var scene = LoadScene(state).Instantiate();
         SwitchToScene(scene);
 
         return scene;
@@ -51,7 +87,7 @@ public class SceneManager : Node
 
     public Node SwitchToScene(string scenePath)
     {
-        var scene = LoadScene(scenePath).Instance();
+        var scene = LoadScene(scenePath).Instantiate();
         SwitchToScene(scene);
 
         return scene;
@@ -98,7 +134,7 @@ public class SceneManager : Node
     {
         var scene = LoadScene("res://src/general/MainMenu.tscn");
 
-        var mainMenu = (MainMenu)scene.Instance();
+        var mainMenu = (MainMenu)scene.Instantiate();
 
         mainMenu.IsReturningToMenu = true;
 
@@ -182,7 +218,7 @@ public class SceneManager : Node
                 "The specified class to load a scene for didn't have SceneLoadedClassAttribute");
         }
 
-        return LoadScene(sceneLoaded!.ScenePath);
+        return LoadScene(sceneLoaded.ScenePath);
     }
 
     /// <summary>
@@ -192,6 +228,16 @@ public class SceneManager : Node
     {
         if (!alreadyQuit)
             GD.Print(Constants.USER_REQUESTED_QUIT);
+
+        GetTree().Quit();
+
+        alreadyQuit = true;
+    }
+
+    public void QuitDueToError()
+    {
+        if (!alreadyQuit)
+            GD.PrintErr("Exiting Thrive due to a serious error");
 
         GetTree().Quit();
 

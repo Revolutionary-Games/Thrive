@@ -12,16 +12,18 @@ using Godot;
 ///     Note: Must be freed manually, like all Godot Node types.
 ///   </para>
 /// </remarks>
-public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
+public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 {
     private static readonly Stack<DataPoint> DataPointCache = new();
 
-#pragma warning disable CA2213
-    private Texture graphMarkerCircle = null!;
-    private Texture graphMarkerCross = null!;
-    private Texture graphMarkerSkull = null!;
+    private readonly NodePath positionReference = new("position");
 
-    private Tween tween = new();
+#pragma warning disable CA2213
+    private Texture2D graphMarkerCircle = null!;
+    private Texture2D graphMarkerCross = null!;
+    private Texture2D graphMarkerSkull = null!;
+
+    private Tween? tween;
 #pragma warning restore CA2213
 
     private bool isMouseOver;
@@ -69,7 +71,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     /// <summary>
     ///   Visual size of this point
     /// </summary>
-    public float Size
+    public float PointSize
     {
         get => size;
         set
@@ -86,9 +88,9 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     public Color MarkerColour { get; set; }
 
     /// <summary>
-    ///   Used to hide marker visual while still keeping it interactable
+    ///   Used to hide marker (when set to <c>false</c>) visual while still keeping it interactable
     /// </summary>
-    public bool Draw { get; set; } = true;
+    public bool DrawMarker { get; set; } = true;
 
     public static bool operator ==(DataPoint? lhs, DataPoint? rhs)
     {
@@ -114,21 +116,24 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     ///   parameters.
     /// </summary>
     public static DataPoint GetDataPoint(double x, double y, MarkerIcon iconType = MarkerIcon.Circle, float size = 7,
-        Color markerColour = default, bool draw = true, Vector2 coordinate = default)
+        Color markerColour = default, bool drawMarker = true, Vector2 coordinate = default)
     {
         if (DataPointCache.Count == 0)
         {
             return new DataPoint(x, y)
-                { IconType = iconType, Size = size, MarkerColour = markerColour, Draw = draw, coordinate = coordinate };
+            {
+                IconType = iconType, PointSize = size, MarkerColour = markerColour, DrawMarker = drawMarker,
+                coordinate = coordinate,
+            };
         }
 
         var point = DataPointCache.Pop();
         point.X = x;
         point.Y = y;
         point.IconType = iconType;
-        point.Size = size;
+        point.PointSize = size;
         point.MarkerColour = markerColour;
-        point.Draw = draw;
+        point.DrawMarker = drawMarker;
         point.coordinate = coordinate;
         point.Visible = true;
         return point;
@@ -146,32 +151,30 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
             return;
         }
 
-        point.tween.StopAll();
+        point.StopTween();
 
         DataPointCache.Push(point);
     }
 
     public override void _Ready()
     {
-        graphMarkerCircle = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
-        graphMarkerCross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
-        graphMarkerSkull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
+        graphMarkerCircle = GD.Load<Texture2D>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
+        graphMarkerCross = GD.Load<Texture2D>("res://assets/textures/gui/bevel/graphMarkerCross.png");
+        graphMarkerSkull = GD.Load<Texture2D>("res://assets/textures/gui/bevel/SuicideIcon.png");
 
-        AddChild(tween);
-
-        Connect("mouse_entered", this, nameof(OnMouseEnter));
-        Connect("mouse_exited", this, nameof(OnMouseExit));
+        Connect(Control.SignalName.MouseEntered, new Callable(this, nameof(OnMouseEnter)));
+        Connect(Control.SignalName.MouseExited, new Callable(this, nameof(OnMouseExit)));
 
         UpdateRectSize();
-        Update();
+        QueueRedraw();
     }
 
     public override void _Draw()
     {
-        if (!Draw)
+        if (!DrawMarker)
             return;
 
-        var vectorSize = new Vector2(Size, Size);
+        var vectorSize = new Vector2(PointSize, PointSize);
 
         switch (IconType)
         {
@@ -180,15 +183,15 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                 // Circle filler
                 if (isMouseOver)
                 {
-                    DrawCircle(RectSize / 2, Size / 2, MarkerFillerHighlightedColour);
+                    DrawCircle(Size * 0.5f, PointSize * 0.5f, MarkerFillerHighlightedColour);
                 }
                 else
                 {
-                    DrawCircle(RectSize / 2, Size / 2, MarkerFillerColour);
+                    DrawCircle(Size * 0.5f, PointSize * 0.5f, MarkerFillerColour);
                 }
 
-                DrawTextureRect(graphMarkerCircle, new Rect2(
-                    RectSize / 2 - vectorSize / 2, vectorSize), false, MarkerColour);
+                DrawTextureRect(graphMarkerCircle, new Rect2(Size * 0.5f - vectorSize * 0.5f, vectorSize), false,
+                    MarkerColour);
 
                 break;
             }
@@ -200,8 +203,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                 if (isMouseOver)
                     color = MarkerColour.Lightened(0.5f);
 
-                DrawTextureRect(graphMarkerCross, new Rect2(
-                    RectSize / 2 - vectorSize / 2, vectorSize), false, color);
+                DrawTextureRect(graphMarkerCross, new Rect2(Size * 0.5f - vectorSize * 0.5f, vectorSize), false, color);
                 break;
             }
 
@@ -212,8 +214,8 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                 if (isMouseOver)
                     colour = MarkerColour.Lightened(0.5f);
 
-                DrawTextureRect(graphMarkerSkull, new Rect2(
-                    RectSize / 2 - vectorSize / 2, vectorSize), false, colour);
+                DrawTextureRect(graphMarkerSkull, new Rect2(Size * 0.5f - vectorSize * 0.5f, vectorSize), false,
+                    colour);
                 break;
             }
 
@@ -228,7 +230,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     /// </summary>
     public void SetCoordinate(Vector2 target, bool useTween = true,
         Tween.TransitionType transitionType = Tween.TransitionType.Expo,
-        Tween.EaseType easeType = Tween.EaseType.Out, float duration = 0.5f)
+        Tween.EaseType easeType = Tween.EaseType.Out, double duration = 0.5)
     {
         if (coordinate == target)
             return;
@@ -237,13 +239,15 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 
         if (!useTween)
         {
-            RectPosition = coordinate - RectSize / 2;
+            Position = coordinate - Size * 0.5f;
         }
         else
         {
-            tween.InterpolateProperty(
-                this, "rect_position", RectPosition, coordinate - RectSize / 2, duration, transitionType, easeType);
-            tween.Start();
+            StopTween();
+
+            tween = CreateTween();
+            tween.TweenProperty(this, positionReference, coordinate - Size * 0.5f, duration).SetTrans(transitionType)
+                .SetEase(easeType);
         }
     }
 
@@ -268,11 +272,11 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         {
             IconType = IconType,
             Coordinate = Coordinate,
-            Size = Size,
+            PointSize = PointSize,
             MarkerFillerColour = MarkerFillerColour,
             MarkerFillerHighlightedColour = MarkerFillerHighlightedColour,
             MarkerColour = MarkerColour,
-            Draw = Draw,
+            DrawMarker = DrawMarker,
         };
 
         return result;
@@ -288,26 +292,48 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 
     public override string ToString()
     {
+        // ReSharper disable once StringLiteralTypo
         return $"Value: {X}, {Y} Coord: {Coordinate}";
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            positionReference.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateRectSize()
     {
         // Increased by 10 for a more bigger cursor detection area
-        RectSize = new Vector2(size + 10, size + 10);
+        Size = new Vector2(size + 10, size + 10);
+    }
+
+    private void StopTween()
+    {
+        if (tween != null)
+        {
+            if (tween.IsValid())
+                tween.Kill();
+
+            tween = null;
+        }
     }
 
     private void OnMouseEnter()
     {
         isMouseOver = true;
 
-        Update();
+        QueueRedraw();
     }
 
     private void OnMouseExit()
     {
         isMouseOver = false;
 
-        Update();
+        QueueRedraw();
     }
 }

@@ -10,12 +10,15 @@ public interface IWorldSimulationWithPhysics : IWorldSimulation
     [JsonIgnore]
     public PhysicalWorld PhysicalWorld { get; }
 
-    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation);
+    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quaternion rotation);
 
-    public NativePhysicsBody CreateMovingBodyWithAxisLock(PhysicsShape shape, Vector3 position, Quat rotation,
+    public NativePhysicsBody CreateMovingBodyWithAxisLock(PhysicsShape shape, Vector3 position, Quaternion rotation,
         Vector3 lockedAxis, bool lockRotation);
 
-    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation);
+    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quaternion rotation);
+
+    public NativePhysicsBody CreateSensor(PhysicsShape sensorShape, Vector3 position, Quaternion rotation,
+        bool detectSleepingBodies = false, bool detectStaticBodies = false);
 
     public void DestroyBody(NativePhysicsBody body);
 }

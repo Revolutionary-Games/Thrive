@@ -16,7 +16,7 @@ public class ChartDataSet : ICloneable
     /// </summary>
     public IReadOnlyCollection<DataPoint> DataPoints => dataPoints;
 
-    public Texture? Icon { get; set; }
+    public Texture2D? Icon { get; set; }
 
     /// <summary>
     ///   Used to differentiate the data set's visual by color
@@ -32,7 +32,7 @@ public class ChartDataSet : ICloneable
             foreach (var point in DataPoints)
             {
                 point.MarkerColour = dataColour;
-                point.Update();
+                point.QueueRedraw();
             }
         }
     }

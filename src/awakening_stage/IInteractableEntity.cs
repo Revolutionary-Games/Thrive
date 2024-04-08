@@ -78,7 +78,7 @@ public static class InteractableEntityHelpers
         if (offset == null)
             return null;
 
-        return RotateExtraInteractionOffset(offset.Value, entity.EntityNode.GlobalTransform.basis);
+        return RotateExtraInteractionOffset(offset.Value, entity.EntityNode.GlobalTransform.Basis);
     }
 
     /// <summary>
@@ -89,6 +89,6 @@ public static class InteractableEntityHelpers
     /// <returns>The corrected offset</returns>
     public static Vector3 RotateExtraInteractionOffset(Vector3 offset, Basis rotation)
     {
-        return rotation.Xform(offset);
+        return rotation * offset;
     }
 }

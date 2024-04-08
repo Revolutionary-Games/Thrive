@@ -1,16 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://jlvayy8csjto"]
 
-[ext_resource path="res://src/gui_common/PatchNotesList.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=4]
+[ext_resource type="Script" path="res://src/gui_common/PatchNotesList.cs" id="1"]
+[ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="2_spkih"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_u33wb"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_ykufq"]
 
 [node name="PatchNotesList" type="VBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/separation = 15
-script = ExtResource( 1 )
+theme_override_constants/separation = 15
+script = ExtResource("1")
 ShowAll = false
-TitleFont = ExtResource( 4 )
-SubHeadingFont = ExtResource( 3 )
-TrailingVisitLinkFont = ExtResource( 2 )
+TitleFont = ExtResource("2_spkih")
+SubHeadingFont = ExtResource("3_u33wb")
+TrailingVisitLinkFont = ExtResource("4_ykufq")

@@ -26,7 +26,15 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
         // Setup mesh to be generated (on the main thread) only when required
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
-            MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateMesh(this));
+        {
+            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
+
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+            lock (generator)
+            {
+                return generator.GenerateMesh(this);
+            }
+        });
 
         // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
         // might exist a reference to this class instance (that's why it is only released in the finalizer)
@@ -204,7 +212,7 @@ public sealed class MembraneCollisionShape : ICacheableData
             for (int i = 0; i < pointCount; ++i)
             {
                 var point = points[i];
-                hash ^= i * 17 + JVecF3.GetCompatibleHashCode(point.x, 0, point.y);
+                hash ^= i * 17 + JVecF3.GetCompatibleHashCode(point.X, 0, point.Y);
             }
 
             hash ^= isBacteria ? 7907 : 7867;
@@ -254,7 +262,7 @@ public sealed class MembraneCollisionShape : ICacheableData
             var point = points[i];
             var otherPoint = otherMembranePoints[i];
 
-            if (!point.X.Equals(otherPoint.x) || !point.Z.Equals(otherPoint.y))
+            if (!point.X.Equals(otherPoint.X) || !point.Z.Equals(otherPoint.Y))
                 return false;
         }
 

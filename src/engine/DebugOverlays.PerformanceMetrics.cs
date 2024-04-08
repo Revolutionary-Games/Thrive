@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using Godot;
 using Nito.Collections;
@@ -30,27 +31,52 @@ public partial class DebugOverlays
     private Label metricsText = null!;
 #pragma warning restore CA2213
 
-    private float entities;
-    private int children;
+    private float entityWeight;
+    private int entityCount;
     private float currentSpawned;
     private float currentDespawned;
 
+    /// <summary>
+    ///   Needs to have a cached value of this visible to allow access from other threads
+    /// </summary>
+    private bool showPerformance;
+
     public bool PerformanceMetricsVisible
     {
-        get => performanceMetrics.Visible;
+        get => showPerformance;
         private set
         {
-            if (performanceMetricsCheckBox.Pressed == value)
+            if (showPerformance == value)
                 return;
 
-            performanceMetricsCheckBox.Pressed = value;
+            showPerformance = value;
+
+            if (showPerformance)
+            {
+                performanceMetrics.Show();
+            }
+            else
+            {
+                performanceMetrics.Hide();
+            }
+
+            if (performanceMetricsCheckBox.ButtonPressed == showPerformance)
+                return;
+
+            performanceMetricsCheckBox.ButtonPressed = showPerformance;
         }
     }
 
-    public void ReportEntities(float totalEntities, int otherChildren)
+    public void ReportEntities(float totalWeight, int rawCount)
     {
-        entities = totalEntities;
-        children = otherChildren;
+        entityWeight = totalWeight;
+        entityCount = rawCount;
+    }
+
+    public void ReportEntities(int count)
+    {
+        entityWeight = count;
+        entityCount = count;
     }
 
     public void ReportSpawns(float newSpawns)
@@ -63,47 +89,49 @@ public partial class DebugOverlays
         currentDespawned += newDespawns;
     }
 
-    private void UpdateMetrics(float delta)
+    private void UpdateMetrics(double delta)
     {
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
-        deltaLabel.Text = new LocalizedString("FRAME_DURATION", delta).ToString();
+        deltaLabel.Text = new LocalizedString("FRAME_DURATION", Math.Round(delta, 8)).ToString();
 
         var currentProcess = Process.GetCurrentProcess();
 
         var processorTime = currentProcess.TotalProcessorTime;
-        var threads = currentProcess.Threads.Count;
+
+        int threads;
+        try
+        {
+            threads = currentProcess.Threads.Count;
+        }
+        catch (IOException)
+        {
+            // Seems like on Linux a read of this property can sometimes fail like this
+            threads = -1;
+        }
+
         var usedMemory = Math.Round(currentProcess.WorkingSet64 / (double)Constants.MEBIBYTE, 1);
         var usedVideoMemory = Math.Round(Performance.GetMonitor(Performance.Monitor.RenderVideoMemUsed) /
             Constants.MEBIBYTE, 1);
-        var mibFormat = TranslationServer.Translate("MIB_VALUE");
-
-        // These don't seem to work:
-        // Performance.GetMonitor(Performance.Monitor.Physics3dActiveObjects),
-        // Performance.GetMonitor(Performance.Monitor.Physics3dCollisionPairs),
-        // Performance.GetMonitor(Performance.Monitor.Physics3dIslandCount),
+        var mibFormat = Localization.Translate("MIB_VALUE");
 
         metricsText.Text =
             new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
                     Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess),
-                    Math.Round(entities, 1), children,
+                    entityCount, Math.Round(entityWeight, 1),
                     Math.Round(spawnHistory.Sum(), 1), Math.Round(despawnHistory.Sum(), 1),
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
-                    OS.GetName() == Constants.OS_WINDOWS_NAME ?
-                        TranslationServer.Translate("UNKNOWN_ON_WINDOWS") :
-                        mibFormat.FormatSafe(usedMemory),
+                    mibFormat.FormatSafe(usedMemory),
                     mibFormat.FormatSafe(usedVideoMemory),
-                    Performance.GetMonitor(Performance.Monitor.RenderObjectsInFrame),
-                    Performance.GetMonitor(Performance.Monitor.RenderDrawCallsInFrame),
-                    Performance.GetMonitor(Performance.Monitor.Render2dDrawCallsInFrame),
-                    Performance.GetMonitor(Performance.Monitor.RenderVerticesInFrame),
-                    Performance.GetMonitor(Performance.Monitor.RenderMaterialChangesInFrame),
-                    Performance.GetMonitor(Performance.Monitor.RenderShaderChangesInFrame),
+                    Performance.GetMonitor(Performance.Monitor.RenderTotalObjectsInFrame),
+                    Performance.GetMonitor(Performance.Monitor.RenderTotalDrawCallsInFrame),
+                    Performance.GetMonitor(Performance.Monitor.RenderTotalPrimitivesInFrame),
                     Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount),
-                    Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, threads, processorTime)
+                    Math.Round(Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, 3), threads,
+                    processorTime)
                 .ToString();
 
-        entities = 0.0f;
-        children = 0;
+        entityWeight = 0.0f;
+        entityCount = 0;
 
         spawnHistory.AddToBack(currentSpawned);
         despawnHistory.AddToBack(currentDespawned);

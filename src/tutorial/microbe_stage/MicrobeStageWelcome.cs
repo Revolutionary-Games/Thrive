@@ -1,52 +1,73 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+using Newtonsoft.Json;
+
+/// <summary>
+///   A welcome popup to the stage
+/// </summary>
+public class MicrobeStageWelcome : TutorialPhase
 {
-    using System;
+    private Action? patchNamePopup;
 
-    /// <summary>
-    ///   A welcome popup to the stage
-    /// </summary>
-    public class MicrobeStageWelcome : TutorialPhase
+    [JsonProperty]
+    private WorldGenerationSettings.LifeOrigin gameLifeOrigin;
+
+    private WorldGenerationSettings.LifeOrigin appliedGUILifeOrigin = WorldGenerationSettings.LifeOrigin.Vent;
+
+    public MicrobeStageWelcome()
     {
-        private Action? patchNamePopup;
+        Pauses = true;
+    }
 
-        public MicrobeStageWelcome()
+    public override string ClosedByName => "MicrobeStageWelcome";
+
+    public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    {
+        if (ShownCurrently && gameLifeOrigin != appliedGUILifeOrigin)
         {
-            Pauses = true;
+            gui.SetWelcomeTextForLifeOrigin(gameLifeOrigin);
+            appliedGUILifeOrigin = gameLifeOrigin;
         }
 
-        public override string ClosedByName => "MicrobeStageWelcome";
+        gui.MicrobeWelcomeVisible = ShownCurrently;
+    }
 
-        public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.MicrobeWelcomeVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.EnteredMicrobeStage:
             {
-                case TutorialEventType.EnteredMicrobeStage:
+                foreach (var eventArg in ((AggregateEventArgs)args).Args)
                 {
-                    patchNamePopup = ((CallbackEventArgs)args).Data;
-
-                    if (!HasBeenShown && CanTrigger)
+                    if (eventArg is CallbackEventArgs callbackEventArgs)
                     {
-                        Show();
-                        return true;
+                        patchNamePopup = callbackEventArgs.Data;
                     }
-
-                    break;
+                    else if (eventArg is GameWorldEventArgs gameWorldEventArgs)
+                    {
+                        gameLifeOrigin = gameWorldEventArgs.World.WorldSettings.Origin;
+                    }
                 }
+
+                if (!HasBeenShown && CanTrigger)
+                {
+                    Show();
+                    return true;
+                }
+
+                break;
             }
-
-            return false;
         }
 
-        public override void Hide()
-        {
-            patchNamePopup?.Invoke();
-            base.Hide();
-        }
+        return false;
+    }
+
+    public override void Hide()
+    {
+        patchNamePopup?.Invoke();
+        base.Hide();
     }
 }

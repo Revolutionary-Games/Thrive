@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dfswkocmrbsbc"]
 
-[ext_resource path="res://assets/models/Tree01.glb" type="PackedScene" id=1]
-[ext_resource path="res://assets/models/PlaceholderTree.cs" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://cjtqndrpgqn7p" path="res://assets/models/Tree01.glb" id="1"]
+[ext_resource type="Script" path="res://assets/models/PlaceholderTree.cs" id="2"]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape3D" id="1"]
 height = 21.1983
 radius = 1.60744
 
-[node name="StaticBody" type="StaticBody"]
-script = ExtResource( 2 )
+[node name="StaticBody3D" type="StaticBody3D"]
+script = ExtResource("2")
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.5167, 0 )
-shape = SubResource( 1 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.5167, 0)
+shape = SubResource("1")
 
-[node name="Tree01" parent="." instance=ExtResource( 1 )]
-transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0 )
+[node name="Tree01" parent="." instance=ExtResource("1")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)

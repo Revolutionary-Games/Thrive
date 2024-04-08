@@ -1,4 +1,9 @@
 # Main library of the native side of things (non-Godot using)
+
+# Note when the source code is packaged, boost (and other native)
+# libraries are not included and need to be separately downloaded
+# (for example from our official Thrive git repository)
+
 add_library(thrive_native SHARED
   "${PROJECT_BINARY_DIR}/Include.h" core/ForwardDefinitions.hpp
   interop/CInterop.cpp interop/CInterop.h
@@ -11,6 +16,7 @@ add_library(thrive_native SHARED
   core/Spinlock.hpp
   core/TaskSystem.cpp core/TaskSystem.hpp
   core/Time.hpp
+  helpers/CPUCheck.hpp
   physics/BodyActivationListener.cpp physics/BodyActivationListener.hpp
   physics/BodyControlState.hpp
   physics/ContactListener.cpp physics/ContactListener.hpp
@@ -38,8 +44,7 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   # TODO debug symbols in release for MSVC (and Distribution mode)
 
 else()
-  target_compile_options(thrive_native PRIVATE -Wall -Wextra -Wpedantic -Werror
-    -Wno-unknown-pragmas)
+  target_compile_options(thrive_native PRIVATE -Wall -Wextra -Wpedantic -Wno-unknown-pragmas)
 
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_native PRIVATE -Werror)

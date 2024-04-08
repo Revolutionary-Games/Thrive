@@ -1,56 +1,55 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Tutorial for the patch map tab
+/// </summary>
+public class PatchMap : TutorialPhase
 {
-    using System;
+    private readonly string patchMapTab = EditorTab.PatchMap.ToString();
+    private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
-    /// <summary>
-    ///   Tutorial for the patch map tab
-    /// </summary>
-    public class PatchMap : TutorialPhase
+    public override string ClosedByName => "PatchMap";
+
+    public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
-        private readonly string patchMapTab = EditorTab.PatchMap.ToString();
-        private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
+        gui.PatchMapVisible = ShownCurrently;
+    }
 
-        public override string ClosedByName => "PatchMap";
-
-        public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.PatchMapVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.MicrobeEditorTabChanged:
             {
-                case TutorialEventType.MicrobeEditorTabChanged:
+                var tab = ((StringEventArgs)args).Data;
+
+                if (!HasBeenShown && CanTrigger && tab == patchMapTab)
                 {
-                    var tab = ((StringEventArgs)args).Data;
-
-                    if (!HasBeenShown && CanTrigger && tab == patchMapTab)
-                    {
-                        Show();
-                    }
-
-                    if (ShownCurrently && tab == cellEditorTab)
-                    {
-                        Hide();
-                    }
-
-                    break;
+                    Show();
                 }
 
-                case TutorialEventType.MicrobeEditorPatchSelected:
+                if (ShownCurrently && tab == cellEditorTab)
                 {
-                    if (ShownCurrently && ((PatchEventArgs)args).Patch != null)
-                    {
-                        Hide();
-                    }
-
-                    break;
+                    Hide();
                 }
+
+                break;
             }
 
-            return false;
+            case TutorialEventType.MicrobeEditorPatchSelected:
+            {
+                if (ShownCurrently && ((PatchEventArgs)args).Patch != null)
+                {
+                    Hide();
+                }
+
+                break;
+            }
         }
+
+        return false;
     }
 }

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   The main class handling the society stage functions
 /// </summary>
-public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
+public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
     IStructureSelectionReceiver<StructureDefinition>
 {
     [Export]
@@ -20,7 +20,7 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
 
     private CustomConfirmationDialog industrialStageConfirmPopup = null!;
 
-    private Spatial? buildingToPlaceGhost;
+    private Node3D? buildingToPlaceGhost;
 #pragma warning restore CA2213
 
     private WorldResource foodResource = null!;
@@ -50,6 +50,8 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
 
     [JsonIgnore]
     public IResourceContainer SocietyResources => resourceStorage;
+
+    public override MainGameState GameState => MainGameState.SocietyStage;
 
     [JsonIgnore]
     protected override IStrategyStageHUD BaseHUD => HUD;
@@ -84,13 +86,13 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
         citizenMovingSystem = new CitizenMovingSystem(rootOfDynamicallySpawned);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
         if (!IsGameOver())
         {
-            structureSystem.Process(delta, this);
+            structureSystem.Process((float)delta, this);
 
             // This doesn't really need to update all that often but for now this is fine performance-wise and is
             // easier to program
@@ -105,13 +107,13 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
                 if (industrialStageConfirmPopup.Visible != true)
                 {
                     // TODO: collision check with other buildings
-                    buildingToPlaceGhost.GlobalTranslation = GetPlayerCursorPointedWorldPosition();
+                    buildingToPlaceGhost.GlobalPosition = GetPlayerCursorPointedWorldPosition();
                 }
             }
 
             HandlePopulationGrowth();
 
-            citizenMovingSystem.Process(delta, population);
+            citizenMovingSystem.Process((float)delta, population);
 
             if (movingToSocietyStage)
             {
@@ -147,7 +149,7 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
         Jukebox.Instance.PlayCategory("SocietyStage");
     }
 
-    public PlacedStructure AddBuilding(StructureDefinition structureDefinition, Transform location)
+    public PlacedStructure AddBuilding(StructureDefinition structureDefinition, Transform3D location)
     {
         // TODO: Proper storing of created structures for easier processing
         return SpawnHelpers.SpawnStructure(structureDefinition, location, rootOfDynamicallySpawned, structureScene);
@@ -159,7 +161,7 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
 
         // Spawn an initial society center to get the player started when directly going to this stage
         var societyCenter =
-            AddBuilding(SimulationParameters.Instance.GetStructure("societyCenter"), Transform.Identity);
+            AddBuilding(SimulationParameters.Instance.GetStructure("societyCenter"), Transform3D.Identity);
         societyCenter.ForceCompletion();
 
         base.StartNewGame();
@@ -225,7 +227,7 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
 
         buildingTypeToPlace = structureDefinition;
 
-        buildingToPlaceGhost = buildingTypeToPlace.GhostScene.Instance<Spatial>();
+        buildingToPlaceGhost = buildingTypeToPlace.GhostScene.Instantiate<Node3D>();
 
         rootOfDynamicallySpawned.AddChild(buildingToPlaceGhost);
     }
@@ -344,7 +346,7 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
         GD.Print("Switching to industrial scene");
 
         var industrialStage =
-            SceneManager.Instance.LoadScene(MainGameState.IndustrialStage).Instance<IndustrialStage>();
+            SceneManager.Instance.LoadScene(MainGameState.IndustrialStage).Instantiate<IndustrialStage>();
         industrialStage.CurrentGame = CurrentGame;
         industrialStage.TakeInitialResourcesFrom(SocietyResources);
 
@@ -354,9 +356,9 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
         industrialStage.CameraWorldPoint = CameraWorldPoint / Constants.INDUSTRIAL_STAGE_SIZE_MULTIPLIER;
 
         var cityPosition = industrialStage.CameraWorldPoint;
-        cityPosition.y = 0;
+        cityPosition.Y = 0;
 
         // TODO: preserve the initial city building visuals
-        industrialStage.AddCity(new Transform(Basis.Identity, cityPosition), true);
+        industrialStage.AddCity(new Transform3D(Basis.Identity, cityPosition), true);
     }
 }

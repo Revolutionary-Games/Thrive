@@ -147,6 +147,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         /// <summary>
         ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     TODO: switch this to NodePath (though JSON loading will get a bit more complex)
+        ///   </para>
+        /// </remarks>
         public string? SceneModelPath;
 
         /// <summary>
@@ -163,5 +168,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         ///   If true animations won't be stopped on this scene when this is spawned as a chunk
         /// </summary>
         public bool PlayAnimation;
+
+        /// <summary>
+        ///   If true then the default shader (material retrieve) is not done and it is assumed that normal shader
+        ///   operations like dissolving is unavailable
+        /// </summary>
+        public bool MissingDefaultShaderSupport;
     }
 }

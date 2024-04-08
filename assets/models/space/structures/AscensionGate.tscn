@@ -1,32 +1,22 @@
-[gd_scene format=2]
+[gd_scene format=3 uid="uid://brucc75wulk44"]
 
-[node name="AscensionGate" type="Spatial"]
+[node name="AscensionGate" type="Node3D"]
 
-[node name="CSGBox" type="CSGBox" parent="."]
-width = 5.0
-height = 0.2
-depth = 5.0
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(5, 0.2, 5)
 
-[node name="CSGBox2" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.331752, 0 )
-width = 1.17208
-height = 0.477377
-depth = 5.0
+[node name="CSGBox2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.331752, 0)
+size = Vector3(1.17208, 0.477377, 5)
 
-[node name="CSGBox3" type="CSGBox" parent="."]
-transform = Transform( 0.975981, 0.217854, 0, -0.217854, 0.975981, 0, 0, 0, 1, -1.62222, 1.99086, 0 )
-width = 0.450878
-height = 3.98205
-depth = 0.451
+[node name="CSGBox3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.975981, 0.217854, 0, -0.217854, 0.975981, 0, 0, 0, 1, -1.62222, 1.99086, 0)
+size = Vector3(0.450878, 3.98205, 0.451)
 
-[node name="CSGBox5" type="CSGBox" parent="."]
-transform = Transform( 0.976145, -0.217121, 0, 0.217121, 0.976145, 0, 0, 0, 1, 1.53302, 1.99086, 0 )
-width = 0.450878
-height = 3.98205
-depth = 0.451
+[node name="CSGBox5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.976145, -0.217121, 0, 0.217121, 0.976145, 0, 0, 0, 1, 1.53302, 1.99086, 0)
+size = Vector3(0.450878, 3.98205, 0.451)
 
-[node name="CSGBox4" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.72551, 0 )
-width = 0.5
-height = 0.5
-depth = 0.5
+[node name="CSGBox4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.72551, 0)
+size = Vector3(0.5, 0.5, 0.5)

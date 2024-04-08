@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
+using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 public static class ListUtils
 {
@@ -19,12 +22,42 @@ public static class ListUtils
         return items[random.Next(0, items.Count)];
     }
 
+    public static T Random<[MustBeVariant] T>(this Array<T> items, Random random)
+    {
+        if (items == null || items.Count < 1)
+            throw new ArgumentException("Can't select a random item from an empty sequence");
+
+        return items[random.Next(0, items.Count)];
+    }
+
+    public static Variant Random(this Array items, Random random)
+    {
+        if (items == null || items.Count < 1)
+            throw new ArgumentException("Can't select a random item from an empty sequence");
+
+        return items[random.Next(0, items.Count)];
+    }
+
     public static T? RandomOrDefault<T>(this List<T>? items, Random random)
     {
         if (items == null || items.Count < 1)
             return default;
 
         return items[random.Next(0, items.Count)];
+    }
+
+    /// <summary>
+    ///   <inheritdoc cref="ShuffleBag{T}.Shuffle"/>
+    /// </summary>
+    public static void Shuffle<T>(this IList<T> list, Random random)
+    {
+        int length = list.Count;
+        for (int i = 0; i < length - 1; ++i)
+        {
+            int j = random.Next(i, length);
+
+            (list[i], list[j]) = (list[j], list[i]);
+        }
     }
 
     public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> items)
@@ -77,5 +110,33 @@ public static class ListUtils
         }
 
         list.RemoveAt(itemCount - 1);
+    }
+
+    /// <summary>
+    ///   Finds the closest value in the list of values and returns that
+    /// </summary>
+    /// <param name="valueToSearchFor">The value to look for</param>
+    /// <param name="values">Where to search for the value</param>
+    /// <returns>The closest element in <see cref="values"/> when compared to <see cref="valueToSearchFor"/></returns>
+    public static int FindClosestValue(int valueToSearchFor, params int[] values)
+    {
+        if (values.Length < 1)
+            throw new ArgumentException("Must be given at least one value to match against");
+
+        var closest = values[0];
+        var closestDistance = Math.Abs(valueToSearchFor - closest);
+
+        for (int i = 1; i < values.Length; ++i)
+        {
+            var distance = Math.Abs(valueToSearchFor - values[i]);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = values[i];
+            }
+        }
+
+        return closest;
     }
 }

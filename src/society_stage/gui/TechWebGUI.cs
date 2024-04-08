@@ -2,12 +2,11 @@
 using System.ComponentModel;
 using System.Text;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   A display of <see cref="TechWeb"/> status and available technologies to select something to research
 /// </summary>
-public class TechWebGUI : HBoxContainer
+public partial class TechWebGUI : HBoxContainer
 {
     [Export]
     public NodePath? TechnologyNameLabelPath;
@@ -35,7 +34,7 @@ public class TechWebGUI : HBoxContainer
     private Technology? selectedTechnology;
 
     [Signal]
-    public delegate void OnTechnologyToResearchSelected(string technology);
+    public delegate void OnTechnologyToResearchSelectedEventHandler(string technology);
 
     public override void _Ready()
     {
@@ -81,19 +80,17 @@ public class TechWebGUI : HBoxContainer
             // TODO: temporary positioning logic
             if (technology == SimulationParameters.Instance.GetTechnology("steamPower"))
             {
-                button.RectPosition = new Vector2(250, 250);
+                button.Position = new Vector2(250, 250);
             }
             else
             {
-                button.RectPosition = new Vector2(25, 80 * y);
+                button.Position = new Vector2(25, 80 * y);
                 ++y;
             }
 
             techNodesContainer.AddChild(button);
-            var binds = new Array();
-            binds.Add(technology.InternalName);
 
-            button.Connect("pressed", this, nameof(OnTechnologySelected), binds);
+            button.Connect(BaseButton.SignalName.Pressed, Callable.From(() => OnTechnologySelected(technology)));
 
             // TODO: ensure the container is large enough min size to contain everything
         }
@@ -119,9 +116,9 @@ public class TechWebGUI : HBoxContainer
         base.Dispose(disposing);
     }
 
-    private void OnTechnologySelected(string internalName)
+    private void OnTechnologySelected(Technology technology)
     {
-        selectedTechnology = SimulationParameters.Instance.GetTechnology(internalName);
+        selectedTechnology = technology;
         ShowTechnologyDetails();
 
         // TODO: allow clearing the selected technology somehow?
@@ -131,7 +128,7 @@ public class TechWebGUI : HBoxContainer
     {
         if (selectedTechnology == null)
         {
-            technologyNameLabel.Text = TranslationServer.Translate("SELECT_A_TECHNOLOGY");
+            technologyNameLabel.Text = Localization.Translate("SELECT_A_TECHNOLOGY");
             selectedTechnologyDescriptionLabel.Text = null;
             researchButton.Disabled = true;
             return;
@@ -145,8 +142,8 @@ public class TechWebGUI : HBoxContainer
         // TODO: different sized fonts for the different sections
 
         // TODO: show in red if the player doesn't have the research capability
-        descriptionBuilder.Append(TranslationServer.Translate("TECHNOLOGY_REQUIRED_LEVEL")
-            .FormatSafe(TranslationServer.Translate(selectedTechnology.RequiresResearchLevel
+        descriptionBuilder.Append(Localization.Translate("TECHNOLOGY_REQUIRED_LEVEL")
+            .FormatSafe(Localization.Translate(selectedTechnology.RequiresResearchLevel
                 .GetAttribute<DescriptionAttribute>().Description)));
 
         // TODO: a quick description for a technology
@@ -170,7 +167,7 @@ public class TechWebGUI : HBoxContainer
         // TODO: warning popup if a previous technology is started and (much) progress would be lost
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnTechnologyToResearchSelected), selectedTechnology.InternalName);
+        EmitSignal(SignalName.OnTechnologyToResearchSelected, selectedTechnology.InternalName);
 
         // Disable the button to disallow trying to start the same research multiple times (we don't know if our signal
         // could fail)

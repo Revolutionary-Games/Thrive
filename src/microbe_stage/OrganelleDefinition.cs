@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
+using UnlockConstraints;
 
 /// <summary>
 ///   Definition for a type of an organelle. This is not a placed organelle in a microbe
@@ -15,7 +18,10 @@ using Newtonsoft.Json;
 ///     organelles.json.
 ///   </para>
 /// </remarks>
+[TypeConverter($"Saving.Serializers.{nameof(OrganelleDefinitionStringConverter)}")]
+#pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
 public class OrganelleDefinition : IRegistryType
+#pragma warning restore CA1001
 {
     /// <summary>
     ///   User readable name
@@ -38,6 +44,9 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public string? DisplaySceneModelPath;
 
+    [JsonIgnore]
+    public NodePath? DisplaySceneModelNodePath;
+
     /// <summary>
     ///   If this organelle's display scene has animation this needs to be the path to the animation player node
     /// </summary>
@@ -59,9 +68,7 @@ public class OrganelleDefinition : IRegistryType
     ///   Loaded icon for display in GUIs
     /// </summary>
     [JsonIgnore]
-    public Texture? LoadedIcon;
-
-    // TODO: switch this out for a density value and start using this in the physics body creation
+    public Texture2D? LoadedIcon;
 
     /// <summary>
     ///   Density of this organelle. Note that densities should fall into just a few categories to ensure that cached
@@ -186,6 +193,11 @@ public class OrganelleDefinition : IRegistryType
     public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
 
     /// <summary>
+    ///   The possible conditions where a player can unlock this organelle.
+    /// </summary>
+    public List<ConditionSet>? UnlockConditions;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
@@ -274,7 +286,7 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   Returns The hexes but rotated (rotation is the number of 60 degree rotations)
     /// </summary>
-    public IEnumerable<Hex> GetRotatedHexes(int rotation)
+    public IReadOnlyList<Hex> GetRotatedHexes(int rotation)
     {
         // The rotations repeat every 6 steps
         rotation %= 6;
@@ -366,6 +378,21 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "InitialComposition is not set");
         }
 
+        foreach (var entry in InitialComposition)
+        {
+            if (entry.Value <= MathUtils.EPSILON)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "InitialComposition has negative or really small value");
+            }
+
+            if (!entry.Key.IsCloud)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "InitialComposition has a compound that can't be a cloud");
+            }
+        }
+
         if (Hexes == null || Hexes.Count < 1)
         {
             throw new InvalidRegistryDataException(name, GetType().Name, "Hexes is empty");
@@ -376,6 +403,9 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Both DisplayScene and CorpseChunkScene are null");
         }
+
+        if (DisplaySceneModelPath != null)
+            DisplaySceneModelNodePath = new NodePath(DisplaySceneModelPath);
 
         // Check for duplicate position hexes
         for (int i = 0; i < Hexes.Count; ++i)
@@ -419,11 +449,17 @@ public class OrganelleDefinition : IRegistryType
                 "Multiple default upgrades specified");
         }
 
+        // Check unlock conditions
+        if (UnlockConditions != null)
+        {
+            foreach (var set in UnlockConditions)
+                set.Check(name);
+        }
+
 #if DEBUG
         if (!string.IsNullOrEmpty(CorpseChunkScene))
         {
-            using var directory = new Directory();
-            if (!directory.FileExists(CorpseChunkScene))
+            if (!ResourceLoader.Exists(CorpseChunkScene))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Corpse chunk scene path doesn't exist");
@@ -449,7 +485,7 @@ public class OrganelleDefinition : IRegistryType
 
         if (!string.IsNullOrEmpty(IconPath))
         {
-            LoadedIcon = GD.Load<Texture>(IconPath);
+            LoadedIcon = GD.Load<Texture2D>(IconPath);
         }
 
         // Resolve process names
@@ -471,6 +507,13 @@ public class OrganelleDefinition : IRegistryType
 
                 Enzymes[enzyme] = entry.Value;
             }
+        }
+
+        // Resolve unlock conditions
+        if (UnlockConditions != null)
+        {
+            foreach (var set in UnlockConditions)
+                set.Resolve(parameters);
         }
 
         if (Unimplemented)
@@ -495,6 +538,30 @@ public class OrganelleDefinition : IRegistryType
         foreach (var availableUpgrade in AvailableUpgrades.Values)
         {
             availableUpgrade.Resolve();
+        }
+    }
+
+    /// <summary>
+    ///   A bbcode string containing all the unlock conditions for this organelle.
+    /// </summary>
+    public void GenerateUnlockRequirementsText(LocalizedStringBuilder builder,
+        WorldAndPlayerDataSource worldAndPlayerArgs)
+    {
+        if (UnlockConditions != null)
+        {
+            bool first = true;
+            foreach (var unlockCondition in UnlockConditions)
+            {
+                if (!first)
+                {
+                    builder.Append(" ");
+                    builder.Append(new LocalizedString("OR_UNLOCK_CONDITION"));
+                    builder.Append(" ");
+                }
+
+                unlockCondition.GenerateTooltip(builder, worldAndPlayerArgs);
+                first = false;
+            }
         }
     }
 

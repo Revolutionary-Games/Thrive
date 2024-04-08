@@ -5,8 +5,10 @@ using Godot;
 /// <summary>
 ///   Shows a compound amount along with an icon
 /// </summary>
-public class CompoundAmount : HBoxContainer
+public partial class CompoundAmount : HBoxContainer
 {
+    private readonly StringName colourParameterName = new("font_color");
+
 #pragma warning disable CA2213
     private Label? amountLabel;
     private TextureRect? icon;
@@ -159,6 +161,16 @@ public class CompoundAmount : HBoxContainer
         }
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            colourParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void UpdateLabel()
     {
         if (amountLabel == null)
@@ -170,11 +182,11 @@ public class CompoundAmount : HBoxContainer
         string numberPart;
         if (!string.IsNullOrEmpty(compound!.Unit))
         {
-            numberPart = TranslationServer.Translate("VALUE_WITH_UNIT").FormatSafe(Math.Round(amount), compound.Unit);
+            numberPart = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(Math.Round(amount), compound.Unit);
         }
         else if (UsePercentageDisplay)
         {
-            numberPart = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(amount * 100, 1));
+            numberPart = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(amount * 100, 1));
         }
         else
         {
@@ -205,7 +217,7 @@ public class CompoundAmount : HBoxContainer
                 throw new Exception("unhandled colour");
         }
 
-        amountLabel.AddColorOverride("font_color", color);
+        amountLabel.AddThemeColorOverride(colourParameterName, color);
     }
 
     private void UpdateIcon()
@@ -219,6 +231,6 @@ public class CompoundAmount : HBoxContainer
     private void UpdateTooltip()
     {
         if (icon != null)
-            icon.HintTooltip = compound!.Name;
+            icon.TooltipText = compound!.Name;
     }
 }

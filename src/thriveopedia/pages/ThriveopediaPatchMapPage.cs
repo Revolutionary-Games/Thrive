@@ -9,7 +9,7 @@ using Godot;
 ///     Note a lot of this functionality is duplicated from PatchMapEditorComponent.
 ///   </para>
 /// </remarks>
-public class ThriveopediaPatchMapPage : ThriveopediaPage
+public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaPage
 {
     [Export]
     public NodePath? MapDrawerPath;
@@ -28,12 +28,12 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
 
     private Patch playerPatchOnEntry = null!;
 
-    public override string PageName => "PatchMap";
-    public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE");
+    public string PageName => "PatchMap";
+    public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE");
 
     public Action<Patch>? OnSelectedPatchChanged { get; set; }
 
-    public override string ParentPageName => "CurrentWorld";
+    public string ParentPageName => "CurrentWorld";
 
     public override void _Ready()
     {
@@ -104,6 +104,13 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
     private void UpdatePlayerPatch(Patch? patch)
     {
         mapDrawer.PlayerPatch = patch ?? playerPatchOnEntry;
+
+        if (mapDrawer.Map == null)
+            throw new InvalidOperationException("This can be only called after map is set from current game");
+
+        if (mapDrawer.Map.UpdatePatchVisibility(mapDrawer.PlayerPatch))
+            mapDrawer.MarkDirty();
+
         detailsPanel.CurrentPatch = mapDrawer.PlayerPatch;
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
@@ -115,6 +122,16 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
         mapDrawer.Map = CurrentGame!.GameWorld.Map;
         playerPatchOnEntry = mapDrawer.Map?.CurrentPatch ??
             throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
+
+        // Make sure the map setting of fog of war always matches the world
+        // These need to be called here in case this page is opened before the editor
+        mapDrawer.Map.FogOfWar = CurrentGame.GameWorld.WorldSettings.FogOfWarMode;
+
+        if (mapDrawer.Map.FogOfWar == FogOfWarMode.Ignored)
+        {
+            mapDrawer.Map.RevealAllPatches();
+        }
+
         UpdatePlayerPatch(playerPatchOnEntry);
     }
 
@@ -126,7 +143,7 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
 
     private void UpdateSeedLabel()
     {
-        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
+        seedLabel.Text = Localization.Translate("SEED_LABEL")
             .FormatSafe(CurrentGame!.GameWorld.WorldSettings.Seed);
     }
 }

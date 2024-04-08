@@ -1,72 +1,83 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://woqh47yetqtm"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/saving/SaveStatusOverlay.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=4]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/saving/SaveStatusOverlay.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "SavingStatusFadeOut"
 tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("StatusLabel:modulate:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
 }
 tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("StatusLabel:modulate:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
 }
 tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("StatusLabel:modulate:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
 }
 tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("StatusLabel:modulate:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1 )
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("..:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ true, false ]
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1toxe"]
+_data = {
+"SavingStatusFadeOut": SubResource("1")
 }
 
 [node name="SaveStatusOverlay" type="Control"]
-pause_mode = 2
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
+theme = ExtResource("1")
+script = ExtResource("2")
 StatusLabelPath = NodePath("CenterContainer/StatusLabel")
 AnimationPlayerPath = NodePath("CenterContainer/AnimationPlayer")
 ErrorDialogPath = NodePath("CenterContainer2/ErrorDialog")
@@ -74,46 +85,36 @@ ErrorJsonDebugAdvicePath = NodePath("CenterContainer2/ErrorDialog/VBoxContainer/
 ErrorJsonDebugLabelPath = NodePath("CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 0.5
-mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="StatusLabel" type="Label" parent="CenterContainer"]
-margin_left = 509.0
-margin_top = 167.0
-margin_right = 770.0
-margin_bottom = 192.0
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Saving status goes here..."
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer"]
-anims/SavingStatusFadeOut = SubResource( 1 )
-
-[node name="CenterContainer2" type="CenterContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
+libraries = {
+"": SubResource("AnimationLibrary_1toxe")
 }
 
-[node name="ErrorDialog" parent="CenterContainer2" instance=ExtResource( 3 )]
-margin_left = 640.0
-margin_top = 360.0
-margin_right = 640.0
-margin_bottom = 360.0
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
 
-[node name="JsonDebugInfo" parent="CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox" index="2" instance=ExtResource( 4 )]
-margin_left = -15.0
-margin_top = -40.0
-margin_right = 7.0
-margin_bottom = -18.0
+[node name="ErrorDialog" parent="CenterContainer2" instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="JsonDebugInfo" parent="CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox" index="2" instance=ExtResource("4")]
+layout_mode = 2
 size_flags_horizontal = 3
 ExtendedBbcode = "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
 

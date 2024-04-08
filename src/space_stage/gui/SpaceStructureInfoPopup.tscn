@@ -4,21 +4,21 @@
 [ext_resource path="res://src/space_stage/gui/SpaceStructureInfoPopup.cs" type="Script" id=2]
 
 [node name="SpaceStructureInfoPopup" instance=ExtResource( 1 )]
-margin_top = 70.0
-margin_bottom = 139.0
+offset_top = 70.0
+offset_bottom = 139.0
 script = ExtResource( 2 )
 Resizable = true
 StructureStatusTextLabelPath = NodePath("VBoxContainer/ExtraInfo")
 InteractionButtonContainerPath = NodePath("VBoxContainer/ActionButtonsContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 250, 300 )
+offset_right = 40.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 250, 300 )
 
 [node name="ExtraInfo" type="Label" parent="VBoxContainer" index="0"]
-margin_right = 250.0
-margin_bottom = 25.0
+offset_right = 250.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 autowrap = true
 __meta__ = {
@@ -26,8 +26,8 @@ __meta__ = {
 }
 
 [node name="ActionButtonsContainer" type="VBoxContainer" parent="VBoxContainer" index="1"]
-margin_top = 29.0
-margin_right = 250.0
-margin_bottom = 300.0
+offset_top = 29.0
+offset_right = 250.0
+offset_bottom = 300.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

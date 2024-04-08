@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Godot;
 using Newtonsoft.Json;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Generates mutations for species
@@ -28,24 +29,28 @@ public class Mutations
     };
 
     [JsonProperty]
-    private Random random;
+    private XoShiRo256starstar random;
 
     [JsonConstructor]
-    public Mutations(Random random)
+    public Mutations(XoShiRo256starstar random)
     {
         this.random = random;
     }
 
     public Mutations()
     {
-        random = new Random();
+        random = new XoShiRo256starstar();
     }
 
-    // TODO: proper unit testing (note the code here relies on Godot colour type)
+    // TODO: proper unit testing (note the code here relies on Godot colour type, and loading the thrive simulation
+    // parameters). See: https://github.com/Revolutionary-Games/Thrive/issues/4963
     public static void TestConsistentGenerationWithSeed()
     {
         int seed = 234234565;
         int steps = 10;
+
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
 
         string firstSpecies;
         string secondSpecies;
@@ -53,25 +58,28 @@ public class Mutations
 
         // Create the mutated species
         {
-            var mutator = new Mutations(new Random(seed));
+            var mutator = new Mutations(new XoShiRo256starstar(seed));
 
-            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, steps);
+            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
+                workMemory2, steps);
 
             firstSpecies = species.StringCode;
         }
 
         {
-            var mutator = new Mutations(new Random(seed));
+            var mutator = new Mutations(new XoShiRo256starstar(seed + 1));
 
-            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, steps);
+            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
+                workMemory2, steps);
 
             secondSpecies = species.StringCode;
         }
 
         {
-            var mutator = new Mutations(new Random(seed + 1));
+            var mutator = new Mutations(new XoShiRo256starstar(seed + 2));
 
-            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, steps);
+            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
+                workMemory2, steps);
 
             differentSpecies = species.StringCode;
         }
@@ -88,7 +96,7 @@ public class Mutations
     ///   Creates a mutated version of a species
     /// </summary>
     public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated, float creationRate,
-        bool lawkOnly)
+        bool lawkOnly, List<Hex> workMemory1, List<Hex> workMemory2)
     {
         if (parent.Organelles.Count < 1)
         {
@@ -121,7 +129,8 @@ public class Mutations
 
         MutateBehaviour(parent, mutated);
 
-        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria, creationRate, lawkOnly);
+        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria, creationRate, lawkOnly,
+            workMemory1, workMemory2);
 
         // Update the genus if the new species is different enough
         if (NewGenus(mutated, parent))
@@ -155,7 +164,7 @@ public class Mutations
             mutated.MembraneType = RandomMembraneType(simulation);
             if (mutated.MembraneType != simulation.GetMembrane("single"))
             {
-                colour.a = RandomOpacityChitin();
+                colour.A = RandomOpacityChitin();
             }
         }
         else
@@ -176,12 +185,13 @@ public class Mutations
     /// <summary>
     ///   Creates a fully random species starting with one cytoplasm
     /// </summary>
-    public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, float creationRate, bool lawkOnly, int steps = 5)
+    public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, float creationRate, bool lawkOnly,
+        List<Hex> workMemory1, List<Hex> workMemory2, int steps = 5)
     {
         // Temporarily create species with just cytoplasm to start mutating from
         var temp = new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty);
 
-        GameWorld.SetInitialSpeciesProperties(temp);
+        GameWorld.SetInitialSpeciesProperties(temp, workMemory1, workMemory2);
 
         // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
@@ -190,7 +200,7 @@ public class Mutations
 
         for (int step = 0; step < steps; ++step)
         {
-            CreateMutatedSpecies(temp, mutated, creationRate, lawkOnly);
+            CreateMutatedSpecies(temp, mutated, creationRate, lawkOnly, workMemory1, workMemory2);
 
             temp = (MicrobeSpecies)mutated.Clone();
         }
@@ -221,7 +231,8 @@ public class Mutations
     ///   Creates a mutated version of parentOrganelles in organelles
     /// </summary>
     private void MutateMicrobeOrganelles(OrganelleLayout<OrganelleTemplate> parentOrganelles,
-        OrganelleLayout<OrganelleTemplate> mutatedOrganelles, bool isBacteria, float creationRate, bool lawkOnly)
+        OrganelleLayout<OrganelleTemplate> mutatedOrganelles, bool isBacteria, float creationRate, bool lawkOnly,
+        List<Hex> workMemory1, List<Hex> workMemory2)
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
@@ -251,13 +262,13 @@ public class Mutations
             // Copy the organelle
             try
             {
-                mutatedOrganelles.Add(organelle);
+                mutatedOrganelles.AddFast(organelle, workMemory1, workMemory2);
             }
             catch (ArgumentException)
             {
                 // Add the organelle randomly back to the list to make
                 // sure we don't throw it away
-                AddNewOrganelle(mutatedOrganelles, organelle.Definition);
+                AddNewOrganelle(mutatedOrganelles, organelle.Definition, workMemory1, workMemory2);
             }
         }
 
@@ -268,21 +279,23 @@ public class Mutations
             {
                 if (random.Next(0.0f, 1.0f) < Constants.MUTATION_NEW_ORGANELLE_CHANCE)
                 {
-                    AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria, lawkOnly));
+                    AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria, lawkOnly), workMemory1,
+                        workMemory2);
                 }
                 else
                 {
                     // Duplicate an existing organelle, but only if there are any organelles where that is legal
                     var organellesThatCanBeDuplicated =
-                        parentOrganelles.Organelles.Where(organelle => !organelle.Definition.Unique).ToList();
+                        parentOrganelles.Organelles.Where(o => !o.Definition.Unique).ToList();
                     if (organellesThatCanBeDuplicated.Any())
                     {
                         AddNewOrganelle(mutatedOrganelles,
-                            organellesThatCanBeDuplicated.Random(random).Definition);
+                            organellesThatCanBeDuplicated.Random(random).Definition, workMemory1, workMemory2);
                     }
                     else
                     {
-                        AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria, lawkOnly));
+                        AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria, lawkOnly), workMemory1,
+                            workMemory2);
                     }
                 }
             }
@@ -292,7 +305,7 @@ public class Mutations
         {
             if (random.Next(0.0f, 1.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
             {
-                AddNewOrganelle(mutatedOrganelles, nucleus);
+                AddNewOrganelle(mutatedOrganelles, nucleus, workMemory1, workMemory2);
             }
         }
 
@@ -300,11 +313,11 @@ public class Mutations
         if (mutatedOrganelles.Count < 1)
         {
             // Add the first parent species organelle
-            AddNewOrganelle(mutatedOrganelles, parentOrganelles[0].Definition);
+            AddNewOrganelle(mutatedOrganelles, parentOrganelles[0].Definition, workMemory1, workMemory2);
 
             // If still empty, copy the first organelle of the parent
             if (mutatedOrganelles.Count < 1)
-                mutatedOrganelles.Add((OrganelleTemplate)parentOrganelles[0].Clone());
+                mutatedOrganelles.AddFast((OrganelleTemplate)parentOrganelles[0].Clone(), workMemory1, workMemory2);
         }
 
         var islandHexes = mutatedOrganelles.GetIslandHexes();
@@ -347,9 +360,8 @@ public class Mutations
             minSubHex.R = (int)(minSubHex.R * (minDistance - 1.0) / minDistance);
 
             // Move all island organelles by minSubHex
-            foreach (var organelle in mutatedOrganelles.Where(
-                         o => islandHexes.Any(h =>
-                             o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
+            foreach (var organelle in mutatedOrganelles.Where(o => islandHexes.Any(h =>
+                         o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
             {
                 organelle.Position -= minSubHex;
             }
@@ -362,11 +374,12 @@ public class Mutations
     ///   Adds a new organelle to a mutation result
     /// </summary>
     private void AddNewOrganelle(OrganelleLayout<OrganelleTemplate> organelles,
-        OrganelleDefinition organelle)
+        OrganelleDefinition organelle, List<Hex> workMemory1, List<Hex> workMemory2)
     {
         try
         {
-            organelles.Add(GetRealisticPosition(organelle, organelles));
+            organelles.AddFast(GetRealisticPosition(organelle, organelles, workMemory1, workMemory2), workMemory1,
+                workMemory2);
         }
         catch (ArgumentException)
         {
@@ -385,7 +398,7 @@ public class Mutations
     }
 
     private OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,
-        OrganelleLayout<OrganelleTemplate> existingOrganelles)
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1, List<Hex> workMemory2)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
 
@@ -416,7 +429,7 @@ public class Mutations
                         {
                             result.Orientation = rotation;
 
-                            if (existingOrganelles.CanPlace(result))
+                            if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
                             {
                                 return result;
                             }
@@ -552,7 +565,7 @@ public class Mutations
                 case 0:
                 {
                     letterPool = isVowel ? Vowels : Consonants;
-                    newName.Erase(0, 1);
+                    newName.Remove(0, 1);
                     newName.Insert(0, letterPool.Random(random));
                     break;
                 }
@@ -563,12 +576,12 @@ public class Mutations
                     letterPool = isVowel ? Vowels : Consonants;
 
                     // Take next letter in the pool (cycle if necessary);
-                    var nextIndex = letterPool.FindIndex(item => item == letter) + 1;
+                    var nextIndex = letterPool.FindIndex(l => l == letter) + 1;
                     nextIndex = nextIndex < letterPool.Count ? nextIndex : 0;
 
                     var nextLetterInPool = letterPool.ElementAt(nextIndex);
 
-                    newName.Erase(0, 1);
+                    newName.Remove(0, 1);
                     newName.Insert(0, nextLetterInPool);
                     break;
                 }
@@ -597,7 +610,7 @@ public class Mutations
                 bool isPermute = PronounceablePermutation.Contains(part);
                 if (random.Next(0, 20) < 10 && isPermute)
                 {
-                    newName.Erase(index, 2);
+                    newName.Remove(index, 2);
                     changes++;
                     newName.Insert(index, PronounceablePermutation.Random(random));
                 }
@@ -627,7 +640,7 @@ public class Mutations
 
                 if (!isVowel && newName.ToString(index, 1) != "r" && !isPermute)
                 {
-                    newName.Erase(index, 1);
+                    newName.Remove(index, 1);
                     changes++;
                     switch (random.Next(0, 6))
                     {
@@ -659,7 +672,7 @@ public class Mutations
                 // If is vowel
                 else if (newName.ToString(index, 1) != "r" && !isPermute)
                 {
-                    newName.Erase(index, 1);
+                    newName.Remove(index, 1);
                     changes++;
                     if (random.Next(0, 20) < 10)
                     {
@@ -697,13 +710,13 @@ public class Mutations
             {
                 if (!isVowel && newName.ToString(index, 1) != "r" && !isPermute)
                 {
-                    newName.Erase(index, 1);
+                    newName.Remove(index, 1);
                     letterChanges++;
                     newName.Insert(index, Consonants.Random(random));
                 }
                 else if (!isPermute)
                 {
-                    newName.Erase(index, 1);
+                    newName.Remove(index, 1);
                     letterChanges++;
                     newName.Insert(index, Vowels.Random(random));
                 }

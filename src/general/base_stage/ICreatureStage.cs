@@ -8,6 +8,12 @@ public interface ICreatureStage : IStageBase, IReturnableGameState
     [JsonIgnore]
     public bool HasPlayer { get; }
 
+    /// <summary>
+    ///   True when <see cref="HasPlayer"/> and the player is alive.
+    /// </summary>
+    [JsonIgnore]
+    public bool HasAlivePlayer { get; }
+
     [JsonIgnore]
     public bool MovingToEditor { get; set; }
 

@@ -3,7 +3,7 @@
 /// <summary>
 ///   Card displaying a fossilised species in the Thriveopedia museum.
 /// </summary>
-public class MuseumCard : Button
+public partial class MuseumCard : Button
 {
     [Export]
     public NodePath? SpeciesNameLabelPath;
@@ -14,24 +14,27 @@ public class MuseumCard : Button
     [Export]
     public NodePath DeleteButtonPath = null!;
 
+    private readonly NodePath modulateReference = new("modulate");
+
 #pragma warning disable CA2213
     private Label? speciesNameLabel;
     private TextureRect? speciesPreview;
     private TextureButton deleteButton = null!;
+
+    // TODO: check if this should be disposed
+    private Image? fossilPreviewImage;
+
 #pragma warning restore CA2213
 
     private Color defaultDeleteModulate;
 
     private Species? savedSpecies;
 
-    // TODO: check if this should be disposed
-    private Image? fossilPreviewImage;
+    [Signal]
+    public delegate void OnSpeciesSelectedEventHandler(MuseumCard card);
 
     [Signal]
-    public delegate void OnSpeciesSelected(MuseumCard card);
-
-    [Signal]
-    public delegate void OnSpeciesDeleted(MuseumCard card);
+    public delegate void OnSpeciesDeletedEventHandler(MuseumCard card);
 
     /// <summary>
     ///   The fossilised species associated with this card.
@@ -88,6 +91,8 @@ public class MuseumCard : Button
                 SpeciesPreviewPath.Dispose();
                 DeleteButtonPath.Dispose();
             }
+
+            modulateReference.Dispose();
         }
 
         base.Dispose(disposing);
@@ -108,12 +113,10 @@ public class MuseumCard : Button
 
         if (FossilPreviewImage != null)
         {
-            var imageTexture = new ImageTexture();
-
             // Could add filter and mipmap flags here if the preview images look too bad at small sizes, but that
             // would presumably make this take more time, so maybe then this shouldn't be done in a blocking way here
             // and instead using ResourceManager
-            imageTexture.CreateFromImage(FossilPreviewImage);
+            var imageTexture = ImageTexture.CreateFromImage(FossilPreviewImage);
 
             speciesPreview.Texture = imageTexture;
         }
@@ -125,26 +128,26 @@ public class MuseumCard : Button
         // delete button. Could maybe queue invoke the species select and skip that if the delete got pressed?
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnSpeciesSelected), this);
+        EmitSignal(SignalName.OnSpeciesSelected, this);
     }
 
     private void OnMouseEnter()
     {
-        GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.Gray, 0.5f);
-        GUICommon.Instance.Tween.Start();
+        var tween = CreateTween();
+        tween.TweenProperty(speciesPreview, modulateReference, Colors.Gray, 0.5);
     }
 
     private void OnMouseExit()
     {
-        GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.White, 0.5f);
-        GUICommon.Instance.Tween.Start();
+        var tween = CreateTween();
+        tween.TweenProperty(speciesPreview, modulateReference, Colors.White, 0.5);
     }
 
     private void OnDeletePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnSpeciesDeleted), this);
+        EmitSignal(SignalName.OnSpeciesDeleted, this);
     }
 
     private void OnDeleteMouseEntered()

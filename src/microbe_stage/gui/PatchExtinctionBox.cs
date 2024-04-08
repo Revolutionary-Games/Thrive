@@ -1,7 +1,11 @@
 ﻿using System;
 using Godot;
 
-public class PatchExtinctionBox : Control
+/// <summary>
+///   Shown when player is extinct in the current patch and needs to pick a new patch to play in. When fully extinct in
+///   all patches <see cref="ExtinctionBox"/> is shown instead.
+/// </summary>
+public partial class PatchExtinctionBox : Control
 {
     [Export]
     public NodePath? PatchMapDrawerPath;
@@ -81,7 +85,7 @@ public class PatchExtinctionBox : Control
             return;
         }
 
-        var animLength = animationPlayer.CurrentAnimationLength;
+        var animLength = (float)animationPlayer.CurrentAnimationLength;
 
         animationPlayer.PlayBackwards();
 

@@ -4,6 +4,7 @@
 ///   Main script for debugging.
 ///   Partial class: Override functions, debug panel
 /// </summary>
+[GodotAutoload]
 public partial class DebugOverlays : Control
 {
     [Export]
@@ -69,7 +70,6 @@ public partial class DebugOverlays : Control
         fpsCounter = GetNode<Control>(FPSCounterPath);
         performanceMetrics = GetNode<CustomWindow>(PerformanceMetricsPath);
         labelsLayer = GetNode<Control>(EntityLabelsPath);
-        smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
         fpsLabel = GetNode<Label>(FPSLabelPath);
         deltaLabel = GetNode<Label>(DeltaLabelPath);
         metricsText = GetNode<Label>(MetricsTextPath);
@@ -89,9 +89,12 @@ public partial class DebugOverlays : Control
         base._ExitTree();
 
         InputManager.UnregisterReceiver(this);
+
+        if (instance == this)
+            instance = null;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -125,7 +128,7 @@ public partial class DebugOverlays : Control
     [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false)]
     public void OnPerformanceMetricsToggled()
     {
-        performanceMetricsCheckBox.Pressed = !performanceMetricsCheckBox.Pressed;
+        performanceMetricsCheckBox.ButtonPressed = !performanceMetricsCheckBox.ButtonPressed;
     }
 
     [RunOnKeyDown("toggle_debug_panel", OnlyUnhandled = false)]
@@ -144,7 +147,7 @@ public partial class DebugOverlays : Control
     [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false)]
     public void OnFpsToggled()
     {
-        fpsCheckBox.Pressed = !fpsCheckBox.Pressed;
+        fpsCheckBox.ButtonPressed = !fpsCheckBox.ButtonPressed;
     }
 
     protected override void Dispose(bool disposing)
@@ -175,17 +178,7 @@ public partial class DebugOverlays : Control
 
     private void OnPerformanceMetricsCheckBoxToggled(bool state)
     {
-        if (performanceMetrics.Visible == state)
-            return;
-
-        if (state)
-        {
-            performanceMetrics.Show();
-        }
-        else
-        {
-            performanceMetrics.Hide();
-        }
+        PerformanceMetricsVisible = state;
     }
 
     private void OnFpsCheckBoxToggled(bool state)
@@ -195,7 +188,23 @@ public partial class DebugOverlays : Control
 
     private void OnCollisionShapeCheckBoxToggled(bool state)
     {
+        // Standard Godot physics debug
         GetTree().DebugCollisionsHint = state;
+
+        // Custom physics debug
+        if (state)
+        {
+            DebugDrawer.Instance.EnablePhysicsDebug();
+
+            if (!DebugDrawer.Instance.PhysicsDebugDrawAvailable)
+            {
+                ToolTipManager.Instance.ShowPopup(Localization.Translate("DEBUG_DRAW_NOT_AVAILABLE"), 4);
+            }
+        }
+        else
+        {
+            DebugDrawer.Instance.DisablePhysicsDebugLevel();
+        }
     }
 
     private void OnEntityLabelCheckBoxToggled(bool state)

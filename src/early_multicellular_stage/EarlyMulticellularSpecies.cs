@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 using Systems;
 
 /// <summary>
 ///   Represents an early multicellular species that is composed of multiple cells
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
@@ -48,11 +50,16 @@ public class EarlyMulticellularSpecies : Species
         // Make certain these are all up to date
         foreach (var cellType in CellTypes)
         {
-            cellType.RepositionToOrigin();
+            // See the comment in CellBodyPlanEditorComponent.OnFinishEditing
+            if (cellType.RepositionToOrigin())
+            {
+                GD.Print("Repositioned an early multicellular species' cell type. This might break / crash the " +
+                    "body plan layout.");
+            }
         }
     }
 
-    public override void RepositionToOrigin()
+    public override bool RepositionToOrigin()
     {
         // TODO: should this actually reposition things as the cell at index 0 is always the colony leader so if it
         // isn't centered, that'll cause issues?
@@ -60,11 +67,16 @@ public class EarlyMulticellularSpecies : Species
 
         var centerOfMass = Cells[0].Position;
 
+        if (centerOfMass.Q == 0 && centerOfMass.R == 0)
+            return false;
+
         foreach (var cell in Cells)
         {
             // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
             cell.Position -= centerOfMass;
         }
+
+        return true;
     }
 
     public override void UpdateInitialCompounds()
@@ -102,9 +114,12 @@ public class EarlyMulticellularSpecies : Species
 
         Cells.Clear();
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var cellTemplate in casted.Cells)
         {
-            Cells.Add((CellTemplate)cellTemplate.Clone());
+            Cells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
         }
 
         CellTypes.Clear();
@@ -121,9 +136,12 @@ public class EarlyMulticellularSpecies : Species
 
         ClonePropertiesTo(result);
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var cellTemplate in Cells)
         {
-            result.Cells.Add((CellTemplate)cellTemplate.Clone());
+            result.Cells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
         }
 
         foreach (var cellType in CellTypes)

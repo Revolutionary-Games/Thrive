@@ -9,7 +9,7 @@ using Godot;
 /// <summary>
 ///   Shows a GUI to the user that lists the existing saves and allows doing things with them like loading and deleting
 /// </summary>
-public class SaveManagerGUI : Control
+public partial class SaveManagerGUI : Control
 {
     [Export]
     public NodePath? SaveListPath;
@@ -74,7 +74,7 @@ public class SaveManagerGUI : Control
     private Task<(int Count, ulong DiskSpace)>? getBackupCountTask;
 
     [Signal]
-    public delegate void OnBackPressed();
+    public delegate void OnBackPressedEventHandler();
 
     public List<SaveListItem> Selected
     {
@@ -104,10 +104,10 @@ public class SaveManagerGUI : Control
         saveDirectoryWarningDialog = GetNode<CustomConfirmationDialog>(SaveDirectoryWarningDialogPath);
         errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(SaveDeletionFailedErrorPath);
 
-        saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
+        saveList.Connect(SaveList.SignalName.OnItemsChanged, new Callable(this, nameof(RefreshSaveCounts)));
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!saveCountRefreshed && IsVisibleInTree())
         {
@@ -136,7 +136,7 @@ public class SaveManagerGUI : Control
         getBackupCountTask = null;
 
         totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
-        totalSaveSize.Text = TranslationServer.Translate("MIB_VALUE")
+        totalSaveSize.Text = Localization.Translate("MIB_VALUE")
             .FormatSafe(Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2));
 
         UpdateSelectedCount();
@@ -213,9 +213,9 @@ public class SaveManagerGUI : Control
     {
         loadButton.Disabled = Selected.Count != 1;
         deleteSelectedButton.Disabled = Selected.Count == 0;
-        deleteOldButton.Disabled = (currentAutoSaveCount < 2) &&
-            (currentQuickSaveCount < 2) &&
-            (currentBackupCount < 1);
+        deleteOldButton.Disabled = currentAutoSaveCount < 2 &&
+            currentQuickSaveCount < 2 &&
+            currentBackupCount < 1;
     }
 
     private void LoadFirstSelectedSave()
@@ -251,7 +251,7 @@ public class SaveManagerGUI : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         deleteSelectedConfirmDialog.DialogText =
-            TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING").FormatSafe(Selected.Count);
+            Localization.Translate("DELETE_SELECTED_SAVE_WARNING").FormatSafe(Selected.Count);
         deleteSelectedConfirmDialog.PopupCenteredShrink();
     }
 
@@ -261,7 +261,7 @@ public class SaveManagerGUI : Control
         int quickSavesToDeleteCount = Math.Max(currentQuickSaveCount - 1, 0);
         int oldBackupsToDeleteCount = Math.Max(currentBackupCount, 0);
 
-        deleteOldConfirmDialog.DialogText = TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING_2").FormatSafe(
+        deleteOldConfirmDialog.DialogText = Localization.Translate("DELETE_ALL_OLD_SAVE_WARNING_2").FormatSafe(
             autoSavesToDeleteCount, quickSavesToDeleteCount, oldBackupsToDeleteCount);
         deleteOldConfirmDialog.PopupCenteredShrink();
     }
@@ -270,11 +270,11 @@ public class SaveManagerGUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
+        GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(s => s.SaveName).ToList()));
 
         try
         {
-            Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
+            Selected.ForEach(s => SaveHelper.DeleteSave(s.SaveName));
         }
         catch (IOException e)
         {
@@ -310,7 +310,7 @@ public class SaveManagerGUI : Control
     private void OnBackButton()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnBackPressed));
+        EmitSignal(SignalName.OnBackPressed);
     }
 
     private void OnSaveListItemConfirmed(SaveListItem item)

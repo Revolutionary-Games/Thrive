@@ -1,74 +1,104 @@
-﻿namespace Systems
+﻿namespace Systems;
+
+using Components;
+using DefaultEcs;
+using DefaultEcs.System;
+using Godot;
+using World = DefaultEcs.World;
+
+/// <summary>
+///   Handles things related to <see cref="MicrobeShaderParameters"/>. This should run each frame and pause when
+///   the game is paused.
+/// </summary>
+/// <remarks>
+///   <para>
+///     This is marked as just reading the entity materials as this just does a single shader parameter write to it
+///   </para>
+/// </remarks>
+[With(typeof(MicrobeShaderParameters))]
+[With(typeof(EntityMaterial))]
+[ReadsComponent(typeof(EntityMaterial))]
+[RuntimeCost(8)]
+[RunsOnFrame]
+[RunsOnMainThread]
+public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
 {
-    using Components;
-    using DefaultEcs;
-    using DefaultEcs.System;
-    using Godot;
-    using World = DefaultEcs.World;
+    // private readonly Lazy<Texture> noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
 
-    /// <summary>
-    ///   Handles things related to <see cref="MicrobeShaderParameters"/>. This should run each frame and pause when
-    ///   the game is paused.
-    /// </summary>
-    [With(typeof(MicrobeShaderParameters))]
-    [With(typeof(EntityMaterial))]
-    [RunsOnFrame]
-    public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
+    private readonly StringName dissolveValueName = new("dissolveValue");
+
+    public MicrobeShaderSystem(World world) : base(world, null)
     {
-        // private readonly Lazy<Texture> noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
+    }
 
-        public MicrobeShaderSystem(World world) : base(world, null)
+    public override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
+    }
+
+    protected override void Update(float delta, in Entity entity)
+    {
+        ref var shaderParameters = ref entity.Get<MicrobeShaderParameters>();
+
+        if (shaderParameters.ParametersApplied && !shaderParameters.PlayAnimations)
+            return;
+
+        if (shaderParameters.PlayAnimations)
         {
+            if (shaderParameters.DissolveAnimationSpeed != 0)
+            {
+                if (float.IsNaN(shaderParameters.DissolveValue))
+                {
+                    GD.PrintErr("Correcting NaN as dissolve shader parameter");
+                    shaderParameters.DissolveValue = 0;
+                }
+                else if (shaderParameters.DissolveValue < 1)
+                {
+                    shaderParameters.DissolveValue += shaderParameters.DissolveAnimationSpeed * delta;
+
+                    if (shaderParameters.DissolveValue > 1)
+                    {
+                        // Animation finished
+                        shaderParameters.DissolveValue = 1;
+
+                        // TODO: only set this to false if all animations are finished (if in the future more
+                        // animations are added)
+                        shaderParameters.PlayAnimations = false;
+                    }
+                }
+            }
+            else
+            {
+                GD.PrintErr("Entity has incorrectly enabled animations playing but no animation flag " +
+                    "is turned on");
+                shaderParameters.PlayAnimations = false;
+            }
         }
 
-        protected override void Update(float delta, in Entity entity)
+        ref var entityMaterial = ref entity.Get<EntityMaterial>();
+
+        // Wait for the material to be defined
+        if (entityMaterial.Materials == null)
+            return;
+
+        foreach (var material in entityMaterial.Materials)
         {
-            ref var shaderParameters = ref entity.Get<MicrobeShaderParameters>();
+            material.SetShaderParameter(dissolveValueName, shaderParameters.DissolveValue);
 
-            if (shaderParameters.ParametersApplied && !shaderParameters.PlayAnimations)
-                return;
+            // Dissolve texture must be set in the material set on the object otherwise the dissolve animation
+            // won't play correctly. It used to be the case that the old C# code set the noise texture here but
+            // now it is much simpler to just require it to be set in the scenes.
+        }
 
-            if (shaderParameters.PlayAnimations)
-            {
-                if (shaderParameters.DissolveAnimationSpeed != 0)
-                {
-                    if (float.IsNaN(shaderParameters.DissolveValue))
-                    {
-                        GD.PrintErr("Correcting NaN as dissolve shader parameter");
-                        shaderParameters.DissolveValue = 0;
-                    }
-                    else if (shaderParameters.DissolveValue < 1)
-                    {
-                        shaderParameters.DissolveValue += shaderParameters.DissolveAnimationSpeed * delta;
+        shaderParameters.ParametersApplied = true;
+    }
 
-                        if (shaderParameters.DissolveValue > 1)
-                            shaderParameters.DissolveValue = 1;
-                    }
-                }
-                else
-                {
-                    GD.PrintErr("Entity has incorrectly enabled animations playing but no animation flag " +
-                        "is turned on");
-                    shaderParameters.PlayAnimations = false;
-                }
-            }
-
-            ref var entityMaterial = ref entity.Get<EntityMaterial>();
-
-            // Wait for the material to be defined
-            if (entityMaterial.Materials == null)
-                return;
-
-            foreach (var material in entityMaterial.Materials)
-            {
-                material.SetShaderParam("dissolveValue", shaderParameters.DissolveValue);
-            }
-
-            // TODO: remove this and the lazy value if unnecessary (if necessary this should be applied just once and
-            // not each frame)
-            // entityMaterial.Material.SetShaderParam("dissolveTexture", noiseTexture);
-
-            shaderParameters.ParametersApplied = true;
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            dissolveValueName.Dispose();
         }
     }
 }

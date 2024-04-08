@@ -13,12 +13,17 @@ public static class StringUtils
     ///   Truncates large numbers with suffix added (e.g. M for million).
     ///   Adapted from https://stackoverflow.com/a/30181106 to allow negatives and translation.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: see if it would be possible to make a variant of this method that writes to a StringBuilder
+    ///   </para>
+    /// </remarks>
     public static string FormatNumber(this double number, bool withSuffix = true)
     {
         if (number is >= 1000000000 or <= -1000000000)
         {
             return withSuffix ?
-                TranslationServer.Translate("BILLION_ABBREVIATION")
+                Localization.Translate("BILLION_ABBREVIATION")
                     .FormatSafe(number.ToString("0,,,.###", CultureInfo.CurrentCulture)) :
                 number.ToString("0,,,.###", CultureInfo.CurrentCulture);
         }
@@ -26,7 +31,7 @@ public static class StringUtils
         if (number is >= 1000000 or <= -1000000)
         {
             return withSuffix ?
-                TranslationServer.Translate("MILLION_ABBREVIATION")
+                Localization.Translate("MILLION_ABBREVIATION")
                     .FormatSafe(number.ToString("0,,.##", CultureInfo.CurrentCulture)) :
                 number.ToString("0,,.##", CultureInfo.CurrentCulture);
         }
@@ -34,7 +39,7 @@ public static class StringUtils
         if (number is >= 1000 or <= -1000)
         {
             return withSuffix ?
-                TranslationServer.Translate("KILO_ABBREVIATION")
+                Localization.Translate("KILO_ABBREVIATION")
                     .FormatSafe(number.ToString("0,.#", CultureInfo.CurrentCulture)) :
                 number.ToString("0,.#", CultureInfo.CurrentCulture);
         }
@@ -72,7 +77,7 @@ public static class StringUtils
         }
         catch (FormatException e)
         {
-            GD.PrintErr("Invalid translation format for current language in text: ", format, ", exception: ", e);
+            GD.PrintErr($"Invalid translation format for current language in text: {format} exception: {e}");
             return format;
         }
     }
@@ -213,6 +218,26 @@ public static class StringUtils
         return value.ToString("F1", CultureInfo.CurrentCulture);
     }
 
+    /// <summary>
+    ///   Format variant that writes the result to a <see cref="StringBuilder"/>
+    /// </summary>
+    public static void ThreeDigitFormat(double value, StringBuilder result)
+    {
+        if (value is >= 1000 or <= -1000)
+        {
+            result.Append(FormatNumber(value));
+            return;
+        }
+
+        if (value is >= 100 or <= -100)
+        {
+            result.Append(value.ToString("F0", CultureInfo.CurrentCulture));
+            return;
+        }
+
+        result.Append(value.ToString("F1", CultureInfo.CurrentCulture));
+    }
+
     public static string ThreeDigitFormat(long value)
     {
         if (value is >= 1000 or <= -1000)
@@ -268,6 +293,16 @@ public static class StringUtils
     public static string SlashSeparatedNumbersFormat(long numerator, long denominator)
     {
         return ThreeDigitFormat(numerator) + " / " + ThreeDigitFormat(denominator);
+    }
+
+    /// <summary>
+    ///   Variant of this method that directly puts the result into a <see cref="StringBuilder"/>
+    /// </summary>
+    public static void SlashSeparatedNumbersFormat(double numerator, double denominator, StringBuilder result)
+    {
+        ThreeDigitFormat(numerator, result);
+        result.Append(" / ");
+        ThreeDigitFormat(denominator, result);
     }
 
     /// <summary>
@@ -526,61 +561,56 @@ public static class StringUtils
         return builder.ToString();
     }
 
-    // TODO: proper unit tests: https://github.com/Revolutionary-Games/Thrive/issues/1571
-    public static void TestRomanNumerals()
+    public static string GetIndent(int indent)
     {
-        // ReSharper disable StringLiteralTypo
-        if (FormatAsRomanNumerals(1) != "I")
-            throw new Exception();
+        if (indent < 1)
+            return string.Empty;
 
-        if (FormatAsRomanNumerals(3) != "III")
-            throw new Exception();
+        return new string(' ', indent);
+    }
 
-        if (FormatAsRomanNumerals(4) != "IV")
-            throw new Exception();
+    public static int DetectLineIndentationLevel(string line)
+    {
+        int spaceCount = 0;
 
-        if (FormatAsRomanNumerals(7) != "VII")
-            throw new Exception();
+        foreach (var character in line)
+        {
+            if (character <= ' ')
+            {
+                ++spaceCount;
+            }
+            else
+            {
+                break;
+            }
+        }
 
-        if (FormatAsRomanNumerals(14) != "XIV")
-            throw new Exception();
+        return spaceCount;
+    }
 
-        if (FormatAsRomanNumerals(39) != "XXXIX")
-            throw new Exception();
+    /// <summary>
+    ///   Makes a string safe to store as a meta tag in rich text.
+    /// </summary>
+    public static string ConvertToSafeMetaTag(string tagContent)
+    {
+        return tagContent
+            .Replace("[", "LEFT_BRACE").Replace("]", "RIGHT_BRACE")
+            .Replace("{", "LEFT_CURLY_BRACE").Replace("}", "RIGHT_CURLY_BRACE");
+    }
 
-        if (FormatAsRomanNumerals(246) != "CCXLVI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(789) != "DCCLXXXIX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(2421) != "MMCDXXI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(160) != "CLX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(207) != "CCVII")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1009) != "MIX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1066) != "MLXVI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1776) != "MDCCLXXVI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1918) != "MCMXVIII")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1944) != "MCMXLIV")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(2023) != "MMXXIII")
-            throw new Exception();
-
-        // ReSharper restore StringLiteralTypo
+    /// <summary>
+    ///   Gets the original text from the value of a meta tag.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Assumes the text doesn't contain the literal strings LEFT_BRACE, RIGHT_BRACE,
+    ///     LEFT_CURLY_BRACE or RIGHT_CURLY_BRACE.
+    ///   </para>
+    /// </remarks>
+    public static string ConvertFromSafeMetaTag(string tagContent)
+    {
+        return tagContent
+            .Replace("LEFT_BRACE", "[").Replace("RIGHT_BRACE", "]")
+            .Replace("LEFT_CURLY_BRACE", "{").Replace("RIGHT_CURLY_BRACE", "}");
     }
 }

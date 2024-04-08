@@ -128,7 +128,8 @@ public class ShuffleBag<T> : IEnumerable<T?>
     /// </summary>
     private void Shuffle()
     {
-        for (int i = 0; i < currentContent.Count - 2; i++)
+        // TODO: why is there a -2 here? This makes it so that just 2 items in the bag can never be shuffled.
+        for (int i = 0; i < currentContent.Count - 2; ++i)
         {
             int j = random.Next(i, currentContent.Count);
 

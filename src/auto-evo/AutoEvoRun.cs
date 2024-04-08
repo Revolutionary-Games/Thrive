@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
+using Xoshiro.PRNG64;
 using Thread = System.Threading.Thread;
 
 /// <summary>
@@ -121,13 +122,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return TranslationServer.Translate("ABORTED_DOT");
+                return Localization.Translate("ABORTED_DOT");
 
             if (Finished)
-                return TranslationServer.Translate("FINISHED_DOT");
+                return Localization.Translate("FINISHED_DOT");
 
             if (!started)
-                return TranslationServer.Translate("NOT_STARTED_DOT");
+                return Localization.Translate("NOT_STARTED_DOT");
 
             int total = totalSteps;
 
@@ -136,11 +137,11 @@ public class AutoEvoRun
                 var percentage = CompletionFraction * 100;
 
                 // {0:F1}% done. {1:n0}/{2:n0} steps. [Paused.]
-                return TranslationServer.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total)
-                    + (Running ? string.Empty : " " + TranslationServer.Translate("OPERATION_PAUSED_DOT"));
+                return Localization.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total)
+                    + (Running ? string.Empty : " " + Localization.Translate("OPERATION_PAUSED_DOT"));
             }
 
-            return TranslationServer.Translate("STARTING");
+            return Localization.Translate("STARTING");
         }
     }
 
@@ -294,8 +295,7 @@ public class AutoEvoRun
             // This *probably* can't overflow, but just in case check for that case
             if (change > int.MaxValue)
             {
-                GD.PrintErr(
-                    "Converting external effect caused a data overflow! We need to change " +
+                GD.PrintErr("Converting external effect caused a data overflow! We need to change " +
                     "external effects to use longs.");
                 change = int.MaxValue;
             }
@@ -370,7 +370,8 @@ public class AutoEvoRun
     /// </summary>
     protected virtual void GatherInfo(Queue<IRunStep> steps)
     {
-        var random = new Random();
+        // TODO: allow passing in a seed
+        var random = new XoShiRo256starstar();
 
         var alreadyHandledSpecies = new HashSet<Species>();
 
@@ -446,7 +447,8 @@ public class AutoEvoRun
         // against are the same (so we can show some performance predictions in the
         // editor and suggested changes)
         // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map) { CanRunConcurrently = false });
+        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, null, true)
+            { CanRunConcurrently = false });
 
         // Due to species splitting migrations may end up being invalid
         // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
@@ -475,35 +477,34 @@ public class AutoEvoRun
         if (playerSpecies == null)
             return;
 
-        steps.Enqueue(new LambdaStep(
-            result =>
+        steps.Enqueue(new LambdaStep(result =>
+        {
+            if (!result.SpeciesHasResults(playerSpecies))
             {
-                if (!result.SpeciesHasResults(playerSpecies))
-                {
-                    GD.Print("Player species has no auto-evo results, creating blank results to avoid problems");
-                    result.AddPlayerSpeciesBlankResult(playerSpecies, map.Patches.Values);
-                }
+                GD.Print("Player species has no auto-evo results, creating blank results to avoid problems");
+                result.AddPlayerSpeciesBlankResult(playerSpecies, map.Patches.Values);
+            }
 
-                foreach (var entry in map.Patches)
-                {
-                    var resultPopulation = result.GetPopulationInPatchIfExists(playerSpecies, entry.Value);
+            foreach (var entry in map.Patches)
+            {
+                var resultPopulation = result.GetPopulationInPatchIfExists(playerSpecies, entry.Value);
 
-                    // Going extinct in patch is not adjusted, because the minimum viable population clamping is
-                    // performed already so we don't want to undo that
-                    if (resultPopulation is null or 0)
-                        continue;
+                // Going extinct in patch is not adjusted, because the minimum viable population clamping is
+                // performed already so we don't want to undo that
+                if (resultPopulation is null or 0)
+                    continue;
 
-                    // Adjust to the specified fraction of the full population change
-                    var previousPopulation =
-                        entry.Value.GetSpeciesSimulationPopulation(previousPopulationFrom ?? playerSpecies);
+                // Adjust to the specified fraction of the full population change
+                var previousPopulation =
+                    entry.Value.GetSpeciesSimulationPopulation(previousPopulationFrom ?? playerSpecies);
 
-                    var change = resultPopulation.Value - previousPopulation;
+                var change = resultPopulation.Value - previousPopulation;
 
-                    change = (long)Math.Round(change * Constants.AUTO_EVO_PLAYER_STRENGTH_FRACTION);
+                change = (long)Math.Round(change * Constants.AUTO_EVO_PLAYER_STRENGTH_FRACTION);
 
-                    result.AddPopulationResultForSpecies(playerSpecies, entry.Value, previousPopulation + change);
-                }
-            }));
+                result.AddPopulationResultForSpecies(playerSpecies, entry.Value, previousPopulation + change);
+            }
+        }));
     }
 
     /// <summary>
@@ -550,7 +551,7 @@ public class AutoEvoRun
                 GatherInfo(runSteps);
 
                 // +2 is for this step and the result apply step
-                totalSteps = runSteps.Sum(step => step.TotalSteps) + 2;
+                totalSteps = runSteps.Sum(s => s.TotalSteps) + 2;
 
                 Interlocked.Increment(ref completeSteps);
                 state = RunStage.Stepping;
@@ -570,9 +571,12 @@ public class AutoEvoRun
                         // sensitive while auto-evo runs this value needs to be reduced
                         int maxTasksAtOnce = 1000;
 
-                        while (runSteps.Peek()?.CanRunConcurrently == true && maxTasksAtOnce > 0)
+                        while (runSteps.TryPeek(out var step) && step.CanRunConcurrently && maxTasksAtOnce > 0)
                         {
-                            var step = runSteps.Dequeue();
+                            var step2 = runSteps.Dequeue();
+
+                            if (step != step2)
+                                throw new Exception("Dequeued an unexpected item");
 
                             concurrentStepTasks.Add(new Task(() => RunSingleStepToCompletion(step)));
                             --maxTasksAtOnce;
@@ -681,8 +685,8 @@ public class AutoEvoRun
 
                     long currentPopulation = results.GetPopulationInPatchIfExists(entry.Species, entry.Patch) ?? 0;
 
-                    results.AddPopulationResultForSpecies(
-                        entry.Species, entry.Patch, currentPopulation + entry.Constant);
+                    results.AddPopulationResultForSpecies(entry.Species, entry.Patch,
+                        currentPopulation + entry.Constant);
                 }
                 catch (Exception e)
                 {

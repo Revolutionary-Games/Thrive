@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=3]
+[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=4]
+[ext_resource path="res://src/microbe_stage/editor/tooltips/SpeciesPreviewTooltip.cs" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="SpeciesDetailsTooltip" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -946.0
+offset_bottom = -518.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+theme_override_styles/panel = SubResource( 1 )
+script = ExtResource( 5 )
+SpeciesPreviewPath = NodePath("HBoxContainer/SpeciesPreview")
+HexPreviewPath = NodePath("HBoxContainer/CellHexPreview")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 333.0
+offset_bottom = 201.0
+custom_minimum_size = Vector2( 332, 200 )
+mouse_filter = 2
+
+[node name="SpeciesPreview" parent="HBoxContainer" instance=ExtResource( 2 )]
+offset_right = 164.0
+offset_bottom = 200.0
+mouse_filter = 2
+script = ExtResource( 4 )
+
+[node name="CellHexPreview" parent="HBoxContainer" instance=ExtResource( 2 )]
+offset_left = 168.0
+offset_right = 332.0
+offset_bottom = 200.0
+mouse_filter = 2
+script = ExtResource( 3 )

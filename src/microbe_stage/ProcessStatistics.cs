@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
 
@@ -9,6 +10,13 @@ using Nito.Collections;
 /// </summary>
 public class ProcessStatistics
 {
+    /// <summary>
+    ///   Temporary memory to use for <see cref="RemoveUnused"/> to avoid small constant allocations. This is no longer
+    ///   a ThreadLocal in <see cref="Systems.ProcessSystem"/> as that was causing the game process to lock up in
+    ///   Godot 4 (for unknown reasons). See: https://github.com/Revolutionary-Games/Thrive/issues/4989 for context.
+    /// </summary>
+    private List<BioProcess>? temporaryRemovedItems;
+
     /// <summary>
     ///   The processes and their associated speed statistics
     /// </summary>
@@ -28,32 +36,61 @@ public class ProcessStatistics
 
     public void MarkAllUnused()
     {
-        foreach (var entry in Processes)
+        lock (Processes)
         {
-            entry.Value.Used = false;
+            foreach (var entry in Processes)
+            {
+                entry.Value.Used = false;
+            }
         }
     }
 
     public void RemoveUnused()
     {
-        foreach (var item in Processes.Where(p => !p.Value.Used).ToList())
+        lock (Processes)
         {
-            Processes.Remove(item.Key);
+            temporaryRemovedItems ??= new List<BioProcess>();
+
+            foreach (var entry in Processes)
+            {
+                if (!entry.Value.Used)
+                    temporaryRemovedItems.Add(entry.Key);
+            }
+
+            int count = temporaryRemovedItems.Count;
+            if (count > 0)
+            {
+                for (int i = 0; i < count; ++i)
+                {
+                    if (!Processes.Remove(temporaryRemovedItems[i]))
+                        GD.PrintErr("Failed to remove item from ProcessStatistics");
+                }
+
+                temporaryRemovedItems.Clear();
+            }
         }
     }
 
     public SingleProcessStatistics GetAndMarkUsed(BioProcess forProcess)
     {
-        if (Processes.TryGetValue(forProcess, out var entry))
+#if DEBUG
+        if (forProcess == null!)
+            throw new ArgumentException("Invalid process marked used");
+#endif
+
+        lock (Processes)
         {
+            if (Processes.TryGetValue(forProcess, out var entry))
+            {
+                entry.Used = true;
+                return entry;
+            }
+
+            entry = new SingleProcessStatistics(forProcess);
+            Processes[forProcess] = entry;
             entry.Used = true;
             return entry;
         }
-
-        entry = new SingleProcessStatistics(forProcess);
-        Processes[forProcess] = entry;
-        entry.Used = true;
-        return entry;
     }
 }
 
@@ -268,9 +305,9 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         precomputedEnvironmentInputs = null;
     }
 
-    public bool Equals(IProcessDisplayInfo other)
+    public bool Equals(IProcessDisplayInfo? other)
     {
-        return Equals((object)other);
+        return Equals((object?)other);
     }
 
     public override bool Equals(object? obj)
@@ -363,9 +400,9 @@ public class AverageProcessStatistics : IProcessDisplayInfo
     public float CurrentSpeed { get; set; }
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
 
-    public bool Equals(IProcessDisplayInfo other)
+    public bool Equals(IProcessDisplayInfo? other)
     {
-        return Equals((object)other);
+        return Equals((object?)other);
     }
 
     public override bool Equals(object? obj)

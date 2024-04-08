@@ -7,6 +7,9 @@ project(Thrive)
 # "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 
 # Options
+# Building either the faster variant with AVX or without for older CPU support
+option(THRIVE_AVX "Create faster code that needs AVX2" ON)
+
 option(THRIVE_LTO "Use LTO when linking Thrive libraries" ON)
 
 option(USE_OBJECT_POOLS
@@ -26,6 +29,9 @@ option(USE_LOCK_FREE_QUEUE
 # option(TASK_QUEUE_USES_POINTERS
 #   "If on uses pointers in the task queue instead of the task objects themselves" ON)
 
+option(THRIVE_DISTRIBUTION
+  "Set on when building native libs for Thrive distribution" OFF)
+
 # This is disabled for now as this is not available when cross compiling to
 # Windows
 option(USE_ATOMIC_COLLISION_WRITE
@@ -42,6 +48,12 @@ option(NULL_HAS_UNUSUAL_REPRESENTATION
 # Also use a lib prefix on windows for consistency
 if(WIN32)
   set(CMAKE_SHARED_LIBRARY_PREFIX_CXX "lib")
+endif()
+
+if(NOT THRIVE_AVX)
+  message(STATUS "Building without AVX support")
+  set(CMAKE_SHARED_LIBRARY_SUFFIX "_without_avx${CMAKE_SHARED_LIBRARY_SUFFIX}")
+  set(CMAKE_STATIC_LIBRARY_SUFFIX "_without_avx${CMAKE_STATIC_LIBRARY_SUFFIX}")
 endif()
 
 # static building
@@ -123,6 +135,13 @@ if(NOT NATIVE_LIBRARY_VERSION)
   message(FATAL_ERROR "Failed to parse native library version")
 endif()
 
+string(REGEX MATCH "EarlyCheck = ([0-9]+);" _ "${versionFile}")
+set(EARLY_CHECK_LIBRARY_VERSION ${CMAKE_MATCH_1})
+
+if(NOT EARLY_CHECK_LIBRARY_VERSION)
+  message(FATAL_ERROR "Failed to parse native (early check) library version")
+endif()
+
 message(STATUS "Configured native library version ${NATIVE_LIBRARY_VERSION}")
 
 # Configure include file
@@ -131,5 +150,10 @@ include_directories(${PROJECT_BINARY_DIR})
 
 # Add the subfolders that define the actual things to build
 add_subdirectory(third_party)
+
+if(THRIVE_AVX)
+  # Early checks is not compiled in non-avx mode
+  add_subdirectory(src/native/early_checks)
+endif()
 
 add_subdirectory(src/native)

@@ -6,7 +6,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Base class for all stage classes that are part of the strategy stages part of the game (society stage etc.)
 /// </summary>
-public abstract class StrategyStageBase : StageBase, IStrategyStage
+[GodotAbstract]
+public partial class StrategyStageBase : StageBase, IStrategyStage
 {
     [Export]
     public NodePath? StrategicCameraPath;
@@ -22,6 +23,10 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
 
     private readonly Dictionary<object, float> activeResearchContributions = new();
 
+    protected StrategyStageBase()
+    {
+    }
+
     /// <summary>
     ///   Where the stage's strategic view camera is looking at
     /// </summary>
@@ -35,7 +40,7 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
     public TechnologyProgress? CurrentlyResearchedTechnology { get; private set; }
 
     [JsonIgnore]
-    protected abstract IStrategyStageHUD BaseHUD { get; }
+    protected virtual IStrategyStageHUD BaseHUD => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void ResolveNodeReferences()
     {
@@ -55,7 +60,7 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
         GameWorld.ResetAutoEvoRun();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -113,13 +118,13 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
         // If we ever have camera rotation, that should reset as well
     }
 
-    public bool AnimateCameraZoomTowards(float target, float delta, float speed = 1)
+    public bool AnimateCameraZoomTowards(float target, double delta, float speed = 1)
     {
         strategicCamera.AllowPlayerInput = false;
 
         if (strategicCamera.ZoomLevel > target)
         {
-            strategicCamera.ZoomLevel -= speed * delta;
+            strategicCamera.ZoomLevel -= (float)(speed * delta);
 
             if (strategicCamera.ZoomLevel < target)
             {
@@ -129,7 +134,7 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
         }
         else if (strategicCamera.ZoomLevel < target)
         {
-            strategicCamera.ZoomLevel += speed * delta;
+            strategicCamera.ZoomLevel += (float)(speed * delta);
 
             if (strategicCamera.ZoomLevel > target)
             {
@@ -181,7 +186,7 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
     protected void ShowTechnologyUnlockMessage(Technology technology)
     {
         BaseHUD.HUDMessages.ShowMessage(
-            TranslationServer.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
+            Localization.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
             DisplayDuration.Long);
     }
 

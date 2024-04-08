@@ -60,10 +60,14 @@ public static class MembraneComputationHelpers
             // organelles
             var entry = organelles[i];
 
-            foreach (var hex in entry.Definition.GetRotatedHexes(entry.Orientation))
+            var rotatedHexes = entry.Definition.GetRotatedHexes(entry.Orientation);
+            int hexCount = rotatedHexes.Count;
+
+            // Manual loop to reduce memory allocations in this often called method
+            for (int j = 0; j < hexCount; ++j)
             {
-                var hexCartesian = Hex.AxialToCartesian(entry.Position + hex);
-                result[resultWriteIndex++] = new Vector2(hexCartesian.x, hexCartesian.z);
+                var hexCartesian = Hex.AxialToCartesian(entry.Position + rotatedHexes[j]);
+                result[resultWriteIndex++] = new Vector2(hexCartesian.X, hexCartesian.Z);
             }
         }
 
@@ -72,7 +76,7 @@ public static class MembraneComputationHelpers
 
         // Points are sorted to ensure same shape but different order of organelles results in reusable data
         // TODO: check if this is actually a good idea or it is better to not sort and let duplicate membrane data
-        // just be generated
+        // just be generated. Also this seems to allocate memory a bit.
         Array.Sort(result, 0, length, HexComparer);
 
         return result;
@@ -99,7 +103,13 @@ public static class MembraneComputationHelpers
         }
 
         // Need to compute the data now, it doesn't exist in the cache
-        result = MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateShape(hexes, length, membraneType);
+        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+        var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
+
+        lock (generator)
+        {
+            result = generator.GenerateShape(hexes, length, membraneType);
+        }
 
         cache.WriteMembraneData(result);
         return result;
@@ -165,11 +175,11 @@ public static class MembraneComputationHelpers
     {
         public int Compare(Vector2 first, Vector2 second)
         {
-            var xComparison = first.x.CompareTo(second.x);
+            var xComparison = first.X.CompareTo(second.X);
             if (xComparison != 0)
                 return xComparison;
 
-            return first.y.CompareTo(second.y);
+            return first.Y.CompareTo(second.Y);
         }
     }
 }

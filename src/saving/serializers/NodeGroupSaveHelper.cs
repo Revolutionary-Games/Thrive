@@ -8,6 +8,11 @@ using Newtonsoft.Json.Linq;
 /// <summary>
 ///   Common utility functions for various types to save the Godot groups they are in
 /// </summary>
+/// <remarks>
+///   <para>
+///     This is currently unused as no dynamically changing group allocations need to be tracked in saves.
+///   </para>
+/// </remarks>
 public static class NodeGroupSaveHelper
 {
     public const string GROUP_JSON_PROPERTY_NAME = "NodeGroups";
@@ -25,12 +30,13 @@ public static class NodeGroupSaveHelper
 
         try
         {
-            var groups = value.GetGroups().Cast<string>().ToList();
+            var groups = value.GetGroups().Select(g => g.ToString());
 
             // Ignore inbuilt groups
-            groups.RemoveAll(item => item.BeginsWith("_") || IgnoredGroups.Contains(item));
+            groups = groups.Where(g => !g.StartsWith("_") && !IgnoredGroups.Contains(g));
 
-            serializer.Serialize(writer, groups.Count > 0 ? groups : null);
+            // TODO: check that this works properly
+            serializer.Serialize(writer, groups);
         }
         catch (ObjectDisposedException e)
         {

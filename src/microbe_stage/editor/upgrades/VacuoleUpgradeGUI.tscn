@@ -1,65 +1,51 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://7fnpxxxvuc7w"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs" id="2"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_h8r74"]
 
 [node name="VacuoleUpgradeGUI" type="VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -880.0
-margin_bottom = -650.0
-rect_min_size = Vector2( 400, 0 )
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
+offset_right = -880.0
+offset_bottom = -650.0
+theme = ExtResource("1")
+script = ExtResource("2")
 CompoundsPath = NodePath("CompoundSelection/OptionButton")
 IsSpecializedCheckboxPath = NodePath("CheckBox")
 CompoundDescriptionPath = NodePath("Description")
 CompoundSelectionPath = NodePath("CompoundSelection")
 
 [node name="CheckBox" type="CheckBox" parent="."]
-margin_right = 400.0
-margin_bottom = 17.0
-custom_fonts/font = ExtResource( 3 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "VACUOLE_IS_SPECIALIZED"
 
 [node name="Spacer2" type="Control" parent="."]
-margin_top = 21.0
-margin_right = 400.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 0, 5 )
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="CompoundSelection" type="VBoxContainer" parent="."]
-margin_top = 30.0
-margin_right = 400.0
-margin_bottom = 79.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="CompoundSelection"]
-margin_right = 400.0
-margin_bottom = 17.0
-custom_fonts/font = ExtResource( 3 )
+layout_mode = 2
 text = "SELECT_VACUOLE_COMPOUND_COLON"
+label_settings = ExtResource("3_h8r74")
 
 [node name="OptionButton" type="OptionButton" parent="CompoundSelection"]
-margin_top = 21.0
-margin_right = 400.0
-margin_bottom = 40.0
+layout_mode = 2
 
 [node name="Spacer" type="Control" parent="CompoundSelection"]
-margin_top = 44.0
-margin_right = 400.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 0, 5 )
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="Description" type="Label" parent="."]
-margin_top = 83.0
-margin_right = 400.0
-margin_bottom = 100.0
-custom_fonts/font = ExtResource( 3 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "DESCRIPTION GOES HERE"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("3_h8r74")
 
 [connection signal="toggled" from="CheckBox" to="." method="OnIsSpecializedToggled"]

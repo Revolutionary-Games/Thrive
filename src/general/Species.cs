@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   Class that represents a species. This is an abstract base for
 ///   use by all stage-specific species classes.
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
 [UseThriveSerializer]
@@ -43,6 +44,18 @@ public abstract class Species : ICloneable
     public IReadOnlyDictionary<Compound, float> BaseReproductionCost =>
         cachedBaseReproductionCost ??= CalculateBaseReproductionCost();
 
+    /// <summary>
+    ///   Unique id of this species, used to identify this
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     In the previous version a string name was used to identify species, but it was just the word species
+    ///     followed by a sequential number, so now this is an actual number.
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    public uint ID { get; private set; }
+
     public string Genus { get; set; }
     public string Epithet { get; set; }
 
@@ -58,7 +71,7 @@ public abstract class Species : ICloneable
         get
         {
             var colour = Colour;
-            return new Color(colour.r, colour.g, colour.b, 1);
+            return new Color(colour.R, colour.G, colour.B, 1);
         }
     }
 
@@ -88,18 +101,6 @@ public abstract class Species : ICloneable
     public int Generation { get; set; } = 1;
 
     /// <summary>
-    ///   Unique id of this species, used to identify this
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     In the previous version a string name was used to identify species, but it was just the word species
-    ///     followed by a sequential number, so now this is an actual number.
-    ///   </para>
-    /// </remarks>
-    [JsonProperty]
-    public uint ID { get; private set; }
-
-    /// <summary>
     ///   This is the genome of the species
     /// </summary>
     [JsonIgnore]
@@ -119,7 +120,9 @@ public abstract class Species : ICloneable
     ///   with bolding.
     /// </summary>
     [JsonIgnore]
-    public string FormattedNameBbCode => PlayerSpecies ? $"[b][i]{FormattedName}[/i][/b]" : $"[i]{FormattedName}[/i]";
+    public string FormattedNameBbCode => PlayerSpecies ?
+        $"[url=species:{ID}][b][i]{FormattedName}[/i][/b][/url]" :
+        $"[url=species:{ID}][i]{FormattedName}[/i][/url]";
 
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
@@ -139,7 +142,8 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
     /// </summary>
-    public abstract void RepositionToOrigin();
+    /// <returns>True when repositioning happened, false if this was already positioned correctly</returns>
+    public abstract bool RepositionToOrigin();
 
     public void SetPopulationFromPatches(long population)
     {
@@ -282,13 +286,12 @@ public abstract class Species : ICloneable
     /// <returns>The visual hash code</returns>
     public virtual int GetVisualHashCode()
     {
-        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607);
+        return Genus.GetHashCode() * 599 ^ Epithet.GetHashCode() * 601 ^ Colour.GetHashCode() * 607;
     }
 
     public virtual string GetDetailString()
     {
-        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
-            FormattedNameBbCode,
+        return Localization.Translate("SPECIES_DETAIL_TEXT").FormatSafe(FormattedNameBbCode,
             ID,
             Generation,
             Population,

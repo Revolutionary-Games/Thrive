@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 
@@ -32,8 +33,7 @@ public partial class CellEditorComponent
         // Check if there is cytoplasm under this organelle.
         foreach (var hex in organelle.RotatedHexes)
         {
-            var organelleHere = editedMicrobeOrganelles.GetElementAt(
-                hex + organelle.Position);
+            var organelleHere = editedMicrobeOrganelles.GetElementAt(hex + organelle.Position, hexTemporaryMemory);
 
             if (organelleHere == null)
                 continue;
@@ -52,7 +52,7 @@ public partial class CellEditorComponent
         GD.Print("Placing organelle '", organelle.Definition.InternalName, "' at: ",
             organelle.Position);
 
-        editedMicrobeOrganelles.Add(organelle);
+        editedMicrobeOrganelles.AddFast(organelle, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
     [DeserializedCallbackAllowed]
@@ -75,7 +75,7 @@ public partial class CellEditorComponent
                 GD.Print("Replacing ", cytoplasm.Definition.InternalName, " at: ",
                     cytoplasm.Position);
 
-                editedMicrobeOrganelles.Add(cytoplasm);
+                editedMicrobeOrganelles.AddFast(cytoplasm, hexTemporaryMemory, hexTemporaryMemory2);
             }
         }
     }
@@ -85,6 +85,8 @@ public partial class CellEditorComponent
     {
         if (!editedMicrobeOrganelles.Remove(data.RemovedHex))
         {
+            // TODO: it seems very rarely this can be hit in "normal" microbe freebuild by spamming undo and redo with
+            // new cell button sprinkled in (reproduction steps for the bug are unconfirmed)
             ThrowIfNotMulticellular();
 
             var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o => o.Position == data.RemovedHex.Position);
@@ -97,7 +99,7 @@ public partial class CellEditorComponent
     [DeserializedCallbackAllowed]
     private void UndoOrganelleRemoveAction(OrganelleRemoveActionData data)
     {
-        editedMicrobeOrganelles.Add(data.RemovedHex);
+        editedMicrobeOrganelles.AddFast(data.RemovedHex, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
     [DeserializedCallbackAllowed]
@@ -127,7 +129,7 @@ public partial class CellEditorComponent
         }
         else
         {
-            editedMicrobeOrganelles.Add(data.MovedHex);
+            editedMicrobeOrganelles.AddFast(data.MovedHex, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         // TODO: dynamic MP PR had this line:
@@ -168,8 +170,8 @@ public partial class CellEditorComponent
         Editor.MutationPoints = Constants.BASE_MUTATION_POINTS;
         Membrane = SimulationParameters.Instance.GetMembrane("single");
         editedMicrobeOrganelles.Clear();
-        editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
-            new Hex(0, 0), 0));
+        editedMicrobeOrganelles.AddFast(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
+            new Hex(0, 0), 0), hexTemporaryMemory, hexTemporaryMemory2);
         Rigidity = 0;
         Colour = Colors.White;
 
@@ -189,11 +191,14 @@ public partial class CellEditorComponent
 
         foreach (var organelle in data.OldEditedMicrobeOrganelles)
         {
-            editedMicrobeOrganelles.Add(organelle);
+            editedMicrobeOrganelles.AddFast(organelle, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         if (!IsMulticellularEditor)
         {
+            if (data.OldBehaviourValues == null)
+                throw new InvalidOperationException("Behaviour data should have been initialized for restore");
+
             foreach (var oldBehaviour in data.OldBehaviourValues)
             {
                 behaviourEditor.SetBehaviouralValue(oldBehaviour.Key, oldBehaviour.Value);
@@ -321,6 +326,13 @@ public partial class CellEditorComponent
     private void ThrowIfNotMulticellular()
     {
         if (!IsMulticellularEditor)
+        {
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
+
             throw new InvalidOperationException("This operation should only happen in multicellular");
+        }
     }
 }

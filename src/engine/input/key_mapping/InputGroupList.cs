@@ -7,7 +7,7 @@ using Godot;
 ///   Holds the various <see cref="InputGroupItem">input groups</see> in one VBoxContainer.
 ///   Used by OptionsMenu>Inputs>InputGroupContainer
 /// </summary>
-public class InputGroupList : VBoxContainer
+public partial class InputGroupList : VBoxContainer
 {
     [Export]
     public NodePath? ConflictDialogPath;
@@ -17,13 +17,13 @@ public class InputGroupList : VBoxContainer
 
     private IEnumerable<InputGroupItem>? activeInputGroupList;
 
-    private InputEventItem? latestDialogCaller;
-    private InputEventItem? latestDialogConflict;
-    private InputEvent? latestDialogNewEvent;
-
 #pragma warning disable CA2213
     private CustomConfirmationDialog conflictDialog = null!;
     private CustomConfirmationDialog resetInputsDialog = null!;
+
+    private InputEventItem? latestDialogCaller;
+    private InputEventItem? latestDialogConflict;
+    private InputEvent? latestDialogNewEvent;
 #pragma warning restore CA2213
 
     private FocusFlowDynamicChildrenHelper focusHelper = null!;
@@ -43,8 +43,8 @@ public class InputGroupList : VBoxContainer
     ///   Is any Input currently waiting for input
     /// </summary>
     public bool ListeningForInput => ActiveInputGroupList
-        .Any(group => group.Actions
-            .Any(action => action.Inputs.Any(singularInput => singularInput.WaitingForInput)));
+        .Any(g => g.Actions
+            .Any(a => a.Inputs.Any(i => i.WaitingForInput)));
 
     public IEnumerable<InputGroupItem> ActiveInputGroupList => activeInputGroupList ?? Array.Empty<InputGroupItem>();
 
@@ -97,7 +97,8 @@ public class InputGroupList : VBoxContainer
             return Settings.GetDefaultControls();
 
         return new InputDataList(ActiveInputGroupList.SelectMany(p => p.Actions)
-            .ToDictionary(p => p.InputName, p => p.Inputs.Select(x => x.AssociatedEvent).ToList()));
+            .ToDictionary(p => p.InputName,
+                p => p.Inputs.Where(x => x.AssociatedEvent != null).Select(x => x.AssociatedEvent!).ToList()));
     }
 
     /// <summary>
@@ -127,11 +128,11 @@ public class InputGroupList : VBoxContainer
         // Take the ones with any interception of the environments.
         // Take the input actions.
         // Get the first action where the event collides or null if there aren't any.
-        return ActiveInputGroupList.Where(group => group.EnvironmentId.Any(x => environments.Contains(x)))
-            .SelectMany(group => group.Actions)
-            .Where(action => !Equals(inputActionItem, action))
-            .SelectMany(action => action.Inputs)
-            .FirstOrDefault(input => Equals(input, item));
+        return ActiveInputGroupList.Where(g => g.EnvironmentId.Any(e => environments.Contains(e)))
+            .SelectMany(g => g.Actions)
+            .Where(a => !Equals(inputActionItem, a))
+            .SelectMany(a => a.Inputs)
+            .FirstOrDefault(i => Equals(i, item));
     }
 
     /// <summary>
@@ -155,7 +156,7 @@ public class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.DialogText = TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT")
+        conflictDialog.DialogText = Localization.Translate("KEY_BINDING_CHANGE_CONFLICT")
             .FormatSafe(inputActionItem.DisplayName, inputActionItem.DisplayName);
 
         conflictDialog.PopupCenteredShrink();

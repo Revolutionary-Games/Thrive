@@ -22,7 +22,9 @@ public class GameWiki : IRegistryType
     public void Check(string name)
     {
         OrganellesRoot.Check(name);
-        Organelles.ForEach(page => page.Check(name));
+
+        foreach (var page in Organelles)
+            page.Check(name);
     }
 
     public class Page

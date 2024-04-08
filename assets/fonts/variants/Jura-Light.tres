@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=3 format=3 uid="uid://6qxm3uupm52k"]
+
+[ext_resource type="FontFile" uid="uid://fiilmsmyyajj" path="res://assets/fonts/Jura-Variable.ttf" id="1_kkmfm"]
+[ext_resource type="FontVariation" uid="uid://damqyqgvcn5f3" path="res://assets/fonts/variants/NotoSans-Light.tres" id="2_fxcjl"]
+
+[resource]
+fallbacks = Array[Font]([ExtResource("2_fxcjl")])
+base_font = ExtResource("1_kkmfm")

@@ -57,7 +57,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
         return wasUsed;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
         // Read new axis values
         // TODO: could this run only if OnInput used something? (currently wouldn't work for mouse look)
@@ -79,13 +79,16 @@ public class RunOnAxisGroupAttribute : InputAttribute
         if (callParameters?.Length != wantedLength)
             callParameters = new object[wantedLength];
 
+        var convertedDelta = (float)delta;
+
         for (int i = 0; i < axisCount; ++i)
         {
-            var value = axes[i].GetCurrentResult(delta);
+            var value = axes[i].GetCurrentResult(convertedDelta);
             currentAxisValues[i] = value;
 
             // This is applied here for more performance as InvokeAlsoWithNoInput seems very common, and assigning
             // two variables in a single loop is hopefully really optimized in the runtime
+            // TODO: try to avoid the boxing here
             callParameters[i + parameterOffset] = value;
         }
 

@@ -48,18 +48,21 @@ public class RunOnInputWithStrengthAttribute : RunOnKeyAttribute
         return baseResult;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
         if (ReadHeldOrPrimedAndResetPrimed())
         {
             if (TrackInputMethod)
             {
-                CallMethod(delta, Strength, LastUsedInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, Strength);
+                cachedMethodCallParameters![1] = LastUsedInputMethod;
             }
             else
             {
-                CallMethod(delta, Strength);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, Strength);
             }
+
+            CallMethod(cachedMethodCallParameters!);
         }
     }
 

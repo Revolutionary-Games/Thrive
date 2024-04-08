@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.cs" type="Script" id=1]
-[ext_resource path="res://shaders/Monochrome.shader" type="Shader" id=2]
+[ext_resource path="res://shaders/Monochrome.gdshader" type="Shader" id=2]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -14,6 +14,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
 DrawDefaultMapIfEmpty = true
-PatchNodeWidth = 60.0
-PatchNodeHeight = 60.0
+PatchNodeContainerPath = NodePath("PatchNodeContainer")
+LineContainerPath = NodePath("LineContainer")
 MonochromeMaterial = SubResource( 1 )
+
+[node name="LineContainer" type="Control" parent="."]
+
+[node name="PatchNodeContainer" type="Control" parent="."]

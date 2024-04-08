@@ -165,6 +165,10 @@
             "Type": "ModelScene"
           },
           {
+            "ResourcePath": "res://assets/models/organelles/Axon.tscn",
+            "Type": "ModelScene"
+          },
+          {
             "ResourcePath": "res://assets/models/organelles/BindingAgent.tscn",
             "Type": "ModelScene"
           },
@@ -203,11 +207,19 @@
             "MeshNodePath": "Armature001/Skeleton/flagella"
           },
           {
+            "ResourcePath": "res://assets/models/organelles/Lysosome.tscn",
+            "Type": "ModelScene"
+          },
+          {
             "ResourcePath": "res://assets/models/organelles/Metabolosome.tscn",
             "Type": "ModelScene"
           },
           {
             "ResourcePath": "res://assets/models/organelles/Mitochondrion.tscn",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/organelles/Myofibril.tscn",
             "Type": "ModelScene"
           },
           {
@@ -240,6 +252,19 @@
           },
           {
             "ResourcePath": "res://assets/models/organelles/SignalingAgent.tscn",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/organelles/SlimeJet.tscn",
+            "Type": "ModelScene",
+            "MeshNodePath": "Armature/Skeleton/Cube"
+          },
+          {
+            "ResourcePath": "res://assets/models/organelles/Thermoplast.tscn",
+            "Type": "ModelScene"
+          },
+          {
+            "ResourcePath": "res://assets/models/organelles/Thermosynthase.tscn",
             "Type": "ModelScene"
           },
           {
@@ -325,6 +350,12 @@
             "Type": "AudioPlayback",
             "Artist": "Oliveriver",
             "Title": "Microbe Theme 6"
+          },
+          {
+            "ResourcePath": "res://assets/sounds/microbe-theme-8.ogg",
+            "Type": "AudioPlayback",
+            "Artist": "aaronmkersh",
+            "Title": "Crucible"
           }
         ]
       },

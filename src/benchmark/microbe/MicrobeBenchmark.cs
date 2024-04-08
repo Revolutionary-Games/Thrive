@@ -6,12 +6,13 @@ using System.Text;
 using Components;
 using DefaultEcs;
 using Godot;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Benchmarking tool for the microbe stage. Used for checking performance impact of changes or for players to see
 ///   how fast their computer is compared to other ones.
 /// </summary>
-public class MicrobeBenchmark : Node
+public partial class MicrobeBenchmark : Node
 {
     [Export]
     public NodePath? GUIContainerPath;
@@ -52,13 +53,24 @@ public class MicrobeBenchmark : Node
     private const float AI_MUTATION_MULTIPLIER = 1;
     private const float MAX_SPAWN_DISTANCE = 110;
     private const float SPAWN_DISTANCE_INCREMENT = 1.8f;
+
+    // The starting spawn interval
     private const float SPAWN_INTERVAL = 0.121f;
+    private const float SPAWN_INTERVAL_REDUCE_EVERY_N = 70;
+    private const float SPAWN_INTERVAL_REDUCE_AMOUNT = 0.0005f;
+    private const float MIN_SPAWN_INTERVAL = 0.01f;
+
     private const double SPAWN_ANGLE_INCREMENT = MathUtils.FULL_CIRCLE * 0.127f;
     private const float GLUCOSE_CLOUD_AMOUNT = 20000;
     private const float AMMONIA_PHOSPHATE_CLOUD_AMOUNT = 10000;
     private const float AI_FIGHT_TIME = 30;
+
     private const int TARGET_FPS_FOR_SPAWNING = 60;
     private const float STRESS_TEST_END_THRESHOLD = 9;
+    private const float STRESS_TEST_THRESHOLD_REDUCE_EVERY_N = 100;
+    private const float STRESS_TEST_THRESHOLD_REDUCE = 0.09f;
+    private const float STRESS_TEST_END_THRESHOLD_MIN = 1.0f;
+
     private const float MAX_WAIT_TIME_FOR_MICROBE_DEATH = 130;
     private const int REMAINING_MICROBES_THRESHOLD = 40;
     private const int RANDOM_SEED = 256345464;
@@ -84,7 +96,7 @@ public class MicrobeBenchmark : Node
     private readonly List<Entity> spawnedMicrobes = new();
     private readonly List<Species> generatedSpecies = new();
 
-    private readonly List<float> fpsValues = new();
+    private readonly List<double> fpsValues = new();
 
 #pragma warning disable CA2213
     private CustomWindow guiContainer = null!;
@@ -114,7 +126,7 @@ public class MicrobeBenchmark : Node
 
     private EntitySet? microbeEntities;
 
-    private Random random = new(RANDOM_SEED);
+    private XoShiRo256starstar random = new(RANDOM_SEED);
 
     private int aiGroup1Seed;
     private int aiGroup2Seed;
@@ -122,12 +134,12 @@ public class MicrobeBenchmark : Node
     private bool preventDying;
 
     private int internalPhaseCounter;
-    private float timer;
+    private double timer;
 
     private int spawnCounter;
     private double spawnAngle;
     private float spawnDistance;
-    private float timeSinceSpawn;
+    private double timeSinceSpawn;
     private bool spawnedSomething;
 
     private float microbeStationaryResult;
@@ -141,7 +153,7 @@ public class MicrobeBenchmark : Node
     private int remainingMicrobesAtEnd;
 
     private DateTime startTime;
-    private float totalDuration;
+    private double totalDuration;
 
     private bool exiting;
 
@@ -179,7 +191,7 @@ public class MicrobeBenchmark : Node
         BenchmarkHelpers.RestoreNormalSettings(storedSettings);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
         microbesCountLabel.Text = spawnedMicrobes.Count.ToString(CultureInfo.CurrentCulture);
@@ -207,7 +219,7 @@ public class MicrobeBenchmark : Node
 
         microbeEntities?.Complete();
 
-        microbeSimulation?.ProcessAll(delta);
+        microbeSimulation?.ProcessAll((float)delta);
 
         switch (internalPhaseCounter)
         {
@@ -234,9 +246,6 @@ public class MicrobeBenchmark : Node
 
             case 1:
             {
-                // TODO: remove debug code
-                // break;
-
                 // Need to pass some time between each spawn
                 if (timer < SPAWN_INTERVAL)
                     break;
@@ -331,7 +340,9 @@ public class MicrobeBenchmark : Node
             case 9:
             {
                 // Spawn cells and measure FPS constantly
-                if (timer < SPAWN_INTERVAL)
+                float interval = Math.Max(MIN_SPAWN_INTERVAL,
+                    SPAWN_INTERVAL - spawnCounter / SPAWN_INTERVAL_REDUCE_EVERY_N * SPAWN_INTERVAL_REDUCE_AMOUNT);
+                if (timer < interval)
                     break;
 
                 timer = 0;
@@ -343,11 +354,15 @@ public class MicrobeBenchmark : Node
 
                 fpsValues.Add(Engine.GetFramesPerSecond());
 
+                float endThreshold = Math.Max(STRESS_TEST_END_THRESHOLD_MIN,
+                    STRESS_TEST_END_THRESHOLD - spawnCounter / STRESS_TEST_THRESHOLD_REDUCE_EVERY_N *
+                    STRESS_TEST_THRESHOLD_REDUCE);
+
                 // Quit if it has been a while since the last spawn or there's been way too much data already
-                if ((timeSinceSpawn > STRESS_TEST_END_THRESHOLD && fpsValues.Count > 0) || fpsValues.Count > 3000)
+                if ((timeSinceSpawn > endThreshold && fpsValues.Count > 0) || fpsValues.Count > 3000)
                 {
                     microbeStressTestResult = spawnCounter;
-                    microbeStressTestMinFPS = fpsValues.Min();
+                    microbeStressTestMinFPS = (float)fpsValues.Min();
                     aliveStressTestMicrobes = spawnedMicrobes.Count;
                     microbeStressTestAverageFPS = ScoreFromMeasuredFPS();
                     IncrementPhase();
@@ -379,7 +394,7 @@ public class MicrobeBenchmark : Node
                 // Microbes are basically dead now
 
                 microbeDeathResult = ScoreFromMeasuredFPS();
-                microbeDeathMinFPS = fpsValues.Min();
+                microbeDeathMinFPS = (float)fpsValues.Min();
                 remainingMicrobesAtEnd = spawnedMicrobes.Count;
 
                 IncrementPhase();
@@ -425,7 +440,7 @@ public class MicrobeBenchmark : Node
     private void StartBenchmark()
     {
         internalPhaseCounter = 0;
-        random = new Random(RANDOM_SEED);
+        random = new XoShiRo256starstar(RANDOM_SEED);
 
         microbeStationaryResult = 0;
         microbeAIResult = 0;
@@ -455,12 +470,14 @@ public class MicrobeBenchmark : Node
 
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
         var mutator = new Mutations(random);
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
 
         for (int i = 0; i < SPECIES_COUNT; ++i)
         {
             var species = mutator.CreateRandomSpecies(world.NewMicrobeSpecies(nameGenerator.GenerateNameSection(random),
                     nameGenerator.GenerateNameSection(random, true)), AI_MUTATION_MULTIPLIER, false,
-                random.Next(MUTATION_STEPS_MIN, MUTATION_STEPS_MAX));
+                workMemory1, workMemory2, random.Next(MUTATION_STEPS_MIN, MUTATION_STEPS_MAX));
 
             generatedSpecies.Add(species);
         }
@@ -570,7 +587,7 @@ public class MicrobeBenchmark : Node
 
         // For now just take the average
         // TODO: would be nice to have also min and 1% lows
-        return fpsValues.Average();
+        return (float)fpsValues.Average();
     }
 
     private void UpdatePhaseLabel()
@@ -710,7 +727,7 @@ public class MicrobeBenchmark : Node
         builder.Append($"Benchmark results for {nameof(MicrobeBenchmark)} v{VERSION}\n");
         builder.Append(GenerateResultsText(3));
 
-        OS.Clipboard = builder.ToString();
+        DisplayServer.ClipboardSet(builder.ToString());
     }
 
     private void ExitBenchmark()

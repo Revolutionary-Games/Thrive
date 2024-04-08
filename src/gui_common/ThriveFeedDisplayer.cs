@@ -2,7 +2,10 @@
 using System.Threading.Tasks;
 using Godot;
 
-public class ThriveFeedDisplayer : VBoxContainer
+/// <summary>
+///   Displays a Thrive news feed that is fetched from the internet
+/// </summary>
+public partial class ThriveFeedDisplayer : VBoxContainer
 {
     [Export]
     public NodePath? NewsContainerPath;
@@ -15,7 +18,10 @@ public class ThriveFeedDisplayer : VBoxContainer
     public Font TitleFont = null!;
 
     [Export]
-    public Font FooterFont = null!;
+    public int TitleFontSize = 20;
+
+    [Export]
+    public LabelSettings FooterFontSettings = null!;
 
     private Container newsContainer = null!;
     private Control loadingIndicator = null!;
@@ -65,7 +71,7 @@ public class ThriveFeedDisplayer : VBoxContainer
         CheckStartFetchNews();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (newsEnumerator != null)
         {
@@ -73,12 +79,6 @@ public class ThriveFeedDisplayer : VBoxContainer
             while (newsEnumerator.MoveNext())
             {
                 var feedItem = newsEnumerator.Current;
-
-                if (feedItem == null)
-                {
-                    GD.PrintErr("Feed item enumerator item is unexpectedly null");
-                    continue;
-                }
 
                 CreateFeedItemGUI(feedItem);
 
@@ -168,7 +168,7 @@ public class ThriveFeedDisplayer : VBoxContainer
         var itemContainer = new PanelContainer();
 
         // Customize the feed item background style to be less visible to not make the main menu look too busy
-        itemContainer.AddStyleboxOverride("panel", feedItemBackground);
+        itemContainer.AddThemeStyleboxOverride("panel", feedItemBackground);
 
         var itemContentContainer = new VBoxContainer();
         itemContainer.AddChild(itemContentContainer);
@@ -186,23 +186,26 @@ public class ThriveFeedDisplayer : VBoxContainer
         }
 
         // This uses rich text purely to be clickable
-        var title = customRichTextScene.Instance<CustomRichTextLabel>();
+        var title = customRichTextScene.Instantiate<CustomRichTextLabel>();
+        title.FitContent = true;
 
         // We don't generate custom bbcode when converting html so we use the simpler form here
         // but we need to use the custom rich text label to ensure the links are clickable
-        title.BbcodeText = titleText;
+        title.Text = titleText;
 
         // Big font for titles
-        title.AddFontOverride("normal_font", TitleFont);
+        title.AddThemeFontOverride("normal_font", TitleFont);
+        title.AddThemeFontSizeOverride("normal_font_size", TitleFontSize);
 
         itemContentContainer.AddChild(title);
 
-        var textDisplayer = customRichTextScene.Instance<CustomRichTextLabel>();
+        var textDisplayer = customRichTextScene.Instantiate<CustomRichTextLabel>();
+        textDisplayer.FitContent = true;
 
         // Make the feed look nicer with less repeating content by stripping the last part of the text
         var content = Constants.NewsFeedRegexDeleteContent.Replace(feedItem.ContentBbCode, "\n");
 
-        textDisplayer.BbcodeText = content;
+        textDisplayer.Text = content;
 
         itemContentContainer.AddChild(textDisplayer);
 
@@ -215,8 +218,7 @@ public class ThriveFeedDisplayer : VBoxContainer
                 Text = footerText,
             };
 
-            // Small font for footers
-            footerLabel.AddFontOverride("font", FooterFont);
+            footerLabel.LabelSettings = FooterFontSettings;
 
             itemContentContainer.AddChild(footerLabel);
         }

@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MulticellularStage : CreatureStageBase<MulticellularCreature, DummyWorldSimulation>
+public partial class MulticellularStage : CreatureStageBase<MulticellularCreature, DummyWorldSimulation>
 {
     [Export]
     public NodePath? InteractableSystemPath;
@@ -26,6 +26,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
     [Export]
     public NodePath WorldEnvironmentNodePath = null!;
+
+    [Export]
+    public NodePath WorldLightNodePath = null!;
 
     private const string STAGE_TRANSITION_MOUSE_LOCK = "toSocietyStage";
 
@@ -43,7 +46,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
     private WorldEnvironment worldEnvironmentNode = null!;
 
-    private Camera? animationCamera;
+    private DirectionalLight3D worldLightNode = null!;
+
+    private Camera3D? animationCamera;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -54,19 +59,19 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     private MulticellularSpeciesType previousPlayerStage;
 
     [JsonProperty]
-    private float moveToSocietyTimer;
+    private double moveToSocietyTimer;
 
     [JsonProperty]
-    private Transform societyCameraAnimationStart = Transform.Identity;
+    private Transform3D societyCameraAnimationStart = Transform3D.Identity;
 
     [JsonProperty]
-    private Transform societyCameraAnimationEnd = Transform.Identity;
+    private Transform3D societyCameraAnimationEnd = Transform3D.Identity;
 
     [JsonProperty]
     private Vector3 animationEndCameraLookPoint;
 
     [JsonProperty]
-    private Transform firstSocietyCenterTransform;
+    private Transform3D firstSocietyCenterTransform;
 
     [JsonProperty]
     private bool movingToSocietyStage;
@@ -85,6 +90,12 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
     [JsonIgnore]
     public override bool HasPlayer => Player != null;
+
+    public override MainGameState GameState => MainGameState.MulticellularStage;
+
+    // TODO: change when there is dying implemented
+    [JsonIgnore]
+    public override bool HasAlivePlayer => HasPlayer;
 
     [JsonIgnore]
     protected override ICreatureStageHUD BaseHUD => HUD;
@@ -125,6 +136,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         progressBarSystem = GetNode<ProgressBarSystem>(ProgressBarSystemPath);
         selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
         worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
+        worldLightNode = GetNode<DirectionalLight3D>(WorldLightNodePath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
@@ -139,7 +151,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         dummySpawner = new DummySpawnSystem();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -151,7 +163,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
         if (Player != null)
         {
-            var playerPosition = Player.GlobalTranslation;
+            var playerPosition = Player.GlobalPosition;
 
             if (Player.Species.MulticellularType == MulticellularSpeciesType.Awakened)
             {
@@ -173,7 +185,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                 throw new InvalidOperationException("Animation camera not set");
 
             moveToSocietyTimer += delta;
-            float interpolationProgress = moveToSocietyTimer / Constants.SOCIETY_STAGE_ENTER_ANIMATION_DURATION;
+            var interpolationProgress = moveToSocietyTimer / Constants.SOCIETY_STAGE_ENTER_ANIMATION_DURATION;
 
             if (interpolationProgress >= 1)
             {
@@ -193,7 +205,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
             // TODO: switch to some other animation type like quintic once that is usable without a tween node
             animationCamera.GlobalTransform =
-                societyCameraAnimationStart.InterpolateWith(societyCameraAnimationEnd, interpolationProgress);
+                societyCameraAnimationStart.InterpolateWith(societyCameraAnimationEnd, (float)interpolationProgress);
         }
 
         // TODO: notify metrics
@@ -258,7 +270,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
 
-        Node sceneInstance = scene.Instance();
+        Node sceneInstance = scene.Instantiate();
         var editor = (LateMulticellularEditor)sceneInstance;
 
         editor.CurrentGame = CurrentGame;
@@ -356,7 +368,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         worldEnvironmentNode.Environment = null;
 
         // Ground plane
-        var ground = new StaticBody
+        var ground = new StaticBody3D
         {
             PhysicsMaterialOverride = new PhysicsMaterial
             {
@@ -367,24 +379,24 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
             },
         };
 
-        ground.AddChild(new CollisionShape
+        ground.AddChild(new CollisionShape3D
         {
-            Shape = new PlaneShape
+            Shape = new WorldBoundaryShape3D
             {
                 Plane = new Plane(new Vector3(0, 1, 0), 0),
             },
         });
 
-        ground.AddChild(new MeshInstance
+        ground.AddChild(new MeshInstance3D
         {
             Mesh = new PlaneMesh
             {
                 Size = new Vector2(400, 400),
-                Material = new SpatialMaterial
+                Material = new StandardMaterial3D
                 {
-                    AlbedoTexture = GD.Load<Texture>("res://assets/textures/environment/Terrain_01_Albedo.png"),
+                    AlbedoTexture = GD.Load<Texture2D>("res://assets/textures/environment/Terrain_01_Albedo.png"),
                     NormalEnabled = true,
-                    NormalTexture = GD.Load<Texture>("res://assets/textures/environment/Terrain_01_Normals.png"),
+                    NormalTexture = GD.Load<Texture2D>("res://assets/textures/environment/Terrain_01_Normals.png"),
                     Uv1Scale = new Vector3(42, 42, 42),
                 },
             },
@@ -416,7 +428,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                  })
         {
             // But create it as a resource entity so that it can be interacted with
-            SpawnHelpers.SpawnResourceEntity(rockResource, new Transform(Basis.Identity, position),
+            SpawnHelpers.SpawnResourceEntity(rockResource, new Transform3D(Basis.Identity, position),
                 rootOfDynamicallySpawned, resourceScene, true);
         }
 
@@ -434,11 +446,12 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                  })
         {
             // TODO: proper interactable plants, this is a temporary manually created placeholder tree
-            var tree = treeScene.Instance<PlaceholderTree>();
+            var tree = treeScene.Instantiate<PlaceholderTree>();
 
             rootOfDynamicallySpawned.AddChild(tree);
             tree.GlobalTransform =
-                new Transform(new Basis(new Quat(new Vector3(0, 1, 0), Mathf.Pi * random.NextFloat())), position);
+                new Transform3D(new Basis(new Quaternion(new Vector3(0, 1, 0), Mathf.Pi * random.NextSingle())),
+                    position);
 
             tree.AddToGroup(Constants.INTERACTABLE_GROUP);
         }
@@ -446,9 +459,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         // Modify player state for being on land
         Player.MovementMode = MovementMode.Walking;
 
-        if (Player.Translation.y <= 0)
+        if (Player.Position.Y <= 0)
         {
-            Player.Translation = new Vector3(Player.Translation.x, 0.1f, Player.Translation.z);
+            Player.Position = new Vector3(Player.Position.X, 0.1f, Player.Position.Z);
         }
 
         // Modify the player species to be on land
@@ -504,7 +517,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         if (target == null)
         {
             // Did not find anything for the player to interact with
-            HUD.HUDMessages.ShowMessage(TranslationServer.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
+            HUD.HUDMessages.ShowMessage(Localization.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
             return;
         }
 
@@ -585,7 +598,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
             return;
 
         GD.Print("Move to society stage triggered");
-        HUD.HUDMessages.ShowMessage(TranslationServer.Translate("MOVING_TO_SOCIETY_STAGE"), DisplayDuration.Long);
+        HUD.HUDMessages.ShowMessage(Localization.Translate("MOVING_TO_SOCIETY_STAGE"), DisplayDuration.Long);
         movingToSocietyStage = true;
 
         // Show cursor while we are switching
@@ -598,24 +611,23 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         // TODO: actual collisions and moving to the door instead of this
         // TODO: we do a dirty hack here just for the prototype to be simple as the structure root doesn't currently
         // have a collision set on it
-        moveCreatureToSocietyCenter.AddCollisionExceptionWith(societyCenter.FirstDescendantOfType<CollisionObject>());
+        moveCreatureToSocietyCenter.AddCollisionExceptionWith(societyCenter.FirstDescendantOfType<CollisionObject3D>());
 
-        var creatureToCenterVector = societyCenter.GlobalTranslation - moveCreatureToSocietyCenter.GlobalTranslation;
+        var creatureToCenterVector = societyCenter.GlobalPosition - moveCreatureToSocietyCenter.GlobalPosition;
         creatureToCenterVector = creatureToCenterVector.Normalized();
 
         // Do an inverse transform to get the vector in creature local space and multiply it to not make the creature
         // move at full speed
         // TODO: this math doesn't seem to be correct
-        var wantedMovementDirection =
-            moveCreatureToSocietyCenter.Transform.basis.XformInv(creatureToCenterVector);
-        wantedMovementDirection.y = 0;
+        var wantedMovementDirection = creatureToCenterVector * moveCreatureToSocietyCenter.Transform.Basis;
+        wantedMovementDirection.Y = 0;
         wantedMovementDirection = wantedMovementDirection.Normalized() * 0.5f;
         moveCreatureToSocietyCenter.MovementDirection = wantedMovementDirection;
 
         // TODO: despawn moveCreatureToSocietyCenter once it reaches inside the society center
 
         // Start the transition to the next stage and a camera animation
-        animationEndCameraLookPoint = societyCenter.GlobalTranslation;
+        animationEndCameraLookPoint = societyCenter.GlobalPosition;
         animationEndCameraLookPoint += societyCenter.RotatedExtraInteractionOffset() ?? Vector3.Zero;
         firstSocietyCenterTransform = societyCenter.GlobalTransform;
 
@@ -633,6 +645,32 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
         // Detach from the previous place to not have the arm etc. control nodes apply to it anymore
         animationCamera.ReParent(rootOfDynamicallySpawned);
+    }
+
+    public void UpdateBackgroundPanorama()
+    {
+        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
+        {
+            // Panoramas don't exist yet when above water so we need this null check
+            if (worldEnvironmentNode.Environment != null)
+            {
+                var sky = worldEnvironmentNode.Environment.Sky;
+                var skyMaterial = (PanoramaSkyMaterial)sky.SkyMaterial;
+
+                skyMaterial.Panorama =
+                    GD.Load<Texture2D>(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
+            }
+        }
+
+        UpdateAmbientLight();
+    }
+
+    public void UpdateAmbientLight()
+    {
+        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
+        {
+            worldLightNode.LightColor = CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Sunlight.Colour;
+        }
     }
 
     protected override void SetupStage()
@@ -661,25 +699,25 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
             // TODO: remove (this is just temporary prototype code)
             // Spawn a chunk to give the player some navigation reference
 
-            var rigidBody = new RigidBody
+            var rigidBody = new RigidBody3D
             {
                 AxisLockLinearY = true,
             };
 
             var owner = rigidBody.CreateShapeOwner(rigidBody);
-            rigidBody.ShapeOwnerAddShape(owner, new SphereShape
+            rigidBody.ShapeOwnerAddShape(owner, new SphereShape3D
             {
                 Radius = 10,
             });
 
             rigidBody.Mass = 100;
 
-            var visualsParent = new Spatial();
+            var visualsParent = new Node3D();
             rigidBody.AddChild(visualsParent);
 
-            visualsParent.AddChild(GD.Load<PackedScene>("res://assets/models/Iron5.tscn").Instance<Spatial>());
+            visualsParent.AddChild(GD.Load<PackedScene>("res://assets/models/Iron5.tscn").Instantiate<Node3D>());
 
-            rigidBody.Translation = new Vector3(3, 0, -15);
+            rigidBody.Position = new Vector3(3, 0, -15);
 
             rootOfDynamicallySpawned.AddChild(rigidBody);
         }
@@ -714,7 +752,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
-        // TODO: load background graphics
+        UpdateBackgroundPanorama();
     }
 
     protected override void SpawnPlayer()
@@ -777,6 +815,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                 ProgressBarSystemPath.Dispose();
                 SelectBuildingPopupPath.Dispose();
                 WorldEnvironmentNodePath.Dispose();
+                WorldLightNodePath.Dispose();
 
                 interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
             }
@@ -835,14 +874,13 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
     private void ShowTechnologyUnlockMessage(Technology technology)
     {
-        HUD.HUDMessages.ShowMessage(
-            TranslationServer.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
+        HUD.HUDMessages.ShowMessage(Localization.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
             DisplayDuration.Long);
     }
 
     private void SwitchToSocietyScene()
     {
-        var societyStage = SceneManager.Instance.LoadScene(MainGameState.SocietyStage).Instance<SocietyStage>();
+        var societyStage = SceneManager.Instance.LoadScene(MainGameState.SocietyStage).Instantiate<SocietyStage>();
         societyStage.CurrentGame = CurrentGame;
 
         SceneManager.Instance.SwitchToScene(societyStage);

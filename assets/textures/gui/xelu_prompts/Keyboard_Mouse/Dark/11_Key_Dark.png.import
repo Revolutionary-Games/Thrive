@@ -1,8 +1,9 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/11_Key_Dark.png-51bfb882cd192111fd9092cce931cbf8.stex"
+type="CompressedTexture2D"
+uid="uid://82rgts0ej1s2"
+path="res://.godot/imported/11_Key_Dark.png-51bfb882cd192111fd9092cce931cbf8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -10,26 +11,24 @@ metadata={
 [deps]
 
 source_file="res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/Dark/11_Key_Dark.png"
-dest_files=[ "res://.import/11_Key_Dark.png-51bfb882cd192111fd9092cce931cbf8.stex" ]
+dest_files=["res://.godot/imported/11_Key_Dark.png-51bfb882cd192111fd9092cce931cbf8.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
+compress/hdr_compression=1
 compress/normal_map=0
-flags/repeat=0
-flags/filter=true
-flags/mipmaps=true
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
 process/normal_map_invert_y=false
-stream=false
-size_limit=0
-detect_3d=true
-svg/scale=1.0
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

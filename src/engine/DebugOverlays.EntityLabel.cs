@@ -14,8 +14,25 @@ public partial class DebugOverlays
     private readonly HashSet<Entity> seenEntities = new();
 
 #pragma warning disable CA2213
-    private Font smallerFont = null!;
-    private Camera? activeCamera;
+    [Export]
+    private LabelSettings entityLabelSmallFont = null!;
+
+    [Export]
+    private LabelSettings entityLabelDefaultFont = null!;
+
+    [Export]
+    private LabelSettings entityDeadFont = null!;
+
+    [Export]
+    private LabelSettings entityBindingFont = null!;
+
+    [Export]
+    private LabelSettings entityEngulfingFont = null!;
+
+    [Export]
+    private LabelSettings entityUnbindingFont = null!;
+
+    private Camera3D? activeCamera;
 #pragma warning restore CA2213
 
     private IWorldSimulation? labelsActiveForSimulation;
@@ -78,7 +95,7 @@ public partial class DebugOverlays
     {
         if (!entity.IsAlive)
         {
-            label.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+            label.LabelSettings = entityDeadFont;
             return false;
         }
 
@@ -90,25 +107,25 @@ public partial class DebugOverlays
             {
                 case MicrobeState.Binding:
                 {
-                    label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 0.0f));
+                    label.LabelSettings = entityBindingFont;
                     break;
                 }
 
                 case MicrobeState.Engulf:
                 {
-                    label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 1.0f));
+                    label.LabelSettings = entityEngulfingFont;
                     break;
                 }
 
                 case MicrobeState.Unbinding:
                 {
-                    label.AddColorOverride("font_color", new Color(1.0f, 0.5f, 0.2f));
+                    label.LabelSettings = entityUnbindingFont;
                     break;
                 }
 
                 default:
                 {
-                    label.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
+                    label.LabelSettings = entityLabelDefaultFont;
                     break;
                 }
             }
@@ -120,7 +137,7 @@ public partial class DebugOverlays
     private void UpdateEntityLabels()
     {
         if (!IsInstanceValid(activeCamera) || activeCamera is not { Current: true })
-            activeCamera = GetViewport().GetCamera();
+            activeCamera = GetViewport().GetCamera3D();
 
         if (activeCamera == null)
             return;
@@ -144,9 +161,9 @@ public partial class DebugOverlays
 
             ref var position = ref entity.Get<WorldPosition>();
 
-            label.RectPosition = activeCamera.UnprojectPosition(position.Position);
+            label.Position = activeCamera.UnprojectPosition(position.Position);
 
-            if (!label.Text.Empty())
+            if (label.Text.Length > 0)
                 continue;
 
             // Update names
@@ -187,12 +204,13 @@ public partial class DebugOverlays
         if (entity.Has<ToxinDamageSource>() || entity.Has<CompoundVenter>() || entity.Has<DamageOnTouch>())
         {
             // To reduce the labels overlapping each other
-            label.AddFontOverride("font", smallerFont);
+            label.LabelSettings = entityLabelSmallFont;
         }
     }
 
     private void OnEntityRemoved(Entity entity)
     {
+        // TODO: pooling for entity labels?
         if (entityLabels.TryGetValue(entity, out var label))
         {
             label.DetachAndQueueFree();

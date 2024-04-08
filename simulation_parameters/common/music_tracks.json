@@ -51,6 +51,13 @@
           {
             "Volume": 0.6,
             "ResourcePath": "res://assets/sounds/microbe-theme-7.ogg"
+          },
+          {
+            "Volume": 1.2,
+            "ResourcePath": "res://assets/sounds/microbe-theme-8.ogg",
+            "ExclusiveToContexts": [
+              "PatchVents"
+            ]
           }
         ]
       },

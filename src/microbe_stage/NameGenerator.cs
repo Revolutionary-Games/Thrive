@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Newtonsoft.Json;
+using Xoshiro.PRNG64;
 
 public class NameGenerator : IRegistryType
 {
@@ -42,7 +43,7 @@ public class NameGenerator : IRegistryType
     /// </summary>
     public string GenerateNameSection(Random? random = null, bool lowercase = false)
     {
-        random ??= new Random();
+        random ??= new XoShiRo256starstar();
 
         string newName;
 

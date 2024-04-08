@@ -53,8 +53,8 @@ IsMulticellularEditor = true
 visible = false
 
 [node name="MicrobeEditorTabButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 3 )]
-margin_right = 350.0
-margin_bottom = 45.0
+offset_right = 350.0
+offset_bottom = 45.0
 IsForMulticellular = true
 
 [node name="EditorCommonBottomLeftButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 4 )]
@@ -69,9 +69,9 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="EarlyMulticellularEditorGUI/NoCellSelected"]
-margin_top = 347.0
-margin_right = 1280.0
-margin_bottom = 372.0
+offset_top = 347.0
+offset_right = 1280.0
+offset_bottom = 372.0
 text = "SELECT_CELL_TYPE_FROM_EDITOR"
 align = 1
 
@@ -82,7 +82,6 @@ HelpCategory = "MicrobeEditor"
 [connection signal="OnTabSelected" from="EarlyMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
 [connection signal="OnOpenHelp" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnOpenMenu" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
-[connection signal="OnOpenStatistics" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToStatistics"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]

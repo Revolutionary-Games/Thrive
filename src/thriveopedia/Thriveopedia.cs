@@ -7,7 +7,7 @@ using Godot;
 ///   Central store of game information for the player. Acts like a browser. Can be opened in-game and from the main
 ///   menu. Some pages relating to a game in progress are only available in-game.
 /// </summary>
-public class Thriveopedia : ControlWithInput
+public partial class Thriveopedia : ControlWithInput
 {
     [Export]
     public NodePath? BackButtonPath;
@@ -62,22 +62,22 @@ public class Thriveopedia : ControlWithInput
     /// <summary>
     ///   The currently open Thriveopedia page.
     /// </summary>
-    private ThriveopediaPage? selectedPage;
+    private IThriveopediaPage? selectedPage;
 
     /// <summary>
     ///   All Thriveopedia pages and their associated items in the page tree.
     /// </summary>
-    private Dictionary<ThriveopediaPage, TreeItem> allPages = new();
+    private Dictionary<IThriveopediaPage, TreeItem> allPages = new();
 
     /// <summary>
     ///   Page history for backwards navigation.
     /// </summary>
-    private Stack<ThriveopediaPage> pageHistory = new();
+    private Stack<IThriveopediaPage> pageHistory = new();
 
     /// <summary>
     ///   Page future for forwards navigation (if the player has already gone backwards).
     /// </summary>
-    private Stack<ThriveopediaPage> pageFuture = new();
+    private Stack<IThriveopediaPage> pageFuture = new();
 
     /// <summary>
     ///   Flag indicating whether the Thriveopedia has created all wiki pages, since we need to generate them if not.
@@ -85,15 +85,15 @@ public class Thriveopedia : ControlWithInput
     private bool hasGeneratedWiki;
 
     [Signal]
-    public delegate void OnThriveopediaClosed();
+    public delegate void OnThriveopediaClosedEventHandler();
 
     [Signal]
-    public delegate void OnSceneChanged();
+    public delegate void OnSceneChangedEventHandler();
 
     /// <summary>
     ///   The currently open Thriveopedia page. Defaults to the home page if none has been set.
     /// </summary>
-    public ThriveopediaPage SelectedPage
+    public IThriveopediaPage SelectedPage
     {
         get => selectedPage ?? homePage;
         set
@@ -161,6 +161,20 @@ public class Thriveopedia : ControlWithInput
 
         pageHistory.Push(homePage);
         SelectedPage = homePage;
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        ThriveopediaManager.ReportActiveThriveopedia(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        ThriveopediaManager.RemoveActiveThriveopedia(this);
     }
 
     public override void _Notification(int what)
@@ -237,6 +251,18 @@ public class Thriveopedia : ControlWithInput
         ChangePage(pageName, true, true);
     }
 
+    public Species? GetActiveSpeciesData(uint speciesId)
+    {
+        if (CurrentGame == null)
+        {
+            PrintErrorAboutCurrentGame();
+            return null;
+        }
+
+        CurrentGame.GameWorld.TryGetSpecies(speciesId, out var species);
+        return species;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -278,7 +304,7 @@ public class Thriveopedia : ControlWithInput
     /// </summary>
     /// <param name="name">The name of the desired page</param>
     /// <returns>The Thriveopedia page with the given name</returns>
-    private ThriveopediaPage GetPage(string name)
+    private IThriveopediaPage GetPage(string name)
     {
         var page = allPages.Keys.FirstOrDefault(p => p.PageName == name);
 
@@ -295,7 +321,7 @@ public class Thriveopedia : ControlWithInput
     /// <param name="page">
     ///   Pre-configured page if scene filename does not match the page name or the page needs extra adjustment
     /// </param>
-    private void AddPage(string name, ThriveopediaPage? page = null)
+    private void AddPage(string name, IThriveopediaPage? page = null)
     {
         if (allPages.Keys.Any(p => p.PageName == name))
             throw new InvalidOperationException($"Attempted to add duplicate page with name {name}");
@@ -303,15 +329,15 @@ public class Thriveopedia : ControlWithInput
         if (page == null)
         {
             var scene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn");
-            page = (ThriveopediaPage)scene.Instance();
+            page = scene.Instantiate<IThriveopediaPage>();
         }
 
         if (page.ParentPageName != null && !allPages.Keys.Any(p => p.PageName == page.ParentPageName))
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
 
-        page.ChangePage = ChangePage;
-        page.Connect(nameof(ThriveopediaPage.OnSceneChanged), this, nameof(HandleSceneChanged));
-        pageContainer.AddChild(page);
+        page.PageNode.Connect(ThriveopediaPage.SignalName.OnSceneChanged,
+            new Callable(this, nameof(HandleSceneChanged)));
+        pageContainer.AddChild(page.PageNode);
 
         var treeItem = CreateTreeItem(page, page.ParentPageName);
         treeItem.Collapsed = page.StartsCollapsed;
@@ -326,7 +352,7 @@ public class Thriveopedia : ControlWithInput
     /// <param name="page">The page the item will link to</param>
     /// <param name="parentName">The name of the page's parent if applicable</param>
     /// <returns>An item in the page tree which links to the given page</returns>
-    private TreeItem CreateTreeItem(ThriveopediaPage page, string? parentName = null)
+    private TreeItem CreateTreeItem(IThriveopediaPage page, string? parentName = null)
     {
         var pageInTree = pageTree.CreateItem(parentName != null ? allPages[GetPage(parentName)] : null);
 
@@ -335,7 +361,7 @@ public class Thriveopedia : ControlWithInput
         return pageInTree;
     }
 
-    private void UpdatePageInTree(TreeItem item, ThriveopediaPage page)
+    private void UpdatePageInTree(TreeItem item, IThriveopediaPage page)
     {
         // Godot doesn't appear to have a left margin for text in items, so add some manual padding
         item.SetText(0, "  " + page.TranslatedPageName);
@@ -345,7 +371,7 @@ public class Thriveopedia : ControlWithInput
     ///   Selects an item in the page tree without initiating an item selected signal.
     /// </summary>
     /// <param name="page">The page to select</param>
-    private void SelectInTreeWithoutEvent(ThriveopediaPage page)
+    private void SelectInTreeWithoutEvent(IThriveopediaPage page)
     {
         // Block signals during selection to prevent running code twice, then reattach them
         pageTree.SetBlockSignals(true);
@@ -389,7 +415,7 @@ public class Thriveopedia : ControlWithInput
     /// <summary>
     ///   Expands all parents of this page in the tree so that it's visible.
     /// </summary>
-    private void ExpandParents(ThriveopediaPage page)
+    private void ExpandParents(IThriveopediaPage page)
     {
         var parent = allPages.FirstOrDefault(p => p.Key.PageName == page.ParentPageName);
 
@@ -452,7 +478,7 @@ public class Thriveopedia : ControlWithInput
             var children = GetAllChildren(page);
 
             if (page.TranslatedPageName.ToLower().Contains(newText.ToLower()) ||
-                children.Any(child => child.TranslatedPageName.ToLower().Contains(newText.ToLower())))
+                children.Any(c => c.TranslatedPageName.ToLower().Contains(newText.ToLower())))
             {
                 // We can assume a page is always before its children in the list of all pages
                 allPages[page] = CreateTreeItem(page, page.ParentPageName);
@@ -463,7 +489,7 @@ public class Thriveopedia : ControlWithInput
     /// <summary>
     ///   Recursively gets all descendants of this page in the page tree.
     /// </summary>
-    private IEnumerable<ThriveopediaPage> GetAllChildren(ThriveopediaPage page)
+    private IEnumerable<IThriveopediaPage> GetAllChildren(IThriveopediaPage page)
     {
         var directChildren = allPages.Keys.Where(p => p.ParentPageName == page.PageName);
 
@@ -488,7 +514,7 @@ public class Thriveopedia : ControlWithInput
 
     private void HandleSceneChanged()
     {
-        EmitSignal(nameof(OnSceneChanged));
+        EmitSignal(SignalName.OnSceneChanged);
     }
 
     private void OnClosePressed()
@@ -500,6 +526,11 @@ public class Thriveopedia : ControlWithInput
 
     private void Exit()
     {
-        EmitSignal(nameof(OnThriveopediaClosed));
+        EmitSignal(SignalName.OnThriveopediaClosed);
+    }
+
+    private void PrintErrorAboutCurrentGame()
+    {
+        GD.PrintErr("Thriveopedia doesn't have current game data set yet, but it was already needed");
     }
 }

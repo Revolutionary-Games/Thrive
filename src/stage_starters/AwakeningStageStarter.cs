@@ -1,6 +1,9 @@
 ﻿using Godot;
 
-public class AwakeningStageStarter : AwareStageStarter
+/// <summary>
+///   Direct starter for awakening (basically <see cref="MainGameState.MulticellularStage"/> with awakened species)
+/// </summary>
+public partial class AwakeningStageStarter : AwareStageStarter
 {
     protected override MainGameState SimplyLoadableGameState => MainGameState.MulticellularStage;
 

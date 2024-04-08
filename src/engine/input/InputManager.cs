@@ -12,10 +12,12 @@ using Godot;
 ///     This is an AutoLoad class.
 ///   </para>
 /// </remarks>
-public class InputManager : Node
+[GodotAutoload]
+public partial class InputManager : Node
 {
-    private static readonly List<WeakReference> DestroyedListeners = new();
     private static InputManager? staticInstance;
+
+    private readonly List<WeakReference> destroyedListeners = new();
 
     private readonly Dictionary<int, float> controllerAxisDeadzones = new();
 
@@ -23,6 +25,8 @@ public class InputManager : Node
     ///   Used to send just one 0 event for a controller axis that is released and goes into the deadzone
     /// </summary>
     private readonly Dictionary<int, bool> deadzonedControllerAxes = new();
+
+    private readonly List<WeakReference> temporaryItemsToDelete = new();
 
     /// <summary>
     ///   A list of all loaded attributes
@@ -44,8 +48,10 @@ public class InputManager : Node
     /// </remarks>
     private ActiveInputMethod usedInputMethod = ActiveInputMethod.Keyboard;
 
-    private float inputChangeDelay;
+    private double inputChangeDelay;
     private bool queuedInputChange;
+
+    private double timeSinceExpiredClear;
 
     /// <summary>
     ///   Used to detect when the used controller
@@ -66,11 +72,12 @@ public class InputManager : Node
     {
         staticInstance = this;
 
+        if (Engine.IsEditorHint())
+            return;
+
         LoadAttributes(new[] { Assembly.GetExecutingAssembly() });
 
-        PauseMode = PauseModeEnum.Process;
-
-        StartTimer();
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     /// <summary>
@@ -111,6 +118,9 @@ public class InputManager : Node
             if (instance.GetType().GetCustomAttribute<IgnoreNoMethodsTakingInputAttribute>() != null)
                 return;
 
+            if (Engine.IsEditorHint())
+                return;
+
             GD.PrintErr("Object registered to receive input, but it has no input attributes on its methods (type: ",
                 instance.GetType().Name, ")");
         }
@@ -127,9 +137,39 @@ public class InputManager : Node
 
         int removed = 0;
 
+        var removeList = staticInstance.temporaryItemsToDelete;
+
         foreach (var attribute in staticInstance.attributes)
         {
-            removed += attribute.Value.RemoveAll(p => !p.IsAlive || p.Target.Equals(instance));
+            foreach (var weakReference in attribute.Value)
+            {
+                if (!weakReference.IsAlive)
+                {
+                    removeList.Add(weakReference);
+                    continue;
+                }
+
+                var target = weakReference.Target;
+
+                if (target == null || target.Equals(instance))
+                {
+                    removeList.Add(weakReference);
+                }
+            }
+
+            if (removeList.Count > 0)
+            {
+                foreach (var toRemove in removeList)
+                {
+                    attribute.Value.Remove(toRemove);
+                }
+
+                removed += removeList.Count;
+
+                removeList.Clear();
+            }
+
+            staticInstance.temporaryItemsToDelete.Clear();
         }
 
         if (removed < 1)
@@ -188,7 +228,11 @@ public class InputManager : Node
     {
         base._Ready();
 
-        Input.Singleton.Connect("joy_connection_changed", this, nameof(OnConnectedControllersChanged));
+        if (Engine.IsEditorHint())
+            return;
+
+        Input.Singleton.Connect(Input.SignalName.JoyConnectionChanged,
+            new Callable(this, nameof(OnConnectedControllersChanged)));
 
         DoPostLoad();
 
@@ -201,7 +245,7 @@ public class InputManager : Node
             {
                 // Apply button style from initial controller
 
-                int controllerId = (int)controllers[0];
+                int controllerId = controllers[0];
                 lastUsedControllerName = Input.GetJoyName(controllerId);
                 lastUsedControllerId = controllerId;
 
@@ -219,11 +263,19 @@ public class InputManager : Node
         Settings.Instance.ControllerPromptType.OnChanged += _ => ApplyInputPromptTypes();
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (staticInstance == this)
+            staticInstance = null;
+    }
+
     /// <summary>
     ///   Calls all OnProcess methods of all input attributes
     /// </summary>
     /// <param name="delta">The time since the last _Process call</param>
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (staticInstance == null)
             throw new InstanceNotLoadedYetException();
@@ -241,6 +293,13 @@ public class InputManager : Node
             }
         }
 
+        timeSinceExpiredClear += delta;
+        if (timeSinceExpiredClear > 1)
+        {
+            timeSinceExpiredClear = 0;
+            ClearExpiredReferences();
+        }
+
         foreach (var attribute in staticInstance.attributes)
             attribute.Key.OnProcess(delta);
     }
@@ -249,7 +308,7 @@ public class InputManager : Node
     {
         // If the window goes out of focus, we don't receive the key released events
         // We reset our held down keys if the player tabs out while pressing a key
-        if (what == NotificationWmFocusOut)
+        if (what == NotificationWMWindowFocusOut)
         {
             OnFocusLost();
         }
@@ -283,7 +342,7 @@ public class InputManager : Node
         OnInput(false, @event);
     }
 
-    internal static bool CallMethod(InputAttribute attribute, object[] parameters)
+    internal static bool CallMethod(InputAttribute attribute, bool warnIfTriesToConsume, object[] parameters)
     {
         var method = attribute.Method;
 
@@ -292,7 +351,9 @@ public class InputManager : Node
         if (method == null)
             return true;
 
-        var instances = staticInstance!.attributes[attribute];
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         var result = false;
 
         if (method.IsStatic)
@@ -303,6 +364,9 @@ public class InputManager : Node
             if (invokeResult is bool asBool)
             {
                 result = asBool;
+
+                if (warnIfTriesToConsume)
+                    PrintConsumeAttemptDelayedError(method);
             }
             else
             {
@@ -311,18 +375,22 @@ public class InputManager : Node
         }
         else
         {
+            var destroyed = staticInstance.destroyedListeners;
+
+            var instances = staticInstance.attributes[attribute];
+
             // Call the method for each instance
             foreach (var instance in instances)
             {
                 if (!instance.IsAlive)
                 {
                     // if the WeakReference is no longer valid
-                    DestroyedListeners.Add(instance);
+                    destroyed.Add(instance);
                     continue;
                 }
 
                 bool thisInstanceResult;
-                object invokeResult;
+                object? invokeResult;
 
                 try
                 {
@@ -339,13 +407,25 @@ public class InputManager : Node
                         GD.PrintErr("Failed to perform input method invoke: ", e);
                     }
 
-                    DestroyedListeners.Add(instance);
+                    destroyed.Add(instance);
+                    continue;
+                }
+                catch (ArgumentException e)
+                {
+                    GD.PrintErr("Failed to perform input method invoke due to parameter conversion: ", e);
+                    GD.PrintErr($"Target method failed to invoke is: {method.DeclaringType?.FullName}.{method.Name}");
+
+                    // Is probably good to put this here to ensure the error doesn't get printed infinitely
+                    destroyed.Add(instance);
                     continue;
                 }
 
                 if (invokeResult is bool asBool)
                 {
                     thisInstanceResult = asBool;
+
+                    if (warnIfTriesToConsume)
+                        PrintConsumeAttemptDelayedError(method);
                 }
                 else
                 {
@@ -357,12 +437,25 @@ public class InputManager : Node
                     result = true;
                 }
             }
+
+            if (destroyed.Count > 0)
+            {
+                foreach (var destroyedListener in destroyed)
+                {
+                    instances.Remove(destroyedListener);
+                }
+
+                destroyed.Clear();
+            }
         }
 
-        DestroyedListeners.ForEach(p => instances.Remove(p));
-        DestroyedListeners.Clear();
-
         return result;
+    }
+
+    private static void PrintConsumeAttemptDelayedError(MethodBase method)
+    {
+        GD.PrintErr("A method with delayed call from input manager tried to control input consuming: ",
+            method.DeclaringType?.Name ?? "global", ".", method.Name);
     }
 
     /// <summary>
@@ -374,7 +467,7 @@ public class InputManager : Node
 
         Settings.Instance.ControllerAxisDeadzoneAxes.OnChanged += _ => LoadControllerDeadzones();
 
-        GetTree().Root.Connect("size_changed", this, nameof(OnWindowSizeChanged));
+        GetTree().Root.Connect(Viewport.SignalName.SizeChanged, new Callable(this, nameof(OnWindowSizeChanged)));
         UpdateWindowSizeForInputs();
 
         foreach (var attribute in attributes)
@@ -401,7 +494,7 @@ public class InputManager : Node
         }
         else
         {
-            WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
+            WindowSizeForInputs = DisplayServer.WindowGetSize().AsFloats() * DisplayServer.ScreenGetScale();
         }
     }
 
@@ -417,7 +510,7 @@ public class InputManager : Node
             if (@event is InputEventJoypadMotion joypadMotion)
             {
                 // Apply controller axis deadzone
-                var motionAxis = joypadMotion.Axis;
+                var motionAxis = (int)(joypadMotion.Axis - JoyAxis.LeftX);
                 controllerAxisDeadzones.TryGetValue(motionAxis, out float deadzone);
 
                 if (Math.Abs(joypadMotion.AxisValue) < deadzone)
@@ -451,6 +544,8 @@ public class InputManager : Node
             // Skip attributes that have no active listener objects (if this is a key down)
             // TODO: only CallMethod currently removes the invalid references from the list so the object might be dead
             // already and we don't know that yet
+            // TODO: for efficiency causing a removed listener to trigger the key up once before being unregistered
+            // would be optimal
             if (isDown && entry.Value.Count < 1)
                 continue;
 
@@ -472,21 +567,7 @@ public class InputManager : Node
 
         // Define input as consumed to Godot if something reacted to it
         if (handled)
-            GetTree().SetInputAsHandled();
-    }
-
-    private void StartTimer()
-    {
-        // TODO: switch this to using a timer variable like elsewhere in the code
-        var timer = new Timer
-        {
-            Autostart = true,
-            OneShot = false,
-            PauseMode = PauseModeEnum.Process,
-            WaitTime = 1,
-        };
-        timer.Connect("timeout", this, nameof(ClearExpiredReferences));
-        AddChild(timer);
+            GetViewport().SetInputAsHandled();
     }
 
     private void UpdateUsedInputMethodType(InputEvent @event)
@@ -525,8 +606,11 @@ public class InputManager : Node
         }
 
         // Skip changing input method if the input is an action that shouldn't change input type
-        if (Constants.ActionsThatDoNotChangeInputMethod.Any(a => @event.IsAction(a)))
-            return;
+        foreach (var nonChangingMethod in Constants.ActionsThatDoNotChangeInputMethod)
+        {
+            if (@event.IsAction(nonChangingMethod))
+                return;
+        }
 
         usedInputMethod = wantedInputMethod.Value;
 
@@ -593,9 +677,9 @@ public class InputManager : Node
     {
         var values = Settings.Instance.ControllerAxisDeadzoneAxes.Value;
 
-        if (values.Count != (int)JoystickList.AxisMax)
+        if (values.Count != (int)JoyAxis.Max)
         {
-            GD.PrintErr("Mismatching number of controller axis deadzones. Expected: ", (int)JoystickList.AxisMax,
+            GD.PrintErr("Mismatching number of controller axis deadzones. Expected: ", (int)JoyAxis.Max,
                 " actually configured: ", values.Count);
         }
 

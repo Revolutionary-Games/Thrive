@@ -20,7 +20,7 @@ using Godot;
 ///     Handles the + button for adding new bindings.
 ///   </para>
 /// </remarks>
-public class InputActionItem : VBoxContainer
+public partial class InputActionItem : VBoxContainer
 {
     [Export]
     public NodePath? AddInputEventPath;
@@ -199,7 +199,7 @@ public class InputActionItem : VBoxContainer
         if (target == null)
             throw new ArgumentException("associatedGroup has no associated list");
 
-        var inputActionItem = (InputActionItem)target.InputActionItemScene.Instance();
+        var inputActionItem = (InputActionItem)target.InputActionItemScene.Instantiate();
 
         inputActionItem.InputName = data.InputName;
         inputActionItem.DisplayName = data.Name;
@@ -230,29 +230,44 @@ public class InputActionItem : VBoxContainer
     /// </summary>
     private void OnAddEventButtonPressed()
     {
-        var newInput = (InputEventItem)GroupList!.InputEventItemScene.Instance();
+        var newInput = (InputEventItem)GroupList!.InputEventItemScene.Instantiate();
         newInput.AssociatedAction = new WeakReference<InputActionItem>(this);
         newInput.JustAdded = true;
         Inputs.Add(newInput);
     }
 
-    private void OnInputsChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void OnInputsChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         switch (e.Action)
         {
             case NotifyCollectionChangedAction.Add:
-                foreach (InputEventItem newItem in e.NewItems)
+
+                if (e.NewItems != null)
                 {
-                    inputEventsContainer.AddChild(newItem);
+                    foreach (InputEventItem newItem in e.NewItems)
+                    {
+                        inputEventsContainer.AddChild(newItem);
+                    }
+                }
+                else
+                {
+                    GD.PrintErr("Collection notify add action doesn't have a new items list");
                 }
 
                 inputEventsContainer.MoveChild(addInputEvent, Inputs.Count);
 
                 break;
             case NotifyCollectionChangedAction.Remove:
-                foreach (InputEventItem oldItem in e.OldItems)
+                if (e.OldItems != null)
                 {
-                    inputEventsContainer.RemoveChild(oldItem);
+                    foreach (InputEventItem oldItem in e.OldItems)
+                    {
+                        inputEventsContainer.RemoveChild(oldItem);
+                    }
+                }
+                else
+                {
+                    GD.PrintErr("Collection notify remove action doesn't have an old items list");
                 }
 
                 break;

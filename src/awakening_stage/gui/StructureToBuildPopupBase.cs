@@ -1,12 +1,13 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Godot;
-using Godot.Collections;
 
 /// <summary>
 ///   Base type for all menus where selecting a building / structure to be built can be done
 /// </summary>
 /// <typeparam name="TSelection">The type of object this is allowing selecting from</typeparam>
-public abstract class StructureToBuildPopupBase<TSelection> : Control
+[GodotAbstract]
+public partial class StructureToBuildPopupBase<TSelection> : Control
 {
     [Export]
     public NodePath? PopupPath;
@@ -30,6 +31,10 @@ public abstract class StructureToBuildPopupBase<TSelection> : Control
 #pragma warning restore CA2213
 
     protected IStructureSelectionReceiver<TSelection>? receiver;
+
+    protected StructureToBuildPopupBase()
+    {
+    }
 
     public override void _Ready()
     {
@@ -77,47 +82,45 @@ public abstract class StructureToBuildPopupBase<TSelection> : Control
     }
 
     protected (HBoxContainer StructureContent, Button Button, CustomRichTextLabel RichText) CreateStructureSelectionGUI(
-        Texture icon)
+        Texture2D icon)
     {
         var structureContent = new HBoxContainer
         {
-            SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
+            SizeFlagsHorizontal = SizeFlags.ExpandFill,
         };
 
         // TODO: adjust the button visuals / make the text clickable like for a crafting recipe selection
         var button = new Button
         {
             SizeFlagsHorizontal = 0,
-            SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
+            SizeFlagsVertical = SizeFlags.ShrinkCenter,
             Icon = icon,
-            IconAlign = Button.TextAlign.Center,
+            IconAlignment = HorizontalAlignment.Center,
             ExpandIcon = true,
-            RectMinSize = new Vector2(42, 42),
+            CustomMinimumSize = new Vector2(42, 42),
         };
 
         structureContent.AddChild(button);
         structureContent.AddChild(new Control
         {
-            RectMinSize = new Vector2(5, 0),
+            CustomMinimumSize = new Vector2(5, 0),
         });
 
-        var richText = richTextScene.Instance<CustomRichTextLabel>();
-        richText.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+        var richText = richTextScene.Instantiate<CustomRichTextLabel>();
+        richText.SizeFlagsHorizontal = SizeFlags.ExpandFill;
 
         structureContent.AddChild(richText);
         return (structureContent, button, richText);
     }
 
     protected void HandleAddingStructureSelector(HBoxContainer structureContent, bool registerPress,
-        string callbackMethodName, string callbackParameter, Button button, ref Control? firstButton)
+        Action callback, Button button, ref Control? firstButton)
     {
         buttonsContainer.AddChild(structureContent);
 
         if (registerPress)
         {
-            var binds = new Array();
-            binds.Add(callbackParameter);
-            button.Connect("pressed", this, callbackMethodName, binds);
+            button.Connect(BaseButton.SignalName.Pressed, Callable.From(callback));
 
             firstButton ??= button;
         }

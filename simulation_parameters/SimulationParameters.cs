@@ -6,13 +6,13 @@ using Godot;
 using Newtonsoft.Json;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
-using Directory = Godot.Directory;
-using File = Godot.File;
+using FileAccess = Godot.FileAccess;
 
 /// <summary>
 ///   Contains definitions for global game configuration like Compounds, Organelles etc.
 /// </summary>
-public class SimulationParameters : Node
+[GodotAutoload]
+public partial class SimulationParameters : Node
 {
     public const string AUTO_EVO_CONFIGURATION_NAME = "AutoEvoConfiguration";
     public const string DAY_NIGHT_CYCLE_NAME = "DayNightConfiguration";
@@ -81,6 +81,9 @@ public class SimulationParameters : Node
     {
         base._Ready();
 
+        if (Engine.IsEditorHint())
+            return;
+
         // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
         instance = this;
 
@@ -91,21 +94,30 @@ public class SimulationParameters : Node
             {
                 new DirectTypeLoadOverride(typeof(Compound), null),
                 new DirectTypeLoadOverride(typeof(Enzyme), null),
+                new DirectTypeLoadOverride(typeof(Biome), null),
             };
 
-            compounds = LoadRegistry<Compound>(
-                "res://simulation_parameters/microbe_stage/compounds.json", deserializers);
+            compounds = LoadRegistry<Compound>("res://simulation_parameters/microbe_stage/compounds.json",
+                deserializers);
             enzymes = LoadRegistry<Enzyme>("res://simulation_parameters/microbe_stage/enzymes.json", deserializers);
+            biomes = LoadRegistry<Biome>("res://simulation_parameters/microbe_stage/biomes.json", deserializers);
+
+            // These later things already depend on the earlier things so another phase of direct loaders are needed
+
+            deserializers = new JsonConverter[]
+            {
+                new DirectTypeLoadOverride(typeof(OrganelleDefinition), null),
+            };
+
+            organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json",
+                deserializers);
         }
 
         membranes = LoadRegistry<MembraneType>("res://simulation_parameters/microbe_stage/membranes.json");
         backgrounds = LoadRegistry<Background>("res://simulation_parameters/microbe_stage/backgrounds.json");
-        biomes = LoadRegistry<Biome>("res://simulation_parameters/microbe_stage/biomes.json");
         bioProcesses = LoadRegistry<BioProcess>("res://simulation_parameters/microbe_stage/bio_processes.json");
-        organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json");
 
-        NameGenerator = LoadDirectObject<NameGenerator>(
-            "res://simulation_parameters/microbe_stage/species_names.json");
+        NameGenerator = LoadDirectObject<NameGenerator>("res://simulation_parameters/microbe_stage/species_names.json");
 
         musicCategories = LoadRegistry<MusicCategory>("res://simulation_parameters/common/music_tracks.json");
 
@@ -176,9 +188,7 @@ public class SimulationParameters : Node
             LoadRegistry<VisualResourceData>("res://simulation_parameters/common/visual_resources.json");
 
         // Build info is only loaded if the file is present
-        using var directory = new Directory();
-
-        if (directory.FileExists(Constants.BUILD_INFO_FILE))
+        if (FileAccess.FileExists(Constants.BUILD_INFO_FILE))
         {
             buildInfo = LoadDirectObject<BuildInfo>(Constants.BUILD_INFO_FILE);
         }
@@ -590,8 +600,7 @@ public class SimulationParameters : Node
 
     private static string ReadJSONFile(string path)
     {
-        using var file = new File();
-        file.Open(path, File.ModeFlags.Read);
+        using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
         var result = file.GetAsText();
 
         // This might be completely unnecessary
@@ -603,11 +612,22 @@ public class SimulationParameters : Node
         return result;
     }
 
+    private static JsonSerializerSettings GetJSONSettings(JsonConverter[]? extraConverters = null)
+    {
+        var settings = new JsonSerializerSettings();
+
+        if (extraConverters != null)
+        {
+            settings.Converters = extraConverters;
+        }
+
+        return settings;
+    }
+
     private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[]? extraConverters = null)
     {
-        extraConverters ??= Array.Empty<JsonConverter>();
-
-        var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path), extraConverters);
+        var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path),
+            GetJSONSettings(extraConverters));
 
         if (result == null)
             throw new InvalidDataException("Could not load a registry from file: " + path);
@@ -635,9 +655,7 @@ public class SimulationParameters : Node
 
     private List<T> LoadListRegistry<T>(string path, JsonConverter[]? extraConverters = null)
     {
-        extraConverters ??= Array.Empty<JsonConverter>();
-
-        var result = JsonConvert.DeserializeObject<List<T>>(ReadJSONFile(path), extraConverters);
+        var result = JsonConvert.DeserializeObject<List<T>>(ReadJSONFile(path), GetJSONSettings(extraConverters));
 
         if (result == null)
             throw new InvalidDataException("Could not load a registry from file: " + path);
@@ -656,9 +674,7 @@ public class SimulationParameters : Node
     private T LoadDirectObject<T>(string path, JsonConverter[]? extraConverters = null)
         where T : class
     {
-        extraConverters ??= Array.Empty<JsonConverter>();
-
-        var result = JsonConvert.DeserializeObject<T>(ReadJSONFile(path), extraConverters);
+        var result = JsonConvert.DeserializeObject<T>(ReadJSONFile(path), GetJSONSettings(extraConverters));
 
         if (result == null)
             throw new InvalidDataException("Could not load a registry from file: " + path);

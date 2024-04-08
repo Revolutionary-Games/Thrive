@@ -1,35 +1,34 @@
-﻿namespace Components
+﻿namespace Components;
+
+using Godot;
+
+/// <summary>
+///   World-space coordinates of an entity. Note a constructor must be used to get <see cref="Rotation"/>
+///   initialized correctly
+/// </summary>
+[JSONDynamicTypeAllowed]
+public struct WorldPosition
 {
-    using Godot;
+    public Vector3 Position;
+    public Quaternion Rotation;
 
-    /// <summary>
-    ///   World-space coordinates of an entity. Note a constructor must be used to get <see cref="Rotation"/>
-    ///   initialized correctly
-    /// </summary>
-    [JSONDynamicTypeAllowed]
-    public struct WorldPosition
+    public WorldPosition(Vector3 position)
     {
-        public Vector3 Position;
-        public Quat Rotation;
-
-        public WorldPosition(Vector3 position)
-        {
-            Position = position;
-            Rotation = Quat.Identity;
-        }
-
-        public WorldPosition(Vector3 position, Quat rotation)
-        {
-            Position = position;
-            Rotation = rotation;
-        }
+        Position = position;
+        Rotation = Quaternion.Identity;
     }
 
-    public static class WorldPositionHelpers
+    public WorldPosition(Vector3 position, Quaternion rotation)
     {
-        public static Transform ToTransform(this ref WorldPosition position)
-        {
-            return new Transform(new Basis(position.Rotation), position.Position);
-        }
+        Position = position;
+        Rotation = rotation;
+    }
+}
+
+public static class WorldPositionHelpers
+{
+    public static Transform3D ToTransform(this ref WorldPosition position)
+    {
+        return new Transform3D(new Basis(position.Rotation), position.Position);
     }
 }

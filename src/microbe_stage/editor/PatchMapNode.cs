@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   A single patch in PatchMapDrawer
 /// </summary>
-public class PatchMapNode : MarginContainer
+public partial class PatchMapNode : MarginContainer
 {
     [Export]
     public NodePath? IconPath;
@@ -27,6 +27,12 @@ public class PatchMapNode : MarginContainer
     [Export]
     public NodePath AdjacentPanelPath = null!;
 
+    [Export]
+    public NodePath UnknownLabelPath = null!;
+
+    [Export]
+    public string UnknownTextureFilePath = null!;
+
     // TODO: Move this to Constants.cs
     private const float HalfBlinkInterval = 0.5f;
 
@@ -35,9 +41,10 @@ public class PatchMapNode : MarginContainer
     private Panel? highlightPanel;
     private Panel? markPanel;
     private Panel? adjacentHighlightPanel;
-#pragma warning restore CA2213
+    private Label? unknownLabel;
 
-    private Texture? patchIcon;
+    private Texture2D? patchIcon;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   True if mouse is hovering on this node
@@ -64,7 +71,7 @@ public class PatchMapNode : MarginContainer
     /// </summary>
     private bool adjacentToSelectedPatch;
 
-    private float currentBlinkTime;
+    private double currentBlinkTime;
 
     private Patch? patch;
 
@@ -75,6 +82,12 @@ public class PatchMapNode : MarginContainer
     {
         get => patch ?? throw new InvalidOperationException("Patch not set yet");
         set => patch = value;
+    }
+
+    public MapElementVisibility Visibility
+    {
+        get => Patch.Visibility;
+        set => Patch.ApplyVisibility(value);
     }
 
     public bool IsDirty { get; private set; }
@@ -101,7 +114,7 @@ public class PatchMapNode : MarginContainer
         }
     }
 
-    public Texture? PatchIcon
+    public Texture2D? PatchIcon
     {
         get => patchIcon;
         set
@@ -169,14 +182,17 @@ public class PatchMapNode : MarginContainer
         highlightPanel = GetNode<Panel>(HighlightPanelPath);
         markPanel = GetNode<Panel>(MarkPanelPath);
         adjacentHighlightPanel = GetNode<Panel>(AdjacentPanelPath);
+        unknownLabel = GetNode<Label>(UnknownLabelPath);
 
         UpdateSelectHighlightRing();
         UpdateMarkRing();
         UpdateIcon();
         UpdateGreyscale();
+
+        UpdateVisibility();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -197,12 +213,43 @@ public class PatchMapNode : MarginContainer
 
         if (@event is InputEventMouseButton
             {
-                Pressed: true, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
+                Pressed: true, ButtonIndex: MouseButton.Left or MouseButton.Right,
             })
         {
             IsDirty = true;
             OnSelect();
-            GetTree().SetInputAsHandled();
+            GetViewport().SetInputAsHandled();
+        }
+    }
+
+    public void UpdateVisibility()
+    {
+        if (unknownLabel == null)
+            throw new InvalidOperationException("Not initialized yet");
+
+        switch (Visibility)
+        {
+            case MapElementVisibility.Hidden:
+                Hide();
+                return;
+
+            case MapElementVisibility.Unknown:
+            {
+                Show();
+                unknownLabel.Show();
+
+                // TODO: would it help anything to persistently load the unknown texture (instead of each time here)?
+                PatchIcon = GD.Load<Texture2D>(UnknownTextureFilePath);
+                return;
+            }
+
+            case MapElementVisibility.Shown:
+            {
+                Show();
+                unknownLabel.Hide();
+                PatchIcon = patch!.BiomeTemplate.LoadedIcon;
+                return;
+            }
         }
     }
 
@@ -233,6 +280,7 @@ public class PatchMapNode : MarginContainer
                 HighlightPanelPath.Dispose();
                 MarkPanelPath.Dispose();
                 AdjacentPanelPath.Dispose();
+                UnknownLabelPath.Dispose();
             }
         }
 

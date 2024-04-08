@@ -1,42 +1,41 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Last words of the microbe editor tutorial
+/// </summary>
+public class EditorTutorialEnd : TutorialPhase
 {
-    using System;
-
-    /// <summary>
-    ///   Last words of the microbe editor tutorial
-    /// </summary>
-    public class EditorTutorialEnd : TutorialPhase
+    public EditorTutorialEnd()
     {
-        public EditorTutorialEnd()
-        {
-            CanTrigger = false;
-        }
+        CanTrigger = false;
+    }
 
-        public override string ClosedByName => "CellEditorClosingWords";
+    public override string ClosedByName => "CellEditorClosingWords";
 
-        public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
-        {
-            gui.CellEditorClosingWordsVisible = ShownCurrently;
-        }
+    public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
+    {
+        gui.CellEditorClosingWordsVisible = ShownCurrently;
+    }
 
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            switch (eventType)
+            case TutorialEventType.MicrobeEditorRedo:
             {
-                case TutorialEventType.MicrobeEditorRedo:
+                if (!HasBeenShown && CanTrigger)
                 {
-                    if (!HasBeenShown && CanTrigger)
-                    {
-                        Show();
-                        return true;
-                    }
-
-                    break;
+                    Show();
+                    return true;
                 }
-            }
 
-            return false;
+                break;
+            }
         }
+
+        return false;
     }
 }

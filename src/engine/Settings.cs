@@ -14,7 +14,7 @@ using Environment = System.Environment;
 public class Settings
 {
     private static readonly List<string>
-        AvailableLocales = TranslationServer.GetLoadedLocales().Cast<string>().ToList();
+        AvailableLocales = TranslationServer.GetLoadedLocales().ToList();
 
     private static readonly string DefaultLanguageValue = GetSupportedLocale(TranslationServer.GetLocale());
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
@@ -67,8 +67,8 @@ public class Settings
     ///   Sets amount of MSAA to apply to the viewport
     /// </summary>
     [JsonProperty]
-    public SettingValue<Viewport.MSAA> MSAAResolution { get; private set; } =
-        new(Viewport.MSAA.Msaa2x);
+    public SettingValue<Viewport.Msaa> MSAAResolution { get; private set; } =
+        new(Viewport.Msaa.Msaa2X);
 
     /// <summary>
     ///   Sets the maximum framerate of the game window
@@ -226,11 +226,16 @@ public class Settings
     public SettingValue<int> CloudResolution { get; private set; } = new(2);
 
     /// <summary>
-    ///   If true an auto-evo run is started during gameplay,
-    ///   taking up one of the background threads.
+    ///   If true an auto-evo run is started during gameplay, taking up one of the background threads.
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> RunAutoEvoDuringGamePlay { get; private set; } = new(true);
+
+    /// <summary>
+    ///   If true the game simulations can run in a multithreaded way (for example <see cref="MicrobeWorldSimulation"/>
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> RunGameSimulationMultithreaded { get; private set; } = new(true);
 
     /// <summary>
     ///   If true it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
@@ -249,6 +254,16 @@ public class Settings
     /// </summary>
     [JsonProperty]
     public SettingValue<int> ThreadCount { get; private set; } = new(4);
+
+    [JsonProperty]
+    public SettingValue<bool> UseManualNativeThreadCount { get; private set; } = new(false);
+
+    /// <summary>
+    ///   Manually set number of native threads to use. Applies similarly to the C# side of things (i.e. only when
+    ///   manual count is enabled)
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<int> NativeThreadCount { get; private set; } = new(3);
 
     /// <summary>
     ///   Sets the maximum number of entities that can exist at one time.
@@ -362,7 +377,13 @@ public class Settings
     ///   It stores the godot actions like g_move_left and
     ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
     /// </summary>
-    [JsonProperty]
+    /// <remarks>
+    ///   <para>
+    ///     To guard against old key maps and bad data, the property name here can be incremented (and is incremented
+    ///     when necessary)
+    ///   </para>
+    /// </remarks>
+    [JsonProperty(PropertyName = "CurrentControls2")]
     public SettingValue<InputDataList> CurrentControls { get; private set; } =
         new(GetDefaultControls());
 
@@ -461,7 +482,7 @@ public class Settings
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This should have <see cref="JoystickList.AxisMax"/> values in here to have one for each supported axis.
+    ///     This should have <see cref="JoyAxis.Max"/> values in here to have one for each supported axis.
     ///   </para>
     /// </remarks>
     [JsonProperty]
@@ -528,10 +549,9 @@ public class Settings
     /// <returns>The current inputs</returns>
     public static InputDataList GetCurrentlyAppliedControls()
     {
-        return new InputDataList(InputMap.GetActions().OfType<string>()
-            .ToDictionary(p => p,
-                p => InputMap.GetActionList(p).OfType<InputEvent>().Select(
-                    x => new SpecifiedInputKey(x)).ToList())!);
+        return new InputDataList(InputMap.GetActions()
+            .ToDictionary(p => p.ToString(),
+                p => InputMap.ActionGetEvents(p).Select(x => new SpecifiedInputKey(x, false)).ToList()));
     }
 
     /// <summary>
@@ -656,10 +676,9 @@ public class Settings
     /// <returns>True on success, false if the file can't be written.</returns>
     public bool Save()
     {
-        using var file = new File();
-        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
+        using var file = FileAccess.Open(Constants.CONFIGURATION_FILE, FileAccess.ModeFlags.Write);
 
-        if (error != Error.Ok)
+        if (file == null)
         {
             GD.PrintErr("Couldn't open settings file for writing.");
             return false;
@@ -680,7 +699,7 @@ public class Settings
     /// </param>
     public void ApplyAll(bool delayedApply = false)
     {
-        if (Engine.EditorHint)
+        if (Engine.IsEditorHint())
         {
             // Do not apply settings within the Godot editor.
             return;
@@ -716,10 +735,11 @@ public class Settings
     /// </summary>
     public void ApplyGraphicsSettings()
     {
-        GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
+        GUICommon.Instance.GetTree().Root.GetViewport().Msaa3D = MSAAResolution;
 
         // Values less than 0 are undefined behaviour
-        Engine.TargetFps = MaxFramesPerSecond >= 0 ? MaxFramesPerSecond : 0;
+        int max = MaxFramesPerSecond;
+        Engine.MaxFps = max >= 0 ? max : 0;
         ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 
@@ -767,8 +787,15 @@ public class Settings
     /// </summary>
     public void ApplyWindowSettings()
     {
-        OS.WindowFullscreen = FullScreen;
-        OS.VsyncEnabled = VSync;
+        // TODO: add exclusive fullscreen mode option
+        DisplayServer.WindowSetMode(FullScreen.Value ?
+            DisplayServer.WindowMode.Fullscreen :
+            DisplayServer.WindowMode.Windowed);
+
+        // TODO: switch the setting to allow specifying all of the 4 possible values
+        DisplayServer.WindowSetVsyncMode(VSync.Value ?
+            DisplayServer.VSyncMode.Enabled :
+            DisplayServer.VSyncMode.Disabled);
     }
 
     /// <summary>
@@ -786,7 +813,7 @@ public class Settings
         // It seems like there is some kind of threading going on. The getter of AudioServer.Device
         // only returns the new value after some time, therefore we can't check if the output device
         // got applied successfully.
-        AudioServer.Device = audioOutputDevice;
+        AudioServer.OutputDevice = audioOutputDevice;
 
         GD.Print("Set audio output device to: ", audioOutputDevice);
     }
@@ -816,7 +843,7 @@ public class Settings
         }
         else
         {
-            language = GetSupportedLocale(language!);
+            language = GetSupportedLocale(language);
             cultureInfo = GetCultureInfo(language);
         }
 
@@ -853,8 +880,8 @@ public class Settings
         foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
         {
             // Returns if any of the properties don't match.
-            object thisValue = property.GetValue(this);
-            object objValue = property.GetValue(obj);
+            var thisValue = property.GetValue(this);
+            var objValue = property.GetValue(obj);
 
             if (thisValue != objValue && thisValue?.Equals(objValue) != true)
             {
@@ -903,7 +930,14 @@ public class Settings
                 settings = new Settings();
             }
 
-            settings.ApplyAll(true);
+            if (!SceneManager.QuitOrQuitting)
+            {
+                settings.ApplyAll(true);
+            }
+            else
+            {
+                GD.PrintErr("Skipping settings apply as the game should close soon");
+            }
 
             return settings;
         }
@@ -920,10 +954,9 @@ public class Settings
     /// </summary>
     private static Settings? LoadSettings()
     {
-        using var file = new File();
-        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+        using var file = FileAccess.Open(Constants.CONFIGURATION_FILE, FileAccess.ModeFlags.Read);
 
-        if (error != Error.Ok)
+        if (file == null)
         {
             GD.Print("Failed to open settings configuration file, file is missing or unreadable. "
                 + "Using default settings instead.");
@@ -1025,9 +1058,23 @@ public class Settings
 
             // Since the properties we want to copy are SettingValue generics we use the IAssignableSetting
             // interface and AssignFrom method to convert the property to the correct concrete class.
-            var setting = (IAssignableSetting)property.GetValue(this);
+            var setting = (IAssignableSetting?)property.GetValue(this);
 
-            setting.AssignFrom(property.GetValue(settings));
+            if (setting == null)
+            {
+                GD.PrintErr("Trying to copy a value into a null setting");
+                continue;
+            }
+
+            var source = property.GetValue(settings);
+
+            if (source == null)
+            {
+                GD.Print("Not updating setting as the new value to set wrapper is null");
+                continue;
+            }
+
+            setting.AssignFrom(source);
         }
     }
 }

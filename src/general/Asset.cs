@@ -16,7 +16,7 @@ public class Asset
     [JsonIgnore]
     public string FileName { get; private set; } = null!;
 
-    public AssetType Type { get; set; } = AssetType.Texture;
+    public AssetType Type { get; set; } = AssetType.Texture2D;
 
     public string? MeshNodePath { get; set; }
 
@@ -47,11 +47,11 @@ public class Asset
 
         if (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Artist))
         {
-            result.Append(TranslationServer.Translate("ARTWORK_TITLE").FormatSafe(Title, Artist));
+            result.Append(Localization.Translate("ARTWORK_TITLE").FormatSafe(Title, Artist));
         }
         else if (string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Artist))
         {
-            result.Append(TranslationServer.Translate("ART_BY").FormatSafe(Artist));
+            result.Append(Localization.Translate("ART_BY").FormatSafe(Artist));
         }
         else if (!string.IsNullOrEmpty(Title) && string.IsNullOrEmpty(Artist))
         {
@@ -68,20 +68,19 @@ public class Asset
     {
         if (string.IsNullOrEmpty(ResourcePath))
         {
-            throw new InvalidRegistryDataException(
-                "asset", GetType().Name, "ResourcePath missing");
+            throw new InvalidRegistryDataException("asset", GetType().Name, "ResourcePath missing");
         }
 
         if (!string.IsNullOrEmpty(MeshNodePath) && Type != AssetType.ModelScene)
         {
-            throw new InvalidRegistryDataException(
-                "asset", GetType().Name, "MeshNodePath is specified but asset type is not ModelScene");
+            throw new InvalidRegistryDataException("asset", GetType().Name,
+                "MeshNodePath is specified but asset type is not ModelScene");
         }
 
-        if (!string.IsNullOrEmpty(MeshNodePath) && ResourcePath.Extension() != "tscn")
+        if (!string.IsNullOrEmpty(MeshNodePath) && ResourcePath.GetExtension() != "tscn")
         {
-            throw new InvalidRegistryDataException(
-                "asset", GetType().Name, "MeshNodePath is specified but resource is not a PackedScene");
+            throw new InvalidRegistryDataException("asset", GetType().Name,
+                "MeshNodePath is specified but resource is not a PackedScene");
         }
     }
 
@@ -93,13 +92,11 @@ public class Asset
             MeshNodePath = ".";
         }
 
-        if (Type is AssetType.ModelScene or AssetType.VideoPlayback && !FileHelpers.Exists(ResourcePath))
-            throw new FileNotFoundException("The given scene or video file in ResourcePath doesn't exist");
+#if DEBUG
+        if (!ResourceLoader.Exists(ResourcePath))
+            throw new FileNotFoundException("The given asset in ResourcePath doesn't exist");
+#endif
 
-        // When exported only the .import files exist, so this check is done accordingly
-        if (Type is AssetType.Texture or AssetType.AudioPlayback && !FileHelpers.Exists(ResourcePath + ".import"))
-            throw new FileNotFoundException("The given image or audio file in ResourcePath doesn't exist");
-
-        FileName = ResourcePath.GetFile().BaseName();
+        FileName = ResourcePath.GetFile().GetBaseName();
     }
 }

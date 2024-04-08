@@ -1,5 +1,6 @@
 # Godot files
 /.import
+/.godot
 export.cfg
 /builds
 /cmake-build*
@@ -144,6 +145,7 @@ package-lock.json
 /Scripts/translators.json
 /steam_appid.txt
 simulation_parameters/revision.json
+/gitmodules
 
 /mods
 
@@ -151,3 +153,5 @@ simulation_parameters/revision.json
 out.txt
 output.png
 *.DS_Store
+
+*.mo

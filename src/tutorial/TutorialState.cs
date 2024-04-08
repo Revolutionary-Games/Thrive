@@ -86,7 +86,13 @@ public class TutorialState : ITutorialInput
     public StaySmallTutorial StaySmallTutorial { get; private set; } = new();
 
     [JsonProperty]
+    public ChemoreceptorPlacementTutorial ChemoreceptorPlacementTutorial { get; private set; } = new();
+
+    [JsonProperty]
     public NegativeAtpBalanceTutorial NegativeAtpBalanceTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public AtpBalanceIntroduction AtpBalanceIntroduction { get; private set; } = new();
 
     [JsonProperty]
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
@@ -104,16 +110,28 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public DayNightTutorial DayNightTutorial { get; private set; } = new();
 
+    [JsonProperty]
+    public OrganelleDivisionTutorial OrganelleDivisionTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public MadeNoChangesTutorial MadeNoChangesTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public FlagellumPlacementTutorial FlagellumPlacementTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public ModifyOrganelleTutorial ModifyOrganelleTutorial { get; private set; } = new();
+
     // End of tutorial state variables
 
     [JsonProperty]
-    public float TotalElapsed { get; private set; }
+    public double TotalElapsed { get; private set; }
 
     /// <summary>
     ///   True if any of the tutorials are active that want to pause the game
     /// </summary>
     [JsonIgnore]
-    public bool WantsGamePaused => Tutorials.Any(tutorial => tutorial.WantsPaused);
+    public bool WantsGamePaused => Tutorials.Any(t => t.WantsPaused);
 
     [JsonIgnore]
     public IEnumerable<TutorialPhase> Tutorials
@@ -168,7 +186,7 @@ public class TutorialState : ITutorialInput
     /// <returns>True if any tutorial is visible</returns>
     public bool TutorialActive()
     {
-        return Tutorials.Any(tutorial => tutorial.ShownCurrently);
+        return Tutorials.Any(t => t.ShownCurrently);
     }
 
     /// <summary>
@@ -382,11 +400,17 @@ public class TutorialState : ITutorialInput
             EditorTutorialEnd,
             AutoEvoPrediction,
             StaySmallTutorial,
+            ChemoreceptorPlacementTutorial,
             NegativeAtpBalanceTutorial,
             LeaveColonyTutorial,
             BecomeMulticellularTutorial,
             EarlyMulticellularWelcome,
             DayNightTutorial,
+            MadeNoChangesTutorial,
+            OrganelleDivisionTutorial,
+            FlagellumPlacementTutorial,
+            ModifyOrganelleTutorial,
+            AtpBalanceIntroduction,
         };
     }
 }

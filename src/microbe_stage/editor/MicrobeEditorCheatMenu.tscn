@@ -1,40 +1,50 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://cbthqg63bqkhx"]
 
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=4]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="4"]
 
-[node name="MicrobeEditorCheatMenu" instance=ExtResource( 1 )]
-margin_right = 0.0
-margin_bottom = 0.0
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": ""
-}
+[node name="MicrobeEditorCheatMenu" instance=ExtResource("1")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 0.0
+offset_bottom = 0.0
+script = ExtResource("2")
+InfiniteMpPath = NodePath("VBoxContainer/InfiniteMP")
 WindowTitle = "CHEATS"
 Resizable = true
-InfiniteMpPath = NodePath("VBoxContainer/InfiniteMP")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
-margin_right = 106.0
-margin_bottom = 17.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_right = 106.0
+offset_bottom = 17.0
 
-[node name="InfiniteMP" parent="VBoxContainer" index="0" instance=ExtResource( 4 )]
-margin_right = 175.0
-margin_bottom = 17.0
-custom_fonts/font = ExtResource( 3 )
+[node name="InfiniteMP" parent="VBoxContainer" index="0" instance=ExtResource("4")]
+layout_mode = 2
+theme = null
+theme_override_font_sizes/font_size = 14
 text = "INFINITE_MP"
 
-[node name="MoveToAnyPatch" parent="VBoxContainer" index="1" instance=ExtResource( 4 )]
-margin_top = 21.0
-margin_right = 175.0
-margin_bottom = 38.0
-custom_fonts/font = ExtResource( 3 )
+[node name="MoveToAnyPatch" parent="VBoxContainer" index="1" instance=ExtResource("4")]
+layout_mode = 2
+theme = null
+theme_override_font_sizes/font_size = 14
 text = "MOVE_TO_ANY_PATCH"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="RevealAllPatches" type="Button" parent="VBoxContainer" index="3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "REVEAL_ALL_PATCHES"
+
+[node name="UnlockAllOrganelles" type="Button" parent="VBoxContainer" index="4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "UNLOCK_ALL_ORGANELLES"
 
 [connection signal="toggled" from="VBoxContainer/InfiniteMP" to="." method="SetInfiniteMP"]
 [connection signal="toggled" from="VBoxContainer/MoveToAnyPatch" to="." method="SetMoveToAnyPatch"]
+[connection signal="pressed" from="VBoxContainer/RevealAllPatches" to="." method="OnRevealAllPatchesPressed"]
+[connection signal="pressed" from="VBoxContainer/UnlockAllOrganelles" to="." method="OnUnlockAllOrganellesPressed"]

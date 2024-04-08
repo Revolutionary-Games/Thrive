@@ -3,21 +3,21 @@
 [ext_resource path="res://src/gui_common/KeyPrompt.cs" type="Script" id=1]
 
 [node name="KeyPrompt" type="CenterContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource( 1 )
 
 [node name="Primary" type="TextureRect" parent="."]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 20.0
-margin_bottom = 20.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
 expand = true
 
 [node name="Secondary" type="TextureRect" parent="."]
 visible = false
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 20.0
-margin_bottom = 20.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
 expand = true

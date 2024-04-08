@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class CellPopupMenu : HexPopupMenu
+/// <summary>
+///   Right click popup menu that opens when clicked on a body plan cell
+/// </summary>
+public partial class CellPopupMenu : HexPopupMenu
 {
     private List<HexWithData<CellTemplate>>? selectedCells;
 
@@ -55,7 +58,7 @@ public class CellPopupMenu : HexPopupMenu
         }
         else
         {
-            titleLabel.Text = TranslationServer.Translate("MULTIPLE_CELLS");
+            titleLabel.Text = Localization.Translate("MULTIPLE_CELLS");
         }
     }
 
@@ -64,10 +67,9 @@ public class CellPopupMenu : HexPopupMenu
         if (deleteButton == null)
             return;
 
-        var mpCost = GetActionPrice?.Invoke(
-                SelectedCells
-                    .Select(o =>
-                        (EditorCombinableActionData)new CellRemoveActionData(o))) ??
+        var mpCost = GetActionPrice?.Invoke(SelectedCells
+                .Select(o =>
+                    (EditorCombinableActionData)new CellRemoveActionData(o))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");

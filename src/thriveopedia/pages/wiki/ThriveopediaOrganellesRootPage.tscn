@@ -9,11 +9,11 @@ MainArticlePath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBox
 OrganelleListContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
-margin_right = 864.0
+offset_right = 864.0
 
 [node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
-margin_top = 10.0
-margin_right = 864.0
-margin_bottom = 10.0
-custom_constants/vseparation = 20
-custom_constants/hseparation = 20
+offset_top = 10.0
+offset_right = 864.0
+offset_bottom = 10.0
+theme_override_constants/v_separation = 20
+theme_override_constants/h_separation = 20

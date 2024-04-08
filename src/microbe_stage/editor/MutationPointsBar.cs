@@ -1,6 +1,9 @@
 ﻿using Godot;
 
-public class MutationPointsBar : HBoxContainer
+/// <summary>
+///   Mutation points bar that shows the remaining mutation points in the editor
+/// </summary>
+public partial class MutationPointsBar : HBoxContainer
 {
     [Export]
     public NodePath? CurrentMutationPointsLabelPath;
@@ -45,17 +48,17 @@ public class MutationPointsBar : HBoxContainer
         mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
 
-        freebuildingText = TranslationServer.Translate("FREEBUILDING");
+        freebuildingText = Localization.Translate("FREEBUILDING");
     }
 
     public void UpdateBar(float currentMutationPoints, float possibleMutationPoints, bool tween = true)
     {
         if (tween)
         {
-            GUICommon.Instance.TweenBarValue(
-                mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
-            GUICommon.Instance.TweenBarValue(
-                mutationPointsSubtractBar, currentMutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+            GUICommon.Instance.TweenBarValue(mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS,
+                0.5f);
+            GUICommon.Instance.TweenBarValue(mutationPointsSubtractBar, currentMutationPoints,
+                Constants.BASE_MUTATION_POINTS, 0.7f);
         }
         else
         {

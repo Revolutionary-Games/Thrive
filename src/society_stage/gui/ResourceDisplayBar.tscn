@@ -1,50 +1,45 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://duhmbx8qnpcao"]
 
-[ext_resource path="res://src/society_stage/gui/ResourceDisplayBar.cs" type="Script" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=3]
+[ext_resource type="Script" path="res://src/society_stage/gui/ResourceDisplayBar.cs" id="1"]
+[ext_resource type="Texture2D" uid="uid://dmv0hstevg4ut" path="res://assets/textures/gui/bevel/chemicalButton.png" id="2"]
+[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="2_pp1g3"]
 
 [node name="ResourceDisplayBar" type="HBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
-custom_constants/separation = 12
-script = ExtResource( 1 )
+theme_override_constants/separation = 12
+script = ExtResource("1")
 EarlyResourcesContainerPath = NodePath("EarlyResources")
 ScienceIndicatorContainerPath = NodePath("ScienceContainer")
 ScienceAmountLabelPath = NodePath("ScienceContainer/ScienceAmount")
 LateResourcesContainerPath = NodePath("LateResources")
-FullResourceAmountColour = Color( 1, 0.898039, 0.235294, 1 )
-CriticalResourceAmountColour = Color( 1, 0.341176, 0.341176, 1 )
-AmountLabelFont = ExtResource( 3 )
+FullResourceAmountColour = Color(1, 0.898039, 0.235294, 1)
+CriticalResourceAmountColour = Color(1, 0.341176, 0.341176, 1)
+AmountLabelFont = ExtResource("2_pp1g3")
 
 [node name="EarlyResources" type="HBoxContainer" parent="."]
-margin_bottom = 720.0
-custom_constants/separation = 10
+layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="ScienceContainer" type="HBoxContainer" parent="."]
-margin_left = 12.0
-margin_right = 68.0
-margin_bottom = 720.0
+layout_mode = 2
 
 [node name="ScienceAmount" type="Label" parent="ScienceContainer"]
-margin_top = 353.0
-margin_right = 28.0
-margin_bottom = 367.0
+layout_mode = 2
 text = "+0.5"
+label_settings = ExtResource("2_pp1g3")
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="ScienceContainer"]
-margin_left = 32.0
-margin_right = 56.0
-margin_bottom = 720.0
-rect_min_size = Vector2( 24, 24 )
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="LateResources" type="HBoxContainer" parent="."]
-margin_left = 80.0
-margin_right = 1280.0
-margin_bottom = 720.0
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/separation = 10
+theme_override_constants/separation = 10

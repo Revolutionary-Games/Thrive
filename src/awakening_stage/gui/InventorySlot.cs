@@ -1,10 +1,9 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   GUI control showing an inventory slot that can be interacted with
 /// </summary>
-public class InventorySlot : Button
+public partial class InventorySlot : Button
 {
 #pragma warning disable CA2213
     private Control tooHeavyIndicator = null!;
@@ -16,13 +15,13 @@ public class InventorySlot : Button
     private bool takeOnly;
 
     [Signal]
-    public delegate void OnSelected();
+    public delegate void OnSelectedEventHandler(InventorySlot slot);
 
     [Signal]
-    public delegate void OnPressed();
+    public delegate void OnPressedEventHandler(InventorySlot slot);
 
     [Signal]
-    public delegate void OnDragStarted();
+    public delegate void OnDragStartedEventHandler();
 
     // Customization callbacks to override default behaviour for more control on item moving and knowing when it
     // happens
@@ -121,10 +120,10 @@ public class InventorySlot : Button
         // the cursor, so find a way around that or report a Godot bug
         return new TextureRect
         {
-            Expand = true,
+            ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
             StretchMode = TextureRect.StretchModeEnum.Scale,
             Texture = item.Icon,
-            RectMinSize = new Vector2(32, 32),
+            CustomMinimumSize = new Vector2(32, 32),
         };
     }
 
@@ -135,24 +134,25 @@ public class InventorySlot : Button
         // TODO: tooltip for showing the name of the item / extra details if any exist
     }
 
-    public override object? GetDragData(Vector2 position)
+    public override Variant _GetDragData(Vector2 position)
     {
         if (Item == null || Locked)
-            return null;
+            return default(Variant);
 
         SetDragPreview(CreateDragPreviewForItem(Item));
 
-        EmitSignal(nameof(OnDragStarted));
+        EmitSignal(SignalName.OnDragStarted);
 
         return new InventoryDragData(this, Item);
     }
 
-    public override bool CanDropData(Vector2 position, object data)
+    public override bool _CanDropData(Vector2 position, Variant data)
     {
         if (Locked)
             return false;
 
-        if (data is not InventoryDragData inventoryDragData)
+        var inventoryDragData = (InventoryDragData?)data;
+        if (inventoryDragData == null)
             return false;
 
         if (AllowDropHandler != null)
@@ -164,10 +164,9 @@ public class InventorySlot : Button
         return true;
     }
 
-    public override void DropData(Vector2 position, object data)
+    public override void _DropData(Vector2 position, Variant data)
     {
-        if (data is not InventoryDragData inventoryDragData)
-            throw new InvalidCastException($"Can't accept drop data of type: {data.GetType()}");
+        var inventoryDragData = (InventoryDragData)data;
 
         DragResult result;
         if (PerformDropHandler != null)
@@ -237,12 +236,12 @@ public class InventorySlot : Button
 
     private void OnPress()
     {
-        EmitSignal(nameof(OnPressed));
+        EmitSignal(SignalName.OnPressed, this);
     }
 
     private void OnToggle(bool pressed)
     {
         if (pressed)
-            EmitSignal(nameof(OnSelected));
+            EmitSignal(SignalName.OnSelected, this);
     }
 }

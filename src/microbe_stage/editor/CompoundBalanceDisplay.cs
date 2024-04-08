@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Shows Compound balance information
 /// </summary>
-public class CompoundBalanceDisplay : VBoxContainer
+public partial class CompoundBalanceDisplay : VBoxContainer
 {
     [Export]
     public NodePath? CompoundListContainerPath;
@@ -20,7 +20,7 @@ public class CompoundBalanceDisplay : VBoxContainer
         compoundListContainer = GetNode<VBoxContainer>(CompoundListContainerPath);
 
         childCache = new ChildObjectCache<Compound, CompoundAmount>(compoundListContainer,
-            compound => new CompoundAmount { Compound = compound, PrefixPositiveWithPlus = true });
+            c => new CompoundAmount { Compound = c, PrefixPositiveWithPlus = true });
     }
 
     public void UpdateBalances(Dictionary<Compound, CompoundBalance> balances)

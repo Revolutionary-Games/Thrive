@@ -4,11 +4,15 @@ using Godot;
 /// <summary>
 ///   Handles signal from Godot when files are dragged and dropped onto the game window
 /// </summary>
-public class FileDropHandler : Node
+[GodotAutoload]
+public partial class FileDropHandler : Node
 {
     public override void _Ready()
     {
-        GetTree().Connect("files_dropped", this, nameof(OnFilesDropped));
+        if (Engine.IsEditorHint())
+            return;
+
+        GetTree().Root.Connect(Window.SignalName.FilesDropped, new Callable(this, nameof(OnFilesDropped)));
     }
 
     private void OnFilesDropped(string[] files, int screen)

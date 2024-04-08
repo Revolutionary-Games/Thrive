@@ -1,64 +1,43 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://hxrn73ihp8r4"]
 
-[ext_resource path="res://assets/models/EditorArrow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/models/EditorArrow.mesh" type="ArrayMesh" id=2]
-[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=3]
-[ext_resource path="res://src/microbe_stage/MicrobeCamera.cs" type="Script" id=4]
-[ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=5]
-[ext_resource path="res://shaders/EditorHexGrid.shader" type="Shader" id=6]
+[ext_resource type="PackedScene" uid="uid://cpxcni1cii4k8" path="res://assets/models/EditorArrow.tscn" id="1"]
+[ext_resource type="Shader" path="res://shaders/EditorHexGrid.gdshader" id="3_yr5pr"]
+[ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="4_vutib"]
+[ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="5"]
 
-[sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0, 0.129412, 0.141176, 1 )
+[sub_resource type="PlaneMesh" id="3"]
+size = Vector2(15, 15)
 
-[sub_resource type="SpatialMaterial" id=2]
-flags_transparent = true
-albedo_color = Color( 0.0666667, 1, 0.835294, 0.337255 )
-
-[sub_resource type="PlaneMesh" id=3]
-size = Vector2( 15, 15 )
-
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kek8v"]
 render_priority = -2
-shader = ExtResource( 6 )
-shader_param/color = Color( 0.745098, 0.745098, 0.745098, 1 )
-shader_param/lineWidth = 0.02
-shader_param/edgeLength = 1.299
-shader_param/maskTexture = ExtResource( 3 )
+shader = ExtResource("3_yr5pr")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/lineWidth = 0.02
+shader_parameter/edgeLength = 1.299
+shader_parameter/maskTexture = ExtResource("4_vutib")
 
 [node name="MicrobeEditorWorld" type="Node"]
 
-[node name="PrimaryCamera" type="Camera" parent="." instance=ExtResource( 5 )]
-process_priority = 100
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
-current = true
-fov = 90.0
-script = ExtResource( 4 )
+[node name="PrimaryCamera" parent="." instance=ExtResource("5")]
 DefaultCameraHeight = 10.0
 MaxCameraHeight = 40.0
-DisableBackgroundParticles = true
 InterpolateSpeed = 1.0
 
-[node name="CameraLookAt" type="Spatial" parent="."]
-__meta__ = {
-"_editor_description_": "Just something to make the microbe camera look at the right place"
-}
+[node name="CameraLookAt" type="Node3D" parent="."]
 
-[node name="EditorArrow" type="MeshInstance" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 0, 0.2, 0 )
-mesh = ExtResource( 2 )
-skeleton = NodePath("")
-material/0 = SubResource( 1 )
-material/1 = SubResource( 2 )
+[node name="EditorArrow" parent="." instance=ExtResource("1")]
+transform = Transform3D(-0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 0, 0.2, 0)
 
-[node name="Grid" type="MeshInstance" parent="."]
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
+[node name="Grid" type="MeshInstance3D" parent="."]
+mesh = SubResource("3")
+surface_material_override/0 = SubResource("ShaderMaterial_kek8v")
 
-[node name="EditorLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
-light_energy = 0.5
+[node name="EditorLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.40354, 8.30518, 4.37077)
+light_energy = 2.0
+light_indirect_energy = 1.5
 shadow_enabled = true
-omni_range = 100.0
+omni_range = 166.598
 omni_attenuation = 0.420448
 
-[node name="DynamicallySpawned" type="Spatial" parent="."]
+[node name="DynamicallySpawned" type="Node3D" parent="."]

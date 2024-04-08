@@ -29,21 +29,18 @@ public class GodotSceneTranslationExtractor : TranslationExtractorBase
     /// </summary>
     private const string TooltipPlaceHolderMarker = "TOOLTIP_PLACEHOLDER";
 
-    private const string TooltipPropertyName = "hint_tooltip";
+    private const string TooltipPropertyName = "tooltip_text";
+
+    private const string EditorDescriptionName = "editor_description";
 
     private const int ItemListStride = 5;
 
     private static readonly Regex GodotPropertyStr = new(@"^([A-Za-z0-9_]+)\s*=\s*""(.+)""$", RegexOptions.Compiled);
 
-    private static readonly Regex GodotEditorDescription =
-        new(@"editor_description_""\s*:\s*""([^""]+)", RegexOptions.Compiled);
-
-    private static readonly Regex OptionButtonOptions =
-        new(@"^(items)\s*=\s*\[\s*(.+)\s*\]\s*$", RegexOptions.Compiled);
+    private static readonly Regex GodotSubItemPropertyStr =
+        new(@"^.+/item_\d+/([A-Za-z0-9_]+)\s*=\s*""(.+)""$", RegexOptions.Compiled);
 
     private readonly IReadOnlyCollection<string> propertiesToLookFor;
-
-    private readonly bool itemsEnabled;
 
     private readonly List<(string Property, ExtractedTranslation Translation)> translationsForCurrentNode = new();
 
@@ -64,8 +61,6 @@ public class GodotSceneTranslationExtractor : TranslationExtractorBase
     public GodotSceneTranslationExtractor(IReadOnlyCollection<string> propertiesToLookFor) : base(".tscn")
     {
         this.propertiesToLookFor = propertiesToLookFor;
-
-        itemsEnabled = propertiesToLookFor.Contains("items");
     }
 
     public override async IAsyncEnumerable<ExtractedTranslation> Handle(string path,
@@ -106,31 +101,31 @@ public class GodotSceneTranslationExtractor : TranslationExtractorBase
                 continue;
             }
 
+            // TODO: for editor description (and other multiline properties) handling that supports multiple lines here
+            // would be pretty great
             match = GodotPropertyStr.Match(line);
 
             if (match.Success)
             {
-                HandleProperty(match.Groups[1].Value, match.Groups[2].Value, path, lineNumber);
-                continue;
+                // Special handling for editor saved comments on nodes
+                if (match.Groups[1].Value == EditorDescriptionName)
+                {
+                    HandleEditorDescription(match.Groups[2].Value);
+                }
+                else
+                {
+                    HandleProperty(match.Groups[1].Value, match.Groups[2].Value, path, lineNumber);
+                }
             }
-
-            // Option button is handled specially from other property types
-            if (itemsEnabled)
+            else
             {
-                match = OptionButtonOptions.Match(line);
+                // Try matching configured sub-item property from Godot editor
+                match = GodotSubItemPropertyStr.Match(line);
 
                 if (match.Success)
                 {
-                    HandleOptionsButton(match.Groups[1].Value, match.Groups[2].Value, path, lineNumber);
-                    continue;
+                    HandleProperty(match.Groups[1].Value, match.Groups[2].Value, path, lineNumber);
                 }
-            }
-
-            match = GodotEditorDescription.Match(line);
-
-            if (match.Success)
-            {
-                HandleEditorDescription(match.Groups[1].Value);
             }
         }
 

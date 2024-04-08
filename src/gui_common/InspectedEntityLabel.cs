@@ -1,19 +1,22 @@
 ﻿using Godot;
 
-public class InspectedEntityLabel : HBoxContainer
+/// <summary>
+///   Label showing info about a hovered entity in the game with the cursor
+/// </summary>
+public partial class InspectedEntityLabel : HBoxContainer
 {
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private Label textLabel;
     private Label? descriptionLabel;
+
+    private Texture2D? icon;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private Texture? icon;
-
-    public InspectedEntityLabel(string text, Texture? icon = null)
+    public InspectedEntityLabel(string text, Texture2D? icon = null)
     {
         this.icon = icon;
 
-        textLabel = new Label { SizeFlagsHorizontal = (int)SizeFlags.ExpandFill };
+        textLabel = new Label { SizeFlagsHorizontal = SizeFlags.ExpandFill };
         SetText(text);
     }
 

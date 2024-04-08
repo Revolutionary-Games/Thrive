@@ -1,15 +1,32 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics.X86;
+using System.Text;
+using DevCenterCommunication.Models.Enums;
 using Godot;
+using SharedBase.Utilities;
 
 /// <summary>
 ///   Calling interface from C# to the native code side of things for the native module
 /// </summary>
 public static class NativeInterop
 {
+    // Need these delegate holders to keep delegates alive
+    private static readonly NativeMethods.OnLogMessage LogMessageCallback = ForwardMessage;
+
+    private static readonly NativeMethods.OnLineDraw LineDrawCallback = ForwardLineDraw;
+    private static readonly NativeMethods.OnTriangleDraw TriangleDrawCallback = ForwardTriangleDraw;
+
+    private static bool disableAvx;
+
     private static bool loadCalled;
     private static bool debugDrawIsPossible;
     private static bool nativeLoadSucceeded;
+
+    private static bool printedDistributableNotice;
 
     public delegate void OnLineDraw(Vector3 from, Vector3 to, Color colour);
 
@@ -30,7 +47,7 @@ public static class NativeInterop
         // things for the initial settings
         _ = settings;
 
-        NativeMethods.SetLogForwardingCallback(ForwardMessage);
+        NativeMethods.SetLogForwardingCallback(LogMessageCallback);
 
         var result = NativeMethods.InitThriveLibrary();
 
@@ -41,7 +58,7 @@ public static class NativeInterop
 
         try
         {
-            debugDrawIsPossible = NativeMethods.SetDebugDrawerCallbacks(ForwardLineDraw, ForwardTriangleDraw);
+            debugDrawIsPossible = NativeMethods.SetDebugDrawerCallbacks(LineDrawCallback, TriangleDrawCallback);
         }
         catch (Exception e)
         {
@@ -49,8 +66,7 @@ public static class NativeInterop
             debugDrawIsPossible = false;
         }
 
-        // TODO: allow controlling native executor thread count (automatically and through the GUI)
-        NativeMethods.SetNativeExecutorThreads(3);
+        // TaskExecutor sets the number of used background threads on the native side
 
 #if DEBUG
         CheckSizesOfInteropTypes();
@@ -98,6 +114,70 @@ public static class NativeInterop
     }
 
     /// <summary>
+    ///   Sets the custom import resolver that understands where Thrive libraries are installed to.
+    /// </summary>
+    /// <param name="forAssembly">The assembly to set the resolver for, defaults to the calling assembly</param>
+    public static void SetDllImportResolver(Assembly? forAssembly = null)
+    {
+        forAssembly ??= Assembly.GetCallingAssembly();
+
+        NativeLibrary.SetDllImportResolver(forAssembly, DllImportResolver);
+    }
+
+    /// <summary>
+    ///   Checks that current CPU is sufficiently new (has the required instruction set extensions) for running the
+    ///   Thrive native module
+    /// </summary>
+    /// <returns>True if everything is fine and load can proceed</returns>
+    public static bool CheckCPU()
+    {
+        try
+        {
+            var result = CheckCPUFeaturesFull();
+
+            // If can support the full speed library all is well
+            if (result == CPUCheckResult.CPUCheckSuccess)
+            {
+                disableAvx = false;
+                return true;
+            }
+
+            // Try the compatibility library
+            var originalResult = result;
+
+            result = CheckCPUFeaturesCompatibility();
+
+            if (result == CPUCheckResult.CPUCheckSuccess)
+            {
+                GD.Print("Cannot use full-speed Thrive native library due to: " +
+                    GetMissingFeatureList(originalResult));
+
+                GD.Print("Using slower Thrive native library that doesn't rely on as new CPU instructions");
+
+                disableAvx = true;
+                return true;
+            }
+
+            GD.PrintErr("Current CPU detected as not sufficient for Thrive");
+
+            GD.PrintErr(GetMissingFeatureList(result));
+
+            return false;
+        }
+        catch (DllNotFoundException e)
+        {
+            if (Engine.IsEditorHint())
+            {
+                GD.Print("Cannot load early check library within the editor concept due to it missing");
+                return false;
+            }
+
+            GD.PrintErr("Cannot load early check library to check CPU features: ", e);
+            return false;
+        }
+    }
+
+    /// <summary>
     ///   Releases all native resources and prepares the library for process exit
     /// </summary>
     public static void Shutdown()
@@ -112,6 +192,14 @@ public static class NativeInterop
 
         NativeMethods.DisableDebugDrawerCallbacks();
         NativeMethods.ShutdownThriveLibrary();
+    }
+
+    /// <summary>
+    ///   Disable loading avx-enabled libraries even if AVX was detected as being available
+    /// </summary>
+    public static void DisableAvx()
+    {
+        disableAvx = true;
     }
 
     public static bool RegisterDebugDrawer(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
@@ -131,12 +219,102 @@ public static class NativeInterop
         OnLineDrawHandler = null;
         OnTriangleDrawHandler = null;
 
-        NativeMethods.DisableDebugDrawerCallbacks();
+        if (nativeLoadSucceeded)
+        {
+            NativeMethods.DisableDebugDrawerCallbacks();
+        }
+        else
+        {
+            GD.Print("Skip native side debug draw unregister as the native library is not loaded");
+        }
+    }
+
+    public static void NotifyWantedThreadCountChanged(int threads)
+    {
+        if (!nativeLoadSucceeded)
+            return;
+
+        NativeMethods.SetNativeExecutorThreads(threads);
+    }
+
+    private static CPUCheckResult CheckCPUFeaturesFull()
+    {
+        var result = CPUCheckResult.CPUCheckSuccess;
+
+        // TODO: should this check Avx2.X64.IsSupported instead or also?
+        if (!Avx2.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingAvx2;
+
+        if (!Avx.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingAvx;
+
+        return result | CheckCPUFeaturesCompatibility();
+    }
+
+    private static CPUCheckResult CheckCPUFeaturesCompatibility()
+    {
+        var result = CPUCheckResult.CPUCheckSuccess;
+
+        if (!Sse42.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingSse42;
+
+        if (!Sse41.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingSse41;
+
+        return result;
+    }
+
+    private static string GetMissingFeatureList(CPUCheckResult result)
+    {
+        var builder = new StringBuilder();
+
+        if ((result & CPUCheckResult.CPUCheckMissingAvx) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing AVX 1 extension instruction support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingAvx2) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing AVX 2 extension instruction support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingSse41) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing SSE 4.1 support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingSse42) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing SSE 4.2 support");
+        }
+
+        if (builder.Length < 1)
+            builder.Append("Unknown problem with CPU check");
+
+        return builder.ToString();
     }
 
     private static void ForwardMessage(IntPtr messageData, int messageLength, NativeMethods.LogLevel level)
     {
         var message = Marshal.PtrToStringAnsi(messageData, messageLength);
+
+#if DEBUG
+
+        // Pause debugger when detecting a native assertion fail to give some idea as to what's going on
+        if (message.Contains("assert failed"))
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
 
         if (level <= NativeMethods.LogLevel.Info)
         {
@@ -184,6 +362,97 @@ public static class NativeInterop
                 $"Unexpected size for type {typeof(T).FullName}, expected size to be: {expected} but it is {size}");
         }
     }
+
+    private static PrecompiledTag GetTag(bool debug)
+    {
+        if (disableAvx)
+            return debug ? (PrecompiledTag.Debug | PrecompiledTag.WithoutAvx) : PrecompiledTag.WithoutAvx;
+
+        return debug ? PrecompiledTag.Debug : PrecompiledTag.None;
+    }
+
+    private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
+    {
+        if (!NativeConstants.GetLibraryFromName(libraryName, out var library))
+        {
+#if DEBUG
+            GD.Print("Loading non-thrive library: ", libraryName);
+#endif
+            return NativeLibrary.Load(libraryName, assembly, searchPath);
+        }
+
+        var currentPlatform = PlatformUtilities.GetCurrentPlatform();
+
+        // TODO: different name when no avx is detected
+
+        // Would be complicated to inline due to the conditional compilation
+        // ReSharper disable once InlineOutVariableDeclaration
+        IntPtr loaded;
+
+        // TODO: add a flag / some kind of option to skip loading the debug library
+
+#if DEBUG
+        if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
+                NativeConstants.GetLibraryVersion(library), false, GetTag(true)), out loaded))
+        {
+            return loaded;
+        }
+
+        if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
+                NativeConstants.GetLibraryVersion(library), true, GetTag(true)), out loaded))
+        {
+            GD.Print("Loaded a distributable debug library, this is not optimal but likely works");
+            return loaded;
+        }
+#endif
+
+        if (!Engine.IsEditorHint())
+        {
+            // Load from libs directory, needed when the game is packaged
+            if (LoadLibraryIfExists(Path.Join(NativeConstants.PackagedLibraryFolder,
+                    NativeConstants.GetLibraryDllName(library, currentPlatform, GetTag(false))), out loaded))
+            {
+                return loaded;
+            }
+        }
+
+        if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
+                NativeConstants.GetLibraryVersion(library), false, GetTag(false)), out loaded))
+        {
+            return loaded;
+        }
+
+        if (!printedDistributableNotice)
+        {
+            GD.Print("Library not found yet at expected paths, trying a distributable version");
+            printedDistributableNotice = true;
+        }
+
+        if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
+                NativeConstants.GetLibraryVersion(library), true, GetTag(false)), out loaded))
+        {
+            return loaded;
+        }
+
+        GD.PrintErr("Couldn't find library at any expected path, falling back to default load behaviour, " +
+            "which is unlikely to find anything");
+
+        return NativeLibrary.Load(libraryName, assembly, searchPath);
+    }
+
+    private static bool LoadLibraryIfExists(string libraryPath, out IntPtr loaded)
+    {
+        if (File.Exists(libraryPath))
+        {
+            var full = Path.GetFullPath(libraryPath);
+
+            loaded = NativeLibrary.Load(full);
+            return true;
+        }
+
+        loaded = IntPtr.Zero;
+        return false;
+    }
 }
 
 /// <summary>
@@ -212,8 +481,17 @@ internal static partial class NativeMethods
     [DllImport("thrive_native")]
     internal static extern int CheckAPIVersion();
 
+    [DllImport("early_checks")]
+    internal static extern int CheckEarlyAPIVersion();
+
     [DllImport("thrive_native")]
     internal static extern void ShutdownThriveLibrary();
+
+    [DllImport("early_checks")]
+    internal static extern CPUCheckResult CheckRequiredCPUFeatures();
+
+    [DllImport("early_checks")]
+    internal static extern CPUCheckResult CheckCompatibilityLibraryCPUFeatures();
 
     [DllImport("thrive_native")]
     internal static extern void SetLogLevel(LogLevel level);

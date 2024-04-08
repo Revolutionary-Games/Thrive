@@ -75,9 +75,9 @@ public class InProgressLoad
 
                 // Invalid is given as the target state here, because it's unknown yet.
                 // TODO: See #1847
-                LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
+                LoadingScreen.Instance.Show(Localization.Translate("LOADING_GAME"),
                     MainGameState.Invalid,
-                    TranslationServer.Translate("READING_SAVE_DATA"));
+                    Localization.Translate("READING_SAVE_DATA"));
 
                 TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, Step, false, false);
 
@@ -102,18 +102,23 @@ public class InProgressLoad
                     // Invalid is given as the target state here, because it's unknown yet.
                     // TODO: See #1847
                     save = Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
-                        LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
+                        LoadingScreen.Instance.Show(Localization.Translate("LOADING_GAME"),
                             MainGameState.Invalid,
-                            TranslationServer.Translate("CREATING_OBJECTS_FROM_SAVE"))));
+                            Localization.Translate("CREATING_OBJECTS_FROM_SAVE"))));
 
                     state = State.CreatingScene;
                 }
                 catch (Exception e)
                 {
+#if DEBUG
+                    if (Debugger.IsAttached)
+                        Debugger.Break();
+#endif
+
                     var extraProblem = TryFreeAlreadyLoadedData();
 
                     ReportStatus(false,
-                        TranslationServer.Translate("EXCEPTION_HAPPENED_WHILE_LOADING"),
+                        Localization.Translate("EXCEPTION_HAPPENED_WHILE_LOADING"),
                         e + extraProblem);
                     state = State.Finished;
 
@@ -139,8 +144,8 @@ public class InProgressLoad
                 {
                     var extraProblem = TryFreeAlreadyLoadedData();
 
-                    ReportStatus(false, TranslationServer.Translate("SAVE_IS_INVALID"),
-                        TranslationServer.Translate("SAVE_HAS_INVALID_GAME_STATE") + extraProblem);
+                    ReportStatus(false, Localization.Translate("SAVE_IS_INVALID"),
+                        Localization.Translate("SAVE_HAS_INVALID_GAME_STATE") + extraProblem);
                     state = State.Finished;
                     break;
                 }
@@ -151,9 +156,9 @@ public class InProgressLoad
 
             case State.ProcessingLoadedObjects:
             {
-                LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
+                LoadingScreen.Instance.Show(Localization.Translate("LOADING_GAME"),
                     save!.GameState,
-                    TranslationServer.Translate("PROCESSING_LOADED_OBJECTS"));
+                    Localization.Translate("PROCESSING_LOADED_OBJECTS"));
 
                 if (loadedState!.IsLoadedFromSave != true)
                     throw new Exception("Game load logic not working correctly, IsLoadedFromSave was not set");
@@ -168,13 +173,13 @@ public class InProgressLoad
                     var extraProblem = TryFreeAlreadyLoadedData();
 
                     ReportStatus(false,
-                        TranslationServer.Translate("EXCEPTION_HAPPENED_PROCESSING_SAVE"),
+                        Localization.Translate("EXCEPTION_HAPPENED_PROCESSING_SAVE"),
                         e + extraProblem);
                     state = State.Finished;
                     break;
                 }
 
-                ReportStatus(true, TranslationServer.Translate("LOAD_FINISHED"), string.Empty);
+                ReportStatus(true, Localization.Translate("LOAD_FINISHED"), string.Empty);
                 state = State.Finished;
                 break;
             }
@@ -195,15 +200,15 @@ public class InProgressLoad
                 {
                     MainMenu.OnEnteringGame();
 
-                    TransitionManager.Instance.AddSequence(
-                        ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(), false, false);
+                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f,
+                        () => LoadingScreen.Instance.Hide(), false, false);
 
                     TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f,
                         () => SaveStatusOverlay.Instance.ShowMessage(message), false, false);
                 }
                 else
                 {
-                    SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_LOADING"),
+                    SaveStatusOverlay.Instance.ShowError(Localization.Translate("ERROR_LOADING"),
                         message, exception, true, true, () => LoadingScreen.Instance.Hide());
                 }
 
@@ -241,7 +246,7 @@ public class InProgressLoad
         }
         catch (Exception e2)
         {
-            return TranslationServer.Translate("SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE").FormatSafe(e2);
+            return Localization.Translate("SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE").FormatSafe(e2);
         }
 
         return string.Empty;

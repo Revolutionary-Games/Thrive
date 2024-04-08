@@ -5,7 +5,7 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
 [ext_resource path="res://src/gui_common/HoldKeyPrompt.tscn" type="PackedScene" id=4]
 
-[sub_resource type="ProceduralSky" id=2]
+[sub_resource type="Sky" id=2]
 radiance_size = 3
 sky_energy = 0.0
 ground_energy = 0.0
@@ -28,7 +28,7 @@ auto_exposure_scale = 1.46
 auto_exposure_min_luma = 1.54
 auto_exposure_max_luma = 6.58
 auto_exposure_speed = 21.47
-ss_reflections_enabled = true
+ssr_enabled = true
 ssao_enabled = true
 ssao_radius = 3.42
 dof_blur_far_distance = 65.13
@@ -53,13 +53,13 @@ adjustment_brightness = 1.06
 adjustment_contrast = 0.97
 adjustment_saturation = 0.99
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape3D" id=1]
 extents = Vector3( 3.02798, 0.0101852, 2.99321 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="StandardMaterial3D" id=5]
 albedo_color = Color( 0.121569, 0.121569, 0.121569, 1 )
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="StandardMaterial3D" id=3]
 flags_transparent = true
 params_blend_mode = 1
 albedo_color = Color( 0.270588, 0.909804, 0.976471, 0.666667 )
@@ -70,7 +70,7 @@ emission_operator = 0
 emission_on_uv2 = false
 
 [node name="AscensionCeremony" type="Node"]
-pause_mode = 2
+process_mode = 3
 script = ExtResource( 1 )
 GateWalkerSpawnPointPath = NodePath("World/GateWalkerSpawnPoint")
 ObserverSpawnPointPaths = [ NodePath("World/ObserverSpawnPoint"), NodePath("World/ObserverSpawnPoint2"), NodePath("World/ObserverSpawnPoint3") ]
@@ -86,116 +86,116 @@ WorldCameraToDisablePath = NodePath("World/StaticCamera")
 
 [node name="World" type="Node" parent="."]
 
-[node name="StaticCamera" type="Camera" parent="World"]
-transform = Transform( 0.895238, -0.115327, 0.430405, 0, 0.965926, 0.258819, -0.445589, -0.231705, 0.864733, 15.9463, 9.97621, 27.0589 )
+[node name="StaticCamera" type="Camera3D" parent="World"]
+transform = Transform3D( 0.895238, -0.115327, 0.430405, 0, 0.965926, 0.258819, -0.445589, -0.231705, 0.864733, 15.9463, 9.97621, 27.0589 )
 current = true
 fov = 80.0
 near = 0.01
 
-[node name="Listener" type="Listener" parent="World/StaticCamera"]
+[node name="AudioListener3D" type="AudioListener3D" parent="World/StaticCamera"]
 current = true
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
-[node name="WorldLight" type="DirectionalLight" parent="World"]
-transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
+[node name="WorldLight" type="DirectionalLight3D" parent="World"]
+transform = Transform3D( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = SubResource( 4 )
 
-[node name="GateLight" type="OmniLight" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.468164, 4.72071, -0.00111282 )
+[node name="GateLight" type="OmniLight3D" parent="World"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.468164, 4.72071, -0.00111282 )
 light_color = Color( 0.223529, 0.92549, 1, 1 )
 light_energy = 1.2
 omni_range = 35.0259
 omni_attenuation = 1.36604
 
-[node name="AscensionGateInterior" type="Spatial" parent="World"]
+[node name="AscensionGateInterior" type="Node3D" parent="World"]
 
-[node name="FloorCollision" type="StaticBody" parent="World/AscensionGateInterior"]
+[node name="FloorCollision" type="StaticBody3D" parent="World/AscensionGateInterior"]
 
-[node name="CollisionShape" type="CollisionShape" parent="World/AscensionGateInterior/FloorCollision"]
-transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/AscensionGateInterior/FloorCollision"]
+transform = Transform3D( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
 shape = SubResource( 1 )
 
-[node name="Floor" type="CSGBox" parent="World/AscensionGateInterior"]
+[node name="Floor" type="CSGBox3D" parent="World/AscensionGateInterior"]
 width = 50.0
 height = 0.048
 depth = 70.0
 material = SubResource( 5 )
 
-[node name="Ceiling" type="CSGBox" parent="World/AscensionGateInterior"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.0129, 0 )
+[node name="Ceiling" type="CSGBox3D" parent="World/AscensionGateInterior"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.0129, 0 )
 width = 50.0
 height = 0.0430779
 depth = 70.0
 material = SubResource( 5 )
 
-[node name="Pillar" type="CSGCylinder" parent="World/AscensionGateInterior"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8468, 11.9681, -34.6675 )
+[node name="Pillar" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8468, 11.9681, -34.6675 )
 height = 24.0
 sides = 12
 
-[node name="Pillar2" type="CSGCylinder" parent="World/AscensionGateInterior"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 34.8368 )
+[node name="Pillar2" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 34.8368 )
 height = 24.0
 sides = 12
 
-[node name="Pillar3" type="CSGCylinder" parent="World/AscensionGateInterior"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 0.186778 )
+[node name="Pillar3" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 0.186778 )
 height = 24.0
 sides = 12
 
-[node name="Pillar4" type="CSGCylinder" parent="World/AscensionGateInterior"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, -18.5713 )
+[node name="Pillar4" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, -18.5713 )
 height = 24.0
 sides = 12
 
-[node name="Pillar5" type="CSGCylinder" parent="World/AscensionGateInterior"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 18.968 )
+[node name="Pillar5" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 18.968 )
 height = 24.0
 sides = 12
 
-[node name="CSGBox3" type="CSGBox" parent="World/AscensionGateInterior"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0 )
+[node name="CSGBox3" type="CSGBox3D" parent="World/AscensionGateInterior"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0 )
 width = 18.0
 height = 4.0
 depth = 4.0
 
-[node name="CSGBox4" type="CSGBox" parent="World/AscensionGateInterior"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.76172, 0 )
+[node name="CSGBox4" type="CSGBox3D" parent="World/AscensionGateInterior"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.76172, 0 )
 width = 12.0
 height = 12.0
 depth = 0.396676
 material = SubResource( 3 )
 
-[node name="CSGBox5" type="CSGBox" parent="World/AscensionGateInterior"]
-transform = Transform( 1, 0, 0, 0, 0.979845, -0.199761, 0, 0.199761, 0.979845, 0.0424042, 0.518774, 6.70115 )
+[node name="CSGBox5" type="CSGBox3D" parent="World/AscensionGateInterior"]
+transform = Transform3D( 1, 0, 0, 0, 0.979845, -0.199761, 0, 0.199761, 0.979845, 0.0424042, 0.518774, 6.70115 )
 width = 7.0
 height = 1.0
 depth = 10.0
 
-[node name="GateWalkerSpawnPoint" type="Spatial" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0819778, -3.8147e-06, 34.3979 )
+[node name="GateWalkerSpawnPoint" type="Node3D" parent="World"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0819778, -3.8147e-06, 34.3979 )
 
-[node name="RampStartPoint" type="Spatial" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.6382 )
+[node name="RampStartPoint" type="Node3D" parent="World"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.6382 )
 
-[node name="RampEndPoint" type="Spatial" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14208, 2.02097 )
+[node name="RampEndPoint" type="Node3D" parent="World"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14208, 2.02097 )
 
-[node name="AscensionGatePoint" type="Spatial" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1171, -0.544976 )
+[node name="AscensionGatePoint" type="Node3D" parent="World"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1171, -0.544976 )
 
-[node name="ObserverSpawnPoint" type="Spatial" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6221, 0, -29.2539 )
+[node name="ObserverSpawnPoint" type="Node3D" parent="World"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6221, 0, -29.2539 )
 
-[node name="ObserverSpawnPoint2" type="Spatial" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.38661, 0, -30.9077 )
+[node name="ObserverSpawnPoint2" type="Node3D" parent="World"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.38661, 0, -30.9077 )
 
-[node name="ObserverSpawnPoint3" type="Spatial" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.46, 0.926355, 11.5192 )
+[node name="ObserverSpawnPoint3" type="Node3D" parent="World"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.46, 0.926355, 11.5192 )
 
 [node name="CustomBlanker" type="ColorRect" parent="."]
 visible = false
@@ -216,24 +216,24 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -287.045
-margin_top = -50.7925
-margin_right = -10.0453
-margin_bottom = -10.7925
+offset_left = -287.045
+offset_top = -50.7925
+offset_right = -10.0453
+offset_bottom = -10.7925
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
 [node name="Label" type="Label" parent="CreditsDisplay/SkipInfoContainer"]
-margin_top = 7.0
-margin_right = 233.0
-margin_bottom = 32.0
+offset_top = 7.0
+offset_right = 233.0
+offset_bottom = 32.0
 text = "HOLD_TO_SKIP_CREDITS"
 
 [node name="SkipPrompt" parent="CreditsDisplay/SkipInfoContainer" instance=ExtResource( 4 )]
-margin_left = 237.0
-margin_right = 277.0
-rect_min_size = Vector2( 40, 40 )
+offset_left = 237.0
+offset_right = 277.0
+custom_minimum_size = Vector2( 40, 40 )
 ActionName = "ui_cancel"
 ShowPress = false
 RequiredHoldTime = 5.0

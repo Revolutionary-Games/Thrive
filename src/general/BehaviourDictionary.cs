@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -99,11 +98,11 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
     {
         return type switch
         {
-            BehaviouralValueType.Aggression => TranslationServer.Translate("BEHAVIOUR_AGGRESSION"),
-            BehaviouralValueType.Opportunism => TranslationServer.Translate("BEHAVIOUR_OPPORTUNISM"),
-            BehaviouralValueType.Fear => TranslationServer.Translate("BEHAVIOUR_FEAR"),
-            BehaviouralValueType.Activity => TranslationServer.Translate("BEHAVIOUR_ACTIVITY"),
-            BehaviouralValueType.Focus => TranslationServer.Translate("BEHAVIOUR_FOCUS"),
+            BehaviouralValueType.Aggression => Localization.Translate("BEHAVIOUR_AGGRESSION"),
+            BehaviouralValueType.Opportunism => Localization.Translate("BEHAVIOUR_OPPORTUNISM"),
+            BehaviouralValueType.Fear => Localization.Translate("BEHAVIOUR_FEAR"),
+            BehaviouralValueType.Activity => Localization.Translate("BEHAVIOUR_ACTIVITY"),
+            BehaviouralValueType.Focus => Localization.Translate("BEHAVIOUR_FOCUS"),
             _ => type.ToString(),
         };
     }
@@ -130,20 +129,15 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
     public void Mutate(Random random)
     {
         // Variables used in AI to determine general behaviour mutate these
-        Aggression = (Aggression + random.Next(
-            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+        Aggression = (Aggression + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_AGGRESSION);
-        Fear = (Fear + random.Next(
-            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+        Fear = (Fear + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_FEAR);
-        Activity = (Activity + random.Next(
-            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+        Activity = (Activity + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_ACTIVITY);
-        Focus = (Focus + random.Next(
-            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+        Focus = (Focus + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_FOCUS);
-        Opportunism = (Opportunism + random.Next(
-            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+        Opportunism = (Opportunism + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_OPPORTUNISM);
     }
 

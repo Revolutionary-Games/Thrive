@@ -74,7 +74,7 @@ public class PhysicsShape : IDisposable
 
         for (int i = 0; i < pointCount; ++i)
         {
-            convertedData[i] = new JVecF3(membranePoints[i].x, 0, membranePoints[i].y);
+            convertedData[i] = new JVecF3(membranePoints[i].X, 0, membranePoints[i].Y);
         }
 
         // The rented array from the pool will be returned when the cache entry is disposed
@@ -97,13 +97,12 @@ public class PhysicsShape : IDisposable
                 (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
         }
 
-        return new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(
-            MemoryMarshal.GetReference(organellePositions),
+        return new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(MemoryMarshal.GetReference(organellePositions),
             (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
     }
 
     public static PhysicsShape CreateCombinedShapeStatic(
-        IReadOnlyList<(PhysicsShape Shape, Vector3 Position, Quat Rotation)> subShapes)
+        IReadOnlyList<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)> subShapes)
     {
         var pool = ArrayPool<SubShapeDefinition>.Shared;
 
@@ -151,7 +150,7 @@ public class PhysicsShape : IDisposable
         // TODO: pre-bake collision shapes for game export (the fallback conversion below should only need to be used
         // when debugging to make the release version perform better)
 
-        var godotData = GD.Load<ConvexPolygonShape>(path);
+        var godotData = GD.Load<ConvexPolygonShape3D>(path);
 
         if (godotData == null)
         {
@@ -178,8 +177,8 @@ public class PhysicsShape : IDisposable
         // TODO: if different godot imports need different scales add this is a parameter (probably is the case and
         // caused by different real scales of the meshes used for collisions)
         // TODO: base rotations are also problematic here (the rock chunks are rotated differently visually compared to
-        // the physics shape)
-        float scale = 90;
+        // the physics shape, this is now fixed for the big iron)
+        float scale = 100;
 
         // This is probably similar kind of configuration thing for Jolt as the margin is in Godot Bullet integration
         float convexRadius = godotData.Margin > 0 ? godotData.Margin : 0.01f;
@@ -221,7 +220,6 @@ public class PhysicsShape : IDisposable
         return NativeMethods.ShapeCalculateResultingAngularVelocity(AccessShapeInternal(), new JVecF3(torque));
     }
 
-    // TODO: check if this is used sensibly by the rotation rate calculations
     /// <summary>
     ///   Calculates how much of a rotation around the y-axis is kept if applied to this shape
     /// </summary>
@@ -236,7 +234,7 @@ public class PhysicsShape : IDisposable
         var velocities = CalculateResultingTorqueFromInertia(torqueToTest);
 
         // Detect how much torque was preserved
-        var speedFraction = velocities.y / torqueToTest.y;
+        var speedFraction = velocities.Y / torqueToTest.Y;
         speedFraction *= 1000;
 
         return speedFraction;

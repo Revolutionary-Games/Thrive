@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -8,7 +9,8 @@ public static class UnhandledExceptionLogger
 {
     private static bool modsEnabled;
 
-    public static void OnUnhandledException(object sender, UnhandledExceptionArgs args)
+    // TODO: reimplement this:
+    public static void OnUnhandledException(object sender, Exception exception)
     {
         var builder = new StringBuilder(500);
 
@@ -25,7 +27,7 @@ public static class UnhandledExceptionLogger
             builder.Append("The following exception prevented the game from running:\n\n");
         }
 
-        builder.Append(args.Exception);
+        builder.Append(exception);
 
         if (modsEnabled)
         {

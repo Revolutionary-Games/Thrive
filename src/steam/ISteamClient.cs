@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Object = Godot.Object;
+using Godot;
 
 /// <summary>
 ///   Interface specifying the Steam operations we use. Implemented in the SteamClient.cs file
@@ -29,9 +29,9 @@ public interface ISteamClient : ISteamSignalReceiver, IDisposable
     ///   </para>
     /// </remarks>
     public void ConnectSignals<T>(T receiver)
-        where T : Object, ISteamSignalReceiver;
+        where T : GodotObject, ISteamSignalReceiver;
 
-    public void Process(float delta);
+    public void Process(double delta);
     public void CreateWorkshopItem(Action<WorkshopResult> callback);
     public ulong StartWorkshopItemUpdate(ulong itemId);
     public bool SetWorkshopItemTitle(ulong updateHandle, string title);

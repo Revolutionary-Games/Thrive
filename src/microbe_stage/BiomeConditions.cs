@@ -15,62 +15,81 @@ public class BiomeConditions : ICloneable
     private Dictionary<Compound, BiomeCompoundProperties> compounds;
 
     [JsonProperty]
-    private Dictionary<Compound, BiomeCompoundProperties> currentCompoundAmounts = new();
+    private Dictionary<Compound, BiomeCompoundProperties> currentCompoundAmounts;
 
     [JsonProperty]
-    private Dictionary<Compound, BiomeCompoundProperties> averageCompoundAmounts = new();
+    private Dictionary<Compound, BiomeCompoundProperties> averageCompoundAmounts;
 
     [JsonProperty]
-    private Dictionary<Compound, BiomeCompoundProperties> maximumCompoundAmounts = new();
+    private Dictionary<Compound, BiomeCompoundProperties> maximumCompoundAmounts;
 
     [JsonProperty]
-    private Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts = new();
+    private Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts;
 
+    /// <summary>
+    ///   Creates new biome conditions. The other compound amounts are nullable to allow
+    ///   <see cref="SimulationParameters"/> to load this class.
+    /// </summary>
+    /// <param name="compounds">
+    ///   The fallback compound amounts if specific compound amount category doesn't have a value
+    /// </param>
+    /// <param name="currentCompoundAmounts">Value for <see cref="CurrentCompoundAmounts"/></param>
+    /// <param name="averageCompoundAmounts">Value for <see cref="AverageCompounds"/></param>
+    /// <param name="maximumCompoundAmounts">Value for <see cref="MaximumCompounds"/></param>
+    /// <param name="minimumCompoundAmounts">Value for <see cref="MinimumCompounds"/></param>
     [JsonConstructor]
-    public BiomeConditions(Dictionary<Compound, BiomeCompoundProperties> compounds)
+    public BiomeConditions(Dictionary<Compound, BiomeCompoundProperties> compounds,
+        Dictionary<Compound, BiomeCompoundProperties>? currentCompoundAmounts,
+        Dictionary<Compound, BiomeCompoundProperties>? averageCompoundAmounts,
+        Dictionary<Compound, BiomeCompoundProperties>? maximumCompoundAmounts,
+        Dictionary<Compound, BiomeCompoundProperties>? minimumCompoundAmounts)
     {
         this.compounds = compounds;
-    }
 
-    public BiomeConditions(Dictionary<Compound, BiomeCompoundProperties> compounds,
-        Dictionary<Compound, BiomeCompoundProperties> currentCompoundAmounts,
-        Dictionary<Compound, BiomeCompoundProperties> averageCompoundAmounts,
-        Dictionary<Compound, BiomeCompoundProperties> maximumCompoundAmounts,
-        Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts) : this(compounds)
-    {
-        this.currentCompoundAmounts = currentCompoundAmounts;
-        this.averageCompoundAmounts = averageCompoundAmounts;
-        this.maximumCompoundAmounts = maximumCompoundAmounts;
-        this.minimumCompoundAmounts = minimumCompoundAmounts;
+        // Initialize the backing stores and the adapters that allow access. This is important to do just once to
+        // save massively on the number of allocated objects.
+        this.currentCompoundAmounts = currentCompoundAmounts ?? new Dictionary<Compound, BiomeCompoundProperties>();
+        CurrentCompoundAmounts =
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(this.currentCompoundAmounts, compounds);
+
+        this.averageCompoundAmounts = averageCompoundAmounts ?? new Dictionary<Compound, BiomeCompoundProperties>();
+        AverageCompounds =
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(this.averageCompoundAmounts, compounds);
+
+        this.maximumCompoundAmounts = maximumCompoundAmounts ?? new Dictionary<Compound, BiomeCompoundProperties>();
+        MaximumCompounds =
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(this.maximumCompoundAmounts, compounds);
+
+        this.minimumCompoundAmounts = minimumCompoundAmounts ?? new Dictionary<Compound, BiomeCompoundProperties>();
+        MinimumCompounds =
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(this.minimumCompoundAmounts, compounds);
     }
 
     /// <summary>
     ///   The compound amounts that change in realtime during gameplay
     /// </summary>
     [JsonIgnore]
-    public IDictionary<Compound, BiomeCompoundProperties> CurrentCompoundAmounts =>
-        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(currentCompoundAmounts, compounds);
+    public IDictionary<Compound, BiomeCompoundProperties> CurrentCompoundAmounts { get; }
 
     /// <summary>
     ///   Average compounds over an in-game day
     /// </summary>
     [JsonIgnore]
-    public IDictionary<Compound, BiomeCompoundProperties> AverageCompounds =>
-        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(averageCompoundAmounts, compounds);
+    public IDictionary<Compound, BiomeCompoundProperties> AverageCompounds { get; }
 
     /// <summary>
     ///   Maximum compounds during an in-game day
     /// </summary>
     [JsonIgnore]
-    public IDictionary<Compound, BiomeCompoundProperties> MaximumCompounds =>
-        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(maximumCompoundAmounts, compounds);
+    public IDictionary<Compound, BiomeCompoundProperties> MaximumCompounds { get; }
 
+    // This is kept to be consistent with the other values, in the future this should be updated
+    // ReSharper disable once CollectionNeverQueried.Global
     /// <summary>
     ///   Minimum compounds during an in-game day
     /// </summary>
     [JsonIgnore]
-    public IDictionary<Compound, BiomeCompoundProperties> MinimumCompounds =>
-        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(minimumCompoundAmounts, compounds);
+    public IDictionary<Compound, BiomeCompoundProperties> MinimumCompounds { get; }
 
     /// <summary>
     ///   The normal, large timescale compound amounts
@@ -161,6 +180,8 @@ public class BiomeConditions : ICloneable
                 "Chunks missing");
         }
 
+        float sumOfGasses = 0;
+
         foreach (var compound in compounds)
         {
             if (compound.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR is < 0 or > 1)
@@ -168,6 +189,22 @@ public class BiomeConditions : ICloneable
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     $"Density {compound.Value.Density} invalid for {compound.Key} " +
                     $"(scale factor is {Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR})");
+            }
+
+            if (compound.Value.Ambient > 0 && compound.Key.IsGas)
+            {
+                sumOfGasses += compound.Value.Ambient;
+            }
+        }
+
+        if (sumOfGasses > 0)
+        {
+            // Make sure gasses add up to 100% to make sure they make sense. 0.005 is here to allow being off by up to
+            // half a percent
+            if (Math.Abs(sumOfGasses - 1) >= 0.005f)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Gas compounds should add up to 1 to have 100% of air composition covered");
             }
         }
 

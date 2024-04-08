@@ -18,6 +18,7 @@ public class RunOnInputWithStrengthAndRepeatAttribute : RunOnInputWithStrengthAt
 
     public override bool OnInput(InputEvent @event)
     {
+        // TODO: this IsActionPressed seems to allocate a bit of memory each time
         // Check key or echo from key being down
         if (@event.IsActionPressed(InputName, true, false))
         {
@@ -31,16 +32,21 @@ public class RunOnInputWithStrengthAndRepeatAttribute : RunOnInputWithStrengthAt
             if (TrackInputMethod)
             {
                 LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
-                return CallMethod(Strength, LastUsedInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, Strength);
+                cachedMethodCallParameters![1] = LastUsedInputMethod;
+            }
+            else
+            {
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, Strength);
             }
 
-            return CallMethod(Strength);
+            return CallMethod(cachedMethodCallParameters!);
         }
 
         return false;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
         // It's probably faster to just set this to always zero here than spend another Godot call on checking if
         // the action was released (and we do this in process to have this down for at least a bit)

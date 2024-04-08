@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
+/// <summary>
+///   Upgrade GUI for the chemoreceptor to configure what it detects
+/// </summary>
+public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
     public NodePath? TargetTypeSelectorPath;
@@ -138,8 +141,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             speciesChoice = shownSpeciesChoices[speciesSelector.Selected];
         }
 
-        organelleUpgrades.CustomUpgradeData = new ChemoreceptorUpgrades(
-            compoundChoice, speciesChoice,
+        organelleUpgrades.CustomUpgradeData = new ChemoreceptorUpgrades(compoundChoice, speciesChoice,
             (float)maximumDistanceSlider.Value, (float)minimumAmountSlider.Value, colourSelector.Color);
         return true;
     }

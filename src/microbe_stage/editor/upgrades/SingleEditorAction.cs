@@ -30,11 +30,10 @@ public class SingleEditorAction<T> : EditorAction
     [JsonIgnore]
     public override IEnumerable<EditorCombinableActionData> Data => new[] { SingleData };
 
-    public static implicit operator SingleEditorAction<EditorCombinableActionData>(SingleEditorAction<T> x)
+    public static implicit operator SingleEditorAction<EditorCombinableActionData>(SingleEditorAction<T> action)
     {
-        return new SingleEditorAction<EditorCombinableActionData>(data => x.redo((T)data),
-            data => x.undo((T)data),
-            x.SingleData);
+        return new SingleEditorAction<EditorCombinableActionData>(d => action.redo((T)d),
+            d => action.undo((T)d), action.SingleData);
     }
 
     public override void DoAction()

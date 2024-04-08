@@ -1,28 +1,30 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://jgcbwcrqbblv"]
 
-[ext_resource path="res://src/microbe_stage/Membrane.cs" type="Script" id=1]
-[ext_resource path="res://shaders/Membrane.shader" type="Shader" id=2]
-[ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/FresnelGradientDamaged.png" type="Texture" id=4]
+[ext_resource type="Script" path="res://src/microbe_stage/Membrane.cs" id="1"]
+[ext_resource type="Shader" path="res://shaders/Membrane.gdshader" id="2"]
+[ext_resource type="Texture2D" uid="uid://c3fla17itmoba" path="res://assets/textures/FresnelGradient.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://lei41d7q7tgk" path="res://assets/textures/FresnelGradientDamaged.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="5"]
 
-[sub_resource type="CubeMesh" id=1]
-size = Vector3( 2, 0.539, 2 )
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(2, 0.539, 2)
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
 render_priority = 18
-shader = ExtResource( 2 )
-shader_param/wigglyNess = 1.0
-shader_param/movementWigglyNess = 1.0
-shader_param/dissolveValue = null
-shader_param/healthFraction = 0.25
-shader_param/tint = Plane( 1, 1, 1, 1 )
-shader_param/albedoTexture = ExtResource( 3 )
-shader_param/damagedTexture = ExtResource( 4 )
+shader = ExtResource("2")
+shader_parameter/wigglyNess = 1.0
+shader_parameter/movementWigglyNess = 1.0
+shader_parameter/dissolveValue = 0.0
+shader_parameter/healthFraction = 0.25
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/albedoTexture = ExtResource("3")
+shader_parameter/damagedTexture = ExtResource("4")
+shader_parameter/dissolveTexture = ExtResource("5")
 
-[node name="Membrane" type="MeshInstance"]
+[node name="Membrane" type="MeshInstance3D"]
 process_priority = 2
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, 0.034008 )
-mesh = SubResource( 1 )
-script = ExtResource( 1 )
-MaterialToEdit = SubResource( 2 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, 0.034008)
+mesh = SubResource("1")
+script = ExtResource("1")
+MaterialToEdit = SubResource("2")

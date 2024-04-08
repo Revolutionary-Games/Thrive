@@ -7,10 +7,15 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Editor component that specializes in hex-based stuff editing
 /// </summary>
-public abstract class
-    HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
-        EditorComponentWithActionsBase<TEditor, TCombinedAction>,
-        ISaveLoadedTracked, IChildPropertiesLoadCallback
+/// <typeparam name="TEditor">Type of editor this class can be put in</typeparam>
+/// <typeparam name="TCombinedAction">Type of editor action this class works with</typeparam>
+/// <typeparam name="TAction">Type of single action this works with</typeparam>
+/// <typeparam name="THexMove">Type of hex move action</typeparam>
+/// <typeparam name="TContext">Extra action context data this manages on actions</typeparam>
+[GodotAbstract]
+public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
+    EditorComponentWithActionsBase<TEditor, TCombinedAction>,
+    ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
     where TCombinedAction : CombinedEditorAction
     where TAction : EditorAction
@@ -34,7 +39,7 @@ public abstract class
     /// <summary>
     ///   The hexes that are positioned under the cursor to show where the player is about to place something.
     /// </summary>
-    protected readonly List<MeshInstance> hoverHexes = new();
+    protected readonly List<MeshInstance3D> hoverHexes = new();
 
     /// <summary>
     ///   The sample models that are positioned to show what the player is about to place.
@@ -44,12 +49,12 @@ public abstract class
     /// <summary>
     ///   This is the hexes for the edited thing that are placed; this is the already placed hexes
     /// </summary>
-    protected readonly List<MeshInstance> placedHexes = new();
+    protected readonly List<MeshInstance3D> placedHexes = new();
 
     /// <summary>
     ///   The hexes that have been changed by a hovering hex and need to be reset to old material.
     /// </summary>
-    protected readonly Dictionary<MeshInstance, Material> hoverOverriddenMaterials = new();
+    protected readonly Dictionary<MeshInstance3D, Material> hoverOverriddenMaterials = new();
 
     /// <summary>
     ///   This is the placed down version of models, compare to <see cref="hoverModels"/>
@@ -61,14 +66,14 @@ public abstract class
     /// <summary>
     ///   Object camera is over. Used to move the camera around
     /// </summary>
-    protected Spatial cameraFollow = null!;
+    protected Node3D cameraFollow = null!;
 
     protected MicrobeCamera? camera;
 
     [JsonIgnore]
-    protected MeshInstance editorArrow = null!;
+    protected MeshInstance3D editorArrow = null!;
 
-    protected MeshInstance editorGrid = null!;
+    protected MeshInstance3D editorGrid = null!;
 
     protected Material invalidMaterial = null!;
     protected Material validMaterial = null!;
@@ -100,6 +105,8 @@ public abstract class
     [JsonProperty]
     protected int placementRotation;
 
+    private readonly NodePath positionZReference = new("position:z");
+
     // This is separate from the other Godot resources as this is private and they are protected
 #pragma warning disable CA2213
     private CustomConfirmationDialog islandPopup = null!;
@@ -115,6 +122,10 @@ public abstract class
     ///   Where the user started panning with the mouse. Null if the user is not panning with the mouse
     /// </summary>
     private Vector3? mousePanningStart;
+
+    protected HexEditorComponentBase()
+    {
+    }
 
     /// <summary>
     ///   The symmetry setting of the editor.
@@ -184,11 +195,11 @@ public abstract class
     public override bool CanCancelAction => CanCancelMove;
 
     [JsonIgnore]
-    public abstract bool HasIslands { get; }
+    public virtual bool HasIslands => throw new GodotAbstractPropertyNotOverriddenException();
 
     public bool IsLoadedFromSave { get; set; }
 
-    protected abstract bool ForceHideHover { get; }
+    protected virtual bool ForceHideHover => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void _Ready()
     {
@@ -215,11 +226,11 @@ public abstract class
         }
 
         camera = GetNode<MicrobeCamera>(CameraPath);
-        editorArrow = GetNode<MeshInstance>(EditorArrowPath);
-        editorGrid = GetNode<MeshInstance>(EditorGridPath);
-        cameraFollow = GetNode<Spatial>(CameraFollowPath);
+        editorArrow = GetNode<MeshInstance3D>(EditorArrowPath);
+        editorGrid = GetNode<MeshInstance3D>(EditorGridPath);
+        cameraFollow = GetNode<Node3D>(CameraFollowPath);
 
-        camera.Connect(nameof(MicrobeCamera.OnZoomChanged), this, nameof(OnZoomChanged));
+        camera.Connect(MicrobeCamera.SignalName.OnZoomChanged, new Callable(this, nameof(OnZoomChanged)));
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
@@ -263,7 +274,7 @@ public abstract class
             throw new InvalidOperationException("This editor has already been initialized (placed hexes not empty)");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -273,13 +284,13 @@ public abstract class
         // the hover hexes and models when there is some change to them
         foreach (var hex in hoverHexes)
         {
-            hex.Translation = new Vector3(0, 0, 0);
+            hex.Position = new Vector3(0, 0, 0);
             hex.Visible = false;
         }
 
         foreach (var model in hoverModels)
         {
-            model.Translation = new Vector3(0, 0, 0);
+            model.Position = new Vector3(0, 0, 0);
             model.Visible = false;
         }
 
@@ -300,10 +311,10 @@ public abstract class
         if (!Visible)
             return;
 
-        editorGrid.Translation = camera!.CursorWorldPos;
+        editorGrid.Position = camera!.CursorWorldPos;
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
 
-        camera.UpdateCameraPosition(delta, cameraFollow.GlobalTranslation);
+        camera.UpdateCameraPosition(delta, cameraFollow.GlobalPosition);
     }
 
     public void ResetSymmetryButton()
@@ -356,7 +367,7 @@ public abstract class
             return;
 
         camera.CameraHeight = CameraHeight;
-        cameraFollow.Translation = CameraPosition;
+        cameraFollow.Position = CameraPosition;
     }
 
     /// <summary>
@@ -393,7 +404,7 @@ public abstract class
     [RunOnAxisGroup]
     [RunOnAxis(new[] { "e_pan_up", "e_pan_down" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "e_pan_left", "e_pan_right" }, new[] { -1.0f, 1.0f })]
-    public bool PanCameraWithKeys(float delta, float upDown, float leftRight)
+    public bool PanCameraWithKeys(double delta, float upDown, float leftRight)
     {
         if (!Visible)
             return false;
@@ -402,13 +413,15 @@ public abstract class
             return true;
 
         var movement = new Vector3(leftRight, 0, upDown);
-        MoveCamera(movement.Normalized() * delta * CameraHeight);
+        MoveCamera(movement.Normalized() * (float)delta * CameraHeight);
         return true;
     }
 
-    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
-    public bool PanCameraWithMouse(float delta)
+    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false, OnlyUnhandled = false)]
+    public bool PanCameraWithMouse(double dummy)
     {
+        _ = dummy;
+
         // TODO: somehow this doesn't seem to experience the same bug as there is in EditorCamera3D where this needs a
         // workaround
         if (!Visible)
@@ -421,20 +434,17 @@ public abstract class
         else
         {
             var mousePanDirection = mousePanningStart.Value - camera!.CursorWorldPos;
-            MoveCamera(mousePanDirection * delta * 10);
+            MoveCamera(mousePanDirection);
         }
 
         return false;
     }
 
-    [RunOnKeyUp("e_pan_mouse")]
+    [RunOnKeyUp("e_pan_mouse", OnlyUnhandled = false)]
     public bool ReleasePanCameraWithMouse()
     {
-        if (!Visible)
-            return false;
-
         mousePanningStart = null;
-        return true;
+        return false;
     }
 
     [RunOnKeyDown("e_reset_camera")]
@@ -668,27 +678,29 @@ public abstract class
 
         if (animateMovement)
         {
-            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation:z", editorArrow.Translation.z,
-                arrowPosition, Constants.EDITOR_ARROW_INTERPOLATE_SPEED,
-                Tween.TransitionType.Expo, Tween.EaseType.Out);
-            GUICommon.Instance.Tween.Start();
+            var tween = CreateTween();
+            tween.SetTrans(Tween.TransitionType.Expo);
+            tween.SetEase(Tween.EaseType.Out);
+
+            tween.TweenProperty(editorArrow, positionZReference, arrowPosition,
+                Constants.EDITOR_ARROW_INTERPOLATE_SPEED);
         }
         else
         {
-            editorArrow.Translation = new Vector3(0, 0, arrowPosition);
+            editorArrow.Position = new Vector3(0, 0, arrowPosition);
         }
     }
 
-    protected MeshInstance CreateEditorHex()
+    protected MeshInstance3D CreateEditorHex()
     {
-        var hex = (MeshInstance)hexScene.Instance();
+        var hex = (MeshInstance3D)hexScene.Instantiate();
         Editor.RootOfDynamicallySpawned.AddChild(hex);
         return hex;
     }
 
     protected SceneDisplayer CreatePreviewModelHolder()
     {
-        var node = (SceneDisplayer)modelScene.Instance();
+        var node = (SceneDisplayer)modelScene.Instantiate();
         Editor.RootOfDynamicallySpawned.AddChild(node);
         return node;
     }
@@ -928,7 +940,7 @@ public abstract class
             // Skip if there is a placed organelle here already
             foreach (var placed in placedHexes)
             {
-                if ((pos - placed.Translation).LengthSquared() < 0.001f)
+                if ((pos - placed.Position).LengthSquared() < 0.001f)
                 {
                     duplicate = true;
 
@@ -955,7 +967,7 @@ public abstract class
             // Or if there is already a hover hex at this position
             for (int i = 0; i < usedHoverHex; ++i)
             {
-                if ((pos - hoverHexes[i].Translation).LengthSquared() < 0.001f)
+                if ((pos - hoverHexes[i].Position).LengthSquared() < 0.001f)
                 {
                     duplicate = true;
                     break;
@@ -967,7 +979,7 @@ public abstract class
 
             var hoverHex = hoverHexes[usedHoverHex++];
 
-            hoverHex.Translation = pos;
+            hoverHex.Position = pos;
             hoverHex.Visible = true;
 
             hoverHex.MaterialOverride = canPlace ? validMaterial : invalidMaterial;
@@ -1010,7 +1022,7 @@ public abstract class
                 // As we set the correct material, we don't need to remember to restore it anymore
                 hoverOverriddenMaterials.Remove(hexNode);
 
-                hexNode.Translation = pos;
+                hexNode.Position = pos;
 
                 hexNode.Visible = !forceHide;
             }
@@ -1024,7 +1036,10 @@ public abstract class
         }
     }
 
-    protected abstract void PerformActiveAction();
+    protected virtual void PerformActiveAction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual bool DoesActionEndInProgressAction(TCombinedAction action)
     {
@@ -1041,14 +1056,35 @@ public abstract class
     /// </param>
     /// <param name="hex">The move data to try to move to the position</param>
     /// <returns>True if valid</returns>
-    protected abstract bool IsMoveTargetValid(Hex position, int rotation, THexMove hex);
+    protected virtual bool IsMoveTargetValid(Hex position, int rotation, THexMove hex)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void OnMoveActionStarted();
-    protected abstract void PerformMove(int q, int r);
-    protected abstract THexMove? GetHexAt(Hex position);
-    protected abstract TAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted);
+    protected virtual void OnMoveActionStarted()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract float CalculateEditorArrowZPosition();
+    protected virtual void PerformMove(int q, int r)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual THexMove? GetHexAt(Hex position)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual TAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual float CalculateEditorArrowZPosition()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected virtual void UpdateCancelState()
     {
@@ -1072,6 +1108,8 @@ public abstract class
                 CameraFollowPath.Dispose();
                 IslandErrorPath.Dispose();
             }
+
+            positionZReference.Dispose();
         }
 
         base.Dispose(disposing);

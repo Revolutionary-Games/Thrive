@@ -2,6 +2,6 @@
 
 [ext_resource path="res://src/engine/GuidanceLine.cs" type="Script" id=1]
 
-[node name="GuidanceLine" type="ImmediateGeometry"]
+[node name="GuidanceLine" type="MeshInstance3D"]
 cast_shadow = 0
 script = ExtResource( 1 )

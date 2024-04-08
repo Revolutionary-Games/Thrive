@@ -1,7 +1,10 @@
 ﻿using System.Linq;
 using Godot;
 
-public class ResourceDisplayBar : HBoxContainer
+/// <summary>
+///   Displays the amount of stored resource in the strategy stages
+/// </summary>
+public partial class ResourceDisplayBar : HBoxContainer
 {
     [Export]
     public NodePath? EarlyResourcesContainerPath;
@@ -26,7 +29,7 @@ public class ResourceDisplayBar : HBoxContainer
 
 #pragma warning disable CA2213
     [Export]
-    public Font AmountLabelFont = null!;
+    public LabelSettings AmountLabelFont = null!;
 
     private Container earlyResourcesContainer = null!;
     private Container lateResourcesContainer = null!;
@@ -46,7 +49,7 @@ public class ResourceDisplayBar : HBoxContainer
         scienceAmountLabel = GetNode<Label>(ScienceAmountLabelPath);
 
         scienceIndicatorContainer.Visible = false;
-        scienceAmountLabel.AddFontOverride("font", AmountLabelFont);
+        scienceAmountLabel.LabelSettings = AmountLabelFont;
 
         // TODO: remove once this is used
         lateResourcesContainer.Visible = false;
@@ -81,12 +84,12 @@ public class ResourceDisplayBar : HBoxContainer
 
         if (amount <= 0)
         {
-            scienceAmountLabel.AddColorOverride("font_color", CriticalResourceAmountColour);
+            scienceAmountLabel.AddThemeColorOverride("font_color", CriticalResourceAmountColour);
             scienceAmountLabel.Text = "0";
             return;
         }
 
-        scienceAmountLabel.AddColorOverride("font_color", NormalResourceAmountColour);
+        scienceAmountLabel.AddThemeColorOverride("font_color", NormalResourceAmountColour);
         scienceAmountLabel.Text =
             StringUtils.FormatPositiveWithLeadingPlus(StringUtils.ThreeDigitFormat(amount), amount);
     }
@@ -112,7 +115,7 @@ public class ResourceDisplayBar : HBoxContainer
         return new DisplayAmount(resource, FullResourceAmountColour, NormalResourceAmountColour, AmountLabelFont);
     }
 
-    private class DisplayAmount : HBoxContainer
+    private partial class DisplayAmount : HBoxContainer
     {
         private readonly Color maxColour;
         private readonly Color normalColour;
@@ -124,7 +127,7 @@ public class ResourceDisplayBar : HBoxContainer
         private string? previousAmount;
         private bool previousMax;
 
-        public DisplayAmount(WorldResource resource, Color maxColour, Color normalColour, Font font)
+        public DisplayAmount(WorldResource resource, Color maxColour, Color normalColour, LabelSettings font)
         {
             this.maxColour = maxColour;
             this.normalColour = normalColour;
@@ -132,9 +135,10 @@ public class ResourceDisplayBar : HBoxContainer
             amountLabel = new Label
             {
                 Text = "0",
+                VerticalAlignment = VerticalAlignment.Center,
             };
 
-            amountLabel.AddFontOverride("font", font);
+            amountLabel.LabelSettings = font;
 
             // TODO: reserving space for the characters would help to have the display jitter less
 
@@ -143,9 +147,9 @@ public class ResourceDisplayBar : HBoxContainer
             AddChild(new TextureRect
             {
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-                RectMinSize = new Vector2(16, 16),
+                CustomMinimumSize = new Vector2(16, 16),
                 Texture = resource.Icon,
-                Expand = true,
+                ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
             });
 
             // TODO: tooltips showing the resource name and where it comes from and what consumes it
@@ -166,7 +170,7 @@ public class ResourceDisplayBar : HBoxContainer
 
             amountLabel.Text = newAmountString;
 
-            amountLabel.AddColorOverride("font_color", max ? maxColour : normalColour);
+            amountLabel.AddThemeColorOverride("font_color", max ? maxColour : normalColour);
         }
     }
 }
