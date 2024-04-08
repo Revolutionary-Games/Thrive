@@ -230,7 +230,7 @@ public partial class Membrane : MeshInstance3D
         }
         else
         {
-            // Turning of visability when fade is 0 stops the shader from
+            // Disabling visibility when fade is 0 stops the shader from
             // being run when it can't be seen anyway.
             engulfAnimationMeshInstance.Visible = false;
         }
