@@ -48,10 +48,10 @@ public partial class TweakedColourPicker : ColorPicker
         spinboxA = baseControl.GetChild(4).GetChild(0).GetChild<Control>(14);
         pickerButton = baseControl.GetChild(1).GetChild<Button>(0);
 
-        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(
-            PopupMenu.SignalName.IndexPressed, new Callable(this, nameof(HideAlphaSlider)));
-        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(
-            PopupMenu.SignalName.IndexPressed, new Callable(this, nameof(UpdateTooltips)));
+        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(PopupMenu.SignalName.IndexPressed,
+            new Callable(this, nameof(HideAlphaSlider)));
+        baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(PopupMenu.SignalName.IndexPressed,
+            new Callable(this, nameof(UpdateTooltips)));
         HideAlphaSlider();
 
         // Disable RAW option in a dropdown menu
