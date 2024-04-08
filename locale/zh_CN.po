@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-26 16:20+0200\n"
-"PO-Revision-Date: 2024-03-21 12:12+0000\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
+"PO-Revision-Date: 2024-03-28 12:34+0000\n"
 "Last-Translator: Unkown_lpy <Unkown_lpy@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1919,12 +1919,6 @@ msgstr "世代："
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2模式警告"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2248,9 +2242,8 @@ msgstr "六月"
 msgid "KEY_BACK"
 msgstr "后退"
 
-#, fuzzy
 msgid "KEY_BACKTAB"
-msgstr "后退"
+msgstr "Backtab键"
 
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
@@ -2258,7 +2251,7 @@ msgstr ""
 "你想要移除{1}的输入吗？"
 
 msgid "KEY_BRING_UP_KEYBOARD"
-msgstr ""
+msgstr "调出键盘"
 
 msgid "KEY_CLEAR"
 msgstr "键盘清除键"
@@ -2281,9 +2274,8 @@ msgstr "收藏夹"
 msgid "KEY_FORWARD"
 msgstr "前进"
 
-#, fuzzy
 msgid "KEY_GLOBE"
-msgstr "键盘Home键"
+msgstr "Fn键"
 
 msgid "KEY_HELP"
 msgstr "帮助"
@@ -2294,20 +2286,17 @@ msgstr "键盘Home键"
 msgid "KEY_HOMEPAGE"
 msgstr "主页"
 
-#, fuzzy
 msgid "KEY_HYPER"
-msgstr "帮助"
+msgstr "Hyper键"
 
 msgid "KEY_INSERT"
 msgstr "插入键"
 
-#, fuzzy
 msgid "KEY_JIS_EISU"
-msgstr "插入键"
+msgstr "切换平假名和字母数字模式"
 
-#, fuzzy
 msgid "KEY_JIS_KANA"
-msgstr "待机"
+msgstr "kana键盘"
 
 msgid "KEY_LEFT"
 msgstr "左键"
@@ -2315,9 +2304,8 @@ msgstr "左键"
 msgid "KEY_MENU"
 msgstr "菜单"
 
-#, fuzzy
 msgid "KEY_META"
-msgstr "Tab"
+msgstr "Meta键"
 
 msgid "KEY_OPENURL"
 msgstr "打开网址"
@@ -3559,6 +3547,14 @@ msgstr ""
 "由于Thrive尚在早期开发中，存档兼容性并不是首要目标。\n"
 "你很可能会碰上各种问题，但它们不会是我们的首要解决对象。\n"
 "你确定要强行载入这个存档吗？"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "GLES2模式警告"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
 msgid "OPEN_FOLDER"
 msgstr "打开文件夹"

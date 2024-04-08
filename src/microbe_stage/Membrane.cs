@@ -12,7 +12,13 @@ public partial class Membrane : MeshInstance3D
 #pragma warning disable CA2213
     [Export]
     public ShaderMaterial? MaterialToEdit;
+#pragma warning restore CA2213
 
+    private readonly StringName healthParameterName = new("healthFraction");
+    private readonly StringName wigglynessParameterName = new("wigglyNess");
+    private readonly StringName movementWigglynessParameterName = new("movementWigglyNess");
+
+#pragma warning disable CA2213
     private Texture2D? albedoTexture;
 
     /// <summary>
@@ -230,6 +236,18 @@ public partial class Membrane : MeshInstance3D
         return new Vector3(closestSoFar.X, 0, closestSoFar.Y);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            healthParameterName.Dispose();
+            wigglynessParameterName.Dispose();
+            movementWigglynessParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Applies the mesh to us from the shared cache data (first membrane to apply the mesh causes the mesh to be
     ///   created)
@@ -256,7 +274,7 @@ public partial class Membrane : MeshInstance3D
         float wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
 
-        MaterialToEdit.SetShaderParameter("wigglyNess", Mathf.Min(WigglyNess, wigglyNessToApply));
+        MaterialToEdit.SetShaderParameter(wigglynessParameterName, Mathf.Min(WigglyNess, wigglyNessToApply));
     }
 
     private void ApplyMovementWiggly()
@@ -267,12 +285,13 @@ public partial class Membrane : MeshInstance3D
         float wigglyNessToApply =
             MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
 
-        MaterialToEdit.SetShaderParameter("movementWigglyNess", Mathf.Min(MovementWigglyNess, wigglyNessToApply));
+        MaterialToEdit.SetShaderParameter(movementWigglynessParameterName,
+            Mathf.Min(MovementWigglyNess, wigglyNessToApply));
     }
 
     private void ApplyHealth()
     {
-        MaterialToEdit?.SetShaderParameter("healthFraction", HealthFraction);
+        MaterialToEdit?.SetShaderParameter(healthParameterName, HealthFraction);
     }
 
     private void ApplyTextures()
@@ -284,6 +303,7 @@ public partial class Membrane : MeshInstance3D
 
         albedoTexture = Type.LoadedAlbedoTexture;
 
+        // This is called rarely enough that this just plain re-creates StringName instances here each time
         MaterialToEdit!.SetShaderParameter("albedoTexture", albedoTexture);
         MaterialToEdit.SetShaderParameter("normalTexture", Type.LoadedNormalTexture);
         MaterialToEdit.SetShaderParameter("damagedTexture", Type.LoadedDamagedTexture);

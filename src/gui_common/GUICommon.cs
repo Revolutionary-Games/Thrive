@@ -221,9 +221,9 @@ public partial class GUICommon : Node
     {
         var element = new TextureRect
         {
-            ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
+            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
             CustomMinimumSize = new Vector2(sizeX, sizeY),
-            SizeFlagsVertical = Control.SizeFlags.ShrinkCenter,
+            SizeFlagsVertical = Control.SizeFlags.ShrinkBegin,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
             Texture = texture,
         };

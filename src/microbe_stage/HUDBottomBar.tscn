@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cxqnywb8xdvnb" path="res://assets/textures/gui/bevel/helpButton.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bhp3uahplsxpb" path="res://assets/textures/gui/bevel/MainMenu.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://d2v0q7sf3ickp" path="res://assets/textures/gui/bevel/searchButton.png" id="5"]
-[ext_resource type="PackedScene" path="res://src/gui_common/PlayButton.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://7fwavluq5q7o" path="res://src/gui_common/PlayButton.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://d1oasx2uc34g2" path="res://assets/textures/gui/bevel/environmentButton.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://dmv0hstevg4ut" path="res://assets/textures/gui/bevel/chemicalButton.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://ddjiqgcij2n2l" path="res://assets/textures/gui/bevel/compoundsButton.png" id="9"]
@@ -39,9 +39,6 @@ offset_right = 446.0
 offset_bottom = -2.0
 grow_vertical = 0
 script = ExtResource("26")
-ShowCompoundPanelToggles = null
-ShowSuicideButton = null
-ShowProcessesButton = null
 PauseButtonPath = NodePath("PauseButtonMargin/PlayButton")
 CompoundsButtonPath = NodePath("CompoundsButton")
 EnvironmentButtonPath = NodePath("EnvironmentButton")
@@ -67,7 +64,6 @@ size_flags_vertical = 8
 layout_mode = 2
 PauseButtonTooltip = "PAUSE_TOOLTIP"
 PlayButtonTooltip = "RESUME_TOOLTIP"
-Paused = null
 PauseButtonMode = true
 
 [node name="EnvironmentButton" type="TextureButton" parent="."]

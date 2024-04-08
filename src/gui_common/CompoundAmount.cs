@@ -7,6 +7,8 @@ using Godot;
 /// </summary>
 public partial class CompoundAmount : HBoxContainer
 {
+    private readonly StringName colourParameterName = new("font_color");
+
 #pragma warning disable CA2213
     private Label? amountLabel;
     private TextureRect? icon;
@@ -159,6 +161,16 @@ public partial class CompoundAmount : HBoxContainer
         }
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            colourParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void UpdateLabel()
     {
         if (amountLabel == null)
@@ -205,7 +217,7 @@ public partial class CompoundAmount : HBoxContainer
                 throw new Exception("unhandled colour");
         }
 
-        amountLabel.AddThemeColorOverride("font_color", color);
+        amountLabel.AddThemeColorOverride(colourParameterName, color);
     }
 
     private void UpdateIcon()

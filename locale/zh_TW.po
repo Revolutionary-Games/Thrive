@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-26 16:20+0200\n"
-"PO-Revision-Date: 2024-03-21 09:57+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
+"PO-Revision-Date: 2024-03-29 16:10+0000\n"
+"Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -1919,12 +1919,6 @@ msgstr "世代："
 msgid "GITHUB_TOOLTIP"
 msgstr "訪問我們的 GitHub 儲存庫"
 
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 模式警告"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "您正在使用 GLES2 運行 Thrive。這未經嚴格測試並且很可能導致問題。嘗試更新您的視訊驅動程式或強制使用 AMD／Nvidia 顯示卡來運行 Thrive。"
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2248,9 +2242,8 @@ msgstr "六月"
 msgid "KEY_BACK"
 msgstr "Back"
 
-#, fuzzy
 msgid "KEY_BACKTAB"
-msgstr "Back"
+msgstr "Backtab"
 
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
@@ -2258,7 +2251,7 @@ msgstr ""
 "您想移除 {1} 的輸入嗎？"
 
 msgid "KEY_BRING_UP_KEYBOARD"
-msgstr ""
+msgstr "開啟鍵盤"
 
 msgid "KEY_CLEAR"
 msgstr "Clear"
@@ -2281,9 +2274,8 @@ msgstr "收藏夾"
 msgid "KEY_FORWARD"
 msgstr "前進"
 
-#, fuzzy
 msgid "KEY_GLOBE"
-msgstr "Home"
+msgstr "Fn"
 
 msgid "KEY_HELP"
 msgstr "幫助"
@@ -2294,20 +2286,17 @@ msgstr "Home"
 msgid "KEY_HOMEPAGE"
 msgstr "首頁"
 
-#, fuzzy
 msgid "KEY_HYPER"
-msgstr "幫助"
+msgstr "Hyper"
 
 msgid "KEY_INSERT"
 msgstr "Insert"
 
-#, fuzzy
 msgid "KEY_JIS_EISU"
-msgstr "Insert"
+msgstr "英数"
 
-#, fuzzy
 msgid "KEY_JIS_KANA"
-msgstr "待機"
+msgstr "かな"
 
 msgid "KEY_LEFT"
 msgstr "←"
@@ -2315,9 +2304,8 @@ msgstr "←"
 msgid "KEY_MENU"
 msgstr "選單"
 
-#, fuzzy
 msgid "KEY_META"
-msgstr "Tab"
+msgstr "Meta"
 
 msgid "KEY_OPENURL"
 msgstr "開啟網址"
@@ -2775,23 +2763,23 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive
 msgid "METRICS"
 msgstr "性能指標"
 
-#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "處理時間：{0} s\n"
 "物理時間：{1} s\n"
-"實體：{2} 其他：{3}\n"
+"實體：{2}（權重：{3}）\n"
 "生成：{4} 銷毀：{5}\n"
-"已使用節點數：{6}\n"
-"已使用記憶體：{7}\n"
+"已用節點數：{6}\n"
+"已用記憶體：{7}\n"
 "GPU 記憶體：{8}\n"
 "渲染物件：{9}\n"
-"渲染基元：{10}\n"
-"獨立節點：{11}\n"
-"音訊延遲：{12} ms\n"
-"總執行緒數：{13}\n"
+"渲染命令調用：{10}\n"
+"渲染基元：{11}\n"
+"獨立節點：{12}\n"
+"音訊延遲：{13} ms\n"
+"總執行緒數：{14}\n"
 "總 CPU 時間：\n"
-"{14}"
+"{15}"
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
@@ -3560,6 +3548,14 @@ msgstr ""
 "您可以報告遇到的任何問題，但它們不是目前的最高優先事項。\n"
 "您仍然想嘗試載入此存檔嗎？"
 
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "GLES2 模式警告"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "您正在使用 GLES2 運行 Thrive。這未經嚴格測試並且很可能導致問題。嘗試更新您的視訊驅動程式或強制使用 AMD／Nvidia 顯示卡來運行 Thrive。"
+
 msgid "OPEN_FOLDER"
 msgstr "開啟資料夾"
 
@@ -3797,9 +3793,8 @@ msgstr "—{0}"
 msgid "PATCH_NOTE_CHANGES_HEADING"
 msgstr "變更："
 
-#, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr "在 [color=#3796e1][url={0}]Github[/url][/color] 上查看此版本的完整詳細資訊"
+msgstr "在 [color=#3796e1][url={0}]GitHub[/url][/color] 上查看此版本的完整詳細資訊"
 
 msgid "PATREON_TOOLTIP"
 msgstr "造訪我們的 Patreon 頁面"
@@ -6771,39 +6766,6 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
-
-#~ msgid "BASSBOOST"
-#~ msgstr "Bassboost"
-
-#~ msgid "BASSDOWN"
-#~ msgstr "Bass Down"
-
-#~ msgid "BASSUP"
-#~ msgstr "Bass Up"
-
-#~ msgid "DIRECTIONL"
-#~ msgstr "←"
-
-#~ msgid "DIRECTIONR"
-#~ msgstr "→"
-
-#~ msgid "HYPERL"
-#~ msgstr "Hyper Left"
-
-#~ msgid "HYPERR"
-#~ msgstr "Hyper Right"
-
-#~ msgid "SUPERL"
-#~ msgstr "Super Left"
-
-#~ msgid "SUPERR"
-#~ msgstr "Super Right"
-
-#~ msgid "TREBLEDOWN"
-#~ msgstr "Treble Down"
-
-#~ msgid "TREBLEUP"
-#~ msgstr "Treble Up"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "在 Windows 上未知"

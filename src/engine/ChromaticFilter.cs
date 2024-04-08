@@ -5,6 +5,8 @@
 /// </summary>
 public partial class ChromaticFilter : TextureRect
 {
+    private readonly StringName amountParameterName = new("MAX_DIST_PX");
+
 #pragma warning disable CA2213
     private ShaderMaterial? material;
 #pragma warning restore CA2213
@@ -30,6 +32,16 @@ public partial class ChromaticFilter : TextureRect
         Settings.Instance.ChromaticEnabled.OnChanged -= OnChanged;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            amountParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void OnChanged(bool enabled)
     {
         if (enabled)
@@ -44,6 +56,6 @@ public partial class ChromaticFilter : TextureRect
 
     private void SetAmount(float amount)
     {
-        material!.SetShaderParameter("MAX_DIST_PX", amount);
+        material!.SetShaderParameter(amountParameterName, amount);
     }
 }
