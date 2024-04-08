@@ -148,6 +148,9 @@ offset_bottom = 42.0
 [node name="CursorHelpText" parent="TopLeft" instance=ExtResource("8")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 0
+offset_right = 150.0
+offset_bottom = 25.0
+fit_content = true
 ExtendedBbcode = "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 
 [node name="BottomLeft" type="Control" parent="."]
@@ -185,9 +188,6 @@ ShowAgents = false
 layout_mode = 1
 offset_top = -40.0
 offset_bottom = -5.0
-ShowCompoundPanelToggles = true
-ShowSuicideButton = true
-ShowProcessesButton = true
 
 [node name="BottomRight" type="Control" parent="."]
 anchors_preset = 0
@@ -479,18 +479,11 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PausePromptLabel" parent="PausePrompt" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 129.0
-offset_bottom = 41.0
+offset_right = 66.0
+offset_bottom = -101.0
 
 [node name="PauseInfo" parent="PausePrompt" index="1"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 300.0
-offset_bottom = 40.0
+offset_bottom = -24.0
 
 [node name="InventoryScreen" parent="." instance=ExtResource("29")]
 anchors_preset = 0
@@ -498,24 +491,21 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 
 [node name="PatchNameOverlay" parent="." instance=ExtResource("12")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 130.0
+anchor_bottom = 1.0
+offset_top = 295.0
+offset_bottom = -295.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HUDMessages" parent="." instance=ExtResource("25")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 270.0
-offset_top = 90.0
-offset_right = -270.0
-offset_bottom = -525.0
+layout_mode = 1
+offset_top = 108.0
+offset_bottom = -432.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="RadialPopup" parent="." instance=ExtResource("32")]
 anchors_preset = 0

@@ -53,6 +53,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 script = ExtResource("1")
@@ -142,7 +144,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("3")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainInventory/BaseInventoryContainer/VBoxContainer"]
 layout_mode = 2
