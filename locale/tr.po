@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 10:10+0300\n"
+"POT-Creation-Date: 2024-04-08 17:58+0200\n"
 "PO-Revision-Date: 2024-03-27 22:32+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -670,11 +670,6 @@ msgstr "Rengin mavi kanal değeri"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Rengin yeşil kanal değeri"
 
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"HSV (Renk Tonu, Doygunluk, Değer) modunu aç veya kapat.\n"
-"Raw moddayken kullanılamaz."
-
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Renk tonu değeri, renk bileşeninin bir kısmı"
 
@@ -686,13 +681,6 @@ msgstr ""
 "Renk: {0}\n"
 "Sol fare tuşu: Bu ön ayarı kullan\n"
 "Sağ fare tulu: Bu ön ayarı sil"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Raw modu aç veya kapat.\n"
-"Raw modda K, Y, M renk değerlerinin 1.0'ın\n"
-"ötesine gitmesini sağlayabilirsiniz.\n"
-"HSV modundayken kullanılamaz."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Rengin kırmızı kanal değeri"
@@ -2021,9 +2009,6 @@ msgstr "Yatay (Eksen: {0})"
 
 msgid "HP_COLON"
 msgstr "HP:"
-
-msgid "HSV"
-msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
@@ -4002,9 +3987,6 @@ msgstr "Tür adını rastgele seç"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Dünya oluşturmak için kullanılan değer pozitif bir tam sayı olmalıdır"
-
-msgid "RAW"
-msgstr "Raw"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Ham:"
@@ -6768,6 +6750,24 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "HSV (Renk Tonu, Doygunluk, Değer) modunu aç veya kapat.\n"
+#~ "Raw moddayken kullanılamaz."
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Raw modu aç veya kapat.\n"
+#~ "Raw modda K, Y, M renk değerlerinin 1.0'ın\n"
+#~ "ötesine gitmesini sağlayabilirsiniz.\n"
+#~ "HSV modundayken kullanılamaz."
+
+#~ msgid "HSV"
+#~ msgstr "HSV"
+
+#~ msgid "RAW"
+#~ msgstr "Raw"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Windows'ta bilinmiyor"

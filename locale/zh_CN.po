@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 10:10+0300\n"
+"POT-Creation-Date: 2024-04-08 17:58+0200\n"
 "PO-Revision-Date: 2024-03-28 12:34+0000\n"
 "Last-Translator: Unkown_lpy <Unkown_lpy@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -670,11 +670,6 @@ msgstr "蓝通道值，决定颜色里有多少蓝色"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "绿通道值，决定颜色里有多少绿色"
 
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"切换HSV（色调、饱和度、明度）模式。\n"
-"在原始模式下无法启用。"
-
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "H值，决定色调"
 
@@ -686,13 +681,6 @@ msgstr ""
 "颜色：{0}\n"
 "鼠标左键：使用这个预设\n"
 "鼠标右键：删除这个预设"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"切换原始模式。\n"
-"在原始模式中你可以将红绿蓝通道\n"
-"色值调整到大于1.0。\n"
-"在HSV模式下无法启用。"
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "红通道值，决定颜色里有多少红色"
@@ -2021,9 +2009,6 @@ msgstr "水平（{0}轴）"
 
 msgid "HP_COLON"
 msgstr "生命上限："
-
-msgid "HSV"
-msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
@@ -4002,9 +3987,6 @@ msgstr "随机化物种名称"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "用于生成世界的随机数种子，必须为正整数"
-
-msgid "RAW"
-msgstr "Raw"
 
 msgid "RAW_VALUE_COLON"
 msgstr "原始值："
@@ -6766,6 +6748,24 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "切换HSV（色调、饱和度、明度）模式。\n"
+#~ "在原始模式下无法启用。"
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "切换原始模式。\n"
+#~ "在原始模式中你可以将红绿蓝通道\n"
+#~ "色值调整到大于1.0。\n"
+#~ "在HSV模式下无法启用。"
+
+#~ msgid "HSV"
+#~ msgstr "HSV"
+
+#~ msgid "RAW"
+#~ msgstr "Raw"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "低音增强"

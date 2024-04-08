@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 10:10+0300\n"
+"POT-Creation-Date: 2024-04-08 17:58+0200\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -672,11 +672,6 @@ msgstr "Valor do canal azul da cor"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Valor do canal verde da cor"
 
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"Alternar o modo HSV (Matiz, Saturação, Valor) entre ligado ou desligado.\n"
-"Não pode ser ligado no modo bruto."
-
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Valor de matiz, porção de cor"
 
@@ -688,13 +683,6 @@ msgstr ""
 "Cor:{0}\n"
 "Botão esquerdo: Utilizar esta predefinição\n"
 "Botão direito: Remover esta predefinição"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Alternar o modo bruto entre ligado e desligado.\n"
-"No modo bruto você pode fazer os valores\n"
-"de cor R, G, B ultrapassarem 1.0.\n"
-"Não pode ser ligado no modo HSV."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Valor do canal vermelho da cor"
@@ -2070,9 +2058,6 @@ msgstr "Horizontal (Eixo: {0})"
 
 msgid "HP_COLON"
 msgstr "Saúde:"
-
-msgid "HSV"
-msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
@@ -4061,9 +4046,6 @@ msgstr "Nome da espécie aleatório"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positivo"
-
-msgid "RAW"
-msgstr "Bruto"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Bruto:"
@@ -6719,6 +6701,24 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Alternar o modo HSV (Matiz, Saturação, Valor) entre ligado ou desligado.\n"
+#~ "Não pode ser ligado no modo bruto."
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Alternar o modo bruto entre ligado e desligado.\n"
+#~ "No modo bruto você pode fazer os valores\n"
+#~ "de cor R, G, B ultrapassarem 1.0.\n"
+#~ "Não pode ser ligado no modo HSV."
+
+#~ msgid "HSV"
+#~ msgstr "HSV"
+
+#~ msgid "RAW"
+#~ msgstr "Bruto"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Ampliação de grave"

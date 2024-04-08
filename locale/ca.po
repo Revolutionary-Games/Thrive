@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 10:10+0300\n"
+"POT-Creation-Date: 2024-04-08 17:58+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -677,11 +677,6 @@ msgstr "Canal blau valor del color"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Canal verd valor del color"
 
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"Activar o desactivar el mode HSV (Hue, Saturació, Valor).\n"
-"No es pot activar quan està en mode \"raw\"."
-
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Hue valor, porció de color"
 
@@ -693,13 +688,6 @@ msgstr ""
 "Color: {0}\n"
 "Ratolí esquerra: Fes servir aquest predefinit\n"
 "Ratolí dret: Elimina aquest predefinit"
-
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Activar o desactivar el mode \"raw\".\n"
-"En el mode \"raw\" pots fer que els valors R, G, B\n"
-"de color vagin més enllà de 1.0.\n"
-"No es pot activar si el mode HSV està activat."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Canal vermell valor del color"
@@ -2094,9 +2082,6 @@ msgstr ""
 
 msgid "HP_COLON"
 msgstr "Punts de salut:"
-
-msgid "HSV"
-msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -4182,9 +4167,6 @@ msgstr "Nom de l'espècie aleatori"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
-
-msgid "RAW"
-msgstr "\"Raw\""
 
 #, fuzzy
 msgid "RAW_VALUE_COLON"
@@ -6876,6 +6858,24 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Activar o desactivar el mode HSV (Hue, Saturació, Valor).\n"
+#~ "No es pot activar quan està en mode \"raw\"."
+
+#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+#~ msgstr ""
+#~ "Activar o desactivar el mode \"raw\".\n"
+#~ "En el mode \"raw\" pots fer que els valors R, G, B\n"
+#~ "de color vagin més enllà de 1.0.\n"
+#~ "No es pot activar si el mode HSV està activat."
+
+#~ msgid "HSV"
+#~ msgstr "HSV"
+
+#~ msgid "RAW"
+#~ msgstr "\"Raw\""
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Tecla Bassboost"
