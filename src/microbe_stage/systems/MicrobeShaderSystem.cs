@@ -18,6 +18,7 @@ using World = DefaultEcs.World;
 [With(typeof(MicrobeShaderParameters))]
 [With(typeof(EntityMaterial))]
 [ReadsComponent(typeof(EntityMaterial))]
+[ReadsComponent(typeof(CellProperties))]
 [RuntimeCost(8)]
 [RunsOnFrame]
 [RunsOnMainThread]
