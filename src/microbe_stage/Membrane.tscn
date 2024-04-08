@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://jgcbwcrqbblv"]
+[gd_scene load_steps=10 format=3 uid="uid://jgcbwcrqbblv"]
 
 [ext_resource type="Script" path="res://src/microbe_stage/Membrane.cs" id="1"]
 [ext_resource type="Shader" path="res://shaders/Membrane.gdshader" id="2"]
@@ -33,9 +33,7 @@ shader_parameter/waviness = 20.0
 shader_parameter/waveSpeed = 15.0
 shader_parameter/waveCutoff = 0.4
 shader_parameter/fade = 0.0
-shader_parameter/tint = Color(0.5, 0.5, 0.95, 1)
-
-[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_gt3ok"]
+shader_parameter/tint = Color(0, 0.55, 0.8, 1)
 
 [node name="Membrane" type="MeshInstance3D" node_paths=PackedStringArray("engulfAnimationMeshInstance")]
 process_priority = 2
@@ -47,4 +45,3 @@ engulfAnimationMeshInstance = NodePath("EngulfMesh")
 
 [node name="EngulfMesh" type="MeshInstance3D" parent="."]
 visible = false
-mesh = SubResource("PlaceholderMesh_gt3ok")

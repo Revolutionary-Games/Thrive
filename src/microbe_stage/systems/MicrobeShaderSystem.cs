@@ -57,6 +57,13 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
                 {
                     shaderParameters.DissolveValue += shaderParameters.DissolveAnimationSpeed * delta;
 
+                    if (entity.Has<CellProperties>())
+                    {
+                        ref var cellProperties = ref entity.Get<CellProperties>();
+
+                        cellProperties.CreatedMembrane?.HandleEngulfAnimation(false, delta);
+                    }
+
                     if (shaderParameters.DissolveValue > 1)
                     {
                         // Animation finished

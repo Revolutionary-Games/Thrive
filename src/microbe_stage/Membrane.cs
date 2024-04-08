@@ -210,22 +210,22 @@ public partial class Membrane : MeshInstance3D
         return crosses;
     }
 
-    public void EnableEngulfAnimation(bool enable, double delta)
+    public void HandleEngulfAnimation(bool enable, double delta)
     {
         if (enable && engulfFade < 1)
         {
-            engulfFade += delta / 0.5;
+            engulfFade += delta * 2;
             engulfFade = Math.Min(engulfFade, 1);
         }
         else if (!enable && engulfFade > 0)
         {
-            engulfFade -= delta / 0.5;
+            engulfFade -= delta * 2;
             engulfFade = Math.Max(engulfFade, 0);
         }
 
         if (engulfFade != 0)
         {
-            EngulfShaderMaterial?.SetShaderParameter(fadeParameterName, engulfFade);
+            EngulfShaderMaterial?.SetShaderParameter(fadeParameterName, (float)engulfFade);
             engulfAnimationMeshInstance.Visible = true;
         }
         else
@@ -312,11 +312,10 @@ public partial class Membrane : MeshInstance3D
         float wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
 
-        MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName,
-            Mathf.Min(WigglyNess, wigglyNessToApply));
+        float finalWiggly = Mathf.Min(WigglyNess, wigglyNessToApply);
 
-        EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName,
-            Mathf.Min(WigglyNess, wigglyNessToApply));
+        MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
+        EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
     }
 
     private void ApplyMovementWiggly()
@@ -327,11 +326,10 @@ public partial class Membrane : MeshInstance3D
         float wigglyNessToApply =
             MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
 
-        MembraneShaderMaterial.SetShaderParameter(movementWigglynessParameterName,
-            Mathf.Min(MovementWigglyNess, wigglyNessToApply));
+        float finalWiggly = Mathf.Min(MovementWigglyNess, wigglyNessToApply);
 
-        EngulfShaderMaterial.SetShaderParameter(movementWigglynessParameterName,
-            Mathf.Min(MovementWigglyNess, wigglyNessToApply));
+        MembraneShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
+        EngulfShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
     }
 
     private void ApplyHealth()

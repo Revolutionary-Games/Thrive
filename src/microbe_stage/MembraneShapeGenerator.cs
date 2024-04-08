@@ -139,11 +139,6 @@ public class MembraneShapeGenerator
     /// </summary>
     public (ArrayMesh Mesh, int SurfaceIndex) GenerateEngulfMesh(MembranePointData shapeData)
     {
-        // TODO: Possibly remove this message for this function. This function is also only used graphically.
-        // TODO: should the 3D membrane generation already happen when GenerateMembranePoints is called?
-        // That would reduce the load on the main thread when generating the final visual mesh, though the membrane
-        // properties are also used in non-graphical context (species speed) so that'd result in quite a bit of
-        // unnecessary computations
         var mesh = BuildEngulfMesh(shapeData.Vertices2D, shapeData.VertexCount, out var surfaceIndex);
 
         return (mesh, surfaceIndex);
@@ -276,7 +271,6 @@ public class MembraneShapeGenerator
     {
         // common variables
         const float height = 0.1f;
-        const float engulfAnimationDistance = 1.0f; // TODO: Move to consts
 
         var center = new Vector2(0.5f, 0.5f);
 
@@ -303,7 +297,8 @@ public class MembraneShapeGenerator
             var sourceVertex = vertices2D[vertexCount - i - 1];
             var extrudeDir = sourceVertex - center;
 
-            Vector2 extrudedVertex = sourceVertex + extrudeDir * engulfAnimationDistance;
+            Vector2 extrudedVertex = sourceVertex + extrudeDir *
+                Constants.MEMBRANE_ENGULF_ANIMATION_DISTANCE;
 
             indices[index] = index;
             indices[index + 1] = index + 1;

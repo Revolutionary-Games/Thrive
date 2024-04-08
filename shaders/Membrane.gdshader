@@ -1,9 +1,9 @@
 shader_type spatial;
 render_mode depth_prepass_alpha;
 
+// Any changes to these two must be matched in EngulfEffect.gdshader
 // Set to 0 to disable wiggle
 uniform float wigglyNess = 1.f;
-
 uniform float movementWigglyNess = 1.f;
 
 uniform sampler2D albedoTexture : source_color;
@@ -22,6 +22,7 @@ void vertex(){
     vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
     
+    // Any changes to this must be matched in EngulfEffect.gdshader
     VERTEX.x += sin(worldVertex.z * movementWigglyNess + TIME / 4.0f) / 10.f
         * wigglyNess * size;
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
