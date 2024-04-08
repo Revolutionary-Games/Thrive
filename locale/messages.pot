@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-01 22:00+0200\n"
+"POT-Creation-Date: 2024-04-08 17:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -393,7 +393,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:726
 #: ../src/general/MainMenu.tscn:432 ../src/general/MainMenu.tscn:491
-#: ../src/general/MainMenu.tscn:530 ../src/general/MainMenu.tscn:834
+#: ../src/general/MainMenu.tscn:530 ../src/general/MainMenu.tscn:835
 #: ../src/general/NewGameSettings.tscn:875 ../src/general/OptionsMenu.tscn:1618
 #: ../src/general/PauseMenu.tscn:251
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:65
@@ -924,39 +924,44 @@ msgstr ""
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:173
+#: ../src/gui_common/TweakedColourPicker.cs:130
+msgid "COLOUR_PICKER_ADD_PRESET"
+msgstr ""
+
+#: ../src/gui_common/TweakedColourPicker.cs:126
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:165
+#: ../src/gui_common/TweakedColourPicker.cs:120
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:164
+#: ../src/gui_common/TweakedColourPicker.cs:119
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:155
+#: ../src/gui_common/TweakedColourPicker.cs:110
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:151
+#: ../src/gui_common/TweakedColourPicker.cs:106
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:210
+#: ../src/gui_common/TweakedColourPicker.cs:129
+#: ../src/gui_common/TweakedColourPicker.cs:131
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:163
+#: ../src/gui_common/TweakedColourPicker.cs:118
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:156
+#: ../src/gui_common/TweakedColourPicker.cs:111
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:157
+#: ../src/gui_common/TweakedColourPicker.cs:112
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
@@ -2516,11 +2521,11 @@ msgstr ""
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:856
+#: ../src/general/MainMenu.tscn:857
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:855
+#: ../src/general/MainMenu.tscn:856
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -3530,11 +3535,11 @@ msgstr ""
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:907
+#: ../src/general/MainMenu.tscn:908
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:906
+#: ../src/general/MainMenu.tscn:907
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 
@@ -3935,7 +3940,7 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:865
+#: ../src/general/MainMenu.tscn:866
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4025,11 +4030,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:881
+#: ../src/general/MainMenu.tscn:882
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:879
+#: ../src/general/MainMenu.tscn:880
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -4459,7 +4464,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:866
+#: ../src/general/MainMenu.tscn:867
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -5458,11 +5463,11 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:874
+#: ../src/general/MainMenu.tscn:875
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:875
+#: ../src/general/MainMenu.tscn:876
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -6075,11 +6080,11 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:899
+#: ../src/general/MainMenu.tscn:900
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:898
+#: ../src/general/MainMenu.tscn:899
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
@@ -6333,7 +6338,7 @@ msgstr ""
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:288 ../src/general/MainMenu.tscn:890
+#: ../src/general/MainMenu.cs:288 ../src/general/MainMenu.tscn:891
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6341,7 +6346,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:891
+#: ../src/general/MainMenu.tscn:892
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
