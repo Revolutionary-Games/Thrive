@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbhby0wiqd6cd"]
+[gd_scene load_steps=16 format=3 uid="uid://dbhby0wiqd6cd"]
 
 [ext_resource type="Script" path="res://src/late_multicellular_stage/MulticellularStage.cs" id="1"]
 [ext_resource type="PackedScene" path="res://src/late_multicellular_stage/MulticellularCamera.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://5m75uu7qtg8x" path="res://src/late_multicellular_stage/MulticellularHUD.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://dqiv4qrlqv425" path="res://assets/textures/background/panoramas/HydrothermalVents.png" id="3_c6ko1"]
 [ext_resource type="Script" path="res://src/late_multicellular_stage/PlayerMulticellularInput.cs" id="4"]
 [ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="5"]
 [ext_resource type="Script" path="res://src/general/PlayerInspectInfo.cs" id="6"]
@@ -12,8 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://src/late_multicellular_stage/ProgressBarSystem.tscn" id="12"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b7e0u"]
+panorama = ExtResource("3_c6ko1")
+
 [sub_resource type="Sky" id="1"]
 resource_local_to_scene = true
+sky_material = SubResource("PanoramaSkyMaterial_b7e0u")
 
 [sub_resource type="Environment" id="2"]
 resource_local_to_scene = true
