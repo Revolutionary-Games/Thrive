@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://duhmbx8qnpcao"]
+[gd_scene load_steps=6 format=3 uid="uid://duhmbx8qnpcao"]
 
 [ext_resource type="Script" path="res://src/society_stage/gui/ResourceDisplayBar.cs" id="1"]
 [ext_resource type="Texture2D" uid="uid://dmv0hstevg4ut" path="res://assets/textures/gui/bevel/chemicalButton.png" id="2"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="2_pp1g3"]
+[ext_resource type="LabelSettings" uid="uid://ckxsbafk5putf" path="res://src/gui_common/fonts/Body-Bold_small-Gold.tres" id="3_n4tlh"]
+[ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="4_5o70k"]
 
 [node name="ResourceDisplayBar" type="HBoxContainer"]
 anchors_preset = 15
@@ -15,9 +17,9 @@ EarlyResourcesContainerPath = NodePath("EarlyResources")
 ScienceIndicatorContainerPath = NodePath("ScienceContainer")
 ScienceAmountLabelPath = NodePath("ScienceContainer/ScienceAmount")
 LateResourcesContainerPath = NodePath("LateResources")
-FullResourceAmountColour = Color(1, 0.898039, 0.235294, 1)
-CriticalResourceAmountColour = Color(1, 0.341176, 0.341176, 1)
 AmountLabelFont = ExtResource("2_pp1g3")
+AmountLabelFontFull = ExtResource("3_n4tlh")
+AmountLabelFontCritical = ExtResource("4_5o70k")
 
 [node name="EarlyResources" type="HBoxContainer" parent="."]
 layout_mode = 2
