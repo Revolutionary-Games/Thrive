@@ -84,7 +84,7 @@ public partial class TechWebGUI : HBoxContainer
             }
             else
             {
-                button.Position = new Vector2(25, 80 * y);
+                button.Position = new Vector2(25, 65 * y);
                 ++y;
             }
 

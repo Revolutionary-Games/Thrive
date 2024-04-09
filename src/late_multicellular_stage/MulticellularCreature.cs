@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, ICharacterInventory, IEntity,
     IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource
 {
-    private static readonly Vector3 SwimUpForce = new(0, 20, 0);
+    private static readonly Vector3 SwimUpForce = new(0, 10, 0);
 
     [JsonProperty]
     private readonly CompoundBag compounds = new(0.0f);
@@ -207,6 +207,8 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
 
             if (MovementDirection != Vector3.Zero)
             {
+                // TODO: allow the species bodies to tilt with enough force, for now to make a simple fix tipping axis
+                // is locked
                 // TODO: movement force calculation
                 ApplyCentralImpulse(Mass * MovementDirection * (float)delta * 2 *
                     (Mathf.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));

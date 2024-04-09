@@ -353,7 +353,7 @@ border_color = Color(0.0666667, 1, 0.835294, 1)
 expand_margin_left = 5.0
 expand_margin_right = 5.0
 
-[sub_resource type="StyleBoxFlat" id="49"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2n1x"]
 bg_color = Color(0, 0.290196, 0.34902, 1)
 border_width_left = 1
 border_width_top = 1
@@ -365,7 +365,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="50"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xx4mc"]
 bg_color = Color(0, 0.74902, 0.713726, 1)
 border_color = Color(1, 1, 1, 0)
 corner_radius_top_left = 3
@@ -753,8 +753,8 @@ PopupPanel/styles/panel = SubResource("29")
 ProgressBar/colors/font_color = Color(1, 1, 1, 1)
 ProgressBar/colors/font_color_shadow = Color(0, 0, 0, 1)
 ProgressBar/fonts/font = ExtResource("1_fiqxx")
-ProgressBar/styles/bg = SubResource("49")
-ProgressBar/styles/fg = SubResource("50")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_h2n1x")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_xx4mc")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
 RichTextLabel/colors/font_color_selected = Color(0, 0, 0, 1)
 RichTextLabel/colors/font_color_shadow = Color(0, 0, 0, 0)

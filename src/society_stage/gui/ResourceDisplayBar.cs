@@ -18,18 +18,15 @@ public partial class ResourceDisplayBar : HBoxContainer
     [Export]
     public NodePath LateResourcesContainerPath = null!;
 
-    [Export(PropertyHint.ColorNoAlpha)]
-    public Color NormalResourceAmountColour = new(1, 1, 1);
-
-    [Export(PropertyHint.ColorNoAlpha)]
-    public Color FullResourceAmountColour = new(1, 1, 0);
-
-    [Export(PropertyHint.ColorNoAlpha)]
-    public Color CriticalResourceAmountColour = new(1, 0, 0);
-
 #pragma warning disable CA2213
     [Export]
     public LabelSettings AmountLabelFont = null!;
+
+    [Export]
+    public LabelSettings AmountLabelFontFull = null!;
+
+    [Export]
+    public LabelSettings AmountLabelFontCritical = null!;
 
     private Container earlyResourcesContainer = null!;
     private Container lateResourcesContainer = null!;
@@ -84,12 +81,12 @@ public partial class ResourceDisplayBar : HBoxContainer
 
         if (amount <= 0)
         {
-            scienceAmountLabel.AddThemeColorOverride("font_color", CriticalResourceAmountColour);
+            scienceAmountLabel.LabelSettings = AmountLabelFontCritical;
             scienceAmountLabel.Text = "0";
             return;
         }
 
-        scienceAmountLabel.AddThemeColorOverride("font_color", NormalResourceAmountColour);
+        scienceAmountLabel.LabelSettings = AmountLabelFont;
         scienceAmountLabel.Text =
             StringUtils.FormatPositiveWithLeadingPlus(StringUtils.ThreeDigitFormat(amount), amount);
     }
@@ -112,13 +109,13 @@ public partial class ResourceDisplayBar : HBoxContainer
 
     private DisplayAmount CreateDisplayAmount(WorldResource resource)
     {
-        return new DisplayAmount(resource, FullResourceAmountColour, NormalResourceAmountColour, AmountLabelFont);
+        return new DisplayAmount(resource, AmountLabelFontFull, AmountLabelFont);
     }
 
     private partial class DisplayAmount : HBoxContainer
     {
-        private readonly Color maxColour;
-        private readonly Color normalColour;
+        private readonly LabelSettings maxColour;
+        private readonly LabelSettings normalColour;
 
 #pragma warning disable CA2213
         private readonly Label amountLabel;
@@ -127,7 +124,7 @@ public partial class ResourceDisplayBar : HBoxContainer
         private string? previousAmount;
         private bool previousMax;
 
-        public DisplayAmount(WorldResource resource, Color maxColour, Color normalColour, LabelSettings font)
+        public DisplayAmount(WorldResource resource, LabelSettings maxColour, LabelSettings normalColour)
         {
             this.maxColour = maxColour;
             this.normalColour = normalColour;
@@ -138,7 +135,7 @@ public partial class ResourceDisplayBar : HBoxContainer
                 VerticalAlignment = VerticalAlignment.Center,
             };
 
-            amountLabel.LabelSettings = font;
+            amountLabel.LabelSettings = normalColour;
 
             // TODO: reserving space for the characters would help to have the display jitter less
 
@@ -149,7 +146,7 @@ public partial class ResourceDisplayBar : HBoxContainer
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                 CustomMinimumSize = new Vector2(16, 16),
                 Texture = resource.Icon,
-                ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
+                ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
             });
 
             // TODO: tooltips showing the resource name and where it comes from and what consumes it
@@ -159,6 +156,7 @@ public partial class ResourceDisplayBar : HBoxContainer
 
         public void SetAmount(float amount, bool max)
         {
+            // TODO: would be nice to not round up, but floor the values for display
             var newAmountString = StringUtils.ThreeDigitFormat(amount);
 
             // A bit of an early skip to skip some operations if nothing has changed
@@ -170,7 +168,7 @@ public partial class ResourceDisplayBar : HBoxContainer
 
             amountLabel.Text = newAmountString;
 
-            amountLabel.AddThemeColorOverride("font_color", max ? maxColour : normalColour);
+            amountLabel.LabelSettings = max ? maxColour : normalColour;
         }
     }
 }

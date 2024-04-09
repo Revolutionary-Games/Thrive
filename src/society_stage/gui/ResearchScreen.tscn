@@ -1,43 +1,37 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://daaxumisua7ue"]
 
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/society_stage/gui/TechWebGUI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/society_stage/gui/ResearchScreen.cs" type="Script" id=3]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dso6jpju1ild0" path="res://src/society_stage/gui/TechWebGUI.tscn" id="2"]
+[ext_resource type="Script" path="res://src/society_stage/gui/ResearchScreen.cs" id="3"]
 
-[node name="ResearchScreen" instance=ExtResource( 1 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 250.0
-offset_top = 80.0
-offset_right = -780.0
-offset_bottom = -560.0
-custom_minimum_size = Vector2( 800, 500 )
-script = ExtResource( 3 )
-WindowTitle = "RESEARCH"
-Resizable = true
+[node name="ResearchScreen" instance=ExtResource("1")]
+visible = true
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 500.0
+script = ExtResource("3")
 TechWebGUIPath = NodePath("VBoxContainer/TechWebGUI")
 CurrentResearchProgressLabelPath = NodePath("VBoxContainer/CurrentResearch")
+WindowTitle = "RESEARCH"
+Resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TechWebGUI" parent="VBoxContainer" index="0" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 196.0
-offset_bottom = 47.0
+[node name="TechWebGUI" parent="VBoxContainer" index="0" instance=ExtResource("2")]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CurrentResearch" type="Label" parent="VBoxContainer" index="1"]
-offset_top = 51.0
-offset_right = 196.0
-offset_bottom = 104.0
+layout_mode = 2
 text = "CURRENT_RESEARCH_NONE"
-autowrap = true
 max_lines_visible = 2
 
 [connection signal="OnTechnologyToResearchSelected" from="VBoxContainer/TechWebGUI" to="." method="ForwardStartResearch"]

@@ -621,7 +621,10 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         // TODO: this math doesn't seem to be correct
         var wantedMovementDirection = creatureToCenterVector * moveCreatureToSocietyCenter.Transform.Basis;
         wantedMovementDirection.Y = 0;
-        wantedMovementDirection = wantedMovementDirection.Normalized() * 0.5f;
+
+        // Tweak down once player max move speed is increased again
+        float speed = 1;
+        wantedMovementDirection = wantedMovementDirection.Normalized() * speed;
         moveCreatureToSocietyCenter.MovementDirection = wantedMovementDirection;
 
         // TODO: despawn moveCreatureToSocietyCenter once it reaches inside the society center
