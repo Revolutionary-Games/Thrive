@@ -172,6 +172,7 @@ public static class Constants
     public const float MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE = 0.3f;
     public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER = 0.025f;
     public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL = 0.015f;
+    public const float MEMBRANE_ENGULF_ANIMATION_DISTANCE = 1.0f;
 
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
