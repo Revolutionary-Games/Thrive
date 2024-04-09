@@ -114,8 +114,10 @@ public partial class TweakedColourPicker : ColorPicker
 
     private void UpdateTooltips(long dummyIndex)
     {
+        _ = dummyIndex;
+
         // It's supposed to do basically the same thing, it just
-        // has the dummyIndex so signals may connect correctly
+        // has the dummyIndex so some signals may connect correctly
         UpdateTooltips();
     }
 
@@ -146,6 +148,7 @@ public partial class TweakedColourPicker : ColorPicker
 
     private void HideAlphaSlider(long dummyIndex)
     {
+        _ = dummyIndex;
         HideAlphaSlider();
     }
 
