@@ -1,23 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://d2mf4tuokivmm"]
 
-[ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/late_multicellular_stage/MulticellularCamera.cs" id="1"]
 
 [node name="MulticellularCamera" type="Node3D"]
 process_mode = 3
 process_priority = 100
-script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": "Base rotation of the camera
-"
-}
+editor_description = "Base rotation of the camera"
+script = ExtResource("1")
 Current = true
 
 [node name="CameraPosition" type="Node3D" parent="."]
-__meta__ = {
-"_editor_description_": "Base camera position offset from the player"
-}
+editor_description = "Base camera position offset from the player"
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPosition"]
+collision_mask = 0
 spring_length = 3.0
 margin = 0.08
 
