@@ -127,6 +127,6 @@ public partial class RecipeListItem : Button
     private void OnToggledChanged(bool pressed)
     {
         if (pressed)
-            EmitSignal(SignalName.OnSelected);
+            EmitSignal(SignalName.OnSelected, this);
     }
 }

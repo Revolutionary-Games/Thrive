@@ -11,13 +11,18 @@ public partial class Membrane : MeshInstance3D
 
 #pragma warning disable CA2213
     [Export]
-    public ShaderMaterial? MaterialToEdit;
-#pragma warning restore CA2213
+    public ShaderMaterial? MembraneShaderMaterial;
+
+    [Export]
+    public ShaderMaterial? EngulfShaderMaterial;
 
     private readonly StringName healthParameterName = new("healthFraction");
     private readonly StringName wigglynessParameterName = new("wigglyNess");
     private readonly StringName movementWigglynessParameterName = new("movementWigglyNess");
+    private readonly StringName fadeParameterName = new("fade");
 
+    [Export]
+    private MeshInstance3D engulfAnimationMeshInstance = null!;
 #pragma warning disable CA2213
     private Texture2D? albedoTexture;
 
@@ -35,6 +40,7 @@ public partial class Membrane : MeshInstance3D
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
+    private double engulfFade = 1.0f;
 
     /// <summary>
     ///   When true the material properties need to be reapplied
@@ -97,7 +103,7 @@ public partial class Membrane : MeshInstance3D
 
             // Health is a special case as this is applied so often compared to the other properties that this has an
             // apply shortcut to reduce processing
-            if (MaterialToEdit == null)
+            if (MembraneShaderMaterial == null)
             {
                 Dirty = true;
             }
@@ -153,8 +159,11 @@ public partial class Membrane : MeshInstance3D
         if (membraneData == null!)
             throw new InvalidOperationException("Membrane was not property initialized with membrane data");
 
-        if (MaterialToEdit == null)
-            throw new Exception("MaterialToEdit on Membrane is not set");
+        if (MembraneShaderMaterial == null)
+            throw new Exception("MembraneShaderMaterial on Membrane is not set");
+
+        if (EngulfShaderMaterial == null)
+            throw new Exception("EngulfShaderMaterial on Membrane is not set");
 
         SetMesh();
     }
@@ -199,6 +208,32 @@ public partial class Membrane : MeshInstance3D
         }
 
         return crosses;
+    }
+
+    public void HandleEngulfAnimation(bool enable, double delta)
+    {
+        if (enable && engulfFade < 1)
+        {
+            engulfFade += delta * 2;
+            engulfFade = Math.Min(engulfFade, 1);
+        }
+        else if (!enable && engulfFade > 0)
+        {
+            engulfFade -= delta * 2;
+            engulfFade = Math.Max(engulfFade, 0);
+        }
+
+        if (engulfFade != 0)
+        {
+            EngulfShaderMaterial?.SetShaderParameter(fadeParameterName, (float)engulfFade);
+            engulfAnimationMeshInstance.Visible = true;
+        }
+        else
+        {
+            // Disabling visibility when fade is 0 stops the shader from
+            // being run when it can't be seen anyway.
+            engulfAnimationMeshInstance.Visible = false;
+        }
     }
 
     /// <summary>
@@ -255,7 +290,10 @@ public partial class Membrane : MeshInstance3D
     private void SetMesh()
     {
         Mesh = membraneData.GeneratedMesh;
-        MaterialOverride = MaterialToEdit;
+        MaterialOverride = MembraneShaderMaterial;
+
+        engulfAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
+        engulfAnimationMeshInstance.MaterialOverride = EngulfShaderMaterial;
     }
 
     private void ApplyAllMaterialParameters()
@@ -268,30 +306,35 @@ public partial class Membrane : MeshInstance3D
 
     private void ApplyWiggly()
     {
-        if (MaterialToEdit == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null)
             return;
 
         float wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
 
-        MaterialToEdit.SetShaderParameter(wigglynessParameterName, Mathf.Min(WigglyNess, wigglyNessToApply));
+        float finalWiggly = Mathf.Min(WigglyNess, wigglyNessToApply);
+
+        MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
+        EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
     }
 
     private void ApplyMovementWiggly()
     {
-        if (MaterialToEdit == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null)
             return;
 
         float wigglyNessToApply =
             MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
 
-        MaterialToEdit.SetShaderParameter(movementWigglynessParameterName,
-            Mathf.Min(MovementWigglyNess, wigglyNessToApply));
+        float finalWiggly = Mathf.Min(MovementWigglyNess, wigglyNessToApply);
+
+        MembraneShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
+        EngulfShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
     }
 
     private void ApplyHealth()
     {
-        MaterialToEdit?.SetShaderParameter(healthParameterName, HealthFraction);
+        MembraneShaderMaterial?.SetShaderParameter(healthParameterName, HealthFraction);
     }
 
     private void ApplyTextures()
@@ -304,9 +347,9 @@ public partial class Membrane : MeshInstance3D
         albedoTexture = Type.LoadedAlbedoTexture;
 
         // This is called rarely enough that this just plain re-creates StringName instances here each time
-        MaterialToEdit!.SetShaderParameter("albedoTexture", albedoTexture);
-        MaterialToEdit.SetShaderParameter("normalTexture", Type.LoadedNormalTexture);
-        MaterialToEdit.SetShaderParameter("damagedTexture", Type.LoadedDamagedTexture);
+        MembraneShaderMaterial!.SetShaderParameter("albedoTexture", albedoTexture);
+        MembraneShaderMaterial.SetShaderParameter("normalTexture", Type.LoadedNormalTexture);
+        MembraneShaderMaterial.SetShaderParameter("damagedTexture", Type.LoadedDamagedTexture);
 
         currentlyLoadedAlbedoTexture = Type.AlbedoTexture;
     }

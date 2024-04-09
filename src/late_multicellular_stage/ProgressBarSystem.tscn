@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://b174h1qc4muj8"]
 
-[ext_resource path="res://src/late_multicellular_stage/ProgressBarSystem.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/late_multicellular_stage/ProgressBarSystem.cs" id="1"]
 
 [node name="ProgressBarSystem" type="Control"]
 process_priority = 100
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 1 )
+mouse_filter = 2
+script = ExtResource("1")

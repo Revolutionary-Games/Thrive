@@ -108,6 +108,7 @@ public partial class StructureToBuildPopupBase<TSelection> : Control
 
         var richText = richTextScene.Instantiate<CustomRichTextLabel>();
         richText.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+        richText.FitContent = true;
 
         structureContent.AddChild(richText);
         return (structureContent, button, richText);

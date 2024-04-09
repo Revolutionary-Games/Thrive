@@ -316,6 +316,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("5")
 script = ExtResource("1")
 TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
@@ -627,8 +629,9 @@ label_settings = ExtResource("7_ck2k0")
 autowrap_mode = 3
 
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource("13")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
+offset_right = 641.0
+grow_vertical = 0
 ShowSymmetryButton = false
 ShowNewButton = false
 

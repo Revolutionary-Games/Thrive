@@ -1,22 +1,34 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://d0tsec3q07lee"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/late_multicellular_stage/editor/LateMulticellularEditor.cs" type="Script" id=5]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/late_multicellular_stage/editor/3DEditorWorld.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/microbe_stage/editor/CellEditorComponent.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn" type="PackedScene" id=11]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://d0qfhc2op1auc" path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://dqiv4qrlqv425" path="res://assets/textures/background/panoramas/HydrothermalVents.png" id="3_6y4d0"]
+[ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="4"]
+[ext_resource type="Script" path="res://src/late_multicellular_stage/editor/LateMulticellularEditor.cs" id="5"]
+[ext_resource type="PackedScene" uid="uid://hxrn73ihp8r4" path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://c1yurukm6a0vq" path="res://src/late_multicellular_stage/editor/3DEditorWorld.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://r0oqu6luui0h" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://cwot2e52r7lx0" path="res://src/microbe_stage/editor/CellEditorComponent.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://qdqcbnri7vsw" path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://b6at78uxbps1" path="res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn" id="11"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7v6eu"]
+resource_local_to_scene = true
+panorama = ExtResource("3_6y4d0")
+
+[sub_resource type="Sky" id="Sky_3aerp"]
+resource_local_to_scene = true
+sky_material = SubResource("PanoramaSkyMaterial_7v6eu")
+
+[sub_resource type="Environment" id="Environment_x23mp"]
+resource_local_to_scene = true
+background_mode = 2
+sky = SubResource("Sky_3aerp")
+ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="LateMulticellularEditor" type="Node"]
-script = ExtResource( 5 )
-PauseMenuPath = NodePath("PauseMenu")
-EditorGUIBaseNodePath = NodePath("LateMulticellularEditorGUI")
-EditorTabSelectorPath = NodePath("LateMulticellularEditorGUI/MicrobeEditorTabButtons")
+script = ExtResource("5")
 ReportTabPath = NodePath("LateMulticellularEditorGUI/Report")
 PatchMapTabPath = NodePath("LateMulticellularEditorGUI/PatchMap")
 BodyPlanEditorTabPath = NodePath("LateMulticellularEditorGUI/MetaballBodyEditorComponent")
@@ -27,65 +39,77 @@ CellEditorLightPath = NodePath("MicrobeEditorWorld/EditorLight")
 Body3DEditorCameraPath = NodePath("EditorWorld/PrimaryCamera")
 BodyEditorLightPath = NodePath("EditorWorld/EditorLight")
 WorldEnvironmentNodePath = NodePath("EditorWorld/WorldEnvironment")
+PauseMenuPath = NodePath("PauseMenu")
+EditorGUIBaseNodePath = NodePath("LateMulticellularEditorGUI")
+EditorTabSelectorPath = NodePath("LateMulticellularEditorGUI/MicrobeEditorTabButtons")
 
-[node name="EditorWorld" parent="." instance=ExtResource( 7 )]
+[node name="EditorWorld" parent="." instance=ExtResource("7")]
 
 [node name="PrimaryCamera" parent="EditorWorld" index="0"]
 current = true
 
-[node name="MicrobeEditorWorld" parent="." instance=ExtResource( 6 )]
+[node name="WorldEnvironment" parent="EditorWorld" index="6"]
+environment = SubResource("Environment_x23mp")
+
+[node name="MicrobeEditorWorld" parent="." instance=ExtResource("6")]
 
 [node name="PrimaryCamera" parent="MicrobeEditorWorld" index="0"]
 current = false
 
 [node name="LateMulticellularEditorGUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
 
-[node name="MetaballBodyEditorComponent" parent="LateMulticellularEditorGUI" instance=ExtResource( 11 )]
+[node name="MetaballBodyEditorComponent" parent="LateMulticellularEditorGUI" instance=ExtResource("11")]
 visible = false
+layout_mode = 1
 CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
 EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
 EditorGroundPath = NodePath("../../EditorWorld/Ground")
 
-[node name="CellEditor" parent="LateMulticellularEditorGUI" instance=ExtResource( 9 )]
+[node name="CellEditor" parent="LateMulticellularEditorGUI" instance=ExtResource("9")]
 visible = false
+layout_mode = 1
+IsMulticellularEditor = true
 CameraPath = NodePath("../../MicrobeEditorWorld/PrimaryCamera")
 EditorArrowPath = NodePath("../../MicrobeEditorWorld/EditorArrow")
 EditorGridPath = NodePath("../../MicrobeEditorWorld/Grid")
 CameraFollowPath = NodePath("../../MicrobeEditorWorld/CameraLookAt")
-IsMulticellularEditor = true
 
-[node name="Report" parent="LateMulticellularEditorGUI" instance=ExtResource( 10 )]
+[node name="Report" parent="LateMulticellularEditorGUI" instance=ExtResource("10")]
+layout_mode = 1
 
-[node name="PatchMap" parent="LateMulticellularEditorGUI" instance=ExtResource( 8 )]
+[node name="PatchMap" parent="LateMulticellularEditorGUI" instance=ExtResource("8")]
 visible = false
+layout_mode = 1
 
-[node name="MicrobeEditorTabButtons" parent="LateMulticellularEditorGUI" instance=ExtResource( 3 )]
+[node name="MicrobeEditorTabButtons" parent="LateMulticellularEditorGUI" instance=ExtResource("3")]
+layout_mode = 0
 offset_right = 350.0
 offset_bottom = 45.0
 IsForMulticellular = true
 
-[node name="EditorCommonBottomLeftButtons" parent="LateMulticellularEditorGUI" instance=ExtResource( 4 )]
+[node name="EditorCommonBottomLeftButtons" parent="LateMulticellularEditorGUI" instance=ExtResource("4")]
+layout_mode = 1
+grow_vertical = 0
 
 [node name="NoCellSelected" type="MarginContainer" parent="LateMulticellularEditorGUI"]
 visible = false
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="LateMulticellularEditorGUI/NoCellSelected"]
-offset_top = 347.0
-offset_right = 1280.0
-offset_bottom = 372.0
+layout_mode = 2
 text = "SELECT_TISSUE_TYPE_FROM_EDITOR"
-align = 1
 
-[node name="PauseMenu" parent="." instance=ExtResource( 2 )]
+[node name="PauseMenu" parent="." instance=ExtResource("2")]
 HelpCategory = "MicrobeEditor"
 
 [connection signal="OnCellTypeToEditSelected" from="LateMulticellularEditorGUI/MetaballBodyEditorComponent" to="." method="OnStartEditingCellType"]

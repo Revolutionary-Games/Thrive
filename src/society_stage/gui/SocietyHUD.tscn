@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://myc8kb3pyj03" path="res://assets/textures/gui/bevel/actions/BuildStructure.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://c732snfs7i3xx" path="res://assets/textures/gui/bevel/LargeTwoNormal.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://dcc6nq6ig4etg" path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" id="10"]
-[ext_resource type="PackedScene" path="res://src/society_stage/gui/ResearchScreen.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://daaxumisua7ue" path="res://src/society_stage/gui/ResearchScreen.tscn" id="11"]
 [ext_resource type="Script" path="res://src/society_stage/gui/SocietyHUD.cs" id="12"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="12_3r5as"]
 [ext_resource type="Texture2D" uid="uid://dmv0hstevg4ut" path="res://assets/textures/gui/bevel/chemicalButton.png" id="13"]
@@ -155,20 +155,37 @@ offset_bottom = 59.0
 label_settings = ExtResource("12_3r5as")
 
 [node name="ResearchScreen" parent="." instance=ExtResource("11")]
-anchors_preset = 0
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 234.0
+offset_top = 103.0
+offset_right = -246.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PausePrompt" parent="." instance=ExtResource("5")]
 visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="HUDMessages" parent="." instance=ExtResource("6")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 1
+anchors_preset = 10
 anchor_bottom = 0.0
-offset_left = 270.0
-offset_top = 90.0
-offset_right = -270.0
-offset_bottom = -525.0
+offset_top = 108.0
+offset_bottom = 288.0
+grow_horizontal = 2
 
 [node name="TopBar" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -191,10 +208,12 @@ layout_mode = 2
 [node name="Label" type="Label" parent="TopBar/HBoxContainer/PopulationContainer"]
 layout_mode = 2
 text = "POPULATION_CAPITAL"
+vertical_alignment = 1
 
 [node name="Population" type="Label" parent="TopBar/HBoxContainer/PopulationContainer"]
 layout_mode = 2
 text = "123"
+vertical_alignment = 1
 
 [node name="RightSpacer" type="Control" parent="TopBar/HBoxContainer"]
 custom_minimum_size = Vector2(8, 5)
