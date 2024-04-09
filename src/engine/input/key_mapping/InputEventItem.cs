@@ -18,6 +18,9 @@ public partial class InputEventItem : MarginContainer
     [Export]
     public NodePath XButtonPath = null!;
 
+    private readonly StringName uiSelectAction = new("ui_select");
+    private readonly StringName uiAcceptAction = new("ui_accept");
+
 #pragma warning disable CA2213
     private Button button = null!;
     private Button xButton = null!;
@@ -179,7 +182,7 @@ public partial class InputEventItem : MarginContainer
         }
         else if (!WaitingForInput && @event is InputEventJoypadButton joypadButton && button.HasFocus())
         {
-            if (joypadButton.IsActionPressed("ui_select"))
+            if (joypadButton.IsActionPressed(uiSelectAction))
             {
                 // TODO: show somewhere in the GUI that this is for unbinding inputs
 
@@ -189,7 +192,7 @@ public partial class InputEventItem : MarginContainer
                     ButtonIndex = MouseButton.Right,
                 });
             }
-            else if (joypadButton.IsActionPressed("ui_accept"))
+            else if (joypadButton.IsActionPressed(uiAcceptAction))
             {
                 GetViewport().SetInputAsHandled();
                 OnButtonPressed(new InputEventMouseButton
@@ -341,6 +344,9 @@ public partial class InputEventItem : MarginContainer
                 ButtonPath.Dispose();
                 XButtonPath.Dispose();
             }
+
+            uiSelectAction.Dispose();
+            uiAcceptAction.Dispose();
         }
 
         base.Dispose(disposing);
