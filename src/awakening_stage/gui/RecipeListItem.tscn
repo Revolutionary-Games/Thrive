@@ -42,7 +42,7 @@ Button/styles/pressed = SubResource("5")
 [node name="RecipeListItem" type="Button"]
 editor_description = "Clipping children is on to make sure line wrapping text doesn't overflow"
 clip_contents = true
-custom_minimum_size = Vector2(10, 25)
+custom_minimum_size = Vector2(10, 27)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -50,15 +50,20 @@ size_flags_horizontal = 3
 theme = SubResource("2")
 toggle_mode = true
 script = ExtResource("1")
+MarginAroundLabel = 8
 
 [node name="Label" parent="." instance=ExtResource("3")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1258.0
-offset_bottom = -698.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 text = "CRAFTING_RECIPE_DISPLAY"
+fit_content = true
 
 [connection signal="toggled" from="." to="." method="OnToggledChanged"]
