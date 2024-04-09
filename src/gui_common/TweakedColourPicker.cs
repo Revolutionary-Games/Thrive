@@ -33,16 +33,25 @@ public partial class TweakedColourPicker : ColorPicker
 
         var baseControl = GetChild(0, true).GetChild(0);
 
-        // Hide RGB/HSV/RAW buttons. Can't delete them because it will crash Godot.
-        baseControl.GetChild(2).GetChild<Control>(0).Hide();
-        baseControl.GetChild(2).GetChild<Control>(1).Hide();
-        baseControl.GetChild(2).GetChild<Control>(2).Hide();
+        // RGB/HSV/RAW buttons.
+        baseControl.GetChild(2).GetChild<BaseButton>(0).Connect(BaseButton.SignalName.Pressed,
+            new Callable(this, nameof(HideAlphaSlider)));
+        baseControl.GetChild(2).GetChild<BaseButton>(1).Connect(BaseButton.SignalName.Pressed,
+            new Callable(this, nameof(HideAlphaSlider)));
+
+        baseControl.GetChild(2).GetChild<BaseButton>(0).Connect(BaseButton.SignalName.Pressed,
+            new Callable(this, nameof(UpdateTooltips)));
+        baseControl.GetChild(2).GetChild<BaseButton>(1).Connect(BaseButton.SignalName.Pressed,
+            new Callable(this, nameof(UpdateTooltips)));
+
+        // Hide RAW button
+        baseControl.GetChild(2).GetChild<BaseButton>(2).Hide();
 
         // Get controls
         // Sliders are now also for HSL (OKHSL)
-        sliderROrH = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(4);
-        sliderGOrS = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(7);
-        sliderBOrV = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(10);
+        sliderROrH = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(1);
+        sliderGOrS = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(4);
+        sliderBOrV = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(7);
         sliderA = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(13);
         labelA = baseControl.GetChild(4).GetChild(0).GetChild<Control>(12);
         spinboxA = baseControl.GetChild(4).GetChild(0).GetChild<Control>(14);
@@ -52,7 +61,7 @@ public partial class TweakedColourPicker : ColorPicker
             new Callable(this, nameof(HideAlphaSlider)));
         baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(PopupMenu.SignalName.IndexPressed,
             new Callable(this, nameof(UpdateTooltips)));
-        HideAlphaSlider();
+        HideAlphaSlider(1);
 
         // Disable RAW option in a dropdown menu
         baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().SetItemDisabled(2, true);
@@ -65,7 +74,7 @@ public partial class TweakedColourPicker : ColorPicker
         sliderGOrS.Scrollable = false;
         sliderBOrV.Scrollable = false;
 
-        UpdateTooltips();
+        UpdateTooltips(1);
     }
 
     /// <summary>
@@ -103,6 +112,13 @@ public partial class TweakedColourPicker : ColorPicker
         SetColour(colour);
     }
 
+    private void UpdateTooltips(long dummyIndex)
+    {
+        // It's supposed to do basically the same thing, it just
+        // has the dummyIndex so signals may connect correctly
+        UpdateTooltips();
+    }
+
     private void UpdateTooltips()
     {
         pickerButton.TooltipText = Localization.Translate("COLOUR_PICKER_PICK_COLOUR");
@@ -131,6 +147,11 @@ public partial class TweakedColourPicker : ColorPicker
         Localization.Translate("COLOUR_PICKER_PRESET_TOOLTIP");
         Localization.Translate("COLOUR_PICKER_ADD_PRESET");
         Localization.Translate("COLOUR_PICKER_PRESET_TOOLTIP");
+    }
+
+    private void HideAlphaSlider(long dummyIndex)
+    {
+        HideAlphaSlider();
     }
 
     private void HideAlphaSlider()
