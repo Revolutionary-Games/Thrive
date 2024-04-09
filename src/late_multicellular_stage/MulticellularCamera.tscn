@@ -13,7 +13,6 @@ Current = true
 editor_description = "Base camera position offset from the player"
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPosition"]
-collision_mask = 0
 spring_length = 3.0
 margin = 0.08
 
