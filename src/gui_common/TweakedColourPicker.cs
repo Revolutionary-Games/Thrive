@@ -126,11 +126,6 @@ public partial class TweakedColourPicker : ColorPicker
         }
 
         sliderA.TooltipText = Localization.Translate("COLOUR_PICKER_A_TOOLTIP");
-
-        // Dummy translations for later use
-        Localization.Translate("COLOUR_PICKER_PRESET_TOOLTIP");
-        Localization.Translate("COLOUR_PICKER_ADD_PRESET");
-        Localization.Translate("COLOUR_PICKER_PRESET_TOOLTIP");
     }
 
     private void HideAlphaSlider()
@@ -138,5 +133,21 @@ public partial class TweakedColourPicker : ColorPicker
         sliderA.Hide();
         labelA.Hide();
         spinBoxA.Hide();
+    }
+
+    private void DummyTranslations()
+    {
+        // Dummy translations for later use (for reimplementing presets)
+        Localization.Translate("COLOUR_PICKER_PRESET_TOOLTIP");
+        Localization.Translate("COLOUR_PICKER_ADD_PRESET");
+        Localization.Translate("COLOUR_PICKER_PRESET_TOOLTIP");
+
+        // TODO: check if these value translations are still used by Godot 4:
+        Localization.Translate("HSV");
+        Localization.Translate("RAW");
+
+        // TODO: check if these are ever going to be useful:
+        Localization.Translate("COLOUR_PICKER_HSV_BUTTON_TOOLTIP");
+        Localization.Translate("COLOUR_PICKER_RAW_BUTTON_TOOLTIP");
     }
 }
