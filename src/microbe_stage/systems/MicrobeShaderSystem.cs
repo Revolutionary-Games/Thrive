@@ -18,6 +18,7 @@ using World = DefaultEcs.World;
 [With(typeof(MicrobeShaderParameters))]
 [With(typeof(EntityMaterial))]
 [ReadsComponent(typeof(EntityMaterial))]
+[ReadsComponent(typeof(CellProperties))]
 [RuntimeCost(8)]
 [RunsOnFrame]
 [RunsOnMainThread]
@@ -56,6 +57,14 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
                 else if (shaderParameters.DissolveValue < 1)
                 {
                     shaderParameters.DissolveValue += shaderParameters.DissolveAnimationSpeed * delta;
+
+                    if (entity.Has<CellProperties>())
+                    {
+                        ref var cellProperties = ref entity.Get<CellProperties>();
+
+                        // Makes the engulf animation fade out during dissolve
+                        cellProperties.CreatedMembrane?.HandleEngulfAnimation(false, delta);
+                    }
 
                     if (shaderParameters.DissolveValue > 1)
                     {

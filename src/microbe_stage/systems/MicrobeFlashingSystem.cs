@@ -60,11 +60,6 @@ public sealed class MicrobeFlashingSystem : AEntitySetSystem<float>
 
                 break;
             }
-
-            case MicrobeState.Engulf:
-                // Flash the membrane blue.
-                animation.Flash(new Color(0.2f, 0.5f, 1.0f, 0.5f), Constants.MICROBE_FLASH_DURATION);
-                break;
         }
     }
 

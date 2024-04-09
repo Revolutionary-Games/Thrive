@@ -12,6 +12,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 {
     private readonly Lazy<(ArrayMesh Mesh, int SurfaceIndex)> finalMesh;
 
+    private readonly Lazy<(ArrayMesh Mesh, int SurfaceIndex)> finalEngulfMesh;
+
     private float radius;
 
     private bool radiusCalculated;
@@ -33,6 +35,17 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
             lock (generator)
             {
                 return generator.GenerateMesh(this);
+            }
+        });
+
+        finalEngulfMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
+        {
+            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
+
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+            lock (generator)
+            {
+                return generator.GenerateEngulfMesh(this);
             }
         });
 
@@ -77,6 +90,9 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     public ArrayMesh GeneratedMesh => finalMesh.Value.Mesh;
     public int SurfaceIndex => finalMesh.Value.SurfaceIndex;
+
+    public ArrayMesh GeneratedEngulfMesh => finalEngulfMesh.Value.Mesh;
+    public int EngulfSurfaceIndex => finalEngulfMesh.Value.SurfaceIndex;
 
     public float Radius
     {
@@ -136,6 +152,9 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     {
         if (finalMesh.IsValueCreated)
             finalMesh.Value.Mesh.Dispose();
+
+        if (finalEngulfMesh.IsValueCreated)
+            finalEngulfMesh.Value.Mesh.Dispose();
 
         ArrayPool<Vector2>.Shared.Return(Vertices2D);
     }
