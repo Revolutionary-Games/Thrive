@@ -14,8 +14,11 @@ absorbent = true
 process_priority = 1
 collision_layer = 2
 collision_mask = 3
-mass = 10.0
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 8.0
 physics_material_override = SubResource("2")
+angular_damp = 0.05
 script = ExtResource("2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
