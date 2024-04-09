@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:58+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -671,6 +671,11 @@ msgstr "Blaukanalwert der Farbe"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Grünkanalwert der Farbe"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Schaltet den HSV-Modus (Farbwert, Farbsättigung, Hellwert) ein oder aus.\n"
+"Kann im Roh-Modus nicht eingeschaltet werden."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Farbtonwert, Anteil der Farbe"
 
@@ -682,6 +687,13 @@ msgstr ""
 "Farbe: {0}\n"
 "Linke Maus: Diese Voreinstellung verwenden\n"
 "Rechte Maus: Diese Voreinstellung löschen"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Schalten Sie den Roh-Modus ein oder aus.\n"
+"Im Roh-Modus können Sie die R-, G- und B\n"
+"Farbwerte über 1,0 hinausgehen.\n"
+"Im HSV-Modus kann dieser Modus nicht aktiviert werden."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Rotkanalwert der Farbe"
@@ -2096,6 +2108,9 @@ msgstr "horizontal (Achse: {0})"
 
 msgid "HP_COLON"
 msgstr "HP:"
+
+msgid "HSV"
+msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -4130,6 +4145,9 @@ msgstr "Zufälliger Speziesnamen"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Der Zahlenwert zum Generieren der Zufallswelt. (Muss eine positive ganze Zahl sein.)"
+
+msgid "RAW"
+msgstr "Roh"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Rohwert:"
@@ -6823,24 +6841,6 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Schaltet den HSV-Modus (Farbwert, Farbsättigung, Hellwert) ein oder aus.\n"
-#~ "Kann im Roh-Modus nicht eingeschaltet werden."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Schalten Sie den Roh-Modus ein oder aus.\n"
-#~ "Im Roh-Modus können Sie die R-, G- und B\n"
-#~ "Farbwerte über 1,0 hinausgehen.\n"
-#~ "Im HSV-Modus kann dieser Modus nicht aktiviert werden."
-
-#~ msgid "HSV"
-#~ msgstr "HSV"
-
-#~ msgid "RAW"
-#~ msgstr "Roh"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bass-boost"
