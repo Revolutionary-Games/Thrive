@@ -18,7 +18,7 @@ public partial class TweakedColourPicker : ColorPicker
     // Alpha has all 3 elements to fully hide it
     private HSlider sliderA = null!;
     private Control labelA = null!;
-    private Control spinboxA = null!;
+    private Control spinBoxA = null!;
     private Button pickerButton = null!;
 #pragma warning restore CA2213
 
@@ -45,7 +45,7 @@ public partial class TweakedColourPicker : ColorPicker
         sliderBOrV = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(10);
         sliderA = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(13);
         labelA = baseControl.GetChild(4).GetChild(0).GetChild<Control>(12);
-        spinboxA = baseControl.GetChild(4).GetChild(0).GetChild<Control>(14);
+        spinBoxA = baseControl.GetChild(4).GetChild(0).GetChild<Control>(14);
         pickerButton = baseControl.GetChild(1).GetChild<Button>(0);
 
         baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(PopupMenu.SignalName.IndexPressed,
@@ -137,6 +137,6 @@ public partial class TweakedColourPicker : ColorPicker
     {
         sliderA.Hide();
         labelA.Hide();
-        spinboxA.Hide();
+        spinBoxA.Hide();
     }
 }
