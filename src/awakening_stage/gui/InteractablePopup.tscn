@@ -47,9 +47,11 @@ size_flags_vertical = 3
 
 [node name="ExtraInfo" type="Label" parent="CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("4_ig0ml")
+autowrap_mode = 2
 
 [node name="ButtonContainer" type="VBoxContainer" parent="CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
