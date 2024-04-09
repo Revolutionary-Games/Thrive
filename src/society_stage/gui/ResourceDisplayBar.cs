@@ -149,7 +149,7 @@ public partial class ResourceDisplayBar : HBoxContainer
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                 CustomMinimumSize = new Vector2(16, 16),
                 Texture = resource.Icon,
-                ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
+                ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
             });
 
             // TODO: tooltips showing the resource name and where it comes from and what consumes it
