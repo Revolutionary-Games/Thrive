@@ -139,7 +139,7 @@ public partial class StrategicCamera : Camera3D
     }
 
     [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false, UsesPriming = false)]
-    public void PanCameraWithMouse(float dummy)
+    public void PanCameraWithMouse(double dummy)
     {
         _ = dummy;
 
