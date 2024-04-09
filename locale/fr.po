@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:58+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -672,6 +672,11 @@ msgstr "Valeur du canal bleu de la couleur"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Valeur du canal vert de la couleur"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Active ou désactive le mode TSV (teinte, saturation, valeur).\n"
+"Ne peut pas être activé en mode brut."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Teinte de la couleur"
 
@@ -683,6 +688,13 @@ msgstr ""
 "Couleur : {0}\n"
 "Clic gauche : Utiliser cette couleur par défaut\n"
 "Clic droit : Supprimer des couleurs par défaut"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Activez ou désactivez le mode brut.\n"
+"En mode brut, vous pouvez faire en sorte\n"
+"que les valeurs de couleur R, V, B vont au-delà de 1.0.\n"
+"Ce mode ne peut pas être activé en mode HSV."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Valeur du canal rouge de la couleur"
@@ -2075,6 +2087,9 @@ msgstr "Horizontal (Axe : {0})"
 
 msgid "HP_COLON"
 msgstr "PV :"
+
+msgid "HSV"
+msgstr "TSV"
 
 #, fuzzy
 msgid "HUD_MESSAGE_MULTIPLE"
@@ -4112,6 +4127,9 @@ msgstr "Nom d'espèce aléatoire"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
+
+msgid "RAW"
+msgstr "Brut"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Brut :"
@@ -6805,24 +6823,6 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Active ou désactive le mode TSV (teinte, saturation, valeur).\n"
-#~ "Ne peut pas être activé en mode brut."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Activez ou désactivez le mode brut.\n"
-#~ "En mode brut, vous pouvez faire en sorte\n"
-#~ "que les valeurs de couleur R, V, B vont au-delà de 1.0.\n"
-#~ "Ce mode ne peut pas être activé en mode HSV."
-
-#~ msgid "HSV"
-#~ msgstr "TSV"
-
-#~ msgid "RAW"
-#~ msgstr "Brut"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Boost de basse"

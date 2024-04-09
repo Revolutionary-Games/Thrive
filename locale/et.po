@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:58+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -704,6 +704,11 @@ msgstr "Värvi sinise kanali väärtus"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Värvi rohelise kanali väärtus"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Lülitage HSV (Hue, Saturation, Value) režiim sisse või välja.\n"
+"Toorrežiimis ei saa sisse lülitada."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Tooni väärtus, osa värvist"
 
@@ -715,6 +720,13 @@ msgstr ""
 "Värv: {0}\n"
 "Vasak hiir: kasutage seda eelseadistust\n"
 "Parem hiir: kustutage see eelseade"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Lülitage töötlemata režiim sisse või välja.\n"
+"Toores režiimis saate teha R, G, B\n"
+"värviväärtused ületavad 1,0.\n"
+"Ei saa HSV-režiimis sisse lülitada."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Värvi punase kanali väärtus"
@@ -2149,6 +2161,9 @@ msgstr ""
 
 msgid "HP_COLON"
 msgstr "HP:"
+
+msgid "HSV"
+msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -4282,6 +4297,9 @@ msgstr "Juhusliku liigi nimi"
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Peata mäng"
+
+msgid "RAW"
+msgstr "Toores"
 
 #, fuzzy
 msgid "RAW_VALUE_COLON"
@@ -7009,24 +7027,6 @@ msgstr "Suurenda"
 
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Lülitage HSV (Hue, Saturation, Value) režiim sisse või välja.\n"
-#~ "Toorrežiimis ei saa sisse lülitada."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Lülitage töötlemata režiim sisse või välja.\n"
-#~ "Toores režiimis saate teha R, G, B\n"
-#~ "värviväärtused ületavad 1,0.\n"
-#~ "Ei saa HSV-režiimis sisse lülitada."
-
-#~ msgid "HSV"
-#~ msgstr "HSV"
-
-#~ msgid "RAW"
-#~ msgstr "Toores"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassivõim"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:58+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2024-01-19 11:43+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -685,6 +685,11 @@ msgstr "Blauwe kanaalwaarde van de kleur"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Groene kanaalwaarde van de kleur"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Schakel de KVW (Kleurtoon, Verzadiging, Waarde) modus in of uit.\n"
+"Kan niet worden ingeschakeld in de onbewerkte modus."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Tintwaarde, kleurgedeelte"
 
@@ -696,6 +701,13 @@ msgstr ""
 "Kleur: {0}\n"
 "Linkse muisknop: Gebruik deze voorinstelling\n"
 "Rechtse muisknop: Verwijder deze voorinstelling"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Schakel de onbewerkte modus in of uit.\n"
+"In de onbewerkte modus kunt u de R, G, B\n"
+"kleurwaarden invullen die verder gaan dan 1.0.\n"
+"Kan niet worden ingeschakeld in KVW modus."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Rode kanaalwaarde van de kleur"
@@ -2123,6 +2135,9 @@ msgstr ""
 
 msgid "HP_COLON"
 msgstr "HP:"
+
+msgid "HSV"
+msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
@@ -4182,6 +4197,9 @@ msgstr "Kies willekeurige soort naam"
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Pauzeer het spel"
+
+msgid "RAW"
+msgstr "Raw"
 
 #, fuzzy
 msgid "RAW_VALUE_COLON"
@@ -6895,24 +6913,6 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Schakel de KVW (Kleurtoon, Verzadiging, Waarde) modus in of uit.\n"
-#~ "Kan niet worden ingeschakeld in de onbewerkte modus."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Schakel de onbewerkte modus in of uit.\n"
-#~ "In de onbewerkte modus kunt u de R, G, B\n"
-#~ "kleurwaarden invullen die verder gaan dan 1.0.\n"
-#~ "Kan niet worden ingeschakeld in KVW modus."
-
-#~ msgid "HSV"
-#~ msgstr "HSV"
-
-#~ msgid "RAW"
-#~ msgstr "Raw"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost(toets)"

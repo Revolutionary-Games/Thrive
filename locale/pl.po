@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 17:58+0200\n"
+"POT-Creation-Date: 2024-04-05 10:10+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -665,6 +665,11 @@ msgstr "Wartość koloru w kanale niebieskim"
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Wartość koloru w kanale zielonym"
 
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Przełącz tryb HSV (Odcień, Nasycenie, Wartość).\n"
+"Nie można wyłączyć w trybie raw."
+
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Wartość odcienia, część koloru"
 
@@ -676,6 +681,13 @@ msgstr ""
 "Kolor:{0}\n"
 "Lewy przycisk myszki: Użyj tego ustawienia\n"
 "Przwy przycisk myszki: Usuń to ustawienie"
+
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Przełącz tryb raw.\n"
+"W trybie raw wartości R, G, B\n"
+"mogą przekroczyć 1.0.\n"
+"Nie można włączyć w trybie HSV."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Wartość koloru w kanale czerwonym"
@@ -2069,6 +2081,9 @@ msgstr "Poziom (Oś: {0})"
 
 msgid "HP_COLON"
 msgstr "Zdrowie:"
+
+msgid "HSV"
+msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
@@ -4089,6 +4104,9 @@ msgstr "Losuj nazwy gatunków"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+
+msgid "RAW"
+msgstr "RAW"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Surowy:"
@@ -6749,24 +6767,6 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
-
-#~ msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Przełącz tryb HSV (Odcień, Nasycenie, Wartość).\n"
-#~ "Nie można wyłączyć w trybie raw."
-
-#~ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-#~ msgstr ""
-#~ "Przełącz tryb raw.\n"
-#~ "W trybie raw wartości R, G, B\n"
-#~ "mogą przekroczyć 1.0.\n"
-#~ "Nie można włączyć w trybie HSV."
-
-#~ msgid "HSV"
-#~ msgstr "HSV"
-
-#~ msgid "RAW"
-#~ msgstr "RAW"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Podbicie Bassów"
