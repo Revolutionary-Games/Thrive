@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" path="res://src/late_multicellular_stage/ProgressBarSystem.tscn" id="12"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b7e0u"]
+resource_local_to_scene = true
 panorama = ExtResource("3_c6ko1")
 
 [sub_resource type="Sky" id="1"]
