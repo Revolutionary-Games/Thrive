@@ -27,6 +27,9 @@ MinCameraHeight = 80.0
 
 [node name="DynamicRoot" type="Node3D" parent="WorldRoot"]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldRoot"]
+transform = Transform3D(0.613214, 0.692812, -0.379447, -0.74027, 0.67164, 0.0299817, 0.275624, 0.262509, 0.924727, 0, 0, 0)
+
 [node name="GUIContainer" parent="." instance=ExtResource("4")]
 layout_mode = 3
 anchors_preset = 1
