@@ -23,7 +23,7 @@ public partial class TweakedColourPicker : ColorPicker
 #pragma warning restore CA2213
 
     /// <summary>
-    ///   Currently our customized presets are (almost) completely removed.
+    ///   Currently our customized presets are (almost) completely removed. DO NOT TRY TO USE!
     /// </summary>
     public string PresetGroup { get; private set; } = "default";
 
@@ -92,9 +92,11 @@ public partial class TweakedColourPicker : ColorPicker
             return;
 
         Color = colour;
-        EmitSignal("color_changed", colour);
+        EmitSignal(ColorPicker.SignalName.ColorChanged, colour);
     }
 
+    // TODO: this seems to no longer be used from anywhere (so enabling raw mode won't be easy upgrade to make to this
+    // class)
     /// <summary>
     ///   When return from raw mode make sure the three values are within RGB standard. (Maximum value 1)
     /// </summary>
