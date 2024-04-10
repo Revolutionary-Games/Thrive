@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwe0bjv8qtrtr"]
+[gd_scene load_steps=3 format=3 uid="uid://cwe0bjv8qtrtr"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/gui_common/TweakedColourPicker.cs" id="2"]
-[ext_resource type="Texture2D" uid="uid://b84h4mjojeb7q" path="res://assets/textures/gui/bevel/plusButton.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://bwcvbcn15kctq" path="res://assets/textures/gui/bevel/plusButtonHover.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://dqixf6ol2b60b" path="res://assets/textures/gui/bevel/plusButtonDisabled.png" id="5"]
-[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="6"]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
 offset_left = 28.0
@@ -14,84 +10,3 @@ offset_right = 28.0
 offset_bottom = 28.0
 theme = ExtResource("1")
 script = ExtResource("2")
-
-[node name="MarginButtonsContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-
-[node name="ButtonsContainer" type="HBoxContainer" parent="MarginButtonsContainer"]
-custom_minimum_size = Vector2(0, 27)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HSVCheckBox" parent="MarginButtonsContainer/ButtonsContainer" instance=ExtResource("6")]
-custom_minimum_size = Vector2(76, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-action_mode = 0
-keep_pressed_outside = true
-text = "HSV"
-clip_text = true
-
-[node name="PlaceHolder1" type="Label" parent="MarginButtonsContainer/ButtonsContainer"]
-custom_minimum_size = Vector2(5, 0)
-layout_mode = 2
-
-[node name="RawCheckBox" parent="MarginButtonsContainer/ButtonsContainer" instance=ExtResource("6")]
-custom_minimum_size = Vector2(76, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-action_mode = 0
-keep_pressed_outside = true
-text = "RAW"
-clip_text = true
-
-[node name="PlaceHolder2" type="Label" parent="MarginButtonsContainer/ButtonsContainer"]
-custom_minimum_size = Vector2(5, 0)
-layout_mode = 2
-
-[node name="HtmlColourStart" type="Label" parent="MarginButtonsContainer/ButtonsContainer"]
-editor_description = "PLACEHOLDER"
-layout_mode = 2
-text = "#"
-vertical_alignment = 1
-
-[node name="HtmlColourEdit" type="LineEdit" parent="MarginButtonsContainer/ButtonsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "00000000"
-max_length = 8
-context_menu_enabled = false
-
-[node name="Separator" type="HSeparator" parent="."]
-custom_minimum_size = Vector2(0, 8)
-layout_mode = 2
-
-[node name="PresetContainer" type="GridContainer" parent="."]
-layout_mode = 2
-columns = 12
-
-[node name="PresetButtonContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_top = 5
-
-[node name="AddPresetButton" type="TextureButton" parent="PresetButtonContainer"]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture_normal = ExtResource("3")
-texture_pressed = ExtResource("4")
-texture_hover = ExtResource("4")
-texture_disabled = ExtResource("5")
-ignore_texture_size = true
-stretch_mode = 5
-
-[connection signal="color_changed" from="." to="." method="OnColourChanged"]
-[connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/HSVCheckBox" to="." method="OnHSVButtonToggled"]
-[connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/RawCheckBox" to="." method="OnRawButtonToggled"]
-[connection signal="focus_exited" from="MarginButtonsContainer/ButtonsContainer/HtmlColourEdit" to="." method="OnHtmlColourEditFocusExited"]
-[connection signal="text_submitted" from="MarginButtonsContainer/ButtonsContainer/HtmlColourEdit" to="." method="OnHtmlColourEditEntered"]
-[connection signal="pressed" from="PresetButtonContainer/AddPresetButton" to="." method="OnAddPresetButtonPressed"]
