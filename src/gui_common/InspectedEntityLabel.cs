@@ -1,5 +1,7 @@
 ﻿using Godot;
 
+// Instances are created only through code
+// ReSharper disable once Godot.MissingParameterlessConstructor
 /// <summary>
 ///   Label showing info about a hovered entity in the game with the cursor
 /// </summary>

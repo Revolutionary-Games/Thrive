@@ -393,6 +393,8 @@ public partial class RadialMenu : CenterContainer
             QueueRedraw();
     }
 
+    // Instances are created only through code
+    // ReSharper disable once Godot.MissingParameterlessConstructor
     private partial class LabelWithId : Label
     {
         public LabelWithId(string text, int id)

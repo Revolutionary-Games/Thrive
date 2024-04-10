@@ -110,6 +110,8 @@ public partial class MouseHoverPanel : PanelContainer
         }
     }
 
+    // Instances are created only through code
+    // ReSharper disable once Godot.MissingParameterlessConstructor
     /// <summary>
     ///   Category of items in the hover panel, each category has a title and one or more items in it
     /// </summary>

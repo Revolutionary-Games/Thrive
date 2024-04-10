@@ -218,6 +218,8 @@ public partial class TimelineTab : PanelContainer
         EventFilter = (Filters)index;
     }
 
+    // Instances are created only through code
+    // ReSharper disable once Godot.MissingParameterlessConstructor
     private partial class TimelineSection : VBoxContainer
     {
 #pragma warning disable CA2213

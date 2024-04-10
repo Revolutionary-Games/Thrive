@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Godot;
 
+// Instances are created only through code
+// ReSharper disable once Godot.MissingParameterlessConstructor
 /// <summary>
 ///   Data point / marker on a chart containing two immutable numerical value (x, y).
 ///   This inherits Control to make this interactable as well as for giving it a visual marker.
