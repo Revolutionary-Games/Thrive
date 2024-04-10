@@ -69,7 +69,8 @@ grow_vertical = 0
 
 [node name="NoCellSelected" type="MarginContainer" parent="EarlyMulticellularEditorGUI"]
 visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -77,6 +78,7 @@ mouse_filter = 2
 [node name="Label" type="Label" parent="EarlyMulticellularEditorGUI/NoCellSelected"]
 layout_mode = 2
 text = "SELECT_CELL_TYPE_FROM_EDITOR"
+horizontal_alignment = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("2")]
 HelpCategory = "MicrobeEditor"
