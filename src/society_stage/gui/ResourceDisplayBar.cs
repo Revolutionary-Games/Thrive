@@ -112,6 +112,8 @@ public partial class ResourceDisplayBar : HBoxContainer
         return new DisplayAmount(resource, AmountLabelFontFull, AmountLabelFont);
     }
 
+    // Instances are created only through code
+    // ReSharper disable once Godot.MissingParameterlessConstructor
     private partial class DisplayAmount : HBoxContainer
     {
         private readonly LabelSettings maxColour;

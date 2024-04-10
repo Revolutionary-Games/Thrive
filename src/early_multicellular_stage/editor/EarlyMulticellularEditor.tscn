@@ -64,12 +64,8 @@ offset_bottom = 45.0
 IsForMulticellular = true
 
 [node name="EditorCommonBottomLeftButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource("4")]
-layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 55.0
+layout_mode = 1
+grow_vertical = 0
 
 [node name="NoCellSelected" type="MarginContainer" parent="EarlyMulticellularEditorGUI"]
 visible = false

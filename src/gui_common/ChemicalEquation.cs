@@ -183,7 +183,6 @@ public partial class ChemicalEquation : VBoxContainer
 
         if (MarkRedOnLimitingCompounds && EquationFromProcess.LimitingCompounds is { Count: > 0 })
         {
-            title.AddThemeColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
             title.LabelSettings = speedLimitedTitleFont;
         }
         else

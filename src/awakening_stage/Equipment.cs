@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
+// Instances are created only through code
+// ReSharper disable once Godot.MissingParameterlessConstructor
 /// <summary>
 ///   A concrete, equipable piece of equipment
 /// </summary>

@@ -1,5 +1,7 @@
 ﻿using Godot;
 
+// Instances are created only through code
+// ReSharper disable once Godot.MissingParameterlessConstructor
 /// <summary>
 ///   Helper class to contain callbacks for the custom tooltips to make them react to things.
 /// </summary>

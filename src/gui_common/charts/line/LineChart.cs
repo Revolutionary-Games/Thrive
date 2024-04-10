@@ -1191,6 +1191,8 @@ public partial class LineChart : VBoxContainer
 
     // Subclasses
 
+    // Instances are created only through code
+    // ReSharper disable once Godot.MissingParameterlessConstructor
     /// <summary>
     ///   Shows an icon on a dataset legend
     /// </summary>
@@ -1307,6 +1309,8 @@ public partial class LineChart : VBoxContainer
         }
     }
 
+    // Instances are created only through code
+    // ReSharper disable once Godot.MissingParameterlessConstructor
     /// <summary>
     ///   Shows a dropdown of selectable items to show in dataset
     /// </summary>
@@ -1403,6 +1407,8 @@ public partial class LineChart : VBoxContainer
         }
     }
 
+    // Instances are created only through code
+    // ReSharper disable once Godot.MissingParameterlessConstructor
     /// <summary>
     ///   Icon for a dataset
     /// </summary>
@@ -1479,6 +1485,8 @@ public partial class LineChart : VBoxContainer
         }
     }
 
+    // Instances are created only through code
+    // ReSharper disable once Godot.MissingParameterlessConstructor
     /// <summary>
     ///   Used as the chart's dataset line segments. Contains mouse collision boxes and
     ///   mouse enter/exit callback to make the line interactable.

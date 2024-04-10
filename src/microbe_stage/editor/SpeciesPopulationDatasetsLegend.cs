@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
+// Instances are created only through code
+// ReSharper disable once Godot.MissingParameterlessConstructor
 /// <summary>
 ///   Extension of LineChart's default datasets dropdown legend to allow sectioning of extinct species.
 /// </summary>

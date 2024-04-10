@@ -18,6 +18,14 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         Func<LocalizationOptionsBase, CancellationToken, Task<bool>> runLocalizationTool) :
         base(opts)
     {
+        var inspectCode = new InspectCode();
+
+        // Full paths are a bit not helpful in CI output
+        if (IsRunningInCI())
+        {
+            inspectCode.DisableFullPathPrinting();
+        }
+
         ValidChecks = new Dictionary<string, CodeCheck>
         {
             {
@@ -38,7 +46,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                     })
             },
             { "compile", new CompileCheck() },
-            { "inspectcode", new InspectCode() },
+            { "inspectcode", inspectCode },
             { "cleanupcode", new CleanupCode() },
             { "localization", new LocalizationCheck(runLocalizationTool) },
             { "steam-build", new SteamBuildCheck() },

@@ -25,6 +25,10 @@ public partial class CustomExpandingWordWrappedLabel : Label
         Size = Vector2.Zero;
     }
 
+    public CustomExpandingWordWrappedLabel() : this(string.Empty)
+    {
+    }
+
     public override void _Notification(int what)
     {
         base._Notification(what);
