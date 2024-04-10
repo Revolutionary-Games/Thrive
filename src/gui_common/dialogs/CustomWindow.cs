@@ -453,10 +453,11 @@ public partial class CustomWindow : TopLevelContainer
     protected override void ApplyRectSettings()
     {
 #if DEBUG
-        if (AnchorLeft != 0 || AnchorRight != 0 || AnchorTop != 0 || AnchorBottom != 0 ||
-            AnchorsPreset != (int)LayoutPreset.TopLeft)
+        var preset = AnchorsPreset;
+        if (preset != (int)LayoutPreset.TopLeft && preset != (int)LayoutPreset.TopRight &&
+            preset != (int)LayoutPreset.BottomLeft && preset != (int)LayoutPreset.BottomRight)
         {
-            GD.PrintErr("Windows should always use top left anchor preset (to suppress a Godot 4 warning), " +
+            GD.PrintErr("Windows should always use a corner anchor preset (to suppress a Godot 4 warning), " +
                 "problematic Node: ", GetPath());
         }
 #endif
