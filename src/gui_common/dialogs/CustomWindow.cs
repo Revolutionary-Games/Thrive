@@ -452,6 +452,15 @@ public partial class CustomWindow : TopLevelContainer
 
     protected override void ApplyRectSettings()
     {
+#if DEBUG
+        if (AnchorLeft != 0 || AnchorRight != 0 || AnchorTop != 0 || AnchorBottom != 0 ||
+            AnchorsPreset != (int)LayoutPreset.TopLeft)
+        {
+            GD.PrintErr("Windows should always use top left anchor preset (to suppress a Godot 4 warning), " +
+                "problematic Node: ", GetPath());
+        }
+#endif
+
         base.ApplyRectSettings();
 
         var screenSize = GetViewportRect().Size;
@@ -701,6 +710,13 @@ public partial class CustomWindow : TopLevelContainer
 
             if (child == null || child == closeButton || child.TopLevel)
                 continue;
+
+            // Leaving the anchors alone here causes a warning in Godot 4
+            child.AnchorLeft = 0;
+            child.AnchorTop = 0;
+
+            child.AnchorBottom = 0;
+            child.AnchorRight = 0;
 
             child.Position = childPos;
             child.Size = childSize;
