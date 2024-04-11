@@ -228,6 +228,7 @@ grow_vertical = 2
 Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
 
 [node name="OrganelleDivisionTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(260, 280)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
