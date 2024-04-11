@@ -7,7 +7,6 @@ uniform float movementWigglyNess = 1.f;
 
 uniform float waviness = 20.f;
 uniform float waveSpeed = 15.f;
-uniform float waveCutoff = 0.4f;
 
 uniform float fade = 0.f;
 
@@ -29,5 +28,5 @@ void fragment() {
     vec3 final = vec3(waves) * tint;
     
     ALBEDO = final;
-    ALPHA = round(waves - waveCutoff) * (1.f - UV.y) * fade;
+    ALPHA = waves * (1.f - UV.y) * fade;
 }

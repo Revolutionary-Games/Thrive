@@ -40,7 +40,7 @@ public partial class Membrane : MeshInstance3D
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
-    private double engulfFade = 1.0f;
+    private double engulfFade;
 
     /// <summary>
     ///   When true the material properties need to be reapplied
