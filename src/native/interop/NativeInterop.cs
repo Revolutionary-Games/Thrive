@@ -32,6 +32,10 @@ public static class NativeInterop
 
     private static bool printedDistributableNotice;
 
+#if DEBUG
+    private static bool printedSteamLibName;
+#endif
+
     public delegate void OnLineDraw(Vector3 from, Vector3 to, Color colour);
 
     public delegate void OnTriangleDraw(Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, Color colour);
@@ -395,7 +399,11 @@ public static class NativeInterop
             }
 
 #if DEBUG
-            GD.Print("Searching for Steam library: ", steamName);
+            if (!printedSteamLibName)
+            {
+                GD.Print("Searching for Steam library: ", steamName);
+                printedSteamLibName = true;
+            }
 #endif
 
             if (LookForLibraryUpInFolders(steamName, out loaded))
