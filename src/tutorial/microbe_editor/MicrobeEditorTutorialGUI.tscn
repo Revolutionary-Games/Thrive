@@ -44,7 +44,7 @@ AtpBalanceBarHighlightPath = NodePath("AtpBalanceBarHighlight")
 anchors_preset = 0
 
 [node name="EditorEntryReport" parent="." instance=ExtResource("8")]
-custom_minimum_size = Vector2(360, 345)
+custom_minimum_size = Vector2(360, 360)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -62,7 +62,7 @@ ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
 [node name="PatchMapTutorial" parent="." instance=ExtResource("8")]
-custom_minimum_size = Vector2(360, 340)
+custom_minimum_size = Vector2(360, 360)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -120,7 +120,7 @@ visible = false
 anchors_preset = 0
 
 [node name="RedoTutorial" parent="." instance=ExtResource("8")]
-custom_minimum_size = Vector2(360, 375)
+custom_minimum_size = Vector2(360, 380)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -140,7 +140,7 @@ visible = false
 anchors_preset = 0
 
 [node name="CellEditorClosingWords" parent="." instance=ExtResource("9")]
-custom_minimum_size = Vector2(360, 385)
+custom_minimum_size = Vector2(360, 390)
 anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -190,7 +190,7 @@ visible = false
 anchors_preset = 0
 
 [node name="AutoEvoPrediction" parent="." instance=ExtResource("8")]
-custom_minimum_size = Vector2(360, 390)
+custom_minimum_size = Vector2(390, 400)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -198,9 +198,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -180.0
-offset_top = -190.0
-offset_right = 180.0
-offset_bottom = 150.0
+offset_top = -215.0
+offset_right = 210.0
+offset_bottom = 185.0
 grow_horizontal = 2
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
@@ -292,7 +292,7 @@ ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
 [node name="StaySmall" parent="." instance=ExtResource("9")]
-custom_minimum_size = Vector2(375, 385)
+custom_minimum_size = Vector2(375, 420)
 anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -435,7 +435,7 @@ anchors_preset = 0
 
 [node name="AtpBalanceIntroduction" type="Control" parent="."]
 visible = false
-custom_minimum_size = Vector2(260, 240)
+custom_minimum_size = Vector2(260, 420)
 anchors_preset = 0
 anchor_left = 0.5
 anchor_right = 0.5
