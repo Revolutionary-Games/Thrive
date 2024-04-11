@@ -46,6 +46,11 @@ public static class FeatureInformation
         return GetOS() == PlatformLinux;
     }
 
+    public static bool IsWindows()
+    {
+        return GetOS() == PlatformWindows;
+    }
+
     public static bool IsMac()
     {
         return GetOS() == PlatformMac;

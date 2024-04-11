@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.X86;
@@ -19,6 +21,8 @@ public static class NativeInterop
 
     private static readonly NativeMethods.OnLineDraw LineDrawCallback = ForwardLineDraw;
     private static readonly NativeMethods.OnTriangleDraw TriangleDrawCallback = ForwardTriangleDraw;
+
+    private static readonly Dictionary<string, string> FoundFolderLibraries = new();
 
     private static bool disableAvx;
 
@@ -373,6 +377,34 @@ public static class NativeInterop
 
     private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
     {
+        // Would be complicated to inline due to the conditional compilation
+        // ReSharper disable once InlineOutVariableDeclaration
+        IntPtr loaded;
+
+        if (libraryName == "steam_api")
+        {
+            var steamName = "libsteam_api.so";
+
+            if (FeatureInformation.IsWindows())
+            {
+                steamName = "steam_api64.dll";
+            }
+            else if (FeatureInformation.IsMac())
+            {
+                steamName = "libsteam_api.dylib";
+            }
+
+#if DEBUG
+            GD.Print("Searching for Steam library: ", steamName);
+#endif
+
+            if (LookForLibraryUpInFolders(steamName, out loaded))
+                return loaded;
+
+            GD.PrintErr("Steam API library seems to be missing");
+            return NativeLibrary.Load(libraryName, assembly, searchPath);
+        }
+
         if (!NativeConstants.GetLibraryFromName(libraryName, out var library))
         {
 #if DEBUG
@@ -384,10 +416,6 @@ public static class NativeInterop
         var currentPlatform = PlatformUtilities.GetCurrentPlatform();
 
         // TODO: different name when no avx is detected
-
-        // Would be complicated to inline due to the conditional compilation
-        // ReSharper disable once InlineOutVariableDeclaration
-        IntPtr loaded;
 
         // TODO: add a flag / some kind of option to skip loading the debug library
 
@@ -451,6 +479,48 @@ public static class NativeInterop
         }
 
         loaded = IntPtr.Zero;
+        return false;
+    }
+
+    private static bool LookForLibraryUpInFolders(string libraryName, out IntPtr loaded)
+    {
+        // If library was already looked for, return that instead of doing the lookup again assuming that the libraries
+        // won't be moved or deleted during runtime
+        if (FoundFolderLibraries.TryGetValue(libraryName, out var knownPath))
+        {
+            return LoadLibraryIfExists(knownPath, out loaded);
+        }
+
+        var folders = Path.GetFullPath(".").Split(Path.DirectorySeparatorChar);
+
+        loaded = IntPtr.Zero;
+
+        if (folders.Length < 2)
+        {
+            GD.PrintErr("Cannot determine parts of current path to search a library in");
+            return false;
+        }
+
+        for (int take = folders.Length; take > 0; --take)
+        {
+            try
+            {
+                var testPath = Path.Join(string.Join(Path.DirectorySeparatorChar, folders.Take(take)), libraryName);
+
+                if (LoadLibraryIfExists(testPath, out loaded))
+                {
+                    FoundFolderLibraries[libraryName] = testPath;
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                GD.Print($"Cannot test for {libraryName} existing at search depth {take}: {e}");
+                break;
+            }
+        }
+
+        FoundFolderLibraries[libraryName] = "NOT_FOUND_LIBRARY";
         return false;
     }
 }
