@@ -213,6 +213,7 @@ grow_vertical = 2
 Description = "MICROBE_STAGE_COLLECT_TEXT"
 
 [node name="DayNightTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(260, 280)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -251,9 +252,9 @@ anchor_top = 0.45
 anchor_right = 1.0
 anchor_bottom = 0.45
 offset_left = -260.0
-offset_top = -179.0
+offset_top = -187.0
 offset_right = 0.0
-offset_bottom = 61.0
+offset_bottom = 53.0
 Description = "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 
 [node name="StayingAliveTutorial" parent="." instance=ExtResource("10")]
@@ -422,7 +423,7 @@ Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="LeaveColonyTutorial" parent="." instance=ExtResource("10")]
-custom_minimum_size = Vector2(260, 275)
+custom_minimum_size = Vector2(260, 320)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -438,7 +439,7 @@ grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 
 [node name="EarlyMulticellularWelcome" parent="." instance=ExtResource("10")]
-custom_minimum_size = Vector2(450, 460)
+custom_minimum_size = Vector2(450, 480)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
