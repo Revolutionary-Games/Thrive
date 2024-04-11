@@ -260,11 +260,7 @@ layout_mode = 2
 
 [node name="HelpScreen" parent="." index="2" instance=ExtResource("4")]
 visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 Category = "MicrobeStage"
 
 [node name="OptionsMenu" parent="." index="3" instance=ExtResource("6")]
