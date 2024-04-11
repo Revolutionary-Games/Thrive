@@ -135,7 +135,6 @@ public partial class TopLevelContainer : Control
                 readyCalled = true;
                 Hide();
 
-                // TODO: Delay this? Or is there another way to prevent the uneven anchors warning?
                 ApplyRectSettings();
                 break;
         }
@@ -324,6 +323,9 @@ public partial class TopLevelContainer : Control
     {
         if (FullRect)
         {
+            // For debugging warnings coming from window uneven anchors:
+            // GD.Print("Applying full rect to: " + GetPath());
+
             var fullRect = GetFullRect();
             Position = fullRect.Position;
             Size = fullRect.Size;
