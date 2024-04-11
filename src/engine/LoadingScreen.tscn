@@ -37,7 +37,7 @@ LoadingMessagePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Loadi
 LoadingDescriptionPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/LoadingDescription")
 TipLabelPath = NodePath("MarginContainer/HBoxContainer/TipLabel")
 RandomizeTimerPath = NodePath("Timer")
-SpinnerPath = NodePath("MarginContainer/HBoxContainer/Spinner/TextureRect")
+SpinnerPath = NodePath("MarginContainer/HBoxContainer/Spinner/Control/TextureRect")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -123,9 +123,16 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Spinner"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/Spinner"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Spinner/Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(32, 32)
 texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
