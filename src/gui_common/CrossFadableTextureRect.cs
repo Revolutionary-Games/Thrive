@@ -62,11 +62,8 @@ public partial class CrossFadableTextureRect : TextureRect
         tween.TweenCallback(new Callable(this, nameof(OnFaded)));
     }
 
-    private void OnFaded(GodotObject @object, NodePath key)
+    private void OnFaded()
     {
-        _ = @object;
-        _ = key;
-
         Texture = Image;
         EmitSignal(SignalName.Faded);
 
