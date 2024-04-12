@@ -354,11 +354,13 @@ public partial class CustomWindow : TopLevelContainer
                 dragOffsetFar = Position + Size - GetGlobalMousePosition();
 
                 EmitSignal(SignalName.Dragged, this);
+                GetViewport().SetInputAsHandled();
             }
             else if (dragType != DragType.None && !mouseButton.Pressed)
             {
                 // End a dragging operation
                 dragType = DragType.None;
+                GetViewport().SetInputAsHandled();
             }
         }
 

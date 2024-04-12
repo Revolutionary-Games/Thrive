@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="3"]
 [ext_resource type="Script" path="res://src/general/HelpScreen.cs" id="4"]
-[ext_resource type="PackedScene" path="res://src/gui_common/HelpBox.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://be0gvip4iiwtw" path="res://src/gui_common/HelpBox.tscn" id="5"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="5_80o6f"]
 
 [node name="HelpScreen" type="Control"]
@@ -13,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_force_pass_scroll_events = false
 theme = ExtResource("1")
 script = ExtResource("4")
 LeftColumnPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/LeftColumn")

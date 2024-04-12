@@ -45,6 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_force_pass_scroll_events = false
 theme = ExtResource("1")
 script = ExtResource("2")
 BackButtonPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Back")
@@ -405,6 +406,7 @@ focus_next = NodePath("../../DisplayBackgroundParticles")
 min_value = 10.0
 max_value = 50.0
 value = 20.0
+scrollable = false
 
 [node name="DisplayBackgroundParticles" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
 layout_mode = 2
@@ -573,6 +575,7 @@ size_flags_vertical = 1
 focus_neighbor_top = NodePath("../MasterMuted")
 focus_neighbor_right = NodePath("../MasterMuted")
 value = 100.0
+scrollable = false
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -607,6 +610,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_neighbor_right = NodePath("../MusicMuted")
 value = 80.0
+scrollable = false
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -633,6 +637,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_neighbor_right = NodePath("../AmbianceMuted")
 value = 80.0
+scrollable = false
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
@@ -659,6 +664,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_neighbor_right = NodePath("../SFXMuted")
 value = 80.0
+scrollable = false
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
@@ -685,6 +691,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_neighbor_right = NodePath("../GUIMuted")
 value = 80.0
+scrollable = false
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
@@ -1006,6 +1013,7 @@ min_value = 1.0
 max_value = 64.0
 value = 4.0
 rounded = true
+scrollable = false
 
 [node name="UseNativeManualThreadCount" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
 layout_mode = 2
@@ -1039,6 +1047,7 @@ min_value = 1.0
 max_value = 64.0
 value = 4.0
 rounded = true
+scrollable = false
 
 [node name="Inputs" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -1113,6 +1122,7 @@ text = "HORIZONTAL_COLON"
 [node name="Horizontal" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse"]
 layout_mode = 2
 size_flags_horizontal = 3
+scrollable = false
 
 [node name="HorizontalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse" instance=ExtResource("10")]
 layout_mode = 2
@@ -1126,6 +1136,7 @@ text = "VERTICAL_COLON"
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../Horizontal")
+scrollable = false
 
 [node name="VerticalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse" instance=ExtResource("10")]
 layout_mode = 2
@@ -1193,6 +1204,7 @@ text = "HORIZONTAL_COLON"
 [node name="Horizontal" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller"]
 layout_mode = 2
 size_flags_horizontal = 3
+scrollable = false
 
 [node name="HorizontalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller" instance=ExtResource("10")]
 layout_mode = 2
@@ -1206,6 +1218,7 @@ text = "VERTICAL_COLON"
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../Horizontal")
+scrollable = false
 
 [node name="VerticalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller" instance=ExtResource("10")]
 layout_mode = 2
@@ -1295,6 +1308,7 @@ focus_neighbor_bottom = NodePath("../../InputGroupList")
 min_value = 5.0
 max_value = 140.0
 value = 5.0
+scrollable = false
 
 [node name="InputGroupListTop" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
