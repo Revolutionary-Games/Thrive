@@ -1528,10 +1528,10 @@ public static class Constants
     /// </remarks>
     public static readonly IReadOnlyList<string> ModLocations = new[]
     {
-        OS.HasFeature("standalone") ?
+        Engine.IsEditorHint() ?
+            ProjectSettings.GlobalizePath("res://mods") :
             Path.Combine(Path.GetDirectoryName(OS.GetExecutablePath()) ??
-                throw new InvalidOperationException("no current executable path"), "mods") :
-            ProjectSettings.GlobalizePath("res://mods"),
+                throw new InvalidOperationException("no current executable path"), "mods"),
         "user://mods",
     };
 
