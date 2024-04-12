@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Godot;
 using Steamworks;
 using Directory = System.IO.Directory;
 using File = System.IO.File;
-using Object = Godot.Object;
 using Path = System.IO.Path;
 
 /// <summary>
@@ -62,6 +62,10 @@ public sealed class SteamClient : ISteamClient
 
         GD.Print("Starting Steam load");
 
+        // Need to ensure this is set for steam library loading to work
+        NativeInterop.SetDllImportResolver(Assembly.GetAssembly(typeof(SteamAPI)) ??
+            throw new Exception("Couldn't determine Steamworks.NET assembly"));
+
         if (!SteamAPI.Init())
         {
             GD.PrintErr("Failed to init Steam");
@@ -96,7 +100,7 @@ public sealed class SteamClient : ISteamClient
     }
 
     public void ConnectSignals<T>(T receiver)
-        where T : Object, ISteamSignalReceiver
+        where T : GodotObject, ISteamSignalReceiver
     {
         if (!IsLoaded)
             return;
@@ -258,8 +262,7 @@ public sealed class SteamClient : ISteamClient
         // description max length
         if (changeNotes?.Length > Steamworks.Constants.k_cchPublishedDocumentChangeDescriptionMax)
         {
-            callback.Invoke(
-                WorkshopResult.CreateFailure(Localization.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG")));
+            callback.Invoke(WorkshopResult.CreateFailure(Localization.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG")));
             return;
         }
 
