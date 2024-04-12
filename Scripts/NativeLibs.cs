@@ -381,7 +381,7 @@ public class NativeLibs
         CancellationToken cancellationToken)
     {
         ColourConsole.WriteWarningLine("This is a deprecated operation. Godot 4 now allows directly loading " +
-            "from the library from its storage path so no install is required.");
+            "the library from its storage path so no install operation is required.");
 
         return Task.FromResult(true);
     }
