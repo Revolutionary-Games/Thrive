@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0qfhc2op1auc"]
+[gd_scene load_steps=10 format=3 uid="uid://d0qfhc2op1auc"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_nn6st"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.cs" id="2"]
@@ -69,6 +69,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_kbxi1"]
+
 [node name="MicrobeEditorTabButtons" type="MarginContainer"]
 offset_right = 278.0
 offset_bottom = 38.0
@@ -92,7 +94,7 @@ NoWrap = true
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
-mouse_filter = 1
+mouse_force_pass_scroll_events = false
 theme_override_fonts/font = ExtResource("4_sx78e")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("12")
@@ -102,13 +104,14 @@ theme_override_styles/disabled = SubResource("11")
 toggle_mode = true
 button_pressed = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_kbxi1")
 text = "REPORT"
 
 [node name="PatchMapButton" type="Button" parent="TabButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
-mouse_filter = 1
+mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_sx78e")
 theme_override_font_sizes/font_size = 14
@@ -118,13 +121,14 @@ theme_override_styles/pressed = SubResource("10")
 theme_override_styles/disabled = SubResource("11")
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_kbxi1")
 text = "PATCH_MAP"
 
 [node name="CellEditorButton" type="Button" parent="TabButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
-mouse_filter = 1
+mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_sx78e")
 theme_override_font_sizes/font_size = 14
@@ -134,13 +138,14 @@ theme_override_styles/pressed = SubResource("10")
 theme_override_styles/disabled = SubResource("11")
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_kbxi1")
 text = "EDITOR"
 
 [node name="CellTypeEditorButton" type="Button" parent="TabButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
-mouse_filter = 1
+mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_sx78e")
 theme_override_font_sizes/font_size = 14
@@ -150,9 +155,10 @@ theme_override_styles/pressed = SubResource("10")
 theme_override_styles/disabled = SubResource("11")
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_kbxi1")
 text = "CELL"
 
-[connection signal="pressed" from="TabButtons/ReportButton" to="." method="SetEditorTab" binds= [ "Report" ]]
-[connection signal="pressed" from="TabButtons/PatchMapButton" to="." method="SetEditorTab" binds= [ "PatchMap" ]]
-[connection signal="pressed" from="TabButtons/CellEditorButton" to="." method="SetEditorTab" binds= [ "CellEditor" ]]
-[connection signal="pressed" from="TabButtons/CellTypeEditorButton" to="." method="SetEditorTab" binds= [ "CellTypeEditor" ]]
+[connection signal="pressed" from="TabButtons/ReportButton" to="." method="SetEditorTab" binds= ["Report"]]
+[connection signal="pressed" from="TabButtons/PatchMapButton" to="." method="SetEditorTab" binds= ["PatchMap"]]
+[connection signal="pressed" from="TabButtons/CellEditorButton" to="." method="SetEditorTab" binds= ["CellEditor"]]
+[connection signal="pressed" from="TabButtons/CellTypeEditorButton" to="." method="SetEditorTab" binds= ["CellTypeEditor"]]

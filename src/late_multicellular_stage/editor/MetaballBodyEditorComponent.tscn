@@ -654,7 +654,7 @@ alignment = 2
 visible = false
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
-mouse_filter = 1
+mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(0.498039, 0.529412, 0.541176, 1)
 theme_override_styles/normal = SubResource("14")
@@ -666,7 +666,7 @@ text = "CANCEL_ACTION_CAPITAL"
 [node name="ConfirmButton" type="Button" parent="BottomRight/HBoxContainer"]
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
-mouse_filter = 1
+mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("16")
 theme_override_styles/hover = SubResource("15")
