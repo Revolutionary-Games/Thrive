@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://d0qfhc2op1auc" path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://qdqcbnri7vsw" path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://r0oqu6luui0h" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn" id="39"]
+[ext_resource type="PackedScene" uid="uid://cbthqg63bqkhx" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn" id="39"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="52"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="53"]
-[ext_resource type="PackedScene" path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn" id="85"]
+[ext_resource type="PackedScene" uid="uid://cahegn58i768h" path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn" id="85"]
 
 [node name="MicrobeEditor" type="Node"]
 process_priority = -1
@@ -67,16 +67,11 @@ offset_right = 154.0
 grow_vertical = 0
 
 [node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" instance=ExtResource("39")]
-anchors_preset = 0
 offset_left = 10.0
 offset_top = 30.0
 
 [node name="TutorialGUI" parent="." instance=ExtResource("85")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 EditorEntryReportPath = NodePath("../TutorialGUI/EditorEntryReport")
 PatchMapPath = NodePath("../TutorialGUI/PatchMapTutorial")
 CellEditorIntroductionPath = NodePath("../TutorialGUI/CellEditorIntro")
