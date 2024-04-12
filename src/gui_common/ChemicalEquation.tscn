@@ -22,7 +22,7 @@ theme = ExtResource("1")
 script = ExtResource("2")
 DefaultTitleFont = ExtResource("4_77wn0")
 title = NodePath("HBoxContainer/Label")
-spinner = NodePath("HBoxContainer/Spinner")
+spinner = NodePath("HBoxContainer/SpinnerNode/Spinner")
 firstLineContainer = NodePath("FirstLine")
 speedLimitedTitleFont = ExtResource("4_vbkf3")
 equationArrowTexture = ExtResource("5_tr4hc")
@@ -30,9 +30,16 @@ equationArrowTexture = ExtResource("5_tr4hc")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Spinner" type="TextureRect" parent="HBoxContainer"]
+[node name="SpinnerNode" type="Control" parent="HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+
+[node name="Spinner" type="TextureRect" parent="HBoxContainer/SpinnerNode"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset = Vector2(16, 16)
 texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 5
