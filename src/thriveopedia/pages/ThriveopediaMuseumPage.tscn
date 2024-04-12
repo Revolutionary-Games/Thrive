@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
 [ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaMuseumPage.cs" id="2"]
-[ext_resource type="PackedScene" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://b1boea8qjx6xx" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="4"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_8ikvd"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="8"]
 
@@ -92,6 +92,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer" index="0"]
+visible = false
 layout_mode = 2
 
 [node name="SpeciesDetailsPanel" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer" index="0" instance=ExtResource("4")]
@@ -102,7 +103,6 @@ layout_mode = 2
 text = "OPEN_IN_FREEBUILD"
 
 [node name="WelcomeLabelContainer" type="CenterContainer" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer" index="1"]
-visible = false
 layout_mode = 2
 
 [node name="WelcomeLabel" type="Label" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/WelcomeLabelContainer" index="0"]
@@ -110,6 +110,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "MUSEUM_WELCOME_TEXT"
 label_settings = ExtResource("4_8ikvd")
+autowrap_mode = 3
 
 [node name="UnsavedProgressWarning" parent="." index="2" instance=ExtResource("8")]
 custom_minimum_size = Vector2(391, 0)
