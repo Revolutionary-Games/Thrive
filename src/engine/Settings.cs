@@ -787,10 +787,23 @@ public class Settings
     /// </summary>
     public void ApplyWindowSettings()
     {
+        var mode = DisplayServer.WindowGetMode();
+
+        // Treat maximized and windowed as the same thing to not reset maximized status after the user has set it
+        if (mode == DisplayServer.WindowMode.Maximized)
+        {
+            mode = DisplayServer.WindowMode.Windowed;
+        }
+
         // TODO: add exclusive fullscreen mode option
-        DisplayServer.WindowSetMode(FullScreen.Value ?
+        var wantedMode = FullScreen.Value ?
             DisplayServer.WindowMode.Fullscreen :
-            DisplayServer.WindowMode.Windowed);
+            DisplayServer.WindowMode.Windowed;
+
+        if (mode != wantedMode)
+        {
+            DisplayServer.WindowSetMode(wantedMode);
+        }
 
         // TODO: switch the setting to allow specifying all of the 4 possible values
         DisplayServer.WindowSetVsyncMode(VSync.Value ?
