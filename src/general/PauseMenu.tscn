@@ -23,7 +23,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [true, false]
 }
 tracks/1/type = "value"
@@ -47,7 +47,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 
@@ -75,7 +75,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -129,13 +129,9 @@ _data = {
 process_mode = 3
 visible = true
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
@@ -264,11 +260,7 @@ layout_mode = 2
 
 [node name="HelpScreen" parent="." index="2" instance=ExtResource("4")]
 visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 Category = "MicrobeStage"
 
 [node name="OptionsMenu" parent="." index="3" instance=ExtResource("6")]
@@ -281,6 +273,7 @@ layout_mode = 1
 
 [node name="UnsavedProgressWarning" parent="." index="5" instance=ExtResource("7")]
 custom_minimum_size = Vector2(391, 0)
+layout_mode = 1
 offset_right = 391.0
 WindowTitle = "CONFIRM_EXIT"
 
