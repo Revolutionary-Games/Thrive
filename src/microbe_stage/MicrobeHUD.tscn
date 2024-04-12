@@ -1,6 +1,6 @@
 [gd_scene load_steps=46 format=3 uid="uid://bt2fv82h01ice"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/RadialPopup.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="Texture2D" uid="uid://drrdhfwd5s8e2" path="res://assets/textures/gui/bevel/actions/EngulfEject.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="9"]
@@ -556,7 +556,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProcessPanel" parent="." instance=ExtResource("61")]
-anchors_preset = 0
 offset_left = 8.0
 offset_top = 72.0
 offset_right = -872.0
@@ -684,7 +683,6 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="RadialPopup" parent="." instance=ExtResource("1")]
-anchors_preset = 0
 
 [node name="StagePrototypeConfirm" parent="." instance=ExtResource("64")]
 custom_minimum_size = Vector2(450, 0)
