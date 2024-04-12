@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs" id="1"]
 [ext_resource type="Texture2D" uid="uid://bo70v3237p6iv" path="res://assets/textures/gui/bevel/hSeparatorCentered.png" id="2"]
-[ext_resource type="PackedScene" path="res://src/late_multicellular_stage/editor/MetaballPopupMenu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://u7xx74aaed4e" path="res://src/late_multicellular_stage/editor/MetaballPopupMenu.tscn" id="3"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="7_ck2k0"]
@@ -362,7 +362,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 1
+mouse_force_pass_scroll_events = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel"]
 layout_mode = 2
