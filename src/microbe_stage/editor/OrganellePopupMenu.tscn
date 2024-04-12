@@ -136,7 +136,7 @@ label_settings = ExtResource("3_yrfoj")
 layout_mode = 2
 
 [node name="Delete" type="Button" parent="PanelContainer/VBoxContainer" index="2"]
-custom_minimum_size = Vector2(0, 28)
+custom_minimum_size = Vector2(165, 28)
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
@@ -183,7 +183,7 @@ text = "-15 MP"
 label_settings = ExtResource("5_clp5b")
 
 [node name="Move" type="Button" parent="PanelContainer/VBoxContainer" index="3"]
-custom_minimum_size = Vector2(0, 28)
+custom_minimum_size = Vector2(165, 28)
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
@@ -230,7 +230,7 @@ text = "-2 MP/hex"
 label_settings = ExtResource("5_clp5b")
 
 [node name="Modify" type="Button" parent="PanelContainer/VBoxContainer" index="4"]
-custom_minimum_size = Vector2(0, 28)
+custom_minimum_size = Vector2(165, 28)
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)

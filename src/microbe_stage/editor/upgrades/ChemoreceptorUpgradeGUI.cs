@@ -52,8 +52,9 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     private enum TargetType
     {
-        Compound,
-        Species,
+        // Values here must match what is set in the Godot editor
+        Compound = 0,
+        Species = 1,
     }
 
     public override void _Ready()
@@ -172,6 +173,9 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             case TargetType.Species:
                 speciesSelector.Visible = true;
                 speciesLabel.Visible = true;
+                break;
+            default:
+                GD.PrintErr("Unknown type to show in chemoreceptor upgrade GUI");
                 break;
         }
 

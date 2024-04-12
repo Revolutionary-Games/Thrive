@@ -29,7 +29,9 @@ custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 label_settings = ExtResource("3_t3oq1")
+autowrap_mode = 3
 
 [connection signal="item_selected" from="OptionButton" to="." method="OnEnzymeSelected"]
