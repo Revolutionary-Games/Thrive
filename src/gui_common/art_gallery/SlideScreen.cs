@@ -426,20 +426,14 @@ public partial class SlideScreen : TopLevelContainer
         closeButton.Visible = slideControlsVisible;
     }
 
-    private void OnScaledUp(GodotObject @object, NodePath key)
+    private void OnScaledUp()
     {
-        _ = @object;
-        _ = key;
-
         SlideControlsVisible = true;
         FullRect = true;
     }
 
-    private void OnScaledDown(GodotObject @object, NodePath key)
+    private void OnScaledDown()
     {
-        _ = @object;
-        _ = key;
-
         SlideControlsVisible = true;
         Hide();
     }

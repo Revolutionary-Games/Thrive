@@ -37,11 +37,8 @@ public partial class CrossFadableGalleryViewport : SubViewportContainer
         base.Dispose(disposing);
     }
 
-    private void OnFaded(GodotObject @object, NodePath key)
+    private void OnFaded()
     {
-        _ = @object;
-        _ = key;
-
         EmitSignal(SignalName.Faded);
 
         var tween = CreateTween();
