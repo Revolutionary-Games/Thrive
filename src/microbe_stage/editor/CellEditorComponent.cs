@@ -959,7 +959,9 @@ public partial class CellEditorComponent :
         {
             var tutorialState = Editor.CurrentGame.TutorialState;
 
-            if (tutorialState.Enabled)
+            // In the multicellular editor the cell editor might not be visible so preventing exiting the editor
+            // without explanation is not a good idea so that's why this check is here
+            if (tutorialState.Enabled && !IsMulticellularEditor)
             {
                 tutorialState.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
 
