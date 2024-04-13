@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://b0315b3i5bs5s"]
+[gd_scene load_steps=21 format=3 uid="uid://b0315b3i5bs5s"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/general/NewGameSettings.cs" id="2"]
-[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="5"]
 [ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="5_otvf3"]
 [ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="5_rnvau"]
@@ -128,7 +127,7 @@ layout_mode = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 layout_mode = 2
 
-[node name="LAWK" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2" instance=ExtResource("4")]
+[node name="LAWK" type="CheckBox" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 button_pressed = true
@@ -594,7 +593,7 @@ label_settings = ExtResource("5_rnvau")
 [node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="FreeGlucoseCloud" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5" instance=ExtResource("4")]
+[node name="FreeGlucoseCloud" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "FREE_GLUCOSE_CLOUD"
@@ -608,7 +607,7 @@ label_settings = ExtResource("5_rnvau")
 [node name="VBoxContainer9" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="PassiveReproductionProgress" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9" instance=ExtResource("4")]
+[node name="PassiveReproductionProgress" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "PASSIVE_REPRODUCTION_PROGRESS"
@@ -622,7 +621,7 @@ label_settings = ExtResource("5_rnvau")
 [node name="VBoxContainer10" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="LimitGrowthRate" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10" instance=ExtResource("4")]
+[node name="LimitGrowthRate" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "LIMIT_GROWTH_RATE"
@@ -636,7 +635,7 @@ label_settings = ExtResource("5_rnvau")
 [node name="VBoxContainer12" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="OrganelleUnlocksEnabled" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12" instance=ExtResource("4")]
+[node name="OrganelleUnlocksEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "ORGANELLE_UNLOCKS_ENABLED"
@@ -668,7 +667,7 @@ theme_override_constants/separation = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 layout_mode = 2
 
-[node name="LAWKAdvanced" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer" instance=ExtResource("4")]
+[node name="LAWKAdvanced" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 button_pressed = true
@@ -717,7 +716,7 @@ popup/item_2/id = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 layout_mode = 2
 
-[node name="DayNightCycleEnabled" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2" instance=ExtResource("4")]
+[node name="DayNightCycleEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "DAY_NIGHT_CYCLE_ENABLED"
@@ -846,7 +845,7 @@ theme_override_constants/separation = 10
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
 layout_mode = 2
 
-[node name="IncludeMulticellular" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2" instance=ExtResource("4")]
+[node name="IncludeMulticellular" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 button_pressed = true
@@ -861,7 +860,7 @@ label_settings = ExtResource("5_rnvau")
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
 layout_mode = 2
 
-[node name="EasterEggs" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3" instance=ExtResource("4")]
+[node name="EasterEggs" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 0
 button_pressed = true
