@@ -1,16 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbthqg63bqkhx"]
+[gd_scene load_steps=3 format=3 uid="uid://cbthqg63bqkhx"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.cs" id="2"]
-[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="4"]
 
 [node name="MicrobeEditorCheatMenu" instance=ExtResource("1")]
-layout_mode = 3
-anchors_preset = 0
+visible = true
 offset_right = 0.0
 offset_bottom = 0.0
 script = ExtResource("2")
-InfiniteMpPath = NodePath("VBoxContainer/InfiniteMP")
+InfiniteMpPath = NodePath("")
 WindowTitle = "CHEATS"
 Resizable = true
 
@@ -19,16 +17,14 @@ layout_mode = 0
 offset_right = 106.0
 offset_bottom = 17.0
 
-[node name="InfiniteMP" parent="VBoxContainer" index="0" instance=ExtResource("4")]
+[node name="InfiniteMP" type="CheckBox" parent="VBoxContainer" index="0"]
 layout_mode = 2
-theme = null
-theme_override_font_sizes/font_size = 14
+size_flags_horizontal = 0
 text = "INFINITE_MP"
 
-[node name="MoveToAnyPatch" parent="VBoxContainer" index="1" instance=ExtResource("4")]
+[node name="MoveToAnyPatch2" type="CheckBox" parent="VBoxContainer" index="1"]
 layout_mode = 2
-theme = null
-theme_override_font_sizes/font_size = 14
+size_flags_horizontal = 0
 text = "MOVE_TO_ANY_PATCH"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="2"]
@@ -45,6 +41,6 @@ theme_override_font_sizes/font_size = 14
 text = "UNLOCK_ALL_ORGANELLES"
 
 [connection signal="toggled" from="VBoxContainer/InfiniteMP" to="." method="SetInfiniteMP"]
-[connection signal="toggled" from="VBoxContainer/MoveToAnyPatch" to="." method="SetMoveToAnyPatch"]
+[connection signal="toggled" from="VBoxContainer/MoveToAnyPatch2" to="." method="SetMoveToAnyPatch"]
 [connection signal="pressed" from="VBoxContainer/RevealAllPatches" to="." method="OnRevealAllPatchesPressed"]
 [connection signal="pressed" from="VBoxContainer/UnlockAllOrganelles" to="." method="OnUnlockAllOrganellesPressed"]
