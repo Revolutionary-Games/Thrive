@@ -223,6 +223,7 @@ custom_minimum_size = Vector2(750, 600)
 layout_mode = 2
 
 [node name="Graphics" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -248,21 +249,21 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Vsync" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="Vsync" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "VSYNC"
+text = "VSYNC
+"
 
-[node name="Fullscreen" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="Fullscreen" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_bottom = NodePath("../HBoxContainer/MSAAResolution")
 text = "FULLSCREEN"
 
 [node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("13")]
 layout_mode = 2
 Priority = 3
-NodeToGiveFocusTo = NodePath("../Vsync")
+NodeToGiveFocusTo = NodePath("")
 GrabFocusWhenBecomingVisible = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -368,8 +369,6 @@ size_flags_horizontal = 3
 [node name="ColourblindSetting" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../../HBoxContainer5/ChromaticToggle")
-focus_next = NodePath("../../HBoxContainer5/ChromaticToggle")
 item_count = 3
 selected = 0
 popup/item_0/text = "NONE"
@@ -383,13 +382,9 @@ popup/item_2/id = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ChromaticToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("10")]
+[node name="ChromaticToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../HBoxContainer2/ColourblindSetting")
-focus_neighbor_right = NodePath("../ChromaticAmount")
-focus_neighbor_bottom = NodePath("../../DisplayBackgroundParticles")
-focus_next = NodePath("../ChromaticAmount")
-focus_previous = NodePath("../../HBoxContainer2/ColourblindSetting")
+size_flags_horizontal = 0
 text = "CHROMATIC_ABERRATION"
 
 [node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
@@ -401,23 +396,19 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_bottom = NodePath("../../DisplayBackgroundParticles")
-focus_next = NodePath("../../DisplayBackgroundParticles")
 min_value = 10.0
 max_value = 50.0
 value = 20.0
 scrollable = false
 
-[node name="DisplayBackgroundParticles" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="DisplayBackgroundParticles" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "DISPLAY_BACKGROUND_PARTICLES"
 
-[node name="Menu3DBackgroundsToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="Menu3DBackgroundsToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_bottom = NodePath("../HBoxContainer10/ControllerPromptType")
-focus_next = NodePath("../HBoxContainer10/ControllerPromptType")
 text = "DISPLAY_3D_MENU_BACKGROUNDS"
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -498,10 +489,6 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_vertical = 0
-focus_neighbor_left = NodePath("../../DisplayAbilitiesBar")
-focus_neighbor_top = NodePath("../../Menu3DBackgroundsToggle")
-focus_neighbor_bottom = NodePath("../../DisplayAbilitiesBar")
-focus_previous = NodePath("../../Menu3DBackgroundsToggle")
 item_count = 7
 selected = 0
 popup/item_0/text = "AUTO"
@@ -519,26 +506,22 @@ popup/item_5/id = 5
 popup/item_6/text = "PLAYSTATION_5"
 popup/item_6/id = 6
 
-[node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="DisplayAbilitiesBar" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_top = NodePath("../HBoxContainer10/ControllerPromptType")
 text = "DISPLAY_ABILITIES_BAR"
 
-[node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="GUILightsEffectToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "ENABLE_GUI_LIGHT_EFFECTS"
 
-[node name="DisplayPartNamesToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="DisplayPartNamesToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_bottom = NodePath("../../../../../../../HBoxContainer/Back")
-focus_next = NodePath("../../../../../../../HBoxContainer/Back")
 text = "DISPLAY_PART_NAMES"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -572,8 +555,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_top = NodePath("../MasterMuted")
-focus_neighbor_right = NodePath("../MasterMuted")
 value = 100.0
 scrollable = false
 
@@ -581,16 +562,15 @@ scrollable = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("3")
 
-[node name="MasterMuted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("10")]
+[node name="MasterMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_bottom = NodePath("../../HBoxContainer2/MusicMuted")
 text = "MUTE"
 
 [node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("13")]
 layout_mode = 2
 Priority = 3
-NodeToGiveFocusTo = NodePath("../HBoxContainer/MasterMuted")
+NodeToGiveFocusTo = NodePath("")
 GrabFocusWhenBecomingVisible = true
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -608,7 +588,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_right = NodePath("../MusicMuted")
 value = 80.0
 scrollable = false
 
@@ -616,11 +595,9 @@ scrollable = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("3")
 
-[node name="MusicMuted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("10")]
+[node name="MusicMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_top = NodePath("../../HBoxContainer/MasterMuted")
-focus_neighbor_bottom = NodePath("../../HBoxContainer3/AmbianceMuted")
 text = "MUTE"
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -635,7 +612,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_right = NodePath("../AmbianceMuted")
 value = 80.0
 scrollable = false
 
@@ -643,11 +619,9 @@ scrollable = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("3")
 
-[node name="AmbianceMuted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("10")]
+[node name="AmbianceMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_top = NodePath("../../HBoxContainer2/MusicMuted")
-focus_neighbor_bottom = NodePath("../../HBoxContainer4/SFXMuted")
 text = "MUTE"
 
 [node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -662,7 +636,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_right = NodePath("../SFXMuted")
 value = 80.0
 scrollable = false
 
@@ -670,11 +643,9 @@ scrollable = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("3")
 
-[node name="SFXMuted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("10")]
+[node name="SFXMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_top = NodePath("../../HBoxContainer3/AmbianceMuted")
-focus_neighbor_bottom = NodePath("../../HBoxContainer5/GUIMuted")
 text = "MUTE"
 
 [node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -689,7 +660,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_right = NodePath("../GUIMuted")
 value = 80.0
 scrollable = false
 
@@ -697,11 +667,9 @@ scrollable = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("3")
 
-[node name="GUIMuted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("10")]
+[node name="GUIMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_top = NodePath("../../HBoxContainer4/SFXMuted")
-focus_neighbor_bottom = NodePath("../../AudioOutputDevicesButton")
 text = "MUTE"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -714,7 +682,6 @@ text = "AUDIO_OUTPUT_DEVICE"
 [node name="AudioOutputDevicesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_top = NodePath("../HBoxContainer5/GUIMuted")
 
 [node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
