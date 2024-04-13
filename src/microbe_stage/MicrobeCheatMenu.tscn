@@ -1,26 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1ucm37efll76"]
+[gd_scene load_steps=4 format=3 uid="uid://b1ucm37efll76"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeCheatMenu.cs" id="2"]
-[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="4"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_4g68c"]
 
 [node name="MicrobeCheatMenu" instance=ExtResource("1")]
-layout_mode = 3
-anchors_preset = 0
 offset_right = 0.0
 offset_bottom = 0.0
 script = ExtResource("2")
-InfiniteCompoundsPath = NodePath("VBoxContainer/InfiniteCompounds")
-GodModePath = NodePath("VBoxContainer/GodMode")
-DisableAIPath = NodePath("VBoxContainer/DisableAI")
-UnlimitGrowthSpeedPath = NodePath("VBoxContainer/UnlimitGrowthSpeed")
-LockTimePath = NodePath("VBoxContainer/LockTime")
+InfiniteCompoundsPath = NodePath("")
+GodModePath = NodePath("")
+DisableAIPath = NodePath("")
+UnlimitGrowthSpeedPath = NodePath("")
+LockTimePath = NodePath("")
 SpeedSliderPath = NodePath("VBoxContainer/Speed/SpeedSlider")
 PlayerDividePath = NodePath("VBoxContainer/PlayerDuplicate")
 SpawnEnemyPath = NodePath("VBoxContainer/SpawnEnemy")
 DespawnAllEntitiesPath = NodePath("VBoxContainer/DespawnAllEntities")
-ManuallySetTimePath = NodePath("VBoxContainer/ManuallySetTime")
+ManuallySetTimePath = NodePath("")
 TargetTimePath = NodePath("VBoxContainer/TargetTime/TimeSlider")
 WindowTitle = "CHEATS"
 Resizable = true
@@ -31,24 +28,26 @@ layout_mode = 0
 offset_right = 177.0
 offset_bottom = 142.0
 
-[node name="InfiniteCompounds" parent="VBoxContainer" index="0" instance=ExtResource("4")]
+[node name="InfiniteCompounds" type="CheckBox" parent="VBoxContainer" index="0"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "INFINITE_COMPOUNDS"
+size_flags_horizontal = 0
+text = "INFINITE_COMPOUNDS
+"
 
-[node name="GodMode" parent="VBoxContainer" index="1" instance=ExtResource("4")]
+[node name="GodMode" type="CheckBox" parent="VBoxContainer" index="1"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+size_flags_horizontal = 0
 text = "GODMODE"
 
-[node name="DisableAI" parent="VBoxContainer" index="2" instance=ExtResource("4")]
+[node name="DisableAI" type="CheckBox" parent="VBoxContainer" index="2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "NO_AI"
+size_flags_horizontal = 0
+text = "NO_AI
+"
 
-[node name="UnlimitGrowthSpeed" parent="VBoxContainer" index="3" instance=ExtResource("4")]
+[node name="UnlimitGrowthSpeed" type="CheckBox" parent="VBoxContainer" index="3"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+size_flags_horizontal = 0
 text = "UNLIMIT_GROWTH_SPEED"
 
 [node name="Speed" type="HBoxContainer" parent="VBoxContainer" index="4"]
@@ -89,14 +88,14 @@ text = "DESPAWN_ENTITIES"
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="9"]
 layout_mode = 2
 
-[node name="LockTime" parent="VBoxContainer" index="10" instance=ExtResource("4")]
+[node name="LockTime" type="CheckBox" parent="VBoxContainer" index="10"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+size_flags_horizontal = 0
 text = "LOCK_DAY_NIGHT_CYCYLE"
 
-[node name="ManuallySetTime" parent="VBoxContainer" index="11" instance=ExtResource("4")]
+[node name="ManuallySetTime" type="CheckBox" parent="VBoxContainer" index="11"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+size_flags_horizontal = 0
 text = "MANUALLY_SET_TIME"
 
 [node name="TargetTime" type="HBoxContainer" parent="VBoxContainer" index="12"]
