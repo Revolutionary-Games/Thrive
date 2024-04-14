@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://cgryi0yvh11d8"]
+[gd_scene load_steps=19 format=3 uid="uid://cgryi0yvh11d8"]
 
 [ext_resource type="Script" path="res://src/auto-evo/AutoEvoExploringTool.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
-[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 [ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="5_6c001"]
 [ext_resource type="Texture2D" uid="uid://djklaunps1oyd" path="res://assets/concept_art/even-more-cells.jpg" id="8"]
@@ -364,14 +363,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="AllowSpeciesToNotMutate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+[node name="AllowSpeciesToNotMutate" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 0
 text = "ALLOW_SPECIES_TO_NOT_MUTATE"
 
-[node name="AllowSpeciesToNotMigrate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+[node name="AllowSpeciesToNotMigrate" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 0
 text = "ALLOW_SPECIES_TO_NOT_MIGRATE"
 
 [node name="BiodiversityAttemptFillChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
@@ -402,14 +401,14 @@ layout_mode = 2
 max_value = 1.0
 step = 0.01
 
-[node name="BiodiversityNearbyPatchIsFreePopulation" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+[node name="BiodiversityNearbyPatchIsFreePopulation" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 0
 text = "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 
-[node name="BiodiversitySplitIsMutated" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+[node name="BiodiversitySplitIsMutated" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 0
 text = "BIODIVERSITY_SPLIT_IS_MUTATED"
 
 [node name="LowBiodiversityLimit" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
@@ -474,24 +473,24 @@ layout_mode = 2
 max_value = 1000.0
 step = 10.0
 
-[node name="ProtectMigrationsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+[node name="ProtectMigrationsFromSpeciesCap" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 0
 text = "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 
-[node name="ProtectNewCellsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+[node name="ProtectNewCellsFromSpeciesCap" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 0
 text = "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 
-[node name="RefundMigrationsInExtinctions" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+[node name="RefundMigrationsInExtinctions" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 0
 text = "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 
-[node name="StrictNicheCompetition" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+[node name="StrictNicheCompetition" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 0
 text = "STRICT_NICHE_COMPETITION"
 
 [node name="SpeciesSplitByMutationThresholdPopulationAmount" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
@@ -520,9 +519,9 @@ label_settings = ExtResource("11_crtm0")
 [node name="SpeciesSplitByMutationThresholdPopulationFraction" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
 layout_mode = 2
 
-[node name="UseBiodiversityForceSplit" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource("3")]
+[node name="UseBiodiversityForceSplit" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 0
 text = "USE_BIODIVERSITY_FORCE_SPLIT"
 
 [node name="HistoryReportSplit" type="VBoxContainer" parent="GUI/VBoxContainer"]
@@ -751,8 +750,8 @@ Movable = false
 [connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerationsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerations" to="." method="OnFinishXGenerationsButtonPressed"]
 [connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorldsSpin" to="." method="OnRunXWorldsSpinBoxValueChanged"]
-[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnFinishXGenerationsButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton" to="." method="ExportWorlds"]
