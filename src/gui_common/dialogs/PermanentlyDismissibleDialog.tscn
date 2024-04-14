@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://3vnrqlyumqtd"]
+[gd_scene load_steps=3 format=3 uid="uid://3vnrqlyumqtd"]
 
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="2"]
 [ext_resource type="Script" path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.cs" id="5"]
 
 [node name="PermanentlyDismissibleDialog" instance=ExtResource("1")]
+visible = true
 script = ExtResource("5")
 NoticeType = 0
 DialogType = 0
@@ -18,9 +18,9 @@ offset_bottom = 116.0
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="CheckBox" parent="VBoxContainer" index="5" instance=ExtResource("2")]
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer" index="5"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+size_flags_horizontal = 0
 
 [node name="Spacer4" type="Control" parent="VBoxContainer" index="7"]
 custom_minimum_size = Vector2(0, 15)

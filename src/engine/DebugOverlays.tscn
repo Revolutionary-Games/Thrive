@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4dyrcb6l1u3o"]
+[gd_scene load_steps=10 format=3 uid="uid://c4dyrcb6l1u3o"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="2"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="2_gkxar"]
 [ext_resource type="Script" path="res://src/engine/DebugOverlays.cs" id="3"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_fussq"]
@@ -42,7 +41,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="PerformanceMetrics" parent="." instance=ExtResource("1")]
-anchors_preset = 0
 offset_left = 54.0
 offset_top = 75.0
 offset_right = 274.0
@@ -85,7 +83,6 @@ text = "METRICS_CONTENT"
 label_settings = ExtResource("3_fussq")
 
 [node name="DebugPanel" parent="." instance=ExtResource("1")]
-anchors_preset = 0
 offset_left = 30.0
 offset_top = 30.0
 WindowTitle = "DEBUG_PANEL"
@@ -99,29 +96,29 @@ theme_override_constants/separation = 10
 [node name="Checkboxes" type="VBoxContainer" parent="DebugPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="FPSCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource("2")]
+[node name="FPSCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes"]
 layout_mode = 2
-theme = null
+size_flags_horizontal = 0
 text = "FPS_DISPLAY"
 
-[node name="PerformanceMetricsCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource("2")]
+[node name="PerformanceMetricsCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes"]
 layout_mode = 2
-theme = null
+size_flags_horizontal = 0
 text = "METRICS"
 
-[node name="CollisionShapeCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource("2")]
+[node name="CollisionShapeCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes"]
 layout_mode = 2
-theme = null
+size_flags_horizontal = 0
 text = "COLLISION_SHAPE"
 
-[node name="EntityLabelCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource("2")]
+[node name="EntityLabelCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes"]
 layout_mode = 2
-theme = null
+size_flags_horizontal = 0
 text = "ENTITY_LABEL"
 
-[node name="InspectorCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource("2")]
+[node name="InspectorCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes"]
 layout_mode = 2
-theme = null
+size_flags_horizontal = 0
 text = "INSPECTOR"
 
 [node name="Button" type="Button" parent="DebugPanel/VBoxContainer"]
@@ -146,7 +143,6 @@ ticks_on_borders = true
 
 [node name="Inspector" parent="." instance=ExtResource("1")]
 custom_minimum_size = Vector2(400, 100)
-anchors_preset = 0
 offset_left = 310.0
 offset_right = 710.0
 offset_bottom = 100.0
