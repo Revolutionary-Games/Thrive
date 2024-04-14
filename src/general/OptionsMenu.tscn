@@ -982,6 +982,7 @@ scrollable = false
 [node name="UseNativeManualThreadCount" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "NATIVE_THREAD_ADVICE_TOOLTIP"
 text = "USE_MANUAL_THREAD_COUNT_NATIVE"
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1461,6 +1462,7 @@ text = "SHOW_WEB_NEWS_FEED"
 [node name="ShowNewPatchNotes" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 text = "SHOW_NEW_PATCH_NOTES"
 
 [node name="ViewPatchNotes" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]

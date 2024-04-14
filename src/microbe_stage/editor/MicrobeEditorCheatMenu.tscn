@@ -8,7 +8,7 @@ visible = true
 offset_right = 0.0
 offset_bottom = 0.0
 script = ExtResource("2")
-InfiniteMpPath = NodePath("")
+InfiniteMpPath = NodePath("VBoxContainer/InfiniteMP")
 WindowTitle = "CHEATS"
 Resizable = true
 
@@ -22,7 +22,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "INFINITE_MP"
 
-[node name="MoveToAnyPatch2" type="CheckBox" parent="VBoxContainer" index="1"]
+[node name="MoveToAnyPatch" type="CheckBox" parent="VBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "MOVE_TO_ANY_PATCH"
@@ -41,6 +41,6 @@ theme_override_font_sizes/font_size = 14
 text = "UNLOCK_ALL_ORGANELLES"
 
 [connection signal="toggled" from="VBoxContainer/InfiniteMP" to="." method="SetInfiniteMP"]
-[connection signal="toggled" from="VBoxContainer/MoveToAnyPatch2" to="." method="SetMoveToAnyPatch"]
+[connection signal="toggled" from="VBoxContainer/MoveToAnyPatch" to="." method="SetMoveToAnyPatch"]
 [connection signal="pressed" from="VBoxContainer/RevealAllPatches" to="." method="OnRevealAllPatchesPressed"]
 [connection signal="pressed" from="VBoxContainer/UnlockAllOrganelles" to="." method="OnUnlockAllOrganellesPressed"]
