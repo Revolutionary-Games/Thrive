@@ -1,14 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://d116aks100ulm"]
+[gd_scene load_steps=12 format=3 uid="uid://d116aks100ulm"]
 
 [ext_resource type="Script" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="PackedScene" path="res://src/gui_common/KeyPrompt.tscn" id="3"]
 [ext_resource type="Script" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
-[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="9"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_s6a8v"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="10"]
-[ext_resource type="PackedScene" path="res://src/gui_common/ControlHighlight.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://c46wnild4hluc" path="res://src/gui_common/ControlHighlight.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
 [ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
@@ -52,7 +51,8 @@ anchors_preset = 0
 
 [node name="MicrobeWelcome" parent="." instance=ExtResource("13")]
 custom_minimum_size = Vector2(450, 430)
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -101,9 +101,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="CheckBox" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("8")]
+[node name="CheckBox" type="CheckBox" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+size_flags_horizontal = 0
 button_pressed = true
 text = "SHOW_TUTORIALS"
 
@@ -331,7 +331,8 @@ PreventsMouseCaptureWhileOpen = true
 
 [node name="CheckHelpMenu" parent="." instance=ExtResource("13")]
 custom_minimum_size = Vector2(260, 240)
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
