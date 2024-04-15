@@ -222,7 +222,6 @@ custom_minimum_size = Vector2(750, 600)
 layout_mode = 2
 
 [node name="Graphics" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -1343,6 +1342,7 @@ focus_previous = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/V
 text = "RESET_KEYBINDINGS"
 
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
