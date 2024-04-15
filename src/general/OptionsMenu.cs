@@ -349,20 +349,20 @@ public partial class OptionsMenu : ControlWithInput
 
     // Graphics tab
     private Control graphicsTab = null!;
-    private CustomCheckBox vsync = null!;
-    private CustomCheckBox fullScreen = null!;
+    private CheckBox vsync = null!;
+    private CheckBox fullScreen = null!;
     private Label? resolution;
     private OptionButton msaaResolution = null!;
     private OptionButton maxFramesPerSecond = null!;
     private OptionButton colourblindSetting = null!;
-    private CustomCheckBox chromaticAberrationToggle = null!;
+    private CheckBox chromaticAberrationToggle = null!;
     private Slider chromaticAberrationSlider = null!;
     private OptionButton controllerPromptType = null!;
-    private CustomCheckBox displayAbilitiesHotBarToggle = null!;
-    private CustomCheckBox displayBackgroundParticlesToggle = null!;
-    private CustomCheckBox guiLightEffectsToggle = null!;
-    private CustomCheckBox displayPartNamesToggle = null!;
-    private CustomCheckBox displayMenu3DBackgroundsToggle = null!;
+    private CheckBox displayAbilitiesHotBarToggle = null!;
+    private CheckBox displayBackgroundParticlesToggle = null!;
+    private CheckBox guiLightEffectsToggle = null!;
+    private CheckBox displayPartNamesToggle = null!;
+    private CheckBox displayMenu3DBackgroundsToggle = null!;
     private Label gpuName = null!;
     private Label usedRendererName = null!;
     private Label videoMemory = null!;
@@ -370,15 +370,15 @@ public partial class OptionsMenu : ControlWithInput
     // Sound tab
     private Control soundTab = null!;
     private Slider masterVolume = null!;
-    private CustomCheckBox masterMuted = null!;
+    private CheckBox masterMuted = null!;
     private Slider musicVolume = null!;
-    private CustomCheckBox musicMuted = null!;
+    private CheckBox musicMuted = null!;
     private Slider ambianceVolume = null!;
-    private CustomCheckBox ambianceMuted = null!;
+    private CheckBox ambianceMuted = null!;
     private Slider sfxVolume = null!;
-    private CustomCheckBox sfxMuted = null!;
+    private CheckBox sfxMuted = null!;
     private Slider guiVolume = null!;
-    private CustomCheckBox guiMuted = null!;
+    private CheckBox guiMuted = null!;
     private OptionButton audioOutputDeviceSelection = null!;
     private OptionButton languageSelection = null!;
     private Button resetLanguageButton = null!;
@@ -389,14 +389,14 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton cloudInterval = null!;
     private VBoxContainer cloudResolutionTitle = null!;
     private OptionButton cloudResolution = null!;
-    private CustomCheckBox runAutoEvoDuringGameplay = null!;
-    private CustomCheckBox runGameSimulationMultithreaded = null!;
+    private CheckBox runAutoEvoDuringGameplay = null!;
+    private CheckBox runGameSimulationMultithreaded = null!;
     private Label detectedCPUCount = null!;
     private Label activeThreadCount = null!;
-    private CustomCheckBox assumeHyperthreading = null!;
-    private CustomCheckBox useManualThreadCount = null!;
+    private CheckBox assumeHyperthreading = null!;
+    private CheckBox useManualThreadCount = null!;
     private Slider threadCountSlider = null!;
-    private CustomCheckBox useManualNativeThreadCount = null!;
+    private CheckBox useManualNativeThreadCount = null!;
     private Slider nativeThreadCountSlider = null!;
     private OptionButton maxSpawnedEntities = null!;
 
@@ -429,25 +429,25 @@ public partial class OptionsMenu : ControlWithInput
 
     // Misc tab
     private Control miscTab = null!;
-    private CustomCheckBox playIntro = null!;
-    private CustomCheckBox playMicrobeIntro = null!;
-    private CustomCheckBox cheats = null!;
-    private CustomCheckBox tutorialsEnabledOnNewGame = null!;
-    private CustomCheckBox autoSave = null!;
+    private CheckBox playIntro = null!;
+    private CheckBox playMicrobeIntro = null!;
+    private CheckBox cheats = null!;
+    private CheckBox tutorialsEnabledOnNewGame = null!;
+    private CheckBox autoSave = null!;
     private SpinBox maxAutoSaves = null!;
     private SpinBox maxQuickSaves = null!;
-    private CustomCheckBox customUsernameEnabled = null!;
+    private CheckBox customUsernameEnabled = null!;
     private LineEdit customUsername = null!;
-    private CustomCheckBox webFeedsEnabled = null!;
-    private CustomCheckBox showNewPatchNotes = null!;
+    private CheckBox webFeedsEnabled = null!;
+    private CheckBox showNewPatchNotes = null!;
     private Label dismissedNoticeCount = null!;
     private OptionButton jsonDebugMode = null!;
     private OptionButton screenEffectSelect = null!;
     private Label commitLabel = null!;
     private Label builtAtLabel = null!;
 
-    private CustomCheckBox tutorialsEnabled = null!;
-    private CustomCheckBox unsavedProgressWarningEnabled = null!;
+    private CheckBox tutorialsEnabled = null!;
+    private CheckBox unsavedProgressWarningEnabled = null!;
 
     // Confirmation Boxes
     private CustomConfirmationDialog screenshotDirectoryWarningBox = null!;
@@ -555,20 +555,20 @@ public partial class OptionsMenu : ControlWithInput
 
         // Graphics
         graphicsTab = GetNode<Control>(GraphicsTabPath);
-        vsync = GetNode<CustomCheckBox>(VSyncPath);
-        fullScreen = GetNode<CustomCheckBox>(FullScreenPath);
+        vsync = GetNode<CheckBox>(VSyncPath);
+        fullScreen = GetNode<CheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
         resolution = GetNode<Label>(ResolutionPath);
         maxFramesPerSecond = GetNode<OptionButton>(MaxFramesPerSecondPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
-        chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
+        chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
         controllerPromptType = GetNode<OptionButton>(ControllerPromptTypePath);
-        displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
-        displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
-        guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
-        displayPartNamesToggle = GetNode<CustomCheckBox>(DisplayPartNamesTogglePath);
-        displayMenu3DBackgroundsToggle = GetNode<CustomCheckBox>(DisplayMenu3DBackgroundsTogglePath);
+        displayAbilitiesHotBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
+        displayBackgroundParticlesToggle = GetNode<CheckBox>(DisplayBackgroundParticlesTogglePath);
+        guiLightEffectsToggle = GetNode<CheckBox>(GUILightEffectsTogglePath);
+        displayPartNamesToggle = GetNode<CheckBox>(DisplayPartNamesTogglePath);
+        displayMenu3DBackgroundsToggle = GetNode<CheckBox>(DisplayMenu3DBackgroundsTogglePath);
         gpuName = GetNode<Label>(GpuNamePath);
         usedRendererName = GetNode<Label>(UsedRendererNamePath);
         videoMemory = GetNode<Label>(VideoMemoryPath);
@@ -576,15 +576,15 @@ public partial class OptionsMenu : ControlWithInput
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
         masterVolume = GetNode<Slider>(MasterVolumePath);
-        masterMuted = GetNode<CustomCheckBox>(MasterMutedPath);
+        masterMuted = GetNode<CheckBox>(MasterMutedPath);
         musicVolume = GetNode<Slider>(MusicVolumePath);
-        musicMuted = GetNode<CustomCheckBox>(MusicMutedPath);
+        musicMuted = GetNode<CheckBox>(MusicMutedPath);
         ambianceVolume = GetNode<Slider>(AmbianceVolumePath);
-        ambianceMuted = GetNode<CustomCheckBox>(AmbianceMutedPath);
+        ambianceMuted = GetNode<CheckBox>(AmbianceMutedPath);
         sfxVolume = GetNode<Slider>(SFXVolumePath);
-        sfxMuted = GetNode<CustomCheckBox>(SFXMutedPath);
+        sfxMuted = GetNode<CheckBox>(SFXMutedPath);
         guiVolume = GetNode<Slider>(GUIVolumePath);
-        guiMuted = GetNode<CustomCheckBox>(GUIMutedPath);
+        guiMuted = GetNode<CheckBox>(GUIMutedPath);
         audioOutputDeviceSelection = GetNode<OptionButton>(AudioOutputDeviceSelectionPath);
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
@@ -595,14 +595,14 @@ public partial class OptionsMenu : ControlWithInput
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
         cloudResolutionTitle = GetNode<VBoxContainer>(CloudResolutionTitlePath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
-        runAutoEvoDuringGameplay = GetNode<CustomCheckBox>(RunAutoEvoDuringGameplayPath);
-        runGameSimulationMultithreaded = GetNode<CustomCheckBox>(RunGameSimulationMultithreadedPath);
+        runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
+        runGameSimulationMultithreaded = GetNode<CheckBox>(RunGameSimulationMultithreadedPath);
         detectedCPUCount = GetNode<Label>(DetectedCPUCountPath);
         activeThreadCount = GetNode<Label>(ActiveThreadCountPath);
-        assumeHyperthreading = GetNode<CustomCheckBox>(AssumeHyperthreadingPath);
-        useManualThreadCount = GetNode<CustomCheckBox>(UseManualThreadCountPath);
+        assumeHyperthreading = GetNode<CheckBox>(AssumeHyperthreadingPath);
+        useManualThreadCount = GetNode<CheckBox>(UseManualThreadCountPath);
         threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
-        useManualNativeThreadCount = GetNode<CustomCheckBox>(UseManualNativeThreadCountPath);
+        useManualNativeThreadCount = GetNode<CheckBox>(UseManualNativeThreadCountPath);
         nativeThreadCountSlider = GetNode<Slider>(NativeThreadCountSliderPath);
         maxSpawnedEntities = GetNode<OptionButton>(MaxSpawnedEntitiesPath);
 
@@ -634,25 +634,25 @@ public partial class OptionsMenu : ControlWithInput
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
-        playIntro = GetNode<CustomCheckBox>(PlayIntroPath);
-        playMicrobeIntro = GetNode<CustomCheckBox>(PlayMicrobeIntroPath);
-        tutorialsEnabledOnNewGame = GetNode<CustomCheckBox>(TutorialsEnabledOnNewGamePath);
-        cheats = GetNode<CustomCheckBox>(CheatsPath);
-        autoSave = GetNode<CustomCheckBox>(AutoSavePath);
+        playIntro = GetNode<CheckBox>(PlayIntroPath);
+        playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
+        tutorialsEnabledOnNewGame = GetNode<CheckBox>(TutorialsEnabledOnNewGamePath);
+        cheats = GetNode<CheckBox>(CheatsPath);
+        autoSave = GetNode<CheckBox>(AutoSavePath);
         maxAutoSaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuickSaves = GetNode<SpinBox>(MaxQuickSavesPath);
-        tutorialsEnabled = GetNode<CustomCheckBox>(TutorialsEnabledPath);
-        customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
+        tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
+        customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
-        webFeedsEnabled = GetNode<CustomCheckBox>(WebFeedsEnabledPath);
-        showNewPatchNotes = GetNode<CustomCheckBox>(ShowNewPatchNotesPath);
+        webFeedsEnabled = GetNode<CheckBox>(WebFeedsEnabledPath);
+        showNewPatchNotes = GetNode<CheckBox>(ShowNewPatchNotesPath);
         dismissedNoticeCount = GetNode<Label>(DismissedNoticeCountPath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
         screenEffectSelect = GetNode<OptionButton>(ScreenEffectSelectPath);
         commitLabel = GetNode<Label>(CommitLabelPath);
         builtAtLabel = GetNode<Label>(BuiltAtLabelPath);
         builtAtLabel.RegisterCustomFocusDrawer();
-        unsavedProgressWarningEnabled = GetNode<CustomCheckBox>(UnsavedProgressWarningPath);
+        unsavedProgressWarningEnabled = GetNode<CheckBox>(UnsavedProgressWarningPath);
 
         screenshotDirectoryWarningBox = GetNode<CustomConfirmationDialog>(ScreenshotDirectoryWarningBoxPath);
         backConfirmationBox = GetNode<CustomWindow>(BackConfirmationBoxPath);

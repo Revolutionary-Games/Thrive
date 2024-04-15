@@ -39,31 +39,31 @@ public partial class MicrobeCheatMenu : CheatMenu
     public NodePath TargetTimePath = null!;
 
 #pragma warning disable CA2213
-    private CustomCheckBox infiniteCompounds = null!;
-    private CustomCheckBox godMode = null!;
-    private CustomCheckBox disableAI = null!;
-    private CustomCheckBox unlimitGrowthSpeed = null!;
-    private CustomCheckBox lockTime = null!;
+    private CheckBox infiniteCompounds = null!;
+    private CheckBox godMode = null!;
+    private CheckBox disableAI = null!;
+    private CheckBox unlimitGrowthSpeed = null!;
+    private CheckBox lockTime = null!;
     private Slider speed = null!;
     private Button playerDivide = null!;
     private Button spawnEnemy = null!;
     private Button despawnAllEntities = null!;
-    private CustomCheckBox manuallySetTime = null!;
+    private CheckBox manuallySetTime = null!;
     private Slider targetTime = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
-        infiniteCompounds = GetNode<CustomCheckBox>(InfiniteCompoundsPath);
-        godMode = GetNode<CustomCheckBox>(GodModePath);
-        disableAI = GetNode<CustomCheckBox>(DisableAIPath);
-        unlimitGrowthSpeed = GetNode<CustomCheckBox>(UnlimitGrowthSpeedPath);
-        lockTime = GetNode<CustomCheckBox>(LockTimePath);
+        infiniteCompounds = GetNode<CheckBox>(InfiniteCompoundsPath);
+        godMode = GetNode<CheckBox>(GodModePath);
+        disableAI = GetNode<CheckBox>(DisableAIPath);
+        unlimitGrowthSpeed = GetNode<CheckBox>(UnlimitGrowthSpeedPath);
+        lockTime = GetNode<CheckBox>(LockTimePath);
         speed = GetNode<Slider>(SpeedSliderPath);
         playerDivide = GetNode<Button>(PlayerDividePath);
         despawnAllEntities = GetNode<Button>(DespawnAllEntitiesPath);
         spawnEnemy = GetNode<Button>(SpawnEnemyPath);
-        manuallySetTime = GetNode<CustomCheckBox>(ManuallySetTimePath);
+        manuallySetTime = GetNode<CheckBox>(ManuallySetTimePath);
         targetTime = GetNode<Slider>(TargetTimePath);
 
         playerDivide.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnPlayerDivideClicked)));

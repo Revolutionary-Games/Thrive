@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.cs" id="5"]
 
 [node name="PermanentlyDismissibleDialog" instance=ExtResource("1")]
-visible = true
 script = ExtResource("5")
 NoticeType = 0
 DialogType = 0

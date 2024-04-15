@@ -40,9 +40,9 @@ public partial class DebugOverlays : Control
     private Label debugCoordinates = null!;
     private CustomWindow inspectorDialog = null!;
     private CustomWindow debugPanelDialog = null!;
-    private CustomCheckBox fpsCheckBox = null!;
-    private CustomCheckBox performanceMetricsCheckBox = null!;
-    private CustomCheckBox inspectorCheckbox = null!;
+    private CheckBox fpsCheckBox = null!;
+    private CheckBox performanceMetricsCheckBox = null!;
+    private CheckBox inspectorCheckbox = null!;
     private Control fpsCounter = null!;
     private CustomWindow performanceMetrics = null!;
     private Control labelsLayer = null!;
@@ -63,9 +63,9 @@ public partial class DebugOverlays : Control
 
         debugCoordinates = GetNode<Label>(DebugCoordinatesPath);
         inspectorDialog = GetNode<CustomWindow>(InspectorDialogPath);
-        inspectorCheckbox = GetNode<CustomCheckBox>(InspectorCheckboxPath);
-        fpsCheckBox = GetNode<CustomCheckBox>(FPSCheckBoxPath);
-        performanceMetricsCheckBox = GetNode<CustomCheckBox>(PerformanceMetricsCheckBoxPath);
+        inspectorCheckbox = GetNode<CheckBox>(InspectorCheckboxPath);
+        fpsCheckBox = GetNode<CheckBox>(FPSCheckBoxPath);
+        performanceMetricsCheckBox = GetNode<CheckBox>(PerformanceMetricsCheckBoxPath);
         debugPanelDialog = GetNode<CustomWindow>(DebugPanelDialogPath);
         fpsCounter = GetNode<Control>(FPSCounterPath);
         performanceMetrics = GetNode<CustomWindow>(PerformanceMetricsPath);

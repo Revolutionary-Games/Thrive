@@ -199,24 +199,24 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private Button worldExportButton = null!;
 
     // Auto-evo parameters controls.
-    private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
-    private CustomCheckBox allowSpeciesToNotMigrateCheckBox = null!;
+    private CheckBox allowSpeciesToNotMutateCheckBox = null!;
+    private CheckBox allowSpeciesToNotMigrateCheckBox = null!;
     private SpinBox biodiversityAttemptFillChanceSpinBox = null!;
     private SpinBox biodiversityFromNeighbourPatchChanceSpinBox = null!;
-    private CustomCheckBox biodiversityNearbyPatchIsFreePopulationCheckBox = null!;
-    private CustomCheckBox biodiversitySplitIsMutatedCheckBox = null!;
+    private CheckBox biodiversityNearbyPatchIsFreePopulationCheckBox = null!;
+    private CheckBox biodiversitySplitIsMutatedCheckBox = null!;
     private SpinBox lowBiodiversityLimitSpinBox = null!;
     private SpinBox maximumSpeciesInPatchSpinBox = null!;
     private SpinBox moveAttemptsPerSpeciesSpinBox = null!;
     private SpinBox mutationsPerSpeciesSpinBox = null!;
     private SpinBox newBiodiversityIncreasingSpeciesPopulationSpinBox = null!;
-    private CustomCheckBox protectMigrationsFromSpeciesCapCheckBox = null!;
-    private CustomCheckBox protectNewCellsFromSpeciesCapCheckBox = null!;
-    private CustomCheckBox refundMigrationsInExtinctionsCheckBox = null!;
-    private CustomCheckBox strictNicheCompetitionCheckBox = null!;
+    private CheckBox protectMigrationsFromSpeciesCapCheckBox = null!;
+    private CheckBox protectNewCellsFromSpeciesCapCheckBox = null!;
+    private CheckBox refundMigrationsInExtinctionsCheckBox = null!;
+    private CheckBox strictNicheCompetitionCheckBox = null!;
     private SpinBox speciesSplitByMutationThresholdPopulationAmountSpinBox = null!;
     private SpinBox speciesSplitByMutationThresholdPopulationFractionSpinBox = null!;
-    private CustomCheckBox useBiodiversityForceSplitCheckBox = null!;
+    private CheckBox useBiodiversityForceSplitCheckBox = null!;
 
     // Status controls
     private Label runStatusLabel = null!;
@@ -302,28 +302,28 @@ public partial class AutoEvoExploringTool : NodeWithInput
         currentWorldStatisticsLabel = GetNode<CustomRichTextLabel>(CurrentWorldStatisticsLabelPath);
         worldExportButton = GetNode<Button>(WorldExportButtonPath);
 
-        allowSpeciesToNotMutateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMutatePath);
-        allowSpeciesToNotMigrateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMigratePath);
+        allowSpeciesToNotMutateCheckBox = GetNode<CheckBox>(AllowSpeciesToNotMutatePath);
+        allowSpeciesToNotMigrateCheckBox = GetNode<CheckBox>(AllowSpeciesToNotMigratePath);
         biodiversityAttemptFillChanceSpinBox = GetNode<SpinBox>(BiodiversityAttemptFillChancePath);
         biodiversityFromNeighbourPatchChanceSpinBox = GetNode<SpinBox>(BiodiversityFromNeighbourPatchChancePath);
-        biodiversitySplitIsMutatedCheckBox = GetNode<CustomCheckBox>(BiodiversitySplitIsMutatedPath);
+        biodiversitySplitIsMutatedCheckBox = GetNode<CheckBox>(BiodiversitySplitIsMutatedPath);
         biodiversityNearbyPatchIsFreePopulationCheckBox =
-            GetNode<CustomCheckBox>(BiodiversityNearbyPatchIsFreePopulationPath);
+            GetNode<CheckBox>(BiodiversityNearbyPatchIsFreePopulationPath);
         lowBiodiversityLimitSpinBox = GetNode<SpinBox>(LowBiodiversityLimitPath);
         maximumSpeciesInPatchSpinBox = GetNode<SpinBox>(MaximumSpeciesInPatchPath);
         moveAttemptsPerSpeciesSpinBox = GetNode<SpinBox>(MoveAttemptsPerSpeciesPath);
         mutationsPerSpeciesSpinBox = GetNode<SpinBox>(MutationsPerSpeciesPath);
         newBiodiversityIncreasingSpeciesPopulationSpinBox =
             GetNode<SpinBox>(NewBiodiversityIncreasingSpeciesPopulationPath);
-        protectMigrationsFromSpeciesCapCheckBox = GetNode<CustomCheckBox>(ProtectMigrationsFromSpeciesCapPath);
-        protectNewCellsFromSpeciesCapCheckBox = GetNode<CustomCheckBox>(ProtectNewCellsFromSpeciesCapPath);
-        refundMigrationsInExtinctionsCheckBox = GetNode<CustomCheckBox>(RefundMigrationsInExtinctionsPath);
-        strictNicheCompetitionCheckBox = GetNode<CustomCheckBox>(StrictNicheCompetitionPath);
+        protectMigrationsFromSpeciesCapCheckBox = GetNode<CheckBox>(ProtectMigrationsFromSpeciesCapPath);
+        protectNewCellsFromSpeciesCapCheckBox = GetNode<CheckBox>(ProtectNewCellsFromSpeciesCapPath);
+        refundMigrationsInExtinctionsCheckBox = GetNode<CheckBox>(RefundMigrationsInExtinctionsPath);
+        strictNicheCompetitionCheckBox = GetNode<CheckBox>(StrictNicheCompetitionPath);
         speciesSplitByMutationThresholdPopulationAmountSpinBox =
             GetNode<SpinBox>(SpeciesSplitByMutationThresholdPopulationAmountPath);
         speciesSplitByMutationThresholdPopulationFractionSpinBox =
             GetNode<SpinBox>(SpeciesSplitByMutationThresholdPopulationFractionPath);
-        useBiodiversityForceSplitCheckBox = GetNode<CustomCheckBox>(UseBiodiversityForceSplitPath);
+        useBiodiversityForceSplitCheckBox = GetNode<CheckBox>(UseBiodiversityForceSplitPath);
 
         runStatusLabel = GetNode<Label>(RunStatusLabelPath);
         finishXGenerationsSpinBox = GetNode<SpinBox>(FinishXGenerationsSpinBoxPath);
