@@ -300,8 +300,8 @@ public partial class ProceduralDataCache : Node
     /// <param name="hash">Hash of <see cref="newValue"/></param>
     /// <typeparam name="T">Type of the value</typeparam>
     /// <returns>
-    /// True if existing value was good and no write should be performed to the cache (the existing value will be
-    /// in <see cref="newValue"/>)
+    ///   True if existing value was good and no write should be performed to the cache (the existing value will be
+    ///   in <see cref="newValue"/>)
     /// </returns>
     private bool TryUseExistingValueBeforeWrite<T>(Dictionary<long, CacheEntry<T>> cache, ref T newValue, long hash)
         where T : IDisposable, ICacheableData
