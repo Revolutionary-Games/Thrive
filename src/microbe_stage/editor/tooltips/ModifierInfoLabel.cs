@@ -12,8 +12,8 @@ public partial class ModifierInfoLabel : HBoxContainer
     private Label? valueLabel;
     private TextureRect? icon;
 
-    private LabelSettings modifierNameColor = null!;
-    private LabelSettings modifierValueColor = null!;
+    private LabelSettings modifierNameFont = null!;
+    private LabelSettings modifierValueFont = null!;
 
     private LabelSettings? originalModifier;
     private LabelSettings? positiveModifierColour;
@@ -50,30 +50,30 @@ public partial class ModifierInfoLabel : HBoxContainer
     }
 
     [Export]
-    public LabelSettings ModifierNameColor
+    public LabelSettings ModifierNameFont
     {
-        get => modifierNameColor;
+        get => modifierNameFont;
         set
         {
             // These null checks were added here to guard against bug only in exported game
             if (value == null!)
                 throw new ArgumentNullException();
 
-            modifierNameColor = value;
+            modifierNameFont = value;
             UpdateName();
         }
     }
 
     [Export]
-    public LabelSettings ModifierValueColor
+    public LabelSettings ModifierValueFont
     {
-        get => modifierValueColor;
+        get => modifierValueFont;
         set
         {
             if (value == null!)
                 throw new ArgumentNullException();
 
-            modifierValueColor = value;
+            modifierValueFont = value;
 
             // This is called before the cleanup below as this will stop using the data to be deleted
             UpdateValue();
@@ -115,13 +115,13 @@ public partial class ModifierInfoLabel : HBoxContainer
     public override void _Ready()
     {
         // These null checks were added here to guard against bug only in exported game
-        if (modifierNameColor == null)
+        if (modifierNameFont == null)
         {
             throw new InvalidOperationException("Modifier info label doesn't have name font set, at: " +
                 GetPath());
         }
 
-        if (modifierValueColor == null)
+        if (modifierValueFont == null)
         {
             throw new InvalidOperationException("Modifier info label doesn't have value font set, at: " +
                 GetPath());
@@ -151,7 +151,7 @@ public partial class ModifierInfoLabel : HBoxContainer
     /// </param>
     public void AdjustValueColor(float value, bool inverted = false)
     {
-        originalModifier ??= ModifierValueColor;
+        originalModifier ??= ModifierValueFont;
 
         // Note that this method doesn't set things through ModifierValueColor as that would be detected as a new
         // default colour. This is a bit of a mess as this code wasn't re-architected for Godot 4 but instead hacked
@@ -162,30 +162,30 @@ public partial class ModifierInfoLabel : HBoxContainer
             if (inverted)
             {
                 negativeModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(1, 0.3f, 0.3f));
-                modifierValueColor = negativeModifierColour;
+                modifierValueFont = negativeModifierColour;
             }
             else
             {
                 positiveModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(0, 1, 0));
-                modifierValueColor = positiveModifierColour;
+                modifierValueFont = positiveModifierColour;
             }
         }
         else if (value == 0)
         {
             if (originalModifier != null)
-                modifierValueColor = originalModifier;
+                modifierValueFont = originalModifier;
         }
         else
         {
             if (inverted)
             {
                 positiveModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(0, 1, 0));
-                modifierValueColor = positiveModifierColour;
+                modifierValueFont = positiveModifierColour;
             }
             else
             {
                 negativeModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(1, 0.3f, 0.3f));
-                modifierValueColor = negativeModifierColour;
+                modifierValueFont = negativeModifierColour;
             }
         }
 
@@ -204,7 +204,7 @@ public partial class ModifierInfoLabel : HBoxContainer
             return;
 
         nameLabel.Text = displayName;
-        nameLabel.LabelSettings = modifierNameColor;
+        nameLabel.LabelSettings = modifierNameFont;
     }
 
     private void UpdateValue()
@@ -216,7 +216,7 @@ public partial class ModifierInfoLabel : HBoxContainer
 
         valueLabel.Text = modifierValue;
 
-        valueLabel.LabelSettings = modifierValueColor;
+        valueLabel.LabelSettings = modifierValueFont;
     }
 
     private void UpdateIcon()
