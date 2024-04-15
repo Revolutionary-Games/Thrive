@@ -152,6 +152,10 @@ public partial class CellEditorComponent
         float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float baseMobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
 
+        // Don't show negative zero
+        if (baseMobilityChange == 0 && float.IsNegative(baseMobilityChange))
+            baseMobilityChange = 0;
+
         if (healthModifier != null)
         {
             healthModifier.ModifierValue =
