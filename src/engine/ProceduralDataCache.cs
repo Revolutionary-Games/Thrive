@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Godot;
 
 /// <summary>
@@ -16,10 +18,29 @@ public partial class ProceduralDataCache : Node
 
     private readonly Dictionary<long, CacheEntry<MembraneCollisionShape>> membraneCollisions = new();
 
+    /// <summary>
+    ///   When due to a hash collision a value needs to be written anyway on top of a cache entry (that may have been
+    ///   returned already, see <see cref="onConflictPreferOlder"/> about how that can be handled safely) this is used
+    ///   to perform the disposal of the object later to hopefully not dispose the object while the previous cache
+    ///   writer is still using it.
+    /// </summary>
+    private readonly List<IDisposable> conflictedEntriesToDispose = new();
+
+    /// <summary>
+    ///   When enabled, prefers older entries in the cache to not mess with already returned data being randomly
+    ///   disposed.
+    /// </summary>
+    private readonly bool onConflictPreferOlder = true;
+
     private MainGameState previousState = MainGameState.Invalid;
 
     private float currentTime;
     private double timeSinceClean;
+
+    /// <summary>
+    ///   Counts how many cache writes are abandoned due to another thread already creating a cache entry for that data
+    /// </summary>
+    private int wastedRecalculations;
 
     private ProceduralDataCache()
     {
@@ -47,6 +68,16 @@ public partial class ProceduralDataCache : Node
         lock (membraneCollisions)
         {
             ClearCacheData(membraneCollisions);
+        }
+
+        lock (conflictedEntriesToDispose)
+        {
+            foreach (var disposable in conflictedEntriesToDispose)
+            {
+                disposable.Dispose();
+            }
+
+            conflictedEntriesToDispose.Clear();
         }
 
         if (instance == this)
@@ -80,6 +111,26 @@ public partial class ProceduralDataCache : Node
         {
             CleanOldCacheEntriesIn(membraneCollisions, Constants.PROCEDURAL_CACHE_MICROBE_SHAPE_TIME);
         }
+
+        lock (conflictedEntriesToDispose)
+        {
+            foreach (var disposable in conflictedEntriesToDispose)
+            {
+                disposable.Dispose();
+            }
+
+            conflictedEntriesToDispose.Clear();
+        }
+
+        if (wastedRecalculations > 10)
+        {
+            GD.Print("Cache data computations that were duplicate work: " + wastedRecalculations);
+            wastedRecalculations = 0;
+        }
+
+        // Would be better to make clearing this slightly rarer, but for now is probably fine to leverage the existing
+        // processing interval here
+        CacheableDataExtensions.ClearCollisionWarnings();
     }
 
     /// <summary>
@@ -124,6 +175,11 @@ public partial class ProceduralDataCache : Node
             if (!membraneCache.TryGetValue(hash, out var entry))
                 return null;
 
+#if DEBUG
+            if (entry.Value.Disposed)
+                throw new InvalidOperationException("Value was not removed from cache before dispose");
+#endif
+
             entry.LastUsed = currentTime;
             return entry.Value;
         }
@@ -132,26 +188,20 @@ public partial class ProceduralDataCache : Node
     /// <summary>
     ///   Writes calculated membrane data to the cache
     /// </summary>
-    /// <param name="pointData">The data to write</param>
+    /// <param name="pointData">
+    ///   The data to write. Taken as a ref parameter to replace the value if another thread just managed to write data
+    ///   to the cache.
+    /// </param>
     /// <returns>The hash of the cache entry</returns>
-    public long WriteMembraneData(MembranePointData pointData)
+    public long WriteMembraneData(ref MembranePointData pointData)
     {
         var hash = pointData.ComputeCacheHash();
 
         lock (membraneCache)
         {
-            // Ensure old data is not lost without disposing
-            if (membraneCache.TryGetValue(hash, out var existing))
-            {
-                // Skip adding same object to the cache multiple times
-                if (ReferenceEquals(existing.Value, pointData))
-                {
-                    existing.LastUsed = currentTime;
-                    return hash;
-                }
-
-                existing.Value.Dispose();
-            }
+            // Ensure old data overwrite is done safely if required
+            if (TryUseExistingValueBeforeWrite(membraneCache, ref pointData, hash))
+                return hash;
 
             membraneCache[hash] = new CacheEntry<MembranePointData>(pointData, currentTime);
         }
@@ -168,6 +218,11 @@ public partial class ProceduralDataCache : Node
             if (!loadedShapes.TryGetValue(hash, out var entry))
                 return null;
 
+#if DEBUG
+            if (entry.Value.Shape.Disposed)
+                throw new InvalidOperationException("Holder of a disposed shape was not removed from cache");
+#endif
+
             entry.LastUsed = currentTime;
             return entry.Value.Shape;
         }
@@ -179,6 +234,7 @@ public partial class ProceduralDataCache : Node
 
         lock (loadedShapes)
         {
+            // This uses a bit special approach here as the data is not directly saved in the cache
             if (loadedShapes.TryGetValue(hash, out var existing))
             {
                 // Skip adding same object to the cache multiple times
@@ -188,7 +244,12 @@ public partial class ProceduralDataCache : Node
                     return hash;
                 }
 
-                existing.Value.Dispose();
+                // Dispose doesn't do anything here so this is commented out in case refactoring this is necessary
+                // at some point, then use of TryUseExistingValueBeforeWrite might be required to be all safe
+                // existing.Value.Dispose();
+
+                // TODO: make this more accurate by checking if the data is actually same in the cache?
+                Interlocked.Increment(ref wastedRecalculations);
             }
 
             loadedShapes[hash] =
@@ -205,33 +266,87 @@ public partial class ProceduralDataCache : Node
             if (!membraneCollisions.TryGetValue(hash, out var entry))
                 return null;
 
+#if DEBUG
+            if (entry.Value.Disposed)
+                throw new InvalidOperationException("Value was not removed from cache before dispose");
+#endif
+
             entry.LastUsed = currentTime;
             return entry.Value;
         }
     }
 
-    public long WriteMembraneCollisionShape(MembraneCollisionShape shape)
+    public long WriteMembraneCollisionShape(ref MembraneCollisionShape shape)
     {
         var hash = shape.ComputeCacheHash();
 
         lock (membraneCollisions)
         {
-            if (membraneCollisions.TryGetValue(hash, out var existing))
-            {
-                // Skip adding same object to the cache multiple times
-                if (ReferenceEquals(existing.Value, shape))
-                {
-                    existing.LastUsed = currentTime;
-                    return hash;
-                }
-
-                existing.Value.Dispose();
-            }
+            if (TryUseExistingValueBeforeWrite(membraneCollisions, ref shape, hash))
+                return hash;
 
             membraneCollisions[hash] = new CacheEntry<MembraneCollisionShape>(shape, currentTime);
         }
 
         return hash;
+    }
+
+    /// <summary>
+    ///   Checks existing entry in cache related to a new value. If someone populated the cache just now this replaces
+    ///   the new value to be from the cache. Also handles hash collisions.
+    /// </summary>
+    /// <param name="cache">Cache to operate on</param>
+    /// <param name="newValue">New value that wants to be written to the cache</param>
+    /// <param name="hash">Hash of <see cref="newValue"/></param>
+    /// <typeparam name="T">Type of the value</typeparam>
+    /// <returns>
+    /// True if existing value was good and no write should be performed to the cache (the existing value will be
+    /// in <see cref="newValue"/>)
+    /// </returns>
+    private bool TryUseExistingValueBeforeWrite<T>(Dictionary<long, CacheEntry<T>> cache, ref T newValue, long hash)
+        where T : IDisposable, ICacheableData
+    {
+        // Can skip doing any extra checks if there is nothing in the cache for the hash
+        if (!cache.TryGetValue(hash, out var existing))
+            return false;
+
+        // Skip adding same object to the cache multiple times
+        if (ReferenceEquals(existing.Value, newValue))
+        {
+            existing.LastUsed = currentTime;
+            return true;
+        }
+
+        // Replace the given data with one from the cache and dispose the now useless data. But only if it truly
+        // matches to work with hash collisions.
+        if (existing.Value.MatchesCacheParameters(newValue))
+        {
+            Interlocked.Increment(ref wastedRecalculations);
+
+            newValue.Dispose();
+            newValue = existing.Value;
+
+            existing.LastUsed = currentTime;
+            return true;
+        }
+
+        // Data didn't match after all, there's a hash collision
+        CacheableDataExtensions.OnCacheHashCollision<T>(hash);
+
+        if (!onConflictPreferOlder)
+        {
+            // Dispose the old cache value that will be overwritten
+            lock (conflictedEntriesToDispose)
+            {
+                conflictedEntriesToDispose.Add(existing.Value);
+            }
+
+            return false;
+        }
+
+        // Prefer to keep the old cache entry to not dispose already returned data. Tell the caller to assume we fixed
+        // things even though the new value is not in the cache.
+        return true;
     }
 
     private void CleanOldCacheEntriesIn<TKey, T>(Dictionary<TKey, CacheEntry<T>> entries, float keepTime)
@@ -315,7 +430,8 @@ public partial class ProceduralDataCache : Node
 
         public void Dispose()
         {
-            // Don't dispose point as something else might still be referring to it
+            // Don't dispose shape as something else might still be referring to it
+            // Note that WriteLoadedShape relies on this dispose being actually empty
             // Shape.Dispose();
         }
     }

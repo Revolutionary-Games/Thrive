@@ -23,6 +23,8 @@ public class PhysicsShape : IDisposable
         Dispose(false);
     }
 
+    public bool Disposed => disposed;
+
     public static PhysicsShape CreateBox(float halfSideLength, float density = 1000)
     {
         return new PhysicsShape(NativeMethods.CreateBoxShape(halfSideLength, density));
@@ -82,7 +84,7 @@ public class PhysicsShape : IDisposable
             CreateMicrobeShape(new ReadOnlySpan<JVecF3>(convertedData, 0, pointCount), overallDensity, scaleAsBacteria),
             convertedData, pointCount, overallDensity, scaleAsBacteria);
 
-        cache.WriteMembraneCollisionShape(result);
+        cache.WriteMembraneCollisionShape(ref result);
 
         return result.Shape;
     }
