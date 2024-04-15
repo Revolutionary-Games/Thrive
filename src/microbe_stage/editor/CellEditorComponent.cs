@@ -946,7 +946,7 @@ public partial class CellEditorComponent :
             return true;
 
         // Show warning popup if trying to exit with negative atp production
-        // Not shown in multicellular as the popup happens in kind of a weird place
+        // Not shown in multicellular as the popup happens in kind of weird place
         if (!IsMulticellularEditor && IsNegativeAtpProduction())
         {
             negativeAtpPopup.PopupCenteredShrink();

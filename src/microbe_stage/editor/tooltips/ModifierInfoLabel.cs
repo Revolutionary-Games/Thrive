@@ -7,17 +7,17 @@ using Godot;
 /// </summary>
 public partial class ModifierInfoLabel : HBoxContainer
 {
-    private readonly Lazy<LabelSettings> positiveModifierColour;
-    private readonly Lazy<LabelSettings> negativeModifierColour;
-
 #pragma warning disable CA2213
     private Label? nameLabel;
     private Label? valueLabel;
     private TextureRect? icon;
 
-    private LabelSettings modifierNameColor = null!;
-    private LabelSettings modifierValueColor = null!;
+    private LabelSettings modifierNameFont = null!;
+    private LabelSettings modifierValueFont = null!;
+
     private LabelSettings? originalModifier;
+    private LabelSettings? positiveModifierColour;
+    private LabelSettings? negativeModifierColour;
 
     private Texture2D? iconTexture;
 #pragma warning restore CA2213
@@ -26,16 +26,6 @@ public partial class ModifierInfoLabel : HBoxContainer
     private string modifierValue = string.Empty;
 
     private bool showValue = true;
-
-    public ModifierInfoLabel()
-    {
-        // This is a bit of a mess due to Godot 4 conversion, but for now this is enough and keeps AdjustValueColor
-        // API the same
-        positiveModifierColour =
-            new Lazy<LabelSettings>(() => originalModifier!.CloneWithDifferentColour(new Color(0, 1, 0)));
-        negativeModifierColour =
-            new Lazy<LabelSettings>(() => originalModifier!.CloneWithDifferentColour(new Color(1, 0.3f, 0.3f)));
-    }
 
     [Export]
     public string DisplayName
@@ -60,24 +50,40 @@ public partial class ModifierInfoLabel : HBoxContainer
     }
 
     [Export]
-    public LabelSettings ModifierNameColor
+    public LabelSettings ModifierNameFont
     {
-        get => modifierNameColor;
+        get => modifierNameFont;
         set
         {
-            modifierNameColor = value;
+            // These null checks were added here to guard against bug only in exported game
+            if (value == null!)
+                throw new ArgumentNullException();
+
+            modifierNameFont = value;
             UpdateName();
         }
     }
 
     [Export]
-    public LabelSettings ModifierValueColor
+    public LabelSettings ModifierValueFont
     {
-        get => modifierValueColor;
+        get => modifierValueFont;
         set
         {
-            modifierValueColor = value;
+            if (value == null!)
+                throw new ArgumentNullException();
+
+            modifierValueFont = value;
+
+            // This is called before the cleanup below as this will stop using the data to be deleted
             UpdateValue();
+
+            // Reset dependant colour data
+            originalModifier = null;
+            positiveModifierColour?.Dispose();
+            positiveModifierColour = null;
+            negativeModifierColour?.Dispose();
+            negativeModifierColour = null;
         }
     }
 
@@ -108,6 +114,19 @@ public partial class ModifierInfoLabel : HBoxContainer
 
     public override void _Ready()
     {
+        // These null checks were added here to guard against bug only in exported game
+        if (modifierNameFont == null)
+        {
+            throw new InvalidOperationException("Modifier info label doesn't have name font set, at: " +
+                GetPath());
+        }
+
+        if (modifierValueFont == null)
+        {
+            throw new InvalidOperationException("Modifier info label doesn't have value font set, at: " +
+                GetPath());
+        }
+
         nameLabel = GetNode<Label>("Name");
         valueLabel = GetNode<Label>("HBoxContainer/Value");
         icon = GetNode<TextureRect>("Icon");
@@ -132,21 +151,45 @@ public partial class ModifierInfoLabel : HBoxContainer
     /// </param>
     public void AdjustValueColor(float value, bool inverted = false)
     {
-        originalModifier ??= ModifierValueColor;
+        originalModifier ??= ModifierValueFont;
+
+        // Note that this method doesn't set things through ModifierValueColor as that would be detected as a new
+        // default colour. This is a bit of a mess as this code wasn't re-architected for Godot 4 but instead hacked
+        // to still fit the original pattern by creating variants of label settings.
 
         if (value > 0)
         {
-            ModifierValueColor = inverted ? negativeModifierColour.Value : positiveModifierColour.Value;
+            if (inverted)
+            {
+                negativeModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(1, 0.3f, 0.3f));
+                modifierValueFont = negativeModifierColour;
+            }
+            else
+            {
+                positiveModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(0, 1, 0));
+                modifierValueFont = positiveModifierColour;
+            }
         }
         else if (value == 0)
         {
             if (originalModifier != null)
-                ModifierValueColor = originalModifier;
+                modifierValueFont = originalModifier;
         }
         else
         {
-            ModifierValueColor = inverted ? positiveModifierColour.Value : negativeModifierColour.Value;
+            if (inverted)
+            {
+                positiveModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(0, 1, 0));
+                modifierValueFont = positiveModifierColour;
+            }
+            else
+            {
+                negativeModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(1, 0.3f, 0.3f));
+                modifierValueFont = negativeModifierColour;
+            }
         }
+
+        UpdateValue();
     }
 
     private void AdjustValueMinSize(float size)
@@ -161,7 +204,7 @@ public partial class ModifierInfoLabel : HBoxContainer
             return;
 
         nameLabel.Text = displayName;
-        nameLabel.LabelSettings = modifierNameColor;
+        nameLabel.LabelSettings = modifierNameFont;
     }
 
     private void UpdateValue()
@@ -173,7 +216,7 @@ public partial class ModifierInfoLabel : HBoxContainer
 
         valueLabel.Text = modifierValue;
 
-        valueLabel.LabelSettings = modifierValueColor;
+        valueLabel.LabelSettings = modifierValueFont;
     }
 
     private void UpdateIcon()
