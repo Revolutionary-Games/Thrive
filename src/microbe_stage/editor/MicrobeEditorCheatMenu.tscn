@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.cs" id="2"]
 
 [node name="MicrobeEditorCheatMenu" instance=ExtResource("1")]
-visible = true
 offset_right = 0.0
 offset_bottom = 0.0
 script = ExtResource("2")
@@ -20,11 +19,13 @@ offset_bottom = 17.0
 [node name="InfiniteMP" type="CheckBox" parent="VBoxContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
 text = "INFINITE_MP"
 
 [node name="MoveToAnyPatch" type="CheckBox" parent="VBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
 text = "MOVE_TO_ANY_PATCH"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="2"]

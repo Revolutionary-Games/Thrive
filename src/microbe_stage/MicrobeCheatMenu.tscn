@@ -31,21 +31,25 @@ offset_bottom = 142.0
 [node name="InfiniteCompounds" type="CheckBox" parent="VBoxContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
 text = "INFINITE_COMPOUNDS"
 
 [node name="GodMode" type="CheckBox" parent="VBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
 text = "GODMODE"
 
 [node name="DisableAI" type="CheckBox" parent="VBoxContainer" index="2"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
 text = "NO_AI"
 
 [node name="UnlimitGrowthSpeed" type="CheckBox" parent="VBoxContainer" index="3"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
 text = "UNLIMIT_GROWTH_SPEED"
 
 [node name="Speed" type="HBoxContainer" parent="VBoxContainer" index="4"]
@@ -89,11 +93,13 @@ layout_mode = 2
 [node name="LockTime" type="CheckBox" parent="VBoxContainer" index="10"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
 text = "LOCK_DAY_NIGHT_CYCYLE"
 
 [node name="ManuallySetTime" type="CheckBox" parent="VBoxContainer" index="11"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
 text = "MANUALLY_SET_TIME"
 
 [node name="TargetTime" type="HBoxContainer" parent="VBoxContainer" index="12"]
