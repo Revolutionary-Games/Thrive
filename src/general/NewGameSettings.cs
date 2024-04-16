@@ -911,7 +911,6 @@ public partial class NewGameSettings : ControlWithInput
     {
         dayLengthContainer.Modulate = pressed ? Colors.White : new Color(1.0f, 1.0f, 1.0f, 0.5f);
         dayLength.Editable = pressed;
-        dayLength.Scrollable = pressed;
     }
 
     private void OnDayLengthChanged(double length)
