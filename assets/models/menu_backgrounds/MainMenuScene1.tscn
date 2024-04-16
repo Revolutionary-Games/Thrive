@@ -48,7 +48,7 @@ adjustment_saturation = 0.99
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5nfsl"]
 auto_exposure_scale = 0.01
-auto_exposure_speed = 21.47
+auto_exposure_speed = 19.92
 
 [sub_resource type="StandardMaterial3D" id="19"]
 albedo_color = Color(0, 0, 0, 1)
@@ -127,56 +127,140 @@ _data = {
 resource_name = "CameraAnimation"
 length = 12.0
 loop_mode = 1
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Camera3D:position:x")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4.2, 6.5, 12),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(83.6333, -4.91601, 35.7499), Vector3(83.6333, -4.58666, 35.7499), Vector3(83.6332, -4.52318, 35.7499), Vector3(83.6333, -4.91601, 35.7499)]
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-67.6689, -0.25, 0, 0.25, 0, -67.6689, -0.25, 0, 0.25, 0, -67.6689, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 6, 12)
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:rotation")
-tracks/1/interp = 2
+tracks/1/path = NodePath("Camera3D:position:y")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.6, 3.1, 3.9, 5.8, 12),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.00326379, 1.73732, -0.0111876), Vector3(0.0256693, 1.76537, -0.00632363), Vector3(0.0241303, 1.77464, -0.00658236), Vector3(0.0241303, 1.77464, -0.00658236), Vector3(0.0158197, 1.72625, -0.00797945), Vector3(-0.00326379, 1.73732, -0.0111876)]
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-4.91601, -0.25, 0, 0.25, 0, -4.68188, -0.25, 0, 0.25, 0, -4.91601, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 6, 12)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(34.013, -0.25, 0, 0.25, 0, 34.013, -0.25, 0, 0.25, 0, 34.013, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 6, 12)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.00326379, -0.25, 0, 0.25, 0, 0.0195804, -0.25, 0, 0.25, 0, -0.00326379, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 6, 12)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3D:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.03397, -0.25, 0, 0.25, 0, -1.02316, -0.25, 0, 0.25, 0, -1.03397, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 6, 12)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera3D:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.0111876, -0.25, 0, 0.25, 0, 0.0027424, -0.25, 0, 0.25, 0, -0.0111876, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 6, 12)
 }
 
 [sub_resource type="Animation" id="24"]
 length = 0.001
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
+tracks/0/path = NodePath("Camera3D:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(83.6333, -4.91601, 35.7499)]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-67.6689, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/path = NodePath("Camera3D:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.00326379, 1.73732, -0.0111876)]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-4.91601, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(34.013, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.00326379, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3D:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.03397, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera3D:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.0111876, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vqvxl"]
@@ -229,15 +313,15 @@ camera_attributes = SubResource("CameraAttributesPractical_5nfsl")
 transform = Transform3D(10000, -2.45937, 1.74549, 2.44336, 9999.6, 91.1048, -1.76782, -91.1044, 9999.6, -12.7566, 0, 8.74701)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.165541, -0.0050677, 0.985177, -0.0111761, 0.998933, 0.00326052, -0.985127, -0.0104812, -0.165586, 83.6333, -4.91601, 35.7499)
+transform = Transform3D(0.510839, 0.00851735, -0.858472, -0.0111761, 0.998933, 0.00326052, 0.858441, 0.0079367, 0.510899, -67.6689, -4.91601, 34.013)
 current = true
 fov = 36.8
 far = 15000.0
 
 [node name="Sun" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 8.94964e-08, 0, 1, 0, -8.94964e-08, 0, 1, -36.3572, 21.976, 86.7955)
+transform = Transform3D(1, 0, 3.28153e-07, 0, 1, 0, -3.28153e-07, 0, 1, 26.1623, 30.7487, -115.11)
 light_color = Color(0.972549, 0.956863, 0.937255, 1)
-light_energy = 1.135
+light_energy = 1.763
 light_indirect_energy = 1.263
 light_size = 50000.0
 light_specular = 1.682
@@ -255,7 +339,7 @@ material = SubResource("19")
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 8.509, -18.562, 18.955)
 
 [node name="MenuPlanetClouds" parent="MenuPlanet" instance=ExtResource("4")]
-transform = Transform3D(1.01, 0, 5.96046e-08, 0, 1.01, 0, -5.96046e-08, 0, 1.01, 0.0965969, 0, 0.0286719)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0.096597, 0, 0.028672)
 
 [node name="PlanetRotation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -265,13 +349,13 @@ autoplay = "PlanetRotation"
 speed_scale = 0.1
 
 [node name="Comet" parent="." instance=ExtResource("4_6futg")]
-transform = Transform3D(0.187404, -0.0104855, -0.982227, -0.112538, 0.993132, -0.0320738, 0.975816, 0.116549, 0.184937, 29.6102, -2.46547, 61.8117)
+transform = Transform3D(-0.435714, -0.0203125, 0.899856, -0.112538, 0.993131, -0.0320738, -0.893022, -0.115243, -0.435007, -28.3748, -2.46547, 2.2588)
 
 [node name="Comet2" parent="." instance=ExtResource("4_6futg")]
-transform = Transform3D(0.187404, -0.0104855, -0.982227, -0.112538, 0.993131, -0.0320737, 0.975816, 0.116549, 0.184937, 24.0273, -6.87857, 68.2232)
+transform = Transform3D(-0.435714, -0.0203125, 0.899856, -0.112538, 0.99313, -0.0320737, -0.893022, -0.115243, -0.435007, -24.6598, -6.87856, -5.38809)
 
 [node name="Comet3" parent="." instance=ExtResource("4_6futg")]
-transform = Transform3D(0.187404, -0.0104855, -0.982228, -0.112538, 0.993133, -0.0320738, 0.975816, 0.116549, 0.184937, 57.433, -10.7811, 45.593)
+transform = Transform3D(-0.435714, -0.0203125, 0.899856, -0.112538, 0.993132, -0.0320737, -0.893022, -0.115243, -0.435007, -48.2075, -10.7811, 20.8856)
 
 [node name="CameraAnimation" type="AnimationPlayer" parent="."]
 libraries = {
