@@ -77,7 +77,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource("8")
 expand_mode = 1
-stretch_mode = 7
+stretch_mode = 6
 
 [node name="GUI" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -750,8 +750,8 @@ Movable = false
 [connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerationsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerations" to="." method="OnFinishXGenerationsButtonPressed"]
 [connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorldsSpin" to="." method="OnRunXWorldsSpinBoxValueChanged"]
-[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnFinishXGenerationsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnFinishXGenerationsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton" to="." method="ExportWorlds"]
