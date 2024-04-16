@@ -378,7 +378,7 @@ public partial class CustomWindow : TopLevelContainer
     }
 
     /// <summary>
-    ///   Overrides the minimum size to account for default elements (e.g title, close button, margin) rect size
+    ///   Overrides the minimum size to account for default elements (e.g. title, close button, margin) rect size
     ///   and for the other custom added contents on the window.
     /// </summary>
     public override Vector2 _GetMinimumSize()
@@ -678,7 +678,8 @@ public partial class CustomWindow : TopLevelContainer
         {
             StretchMode = TextureButton.StretchModeEnum.KeepAspectCentered,
             CustomMinimumSize = new Vector2(14, 14),
-            MouseFilter = MouseFilterEnum.Pass,
+            MouseFilter = MouseFilterEnum.Stop,
+            MouseForcePassScrollEvents = false,
         };
 
         closeButton.SetAnchorsPreset(LayoutPreset.TopRight);
