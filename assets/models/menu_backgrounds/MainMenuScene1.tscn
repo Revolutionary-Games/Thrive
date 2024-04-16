@@ -313,7 +313,7 @@ camera_attributes = SubResource("CameraAttributesPractical_5nfsl")
 transform = Transform3D(10000, -2.45937, 1.74549, 2.44336, 9999.6, 91.1048, -1.76782, -91.1044, 9999.6, -12.7566, 0, 8.74701)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.510839, 0.00851735, -0.858472, -0.0111761, 0.998933, 0.00326052, 0.858441, 0.0079367, 0.510899, -67.6689, -4.91601, 34.013)
+transform = Transform3D(0.510837, 0.00851734, -0.858473, -0.0111761, 0.998933, 0.00326052, 0.858442, 0.00793674, 0.510898, -67.6689, -4.91601, 34.013)
 current = true
 fov = 36.8
 far = 15000.0
@@ -339,7 +339,10 @@ material = SubResource("19")
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 20.8068, -18.562, 23.6122)
 
 [node name="MenuPlanetClouds" parent="MenuPlanet" instance=ExtResource("4")]
-transform = Transform3D(1.01, 0, -2.98023e-08, 0, 1.01, 0, 2.98023e-08, 0, 1.01, -0.0742669, 0, 0.0174744)
+transform = Transform3D(1.02, 0, -3.00974e-08, 0, 1.02, 0, 3.00974e-08, 0, 1.02, 0, 0, 0)
+
+[node name="MenuPlanet2" parent="MenuPlanet" instance=ExtResource("5")]
+transform = Transform3D(-0.175385, 0, 0.994658, 0, 1.01, 0, -0.99466, 0, -0.175385, 0, 0, 0)
 
 [node name="PlanetRotation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -355,7 +358,7 @@ transform = Transform3D(-0.435714, -0.0203125, 0.899856, -0.112538, 0.993131, -0
 transform = Transform3D(-0.435714, -0.0203125, 0.899856, -0.112538, 0.99313, -0.0320737, -0.893022, -0.115243, -0.435007, -24.6598, -6.87856, -5.38809)
 
 [node name="Comet3" parent="." instance=ExtResource("4_6futg")]
-transform = Transform3D(-0.435714, -0.0203125, 0.899856, -0.112538, 0.993132, -0.0320737, -0.893022, -0.115243, -0.435007, -48.2075, -10.7811, 20.8856)
+transform = Transform3D(-0.435716, -0.0203126, 0.899858, -0.112538, 0.993134, -0.0320738, -0.893024, -0.115243, -0.435009, -50.2067, -10.7811, 10.4715)
 
 [node name="CameraAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -363,11 +366,6 @@ libraries = {
 }
 autoplay = "CameraAnimation"
 speed_scale = 0.5
-
-[node name="MenuPlanet2" parent="." instance=ExtResource("5")]
-editor_description = "Disabled as I have no clue how to make this look good -hhyyrylainen"
-transform = Transform3D(-6.72843, -7.50564, 0.63569, 2.65641, -1.56677, 9.61766, -7.04858, 6.57428, 3.01779, 24.054, -19.2127, 21.1684)
-visible = false
 
 [node name="FakeAtmoshereParticle" type="CPUParticles3D" parent="."]
 transform = Transform3D(-1001.23, 0, 5915.88, 0, 6000.04, 0, -5915.88, 0, -1001.23, 21.3612, -18.8713, 23.9765)
