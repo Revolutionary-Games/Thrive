@@ -15,7 +15,7 @@ public partial class PermanentlyDismissibleDialog : CustomConfirmationDialog
     public PermanentDismissTypeEnum PermanentDismissType = PermanentDismissTypeEnum.RememberOnConfirm;
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
-    private CustomCheckBox checkbox = null!;
+    private CheckBox checkbox = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
     public enum DialogTypeEnum
@@ -34,7 +34,7 @@ public partial class PermanentlyDismissibleDialog : CustomConfirmationDialog
     {
         base._Ready();
 
-        checkbox = GetNode<CustomCheckBox>("VBoxContainer/CheckBox");
+        checkbox = GetNode<CheckBox>("VBoxContainer/CheckBox");
 
         switch (DialogType)
         {

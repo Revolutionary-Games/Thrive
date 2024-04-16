@@ -9,12 +9,12 @@ public partial class MicrobeEditorCheatMenu : CheatMenu
     public NodePath? InfiniteMpPath;
 
 #pragma warning disable CA2213
-    private CustomCheckBox infiniteMp = null!;
+    private CheckBox infiniteMp = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
-        infiniteMp = GetNode<CustomCheckBox>(InfiniteMpPath);
+        infiniteMp = GetNode<CheckBox>(InfiniteMpPath);
         base._Ready();
     }
 

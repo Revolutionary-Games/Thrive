@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://khgb1ctp1e5o"]
+[gd_scene load_steps=25 format=3 uid="uid://khgb1ctp1e5o"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/general/OptionsMenu.cs" id="2"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="8"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="8_jegpj"]
 [ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="9"]
-[ext_resource type="PackedScene" uid="uid://dtukmqrvwffbl" path="res://src/gui_common/CustomCheckBox.tscn" id="10"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="11"]
 [ext_resource type="PackedScene" uid="uid://00dm1uexdc6n" path="res://src/engine/input/ControllerDeadzoneConfiguration.tscn" id="12"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="12_ajn4i"]
@@ -248,15 +247,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Vsync" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="Vsync" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "VSYNC"
 
-[node name="Fullscreen" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="Fullscreen" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 focus_neighbor_bottom = NodePath("../HBoxContainer/MSAAResolution")
+focus_next = NodePath("../HBoxContainer/MSAAResolution")
 text = "FULLSCREEN"
 
 [node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("13")]
@@ -383,8 +383,9 @@ popup/item_2/id = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ChromaticToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("10")]
+[node name="ChromaticToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
+size_flags_horizontal = 0
 focus_neighbor_top = NodePath("../../HBoxContainer2/ColourblindSetting")
 focus_neighbor_right = NodePath("../ChromaticAmount")
 focus_neighbor_bottom = NodePath("../../DisplayBackgroundParticles")
@@ -402,18 +403,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_neighbor_bottom = NodePath("../../DisplayBackgroundParticles")
-focus_next = NodePath("../../DisplayBackgroundParticles")
+focus_previous = NodePath("../ChromaticToggle")
 min_value = 10.0
 max_value = 50.0
 value = 20.0
 scrollable = false
 
-[node name="DisplayBackgroundParticles" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="DisplayBackgroundParticles" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "DISPLAY_BACKGROUND_PARTICLES"
 
-[node name="Menu3DBackgroundsToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="Menu3DBackgroundsToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 focus_neighbor_bottom = NodePath("../HBoxContainer10/ControllerPromptType")
@@ -501,6 +502,7 @@ size_flags_vertical = 0
 focus_neighbor_left = NodePath("../../DisplayAbilitiesBar")
 focus_neighbor_top = NodePath("../../Menu3DBackgroundsToggle")
 focus_neighbor_bottom = NodePath("../../DisplayAbilitiesBar")
+focus_next = NodePath("../../DisplayAbilitiesBar")
 focus_previous = NodePath("../../Menu3DBackgroundsToggle")
 item_count = 7
 selected = 0
@@ -519,22 +521,21 @@ popup/item_5/id = 5
 popup/item_6/text = "PLAYSTATION_5"
 popup/item_6/id = 6
 
-[node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="DisplayAbilitiesBar" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 focus_neighbor_top = NodePath("../HBoxContainer10/ControllerPromptType")
+focus_previous = NodePath("../HBoxContainer10/ControllerPromptType")
 text = "DISPLAY_ABILITIES_BAR"
 
-[node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="GUILightsEffectToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "ENABLE_GUI_LIGHT_EFFECTS"
 
-[node name="DisplayPartNamesToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="DisplayPartNamesToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_bottom = NodePath("../../../../../../../HBoxContainer/Back")
-focus_next = NodePath("../../../../../../../HBoxContainer/Back")
 text = "DISPLAY_PART_NAMES"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
@@ -573,7 +574,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_neighbor_top = NodePath("../MasterMuted")
-focus_neighbor_right = NodePath("../MasterMuted")
+focus_next = NodePath("../../HBoxContainer2/MusicVolume")
+focus_previous = NodePath("../MasterMuted")
 value = 100.0
 scrollable = false
 
@@ -581,10 +583,12 @@ scrollable = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("3")
 
-[node name="MasterMuted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("10")]
+[node name="MasterMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_bottom = NodePath("../../HBoxContainer2/MusicMuted")
+focus_neighbor_top = NodePath(".")
+focus_next = NodePath("../MasterVolume")
+focus_previous = NodePath(".")
 text = "MUTE"
 
 [node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("13")]
@@ -608,7 +612,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_right = NodePath("../MusicMuted")
 value = 80.0
 scrollable = false
 
@@ -616,11 +619,9 @@ scrollable = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("3")
 
-[node name="MusicMuted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("10")]
+[node name="MusicMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_top = NodePath("../../HBoxContainer/MasterMuted")
-focus_neighbor_bottom = NodePath("../../HBoxContainer3/AmbianceMuted")
 text = "MUTE"
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -635,7 +636,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_right = NodePath("../AmbianceMuted")
 value = 80.0
 scrollable = false
 
@@ -643,11 +643,9 @@ scrollable = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("3")
 
-[node name="AmbianceMuted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("10")]
+[node name="AmbianceMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_top = NodePath("../../HBoxContainer2/MusicMuted")
-focus_neighbor_bottom = NodePath("../../HBoxContainer4/SFXMuted")
 text = "MUTE"
 
 [node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -662,7 +660,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_right = NodePath("../SFXMuted")
 value = 80.0
 scrollable = false
 
@@ -670,11 +667,9 @@ scrollable = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("3")
 
-[node name="SFXMuted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("10")]
+[node name="SFXMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_top = NodePath("../../HBoxContainer3/AmbianceMuted")
-focus_neighbor_bottom = NodePath("../../HBoxContainer5/GUIMuted")
 text = "MUTE"
 
 [node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -689,7 +684,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_right = NodePath("../GUIMuted")
 value = 80.0
 scrollable = false
 
@@ -697,11 +691,9 @@ scrollable = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("3")
 
-[node name="GUIMuted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("10")]
+[node name="GUIMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_top = NodePath("../../HBoxContainer4/SFXMuted")
-focus_neighbor_bottom = NodePath("../../AudioOutputDevicesButton")
 text = "MUTE"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -714,7 +706,6 @@ text = "AUDIO_OUTPUT_DEVICE"
 [node name="AudioOutputDevicesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_top = NodePath("../HBoxContainer5/GUIMuted")
 
 [node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -733,6 +724,9 @@ size_flags_horizontal = 3
 [node name="LanguagesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../ResetLanguageButton")
+focus_neighbor_bottom = NodePath("../../TranslationSiteButton")
+focus_next = NodePath("../../TranslationSiteButton")
 
 [node name="ResetLanguageButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 visible = false
@@ -749,7 +743,9 @@ autowrap_mode = 3
 
 [node name="TranslationSiteButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../HBoxContainer6/LanguagesButton")
 focus_neighbor_bottom = NodePath("../../../../../../../HBoxContainer/Back")
+focus_previous = NodePath("../HBoxContainer6/LanguagesButton")
 text = "OPEN_TRANSLATION_SITE"
 
 [node name="Performance" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
@@ -872,12 +868,12 @@ popup/item_2/id = 2
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RunAutoEvoDuringGameplay" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="RunAutoEvoDuringGameplay" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "RUN_AUTO_EVO_DURING_GAMEPLAY"
 
-[node name="RunMultithreadedSimulation" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="RunMultithreadedSimulation" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "MULTITHREADED_SIMULATION_ENABLED"
@@ -917,7 +913,8 @@ theme_override_styles/separator = SubResource("4")
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_vertical = 0
-focus_neighbor_bottom = NodePath("../../../../../../../../HBoxContainer/Back")
+focus_neighbor_bottom = NodePath("../../AssumeHyperthreading")
+focus_next = NodePath("../../AssumeHyperthreading")
 item_count = 8
 selected = 3
 popup/item_0/text = "LIMIT_TINY"
@@ -977,12 +974,14 @@ text = "ACTIVE_THREAD_COUNT"
 layout_mode = 2
 text = "0"
 
-[node name="AssumeHyperthreading" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="AssumeHyperthreading" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+focus_neighbor_top = NodePath("../HBoxContainer5/MaxSpawnedEntities")
+focus_previous = NodePath("../HBoxContainer5/MaxSpawnedEntities")
 text = "ASSUME_HYPERTHREADING"
 
-[node name="UseManualThreadCount" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="UseManualThreadCount" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "USE_MANUAL_THREAD_COUNT"
@@ -1015,7 +1014,7 @@ value = 4.0
 rounded = true
 scrollable = false
 
-[node name="UseNativeManualThreadCount" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="UseNativeManualThreadCount" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "NATIVE_THREAD_ADVICE_TOOLTIP"
@@ -1105,8 +1104,9 @@ Priority = 3
 NodeToGiveFocusTo = NodePath("../SameBothAxesSensitivity")
 GrabFocusWhenBecomingVisible = true
 
-[node name="SameBothAxesSensitivity" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine" instance=ExtResource("10")]
+[node name="SameBothAxesSensitivity" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine"]
 layout_mode = 2
+size_flags_horizontal = 0
 focus_neighbor_bottom = NodePath("../../Mouse/HorizontalInverted")
 text = "BIND_AXES_SENSITIVITY"
 
@@ -1124,8 +1124,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 scrollable = false
 
-[node name="HorizontalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse" instance=ExtResource("10")]
+[node name="HorizontalInverted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse"]
 layout_mode = 2
+size_flags_horizontal = 0
 text = "INVERTED"
 
 [node name="VerticalLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse"]
@@ -1138,8 +1139,9 @@ size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../Horizontal")
 scrollable = false
 
-[node name="VerticalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse" instance=ExtResource("10")]
+[node name="VerticalInverted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse"]
 layout_mode = 2
+size_flags_horizontal = 0
 text = "INVERTED"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1166,9 +1168,9 @@ popup/item_2/id = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VirtualWindowSize" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("10")]
+[node name="VirtualWindowSize" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-focus_neighbor_left = NodePath("../SensitivityScaleMode")
+size_flags_horizontal = 0
 text = "USE_VIRTUAL_WINDOW_SIZE"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1187,8 +1189,9 @@ text = "CONTROLLER_SENSITIVITY"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SameBothAxesSensitivity" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ControllerFirstLine" instance=ExtResource("10")]
+[node name="SameBothAxesSensitivity" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ControllerFirstLine"]
 layout_mode = 2
+size_flags_horizontal = 0
 focus_neighbor_bottom = NodePath("../../Controller/HorizontalInverted")
 text = "BIND_AXES_SENSITIVITY"
 
@@ -1206,8 +1209,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 scrollable = false
 
-[node name="HorizontalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller" instance=ExtResource("10")]
+[node name="HorizontalInverted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller"]
 layout_mode = 2
+size_flags_horizontal = 0
 text = "INVERTED"
 
 [node name="VerticalLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller"]
@@ -1220,8 +1224,9 @@ size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../Horizontal")
 scrollable = false
 
-[node name="VerticalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller" instance=ExtResource("10")]
+[node name="VerticalInverted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller"]
 layout_mode = 2
+size_flags_horizontal = 0
 focus_neighbor_bottom = NodePath("../../DeadzonesButton")
 text = "INVERTED"
 
@@ -1278,8 +1283,6 @@ size_flags_vertical = 0
 focus_neighbor_left = NodePath("../../DeadzonesButton")
 focus_neighbor_top = NodePath("../../HBoxContainer2/Movement2DType")
 focus_neighbor_right = NodePath("../../../../../../HBoxContainer/ResetInputsButton")
-focus_neighbor_bottom = NodePath("../../EdgePan")
-focus_next = NodePath("../../EdgePan")
 item_count = 2
 selected = 0
 popup/item_0/text = "SCREEN_RELATIVE_MOVEMENT"
@@ -1290,8 +1293,9 @@ popup/item_1/id = 1
 [node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="EdgePan" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="EdgePan" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 text = "MOUSE_EDGE_PANNING_OPTION"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1368,12 +1372,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Intro" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="Intro" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "PLAY_INTRO_VIDEO"
 
-[node name="MicrobeIntro" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="MicrobeIntro" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "PLAY_MICROBE_INTRO_ON_NEW_GAME"
@@ -1384,7 +1388,7 @@ Priority = 3
 NodeToGiveFocusTo = NodePath("../Intro")
 GrabFocusWhenBecomingVisible = true
 
-[node name="AutoSave" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="AutoSave" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "AUTOSAVE_DURING_THE_GAME"
@@ -1425,39 +1429,40 @@ theme_override_styles/separator = SubResource("4")
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_vertical = 0
-focus_neighbor_bottom = NodePath("../../TutorialsEnabledOnNewGame")
 min_value = 1.0
 max_value = 50.0
 value = 1.0
 
-[node name="TutorialsEnabledOnNewGame" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="TutorialsEnabledOnNewGame" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 focus_neighbor_right = NodePath("../HBoxContainer2/MaxQuickSaves")
 text = "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 
-[node name="TutorialsEnabled" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="TutorialsEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 focus_neighbor_right = NodePath("../HBoxContainer2/MaxQuickSaves")
 text = "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 
-[node name="UnsavedProgressWarning" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="UnsavedProgressWarning" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 focus_neighbor_right = NodePath("../HBoxContainer2/MaxQuickSaves")
 text = "SHOW_UNSAVED_PROGRESS_WARNING"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Cheats" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="Cheats" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "CHEAT_KEYS_ENABLED"
 
-[node name="CustomUsernameEnabled" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="CustomUsernameEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+focus_neighbor_top = NodePath(".")
 text = "USE_A_CUSTOM_USERNAME"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1474,7 +1479,6 @@ size_flags_horizontal = 3
 [node name="CustomUsername" type="LineEdit" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-focus_neighbor_top = NodePath("../../CustomUsernameEnabled")
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1492,12 +1496,12 @@ size_flags_horizontal = 3
 action_mode = 0
 text = "OPEN_LOGS_FOLDER"
 
-[node name="WebFeeds" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="WebFeeds" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "SHOW_WEB_NEWS_FEED"
 
-[node name="ShowNewPatchNotes" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="ShowNewPatchNotes" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "SHOW_NEW_PATCH_NOTES_TOOLTIP"
