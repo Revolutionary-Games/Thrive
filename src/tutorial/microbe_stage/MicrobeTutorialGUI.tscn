@@ -50,17 +50,10 @@ EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 anchors_preset = 0
 
 [node name="MicrobeWelcome" parent="." instance=ExtResource("13")]
-custom_minimum_size = Vector2(450, 430)
+custom_minimum_size = Vector2(450, 455)
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1280.0
-offset_top = -360.0
-offset_right = -830.0
-offset_bottom = 40.0
+offset_right = 450.0
+offset_bottom = 430.0
 script = ExtResource("7")
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "MICROBE_STAGE_INITIAL"
@@ -104,6 +97,7 @@ layout_mode = 2
 [node name="CheckBox" type="CheckBox" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
 button_pressed = true
 text = "SHOW_TUTORIALS"
 
@@ -341,6 +335,8 @@ offset_left = -260.0
 offset_top = -189.0
 offset_right = 0.0
 offset_bottom = 51.0
+grow_horizontal = 0
+grow_vertical = 2
 script = ExtResource("7")
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
