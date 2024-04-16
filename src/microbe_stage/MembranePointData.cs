@@ -105,6 +105,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         }
     }
 
+    public bool Disposed => disposed;
+
     public bool MatchesCacheParameters(ICacheableData cacheData)
     {
         if (cacheData is IMembraneDataSource data)
@@ -187,6 +189,8 @@ public sealed class MembraneCollisionShape : ICacheableData
     public int PointCount { get; }
     public float Density { get; }
     public bool IsBacteria { get; }
+
+    public bool Disposed => disposed;
 
     private JVecF3[] MembranePoints
     {

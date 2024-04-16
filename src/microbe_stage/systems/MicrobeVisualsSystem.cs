@@ -422,10 +422,9 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             // Cache entry now owns the array data that was in the generationParameters and will return it to the
             // pool when the cache disposes it
 
-            var hash = ProceduralDataCache.Instance.WriteMembraneData(cacheEntry);
+            var hash = ProceduralDataCache.Instance.WriteMembraneData(ref cacheEntry);
 
-            // TODO: already generate the 3D points here for use on the main thread for faster membrane
-            // creation?
+            // TODO: already generate the 3D points here for use on the main thread for faster membrane creation?
 
             lock (pendingGenerationsOfMembraneHashes)
             {
