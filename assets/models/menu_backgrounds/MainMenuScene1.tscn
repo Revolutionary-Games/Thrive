@@ -146,7 +146,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-4.91601, -0.25, 0, 0.25, 0, -4.68188, -0.25, 0, 0.25, 0, -4.91601, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-4.91601, -0.25, 0, 0.25, 0, -4.882, -0.25, 0, 0.25, 0, -4.91601, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 6, 12)
 }
 tracks/2/type = "bezier"
@@ -321,7 +321,7 @@ far = 15000.0
 [node name="Sun" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 3.28153e-07, 0, 1, 0, -3.28153e-07, 0, 1, 26.1623, 30.7487, -115.11)
 light_color = Color(0.972549, 0.956863, 0.937255, 1)
-light_energy = 1.763
+light_energy = 25.0
 light_indirect_energy = 1.263
 light_size = 50000.0
 light_specular = 1.682
@@ -336,10 +336,10 @@ rings = 16
 material = SubResource("19")
 
 [node name="MenuPlanet" parent="." instance=ExtResource("1")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 8.509, -18.562, 18.955)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 20.8068, -18.562, 23.6122)
 
 [node name="MenuPlanetClouds" parent="MenuPlanet" instance=ExtResource("4")]
-transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0.096597, 0, 0.028672)
+transform = Transform3D(1.01, 0, -2.98023e-08, 0, 1.01, 0, 2.98023e-08, 0, 1.01, -0.0742669, 0, 0.0174744)
 
 [node name="PlanetRotation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -365,10 +365,12 @@ autoplay = "CameraAnimation"
 speed_scale = 0.5
 
 [node name="MenuPlanet2" parent="." instance=ExtResource("5")]
-transform = Transform3D(-6.72843, -7.50564, 0.63569, 2.6564, -1.56676, 9.61766, -7.04858, 6.57428, 3.01779, 8.50902, -18.562, 18.955)
+editor_description = "Disabled as I have no clue how to make this look good -hhyyrylainen"
+transform = Transform3D(-6.72843, -7.50564, 0.63569, 2.65641, -1.56677, 9.61766, -7.04858, 6.57428, 3.01779, 24.054, -19.2127, 21.1684)
+visible = false
 
 [node name="FakeAtmoshereParticle" type="CPUParticles3D" parent="."]
-transform = Transform3D(-1041.89, 0, 5908.85, 0, 6000.01, 0, -5908.85, 0, -1041.89, 9.297, -18.562, 18.6308)
+transform = Transform3D(-1001.23, 0, 5915.88, 0, 6000.04, 0, -5915.88, 0, -1001.23, 21.3612, -18.8713, 23.9765)
 amount = 2
 lifetime = 1.42
 preprocess = 2.08
