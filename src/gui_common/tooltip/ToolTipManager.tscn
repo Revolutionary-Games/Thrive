@@ -266,7 +266,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="metabolosome" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -293,7 +293,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chromatophore" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -315,7 +315,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chemoSynthesizingProteins" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -340,7 +340,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="rusticyanin" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -362,7 +362,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="nitrogenase" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -384,7 +384,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="oxytoxyProteins" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -407,7 +407,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="thermosynthase" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -446,7 +446,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="VScrollBar2" type="VScrollBar" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/Description" index="1"]
@@ -490,7 +490,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="slimeJet" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -512,7 +512,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="pilus" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -528,7 +528,7 @@ ThriveopediaPageName = "pilus"
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chemoreceptor" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -544,7 +544,7 @@ ThriveopediaPageName = "chemoreceptor"
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="cilia" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -561,7 +561,7 @@ ThriveopediaPageName = "cilia"
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="bindingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -584,7 +584,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="nucleus" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -606,7 +606,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+10"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="mitochondrion" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -629,7 +629,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chloroplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -652,7 +652,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+3"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="thermoplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -675,7 +675,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chemoplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -698,7 +698,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -721,7 +721,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="vacuole" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -745,7 +745,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="oxytoxy" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -768,7 +768,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="signalingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -791,7 +791,7 @@ ModifierIcon = ExtResource("9")
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="bioluminescentVacuole" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -848,7 +848,7 @@ layout_mode = 2
 mouse_filter = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="axon" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
@@ -925,7 +925,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -962,7 +962,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -999,7 +999,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -1051,7 +1051,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -1103,7 +1103,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
@@ -1156,7 +1156,7 @@ ModifierIcon = ExtResource("7")
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
-ModifierValueColor = ExtResource("10_xjuqe")
+ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]

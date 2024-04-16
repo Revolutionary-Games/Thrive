@@ -256,7 +256,8 @@ public static class StringUtils
 
     public static string FormatPositiveWithLeadingPlus(float value)
     {
-        if (value < 0)
+        // This check works better than "< 0" as this handles negative zero
+        if (float.IsNegative(value))
             return value.ToString(CultureInfo.CurrentCulture);
 
         return '+' + value.ToString(CultureInfo.CurrentCulture);
@@ -272,7 +273,7 @@ public static class StringUtils
 
     public static string FormatPositiveWithLeadingPlus(string formatted, double value)
     {
-        if (value < 0)
+        if (double.IsNegative(value))
             return formatted;
 
         return '+' + formatted;
@@ -474,7 +475,7 @@ public static class StringUtils
 
         if (number < 0)
         {
-            // This also isn't a thing in roman numerals but we should support this
+            // This also isn't a thing in roman numerals, but we should support this
             builder.Append('-');
 
             number *= -1;

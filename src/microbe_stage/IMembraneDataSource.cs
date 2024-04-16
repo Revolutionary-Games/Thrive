@@ -111,7 +111,7 @@ public static class MembraneComputationHelpers
             result = generator.GenerateShape(hexes, length, membraneType);
         }
 
-        cache.WriteMembraneData(result);
+        cache.WriteMembraneData(ref result);
         return result;
     }
 
