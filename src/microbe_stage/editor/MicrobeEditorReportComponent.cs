@@ -31,24 +31,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     public NodePath TimeIndicatorPath = null!;
 
     [Export]
-    public NodePath PhysicalConditionsIconLegendPath = null!;
-
-    [Export]
-    public NodePath TemperatureChartPath = null!;
-
-    [Export]
-    public NodePath SunlightChartPath = null!;
-
-    [Export]
-    public NodePath AtmosphericGassesChartPath = null!;
-
-    [Export]
-    public NodePath CompoundsChartPath = null!;
-
-    [Export]
-    public NodePath SpeciesPopulationChartPath = null!;
-
-    [Export]
     public NodePath GlucoseReductionLabelPath = null!;
 
     [Export]
@@ -78,6 +60,18 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private CustomRichTextLabel externalEffectsLabel = null!;
     private Label reportTabPatchName = null!;
     private OptionButton reportTabPatchSelector = null!;
+
+    [Export]
+    private CollapsibleList speciesChartContainer = null!;
+
+    [Export]
+    private CollapsibleList physicalConditionsChartContainer = null!;
+
+    [Export]
+    private CollapsibleList atmosphereChartContainer = null!;
+
+    [Export]
+    private CollapsibleList compoundsChartContainer = null!;
 
     private HBoxContainer physicalConditionsIconLegends = null!;
     private LineChart temperatureChart = null!;
@@ -115,12 +109,13 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         autoEvoLabel = GetNode<CustomRichTextLabel>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<CustomRichTextLabel>(ExternalEffectsLabelPath);
 
-        physicalConditionsIconLegends = GetNode<HBoxContainer>(PhysicalConditionsIconLegendPath);
-        temperatureChart = GetNode<LineChart>(TemperatureChartPath);
-        sunlightChart = GetNode<LineChart>(SunlightChartPath);
-        atmosphericGassesChart = GetNode<LineChart>(AtmosphericGassesChartPath);
-        compoundsChart = GetNode<LineChart>(CompoundsChartPath);
-        speciesPopulationChart = GetNode<LineChart>(SpeciesPopulationChartPath);
+        physicalConditionsIconLegends = physicalConditionsChartContainer.GetItem<Container>("LegendContainer")
+            .GetChild<HBoxContainer>(0);
+        temperatureChart = physicalConditionsChartContainer.GetItem<LineChart>("Temperature");
+        sunlightChart = physicalConditionsChartContainer.GetItem<LineChart>("Sunlight");
+        atmosphericGassesChart = atmosphereChartContainer.GetItem<LineChart>("AtmosphereChart");
+        compoundsChart = compoundsChartContainer.GetItem<LineChart>("CompoundsChart");
+        speciesPopulationChart = speciesChartContainer.GetItem<LineChart>("SpeciesChart");
 
         reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
 
@@ -250,12 +245,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                 TimelineSubtabPath.Dispose();
                 TimelineEventsContainerPath.Dispose();
                 TimeIndicatorPath.Dispose();
-                PhysicalConditionsIconLegendPath.Dispose();
-                TemperatureChartPath.Dispose();
-                SunlightChartPath.Dispose();
-                AtmosphericGassesChartPath.Dispose();
-                CompoundsChartPath.Dispose();
-                SpeciesPopulationChartPath.Dispose();
                 GlucoseReductionLabelPath.Dispose();
                 AutoEvoLabelPath.Dispose();
                 ExternalEffectsLabelPath.Dispose();
