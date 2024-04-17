@@ -419,11 +419,6 @@ LegendMode = 1
 
 [node name="PhysicalConditions" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
 layout_mode = 2
-TitleLabelPath = NodePath("../PhysicalConditions/HBoxContainer/Title")
-CollapseButtonPath = NodePath("../PhysicalConditions/HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("../PhysicalConditions/HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("../PhysicalConditions/Clip")
-ItemContainerPath = NodePath("../PhysicalConditions/Clip/GridContainer")
 DisplayName = "PHYSICAL_CONDITIONS"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="0"]
@@ -471,11 +466,6 @@ LegendMode = 2
 
 [node name="AtmosphericGasses" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
 layout_mode = 2
-TitleLabelPath = NodePath("../AtmosphericGasses/HBoxContainer/Title")
-CollapseButtonPath = NodePath("../AtmosphericGasses/HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("../AtmosphericGasses/HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("../AtmosphericGasses/Clip")
-ItemContainerPath = NodePath("../AtmosphericGasses/Clip/GridContainer")
 DisplayName = "ATMOSPHERIC_GASSES"
 
 [node name="LineChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer" index="0" instance=ExtResource("103")]
@@ -485,11 +475,6 @@ YAxisTicks = 6
 
 [node name="Compounds" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
 layout_mode = 2
-TitleLabelPath = NodePath("../Compounds/HBoxContainer/Title")
-CollapseButtonPath = NodePath("../Compounds/HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("../Compounds/HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("../Compounds/Clip")
-ItemContainerPath = NodePath("../Compounds/Clip/GridContainer")
 DisplayName = "COMPOUNDS"
 
 [node name="LineChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer" index="0" instance=ExtResource("103")]
