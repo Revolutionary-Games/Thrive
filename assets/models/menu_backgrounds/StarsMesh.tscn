@@ -5,13 +5,16 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3qad"]
 cull_mode = 1
+shading_mode = 0
+disable_ambient_light = true
 albedo_texture = ExtResource("2_ikt5j")
-emission_enabled = true
-emission_texture = ExtResource("2_ikt5j")
+albedo_texture_force_srgb = true
 uv1_scale = Vector3(15, 15, 15)
+disable_receive_shadows = true
 
 [node name="MenuPlanet" instance=ExtResource("1")]
 
 [node name="Sphere" parent="." index="0"]
-transparency = 0.27
+transparency = 0.09
+cast_shadow = 0
 surface_material_override/0 = SubResource("StandardMaterial3D_f3qad")

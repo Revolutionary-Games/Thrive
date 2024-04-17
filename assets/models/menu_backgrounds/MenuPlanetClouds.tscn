@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cioaty38mki8x"]
 
 [ext_resource type="PackedScene" uid="uid://dxvgakwrnw6ak" path="res://assets/models/menu_backgrounds/MenuPlanet.glb" id="1"]
-[ext_resource type="Material" path="res://assets/models/menu_backgrounds/Planetclouds_Material.tres" id="2"]
+[ext_resource type="Material" uid="uid://dcy33qrmimba4" path="res://assets/models/menu_backgrounds/Planetclouds_Material.tres" id="2"]
 
 [node name="MenuPlanet" instance=ExtResource("1")]
 

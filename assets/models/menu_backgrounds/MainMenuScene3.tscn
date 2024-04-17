@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjxkgjgaoqvsh"]
+[gd_scene load_steps=24 format=3 uid="uid://bjxkgjgaoqvsh"]
 
 [ext_resource type="PackedScene" uid="uid://q16rprhnmgsk" path="res://assets/models/menu_backgrounds/UnderwaterChimney01.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://kloyvken30uu" path="res://assets/textures/menu_backgrounds/SingleClouds.png" id="2"]
@@ -70,7 +70,23 @@ _data = {
 "RESET": SubResource("24")
 }
 
+[sub_resource type="Gradient" id="Gradient_82k56"]
+offsets = PackedFloat32Array(0, 0.493, 1)
+colors = PackedColorArray(0.372549, 0.0313726, 0.0313726, 1, 0.0392157, 0.133333, 0.2, 1, 0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1efhn"]
+gradient = SubResource("Gradient_82k56")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.704, 0.571)
+fill_to = Vector2(0.514, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0tuoa"]
+panorama = SubResource("GradientTexture2D_1efhn")
+
 [sub_resource type="Sky" id="17"]
+sky_material = SubResource("PanoramaSkyMaterial_0tuoa")
 
 [sub_resource type="Environment" id="2"]
 background_mode = 2
@@ -102,12 +118,20 @@ glow_hdr_threshold = 0.5
 glow_hdr_scale = 1.47
 glow_hdr_luminance_cap = 26.63
 fog_enabled = true
-fog_light_color = Color(0.0403304, 0.0482076, 0.0605891, 1)
-fog_density = 0.0837
+fog_light_color = Color(0.133333, 0.054902, 0.054902, 1)
+fog_density = 0.0215
 adjustment_enabled = true
 adjustment_brightness = 1.01
 adjustment_contrast = 1.07
 adjustment_saturation = 1.37
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1hl6o"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 0.1
+dof_blur_far_transition = 13.0
+dof_blur_near_distance = 14.0
+dof_blur_near_transition = 5.0
+dof_blur_amount = 0.05
 
 [sub_resource type="StandardMaterial3D" id="25"]
 transparency = 4
@@ -176,12 +200,13 @@ speed_scale = 0.5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("2")
+camera_attributes = SubResource("CameraAttributesPractical_1hl6o")
 
 [node name="UnderwaterChimney03" parent="." instance=ExtResource("1")]
 transform = Transform3D(0.266429, 0.33628, -0.292092, 0, 0.655921, 0.263015, 0.306352, -0.292458, 0.254028, -9.549, 10.604, 25.252)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney03"]
-transform = Transform3D(2.46305, -5.96046e-08, 1.19209e-07, 5.96046e-08, 1.26103, 5.96046e-08, -5.96046e-08, 8.9407e-08, 2.13675, -1.90735e-06, 1.93495, 0)
+transform = Transform3D(1, -2.41995e-08, 2.41995e-08, 2.41995e-08, 1, -7.09e-08, -2.41995e-08, 7.09e-08, 1, -1.90735e-06, 1.93495, 0)
 light_color = Color(1, 0.380392, 0.0431373, 1)
 light_energy = 20.0
 light_indirect_energy = 2.469
@@ -244,14 +269,15 @@ color_ramp = SubResource("28")
 transform = Transform3D(-0.265596, 0.153325, -0.0789976, 0.0865187, 0.500274, -1.45817e-09, 0.0665997, -0.038447, -0.315039, -31.3255, 0.396495, 4.90141)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="UnderwaterChimney04"]
-transform = Transform3D(3.48235, 3.57628e-07, 2.14577e-06, 3.72529e-09, 1.90602, 2.98023e-08, -5.96046e-08, 1.49012e-08, 3.07889, -1.52588e-05, 1.5329, -9.53674e-07)
+transform = Transform3D(1, -1.06976e-09, 1.71162e-08, 1.06976e-09, 1, -7.81797e-09, -1.71162e-08, 7.81797e-09, 1, -1.52588e-05, 1.5329, -9.53674e-07)
 light_color = Color(1, 0.380392, 0.0431373, 1)
 light_energy = 20.0
-light_indirect_energy = 2.469
+light_indirect_energy = 3.057
 light_specular = 0.635
 shadow_enabled = true
 shadow_bias = 0.728
-omni_attenuation = 2.2974
+omni_range = 57.618
+omni_attenuation = 3.03144
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="UnderwaterChimney04"]
 transform = Transform3D(1.17421, 0.374449, 2.98023e-08, -0.635184, 0.692212, -1.86265e-08, -2.98023e-08, 1.30385e-08, 1, -0.137367, 2.40326, 0.309352)

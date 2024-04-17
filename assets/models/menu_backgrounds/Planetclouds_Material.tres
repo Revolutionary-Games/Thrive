@@ -1,14 +1,12 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=2]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dcy33qrmimba4"]
 
-[ext_resource path="res://assets/textures/menu_backgrounds/PlanetClouds_Mat_Opacity.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/textures/menu_backgrounds/PlanetClouds_Mat_Normal_DirectX.png" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://dgrmvarreasks" path="res://assets/textures/menu_backgrounds/PlanetClouds_Mat_Opacity.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bqrqlrqq1vlwa" path="res://assets/textures/menu_backgrounds/PlanetClouds_Mat_Normal_DirectX.png" id="2"]
 
 [resource]
-flags_transparent = true
-vertex_color_is_srgb = true
-params_blend_mode = 1
-albedo_texture = ExtResource( 1 )
+transparency = 1
+albedo_texture = ExtResource("1")
 metallic_specular = 0.0
 normal_enabled = true
 normal_scale = 0.84
-normal_texture = ExtResource( 2 )
+normal_texture = ExtResource("2")
