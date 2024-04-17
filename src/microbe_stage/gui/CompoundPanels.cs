@@ -7,8 +7,8 @@ using Godot;
 /// </summary>
 public partial class CompoundPanels : BarPanelBase
 {
-    private readonly StringName vSeparationReference = new("vseparation");
-    private readonly StringName hSeparationReference = new("hseparation");
+    private readonly StringName vSeparationReference = new("v_separation");
+    private readonly StringName hSeparationReference = new("h_separation");
 
     private readonly List<CompoundProgressBar> agentsCreatedBars = new();
 

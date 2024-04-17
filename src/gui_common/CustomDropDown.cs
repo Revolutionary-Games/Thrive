@@ -30,7 +30,7 @@ public partial class CustomDropDown : MenuButton
     {
         Popup = GetPopup();
 
-        cachedPopupVSeparation = Popup.GetThemeConstant("vseparation");
+        cachedPopupVSeparation = Popup.GetThemeConstant("v_separation");
 
         var checkSize = Popup.GetThemeIcon("checked").GetSize();
 
@@ -227,7 +227,7 @@ public partial class CustomDropDown : MenuButton
             {
                 if (item.Separator && item.Text != "default")
                 {
-                    height += font.GetHeight() + Popup.GetThemeConstant("vseparation");
+                    height += font.GetHeight() + Popup.GetThemeConstant("v_separation");
                     continue;
                 }
 
@@ -241,14 +241,14 @@ public partial class CustomDropDown : MenuButton
                 // See the comment about QueueRedraw() problems with the new Popup implementation in this file
                 DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
 
-                height += font.GetHeight() + Popup.GetThemeConstant("vseparation");
+                height += font.GetHeight() + Popup.GetThemeConstant("v_separation");
             }
         }
     }
 
     private void OnPopupAboutToShow()
     {
-        Popup.AddThemeConstantOverride("vseparation", -14);
+        Popup.AddThemeConstantOverride("v_separation", -14);
 
         // Animate slide down
 
@@ -257,7 +257,8 @@ public partial class CustomDropDown : MenuButton
         tween.SetTrans(Tween.TransitionType.Cubic);
         tween.SetEase(Tween.EaseType.Out);
 
-        tween.TweenProperty(Popup, "custom_constants/vseparation", cachedPopupVSeparation, 0.1).From(-14);
+        // TODO: cache string name
+        tween.TweenProperty(Popup, "theme_override_constants/v_separation", cachedPopupVSeparation, 0.1).From(-14);
     }
 
     /// <summary>
