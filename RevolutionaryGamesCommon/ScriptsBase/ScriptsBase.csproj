@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Karambolo.PO" Version="1.11.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
+    <PackageReference Include="Sarif.Sdk" Version="4.5.4" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevCenterCommunication\DevCenterCommunication.csproj" />
+    <ProjectReference Include="..\SharedBase\SharedBase.csproj" />
+  </ItemGroup>
+
+</Project>
