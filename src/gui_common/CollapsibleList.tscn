@@ -19,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1225.0
 offset_bottom = -744.0
+size_flags_horizontal = 3
 script = ExtResource("7")
 titleLabel = NodePath("TitleContainer/Title")
 itemContainer = NodePath("Clip/GridContainer")
@@ -55,7 +56,7 @@ stretch_mode = 5
 [node name="Title" type="Label" parent="TitleContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "Insert Title Here"
+text = "Collapsible List"
 label_settings = ExtResource("6_51q1u")
 
 [node name="HSeparator" type="HSeparator" parent="TitleContainer"]
@@ -64,16 +65,19 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("1")
 
-[node name="Clip" type="MarginContainer" parent="."]
+[node name="Clip" type="Control" parent="."]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="GridContainer" type="GridContainer" parent="Clip"]
 layout_mode = 2
+offset_right = 152.0
 mouse_filter = 2
 
 [connection signal="pressed" from="TitleContainer/Buttons/minusButton" to="." method="CollapseButtonPressed"]
 [connection signal="pressed" from="TitleContainer/Buttons/plusButton" to="." method="ExpandButtonPressed"]
+[connection signal="resized" from="Clip" to="." method="AvailableWidthChanged"]
+[connection signal="minimum_size_changed" from="Clip/GridContainer" to="." method="OnContainerMinimumSizeChanged"]
