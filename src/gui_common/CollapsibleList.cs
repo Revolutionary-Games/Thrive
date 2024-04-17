@@ -8,37 +8,33 @@ using Godot;
 /// </summary>
 public partial class CollapsibleList : VBoxContainer
 {
-    [Export]
-    public NodePath? TitleLabelPath;
-
-    [Export]
-    public NodePath CollapseButtonPath = null!;
-
-    [Export]
-    public NodePath ExpandButtonPath = null!;
-
-    [Export]
-    public NodePath ClipBoxPath = null!;
-
-    [Export]
-    public NodePath ItemContainerPath = null!;
-
+    private readonly NodePath minimumSizeYReference = new("custom_minimum_size:y");
     private readonly List<Control> items = new();
 
-    private string title = string.Empty;
-    private int columns;
-    private bool collapsed;
-    private bool isCollapsing;
-
 #pragma warning disable CA2213
+    [Export]
     private Label? titleLabel;
+
+    [Export]
     private GridContainer? itemContainer;
+
+    [Export]
     private MarginContainer clipBox = null!;
-    private TextureButton collapseButton = null!;
-    private TextureButton expandButton = null!;
+
+    [Export]
+    private Control? titleContainer;
+
+    [Export]
+    private BaseButton collapseButton = null!;
+
+    [Export]
+    private BaseButton expandButton = null!;
 #pragma warning restore CA2213
 
-    private int cachedTopMarginValue;
+    private string title = string.Empty;
+    private int columns = 1;
+    private bool collapsed;
+    private bool isCollapsing;
 
     /// <summary>
     ///   The title for the collapsible list.
@@ -78,17 +74,12 @@ public partial class CollapsibleList : VBoxContainer
 
     public override void _Ready()
     {
-        titleLabel = GetNode<Label>(TitleLabelPath);
-        itemContainer = GetNode<GridContainer>(ItemContainerPath);
-        clipBox = GetNode<MarginContainer>(ClipBoxPath);
-        collapseButton = GetNode<TextureButton>(CollapseButtonPath);
-        expandButton = GetNode<TextureButton>(ExpandButtonPath);
-
-        cachedTopMarginValue = clipBox.GetThemeConstant("margin_top");
-
         UpdateItemContainer();
+        DetectExistingItems();
         UpdateTitle();
-        UpdateLists();
+
+        if (!Collapsed)
+            UpdateClipMinimumSize();
     }
 
     public void AddItem(Control item)
@@ -100,8 +91,8 @@ public partial class CollapsibleList : VBoxContainer
         items.Add(item);
 
         // Readjusts the clip box height
-        if (Collapsed)
-            clipBox.AddThemeConstantOverride("margin_top", -(int)itemContainer.Size.Y);
+        if (!Collapsed)
+            UpdateClipMinimumSize();
     }
 
     public T GetItem<T>(string name)
@@ -110,7 +101,7 @@ public partial class CollapsibleList : VBoxContainer
         return (T?)items.Find(i => i.Name == name) ?? throw new ArgumentException("No item found with name");
     }
 
-    public void RemoveItem(string name)
+    public void RemoveItem(string name, bool isBulkOperation = false)
     {
         var found = items.Find(i => i.Name == name);
 
@@ -122,6 +113,15 @@ public partial class CollapsibleList : VBoxContainer
 
         found.QueueFree();
         items.Remove(found);
+
+        if (!isBulkOperation)
+        {
+            Invoke.Instance.QueueForObject(() =>
+            {
+                if (!Collapsed)
+                    UpdateClipMinimumSize();
+            }, this);
+        }
     }
 
     public void RemoveAllOfType<T>()
@@ -129,10 +129,22 @@ public partial class CollapsibleList : VBoxContainer
     {
         var found = items.FindAll(i => i is T);
 
+        bool removed = false;
+
         foreach (var item in found)
         {
             item.QueueFree();
             items.Remove(item);
+            removed = true;
+        }
+
+        if (removed)
+        {
+            Invoke.Instance.QueueForObject(() =>
+            {
+                if (!Collapsed)
+                    UpdateClipMinimumSize();
+            }, this);
         }
     }
 
@@ -147,20 +159,19 @@ public partial class CollapsibleList : VBoxContainer
         {
             RemoveItem(item.Name);
         }
+
+        Invoke.Instance.QueueForObject(() =>
+        {
+            if (!Collapsed)
+                UpdateClipMinimumSize();
+        }, this);
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            if (TitleLabelPath != null)
-            {
-                TitleLabelPath.Dispose();
-                CollapseButtonPath.Dispose();
-                ExpandButtonPath.Dispose();
-                ClipBoxPath.Dispose();
-                ItemContainerPath.Dispose();
-            }
+            minimumSizeYReference.Dispose();
         }
 
         base.Dispose(disposing);
@@ -201,12 +212,35 @@ public partial class CollapsibleList : VBoxContainer
     /// <summary>
     ///   Add all the already existing children into the item list
     /// </summary>
-    private void UpdateLists()
+    private void DetectExistingItems()
     {
-        foreach (var item in itemContainer!.GetChildren().OfType<Control>())
+        if (itemContainer == null)
+            throw new SceneTreeAttachRequired();
+
+        foreach (var item in itemContainer.GetChildren().OfType<Control>())
         {
             items.Add(item);
         }
+
+        // Move child items from this to the clip, this makes adding things to this type without having to make child
+        // nodes editable in all scenes
+        foreach (var potentialItem in GetChildren().OfType<Control>())
+        {
+            if (potentialItem == clipBox || potentialItem == titleContainer)
+                continue;
+
+            RemoveChild(potentialItem);
+            itemContainer.AddChild(potentialItem);
+            items.Add(potentialItem);
+        }
+    }
+
+    private void UpdateClipMinimumSize()
+    {
+        if (itemContainer == null)
+            throw new SceneTreeAttachRequired();
+
+        clipBox.CustomMinimumSize = new Vector2(0, itemContainer.GetMinimumSize().Y);
     }
 
     private void UpdateItemContainer()
@@ -215,6 +249,7 @@ public partial class CollapsibleList : VBoxContainer
             return;
 
         itemContainer.Columns = columns;
+        UpdateClipMinimumSize();
     }
 
     private void Collapse()
@@ -229,7 +264,7 @@ public partial class CollapsibleList : VBoxContainer
         tween.SetTrans(Tween.TransitionType.Sine);
         tween.SetEase(Tween.EaseType.Out);
 
-        tween.TweenProperty(clipBox, "custom_constants/margin_top", -clipBox.Size.Y, 0.3).From(cachedTopMarginValue);
+        tween.TweenProperty(clipBox, minimumSizeYReference, 0, 0.3);
 
         tween.TweenCallback(new Callable(this, nameof(OnCollapsingFinished)));
 
@@ -253,7 +288,10 @@ public partial class CollapsibleList : VBoxContainer
         tween.SetTrans(Tween.TransitionType.Sine);
         tween.SetEase(Tween.EaseType.Out);
 
-        tween.TweenProperty(clipBox, "custom_constants/margin_top", cachedTopMarginValue, 0.3);
+        // TODO: there's probably a chance for a bug if an item is added while the animation is playing (this would
+        // need to query the size again and again, or a separate tween needs to be started if an item is added while
+        // animating)
+        tween.TweenProperty(clipBox, minimumSizeYReference, itemContainer.GetMinimumSize().Y, 0.3);
     }
 
     // GUI Callbacks
