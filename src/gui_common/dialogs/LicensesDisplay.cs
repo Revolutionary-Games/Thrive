@@ -141,7 +141,7 @@ public partial class LicensesDisplay : CustomWindow
                 AutowrapMode = TextServer.AutowrapMode.WordSmart,
 
                 // Increase the initial size to make loading faster
-                Size = new Vector2(1000, 1000),
+                Size = new Vector2(5000, 0),
             };
 
             content.LabelSettings = ContentFont;
