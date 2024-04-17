@@ -16,12 +16,17 @@ public partial class CustomDropDown : MenuButton
 
 #pragma warning restore CA2213
 
+    private readonly StringName vSeparationReference = new("v_separation");
+    private readonly NodePath themeVSeparationReference = new("theme_override_constants/v_separation");
+
     private readonly float cachedPopupVSeparation;
+    private readonly float fontHeight;
+    private readonly float contentMarginTop;
 
     private readonly Dictionary<string, List<Item>> items = new();
 
     /// <summary>
-    ///   All item icon sizes will be adjusted according to this. Currently it's automatically
+    ///   All item icon sizes will be adjusted according to this. Currently, it's automatically
     ///   set according to the PopupMenu's check icon size (with a bit smaller result)
     /// </summary>
     private Vector2 iconSize;
@@ -30,21 +35,19 @@ public partial class CustomDropDown : MenuButton
     {
         Popup = GetPopup();
 
-        cachedPopupVSeparation = Popup.GetThemeConstant("v_separation");
+        cachedPopupVSeparation = Popup.GetThemeConstant(vSeparationReference);
+        fontHeight = Popup.GetThemeFont("font").GetHeight(Popup.GetThemeFontSize("font_size"));
+        contentMarginTop = Popup.GetThemeStylebox("panel").ContentMarginTop;
 
         var checkSize = Popup.GetThemeIcon("checked").GetSize();
 
         // Set the custom icon size
         iconSize = new Vector2(checkSize.X - 2, checkSize.Y - 2);
 
-        // TODO: verify this is correct, this used to be applied to the popup
-        // Popup.ClipContents = true;
         ClipContents = true;
 
         Connect(MenuButton.SignalName.AboutToPopup, new Callable(this, nameof(OnPopupAboutToShow)));
 
-        // TODO: verify this works, this signal used to be registered on the popup
-        /*Popup.*/
         Connect(CanvasItem.SignalName.Draw, new Callable(this, nameof(RedrawPopup)));
     }
 
@@ -179,14 +182,25 @@ public partial class CustomDropDown : MenuButton
             }
         }
 
-        // Redraw the menu button and popup
-        // TODO: check if this works still
+        // Redraw the menu button and popup.
+        // Godot 4 change:
         // There doesn't seem to be any way to force redraw of the PopupMenu as it creates an internal control
         // in C++ in PopupMenu::PopupMenu in scene/gui/popup_menu.cpp but offers no way to access it, and itself it
         // isn't any kind of object that can be told to re-draw
         // Popup.Control.QueueRedraw();
 
         QueueRedraw();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            vSeparationReference.Dispose();
+            themeVSeparationReference.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void RedrawPopup()
@@ -196,7 +210,7 @@ public partial class CustomDropDown : MenuButton
     }
 
     /// <summary>
-    ///   This readjust the rect size of this MenuButton and its PopupMenu.
+    ///   This re-adjust the rect size of this MenuButton and its PopupMenu.
     ///   Called when they are to be redrawn.
     /// </summary>
     private void ReadjustRectSizes()
@@ -216,10 +230,10 @@ public partial class CustomDropDown : MenuButton
         if (!Popup.Visible)
             return;
 
-        var font = Popup.GetThemeFont("font");
-
         // Offset from the top
-        var height = Popup.GetThemeStylebox("panel").ContentMarginTop + (font.GetHeight() / 2) - (iconSize.Y / 2);
+        var height = contentMarginTop + (fontHeight * 0.5f) - (iconSize.Y * 0.5f);
+
+        var separation = Popup.GetThemeConstant(vSeparationReference);
 
         foreach (var section in items)
         {
@@ -227,7 +241,7 @@ public partial class CustomDropDown : MenuButton
             {
                 if (item.Separator && item.Text != "default")
                 {
-                    height += font.GetHeight() + Popup.GetThemeConstant("v_separation");
+                    height += fontHeight + separation;
                     continue;
                 }
 
@@ -241,24 +255,22 @@ public partial class CustomDropDown : MenuButton
                 // See the comment about QueueRedraw() problems with the new Popup implementation in this file
                 DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
 
-                height += font.GetHeight() + Popup.GetThemeConstant("v_separation");
+                height += fontHeight + separation;
             }
         }
     }
 
     private void OnPopupAboutToShow()
     {
-        Popup.AddThemeConstantOverride("v_separation", -14);
+        Popup.AddThemeConstantOverride(vSeparationReference, -14);
 
         // Animate slide down
 
-        // TODO: check that this path is still valid
         var tween = CreateTween();
         tween.SetTrans(Tween.TransitionType.Cubic);
         tween.SetEase(Tween.EaseType.Out);
 
-        // TODO: cache string name
-        tween.TweenProperty(Popup, "theme_override_constants/v_separation", cachedPopupVSeparation, 0.1).From(-14);
+        tween.TweenProperty(Popup, themeVSeparationReference, cachedPopupVSeparation, 0.1).From(-14);
     }
 
     /// <summary>
