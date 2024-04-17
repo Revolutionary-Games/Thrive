@@ -105,7 +105,17 @@ public static class SafeModeStartupHandler
         startupSucceeded = true;
 
         DeleteCurrentStartupInfoFile();
-        GD.Print(Constants.STARTUP_SUCCEEDED_MESSAGE);
+
+        if (!LaunchOptions.LaunchedThroughLauncher)
+        {
+            GD.Print(Constants.STARTUP_SUCCEEDED_MESSAGE);
+        }
+        else
+        {
+            GD.PrintErr("The following is not an error, but is printed as an error to ensure launcher always " +
+                "sees it without buffering:");
+            GD.PrintErr(Constants.STARTUP_SUCCEEDED_MESSAGE);
+        }
     }
 
     private static StartupAttemptInfo? LoadExistingStartupInfo()
