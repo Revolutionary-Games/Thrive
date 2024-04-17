@@ -139,6 +139,9 @@ public partial class LicensesDisplay : CustomWindow
                 Text = licenseTuple.Content(),
                 HorizontalAlignment = HorizontalAlignment.Left,
                 AutowrapMode = TextServer.AutowrapMode.WordSmart,
+
+                // Increase the initial size to make loading faster
+                Size = new Vector2(1000, 1000),
             };
 
             content.LabelSettings = ContentFont;
