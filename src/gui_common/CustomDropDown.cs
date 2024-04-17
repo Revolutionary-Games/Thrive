@@ -3,9 +3,13 @@ using Godot;
 
 /// <summary>
 ///   A custom dropdown implemented through MenuButton, with extra popup menu functionality
-///   such as adjusted custom icon size with tweakable color and some slide down animation.
-///   (Might need to expand this later)
+///   such as some slide down animation.
 /// </summary>
+/// <remarks>
+///   <para>
+///     In Godot 4 it is possible to set dropdown icon size now so this just has the animation and some data helpers.
+///   </para>
+/// </remarks>
 public partial class CustomDropDown : MenuButton
 {
 #pragma warning disable CA2213
@@ -29,7 +33,7 @@ public partial class CustomDropDown : MenuButton
     ///   All item icon sizes will be adjusted according to this. Currently, it's automatically
     ///   set according to the PopupMenu's check icon size (with a bit smaller result)
     /// </summary>
-    private Vector2 iconSize;
+    private int iconMaxWidth;
 
     public CustomDropDown()
     {
@@ -42,13 +46,11 @@ public partial class CustomDropDown : MenuButton
         var checkSize = Popup.GetThemeIcon("checked").GetSize();
 
         // Set the custom icon size
-        iconSize = new Vector2(checkSize.X - 2, checkSize.Y - 2);
+        iconMaxWidth = (int)(checkSize.X - 2);
 
         ClipContents = true;
 
         Connect(MenuButton.SignalName.AboutToPopup, new Callable(this, nameof(OnPopupAboutToShow)));
-
-        Connect(CanvasItem.SignalName.Draw, new Callable(this, nameof(RedrawPopup)));
     }
 
     public override void _Draw()
@@ -169,27 +171,42 @@ public partial class CustomDropDown : MenuButton
 
                 item.Id = id++;
 
-                if (item.Checkable)
+                if (item.Icon != null)
                 {
-                    Popup.AddCheckItem(item.Text, id);
-                    Popup.SetItemChecked(Popup.GetItemIndex(id), item.Checked);
+                    if (item.Checkable)
+                    {
+                        Popup.AddIconCheckItem(item.Icon, item.Text, id);
+                        var index = Popup.GetItemIndex(id);
+                        Popup.SetItemIconMaxWidth(index, iconMaxWidth);
+                        Popup.SetItemIconModulate(index, item.Color);
+                        Popup.SetItemChecked(index, item.Checked);
+                    }
+                    else
+                    {
+                        Popup.AddIconItem(item.Icon, item.Text, id);
+                        var index = Popup.GetItemIndex(id);
+                        Popup.SetItemIconMaxWidth(index, iconMaxWidth);
+                        Popup.SetItemIconModulate(index, item.Color);
+                        Popup.SetItemAsSeparator(index, item.Separator);
+                    }
                 }
                 else
                 {
-                    Popup.AddItem(item.Text, id);
-                    Popup.SetItemAsSeparator(Popup.GetItemIndex(id), item.Separator);
+                    if (item.Checkable)
+                    {
+                        Popup.AddCheckItem(item.Text, id);
+                        Popup.SetItemChecked(Popup.GetItemIndex(id), item.Checked);
+                    }
+                    else
+                    {
+                        Popup.AddItem(item.Text, id);
+                        Popup.SetItemAsSeparator(Popup.GetItemIndex(id), item.Separator);
+                    }
                 }
             }
         }
 
-        // Redraw the menu button and popup.
-        // Godot 4 change:
-        // There doesn't seem to be any way to force redraw of the PopupMenu as it creates an internal control
-        // in C++ in PopupMenu::PopupMenu in scene/gui/popup_menu.cpp but offers no way to access it, and itself it
-        // isn't any kind of object that can be told to re-draw
-        // Popup.Control.QueueRedraw();
-
-        QueueRedraw();
+        ReadjustRectSizes();
     }
 
     protected override void Dispose(bool disposing)
@@ -203,61 +220,16 @@ public partial class CustomDropDown : MenuButton
         base.Dispose(disposing);
     }
 
-    private void RedrawPopup()
-    {
-        ReadjustRectSizes();
-        DrawIcons();
-    }
-
     /// <summary>
-    ///   This re-adjust the rect size of this MenuButton and its PopupMenu.
-    ///   Called when they are to be redrawn.
+    ///   This re-adjust the rect size of this MenuButton and its PopupMenu. Called when they are updated.
     /// </summary>
     private void ReadjustRectSizes()
     {
         // Adjust the menu button to have the same length as the popup
-        CustomMinimumSize = new Vector2(Popup.GetContentsMinimumSize().X + iconSize.X + 6, CustomMinimumSize.Y);
+        CustomMinimumSize = new Vector2(Popup.GetContentsMinimumSize().X + iconMaxWidth + 6, CustomMinimumSize.Y);
 
         // Set popup to minimum length
         Popup.Size = new Vector2I(Mathf.RoundToInt(Size.X), 0);
-    }
-
-    /// <summary>
-    ///   A workaround to get PopupMenu icons drawn in an adjusted size.
-    /// </summary>
-    private void DrawIcons()
-    {
-        if (!Popup.Visible)
-            return;
-
-        // Offset from the top
-        var height = contentMarginTop + (fontHeight * 0.5f) - (iconSize.Y * 0.5f);
-
-        var separation = Popup.GetThemeConstant(vSeparationReference);
-
-        foreach (var section in items)
-        {
-            foreach (var item in section.Value)
-            {
-                if (item.Separator && item.Text != "default")
-                {
-                    height += fontHeight + separation;
-                    continue;
-                }
-
-                // Skip if item has no icon
-                if (item.Icon == null)
-                    continue;
-
-                var position = new Vector2(Popup.Size.X - iconSize.X - 6, height);
-
-                // TODO: this used to use Popup.DrawTextureRect but Popup is no longer a control that can draw stuff
-                // See the comment about QueueRedraw() problems with the new Popup implementation in this file
-                DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
-
-                height += fontHeight + separation;
-            }
-        }
     }
 
     private void OnPopupAboutToShow()
