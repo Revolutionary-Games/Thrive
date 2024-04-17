@@ -108,13 +108,13 @@ public partial class CollapsibleList : VBoxContainer
             UpdateClipMinimumSize();
     }
 
-    public T GetItem<T>(string name)
+    public T GetItem<T>(StringName name)
         where T : Control
     {
         return (T?)items.Find(i => i.Name == name) ?? throw new ArgumentException("No item found with name");
     }
 
-    public void RemoveItem(string name)
+    public void RemoveItem(StringName name)
     {
         var found = items.Find(i => i.Name == name);
 
