@@ -554,7 +554,7 @@ public static class Constants
     public const float NAME_LABEL_VISIBILITY_DISTANCE = 300.0f;
 
     /// <summary>
-    ///   Maximum number of damage events allowed for an entity. Any more are not recorded and is an error.
+    ///   Maximum number of damage events allowed for an entity. More than this are not recorded and is an error.
     /// </summary>
     public const int MAX_DAMAGE_EVENTS = 1000;
 
