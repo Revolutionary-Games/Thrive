@@ -54,7 +54,9 @@ public sealed class AnimationControlSystem : AEntitySetSystem<float>
         if (animation.StopPlaying)
         {
             // Reset this to make sure the animation doesn't start again behind our backs
-            player.Autoplay = null;
+            // But only if not already in the tree, as Godot will complain uselessly about this
+            if (!player.IsInsideTree())
+                player.Autoplay = null;
 
             // TODO: parameter in the component to allow passing reset: false?
             player.Stop();

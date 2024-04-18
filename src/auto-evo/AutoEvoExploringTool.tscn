@@ -663,6 +663,7 @@ label_settings = ExtResource("5_6c001")
 
 [node name="ResultsLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
 layout_mode = 2
+fit_content = true
 
 [node name="Viewer" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
 visible = false

@@ -20,7 +20,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 label_settings = ExtResource("3_bvs72")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="pressed" from="Button" to="." method="OnPressed"]

@@ -5,8 +5,8 @@
 /// </summary>
 public partial class EnvironmentPanel : BarPanelBase
 {
-    private readonly StringName vSeparationReference = new("vseparation");
-    private readonly StringName hSeparationReference = new("hseparation");
+    private readonly StringName vSeparationReference = new("v_separation");
+    private readonly StringName hSeparationReference = new("h_separation");
 
     public override void AddPrimaryBar(CompoundProgressBar bar)
     {

@@ -129,14 +129,14 @@ public partial class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_secrete_slime")]
-    public void SecreteSlime(float delta)
+    public void SecreteSlime(double delta)
     {
         if (!stage.HasPlayer)
             return;
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
-        control.QueueSecreteSlime(ref stage.Player.Get<OrganelleContainer>(), stage.Player, delta);
+        control.QueueSecreteSlime(ref stage.Player.Get<OrganelleContainer>(), stage.Player, (float)delta);
     }
 
     [RunOnKeyDown("g_toggle_engulf")]
