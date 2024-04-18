@@ -1282,7 +1282,7 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10.0f;
 
     /// <summary>
-    ///   Minimum amount for the some category in the hover info.
+    ///   Minimum amount for some category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_SOME = 50.0f;
 
@@ -1297,9 +1297,12 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800.0f;
 
     /// <summary>
-    ///   Minimum amount for the an abundance category in the hover info.
+    ///   Minimum amount for an abundance category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
+
+    public const int ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS = 2;
+    public const int PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 3;
 
     public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.10f;
 

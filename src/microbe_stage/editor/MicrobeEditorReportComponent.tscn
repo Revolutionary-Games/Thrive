@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://qdqcbnri7vsw"]
+[gd_scene load_steps=24 format=3 uid="uid://qdqcbnri7vsw"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_ocn33"]
@@ -31,6 +31,8 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id="30"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_d1pk0"]
 
 [sub_resource type="StyleBoxFlat" id="27"]
 content_margin_left = 5.0
@@ -80,7 +82,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="MicrobeEditorReport" type="Control"]
+[node name="MicrobeEditorReport" type="Control" node_paths=PackedStringArray("speciesChartContainer", "physicalConditionsChartContainer", "atmosphereChartContainer", "compoundsChartContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,17 +98,15 @@ AutoEvoSubtabPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/Mar
 TimelineSubtabPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel")
 TimelineEventsContainerPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer/GlobalEventsContainer")
 TimeIndicatorPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator")
-PhysicalConditionsIconLegendPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend")
-TemperatureChartPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature")
-SunlightChartPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Sunlight")
-AtmosphericGassesChartPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart")
-CompoundsChartPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart")
-SpeciesPopulationChartPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart")
 GlucoseReductionLabelPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/GlucoseReduction")
 AutoEvoLabelPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/AutoEvoResults")
 ExternalEffectsLabelPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
 ReportTabPatchNamePath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchName")
 ReportTabPatchSelectorPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
+speciesChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation")
+physicalConditionsChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions")
+atmosphereChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses")
+compoundsChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds")
 FinishOrNextButtonPath = NodePath("NextTabButton/NextTabButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -411,7 +411,7 @@ horizontal_alignment = 1
 layout_mode = 2
 DisplayName = "SPECIES_POPULATION"
 
-[node name="LineChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer" index="0" instance=ExtResource("103")]
+[node name="SpeciesChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" instance=ExtResource("103")]
 layout_mode = 2
 ChartName = "SPECIES_POPULATION"
 YAxisTicks = 6
@@ -419,50 +419,47 @@ LegendMode = 1
 
 [node name="PhysicalConditions" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
 layout_mode = 2
-TitleLabelPath = NodePath("../PhysicalConditions/HBoxContainer/Title")
-CollapseButtonPath = NodePath("../PhysicalConditions/HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("../PhysicalConditions/HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("../PhysicalConditions/Clip")
-ItemContainerPath = NodePath("../PhysicalConditions/Clip/GridContainer")
 DisplayName = "PHYSICAL_CONDITIONS"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="0"]
+[node name="LegendContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="Legend" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer"]
+[node name="Legend" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 2
 
-[node name="temperature" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend"]
+[node name="temperature" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_d1pk0")
 texture_normal = ExtResource("62")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="sunlight" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend"]
+[node name="sunlight" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_d1pk0")
 texture_normal = ExtResource("57")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Temperature" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="1" instance=ExtResource("103")]
+[node name="Temperature" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" instance=ExtResource("103")]
 layout_mode = 2
 ChartName = "TEMPERATURE"
 YAxisTicks = 6
 LegendMode = 2
 
-[node name="Sunlight" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="2" instance=ExtResource("103")]
+[node name="Sunlight" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" instance=ExtResource("103")]
 visible = false
 layout_mode = 2
 ChartName = "SUNLIGHT"
@@ -471,28 +468,18 @@ LegendMode = 2
 
 [node name="AtmosphericGasses" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
 layout_mode = 2
-TitleLabelPath = NodePath("../AtmosphericGasses/HBoxContainer/Title")
-CollapseButtonPath = NodePath("../AtmosphericGasses/HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("../AtmosphericGasses/HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("../AtmosphericGasses/Clip")
-ItemContainerPath = NodePath("../AtmosphericGasses/Clip/GridContainer")
 DisplayName = "ATMOSPHERIC_GASSES"
 
-[node name="LineChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer" index="0" instance=ExtResource("103")]
+[node name="AtmosphereChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" instance=ExtResource("103")]
 layout_mode = 2
 ChartName = "ATMOSPHERIC_GASSES"
 YAxisTicks = 6
 
 [node name="Compounds" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
 layout_mode = 2
-TitleLabelPath = NodePath("../Compounds/HBoxContainer/Title")
-CollapseButtonPath = NodePath("../Compounds/HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("../Compounds/HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("../Compounds/Clip")
-ItemContainerPath = NodePath("../Compounds/Clip/GridContainer")
 DisplayName = "COMPOUNDS"
 
-[node name="LineChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer" index="0" instance=ExtResource("103")]
+[node name="CompoundsChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" instance=ExtResource("103")]
 layout_mode = 2
 ChartName = "COMPOUNDS"
 YAxisTicks = 6
@@ -531,15 +518,10 @@ text = "NEXT_CAPITAL"
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton" to="." method="SetReportSubtab" binds= ["Timeline"]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer/GlobalFilter" to="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [0]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer/LocalFilter" to="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [1]]
-[connection signal="mouse_entered" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["temperature", true]]
-[connection signal="mouse_exited" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["temperature", false]]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendPressed" binds= ["temperature"]]
-[connection signal="mouse_entered" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["sunlight", true]]
-[connection signal="mouse_exited" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["sunlight", false]]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="." method="OnPhysicalConditionsChartLegendPressed" binds= ["sunlight"]]
+[connection signal="mouse_entered" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["temperature", true]]
+[connection signal="mouse_exited" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["temperature", false]]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendPressed" binds= ["temperature"]]
+[connection signal="mouse_entered" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/sunlight" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["sunlight", true]]
+[connection signal="mouse_exited" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/sunlight" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["sunlight", false]]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/sunlight" to="." method="OnPhysicalConditionsChartLegendPressed" binds= ["sunlight"]]
 [connection signal="pressed" from="NextTabButton/NextTabButton" to="." method="NextOrFinishClicked"]
-
-[editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation"]
-[editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions"]
-[editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses"]
-[editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds"]

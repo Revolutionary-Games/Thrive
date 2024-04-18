@@ -13,28 +13,30 @@ texture = ExtResource("5")
 expand_margin_top = 1.0
 region_rect = Rect2(0, 0, 258, 1)
 
-[node name="CollapsibleList" type="VBoxContainer"]
+[node name="CollapsibleList" type="VBoxContainer" node_paths=PackedStringArray("titleLabel", "itemContainer", "clipBox", "titleContainer", "collapseButton", "expandButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1225.0
 offset_bottom = -744.0
+size_flags_horizontal = 3
 script = ExtResource("7")
-TitleLabelPath = NodePath("HBoxContainer/Title")
-CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("Clip")
-ItemContainerPath = NodePath("Clip/GridContainer")
+titleLabel = NodePath("TitleContainer/Title")
+itemContainer = NodePath("Clip/GridContainer")
+clipBox = NodePath("Clip")
+titleContainer = NodePath("TitleContainer")
+collapseButton = NodePath("TitleContainer/Buttons/minusButton")
+expandButton = NodePath("TitleContainer/Buttons/plusButton")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="TitleContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Buttons" type="MarginContainer" parent="HBoxContainer"]
+[node name="Buttons" type="MarginContainer" parent="TitleContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="minusButton" type="TextureButton" parent="HBoxContainer/Buttons"]
+[node name="minusButton" type="TextureButton" parent="TitleContainer/Buttons"]
 layout_mode = 2
 mouse_filter = 1
 texture_normal = ExtResource("1")
@@ -42,7 +44,7 @@ texture_hover = ExtResource("2")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="plusButton" type="TextureButton" parent="HBoxContainer/Buttons"]
+[node name="plusButton" type="TextureButton" parent="TitleContainer/Buttons"]
 visible = false
 layout_mode = 2
 mouse_filter = 1
@@ -51,27 +53,31 @@ texture_hover = ExtResource("4")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Title" type="Label" parent="HBoxContainer"]
+[node name="Title" type="Label" parent="TitleContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "Insert Title Here"
+text = "Collapsible List"
 label_settings = ExtResource("6_51q1u")
 
-[node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TitleContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("1")
 
-[node name="Clip" type="MarginContainer" parent="."]
+[node name="Clip" type="Control" parent="."]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="GridContainer" type="GridContainer" parent="Clip"]
 layout_mode = 2
+offset_right = 152.0
 mouse_filter = 2
 
-[connection signal="pressed" from="HBoxContainer/Buttons/minusButton" to="." method="CollapseButtonPressed"]
-[connection signal="pressed" from="HBoxContainer/Buttons/plusButton" to="." method="ExpandButtonPressed"]
+[connection signal="pressed" from="TitleContainer/Buttons/minusButton" to="." method="CollapseButtonPressed"]
+[connection signal="pressed" from="TitleContainer/Buttons/plusButton" to="." method="ExpandButtonPressed"]
+[connection signal="resized" from="Clip" to="." method="AvailableWidthChanged"]
+[connection signal="minimum_size_changed" from="Clip/GridContainer" to="." method="OnContainerMinimumSizeChanged"]
