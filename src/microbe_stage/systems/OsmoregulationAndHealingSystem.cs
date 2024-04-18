@@ -145,7 +145,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     }
 
     /// <summary>
-    ///   Damage the microbe if its too low on ATP.
+    ///   Damage the microbe if it's too low on ATP.
     /// </summary>
     private void ApplyATPDamage(CompoundBag compounds, ref Health health, ref CellProperties cellProperties)
     {
