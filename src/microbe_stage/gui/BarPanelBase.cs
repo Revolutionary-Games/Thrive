@@ -61,7 +61,7 @@ public partial class BarPanelBase : VBoxContainer
 
     public override void _Ready()
     {
-        // To allow setting panel state before
+        // To allow setting panel state before adding to the scene tree
         UpdatePanelState();
 
         if (!showPanels)
@@ -70,10 +70,18 @@ public partial class BarPanelBase : VBoxContainer
         }
     }
 
+    /// <summary>
+    ///   Adds a new bar to this panel's primary bar area
+    /// </summary>
+    /// <param name="bar">Bar to add, may not be in this panel already</param>
+    /// <exception cref="InvalidOperationException">If called before this is added to the tree</exception>
     public virtual void AddPrimaryBar(CompoundProgressBar bar)
     {
         if (expandButton == null)
             throw new InvalidOperationException("Needs to be in tree first");
+
+        // Make sure later added bars follow the compressed state
+        bar.Compact = PanelCompressed;
 
         primaryBarContainer.AddChild(bar);
         primaryBars.Add(bar);
