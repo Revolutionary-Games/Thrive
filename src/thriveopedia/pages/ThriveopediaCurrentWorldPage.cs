@@ -48,7 +48,7 @@ public partial class ThriveopediaCurrentWorldPage : ThriveopediaPage, IThriveope
         miscDetails.Text = settings.GetTranslatedMiscString();
     }
 
-    public override void OnTranslationChanged()
+    public override void OnTranslationsChanged()
     {
         UpdateCurrentWorldDetails();
     }

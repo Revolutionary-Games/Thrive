@@ -114,23 +114,25 @@ public partial class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        // TODO: should this only register when reactToLanguageChange is true?
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
     public override void _ExitTree()
     {
         base._ExitTree();
+
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
 
         if (registeredForInputChanges)
         {
             InputDataList.InputsRemapped -= OnInputsRemapped;
             registeredForInputChanges = false;
         }
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == NotificationTranslationChanged && reactToLanguageChange)
-            ParseCustomTags();
     }
 
     public override void _Draw()
@@ -775,5 +777,11 @@ public partial class CustomRichTextLabel : RichTextLabel
                 ToolTipManager.Instance.Display = false;
             }
         }
+    }
+
+    private void OnTranslationsChanged()
+    {
+        if (reactToLanguageChange)
+            ParseCustomTags();
     }
 }

@@ -126,15 +126,16 @@ public partial class CustomConfirmationDialog : CustomWindow
         UpdateButtons();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateLabel();
-            UpdateButtons();
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
 
-        base._Notification(what);
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     public void SetConfirmDisabled(bool disabled)
@@ -202,5 +203,11 @@ public partial class CustomConfirmationDialog : CustomWindow
 
         if (HideOnOk)
             Close();
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateLabel();
+        UpdateButtons();
     }
 }

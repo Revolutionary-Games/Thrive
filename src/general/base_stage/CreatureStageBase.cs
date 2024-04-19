@@ -161,16 +161,6 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         }
     }
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            // TODO: the following doesn't seem to do anything so confirm that and remove
-            if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
-                throw new InvalidOperationException("Stage not initialized properly");
-        }
-    }
-
     public override void StartNewGame()
     {
         SpawnPlayer();
@@ -194,7 +184,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             GameWorld.GenerationHistory[lastGeneration].UpdateSpeciesData(GameWorld.PlayerSpecies);
         }
 
-        // Now the editor increases the generation so we don't do that here anymore
+        // Now the editor increases the generation, so we don't do that here anymore
 
         // Make sure player is spawned
         SpawnPlayer();
@@ -202,7 +192,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         BaseHUD.OnEnterStageTransition(false, true);
         BaseHUD.HideReproductionDialog();
 
-        // Pass some extra time to hud messages to make short lived messages from the previous life (like editor ready
+        // Pass some extra time to hud messages to make short-lived messages from the previous life (like editor ready
         // disappear)
         BaseHUD.HUDMessages.PassExtraTime(Constants.HUD_MESSAGES_EXTRA_ELAPSE_TIME_FROM_EDITOR);
 

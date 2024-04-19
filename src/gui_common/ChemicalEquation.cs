@@ -99,6 +99,18 @@ public partial class ChemicalEquation : VBoxContainer
         UpdateEquation();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
     public override void _Process(double delta)
     {
         if (ShowSpinner && EquationFromProcess != null)
@@ -115,16 +127,13 @@ public partial class ChemicalEquation : VBoxContainer
             UpdateEquation();
     }
 
-    public override void _Notification(int what)
+    private void OnTranslationsChanged()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            if (perSecondLabel != null)
-                perSecondLabel.Text = Localization.Translate("PER_SECOND_SLASH");
+        if (perSecondLabel != null)
+            perSecondLabel.Text = Localization.Translate("PER_SECOND_SLASH");
 
-            if (environmentSeparator != null)
-                environmentSeparator.Text = GetEnvironmentLabelText();
-        }
+        if (environmentSeparator != null)
+            environmentSeparator.Text = GetEnvironmentLabelText();
     }
 
     private void UpdateEquation()

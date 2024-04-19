@@ -74,7 +74,7 @@ public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaP
     {
     }
 
-    public override void OnTranslationChanged()
+    public override void OnTranslationsChanged()
     {
         UpdateShownPatchDetails();
         UpdateSeedLabel();

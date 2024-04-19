@@ -184,10 +184,16 @@ public partial class MouseHoverPanel : PanelContainer
             AddChild(container);
         }
 
-        public override void _Notification(int what)
+        public override void _EnterTree()
         {
-            if (what == NotificationTranslationChanged)
-                titleLabel.Text = title.ToString();
+            base._EnterTree();
+            Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+        }
+
+        public override void _ExitTree()
+        {
+            base._ExitTree();
+            Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
         }
 
         public void EmplaceLabel(InspectedEntityLabel label)
@@ -200,6 +206,11 @@ public partial class MouseHoverPanel : PanelContainer
         {
             container.FreeChildren();
             totalEntityLabels = 0;
+        }
+
+        private void OnTranslationsChanged()
+        {
+            titleLabel.Text = title.ToString();
         }
     }
 }

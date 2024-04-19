@@ -150,14 +150,16 @@ public partial class ModUploader : Control
         UpdateWorkshopNoticeTexts();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateWorkshopNoticeTexts();
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += UpdateWorkshopNoticeTexts;
+    }
 
-        base._Notification(what);
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= UpdateWorkshopNoticeTexts;
     }
 
     public void Open(IEnumerable<FullModDetails> availableMods)

@@ -151,14 +151,16 @@ public partial class CompoundAmount : HBoxContainer
             UpdateColour();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateTooltip();
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
 
-            UpdateLabel();
-        }
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     protected override void Dispose(bool disposing)
@@ -232,5 +234,11 @@ public partial class CompoundAmount : HBoxContainer
     {
         if (icon != null)
             icon.TooltipText = compound!.Name;
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateTooltip();
+        UpdateLabel();
     }
 }

@@ -49,12 +49,16 @@ public partial class SpeciesDetailsPanel : MarginContainer
             UpdateSpeciesPreview();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        base._Notification(what);
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
 
-        if (what == NotificationTranslationChanged && previewSpecies != null)
-            UpdateSpeciesPreview();
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     protected override void Dispose(bool disposing)
@@ -89,5 +93,11 @@ public partial class SpeciesDetailsPanel : MarginContainer
         }
 
         speciesDetailsLabel!.ExtendedBbcode = PreviewSpecies?.GetDetailString();
+    }
+
+    private void OnTranslationsChanged()
+    {
+        if (previewSpecies != null)
+            UpdateSpeciesPreview();
     }
 }

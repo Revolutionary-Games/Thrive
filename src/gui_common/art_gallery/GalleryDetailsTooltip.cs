@@ -73,10 +73,16 @@ public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
         UpdateContent();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-            UpdateContent();
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += UpdateContent;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= UpdateContent;
     }
 
     protected override void Dispose(bool disposing)

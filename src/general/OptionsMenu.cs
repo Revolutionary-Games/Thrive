@@ -674,27 +674,20 @@ public partial class OptionsMenu : ControlWithInput
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options", false);
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options", false);
         unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options", false);
+
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
 
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+
         cloudResolutionTitle.UnRegisterToolTipForControl("cloudResolution", "options");
         guiLightEffectsToggle.UnRegisterToolTipForControl("guiLightEffects", "options");
         assumeHyperthreading.UnRegisterToolTipForControl("assumeHyperthreading", "options");
         unsavedProgressWarningEnabled.UnRegisterToolTipForControl("unsavedProgressWarning", "options");
-    }
-
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            BuildInputRebindControls();
-            UpdateDefaultAudioOutputDeviceText();
-            DisplayResolution();
-            DisplayGpuInfo();
-        }
     }
 
     /// <summary>
@@ -1100,6 +1093,14 @@ public partial class OptionsMenu : ControlWithInput
         // Round to 2 places after the floating point
         videoMemory.Text = Localization.Translate("VIDEO_MEMORY_MIB")
             .FormatSafe(Math.Round(videoMemoryInMebibytes, 2));
+    }
+
+    private void OnTranslationsChanged()
+    {
+        BuildInputRebindControls();
+        UpdateDefaultAudioOutputDeviceText();
+        DisplayResolution();
+        DisplayGpuInfo();
     }
 
     /// <summary>
