@@ -94,9 +94,10 @@ SkipOverridingFocusForElements = [NodePath("../../../..")]
 editor_description = "PLACEHOLDER"
 modulate = Color(1, 1, 0, 1)
 layout_mode = 2
-size_flags_horizontal = 3
 text = "Easter egg message goes here"
 label_settings = ExtResource("5_80o6f")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
