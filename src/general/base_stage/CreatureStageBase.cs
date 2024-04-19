@@ -161,16 +161,6 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         }
     }
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            // TODO: the following doesn't seem to do anything so confirm that and remove
-            if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
-                throw new InvalidOperationException("Stage not initialized properly");
-        }
-    }
-
     public override void StartNewGame()
     {
         SpawnPlayer();
