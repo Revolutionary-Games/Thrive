@@ -93,6 +93,7 @@ SkipOverridingFocusForElements = [NodePath("../../../..")]
 [node name="TipMessageLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 editor_description = "PLACEHOLDER"
 modulate = Color(1, 1, 0, 1)
+custom_minimum_size = Vector2(812, 20)
 layout_mode = 2
 text = "Easter egg message goes here"
 label_settings = ExtResource("5_80o6f")
