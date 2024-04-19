@@ -14,12 +14,16 @@ public partial class VersionNumber : Label
         UpdateVersion();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        base._Notification(what);
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += UpdateVersion;
+    }
 
-        if (what == NotificationTranslationChanged)
-            UpdateVersion();
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= UpdateVersion;
     }
 
     private void UpdateVersion()

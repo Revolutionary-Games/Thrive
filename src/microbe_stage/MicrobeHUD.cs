@@ -108,6 +108,18 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         macroscopicButton.Visible = false;
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
     public override void _Process(double delta)
     {
         base._Process(delta);
@@ -124,17 +136,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             multicellularButton.Visible = false;
             macroscopicButton.Visible = false;
-        }
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateColonySizeForMulticellular();
-            UpdateColonySizeForMacroscopic();
         }
     }
 
@@ -759,5 +760,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void OnEjectEngulfedPressed()
     {
         EmitSignal(SignalName.OnEjectEngulfedButtonPressed);
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateColonySizeForMulticellular();
+        UpdateColonySizeForMacroscopic();
     }
 }

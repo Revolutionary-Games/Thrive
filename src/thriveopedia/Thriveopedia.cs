@@ -168,6 +168,7 @@ public partial class Thriveopedia : ControlWithInput
         base._EnterTree();
 
         ThriveopediaManager.ReportActiveThriveopedia(this);
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
 
     public override void _ExitTree()
@@ -175,6 +176,7 @@ public partial class Thriveopedia : ControlWithInput
         base._ExitTree();
 
         ThriveopediaManager.RemoveActiveThriveopedia(this);
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     public override void _Notification(int what)
@@ -194,11 +196,6 @@ public partial class Thriveopedia : ControlWithInput
 
             foreach (var page in allPages.Keys)
                 page.OnThriveopediaOpened();
-        }
-        else if (what == NotificationTranslationChanged)
-        {
-            foreach (var page in allPages)
-                UpdatePageInTree(page.Value, page.Key);
         }
     }
 
@@ -527,6 +524,14 @@ public partial class Thriveopedia : ControlWithInput
     private void Exit()
     {
         EmitSignal(SignalName.OnThriveopediaClosed);
+    }
+
+    private void OnTranslationsChanged()
+    {
+        foreach (var page in allPages)
+        {
+            UpdatePageInTree(page.Value, page.Key);
+        }
     }
 
     private void PrintErrorAboutCurrentGame()

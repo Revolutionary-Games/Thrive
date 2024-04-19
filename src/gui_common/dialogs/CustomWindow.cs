@@ -249,12 +249,15 @@ public partial class CustomWindow : TopLevelContainer
         ConnectToWindowReorderingNodes();
 
         base._EnterTree();
+
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
 
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
         DisconnectFromWindowReorderingNodes();
     }
 
@@ -286,12 +289,6 @@ public partial class CustomWindow : TopLevelContainer
                         MouseDefaultCursorShape = CursorShape.Arrow;
                 }
 
-                break;
-            }
-
-            case NotificationTranslationChanged:
-            {
-                translatedWindowTitle = Localization.Translate(windowTitle);
                 break;
             }
         }
@@ -749,5 +746,10 @@ public partial class CustomWindow : TopLevelContainer
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.Canceled);
         Close();
+    }
+
+    private void OnTranslationsChanged()
+    {
+        translatedWindowTitle = Localization.Translate(windowTitle);
     }
 }

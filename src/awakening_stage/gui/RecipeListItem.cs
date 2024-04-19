@@ -60,6 +60,18 @@ public partial class RecipeListItem : Button
         UpdateShownRecipe();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += UpdateShownRecipe;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= UpdateShownRecipe;
+    }
+
     public override void _Notification(int what)
     {
         base._Notification(what);
@@ -67,10 +79,6 @@ public partial class RecipeListItem : Button
         if (what == NotificationResized)
         {
             SetLabelSize();
-        }
-        else if (what == NotificationTranslationChanged)
-        {
-            UpdateShownRecipe();
         }
     }
 

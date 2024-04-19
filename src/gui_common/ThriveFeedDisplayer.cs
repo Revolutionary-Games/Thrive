@@ -71,6 +71,18 @@ public partial class ThriveFeedDisplayer : VBoxContainer
         CheckStartFetchNews();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
     public override void _Process(double delta)
     {
         if (newsEnumerator != null)
@@ -103,23 +115,6 @@ public partial class ThriveFeedDisplayer : VBoxContainer
 
         newsContainer.QueueFreeChildren();
         loadingIndicator.Visible = false;
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == NotificationTranslationChanged)
-        {
-            // Rebuild the displayed data if we have data currently
-            // As the data is cached by the fetcher, we can very cheaply just start the fetch task again
-            // TODO: would be nice to only recreate the data once the user is done picking their language and exits
-            // the menu
-            if (itemsCreated)
-            {
-                CheckStartFetchNews(true);
-            }
-        }
     }
 
     public void CheckStartFetchNews(bool redoIfReady = false)
@@ -225,5 +220,17 @@ public partial class ThriveFeedDisplayer : VBoxContainer
 
         newsContainer.AddChild(itemContainer);
         itemsCreated = true;
+    }
+
+    private void OnTranslationsChanged()
+    {
+        // Rebuild the displayed data if we have data currently
+        // As the data is cached by the fetcher, we can very cheaply just start the fetch task again
+        // TODO: would be nice to only recreate the data once the user is done picking their language and exits
+        // the menu
+        if (itemsCreated)
+        {
+            CheckStartFetchNews(true);
+        }
     }
 }

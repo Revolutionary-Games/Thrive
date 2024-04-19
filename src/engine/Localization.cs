@@ -24,9 +24,15 @@ public partial class Localization : Node
         instance = this;
     }
 
-    public Localization Instance => instance ?? throw new InstanceNotLoadedYetException();
+    public delegate void TranslationsChangedEventHandler();
 
-    // TODO: event for when language changes
+    /// <summary>
+    ///   Event to listen to, to know when translations text / language has changed and some GUI elements may need to
+    ///   update their state
+    /// </summary>
+    public event TranslationsChangedEventHandler? OnTranslationsChanged;
+
+    public static Localization Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   Returns text for a translation key for the current language
@@ -105,7 +111,7 @@ public partial class Localization : Node
 
         try
         {
-            // TODO: trigger localization change callback
+            OnTranslationsChanged?.Invoke();
         }
         catch (Exception e)
         {

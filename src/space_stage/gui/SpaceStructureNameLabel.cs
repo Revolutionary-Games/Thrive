@@ -19,14 +19,16 @@ public partial class SpaceStructureNameLabel : Button, IEntityNameLabel
     [JsonIgnore]
     public Control LabelControl => this;
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        base._Notification(what);
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += UpdateTranslationTemplate;
+    }
 
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateTranslationTemplate();
-        }
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= UpdateTranslationTemplate;
     }
 
     public void UpdateFromEntity(IEntityWithNameLabel entity)

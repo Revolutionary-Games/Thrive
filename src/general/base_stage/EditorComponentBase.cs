@@ -59,6 +59,18 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         finishOrNextButton = GetNode<Button>(FinishOrNextButtonPath);
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
     public virtual void Init(TEditor owningEditor, bool fresh)
     {
         editor = owningEditor;
@@ -94,20 +106,11 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         Init((TEditor)owningEditor, fresh);
     }
 
-    public override void _Notification(int what)
-    {
-        // Rebuilds and recalculates all value dependent UI elements on language change
-        if (what == NotificationTranslationChanged)
-        {
-            OnTranslationsChanged();
-        }
-    }
-
     /// <summary>
     ///   Called
     /// </summary>
     /// <param name="species">
-    ///   The species that was setup, accessing more specific data through <see cref="Editor"/> rather than casting
+    ///   The species that was set up, accessing more specific data through <see cref="Editor"/> rather than casting
     ///   to a derived class is recommended.
     /// </param>
     public virtual void OnEditorSpeciesSetup(Species species)

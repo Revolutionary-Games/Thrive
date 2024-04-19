@@ -256,6 +256,7 @@ public partial class MainMenu : NodeWithInput
 
         Settings.Instance.Menu3DBackgroundEnabled.OnChanged += OnMenuBackgroundTypeChanged;
         ThriveopediaManager.Instance.OnPageOpenedHandler += OnThriveopediaOpened;
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
 
     public override void _ExitTree()
@@ -264,6 +265,7 @@ public partial class MainMenu : NodeWithInput
 
         Settings.Instance.Menu3DBackgroundEnabled.OnChanged -= OnMenuBackgroundTypeChanged;
         ThriveopediaManager.Instance.OnPageOpenedHandler -= OnThriveopediaOpened;
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     public override void _Process(double delta)
@@ -339,13 +341,6 @@ public partial class MainMenu : NodeWithInput
         {
             GD.Print("Main window close signal detected");
             Invoke.Instance.Queue(QuitPressed);
-        }
-        else if (notification == NotificationTranslationChanged)
-        {
-            if (SteamHandler.Instance.IsLoaded)
-            {
-                UpdateSteamLoginText();
-            }
         }
     }
 
@@ -1174,5 +1169,13 @@ public partial class MainMenu : NodeWithInput
     {
         secondsInMenu = 0;
         averageFrameRate = 0;
+    }
+
+    private void OnTranslationsChanged()
+    {
+        if (SteamHandler.Instance.IsLoaded)
+        {
+            UpdateSteamLoginText();
+        }
     }
 }

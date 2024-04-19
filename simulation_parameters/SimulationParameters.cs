@@ -211,12 +211,16 @@ public partial class SimulationParameters : Node
         GD.Print("SimulationParameters are good");
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            ApplyTranslations();
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += ApplyTranslations;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= ApplyTranslations;
     }
 
     public OrganelleDefinition GetOrganelleType(string name)

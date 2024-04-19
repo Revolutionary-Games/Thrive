@@ -107,11 +107,15 @@ public partial class GalleryViewer : CustomWindow
 
         if (tooltipsDetached)
             ReAttachToolTips();
+
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
+
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
 
         if (registeredToolTips.Count > 0)
             DetachToolTips();
@@ -144,11 +148,7 @@ public partial class GalleryViewer : CustomWindow
         if (!readyCalled)
             return;
 
-        if (what == NotificationTranslationChanged && hasBecomeVisibleAtLeastOnce)
-        {
-            InitializeGallery();
-        }
-        else if (what == NotificationVisibilityChanged && Visible && !hasBecomeVisibleAtLeastOnce)
+        if (what == NotificationVisibilityChanged && Visible && !hasBecomeVisibleAtLeastOnce)
         {
             hasBecomeVisibleAtLeastOnce = true;
             InitializeGallery();
@@ -521,5 +521,11 @@ public partial class GalleryViewer : CustomWindow
         }
 
         tooltipsDetached = false;
+    }
+
+    private void OnTranslationsChanged()
+    {
+        if (hasBecomeVisibleAtLeastOnce)
+            InitializeGallery();
     }
 }

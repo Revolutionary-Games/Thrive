@@ -44,14 +44,16 @@ public partial class TechWebGUI : HBoxContainer
         techNodesContainer = GetNode<Control>(TechNodesContainerPath);
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        base._Notification(what);
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += ShowTechnologyDetails;
+    }
 
-        if (what == NotificationTranslationChanged)
-        {
-            ShowTechnologyDetails();
-        }
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= ShowTechnologyDetails;
     }
 
     /// <summary>

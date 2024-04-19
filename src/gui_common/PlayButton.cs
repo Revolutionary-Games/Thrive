@@ -65,10 +65,16 @@ public partial class PlayButton : MarginContainer
         UpdateTooltips();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-            UpdateTooltips();
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += UpdateTooltips;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= UpdateTooltips;
     }
 
     /// <summary>

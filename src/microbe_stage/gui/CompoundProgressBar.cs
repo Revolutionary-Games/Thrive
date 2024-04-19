@@ -331,15 +331,16 @@ public partial class CompoundProgressBar : Control
         }
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        base._Notification(what);
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
 
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateName();
-            UpdateValue();
-        }
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     /// <summary>
@@ -550,5 +551,11 @@ public partial class CompoundProgressBar : Control
                 nameLabel.Show();
             }
         }
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateName();
+        UpdateValue();
     }
 }

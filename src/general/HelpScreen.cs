@@ -58,18 +58,20 @@ public partial class HelpScreen : Control
         }
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            leftColumn.QueueFreeChildren();
-            rightColumn.QueueFreeChildren();
-            BuildHelpTexts(Category);
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     /// <summary>
-    ///   Randomizes the easter egg messages
+    ///   Randomizes the Easter egg messages
     ///   and its chance of showing up.
     /// </summary>
     public void RandomizeEasterEgg()
@@ -146,5 +148,12 @@ public partial class HelpScreen : Control
     private void OnCloseButtonPressed()
     {
         EmitSignal(SignalName.HelpScreenClosed);
+    }
+
+    private void OnTranslationsChanged()
+    {
+        leftColumn.QueueFreeChildren();
+        rightColumn.QueueFreeChildren();
+        BuildHelpTexts(Category);
     }
 }

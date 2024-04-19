@@ -122,13 +122,16 @@ public partial class CellStatsIndicator : HBoxContainer
         UpdateValue();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateDescription();
-            UpdateValue();
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     public void ResetInitialValue()
@@ -216,5 +219,11 @@ public partial class CellStatsIndicator : HBoxContainer
         valueLabel.Text = string.IsNullOrEmpty(Format) ?
             Value.ToString(CultureInfo.CurrentCulture) :
             Format!.FormatSafe(Value);
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateDescription();
+        UpdateValue();
     }
 }

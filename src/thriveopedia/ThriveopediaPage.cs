@@ -56,12 +56,16 @@ public partial class ThriveopediaPage : PanelContainer
             AddThemeStyleboxOverride("panel", new StyleBoxEmpty());
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        base._Notification(what);
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
 
-        if (what == NotificationTranslationChanged)
-            OnTranslationChanged();
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     /// <summary>
@@ -89,7 +93,7 @@ public partial class ThriveopediaPage : PanelContainer
     /// <summary>
     ///   Called when <see cref="Node.NotificationTranslationChanged"/> is received.
     /// </summary>
-    public virtual void OnTranslationChanged()
+    public virtual void OnTranslationsChanged()
     {
     }
 }

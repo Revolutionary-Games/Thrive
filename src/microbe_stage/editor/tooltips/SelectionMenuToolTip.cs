@@ -198,13 +198,16 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         UpdateOsmoregulationCost();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateDescription();
-            UpdateProcessesDescription();
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     /// <summary>
@@ -441,6 +444,12 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
             return;
 
         moreInfo.Visible = thriveopediaPageName != null;
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateDescription();
+        UpdateProcessesDescription();
     }
 
     private void DummyKeepTranslations()
