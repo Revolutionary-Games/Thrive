@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Formats.Tar;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using Godot;
-using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using DirAccess = Godot.DirAccess;
 using FileAccess = Godot.FileAccess;
@@ -192,10 +192,13 @@ public class FossilisedSpecies
 
         using var fileStream = new GodotFileStream(file);
         using Stream gzoStream = new GZipStream(fileStream, CompressionLevel.Optimal);
-        using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
+        using var tar = new TarWriter(gzoStream, TarEntryFormat.Pax);
 
-        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
-        TarHelper.OutputEntry(tar, SAVE_FOSSIL_JSON, Encoding.UTF8.GetBytes(serialized));
+        using var entryContent = new MemoryStream(serialized.Length);
+        using var entryWriter = new StreamWriter(entryContent, Encoding.UTF8);
+
+        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, justInfo, entryContent, entryWriter);
+        TarHelper.OutputEntry(tar, SAVE_FOSSIL_JSON, serialized, entryContent, entryWriter);
 
         if (previewImage != null)
         {
@@ -253,29 +256,31 @@ public class FossilisedSpecies
 
         using var stream = new GodotFileStream(reader);
         using Stream gzoStream = new GZipStream(stream, CompressionMode.Decompress);
-        using var tar = new TarInputStream(gzoStream, Encoding.UTF8);
+        using var tar = new TarReader(gzoStream);
 
-        TarEntry tarEntry;
-        while ((tarEntry = tar.GetNextEntry()) != null)
+        while (tar.GetNextEntry(false) is { } tarEntry)
         {
-            if (tarEntry.IsDirectory)
+            if (tarEntry.EntryType is not TarEntryType.V7RegularFile and not TarEntryType.RegularFile)
+                continue;
+
+            if (tarEntry.DataStream == null)
                 continue;
 
             if (tarEntry.Name == SAVE_INFO_JSON)
             {
-                infoStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
+                infoStr = TarHelper.ReadStringEntry(tarEntry);
             }
             else if (tarEntry.Name == SAVE_FOSSIL_JSON)
             {
-                fossilStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
+                fossilStr = TarHelper.ReadStringEntry(tarEntry);
             }
             else if (tarEntry.Name == SAVE_PREVIEW_IMAGE)
             {
-                previewImageData = TarHelper.ReadBytesEntry(tar, (int)tarEntry.Size);
+                previewImageData = TarHelper.ReadBytesEntry(tarEntry);
             }
             else
             {
-                GD.PrintErr("Unknown file in fossil: ", tarEntry.Name);
+                GD.Print("Unknown file in fossil: ", tarEntry.Name);
             }
         }
 

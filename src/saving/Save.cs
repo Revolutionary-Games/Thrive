@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Formats.Tar;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
 using Godot;
-using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using FileAccess = Godot.FileAccess;
@@ -249,9 +249,14 @@ public class Save
 
         using var fileStream = new GodotFileStream(file);
         using Stream gzoStream = new GZipStream(fileStream, CompressionLevel.Optimal);
-        using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
+        using var tar = new TarWriter(gzoStream, TarEntryFormat.Pax);
 
-        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
+        // Use the size that is in most cases basically the final size for the stream to avoid storage reallocations
+        // as much as possible
+        using var entryContent = new MemoryStream(serialized.Length);
+        using var entryWriter = new StreamWriter(entryContent, Encoding.UTF8);
+
+        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, justInfo, entryContent, entryWriter);
 
         if (screenshot != null)
         {
@@ -261,11 +266,7 @@ public class Save
                 TarHelper.OutputEntry(tar, SAVE_SCREENSHOT, data);
         }
 
-        TarHelper.OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
-
-        // TODO: queue a task to start a background operation next frame to check that reading the file as compressed
-        // tar file works correctly
-        // https://github.com/Revolutionary-Games/Thrive/issues/3865
+        TarHelper.OutputEntry(tar, SAVE_SAVE_JSON, serialized, entryContent, entryWriter);
     }
 
     private static (SaveInformation? Info, Save? Save, Image? Screenshot) LoadFromFile(string file, bool info,
@@ -351,12 +352,14 @@ public class Save
 
         using var stream = new GodotFileStream(reader);
         using Stream gzoStream = new GZipStream(stream, CompressionMode.Decompress);
-        using var tar = new TarInputStream(gzoStream, Encoding.UTF8);
+        using var tar = new TarReader(gzoStream);
 
-        TarEntry tarEntry;
-        while ((tarEntry = tar.GetNextEntry()) != null)
+        while (tar.GetNextEntry(false) is { } tarEntry)
         {
-            if (tarEntry.IsDirectory)
+            if (tarEntry.EntryType is not TarEntryType.V7RegularFile and not TarEntryType.RegularFile)
+                continue;
+
+            if (tarEntry.DataStream == null)
                 continue;
 
             if (tarEntry.Name == SAVE_INFO_JSON)
@@ -364,7 +367,7 @@ public class Save
                 if (!info)
                     continue;
 
-                infoStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
+                infoStr = TarHelper.ReadStringEntry(tarEntry);
                 --itemsToRead;
             }
             else if (tarEntry.Name == SAVE_SAVE_JSON)
@@ -372,7 +375,7 @@ public class Save
                 if (!save)
                     continue;
 
-                saveStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
+                saveStr = TarHelper.ReadStringEntry(tarEntry);
                 --itemsToRead;
             }
             else if (tarEntry.Name == SAVE_SCREENSHOT)
@@ -380,12 +383,12 @@ public class Save
                 if (!screenshot)
                     continue;
 
-                screenshotData = TarHelper.ReadBytesEntry(tar, (int)tarEntry.Size);
+                screenshotData = TarHelper.ReadBytesEntry(tarEntry);
                 --itemsToRead;
             }
             else
             {
-                GD.PrintErr("Unknown file in save: ", tarEntry.Name);
+                GD.Print("Unknown file in save: ", tarEntry.Name);
             }
 
             // Early quit if we already got as many things as we want
