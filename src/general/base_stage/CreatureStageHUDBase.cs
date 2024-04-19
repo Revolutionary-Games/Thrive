@@ -392,13 +392,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // Make sure fossilization layer update won't run if it isn't open
         fossilisationButtonLayer.Visible = false;
 
-        // TODO: move these to be gotten as a method in SimulationParameters
+        // TODO: move these to be gotten as a method in SimulationParameters (similarly to `GetCloudCompounds()`)
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
-
-        // Apply potentially different GUI state from save
-        EnvironmentPanelCompressed = temporaryEnvironmentCompressed;
-        CompoundsPanelCompressed = temporaryCompoundCompressed;
     }
 
     public void Init(TStage containedInStage)

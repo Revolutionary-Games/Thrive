@@ -43,12 +43,30 @@ public partial class CompoundPanels : BarPanelBase
         }
     }
 
+    /// <summary>
+    ///   If true, extra vertical space is added between items when compressed
+    /// </summary>
+    [Export]
+    public bool ApplyCompressedVerticalExtraSpace { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
 
         if (!ShowAgents)
             HideImmediately();
+    }
+
+    /// <inheritdoc cref="BarPanelBase.AddPrimaryBar"/>
+    public override void AddPrimaryBar(CompoundProgressBar bar)
+    {
+        base.AddPrimaryBar(bar);
+
+        // When compressed the column state depends on bar count so that must be kept up to date
+        if (PanelCompressed)
+        {
+            UpdateCompressedColumnCount();
+        }
     }
 
     /// <summary>
@@ -58,6 +76,12 @@ public partial class CompoundPanels : BarPanelBase
     {
         if (expandButton == null)
             throw new InvalidOperationException("Needs to be in tree first");
+
+        if (PanelCompressed)
+        {
+            agentBar.Compact = true;
+            UpdateCompressedColumnCount();
+        }
 
         agentsContainer.AddChild(agentBar);
         agentsCreatedBars.Add(agentBar);
@@ -87,17 +111,12 @@ public partial class CompoundPanels : BarPanelBase
 
         if (PanelCompressed)
         {
-            primaryBarContainer.AddThemeConstantOverride(vSeparationReference, 20);
+            if (ApplyCompressedVerticalExtraSpace)
+                primaryBarContainer.AddThemeConstantOverride(vSeparationReference, 20);
+
             primaryBarContainer.AddThemeConstantOverride(hSeparationReference, 14);
 
-            if (primaryBars.Count < 4)
-            {
-                primaryBarContainer.Columns = 2;
-            }
-            else
-            {
-                primaryBarContainer.Columns = 3;
-            }
+            UpdateCompressedColumnCount();
 
             foreach (var bar in primaryBars)
             {
@@ -114,7 +133,10 @@ public partial class CompoundPanels : BarPanelBase
         else
         {
             primaryBarContainer.Columns = 1;
-            primaryBarContainer.AddThemeConstantOverride(vSeparationReference, 5);
+
+            if (ApplyCompressedVerticalExtraSpace)
+                primaryBarContainer.AddThemeConstantOverride(vSeparationReference, 5);
+
             primaryBarContainer.AddThemeConstantOverride(hSeparationReference, 0);
 
             foreach (var bar in primaryBars)
@@ -214,5 +236,17 @@ public partial class CompoundPanels : BarPanelBase
         }
 
         base.Dispose(disposing);
+    }
+
+    private void UpdateCompressedColumnCount()
+    {
+        if (primaryBars.Count < 4)
+        {
+            primaryBarContainer.Columns = 2;
+        }
+        else
+        {
+            primaryBarContainer.Columns = 3;
+        }
     }
 }

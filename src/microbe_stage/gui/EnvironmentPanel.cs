@@ -8,6 +8,12 @@ public partial class EnvironmentPanel : BarPanelBase
     private readonly StringName vSeparationReference = new("v_separation");
     private readonly StringName hSeparationReference = new("h_separation");
 
+    /// <summary>
+    ///   If true, extra vertical space is added between items when compressed
+    /// </summary>
+    [Export]
+    public bool ApplyCompressedVerticalExtraSpace { get; set; }
+
     public override void AddPrimaryBar(CompoundProgressBar bar)
     {
         base.AddPrimaryBar(bar);
@@ -24,7 +30,10 @@ public partial class EnvironmentPanel : BarPanelBase
         if (PanelCompressed)
         {
             primaryBarContainer.Columns = 2;
-            primaryBarContainer.AddThemeConstantOverride(vSeparationReference, 20);
+
+            if (ApplyCompressedVerticalExtraSpace)
+                primaryBarContainer.AddThemeConstantOverride(vSeparationReference, 20);
+
             primaryBarContainer.AddThemeConstantOverride(hSeparationReference, 17);
 
             foreach (var bar in primaryBars)
@@ -35,7 +44,10 @@ public partial class EnvironmentPanel : BarPanelBase
         else
         {
             primaryBarContainer.Columns = 1;
-            primaryBarContainer.AddThemeConstantOverride(vSeparationReference, 4);
+
+            if (ApplyCompressedVerticalExtraSpace)
+                primaryBarContainer.AddThemeConstantOverride(vSeparationReference, 4);
+
             primaryBarContainer.AddThemeConstantOverride(hSeparationReference, 0);
 
             foreach (var bar in primaryBars)

@@ -511,6 +511,10 @@ public partial class CompoundProgressBar : Control
 
     private void ApplyCompactMode(bool playAnimation)
     {
+        // Do not play an animation if not inside the tree as this is still being setup
+        if (playAnimation && !IsInsideTree())
+            playAnimation = false;
+
         if (playAnimation)
         {
             var tween = CreateTween();
