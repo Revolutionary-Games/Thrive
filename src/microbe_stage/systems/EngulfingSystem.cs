@@ -108,8 +108,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
     private bool endosomeDebugAlreadyPrinted;
     private bool wasFullAlready;
 
-    private float tutorialFullTimer = 0f;
-    private float tutorialFullTimerMax = 15f;
+    private float tutorialFullTimer = 0.0f;
+    private float tutorialFullTimerMax = 15.0f;
 
     public EngulfingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) :
         base(world, null)
@@ -191,19 +191,22 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         }
 
         // Not full anymore tutorial (end trigger for engulfment full tutorial)
-        if (tutorialFullTimer > 0)
+        if (entity.Has<PlayerMarker>())
         {
-            tutorialFullTimer -= delta;
-        }
-        else
-        {
-            if (wasFullAlready && engulfer.UsedEngulfingCapacity <= engulfer.EngulfingSize * 0.5f)
+            if (tutorialFullTimer > 0)
             {
-                if (entity.Has<MicrobeEventCallbacks>())
+                tutorialFullTimer -= delta;
+            }
+            else
+            {
+                if (wasFullAlready && engulfer.UsedEngulfingCapacity <= engulfer.EngulfingSize * 0.5f)
                 {
-                    ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+                    if (entity.Has<MicrobeEventCallbacks>())
+                    {
+                        ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
 
-                    callbacks.OnEngulfmentStorageNotFullAnymore?.Invoke(entity);
+                        callbacks.OnEngulfmentStorageNotFullAnymore?.Invoke(entity);
+                    }
                 }
             }
         }
