@@ -1206,7 +1206,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private void OnPlayerEngulfmentNotFullAnymore(Entity player)
     {
         Invoke.Instance.QueueForObject(
-            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentNotFull, EventArgs.Empty, this), this);
+            () => TutorialState.SendEvent(
+                TutorialEventType.MicrobePlayerEngulfmentNotFull, EventArgs.Empty, this), this);
     }
 
     [DeserializedCallbackAllowed]
