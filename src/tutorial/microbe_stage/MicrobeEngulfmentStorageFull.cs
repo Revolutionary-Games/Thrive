@@ -26,7 +26,7 @@ public class MicrobeEngulfmentStorageFull : TutorialPhase
 
             case TutorialEventType.MicrobePlayerEngulfmentNotFull:
             {
-                if (ShownCurrently)
+                if (ShownCurrently && Time >= 15)
                 {
                     Hide();
                 }
