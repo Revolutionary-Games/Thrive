@@ -32,6 +32,8 @@ public struct MicrobeEventCallbacks
 
     public Action<Entity>? OnEngulfmentStorageFull;
 
+    public Action<Entity>? OnEngulfmentStorageNotFullAnymore;
+
     public Action<Entity, IHUDMessage>? OnNoticeMessage;
 
     /// <summary>

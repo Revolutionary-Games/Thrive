@@ -106,6 +106,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
     private GameWorld? gameWorld;
 
     private bool endosomeDebugAlreadyPrinted;
+    private bool wasFullAlready;
 
     public EngulfingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) :
         base(world, null)
@@ -184,6 +185,17 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             }
 
             return;
+        }
+
+        // Not full anymore tutorial (end trigger for engulfment full tutorial)
+        if (wasFullAlready && engulfer.UsedEngulfingCapacity <= engulfer.EngulfingSize * 0.5f)
+        {
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                callbacks.OnEngulfmentStorageNotFullAnymore?.Invoke(entity);
+            }
         }
 
         usedTopLevelEngulfers.Add(entity);
@@ -1024,6 +1036,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
 
                 callbacks.OnEngulfmentStorageFull?.Invoke(entity);
+
+                wasFullAlready = true;
 
                 entity.SendNoticeIfPossible(() =>
                     new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULF_STORAGE_FULL")));
