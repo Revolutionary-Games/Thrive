@@ -53,12 +53,12 @@ public:
         if (!bmi1Supported)
             result |= CPU_CHECK_MISSING_BMI1;
 
-        // Looking at the instructions, Jolt *probably* only uses FMA3
         if (!fma3Supported)
             result |= CPU_CHECK_MISSING_FMA;
 
-        if (!fma4Supported)
-            result |= CPU_CHECK_MISSING_FMA;
+        // Looking at the instructions, Jolt *probably* only uses FMA3. FMA4 is also way newer.
+        /*if (!fma4Supported)
+            result |= CPU_CHECK_MISSING_FMA;*/
 
         return static_cast<CPU_CHECK_RESULT>(result);
     }
