@@ -1,27 +1,25 @@
-﻿namespace AutoEvo
+﻿namespace AutoEvo;
+using System.Collections.Generic;
+using System.Linq;
+
+public class AddMultipleOrganelles : IMutationStrategy<MicrobeSpecies>
 {
-    using System.Collections.Generic;
-    using System.Linq;
+    private List<AddOrganelleAnywhere> organelleAdditions;
 
-    public class AddMultipleOrganelles : IMutationStrategy<MicrobeSpecies>
+    public AddMultipleOrganelles(List<AddOrganelleAnywhere> addOrganelleAnywheres)
     {
-        private List<AddOrganelleAnywhere> organelleAdditions;
+        organelleAdditions = addOrganelleAnywheres;
+    }
 
-        public AddMultipleOrganelles(List<AddOrganelleAnywhere> addOrganelleAnywheres)
+    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
+    {
+        List<MicrobeSpecies> retval = new List<MicrobeSpecies>();
+
+        foreach (AddOrganelleAnywhere mutationStrat in organelleAdditions)
         {
-            organelleAdditions = addOrganelleAnywheres;
+            retval = retval.SelectMany(x => mutationStrat.MutationsOf(x, partList)).ToList();
         }
 
-        public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
-        {
-            List<MicrobeSpecies> retval = new List<MicrobeSpecies>();
-
-            foreach (AddOrganelleAnywhere mutationStrat in organelleAdditions)
-            {
-                retval = retval.SelectMany(x => mutationStrat.MutationsOf(x, partList)).ToList();
-            }
-
-            return retval;
-        }
+        return retval;
     }
 }

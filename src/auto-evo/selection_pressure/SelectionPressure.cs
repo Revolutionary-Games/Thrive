@@ -1,48 +1,47 @@
-﻿namespace AutoEvo
+﻿namespace AutoEvo;
+
+using System.Collections.Generic;
+
+public abstract class SelectionPressure
 {
-    using System.Collections.Generic;
+    public float Strength;
+    public List<IMutationStrategy<MicrobeSpecies>> Mutations;
+    public int EnergyProvided = 0;
 
-    public abstract class SelectionPressure
+    public SelectionPressure(float strength, List<IMutationStrategy<MicrobeSpecies>> mutations)
     {
-        public float Strength;
-        public List<IMutationStrategy<MicrobeSpecies>> Mutations;
-        public int EnergyProvided = 0;
+        Strength = strength;
+        Mutations = mutations;
+    }
 
-        public SelectionPressure(float strength, List<IMutationStrategy<MicrobeSpecies>> mutations)
+    public abstract float Score(MicrobeSpecies species, SimulationCache cache);
+
+    /// <summary>
+    ///   Calculates the relative difference between the old and new scores
+    /// </summary>
+    public float WeightedComparedScores(float newScore, float oldScore)
+    {
+        if (newScore <= 0)
         {
-            Strength = strength;
-            Mutations = mutations;
+            return -1;
         }
 
-        public abstract float Score(MicrobeSpecies species, SimulationCache cache);
-
-        /// <summary>
-        ///   Calculates the relative difference between the old and new scores
-        /// </summary>
-        public float WeightedComparedScores(float newScore, float oldScore)
+        if (oldScore == 0)
         {
-            if (newScore <= 0)
-            {
-                return -1;
-            }
+            return newScore > 0 ? 1 : 0;
+        }
 
-            if (oldScore == 0)
-            {
-                return newScore > 0 ? 1 : 0;
-            }
-
-            if (newScore > oldScore)
-            {
-                return newScore / oldScore * Strength;
-            }
-            else if (oldScore > newScore)
-            {
-                return -(oldScore / newScore) * Strength;
-            }
-            else
-            {
-                return 0;
-            }
+        if (newScore > oldScore)
+        {
+            return newScore / oldScore * Strength;
+        }
+        else if (oldScore > newScore)
+        {
+            return -(oldScore / newScore) * Strength;
+        }
+        else
+        {
+            return 0;
         }
     }
 }

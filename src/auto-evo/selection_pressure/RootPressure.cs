@@ -1,30 +1,29 @@
-﻿namespace AutoEvo
+﻿namespace AutoEvo;
+
+using System.Collections.Generic;
+using System.Linq;
+using Godot;
+
+public class RootPressure : SelectionPressure
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Godot;
+    private readonly Patch patch;
+    private readonly float weight;
 
-    public class RootPressure : SelectionPressure
+    public RootPressure(Patch patch, float weight) : base(
+        weight,
+        new List<IMutationStrategy<MicrobeSpecies>>
+        {
+            // Add a little bit of randomness to the miche tree
+            new AddOrganelleAnywhere(_ => true),
+            new RemoveAnyOrganelle(),
+        })
     {
-        private readonly Patch patch;
-        private readonly float weight;
+        this.patch = patch;
+        this.weight = weight;
+    }
 
-        public RootPressure(Patch patch, float weight) : base(
-            weight,
-            new List<IMutationStrategy<MicrobeSpecies>>
-            {
-                // Add a little bit of randomness to the miche tree
-                new AddOrganelleAnywhere(_ => true),
-                new RemoveAnyOrganelle(),
-            })
-        {
-            this.patch = patch;
-            this.weight = weight;
-        }
-
-        public override float Score(MicrobeSpecies species, SimulationCache cache)
-        {
-            return 1;
-        }
+    public override float Score(MicrobeSpecies species, SimulationCache cache)
+    {
+        return 1;
     }
 }

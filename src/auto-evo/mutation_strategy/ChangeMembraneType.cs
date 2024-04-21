@@ -1,22 +1,21 @@
-﻿namespace AutoEvo
+﻿namespace AutoEvo;
+
+using System.Collections.Generic;
+
+public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
 {
-    using System.Collections.Generic;
-
-    public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
+    private MembraneType membraneType;
+    public ChangeMembraneType(MembraneType membraneType)
     {
-        private MembraneType membraneType;
-        public ChangeMembraneType(MembraneType membraneType)
-        {
-            this.membraneType = membraneType;
-        }
+        this.membraneType = membraneType;
+    }
 
-        public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
-        {
-            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
+    {
+        var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            newSpecies.MembraneType = membraneType;
+        newSpecies.MembraneType = membraneType;
 
-            return new List<MicrobeSpecies> { newSpecies };
-        }
+        return new List<MicrobeSpecies> { newSpecies };
     }
 }
