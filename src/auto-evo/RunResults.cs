@@ -17,6 +17,8 @@ using Godot;
 /// </remarks>
 public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesResult>>
 {
+    public Dictionary<Patch, Miche> MicheByPatch = new();
+
     /// <summary>
     ///   The per-species results
     /// </summary>
@@ -32,8 +34,6 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
 
     public enum NewSpeciesType
     {
-        public Dictionary<Patch, Miche> MicheByPatch = new();
-
         /// <summary>
         ///   New species was created as there was lack of species / empty niche so to speak for it to fill
         /// </summary>

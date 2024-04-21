@@ -36,4 +36,3 @@ public class MutationLogicFunctions
             >= Constants.DIFFERENCES_FOR_GENUS_SPLIT;
     }
 }
-
