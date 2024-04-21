@@ -23,7 +23,7 @@ public static class ComponentAccessChecks
         if (!enforcing)
             throw new InvalidOperationException("Can only be done while a simulation is running");
 
-        AllowedAccessesPerThread.Value.Add(type);
+        AllowedAccessesPerThread.Value!.Add(type);
     }
 
     public static void ReportAllowedAccessType<T>()
@@ -33,7 +33,7 @@ public static class ComponentAccessChecks
 
     public static void ClearAccessForCurrentThread()
     {
-        AllowedAccessesPerThread.Value.Clear();
+        AllowedAccessesPerThread.Value!.Clear();
     }
 
     public static void CheckHasAccess(string type)
@@ -43,7 +43,7 @@ public static class ComponentAccessChecks
         if (!enforcing)
             return;
 
-        if (AllowedAccessesPerThread.Value.Contains(type))
+        if (AllowedAccessesPerThread.Value!.Contains(type))
             return;
 
         GD.PrintErr("Not allowed access by currently running system to component of type: ", type);

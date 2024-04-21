@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Components;
 using DefaultEcs;
 using Godot;
@@ -10,25 +11,10 @@ using Newtonsoft.Json;
 ///   Manages the microbe HUD
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
-public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
+public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 {
-    [Export]
-    public NodePath? MulticellularButtonPath;
-
-    [Export]
-    public NodePath MulticellularConfirmPopupPath = null!;
-
-    [Export]
-    public NodePath MacroscopicButtonPath = null!;
-
-    [Export]
-    public NodePath IngestedMatterBarPath = null!;
-
-    [Export]
-    public NodePath BindingModeHotkeyPath = null!;
-
-    [Export]
-    public NodePath UnbindAllHotkeyPath = null!;
+    [Export(PropertyHint.ColorNoAlpha)]
+    public Color IngestedMatterBarFillColour = new(0.88f, 0.49f, 0.49f);
 
 #pragma warning disable CA2213
     [Export]
@@ -43,14 +29,22 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private readonly Dictionary<(string Category, LocalizedString Name), int> hoveredEntities = new();
     private readonly Dictionary<Compound, InspectedEntityLabel> hoveredCompoundControls = new();
 
+    [Export]
     private ActionButton bindingModeHotkey = null!;
+
+    [Export]
     private ActionButton unbindAllHotkey = null!;
 
+    [Export]
     private Button multicellularButton = null!;
+
+    [Export]
     private CustomWindow multicellularConfirmPopup = null!;
+
+    [Export]
     private Button macroscopicButton = null!;
 
-    private ProgressBar ingestedMatterBar = null!;
+    private CompoundProgressBar ingestedMatterBar = null!;
 
     private CustomWindow? winBox;
 #pragma warning restore CA2213
@@ -64,44 +58,39 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private bool playerWasDigested;
 
-    // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
-    public new delegate void OnOpenMenu();
+    public delegate void OnToggleEngulfButtonPressedEventHandler();
 
     [Signal]
-    public new delegate void OnOpenMenuToHelp();
+    public delegate void OnFireToxinButtonPressedEventHandler();
 
     [Signal]
-    public delegate void OnToggleEngulfButtonPressed();
+    public delegate void OnSecreteSlimeButtonPressedEventHandler();
 
     [Signal]
-    public delegate void OnFireToxinButtonPressed();
+    public delegate void OnToggleBindingButtonPressedEventHandler();
 
     [Signal]
-    public delegate void OnSecreteSlimeButtonPressed();
+    public delegate void OnUnbindAllButtonPressedEventHandler();
 
     [Signal]
-    public delegate void OnToggleBindingButtonPressed();
+    public delegate void OnEjectEngulfedButtonPressedEventHandler();
 
-    [Signal]
-    public delegate void OnUnbindAllButtonPressed();
-
-    [Signal]
-    public delegate void OnEjectEngulfedButtonPressed();
-
-    protected override string? UnPauseHelpText => TranslationServer.Translate("PAUSE_PROMPT");
+    protected override string UnPauseHelpText => Localization.Translate("PAUSE_PROMPT");
 
     public override void _Ready()
     {
         base._Ready();
-        ingestedMatterBar = GetNode<ProgressBar>(IngestedMatterBarPath);
 
-        multicellularButton = GetNode<Button>(MulticellularButtonPath);
-        multicellularConfirmPopup = GetNode<CustomWindow>(MulticellularConfirmPopupPath);
-        macroscopicButton = GetNode<Button>(MacroscopicButtonPath);
+        var barScene = GD.Load<PackedScene>("res://src/microbe_stage/gui/CompoundProgressBar.tscn");
 
-        bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
-        unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
+        ingestedMatterBar = CompoundProgressBar.Create(barScene,
+            GD.Load<Texture2D>("res://assets/textures/gui/bevel/ingestedmatter.png"),
+            new LocalizedString("INGESTED_MATTER"), 0, 1);
+        ingestedMatterBar.FillColour = IngestedMatterBarFillColour;
+
+        compoundsPanel.AddPrimaryBar(ingestedMatterBar);
+        ingestedMatterBar.Visible = false;
 
         mouseHoverPanel.AddCategory(COMPOUNDS_CATEGORY, new LocalizedString("COMPOUNDS_COLON"));
         mouseHoverPanel.AddCategory(SPECIES_CATEGORY, new LocalizedString("SPECIES_COLON"));
@@ -119,7 +108,19 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         macroscopicButton.Visible = false;
     }
 
-    public override void _Process(float delta)
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -135,17 +136,6 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             multicellularButton.Visible = false;
             macroscopicButton.Visible = false;
-        }
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateColonySizeForMulticellular();
-            UpdateColonySizeForMacroscopic();
         }
     }
 
@@ -165,14 +155,14 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         var choices = new List<(string Text, int Id)>
         {
-            (TranslationServer.Translate("SIGNAL_COMMAND_NONE"), (int)MicrobeSignalCommand.None),
-            (TranslationServer.Translate("SIGNAL_COMMAND_FOLLOW"), (int)MicrobeSignalCommand.FollowMe),
-            (TranslationServer.Translate("SIGNAL_COMMAND_TO_ME"), (int)MicrobeSignalCommand.MoveToMe),
-            (TranslationServer.Translate("SIGNAL_COMMAND_FLEE"), (int)MicrobeSignalCommand.FleeFromMe),
-            (TranslationServer.Translate("SIGNAL_COMMAND_AGGRESSION"), (int)MicrobeSignalCommand.BecomeAggressive),
+            (Localization.Translate("SIGNAL_COMMAND_NONE"), (int)MicrobeSignalCommand.None),
+            (Localization.Translate("SIGNAL_COMMAND_FOLLOW"), (int)MicrobeSignalCommand.FollowMe),
+            (Localization.Translate("SIGNAL_COMMAND_TO_ME"), (int)MicrobeSignalCommand.MoveToMe),
+            (Localization.Translate("SIGNAL_COMMAND_FLEE"), (int)MicrobeSignalCommand.FleeFromMe),
+            (Localization.Translate("SIGNAL_COMMAND_AGGRESSION"), (int)MicrobeSignalCommand.BecomeAggressive),
         };
 
-        packControlRadial.Radial.CenterText = TranslationServer.Translate("SIGNAL_TO_EMIT");
+        packControlRadial.Radial.CenterText = Localization.Translate("SIGNAL_TO_EMIT");
 
         signalingAgentMenuOpenForMicrobe = player;
         packControlRadial.ShowWithItems(choices);
@@ -216,18 +206,18 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         winExtinctBoxHolder.Show();
 
-        winBox = WinBoxScene.Instance<CustomWindow>();
+        winBox = WinBoxScene.Instantiate<CustomWindow>();
         winExtinctBoxHolder.AddChild(winBox);
         winBox.Show();
 
-        winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
+        winBox.GetNode<Timer>("Timer").Connect(Timer.SignalName.Timeout, new Callable(this, nameof(ToggleWinBox)));
     }
 
     protected override void UpdateFossilisationButtonStates()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
+        foreach (var button in fossilisationButtonLayer.GetChildren().OfType<FossilisationButton>())
         {
             var species = button.AttachedEntity.Get<SpeciesMember>().Species;
             var alreadyFossilised =
@@ -249,10 +239,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             var species = entity.Get<SpeciesMember>().Species;
 
-            var button = FossilisationButtonScene.Instance<FossilisationButton>();
+            var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
             button.AttachedEntity = entity;
-            button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
-                nameof(ShowFossilisationDialog));
+            button.Connect(FossilisationButton.SignalName.OnFossilisationDialogOpened, new Callable(this,
+                nameof(ShowFossilisationDialog)));
 
             var alreadyFossilised =
                 FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
@@ -289,13 +279,13 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         float hp = 0;
 
         string hpText = playerWasDigested ?
-            TranslationServer.Translate("DEVOURED") :
+            Localization.Translate("DEVOURED") :
             hp.ToString(CultureInfo.CurrentCulture);
 
         // Update to the player's current digested progress, unless the player does not exist
         if (stage.HasPlayer)
         {
-            var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
+            var percentageValue = Localization.Translate("PERCENTAGE_VALUE");
 
             // Show the digestion progress to the player
             hp = 1 - stage.Player.Get<Engulfable>().DigestedAmount;
@@ -308,7 +298,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
         hpLabel.Text = hpText;
-        hpLabel.HintTooltip = hpText;
+        hpLabel.TooltipText = hpText;
     }
 
     protected override CompoundBag? GetPlayerUsefulCompounds()
@@ -336,15 +326,11 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
-    protected override bool SpecialHandleBar(ProgressBar bar)
+    protected override void UpdateBarVisibility(Func<Compound, bool> isUseful)
     {
-        if (bar == ingestedMatterBar)
-        {
-            bar.Visible = GetPlayerUsedIngestionCapacity() > 0;
-            return true;
-        }
+        base.UpdateBarVisibility(isUseful);
 
-        return false;
+        ingestedMatterBar.Visible = GetPlayerUsedIngestionCapacity() > 0;
     }
 
     protected override bool ShouldShowAgentsPanel()
@@ -381,9 +367,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             maxSize = stage.Player.Get<Engulfer>().EngulfStorageSize;
         }
 
-        ingestedMatterBar.MaxValue = maxSize;
-        GUICommon.SmoothlyUpdateBar(ingestedMatterBar, GetPlayerUsedIngestionCapacity(), delta);
-        ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
+        ingestedMatterBar.UpdateValue(GetPlayerUsedIngestionCapacity(), maxSize);
     }
 
     protected override ProcessStatistics? GetPlayerProcessStatistics()
@@ -450,8 +434,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
 
-        bindingModeHotkey.Pressed = control.State == MicrobeState.Binding;
-        unbindAllHotkey.Pressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+        bindingModeHotkey.ButtonPressed = control.State == MicrobeState.Binding;
+        unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
     }
 
     protected override void UpdateHoverInfo(float delta)
@@ -472,7 +456,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             }
 
             compoundControl.SetText(compound.Key.Name);
-            compoundControl.SetDescription(GetCompoundDensityCategory(amount) ?? TranslationServer.Translate("N_A"));
+            compoundControl.SetDescription(GetCompoundDensityCategory(amount) ?? Localization.Translate("N_A"));
             compoundControl.SetDescriptionColor(GetCompoundDensityCategoryColor(amount));
             compoundControl.Visible = true;
         }
@@ -496,7 +480,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             {
                 // Special handling for player
                 var label = mouseHoverPanel.AddItem(SPECIES_CATEGORY, name.ToString());
-                label.SetDescription(TranslationServer.Translate("PLAYER"));
+                label.SetDescription(Localization.Translate("PLAYER"));
                 continue;
             }
 
@@ -526,26 +510,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             var item = mouseHoverPanel.AddItem(hoveredEntity.Key.Category, hoveredEntity.Key.Name.ToString());
 
             if (hoveredEntity.Value > 1)
-                item.SetDescription(TranslationServer.Translate("N_TIMES").FormatSafe(hoveredEntity.Value));
+                item.SetDescription(Localization.Translate("N_TIMES").FormatSafe(hoveredEntity.Value));
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MulticellularButtonPath != null)
-            {
-                MulticellularButtonPath.Dispose();
-                MulticellularConfirmPopupPath.Dispose();
-                MacroscopicButtonPath.Dispose();
-                IngestedMatterBarPath.Dispose();
-                BindingModeHotkeyPath.Dispose();
-                UnbindAllHotkeyPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -555,9 +521,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         // Display a faded button with a different hint if the species has been fossilised.
         button.AlreadyFossilised = alreadyFossilised;
-        button.HintTooltip = alreadyFossilised ?
-            TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
-            TranslationServer.Translate("FOSSILISATION_HINT");
+        button.TooltipText = alreadyFossilised ?
+            Localization.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
+            Localization.Translate("FOSSILISATION_HINT");
     }
 
     private void OnRadialItemSelected(int itemId)
@@ -637,7 +603,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (playerColonySize == null)
             return;
 
-        multicellularButton.Text = TranslationServer.Translate("BECOME_MULTICELLULAR")
+        multicellularButton.Text = Localization.Translate("BECOME_MULTICELLULAR")
             .FormatSafe(playerColonySize, Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR);
     }
 
@@ -681,7 +647,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (playerColonySize == null)
             return;
 
-        macroscopicButton.Text = TranslationServer.Translate("BECOME_MACROSCOPIC")
+        macroscopicButton.Text = Localization.Translate("BECOME_MACROSCOPIC")
             .FormatSafe(playerColonySize, Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC);
     }
 
@@ -699,7 +665,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         multicellularConfirmPopup.PopupCenteredShrink();
     }
 
-    private void OnBecomeMulticellularCancelled()
+    private void OnBecomeMulticellularCanceled()
     {
         // The game should have been paused already but just in case
         if (Paused)
@@ -768,31 +734,37 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private void OnEngulfmentPressed()
     {
-        EmitSignal(nameof(OnToggleEngulfButtonPressed));
+        EmitSignal(SignalName.OnToggleEngulfButtonPressed);
     }
 
     private void OnFireToxinPressed()
     {
-        EmitSignal(nameof(OnFireToxinButtonPressed));
+        EmitSignal(SignalName.OnFireToxinButtonPressed);
     }
 
     private void OnBindingModePressed()
     {
-        EmitSignal(nameof(OnToggleBindingButtonPressed));
+        EmitSignal(SignalName.OnToggleBindingButtonPressed);
     }
 
     private void OnUnbindAllPressed()
     {
-        EmitSignal(nameof(OnUnbindAllButtonPressed));
+        EmitSignal(SignalName.OnUnbindAllButtonPressed);
     }
 
     private void OnSecreteSlimePressed()
     {
-        EmitSignal(nameof(OnSecreteSlimeButtonPressed));
+        EmitSignal(SignalName.OnSecreteSlimeButtonPressed);
     }
 
     private void OnEjectEngulfedPressed()
     {
-        EmitSignal(nameof(OnEjectEngulfedButtonPressed));
+        EmitSignal(SignalName.OnEjectEngulfedButtonPressed);
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateColonySizeForMulticellular();
+        UpdateColonySizeForMacroscopic();
     }
 }

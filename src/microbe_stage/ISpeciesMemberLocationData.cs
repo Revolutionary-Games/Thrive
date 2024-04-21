@@ -63,8 +63,8 @@ public static class SpeciesMemberLocationDataHelpers
             var microbeGlobalPosition = microbe.Position;
 
             // Skip candidates for performance
-            if (Math.Abs(microbeGlobalPosition.x - position.x) > searchRadius ||
-                Math.Abs(microbeGlobalPosition.y - position.y) > searchRadius)
+            if (Math.Abs(microbeGlobalPosition.X - position.X) > searchRadius ||
+                Math.Abs(microbeGlobalPosition.Y - position.Y) > searchRadius)
             {
                 continue;
             }

@@ -1,17 +1,16 @@
-﻿namespace AutoEvo
+﻿namespace AutoEvo;
+
+using System;
+
+/// <summary>
+///   Contains the parameters for an auto-evo run
+/// </summary>
+public class RunParameters
 {
-    using System;
+    public readonly GameWorld World;
 
-    /// <summary>
-    ///   Contains the parameters for an auto-evo run
-    /// </summary>
-    public class RunParameters
+    public RunParameters(GameWorld world)
     {
-        public readonly GameWorld World;
-
-        public RunParameters(GameWorld world)
-        {
-            World = world ?? throw new ArgumentException("GameWorld is null");
-        }
+        World = world ?? throw new ArgumentException("GameWorld is null");
     }
 }

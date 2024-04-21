@@ -23,6 +23,8 @@ public class PhysicsShape : IDisposable
         Dispose(false);
     }
 
+    public bool Disposed => disposed;
+
     public static PhysicsShape CreateBox(float halfSideLength, float density = 1000)
     {
         return new PhysicsShape(NativeMethods.CreateBoxShape(halfSideLength, density));
@@ -74,7 +76,7 @@ public class PhysicsShape : IDisposable
 
         for (int i = 0; i < pointCount; ++i)
         {
-            convertedData[i] = new JVecF3(membranePoints[i].x, 0, membranePoints[i].y);
+            convertedData[i] = new JVecF3(membranePoints[i].X, 0, membranePoints[i].Y);
         }
 
         // The rented array from the pool will be returned when the cache entry is disposed
@@ -82,7 +84,7 @@ public class PhysicsShape : IDisposable
             CreateMicrobeShape(new ReadOnlySpan<JVecF3>(convertedData, 0, pointCount), overallDensity, scaleAsBacteria),
             convertedData, pointCount, overallDensity, scaleAsBacteria);
 
-        cache.WriteMembraneCollisionShape(result);
+        cache.WriteMembraneCollisionShape(ref result);
 
         return result.Shape;
     }
@@ -102,7 +104,7 @@ public class PhysicsShape : IDisposable
     }
 
     public static PhysicsShape CreateCombinedShapeStatic(
-        IReadOnlyList<(PhysicsShape Shape, Vector3 Position, Quat Rotation)> subShapes)
+        IReadOnlyList<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)> subShapes)
     {
         var pool = ArrayPool<SubShapeDefinition>.Shared;
 
@@ -150,7 +152,7 @@ public class PhysicsShape : IDisposable
         // TODO: pre-bake collision shapes for game export (the fallback conversion below should only need to be used
         // when debugging to make the release version perform better)
 
-        var godotData = GD.Load<ConvexPolygonShape>(path);
+        var godotData = GD.Load<ConvexPolygonShape3D>(path);
 
         if (godotData == null)
         {
@@ -234,7 +236,7 @@ public class PhysicsShape : IDisposable
         var velocities = CalculateResultingTorqueFromInertia(torqueToTest);
 
         // Detect how much torque was preserved
-        var speedFraction = velocities.y / torqueToTest.y;
+        var speedFraction = velocities.Y / torqueToTest.Y;
         speedFraction *= 1000;
 
         return speedFraction;

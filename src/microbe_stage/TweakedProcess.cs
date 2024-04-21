@@ -56,7 +56,7 @@ public struct TweakedProcess
     {
         unchecked
         {
-            return (Rate.GetHashCode() * 397) ^ Process.GetHashCode();
+            return Rate.GetHashCode() * 397 ^ Process.GetHashCode();
         }
     }
 }

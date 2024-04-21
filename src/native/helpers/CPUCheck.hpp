@@ -41,11 +41,22 @@ public:
     {
         ReadCPUFeatures();
 
-        int32_t result = CPU_CHECK_SUCCESS;
+        int32_t result = CheckCurrentCPUCompatibilityMode();
 
         // Result is built with bitwise operations to return all problems at once
         if (!avxSupported)
             result |= CPU_CHECK_MISSING_AVX;
+
+        if (!avx2Supported)
+            result |= CPU_CHECK_MISSING_AVX2;
+
+        return static_cast<CPU_CHECK_RESULT>(result);
+    }
+
+    /// \brief Check variant that is for the max compatibility with older CPUs library version
+    [[nodiscard]] static CPU_CHECK_RESULT CheckCurrentCPUCompatibilityMode() noexcept
+    {
+        int32_t result = CPU_CHECK_SUCCESS;
 
         if (!sse41Supported)
             result |= CPU_CHECK_MISSING_SSE41;
@@ -59,7 +70,7 @@ public:
     [[nodiscard]] static bool HasAVX() noexcept
     {
         ReadCPUFeatures();
-        return avxSupported;
+        return avxSupported && avx2Supported;
     }
 
     [[nodiscard]] static bool HasSSE41() noexcept
@@ -216,6 +227,10 @@ private:
         {
             sse41Supported = false;
         }
+
+        // If older AVX is not supported, turn off the newer as well
+        if (!avxSupported)
+            avx2Supported = false;
     }
 
 private:

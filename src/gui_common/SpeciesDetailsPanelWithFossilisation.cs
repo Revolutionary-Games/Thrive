@@ -5,7 +5,7 @@ using Godot;
 ///   This is an extended version of <see cref="SpeciesDetailsPanel"/>,
 ///   adding fossilisation functionalities, including a button and a popup.
 /// </summary>
-public class SpeciesDetailsPanelWithFossilisation : VBoxContainer
+public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
 {
     [Export]
     public NodePath? SpeciesDetailsPanelPath;

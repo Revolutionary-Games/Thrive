@@ -1,14 +1,17 @@
 ﻿using Godot;
 using Godot.Collections;
 
-public class WindowReorderingSupportTest : Control
+/// <summary>
+///   Test for our custom window reordering
+/// </summary>
+public partial class WindowReorderingSupportTest : Control
 {
     public override void _Ready()
     {
         EnableAllWindows(GetChildren());
     }
 
-    private void EnableAllWindows(Array children)
+    private void EnableAllWindows(Array<Node> children)
     {
         foreach (Node child in children)
         {

@@ -1,6 +1,9 @@
 ﻿using Godot;
 
-public class PermanentlyDismissibleDialog : CustomConfirmationDialog
+/// <summary>
+///   A dialog that has a checkbox for the user to select to never get this type of popup again
+/// </summary>
+public partial class PermanentlyDismissibleDialog : CustomConfirmationDialog
 {
     [Export]
     public DismissibleNotice NoticeType;
@@ -12,7 +15,7 @@ public class PermanentlyDismissibleDialog : CustomConfirmationDialog
     public PermanentDismissTypeEnum PermanentDismissType = PermanentDismissTypeEnum.RememberOnConfirm;
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
-    private CustomCheckBox checkbox = null!;
+    private CheckBox checkbox = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
     public enum DialogTypeEnum
@@ -31,15 +34,15 @@ public class PermanentlyDismissibleDialog : CustomConfirmationDialog
     {
         base._Ready();
 
-        checkbox = GetNode<CustomCheckBox>("VBoxContainer/CheckBox");
+        checkbox = GetNode<CheckBox>("VBoxContainer/CheckBox");
 
         switch (DialogType)
         {
             case DialogTypeEnum.Information:
-                checkbox.Text = TranslationServer.Translate("DISMISS_INFORMATION_PERMANENTLY");
+                checkbox.Text = Localization.Translate("DISMISS_INFORMATION_PERMANENTLY");
                 break;
             case DialogTypeEnum.Warning:
-                checkbox.Text = TranslationServer.Translate("DISMISS_WARNING_PERMANENTLY");
+                checkbox.Text = Localization.Translate("DISMISS_WARNING_PERMANENTLY");
                 break;
         }
     }
@@ -62,13 +65,13 @@ public class PermanentlyDismissibleDialog : CustomConfirmationDialog
 
     private void OnConfirmed()
     {
-        if (checkbox.Pressed && PermanentDismissType == PermanentDismissTypeEnum.RememberOnConfirm)
+        if (checkbox.ButtonPressed && PermanentDismissType == PermanentDismissTypeEnum.RememberOnConfirm)
             Settings.Instance.PermanentlyDismissNotice(NoticeType);
     }
 
-    private void OnCancelled()
+    private void OnCanceled()
     {
-        if (checkbox.Pressed && PermanentDismissType == PermanentDismissTypeEnum.RememberOnCancel)
+        if (checkbox.ButtonPressed && PermanentDismissType == PermanentDismissTypeEnum.RememberOnCancel)
             Settings.Instance.PermanentlyDismissNotice(NoticeType);
     }
 }

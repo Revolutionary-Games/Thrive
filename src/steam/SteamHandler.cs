@@ -10,7 +10,8 @@ using Godot;
 ///   If Steam library is not loaded most methods in here do nothing to allow easily calling them without checking
 ///   first.
 /// </summary>
-public class SteamHandler : Node, ISteamSignalReceiver
+[GodotAutoload]
+public partial class SteamHandler : Node, ISteamSignalReceiver
 {
     /// <summary>
     ///   All valid tags. Need to be the same as: https://partner.steamgames.com/apps/workshoptags/1779200
@@ -27,6 +28,9 @@ public class SteamHandler : Node, ISteamSignalReceiver
 
     public SteamHandler()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
     }
 
@@ -73,7 +77,10 @@ public class SteamHandler : Node, ISteamSignalReceiver
 
     public override void _Ready()
     {
-        PauseMode = PauseModeEnum.Process;
+        if (Engine.IsEditorHint())
+            return;
+
+        ProcessMode = ProcessModeEnum.Always;
 
         OnSteamInit();
     }
@@ -86,7 +93,7 @@ public class SteamHandler : Node, ISteamSignalReceiver
         steamClient = null;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         steamClient?.Process(delta);
     }
@@ -300,7 +307,8 @@ public class SteamHandler : Node, ISteamSignalReceiver
             return;
         }
 
-        RegisterSteamClient((ISteamClient)Activator.CreateInstance(type));
+        RegisterSteamClient((ISteamClient?)Activator.CreateInstance(type) ??
+            throw new Exception("Failed to create Steam client class type"));
     }
 
     private void ThrowIfNotLoaded()

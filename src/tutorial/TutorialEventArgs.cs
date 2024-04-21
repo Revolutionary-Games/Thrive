@@ -22,21 +22,21 @@ public class MicrobeEventArgs : TutorialEventArgs
 
 public class RotationEventArgs : TutorialEventArgs
 {
-    public RotationEventArgs(Quat rotation, Vector3 rotationInDegrees)
+    public RotationEventArgs(Quaternion rotation, Vector3 rotationInRadians)
     {
         Rotation = rotation;
-        RotationInDegrees = rotationInDegrees;
+        RotationInRadians = rotationInRadians;
     }
 
     /// <summary>
     ///   Quaternion of the rotation
     /// </summary>
-    public Quat Rotation { get; }
+    public Quaternion Rotation { get; }
 
     /// <summary>
-    ///   Axis-wise degree rotations
+    ///   Axis-wise rotation in radians
     /// </summary>
-    public Vector3 RotationInDegrees { get; }
+    public Vector3 RotationInRadians { get; }
 }
 
 public class MicrobeMovementEventArgs : TutorialEventArgs

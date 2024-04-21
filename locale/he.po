@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-24 10:33+0200\n"
-"PO-Revision-Date: 2022-11-17 16:00+0000\n"
-"Last-Translator: doomlightning <tamirt500@gmail.com>\n"
+"POT-Creation-Date: 2024-04-12 13:41+0300\n"
+"PO-Revision-Date: 2024-03-14 12:20+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -328,15 +328,6 @@ msgstr "בסיסי"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "לחזור אל תצוגת ההגדרה הבסיסית"
-
-msgid "BASSBOOST"
-msgstr "מקש Bassboost"
-
-msgid "BASSDOWN"
-msgstr "מקש Bass Down"
-
-msgid "BASSUP"
-msgstr "מקש Bass Up"
 
 msgid "BATHYPELAGIC"
 msgstr "בתיפלגיים"
@@ -834,8 +825,185 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "להמשיך לשלב האבטיפוס?"
 
+#, fuzzy
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_L2"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "רגישות הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_R2"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr "מצג ציר בקר :"
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr "שטחי מת של הבקר"
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr "שטחי מת של הבקר"
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr "רגישות הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr "שטחי מת של הבקר"
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr "מצג ציר בקר :"
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr "שטח מת:"
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr "רגישות הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_Y"
+msgstr "שטח מת:"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "שטחי מת של הבקר"
@@ -854,6 +1022,10 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "רגישות הבקר"
 
+#, fuzzy
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr "שטחי מת של הבקר"
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "מעתיק שגיאה ללוח העתקה"
 
@@ -866,6 +1038,10 @@ msgstr "פרוטנופ (אדום-ירוק)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "טריטנופ (כחול - צהוב)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "נושאים:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
@@ -1173,12 +1349,6 @@ msgstr "מהירות עיכול:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0} לשנייה"
 
-msgid "DIRECTIONL"
-msgstr "שמאלה"
-
-msgid "DIRECTIONR"
-msgstr "ימינה"
-
 msgid "DISABLED"
 msgstr "כבוי"
 
@@ -1244,6 +1414,14 @@ msgstr "תצוגת רשימת יכולות"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "הצג חלקיקי רקע"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "הצג שמות כפתורי בחירת חלקים"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "הצג שמות כפתורי בחירת חלקים"
@@ -1822,15 +2000,6 @@ msgstr "דור:"
 msgid "GITHUB_TOOLTIP"
 msgstr "צפו בספריית GitHub שלנו"
 
-msgid "GLES2"
-msgstr "GLES2"
-
-msgid "GLES2_MODE_WARNING"
-msgstr "אזהרת GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -1947,12 +2116,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "מימן גופרתי"
-
-msgid "HYPERL"
-msgstr "מקש Hyper Left"
-
-msgid "HYPERR"
-msgstr "מקש Hyper Right"
 
 msgid "ICESHARD"
 msgstr "רסיסי קרח"
@@ -2187,10 +2350,17 @@ msgstr "יוני"
 msgid "KEY_BACK"
 msgstr "מקש חזור"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "מקש חזור"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "יש התנגשות עם {0}.\n"
 "האם אתה רוצה להסיר את הקלט {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "מקש Clear"
@@ -2213,6 +2383,10 @@ msgstr "מקש מועדפים"
 msgid "KEY_FORWARD"
 msgstr "מקש קדימה"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "מקש Home"
+
 msgid "KEY_HELP"
 msgstr "מקש עזרה"
 
@@ -2222,14 +2396,30 @@ msgstr "מקש Home"
 msgid "KEY_HOMEPAGE"
 msgstr "מקש דף הבית"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "מקש עזרה"
+
 msgid "KEY_INSERT"
 msgstr "מקש Insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "מקש Insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "מקש חכה"
 
 msgid "KEY_LEFT"
 msgstr "מקש שמאלה"
 
 msgid "KEY_MENU"
 msgstr "מקש Menu"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "מקש Tab"
 
 msgid "KEY_OPENURL"
 msgstr "מקש פתח URL"
@@ -2690,6 +2880,7 @@ msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:
 msgid "METRICS"
 msgstr "מדדי ביצועיים"
 
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "זמן עיבוד: {0} שניות\n"
@@ -3034,6 +3225,10 @@ msgstr "העלת מוד:"
 
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "מחלקה העיקרית להעלת מוד:"
+
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "{0}: קריאת פריקה הרכבה של מוד זה נכשלה"
 
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: מחלקת מוד ספיציפית \"{1}\" לא מצאה את קליטת המוד"
@@ -3487,6 +3682,14 @@ msgstr ""
 "בגלל שThrive עוד בשלבי בנייה ראשוניים, שמירת גרסאות שלא תואמות לגרסה אינו בסדר העדיפויות.\n"
 "אתה יכול לדווח על כל בעיה שנתקלת, אבל זה אינו בעדיפות גבוהה כרגע.\n"
 "האם ברצונך להמשיך לטעון שמירה זו?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "אזהרת GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
 
 msgid "OPEN_FOLDER"
 msgstr "פתח תיקייה"
@@ -4448,9 +4651,6 @@ msgstr "צורן"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "לקרום זה יש קיר חזק העשוי מצורן. מה שמאפשר לו לעמוד היטב עם הנזק הכללי ועמיד מאוד בפני נזקים פיזיים. זהו גם דורש פחות אנרגיה כדי לשמור על צורתו. עם זאת, הוא מאט את התא בצורה רצינית והתא סופג משאבים בקצב מופחת."
 
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
-
 msgid "SIZE_COLON"
 msgstr "גודל:"
 
@@ -4732,12 +4932,6 @@ msgstr "התאבדות"
 
 msgid "SUNLIGHT"
 msgstr "אור שמש"
-
-msgid "SUPERL"
-msgstr "מקש Super Left"
-
-msgid "SUPERR"
-msgstr "מקש Super Right"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "תומכים"
@@ -5053,12 +5247,6 @@ msgstr "מתרגמים"
 msgid "TRANSPARENCY"
 msgstr "שקיפות"
 
-msgid "TREBLEDOWN"
-msgstr "מקש Treble Down"
-
-msgid "TREBLEUP"
-msgstr "מקש Treble Up"
-
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "נסה לצלם כמה צילומי מסך!"
@@ -5330,9 +5518,6 @@ msgstr "לא ידוע"
 
 msgid "UNKNOWN_MOUSE"
 msgstr "לחצן עכבר לא יודע"
-
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "לא מוכר לWindows"
 
 #, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
@@ -6654,6 +6839,48 @@ msgstr "להתמקד"
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "מקש Bassboost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "מקש Bass Down"
+
+#~ msgid "BASSUP"
+#~ msgstr "מקש Bass Up"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "שמאלה"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "ימינה"
+
+#~ msgid "HYPERL"
+#~ msgstr "מקש Hyper Left"
+
+#~ msgid "HYPERR"
+#~ msgstr "מקש Hyper Right"
+
+#~ msgid "SUPERL"
+#~ msgstr "מקש Super Left"
+
+#~ msgid "SUPERR"
+#~ msgstr "מקש Super Right"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "מקש Treble Down"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "מקש Treble Up"
+
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "לא מוכר לWindows"
+
+#~ msgid "GLES2"
+#~ msgstr "GLES2"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "כלל האוכלוסיה:"
 
@@ -6726,10 +6953,6 @@ msgstr "זום החוצה"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "שם משתמש מותאם אישית:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "הצג שמות כפתורי בחירת חלקים"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "לא רץ."

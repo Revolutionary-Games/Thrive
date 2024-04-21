@@ -53,9 +53,9 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
 
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
 
-    public bool Equals(IProcessDisplayInfo other)
+    public bool Equals(IProcessDisplayInfo? other)
     {
-        return Equals((object)other);
+        return Equals((object?)other);
     }
 
     public override bool Equals(object? obj)

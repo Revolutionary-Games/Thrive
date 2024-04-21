@@ -4,7 +4,7 @@
 ///   A dedicated screen where the player setup the settings they want to play with when starting a new game from a
 ///   descended game
 /// </summary>
-public class DescendSetupScreen : Node
+public partial class DescendSetupScreen : Node
 {
     [Export]
     public NodePath? NewGameSettingsPath;

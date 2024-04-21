@@ -1,13 +1,12 @@
 ﻿using System;
+using System.Formats.Tar;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
 using Godot;
-using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Directory = Godot.Directory;
-using File = Godot.File;
+using FileAccess = Godot.FileAccess;
 
 /// <summary>
 ///   A class representing a single saved game
@@ -176,12 +175,12 @@ public class Save
         if (string.IsNullOrEmpty(saveStr))
             throw new IOException("couldn't find save content in save file");
 
-        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
+        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr) ??
             throw new JsonException("SaveInformation object was deserialized as null");
 
         // Don't use the normal deserialization as we don't want to actually create the game state, instead we want
         // a JSON structure
-        var saveResult = JObject.Parse(saveStr!);
+        var saveResult = JObject.Parse(saveStr);
 
         var imageResult = new Image();
 
@@ -241,8 +240,8 @@ public class Save
 
     private static void WriteDataToSaveFile(string target, string justInfo, string serialized, Image? screenshot)
     {
-        using var file = new File();
-        if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
+        using var file = FileAccess.Open(target, FileAccess.ModeFlags.Write);
+        if (file == null)
         {
             GD.PrintErr("Cannot open file for writing: ", target);
             throw new IOException("Cannot open: " + target);
@@ -250,9 +249,14 @@ public class Save
 
         using var fileStream = new GodotFileStream(file);
         using Stream gzoStream = new GZipStream(fileStream, CompressionLevel.Optimal);
-        using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
+        using var tar = new TarWriter(gzoStream, TarEntryFormat.Pax);
 
-        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
+        // Use the size that is in most cases basically the final size for the stream to avoid storage reallocations
+        // as much as possible
+        using var entryContent = new MemoryStream(serialized.Length);
+        using var entryWriter = new StreamWriter(entryContent, Encoding.UTF8);
+
+        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, justInfo, entryContent, entryWriter);
 
         if (screenshot != null)
         {
@@ -262,21 +266,14 @@ public class Save
                 TarHelper.OutputEntry(tar, SAVE_SCREENSHOT, data);
         }
 
-        TarHelper.OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
-
-        // TODO: queue a task to start a background operation next frame to check that reading the file as compressed
-        // tar file works correctly
-        // https://github.com/Revolutionary-Games/Thrive/issues/3865
+        TarHelper.OutputEntry(tar, SAVE_SAVE_JSON, serialized, entryContent, entryWriter);
     }
 
     private static (SaveInformation? Info, Save? Save, Image? Screenshot) LoadFromFile(string file, bool info,
         bool save, bool screenshot, Action? readFinished)
     {
-        using (var directory = new Directory())
-        {
-            if (!directory.FileExists(file))
-                throw new ArgumentException("save with the given name doesn't exist");
-        }
+        if (!FileAccess.FileExists(file))
+            throw new ArgumentException("save with the given name doesn't exist");
 
         var (infoStr, saveStr, screenshotData) = LoadDataFromFile(file, info, save, screenshot);
 
@@ -299,7 +296,7 @@ public class Save
             }
 
             // This deserializes a huge tree of objects
-            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr!) ??
+            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr) ??
                 throw new JsonException("Save data is null");
         }
 
@@ -321,7 +318,7 @@ public class Save
             throw new IOException("couldn't find info content in save");
         }
 
-        return ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
+        return ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr) ??
             throw new JsonException("SaveInformation is null");
     }
 
@@ -349,20 +346,20 @@ public class Save
             throw new ArgumentException("no things to load specified from save");
         }
 
-        using var reader = new File();
-        reader.Open(file, File.ModeFlags.Read);
-
-        if (!reader.IsOpen())
+        using var reader = FileAccess.Open(file, FileAccess.ModeFlags.Read);
+        if (reader == null)
             throw new ArgumentException("couldn't open the file for reading");
 
         using var stream = new GodotFileStream(reader);
         using Stream gzoStream = new GZipStream(stream, CompressionMode.Decompress);
-        using var tar = new TarInputStream(gzoStream, Encoding.UTF8);
+        using var tar = new TarReader(gzoStream);
 
-        TarEntry tarEntry;
-        while ((tarEntry = tar.GetNextEntry()) != null)
+        while (tar.GetNextEntry(false) is { } tarEntry)
         {
-            if (tarEntry.IsDirectory)
+            if (tarEntry.EntryType is not TarEntryType.V7RegularFile and not TarEntryType.RegularFile)
+                continue;
+
+            if (tarEntry.DataStream == null)
                 continue;
 
             if (tarEntry.Name == SAVE_INFO_JSON)
@@ -370,7 +367,7 @@ public class Save
                 if (!info)
                     continue;
 
-                infoStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
+                infoStr = TarHelper.ReadStringEntry(tarEntry);
                 --itemsToRead;
             }
             else if (tarEntry.Name == SAVE_SAVE_JSON)
@@ -378,7 +375,7 @@ public class Save
                 if (!save)
                     continue;
 
-                saveStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
+                saveStr = TarHelper.ReadStringEntry(tarEntry);
                 --itemsToRead;
             }
             else if (tarEntry.Name == SAVE_SCREENSHOT)
@@ -386,12 +383,12 @@ public class Save
                 if (!screenshot)
                     continue;
 
-                screenshotData = TarHelper.ReadBytesEntry(tar, (int)tarEntry.Size);
+                screenshotData = TarHelper.ReadBytesEntry(tarEntry);
                 --itemsToRead;
             }
             else
             {
-                GD.PrintErr("Unknown file in save: ", tarEntry.Name);
+                GD.Print("Unknown file in save: ", tarEntry.Name);
             }
 
             // Early quit if we already got as many things as we want

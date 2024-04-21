@@ -2,12 +2,13 @@
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   Represents a late multicellular species that is 3D and composed of placed tissues
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]

@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-public class PauseMenu : TopLevelContainer
+public partial class PauseMenu : TopLevelContainer
 {
     [Export]
     public string HelpCategory = null!;
@@ -59,20 +59,20 @@ public class PauseMenu : TopLevelContainer
     private int exitTries;
 
     [Signal]
-    public delegate void OnResumed();
+    public delegate void OnResumedEventHandler();
 
     /// <summary>
     ///   Triggered when the user hits ESC to open the pause menu
     /// </summary>
     [Signal]
-    public delegate void OnOpenWithKeyPress();
+    public delegate void OnOpenWithKeyPressEventHandler();
 
     /// <summary>
     ///   Called when a save needs to be made
     /// </summary>
     /// <param name="name">Name of the save to make or empty string</param>
     [Signal]
-    public delegate void MakeSave(string name);
+    public delegate void MakeSaveEventHandler(string name);
 
     /// <summary>
     ///   Types of exit the player can request. Used to store the action for when the warning popup
@@ -221,7 +221,7 @@ public class PauseMenu : TopLevelContainer
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
-        unsavedProgressWarning.Connect(nameof(CustomWindow.Cancelled), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(CustomWindow.SignalName.Canceled, new Callable(this, nameof(CancelExit)));
 
         if (GameProperties != null)
             thriveopedia.CurrentGame = GameProperties;
@@ -257,7 +257,7 @@ public class PauseMenu : TopLevelContainer
     {
         base._Notification(notification);
 
-        if (notification == NotificationWmQuitRequest)
+        if (notification == NotificationWMCloseRequest)
         {
             // For some reason we need to perform this later, otherwise Godot complains about a node being busy
             // setting up children
@@ -273,7 +273,7 @@ public class PauseMenu : TopLevelContainer
             ActiveMenu = ActiveMenuType.Primary;
 
             Close();
-            EmitSignal(nameof(OnResumed));
+            EmitSignal(SignalName.OnResumed);
 
             return true;
         }
@@ -282,7 +282,7 @@ public class PauseMenu : TopLevelContainer
             return false;
 
         Open();
-        EmitSignal(nameof(OnOpenWithKeyPress));
+        EmitSignal(SignalName.OnOpenWithKeyPress);
 
         return true;
     }
@@ -294,7 +294,7 @@ public class PauseMenu : TopLevelContainer
             return false;
 
         Open();
-        EmitSignal(nameof(OnOpenWithKeyPress));
+        EmitSignal(SignalName.OnOpenWithKeyPress);
 
         ShowHelpScreen();
         return true;
@@ -333,6 +333,10 @@ public class PauseMenu : TopLevelContainer
 
     protected override void OnOpen()
     {
+        // Godot being very silly: https://github.com/godotengine/godot/issues/73908
+        if (animationPlayer == null!)
+            return;
+
         animationPlayer.Play("Open");
         Paused = true;
         exiting = false;
@@ -387,7 +391,7 @@ public class PauseMenu : TopLevelContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
         Close();
-        EmitSignal(nameof(OnResumed));
+        EmitSignal(SignalName.OnResumed);
     }
 
     private void ReturnToMenuPressed()
@@ -402,7 +406,7 @@ public class PauseMenu : TopLevelContainer
         }
         else
         {
-            unsavedProgressWarning.DialogText = TranslationServer.Translate("RETURN_TO_MENU_WARNING");
+            unsavedProgressWarning.DialogText = Localization.Translate("RETURN_TO_MENU_WARNING");
             unsavedProgressWarning.PopupCenteredShrink();
         }
     }
@@ -421,7 +425,7 @@ public class PauseMenu : TopLevelContainer
         else
         {
             GUICommon.Instance.PlayButtonPressSound();
-            unsavedProgressWarning.DialogText = TranslationServer.Translate("QUIT_GAME_WARNING");
+            unsavedProgressWarning.DialogText = Localization.Translate("QUIT_GAME_WARNING");
             unsavedProgressWarning.PopupCenteredShrink();
         }
     }
@@ -557,8 +561,8 @@ public class PauseMenu : TopLevelContainer
 
         // Close this first to get the menus out of the way to capture the save screenshot
         Hide();
-        EmitSignal(nameof(OnResumed));
-        EmitSignal(nameof(MakeSave), name);
+        EmitSignal(SignalName.OnResumed);
+        EmitSignal(SignalName.MakeSave, name);
         Paused = false;
     }
 

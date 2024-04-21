@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Camera for the strategy stages of the game
 /// </summary>
-public class StrategicCamera : Camera
+public partial class StrategicCamera : Camera3D
 {
     private bool edgePanEnabled;
 
@@ -101,7 +101,7 @@ public class StrategicCamera : Camera
         InputManager.UnregisterReceiver(this);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         cursorDirty = true;
 
@@ -113,7 +113,7 @@ public class StrategicCamera : Camera
     }
 
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
-    public bool Zoom(float delta, float value)
+    public bool Zoom(double delta, float value)
     {
         if (!Current || !AllowPlayerInput)
             return false;
@@ -125,7 +125,7 @@ public class StrategicCamera : Camera
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
     [RunOnAxisGroup]
-    public bool PanCamera(float delta, float forwardMovement, float leftRightMovement)
+    public bool PanCamera(double delta, float forwardMovement, float leftRightMovement)
     {
         if (!Current || !AllowPlayerInput)
             return false;
@@ -133,13 +133,13 @@ public class StrategicCamera : Camera
         var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
         // TODO: check if delta makes the movement feel good or not
-        ApplyPan(movement * CameraPanSpeed * ZoomLevel * ZoomLevelMovementSpeedModifier * delta);
+        ApplyPan(movement * CameraPanSpeed * ZoomLevel * ZoomLevelMovementSpeedModifier * (float)delta);
 
         return true;
     }
 
     [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false, UsesPriming = false)]
-    public void PanCameraWithMouse(float dummy)
+    public void PanCameraWithMouse(double dummy)
     {
         _ = dummy;
 
@@ -169,7 +169,7 @@ public class StrategicCamera : Camera
         edgePanEnabled = newValue;
     }
 
-    private void HandleEdgePanning(float delta)
+    private void HandleEdgePanning(double delta)
     {
         var viewport = GetViewport();
         var cursor = viewport.GetMousePosition();
@@ -180,27 +180,27 @@ public class StrategicCamera : Camera
         float leftRight = 0;
         float upDown = 0;
 
-        if (cursor.x <= Constants.EDGE_PAN_PIXEL_THRESHOLD)
+        if (cursor.X <= Constants.EDGE_PAN_PIXEL_THRESHOLD)
         {
             leftRight = -1;
         }
-        else if (cursor.x + Constants.EDGE_PAN_PIXEL_THRESHOLD >= screenSize.x)
+        else if (cursor.X + Constants.EDGE_PAN_PIXEL_THRESHOLD >= screenSize.X)
         {
             leftRight = 1;
         }
 
-        if (cursor.y <= Constants.EDGE_PAN_PIXEL_THRESHOLD)
+        if (cursor.Y <= Constants.EDGE_PAN_PIXEL_THRESHOLD)
         {
             upDown = -1;
         }
-        else if (cursor.y + Constants.EDGE_PAN_PIXEL_THRESHOLD >= screenSize.y)
+        else if (cursor.Y + Constants.EDGE_PAN_PIXEL_THRESHOLD >= screenSize.Y)
         {
             upDown = 1;
         }
 
         if (leftRight != 0 || upDown != 0)
         {
-            var scale = Settings.Instance.PanStrategyViewMouseSpeed.Value * delta * ZoomLevel *
+            var scale = Settings.Instance.PanStrategyViewMouseSpeed.Value * (float)delta * ZoomLevel *
                 ZoomLevelMovementSpeedModifier;
 
             ApplyPan(new Vector3(leftRight * scale, 0, upDown * scale));
@@ -209,9 +209,10 @@ public class StrategicCamera : Camera
 
     private void ApplyPan(Vector3 scaledMovement)
     {
-        var rotation = new Quat(Vector3.Up, GlobalTransform.basis.GetEuler().y);
+        // TODO: switch to full quaternion approach
+        var rotation = new Quaternion(Vector3.Up, GlobalTransform.Basis.GetEuler().Y);
 
-        var movement = rotation.Xform(scaledMovement);
+        var movement = rotation * scaledMovement;
 
         WorldLocation += movement;
     }
@@ -231,7 +232,7 @@ public class StrategicCamera : Camera
 
         var mousePos = viewPort.GetMousePosition();
 
-        var intersection = worldPlane.IntersectRay(ProjectRayOrigin(mousePos),
+        var intersection = worldPlane.IntersectsRay(ProjectRayOrigin(mousePos),
             ProjectRayNormal(mousePos));
 
         if (intersection.HasValue)

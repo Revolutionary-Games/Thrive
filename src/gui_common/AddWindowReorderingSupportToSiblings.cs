@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Godot.Collections;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Reorders windows by reordering their ancestors that are on the same level as this node.
@@ -23,7 +22,7 @@ using Array = Godot.Collections.Array;
 ///     unregistering errors will be triggered.
 ///   </para>
 /// </remarks>
-public class AddWindowReorderingSupportToSiblings : Control
+public partial class AddWindowReorderingSupportToSiblings : Control
 {
     /// <summary>
     ///   Paths to window reordering nodes in ancestors.
@@ -53,6 +52,8 @@ public class AddWindowReorderingSupportToSiblings : Control
     [Export]
     public int AutomaticWindowReorderingDepth = 5;
 
+    private readonly Callable onWindowReorderCallable;
+
     /// <summary>
     ///   Pairs containing window reordering nodes and what sibling of theirs is an ancestor of this class.
     /// </summary>
@@ -69,6 +70,12 @@ public class AddWindowReorderingSupportToSiblings : Control
     ///   Used to save what node to reorder when a window requires to be reordered.
     /// </summary>
     private readonly System.Collections.Generic.Dictionary<CustomWindow, Node> connectedWindows = new();
+
+    /// <summary>
+    ///   Godot 4 requires the same <see cref="Callable"/> instance for unregistering a signal, so this now stores
+    ///   extra signals registered for each window.
+    /// </summary>
+    private readonly System.Collections.Generic.Dictionary<CustomWindow, Callable> registeredOpenCallbacks = new();
 
     /// <summary>
     ///   Used to save what siblings are part of the reordering system to prevent reordering more than is necessary.
@@ -109,6 +116,11 @@ public class AddWindowReorderingSupportToSiblings : Control
     private bool connectionsEstablished;
 
     private bool reorderOpenedWindowsQueued;
+
+    public AddWindowReorderingSupportToSiblings()
+    {
+        onWindowReorderCallable = new Callable(this, nameof(OnWindowReorder));
+    }
 
     /// <summary>
     ///   Finds window reordering nodes in ancestors, looks for manual paths if set, otherwise uses automatic search to
@@ -165,7 +177,7 @@ public class AddWindowReorderingSupportToSiblings : Control
             }
         }
 
-        if (window.IsConnected(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder)))
+        if (window.IsConnected(CustomWindow.SignalName.Dragged, onWindowReorderCallable))
         {
             // This window is already connected here
             GD.PrintErr($"A window {window.Name} ({window}) tried to connect to {Name} ({this}) multiple times");
@@ -179,11 +191,12 @@ public class AddWindowReorderingSupportToSiblings : Control
             return;
         }
 
-        window.Connect(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder));
+        window.Connect(CustomWindow.SignalName.Dragged, onWindowReorderCallable);
 
-        var binds = new Array();
-        binds.Add(window);
-        window.Connect(nameof(TopLevelContainer.Opened), this, nameof(OnWindowOpen), binds);
+        var opened = Callable.From(() => OnWindowOpen(window));
+        registeredOpenCallbacks[window] = opened;
+
+        window.Connect(TopLevelContainer.SignalName.Opened, opened);
 
         connectedWindows.Add(window, topNode);
         connectedSiblings.Add(topNode);
@@ -208,15 +221,24 @@ public class AddWindowReorderingSupportToSiblings : Control
             }
         }
 
-        if (!window.IsConnected(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder)))
+        if (!window.IsConnected(CustomWindow.SignalName.Dragged, onWindowReorderCallable))
         {
             GD.PrintErr(
                 $"A window {window.Name} ({window}) tried to disconnect from {Name} ({this}) but it wasn't connected");
             return;
         }
 
-        window.Disconnect(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder));
-        window.Disconnect(nameof(TopLevelContainer.Opened), this, nameof(OnWindowOpen));
+        window.Disconnect(CustomWindow.SignalName.Dragged, onWindowReorderCallable);
+
+        if (registeredOpenCallbacks.TryGetValue(window, out var openCallback))
+        {
+            window.Disconnect(TopLevelContainer.SignalName.Opened, openCallback);
+            registeredOpenCallbacks.Remove(window);
+        }
+        else
+        {
+            GD.PrintErr("Open callback registration info not found, cannot disconnect it");
+        }
 
         if (!connectedWindows.TryGetValue(window, out var windowSibling))
         {
@@ -398,9 +420,9 @@ public class AddWindowReorderingSupportToSiblings : Control
 
         // For unexplained reasons this has to be here to update the order visually
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4349 fix this hack
-        bool isSetAsToplevel = window.IsSetAsToplevel();
-        window.SetAsToplevel(!isSetAsToplevel);
-        window.SetAsToplevel(isSetAsToplevel);
+        bool isSetAsToplevel = window.TopLevel;
+        window.TopLevel = !isSetAsToplevel;
+        window.TopLevel = isSetAsToplevel;
     }
 
     private void OnWindowOpen(CustomWindow window)

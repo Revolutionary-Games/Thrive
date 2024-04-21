@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbc87m2s4lt5b"]
+
+[ext_resource type="Texture2D" uid="uid://kloyvken30uu" path="res://assets/textures/menu_backgrounds/SingleClouds.png" id="1_64woj"]
+[ext_resource type="Texture2D" uid="uid://dhad2rl5f4478" path="res://assets/textures/menu_backgrounds/SingleClouds_Normal.png" id="2_j5pel"]
+
+[sub_resource type="Gradient" id="Gradient_ao0qh"]
+offsets = PackedFloat32Array(0, 0.306, 0.711, 0.978, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0.956863, 0.447059, 0.447059, 0.447059, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nw6x7"]
+gradient = SubResource("Gradient_ao0qh")
+
+[sub_resource type="Curve" id="Curve_516cl"]
+_data = [Vector2(0, 0.650968), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tcvuo"]
+curve = SubResource("Curve_516cl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yukih"]
+emission_shape = 1
+emission_sphere_radius = 0.07
+angle_min = 343.9
+angle_max = 369.0
+direction = Vector3(0, 1, 0)
+spread = 5.572
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.2
+scale_curve = SubResource("CurveTexture_tcvuo")
+color = Color(0, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_nw6x7")
+
+[sub_resource type="StandardMaterial3D" id="19"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_64woj")
+metallic = 0.08
+metallic_specular = 0.93
+roughness = 0.75
+normal_enabled = true
+normal_scale = 3.49
+normal_texture = ExtResource("2_j5pel")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="7"]
+material = SubResource("19")
+
+[node name="UnderwaterSmoke" type="GPUParticles3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+cast_shadow = 0
+amount = 50
+lifetime = 1.5
+preprocess = 2.08
+speed_scale = 0.26
+fixed_fps = 60
+local_coords = true
+draw_order = 2
+process_material = SubResource("ParticleProcessMaterial_yukih")
+draw_pass_1 = SubResource("7")

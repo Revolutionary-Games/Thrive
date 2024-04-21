@@ -1,41 +1,44 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=27 format=3 uid="uid://bdwkyuskd3u3r"]
 
-[ext_resource path="res://assets/textures/gui/bevel/suicideButton.png" type="Texture" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButton.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/searchButton.png" type="Texture" id=5]
-[ext_resource path="res://src/gui_common/PlayButton.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/environmentButton.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/compoundsButton.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/gui/bevel/environmentButtonActive.png" type="Texture" id=10]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenuActive.png" type="Texture" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture" id=12]
-[ext_resource path="res://assets/textures/gui/bevel/compoundsButtonHover.png" type="Texture" id=13]
-[ext_resource path="res://assets/textures/gui/bevel/chemicalButtonHover.png" type="Texture" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/environmentButtonHover.png" type="Texture" id=15]
-[ext_resource path="res://assets/textures/gui/bevel/helpButtonHover.png" type="Texture" id=16]
-[ext_resource path="res://assets/textures/gui/bevel/searchButtonActive.png" type="Texture" id=17]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture" id=18]
-[ext_resource path="res://assets/textures/gui/bevel/compoundsButtonActive.png" type="Texture" id=19]
-[ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=21]
-[ext_resource path="res://assets/textures/gui/bevel/searchButtonHover.png" type="Texture" id=22]
-[ext_resource path="res://assets/textures/gui/bevel/suicideButtonHover.png" type="Texture" id=23]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButtonActive.png" type="Texture" id=24]
-[ext_resource path="res://assets/textures/gui/bevel/chemicalButtonActive.png" type="Texture" id=25]
-[ext_resource path="res://src/microbe_stage/HUDBottomBar.cs" type="Script" id=26]
+[ext_resource type="Texture2D" uid="uid://blqjm72pgomg0" path="res://assets/textures/gui/bevel/suicideButton.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cp3nxr3dfb88o" path="res://assets/textures/gui/bevel/statisticsButton.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cxqnywb8xdvnb" path="res://assets/textures/gui/bevel/helpButton.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bhp3uahplsxpb" path="res://assets/textures/gui/bevel/MainMenu.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://d2v0q7sf3ickp" path="res://assets/textures/gui/bevel/searchButton.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://7fwavluq5q7o" path="res://src/gui_common/PlayButton.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://d1oasx2uc34g2" path="res://assets/textures/gui/bevel/environmentButton.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://dmv0hstevg4ut" path="res://assets/textures/gui/bevel/chemicalButton.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://ddjiqgcij2n2l" path="res://assets/textures/gui/bevel/compoundsButton.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://cmqynxgbt4jvj" path="res://assets/textures/gui/bevel/environmentButtonActive.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://qqpvmk0a71tk" path="res://assets/textures/gui/bevel/MainMenuActive.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://oq2xa0j5c6af" path="res://assets/textures/gui/bevel/MainMenuHover.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://d2g6mdtpedlsu" path="res://assets/textures/gui/bevel/compoundsButtonHover.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://dp1seimx750wi" path="res://assets/textures/gui/bevel/chemicalButtonHover.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://csoia3qjosic0" path="res://assets/textures/gui/bevel/environmentButtonHover.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://dbudy6jb7bhad" path="res://assets/textures/gui/bevel/helpButtonHover.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://doeuoye8slhmb" path="res://assets/textures/gui/bevel/searchButtonActive.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://0wqh6lnuc71d" path="res://assets/textures/gui/bevel/statisticsButtonHover.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://dkxjcwkg2netf" path="res://assets/textures/gui/bevel/compoundsButtonActive.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://c8fnery2jphca" path="res://assets/textures/gui/bevel/searchButtonHover.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://c6rgyr5rhb352" path="res://assets/textures/gui/bevel/suicideButtonHover.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://dt32f5t6b4u1u" path="res://assets/textures/gui/bevel/statisticsButtonActive.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://dccll5yu8syu5" path="res://assets/textures/gui/bevel/chemicalButtonActive.png" id="25"]
+[ext_resource type="Script" path="res://src/microbe_stage/HUDBottomBar.cs" id="26"]
 
-[sub_resource type="StyleBoxEmpty" id=27]
+[sub_resource type="StyleBoxEmpty" id="27"]
 
 [node name="HUDBottomBar" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = -35.0
-margin_right = 455.0
-rect_min_size = Vector2( 0, 35 )
-script = ExtResource( 26 )
+offset_left = 1.0
+offset_top = -37.0
+offset_right = 446.0
+offset_bottom = -2.0
+grow_vertical = 0
+script = ExtResource("26")
 PauseButtonPath = NodePath("PauseButtonMargin/PlayButton")
 CompoundsButtonPath = NodePath("CompoundsButton")
 EnvironmentButtonPath = NodePath("EnvironmentButton")
@@ -43,125 +46,112 @@ ProcessPanelButtonPath = NodePath("ChemicalButton")
 SuicideButtonPath = NodePath("SuicideButton")
 
 [node name="OpenMenu" type="TextureButton" parent="."]
-margin_right = 50.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 50, 35 )
-hint_tooltip = "STAGE_MENU_BUTTON_TOOLTIP"
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 11 )
-texture_hover = ExtResource( 12 )
-expand = true
+custom_minimum_size = Vector2(50, 35)
+layout_mode = 2
+tooltip_text = "STAGE_MENU_BUTTON_TOOLTIP"
+texture_normal = ExtResource("4")
+texture_pressed = ExtResource("11")
+texture_hover = ExtResource("12")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="PauseButtonMargin" type="MarginContainer" parent="."]
-margin_left = 54.0
-margin_top = 10.0
-margin_right = 79.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 25, 25 )
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
 size_flags_vertical = 8
 
-[node name="PlayButton" parent="PauseButtonMargin" instance=ExtResource( 6 )]
+[node name="PlayButton" parent="PauseButtonMargin" instance=ExtResource("6")]
+layout_mode = 2
 PauseButtonTooltip = "PAUSE_TOOLTIP"
 PlayButtonTooltip = "RESUME_TOOLTIP"
 PauseButtonMode = true
 
 [node name="EnvironmentButton" type="TextureButton" parent="."]
-margin_left = 83.0
-margin_right = 118.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 toggle_mode = true
-pressed = true
 action_mode = 0
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 15 )
-expand = true
+texture_normal = ExtResource("7")
+texture_pressed = ExtResource("10")
+texture_hover = ExtResource("15")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="CompoundsButton" type="TextureButton" parent="."]
-margin_left = 122.0
-margin_right = 157.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 focus_mode = 0
 toggle_mode = true
-pressed = true
 action_mode = 0
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 19 )
-texture_hover = ExtResource( 13 )
-expand = true
+texture_normal = ExtResource("9")
+texture_pressed = ExtResource("19")
+texture_hover = ExtResource("13")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="ChemicalButton" type="TextureButton" parent="."]
-margin_left = 161.0
-margin_right = 196.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 focus_mode = 0
 toggle_mode = true
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 25 )
-texture_hover = ExtResource( 14 )
-expand = true
+texture_normal = ExtResource("8")
+texture_pressed = ExtResource("25")
+texture_hover = ExtResource("14")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="StatisticsButton" type="TextureButton" parent="."]
-margin_left = 200.0
-margin_right = 235.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "STATISTICS"
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "STATISTICS"
 focus_mode = 0
-texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 24 )
-texture_hover = ExtResource( 18 )
-expand = true
+texture_normal = ExtResource("2")
+texture_pressed = ExtResource("24")
+texture_hover = ExtResource("18")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="SearchButton" type="TextureButton" parent="."]
-modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
-margin_left = 239.0
-margin_right = 274.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
+modulate = Color(0.384314, 0.384314, 0.384314, 1)
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
 focus_mode = 0
 disabled = true
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 17 )
-texture_hover = ExtResource( 22 )
-expand = true
+texture_normal = ExtResource("5")
+texture_pressed = ExtResource("17")
+texture_hover = ExtResource("22")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="QuestionMarkButton" type="TextureButton" parent="."]
-margin_left = 278.0
-margin_right = 313.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "HELP_BUTTON_TOOLTIP"
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "HELP_BUTTON_TOOLTIP"
 focus_mode = 0
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 21 )
-texture_hover = ExtResource( 16 )
-expand = true
+texture_normal = ExtResource("3")
+texture_pressed = ExtResource("21")
+texture_hover = ExtResource("16")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="SuicideButton" type="TextureButton" parent="."]
-margin_left = 317.0
-margin_right = 352.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "SUICIDE_BUTTON_TOOLTIP"
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "SUICIDE_BUTTON_TOOLTIP"
 focus_mode = 0
-texture_normal = ExtResource( 1 )
-texture_pressed = ExtResource( 23 )
-texture_hover = ExtResource( 23 )
-expand = true
+texture_normal = ExtResource("1")
+texture_pressed = ExtResource("23")
+texture_hover = ExtResource("23")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="."]
-margin_left = 356.0
-margin_right = 371.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 15, 0 )
-custom_styles/separator = SubResource( 27 )
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("27")
 
 [connection signal="pressed" from="OpenMenu" to="." method="MenuPressed"]
 [connection signal="OnPressed" from="PauseButtonMargin/PlayButton" to="." method="PausePressed"]

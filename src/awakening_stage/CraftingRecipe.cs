@@ -2,11 +2,12 @@
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   A recipe for crafting some things from raw resources
 /// </summary>
-[TypeConverter(typeof(CraftingRecipeStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(CraftingRecipeStringConverter)}")]
 public class CraftingRecipe : IRegistryType
 {
 #pragma warning disable 169,649 // Used through reflection

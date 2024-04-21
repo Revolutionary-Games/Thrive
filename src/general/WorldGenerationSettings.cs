@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Player configurable options for creating the game world
@@ -39,13 +40,13 @@ public class WorldGenerationSettings
     public enum LifeOrigin
     {
         [Description("LIFE_ORIGIN_VENTS")]
-        Vent,
+        Vent = 0,
 
         [Description("LIFE_ORIGIN_POND")]
-        Pond,
+        Pond = 1,
 
         [Description("LIFE_ORIGIN_PANSPERMIA")]
-        Panspermia,
+        Panspermia = 2,
     }
 
     /// <summary>
@@ -66,7 +67,7 @@ public class WorldGenerationSettings
     /// <summary>
     ///   Random seed for generating this game's planet
     /// </summary>
-    public int Seed { get; set; } = new Random().Next();
+    public long Seed { get; set; } = new XoShiRo256starstar().Next64();
 
     // The following are helper proxies to the values from the difficulty
     [JsonIgnore]
@@ -138,14 +139,14 @@ public class WorldGenerationSettings
     {
         string translatedDifficulty = Difficulty is DifficultyPreset difficulty ?
             difficulty.Name :
-            TranslationServer.Translate("DIFFICULTY_PRESET_CUSTOM");
+            Localization.Translate("DIFFICULTY_PRESET_CUSTOM");
 
-        return TranslationServer.Translate("DIFFICULTY_DETAILS_STRING").FormatSafe(translatedDifficulty,
+        return Localization.Translate("DIFFICULTY_DETAILS_STRING").FormatSafe(translatedDifficulty,
             MPMultiplier,
             AIMutationMultiplier,
             CompoundDensity,
             PlayerDeathPopulationPenalty,
-            TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
+            Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
             OsmoregulationMultiplier,
             TranslationHelper.TranslateFeatureFlag(FreeGlucoseCloud),
             TranslationHelper.TranslateFeatureFlag(PassiveGainOfReproductionCompounds),
@@ -157,9 +158,8 @@ public class WorldGenerationSettings
     /// </summary>
     public string GetTranslatedPlanetString()
     {
-        return TranslationServer.Translate("PLANET_DETAILS_STRING").FormatSafe(
-            TranslationHelper.TranslateFeatureFlag(LAWK),
-            TranslationServer.Translate(Origin.GetAttribute<DescriptionAttribute>().Description),
+        return Localization.Translate("PLANET_DETAILS_STRING").FormatSafe(TranslationHelper.TranslateFeatureFlag(LAWK),
+            Localization.Translate(Origin.GetAttribute<DescriptionAttribute>().Description),
             TranslationHelper.TranslateFeatureFlag(DayNightCycleEnabled),
             DayLength,
             Seed);
@@ -170,7 +170,7 @@ public class WorldGenerationSettings
     /// </summary>
     public string GetTranslatedMiscString()
     {
-        return TranslationServer.Translate("WORLD_MISC_DETAILS_STRING").FormatSafe(
+        return Localization.Translate("WORLD_MISC_DETAILS_STRING").FormatSafe(
             TranslationHelper.TranslateFeatureFlag(IncludeMulticellular),
             TranslationHelper.TranslateFeatureFlag(EasterEggs));
     }

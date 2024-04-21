@@ -1,102 +1,117 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://dbhby0wiqd6cd"]
 
-[ext_resource path="res://src/late_multicellular_stage/MulticellularStage.cs" type="Script" id=1]
-[ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/late_multicellular_stage/MulticellularHUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/late_multicellular_stage/PlayerMulticellularInput.cs" type="Script" id=4]
-[ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/general/PlayerInspectInfo.cs" type="Script" id=6]
-[ext_resource path="res://src/awakening_stage/InteractableSystem.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/awakening_stage/gui/InteractablePopup.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/textures/background/panoramas/Epipelagic.png" type="Texture" id=9]
-[ext_resource path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/late_multicellular_stage/ProgressBarSystem.tscn" type="PackedScene" id=12]
+[ext_resource type="Script" path="res://src/late_multicellular_stage/MulticellularStage.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://d2mf4tuokivmm" path="res://src/late_multicellular_stage/MulticellularCamera.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://5m75uu7qtg8x" path="res://src/late_multicellular_stage/MulticellularHUD.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://dqiv4qrlqv425" path="res://assets/textures/background/panoramas/HydrothermalVents.png" id="3_c6ko1"]
+[ext_resource type="Script" path="res://src/late_multicellular_stage/PlayerMulticellularInput.cs" id="4"]
+[ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="5"]
+[ext_resource type="Script" path="res://src/general/PlayerInspectInfo.cs" id="6"]
+[ext_resource type="PackedScene" path="res://src/awakening_stage/InteractableSystem.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://bo86k7ooatxyu" path="res://src/awakening_stage/gui/InteractablePopup.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://src/late_multicellular_stage/ProgressBarSystem.tscn" id="12"]
 
-[sub_resource type="PanoramaSky" id=1]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b7e0u"]
 resource_local_to_scene = true
-panorama = ExtResource( 9 )
+panorama = ExtResource("3_c6ko1")
 
-[sub_resource type="Environment" id=2]
+[sub_resource type="Sky" id="1"]
+resource_local_to_scene = true
+sky_material = SubResource("PanoramaSkyMaterial_b7e0u")
+
+[sub_resource type="Environment" id="2"]
 resource_local_to_scene = true
 background_mode = 2
-background_sky = SubResource( 1 )
-ambient_light_color = Color( 0.0313726, 0.443137, 0.482353, 1 )
-dof_blur_far_distance = 50.0
-dof_blur_far_transition = 25.0
-dof_blur_far_amount = 0.05
+sky = SubResource("1")
+ambient_light_color = Color(0.0313726, 0.443137, 0.482353, 1)
 
 [node name="MulticellularStage" type="Node"]
 process_priority = -1
-script = ExtResource( 1 )
-PauseMenuPath = NodePath("PauseMenu")
-HUDRootPath = NodePath("MulticellularHUD")
+script = ExtResource("1")
 InteractableSystemPath = NodePath("InteractableSystem")
 InteractionPopupPath = NodePath("InteractablePopup")
 ProgressBarSystemPath = NodePath("ProgressBarSystem")
 SelectBuildingPopupPath = NodePath("SelectBuildingPopup")
 WorldEnvironmentNodePath = NodePath("World/WorldEnvironment")
 WorldLightNodePath = NodePath("World/WorldLight")
+PauseMenuPath = NodePath("PauseMenu")
+HUDRootPath = NodePath("MulticellularHUD")
 
 [node name="World" type="Node" parent="."]
 
-[node name="PlayerCamera" parent="World" instance=ExtResource( 2 )]
+[node name="PlayerCamera" parent="World" instance=ExtResource("2")]
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
-[node name="WorldLight" type="DirectionalLight" parent="World"]
-transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
+[node name="WorldLight" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
-environment = SubResource( 2 )
+environment = SubResource("2")
 
 [node name="PlayerLookingAtInfo" type="Node" parent="."]
-pause_mode = 2
-script = ExtResource( 6 )
+process_mode = 3
+script = ExtResource("6")
 
 [node name="PlayerMulticellularInput" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource("4")
 
-[node name="InteractableSystem" parent="." instance=ExtResource( 7 )]
-pause_mode = 1
+[node name="InteractableSystem" parent="." instance=ExtResource("7")]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ProgressBarSystem" parent="." instance=ExtResource( 12 )]
+[node name="ProgressBarSystem" parent="." instance=ExtResource("12")]
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MulticellularHUD" parent="." instance=ExtResource( 3 )]
-MenuPath = NodePath("../PauseMenu")
+[node name="MulticellularHUD" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("3")]
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
+menu = NodePath("../PauseMenu")
 
 [node name="FossilisationButtonLayer" type="Control" parent="MulticellularHUD"]
-margin_right = 1280.0
-margin_bottom = 720.0
-mouse_filter = 2
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
-[node name="FossilisationDialog" parent="MulticellularHUD" instance=ExtResource( 5 )]
-margin_left = 458.0
-margin_top = 120.0
-margin_right = 822.0
-margin_bottom = 540.0
+[node name="FossilisationDialog" parent="MulticellularHUD" instance=ExtResource("5")]
+offset_left = 458.0
+offset_top = 120.0
+offset_right = 822.0
+offset_bottom = 540.0
 
-[node name="InteractablePopup" parent="." instance=ExtResource( 8 )]
+[node name="InteractablePopup" parent="." instance=ExtResource("8")]
 
-[node name="SelectBuildingPopup" parent="." instance=ExtResource( 10 )]
+[node name="SelectBuildingPopup" parent="." instance=ExtResource("10")]
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
+mouse_filter = 2
 
-[node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+[node name="PauseMenu" parent="." instance=ExtResource("11")]
 
 [connection signal="OnInteractButtonPressed" from="MulticellularHUD" to="PlayerMulticellularInput" method="InteractWithEnvironment"]
 [connection signal="OnOpenBuildPressed" from="MulticellularHUD" to="PlayerMulticellularInput" method="OpenBuildMenu"]

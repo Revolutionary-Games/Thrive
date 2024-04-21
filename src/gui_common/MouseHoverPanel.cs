@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
 
 /// <summary>
 ///   The panel that shows what the player is hovering over/inspecting.
 /// </summary>
-public class MouseHoverPanel : PanelContainer
+public partial class MouseHoverPanel : PanelContainer
 {
-    [Export]
-    public NodePath? CategoriesContainerPath;
-
-    [Export]
-    public NodePath NothingHereContainerPath = null!;
-
 #pragma warning disable CA2213 // Disposable fields should be disposed
+    [Export]
     private Container categoriesContainer = null!;
+
+    [Export]
     private Container nothingHereContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private Dictionary<string, MouseHoverCategory> categories = new();
+    private System.Collections.Generic.Dictionary<string, MouseHoverCategory> categories = new();
 
     /// <summary>
     ///   The array of category controls ordered based on their position in the scene tree.
@@ -29,24 +26,18 @@ public class MouseHoverPanel : PanelContainer
     ///     TODO: this being a Godot.Array causes the enumeration of this to allocate memory each time
     ///   </para>
     /// </remarks>
-    private Array categoryControls = new();
+    private Array<Node> categoryControls = new();
 
-    public override void _Ready()
-    {
-        categoriesContainer = GetNode<Container>(CategoriesContainerPath);
-        nothingHereContainer = GetNode<Container>(NothingHereContainerPath);
-    }
-
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         var visibleEntriesCount = 0;
 
         MouseHoverCategory? firstVisibleCategory = null;
 
         // TODO: avoid the enumerator allocation here
-        foreach (MouseHoverCategory category in categoryControls)
+        foreach (var category in categoryControls.OfType<MouseHoverCategory>())
         {
-            var entriesCount = category.TotalEntriesCount;
+            var entriesCount = category.VisibleEntriesCount;
             category.Visible = entriesCount > 0;
             category.SeparatorVisible = firstVisibleCategory != null;
             visibleEntriesCount += entriesCount;
@@ -72,7 +63,7 @@ public class MouseHoverPanel : PanelContainer
 
     public void MoveCategory(string internalName, int position)
     {
-        if (!categories.TryGetValue(internalName, out MouseHoverCategory categoryControl))
+        if (!categories.TryGetValue(internalName, out var categoryControl))
             throw new InvalidOperationException("Category doesn't exist for \"" + internalName + "\"");
 
         categoriesContainer.MoveChild(categoryControl, position);
@@ -89,9 +80,9 @@ public class MouseHoverPanel : PanelContainer
     /// <param name="icon">The icon representing the inspectable.</param>
     /// <returns>The control created for the inspectable.</returns>
     /// <exception cref="System.InvalidOperationException">If the given category doesn't exist.</exception>
-    public InspectedEntityLabel AddItem(string category, string text, Texture? icon = null)
+    public InspectedEntityLabel AddItem(string category, string text, Texture2D? icon = null)
     {
-        if (!categories.TryGetValue(category, out MouseHoverCategory categoryControl))
+        if (!categories.TryGetValue(category, out var categoryControl))
             throw new InvalidOperationException("Can't add item, category doesn't exist for \"" + category + "\"");
 
         var label = new InspectedEntityLabel(text, icon);
@@ -113,26 +104,18 @@ public class MouseHoverPanel : PanelContainer
                 categoryControl.Value.ClearEntries();
             }
         }
-        else if (categories.TryGetValue(category, out MouseHoverCategory categoryControl))
+        else if (categories.TryGetValue(category, out var categoryControl))
         {
             categoryControl.ClearEntries();
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (CategoriesContainerPath != null)
-            {
-                CategoriesContainerPath.Dispose();
-                NothingHereContainerPath.Dispose();
-                categoryControls.Dispose();
-            }
-        }
-    }
-
-    public class MouseHoverCategory : VBoxContainer
+    // Instances are created only through code
+    // ReSharper disable once Godot.MissingParameterlessConstructor
+    /// <summary>
+    ///   Category of items in the hover panel, each category has a title and one or more items in it
+    /// </summary>
+    public partial class MouseHoverCategory : VBoxContainer
     {
 #pragma warning disable CA2213 // Disposable fields should be disposed
         private Label titleLabel;
@@ -155,14 +138,32 @@ public class MouseHoverPanel : PanelContainer
             titleLabel = new Label
             {
                 Text = title.ToString(),
-                RectMinSize = new Vector2(0, 20),
+                CustomMinimumSize = new Vector2(0, 20),
             };
 
             container = new VBoxContainer();
-            separator = new HSeparator { RectMinSize = new Vector2(0, 5) };
+            separator = new HSeparator { CustomMinimumSize = new Vector2(0, 5) };
         }
 
         public int TotalEntriesCount => totalEntityLabels;
+
+        public int VisibleEntriesCount
+        {
+            get
+            {
+                int visibleCount = 0;
+
+                var children = container.GetChildren();
+                int count = children.Count;
+                for (int i = 0; i < count; ++i)
+                {
+                    if (children[i] is Control control && control.Visible)
+                        ++visibleCount;
+                }
+
+                return visibleCount;
+            }
+        }
 
         public bool SeparatorVisible
         {
@@ -175,7 +176,7 @@ public class MouseHoverPanel : PanelContainer
             AddChild(separator);
 
             var titleMargin = new MarginContainer();
-            titleMargin.AddConstantOverride("margin_left", 10);
+            titleMargin.AddThemeConstantOverride("offset_left", 10);
 
             titleMargin.AddChild(titleLabel);
             AddChild(titleMargin);
@@ -183,10 +184,16 @@ public class MouseHoverPanel : PanelContainer
             AddChild(container);
         }
 
-        public override void _Notification(int what)
+        public override void _EnterTree()
         {
-            if (what == NotificationTranslationChanged)
-                titleLabel.Text = title.ToString();
+            base._EnterTree();
+            Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+        }
+
+        public override void _ExitTree()
+        {
+            base._ExitTree();
+            Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
         }
 
         public void EmplaceLabel(InspectedEntityLabel label)
@@ -199,6 +206,11 @@ public class MouseHoverPanel : PanelContainer
         {
             container.FreeChildren();
             totalEntityLabels = 0;
+        }
+
+        private void OnTranslationsChanged()
+        {
+            titleLabel.Text = title.ToString();
         }
     }
 }

@@ -1,99 +1,98 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://dva08tpqyn15k"]
 
-[ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
-[ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/microbe_stage/MicrobeHUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
-[ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
-[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/microbe_stage/MicrobeInspectInfo.cs" type="Script" id=22]
-[ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=67]
-[ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=74]
-[ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
-[ext_resource path="res://src/microbe_stage/PatchNameOverlay.tscn" type="PackedScene" id=85]
+[ext_resource type="Script" path="res://src/microbe_stage/MicrobeStage.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bt2fv82h01ice" path="res://src/microbe_stage/MicrobeHUD.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="4"]
+[ext_resource type="Script" path="res://src/microbe_stage/PlayerMicrobeInput.cs" id="7"]
+[ext_resource type="Script" path="res://src/microbe_stage/CompoundCloudSystem.cs" id="10"]
+[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="11"]
+[ext_resource type="Script" path="res://src/microbe_stage/MicrobeInspectInfo.cs" id="22"]
+[ext_resource type="PackedScene" uid="uid://b6pjvrbt518oj" path="res://src/engine/ChromaticFilter.tscn" id="67"]
+[ext_resource type="PackedScene" uid="uid://d116aks100ulm" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" id="74"]
+[ext_resource type="PackedScene" path="res://src/engine/GuidanceLine.tscn" id="75"]
+[ext_resource type="PackedScene" uid="uid://dwkek50fju0fu" path="res://src/microbe_stage/PatchNameOverlay.tscn" id="85"]
 
 [node name="MicrobeStage" type="Node"]
 process_priority = -1
-script = ExtResource( 1 )
+script = ExtResource("1")
+GuidanceLinePath = NodePath("World/GuidanceLine")
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MicrobeHUD")
-GuidanceLinePath = NodePath("World/GuidanceLine")
 
 [node name="World" type="Node" parent="."]
 
-[node name="PrimaryCamera" parent="World" instance=ExtResource( 2 )]
-pause_mode = 2
+[node name="PrimaryCamera" parent="World" instance=ExtResource("2")]
+process_mode = 3
 AutoProcessWhilePaused = true
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
 [node name="CompoundClouds" type="Node" parent="World"]
-script = ExtResource( 10 )
+script = ExtResource("10")
 
-[node name="WorldLight" type="DirectionalLight" parent="World"]
-transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
+[node name="WorldLight" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0)
 shadow_enabled = true
 
-[node name="GuidanceLine" parent="World" instance=ExtResource( 75 )]
+[node name="GuidanceLine" parent="World" instance=ExtResource("75")]
 visible = false
 
 [node name="PlayerHoverInfo" type="Node" parent="."]
-pause_mode = 2
-script = ExtResource( 22 )
+process_mode = 3
+script = ExtResource("22")
 
 [node name="PlayerMicrobeInput" type="Node" parent="."]
-script = ExtResource( 7 )
+script = ExtResource("7")
 
-[node name="ChromaticFilter" parent="." instance=ExtResource( 67 )]
-margin_left = -0.943848
-margin_right = -0.943848
+[node name="ChromaticFilter" parent="." instance=ExtResource("67")]
+offset_left = -0.943848
+offset_right = -0.943848
 
-[node name="MicrobeHUD" parent="." instance=ExtResource( 3 )]
-MenuPath = NodePath("../PauseMenu")
+[node name="MicrobeHUD" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("3")]
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
+menu = NodePath("../PauseMenu")
 
-[node name="FossilisationDialog" parent="MicrobeHUD" instance=ExtResource( 4 )]
-margin_left = 458.0
-margin_top = 120.0
-margin_right = 822.0
-margin_bottom = 540.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="FossilisationDialog" parent="MicrobeHUD" instance=ExtResource("4")]
+offset_left = 458.0
+offset_top = 120.0
+offset_right = 822.0
+offset_bottom = 540.0
 
 [node name="FossilisationButtonLayer" type="Control" parent="MicrobeHUD"]
-margin_right = 1280.0
-margin_bottom = 720.0
-mouse_filter = 2
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
-[node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
+[node name="TutorialGUI" parent="." instance=ExtResource("74")]
 visible = false
 
-[node name="PatchNameOverlay" parent="." instance=ExtResource( 85 )]
+[node name="PatchNameOverlay" parent="." instance=ExtResource("85")]
 visible = false
 
 [node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
+mouse_filter = 2
 
-[node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+[node name="PauseMenu" parent="." instance=ExtResource("11")]
 
 [connection signal="OnEjectEngulfedButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EjectAllEngulfed"]
 [connection signal="OnFireToxinButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]
-[connection signal="OnSecreteSlimeButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="SecreteSlime" binds= [ 1.0 ]]
+[connection signal="OnSecreteSlimeButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="SecreteSlime" binds= [1.0]]
 [connection signal="OnToggleBindingButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="OnToggleEngulfButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="OnUnbindAllButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="UnbindAll"]

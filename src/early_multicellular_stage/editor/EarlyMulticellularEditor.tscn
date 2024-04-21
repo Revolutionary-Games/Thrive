@@ -1,81 +1,86 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://80exn4x2sdv7"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs" type="Script" id=5]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/microbe_stage/editor/CellEditorComponent.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn" type="PackedScene" id=11]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://d0qfhc2op1auc" path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="4"]
+[ext_resource type="Script" path="res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs" id="5"]
+[ext_resource type="PackedScene" uid="uid://hxrn73ihp8r4" path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://r0oqu6luui0h" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://cwot2e52r7lx0" path="res://src/microbe_stage/editor/CellEditorComponent.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://qdqcbnri7vsw" path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://dylo35brdi0js" path="res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn" id="11"]
 
 [node name="EarlyMulticellularEditor" type="Node"]
-script = ExtResource( 5 )
-PauseMenuPath = NodePath("PauseMenu")
-EditorGUIBaseNodePath = NodePath("EarlyMulticellularEditorGUI")
-EditorTabSelectorPath = NodePath("EarlyMulticellularEditorGUI/MicrobeEditorTabButtons")
+script = ExtResource("5")
 ReportTabPath = NodePath("EarlyMulticellularEditorGUI/Report")
 PatchMapTabPath = NodePath("EarlyMulticellularEditorGUI/PatchMap")
 BodyPlanEditorTabPath = NodePath("EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent")
 CellEditorTabPath = NodePath("EarlyMulticellularEditorGUI/CellEditor")
 NoCellTypeSelectedPath = NodePath("EarlyMulticellularEditorGUI/NoCellSelected")
+PauseMenuPath = NodePath("PauseMenu")
+EditorGUIBaseNodePath = NodePath("EarlyMulticellularEditorGUI")
+EditorTabSelectorPath = NodePath("EarlyMulticellularEditorGUI/MicrobeEditorTabButtons")
 
-[node name="EditorWorld" parent="." instance=ExtResource( 7 )]
+[node name="EditorWorld" parent="." instance=ExtResource("7")]
 
 [node name="EarlyMulticellularEditorGUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
 
-[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 11 )]
+[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" instance=ExtResource("11")]
 visible = false
+layout_mode = 1
 CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
 EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
 EditorGridPath = NodePath("../../EditorWorld/Grid")
 CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
 
-[node name="CellEditor" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 9 )]
+[node name="CellEditor" parent="EarlyMulticellularEditorGUI" instance=ExtResource("9")]
 visible = false
-CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
-EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
-EditorGridPath = NodePath("../../EditorWorld/Grid")
-CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+layout_mode = 1
 IsMulticellularEditor = true
+CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
+EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
+EditorGridPath = NodePath("../../EditorWorld/Grid")
+CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
 
-[node name="Report" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 10 )]
+[node name="Report" parent="EarlyMulticellularEditorGUI" instance=ExtResource("10")]
+layout_mode = 1
 
-[node name="PatchMap" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 8 )]
+[node name="PatchMap" parent="EarlyMulticellularEditorGUI" instance=ExtResource("8")]
 visible = false
+layout_mode = 1
 
-[node name="MicrobeEditorTabButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 3 )]
-margin_right = 350.0
-margin_bottom = 45.0
+[node name="MicrobeEditorTabButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource("3")]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 45.0
 IsForMulticellular = true
 
-[node name="EditorCommonBottomLeftButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 4 )]
+[node name="EditorCommonBottomLeftButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource("4")]
+layout_mode = 1
+grow_vertical = 0
 
 [node name="NoCellSelected" type="MarginContainer" parent="EarlyMulticellularEditorGUI"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="EarlyMulticellularEditorGUI/NoCellSelected"]
-margin_top = 347.0
-margin_right = 1280.0
-margin_bottom = 372.0
+layout_mode = 2
 text = "SELECT_CELL_TYPE_FROM_EDITOR"
-align = 1
+horizontal_alignment = 1
 
-[node name="PauseMenu" parent="." instance=ExtResource( 2 )]
+[node name="PauseMenu" parent="." instance=ExtResource("2")]
 HelpCategory = "MicrobeEditor"
 
 [connection signal="OnCellTypeToEditSelected" from="EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent" to="." method="OnStartEditingCellType"]

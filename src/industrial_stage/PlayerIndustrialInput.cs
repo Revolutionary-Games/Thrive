@@ -1,7 +1,7 @@
 ﻿/// <summary>
 ///   Handles input for the industrial stage
 /// </summary>
-public class PlayerIndustrialInput : NodeWithInput
+public partial class PlayerIndustrialInput : NodeWithInput
 {
 #pragma warning disable CA2213 // this is our parent object
     private IndustrialStage stage = null!;
@@ -12,7 +12,7 @@ public class PlayerIndustrialInput : NodeWithInput
         // Not the cleanest that the parent has to be a specific stage type...
         stage = (IndustrialStage)GetParent();
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     // TODO: implement new city building

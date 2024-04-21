@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using DefaultEcs;
 using DefaultEcs.Command;
@@ -199,7 +200,25 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         if (!disableComponentChecking)
             ComponentAccessChecks.ReportSimulationActive(true);
 
+#if DEBUG
+        try
+        {
+            OnProcessFixedLogic(accumulatedLogicTime);
+        }
+        catch (Exception e)
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            GD.PrintErr($"Unhandled exception in world simulation: {e}");
+
+            // For now this quits so that other threads won't get stuck waiting for the world simulation to complete
+            SceneManager.Instance.QuitDueToError();
+            return false;
+        }
+#else
         OnProcessFixedLogic(accumulatedLogicTime);
+#endif
 
         if (!disableComponentChecking)
             ComponentAccessChecks.ReportSimulationActive(false);

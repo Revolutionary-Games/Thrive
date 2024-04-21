@@ -10,6 +10,5 @@ public enum CPUCheckResult
     CPUCheckMissingAvx = 1,
     CPUCheckMissingSse41 = 2,
     CPUCheckMissingSse42 = 4,
-
-    CPUCheckMissingFeature = CPUCheckMissingAvx | CPUCheckMissingSse41 | CPUCheckMissingSse42,
+    CPUCheckMissingAvx2 = 8,
 }

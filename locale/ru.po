@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-24 10:33+0200\n"
-"PO-Revision-Date: 2024-02-24 06:17+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-04-12 13:41+0300\n"
+"PO-Revision-Date: 2024-04-10 06:38+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -333,15 +333,6 @@ msgstr "Упрощённый вид"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Вернуться к упрощённому виду настроек"
-
-msgid "BASSBOOST"
-msgstr "BassBoost"
-
-msgid "BASSDOWN"
-msgstr "Bass Down"
-
-msgid "BASSUP"
-msgstr "Bass Up"
 
 msgid "BATHYPELAGIC"
 msgstr "Батипелагический"
@@ -836,8 +827,185 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Продолжить на прототипах следующих стадий?"
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr "Любое устройство"
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr "L2"
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr "Левый Курок (Триггер)"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr "Визуализаторы осей контроллера:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr "Визуализаторы осей контроллера:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Визуализаторы осей контроллера:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Чувствительность контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_R2"
+msgstr "Визуализаторы осей контроллера:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr "Визуализаторы осей контроллера:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr "Визуализаторы осей контроллера:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr "Визуализаторы осей контроллера:"
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Визуализаторы осей контроллера:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr "Настройка мёртвых зон контроллера"
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr "Мёртвая зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr "Кнопка контроллера подсказывает тип:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr "Кнопка контроллера подсказывает тип:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr "Мёртвая зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr "Мёртвая зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr "Мёртвая зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr "Настройка мёртвых зон контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr "Кнопка контроллера подсказывает тип:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr "Визуализаторы осей контроллера:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr "Кнопка контроллера подсказывает тип:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr "Визуализаторы осей контроллера:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr "Кнопка контроллера подсказывает тип:"
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr "Мёртвая зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr "Мёртвая зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr "Мёртвая зона:"
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr "Чувствительность контроллера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr "Мёртвая зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_Y"
+msgstr "Мёртвая зона:"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "Настройка мёртвых зон контроллера"
@@ -856,6 +1024,10 @@ msgstr "Кнопка контроллера подсказывает тип:"
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Чувствительность контроллера"
 
+#, fuzzy
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr "Настройка мёртвых зон контроллера"
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копировать Ошибку в Буфер Обмена"
 
@@ -867,6 +1039,10 @@ msgstr "Протанопия (Крас.-Зел.)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританопия (Син.-Жел.)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "Потоки:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Очистить введённое"
@@ -1190,12 +1366,6 @@ msgstr "Скорость усвоения:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/сек"
 
-msgid "DIRECTIONL"
-msgstr "Налево"
-
-msgid "DIRECTIONR"
-msgstr "Направо"
-
 msgid "DISABLED"
 msgstr "Отключено"
 
@@ -1257,6 +1427,14 @@ msgstr "Показать панель способностей"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Отображение фоновых частиц"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Показать название кнопок выбора частей:"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Показать название кнопок выбора частей:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Показать названия кнопок при выборе частей"
@@ -1784,15 +1962,6 @@ msgstr "Поколение:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Посетить наш Github-репозиторий"
 
-msgid "GLES2"
-msgstr "GLES2"
-
-msgid "GLES2_MODE_WARNING"
-msgstr "Предупреждение режима GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -1904,12 +2073,6 @@ msgstr "{0} (x{1})"
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
-
-msgid "HYPERL"
-msgstr "Гипер Влево"
-
-msgid "HYPERR"
-msgstr "Гипер Вправо"
 
 msgid "ICESHARD"
 msgstr "Ледяной осколок"
@@ -2122,10 +2285,17 @@ msgstr "Июнь"
 msgid "KEY_BACK"
 msgstr "Назад"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Назад"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Здесь есть конфликт с {0}.\n"
 "Вы желаете удалить клавишу из {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Отчистить"
@@ -2148,6 +2318,10 @@ msgstr "Избранное"
 msgid "KEY_FORWARD"
 msgstr "Перемещение вперед"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Home"
+
 msgid "KEY_HELP"
 msgstr "Помощь"
 
@@ -2157,14 +2331,30 @@ msgstr "Home"
 msgid "KEY_HOMEPAGE"
 msgstr "Домашняя страница"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Помощь"
+
 msgid "KEY_INSERT"
 msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Ожидание"
 
 msgid "KEY_LEFT"
 msgstr "Стрелка влево"
 
 msgid "KEY_MENU"
 msgstr "Меню"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Открыть URL-ссылку"
@@ -2622,6 +2812,7 @@ msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound
 msgid "METRICS"
 msgstr "Включить показ производительности"
 
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "Время обработки: {0} с\n"
@@ -2963,6 +3154,10 @@ msgstr "Сборка мода:"
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Основной класс Сборки Мода:"
 
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "{0}: не удалось выполнить вызов метода выгрузки сборки мода"
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: указанный класс \"{1}\" не найден в сборке мода"
 
@@ -3223,7 +3418,7 @@ msgstr ""
 "Слишком большое количество потоков начнет снижать производительность."
 
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr "Отрицательный АТФ Баланс"
+msgstr "Отрицательный баланс АТФ"
 
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
@@ -3405,6 +3600,14 @@ msgstr ""
 "Thrive на текущий момент находится в ранней стадии разработки и совместимость сохранений не приоритетна.\n"
 "Вы можете сообщить о проблемах, но они не будут высоко приоритетны на данный момент.\n"
 "Всё равно попробовать загрузить это сохранение?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Предупреждение режима GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
 
 msgid "OPEN_FOLDER"
 msgstr "Открыть папку"
@@ -3643,6 +3846,7 @@ msgstr "— {0}"
 msgid "PATCH_NOTE_CHANGES_HEADING"
 msgstr "Изменения:"
 
+#, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Просмотреть полный список изменений этого обновления на [color=#3796e1][url={0}]Github[/url][/color]"
 
@@ -4325,9 +4529,6 @@ msgstr "Кремнезём"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет прочную стенку из кремнезема. Она может хорошо противостоять общим повреждениям и очень устойчива к физическим повреждениям. Она также требует меньше энергии для поддержания своей формы. Но клетка не может быстро поглощать ресурсы и двигается медленнее."
 
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
-
 msgid "SIZE_COLON"
 msgstr "Размер:"
 
@@ -4601,12 +4802,6 @@ msgstr "Самоубийство"
 msgid "SUNLIGHT"
 msgstr "Солнечный свет"
 
-msgid "SUPERL"
-msgstr "Супер Влево"
-
-msgid "SUPERR"
-msgstr "Супер Вправо"
-
 msgid "SUPPORTER_PATRONS"
 msgstr "Поддержка"
 
@@ -4727,7 +4922,7 @@ msgid "THERMOSYNTHASE"
 msgstr "Термосинтез"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Термосинтаза — это белок, использующий конвекцию для изменения своей формы, что позволяет ему складываться и захватывать АДФ при нагревании, а затем раскладываться и перерабатывать АДФ в [thrive:compound type=\"atp\"][/thrive:compound] при более низких температурах в процессе, называемом [b]\"термосинтез\"[/b]. Скорость производства АТФ изменяется с [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Термосинтаза — это белок, использующий конвекцию для изменения своей формы, что позволяет ему складываться и захватывать АДФ при нагревании, а затем раскладываться и перерабатывать АДФ в [thrive:compound type=\"atp\"][/thrive:compound] при более низких температурах в процессе, называемом [b]\"термосинтез\"[/b]. Скорость производства [thrive:compound type=\"atp\"][/thrive:compound] изменяется с [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Производит [thrive:compound type=\"atp\"][/thrive:compound] используя температурные градиенты. Скорость зависит от [thrive:compound type=\"temperature\"]."
@@ -4919,12 +5114,6 @@ msgstr "Переводчики"
 msgid "TRANSPARENCY"
 msgstr "Прозрачность"
 
-msgid "TREBLEDOWN"
-msgstr "TrebleDown"
-
-msgid "TREBLEUP"
-msgstr "TrebleUp"
-
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Попробуйте сохранить окаменелости некоторых видов!"
 
@@ -5014,14 +5203,17 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
-"Ваш баланс АТФ отрицателен.\n"
+"Ваш баланс [thrive:compound type=\"atp\"][/thrive:compound] отрицателен.\n"
 "\n"
 "При одновременном выполнении всех процессов и движении ваше существо начнёт тратить свою энергию и, в конце концов, помрёт.\n"
 "\n"
-"Вы можете добавить больше органелл производящих АТФ для того,дабы ваша клетка могла постоянно передвигаться.\n"
+"Вы можете добавить больше органелл, производящих [thrive:compound type=\"atp\"][/thrive:compound], дабы ваша клетка могла постоянно передвигаться.\n"
 "\n"
-"У вас так же есть вариант расширения вместимости соединений, позволяя клетке передвигаться лишь прерывисто."
+"Существует множество способов регулировать производство [thrive:compound type=\"atp\"][/thrive:compound]. Вы можете повысить его, добавляя органеллы, производящие [thrive:compound type=\"atp\"][/thrive:compound], такие, как [b]метаболосомы[/b]. Некоторые [b]мембраны[/b] также облегчат вам осморегуляцию [thrive:icon]OsmoIcon[/thrive:icon].\n"
+"\n"
+"Вы также можете удалить ненужные или избыточные органеллы."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
 "Вы ничего не изменили в вашем виде.\n"
@@ -5182,9 +5374,6 @@ msgstr "Неизвестно"
 msgid "UNKNOWN_MOUSE"
 msgstr "Неизвестная кнопка мыши"
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Неизвестно для Windows"
-
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "?"
 
@@ -5204,7 +5393,7 @@ msgid "UNLIMIT_GROWTH_SPEED"
 msgstr "Не ограничивать скорость роста"
 
 msgid "UNLOCKED_NEW_ORGANELLE"
-msgstr "НОВОЕ"
+msgstr "НОВАЯ"
 
 msgid "UNLOCK_ALL_ORGANELLES"
 msgstr "Открыть все органеллы"
@@ -5240,13 +5429,13 @@ msgid "UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW"
 msgstr "организм содержит по крайней мере {1}{0} на протяжении {2} поколений подряд (в данный момент {3})"
 
 msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
-msgstr "Размножиться в {0} биоме"
+msgstr "размножение в биоме {0}"
 
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
-msgstr "Скорость становится ниже {0}"
+msgstr "скорость становится ниже {0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
-msgstr "[b]{0}[/b] открыто если"
+msgstr "[b]{0}[/b] открыто, если"
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
@@ -5419,28 +5608,31 @@ msgid "WIKI"
 msgstr "наша Wiki"
 
 msgid "WIKI_AXON_EFFECTS"
-msgstr "Не готово"
+msgstr ""
+"За каждую клетку в многоклеточном организме, что содержит [b]Аксон[/b], сила мозга организма повышается пропорционально объёму этой клетки. Клетки с [b]Аксонами[/b] классифицируются как мышечные клетки мозга.\n"
+"\n"
+"Когда сила мозга достигает как минимум [b]+0.5[/b], игрок входит в Стадию Осознания. Когда сила мозга достигает [b]+5.0[/b], игрок входит в Стадию Пробуждения."
 
 msgid "WIKI_AXON_INTRO"
-msgstr "Не готово"
+msgstr "Волокна нервов между нейронами, доступные начиная с Многоклеточной Стадии. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
 
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr "Не готово"
+msgstr "Модификации отсутствуют."
 
 msgid "WIKI_AXON_PROCESSES"
-msgstr "Не готово"
+msgstr "Процессы отсутствуют."
 
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr "Не готово"
+msgstr "Доступно лишь после Многоклеточной Стадии."
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "Не готово"
 
 msgid "WIKI_AXON_STRATEGY"
-msgstr "Не готово"
+msgstr "Добавление [b]Аксонов[/b] необходимо для перехода на следующие стадии. Мы рекомендуем добавить один [b]Аксон[/b] различным типам клеток в вашем многоклеточным организмам, поскольку добавлять более одного аксона — бессмысленно. В данный момент, дальнейшее добавление [b]Аксонов[/b] не даёт какого-либо дополнительного преимущества."
 
 msgid "WIKI_AXON_UPGRADES"
-msgstr "Не готово"
+msgstr "Улучшения отсутствуют."
 
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr "Не готово"
@@ -5490,29 +5682,29 @@ msgstr "Не готово"
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Не готово"
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
-msgstr "Не готово"
+msgstr "Эффекты отсутствуют."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_INTRO"
-msgstr "Не готово"
+msgstr "Эукариотическая органелла, используемая для проведения [b]Хемосинтеза[/b], процесса конвертирования [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound], используя находящийся в окружающей среде [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Эта органелла выполняет процесс хемосинтеза намного эффективней своего прокариотического аналога, [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Хемосинтезирующих Белков[/url][/color][/b]."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr "Не готово"
+msgstr "Модификации отсутствуют."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
-msgstr "Не готово"
+msgstr ""
+"[b]Хемосинтез[/b]: [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Метод синтеза [thrive:compound type=\"glucose\"][/thrive:compound]. Требует [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], а так же частота реакций зависит от [url=thriveopedia:chemoSynthesizingProteins]Хемосинтезирующих Белков[/url][/color][/b]."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr "Не готово"
+msgstr "Клетке необходимо [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b] для получения [b]Chemoplasts[/b]."
 
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr "Не готово"
 
@@ -5562,57 +5754,73 @@ msgstr "Не готово"
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr "Не готово"
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr "Не готово"
 
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_CILIA_UPGRADES"
 msgstr "Не готово"
 
@@ -5646,27 +5854,34 @@ msgstr "Не готово"
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr "Не готово"
 
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Не готово"
 
@@ -5725,6 +5940,7 @@ msgstr "Клетке необходимо ядро для получения л�
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr "Не готово"
 
@@ -5755,6 +5971,7 @@ msgstr ""
 "\n"
 "Метаболосомы являются катаболическим типом BMC и участвуют в разложении различных источников углерода, таких как глицерин и аминокислоты. Нет четких доказательств того, что процесс расщепления глюкозы происходит в метаболосомах, однако вполне разумно предположить, что это возможно."
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr "TBA"
 
@@ -5782,105 +5999,134 @@ msgstr "Клетка должна иметь <a href=\"/wiki/Nucleus\" title=\"N
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "TBA"
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr "TBA"
 
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
 msgstr "TBA"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr "TBA"
 
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "TBA"
 
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr "TBA"
 
@@ -6428,6 +6674,48 @@ msgstr "Увеличить масштаб"
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "BassBoost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Bass Down"
+
+#~ msgid "BASSUP"
+#~ msgstr "Bass Up"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Налево"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Направо"
+
+#~ msgid "HYPERL"
+#~ msgstr "Гипер Влево"
+
+#~ msgid "HYPERR"
+#~ msgstr "Гипер Вправо"
+
+#~ msgid "SUPERL"
+#~ msgstr "Супер Влево"
+
+#~ msgid "SUPERR"
+#~ msgstr "Супер Вправо"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "TrebleDown"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "TrebleUp"
+
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Неизвестно для Windows"
+
+#~ msgid "GLES2"
+#~ msgstr "GLES2"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
 #~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 #~ msgstr "Аэробное клеточное дыхание (Глюкоза -> АТФ)"
 
@@ -6521,10 +6809,6 @@ msgstr "Уменьшить масштаб"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Кастомное имя пользователя:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Показать название кнопок выбора частей:"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Не запущен."

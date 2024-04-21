@@ -3,7 +3,7 @@
 /// <summary>
 ///   A page in the Thriveopedia containing information about an organelle.
 /// </summary>
-public class ThriveopediaOrganellePage : ThriveopediaWikiPage
+public partial class ThriveopediaOrganellePage : ThriveopediaWikiPage
 {
     [Export]
     public NodePath? InfoBoxPath;

@@ -3,10 +3,14 @@ using Godot;
 
 /// <summary>
 ///   A custom dropdown implemented through MenuButton, with extra popup menu functionality
-///   such as adjusted custom icon size with tweakable color and some slide down animation.
-///   (Might need to expand this later)
+///   such as some slide down animation.
 /// </summary>
-public class CustomDropDown : MenuButton
+/// <remarks>
+///   <para>
+///     In Godot 4 it is possible to set dropdown icon size now so this just has the animation and some data helpers.
+///   </para>
+/// </remarks>
+public partial class CustomDropDown : MenuButton
 {
 #pragma warning disable CA2213
     /// <summary>
@@ -14,38 +18,39 @@ public class CustomDropDown : MenuButton
     /// </summary>
     public readonly PopupMenu Popup;
 
-    private readonly Tween tween;
-
 #pragma warning restore CA2213
 
+    private readonly StringName vSeparationReference = new("v_separation");
+    private readonly NodePath themeVSeparationReference = new("theme_override_constants/v_separation");
+
     private readonly float cachedPopupVSeparation;
+    private readonly float fontHeight;
+    private readonly float contentMarginTop;
 
     private readonly Dictionary<string, List<Item>> items = new();
 
     /// <summary>
-    ///   All item icon sizes will be adjusted according to this. Currently it's automatically
+    ///   All item icon sizes will be adjusted according to this. Currently, it's automatically
     ///   set according to the PopupMenu's check icon size (with a bit smaller result)
     /// </summary>
-    private Vector2 iconSize;
+    private int iconMaxWidth;
 
     public CustomDropDown()
     {
         Popup = GetPopup();
-        tween = new Tween();
 
-        AddChild(tween);
+        cachedPopupVSeparation = Popup.GetThemeConstant(vSeparationReference);
+        fontHeight = Popup.GetThemeFont("font").GetHeight(Popup.GetThemeFontSize("font_size"));
+        contentMarginTop = Popup.GetThemeStylebox("panel").ContentMarginTop;
 
-        cachedPopupVSeparation = Popup.GetConstant("vseparation");
-
-        var checkSize = Popup.GetIcon("checked").GetSize();
+        var checkSize = Popup.GetThemeIcon("checked").GetSize();
 
         // Set the custom icon size
-        iconSize = new Vector2(checkSize.x - 2, checkSize.y - 2);
+        iconMaxWidth = (int)(checkSize.X - 2);
 
-        Popup.RectClipContent = true;
+        ClipContents = true;
 
-        Connect("about_to_show", this, nameof(OnPopupAboutToShow));
-        Popup.Connect("draw", this, nameof(RedrawPopup));
+        Connect(MenuButton.SignalName.AboutToPopup, new Callable(this, nameof(OnPopupAboutToShow)));
     }
 
     public override void _Draw()
@@ -66,7 +71,7 @@ public class CustomDropDown : MenuButton
     /// <returns>
     ///   The CustomDropDown's own Item class. All custom operations relating to the dropdown uses this.
     /// </returns>
-    public Item AddItem(string text, bool checkable, Color color, Texture? icon = null,
+    public Item AddItem(string text, bool checkable, Color color, Texture2D? icon = null,
         string section = "default")
     {
         if (!items.ContainsKey(section))
@@ -166,87 +171,78 @@ public class CustomDropDown : MenuButton
 
                 item.Id = id++;
 
-                if (item.Checkable)
+                if (item.Icon != null)
                 {
-                    Popup.AddCheckItem(item.Text, id);
-                    Popup.SetItemChecked(Popup.GetItemIndex(id), item.Checked);
+                    if (item.Checkable)
+                    {
+                        Popup.AddIconCheckItem(item.Icon, item.Text, id);
+                        var index = Popup.GetItemIndex(id);
+                        Popup.SetItemIconMaxWidth(index, iconMaxWidth);
+                        Popup.SetItemIconModulate(index, item.Color);
+                        Popup.SetItemChecked(index, item.Checked);
+                    }
+                    else
+                    {
+                        Popup.AddIconItem(item.Icon, item.Text, id);
+                        var index = Popup.GetItemIndex(id);
+                        Popup.SetItemIconMaxWidth(index, iconMaxWidth);
+                        Popup.SetItemIconModulate(index, item.Color);
+                        Popup.SetItemAsSeparator(index, item.Separator);
+                    }
                 }
                 else
                 {
-                    Popup.AddItem(item.Text, id);
-                    Popup.SetItemAsSeparator(Popup.GetItemIndex(id), item.Separator);
+                    if (item.Checkable)
+                    {
+                        Popup.AddCheckItem(item.Text, id);
+                        Popup.SetItemChecked(Popup.GetItemIndex(id), item.Checked);
+                    }
+                    else
+                    {
+                        Popup.AddItem(item.Text, id);
+                        Popup.SetItemAsSeparator(Popup.GetItemIndex(id), item.Separator);
+                    }
                 }
             }
         }
 
-        // Redraw the menu button and popup
-        Popup.Update();
-        Update();
+        ReadjustRectSizes();
     }
 
-    private void RedrawPopup()
+    protected override void Dispose(bool disposing)
     {
-        ReadjustRectSizes();
-        DrawIcons();
+        if (disposing)
+        {
+            vSeparationReference.Dispose();
+            themeVSeparationReference.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>
-    ///   This readjust the rect size of this MenuButton and its PopupMenu.
-    ///   Called when they are to be redrawn.
+    ///   This re-adjust the rect size of this MenuButton and its PopupMenu. Called when they are updated.
     /// </summary>
     private void ReadjustRectSizes()
     {
         // Adjust the menu button to have the same length as the popup
-        RectMinSize = new Vector2(Popup.GetMinimumSize().x + iconSize.x + 6, RectMinSize.y);
+        CustomMinimumSize = new Vector2(Popup.GetContentsMinimumSize().X + iconMaxWidth + 6, CustomMinimumSize.Y);
 
         // Set popup to minimum length
-        Popup.RectSize = new Vector2(RectSize.x, 0);
-    }
-
-    /// <summary>
-    ///   A workaround to get PopupMenu icons drawn in an adjusted size.
-    /// </summary>
-    private void DrawIcons()
-    {
-        if (!Popup.Visible)
-            return;
-
-        var font = Popup.GetFont("font");
-
-        // Offset from the top
-        var height = Popup.GetStylebox("panel").ContentMarginTop + (font.GetHeight() / 2) - (iconSize.y / 2);
-
-        foreach (var section in items)
-        {
-            foreach (var item in section.Value)
-            {
-                if (item.Separator && item.Text != "default")
-                {
-                    height += font.GetHeight() + Popup.GetConstant("vseparation");
-                    continue;
-                }
-
-                // Skip if item has no icon
-                if (item.Icon == null)
-                    continue;
-
-                var position = new Vector2(Popup.RectSize.x - iconSize.x - 6, height);
-
-                Popup.DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
-
-                height += font.GetHeight() + Popup.GetConstant("vseparation");
-            }
-        }
+        Popup.Size = new Vector2I(Mathf.RoundToInt(Size.X), 0);
     }
 
     private void OnPopupAboutToShow()
     {
-        Popup.AddConstantOverride("vseparation", -14);
+        Popup.AddThemeConstantOverride(vSeparationReference, -14);
 
         // Animate slide down
-        tween.InterpolateProperty(Popup, "custom_constants/vseparation", -14, cachedPopupVSeparation, 0.1f,
-            Tween.TransitionType.Cubic, Tween.EaseType.Out);
-        tween.Start();
+
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Cubic);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(Popup, themeVSeparationReference, cachedPopupVSeparation, 0.1).From(-14);
     }
 
     /// <summary>
@@ -262,7 +258,7 @@ public class CustomDropDown : MenuButton
     public class Item
     {
         public string Text = string.Empty;
-        public Texture? Icon;
+        public Texture2D? Icon;
         public Color Color;
         public bool Checkable;
         public bool Checked;

@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Inspection info for the microbe stage.
 /// </summary>
-public class MicrobeInspectInfo : PlayerInspectInfo
+public partial class MicrobeInspectInfo : PlayerInspectInfo
 {
     protected readonly Dictionary<Compound, float> hoveredCompounds = new();
 
@@ -15,12 +15,14 @@ public class MicrobeInspectInfo : PlayerInspectInfo
     /// </summary>
     private readonly Dictionary<Compound, float> currentHoveredCompounds = new();
 
-    private readonly Dictionary<Compound, float> compoundDelayTimer = new();
+    private readonly Dictionary<Compound, double> compoundDelayTimer = new();
 
     private Vector3? lastCursorWorldPos;
 
+#pragma warning disable CA2213
     private CompoundCloudSystem? clouds;
     private MicrobeCamera? camera;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   All compounds the user is hovering over with delay to reduce flickering.
@@ -33,7 +35,7 @@ public class MicrobeInspectInfo : PlayerInspectInfo
         this.camera = camera;
     }
 
-    public override void Process(float delta)
+    public override void Process(double delta)
     {
         if (camera == null || clouds == null)
             throw new InvalidOperationException($"{nameof(MicrobeInspectInfo)} was not initialized");
@@ -56,7 +58,7 @@ public class MicrobeInspectInfo : PlayerInspectInfo
             // Delay removing of label to reduce flickering.
             if (newAmount == 0.0f && oldAmount > 0.0f)
             {
-                compoundDelayTimer.TryGetValue(compound, out float delayDelta);
+                compoundDelayTimer.TryGetValue(compound, out var delayDelta);
                 delayDelta += delta;
                 if (delayDelta > Constants.COMPOUND_HOVER_INFO_REMOVE_DELAY)
                 {

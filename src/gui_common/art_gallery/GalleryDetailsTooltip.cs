@@ -1,6 +1,9 @@
 ﻿using Godot;
 
-public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
+/// <summary>
+///   Tooltip showing the art details in the art gallery
+/// </summary>
+public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 {
     [Export]
     public NodePath? TitleLabelPath;
@@ -23,7 +26,7 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 
     public string DisplayName
     {
-        get => title ?? TranslationServer.Translate("N_A");
+        get => title ?? Localization.Translate("N_A");
         set
         {
             title = value;
@@ -33,7 +36,7 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 
     public string? Description
     {
-        get => description ?? TranslationServer.Translate("N_A");
+        get => description ?? Localization.Translate("N_A");
         set
         {
             description = value;
@@ -43,7 +46,7 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 
     public string? Artist
     {
-        get => artist ?? TranslationServer.Translate("N_A");
+        get => artist ?? Localization.Translate("N_A");
         set
         {
             artist = value;
@@ -70,10 +73,16 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
         UpdateContent();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-            UpdateContent();
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += UpdateContent;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= UpdateContent;
     }
 
     protected override void Dispose(bool disposing)

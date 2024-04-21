@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Player inventory and crafting screen for the awakening stage
 /// </summary>
-public class InventoryScreen : ControlWithInput
+public partial class InventoryScreen : ControlWithInput
 {
     [Export]
     public NodePath? InventoryPopupPath;
@@ -93,6 +92,10 @@ public class InventoryScreen : ControlWithInput
 
     private PackedScene inventorySlotScene = null!;
     private PackedScene recipeListItemScene = null!;
+
+    private InventorySlot? previouslySelectedSlot;
+    private InventorySlot? slotSwapFrom;
+    private InventorySlot? slotSwapTo;
 #pragma warning restore CA2213
 
     private ChildObjectCache<CraftingRecipe, RecipeListItem> shownAvailableRecipes = null!;
@@ -102,10 +105,7 @@ public class InventoryScreen : ControlWithInput
     private IAvailableRecipes? craftingDataSource;
     private CraftingRecipe? selectedRecipe;
 
-    private InventorySlot? previouslySelectedSlot;
-    private float timeUntilSlotSwap = -1;
-    private InventorySlot? slotSwapFrom;
-    private InventorySlot? slotSwapTo;
+    private double timeUntilSlotSwap = -1;
 
     private bool groundPanelManuallyHidden;
     private bool craftingPanelManuallyHidden = true;
@@ -158,10 +158,10 @@ public class InventoryScreen : ControlWithInput
 
         Visible = true;
 
-        craftingPanelDefaultPosition = craftingPanelPopup.RectPosition;
+        craftingPanelDefaultPosition = craftingPanelPopup.Position;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         // TODO: refresh the ground objects at some interval here
         // If ground items change UpdateRecipesWeHaveMaterialsFor needs to be called
@@ -414,9 +414,9 @@ public class InventoryScreen : ControlWithInput
     {
         int nextIndex = 0;
 
-        var areaSize = equipmentSlotParent.RectSize;
+        var areaSize = equipmentSlotParent.Size;
 
-        equipmentBackgroundImage.RectSize = areaSize;
+        equipmentBackgroundImage.Size = areaSize;
 
         foreach (var slotData in creature.ListEquipmentContents())
         {
@@ -451,7 +451,7 @@ public class InventoryScreen : ControlWithInput
 
             // TODO: take image alignment to the center into account at certain aspect ratios
 
-            slot.RectPosition = new Vector2(position.x * areaSize.x, position.y * areaSize.y) - slot.RectSize * 0.5f;
+            slot.Position = new Vector2(position.X * areaSize.X, position.Y * areaSize.Y) - slot.Size * 0.5f;
 
             ++nextIndex;
         }
@@ -486,8 +486,8 @@ public class InventoryScreen : ControlWithInput
         // unstuck fixing here
         Invoke.Instance.QueueForObject(() =>
         {
-            craftingPanelPopup.RectSize = Vector2.Zero;
-            craftingPanelPopup.RectPosition = craftingPanelDefaultPosition;
+            craftingPanelPopup.Size = Vector2.Zero;
+            craftingPanelPopup.Position = craftingPanelDefaultPosition;
         }, craftingPanelPopup);
     }
 
@@ -545,18 +545,16 @@ public class InventoryScreen : ControlWithInput
 
     private InventorySlot CreateInventorySlot(InventorySlotCategory category, bool transient)
     {
-        var slot = inventorySlotScene.Instance<InventorySlot>();
+        var slot = inventorySlotScene.Instantiate<InventorySlot>();
         slot.Transient = transient;
         slot.Category = category;
 
-        slot.Group = inventorySlotGroup;
+        slot.ButtonGroup = inventorySlotGroup;
 
         // Connect the required signals
-        var binds = new Array();
-        binds.Add(slot);
-        slot.Connect(nameof(InventorySlot.OnSelected), this, nameof(OnInventorySlotSelected), binds);
+        slot.Connect(InventorySlot.SignalName.OnSelected, new Callable(this, nameof(OnInventorySlotSelected)));
 
-        slot.Connect(nameof(InventorySlot.OnDragStarted), this, nameof(OnInventoryDragStarted));
+        slot.Connect(InventorySlot.SignalName.OnDragStarted, new Callable(this, nameof(OnInventoryDragStarted)));
 
         slot.AllowDropHandler += CheckIsDropAllowed;
         slot.PerformDropHandler += OnDropPerformed;
@@ -572,7 +570,7 @@ public class InventoryScreen : ControlWithInput
         if (craftingPanelPopup.Visible)
         {
             craftingPanelPopup.Close();
-            OnCraftingPanelCancelled();
+            OnCraftingPanelCanceled();
         }
         else
         {
@@ -588,7 +586,7 @@ public class InventoryScreen : ControlWithInput
         if (groundPanelPopup.Visible)
         {
             groundPanelPopup.Close();
-            OnGroundPanelCancelled();
+            OnGroundPanelCanceled();
         }
         else
         {
@@ -612,7 +610,7 @@ public class InventoryScreen : ControlWithInput
         UpdateToggleButtonStatus();
     }
 
-    private void OnGroundPanelCancelled()
+    private void OnGroundPanelCanceled()
     {
         groundPanelManuallyHidden = true;
     }
@@ -622,7 +620,7 @@ public class InventoryScreen : ControlWithInput
         UpdateToggleButtonStatus();
     }
 
-    private void OnCraftingPanelCancelled()
+    private void OnCraftingPanelCanceled()
     {
         craftingPanelManuallyHidden = true;
     }
@@ -651,8 +649,8 @@ public class InventoryScreen : ControlWithInput
 
     private void UpdateToggleButtonStatus()
     {
-        craftingPanelButton.Pressed = craftingPanelPopup.Visible;
-        groundPanelButton.Pressed = groundPanelPopup.Visible;
+        craftingPanelButton.ButtonPressed = craftingPanelPopup.Visible;
+        groundPanelButton.ButtonPressed = groundPanelPopup.Visible;
     }
 
     private void OnInventorySlotSelected(InventorySlot slot)
@@ -1080,7 +1078,7 @@ public class InventoryScreen : ControlWithInput
     {
         if (selectedRecipe == null)
         {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_NO_RECIPE_SELECTED"));
+            SetCraftingError(Localization.Translate("CRAFTING_NO_RECIPE_SELECTED"));
 
             // TODO: invalid action sound would be nice to have in GUICommon to play here
             return;
@@ -1093,7 +1091,7 @@ public class InventoryScreen : ControlWithInput
 
         if (missingMaterial != null)
         {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_NOT_ENOUGH_MATERIAL")
+            SetCraftingError(Localization.Translate("CRAFTING_NOT_ENOUGH_MATERIAL")
                 .FormatSafe(missingMaterial.Name));
             return;
         }
@@ -1101,7 +1099,7 @@ public class InventoryScreen : ControlWithInput
         // Only take the results once we are pretty sure we can craft the thing
         if (!TakeAllCraftingResults())
         {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"));
+            SetCraftingError(Localization.Translate("CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"));
             return;
         }
 
@@ -1121,7 +1119,7 @@ public class InventoryScreen : ControlWithInput
 
         if (slotsToConsumeFrom == null)
         {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_ERROR_TAKING_ITEMS"));
+            SetCraftingError(Localization.Translate("CRAFTING_ERROR_TAKING_ITEMS"));
             return;
         }
 
@@ -1155,7 +1153,7 @@ public class InventoryScreen : ControlWithInput
 
         if (error)
         {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"));
+            SetCraftingError(Localization.Translate("CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"));
             GD.PrintErr("Ran into an item consume problem before crafting, some items may have already permanently " +
                 "disappeared. This is a bug");
             return;
@@ -1296,11 +1294,11 @@ public class InventoryScreen : ControlWithInput
                 if (recipe == selectedRecipe)
                 {
                     sawSelected = true;
-                    item.Pressed = true;
+                    item.ButtonPressed = true;
                 }
                 else
                 {
-                    item.Pressed = false;
+                    item.ButtonPressed = false;
                 }
             }
         }
@@ -1523,20 +1521,17 @@ public class InventoryScreen : ControlWithInput
 
     private void ResetCraftingErrorLabel()
     {
-        craftingErrorStatusLabel.Text = TranslationServer.Translate("CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER");
+        craftingErrorStatusLabel.Text = Localization.Translate("CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER");
     }
 
     private RecipeListItem CreateRecipeListItem(CraftingRecipe recipe)
     {
-        var item = recipeListItemScene.Instance<RecipeListItem>();
-        item.Group = recipeSelectionGroup;
+        var item = recipeListItemScene.Instantiate<RecipeListItem>();
+        item.ButtonGroup = recipeSelectionGroup;
         item.DisplayedRecipe = recipe;
         item.AvailableMaterials = availableCraftingMaterials;
 
-        var binds = new Array();
-        binds.Add(item);
-
-        item.Connect(nameof(RecipeListItem.OnSelected), this, nameof(OnCraftingRecipeSelected), binds);
+        item.Connect(RecipeListItem.SignalName.OnSelected, new Callable(this, nameof(OnCraftingRecipeSelected)));
 
         return item;
     }

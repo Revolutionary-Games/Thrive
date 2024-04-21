@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Godot;
 using Newtonsoft.Json;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Generates mutations for species
@@ -28,20 +29,21 @@ public class Mutations
     };
 
     [JsonProperty]
-    private Random random;
+    private XoShiRo256starstar random;
 
     [JsonConstructor]
-    public Mutations(Random random)
+    public Mutations(XoShiRo256starstar random)
     {
         this.random = random;
     }
 
     public Mutations()
     {
-        random = new Random();
+        random = new XoShiRo256starstar();
     }
 
-    // TODO: proper unit testing (note the code here relies on Godot colour type)
+    // TODO: proper unit testing (note the code here relies on Godot colour type, and loading the thrive simulation
+    // parameters). See: https://github.com/Revolutionary-Games/Thrive/issues/4963
     public static void TestConsistentGenerationWithSeed()
     {
         int seed = 234234565;
@@ -56,7 +58,7 @@ public class Mutations
 
         // Create the mutated species
         {
-            var mutator = new Mutations(new Random(seed));
+            var mutator = new Mutations(new XoShiRo256starstar(seed));
 
             var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
                 workMemory2, steps);
@@ -65,7 +67,7 @@ public class Mutations
         }
 
         {
-            var mutator = new Mutations(new Random(seed));
+            var mutator = new Mutations(new XoShiRo256starstar(seed + 1));
 
             var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
                 workMemory2, steps);
@@ -74,7 +76,7 @@ public class Mutations
         }
 
         {
-            var mutator = new Mutations(new Random(seed + 1));
+            var mutator = new Mutations(new XoShiRo256starstar(seed + 2));
 
             var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
                 workMemory2, steps);
@@ -162,7 +164,7 @@ public class Mutations
             mutated.MembraneType = RandomMembraneType(simulation);
             if (mutated.MembraneType != simulation.GetMembrane("single"))
             {
-                colour.a = RandomOpacityChitin();
+                colour.A = RandomOpacityChitin();
             }
         }
         else
@@ -563,7 +565,7 @@ public class Mutations
                 case 0:
                 {
                     letterPool = isVowel ? Vowels : Consonants;
-                    newName.Erase(0, 1);
+                    newName.Remove(0, 1);
                     newName.Insert(0, letterPool.Random(random));
                     break;
                 }
@@ -579,7 +581,7 @@ public class Mutations
 
                     var nextLetterInPool = letterPool.ElementAt(nextIndex);
 
-                    newName.Erase(0, 1);
+                    newName.Remove(0, 1);
                     newName.Insert(0, nextLetterInPool);
                     break;
                 }
@@ -608,7 +610,7 @@ public class Mutations
                 bool isPermute = PronounceablePermutation.Contains(part);
                 if (random.Next(0, 20) < 10 && isPermute)
                 {
-                    newName.Erase(index, 2);
+                    newName.Remove(index, 2);
                     changes++;
                     newName.Insert(index, PronounceablePermutation.Random(random));
                 }
@@ -638,7 +640,7 @@ public class Mutations
 
                 if (!isVowel && newName.ToString(index, 1) != "r" && !isPermute)
                 {
-                    newName.Erase(index, 1);
+                    newName.Remove(index, 1);
                     changes++;
                     switch (random.Next(0, 6))
                     {
@@ -670,7 +672,7 @@ public class Mutations
                 // If is vowel
                 else if (newName.ToString(index, 1) != "r" && !isPermute)
                 {
-                    newName.Erase(index, 1);
+                    newName.Remove(index, 1);
                     changes++;
                     if (random.Next(0, 20) < 10)
                     {
@@ -708,13 +710,13 @@ public class Mutations
             {
                 if (!isVowel && newName.ToString(index, 1) != "r" && !isPermute)
                 {
-                    newName.Erase(index, 1);
+                    newName.Remove(index, 1);
                     letterChanges++;
                     newName.Insert(index, Consonants.Random(random));
                 }
                 else if (!isPermute)
                 {
-                    newName.Erase(index, 1);
+                    newName.Remove(index, 1);
                     letterChanges++;
                     newName.Insert(index, Vowels.Random(random));
                 }

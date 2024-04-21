@@ -5,11 +5,11 @@ using Godot;
 /// <summary>
 ///   Displays a layout of metaballs using multimeshing for more efficient rendering
 /// </summary>
-public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDisplayer<MulticellularMetaball>
+public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMetaballDisplayer<MulticellularMetaball>
 {
     private const float AABBMargin = 0.1f;
 
-    private SpatialMaterial? material;
+    private StandardMaterial3D? material;
     private Mesh metaballSphere = null!;
 
     private float? overrideColourAlpha;
@@ -38,7 +38,7 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
         // {
         //     Shader = GD.Load<Shader>("res://shaders/Metaball.shader"),
         // },
-        material = new SpatialMaterial
+        material = new StandardMaterial3D
         {
             VertexColorUseAsAlbedo = true,
         };
@@ -66,9 +66,9 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
         {
             Mesh = metaballSphere,
             InstanceCount = 0,
-            TransformFormat = MultiMesh.TransformFormatEnum.Transform3d,
-            ColorFormat = MultiMesh.ColorFormatEnum.Color8bit,
-            CustomDataFormat = MultiMesh.CustomDataFormatEnum.None,
+            TransformFormat = MultiMesh.TransformFormatEnum.Transform3D,
+            UseColors = true,
+            UseCustomData = false,
         };
 
         ExtraCullMargin = AABBMargin;
@@ -83,13 +83,11 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
 
         if (instances < 1)
         {
-            SetCustomAabb(new AABB(0, 0, 0, Vector3.One));
+            CustomAabb = new Aabb(0, 0, 0, Vector3.One);
             return;
         }
 
         // TODO: drawing links between the metaballs (or maybe only just the editor needs that?)
-
-        var basis = new Basis(Quat.Identity);
 
         var extends = Vector3.Zero;
 
@@ -101,15 +99,15 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
             if (i >= instances)
                 throw new ArgumentException("List count doesn't matches indexes when setting parameters");
 
-            basis.Scale = new Vector3(metaball.Size, metaball.Size, metaball.Size);
+            var basis = Basis.Identity.Scaled(new Vector3(metaball.Size, metaball.Size, metaball.Size));
 
             var colour = metaball.Colour;
 
             if (OverrideColourAlpha != null)
-                colour.a = OverrideColourAlpha.Value;
+                colour.A = OverrideColourAlpha.Value;
 
             // TODO: check if using SetAsBulkArray is faster
-            mesh.SetInstanceTransform(i, new Transform(basis, metaball.Position));
+            mesh.SetInstanceTransform(i, new Transform3D(basis, metaball.Position));
 
             mesh.SetInstanceColor(i, colour);
 
@@ -118,19 +116,19 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
             // Keep track of the farthest points for AABB building
             var absPosition = metaball.Position.Abs() + new Vector3(metaball.Size, metaball.Size, metaball.Size);
 
-            if (absPosition.x > extends.x)
-                extends.x = absPosition.x;
+            if (absPosition.X > extends.X)
+                extends.X = absPosition.X;
 
-            if (absPosition.y > extends.y)
-                extends.y = absPosition.y;
+            if (absPosition.Y > extends.Y)
+                extends.Y = absPosition.Y;
 
-            if (absPosition.z > extends.z)
-                extends.z = absPosition.z;
+            if (absPosition.Z > extends.Z)
+                extends.Z = absPosition.Z;
 
             ++i;
         }
 
-        SetCustomAabb(new AABB(-extends, extends * 2));
+        CustomAabb = new Aabb(-extends, extends * 2);
     }
 
     protected override void Dispose(bool disposing)
@@ -154,11 +152,11 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
 
         if (OverrideColourAlpha == null || overrideColourAlpha >= 1)
         {
-            material.FlagsTransparent = false;
+            material.Transparency = BaseMaterial3D.TransparencyEnum.Disabled;
         }
         else
         {
-            material.FlagsTransparent = true;
+            material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
         }
     }
 }

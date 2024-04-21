@@ -6,13 +6,14 @@ rules outlined on this page. This style guide is separated into three
 parts: code rules, other file rules, and guidelines for using git.
 
 The style rules are intended to increase readability of the source
-code. The most important rule of all is: **Use common sense** and
-follow what the automatic formatting tools want. If you have to break
-some rules to make the code more readable (and not just for you, but
-for everyone who has to read your code), break it. Breaking stylecop
-enforced rules, with an ignore directive, should only be done in
-special cases. If some rule is especially troublesome it can be
-discussed whether it can be disabled entirely.
+code for *humans* that will read the written code. The most important
+rule of all is: **Use common sense** and follow what the automatic
+formatting tools want. If you have to break some rules to make the
+code more readable (and not just for you, but for everyone who has to
+read your code), break it. Breaking stylecop enforced rules, with an
+ignore directive, should only be done in special cases. If some rule
+is especially troublesome it can be discussed whether it can be
+disabled entirely.
 
 Code style rules
 ----------------
@@ -260,6 +261,13 @@ Code style rules
 
 - `uint` type should not be used without a very good reason.
 
+- `System.Random` should be avoided as its state cannot be
+  saved. Instead use the random number types in the `Xoshiro`
+  namespace (check the documentation on the types for which generators
+  are suitable for what kinds of numeric types). General advice is to
+  use 128-bit generators for 32-bit types (`int`, `float`) and 256-bit
+  generators for 64-bit types (`long`, `double`).
+
 - Unrelated uses should not share the same variable. Instead they
   should locally define their own variable instance.
 
@@ -402,7 +410,7 @@ Godot usage
 - GUIs need to be usable with the mouse and a controller. See
   [making_guis.md](making_guis.md).
 
-- Do not use Control margins to try to position elements, that's not good
+- Do not use Control offsets to try to position elements, that's not good
   Godot usage. Use proper parent container and min size instead.
 
 - For spacing elements use either a spacer (that has a visual
@@ -417,6 +425,17 @@ Godot usage
 - For connecting signals, use `nameof` to refer to methods whenever possible
   to reduce the chance of mistakes when methods are renamed.
 
+- To refer to signal *names* use `ClassName.SignalName.SignalName`
+
+- Do not use the `+=` syntax for connecting signals unless completely
+  necessary. Use `Connect` whenever possible instead. This is because
+  there's a very easy to do mistake that causes signals to not be
+  unregistered and disposed object exceptions when signals are
+  emitted, see the warnings on the [documentation
+  page](https://docs.godotengine.org/en/4.2/tutorials/scripting/c_sharp/c_sharp_signals.html). This
+  rule can be relaxed once Godot properly gets [automatic
+  unregistering](https://github.com/godotengine/godot/issues/70414).
+
 - If you need to keep track of child elements that are added through a
   single place, keep them in a List or Dictionary instead of asking
   Godot for the children and doing a bunch of extra casts.
@@ -426,22 +445,6 @@ Godot usage
   causes issues, as that doesn't happen if you just call
   `QueueFree`. You can instead call `DetachAndQueueFree`
   instead to detach them from parents automatically.
-
-- To support keeping references to game objects, we have `IEntity` interface
-  that all game objects need to implement. To keep references to these
-  entities, use the `EntityReference<T>` class. That class will
-  automatically clear the reference when the entity is destroyed. To
-  make this work all entity types need to properly implement the
-  `OnDestroyed` method and all code destroying entities must call that
-  method before freeing the Godot Node. Normal references can be used
-  for a single frame, and in fact if a single `EntityReference` needs
-  to be used multiple times, it is preferred to read out the value
-  from it to a local variable first.
-
-- IEntity derived classes must call the OnDestroyed callback when they
-  are freed or queue freed otherwise things will break. If they don't
-  `EntityReference` won't function correctly and we'll have disposed
-  objects problems again.
 
 - The order of Godot overridden methods in a class should be in the
   following order: (class constructor), `_Ready`, `_ExitTree`, `_Process`,
@@ -458,9 +461,7 @@ Godot usage
 - DO NOT DISPOSE Godot Node derived objects, call `QueueFree` or
   `Free` instead. Also don't override Dispose in Node derived types to
   detect when the Node is removed, instead use the tree enter and exit
-  callbacks to handle resources that need releasing when removed
-  (unless it is a game entity for which there's a special mechanism,
-  `IEntity` destroyed callbacks)
+  callbacks to handle resources that need releasing when removed.
 
 - DO NOT DISPOSE `GD.Load<T>` loaded resources. Any calls with the
   same resource path will result in the same object instance being
@@ -567,16 +568,12 @@ Godot usage
   a public method or can be triggered that way and someone might call it 
   too early.
 
-- When using `GD.PrintErr` don't use string concatenation, use the
-  multi argument form instead, for example: `GD.PrintErr("My value is:
-  ", variable);` Or use string interpolation.
-
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
 
 - We have rewritten several controls to workaround Godot bugs or limitations,
   and add custom features. All these rewritten/customized controls are placed
-  in "res://src/gui_common/". Currently there are `CustomCheckBox`,
+  in `res://src/gui_common/`. Currently there are `CustomCheckBox`,
   `TopLevelContainer`, `CustomWindow`, `CustomConfirmationDialog`, `ErrorDialog`,
   `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
   `TweakedColourPicker`. Consider using these custom types rather than the
@@ -615,12 +612,17 @@ Godot usage
   code.
 
 - When using fonts, don't directly load the .ttf file with an embedded
-  font in a scene file. Instead create a font definition in
+  font in a scene file. Instead create a label settings in
   `src/gui_common/fonts` folder and use that. This is needed because
-  all fonts must have fallback fonts defined for translations that use
-  character sets that aren't in the main fonts, for example
+  fonts need to have settings like fallback fonts set, for example
   Chinese. All fonts should be TrueType (`.ttf`) and stored in
-  `assets/fonts`.
+  `assets/fonts`. For variable weight fonts the variants created from
+  the font should be placed in `assets/fonts/variants`. For buttons
+  that cannot use label settings, it is preferrably to just set a
+  theme font size override, but when really needed the override font
+  can be set, but care needs to be taken that this points to a proper
+  font. For variable weight fonts only the variants should be used and
+  not the base font directly.
 
 - All images used in the GUI should have mipmaps on in the import
   options.

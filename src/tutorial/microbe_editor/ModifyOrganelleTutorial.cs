@@ -1,50 +1,49 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Prompts the player to modify a placed organelle
+/// </summary>
+public class ModifyOrganelleTutorial : TutorialPhase
 {
-    using System;
+    public override string ClosedByName => nameof(ModifyOrganelleTutorial);
 
-    /// <summary>
-    ///   Prompts the player to modify a placed organelle
-    /// </summary>
-    public class ModifyOrganelleTutorial : TutorialPhase
+    public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
-        public override string ClosedByName => nameof(ModifyOrganelleTutorial);
+        gui.ModifyOrganelleTutorialVisible = ShownCurrently;
+    }
 
-        public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.ModifyOrganelleTutorialVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.MicrobeEditorOrganellePlaced:
             {
-                case TutorialEventType.MicrobeEditorOrganellePlaced:
+                var eventArgs = (OrganellePlacedEventArgs)args;
+                var upgradable = eventArgs.Definition.AvailableUpgrades.Count > 0 ||
+                    !string.IsNullOrEmpty(eventArgs.Definition.UpgradeGUI);
+
+                if (!HasBeenShown && CanTrigger && upgradable)
                 {
-                    var eventArgs = (OrganellePlacedEventArgs)args;
-                    var upgradable = eventArgs.Definition.AvailableUpgrades.Count > 0 ||
-                        !string.IsNullOrEmpty(eventArgs.Definition.UpgradeGUI);
-
-                    if (!HasBeenShown && CanTrigger && upgradable)
-                    {
-                        Show();
-                    }
-
-                    break;
+                    Show();
                 }
 
-                case TutorialEventType.MicrobeEditorOrganelleModified:
-                {
-                    if (ShownCurrently)
-                    {
-                        Hide();
-                    }
-
-                    break;
-                }
+                break;
             }
 
-            return false;
+            case TutorialEventType.MicrobeEditorOrganelleModified:
+            {
+                if (ShownCurrently)
+                {
+                    Hide();
+                }
+
+                break;
+            }
         }
+
+        return false;
     }
 }

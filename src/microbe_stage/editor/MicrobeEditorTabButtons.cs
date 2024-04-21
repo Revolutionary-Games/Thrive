@@ -1,7 +1,10 @@
 ﻿using System;
 using Godot;
 
-public class MicrobeEditorTabButtons : MarginContainer
+/// <summary>
+///   The top level tabs of the <see cref="MicrobeEditor"/> (and <see cref="EarlyMulticellularEditor"/>)
+/// </summary>
+public partial class MicrobeEditorTabButtons : MarginContainer
 {
     [Export]
     public bool IsForMulticellular;
@@ -33,7 +36,7 @@ public class MicrobeEditorTabButtons : MarginContainer
     private EditorTab selectedTab = EditorTab.Report;
 
     [Signal]
-    public delegate void OnTabSelected(EditorTab selectedTab);
+    public delegate void OnTabSelectedEventHandler(EditorTab selectedTab);
 
     public override void _Ready()
     {
@@ -89,14 +92,14 @@ public class MicrobeEditorTabButtons : MarginContainer
 
         ApplyButtonStates();
 
-        EmitSignal(nameof(OnTabSelected), selectedTab);
+        EmitSignal(SignalName.OnTabSelected, (int)selectedTab);
     }
 
     private void ApplyButtonStates()
     {
-        reportTabButton.Pressed = selectedTab == EditorTab.Report;
-        patchMapButton.Pressed = selectedTab == EditorTab.PatchMap;
-        cellEditorButton.Pressed = selectedTab == EditorTab.CellEditor;
-        cellTypeTab.Pressed = selectedTab == EditorTab.CellTypeEditor;
+        reportTabButton.ButtonPressed = selectedTab == EditorTab.Report;
+        patchMapButton.ButtonPressed = selectedTab == EditorTab.PatchMap;
+        cellEditorButton.ButtonPressed = selectedTab == EditorTab.CellEditor;
+        cellTypeTab.ButtonPressed = selectedTab == EditorTab.CellTypeEditor;
     }
 }

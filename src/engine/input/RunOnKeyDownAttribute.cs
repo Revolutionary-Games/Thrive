@@ -36,7 +36,7 @@ public class RunOnKeyDownAttribute : RunOnKeyAttribute
         return false;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
     }
 }

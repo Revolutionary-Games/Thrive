@@ -1,10 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://c5ttb5il1h1ix"]
 
-[ext_resource path="res://assets/models/IronRock1.mesh" type="ArrayMesh" id=1]
-[ext_resource path="res://assets/models/IronMaterial.material" type="Material" id=2]
+[ext_resource type="ArrayMesh" uid="uid://cwq0ljxprn2y5" path="res://assets/models/IronRock1.mesh" id="1"]
+[ext_resource type="Material" uid="uid://cjly5ovvgv0c5" path="res://assets/models/IronMaterial.material" id="2"]
 
-[node name="iron1" type="MeshInstance"]
-transform = Transform( 100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0 )
-material_override = ExtResource( 2 )
-mesh = ExtResource( 1 )
-material/0 = null
+[node name="iron1" type="MeshInstance3D"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("2")
+mesh = ExtResource("1")

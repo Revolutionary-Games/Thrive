@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Handles positioning the interact buttons on screen on top of interactable entities
 /// </summary>
-public class InteractableSystem : Control
+public partial class InteractableSystem : Control
 {
     [Export]
     public Color InactiveInteractable = new(0.3f, 0.3f, 0.3f);
@@ -19,14 +19,14 @@ public class InteractableSystem : Control
 #pragma warning disable CA2213
     private PackedScene interactableButtonScene = null!;
 
-    private Camera? camera;
+    private Camera3D? camera;
     private Node worldRoot = null!;
 #pragma warning restore CA2213
 
     private Vector3 playerPosition;
     private float playerDistanceModifier;
 
-    private float elapsed = 1;
+    private double elapsed = 1;
     private bool currentlyActive = true;
 
     private CreatedPrompt? bestInteractable;
@@ -36,13 +36,13 @@ public class InteractableSystem : Control
         interactableButtonScene = GD.Load<PackedScene>("res://src/gui_common/KeyPrompt.tscn");
     }
 
-    public void Init(Camera stageCamera, Node worldEntityRoot)
+    public void Init(Camera3D stageCamera, Node worldEntityRoot)
     {
         camera = stageCamera;
         worldRoot = worldEntityRoot;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!currentlyActive)
             return;
@@ -133,7 +133,7 @@ public class InteractableSystem : Control
             if (interactable.InteractionDisabled)
                 continue;
 
-            var distance = playerPosition.DistanceSquaredTo(interactable.EntityNode.GlobalTranslation);
+            var distance = playerPosition.DistanceSquaredTo(interactable.EntityNode.GlobalPosition);
 
             var offset = interactable.InteractDistanceOffset;
             offset += playerDistanceModifier;
@@ -154,10 +154,10 @@ public class InteractableSystem : Control
                     break;
                 }
 
-                var newPrompt = interactableButtonScene.Instance<KeyPrompt>();
+                var newPrompt = interactableButtonScene.Instantiate<KeyPrompt>();
                 newPrompt.ShowPress = false;
                 newPrompt.ActionName = "g_interact";
-                newPrompt.RectSize =
+                newPrompt.Size =
                     new Vector2(Constants.INTERACTION_BUTTON_SIZE, Constants.INTERACTION_BUTTON_SIZE);
                 newPrompt.Modulate = InactiveInteractable;
 
@@ -190,7 +190,7 @@ public class InteractableSystem : Control
         var interactThreshold = Constants.INTERACTION_DEFAULT_INTERACT_DISTANCE *
             Constants.INTERACTION_DEFAULT_INTERACT_DISTANCE;
 
-        var viewDirection = camera!.GlobalTransform.basis.Quat().Xform(Vector3.Forward);
+        var viewDirection = camera!.GlobalTransform.Basis.GetRotationQuaternion() * Vector3.Forward;
 
         bestInteractable = null;
         var bestInteractableScore = double.MaxValue;
@@ -214,7 +214,7 @@ public class InteractableSystem : Control
             }
 
             var entityTransform = entity.EntityNode.GlobalTransform;
-            var position = entityTransform.origin +
+            var position = entityTransform.Origin +
                 new Vector3(0, Constants.INTERACTION_BUTTON_DEFAULT_Y_OFFSET, 0);
 
             var extraOffset = entity.ExtraInteractionCenterOffset;
@@ -223,7 +223,7 @@ public class InteractableSystem : Control
             {
                 // Extra offset is relative to a non-rotated state of the object, so we need to correct that here
                 position += InteractableEntityHelpers.RotateExtraInteractionOffset(extraOffset.Value,
-                    entityTransform.basis);
+                    entityTransform.Basis);
             }
 
             if (camera.IsPositionBehind(position))
@@ -254,7 +254,7 @@ public class InteractableSystem : Control
             // TODO: position smoothing somehow as when the camera moves slightly when the player wobbles, the prompts
             // move quite a bit. Same fix should also be added to the ProgressBarSystem
 
-            createdPrompt.Prompt.RectGlobalPosition = screenPosition;
+            createdPrompt.Prompt.GlobalPosition = screenPosition;
 
             if (createdPrompt.Highlighted)
             {

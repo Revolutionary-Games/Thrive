@@ -6,12 +6,13 @@ using System.Text;
 using Components;
 using DefaultEcs;
 using Godot;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Benchmarking tool for the microbe stage. Used for checking performance impact of changes or for players to see
 ///   how fast their computer is compared to other ones.
 /// </summary>
-public class MicrobeBenchmark : Node
+public partial class MicrobeBenchmark : Node
 {
     [Export]
     public NodePath? GUIContainerPath;
@@ -95,7 +96,7 @@ public class MicrobeBenchmark : Node
     private readonly List<Entity> spawnedMicrobes = new();
     private readonly List<Species> generatedSpecies = new();
 
-    private readonly List<float> fpsValues = new();
+    private readonly List<double> fpsValues = new();
 
 #pragma warning disable CA2213
     private CustomWindow guiContainer = null!;
@@ -125,7 +126,7 @@ public class MicrobeBenchmark : Node
 
     private EntitySet? microbeEntities;
 
-    private Random random = new(RANDOM_SEED);
+    private XoShiRo256starstar random = new(RANDOM_SEED);
 
     private int aiGroup1Seed;
     private int aiGroup2Seed;
@@ -133,12 +134,12 @@ public class MicrobeBenchmark : Node
     private bool preventDying;
 
     private int internalPhaseCounter;
-    private float timer;
+    private double timer;
 
     private int spawnCounter;
     private double spawnAngle;
     private float spawnDistance;
-    private float timeSinceSpawn;
+    private double timeSinceSpawn;
     private bool spawnedSomething;
 
     private float microbeStationaryResult;
@@ -152,7 +153,7 @@ public class MicrobeBenchmark : Node
     private int remainingMicrobesAtEnd;
 
     private DateTime startTime;
-    private float totalDuration;
+    private double totalDuration;
 
     private bool exiting;
 
@@ -190,7 +191,7 @@ public class MicrobeBenchmark : Node
         BenchmarkHelpers.RestoreNormalSettings(storedSettings);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
         microbesCountLabel.Text = spawnedMicrobes.Count.ToString(CultureInfo.CurrentCulture);
@@ -218,7 +219,7 @@ public class MicrobeBenchmark : Node
 
         microbeEntities?.Complete();
 
-        microbeSimulation?.ProcessAll(delta);
+        microbeSimulation?.ProcessAll((float)delta);
 
         switch (internalPhaseCounter)
         {
@@ -361,7 +362,7 @@ public class MicrobeBenchmark : Node
                 if ((timeSinceSpawn > endThreshold && fpsValues.Count > 0) || fpsValues.Count > 3000)
                 {
                     microbeStressTestResult = spawnCounter;
-                    microbeStressTestMinFPS = fpsValues.Min();
+                    microbeStressTestMinFPS = (float)fpsValues.Min();
                     aliveStressTestMicrobes = spawnedMicrobes.Count;
                     microbeStressTestAverageFPS = ScoreFromMeasuredFPS();
                     IncrementPhase();
@@ -393,7 +394,7 @@ public class MicrobeBenchmark : Node
                 // Microbes are basically dead now
 
                 microbeDeathResult = ScoreFromMeasuredFPS();
-                microbeDeathMinFPS = fpsValues.Min();
+                microbeDeathMinFPS = (float)fpsValues.Min();
                 remainingMicrobesAtEnd = spawnedMicrobes.Count;
 
                 IncrementPhase();
@@ -439,7 +440,7 @@ public class MicrobeBenchmark : Node
     private void StartBenchmark()
     {
         internalPhaseCounter = 0;
-        random = new Random(RANDOM_SEED);
+        random = new XoShiRo256starstar(RANDOM_SEED);
 
         microbeStationaryResult = 0;
         microbeAIResult = 0;
@@ -586,7 +587,7 @@ public class MicrobeBenchmark : Node
 
         // For now just take the average
         // TODO: would be nice to have also min and 1% lows
-        return fpsValues.Average();
+        return (float)fpsValues.Average();
     }
 
     private void UpdatePhaseLabel()
@@ -726,7 +727,7 @@ public class MicrobeBenchmark : Node
         builder.Append($"Benchmark results for {nameof(MicrobeBenchmark)} v{VERSION}\n");
         builder.Append(GenerateResultsText(3));
 
-        OS.Clipboard = builder.ToString();
+        DisplayServer.ClipboardSet(builder.ToString());
     }
 
     private void ExitBenchmark()

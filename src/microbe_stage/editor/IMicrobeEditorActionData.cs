@@ -53,19 +53,6 @@ public class MoveActionData : IMicrobeEditorActionData
 }
 
 [JSONAlwaysDynamicType]
-public class MembraneActionData : IMicrobeEditorActionData
-{
-    public MembraneType OldMembrane;
-    public MembraneType NewMembrane;
-
-    public MembraneActionData(MembraneType oldMembrane, MembraneType newMembrane)
-    {
-        OldMembrane = oldMembrane;
-        NewMembrane = newMembrane;
-    }
-}
-
-[JSONAlwaysDynamicType]
 public class BehaviourChangeActionData : IMicrobeEditorActionData
 {
     public float NewValue;
@@ -90,21 +77,5 @@ public class RigidityChangeActionData : IMicrobeEditorActionData
     {
         NewRigidity = newRigidity;
         PreviousRigidity = previousRigidity;
-    }
-}
-
-[JSONAlwaysDynamicType]
-public class NewMicrobeActionData : IMicrobeEditorActionData
-{
-    public OrganelleLayout<OrganelleTemplate> OldEditedMicrobeOrganelles;
-    public int PreviousMP;
-    public MembraneType OldMembrane;
-
-    public NewMicrobeActionData(OrganelleLayout<OrganelleTemplate> oldEditedMicrobeOrganelles, int previousMP,
-        MembraneType oldMembrane)
-    {
-        OldEditedMicrobeOrganelles = oldEditedMicrobeOrganelles;
-        PreviousMP = previousMP;
-        OldMembrane = oldMembrane;
     }
 }

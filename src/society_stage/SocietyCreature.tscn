@@ -3,7 +3,7 @@
 [ext_resource path="res://src/late_multicellular_stage/MulticellularMetaballDisplayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/society_stage/SocietyCreature.cs" type="Script" id=2]
 
-[node name="SocietyCreature" type="Spatial"]
+[node name="SocietyCreature" type="Node3D"]
 script = ExtResource( 2 )
 
 [node name="MetaballDisplayer" parent="." instance=ExtResource( 1 )]

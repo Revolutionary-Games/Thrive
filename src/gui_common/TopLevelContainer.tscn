@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cba187yaeukt3"]
 
-[ext_resource path="res://src/gui_common/TopLevelContainer.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/gui_common/TopLevelContainer.cs" id="1"]
 
 [node name="TopLevelContainer" type="Control"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 1 )
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_force_pass_scroll_events = false
+script = ExtResource("1")

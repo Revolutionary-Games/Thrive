@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Structure that is placed in the world but in space (see <see cref="PlacedStructure"/>)
 /// </summary>
-public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
+public partial class PlacedSpaceStructure : Node3D, IEntityWithNameLabel
 {
     private static readonly Lazy<PackedScene> LabelScene =
         new(() => GD.Load<PackedScene>("res://src/space_stage/gui/SpaceStructureNameLabel.tscn"));
@@ -15,8 +15,8 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
     private readonly List<SpaceStructureComponent> componentInstances = new();
 
 #pragma warning disable CA2213
-    private Spatial scaffoldingParent = null!;
-    private Spatial visualsParent = null!;
+    private Node3D scaffoldingParent = null!;
+    private Node3D visualsParent = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -29,7 +29,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
     ///   Emitted when this fleet is selected by the player
     /// </summary>
     [Signal]
-    public delegate void OnSelected();
+    public delegate void OnSelectedEventHandler(PlacedSpaceStructure spaceStructure);
 
     [JsonProperty]
     public bool Completed { get; private set; }
@@ -50,28 +50,28 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
             if (Completed)
                 return typeName;
 
-            return TranslationServer.Translate("STRUCTURE_IN_PROGRESS_CONSTRUCTION").FormatSafe(typeName);
+            return Localization.Translate("STRUCTURE_IN_PROGRESS_CONSTRUCTION").FormatSafe(typeName);
         }
     }
 
     [JsonIgnore]
-    public string? StructureExtraDescription
+    public string StructureExtraDescription
     {
         get
         {
             if (Completed)
             {
                 // TODO: implement structure finished type specific text
-                return TranslationServer.Translate("SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION");
+                return Localization.Translate("SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION");
             }
 
             if (missingResourcesToFullyConstruct == null)
-                return TranslationServer.Translate("SPACE_STRUCTURE_HAS_RESOURCES");
+                return Localization.Translate("SPACE_STRUCTURE_HAS_RESOURCES");
 
             // Display the still required resources
-            string resourceAmountFormat = TranslationServer.Translate("RESOURCE_AMOUNT_SHORT");
+            string resourceAmountFormat = Localization.Translate("RESOURCE_AMOUNT_SHORT");
 
-            return TranslationServer.Translate("SPACE_STRUCTURE_WAITING_CONSTRUCTION")
+            return Localization.Translate("SPACE_STRUCTURE_WAITING_CONSTRUCTION")
                 .FormatSafe(string.Join(", ",
                     missingResourcesToFullyConstruct.Select(r =>
                         resourceAmountFormat.FormatSafe(r.Key.Name, r.Value))));
@@ -96,12 +96,12 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     public override void _Ready()
     {
-        scaffoldingParent = GetNode<Spatial>("Scaffolding");
-        visualsParent = GetNode<Spatial>("Visuals");
+        scaffoldingParent = GetNode<Node3D>("Scaffolding");
+        visualsParent = GetNode<Node3D>("Visuals");
     }
 
     public void Init(SpaceStructureDefinition structureDefinition, bool playerOwned, bool fullyConstructed = false)
@@ -114,7 +114,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
             missingResourcesToFullyConstruct = structureDefinition.RequiredResources.CloneShallow();
 
             // Setup scaffolding
-            scaffoldingParent.AddChild(structureDefinition.ScaffoldingScene.Instance());
+            scaffoldingParent.AddChild(structureDefinition.ScaffoldingScene.Instantiate());
         }
         else
         {
@@ -223,7 +223,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
 
     public void OnSelectedThroughLabel()
     {
-        EmitSignal(nameof(OnSelected));
+        EmitSignal(SignalName.OnSelected, this);
     }
 
     private void OnCompleted()
@@ -238,7 +238,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
         scaffoldingParent.QueueFreeChildren();
 
         // For now we don't have an animation so we just create the actual visuals at this point
-        visualsParent.AddChild(Definition.WorldRepresentation.Instance());
+        visualsParent.AddChild(Definition.WorldRepresentation.Instantiate());
 
         // Create the components
         foreach (var factory in Definition.Components.Factories)

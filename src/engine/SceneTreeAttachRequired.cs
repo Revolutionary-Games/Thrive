@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 [Serializable]
 public class SceneTreeAttachRequired : InvalidOperationException
@@ -10,11 +9,6 @@ public class SceneTreeAttachRequired : InvalidOperationException
     }
 
     public SceneTreeAttachRequired(string message) : base(message)
-    {
-    }
-
-    protected SceneTreeAttachRequired(SerializationInfo serializationInfo,
-        StreamingContext streamingContext) : base(serializationInfo, streamingContext)
     {
     }
 }

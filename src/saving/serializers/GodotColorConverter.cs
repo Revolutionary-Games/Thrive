@@ -17,16 +17,16 @@ public class GodotColorConverter : JsonConverter
         writer.WriteStartObject();
 
         writer.WritePropertyName("r");
-        writer.WriteValue(colour.r);
+        writer.WriteValue(colour.R);
 
         writer.WritePropertyName("g");
-        writer.WriteValue(colour.g);
+        writer.WriteValue(colour.G);
 
         writer.WritePropertyName("b");
-        writer.WriteValue(colour.b);
+        writer.WriteValue(colour.B);
 
         writer.WritePropertyName("a");
-        writer.WriteValue(colour.a);
+        writer.WriteValue(colour.A);
 
         writer.WriteEndObject();
     }

@@ -1,9 +1,11 @@
 ﻿using Godot;
 
+// Instances are created only through code
+// ReSharper disable once Godot.MissingParameterlessConstructor
 /// <summary>
 ///   Data for drag and drop of items. Has to be a Godot reference to work
 /// </summary>
-public class InventoryDragData : Reference
+public partial class InventoryDragData : RefCounted
 {
     public InventoryDragData(InventorySlot fromSlot, IInventoryItem item)
     {

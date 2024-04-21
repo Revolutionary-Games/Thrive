@@ -4,31 +4,33 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Common HUD things for every HUD in the game
 /// </summary>
-public abstract class HUDBase : Control, IStageHUD
+[GodotAbstract]
+public partial class HUDBase : Control, IStageHUD
 {
-    [Export]
-    public NodePath? MenuPath;
-
-    [Export]
-    public NodePath HUDMessagesPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     protected PauseMenu menu = null!;
+
+    [Export]
     private HUDMessages hudMessages = null!;
 #pragma warning restore CA2213
+
+    protected HUDBase()
+    {
+    }
 
     [JsonIgnore]
     public HUDMessages HUDMessages => hudMessages;
 
-    public override void _Ready()
+    public virtual void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
     {
-        base._Ready();
-
-        menu = GetNode<PauseMenu>(MenuPath);
-        hudMessages = GetNode<HUDMessages>(HUDMessagesPath);
+        throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    public abstract void OnEnterStageTransition(bool longerDuration, bool returningFromEditor);
+    public Control? GetFocusOwner()
+    {
+        return GetViewport().GuiGetFocusOwner();
+    }
 
     protected void AddFadeIn(IStageBase stageBase, bool longerDuration)
     {
@@ -37,19 +39,5 @@ public abstract class HUDBase : Control, IStageHUD
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f,
             stageBase.OnFinishTransitioning);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MenuPath != null)
-            {
-                MenuPath.Dispose();
-                HUDMessagesPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 }

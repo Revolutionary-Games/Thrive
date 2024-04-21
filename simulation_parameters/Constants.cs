@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
-using Path = System.IO.Path;
 
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
@@ -172,6 +172,7 @@ public static class Constants
     public const float MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE = 0.3f;
     public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER = 0.025f;
     public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL = 0.015f;
+    public const float MEMBRANE_ENGULF_ANIMATION_DISTANCE = 1.25f;
 
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
@@ -553,7 +554,7 @@ public static class Constants
     public const float NAME_LABEL_VISIBILITY_DISTANCE = 300.0f;
 
     /// <summary>
-    ///   Maximum number of damage events allowed for an entity. Any more are not recorded and is an error.
+    ///   Maximum number of damage events allowed for an entity. More than this are not recorded and is an error.
     /// </summary>
     public const int MAX_DAMAGE_EVENTS = 1000;
 
@@ -1222,7 +1223,7 @@ public static class Constants
     public const string OS_WINDOWS_NAME = "Windows";
 
     /// <summary>
-    ///   This is just here to make it easier to debug saves
+    ///   This is just here to make it easier to debug saves JSON data
     /// </summary>
     public const Formatting SAVE_FORMATTING = Formatting.None;
 
@@ -1281,7 +1282,7 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10.0f;
 
     /// <summary>
-    ///   Minimum amount for the some category in the hover info.
+    ///   Minimum amount for some category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_SOME = 50.0f;
 
@@ -1296,9 +1297,19 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800.0f;
 
     /// <summary>
-    ///   Minimum amount for the an abundance category in the hover info.
+    ///   Minimum amount for an abundance category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
+
+    public const int ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS = 2;
+    public const int PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 3;
+
+    public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.10f;
+
+    public const float COMPOUND_BAR_COMPACT_WIDTH = 64;
+    public const float COMPOUND_BAR_NORMAL_WIDTH = 220;
+    public const float COMPOUND_BAR_NARROW_COMPACT_WIDTH = 73;
+    public const float COMPOUND_BAR_NARROW_NORMAL_WIDTH = 162;
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
@@ -1339,6 +1350,7 @@ public static class Constants
     public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
 
     public const string SKIP_CPU_CHECK_OPTION = "--skip-cpu-check";
+    public const string DISABLE_CPU_AVX_OPTION = "--disable-avx";
 
     public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
     public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
@@ -1519,10 +1531,10 @@ public static class Constants
     /// </remarks>
     public static readonly IReadOnlyList<string> ModLocations = new[]
     {
-        OS.HasFeature("standalone") ?
+        Engine.IsEditorHint() ?
+            ProjectSettings.GlobalizePath("res://mods") :
             Path.Combine(Path.GetDirectoryName(OS.GetExecutablePath()) ??
-                throw new InvalidOperationException("no current executable path"), "mods") :
-            ProjectSettings.GlobalizePath("res://mods"),
+                throw new InvalidOperationException("no current executable path"), "mods"),
         "user://mods",
     };
 
@@ -1577,20 +1589,33 @@ public static class Constants
         (FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT > REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT) ? 0 : -42;
 
     // Needed to be true by InputManager
-    private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;
+    private const uint GodotJoystickAxesStartAtZero = (JoyAxis.LeftX == 0) ? 0 : -42;
 
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823
 
-    /// <summary>
-    ///   This needs to be a separate field to make this only be calculated once needed the first time
-    /// </summary>
-    private static readonly string GameVersion = FetchVersion();
+    private const string VERSION_HASH_SUFFIX_REGEX = @"\+[0-9a-f]+$";
+
+    private static readonly Lazy<string> GameVersion = new(FetchVersion);
+
+    private static readonly Lazy<string> GameVersionSimple = new(FetchVersionWithoutHashSuffix);
+
+    private static readonly Lazy<string?> VersionCommitInternal = new(FetchVersionJustCommit);
 
     /// <summary>
     ///   Game version
     /// </summary>
-    public static string Version => GameVersion;
+    public static string Version => GameVersionSimple.Value;
+
+    /// <summary>
+    ///   Game version including all suffixes like current commit
+    /// </summary>
+    public static string VersionFull => GameVersion.Value;
+
+    /// <summary>
+    ///   Just the commit hash part of the <see cref="VersionFull"/>
+    /// </summary>
+    public static string? VersionCommit => VersionCommitInternal.Value;
 
     public static string UserFolderAsNativePath => OS.GetUserDataDir().Replace('\\', '/');
 
@@ -1610,5 +1635,27 @@ public static class Constants
             GD.Print("Error getting version: ", error);
             return "error (" + error.GetType().Name + ")";
         }
+    }
+
+    private static string FetchVersionWithoutHashSuffix()
+    {
+        var suffixRegex = new Regex(VERSION_HASH_SUFFIX_REGEX);
+
+        return suffixRegex.Replace(VersionFull, string.Empty);
+    }
+
+    private static string? FetchVersionJustCommit()
+    {
+        var suffixRegex = new Regex(VERSION_HASH_SUFFIX_REGEX);
+
+        var match = suffixRegex.Match(VersionFull);
+
+        if (!match.Success)
+        {
+            GD.PrintErr("Version doesn't include commit hash");
+            return null;
+        }
+
+        return match.Value.TrimStart('+');
     }
 }

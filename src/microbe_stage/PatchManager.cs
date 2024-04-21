@@ -19,7 +19,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
-    private DirectionalLight worldLight;
+    private DirectionalLight3D worldLight;
 
     private Patch? previousPatch;
 
@@ -31,7 +31,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     private bool skipDespawn;
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight)
+        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight3D worldLight)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
@@ -291,7 +291,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void UpdateLight(Biome biome)
     {
-        worldLight.Translation = new Vector3(0, 0, 0);
+        worldLight.Position = new Vector3(0, 0, 0);
         worldLight.LookAt(biome.Sunlight.Direction, new Vector3(0, 1, 0));
 
         worldLight.ShadowEnabled = biome.Sunlight.Shadows;
@@ -363,9 +363,18 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private class MicrobeSpawnerComparer : EqualityComparer<CreatedSpawner>
     {
-        public override bool Equals(CreatedSpawner x, CreatedSpawner y)
+        public override bool Equals(CreatedSpawner? x, CreatedSpawner? y)
         {
-            if (ReferenceEquals(x, y) || ReferenceEquals(x.Spawner, y.Spawner))
+            if (ReferenceEquals(x, y))
+                return true;
+
+            if (ReferenceEquals(x, null))
+                return false;
+
+            if (ReferenceEquals(y, null))
+                return false;
+
+            if (ReferenceEquals(x.Spawner, y.Spawner))
                 return true;
 
             if (x.Spawner is MicrobeSpawner microbeSpawner1 && y.Spawner is MicrobeSpawner microbeSpawner2)
@@ -378,7 +387,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         public override int GetHashCode(CreatedSpawner obj)
         {
-            return (obj.Name.GetHashCode() * 439) ^ (obj.Spawner.GetHashCode() * 443);
+            return obj.Name.GetHashCode() * 439 ^ obj.Spawner.GetHashCode() * 443;
         }
     }
 }

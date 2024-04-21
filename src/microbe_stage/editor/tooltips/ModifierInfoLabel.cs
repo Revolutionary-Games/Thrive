@@ -1,22 +1,29 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Used to display a modifier info as UI element on a selection menu tooltip
 ///   (eg. +10 Osmoregulation Cost)
 /// </summary>
-public class ModifierInfoLabel : HBoxContainer
+public partial class ModifierInfoLabel : HBoxContainer
 {
 #pragma warning disable CA2213
     private Label? nameLabel;
     private Label? valueLabel;
     private TextureRect? icon;
+
+    private LabelSettings modifierNameFont = null!;
+    private LabelSettings modifierValueFont = null!;
+
+    private LabelSettings? originalModifier;
+    private LabelSettings? positiveModifierColour;
+    private LabelSettings? negativeModifierColour;
+
+    private Texture2D? iconTexture;
 #pragma warning restore CA2213
 
     private string displayName = string.Empty;
     private string modifierValue = string.Empty;
-    private Color modifierNameColor = Colors.White;
-    private Color modifierValueColor = Colors.White;
-    private Texture? iconTexture;
 
     private bool showValue = true;
 
@@ -43,29 +50,45 @@ public class ModifierInfoLabel : HBoxContainer
     }
 
     [Export]
-    public Color ModifierNameColor
+    public LabelSettings ModifierNameFont
     {
-        get => modifierNameColor;
+        get => modifierNameFont;
         set
         {
-            modifierNameColor = value;
+            // These null checks were added here to guard against bug only in exported game
+            if (value == null!)
+                throw new ArgumentNullException();
+
+            modifierNameFont = value;
             UpdateName();
         }
     }
 
     [Export]
-    public Color ModifierValueColor
+    public LabelSettings ModifierValueFont
     {
-        get => modifierValueColor;
+        get => modifierValueFont;
         set
         {
-            modifierValueColor = value;
+            if (value == null!)
+                throw new ArgumentNullException();
+
+            modifierValueFont = value;
+
+            // This is called before the cleanup below as this will stop using the data to be deleted
             UpdateValue();
+
+            // Reset dependant colour data
+            originalModifier = null;
+            positiveModifierColour?.Dispose();
+            positiveModifierColour = null;
+            negativeModifierColour?.Dispose();
+            negativeModifierColour = null;
         }
     }
 
     [Export]
-    public Texture? ModifierIcon
+    public Texture2D? ModifierIcon
     {
         get => iconTexture;
         set
@@ -91,6 +114,19 @@ public class ModifierInfoLabel : HBoxContainer
 
     public override void _Ready()
     {
+        // These null checks were added here to guard against bug only in exported game
+        if (modifierNameFont == null)
+        {
+            throw new InvalidOperationException("Modifier info label doesn't have name font set, at: " +
+                GetPath());
+        }
+
+        if (modifierValueFont == null)
+        {
+            throw new InvalidOperationException("Modifier info label doesn't have value font set, at: " +
+                GetPath());
+        }
+
         nameLabel = GetNode<Label>("Name");
         valueLabel = GetNode<Label>("HBoxContainer/Value");
         icon = GetNode<TextureRect>("Icon");
@@ -115,24 +151,51 @@ public class ModifierInfoLabel : HBoxContainer
     /// </param>
     public void AdjustValueColor(float value, bool inverted = false)
     {
+        originalModifier ??= ModifierValueFont;
+
+        // Note that this method doesn't set things through ModifierValueColor as that would be detected as a new
+        // default colour. This is a bit of a mess as this code wasn't re-architected for Godot 4 but instead hacked
+        // to still fit the original pattern by creating variants of label settings.
+
         if (value > 0)
         {
-            ModifierValueColor = inverted ? new Color(1, 0.3f, 0.3f) : new Color(0, 1, 0);
+            if (inverted)
+            {
+                negativeModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(1, 0.3f, 0.3f));
+                modifierValueFont = negativeModifierColour;
+            }
+            else
+            {
+                positiveModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(0, 1, 0));
+                modifierValueFont = positiveModifierColour;
+            }
         }
         else if (value == 0)
         {
-            ModifierValueColor = new Color(1, 1, 1);
+            if (originalModifier != null)
+                modifierValueFont = originalModifier;
         }
         else
         {
-            ModifierValueColor = inverted ? new Color(0, 1, 0) : new Color(1, 0.3f, 0.3f);
+            if (inverted)
+            {
+                positiveModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(0, 1, 0));
+                modifierValueFont = positiveModifierColour;
+            }
+            else
+            {
+                negativeModifierColour ??= originalModifier.CloneWithDifferentColour(new Color(1, 0.3f, 0.3f));
+                modifierValueFont = negativeModifierColour;
+            }
         }
+
+        UpdateValue();
     }
 
     private void AdjustValueMinSize(float size)
     {
         if (valueLabel != null)
-            valueLabel.RectMinSize = new Vector2(size, 20.0f);
+            valueLabel.CustomMinimumSize = new Vector2(size, 20.0f);
     }
 
     private void UpdateName()
@@ -141,7 +204,7 @@ public class ModifierInfoLabel : HBoxContainer
             return;
 
         nameLabel.Text = displayName;
-        nameLabel.AddColorOverride("font_color", modifierNameColor);
+        nameLabel.LabelSettings = modifierNameFont;
     }
 
     private void UpdateValue()
@@ -153,7 +216,7 @@ public class ModifierInfoLabel : HBoxContainer
 
         valueLabel.Text = modifierValue;
 
-        valueLabel.AddColorOverride("font_color", modifierValueColor);
+        valueLabel.LabelSettings = modifierValueFont;
     }
 
     private void UpdateIcon()

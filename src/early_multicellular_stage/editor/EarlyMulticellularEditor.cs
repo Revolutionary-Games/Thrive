@@ -4,10 +4,14 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   The early multicellular stage editor main class
+/// </summary>
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn")]
 [DeserializedCallbackTarget]
-public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
+public partial class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
+    ICellEditorData
 {
     [Export]
     public NodePath? ReportTabPath;
@@ -86,7 +90,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
 
     protected override string EditorLoadingMessage =>
-        TranslationServer.Translate("LOADING_EARLY_MULTICELLULAR_EDITOR");
+        Localization.Translate("LOADING_EARLY_MULTICELLULAR_EDITOR");
 
     protected override bool HasInProgressAction => CanCancelAction;
 
@@ -251,8 +255,8 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
         if (run.Results == null)
         {
-            reportTab.UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
-                TranslationServer.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
+            reportTab.UpdateAutoEvoResults(Localization.Translate("AUTO_EVO_FAILED"),
+                Localization.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
         }
 
         base.OnEditorReady();
@@ -429,7 +433,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     {
         if (CanCancelAction)
         {
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
                 1.5f);
             return;
         }

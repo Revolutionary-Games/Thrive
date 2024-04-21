@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Godot;
+using HttpClient = System.Net.Http.HttpClient;
 
 /// <summary>
 ///   Manages downloading and parsing the Thrive news feed into Godot-friendly bbcode
@@ -100,8 +101,8 @@ public static class ThriveNewsFeed
     {
         GD.PrintErr($"Fetching Thrive news feed failed due to: {error}");
 
-        return new FeedItem(TranslationServer.Translate("ERROR_FETCHING_NEWS"), null,
-            TranslationServer.Translate("ERROR_FETCHING_EXPLANATION").FormatSafe(error), null);
+        return new FeedItem(Localization.Translate("ERROR_FETCHING_NEWS"), null,
+            Localization.Translate("ERROR_FETCHING_EXPLANATION").FormatSafe(error), null);
     }
 
     private static IEnumerable<ExtractedFeedItem> ExtractFeedItems(XDocument document)
@@ -170,7 +171,7 @@ public static class ThriveNewsFeed
             if (string.IsNullOrWhiteSpace(item.Summary))
             {
                 results.Add(new FeedItem(item.Title, item.Link,
-                    TranslationServer.Translate("FEED_ITEM_MISSING_CONTENT"), item.PublishedAt));
+                    Localization.Translate("FEED_ITEM_MISSING_CONTENT"), item.PublishedAt));
 
                 continue;
             }
@@ -187,7 +188,7 @@ public static class ThriveNewsFeed
                 GD.PrintErr($"Failed to parse content of feed item ({item.ID}): {e}");
 
                 results.Add(new FeedItem(item.Title, item.Link,
-                    TranslationServer.Translate("FEED_ITEM_CONTENT_PARSING_FAILED"), item.PublishedAt));
+                    Localization.Translate("FEED_ITEM_CONTENT_PARSING_FAILED"), item.PublishedAt));
                 continue;
             }
 
@@ -195,7 +196,7 @@ public static class ThriveNewsFeed
             if (string.IsNullOrWhiteSpace(bbCode))
             {
                 results.Add(new FeedItem(item.Title, item.Link,
-                    TranslationServer.Translate("FEED_ITEM_MISSING_CONTENT"), item.PublishedAt));
+                    Localization.Translate("FEED_ITEM_MISSING_CONTENT"), item.PublishedAt));
 
                 continue;
             }
@@ -231,13 +232,13 @@ public static class ThriveNewsFeed
 
             if (PublishedAt != null)
             {
-                footer = TranslationServer.Translate("FEED_ITEM_PUBLISHED_AT")
+                footer = Localization.Translate("FEED_ITEM_PUBLISHED_AT")
                     .FormatSafe(PublishedAt.Value.ToLocalTime().ToString("g", CultureInfo.CurrentCulture));
             }
 
             if (Truncated)
             {
-                return TranslationServer.Translate("FEED_ITEM_TRUNCATED_NOTICE").FormatSafe(footer);
+                return Localization.Translate("FEED_ITEM_TRUNCATED_NOTICE").FormatSafe(footer);
             }
 
             return footer;

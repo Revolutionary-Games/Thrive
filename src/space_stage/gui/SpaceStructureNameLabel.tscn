@@ -1,17 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b5g7c625jvehc"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/space_stage/gui/SpaceStructureNameLabel.cs" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/space_stage/gui/SpaceStructureNameLabel.cs" id="2"]
 
 [node name="SpaceStructureNameLabel" type="Button"]
-margin_right = 200.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 50, 20 )
-theme = ExtResource( 1 )
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(50, 20)
+offset_right = 200.0
+offset_bottom = 35.0
+theme = ExtResource("1")
 text = "Ascension Gate (U)"
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+script = ExtResource("2")
 
 [connection signal="pressed" from="." to="." method="ForwardSelection"]

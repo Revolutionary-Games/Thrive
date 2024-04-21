@@ -1,6 +1,6 @@
 ﻿public enum AssetType
 {
-    Texture,
+    Texture2D,
     ModelScene,
     AudioPlayback,
     VideoPlayback,

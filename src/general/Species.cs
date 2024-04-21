@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   Class that represents a species. This is an abstract base for
 ///   use by all stage-specific species classes.
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
 [UseThriveSerializer]
@@ -70,7 +71,7 @@ public abstract class Species : ICloneable
         get
         {
             var colour = Colour;
-            return new Color(colour.r, colour.g, colour.b, 1);
+            return new Color(colour.R, colour.G, colour.B, 1);
         }
     }
 
@@ -285,12 +286,12 @@ public abstract class Species : ICloneable
     /// <returns>The visual hash code</returns>
     public virtual int GetVisualHashCode()
     {
-        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607);
+        return Genus.GetHashCode() * 599 ^ Epithet.GetHashCode() * 601 ^ Colour.GetHashCode() * 607;
     }
 
     public virtual string GetDetailString()
     {
-        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(FormattedNameBbCode,
+        return Localization.Translate("SPECIES_DETAIL_TEXT").FormatSafe(FormattedNameBbCode,
             ID,
             Generation,
             Population,

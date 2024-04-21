@@ -3,7 +3,7 @@
 /// <summary>
 ///   Handles triggering quick load whenever the quick load key is pressed
 /// </summary>
-public class QuickLoadHandler : NodeWithInput
+public partial class QuickLoadHandler : NodeWithInput
 {
     [Export]
     public NodePath? DifferentVersionDialogPath = null!;
@@ -17,7 +17,7 @@ public class QuickLoadHandler : NodeWithInput
         differentVersionDialog = GetNode<CustomConfirmationDialog>(DifferentVersionDialogPath);
 
         // Keep this node running while paused
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     [RunOnKeyDown("quick_load", OnlyUnhandled = false)]

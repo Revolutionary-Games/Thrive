@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   An item in the saves list. This is a class to handle loading its data from the file
 /// </summary>
-public class SaveListItem : PanelContainer
+public partial class SaveListItem : PanelContainer
 {
     [Export]
     public bool Selectable;
@@ -77,38 +77,38 @@ public class SaveListItem : PanelContainer
     private bool isIncompatiblePrototype;
 
     [Signal]
-    public delegate void OnSelectedChanged();
+    public delegate void OnSelectedChangedEventHandler();
 
     [Signal]
-    public delegate void OnDoubleClicked();
+    public delegate void OnDoubleClickedEventHandler();
 
     [Signal]
-    public delegate void OnDeleted();
+    public delegate void OnDeletedEventHandler();
 
     [Signal]
-    public delegate void OnOldSaveLoaded();
+    public delegate void OnOldSaveLoadedEventHandler();
 
     [Signal]
-    public delegate void OnUpgradeableSaveLoaded(string saveName, bool incompatible);
+    public delegate void OnUpgradeableSaveLoadedEventHandler(string saveName, bool incompatible);
 
     [Signal]
-    public delegate void OnBrokenSaveLoaded();
+    public delegate void OnBrokenSaveLoadedEventHandler();
 
     [Signal]
-    public delegate void OnNewSaveLoaded();
+    public delegate void OnNewSaveLoadedEventHandler();
 
     [Signal]
-    public delegate void OnKnownIncompatibleLoaded();
+    public delegate void OnKnownIncompatibleLoadedEventHandler();
 
     [Signal]
-    public delegate void OnDifferentVersionPrototypeLoaded();
+    public delegate void OnDifferentVersionPrototypeLoadedEventHandler();
 
     /// <summary>
     ///   Triggered when this is loaded without a problem. This is triggered when the load is already in progress
     ///   so this is more of an informative callback for components that need to know when a save load was done.
     /// </summary>
     [Signal]
-    public delegate void OnProblemFreeSaveLoaded(string saveName);
+    public delegate void OnProblemFreeSaveLoadedEventHandler(string saveName);
 
     public string SaveName
     {
@@ -176,7 +176,7 @@ public class SaveListItem : PanelContainer
         UpdateHighlighting();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!loadingData)
             return;
@@ -241,13 +241,13 @@ public class SaveListItem : PanelContainer
 
     public override void _GuiInput(InputEvent @event)
     {
-        if (@event is InputEventMouseButton { Pressed: true, ButtonIndex: (int)ButtonList.Left } mouse)
+        if (@event is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left } mouse)
         {
             AcceptEvent();
 
-            if (mouse.Doubleclick)
+            if (mouse.DoubleClick)
             {
-                EmitSignal(nameof(OnDoubleClicked));
+                EmitSignal(SignalName.OnDoubleClicked);
             }
             else
             {
@@ -260,41 +260,41 @@ public class SaveListItem : PanelContainer
     {
         if (isBroken)
         {
-            EmitSignal(nameof(OnBrokenSaveLoaded));
+            EmitSignal(SignalName.OnBrokenSaveLoaded);
             return;
         }
 
         if (isIncompatiblePrototype)
         {
-            EmitSignal(nameof(OnDifferentVersionPrototypeLoaded));
+            EmitSignal(SignalName.OnDifferentVersionPrototypeLoaded);
             return;
         }
 
         if (versionDifference < 0 && isUpgradeable)
         {
-            EmitSignal(nameof(OnUpgradeableSaveLoaded), SaveName, isKnownIncompatible);
+            EmitSignal(SignalName.OnUpgradeableSaveLoaded, SaveName, isKnownIncompatible);
             return;
         }
 
         if (isKnownIncompatible)
         {
-            EmitSignal(nameof(OnKnownIncompatibleLoaded));
+            EmitSignal(SignalName.OnKnownIncompatibleLoaded);
             return;
         }
 
         if (versionDifference < 0)
         {
-            EmitSignal(nameof(OnOldSaveLoaded));
+            EmitSignal(SignalName.OnOldSaveLoaded);
             return;
         }
 
         if (versionDifference > 0)
         {
-            EmitSignal(nameof(OnNewSaveLoaded));
+            EmitSignal(SignalName.OnNewSaveLoaded);
             return;
         }
 
-        EmitSignal(nameof(OnProblemFreeSaveLoaded));
+        EmitSignal(SignalName.OnProblemFreeSaveLoaded);
     }
 
     protected override void Dispose(bool disposing)
@@ -350,7 +350,7 @@ public class SaveListItem : PanelContainer
 
         Selected = !Selected;
 
-        EmitSignal(nameof(OnSelectedChanged));
+        EmitSignal(SignalName.OnSelectedChanged);
     }
 
     private void OnMouseEnter()
@@ -375,7 +375,7 @@ public class SaveListItem : PanelContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnDeleted));
+        EmitSignal(SignalName.OnDeleted);
     }
 
     private class SaveInfoAndScreenshot : IResource
@@ -439,8 +439,7 @@ public class SaveListItem : PanelContainer
                     }
                 }
 
-                Screenshot = new ImageTexture();
-                Screenshot.CreateFromImage(Save.Screenshot);
+                Screenshot = ImageTexture.CreateFromImage(Save.Screenshot);
             }
 
             Loaded = true;

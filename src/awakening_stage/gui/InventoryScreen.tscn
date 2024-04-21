@@ -1,53 +1,63 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=3 uid="uid://bqbt1jtgup58k"]
 
-[ext_resource path="res://src/awakening_stage/gui/InventoryScreen.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/textures/gui/CreaturePlaceholder.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/WhiteArrow.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonDisabled.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=8]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=9]
-[ext_resource path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" type="PackedScene" id=10]
+[ext_resource type="Script" path="res://src/awakening_stage/gui/InventoryScreen.cs" id="1"]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://bjd7m7yy3slb0" path="res://assets/textures/gui/CreaturePlaceholder.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://vcyi34wajt1n" path="res://assets/textures/gui/bevel/undoButtonActive.png" id="5"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="5_aa5gb"]
+[ext_resource type="Texture2D" uid="uid://bl7eohr5btm05" path="res://assets/textures/gui/bevel/undoButtonDisabled.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://c16bkoqqx7w3h" path="res://assets/textures/gui/bevel/undoButtonHover.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://dwsqu6nwbwg5s" path="res://assets/textures/gui/bevel/undoButton.png" id="8"]
+[ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "Flash"
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/CraftingProblemLabel:custom_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/CraftingProblemLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.678431, 0.152941, 0.152941, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1), Color(0.678431, 0.152941, 0.152941, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/CraftingProblemLabel:custom_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/CraftingProblemLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ed7nr"]
+_data = {
+"Flash": SubResource("1"),
+"RESET": SubResource("2")
 }
 
 [node name="InventoryScreen" type="Control"]
 visible = false
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
-script = ExtResource( 1 )
+mouse_filter = 2
+script = ExtResource("1")
 InventoryPopupPath = NodePath("MainInventory")
 InventorySlotContainerPath = NodePath("MainInventory/BaseInventoryContainer/Inventory")
 EquipmentSlotParentPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots")
@@ -65,244 +75,216 @@ ClearCraftingInputsPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSec
 GroundPanelPopupPath = NodePath("GroundPanel")
 GroundSlotContainerPath = NodePath("GroundPanel/ScrollContainer/HBoxContainer")
 
-[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 10 )]
+[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("10")]
+anchors_preset = 0
 
-[node name="GroundPanel" parent="." instance=ExtResource( 2 )]
+[node name="GroundPanel" parent="." instance=ExtResource("2")]
+anchors_preset = 0
 anchor_top = 0.74
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 100.0
-margin_top = 27.2
-margin_right = -1138.0
-margin_bottom = -120.0
+offset_left = 100.0
+offset_top = 27.2
+offset_right = -1138.0
+offset_bottom = -120.0
 WindowTitle = "INVENTORY_ITEMS_ON_GROUND"
 Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GroundPanel"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 240, 40 )
+custom_minimum_size = Vector2(240, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
-scroll_vertical_enabled = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroundPanel/ScrollContainer"]
-margin_right = 240.0
-margin_bottom = 40.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 5
+theme_override_constants/separation = 5
 
-[node name="MainInventory" parent="." instance=ExtResource( 2 )]
+[node name="MainInventory" parent="." instance=ExtResource("2")]
+anchors_preset = 0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 100.0
-margin_top = 100.0
-margin_right = -465.0
-margin_bottom = -559.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -465.0
+offset_bottom = -559.0
 WindowTitle = "INVENTORY_TITLE"
 Resizable = true
 
 [node name="BaseInventoryContainer" type="HBoxContainer" parent="MainInventory"]
-margin_left = 2.0
-margin_top = -4.0
-margin_right = 402.0
-margin_bottom = 396.0
-rect_min_size = Vector2( 400, 400 )
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 0
+offset_left = 2.0
+offset_top = -4.0
+offset_right = 402.0
+offset_bottom = 396.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainInventory/BaseInventoryContainer"]
-margin_right = 800.0
-margin_bottom = 800.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="EquipmentSlots" type="Control" parent="MainInventory/BaseInventoryContainer/VBoxContainer"]
-margin_right = 200.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 200, 200 )
-rect_clip_content = true
+clip_contents = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CreatureImage" type="TextureRect" parent="MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots"]
+layout_mode = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 3 )
-expand = true
-stretch_mode = 6
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainInventory/BaseInventoryContainer/VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="Ground" type="Button" parent="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer"]
-margin_right = 10.0
-margin_bottom = 35.0
+layout_mode = 2
 toggle_mode = true
 text = "INVENTORY_TOGGLE_GROUND"
 
 [node name="Crafting" type="Button" parent="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer"]
-margin_right = 10.0
-margin_bottom = 35.0
+layout_mode = 2
 toggle_mode = true
 text = "INVENTORY_TOGGLE_CRAFTING"
 
 [node name="Inventory" type="HFlowContainer" parent="MainInventory/BaseInventoryContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 100, 0 )
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CraftingPanel" parent="." instance=ExtResource( 2 )]
+[node name="CraftingPanel" parent="." instance=ExtResource("2")]
+anchors_preset = 0
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 60.0
-margin_top = 100.0
-margin_right = -538.0
-margin_bottom = -600.0
+offset_left = 60.0
+offset_top = 100.0
+offset_right = -538.0
+offset_bottom = -600.0
 WindowTitle = "CRAFTING_TITLE"
 Resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel"]
-margin_left = 667.0
-margin_top = 27.0
-margin_right = 1067.0
-margin_bottom = 427.0
-rect_min_size = Vector2( 400, 400 )
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 0
+offset_left = 667.0
+offset_top = 27.0
+offset_right = 1067.0
+offset_bottom = 427.0
 
 [node name="RecipesTitle" type="Label" parent="CraftingPanel/VBoxContainer"]
 visible = false
-margin_right = 511.0
-margin_bottom = 25.0
+layout_mode = 2
 text = "CRAFTING_KNOWN_ITEMS"
-align = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CraftingPanel/VBoxContainer"]
-margin_top = 29.0
-margin_right = 511.0
-margin_bottom = 254.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.7
 follow_focus = true
-scroll_horizontal_enabled = false
 
 [node name="RecipesList" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/ScrollContainer"]
-margin_right = 511.0
-margin_bottom = 225.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="HSeparator" type="HSeparator" parent="CraftingPanel/VBoxContainer"]
-margin_top = 258.0
-margin_right = 511.0
-margin_bottom = 262.0
+layout_mode = 2
 
 [node name="CraftingProblemLabel" type="Label" parent="CraftingPanel/VBoxContainer"]
-margin_top = 266.0
-margin_right = 511.0
-margin_bottom = 283.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 9 )
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-autowrap = true
+label_settings = ExtResource("5_aa5gb")
 
 [node name="CraftingItemsSection" type="HBoxContainer" parent="CraftingPanel/VBoxContainer"]
-margin_top = 287.0
-margin_right = 511.0
-margin_bottom = 400.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="LeftSide" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
-margin_right = 250.0
-margin_bottom = 113.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="InputsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
-margin_right = 250.0
-margin_bottom = 25.0
+layout_mode = 2
 text = "CRAFTING_FILTER_INPUTS"
 
 [node name="CraftingInputs" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
-margin_top = 29.0
-margin_right = 250.0
-margin_bottom = 69.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ClearInputs" type="TextureButton" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
-margin_left = 105.0
-margin_top = 73.0
-margin_right = 145.0
-margin_bottom = 113.0
-rect_min_size = Vector2( 40, 40 )
-hint_tooltip = "CRAFTING_CLEAR_INPUTS"
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
 size_flags_horizontal = 4
+tooltip_text = "CRAFTING_CLEAR_INPUTS"
 disabled = true
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 7 )
-texture_disabled = ExtResource( 6 )
-texture_focused = ExtResource( 7 )
-expand = true
+texture_normal = ExtResource("8")
+texture_pressed = ExtResource("5")
+texture_hover = ExtResource("7")
+texture_disabled = ExtResource("6")
+texture_focused = ExtResource("7")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="CraftButton" type="Button" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
-margin_left = 254.0
-margin_top = 39.0
-margin_right = 299.0
-margin_bottom = 74.0
-rect_min_size = Vector2( 45, 35 )
+custom_minimum_size = Vector2(45, 35)
+layout_mode = 2
 size_flags_vertical = 4
-icon = ExtResource( 4 )
-icon_align = 1
+icon = ExtResource("4")
+icon_alignment = 1
 expand_icon = true
 
 [node name="RightSide" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
-margin_left = 303.0
-margin_right = 511.0
-margin_bottom = 113.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ResultsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
-margin_right = 208.0
-margin_bottom = 25.0
+layout_mode = 2
 text = "CRAFTING_RESULTS"
 
 [node name="CraftingResults" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
-margin_top = 29.0
-margin_right = 208.0
-margin_bottom = 74.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Take" type="Button" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
-margin_top = 78.0
-margin_right = 208.0
-margin_bottom = 113.0
+layout_mode = 2
 text = "CRAFTING_TAKE_ALL"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CraftingPanel"]
-anims/Flash = SubResource( 1 )
-anims/RESET = SubResource( 2 )
+libraries = {
+"": SubResource("AnimationLibrary_ed7nr")
+}
 
-[connection signal="Cancelled" from="GroundPanel" to="." method="OnGroundPanelCancelled"]
+[connection signal="Canceled" from="GroundPanel" to="." method="OnGroundPanelCanceled"]
 [connection signal="Closed" from="GroundPanel" to="." method="OnGroundPanelBecameHidden"]
 [connection signal="Closed" from="MainInventory" to="." method="OnInventoryPanelClosed"]
 [connection signal="resized" from="MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots" to="." method="UpdateEquipmentSlotPositions"]
 [connection signal="toggled" from="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground" to="." method="ToggleGroundPanel"]
 [connection signal="toggled" from="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Crafting" to="." method="ToggleCraftingPanel"]
-[connection signal="Cancelled" from="CraftingPanel" to="." method="OnCraftingPanelCancelled"]
+[connection signal="Canceled" from="CraftingPanel" to="." method="OnCraftingPanelCanceled"]
 [connection signal="Closed" from="CraftingPanel" to="." method="OnCraftingPanelBecameHidden"]
 [connection signal="pressed" from="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/ClearInputs" to="." method="ClearCraftingInputs"]
 [connection signal="pressed" from="CraftingPanel/VBoxContainer/CraftingItemsSection/CraftButton" to="." method="TryToCraft"]

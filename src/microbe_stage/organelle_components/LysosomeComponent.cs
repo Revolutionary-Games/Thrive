@@ -62,7 +62,7 @@ public class LysosomeUpgrades : IComponentSpecificUpgrades
 
     public Enzyme Enzyme { get; set; }
 
-    public bool Equals(IComponentSpecificUpgrades other)
+    public bool Equals(IComponentSpecificUpgrades? other)
     {
         if (other is not LysosomeUpgrades otherLysosome)
             return false;

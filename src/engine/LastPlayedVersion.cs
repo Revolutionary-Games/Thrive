@@ -38,9 +38,9 @@ public static class LastPlayedVersion
 
     private static string? ReadLastPlayedVersion()
     {
-        using var file = new File();
+        using var file = FileAccess.Open(Constants.LAST_PLAYED_VERSION_FILE, FileAccess.ModeFlags.Read);
 
-        if (file.Open(Constants.LAST_PLAYED_VERSION_FILE, File.ModeFlags.Read) != Error.Ok)
+        if (file == null)
         {
             // File doesn't exist or we can't read it, no last played version
             return null;
@@ -58,7 +58,7 @@ public static class LastPlayedVersion
         try
         {
             // Parsing the first part as valid version number needs to work
-            Version.Parse(version!.Split('-').First());
+            Version.Parse(version.Split('-').First());
 
             // Version comparison needs to work
             if (VersionUtils.Compare("1.0.0", version) == int.MaxValue)
@@ -81,9 +81,9 @@ public static class LastPlayedVersion
         var version = Constants.Version;
         GD.Print($"Saving latest played Thrive version to be: {version}");
 
-        using var file = new File();
+        using var file = FileAccess.Open(Constants.LAST_PLAYED_VERSION_FILE, FileAccess.ModeFlags.Write);
 
-        if (file.Open(Constants.LAST_PLAYED_VERSION_FILE, File.ModeFlags.Write) != Error.Ok)
+        if (file == null)
         {
             GD.PrintErr("Failed to open latest played version file for writing");
             return;

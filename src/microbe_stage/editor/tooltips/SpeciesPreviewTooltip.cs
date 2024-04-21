@@ -1,6 +1,9 @@
 ﻿using Godot;
 
-public class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
+/// <summary>
+///   Tooltip that shows a species preview image
+/// </summary>
+public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
 {
     [Export]
     public NodePath? SpeciesPreviewPath;

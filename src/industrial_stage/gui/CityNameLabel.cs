@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Shows a label with a city name and size for selecting that city
 /// </summary>
-public class CityNameLabel : Button, IEntityNameLabel
+public partial class CityNameLabel : Button, IEntityNameLabel
 {
     private string translationTemplate = null!;
 
@@ -19,14 +19,16 @@ public class CityNameLabel : Button, IEntityNameLabel
     [JsonIgnore]
     public Control LabelControl => this;
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        base._Notification(what);
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += UpdateTranslationTemplate;
+    }
 
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateTranslationTemplate();
-        }
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= UpdateTranslationTemplate;
     }
 
     public void UpdateFromEntity(IEntityWithNameLabel entity)
@@ -53,7 +55,7 @@ public class CityNameLabel : Button, IEntityNameLabel
 
     private void UpdateTranslationTemplate()
     {
-        translationTemplate = TranslationServer.Translate("NAME_LABEL_CITY");
+        translationTemplate = Localization.Translate("NAME_LABEL_CITY");
     }
 
     private void ForwardSelection()

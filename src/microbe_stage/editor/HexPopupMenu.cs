@@ -5,7 +5,8 @@ using Godot;
 /// <summary>
 ///   Base class for more specialized right click popup menus for the editor
 /// </summary>
-public abstract class HexPopupMenu : CustomPopupMenu
+[GodotAbstract]
+public partial class HexPopupMenu : CustomPopupMenu
 {
     [Export]
     public NodePath? TitleLabelPath;
@@ -33,14 +34,18 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
     private string? deleteTooltip;
 
-    [Signal]
-    public delegate void DeletePressed();
+    protected HexPopupMenu()
+    {
+    }
 
     [Signal]
-    public delegate void MovePressed();
+    public delegate void DeletePressedEventHandler();
 
     [Signal]
-    public delegate void ModifyPressed();
+    public delegate void MovePressedEventHandler();
+
+    [Signal]
+    public delegate void ModifyPressedEventHandler();
 
     public Func<IEnumerable<EditorCombinableActionData>, int>? GetActionPrice { get; set; }
 
@@ -55,7 +60,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
             // TODO: See #1857
             if (ShowPopup)
             {
-                RectPosition = GetViewport().GetMousePosition();
+                Position = GetViewport().GetMousePosition();
                 OpenModal();
             }
             else
@@ -134,7 +139,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
     {
         if (IsInteractable)
         {
-            EmitSignal(nameof(DeletePressed));
+            EmitSignal(SignalName.DeletePressed);
 
             Close();
 
@@ -150,7 +155,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
     {
         if (IsInteractable)
         {
-            EmitSignal(nameof(MovePressed));
+            EmitSignal(SignalName.MovePressed);
 
             Close();
 
@@ -169,11 +174,20 @@ public abstract class HexPopupMenu : CustomPopupMenu
         modifyButton = GetNode<Button>(ModifyButtonPath);
     }
 
-    protected abstract void UpdateTitleLabel();
+    protected virtual void UpdateTitleLabel()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void UpdateDeleteButton();
+    protected virtual void UpdateDeleteButton()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    protected abstract void UpdateMoveButton();
+    protected virtual void UpdateMoveButton()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected override void Dispose(bool disposing)
     {
@@ -209,14 +223,14 @@ public abstract class HexPopupMenu : CustomPopupMenu
         if (pressed)
         {
             icon.Modulate = new Color(0, 0, 0);
-            nameLabel.AddColorOverride("font_color", new Color(0, 0, 0));
-            mpLabel.AddColorOverride("font_color", new Color(0, 0, 0));
+            nameLabel.AddThemeColorOverride("font_color", new Color(0, 0, 0));
+            mpLabel.AddThemeColorOverride("font_color", new Color(0, 0, 0));
         }
         else
         {
             icon.Modulate = new Color(1, 1, 1);
-            nameLabel.AddColorOverride("font_color", new Color(1, 1, 1));
-            mpLabel.AddColorOverride("font_color", new Color(1, 1, 1));
+            nameLabel.AddThemeColorOverride("font_color", new Color(1, 1, 1));
+            mpLabel.AddThemeColorOverride("font_color", new Color(1, 1, 1));
         }
     }
 
@@ -227,7 +241,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(DeletePressed));
+        EmitSignal(SignalName.DeletePressed);
 
         Close();
     }
@@ -239,7 +253,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(MovePressed));
+        EmitSignal(SignalName.MovePressed);
 
         Close();
     }
@@ -251,7 +265,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(ModifyPressed));
+        EmitSignal(SignalName.ModifyPressed);
 
         Close();
     }

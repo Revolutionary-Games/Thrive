@@ -6,16 +6,13 @@ using Godot;
 /// </summary>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class TutorialDialog : CustomWindow
+public partial class TutorialDialog : CustomWindow
 {
     [Export]
     public NodePath? LabelPath;
 
 #pragma warning disable CA2213
     private CustomRichTextLabel? label;
-
-    // TODO: would make more sense for code consistency that this was defined in the scene for this class
-    private Tween tween = new();
 #pragma warning restore CA2213
 
     private string description = string.Empty;
@@ -58,8 +55,6 @@ public class TutorialDialog : CustomWindow
     {
         label = GetNode<CustomRichTextLabel>(LabelPath);
 
-        AddChild(tween);
-
         CheckShownTextVersion();
         UpdateLabel();
     }
@@ -86,15 +81,17 @@ public class TutorialDialog : CustomWindow
         base.OnOpen();
 
         // Don't animate if currently running inside the editor
-        if (Engine.EditorHint)
+        if (Engine.IsEditorHint())
             return;
 
-        RectPivotOffset = RectSize / 2;
-        RectScale = Vector2.Zero;
+        PivotOffset = Size / 2;
+        Scale = Vector2.Zero;
 
-        tween.InterpolateProperty(this, "rect_scale", Vector2.Zero, Vector2.One, 0.3f, Tween.TransitionType.Expo,
-            Tween.EaseType.Out, ShowDelay);
-        tween.Start();
+        var tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Expo);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(this, "scale", Vector2.One, 0.3).From(Vector2.Zero).SetDelay(ShowDelay);
     }
 
     protected override void Dispose(bool disposing)
@@ -118,11 +115,11 @@ public class TutorialDialog : CustomWindow
 
         if (showingTextForInput == ActiveInputMethod.Controller && !string.IsNullOrWhiteSpace(DescriptionForController))
         {
-            newText = TranslationServer.Translate(DescriptionForController);
+            newText = Localization.Translate(DescriptionForController);
         }
         else
         {
-            newText = TranslationServer.Translate(Description);
+            newText = Localization.Translate(Description);
         }
 
         // We only set the text if it is actually different to avoid an extra parsing
@@ -130,7 +127,7 @@ public class TutorialDialog : CustomWindow
             label.ExtendedBbcode = newText;
     }
 
-    private void OnInputTypeChanged(object sender, EventArgs e)
+    private void OnInputTypeChanged(object? sender, EventArgs e)
     {
         CheckShownTextVersion();
     }

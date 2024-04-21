@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Shows the god tools available to mess with a game object
 /// </summary>
-public class GodToolsPopup : CustomWindow
+public partial class GodToolsPopup : CustomWindow
 {
     [Export]
     public NodePath? ActionButtonsContainerPath;
@@ -29,7 +29,7 @@ public class GodToolsPopup : CustomWindow
         targetEntityNameLabel = GetNode<Label>(TargetEntityNameLabelPath);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!Visible)
             return;
@@ -61,20 +61,20 @@ public class GodToolsPopup : CustomWindow
         switch (entity)
         {
             case SpaceFleet:
-                AddActionButton(TranslationServer.Translate("ACTION_DUPLICATE_UNITS"), nameof(OnDuplicateUnits));
+                AddActionButton(Localization.Translate("ACTION_DUPLICATE_UNITS"), nameof(OnDuplicateUnits));
                 break;
             case PlacedPlanet:
-                AddActionButton(TranslationServer.Translate("ACTION_DOUBLE_POPULATION"), nameof(OnDoublePopulation));
-                AddActionButton(TranslationServer.Translate("ACTION_HALF_POPULATION"), nameof(OnHalfPopulation));
+                AddActionButton(Localization.Translate("ACTION_DOUBLE_POPULATION"), nameof(OnDoublePopulation));
+                AddActionButton(Localization.Translate("ACTION_HALF_POPULATION"), nameof(OnHalfPopulation));
                 break;
         }
 
-        if (entity is Spatial)
+        if (entity is Node3D)
         {
-            AddActionButton(TranslationServer.Translate("ACTION_TELEPORT"), nameof(OnTeleportState), true);
+            AddActionButton(Localization.Translate("ACTION_TELEPORT"), nameof(OnTeleportState), true);
         }
 
-        AddActionButton(TranslationServer.Translate("ACTION_DELETE"), nameof(OnDelete));
+        AddActionButton(Localization.Translate("ACTION_DELETE"), nameof(OnDelete));
 
         Open(false);
 
@@ -98,9 +98,9 @@ public class GodToolsPopup : CustomWindow
 
             var target = GetTarget();
 
-            if (target is Spatial spatial)
+            if (target is Node3D spatial)
             {
-                spatial.GlobalTranslation = location;
+                spatial.GlobalPosition = location;
             }
             else
             {
@@ -139,11 +139,11 @@ public class GodToolsPopup : CustomWindow
         if (toggleButton)
         {
             button.ToggleMode = true;
-            button.Connect("toggled", this, methodName);
+            button.Connect(BaseButton.SignalName.Toggled, new Callable(this, methodName));
         }
         else
         {
-            button.Connect("pressed", this, methodName);
+            button.Connect(BaseButton.SignalName.Pressed, new Callable(this, methodName));
         }
 
         actionButtonsContainer.AddChild(button);

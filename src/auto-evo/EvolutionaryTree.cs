@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using AutoEvo;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   An evolutionary tree showing species origins and mutations. Supports dragging and zooming.
@@ -15,7 +14,7 @@ using Array = Godot.Collections.Array;
 ///     Don't put this under a draggable controller.
 ///   </para>
 /// </remarks>
-public class EvolutionaryTree : Control
+public partial class EvolutionaryTree : Control
 {
     [Export]
     public NodePath? TimelinePath;
@@ -105,8 +104,8 @@ public class EvolutionaryTree : Control
     private Control tree = null!;
 
     // Local copy of fonts
-    private Font latoSmallItalic = null!;
-    private Font latoSmallRegular = null!;
+    private LabelSettings bodyItalicFont = null!;
+    private LabelSettings bodyFont = null!;
 
     private PackedScene treeNodeScene = null!;
 #pragma warning restore CA2213
@@ -129,7 +128,7 @@ public class EvolutionaryTree : Control
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     <see cref="Control.RectScale"/> is not used here so that we know the drawn parts.
+    ///     <see cref="Control.Scale"/> is not used here so that we know the drawn parts.
     ///   </para>
     /// </remarks>
     private float sizeFactor = 1.0f;
@@ -144,7 +143,7 @@ public class EvolutionaryTree : Control
     private int latestGeneration;
 
     [Signal]
-    public delegate void SpeciesSelected(int generation, uint id);
+    public delegate void SpeciesSelectedEventHandler(int generation, uint id);
 
     /// <summary>
     ///   Allows access to tree-generated data. This helps with data exporting, for example.
@@ -166,11 +165,10 @@ public class EvolutionaryTree : Control
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
 
         // Font size is adjusted dynamically so this needs to be a copy.
-        latoSmallItalic = (Font)GD.Load("res://src/gui_common/fonts/Lato-Italic-Small.tres").Duplicate();
-        smallFontSize = (int)latoSmallItalic.Get("size");
+        bodyItalicFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Italic-Small.tres");
+        smallFontSize = bodyItalicFont.FontSize;
 
-        // LatoRegular is used in the timeline part which has a fixed size, so we don't need to clone.
-        latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres");
+        bodyFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Regular-Small.tres");
     }
 
     public void Init(IEnumerable<Species> initialSpecies, uint playerSpeciesId = 1,
@@ -194,7 +192,7 @@ public class EvolutionaryTree : Control
         dirty = true;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -203,8 +201,8 @@ public class EvolutionaryTree : Control
             UpdateTreeNodeSizeAndPosition();
 
             // Inform them to update
-            timeline.Update();
-            tree.Update();
+            timeline.QueueRedraw();
+            tree.QueueRedraw();
 
             dirty = false;
         }
@@ -299,7 +297,7 @@ public class EvolutionaryTree : Control
 
         // If there is already one, update it; otherwise, add a new one.
         var existing = speciesNodeList.FirstOrDefault(n => (n.Position - position).Length() < MathUtils.EPSILON);
-        var node = existing ?? treeNodeScene.Instance<EvolutionaryTreeNode>();
+        var node = existing ?? treeNodeScene.Instantiate<EvolutionaryTreeNode>();
 
         node.Generation = generation;
         node.SpeciesID = species.ID;
@@ -311,8 +309,8 @@ public class EvolutionaryTree : Control
         if (existing != null)
             return;
 
-        node.Group = nodesGroup;
-        node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
+        node.ButtonGroup = nodesGroup;
+        node.Connect(BaseButton.SignalName.Pressed, Callable.From(() => OnTreeNodeSelected(node)));
 
         speciesNodeList.Add(node);
         tree.AddChild(node);
@@ -324,12 +322,12 @@ public class EvolutionaryTree : Control
 
         foreach (var node in speciesNodes.Values.SelectMany(l => l))
         {
-            node.RectMinSize = treeNodeSize;
+            node.CustomMinimumSize = treeNodeSize;
 
             // RectSize needs to be adjusted explicitly even when SizeFlag set to ShrinkEnd.
-            node.RectSize = treeNodeSize;
+            node.Size = treeNodeSize;
 
-            node.RectPosition = sizeFactor * (node.Position + dragOffset);
+            node.Position = sizeFactor * (node.Position + dragOffset);
         }
     }
 
@@ -349,7 +347,7 @@ public class EvolutionaryTree : Control
         foreach (var treeNode in speciesNodes[id])
         {
             var position = treeNode.Position;
-            position.y = index * SPECIES_SEPARATION;
+            position.Y = index * SPECIES_SEPARATION;
             treeNode.Position = position;
         }
 
@@ -377,21 +375,21 @@ public class EvolutionaryTree : Control
     {
         // Draw timeline axis, which is static.
         timeline.DrawLine(new Vector2(0, TIMELINE_AXIS_Y),
-            new Vector2(RectSize.x, TIMELINE_AXIS_Y), Colors.Cyan, TIMELINE_LINE_THICKNESS);
+            new Vector2(Size.X, TIMELINE_AXIS_Y), Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
         int increment = (int)Math.Ceiling(1 / sizeFactor);
 
         // Draw time marks
         int firstDrawnGeneration =
-            (int)Math.Ceiling((-dragOffset.x - TreeNodeSize.x / 2) / GENERATION_SEPARATION / increment) * increment;
+            (int)Math.Ceiling((-dragOffset.X - TreeNodeSize.X / 2) / GENERATION_SEPARATION / increment) * increment;
 
         int lastDrawnGeneration =
-            Math.Min((int)Math.Floor((RectSize.x / sizeFactor - dragOffset.x - TreeNodeSize.x / 2) /
+            Math.Min((int)Math.Floor((Size.X / sizeFactor - dragOffset.X - TreeNodeSize.X / 2) /
                 GENERATION_SEPARATION), latestGeneration);
 
         for (int i = firstDrawnGeneration; i <= lastDrawnGeneration; i += increment)
         {
-            var x = sizeFactor * (dragOffset.x + i * GENERATION_SEPARATION + TreeNodeSize.x / 2);
+            var x = sizeFactor * (dragOffset.X + i * GENERATION_SEPARATION + TreeNodeSize.X / 2);
 
             timeline.DrawLine(new Vector2(x, TIMELINE_AXIS_Y), new Vector2(x, TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH),
                 Colors.Cyan, TIMELINE_LINE_THICKNESS);
@@ -400,13 +398,13 @@ public class EvolutionaryTree : Control
             if (generationTimes.TryGetValue(i, out var generationTime))
             {
                 localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTime) + " "
-                    + TranslationServer.Translate("MEGA_YEARS");
+                    + Localization.Translate("MEGA_YEARS");
             }
 
-            var size = latoSmallRegular.GetStringSize(localizedText);
-
-            timeline.DrawString(latoSmallRegular, new Vector2(Mathf.Clamp(x - size.x / 2, 0, RectSize.x - size.x),
-                TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH * 2 + size.y), localizedText, Colors.Cyan);
+            timeline.DrawString(bodyFont.Font,
+                new Vector2(x, TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH * 2 + bodyFont.FontSize), localizedText,
+                HorizontalAlignment.Center, -1,
+                bodyFont.FontSize, Colors.Cyan);
         }
     }
 
@@ -424,14 +422,13 @@ public class EvolutionaryTree : Control
 
         if (@event is InputEventMouseButton buttonEvent)
         {
-            dragging = (buttonEvent.ButtonMask & ((int)ButtonList.Left | (int)ButtonList.Right)) != 0;
+            dragging = (buttonEvent.ButtonMask & (MouseButtonMask.Left | MouseButtonMask.Right)) != 0;
             if (dragging)
                 lastMousePosition = buttonEvent.Position;
 
-            if (buttonEvent.Pressed &&
-                (ButtonList)buttonEvent.ButtonIndex is ButtonList.WheelDown or ButtonList.WheelUp)
+            if (buttonEvent.Pressed && buttonEvent.ButtonIndex is MouseButton.WheelDown or MouseButton.WheelUp)
             {
-                bool zoomIn = (ButtonList)buttonEvent.ButtonIndex == ButtonList.WheelUp;
+                bool zoomIn = buttonEvent.ButtonIndex == MouseButton.WheelUp;
 
                 // The current mouse position relative to tree
                 var mouseTreePosition = buttonEvent.Position / sizeFactor - dragOffset;
@@ -453,7 +450,7 @@ public class EvolutionaryTree : Control
             if (dragging)
             {
                 var delta = (motionEvent.Position - lastMousePosition) / sizeFactor;
-                dragOffset += horizontalOnly ? new Vector2(delta.x, 0) : delta;
+                dragOffset += horizontalOnly ? new Vector2(delta.X, 0) : delta;
                 lastMousePosition = motionEvent.Position;
                 BindOffsetToTreeSize();
                 dirty = true;
@@ -465,14 +462,14 @@ public class EvolutionaryTree : Control
     {
         // TreeSize may be less than RectSize, so the later Min and Max is not merged into Clamp.
         // Note that dragOffset's x and y should both be negative.
-        var start = tree.RectSize / sizeFactor - TreeSize;
+        var start = tree.Size / sizeFactor - TreeSize;
 
-        float x = dragOffset.x;
-        x = Math.Max(x, start.x);
+        float x = dragOffset.X;
+        x = Math.Max(x, start.X);
         x = Math.Min(x, 0);
 
-        float y = dragOffset.y;
-        y = Math.Max(y, start.y);
+        float y = dragOffset.Y;
+        y = Math.Max(y, start.Y);
         y = Math.Min(y, 0);
 
         dragOffset = new Vector2(x, y);
@@ -491,7 +488,7 @@ public class EvolutionaryTree : Control
     /// </summary>
     private void TreeDraw()
     {
-        var drawRegion = new Rect2(RectPosition - DrawMargin, RectSize + DrawMargin);
+        var drawRegion = new Rect2(Position - DrawMargin, Size + DrawMargin);
 
         // Draw new species connection lines
         foreach (var node in speciesNodes.Values.Select(l => l.First()))
@@ -500,18 +497,18 @@ public class EvolutionaryTree : Control
                 continue;
 
             // If the vertical position is outside draw region, skip.
-            if (node.Center.y < drawRegion.Position.y || node.ParentNode.Center.y > drawRegion.End.y)
+            if (node.Center.Y < drawRegion.Position.Y || node.ParentNode.Center.Y > drawRegion.End.Y)
                 continue;
 
             // Horizontal too.
-            if (node.Center.x < drawRegion.Position.x || node.ParentNode.Center.x > drawRegion.End.x)
+            if (node.Center.X < drawRegion.Position.X || node.ParentNode.Center.X > drawRegion.End.X)
                 continue;
 
             TreeDrawLine(node.ParentNode.Center, node.Center);
         }
 
         float treeRightPosition =
-            sizeFactor * (dragOffset.x + GENERATION_SEPARATION * latestGeneration + TreeNodeSize.x);
+            sizeFactor * (dragOffset.X + GENERATION_SEPARATION * latestGeneration + TreeNodeSize.X);
 
         // Draw horizontal lines
         foreach (var nodeList in speciesNodes.Values)
@@ -519,7 +516,7 @@ public class EvolutionaryTree : Control
             var lineStart = nodeList.First().Center;
 
             // If the line is outside draw region, skip it.
-            if (lineStart.y < drawRegion.Position.y || lineStart.y > drawRegion.End.y)
+            if (lineStart.Y < drawRegion.Position.Y || lineStart.Y > drawRegion.End.Y)
                 continue;
 
             var lastNode = nodeList.Last();
@@ -527,12 +524,12 @@ public class EvolutionaryTree : Control
             // If species extinct, line ends at the last node; else it ends at the right end of the tree
             var lineEnd = lastNode.LastGeneration ?
                 lastNode.Center :
-                new Vector2(treeRightPosition, lineStart.y);
+                new Vector2(treeRightPosition, lineStart.Y);
 
             TreeDrawLine(lineStart, lineEnd);
         }
 
-        latoSmallItalic.Set("size", sizeFactor * smallFontSize);
+        var size = sizeFactor * smallFontSize;
 
         float speciesNameOffset = sizeFactor * SPECIES_NAME_OFFSET;
 
@@ -542,20 +539,21 @@ public class EvolutionaryTree : Control
             var lastNode = pair.Value.Last();
 
             // If the string is outside draw region, skip it.
-            if (lastNode.Center.y < drawRegion.Position.y || lastNode.Center.x > drawRegion.End.x)
+            if (lastNode.Center.Y < drawRegion.Position.Y || lastNode.Center.X > drawRegion.End.X)
                 continue;
 
             if (lastNode.LastGeneration)
             {
-                tree.DrawString(latoSmallItalic,
-                    new Vector2(lastNode.RectPosition.x + sizeFactor * TreeNodeSize.x + speciesNameOffset,
-                        lastNode.Center.y), speciesNames[pair.Key], Colors.DarkRed);
+                tree.DrawString(bodyItalicFont.Font,
+                    new Vector2(lastNode.Position.X + sizeFactor * TreeNodeSize.X + speciesNameOffset,
+                        lastNode.Center.Y), speciesNames[pair.Key], HorizontalAlignment.Left, -1,
+                    Mathf.RoundToInt(size), Colors.DarkRed);
             }
             else
             {
-                tree.DrawString(latoSmallItalic,
-                    new Vector2(treeRightPosition + speciesNameOffset, pair.Value.First().Center.y),
-                    speciesNames[pair.Key]);
+                tree.DrawString(bodyItalicFont.Font,
+                    new Vector2(treeRightPosition + speciesNameOffset, pair.Value.First().Center.Y),
+                    speciesNames[pair.Key], HorizontalAlignment.Left, -1, Mathf.RoundToInt(size));
             }
         }
     }
@@ -573,25 +571,25 @@ public class EvolutionaryTree : Control
         var lineWidth = sizeFactor * TREE_LINE_THICKNESS;
         var halfLineWidth = lineWidth / 2;
 
-        if (to.y - from.y < MathUtils.EPSILON)
+        if (to.Y - from.Y < MathUtils.EPSILON)
         {
             tree.DrawLine(from, to, Colors.DarkCyan, lineWidth);
         }
         else
         {
             var mid = to - new Vector2(sizeFactor * GENERATION_SEPARATION / 2.0f, 0);
-            tree.DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, lineWidth);
+            tree.DrawLine(from, new Vector2(mid.X, from.Y), Colors.DarkCyan, lineWidth);
 
             // We draw vertical line a little longer so the turning point looks better.
-            tree.DrawLine(new Vector2(mid.x, from.y - halfLineWidth), new Vector2(mid.x, to.y + halfLineWidth),
+            tree.DrawLine(new Vector2(mid.X, from.Y - halfLineWidth), new Vector2(mid.X, to.Y + halfLineWidth),
                 Colors.DarkCyan, lineWidth);
 
-            tree.DrawLine(new Vector2(mid.x, to.y), to, Colors.DarkCyan, lineWidth);
+            tree.DrawLine(new Vector2(mid.X, to.Y), to, Colors.DarkCyan, lineWidth);
         }
     }
 
     private void OnTreeNodeSelected(EvolutionaryTreeNode node)
     {
-        EmitSignal(nameof(SpeciesSelected), node.Generation, node.SpeciesID);
+        EmitSignal(SignalName.SpeciesSelected, node.Generation, node.SpeciesID);
     }
 }

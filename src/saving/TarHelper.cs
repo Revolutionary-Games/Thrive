@@ -1,47 +1,74 @@
 ﻿using System;
+using System.Formats.Tar;
 using System.IO;
 using System.Text;
 using Godot;
-using ICSharpCode.SharpZipLib.Tar;
 
 public static class TarHelper
 {
-    public static void OutputEntry(TarOutputStream archive, string name, byte[] data)
+    public static void OutputEntry(TarWriter archive, string name, Stream data)
     {
-        var entry = TarEntry.CreateTarEntry(name);
+#if DEBUG
+        if (data.Position != 0)
+            throw new ArgumentException("Data stream should be rewound");
+#endif
 
-        entry.TarHeader.Mode = Convert.ToInt32("0664", 8);
+        var entry = new PaxTarEntry(TarEntryType.RegularFile, name)
+        {
+            Mode = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.GroupWrite |
+                UnixFileMode.OtherRead,
 
-        // TODO: could fill in more of the properties
+            DataStream = data,
 
-        entry.Size = data.Length;
+            // TODO: could fill in more of the properties
+        };
 
-        archive.PutNextEntry(entry);
-
-        archive.Write(data, 0, data.Length);
-
-        archive.CloseEntry();
+        archive.WriteEntry(entry);
     }
 
-    public static string ReadStringEntry(TarInputStream tar, int length)
+    public static void OutputEntry(TarWriter archive, string name, byte[] data)
     {
-        // Pre-allocate storage
-        var buffer = new byte[length];
-        {
-            using var stream = new MemoryStream(buffer);
-            tar.CopyEntryContents(stream);
-        }
-
-        return Encoding.UTF8.GetString(buffer);
+        OutputEntry(archive, name, new MemoryStream(data));
     }
 
-    public static byte[] ReadBytesEntry(TarInputStream tar, int length)
+    public static void OutputEntry(TarWriter archive, string name, string text, MemoryStream storageStreamToUse,
+        StreamWriter textFormatterToStorage)
     {
-        // Pre-allocate storage
-        var buffer = new byte[length];
+        // Reuse the buffer object. If there was a way to reuse the buffer without overwriting it with zeros first that
+        // would be better
+        storageStreamToUse.SetLength(0);
+
+        textFormatterToStorage.Write(text);
+        textFormatterToStorage.Flush();
+
+        // Rewind stream to write from the right starting position
+        storageStreamToUse.Position = 0;
+
+        OutputEntry(archive, name, storageStreamToUse);
+    }
+
+    public static string ReadStringEntry(TarEntry entry)
+    {
+        if (entry.DataStream == null)
+            throw new ArgumentException("TarEntry has no data stream");
+
+        // Leave open must be true, otherwise the tar reader cannot proceed after reading this one entry
+        using var utf8Reader = new StreamReader(entry.DataStream, Encoding.UTF8, true, -1, true);
+
+        return utf8Reader.ReadToEnd();
+    }
+
+    public static byte[] ReadBytesEntry(TarEntry entry)
+    {
+        if (entry.DataStream == null)
+            throw new ArgumentException("TarEntry has no data stream");
+
+        // Storage for the entry data
+        var buffer = new byte[entry.Length];
         {
+            // Read the data into the pre-allocated buffer
             using var stream = new MemoryStream(buffer);
-            tar.CopyEntryContents(stream);
+            entry.DataStream.CopyTo(stream);
         }
 
         return buffer;

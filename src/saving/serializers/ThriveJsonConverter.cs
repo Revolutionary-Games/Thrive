@@ -24,6 +24,7 @@ public class ThriveJsonConverter : IDisposable
     private readonly List<JsonConverter> thriveConvertersDynamicDeserialize;
     private readonly DynamicDeserializeObjectConverter dynamicObjectDeserializeConverter;
 
+    // TODO: (check if this can cause process lock ups) https://github.com/Revolutionary-Games/Thrive/issues/4989
     private readonly ThreadLocal<JsonSerializerSettings> currentJsonSettings = new();
     private bool disposed;
 
@@ -37,7 +38,7 @@ public class ThriveJsonConverter : IDisposable
             new RegistryTypeConverter(context),
             new GodotColorConverter(),
             new GodotBasisConverter(),
-            new GodotQuatConverter(),
+            new GodotQuaternionConverter(),
             new PackedSceneConverter(),
             new SystemVector4ArrayConverter(),
             new RandomConverter(),
@@ -170,6 +171,11 @@ public class ThriveJsonConverter : IDisposable
             // UseThriveSerializerAttribute when reference loops exist, this probably causes a stack overflow
             ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
 
+            // Skip writing null properties. This saves a bit of data and as saves are not manually edited shouldn't
+            // really miss out on anything by just having null values omitted. One potential pitfall is the requirement
+            // to not rely on a null value to be passed to a json constructor
+            NullValueHandling = NullValueHandling.Ignore,
+
             TraceWriter = GetTraceWriter(Settings.Instance.JSONDebugMode, JSONDebug.ErrorHasOccurred),
         };
     }
@@ -294,6 +300,8 @@ public abstract class BaseThriveConverter : JsonConverter
     private static readonly Type BaseDynamicTypeAllowedAttribute = typeof(JSONDynamicTypeAllowedAttribute);
     private static readonly Type JsonPropertyAttribute = typeof(JsonPropertyAttribute);
     private static readonly Type JsonIgnoreAttribute = typeof(JsonIgnoreAttribute);
+    private static readonly Type ExportAttribute = typeof(ExportAttribute);
+    private static readonly Type GodotNodeType = typeof(Node);
 
     protected BaseThriveConverter(ISaveContext? context)
     {
@@ -385,7 +393,7 @@ public abstract class BaseThriveConverter : JsonConverter
     {
         var customAttributeData = customAttributes.ToList();
 
-        bool export = customAttributeData.Any(a => a.AttributeType == typeof(ExportAttribute));
+        bool export = customAttributeData.Any(a => a.AttributeType == ExportAttribute);
 
         if (!export)
             return false;
@@ -395,7 +403,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
     public static bool IsIgnoredGodotMember(string name, Type type)
     {
-        return typeof(Node).IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name);
+        return GodotNodeType.IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name);
     }
 
     /// <summary>
@@ -414,7 +422,7 @@ public abstract class BaseThriveConverter : JsonConverter
         if (scene == null)
             throw new JsonException($"Couldn't load scene ({data.ScenePath}) for scene loaded type");
 
-        var node = scene.Instance();
+        var node = scene.Instantiate();
 
         // Ensure that instance ended up being a good type
         if (!objectType.IsInstanceOfType(node))
@@ -562,7 +570,12 @@ public abstract class BaseThriveConverter : JsonConverter
                 if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
                         out var data))
                 {
-                    ApplyOnlyChildProperties(value, field.GetValue(instance), serializer, data!);
+                    var target = field.GetValue(instance);
+
+                    if (target == null)
+                        throw new JsonException($"Cannot copy child properties to a null value of field: {field.Name}");
+
+                    ApplyOnlyChildProperties(value, target, serializer, data!);
                 }
                 else
                 {
@@ -587,7 +600,15 @@ public abstract class BaseThriveConverter : JsonConverter
                 }
                 else
                 {
-                    ApplyOnlyChildProperties(value, property.GetValue(instance), serializer, data!);
+                    var target = property.GetValue(instance);
+
+                    if (target == null)
+                    {
+                        throw new JsonException(
+                            $"Cannot copy child properties to a null value of property: {property.Name}");
+                    }
+
+                    ApplyOnlyChildProperties(value, target, serializer, data!);
                 }
             }
         }
@@ -633,7 +654,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
         bool reference = ForceReferenceWrite ||
             serializer.PreserveReferencesHandling != PreserveReferencesHandling.None ||
-            (contract.IsReference == true);
+            contract.IsReference == true;
 
         writer.WriteStartObject();
 
@@ -724,7 +745,7 @@ public abstract class BaseThriveConverter : JsonConverter
                 if (SkipIfGodotNodeType(property.Name, type))
                     continue;
 
-                object memberValue;
+                object? memberValue;
                 try
                 {
                     memberValue = property.GetValue(value, null);
@@ -825,6 +846,12 @@ public abstract class BaseThriveConverter : JsonConverter
         if (SkipMember(name))
             return;
 
+        if (serializer.NullValueHandling == NullValueHandling.Ignore && ReferenceEquals(memberValue, null))
+        {
+            // Skip writing a null
+            return;
+        }
+
         writer.WritePropertyName(name);
 
         // Special handle types (none currently)
@@ -833,6 +860,15 @@ public abstract class BaseThriveConverter : JsonConverter
         serializer.Serialize(writer, memberValue, memberType);
     }
 
+    /// <summary>
+    ///   Note that if the static type of the deserializer doesn't use custom fields, this cannot be read properly.
+    ///   As such using this is not recommended currently.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Further explanation: https://github.com/Revolutionary-Games/Thrive/issues/3721
+    ///   </para>
+    /// </remarks>
     protected virtual void WriteCustomExtraFields(JsonWriter writer, object value, JsonSerializer serializer)
     {
     }
@@ -978,7 +1014,15 @@ public abstract class BaseThriveConverter : JsonConverter
             if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
                     out var recursiveChildData))
             {
-                ApplyOnlyChildProperties(field.GetValue(newData), field.GetValue(target), serializer,
+                var recursiveTarget = field.GetValue(target);
+
+                if (recursiveTarget == null)
+                {
+                    throw new JsonException(
+                        $"Cannot recursively copy child properties to a null value of field: {field.Name}");
+                }
+
+                ApplyOnlyChildProperties(field.GetValue(newData), recursiveTarget, serializer,
                     recursiveChildData!, true);
             }
         }
@@ -988,7 +1032,15 @@ public abstract class BaseThriveConverter : JsonConverter
             if (UsesOnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
                     out var recursiveChildData))
             {
-                ApplyOnlyChildProperties(property.GetValue(newData), property.GetValue(target), serializer,
+                var recursiveTarget = property.GetValue(target);
+
+                if (recursiveTarget == null)
+                {
+                    throw new JsonException(
+                        $"Cannot recursively copy child properties to a null value of property: {property.Name}");
+                }
+
+                ApplyOnlyChildProperties(property.GetValue(newData), recursiveTarget, serializer,
                     recursiveChildData!, true);
             }
         }

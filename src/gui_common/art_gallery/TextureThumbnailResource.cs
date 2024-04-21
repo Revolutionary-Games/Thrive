@@ -19,7 +19,7 @@ public class TextureThumbnailResource : ITextureResource
     // ReSharper disable once NotAccessedField.Local
     private readonly int thumbnailWidth;
 
-    private Texture? loadedTexture;
+    private Texture2D? loadedTexture;
 
     public TextureThumbnailResource(string texturePath, int thumbnailWidth)
     {
@@ -37,7 +37,7 @@ public class TextureThumbnailResource : ITextureResource
     public string Identifier => $"Thumbnail/{texturePath}";
     public Action<IResource>? OnComplete { get; set; }
 
-    public Texture LoadedTexture => loadedTexture ?? throw new InstanceNotLoadedYetException();
+    public Texture2D LoadedTexture => loadedTexture ?? throw new InstanceNotLoadedYetException();
 
     public void PrepareLoading()
     {
@@ -45,7 +45,7 @@ public class TextureThumbnailResource : ITextureResource
 
     public void Load()
     {
-        loadedTexture = GD.Load<StreamTexture>(texturePath);
+        loadedTexture = GD.Load<CompressedTexture2D>(texturePath);
         Loaded = true;
     }
 

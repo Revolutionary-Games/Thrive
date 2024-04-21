@@ -1,9 +1,9 @@
 [gd_resource type="StyleBoxTexture" load_steps=3 format=2]
 
 [sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0.0666667, 0.509804, 0.835294, 0.470588, 0.0666667, 0.698039, 0.835294, 0 )
+colors = PackedColorArray( 0.0666667, 0.509804, 0.835294, 0.470588, 0.0666667, 0.698039, 0.835294, 0 )
 
-[sub_resource type="GradientTexture" id=2]
+[sub_resource type="GradientTexture2D" id=2]
 gradient = SubResource( 1 )
 
 [resource]

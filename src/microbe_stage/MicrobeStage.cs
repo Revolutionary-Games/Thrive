@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
+public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 {
     [Export]
     public NodePath? GuidanceLinePath;
@@ -45,7 +45,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
     /// </summary>
-    private float elapsedSinceEntityPositionCheck = Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL + 1;
+    private double elapsedSinceEntityPositionCheck = Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL + 1;
 
     [JsonProperty]
     private bool wonOnce;
@@ -184,7 +184,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         DebugOverlays.Instance.OnWorldDisabled(WorldSimulation);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -207,7 +207,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         bool playerAlive = HasAlivePlayer;
 
-        if (WorldSimulation.ProcessAll(delta))
+        if (WorldSimulation.ProcessAll((float)delta))
         {
             // If game logic didn't run, the debug labels don't need to update
             DebugOverlays.Instance.UpdateActiveEntities(WorldSimulation);
@@ -229,8 +229,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
-                new RotationEventArgs(playerPosition.Rotation,
-                    playerPosition.Rotation.GetEuler() * MathUtils.RADIANS_TO_DEGREES), this);
+                new RotationEventArgs(playerPosition.Rotation, playerPosition.Rotation.GetEuler()), this);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
                 new CompoundBagEventArgs(Player.Get<CompoundStorage>().Compounds), this);
@@ -412,7 +411,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
             var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
-            sceneInstance = scene.Instance();
+            sceneInstance = scene.Instantiate();
             var editor = (EarlyMulticellularEditor)sceneInstance;
 
             editor.CurrentGame = CurrentGame;
@@ -432,7 +431,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
             var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
 
-            sceneInstance = scene.Instance();
+            sceneInstance = scene.Instantiate();
             var editor = (MicrobeEditor)sceneInstance;
 
             editor.CurrentGame = CurrentGame;
@@ -525,7 +524,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
-        var editor = (EarlyMulticellularEditor)scene.Instance();
+        var editor = scene.Instantiate<EarlyMulticellularEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
         editor.ReturnToStage = this;
@@ -581,7 +580,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
 
-        var editor = (LateMulticellularEditor)scene.Instance();
+        var editor = scene.Instantiate<LateMulticellularEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
 
@@ -1016,7 +1015,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// <returns>Enumerable of all microbes of Player's species</returns>
     private IEnumerable<Entity> GetAllPlayerSpeciesMicrobes()
     {
-        if (Player == null)
+        if (Player == default)
             throw new InvalidOperationException("Could not get player species microbes: no Player object");
 
         var species = Player.Get<SpeciesMember>().ID;
@@ -1031,7 +1030,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
     }
 
-    private void OnSpawnEnemyCheatUsed(object sender, EventArgs e)
+    private void OnSpawnEnemyCheatUsed(object? sender, EventArgs e)
     {
         if (!HasPlayer)
             return;
@@ -1041,7 +1040,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         // No enemy species to spawn in this patch
         if (species.Count == 0)
         {
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPAWN_ENEMY_CHEAT_FAIL"), 2.0f);
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("SPAWN_ENEMY_CHEAT_FAIL"), 2.0f);
             GD.PrintErr("Can't use spawn enemy cheat because this patch does not contain any enemy species");
             return;
         }
@@ -1060,7 +1059,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
     }
 
-    private void OnDuplicatePlayerCheatUsed(object sender, EventArgs e)
+    private void OnDuplicatePlayerCheatUsed(object? sender, EventArgs e)
     {
         if (!HasAlivePlayer)
         {
@@ -1339,8 +1338,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     private void TranslationsForFeaturesToReimplement()
     {
         // TODO: reimplement the microbe features that depend on these translations
-        TranslationServer.Translate("SUCCESSFUL_KILL");
-        TranslationServer.Translate("SUCCESSFUL_SCAVENGE");
-        TranslationServer.Translate("ESCAPE_ENGULFING");
+        Localization.Translate("SUCCESSFUL_KILL");
+        Localization.Translate("SUCCESSFUL_SCAVENGE");
+        Localization.Translate("ESCAPE_ENGULFING");
     }
 }

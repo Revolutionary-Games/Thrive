@@ -3,7 +3,7 @@
 /// <summary>
 ///   The tooltip for undiscovered organelles
 /// </summary>
-public class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
+public partial class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
 {
     [Export]
     public NodePath? NameLabelPath;
@@ -61,13 +61,16 @@ public class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
         UpdateUnlockText();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateName();
-            UpdateUnlockText();
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     protected override void Dispose(bool disposing)
@@ -107,5 +110,11 @@ public class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
         unlockTextLabel.Visible = unlockText != null;
         if (unlockText != null)
             unlockTextLabel.ExtendedBbcode = unlockText.ToString();
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateName();
+        UpdateUnlockText();
     }
 }

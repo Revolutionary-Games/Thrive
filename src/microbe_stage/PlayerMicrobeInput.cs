@@ -14,7 +14,7 @@ using Godot;
 ///     may no longer work.
 ///   </para>
 /// </remarks>
-public class PlayerMicrobeInput : NodeWithInput
+public partial class PlayerMicrobeInput : NodeWithInput
 {
     private readonly MicrobeMovementEventArgs cachedEventArgs = new(true, Vector3.Zero);
 
@@ -43,7 +43,7 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
     [RunOnAxisGroup(InvokeAlsoWithNoInput = true, TrackInputMethod = true)]
-    public void OnMovement(float delta, float forwardMovement, float leftRightMovement, ActiveInputMethod inputMethod)
+    public void OnMovement(double delta, float forwardMovement, float leftRightMovement, ActiveInputMethod inputMethod)
     {
         _ = delta;
         const float epsilon = 0.01f;
@@ -96,7 +96,7 @@ public class PlayerMicrobeInput : NodeWithInput
                 // Rotate the opposite of the player orientation to get back to screen (as when applying movement
                 // vector the normal rotation is used to rotate the movement direction so these two operations cancel
                 // out)
-                movement = position.Rotation.Inverse().Xform(movement);
+                movement = position.Rotation.Inverse() * movement;
             }
 
             if (autoMove)
@@ -129,14 +129,14 @@ public class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_secrete_slime")]
-    public void SecreteSlime(float delta)
+    public void SecreteSlime(double delta)
     {
         if (!stage.HasPlayer)
             return;
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
-        control.QueueSecreteSlime(ref stage.Player.Get<OrganelleContainer>(), stage.Player, delta);
+        control.QueueSecreteSlime(ref stage.Player.Get<OrganelleContainer>(), stage.Player, (float)delta);
     }
 
     [RunOnKeyDown("g_toggle_engulf")]
@@ -221,7 +221,7 @@ public class PlayerMicrobeInput : NodeWithInput
         }
         else if (stage.Player.Has<MicrobeColony>() && stage.GameWorld.PlayerSpecies is MicrobeSpecies)
         {
-            stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
+            stage.HUD.HintText = Localization.Translate("UNBIND_HELP_TEXT");
             control.SetStateColonyAware(stage.Player, MicrobeState.Unbinding);
 
             ref var callbacks = ref stage.Player.Get<MicrobeEventCallbacks>();
@@ -311,7 +311,7 @@ public class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_cheat_glucose")]
-    public void CheatGlucose(float delta)
+    public void CheatGlucose(double delta)
     {
         if (Settings.Instance.CheatsEnabled)
         {
@@ -320,7 +320,7 @@ public class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_cheat_ammonia")]
-    public void CheatAmmonia(float delta)
+    public void CheatAmmonia(double delta)
     {
         if (Settings.Instance.CheatsEnabled)
         {
@@ -329,7 +329,7 @@ public class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_cheat_phosphates")]
-    public void CheatPhosphates(float delta)
+    public void CheatPhosphates(double delta)
     {
         if (Settings.Instance.CheatsEnabled)
         {
@@ -345,7 +345,7 @@ public class PlayerMicrobeInput : NodeWithInput
         }
     }
 
-    private void SpawnCheatCloud(string name, float delta)
+    private void SpawnCheatCloud(string name, double delta)
     {
         float multiplier = 1.0f;
 
@@ -354,6 +354,6 @@ public class PlayerMicrobeInput : NodeWithInput
             multiplier = 4;
 
         stage.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
-            Constants.CLOUD_CHEAT_DENSITY * delta * multiplier, stage.Camera.CursorWorldPos);
+            (float)(Constants.CLOUD_CHEAT_DENSITY * delta * multiplier), stage.Camera.CursorWorldPos);
     }
 }

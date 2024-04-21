@@ -1,156 +1,167 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=3 uid="uid://bt4wq0ddch84i"]
 
-[ext_resource path="res://src/thriveopedia/Thriveopedia.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/homeButtonHover.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/homeButton.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/homeButtonActive.png" type="Texture" id=5]
-[ext_resource path="res://src/thriveopedia/pages/ThriveopediaHomePage.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonDisabled.png" type="Texture" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/redoButtonDisabled.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=10]
-[ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture" id=12]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture" id=13]
-[ext_resource path="res://assets/textures/gui/bevel/redoButtonActive.png" type="Texture" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/closeButton.png" type="Texture" id=19]
-[ext_resource path="res://assets/textures/gui/bevel/closeButtonHover.png" type="Texture" id=20]
-[ext_resource path="res://assets/textures/gui/bevel/closeButtonActive.png" type="Texture" id=21]
-[ext_resource path="res://assets/textures/gui/bevel/navigationButton.png" type="Texture" id=22]
-[ext_resource path="res://assets/textures/gui/bevel/navigationButtonHover.png" type="Texture" id=23]
-[ext_resource path="res://assets/textures/gui/bevel/navigationButtonActive.png" type="Texture" id=24]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Big.tres" type="DynamicFont" id=25]
-[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=26]
+[ext_resource type="Script" path="res://src/thriveopedia/Thriveopedia.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://camjm54dldghh" path="res://assets/textures/gui/bevel/homeButtonHover.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://w4gnovw8c1hc" path="res://assets/textures/gui/bevel/homeButton.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bwhpoof7sbjta" path="res://assets/textures/gui/bevel/homeButtonActive.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://bcy1o8pg86owe" path="res://src/thriveopedia/pages/ThriveopediaHomePage.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://vcyi34wajt1n" path="res://assets/textures/gui/bevel/undoButtonActive.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://bl7eohr5btm05" path="res://assets/textures/gui/bevel/undoButtonDisabled.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://waxpjj3uceh8" path="res://assets/textures/gui/bevel/redoButtonDisabled.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://qxt24jxghje" path="res://assets/textures/gui/bevel/redoButtonHover.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://dwsqu6nwbwg5s" path="res://assets/textures/gui/bevel/undoButton.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://myvmqsv45fl2" path="res://assets/textures/gui/bevel/redoButton.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://c16bkoqqx7w3h" path="res://assets/textures/gui/bevel/undoButtonHover.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://dgn0a345ydfa1" path="res://assets/textures/gui/bevel/redoButtonActive.png" id="14"]
+[ext_resource type="LabelSettings" uid="uid://cdmmfuswkgrko" path="res://src/gui_common/fonts/Title-Regular-Big.tres" id="17_rwtrt"]
+[ext_resource type="Texture2D" uid="uid://drtvfxngr7b3l" path="res://assets/textures/gui/bevel/closeButton.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://dvvbhlhu5q75n" path="res://assets/textures/gui/bevel/closeButtonHover.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://n2jriipvee8l" path="res://assets/textures/gui/bevel/closeButtonActive.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://dq4vgh4rhhk55" path="res://assets/textures/gui/bevel/navigationButton.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://rq3vjvh31df5" path="res://assets/textures/gui/bevel/navigationButtonHover.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://r81yhcuka8ch" path="res://assets/textures/gui/bevel/navigationButtonActive.png" id="24"]
+[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="26"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "Collapse"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/PageTree:rect_min_size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/PageTree:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [ Vector2( 213, 300 ), Vector2( 0, 300 ) ]
+"values": [Vector2(213, 300), Vector2(0, 300)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("..:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 1,
-"values": [ true, false ]
+"values": [true, false]
 }
 tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("../../../../..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "OnTreeCollapseStateChanged"
-} ]
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnTreeCollapseStateChanged"
+}]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "Expand"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/PageTree:rect_min_size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/PageTree:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [ Vector2( 0, 300 ), Vector2( 213, 300 ) ]
+"values": [Vector2(0, 300), Vector2(213, 300)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("..:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0.5 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("../../../../..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "OnTreeCollapseStateChanged"
-} ]
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnTreeCollapseStateChanged"
+}]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/PageTree:rect_min_size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/PageTree:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 213, 300 ) ]
+"values": [Vector2(213, 300)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ true ]
+"values": [true]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("..:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ true ]
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4nf6r"]
+_data = {
+"Collapse": SubResource("1"),
+"Expand": SubResource("2"),
+"RESET": SubResource("3")
 }
 
 [node name="Thriveopedia" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 2 )
-script = ExtResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
 BackButtonPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/BackButton")
 ForwardButtonPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton")
 PageContainerPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer")
@@ -162,234 +173,187 @@ PageTreePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginCont
 HomePagePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/ThriveopediaHomePage")
 
 [node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.823529 )
+color = Color(0, 0, 0, 0.823529)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 15
-custom_constants/margin_top = 15
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 15
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 1265.0
-margin_bottom = 705.0
-custom_constants/separation = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
+theme_override_constants/separation = 5
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 1250.0
-margin_bottom = 35.0
+layout_mode = 2
 
 [node name="CollapseTreeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 35.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "TOGGLE_NAVIGATION_TREE"
-focus_neighbour_right = NodePath("../BackButton")
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "TOGGLE_NAVIGATION_TREE"
+focus_neighbor_right = NodePath("../BackButton")
 focus_next = NodePath("../BackButton")
-texture_normal = ExtResource( 22 )
-texture_pressed = ExtResource( 24 )
-texture_hover = ExtResource( 23 )
-texture_focused = ExtResource( 23 )
-expand = true
+texture_normal = ExtResource("22")
+texture_pressed = ExtResource("24")
+texture_hover = ExtResource("23")
+texture_focused = ExtResource("23")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 39.0
-margin_right = 114.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 75, 0 )
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
 
 [node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 118.0
-margin_right = 153.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "PAGE_BACK"
-focus_neighbour_left = NodePath("../CollapseTreeButton")
-focus_neighbour_right = NodePath("../ForwardButton")
-focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "PAGE_BACK"
+focus_neighbor_left = NodePath("../CollapseTreeButton")
+focus_neighbor_right = NodePath("../ForwardButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../ForwardButton")
 focus_previous = NodePath("../CollapseTreeButton")
 disabled = true
-texture_normal = ExtResource( 11 )
-texture_pressed = ExtResource( 7 )
-texture_hover = ExtResource( 13 )
-texture_disabled = ExtResource( 8 )
-texture_focused = ExtResource( 13 )
-expand = true
+texture_normal = ExtResource("11")
+texture_pressed = ExtResource("7")
+texture_hover = ExtResource("13")
+texture_disabled = ExtResource("8")
+texture_focused = ExtResource("13")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="ForwardButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 157.0
-margin_right = 192.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "PAGE_FORWARD"
-focus_neighbour_left = NodePath("../BackButton")
-focus_neighbour_right = NodePath("../HomeButton")
-focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "PAGE_FORWARD"
+focus_neighbor_left = NodePath("../BackButton")
+focus_neighbor_right = NodePath("../HomeButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../HomeButton")
 focus_previous = NodePath("../BackButton")
 disabled = true
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 14 )
-texture_hover = ExtResource( 10 )
-texture_disabled = ExtResource( 9 )
-texture_focused = ExtResource( 10 )
-expand = true
+texture_normal = ExtResource("12")
+texture_pressed = ExtResource("14")
+texture_hover = ExtResource("10")
+texture_disabled = ExtResource("9")
+texture_focused = ExtResource("10")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 196.0
-margin_right = 231.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "HOME"
-focus_neighbour_left = NodePath("../ForwardButton")
-focus_neighbour_right = NodePath("../CloseButton")
-focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "HOME"
+focus_neighbor_left = NodePath("../ForwardButton")
+focus_neighbor_right = NodePath("../CloseButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../CloseButton")
 focus_previous = NodePath("../ForwardButton")
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 3 )
-texture_focused = ExtResource( 3 )
-expand = true
+texture_normal = ExtResource("4")
+texture_pressed = ExtResource("5")
+texture_hover = ExtResource("3")
+texture_focused = ExtResource("3")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Control3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 235.0
-margin_right = 243.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 8, 0 )
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
 
 [node name="PageTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 247.0
-margin_top = 2.0
-margin_right = 379.0
-margin_bottom = 33.0
-custom_fonts/font = ExtResource( 25 )
+layout_mode = 2
 text = "PAGE_TITLE"
-align = 1
+label_settings = ExtResource("17_rwtrt")
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 383.0
-margin_right = 1064.0
-margin_bottom = 35.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ViewOnlineButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 1068.0
-margin_right = 1207.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 100, 35 )
-focus_neighbour_bottom = NodePath(".")
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+focus_neighbor_bottom = NodePath(".")
 text = "VIEW_ONLINE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="FocusGrabber" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource( 26 )]
-margin_left = 1211.0
-margin_right = 1211.0
-margin_bottom = 35.0
+[node name="FocusGrabber" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("26")]
+layout_mode = 2
 Priority = 2
 NodeToGiveFocusTo = NodePath("../CloseButton")
 
 [node name="CloseButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 1215.0
-margin_right = 1250.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "CLOSE"
-focus_neighbour_left = NodePath("../HomeButton")
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "CLOSE"
+focus_neighbor_left = NodePath("../HomeButton")
 focus_previous = NodePath("../HomeButton")
-texture_normal = ExtResource( 19 )
-texture_pressed = ExtResource( 21 )
-texture_hover = ExtResource( 20 )
-texture_focused = ExtResource( 20 )
-expand = true
+texture_normal = ExtResource("19")
+texture_pressed = ExtResource("21")
+texture_hover = ExtResource("20")
+texture_focused = ExtResource("20")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 40.0
-margin_right = 1250.0
-margin_bottom = 690.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 15
+theme_override_constants/separation = 15
 
 [node name="MarginContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 231.0
-margin_bottom = 650.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 230.0
-margin_bottom = 649.0
-custom_constants/margin_right = 15
-custom_constants/margin_top = 15
-custom_constants/margin_left = 1
-custom_constants/margin_bottom = 15
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer"]
-margin_left = 1.0
-margin_top = 15.0
-margin_right = 214.0
-margin_bottom = 633.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer"]
-margin_right = 213.0
-margin_bottom = 36.0
-custom_constants/margin_right = 0
-custom_constants/margin_top = 0
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 5
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer"]
-margin_left = 15.0
-margin_right = 213.0
-margin_bottom = 31.0
+layout_mode = 2
 
 [node name="SearchInput" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-margin_right = 198.0
-margin_bottom = 31.0
+layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "SEARCH_PLACEHOLDER"
-placeholder_alpha = 0.4
 
 [node name="PageTree" type="Tree" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer"]
-margin_top = 40.0
-margin_right = 213.0
-margin_bottom = 618.0
-rect_min_size = Vector2( 213, 300 )
+custom_minimum_size = Vector2(213, 300)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer"]
-anims/Collapse = SubResource( 1 )
-anims/Expand = SubResource( 2 )
-anims/RESET = SubResource( 3 )
+libraries = {
+"": SubResource("AnimationLibrary_4nf6r")
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 246.0
-margin_right = 1250.0
-margin_bottom = 650.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ThriveopediaHomePage" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1004.0
-margin_bottom = 650.0
+[node name="ThriveopediaHomePage" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer" instance=ExtResource("6")]
+layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CollapseTreeButton" to="." method="OnCollapseTreePressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="OnBackPressed"]

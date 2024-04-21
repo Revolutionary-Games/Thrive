@@ -19,8 +19,12 @@ using Newtonsoft.Json;
 [JSONDynamicTypeAllowed]
 public class LocalizedStringBuilder : IFormattable
 {
+    /// <summary>
+    ///   Things to format into this builder. This is no longer <see cref="IFormattable"/> as string would throw an
+    ///   error on JSON load.
+    /// </summary>
     [JsonProperty]
-    private readonly List<IFormattable> items = new();
+    private readonly List<object> items = new();
 
     private readonly StringBuilder stringBuilder;
     private string formatString = string.Empty;

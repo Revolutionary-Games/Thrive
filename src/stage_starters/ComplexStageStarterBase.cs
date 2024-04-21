@@ -3,17 +3,22 @@
 /// <summary>
 ///   Helper base class for making more complex stage starters than <see cref="SimpleStageStarter"/> can handle
 /// </summary>
-public abstract class ComplexStageStarterBase : Node
+[GodotAbstract]
+public partial class ComplexStageStarterBase : Node
 {
     [Export]
     public bool FadeFromBlack = true;
 
     private bool switchStarted;
 
+    protected ComplexStageStarterBase()
+    {
+    }
+
     /// <summary>
     ///   When default <see cref="LoadScene"/> is used, this property determines which scene it loads
     /// </summary>
-    protected abstract MainGameState SimplyLoadableGameState { get; }
+    protected virtual MainGameState SimplyLoadableGameState => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void _Ready()
     {
@@ -25,7 +30,7 @@ public abstract class ComplexStageStarterBase : Node
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (switchStarted)
             return;
@@ -53,7 +58,7 @@ public abstract class ComplexStageStarterBase : Node
 
     protected virtual Node LoadScene()
     {
-        return SceneManager.Instance.LoadScene(SimplyLoadableGameState).Instance();
+        return SceneManager.Instance.LoadScene(SimplyLoadableGameState).Instantiate();
     }
 
     /// <summary>
@@ -61,7 +66,10 @@ public abstract class ComplexStageStarterBase : Node
     ///   This is called after loading the scene but before attaching it.
     /// </summary>
     /// <param name="scene">The loaded scene to customize</param>
-    protected abstract void CustomizeLoadedScene(Node scene);
+    protected virtual void CustomizeLoadedScene(Node scene)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Extra scene modification step that is called after the scene has been attached

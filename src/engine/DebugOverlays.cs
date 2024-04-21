@@ -4,6 +4,7 @@
 ///   Main script for debugging.
 ///   Partial class: Override functions, debug panel
 /// </summary>
+[GodotAutoload]
 public partial class DebugOverlays : Control
 {
     [Export]
@@ -39,9 +40,9 @@ public partial class DebugOverlays : Control
     private Label debugCoordinates = null!;
     private CustomWindow inspectorDialog = null!;
     private CustomWindow debugPanelDialog = null!;
-    private CustomCheckBox fpsCheckBox = null!;
-    private CustomCheckBox performanceMetricsCheckBox = null!;
-    private CustomCheckBox inspectorCheckbox = null!;
+    private CheckBox fpsCheckBox = null!;
+    private CheckBox performanceMetricsCheckBox = null!;
+    private CheckBox inspectorCheckbox = null!;
     private Control fpsCounter = null!;
     private CustomWindow performanceMetrics = null!;
     private Control labelsLayer = null!;
@@ -62,14 +63,13 @@ public partial class DebugOverlays : Control
 
         debugCoordinates = GetNode<Label>(DebugCoordinatesPath);
         inspectorDialog = GetNode<CustomWindow>(InspectorDialogPath);
-        inspectorCheckbox = GetNode<CustomCheckBox>(InspectorCheckboxPath);
-        fpsCheckBox = GetNode<CustomCheckBox>(FPSCheckBoxPath);
-        performanceMetricsCheckBox = GetNode<CustomCheckBox>(PerformanceMetricsCheckBoxPath);
+        inspectorCheckbox = GetNode<CheckBox>(InspectorCheckboxPath);
+        fpsCheckBox = GetNode<CheckBox>(FPSCheckBoxPath);
+        performanceMetricsCheckBox = GetNode<CheckBox>(PerformanceMetricsCheckBoxPath);
         debugPanelDialog = GetNode<CustomWindow>(DebugPanelDialogPath);
         fpsCounter = GetNode<Control>(FPSCounterPath);
         performanceMetrics = GetNode<CustomWindow>(PerformanceMetricsPath);
         labelsLayer = GetNode<Control>(EntityLabelsPath);
-        smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
         fpsLabel = GetNode<Label>(FPSLabelPath);
         deltaLabel = GetNode<Label>(DeltaLabelPath);
         metricsText = GetNode<Label>(MetricsTextPath);
@@ -89,9 +89,12 @@ public partial class DebugOverlays : Control
         base._ExitTree();
 
         InputManager.UnregisterReceiver(this);
+
+        if (instance == this)
+            instance = null;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -125,7 +128,7 @@ public partial class DebugOverlays : Control
     [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false)]
     public void OnPerformanceMetricsToggled()
     {
-        performanceMetricsCheckBox.Pressed = !performanceMetricsCheckBox.Pressed;
+        performanceMetricsCheckBox.ButtonPressed = !performanceMetricsCheckBox.ButtonPressed;
     }
 
     [RunOnKeyDown("toggle_debug_panel", OnlyUnhandled = false)]
@@ -144,7 +147,7 @@ public partial class DebugOverlays : Control
     [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false)]
     public void OnFpsToggled()
     {
-        fpsCheckBox.Pressed = !fpsCheckBox.Pressed;
+        fpsCheckBox.ButtonPressed = !fpsCheckBox.ButtonPressed;
     }
 
     protected override void Dispose(bool disposing)
@@ -175,17 +178,7 @@ public partial class DebugOverlays : Control
 
     private void OnPerformanceMetricsCheckBoxToggled(bool state)
     {
-        if (performanceMetrics.Visible == state)
-            return;
-
-        if (state)
-        {
-            performanceMetrics.Show();
-        }
-        else
-        {
-            performanceMetrics.Hide();
-        }
+        PerformanceMetricsVisible = state;
     }
 
     private void OnFpsCheckBoxToggled(bool state)
@@ -205,7 +198,7 @@ public partial class DebugOverlays : Control
 
             if (!DebugDrawer.Instance.PhysicsDebugDrawAvailable)
             {
-                ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("DEBUG_DRAW_NOT_AVAILABLE"), 4);
+                ToolTipManager.Instance.ShowPopup(Localization.Translate("DEBUG_DRAW_NOT_AVAILABLE"), 4);
             }
         }
         else

@@ -16,11 +16,9 @@
 ///     </list>
 ///   </para>
 /// </remarks>
-public abstract class PhotographablePreview : Control
+[GodotAbstract]
+public partial class PhotographablePreview : Control
 {
-    [Export]
-    public NodePath? TextureRectPath;
-
     /// <summary>
     ///   If true then the plain <see cref="Image"/> version of the preview texture is also kept in memory
     /// </summary>
@@ -28,28 +26,32 @@ public abstract class PhotographablePreview : Control
     public bool KeepPlainImageInMemory;
 
 #pragma warning disable CA2213
+    [Export]
     private TextureRect textureRect = null!;
-    private Texture loadingTexture = null!;
+
+    private Texture2D loadingTexture = null!;
+
+    // TODO: conclude if we should dispose this or if caching might in the future share these
+    private Image? finishedImage;
 #pragma warning restore CA2213
 
     private ImageTask? task;
 
-    // TODO: conclude if we should dispose this or if caching might in the future share these
-    private Image? finishedImage;
+    protected PhotographablePreview()
+    {
+    }
 
     public override void _Ready()
     {
         base._Ready();
 
-        textureRect = GetNode<TextureRect>(TextureRectPath);
         loadingTexture = textureRect.Texture;
 
-        // This is to prevent the loading texture from shown
-        // before the first photograph is added.
+        // This is to prevent the loading texture from shown before the first photograph is added.
         textureRect.Texture = null;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -106,15 +108,8 @@ public abstract class PhotographablePreview : Control
     ///   </code>
     /// </example>
     /// <returns>An image task, or null if condition not satisfied</returns>
-    protected abstract ImageTask? SetupImageTask();
-
-    protected override void Dispose(bool disposing)
+    protected virtual ImageTask? SetupImageTask()
     {
-        if (disposing)
-        {
-            TextureRectPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
+        throw new GodotAbstractMethodNotOverriddenException();
     }
 }

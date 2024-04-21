@@ -3,8 +3,13 @@
 /// <summary>
 ///   Handles the opening, closing and operations of the cheat menus
 /// </summary>
-public abstract class CheatMenu : CustomWindow
+[GodotAbstract]
+public partial class CheatMenu : CustomWindow
 {
+    protected CheatMenu()
+    {
+    }
+
     /// <summary>
     ///   Whether the cheat menu may be opened or not
     /// </summary>
@@ -115,9 +120,12 @@ public abstract class CheatMenu : CustomWindow
     /// <summary>
     ///   Applies the currently applied cheats to the GUI.
     /// </summary>
-    public abstract void ReloadGUI();
+    public virtual void ReloadGUI()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    private void OnHideCheatMenus(object s, EventArgs e)
+    private void OnHideCheatMenus(object? s, EventArgs e)
     {
         Hide();
     }

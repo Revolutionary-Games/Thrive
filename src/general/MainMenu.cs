@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Class managing the main menu and everything in it
 /// </summary>
-public class MainMenu : NodeWithInput
+public partial class MainMenu : NodeWithInput
 {
     /// <summary>
     ///   Index of the current menu.
@@ -15,15 +15,26 @@ public class MainMenu : NodeWithInput
     [Export]
     public uint CurrentMenuIndex;
 
+    /// <summary>
+    ///   How many non-menu items there are in the menu container
+    /// </summary>
+    [Export]
+    public int NonMenuItemsFirst = 1;
+
     [Export]
     public NodePath? ThriveLogoPath;
 
-    [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
+    /// <summary>
+    ///   Needs to be a collection of <see cref="Texture2D"/>
+    /// </summary>
     [Export]
-    public List<Texture> MenuBackgrounds = null!;
+    public Array<Texture2D> MenuBackgrounds = null!;
 
-    [Export(PropertyHint.File, "*.tscn")]
-    public List<string> Menu3DBackgroundScenes = null!;
+    /// <summary>
+    ///   Needs to be a collection of paths to scenes
+    /// </summary>
+    [Export]
+    public Array<string> Menu3DBackgroundScenes = null!;
 
     [Export]
     public NodePath FreebuildButtonPath = null!;
@@ -48,9 +59,6 @@ public class MainMenu : NodeWithInput
 
     [Export]
     public NodePath LicensesDisplayPath = null!;
-
-    [Export]
-    public NodePath GLES2PopupPath = null!;
 
     [Export]
     public NodePath SteamFailedPopupPath = null!;
@@ -111,7 +119,7 @@ public class MainMenu : NodeWithInput
 
 #pragma warning disable CA2213
     private TextureRect background = null!;
-    private Spatial? created3DBackground;
+    private Node3D? created3DBackground;
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -148,7 +156,9 @@ public class MainMenu : NodeWithInput
     private TextureButton itchButton = null!;
     private TextureButton patreonButton = null!;
 
-    private CustomConfirmationDialog gles2Popup = null!;
+    [Export]
+    private CustomConfirmationDialog openGlPopup = null!;
+
     private ErrorDialog modLoadFailures = null!;
 
     private CustomConfirmationDialog steamFailedPopup = null!;
@@ -162,11 +172,11 @@ public class MainMenu : NodeWithInput
     private CenterContainer menus = null!;
 #pragma warning restore CA2213
 
-    private Array? menuArray;
+    private Array<Node>? menuArray;
 
     private bool introVideoPassed;
 
-    private float timerForStartupSuccess = Constants.MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS;
+    private double timerForStartupSuccess = Constants.MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS;
 
     /// <summary>
     ///   True when we are able to show the thanks for buying popup due to being a store version
@@ -178,12 +188,12 @@ public class MainMenu : NodeWithInput
     /// </summary>
     private string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
 
-    private float averageFrameRate;
+    private double averageFrameRate;
 
     /// <summary>
     ///   Time tracking related to performance. Note that this is reset when performance tracking is restarted.
     /// </summary>
-    private float secondsInMenu;
+    private double secondsInMenu;
 
     private bool canShowLowPerformanceWarning = true;
 
@@ -198,6 +208,12 @@ public class MainMenu : NodeWithInput
 
     public override void _Ready()
     {
+        if (SceneManager.QuitOrQuitting)
+        {
+            GD.Print("Skipping main menu initialization due to quitting");
+            return;
+        }
+
         // Unpause the game as the MainMenu should never be paused.
         PauseManager.Instance.ForceClear();
         MouseCaptureManager.ForceDisableCapture();
@@ -240,6 +256,7 @@ public class MainMenu : NodeWithInput
 
         Settings.Instance.Menu3DBackgroundEnabled.OnChanged += OnMenuBackgroundTypeChanged;
         ThriveopediaManager.Instance.OnPageOpenedHandler += OnThriveopediaOpened;
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
 
     public override void _ExitTree()
@@ -248,9 +265,10 @@ public class MainMenu : NodeWithInput
 
         Settings.Instance.Menu3DBackgroundEnabled.OnChanged -= OnMenuBackgroundTypeChanged;
         ThriveopediaManager.Instance.OnPageOpenedHandler -= OnThriveopediaOpened;
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -268,7 +286,7 @@ public class MainMenu : NodeWithInput
 
                     // The text has a store link template, so we need to update the right links into it
                     thanksDialog.DialogText =
-                        TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
+                        Localization.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
 
                     thanksDialog.PopupCenteredShrink();
                 }
@@ -319,17 +337,10 @@ public class MainMenu : NodeWithInput
     {
         base._Notification(notification);
 
-        if (notification == NotificationWmQuitRequest)
+        if (notification == NotificationWMCloseRequest)
         {
             GD.Print("Main window close signal detected");
             Invoke.Instance.Queue(QuitPressed);
-        }
-        else if (notification == NotificationTranslationChanged)
-        {
-            if (SteamHandler.Instance.IsLoaded)
-            {
-                UpdateSteamLoginText();
-            }
         }
     }
 
@@ -415,7 +426,6 @@ public class MainMenu : NodeWithInput
                 CreditsContainerPath.Dispose();
                 CreditsScrollPath.Dispose();
                 LicensesDisplayPath.Dispose();
-                GLES2PopupPath.Dispose();
                 SteamFailedPopupPath.Dispose();
                 ModLoadFailuresPath.Dispose();
                 SafeModeWarningPath.Dispose();
@@ -436,8 +446,6 @@ public class MainMenu : NodeWithInput
                 ThanksDialogPath.Dispose();
                 MenusPath.Dispose();
             }
-
-            menuArray?.Dispose();
         }
 
         base.Dispose(disposing);
@@ -488,7 +496,6 @@ public class MainMenu : NodeWithInput
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
-        gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
         safeModeWarning = GetNode<CustomWindow>(SafeModeWarningPath);
         steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
@@ -505,8 +512,8 @@ public class MainMenu : NodeWithInput
         // Easter egg message
         thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
 
-        if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
-            gles2Popup.PopupCenteredShrink();
+        if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3 && !IsReturningToMenu)
+            openGlPopup.PopupCenteredShrink();
 
         UpdateStoreVersionStatus();
         UpdateLauncherState();
@@ -527,10 +534,12 @@ public class MainMenu : NodeWithInput
     /// </summary>
     private void RandomizeBackground()
     {
-        var random = new Random();
+        var random = new XoShiRo128starstar();
 
-        // Some of the 3D backgrounds render very incorrectly in GLES2 so they are disabled
-        if (Settings.Instance.Menu3DBackgroundEnabled && OS.GetCurrentVideoDriver() != OS.VideoDriver.Gles2)
+        // Some of the 3D backgrounds render very incorrectly in opengl so they are disabled (even with Godot 4 this
+        // hasn't improved a lot)
+        if (Settings.Instance.Menu3DBackgroundEnabled &&
+            FeatureInformation.GetVideoDriver() != OS.RenderingDriver.Opengl3)
         {
             SetBackgroundScene(Menu3DBackgroundScenes.Random(random));
         }
@@ -542,7 +551,7 @@ public class MainMenu : NodeWithInput
         }
     }
 
-    private void SetBackground(Texture backgroundImage)
+    private void SetBackground(Texture2D backgroundImage)
     {
         background.Visible = true;
         background.Texture = backgroundImage;
@@ -576,7 +585,7 @@ public class MainMenu : NodeWithInput
                 created3DBackground = null;
             }
 
-            created3DBackground = backgroundScene.Instance<Spatial>();
+            created3DBackground = backgroundScene.Instantiate<Node3D>();
             AddChild(created3DBackground);
         });
     }
@@ -660,7 +669,7 @@ public class MainMenu : NodeWithInput
 
     private void UpdateSteamLoginText()
     {
-        storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
+        storeLoggedInDisplay.Text = Localization.Translate("STORE_LOGGED_IN_AS")
             .FormatSafe(SteamHandler.Instance.DisplayName);
     }
 
@@ -699,11 +708,11 @@ public class MainMenu : NodeWithInput
         thriveLogo.Hide();
 
         // Hide other menus and only show the one of the current index
-        foreach (Control menu in menuArray!)
+        foreach (var menu in menuArray!.OfType<Control>())
         {
             menu.Hide();
 
-            if (menu.GetIndex() == CurrentMenuIndex)
+            if (menu.GetIndex() - NonMenuItemsFirst == CurrentMenuIndex)
             {
                 menu.Show();
                 thriveLogo.Show();
@@ -795,7 +804,7 @@ public class MainMenu : NodeWithInput
         }
     }
 
-    private float TrackMenuPerformance()
+    private double TrackMenuPerformance()
     {
         var currentFrameRate = Engine.GetFramesPerSecond();
 
@@ -828,7 +837,7 @@ public class MainMenu : NodeWithInput
     /// </summary>
     private bool AreAnyMenuPopupsOpen()
     {
-        return gles2Popup.Visible || modLoadFailures.Visible || steamFailedPopup.Visible || safeModeWarning.Visible
+        return openGlPopup.Visible || modLoadFailures.Visible || steamFailedPopup.Visible || safeModeWarning.Visible
             || modsInstalledButNotEnabledWarning.Visible || thanksDialog.Visible || lowPerformanceWarning.Visible;
     }
 
@@ -869,7 +878,7 @@ public class MainMenu : NodeWithInput
             OnEnteringGame();
 
             // Instantiate a new editor scene
-            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate();
 
             // Start freebuild game
             editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
@@ -892,7 +901,7 @@ public class MainMenu : NodeWithInput
 
             // Instantiate a new editor scene
             var editor = (EarlyMulticellularEditor)SceneManager.Instance
-                .LoadScene(MainGameState.EarlyMulticellularEditor).Instance();
+                .LoadScene(MainGameState.EarlyMulticellularEditor).Instantiate();
 
             // Start freebuild game
             editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings(), true);
@@ -1101,11 +1110,14 @@ public class MainMenu : NodeWithInput
 
     private void OnWebsitesButtonPressed()
     {
-        websiteButtonsContainer.ShowModal();
+        // TODO: check that this new alternative works (or remake the GUI as something that can be modal)
+        // ModalManager.Instance.MakeModal(websiteButtonsContainer);
+        // websiteButtonsContainer.ShowModal();
+        websiteButtonsContainer.Popup();
 
         // A plain PopupPanel doesn't resize automatically and using other popup types will be overkill,
         // so we need to manually shrink it
-        websiteButtonsContainer.RectSize = Vector2.Zero;
+        websiteButtonsContainer.Size = Vector2I.Zero;
     }
 
     private void OnSocialMediaButtonPressed(string url)
@@ -1157,5 +1169,13 @@ public class MainMenu : NodeWithInput
     {
         secondsInMenu = 0;
         averageFrameRate = 0;
+    }
+
+    private void OnTranslationsChanged()
+    {
+        if (SteamHandler.Instance.IsLoaded)
+        {
+            UpdateSteamLoginText();
+        }
     }
 }

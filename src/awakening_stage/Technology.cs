@@ -6,8 +6,8 @@ using Newtonsoft.Json;
 
 public class Technology : IRegistryType
 {
-    private readonly Lazy<Texture> lockedIcon;
-    private readonly Lazy<Texture> unlockedIcon;
+    private readonly Lazy<Texture2D> lockedIcon;
+    private readonly Lazy<Texture2D> unlockedIcon;
 
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
@@ -21,8 +21,8 @@ public class Technology : IRegistryType
     {
         Name = name;
 
-        lockedIcon = new Lazy<Texture>(LoadLockedIcon);
-        unlockedIcon = new Lazy<Texture>(LoadUnlockedIcon);
+        lockedIcon = new Lazy<Texture2D>(LoadLockedIcon);
+        unlockedIcon = new Lazy<Texture2D>(LoadUnlockedIcon);
     }
 
     [JsonProperty]
@@ -67,10 +67,10 @@ public class Technology : IRegistryType
     public float ResearchPoints { get; private set; } = 1;
 
     [JsonIgnore]
-    public Texture LoadedLockedIcon => lockedIcon.Value;
+    public Texture2D LoadedLockedIcon => lockedIcon.Value;
 
     [JsonIgnore]
-    public Texture LoadedUnlockedIcon => unlockedIcon.Value;
+    public Texture2D LoadedUnlockedIcon => unlockedIcon.Value;
 
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
@@ -105,13 +105,13 @@ public class Technology : IRegistryType
     }
 
     // TODO: a proper resource manager where these can be unloaded when
-    private Texture LoadLockedIcon()
+    private Texture2D LoadLockedIcon()
     {
-        return GD.Load<Texture>(LockedIcon);
+        return GD.Load<Texture2D>(LockedIcon);
     }
 
-    private Texture LoadUnlockedIcon()
+    private Texture2D LoadUnlockedIcon()
     {
-        return GD.Load<Texture>(UnlockedIcon);
+        return GD.Load<Texture2D>(UnlockedIcon);
     }
 }

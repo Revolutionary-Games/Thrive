@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-24 10:33+0200\n"
-"PO-Revision-Date: 2024-02-18 17:10+0000\n"
-"Last-Translator: aspen <aspen@mailfence.com>\n"
+"POT-Creation-Date: 2024-04-12 13:41+0300\n"
+"PO-Revision-Date: 2024-04-09 18:23+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -333,15 +333,6 @@ msgstr "Базовий"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Повернутися до базового вікна налаштувань"
-
-msgid "BASSBOOST"
-msgstr "Підсилення басів"
-
-msgid "BASSDOWN"
-msgstr "Баси вниз"
-
-msgid "BASSUP"
-msgstr "Баси вгору"
 
 msgid "BATHYPELAGIC"
 msgstr "Придоння"
@@ -836,8 +827,152 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Продовжити створювати прототипи?"
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr "Будь-який пристрій"
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr "L2"
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr "Лівий тригер"
+
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr "Лівий стік горизонтальна"
+
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr "Лівий стік вертикальна"
+
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Негативний напрямок"
+
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Позитивний напрямок"
+
+msgid "CONTROLLER_AXIS_R2"
+msgstr "R2"
+
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr "Правий тригер"
+
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr "Правий стік горизонтальна"
+
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr "Правий стік вертикальна"
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Візуалізатори осі контролерів:"
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr "D-pad вниз"
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr "D-pad вліво"
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr "D-pad вправо"
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr "D-pad вгору"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr "Мертва зона:"
+
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr "Лівий стік натискання"
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr "Controller Misc Button"
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr "Paddle Button 1"
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr "Paddle Button 2"
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr "Paddle Button 3"
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr "Paddle Button 4"
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr "Обрати"
+
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr "Старт"
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr "Круг"
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr "Хрест"
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr "L1"
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr "L3"
+
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr "Опції"
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr "R1"
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr "R3"
+
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr "Поділитися"
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr "Кнопка логотипа"
+
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr "Квадрат"
+
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr "Трикутник"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr "Візуалізатори осі контролерів:"
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr "Правий стік натискання"
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr "Тачпад"
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr "Невідома кнопка"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr "A"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr "B"
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr "Назад"
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr "Гайд"
+
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr "Старт"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr "X"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_Y"
+msgstr "Y"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "Контролер мертвих зон"
@@ -856,6 +991,9 @@ msgstr "Тип підказок кнопок контролера:"
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Чутливість контролера"
 
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr "Невідома вісь"
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Скопіювати помилку з до буферу обміну"
 
@@ -867,6 +1005,9 @@ msgstr "Протаноп (червоно-зелений)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританоп (блакитно-жовтий)"
+
+msgid "CPU_THREADS"
+msgstr "Потоки"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Очистити обрані інгредієнти"
@@ -1040,7 +1181,7 @@ msgstr ""
 "Напрямок погляду: {1}"
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Зневаджувальна промальовка фізики не є доступним у цьому типі збірки"
 
 msgid "DEBUG_PANEL"
 msgstr "панель налагоджування"
@@ -1190,12 +1331,6 @@ msgstr "Швидкість травлення:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/с"
 
-msgid "DIRECTIONL"
-msgstr "Вліво"
-
-msgid "DIRECTIONR"
-msgstr "Вправо"
-
 msgid "DISABLED"
 msgstr "Вимкнено"
 
@@ -1257,6 +1392,14 @@ msgstr "Панель здібностей дисплею"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Показ частинок заднього плану"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "OpenGL"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Vulkan"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Панель назв кнопок вибору"
@@ -1667,9 +1810,9 @@ msgstr "Зосереджені"
 
 msgid "FOCUS_EXPLANATION"
 msgstr ""
-"Зосереджені мікроби будуть шукати брили на більшій відстані\n"
-"та можуть бути вимогливішими щодо брил.\n"
-"Розсіяні мікроби швидче відволікатимуться на нові цілі."
+"Зосереджені мікроби шукатимуть брили або здобич на більшій відстані\n"
+"та можуть завзятіше змагатися за брили.\n"
+"Чуйні мікроби швидше відвертатимуться на нові цілі."
 
 msgid "FOG_OF_WAR_DISABLED"
 msgstr "Туман війни вимкнено"
@@ -1784,15 +1927,6 @@ msgstr "Генерація:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Відвідайте наше сховище у GitHub"
 
-msgid "GLES2"
-msgstr "GLES2"
-
-msgid "GLES2_MODE_WARNING"
-msgstr "Режим попереджень GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Ви граєте у Thrive за допомогою GLES2. Це не є перевіреним та може викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати графіку від Nvidia або AMD для запуску Thrive."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -1904,12 +2038,6 @@ msgstr "{0} (x{1})"
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сірководень"
-
-msgid "HYPERL"
-msgstr "Гіпер вліво"
-
-msgid "HYPERR"
-msgstr "Гіпер вправо"
 
 msgid "ICESHARD"
 msgstr "Крижані уламки"
@@ -2122,10 +2250,17 @@ msgstr "Червень"
 msgid "KEY_BACK"
 msgstr "Назад"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Backtab"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Виявлено конфлікт з {0}\n"
 "Хочете видалити дані з {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr "Відкрити клавіатуру"
 
 msgid "KEY_CLEAR"
 msgstr "очистити"
@@ -2148,6 +2283,9 @@ msgstr "Вибране"
 msgid "KEY_FORWARD"
 msgstr "вперед"
 
+msgid "KEY_GLOBE"
+msgstr "Клавіша глобуса"
+
 msgid "KEY_HELP"
 msgstr "Допомогти"
 
@@ -2157,14 +2295,28 @@ msgstr "Дім"
 msgid "KEY_HOMEPAGE"
 msgstr "Домашня сторінка"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Hyper"
+
 msgid "KEY_INSERT"
 msgstr "вставити"
+
+msgid "KEY_JIS_EISU"
+msgstr "Клавіша JIS Eisu"
+
+msgid "KEY_JIS_KANA"
+msgstr "Клавіша JIS Kana"
 
 msgid "KEY_LEFT"
 msgstr "Вліво"
 
 msgid "KEY_MENU"
 msgstr "Меню"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Meta"
 
 msgid "KEY_OPENURL"
 msgstr "Відкрити URL"
@@ -2513,9 +2665,9 @@ msgstr "Завантажити невірне збереження?"
 
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
-"Інформацію про збереження не можна завантажити з цього файлу.\n"
-"Це збереження швидче за все, пошкоджене або новіший формат не зрозумілий для цієї версії\n"
-"Ви хочете спробувати завантажити його всеодно?"
+"Не вдалося завантажити інформацію про збереження з цього файлу.\n"
+"Швидше за все, це збереження є пошкодженим або його новіший формат не є зрозумілим для цієї версії Thrive.\n"
+"Все одно спробувати завантажити збереження?"
 
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
@@ -2624,23 +2776,21 @@ msgstr "Панель змін"
 
 msgid "METRICS_CONTENT"
 msgstr ""
-"Час процесу: {0}с\n"
+"Час процесу: {0} с\n"
 "Фізичний час: {1} с\n"
-"Сутності: {2} Інше: {3}\n"
+"Сутності: {2} (вага: {3})\n"
 "Заспавнено: {4} Задеспавнено: {5}\n"
 "Використовуванні вузли: {6}\n"
 "Використовувана пам'ять: {7}\n"
 "Пам'ять графічного процесора: {8}\n"
 "Відрендерені об'єкти: {9}\n"
-"Намальовані клітини: {10} 2D: {11}\n"
-"Відрендерені вершини: {12}\n"
-"Зміни матеріалу: {13}\n"
-"Зміни шейдеру: {14}\n"
-"Сирітські вузли: {15}\n"
-"Затримка в аудіо: {16} мс\n"
-"Загальна кількість потоків: {17}\n"
+"Всього малювань: {10}\n"
+"Відрендерені примітиви: {11}\n"
+"Сирітські вузли: {12}\n"
+"Затримка в аудіо: {13} мс\n"
+"Загальна кількість потоків: {14}\n"
 "Загальний час ЦП:\n"
-" {18}"
+"{15}"
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
@@ -2964,6 +3114,9 @@ msgstr "Збірка модів:"
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Основний клас збірки модів:"
 
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "{0}: не вдалося інстанціювати клас моду"
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: вказаний клас моду \"{1}\" не знайдено в збірці модів"
 
@@ -2977,10 +3130,10 @@ msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: Не вдалося завантажити збірку окрім: {1}"
 
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
-msgstr "{0}: метод відвантаження збірки модів невдалося викликати"
+msgstr "{0}: не вдалося викликати метод відвантаження збірки моду"
 
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
-msgstr "{0}: метод відвантаження збірки модів невдалося викликати, окрім: {1}"
+msgstr "{0}: не вдалося викликати метод відвантаження збірки моду з виключенням: {1}"
 
 msgid "MOD_AUTHOR"
 msgstr "Автор моду:"
@@ -3297,7 +3450,7 @@ msgid "NORMAL"
 msgstr "нормальний"
 
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
-msgstr "Найпростіша форма мембрани погано захищає від пошкоджень. Також потребує більше енергії, аби не деформуватись. Перевага в тому, що дозволяє клітині швидче рухатись та поглинати поживні речовини."
+msgstr "Ця форма мембрани, бувши найпростішою форма мембрани погано захищає від пошкоджень. Також потребує більше енергії, аби не деформуватись. Перевага в тому, що дозволяє клітині швидче рухатись та поглинати поживні речовини."
 
 msgid "NOTHING_HERE"
 msgstr "Тут нічого"
@@ -3406,6 +3559,12 @@ msgstr ""
 "Оскільки Thrive знаходиться на початку розробки, то сумісність збережень не є пріорітетом.\n"
 "Ви можете повідомити про будь-яку проблему, але наразі вони не в пріоритет.\n"
 "Ви хочете спробувати завантажити його всеодно?"
+
+msgid "OPENGL_MODE_WARNING"
+msgstr "Попередження режиму GLES2"
+
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Ви граєте у Thrive за допомогою OpenGL. Це є дуже неперевіреним та напевно викличе проблеми. Переконайтеся, що ваша зовнішня або вбудована відеокарта є достатньо новою та спробуйте оновити свої відеодрайвери. Для ноутбуків вам може знадобитися діскретна графіка від Nvidia або AMD замість вбудованої."
 
 msgid "OPEN_FOLDER"
 msgstr "Відкрити теку"
@@ -3645,7 +3804,7 @@ msgid "PATCH_NOTE_CHANGES_HEADING"
 msgstr "Зміни:"
 
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr "Оглянути повний лист змін цього релізу на [color=#3796e1][url={0}]Github[/url][/color]"
+msgstr "Оглянути повний лист змін цього релізу на [color=#3796e1][url={0}]GitHub[/url][/color]"
 
 msgid "PATREON_TOOLTIP"
 msgstr "Відвідайте"
@@ -4326,9 +4485,6 @@ msgstr "Кремнезій"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має міцну стінку з кремнезію. Вона може опиратися загальним пошкодженням, і також особливо стійка до фізичної шкоди. Вона також вимагає менше енергії для утримання форми. Однак це сильно сповільнює клітину, і вона не так швидко поглинає ресурси."
 
-msgid "SIXTEEN_TIMES"
-msgstr "16х"
-
 msgid "SIZE_COLON"
 msgstr "Розмір:"
 
@@ -4601,12 +4757,6 @@ msgstr "Суїцид"
 
 msgid "SUNLIGHT"
 msgstr "Сонячне світло"
-
-msgid "SUPERL"
-msgstr "Супер вліво"
-
-msgid "SUPERR"
-msgstr "Супер Вправо"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "Ті, що підтримали"
@@ -4920,12 +5070,6 @@ msgstr "Перекладачі"
 msgid "TRANSPARENCY"
 msgstr "Прозорість"
 
-msgid "TREBLEDOWN"
-msgstr "Зменшити частоту"
-
-msgid "TREBLEUP"
-msgstr "Збільшити частоту"
-
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Спробуйте зробити декілька викопувань!"
 
@@ -4998,44 +5142,38 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
-"Це клітинний редактор, де Ви можете розвивати свій вид, використовуючи мутаційні очки (МО). Кожне покоління у Вас є 100 МО для витрат, тому не намагайтеся їх накопичувати.\n"
+"Джгутики штовхають ваш мікроб у напрямку протилежному власному розташуванню.\n"
 "\n"
-"Гекс (шестикутник) в центрі екрана — це ваша клітина, що зараз складається лише з однієї частинки цитоплазми.\n"
+"Розміщення джгутика на боці протилежному стрілці перемістить ваш мікроб у бік протилежний стрілці.\n"
 "\n"
-"Щоб продовжити, виберіть частину на панелі зліва. Потім клацніть ЛКМ біля гекса, щоб розмістити його. Ви можете обертати частини за допомогою [thrive:input]e_rotate_left[/thrive:input] та [thrive:input]e_rotate_right[/thrive:input]."
+"Джгутики є органелами, що поглинають дуже великий об'єм [thrive:compound type=\"atp\"][/thrive:compound], тож вони не дуже лічать маленьким клітинам.\n"
+"\n"
+"Є інший спосіб незначно підвищити [b]швидкість руху[/b] [thrive:icon]MovementIcon[/thrive:icon]: зробити вашу мембрану рідкішою у [u]вкладці мембрани[/u]."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
-"Видалення органел також коштує МО, бо це мутація вашого виду, якщо тільки Ви не розмістили їх у поточній сесії редактора.\n"
+"Ви можете [b]модифікувати[/b] цю органелу. Це відкриє [b]нові функції[/b] або [b]покращення[/b] для неї.\n"
 "\n"
-"Ви можете клацнути ПКМ по органелі, аби відкрити її меню і вибрати видалення для відповідної дії.\n"
+"Для цього натисніть по органелі правою кнопкою миші, щоб відкрити [b]спливне меню органели[/b], та натисніть кнопку \"Змінити\".\n"
 "\n"
-"Якщо ви зробили помилку, то можете скасувати будь-які зміни внесені в редакторі.\n"
-"\n"
-"Натисніть кнопку скасування, щоб продовжити."
+"Модифікуйте органелу, щоб продовжити."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
-"Це мапа ділянок.\n"
+"Ваш баланс [thrive:compound type=\"atp\"][/thrive:compound] є негативним.\n"
 "\n"
-"Кожна піктограма представляє унікальне середовище, де ви можете жити, а панель справа описує умови обраної ділянки.\n"
+"Рухаючись та виконуючи власні процеси, ваша клітина виснажить свій [thrive:compound type=\"atp\"][/thrive:compound] і помре.\n"
 "\n"
-"Якщо Ви обрали ділянку ближню до Вашої поточної (остання виділена миготливою зеленою рамкою), то можете натиснути кнопку \"Переміститися на цю ділянку'' справа, аби мігрувати туди.\n"
+"Є багато засобів регулювати продукування [thrive:compound type=\"atp\"][/thrive:compound]. Ви можете підвищити його, добавляючи органели, що продукують [thrive:compound type=\"atp\"][/thrive:compound], на кшталт [b]метаболосом[/b]. Деякі [b]мембрани[/b] також полегшать вам осморегуляцію [thrive:icon]OsmoIcon[/thrive:icon].\n"
 "\n"
-"Виберіть ділянку, щоб продовжити."
+"Також ви можете видалити непотрібні або надлишкові органели."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
-"Це основи редагування вашого виду. В ролі останього штриха ви можете перейменувати свій вид клацнувши по назві знизу зліва та відредагуйте текст.\n"
+"Ви не зробили жодних змін у вашому виді.\n"
 "\n"
-"Подивіться й інші вкладки під панеллю МО, щоб побачити яким чином ви можете кастомізувати свою клітину.\n"
-"\n"
-"Для виживання в цьому суворому світі, вам потрібно буде знайти надійне джерело енергії, так як природня глюкоза буде швидко скінчуватись.\n"
-"\n"
-"Щасливо!"
+"Щойно покинувши редактор, [u]ви не зможете відредагувати ваш вид, доки знову не розмножитесь[/u].\n"
+"Для прогресування в цій грі вам доведеться еволюціонувати та пристосовуватися, тож рекомендується редагувати ваш вид під час більших потраплянь до редактора."
 
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
@@ -5147,9 +5285,8 @@ msgstr "Ви маєте застосувати зміни, щоб заванта
 msgid "UNBIND_ALL"
 msgstr "Роз'єднати всіх"
 
-#, fuzzy
 msgid "UNBIND_ALL_TOOLTIP"
-msgstr "Роз'єднати всіх"
+msgstr "Роз'єднати всі клітини в колонії"
 
 msgid "UNBIND_HELP_TEXT"
 msgstr "Режим зв'язування"
@@ -5160,13 +5297,11 @@ msgstr "Це збірка налагоджувань, де інформація 
 msgid "UNDERWATERCAVE"
 msgstr "Підводна печера"
 
-#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
-msgstr "Від'єднати органели"
+msgstr "Не відкрито"
 
-#, fuzzy
 msgid "UNDISCOVERED_PATCH"
-msgstr "Знайти поточну ділянку"
+msgstr "Нерозвідана ділянка"
 
 msgid "UNDO"
 msgstr "Скасувати"
@@ -5192,20 +5327,14 @@ msgstr "Невідомо"
 msgid "UNKNOWN_MOUSE"
 msgstr "Невідома миша"
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Невідомо на Windows"
-
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
-msgstr "Місце для органели"
+msgstr "?"
 
-#, fuzzy
 msgid "UNKNOWN_PATCH"
-msgstr "Невідомо"
+msgstr "Невідома ділянка"
 
-#, fuzzy
 msgid "UNKNOWN_SHORT"
-msgstr "Невідомо"
+msgstr "?"
 
 msgid "UNKNOWN_VERSION"
 msgstr "Невідома версія"
@@ -5213,57 +5342,53 @@ msgstr "Невідома версія"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Невідомий ID магазину для цього моду"
 
-#, fuzzy
 msgid "UNLIMIT_GROWTH_SPEED"
-msgstr "Ліміт використання сполук для росту"
+msgstr "Не обмежувати швидкість зростання"
 
-#, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
-msgstr "Місце для органели"
+msgstr "НОВА"
 
-#, fuzzy
 msgid "UNLOCK_ALL_ORGANELLES"
-msgstr "Група органел"
+msgstr "Відкрити всі органели"
 
 msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
-msgstr ""
+msgstr "продукування [thrive:compound type=\"atp\"][/thrive:compound] досягає {0}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] у ділянці більше ніж {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BELOW"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] у ділянці менше ніж {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] у ділянці між {1} і {2}"
 
 msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} мікробів переварено  (зараз {1})"
 
 msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} мікробів поглинуто (зараз {1})"
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
-msgstr ""
+msgstr "надлишок [thrive:compound type=\"atp\"][/thrive:compound] досягає {0}"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
-msgstr ""
+msgstr "кількість смертей досягає {0} (зараз {1})"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH"
-msgstr ""
+msgstr "організм містить щонайменш {1} {0} протягом {2} поколінь (зараз {3})"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW"
-msgstr ""
+msgstr "організм містить щонайменш {1} {0} протягом {2} поколінь поряд (зараз {3})"
 
 msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
-msgstr ""
+msgstr "розмноження в біомі {0}"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
-msgstr "Швидкість травлення:"
+msgstr "швидкість падає ніжче {0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
-msgstr ""
+msgstr "[b]{0}[/b] відкрито, якщо"
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
@@ -5324,9 +5449,8 @@ msgstr "Використання біорізноманіття розділен
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Встановити кількість фонових потоків вручну"
 
-#, fuzzy
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
-msgstr "Встановити кількість фонових потоків вручну"
+msgstr "Вручну встановити кількість рідних потоків виконувача"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Використовувати віртуальний розмір вікна"
@@ -5373,9 +5497,8 @@ msgstr "Переглядач"
 msgid "VIEW_ALL"
 msgstr "Показати все"
 
-#, fuzzy
 msgid "VIEW_ONLINE"
-msgstr "Показати все"
+msgstr "Показати онлайн"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Показати інформацію про зміни"
@@ -5434,36 +5557,36 @@ msgstr "Колесо вправо"
 msgid "WHEEL_UP"
 msgstr "Колесо вгору"
 
-#, fuzzy
 msgid "WIKI"
 msgstr "Наша Wiki"
 
-#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
-msgstr "Внутрішні ефекти:"
+msgstr ""
+"Для кожної клітини багатоклітинного організму, що містить [b]Аксони[/b], сила мозку цього організму підвищується пропорційно значенню цієї клітини.\n"
+"Клітини з [b]Аксонами[/b] класифікуються як ті, що містять тип мозкової тканини.\n"
+"\n"
+"Коли сила мозку перевищує [b]+0.5[/b], гравець переходить до Стадії Свідомості. Коли сила мозку перевищує [b]+5.0[/b], гравець переходить до Стадії Пробудження."
 
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Нервові тканини між нейронами, що доступні зі Стадії Багатоклітинності. Потрібні для підвищення сили мозку організму і прогресування до майбутніх стадій."
 
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Немає модифікацій."
 
-#, fuzzy
 msgid "WIKI_AXON_PROCESSES"
-msgstr "Процеси не відбуваються"
+msgstr "Процесів немає."
 
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Доступне лише починаючи з Багатоклітинної Стадії й далі."
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Буде анонсовано"
 
-#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr "Загальний редактор та стратегічні стадії"
+msgstr "Додавання [b]Аксонів[/b] є критичним для досягнення майбутніх стадій. Ми рекомендуємо додати по одному [b]Аксону[/b] декільком типам клітин у вашому багатоклітинному організмі, але додавання більш ніж одного є надлишковим. На поточний момент, додавання подальших [b]Аксонів[/b] не має додаткових переваг."
 
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Покращень немає."
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5780,11 +5903,10 @@ msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Покращень немає."
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "Метаболосоми є скупченнями білків в білковій оболонці. Вони набагато швидше перетворюють [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] ніж в цитоплазмі під час процесу, що зветься [b]Анаеробним Диханням[/b]. Та для цього потрібен [thrive:compound type=\"oxygen\"][/thrive:compound], а нищий рівень [thrive:compound type=\"oxygen\"][/thrive:compound] сповільнює синтез [thrive:compound type=\"atp\"][/thrive:compound]. Оскільки метаболосоми розміщені в цитоплазмі, навколишня рідина здійснює [b]гліколіз[/b]."
+msgstr "Ефектів немає."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_INTRO"
@@ -6500,6 +6622,48 @@ msgstr "Приблизитись"
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "Підсилення басів"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Баси вниз"
+
+#~ msgid "BASSUP"
+#~ msgstr "Баси вгору"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Вліво"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Вправо"
+
+#~ msgid "HYPERL"
+#~ msgstr "Гіпер вліво"
+
+#~ msgid "HYPERR"
+#~ msgstr "Гіпер вправо"
+
+#~ msgid "SUPERL"
+#~ msgstr "Супер вліво"
+
+#~ msgid "SUPERR"
+#~ msgstr "Супер Вправо"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Зменшити частоту"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Збільшити частоту"
+
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Невідомо на Windows"
+
+#~ msgid "GLES2"
+#~ msgstr "GLES2"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16х"
+
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Загальна популяція:"
 
@@ -6588,10 +6752,6 @@ msgstr "Віддалитись"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Звичайне ім'я користувача:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Панель назв кнопок вибору"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Не тікайте."

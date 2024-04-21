@@ -16,6 +16,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     {
     }
 
+    [JsonConstructor]
     public OrganelleLayout()
     {
     }
@@ -141,7 +142,7 @@ public class OrganelleLayout<T> : HexLayout<T>
 
         var replacedOrganelle = GetElementAt(organelle.Position, temporaryStorage);
 
-        if ((replacedOrganelle != null) && (replacedOrganelle.Definition.InternalName == "cytoplasm"))
+        if (replacedOrganelle != null && replacedOrganelle.Definition.InternalName == "cytoplasm")
             return true;
 
         return false;

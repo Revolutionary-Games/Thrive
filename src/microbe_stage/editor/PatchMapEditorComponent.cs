@@ -13,7 +13,9 @@ using Newtonsoft.Json;
 ///     future with more logic being put in <see cref="MicrobeEditorPatchMap"/>
 ///   </para>
 /// </remarks>
-public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
+/// <typeparam name="TEditor">Type of editor this component is for</typeparam>
+[GodotAbstract]
+public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
     where TEditor : IEditorWithPatches
 {
     [Export]
@@ -44,6 +46,10 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     [JsonProperty]
     private FogOfWarMode fogOfWar;
+
+    protected PatchMapEditorComponent()
+    {
+    }
 
     /// <summary>
     ///   Returns the current patch the player is in
@@ -296,7 +302,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     private void UpdateSeedLabel()
     {
-        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
+        seedLabel.Text = Localization.Translate("SEED_LABEL")
             .FormatSafe(Editor.CurrentGame.GameWorld.WorldSettings.Seed);
     }
 

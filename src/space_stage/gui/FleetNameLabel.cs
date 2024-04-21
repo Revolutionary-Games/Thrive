@@ -2,7 +2,10 @@
 using Godot;
 using Newtonsoft.Json;
 
-public class FleetNameLabel : Button, IEntityNameLabel
+/// <summary>
+///   Label in the world on a fleet, can be pressed to select it
+/// </summary>
+public partial class FleetNameLabel : Button, IEntityNameLabel
 {
     private string translationTemplate = null!;
 
@@ -19,14 +22,16 @@ public class FleetNameLabel : Button, IEntityNameLabel
     [JsonIgnore]
     public Control LabelControl => this;
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        base._Notification(what);
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += UpdateTranslationTemplate;
+    }
 
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateTranslationTemplate();
-        }
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= UpdateTranslationTemplate;
     }
 
     public void UpdateFromEntity(IEntityWithNameLabel entity)
@@ -58,7 +63,7 @@ public class FleetNameLabel : Button, IEntityNameLabel
 
     private void UpdateTranslationTemplate()
     {
-        translationTemplate = TranslationServer.Translate("NAME_LABEL_FLEET");
+        translationTemplate = Localization.Translate("NAME_LABEL_FLEET");
     }
 
     private void ForwardSelection()

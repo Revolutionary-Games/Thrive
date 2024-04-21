@@ -1,8 +1,7 @@
-﻿namespace Components
+﻿namespace Components;
+
+public enum SimpleShapeType
 {
-    public enum SimpleShapeType
-    {
-        Box,
-        Sphere,
-    }
+    Box,
+    Sphere,
 }

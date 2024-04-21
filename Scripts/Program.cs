@@ -278,8 +278,12 @@ public class Program
         return tool.Run(tokenSource.Token).Result;
     }
 
+    // TODO: check if this should be removed
     private static int RunProjectValidMaker(GodotProjectValidMakerOptions options)
     {
+        ColourConsole.WriteWarningLine("This tool is deprecated and likely won't do anything sensible with " +
+            "Godot 4 version of Thrive");
+
         CommandLineHelpers.HandleDefaultOptions(options);
 
         ColourConsole.WriteInfoLine("Attempting to make Thrive Godot project valid for C# compile...");
@@ -308,6 +312,7 @@ public class Program
             /// </summary>
             CheckDistributable,
 
+            // TODO: maybe remove this operation entirely (should also update documentation)
             /// <summary>
             ///   Installs a library to work with Godot editor
             /// </summary>
@@ -348,8 +353,6 @@ public class Program
             {
                 yield return new Example("download all available libraries",
                     new NativeLibOptions { Operations = new[] { OperationMode.Fetch } });
-                yield return new Example("install library locally to make Godot Editor debugging work",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Install } });
                 yield return new Example("compile libraries locally",
                     new NativeLibOptions { Operations = new[] { OperationMode.Build } });
                 yield return new Example("prepare library versions for distribution or uploading with podman",
@@ -362,11 +365,15 @@ public class Program
 
         [Option('l', "library", Required = false, Default = null, MetaValue = "LIBRARIES",
             HelpText = "Libraries to work on, default is all.")]
-        public IList<NativeLibs.Library>? Libraries { get; set; } = new List<NativeLibs.Library>();
+        public IList<NativeConstants.Library>? Libraries { get; set; } = new List<NativeConstants.Library>();
 
         [Option('d', "debug", Required = false, Default = false,
             HelpText = "Set to work on debug versions of the libraries")]
         public bool DebugLibrary { get; set; }
+
+        [Option("disable-avx", Required = false, Default = false,
+            HelpText = "Disable building locally with AVX (container builds always make both variants)")]
+        public bool DisableLocalAvx { get; set; }
 
         [Option('t', "platform", Required = false, Default = null,
             HelpText = "Use to override detected platforms for selected operation")]
@@ -437,8 +444,8 @@ public class Program
             HelpText = "Set to a valid DevCenter key (not user token) to use non-anonymous uploading.")]
         public string? Key { get; set; }
 
-        [Option('k', "key", Required = false, Default = Uploader.DEFAULT_DEVCENTER_URL, MetaValue = "DEVCENTER_URL",
-            HelpText = "DevCenter URL to upload to.")]
+        [Option('u', "devcenter-url", Required = false, Default = Uploader.DEFAULT_DEVCENTER_URL,
+            MetaValue = "DEVCENTER_URL", HelpText = "DevCenter URL to upload to.")]
         public string Url { get; set; } = Uploader.DEFAULT_DEVCENTER_URL;
 
         [Option('r', "retries", Required = false, Default = 3, MetaValue = "COUNT",
@@ -487,6 +494,6 @@ public class Program
         public FileTypeToGenerate Type { get; set; }
     }
 
-    [Verb("make-project-valid", HelpText = "Makes the Godot project valid for C# compile")]
+    [Verb("make-project-valid", HelpText = "Makes the Godot project valid for C# compile (deprecated)")]
     public class GodotProjectValidMakerOptions : ScriptOptionsBase;
 }
