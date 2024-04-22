@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Godot;
+using LauncherThriveShared;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -1193,6 +1194,9 @@ public static class Constants
 
     public const string STARTUP_ATTEMPT_INFO_FILE = "user://startup_attempt.json";
 
+    public const string LATEST_START_INFO_FILE =
+        "user://" + ThriveLauncherSharedConstants.LATEST_START_INFO_FILE_NAME;
+
     public const string LAST_PLAYED_VERSION_FILE = "user://last_played_version.txt";
 
     public const string LICENSE_FILE = "res://LICENSE.txt";
@@ -1343,19 +1347,6 @@ public static class Constants
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
-    // TODO: combine to a common module with launcher as these are there as well
-    public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
-    public const string OPENED_THROUGH_LAUNCHER_OPTION = "--thrive-started-by-launcher";
-    public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
-    public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
-
-    public const string SKIP_CPU_CHECK_OPTION = "--skip-cpu-check";
-    public const string DISABLE_CPU_AVX_OPTION = "--disable-avx";
-
-    public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
-    public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
-    public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
-
     // Min/max values for each customisable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;
     public const float MAX_MP_MULTIPLIER = 2;
@@ -1454,7 +1445,7 @@ public static class Constants
     public const float SPACE_FLEET_SELECTION_RADIUS = 1.7f;
 
     /// <summary>
-    ///   Names like "Pangonia Primus" are cool so we use those until it makes more sense to switch to roman numerals
+    ///   Names like "Pangonia Primus" are cool, so we use those until it makes more sense to switch to roman numerals
     /// </summary>
     public const int NAMING_SWITCH_TO_ROMAN_NUMERALS_AFTER = 10;
 

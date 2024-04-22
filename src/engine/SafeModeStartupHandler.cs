@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using Godot;
+using LauncherThriveShared;
 using Newtonsoft.Json;
+using SharedBase.Models;
 
 /// <summary>
 ///   Handles starting the game with features disabled if there have been failed startup attempts
@@ -108,14 +110,34 @@ public static class SafeModeStartupHandler
 
         if (!LaunchOptions.LaunchedThroughLauncher)
         {
-            GD.Print(Constants.STARTUP_SUCCEEDED_MESSAGE);
+            GD.Print(ThriveLauncherSharedConstants.STARTUP_SUCCEEDED_MESSAGE);
         }
         else
         {
             GD.PrintErr("The following is not an error, but is printed as an error to ensure launcher always " +
                 "sees it without buffering:");
-            GD.PrintErr(Constants.STARTUP_SUCCEEDED_MESSAGE);
+            GD.PrintErr(ThriveLauncherSharedConstants.STARTUP_SUCCEEDED_MESSAGE);
         }
+
+        WriteCurrentStartInfo(LaunchOptions.StartId);
+    }
+
+    /// <summary>
+    ///   Writes startup file that the launcher can check even if there is a problem with seeing the output to detect
+    ///   if startup worked correctly
+    /// </summary>
+    private static void WriteCurrentStartInfo(string startId)
+    {
+        using var file = FileAccess.Open(Constants.LATEST_START_INFO_FILE, FileAccess.ModeFlags.Write);
+        if (file == null)
+        {
+            GD.PrintErr("Cannot write latest startup info file");
+            return;
+        }
+
+        var data = ThriveJsonConverter.Instance.SerializeObject(new ThriveStartInfo(DateTime.UtcNow, startId));
+
+        file.StoreString(data);
     }
 
     private static StartupAttemptInfo? LoadExistingStartupInfo()
@@ -155,7 +177,7 @@ public static class SafeModeStartupHandler
 
         wroteInfoFile = true;
 
-        // When using a debugger, we don't want to do safe mode start ups
+        // When using a debugger, we don't want to do safe mode startups
         if (Debugger.IsAttached)
         {
             GD.Print("Not writing startup info as debugger is attached");
