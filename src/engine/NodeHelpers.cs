@@ -160,14 +160,14 @@ public static class NodeHelpers
     /// <returns>ShaderMaterial of the GeometryInstance.</returns>
     public static ShaderMaterial GetMaterial(this Node node, NodePath? modelPath = null)
     {
-        GeometryInstance3D geometry;
+        GeometryInstance3D? geometry;
 
         try
         {
             // Fetch the actual model from the scene
             if (modelPath == null || modelPath.IsEmpty)
             {
-                geometry = (GeometryInstance3D)node;
+                geometry = (GeometryInstance3D?)node;
             }
             else
             {
@@ -179,6 +179,13 @@ public static class NodeHelpers
             GD.PrintErr("Converting node to GeometryInstance3D for getting material failed, on node: ", node.GetPath(),
                 " relative path: ", modelPath);
             throw;
+        }
+
+        if (geometry == null)
+        {
+            GD.PrintErr("Getting geometry instance for material fetch failed on node: ", node.GetPath(),
+                " relative path: ", modelPath);
+            throw new NullReferenceException("geometry is null");
         }
 
         try
