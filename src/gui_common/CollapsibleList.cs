@@ -326,7 +326,7 @@ public partial class CollapsibleList : VBoxContainer
     }
 
     /// <summary>
-    ///   Updates width of the content container as the parent node of it is not a container so it doesn't update that
+    ///   Updates width of the content container as the parent node of it is not a container, so it doesn't update that
     ///   automatically
     /// </summary>
     private void AvailableWidthChanged()
@@ -334,13 +334,9 @@ public partial class CollapsibleList : VBoxContainer
         if (itemContainer == null)
             return;
 
-        var size = itemContainer.Size;
         var wantedWidth = clipBox.Size.X;
 
-        if (Math.Abs(size.X - wantedWidth) > 0.001f)
-        {
-            size.X = wantedWidth;
-            itemContainer.Size = size;
-        }
+        // Height is reset to 0 to make sure the container doesn't take extra height
+        itemContainer.Size = new Vector2(wantedWidth, 0);
     }
 }
