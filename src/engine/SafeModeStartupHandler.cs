@@ -108,15 +108,17 @@ public static class SafeModeStartupHandler
 
         DeleteCurrentStartupInfoFile();
 
-        if (!LaunchOptions.LaunchedThroughLauncher)
-        {
-            GD.Print(ThriveLauncherSharedConstants.STARTUP_SUCCEEDED_MESSAGE);
-        }
-        else
+        // TODO: could maybe consider not printing this at error level in the future thanks
+        // to the new startup info file, which should prevent false positives of start failures
+        if (LaunchOptions.LaunchedThroughLauncher)
         {
             GD.PrintErr("The following is not an error, but is printed as an error to ensure launcher always " +
                 "sees it without buffering:");
             GD.PrintErr(ThriveLauncherSharedConstants.STARTUP_SUCCEEDED_MESSAGE);
+        }
+        else
+        {
+            GD.Print(ThriveLauncherSharedConstants.STARTUP_SUCCEEDED_MESSAGE);
         }
 
         WriteCurrentStartInfo(LaunchOptions.StartId);
