@@ -1186,8 +1186,7 @@ public static class Constants
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
-    public const string LOGS_FOLDER_NAME = "logs";
-    public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
+    public const string LOGS_FOLDER = "user://" + ThriveLauncherSharedConstants.LOGS_FOLDER_NAME;
 
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/" + JSON_DEBUG_OUTPUT_FILE_NAME;
     public const string JSON_DEBUG_OUTPUT_FILE_NAME = "json_debug.txt";

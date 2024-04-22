@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using Godot;
+using LauncherThriveShared;
 using Path = System.IO.Path;
 
 /// <summary>
@@ -45,7 +46,7 @@ public partial class StartupActions : Node
         GD.Print("user:// directory is: ", userDir);
 
         // Print the logs folder to see in the output where they are stored
-        GD.Print("Game logs are written to: ", Path.Combine(userDir, Constants.LOGS_FOLDER_NAME),
+        GD.Print("Game logs are written to: ", Path.Combine(userDir, ThriveLauncherSharedConstants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
 
         // TODO: mono runtime doesn't have intrinsics support for checking AVX
