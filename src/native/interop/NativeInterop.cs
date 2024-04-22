@@ -143,7 +143,7 @@ public static class NativeInterop
         {
             var result = CheckCPUFeaturesFull();
 
-            // If can support the full speed library all is well
+            // If the CPU can support the full speed library all is well
             if (result == CPUCheckResult.CPUCheckSuccess)
             {
                 disableAvx = false;
@@ -256,6 +256,18 @@ public static class NativeInterop
         if (!Avx.IsSupported)
             result |= CPUCheckResult.CPUCheckMissingAvx;
 
+        if (!Lzcnt.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingLzcnt;
+
+        // For TZCNT instruction
+        if (!Bmi1.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingBmi1;
+
+        if (!Fma.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingFma;
+
+        // F16C cannot be checked easily, so for now assume it is present if the other instruction checks pass
+
         return result | CheckCPUFeaturesCompatibility();
     }
 
@@ -275,6 +287,8 @@ public static class NativeInterop
     private static string GetMissingFeatureList(CPUCheckResult result)
     {
         var builder = new StringBuilder();
+
+        // ReSharper disable StringLiteralTypo
 
         if ((result & CPUCheckResult.CPUCheckMissingAvx) != 0)
         {
@@ -303,6 +317,37 @@ public static class NativeInterop
                 builder.Append('\n');
             builder.Append("CPU is missing SSE 4.2 support");
         }
+
+        if ((result & CPUCheckResult.CPUCheckMissingLzcnt) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing LZCNT support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingBmi1) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing BMI 1 (TZCNT) support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingFma) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+
+            builder.Append("CPU is missing FMA support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingF16C) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing F16C support");
+        }
+
+        // ReSharper restore StringLiteralTypo
 
         if (builder.Length < 1)
             builder.Append("Unknown problem with CPU check");

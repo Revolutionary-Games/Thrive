@@ -50,6 +50,16 @@ public:
         if (!avx2Supported)
             result |= CPU_CHECK_MISSING_AVX2;
 
+        if (!bmi1Supported)
+            result |= CPU_CHECK_MISSING_BMI1;
+
+        if (!fma3Supported)
+            result |= CPU_CHECK_MISSING_FMA;
+
+        // Looking at the instructions, Jolt *probably* only uses FMA3. FMA4 is also way newer.
+        /*if (!fma4Supported)
+            result |= CPU_CHECK_MISSING_FMA;*/
+
         return static_cast<CPU_CHECK_RESULT>(result);
     }
 
@@ -99,9 +109,9 @@ private:
         /*bool HW_MMX;
         bool HW_x64 = false;
         bool HW_ABM = false; // Advanced Bit Manipulation
-        bool HW_RDRAND = false;
+        bool HW_RDRAND = false;*/
         bool HW_BMI1 = false;
-        bool HW_BMI2 = false;
+        /*bool HW_BMI2 = false;
         bool HW_ADX = false;
         bool HW_PREFETCHWT1 = false;*/
 
@@ -118,9 +128,9 @@ private:
 
         // SIMD: 256-bit
         bool HW_AVX = false;
-        /*bool HW_XOP = false;
+        /*bool HW_XOP = false;*/
         bool HW_FMA3 = false;
-        bool HW_FMA4 = false;*/
+        bool HW_FMA4 = false;
         bool HW_AVX2 = false;
 
         // SIMD: 512-bit
@@ -157,7 +167,7 @@ private:
             // HW_AES = (info[2] & ((int)1 << 25)) != 0;
 
             HW_AVX = (info[2] & ((int)1 << 28)) != 0;
-            // HW_FMA3 = (info[2] & ((int)1 << 12)) != 0;
+            HW_FMA3 = (info[2] & ((int)1 << 12)) != 0;
 
             // HW_RDRAND = (info[2] & ((int)1 << 30)) != 0;
         }
@@ -167,7 +177,7 @@ private:
             cpuid(info, 0x00000007);
             HW_AVX2 = (info[1] & ((int)1 << 5)) != 0;
 
-            // HW_BMI1 = (info[1] & ((int)1 << 3)) != 0;
+            HW_BMI1 = (info[1] & ((int)1 << 3)) != 0;
             // HW_BMI2 = (info[1] & ((int)1 << 8)) != 0;
             // HW_ADX = (info[1] & ((int)1 << 19)) != 0;
             // HW_SHA = (info[1] & ((int)1 << 29)) != 0;
@@ -190,7 +200,7 @@ private:
             // HW_x64 = (info[3] & ((int)1 << 29)) != 0;
             // HW_ABM = (info[2] & ((int)1 << 5)) != 0;
             HW_SSE4a = (info[2] & ((int)1 << 6)) != 0;
-            // HW_FMA4 = (info[2] & ((int)1 << 16)) != 0;
+            HW_FMA4 = (info[2] & ((int)1 << 16)) != 0;
             // HW_XOP = (info[2] & ((int)1 << 11)) != 0;
         }
 
@@ -201,6 +211,12 @@ private:
         sse4aSupported = HW_SSE4a;
         avx2Supported = HW_AVX2;
         avx512Supported = HW_AVX512F;
+        bmi1Supported = HW_BMI1;
+        fma3Supported = HW_FMA3;
+        fma4Supported = HW_FMA4;
+
+        // TODO: check / fix this
+        // f16CSupported =
 
         // Following is code based on a different answer
 
@@ -244,6 +260,10 @@ private:
 
     static bool avx2Supported;
     static bool avx512Supported;
+
+    static bool bmi1Supported;
+    static bool fma3Supported;
+    static bool fma4Supported;
 };
 
 inline bool CPUCheck::featuresRead = false;
@@ -253,5 +273,8 @@ inline bool CPUCheck::sse42Supported = false;
 inline bool CPUCheck::sse4aSupported = false;
 inline bool CPUCheck::avx2Supported = false;
 inline bool CPUCheck::avx512Supported = false;
+inline bool CPUCheck::bmi1Supported = false;
+inline bool CPUCheck::fma3Supported = false;
+inline bool CPUCheck::fma4Supported = false;
 
 } // namespace Thrive
