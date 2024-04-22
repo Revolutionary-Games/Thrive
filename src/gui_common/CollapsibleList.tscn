@@ -73,8 +73,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="GridContainer" type="GridContainer" parent="Clip"]
-layout_mode = 2
-offset_right = 152.0
+layout_mode = 0
 mouse_filter = 2
 
 [connection signal="pressed" from="TitleContainer/Buttons/minusButton" to="." method="CollapseButtonPressed"]
