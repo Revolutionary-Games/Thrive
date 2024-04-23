@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using LauncherThriveShared;
 
 /// <summary>
 ///   Singleton managing changing game scenes
@@ -227,7 +228,7 @@ public partial class SceneManager : Node
     public void QuitThrive()
     {
         if (!alreadyQuit)
-            GD.Print(Constants.USER_REQUESTED_QUIT);
+            GD.Print(ThriveLauncherSharedConstants.USER_REQUESTED_QUIT);
 
         GetTree().Quit();
 
