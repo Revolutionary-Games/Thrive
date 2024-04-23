@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-12 13:41+0300\n"
-"PO-Revision-Date: 2024-03-21 09:43+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-04-23 09:45+0000\n"
+"Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -159,10 +159,10 @@ msgid "AMMONIA"
 msgstr "Ammoniaque"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "Nombre de sauvegardes à conserver :"
+msgstr "Nombre de sauvegardes à conserver :"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "Nombre de sauvegardes rapide à conserver :"
+msgstr "Nombre de sauvegardes rapides à conserver :"
 
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Fixation Anaérobique d'Azote"
@@ -634,7 +634,7 @@ msgid "CITY_SHORT_STATISTICS"
 msgstr "Population : {0} Nourriture : {1} Science : {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr "Suppression des Anciennes Sauvegardes"
+msgstr "Suppression des anciennes sauvegardes"
 
 msgid "CLOSE"
 msgstr "Fermer"
@@ -799,7 +799,9 @@ msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 "Vous pouvez maintenant passer à la phase spatiale en lançant votre premier vaisseau spatial.\n"
 "\n"
-"Pour l'instant, dans les prototypes, vous ne pouvez pas revenir sur votre planète mais le but à long terme est de permettre d"
+"Pour l'instant, dans les prototypes, vous ne pouvez pas revenir sur votre planète mais le but à long terme est de permettre de zoomer et dézoomer en douceur sur les planètes dans la phase spatiale.\n"
+"\n"
+"L'annulation du lancement détruira l'unité du vaisseau spatial. Lancer le vaisseau spatial ?"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Commencer la partie avec ces paramètres"
@@ -832,13 +834,11 @@ msgstr "Continuer vers les phases en prototype ?"
 msgid "CONTROLLER_ANY_DEVICE"
 msgstr "Zones mortes du contrôleur"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_L2"
-msgstr "Visualiseurs d'axes de contrôle :"
+msgstr "L2"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
-msgstr "Visualiseurs d'axes de contrôle :"
+msgstr "Gâchette gauche"
 
 #, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_X"
@@ -856,13 +856,11 @@ msgstr "Visualiseurs d'axes de contrôle :"
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
 msgstr "Sensibilité du contrôleur"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_R2"
-msgstr "Visualiseurs d'axes de contrôle :"
+msgstr "R2"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
-msgstr "Visualiseurs d'axes de contrôle :"
+msgstr "Gâchette droite"
 
 #, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_X"
@@ -918,57 +916,45 @@ msgstr "Zones mortes du contrôleur"
 msgid "CONTROLLER_BUTTON_PADDLE4"
 msgstr "Zones mortes du contrôleur"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
-msgstr "Type de requête de bouton de manette:"
+msgstr "Select"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_START"
-msgstr "Type de requête de bouton de manette:"
+msgstr "Start"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
-msgstr "Zone morte :"
+msgstr "Rond"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_CROSS"
-msgstr "Zone morte :"
+msgstr "Croix"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_L1"
-msgstr "Zones mortes du contrôleur"
+msgstr "L1"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_L3"
-msgstr "Zones mortes du contrôleur"
+msgstr "L3"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
-msgstr "Zone morte :"
+msgstr "Options"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_R1"
-msgstr "Zones mortes du contrôleur"
+msgstr "R1"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_R3"
-msgstr "Zones mortes du contrôleur"
+msgstr "R3"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SHARE"
 msgstr "Zones mortes du contrôleur"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr "Type de requête de bouton de manette:"
+msgstr "Bouton logo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
-msgstr "Visualiseurs d'axes de contrôle :"
+msgstr "Carré"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
-msgstr "Type de requête de bouton de manette:"
+msgstr "Triangle"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
@@ -981,17 +967,14 @@ msgstr "Type de requête de bouton de manette:"
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
 msgstr ""
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_UNKNOWN"
-msgstr "Zone morte :"
+msgstr "Bouton inconnu"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_A"
-msgstr "Zone morte :"
+msgstr "A"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_B"
-msgstr "Zone morte :"
+msgstr "B"
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
 msgstr ""
@@ -1003,13 +986,11 @@ msgstr ""
 msgid "CONTROLLER_BUTTON_XBOX_START"
 msgstr "Sensibilité du contrôleur"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_X"
-msgstr "Zone morte :"
+msgstr "X"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_Y"
-msgstr "Zone morte :"
+msgstr "Y"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "Zones mortes du contrôleur"
@@ -1017,13 +998,13 @@ msgstr "Zones mortes du contrôleur"
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
 "Cet outil permet de configurer les zones mortes des axes du contrôleur. La taille des zones mortes permet de contrôler la quantité de mouvement que doit effectuer une manette (ou un bouton analogique) avant que ce mouvement ne soit détecté comme une entrée.\n"
-"Avant de commencer le calibrage, veuillez déplacer tous les bâtons de contrôle et les relâcher, ainsi que presser et relâcher tous les boutons analogiques (par exemple les triggers) de votre contrôleur."
+"Avant de commencer le calibrage, veuillez déplacer tous les bâtons de contrôle et les relâcher, ainsi que presser et relâcher tous les boutons analogiques (par exemple les gâchettes) de votre contrôleur."
 
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Zone morte :"
 
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr "Type de requête de bouton de manette:"
+msgstr "Type de requête de bouton de manette :"
 
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Sensibilité du contrôleur"
@@ -1039,10 +1020,10 @@ msgid "COPY_RESULTS"
 msgstr "Résultats de copie"
 
 msgid "CORRECTION_PROTANOPE"
-msgstr "Protanopie (Rouge-Vert)"
+msgstr "Protanopie (rouge-vert)"
 
 msgid "CORRECTION_TRITANOPE"
-msgstr "Tritanopie (Bleue-Jaune)"
+msgstr "Tritanopie (bleu-jaune)"
 
 #, fuzzy
 msgid "CPU_THREADS"
@@ -1102,9 +1083,8 @@ msgstr "Créé sur la plateforme :"
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Créer un nouveau microbe"
 
-#, fuzzy
 msgid "CREATE_NEW"
-msgstr "Créer une Nouvelle Sauvegarde"
+msgstr "Créer un nouveau"
 
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Créer un nouveau type de cellule"
@@ -1116,7 +1096,7 @@ msgid "CREATE_NEW_MOD"
 msgstr "Créer un nouveau mod"
 
 msgid "CREATE_NEW_SAVE"
-msgstr "Créer une Nouvelle Sauvegarde"
+msgstr "Créer une nouvelle sauvegarde"
 
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Créer un nouveau type de tissu"
@@ -1435,13 +1415,11 @@ msgstr "Afficher la barre des capacités"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Afficher les particules en arrière-plan"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
-msgstr "Afficher la barre des capacités"
+msgstr "OpenGL"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr "Afficher la barre des capacités"
+msgstr "Vulkan"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Afficher les noms des boutons de sélection des parties"
@@ -1576,11 +1554,11 @@ msgstr "Entrer dans l'éditeur et modifier votre espèce"
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Bienvenue dans l'éditeur de microbes.\n"
+"Bienvenue dans l'[b]Éditeur de microbe[/b].\n"
 "\n"
 "Ici, vous pouvez revoir ce qui s'est passé au cours des générations précédentes, puis apporter des modifications à votre espèce.\n"
 "\n"
-"Cet onglet vous donne une liste des modifications apportées à la parcelle que vous occupez actuellement. Essayez d'explorer les différents outils à votre disposition pour en savoir plus sur les événements de votre monde !\n"
+"Cet onglet vous donne une liste des modifications apportées à la parcelle que vous occupez actuellement. Essayez d'explorer les différents outils à votre disposition pour en savoir plus sur les événements de votre monde !\n"
 "\n"
 "Lorsque vous êtes prêt, appuyez sur le bouton \"Suivant\" en bas à droite pour continuer."
 
@@ -1676,7 +1654,7 @@ msgid "ERROR_LOADING"
 msgstr "Erreur de Chargement"
 
 msgid "ERROR_SAVING"
-msgstr "Erreur de Sauvegarde"
+msgstr "Erreur de sauvegarde"
 
 msgid "ESCAPE"
 msgstr "Échap"
@@ -1768,13 +1746,11 @@ msgstr "Échec"
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 msgstr "Mon mod génial"
 
-#, fuzzy
 msgid "FAILED_SAVE_DELETION"
-msgstr "Erreur : les nouveaux paramètres n'ont pas été sauvegardés dans le fichier de configuration."
+msgstr "Erreur : échec de la suppression de la sauvegarde"
 
-#, fuzzy
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr "Le fichier fossile n'a pas pu être supprimé"
+msgstr "Le fichier de sauvegarde n'a pas pu être supprimé."
 
 msgid "FEARFUL"
 msgstr "Craintif"
@@ -2132,9 +2108,8 @@ msgstr "VOUS AVEZ PROSPÉRÉ !"
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
 
-#, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
-msgstr "Nom de dossier interne :"
+msgstr "Nom interne"
 
 msgid "INFO_BOX_MASS"
 msgstr ""
@@ -2879,7 +2854,7 @@ msgid "MICROBE_BENCHMARK"
 msgstr "Éditeur de microbes"
 
 msgid "MICROBE_EDITOR"
-msgstr "Éditeur de microbes"
+msgstr "Éditeur de microbe"
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
@@ -2948,7 +2923,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr "À chaque génération, vous avez 100 points de mutation (PM) à dépenser, et chaque changement (ou mutation) coûtera une certaine quantité de ces PM. Ajouter ou retirer des organites coûte des PM. Cependant, retirer les organites placées lors de cette mutation vous les restituent. Vous pouvez déplacer ou retirer une organite en faisant un clic droit dessus et en sélectionnant l'action voulue. Vous pouvez faire tourner vos organites lors du placement avec [thrive:input]e_rotate_left[/thrive:input] et [thrive:input]e_rotate_right[/thrive:input]."
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "À chaque fois que vous vous reproduisez, vous entrez dans l'Éditeur de Microbes, où vous pouvez modifier votre espèce (en ajoutant, pivotant ou retirant des organites) pour augmenter ses chances de réussite. Chaque passage dans l'éditeur du stade Microbe représente [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millions d'années d'évolution."
+msgstr "À chaque fois que vous vous reproduisez, vous entrez dans l'Éditeur de microbe, où vous pouvez modifier votre espèce (en ajoutant, pivotant ou retirant des organites) pour augmenter ses chances de réussite. Chaque passage dans l'éditeur du stade Microbe représente [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millions d'années d'évolution."
 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Éditeur Libre de Microbe"
@@ -2993,7 +2968,9 @@ msgstr ""
 
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Pour contrôler votre cellule utilisez les touches affichées près de votre cellule (au centre de l'écran) et la souris pour contrôler l'orientation de votre cellule.\n"
+"Pour contrôler votre cellule utilisez les touches affichées près de votre cellule (au centre de l'écran) et la souris pour contrôler sa direction.\n"
+"\n"
+"Le mode de mouvement peut être changé dans le menu des options.\n"
 "\n"
 "Essayez toutes les touches pendant quelques secondes pour continuer."
 
@@ -3657,13 +3634,11 @@ msgstr ""
 "Vous pouvez signaler les problèmes rencontrés, mais ils n'ont pas la plus haute priorité actuellement.\n"
 "Voulez-vous essayer de charger la sauvegarde malgré tout ?"
 
-#, fuzzy
 msgid "OPENGL_MODE_WARNING"
-msgstr "Alerte Mode GLES2"
+msgstr "Avertissement mode OpenGL"
 
-#, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
-msgstr "Vous utilisez Thrive avec le GLES2. Cela demeure non testé et risque de causer des problèmes. Essayez de mettre à jour vos pilotes vidéos et/ou de forcer l'utilisation des graphiques AMD ou Nvidia pour lancer Thrive."
+msgstr "Vous utilisez Thrive avec OpenGL. Cela demeure non testé et risque de causer des problèmes. Veuillez à utiliser des cartes graphiques (processeurs graphiques ou intégrées) suffisamment récentes et essayez de mettre à jour vos pilotes vidéos. Pour les ordinateur portables vous pouvez avoir besoin de forcer l'utilisation des cartes graphiques AMD ou Nvidia dédiées pour lancer Thrive au lieu des cartes graphiques intégrées."
 
 msgid "OPEN_FOLDER"
 msgstr "Ouvrir le dossier"
@@ -3705,7 +3680,7 @@ msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Ouvrir l'écran d'aide"
 
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr "Ouvrir le Dossier de Sauvegarde"
+msgstr "Ouvrir le dossier de sauvegarde"
 
 #, fuzzy
 msgid "OPEN_SCIENCE_MENU"
@@ -4201,7 +4176,7 @@ msgid "RESET_KEYBINDINGS"
 msgstr "Réinitialiser les raccourcis clavier"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr "Par Défaut"
+msgstr "Par défaut"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Restaurer par défaut ?"
@@ -4356,7 +4331,7 @@ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr "Veuillez vous assurer que le mode de débogage JSON n'est pas désactivé avant de signaler cette erreur de sauvegarde. Le mode de débogage automatique JSON devrai avoir créé un dossier appelé {0} dans le [color=#3796e1][url={1}]dossier de logs[/url][/color]. Ce fichier contient des informations cruciales pour les développeurs de Thrive afin de comprendre quelle était l'erreur de sauvegarde."
 
 msgid "SAVE_FAILED"
-msgstr "Sauvegarde Échouée"
+msgstr "Sauvegarde échouée"
 
 msgid "SAVE_GAME"
 msgstr "Sauvegarder"
@@ -4419,7 +4394,7 @@ msgid "SAVING_NOT_POSSIBLE"
 msgstr "Sauvegarde actuellement impossible à cause de :"
 
 msgid "SAVING_SUCCEEDED"
-msgstr "Sauvegarde réussi"
+msgstr "Sauvegarde réussie"
 
 msgid "SCALING_NONE"
 msgstr "Aucun"
@@ -5191,7 +5166,7 @@ msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Statut :"
 
 msgid "TOTAL_SAVES"
-msgstr "Nombre de sauvegardes :"
+msgstr "Nombre de sauvegardes :"
 
 msgid "TOXIN_RESISTANCE"
 msgstr "Résistance aux toxines"
@@ -5220,7 +5195,7 @@ msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Essayez de fossiliser des espèces !"
 
 msgid "TRY_MAKING_A_SAVE"
-msgstr "Essayez de sauvegarder !"
+msgstr "Essayez de sauvegarder !"
 
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Essayez de prendre une capture d'écran !"
@@ -5495,17 +5470,15 @@ msgstr "Inconnu"
 msgid "UNKNOWN_MOUSE"
 msgstr "Souris inconnue"
 
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
-msgstr "Placer organite"
+msgstr "?"
 
 #, fuzzy
 msgid "UNKNOWN_PATCH"
 msgstr "Entrée inconnue"
 
-#, fuzzy
 msgid "UNKNOWN_SHORT"
-msgstr "Entrée inconnue"
+msgstr "?"
 
 msgid "UNKNOWN_VERSION"
 msgstr "Version inconnue"
@@ -6349,7 +6322,6 @@ msgstr "Cytoplasme"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelle"
 
-#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosome"
 
@@ -6422,11 +6394,8 @@ msgstr ""
 "Vacuole\n"
 "à toxine"
 
-#, fuzzy
 msgid "WIKI_PAGE_VACUOLE"
-msgstr ""
-"Vacuole\n"
-"à toxine"
+msgstr "Vacuole"
 
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
@@ -6647,9 +6616,8 @@ msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibl
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
-msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
+msgstr "Pas de modifications"
 
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
