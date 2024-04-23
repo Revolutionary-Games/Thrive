@@ -1,4 +1,6 @@
-﻿using System;
+﻿// #define DEBUG_LIBRARY_LOAD
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -266,6 +268,8 @@ public static class NativeInterop
         if (!Fma.IsSupported)
             result |= CPUCheckResult.CPUCheckMissingFma;
 
+        result |= CPUCheckResult.CPUCheckMissingBmi1;
+
         // F16C cannot be checked easily, so for now assume it is present if the other instruction checks pass
 
         return result | CheckCPUFeaturesCompatibility();
@@ -430,6 +434,9 @@ public static class NativeInterop
         // ReSharper disable once InlineOutVariableDeclaration
         IntPtr loaded;
 
+        // TODO: caching once loaded? This method is called again for each native method that is used so this gets
+        // called some extra 50 or so times.
+
         if (libraryName == "steam_api")
         {
             var steamName = "libsteam_api.so";
@@ -467,8 +474,6 @@ public static class NativeInterop
         }
 
         var currentPlatform = PlatformUtilities.GetCurrentPlatform();
-
-        // TODO: different name when no avx is detected
 
         // TODO: add a flag / some kind of option to skip loading the debug library
 
@@ -525,11 +530,19 @@ public static class NativeInterop
     {
         if (File.Exists(libraryPath))
         {
+#if DEBUG_LIBRARY_LOAD
+            GD.Print("Loading library: ", libraryPath);
+#endif
+
             var full = Path.GetFullPath(libraryPath);
 
             loaded = NativeLibrary.Load(full);
             return true;
         }
+
+#if DEBUG_LIBRARY_LOAD
+        GD.Print("Candidate library path doesn't exist: ", libraryPath);
+#endif
 
         loaded = IntPtr.Zero;
         return false;
@@ -563,6 +576,10 @@ public static class NativeInterop
                 if (LoadLibraryIfExists(testPath, out loaded))
                 {
                     FoundFolderLibraries[libraryName] = testPath;
+
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Remembering that library {libraryName} exists at path: {testPath}");
+#endif
                     return true;
                 }
             }
