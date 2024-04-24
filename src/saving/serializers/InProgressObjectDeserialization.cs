@@ -97,16 +97,15 @@ public class InProgressObjectDeserialization
             }
         }
 
-        if (reachedEnd)
-            return (null, null, null, null);
-
-        // Try to find a non-ignored property in the json data
-        // This is a while true loop here as when we start reading the next thing, we need to call Read on
-        // the reader first
-        while (true)
+        // Try to find a non-ignored property in the json data to read
+        // This is while loop here as when we start reading the next thing, we need to call Read on
+        // the reader first. The loop is ended early if reading a property forces this to construct an instance and
+        // that reads all the remaining properties recursively looking for the right constructor parameters.
+        while (!reachedEnd)
         {
             reader.Read();
 
+            // Stop reading properties if reached the end of this object
             if (reader.TokenType == JsonToken.EndObject)
                 break;
 
@@ -500,6 +499,11 @@ public class InProgressObjectDeserialization
                 if (param.HasDefaultValue)
                 {
                     constructorArgs[index++] = param.DefaultValue;
+
+                    // If the property was not found, this has now read all the object properties, meaning that
+                    // no further reads should be allowed as that would read the wrong object's properties next
+                    DisallowFurtherReading();
+
                     continue;
                 }
 
