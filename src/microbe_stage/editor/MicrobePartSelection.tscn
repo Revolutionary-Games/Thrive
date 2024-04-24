@@ -73,6 +73,7 @@ script = ExtResource("3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 theme_override_constants/separation = 1
 
@@ -131,6 +132,8 @@ theme_override_constants/line_spacing = -3
 text = "Cytoplasm"
 label_settings = ExtResource("3_ykdou")
 horizontal_alignment = 1
+autowrap_mode = 3
+max_lines_visible = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
