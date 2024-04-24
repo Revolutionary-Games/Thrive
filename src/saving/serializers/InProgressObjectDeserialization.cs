@@ -567,6 +567,14 @@ public class InProgressObjectDeserialization
 
             if (jsonName == null)
             {
+                // Default values can be provided or missing. This requires reading all fields to determine if the
+                // value is really missing or not, so this is usable but should be avoided for types with many fields.
+                if (param.HasDefaultValue)
+                {
+                    constructorArgs[index++] = param.DefaultValue;
+                    continue;
+                }
+
                 throw new JsonException($"Could not find field in JSON for constructor parameter: {param.Name}, " +
                     $"class: {objectType.Name}");
             }
