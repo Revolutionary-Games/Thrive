@@ -186,17 +186,6 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             return;
         }
 
-        // Not full anymore tutorial (end trigger for engulfment full tutorial)
-        if (engulfer.UsedEngulfingCapacity <= engulfer.EngulfingSize * 0.5f)
-        {
-            if (entity.Has<MicrobeEventCallbacks>())
-            {
-                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
-
-                callbacks.OnEngulfmentStorageNotFullAnymore?.Invoke(entity);
-            }
-        }
-
         usedTopLevelEngulfers.Add(entity);
 
         ref var control = ref entity.Get<MicrobeControl>();
@@ -254,6 +243,17 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         else
         {
             soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
+        }
+
+        // Not full anymore tutorial (end trigger for engulfment full tutorial)
+        if (engulfer.UsedEngulfingCapacity <= engulfer.EngulfingSize * 0.5f)
+        {
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                callbacks.OnEngulfmentStorageNearlyEmpty?.Invoke(entity);
+            }
         }
 
         bool hasColony = false;

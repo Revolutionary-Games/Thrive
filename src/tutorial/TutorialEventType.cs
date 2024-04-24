@@ -49,7 +49,7 @@ public enum TutorialEventType
     MicrobePlayerEngulfmentFull,
 
     /// <summary>
-    ///   Player cell engulfment storage is not at full capacity anymore
+    ///   Player cell engulfment storage is not at full capacity
     /// </summary>
     MicrobePlayerEngulfmentNotFull,
 

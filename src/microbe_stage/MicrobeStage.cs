@@ -827,7 +827,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             OnIngestedByHostile = OnPlayerEngulfedByHostile,
             OnSuccessfulEngulfment = OnPlayerIngesting,
             OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached,
-            OnEngulfmentStorageNotFullAnymore = OnPlayerEngulfmentNotFullAnymore,
+            OnEngulfmentStorageNearlyEmpty = OnPlayerEngulfmentNearlyEmpty,
             OnEjectedFromHostileEngulfer = OnPlayerEjectedFromHostileEngulfer,
 
             OnOrganelleDuplicated = OnPlayerOrganelleDuplicated,
@@ -1203,7 +1203,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerEngulfmentNotFullAnymore(Entity player)
+    private void OnPlayerEngulfmentNearlyEmpty(Entity player)
     {
         Invoke.Instance.QueueForObject(
             () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentNotFull, EventArgs.Empty, this),
