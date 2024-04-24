@@ -1614,11 +1614,34 @@ public static class Constants
         try
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var version = assembly.GetName().Version;
+            var version = assembly.GetName().Version ?? throw new Exception("Version missing from assembly");
             var versionSuffix =
                 (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
                     typeof(AssemblyInformationalVersionAttribute), false);
-            return $"{version}" + versionSuffix[0].InformationalVersion;
+
+            var versionStr = version.ToString();
+
+            string versionSuffixStr;
+
+            if (versionSuffix.Length > 0)
+            {
+                // If there is no informational version, it equals the same as the version itself, so needs to be
+                // skipped in that case
+                if (!versionSuffix[0].InformationalVersion.StartsWith(versionStr))
+                {
+                    versionSuffixStr = versionSuffix[0].InformationalVersion;
+                }
+                else
+                {
+                    versionSuffixStr = string.Empty;
+                }
+            }
+            else
+            {
+                versionSuffixStr = string.Empty;
+            }
+
+            return $"{version}" + versionSuffixStr;
         }
         catch (Exception error)
         {
