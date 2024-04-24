@@ -63,9 +63,10 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
 [node name="Screenshot" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(168, 128)
+custom_minimum_size = Vector2(170, 128)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
 texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 5
@@ -82,11 +83,11 @@ label_settings = ExtResource("5_bdxsg")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
@@ -137,6 +138,7 @@ max_lines_visible = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
@@ -192,7 +194,6 @@ text_overrun_behavior = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 alignment = 2
 
 [node name="Delete" type="TextureButton" parent="MarginContainer/HBoxContainer/HBoxContainer"]
