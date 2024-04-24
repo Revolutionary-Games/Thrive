@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-12 13:41+0300\n"
-"PO-Revision-Date: 2024-04-24 09:21+0000\n"
+"PO-Revision-Date: 2024-04-24 11:01+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -1750,7 +1750,7 @@ msgid "FEED_ITEM_MISSING_CONTENT"
 msgstr ""
 
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr "Publié à {0}"
+msgstr "Publié le {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Cet élément à été coupé car il était trop long, pour la version complète, veuillez lire l'original. {0}"
@@ -1805,7 +1805,7 @@ msgid "FLUID"
 msgstr "Fluide"
 
 msgid "FLUIDITY_RIGIDITY"
-msgstr "Fluidité / Rigidité"
+msgstr "Fluidité / rigidité"
 
 msgid "FOCUSED"
 msgstr "Persévérant"
@@ -1816,26 +1816,25 @@ msgstr ""
 "et pourront se montrer bien plus ambitieux face à des débris disputés.\n"
 "Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
 
-#, fuzzy
 msgid "FOG_OF_WAR_DISABLED"
-msgstr "Désactivé"
+msgstr "Brouillard de guerre désactivé"
 
 #, fuzzy
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr "Le fichier fossile n'a pas pu être supprimé"
 
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "Brouillard de guerre intense"
 
 #, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
 
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "Mode brouillard de guerre"
 
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "Brouillard de guerre standard"
 
 #, fuzzy
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
@@ -1866,7 +1865,7 @@ msgid "FOSSILISATION_FAILED"
 msgstr "Échec de la fossilisation"
 
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
+msgstr "Le fichier fossile n'a pas pu être écrit"
 
 msgid "FOSSILISATION_HINT"
 msgstr "Fossiliser cette espèce"
@@ -1914,7 +1913,7 @@ msgid "GALLERY_VIEWER"
 msgstr "Visionneur de la galerie"
 
 msgid "GAME_DESIGN_TEAM"
-msgstr "Équipe Conception du jeu"
+msgstr "Équipe conception du jeu"
 
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
@@ -1997,7 +1996,7 @@ msgid "HELP"
 msgstr "Aide"
 
 msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Aide"
+msgstr "Comment jouer au jeu"
 
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(des valeurs plus hautes améliorent les performances)"
@@ -2044,7 +2043,7 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
 msgid "HYDROGEN_SULFIDE"
-msgstr "Sulfure d'Hydrogène"
+msgstr "Sulfure d'hydrogène"
 
 msgid "ICESHARD"
 msgstr "Éclat de glace"
@@ -2135,7 +2134,7 @@ msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Activer le Portail d'ascension"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Activer le Portail d'ascension (Énergie manquante)"
+msgstr "Activer le Portail d'ascension (ÉNERGIE MANQUANTE)"
 
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Finir la construction"
@@ -2162,7 +2161,7 @@ msgid "INTERACTION_HARVEST"
 msgstr "Récolter"
 
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr "Récolter (Équipement manquant :{0})"
+msgstr "Récolter (ÉQUIPEMENT MANQUANT :{0})"
 
 msgid "INTERACTION_PICK_UP"
 msgstr "Prendre"
@@ -2229,7 +2228,7 @@ msgid "IRON"
 msgstr "Fer"
 
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Chimiolithoautotrophe Ferrique"
+msgstr "Chimiolithoautotrophe ferrique"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visitez notre page Itch.io"
@@ -2258,9 +2257,8 @@ msgstr "Juin"
 msgid "KEY_BACK"
 msgstr "Revenir"
 
-#, fuzzy
 msgid "KEY_BACKTAB"
-msgstr "Revenir"
+msgstr "Backtab"
 
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
@@ -2291,9 +2289,8 @@ msgstr "Favoris"
 msgid "KEY_FORWARD"
 msgstr "Avancer"
 
-#, fuzzy
 msgid "KEY_GLOBE"
-msgstr "Menu principal"
+msgstr "Touche globe"
 
 msgid "KEY_HELP"
 msgstr "Aide"
@@ -2304,20 +2301,17 @@ msgstr "Menu principal"
 msgid "KEY_HOMEPAGE"
 msgstr "Page d'accueil"
 
-#, fuzzy
 msgid "KEY_HYPER"
-msgstr "Aide"
+msgstr "Hyper"
 
 msgid "KEY_INSERT"
 msgstr "Insérer"
 
-#, fuzzy
 msgid "KEY_JIS_EISU"
-msgstr "Insérer"
+msgstr "Touche JIS Eisu"
 
-#, fuzzy
 msgid "KEY_JIS_KANA"
-msgstr "Veuillez patienter"
+msgstr "Touche JIS Kana"
 
 msgid "KEY_LEFT"
 msgstr "Gauche"
@@ -2325,9 +2319,8 @@ msgstr "Gauche"
 msgid "KEY_MENU"
 msgstr "Menu"
 
-#, fuzzy
 msgid "KEY_META"
-msgstr "Tab"
+msgstr "Méta"
 
 msgid "KEY_OPENURL"
 msgstr "Ouvre l'URL"
@@ -2336,7 +2329,7 @@ msgid "KEY_PAUSE"
 msgstr "Pause"
 
 msgid "KEY_PRINT"
-msgstr "Imprimer l'écran"
+msgstr "Impression écran"
 
 msgid "KEY_REFRESH"
 msgstr "Actualiser"
@@ -2348,10 +2341,10 @@ msgid "KEY_SEARCH"
 msgstr "Rechercher"
 
 msgid "KEY_STANDBY"
-msgstr "Veuillez patienter"
+msgstr "Veille"
 
 msgid "KEY_STOP"
-msgstr "Arrete"
+msgstr "Stop"
 
 msgid "KEY_TAB"
 msgstr "Tab"
@@ -2363,10 +2356,10 @@ msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
 msgid "KP0"
-msgstr "nombre 0"
+msgstr "Num 0"
 
 msgid "KP1"
-msgstr "nombre 1"
+msgstr "Num 1"
 
 msgid "KP2"
 msgstr "Num 2"
@@ -2393,28 +2386,28 @@ msgid "KP9"
 msgstr "Num 9"
 
 msgid "KPADD"
-msgstr "nombre +"
+msgstr "Num +"
 
 msgid "KPDIVIDE"
-msgstr "nombre /"
+msgstr "Num /"
 
 msgid "KPENTER"
 msgstr "Verr Num"
 
 msgid "KPMULTIPLY"
-msgstr "nombre *"
+msgstr "Num *"
 
 msgid "KPPERIOD"
-msgstr "nombre ."
+msgstr "Num ."
 
 msgid "KPSUBTRACT"
-msgstr "nombre -"
+msgstr "Num -"
 
 msgid "LANGUAGE"
 msgstr "Langue :"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Aidez-nous à traduire le jeu (complet à {0}%)"
+msgstr "Cette langue est complétée à {0}%"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Cette langue est encore en cours de rédaction ({0}% effectué)"
@@ -2477,10 +2470,10 @@ msgid "LAUNCHF"
 msgstr "Lancement F"
 
 msgid "LAUNCHMAIL"
-msgstr "courrier"
+msgstr "Courrier"
 
 msgid "LAUNCHMEDIA"
-msgstr "média"
+msgstr "Média"
 
 msgid "LAWK_ONLY"
 msgstr "LAWK uniquement"
@@ -2504,10 +2497,10 @@ msgid "LEAD_GAME_DESIGNERS"
 msgstr "Concepteurs de jeu principaux"
 
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr "Responsables des Relations Publiques"
+msgstr "Responsables des relations publiques"
 
 msgid "LEAD_OUTREACH_PERSON"
-msgstr "Responsable des Relations Rubliques"
+msgstr "Responsable des relations publiques"
 
 msgid "LEAD_PROGRAMMER"
 msgstr "Programmeur principal"
@@ -2637,16 +2630,16 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Chargement de l'éditeur multicellulaire basique"
 
 msgid "LOADING_GAME"
-msgstr "Chargement du Jeu"
+msgstr "Chargement du jeu"
 
 msgid "LOADING_MICROBE_EDITOR"
-msgstr "Chargement de l'Éditeur de Microbes"
+msgstr "Chargement de l'Éditeur de microbe"
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Chargement de l'Éditeur multicellulaire"
 
 msgid "LOADING_TIP"
-msgstr "Appuyez sur le bouton Revenir en Arrière dans l'éditeur pour corriger une erreur"
+msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour corriger une erreur"
 
 msgid "LOAD_FINISHED"
 msgstr "Chargement terminé"
@@ -2657,11 +2650,11 @@ msgstr "Charger une partie"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Charger les sauvegardes précédentes"
 
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"La sauvegarde sélectionnée est incompatible avec cette version de Thrive.\n"
-"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
+"La sauvegarde sélectionnée pour être chargée a été faite dans un prototype d'une version différente de Thrive.\n"
+"À cause de ça cette sauvegarde ne peut pas être chargée car les sauvegardes de prototype ne peuvent pas être mises à jour.\n"
+"Maintenir la compatibilité des sauvegardes pour les prototypes serait une lourde charge car des choses sont souvent retravaillées et écrire un système de mise à jour des sauvegardes ralentirait considérablement le développement de prototypes."
 
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Charger une sauvegarde incompatible ?"
@@ -2683,20 +2676,20 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-#, fuzzy
 msgid "LOCK_DAY_NIGHT_CYCYLE"
-msgstr "Activer le cycle jour/nuit"
+msgstr "Verrouiller le cycle jour/nuit"
 
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Considérer que les parcelles contenant jusqu'à ce nombre d'espèces ont une faible biodiversité"
 
-#, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
-msgstr "Performance"
+msgstr "Faibles performances détectées"
 
-#, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
-msgstr "Transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
+msgstr ""
+"Votre taux de rafraîchissement moyen est très bas.\n"
+"Les arrières-plans 3D du menu sont activés, cela peut utiliser une grande partie des ressources du système. Désactiver cette option peut améliorer considérablement les performances.\n"
+"Voulez-vous le faire maintenant ?"
 
 msgid "LYSOSOME"
 msgstr "Lysosome"
@@ -2765,7 +2758,7 @@ msgid "MEMBRANE_RIGIDITY"
 msgstr "Rigidité de la membrane"
 
 msgid "MEMBRANE_TYPES"
-msgstr "Types de Membranes"
+msgstr "Types de membrane"
 
 msgid "MENU"
 msgstr "Menu"
@@ -2785,26 +2778,23 @@ msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [t
 msgid "METRICS"
 msgstr "Mesures de performance"
 
-#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "Temps de traitement : {0} s\n"
 "Temps de calculs physiques : {1} s\n"
-"Entités : {2} Autres : {3}\n"
+"Entités : {2} (poids : {3})\n"
 "Apparition : {4} Désapparitions : {5}\n"
 "Nœuds utilisés : {6}\n"
 "Mémoire utilisée : {7}\n"
 "Mémoire GPU : {8}\n"
 "Objets rendus : {9}\n"
-"Appels de dessin : {10} 2D : {11}\n"
-"Sommets rendus : {12}\n"
-"Modifications de matériaux : {13}\n"
-"Modifications de shaders : {14}\n"
-"Nœuds rendus orphelins : {15}\n"
-"Latence audio : {16} ms\n"
-"Nombre total de threads : {17}\n"
+"Appels de dessin totaux : {10}\n"
+"Primitifs rendus : {11}\n"
+"Nœuds orphelins : {12}\n"
+"Latence audio : {13} ms\n"
+"Nombre total de threads : {14}\n"
 "Temps total du CPU :\n"
-"{18}"
+"{15}"
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
@@ -2996,10 +2986,10 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr "L'Osmoregulation coûte de l'[thrive:compound type=\"atp\"][/thrive:compound], ce qui signifie que plus votre cellule est grande, plus vous aurez besoin de Mitochondries, de Metabolosomes ou de Rusticyanines (ou cytoplasmes, qui réalisent la Glycolyse) pour éviter de perdre de l'[thrive:compound type=\"atp\"][/thrive:compound] quand vous êtes à l'arrêt."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Il y a plein d'Organites dans l'éditeur pour vous permettre d'évoluer, vous donnant accès à un grand panel de style de jeu."
+msgstr "Il y a plein d'organites dans l'éditeur pour vous permettre d'évoluer, vous donnant accès à un grand panel de style de jeu."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Pour l'instant, si votre population chute à zéro, votre espèce s'éteint."
+msgstr "Si votre population chute à zéro, votre espèce s'éteint."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
@@ -3014,7 +3004,7 @@ msgstr ""
 "Le [thrive:compound type=\"glucose\"][/thrive:compound] Produit de l'[thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "Le Sulfure d'Hydrogène peut être converti en glucose par les chimioplastes et les protéines chimiosynthétisantes. Le Fer peut être converti par la rusticyanine en de l'ATP."
+msgstr "Le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] peut être converti en [thrive:compound type=\"glucose\"][/thrive:compound] par les chimioplastes et les protéines chimiosynthétisantes. Le [thrive:compound type=\"iron\"][/thrive:compound] peut être converti par la rusticyanine en de l'[thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -3187,15 +3177,14 @@ msgstr "Fichier d'icône :"
 msgid "MOD_INFO_URL"
 msgstr "Lien d'information :"
 
-#, fuzzy
 msgid "MOD_INTERNAL_NAME"
-msgstr "Nom de dossier interne :"
+msgstr "Nom interne (dossier) :"
 
 msgid "MOD_LICENSE"
-msgstr "Licence :"
+msgstr "Licence du mod :"
 
 msgid "MOD_LOAD_ERRORS"
-msgstr "Erreurs liées au chargement de mods"
+msgstr "Erreurs liées au chargement de mod"
 
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Des erreurs sont apparues lors du chargement d'un ou plusieurs mods. Les logs pourraient contenir des informations supplémentaires."
@@ -3211,7 +3200,6 @@ msgstr "Remarque : de nombreux mods nécessitent un redémarrage du jeu pour êt
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Un ou plusieurs mods requièrent un redémarrage du jeu pour se charger ou se décharger correctement"
 
-#, fuzzy
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Version maximale de Thrive supportée :"
 
@@ -3222,16 +3210,16 @@ msgid "MOD_NAME"
 msgstr "Nom du mod :"
 
 msgid "MOD_PCK_NAME"
-msgstr "Fichier .pck :"
+msgstr "Fichier .pck du mod :"
 
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Version de Thrive recommandée :"
 
 msgid "MOD_TO_UPLOAD"
-msgstr "Modification à mettre en ligne :"
+msgstr "Mod à mettre en ligne :"
 
 msgid "MOD_UPLOADER"
-msgstr "Téléverseur de modifications"
+msgstr "Téléverseur de mod"
 
 msgid "MOD_VERSION"
 msgstr "Version du mod :"
