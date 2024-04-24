@@ -268,8 +268,6 @@ public static class NativeInterop
         if (!Fma.IsSupported)
             result |= CPUCheckResult.CPUCheckMissingFma;
 
-        result |= CPUCheckResult.CPUCheckMissingBmi1;
-
         // F16C cannot be checked easily, so for now assume it is present if the other instruction checks pass
 
         return result | CheckCPUFeaturesCompatibility();
