@@ -24,8 +24,6 @@ public class InProgressObjectDeserialization
 
     private readonly Func<string, bool> skipMember;
 
-    private readonly List<string> customFieldNames = new();
-
     private object? createdInstance;
     private bool instanceCreationStarted;
 
@@ -41,10 +39,6 @@ public class InProgressObjectDeserialization
     private Func<(string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)>?
         offeredConstructorParameter;
 
-    private List<(string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)?>?
-        pendingCustomFields;
-
-    private bool allowCustomFieldRead;
     private bool reachedEnd;
 
     public InProgressObjectDeserialization(Type staticType, JsonReader reader, JsonSerializer serializer,
@@ -140,19 +134,10 @@ public class InProgressObjectDeserialization
                 return (name, specialValue, null, null);
             }
 
+            // Read past the name
             reader.Read();
 
-            // Ignore properties we don't want to read (and use for something)
-            var isCustom = customFieldNames.Any(c => c.Equals(name, StringComparison.OrdinalIgnoreCase));
-            if (!IsPropertyUseful(name, out var valueType, out var field, out var property) && !isCustom)
-            {
-                GD.PrintErr("Ignoring save property at: ", reader.Path);
-
-                // Seems like reader.Skip is really hard to use so we need to deserialize some stuff here which we'll
-                // ignore then
-                serializer.Deserialize(reader);
-            }
-            else
+            if (IsPropertyUseful(name, out var valueType, out var field, out var property))
             {
                 // Because the first child property may already reference the current object, we need to make sure
                 // we deserialize it immediately here (and we don't deserialize the current property unless absolutely
@@ -179,42 +164,14 @@ public class InProgressObjectDeserialization
                 // Load this property's value
                 var readValue = (name, serializer.Deserialize(reader, valueType), field, property);
 
-                if (isCustom && !allowCustomFieldRead)
-                {
-                    // Too early to be reading a custom field
-                    pendingCustomFields ??=
-                        new List<(string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)?>();
-
-                    pendingCustomFields.Add(readValue);
-                }
-
                 return readValue;
             }
-        }
 
-        return (null, null, null, null);
-    }
+            GD.PrintErr("Ignoring save property at: ", reader.Path);
 
-    /// <summary>
-    ///   Gets an already parsed custom field. This should be the way to access custom fields as the default handling
-    ///   always reads all properties of objects.
-    /// </summary>
-    /// <param name="name">The name of the field to look for</param>
-    /// <returns>The field if found, nulls otherwise</returns>
-    public (string? Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)
-        GetCustomProperty(string name)
-    {
-        if (!allowCustomFieldRead)
-            throw new InvalidOperationException("Custom field read is not valid yet");
-
-        // Search in not consumed reads first
-        var value = pendingCustomFields?.FirstOrDefault(t =>
-            t!.Value.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-
-        if (value != null)
-        {
-            pendingCustomFields!.Remove(value);
-            return value.Value;
+            // Seems like reader.Skip is really hard to use, so we need to deserialize some stuff here which we'll
+            // ignore then
+            serializer.Deserialize(reader);
         }
 
         return (null, null, null, null);
@@ -228,22 +185,8 @@ public class InProgressObjectDeserialization
     public (string? Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo) ReadPropertiesUntil(
         string lookForName)
     {
-        (string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)? alreadyReadValue;
-
         // Search in not consumed reads first
-        if (allowCustomFieldRead && pendingCustomFields != null)
-        {
-            alreadyReadValue = pendingCustomFields.FirstOrDefault(t =>
-                t!.Value.Name.Equals(lookForName, StringComparison.OrdinalIgnoreCase));
-
-            if (alreadyReadValue != null)
-            {
-                pendingCustomFields!.Remove(alreadyReadValue);
-                return alreadyReadValue.Value;
-            }
-        }
-
-        alreadyReadValue = readButNotConsumedProperties?.FirstOrDefault(t =>
+        var alreadyReadValue = readButNotConsumedProperties?.FirstOrDefault(t =>
             t!.Value.Name.Equals(lookForName, StringComparison.OrdinalIgnoreCase));
 
         if (alreadyReadValue != null)
@@ -326,24 +269,9 @@ public class InProgressObjectDeserialization
         RunPrePropertyDeserializeActions(createdInstance);
     }
 
-    public void MarkStartCustomFields()
-    {
-        allowCustomFieldRead = true;
-    }
-
     public void DisallowFurtherReading()
     {
         reachedEnd = true;
-    }
-
-    /// <summary>
-    ///   Must be used to inform this of all custom used fields (that are written by custom serializers) otherwise
-    ///   this will just skip reading them.
-    /// </summary>
-    /// <param name="propertyName">The name of the field</param>
-    public void RegisterExtraField(string propertyName)
-    {
-        customFieldNames.Add(propertyName);
     }
 
     private bool Skip(string name)
