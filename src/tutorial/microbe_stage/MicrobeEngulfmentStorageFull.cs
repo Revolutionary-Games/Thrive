@@ -23,6 +23,16 @@ public class MicrobeEngulfmentStorageFull : TutorialPhase
 
                 break;
             }
+
+            case TutorialEventType.MicrobePlayerEngulfmentNotFull:
+            {
+                if (ShownCurrently && Time >= 15)
+                {
+                    Hide();
+                }
+
+                break;
+            }
         }
 
         return false;

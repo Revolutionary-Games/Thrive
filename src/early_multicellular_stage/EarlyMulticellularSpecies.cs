@@ -32,7 +32,7 @@ public class EarlyMulticellularSpecies : Species
     public List<CellType> CellTypes { get; private set; } = new();
 
     /// <summary>
-    ///   All organelles in all of the species' placed cells (there can be a lot of duplicates in this list)
+    ///   All organelles in all the species' placed cells (there can be a lot of duplicates in this list)
     /// </summary>
     [JsonIgnore]
     public IEnumerable<OrganelleTemplate> Organelles => Cells.SelectMany(c => c.Organelles);
