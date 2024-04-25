@@ -245,6 +245,17 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
         }
 
+        // Not full anymore tutorial (end trigger for engulfment full tutorial)
+        if (engulfer.UsedEngulfingCapacity <= engulfer.EngulfingSize * 0.5f)
+        {
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                callbacks.OnEngulfmentStorageNearlyEmpty?.Invoke(entity);
+            }
+        }
+
         bool hasColony = false;
 
         // Colony leader detects all collisions, even when not in engulf mode, as long as colony is in engulf mode
