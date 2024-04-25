@@ -237,9 +237,18 @@ public partial class ModManager : Control
         if (string.IsNullOrEmpty(mod.Info.Icon))
             return null;
 
-        var image = Image.LoadFromFile(Path.Combine(mod.Folder, mod.Info.Icon!));
+        try
+        {
+            var image = Image.LoadFromFile(Path.Combine(mod.Folder, mod.Info.Icon!));
 
-        return ImageTexture.CreateFromImage(image);
+            return ImageTexture.CreateFromImage(image);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr(
+                $"Failed to load icon for mod {mod.InternalName} (from folder: {mod.Folder}) due to exception: ", e);
+            return null;
+        }
     }
 
     /// <summary>
