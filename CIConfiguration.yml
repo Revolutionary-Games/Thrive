@@ -2,21 +2,21 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v23
+    image: thrive/godot-ci:v24
     cache:
       loadFrom:
-        - v9-{Branch}-build
-        - v9-master-build
-      writeTo: v9-{Branch}-build
+        - v10-{Branch}-build
+        - v10-master-build
+      writeTo: v10-{Branch}-build
       shared:
         .git/lfs: v6-lfs
-        .import: v10-import
-        builds: v5-builds
+        .import: v11-import
+        builds: v6-builds
         native_libs: v1-native
       system:
-        /root/.nuget: v5-nuget
+        /root/.nuget: v6-nuget
     steps:
-      # TODO: should fix this with "--headless --build-solutions --quit" for Godot 3
+      # Doesn't seem required for Godot 4
       # - run:
       #     name: Make project valid for compile
       #     command: dotnet run --project Scripts -- make-project-valid
@@ -29,21 +29,18 @@ jobs:
           name: Download native libraries
           command: dotnet run --project Scripts -- native Fetch
       - run:
-          name: SKIP BUILD FOR NOW (NOT WORKING FOR GODOT 4 YET)
-          command: "echo Build skipped. TODO: fix this for Godot 4"
-      # - run:
-      #     name: Create builds
-      #     command: dotnet run --project Scripts -- package --dehydrated
-      # - run:
-      #     name: Upload devbuilds
-      #     command: dotnet run --project Scripts -- upload
+          name: Create builds
+          command: dotnet run --project Scripts -- package --dehydrated
+      - run:
+          name: Upload devbuilds
+          command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v23
+    image: thrive/godot-ci:v24
     cache:
       loadFrom:
-        - v7-{Branch}-jetbrains
-        - v7-master-jetbrains
-      writeTo: v7-{Branch}-jetbrains
+        - v8-{Branch}-jetbrains
+        - v8-master-jetbrains
+      writeTo: v8-{Branch}-jetbrains
       shared:
         .git/lfs: v7-lfs
       system:
@@ -95,12 +92,12 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_script:
-    image: thrive/godot-ci:v23
+    image: thrive/godot-ci:v24
     cache:
       loadFrom:
-        - v7-{Branch}-format
-        - v7-master-format
-      writeTo: v7-{Branch}-format
+        - v8-{Branch}-format
+        - v8-master-format
+      writeTo: v8-{Branch}-format
       shared:
         .git/lfs: v7-lfs
       system:

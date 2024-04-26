@@ -17,9 +17,7 @@ using SharedBase.Utilities;
 
 public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
-    // TODO: disabled due to Godot bug: https://github.com/godotengine/godot/issues/89674
-    // public const string GODOT_HEADLESS_FLAG = "--headless";
-    public const string GODOT_HEADLESS_FLAG = "";
+    public const string GODOT_HEADLESS_FLAG = "--headless";
 
     private const string EXPECTED_THRIVE_PCK_FILE = "Thrive.pck";
 
