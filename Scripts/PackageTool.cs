@@ -198,7 +198,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             options.CompressRaw = false;
         }
 
-        // By default source code is included in non-Steam builds
+        // By default, source code is included in non-Steam builds
         options.SourceCode ??= !steamMode;
 
         await CreateDynamicallyGeneratedFiles(cancellationToken);
@@ -206,10 +206,13 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         // Make sure godot ignores the builds folder in terms of imports
         await EnsureGodotIgnoreFileExistsInFolder(options.OutputFolder);
 
-        if (!await CheckGodotIsAvailable(cancellationToken))
-            return false;
+        if (!options.SkipGodotCheck)
+        {
+            if (!await CheckGodotIsAvailable(cancellationToken))
+                return false;
+        }
 
-        // For CI we need to get the branch from a special variable
+        // For CI, we need to get the branch from a special variable
         var currentBranch = Environment.GetEnvironmentVariable("CI_BRANCH");
 
         if (string.IsNullOrWhiteSpace(currentBranch))
