@@ -92,8 +92,7 @@ public class GodotProjectCompiler
 
         if (result.ExitCode != 0)
         {
-            ColourConsole.WriteNormalLine(
-                "Building with Godot failed, this is probably not a critical failure");
+            ColourConsole.WriteNormalLine("Building with Godot failed, this is probably not a critical failure");
 
             printOutput = true;
         }
