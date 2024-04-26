@@ -15,7 +15,7 @@ uniform vec3 tint : source_color = vec3(0, 0.55, 0.80);
 void vertex(){
     vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
-    
+
     // Any changes to this must be matched in Membrane.gdshader
     VERTEX.x += sin(worldVertex.z * movementWigglyNess + TIME / 4.0f) / 10.f
         * wigglyNess * size;
@@ -26,7 +26,7 @@ void vertex(){
 void fragment() {
     float waves = max(0, sin(UV.y * waviness + TIME * waveSpeed));
     vec3 final = vec3(waves) * tint;
-    
+
     ALBEDO = final;
     ALPHA = waves * (1.f - UV.y) * fade;
 }
