@@ -649,7 +649,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     public override void OnValidAction()
     {
-        GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
+        // Something can be put in here
     }
 
     public void OnNoPropertiesLoaded()

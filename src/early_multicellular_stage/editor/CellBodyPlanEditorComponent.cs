@@ -699,6 +699,8 @@ public partial class CellBodyPlanEditorComponent :
         if (placementActions.Count < 1)
             return false;
 
+        GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
+
         var multiAction = new CombinedEditorAction(placementActions);
 
         return EnqueueAction(multiAction);
