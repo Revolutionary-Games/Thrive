@@ -70,11 +70,13 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
 text = "PATCH_EXTINCTION_CAPITAL"
 label_settings = ExtResource("3_xy8f2")
+horizontal_alignment = 1
 
 [node name="Message" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
 layout_mode = 2
 text = "PATCH_EXTINCTION_BOX_TEXT"
 label_settings = ExtResource("3_dudgs")
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
 layout_mode = 2

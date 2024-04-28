@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
 [ext_resource type="Script" path="res://src/microbe_stage/gui/ExtinctionBox.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://b6ygk4wqe5y68" path="res://src/gui_common/fonts/Thrive-Humongous-Red.tres" id="4_wg3u8"]
-[ext_resource type="PackedScene" path="res://src/saving/SaveList.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://ddi31qylscfyh" path="res://src/saving/SaveList.tscn" id="5"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="5_1cfe3"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
@@ -96,11 +96,13 @@ alignment = 1
 layout_mode = 2
 text = "EXTINCTION_CAPITAL"
 label_settings = ExtResource("4_wg3u8")
+horizontal_alignment = 1
 
 [node name="Message" type="Label" parent="ExtinctionBoxMenu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "EXTINCTION_BOX_TEXT"
 label_settings = ExtResource("5_1cfe3")
+horizontal_alignment = 1
 
 [node name="LoadGame" type="Button" parent="ExtinctionBoxMenu"]
 custom_minimum_size = Vector2(250, 40)
