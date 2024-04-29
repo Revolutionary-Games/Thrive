@@ -16,6 +16,14 @@ tooltip_text = "BUILD_CITY"
 disabled = true
 
 [node name="CityScreen" parent="." index="8" instance=ExtResource("3")]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 0.0
+offset_top = -175.0
+offset_right = 500.0
+offset_bottom = 175.0
+grow_vertical = 2
 
 [editable path="PausePrompt"]
