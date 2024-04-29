@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     # PR for godot4-mono 4.2.1 https://github.com/NixOS/nixpkgs/pull/285941
     # TODO: switch to master once merged
-    nixpkgs-godot.url = "github:ilikefrogs101/nixpkgs/master";
+    nixpkgs-godot.url = "github:ilikefrogs101/nixpkgs/Godot-4.2.2";
   };
 
   outputs = { self, nixpkgs, nixpkgs-godot, ... }:
