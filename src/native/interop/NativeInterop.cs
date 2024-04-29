@@ -31,6 +31,7 @@ public static class NativeInterop
     private static bool loadCalled;
     private static bool debugDrawIsPossible;
     private static bool nativeLoadSucceeded;
+    private static bool cpuIsInsufficient;
 
     private static bool printedDistributableNotice;
 
@@ -53,6 +54,12 @@ public static class NativeInterop
     /// <param name="settings">Current game settings</param>
     public static void Init(Settings settings)
     {
+        if (!nativeLoadSucceeded)
+        {
+            GD.PrintErr("Native library init should not be called as the library load failed");
+            throw new InvalidOperationException("Library must be loaded first");
+        }
+
         // Settings are passed as probably in the future something needs to be setup right in the native side of
         // things for the initial settings
         _ = settings;
@@ -93,15 +100,16 @@ public static class NativeInterop
         if (loadCalled)
             throw new InvalidOperationException("Load has been called already");
 
+        // Ensure this is not true if load fails partway through
+        nativeLoadSucceeded = false;
+
         loadCalled = true;
 
-        // ReSharper disable once CommentTypo
-        // TODO: come up with some approach for putting the native library to a sensible folder,
-        // approach trying to manually load the library doesn't work (unless we manually look up all the methods
-        // instead of using DllImportAttribute, also mono_dllmap_insert doesn't work as still the attributes load
-        // before that can be used to set. With .NET 7 it should be possible to finally cleanly fix this:
-        // https://learn.microsoft.com/en-us/dotnet/standard/native-interop/cross-platform#custom-import-resolver
-        // `NativeLibrary.Load` would probably also be a good way to do something
+        if (cpuIsInsufficient)
+        {
+            GD.PrintErr("Native library load was called even though current CPU is not capable of running it");
+            throw new InvalidOperationException("Native library is detected as incompatible");
+        }
 
         int version = NativeMethods.CheckAPIVersion();
 
@@ -148,6 +156,7 @@ public static class NativeInterop
             // If the CPU can support the full speed library all is well
             if (result == CPUCheckResult.CPUCheckSuccess)
             {
+                // Ensure AVX is on to look for the right library
                 disableAvx = false;
                 return true;
             }
@@ -167,6 +176,8 @@ public static class NativeInterop
                 disableAvx = true;
                 return true;
             }
+
+            cpuIsInsufficient = true;
 
             GD.PrintErr("Current CPU detected as not sufficient for Thrive");
 
