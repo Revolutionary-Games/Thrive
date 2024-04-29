@@ -172,6 +172,8 @@ public static class NativeInterop
 
             GD.PrintErr(GetMissingFeatureList(result));
 
+            GD.PrintErr("Current CPU: ", OS.GetProcessorName());
+
             return false;
         }
         catch (DllNotFoundException e)
