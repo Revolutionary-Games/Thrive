@@ -87,7 +87,7 @@ public class Save
 
         var (_, save, screenshot) = LoadFromFile(target, false, true, true, readFinished);
 
-        // Info is already contained in save so it doesn't need to be loaded and assigned here
+        // Info is already contained in save, so it doesn't need to be loaded and assigned here
         save!.Screenshot = screenshot;
 
         return save;

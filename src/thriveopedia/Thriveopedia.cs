@@ -36,6 +36,21 @@ public partial class Thriveopedia : ControlWithInput
     [Export]
     public NodePath HomePagePath = null!;
 
+    /// <summary>
+    ///   All Thriveopedia pages and their associated items in the page tree.
+    /// </summary>
+    private readonly Dictionary<IThriveopediaPage, TreeItem> allPages = new();
+
+    /// <summary>
+    ///   Page history for backwards navigation.
+    /// </summary>
+    private readonly Stack<IThriveopediaPage> pageHistory = new();
+
+    /// <summary>
+    ///   Page future for forwards navigation (if the player has already gone backwards).
+    /// </summary>
+    private readonly Stack<IThriveopediaPage> pageFuture = new();
+
 #pragma warning disable CA2213
     private TextureButton backButton = null!;
     private TextureButton forwardButton = null!;
@@ -63,21 +78,6 @@ public partial class Thriveopedia : ControlWithInput
     ///   The currently open Thriveopedia page.
     /// </summary>
     private IThriveopediaPage? selectedPage;
-
-    /// <summary>
-    ///   All Thriveopedia pages and their associated items in the page tree.
-    /// </summary>
-    private Dictionary<IThriveopediaPage, TreeItem> allPages = new();
-
-    /// <summary>
-    ///   Page history for backwards navigation.
-    /// </summary>
-    private Stack<IThriveopediaPage> pageHistory = new();
-
-    /// <summary>
-    ///   Page future for forwards navigation (if the player has already gone backwards).
-    /// </summary>
-    private Stack<IThriveopediaPage> pageFuture = new();
 
     /// <summary>
     ///   Flag indicating whether the Thriveopedia has created all wiki pages, since we need to generate them if not.
@@ -327,9 +327,15 @@ public partial class Thriveopedia : ControlWithInput
         {
             var scene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn");
             page = scene.Instantiate<IThriveopediaPage>();
+
+            if (page == null)
+            {
+                GD.PrintErr($"Failed to load Thriveopedia page {name} due to scene instantiate failure");
+                return;
+            }
         }
 
-        if (page.ParentPageName != null && !allPages.Keys.Any(p => p.PageName == page.ParentPageName))
+        if (page.ParentPageName != null && allPages.Keys.All(p => p.PageName != page.ParentPageName))
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
 
         page.PageNode.Connect(ThriveopediaPage.SignalName.OnSceneChanged,
