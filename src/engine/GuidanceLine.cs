@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Line helping the player by showing a direction
@@ -14,6 +15,10 @@ public partial class GuidanceLine : MeshInstance3D
     private float lineWidth = 0.3f;
 
     private bool dirty = true;
+
+    private XoShiRo128plus rng = new XoShiRo128plus();
+
+    private float yOffset = 0.0f;
 
     // Assigned as a child resource so this should be disposed automatically
 #pragma warning disable CA2213
@@ -92,6 +97,7 @@ public partial class GuidanceLine : MeshInstance3D
         var material = new StandardMaterial3D();
         material.VertexColorUseAsAlbedo = true;
         MaterialOverride = material;
+        yOffset = (float)rng.NextDouble() - 2.0f;
     }
 
     public override void _Process(double delta)
@@ -119,9 +125,11 @@ public partial class GuidanceLine : MeshInstance3D
         // swap the coords and negate one term, then normalize.
         Vector3 lineNormal = new Vector3(-lineVector[2], 0.0f, lineVector[0]).Normalized();
 
-        mesh.SurfaceAddVertex(LineEnd);
-        mesh.SurfaceAddVertex(LineStart + lineNormal * lineWidth);
-        mesh.SurfaceAddVertex(LineStart - lineNormal * lineWidth);
+        Vector3 yOffsetVector = new Vector3(0.0f, yOffset, 0.0f);
+
+        mesh.SurfaceAddVertex(LineEnd + yOffsetVector);
+        mesh.SurfaceAddVertex(LineStart + lineNormal * lineWidth + yOffsetVector);
+        mesh.SurfaceAddVertex(LineStart - lineNormal * lineWidth + yOffsetVector);
 
         mesh.SurfaceEnd();
     }
