@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://b33if5knje6v3"]
 
 [ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1"]
-[ext_resource type="Texture2D" uid="uid://cfm5diqkbrnms" path="res://assets/textures/BindingAgent_Fibers_Albedo.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://cm2afjj60gwft" path="res://assets/textures/BindingAgent_Membrane_AO.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bd5vgvok1djeh" path="res://assets/textures/BindingAgent_Fibers_Albedo.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b1bsdqlu0xeqi" path="res://assets/textures/BindingAgent_Membrane_AO.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
-[ext_resource type="ArrayMesh" uid="uid://ix7jbbq6gjnh" path="res://assets/models/organelles/BindingAgent_Membrane.mesh" id="5"]
-[ext_resource type="ArrayMesh" uid="uid://wnpe1sdd0mxq" path="res://assets/models/organelles/BindingAgent_Fibers.mesh" id="6"]
+[ext_resource type="ArrayMesh" uid="uid://csbcy5jkxa47i" path="res://assets/models/organelles/BindingAgent_Membrane.mesh" id="5"]
+[ext_resource type="ArrayMesh" uid="uid://bwv6qiv1pcujc" path="res://assets/models/organelles/BindingAgent_Fibers.mesh" id="6"]
 [ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="7"]
 
 [sub_resource type="ShaderMaterial" id="1"]
