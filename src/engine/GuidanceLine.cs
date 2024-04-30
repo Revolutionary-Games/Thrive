@@ -1,5 +1,4 @@
-using Godot;
-using System;
+﻿using Godot;
 
 /// <summary>
 ///   Line helping the player by showing a direction
@@ -102,6 +101,11 @@ public partial class GuidanceLine : MeshInstance3D
 
         dirty = false;
         mesh.ClearSurfaces();
+        
+        // If there is no line to be drawn, don't draw one
+        if (lineStart.IsEqualApprox(lineEnd))
+            return;
+        
         mesh.SurfaceBegin(Mesh.PrimitiveType.Triangles);
 
         mesh.SurfaceSetColor(colour);
@@ -110,17 +114,14 @@ public partial class GuidanceLine : MeshInstance3D
         // Be sure to flatten the Y-axis of the vector, so it's all on a 2D plane
         Vector3 lineVector = lineEnd - lineStart;
         lineVector[1] = 0.0f;
-        float lineVectorLength = (float)Math.Sqrt(lineVector[0]*lineVector[0] + lineVector[2]*lineVector[2]);
-        // To get a vector that is at a right angle to the line in 2D, simply swap the coords and negate one term, then normalize.
-        Vector3 lineNormal = new Vector3(-lineVector[2]/lineVectorLength,0.0f,lineVector[0]/lineVectorLength);
+        
+        // To get a vector that is at a right angle to the line in 2D
+        // swap the coords and negate one term, then normalize.
+        Vector3 lineNormal = new Vector3(-lineVector[2],0.0f,lineVector[0]).Normalized();
         
         mesh.SurfaceAddVertex(LineEnd);
         mesh.SurfaceAddVertex(LineStart + lineNormal * lineWidth);
         mesh.SurfaceAddVertex(LineStart - lineNormal * lineWidth);
-
-        // TODO: if we want to have line thickness, we need to generate a quad here with the wanted *width* around the
-        // points (we need to figure out the right rotation for the line at both ends for where to place those points
-        // that are slightly off from the positions)
 
         mesh.SurfaceEnd();
     }
