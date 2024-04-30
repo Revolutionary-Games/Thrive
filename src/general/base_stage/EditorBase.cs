@@ -505,13 +505,13 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
     }
 
-    public virtual void OnValidAction()
+    public virtual void OnValidAction(IEnumerable<CombinableActionData> actions)
     {
         foreach (var editorComponent in GetAllEditorComponents())
         {
             if (editorComponent.Visible)
             {
-                editorComponent.OnValidAction();
+                editorComponent.OnValidAction(actions);
                 break;
             }
         }

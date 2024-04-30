@@ -206,7 +206,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
     }
 
-    public override void OnValidAction()
+    public override void OnValidAction(IEnumerable<CombinableActionData> actions)
     {
     }
 

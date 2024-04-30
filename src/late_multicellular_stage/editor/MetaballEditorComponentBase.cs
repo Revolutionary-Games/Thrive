@@ -446,7 +446,23 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         return true;
     }
 
-    public override void OnValidAction()
+    public override void OnValidAction(IEnumerable<CombinableActionData> actions)
+    {
+        var anyPlacement = typeof(MetaballPlacementActionData<>);
+        var anyMove = typeof(MetaballMoveActionData<>);
+
+        foreach (var data in actions)
+        {
+            var type = data.GetType();
+            if (type.IsAssignableToGenericType(anyPlacement) || type.IsAssignableToGenericType(anyMove))
+            {
+                PlayMetaballPlacementSound();
+                break;
+            }
+        }
+    }
+
+    public void PlayMetaballPlacementSound()
     {
         GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
     }
@@ -551,7 +567,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         OnMoveWillSucceed();
 
         Editor.EnqueueAction(action);
-        Editor.OnValidAction();
+        Editor.OnValidAction(action.Data);
         UpdateSymmetryButton();
         return true;
     }

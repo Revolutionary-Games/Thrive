@@ -647,7 +647,23 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         return true;
     }
 
-    public override void OnValidAction()
+    public override void OnValidAction(IEnumerable<CombinableActionData> actions)
+    {
+        var anyPlacement = typeof(HexPlacementActionData<,>);
+        var anyMove = typeof(HexMoveActionData<,>);
+
+        foreach (var data in actions)
+        {
+            var type = data.GetType();
+            if (type.IsAssignableToGenericType(anyPlacement) || type.IsAssignableToGenericType(anyMove))
+            {
+                PlayHexPlacementSound();
+                break;
+            }
+        }
+    }
+
+    public void PlayHexPlacementSound()
     {
         GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
     }
@@ -742,7 +758,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         OnMoveWillSucceed();
 
         Editor.EnqueueAction(action);
-        Editor.OnValidAction();
+        Editor.OnValidAction(action.Data);
         UpdateSymmetryButton();
         return true;
     }

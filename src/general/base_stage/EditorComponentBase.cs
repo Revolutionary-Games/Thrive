@@ -150,7 +150,7 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         PlayInvalidActionSound();
     }
 
-    public virtual void OnValidAction()
+    public virtual void OnValidAction(IEnumerable<CombinableActionData> actions)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
