@@ -20,6 +20,6 @@ shader_parameter/texture = ExtResource("1")
 shader_parameter/dissolveTexture = ExtResource("4")
 
 [node name="Oxytoxy" type="MeshInstance3D"]
-transform = Transform3D(100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0)
+transform = Transform3D(-100, -8.74228e-06, -1.4243e-12, 0, -1.62921e-05, 100, -8.74228e-06, 100, 1.62921e-05, 0, 0, 0)
 material_override = SubResource("1")
 mesh = ExtResource("3")

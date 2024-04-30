@@ -49,6 +49,7 @@ shader_parameter/texture = ExtResource("6")
 shader_parameter/dissolveTexture = ExtResource("8")
 
 [node name="ThermoplastInside" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.600576)
 material_override = SubResource("4")
 mesh = ExtResource("4")
 
