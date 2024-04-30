@@ -60,7 +60,8 @@ public class TaskExecutor : IParallelRunner
         GD.Print("TaskExecutor started with parallel job count: ", ParallelTasks);
     }
 
-    public static int CPUCount => Environment.ProcessorCount;
+    // Max is used here to ensure that clamp calls that use this value cannot fail
+    public static int CPUCount => Math.Max(Environment.ProcessorCount, 1);
     public static int MinimumThreadCount => Settings.Instance.RunAutoEvoDuringGamePlay.Value ? 2 : 1;
     public static int MaximumThreadCount => CPUCount;
 

@@ -369,3 +369,39 @@
     - Updated Jolt physics engine
     - Switched translation files to no longer have source reference lines, this should reduce merge conflict amount massively, but most translation tools don't know how to look at the translation template file to find the reference line information
     - Updated translations
+
+0.6.6:
+  IntroductionText: |
+    We have upgraded Thrive to use Godot 4. This huge engine upgrade has caused a lot of problems that we have been busy fixing. Most of the problems have been fixed but there are still some minor remaining unintended changes. This release doesn't have many new features due to the time taken to convert to Godot 4 as it had a lot more breaking changes and slightly different behaviour causing new bugs than expected. This release also now requires a Vulkan capable GPU for optimal experience. Thanks to better library loading support this release no longer requires AVX support from any CPU trying to run Thrive (there is now a separate native library included that doesn't use AVX).
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.6
+  PatchNotes:
+    - Implemented fog of war for the patch map, you now need to explore the map to find all the patches that exist
+    - Updated to Godot 4.2.2 (we were previously on 3.5 so this is a massive upgrade)
+    - Updated to .NET 8 runtime and C# 12 as it turns out this can be used with Godot 4
+    - New engulf animation that creates wave lines instead of the old just flashing blue animation
+    - Oxygen now has different levels in different patches which affects the utility of certain parts a ton
+    - There's now a native library variant that doesn't require AVX, this should make Thrive playable again on some older CPUs
+    - Arabic fallback font had to be removed as it caused buggy line heights in all text in Godot 4
+    - Osmoregulation cost values are now shown in red as it is a negative property
+    - Engulfment storage full tutorial now has an end trigger once the player has digested enough things
+    - Fixed new player species name not immediately applying after exiting the editor
+    - Fixed new cell button crashing multicellular freebuild editor
+    - Fixed data cache disposed errors that only seemed to trigger in exported version of the game
+    - Fixed no changes in editor tutorial being able to prevent multicellular editor exit
+    - Memory usage metrics now works on Windows
+    - Fixed CPU check only checking AVX and not AVX 2 which was then used anyway causing a crash on CPUs that have AVX but not AVX2
+    - Switched the AVX feature check to use standard C# function, which is hopefully more accurate than the previous approach that we got reports about false negatives
+    - Tweaked wording on the fallback opengl renderer use and disabled the 3D backgrounds again for that as they still aren't fully correct
+    - Updated our colour picker customizations for Godot 4 (pick from game window seems to not work currently on Linux)
+    - Removed our custom checkbox implementation now that Godot's has all the needed features
+    - Switched from the previously used tar compression library to C# standard one which shouldn't have any save corruption issues (due to this we were stuck on an old version of the compression library)
+    - Added check to tools against omitting part of a version number this removes potential for a mistake that almost was in 0.6.5
+    - Added simple C#-code-only unit tests for a few things
+    - Converted some things to use direct references instead of NodePaths
+    - There's now a nix flake for Thrive developers
+    - Updated our documentation impacted by the upgrade to Godot 4
+    - Updated Jolt physics engine to newest version
+    - Updated YamlDotNet fro 15.1.1 to 15.1.2
+    - Updated AngleSharp from 1.1.0 to 1.1.2
+    - Updated code checking tools version
+    - Updated translations

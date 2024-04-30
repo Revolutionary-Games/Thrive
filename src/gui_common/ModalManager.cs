@@ -20,6 +20,8 @@ public partial class ModalManager : NodeWithInput
     private readonly Deque<TopLevelContainer> modalStack = new();
     private readonly Queue<TopLevelContainer> demotedModals = new();
 
+    private readonly StringName modalConnectedMeta = "ModalManagerConnected";
+
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private CanvasLayer canvasLayer = null!;
     private Control activeModalContainer = null!;
@@ -87,7 +89,14 @@ public partial class ModalManager : NodeWithInput
         modalStack.AddToFront(popup);
         modalsDirty = true;
 
-        popup.CheckAndConnect(TopLevelContainer.SignalName.Closed, Callable.From(() => OnModalLost(popup)),
+        // Connect closed signal only when not already done so
+        if (popup.HasMeta(modalConnectedMeta))
+            return;
+
+        popup.SetMeta(modalConnectedMeta, Variant.From(true));
+
+        // PROBLEM:
+        popup.Connect(TopLevelContainer.SignalName.Closed, Callable.From(() => OnModalLost(popup)),
             (uint)ConnectFlags.OneShot);
     }
 
@@ -132,6 +141,16 @@ public partial class ModalManager : NodeWithInput
             return modal;
 
         return null;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            modalConnectedMeta.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateModals()
@@ -228,6 +247,9 @@ public partial class ModalManager : NodeWithInput
     /// </summary>
     private void OnModalLost(TopLevelContainer popup)
     {
+        // Remove meta signal connection info as this should only be triggered through the signal
+        popup.RemoveMeta(modalConnectedMeta);
+
         if (!modalStack.Contains(popup))
             return;
 

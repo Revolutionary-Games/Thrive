@@ -28,8 +28,8 @@ public class CellLayout<T> : HexLayout<T>
     }
 
     [JsonConstructor]
-    public CellLayout(List<T> existingHexes, Action<T>? onAdded, Action<T>? onRemoved) : base(existingHexes, onAdded,
-        onRemoved)
+    public CellLayout(List<T> existingHexes, Action<T>? onAdded = null, Action<T>? onRemoved = null) : base(
+        existingHexes, onAdded, onRemoved)
     {
     }
 

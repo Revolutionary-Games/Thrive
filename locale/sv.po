@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-12 13:41+0300\n"
-"PO-Revision-Date: 2022-10-03 11:25+0000\n"
-"Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
+"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"PO-Revision-Date: 2024-04-21 10:59+0000\n"
+"Last-Translator: swedneck <github@swedneck.xyz>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -183,7 +183,7 @@ msgid "APPLY"
 msgstr "Tillämpa"
 
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Tillämpa ändringar"
 
 msgid "APRIL"
 msgstr "April"
@@ -224,6 +224,8 @@ msgstr "Anta att CPUn har hyperthreading aktiverad"
 
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Det går inte att automatiskt upptäcka om flertrådning är på eller inte.\n"
+"Detta påverkar standardantalet trådar eftersom flertrådnings-trådar inte är lika snabba som CPU-trådar."
 
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosfäriska Gaser"
@@ -241,7 +243,7 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUKTION FÖR LÅG!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr ""
+msgstr "Det gick inte att spara denna sparfilen. Namnet på sparfilen kan vara för långt, eller så kanske du inte har tillträde för att skriva i mappen."
 
 msgid "AT_CURSOR"
 msgstr "Vid Muspekare:"
@@ -306,13 +308,13 @@ msgid "AUTO_RESOLUTION"
 msgstr "Upplösning:"
 
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Tillgängliga Konstruktionsprojekt"
 
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "Tillgängliga Mod"
 
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "Uppvaknandestadiet"
 
 #, fuzzy
 msgid "AWARE_STAGE"
@@ -335,7 +337,7 @@ msgid "BASE_MOVEMENT"
 msgstr "Grundrörelse"
 
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Grundläggande"
 
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
@@ -345,10 +347,10 @@ msgid "BATHYPELAGIC"
 msgstr "Bathypelagisk"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Bli Makroskopisk ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Bli Flercellig ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
 msgstr "Börja Trivas"
@@ -380,20 +382,20 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m under havsnivån"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Riktvärden"
 
 #, fuzzy
 msgid "BENCHMARK_FINISHED"
 msgstr "Färdigladdat"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Riktvärdesfas:"
 
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Resultat:"
 
 msgid "BEST_PATCH_COLON"
-msgstr ""
+msgstr "Bästa Biom:"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Stor järnbit"
@@ -413,7 +415,7 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Binder samman axlar"
 
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr "Sannolikhet i varje område med få arter (låg biodiversitet) att skapa en ny art"
@@ -434,7 +436,7 @@ msgid "BIOME_LABEL"
 msgstr "Omgivning: {0}"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Nervcell"
 
 msgid "BRAVE"
 msgstr "Modig"
@@ -443,7 +445,7 @@ msgid "BROWSE"
 msgstr "Bläddra"
 
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "Bläddra genom Workshop"
 
 #, fuzzy
 msgid "BUILD_CITY"
@@ -467,7 +469,7 @@ msgid "CALCIUM_CARBONATE"
 msgstr "Kalciumkarbonat"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Detta membran har ett starkt skal gjort av kalciumkarbonat. Det kan lätt motstå skada och kräver mindre energi för att hålla sin form. Nackdelarna av ett sådant tungt skal är att cellen blir mycket långsammare och tar längre tid att ta upp resurser."
 
 msgid "CAMERA"
 msgstr "Kamera"
@@ -488,23 +490,23 @@ msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Kan inte radera använd celltyp"
 
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "Kan inte uppsluka"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Kan inte flytta en metaboll in i dess ättlingsträd"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "Mängden hjärnkraft är nu för låg för att stanna i det nuvarande stadiet. Det är för nuvarande inte tillåtet att gå tillbaka till föregående stadier, var god öka hjärnkraften för att fortsätta."
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "Kan Inte Minska Hjärnkraft För Att Gå Tillbaka Till Föregående Stadier"
 
 #, fuzzy
 msgid "CANNOT_WRITE_SAVE"
 msgstr "Skapa Ny Sparfil"
 
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "Kan inte ladda modinfo för {0}"
 
 msgid "CAPSLOCK"
 msgstr "Capslock"
@@ -513,22 +515,22 @@ msgid "CARBON_DIOXIDE"
 msgstr "Koldioxid"
 
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "ett överflöd"
 
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "ganska mycket"
 
 msgid "CATEGORY_LITTLE"
-msgstr ""
+msgstr "lite"
 
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr ""
+msgstr "rätt mycket"
 
 msgid "CATEGORY_SOME"
-msgstr ""
+msgstr "en del"
 
 msgid "CATEGORY_VERY_LITTLE"
-msgstr ""
+msgstr "väldigt lite"
 
 msgid "CAUTIOUS"
 msgstr "Försiktig"
@@ -551,7 +553,7 @@ msgid "CELLULOSE"
 msgstr "Cellulosa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Detta membran har en vägg, vilket leder till bättre skydd mot allmän skada och särskilt mot fysisk skada. Den kostar också mindre energi för att bibehålla sin form, men kan inte ta upp resurser lika snabbt och är trögare. [b]Cellulas kan smälta denna vägg[/b] vilket gör den sårbar mot uppslukning av rovdjur."
 
 msgid "CELL_TYPE_NAME"
 msgstr ""

@@ -2,6 +2,7 @@
 using System.Linq;
 using Godot;
 using Godot.Collections;
+using LauncherThriveShared;
 using Xoshiro.PRNG32;
 
 /// <summary>
@@ -944,7 +945,11 @@ public partial class MainMenu : NodeWithInput
         GD.Print("Exit to launcher pressed");
 
         // Output a special message which the launcher should detect
-        GD.Print(Constants.REQUEST_LAUNCHER_OPEN);
+        GD.Print(ThriveLauncherSharedConstants.REQUEST_LAUNCHER_OPEN);
+
+        // To make sure this always works even with buffering, output this as an error
+        GD.PrintErr("Printing request as \"error\" to ensure it isn't buffered:");
+        GD.PrintErr(ThriveLauncherSharedConstants.REQUEST_LAUNCHER_OPEN);
 
         // Probably unnecessary, but we exit with a delay here
         Invoke.Instance.Queue(QuitPressed);

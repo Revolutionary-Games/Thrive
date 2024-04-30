@@ -32,9 +32,9 @@ public class ThriveJsonConverter : IDisposable
     {
         this.context = context;
 
-        // All of the thrive serializers need to be registered here
-        thriveConverters = new JsonConverter[]
-        {
+        // All the thrive serializers need to be registered here
+        thriveConverters =
+        [
             new RegistryTypeConverter(context),
             new GodotColorConverter(),
             new GodotBasisConverter(),
@@ -63,7 +63,7 @@ public class ThriveJsonConverter : IDisposable
 
             // Converter for all types with a specific few attributes for this to be enabled
             new DefaultThriveJSONConverter(context),
-        };
+        ];
 
         dynamicObjectDeserializeConverter = new DynamicDeserializeObjectConverter(context);
         thriveConvertersDynamicDeserialize = new List<JsonConverter> { dynamicObjectDeserializeConverter };
@@ -410,7 +410,7 @@ public abstract class BaseThriveConverter : JsonConverter
     ///   Creates a deserialized object by loading a Godot scene and instantiating it
     /// </summary>
     /// <returns>Instance of the scene loaded object</returns>
-    /// <exception cref="JsonException">If couldn't create a new instance</exception>
+    /// <exception cref="JsonException">If this couldn't create a new instance</exception>
     public static object CreateDeserializedFromScene(Type objectType, InProgressObjectDeserialization objectLoad)
     {
         var attrs = objectType.GetCustomAttributes(typeof(SceneLoadedClassAttribute), true);
@@ -423,6 +423,12 @@ public abstract class BaseThriveConverter : JsonConverter
             throw new JsonException($"Couldn't load scene ({data.ScenePath}) for scene loaded type");
 
         var node = scene.Instantiate();
+
+        if (node == null)
+        {
+            throw new JsonException("Please try restarting the game, encountered Godot scene instantiation error! " +
+                $"This should only happen due to engine bugs, failed scene: {data.ScenePath}");
+        }
 
         // Ensure that instance ended up being a good type
         if (!objectType.IsInstanceOfType(node))
@@ -481,13 +487,16 @@ public abstract class BaseThriveConverter : JsonConverter
             return null;
 
         if (reader.TokenType != JsonToken.StartObject)
-            throw new InvalidOperationException("unexpected JSON token when expecting object start");
+        {
+            throw new InvalidOperationException(
+                $"unexpected JSON token ({reader.TokenType}) when expecting object start");
+        }
 
         if (serializer.ReferenceResolver == null)
             throw new InvalidOperationException("JsonSerializer must have reference resolver");
 
+        // TODO: caching the object deserialization object would be a pretty good memory allocation reduction
         var objectLoad = new InProgressObjectDeserialization(objectType, reader, serializer, SkipMember);
-        OnConfigureObjectLoad(objectLoad);
 
         bool readToEnd = false;
         string? refId = null;
@@ -618,13 +627,9 @@ public abstract class BaseThriveConverter : JsonConverter
 
         var instanceAtEnd = objectLoad.GetInstance();
 
-        objectLoad.MarkStartCustomFields();
-
-        // Protects against bugs in the custom field reading. Custom fields should be accessed in a different way
-        // anyway
+        // Protects against bugs in trying to still read the object incorrectly. Not super necessary with the custom
+        // fields code removed, but can probably be left to guard against deserialization bugs.
         objectLoad.DisallowFurtherReading();
-
-        ReadCustomExtraFields(objectLoad, instanceAtEnd, objectType, existingValue, serializer);
 
         if (reader.TokenType != JsonToken.EndObject)
             throw new JsonException("should have ended at object end token in JSON");
@@ -809,8 +814,6 @@ public abstract class BaseThriveConverter : JsonConverter
                 delayWriteProperties.Clear();
                 DelayWriteProperties.Enqueue(delayWriteProperties);
             }
-
-            WriteCustomExtraFields(writer, value, serializer);
         }
 
         writer.WriteEndObject();
@@ -825,15 +828,6 @@ public abstract class BaseThriveConverter : JsonConverter
     protected virtual bool WriteCustomJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
         return false;
-    }
-
-    /// <summary>
-    ///   Configures a started object load. Note for it to read custom properties for
-    ///   <see cref="ReadCustomExtraFields"/> they need to be setup here
-    /// </summary>
-    /// <param name="objectLoad">The started object load</param>
-    protected virtual void OnConfigureObjectLoad(InProgressObjectDeserialization objectLoad)
-    {
     }
 
     /// <summary>
@@ -860,27 +854,9 @@ public abstract class BaseThriveConverter : JsonConverter
         serializer.Serialize(writer, memberValue, memberType);
     }
 
-    /// <summary>
-    ///   Note that if the static type of the deserializer doesn't use custom fields, this cannot be read properly.
-    ///   As such using this is not recommended currently.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Further explanation: https://github.com/Revolutionary-Games/Thrive/issues/3721
-    ///   </para>
-    /// </remarks>
-    protected virtual void WriteCustomExtraFields(JsonWriter writer, object value, JsonSerializer serializer)
-    {
-    }
-
-    protected virtual void ReadCustomExtraFields(InProgressObjectDeserialization objectLoad, object instance,
-        Type type, object? o, JsonSerializer jsonSerializer)
-    {
-    }
-
     protected virtual bool SkipMember(string name)
     {
-        // By default IsLoadedFromSave is ignored as properties by default don't inherit attributes so this makes
+        // By default, IsLoadedFromSave is ignored as properties by default don't inherit attributes so this makes
         // things a bit easier when adding new types
         if (SaveApplyHelper.IsNameLoadedFromSaveName(name))
             return true;
@@ -1095,7 +1071,7 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
 
     public override bool CanConvert(Type objectType)
     {
-        // Types with out custom attribute are supported
+        // Types with our custom attribute are supported
         if (objectType.CustomAttributes.Any(a =>
                 a.AttributeType == UseSerializerAttribute || a.AttributeType == SceneLoadedAttribute))
         {

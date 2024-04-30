@@ -1,4 +1,6 @@
-﻿using System;
+﻿// #define DEBUG_LIBRARY_LOAD
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -29,6 +31,7 @@ public static class NativeInterop
     private static bool loadCalled;
     private static bool debugDrawIsPossible;
     private static bool nativeLoadSucceeded;
+    private static bool cpuIsInsufficient;
 
     private static bool printedDistributableNotice;
 
@@ -51,6 +54,12 @@ public static class NativeInterop
     /// <param name="settings">Current game settings</param>
     public static void Init(Settings settings)
     {
+        if (!nativeLoadSucceeded)
+        {
+            GD.PrintErr("Native library init should not be called as the library load failed");
+            throw new InvalidOperationException("Library must be loaded first");
+        }
+
         // Settings are passed as probably in the future something needs to be setup right in the native side of
         // things for the initial settings
         _ = settings;
@@ -91,15 +100,16 @@ public static class NativeInterop
         if (loadCalled)
             throw new InvalidOperationException("Load has been called already");
 
+        // Ensure this is not true if load fails partway through
+        nativeLoadSucceeded = false;
+
         loadCalled = true;
 
-        // ReSharper disable once CommentTypo
-        // TODO: come up with some approach for putting the native library to a sensible folder,
-        // approach trying to manually load the library doesn't work (unless we manually look up all the methods
-        // instead of using DllImportAttribute, also mono_dllmap_insert doesn't work as still the attributes load
-        // before that can be used to set. With .NET 7 it should be possible to finally cleanly fix this:
-        // https://learn.microsoft.com/en-us/dotnet/standard/native-interop/cross-platform#custom-import-resolver
-        // `NativeLibrary.Load` would probably also be a good way to do something
+        if (cpuIsInsufficient)
+        {
+            GD.PrintErr("Native library load was called even though current CPU is not capable of running it");
+            throw new InvalidOperationException("Native library is detected as incompatible");
+        }
 
         int version = NativeMethods.CheckAPIVersion();
 
@@ -143,9 +153,10 @@ public static class NativeInterop
         {
             var result = CheckCPUFeaturesFull();
 
-            // If can support the full speed library all is well
+            // If the CPU can support the full speed library all is well
             if (result == CPUCheckResult.CPUCheckSuccess)
             {
+                // Ensure AVX is on to look for the right library
                 disableAvx = false;
                 return true;
             }
@@ -166,9 +177,13 @@ public static class NativeInterop
                 return true;
             }
 
+            cpuIsInsufficient = true;
+
             GD.PrintErr("Current CPU detected as not sufficient for Thrive");
 
             GD.PrintErr(GetMissingFeatureList(result));
+
+            GD.PrintErr("Current CPU: ", OS.GetProcessorName());
 
             return false;
         }
@@ -256,6 +271,18 @@ public static class NativeInterop
         if (!Avx.IsSupported)
             result |= CPUCheckResult.CPUCheckMissingAvx;
 
+        if (!Lzcnt.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingLzcnt;
+
+        // For TZCNT instruction
+        if (!Bmi1.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingBmi1;
+
+        if (!Fma.IsSupported)
+            result |= CPUCheckResult.CPUCheckMissingFma;
+
+        // F16C cannot be checked easily, so for now assume it is present if the other instruction checks pass
+
         return result | CheckCPUFeaturesCompatibility();
     }
 
@@ -275,6 +302,8 @@ public static class NativeInterop
     private static string GetMissingFeatureList(CPUCheckResult result)
     {
         var builder = new StringBuilder();
+
+        // ReSharper disable StringLiteralTypo
 
         if ((result & CPUCheckResult.CPUCheckMissingAvx) != 0)
         {
@@ -303,6 +332,37 @@ public static class NativeInterop
                 builder.Append('\n');
             builder.Append("CPU is missing SSE 4.2 support");
         }
+
+        if ((result & CPUCheckResult.CPUCheckMissingLzcnt) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing LZCNT support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingBmi1) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing BMI 1 (TZCNT) support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingFma) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+
+            builder.Append("CPU is missing FMA support");
+        }
+
+        if ((result & CPUCheckResult.CPUCheckMissingF16C) != 0)
+        {
+            if (builder.Length > 0)
+                builder.Append('\n');
+            builder.Append("CPU is missing F16C support");
+        }
+
+        // ReSharper restore StringLiteralTypo
 
         if (builder.Length < 1)
             builder.Append("Unknown problem with CPU check");
@@ -385,6 +445,9 @@ public static class NativeInterop
         // ReSharper disable once InlineOutVariableDeclaration
         IntPtr loaded;
 
+        // TODO: caching once loaded? This method is called again for each native method that is used so this gets
+        // called some extra 50 or so times.
+
         if (libraryName == "steam_api")
         {
             var steamName = "libsteam_api.so";
@@ -422,8 +485,6 @@ public static class NativeInterop
         }
 
         var currentPlatform = PlatformUtilities.GetCurrentPlatform();
-
-        // TODO: different name when no avx is detected
 
         // TODO: add a flag / some kind of option to skip loading the debug library
 
@@ -480,11 +541,19 @@ public static class NativeInterop
     {
         if (File.Exists(libraryPath))
         {
+#if DEBUG_LIBRARY_LOAD
+            GD.Print("Loading library: ", libraryPath);
+#endif
+
             var full = Path.GetFullPath(libraryPath);
 
             loaded = NativeLibrary.Load(full);
             return true;
         }
+
+#if DEBUG_LIBRARY_LOAD
+        GD.Print("Candidate library path doesn't exist: ", libraryPath);
+#endif
 
         loaded = IntPtr.Zero;
         return false;
@@ -518,6 +587,10 @@ public static class NativeInterop
                 if (LoadLibraryIfExists(testPath, out loaded))
                 {
                     FoundFolderLibraries[libraryName] = testPath;
+
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Remembering that library {libraryName} exists at path: {testPath}");
+#endif
                     return true;
                 }
             }

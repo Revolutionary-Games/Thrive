@@ -10,7 +10,7 @@
     <Nullable>enable</Nullable>
     <Company>Revolutionary Games Studio</Company>
     <Version>0.6.6.0</Version>
-    <InformationalVersion>-rc1</InformationalVersion>
+    <!--<InformationalVersion>-alpha</InformationalVersion>-->
   </PropertyGroup>
   <!-- Ignore the subproject source files -->
   <PropertyGroup>
@@ -78,6 +78,7 @@
     <Content Include="simulation_parameters\space_stage\space_structures.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj" />
     <ProjectReference Include="RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
     <ProjectReference Include="third_party\ThirdParty.csproj" />
   </ItemGroup>

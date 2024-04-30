@@ -1,4 +1,4 @@
-FROM fedora:39
+FROM fedora:40
 
 RUN dnf install -y --setopt=deltarpm=false git git-lfs unzip wget dotnet-sdk-8.0 \
     gettext p7zip fontconfig && dnf clean all

@@ -134,6 +134,7 @@ material = ExtResource("3")
 layout_mode = 2
 text = "MUTATION_POINTS"
 label_settings = ExtResource("4_6f2eg")
+vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MPBarMain/HBoxContainer"]
 layout_mode = 2
@@ -150,11 +151,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "100"
 label_settings = ExtResource("4_6f2eg")
+vertical_alignment = 1
 
 [node name="MpArrow" type="TextureRect" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
 visible = false
 material = ExtResource("3")
-custom_minimum_size = Vector2(15, 20)
+custom_minimum_size = Vector2(18, 20)
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("4")
@@ -169,6 +171,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "100)"
 label_settings = ExtResource("4_6f2eg")
+vertical_alignment = 1
 
 [node name="BaseMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
 editor_description = "PLACEHOLDER"
@@ -177,6 +180,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "/ 100"
 label_settings = ExtResource("4_6f2eg")
+vertical_alignment = 1
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="MarginContainer/MPBarMain"]
 libraries = {

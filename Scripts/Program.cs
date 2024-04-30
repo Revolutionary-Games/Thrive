@@ -278,19 +278,15 @@ public class Program
         return tool.Run(tokenSource.Token).Result;
     }
 
-    // TODO: check if this should be removed
     private static int RunProjectValidMaker(GodotProjectValidMakerOptions options)
     {
-        ColourConsole.WriteWarningLine("This tool is deprecated and likely won't do anything sensible with " +
-            "Godot 4 version of Thrive");
-
         CommandLineHelpers.HandleDefaultOptions(options);
 
-        ColourConsole.WriteInfoLine("Attempting to make Thrive Godot project valid for C# compile...");
+        ColourConsole.WriteInfoLine("Attempting to compile C# Thrive code with Godot");
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        var tool = new GodotProjectValidMaker(options);
+        var tool = new GodotProjectCompiler(options);
 
         return tool.Run(tokenSource.Token).Result;
     }
@@ -433,6 +429,10 @@ public class Program
         [Option("fallback-native-local-only", Default = false,
             HelpText = "Fallback to using native library only meant for local play (not recommended for release)")]
         public bool FallbackToLocalNative { get; set; }
+
+        [Option("skip-godot-check", Default = false,
+            HelpText = "Skip checking if godot is installed and correct version and just try to use it")]
+        public bool SkipGodotCheck { get; set; }
 
         public override bool Compress => CompressRaw == true;
     }
