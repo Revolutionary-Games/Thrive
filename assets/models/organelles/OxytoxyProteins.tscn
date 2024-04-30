@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://d18jaljhot4pk"]
 
-[ext_resource type="Texture2D" uid="uid://d35w5tdi3k1xf" path="res://assets/textures/oxytoxy_fluid.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bkjyhufi28f0k" path="res://assets/textures/oxytoxy_fluid.png" id="1"]
 [ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2"]
-[ext_resource type="ArrayMesh" uid="uid://bj5d562k8regp" path="res://assets/models/organelles/OxytoxyProteins.mesh" id="3"]
+[ext_resource type="ArrayMesh" uid="uid://c6igx28iw6tgu" path="res://assets/models/organelles/OxytoxyProteins.mesh" id="3"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
 
 [sub_resource type="ShaderMaterial" id="1"]
@@ -20,6 +20,6 @@ shader_parameter/texture = ExtResource("1")
 shader_parameter/dissolveTexture = ExtResource("4")
 
 [node name="OxytoxyProteins" type="MeshInstance3D"]
-transform = Transform3D(0.0147721, 0.00260472, -4.24363e-10, 0, -2.44381e-09, -0.015, -0.00260472, 0.0147721, -2.40668e-09, 0, 0, 0)
+transform = Transform3D(0.837087, 0.147601, -6.45184e-09, 0, -3.71547e-08, -0.85, -0.147601, 0.837087, -3.65902e-08, 0, -0.00876844, 0)
 material_override = SubResource("1")
 mesh = ExtResource("3")

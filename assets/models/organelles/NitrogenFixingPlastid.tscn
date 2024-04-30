@@ -1,25 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://r4cl1p3d7v0h"]
+[gd_scene load_steps=5 format=3 uid="uid://r4cl1p3d7v0h"]
 
 [ext_resource type="Texture2D" uid="uid://fmbtsynt7ytt" path="res://assets/textures/nitrogenplastid.png" id="1"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2"]
+[ext_resource type="Shader" path="res://shaders/OrganelleOpaque.gdshader" id="1_r8mr7"]
 [ext_resource type="ArrayMesh" uid="uid://c08tqg3xmy7vd" path="res://assets/models/organelles/NitrogenFixingPlastid.mesh" id="3"]
-[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
 
-[sub_resource type="ShaderMaterial" id="1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y2qmm"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("2")
-shader_parameter/dissolveValue = 0.0
-shader_parameter/fresnelValue = 1.0
-shader_parameter/fresnelActive = false
-shader_parameter/outlineWidth = 0.05
-shader_parameter/growColor = Color(0.278431, 0.278431, 0.219608, 1)
+shader = ExtResource("1_r8mr7")
+shader_parameter/dissolveValue = null
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = null
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 shader_parameter/texture = ExtResource("1")
-shader_parameter/dissolveTexture = ExtResource("4")
 
 [node name="NitrogenFixingPlastid" type="MeshInstance3D"]
-transform = Transform3D(100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0)
-material_override = SubResource("1")
+transform = Transform3D(-4.28372e-08, -0.98, -4.28372e-08, 0, -4.28372e-08, 0.98, -0.98, 4.28372e-08, 1.87247e-15, 0.0756305, 0.047524, -0.82487)
+material_override = SubResource("ShaderMaterial_y2qmm")
 mesh = ExtResource("3")

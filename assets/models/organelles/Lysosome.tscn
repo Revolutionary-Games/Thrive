@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://c0bkckjg8jqfa"]
 
-[ext_resource type="ArrayMesh" uid="uid://dpigtne4r5bvi" path="res://assets/models/organelles/LysosomeMembrane.mesh" id="1"]
-[ext_resource type="ArrayMesh" uid="uid://t304m2estesa" path="res://assets/models/organelles/LysosomeInsides.mesh" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://cp08xjfi57ro0" path="res://assets/models/organelles/LysosomeMembrane.mesh" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://dpblhm1tnxgdq" path="res://assets/models/organelles/LysosomeInsides.mesh" id="2"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3"]
 [ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="4"]
 [ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="5"]
-[ext_resource type="Texture2D" uid="uid://b8abovvhln8w5" path="res://assets/textures/LysosomeInsidesAlbedoAlpha.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://cu1mowuf8uf83" path="res://assets/textures/LysosomeMembraneAlbedoAlpha.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://gfb00hdujqwp" path="res://assets/textures/LysosomeInsidesAlbedoAlpha.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b2ubwy0cl2cyh" path="res://assets/textures/LysosomeMembraneAlbedoAlpha.png" id="7"]
 
 [sub_resource type="ShaderMaterial" id="3"]
 resource_local_to_scene = true
