@@ -16,9 +16,9 @@ public partial class GuidanceLine : MeshInstance3D
 
     private bool dirty = true;
 
-    private XoShiRo128plus rng = new();
+    private XoShiRo128plus random = new();
 
-    private float yOffset = 0.0f;
+    private float yOffset;
 
     // Assigned as a child resource so this should be disposed automatically
 #pragma warning disable CA2213
@@ -97,7 +97,7 @@ public partial class GuidanceLine : MeshInstance3D
         var material = new StandardMaterial3D();
         material.VertexColorUseAsAlbedo = true;
         MaterialOverride = material;
-        yOffset = (float)rng.NextDouble() - 2.0f;
+        yOffset = random.NextFloat() - 2.0f;
     }
 
     public override void _Process(double delta)
