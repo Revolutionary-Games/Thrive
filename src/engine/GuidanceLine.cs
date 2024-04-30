@@ -16,7 +16,7 @@ public partial class GuidanceLine : MeshInstance3D
 
     private bool dirty = true;
 
-    private XoShiRo128plus rng = new XoShiRo128plus();
+    private XoShiRo128plus rng = new();
 
     private float yOffset = 0.0f;
 
