@@ -160,7 +160,7 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     {
     }
 
-    public override void OnValidAction()
+    public override void OnValidAction(IEnumerable<CombinableActionData> actions)
     {
     }
 
