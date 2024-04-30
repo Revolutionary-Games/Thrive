@@ -531,7 +531,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         winExtinctBoxHolder.Show();
 
-        extinctionBox = ExtinctionBoxScene.Instantiate<CustomWindow>();
+        extinctionBox = ExtinctionBoxScene.Instantiate<ExtinctionBox>();
         winExtinctBoxHolder.AddChild(extinctionBox);
         extinctionBox.Show();
     }
