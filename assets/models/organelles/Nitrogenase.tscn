@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b6212g7hgkstf"]
 
 [ext_resource type="Texture2D" uid="uid://bhd4nd8qxeavc" path="res://assets/textures/nitrogenase.png" id="1"]
-[ext_resource type="ArrayMesh" uid="uid://hq80s8o78pwj" path="res://assets/models/organelles/Nitrogenase.mesh" id="2"]
 [ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="3"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
+[ext_resource type="ArrayMesh" uid="uid://hq80s8o78pwj" path="res://assets/models/organelles/Nitrogenase.mesh" id="4_1yypa"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
@@ -22,4 +22,4 @@ shader_parameter/dissolveTexture = ExtResource("4")
 [node name="Nitrogenase" type="MeshInstance3D"]
 transform = Transform3D(100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0)
 material_override = SubResource("1")
-mesh = ExtResource("2")
+mesh = ExtResource("4_1yypa")
