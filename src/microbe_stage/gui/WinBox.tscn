@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://bh5jgkxx1boyf" path="res://src/gui_common/fonts/Thrive-Humongous.tres" id="3_j7klg"]
 
 [sub_resource type="StyleBoxFlat" id="3"]
-bg_color = Color(0, 0, 0, 0.196078)
+bg_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="Animation" id="2"]
 resource_name = "FadeIn"
@@ -29,10 +29,6 @@ _data = {
 }
 
 [node name="WinBox" instance=ExtResource("3")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_right = 0.0
 offset_bottom = 0.0
 mouse_filter = 2
@@ -68,14 +64,20 @@ mouse_filter = 2
 alignment = 1
 
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "WIN_BOX_TITLE"
 label_settings = ExtResource("3_j7klg")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Message" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "WIN_TEXT"
 label_settings = ExtResource("3_bvn5i")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {

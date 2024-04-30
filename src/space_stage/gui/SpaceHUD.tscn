@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://i8evqpkyb68h"]
 
 [ext_resource type="PackedScene" uid="uid://bs5shdurovke8" path="res://src/society_stage/gui/SocietyHUD.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://src/space_stage/gui/PlanetScreen.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://c8k5d0maeisv" path="res://src/space_stage/gui/PlanetScreen.tscn" id="2"]
 [ext_resource type="Script" path="res://src/space_stage/gui/SpaceHUD.cs" id="3"]
-[ext_resource type="PackedScene" path="res://src/space_stage/gui/SpaceFleetInfoPopup.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bfhdxoesc44hj" path="res://src/space_stage/gui/SpaceFleetInfoPopup.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://src/space_stage/gui/SpaceConstructionPopup.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://src/space_stage/gui/SpaceStructureInfoPopup.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://cdngxfctlsoox" path="res://src/space_stage/gui/SpaceStructureInfoPopup.tscn" id="7"]
 
 [node name="SpaceHUD" instance=ExtResource("1")]
 script = ExtResource("3")
@@ -26,14 +26,49 @@ visible = false
 visible = false
 disabled = true
 
-[node name="PlanetScreen" parent="." index="9" instance=ExtResource("2")]
+[node name="ResearchScreen" parent="." index="5"]
+layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 239.0
+offset_top = 93.0
+offset_right = 1039.0
+offset_bottom = 593.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="PlanetScreen" parent="." index="9" instance=ExtResource("2")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 0.0
+offset_top = -175.0
+offset_right = 500.0
+offset_bottom = 175.0
+grow_vertical = 2
 
 [node name="SpaceStructureInfoPopup" parent="." index="10" instance=ExtResource("7")]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -34.5
+offset_bottom = 34.5
+grow_vertical = 2
 
 [node name="SpaceFleetInfoPopup" parent="." index="11" instance=ExtResource("4")]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 6
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -34.5
+offset_right = 0.0
+offset_bottom = 34.5
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="SpaceConstructionPopup" parent="." index="12" instance=ExtResource("6")]
 anchors_preset = 0

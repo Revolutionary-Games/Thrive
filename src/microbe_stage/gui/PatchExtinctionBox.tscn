@@ -10,7 +10,7 @@
 [ext_resource type="Shader" path="res://shaders/Monochrome.gdshader" id="9"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
-bg_color = Color(0, 0, 0, 0.196078)
+bg_color = Color(0, 0, 0, 0.313726)
 
 [sub_resource type="StyleBoxEmpty" id="4"]
 
@@ -40,9 +40,7 @@ _data = {
 [node name="PatchExtinctionBox" type="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
-anchor_top = 0.05
-anchor_right = 1.0
-anchor_bottom = 0.95
+anchors_preset = 0
 script = ExtResource("4")
 PatchMapDrawerPath = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 PatchDetailsPanelPath = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2/PatchDetailsPanel")
@@ -70,11 +68,15 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
 text = "PATCH_EXTINCTION_CAPITAL"
 label_settings = ExtResource("3_xy8f2")
+horizontal_alignment = 1
 
 [node name="Message" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "PATCH_EXTINCTION_BOX_TEXT"
 label_settings = ExtResource("3_dudgs")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
 layout_mode = 2

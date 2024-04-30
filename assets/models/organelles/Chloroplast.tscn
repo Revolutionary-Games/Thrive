@@ -20,6 +20,6 @@ shader_parameter/texture = ExtResource("1")
 shader_parameter/dissolveTexture = ExtResource("4")
 
 [node name="Chloroplast" type="MeshInstance3D"]
-transform = Transform3D(100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0.234064, 0, -0.587113)
 material_override = SubResource("1")
 mesh = ExtResource("2")

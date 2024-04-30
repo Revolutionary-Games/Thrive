@@ -1,118 +1,93 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://c8k5d0maeisv"]
 
-[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/space_stage/gui/PlanetScreen.cs" type="Script" id=2]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="Script" path="res://src/space_stage/gui/PlanetScreen.cs" id="2"]
 
-[node name="PlanetScreen" instance=ExtResource( 1 )]
+[node name="PlanetScreen" instance=ExtResource("1")]
+custom_minimum_size = Vector2(350, 300)
 offset_left = 5.0
 offset_top = 70.0
 offset_right = 505.0
 offset_bottom = 420.0
-custom_minimum_size = Vector2( 350, 300 )
-script = ExtResource( 2 )
+script = ExtResource("2")
 ShortStatsLabelPath = NodePath("VBoxContainer/PlanetStats")
 GodToolsButtonPath = NodePath("VBoxContainer/HBoxContainer/BuildQueueSide/GodTools")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" index="0"]
-offset_right = 572.0
-offset_bottom = 78.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="LeftSide" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" index="0"]
-offset_right = 380.0
-offset_bottom = 78.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
 [node name="AvailableLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftSide" index="0"]
-offset_right = 380.0
-offset_bottom = 25.0
+layout_mode = 2
 text = "AVAILABLE_CONSTRUCTION_PROJECTS"
-align = 1
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/HBoxContainer/LeftSide" index="1"]
-offset_top = 29.0
-offset_right = 380.0
-offset_bottom = 33.0
+layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/LeftSide" index="2"]
-offset_top = 37.0
-offset_right = 380.0
-offset_bottom = 37.0
+layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
-scroll_horizontal_enabled = false
 
 [node name="AvailableBuildings" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/LeftSide/ScrollContainer" index="0"]
+layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer/LeftSide" index="3"]
-offset_top = 41.0
-offset_right = 380.0
-offset_bottom = 45.0
+layout_mode = 2
 
 [node name="BuiltLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftSide" index="4"]
-offset_top = 49.0
-offset_right = 380.0
-offset_bottom = 74.0
+layout_mode = 2
 text = "EXISTING_BUILDINGS"
 
 [node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/LeftSide" index="5"]
-offset_top = 78.0
-offset_right = 380.0
-offset_bottom = 78.0
+layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
-scroll_horizontal_enabled = false
 
 [node name="ConstructedBuildings" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/LeftSide/ScrollContainer2" index="0"]
+layout_mode = 2
 
 [node name="BuildQueueSide" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" index="1"]
-offset_left = 384.0
-offset_right = 572.0
-offset_bottom = 78.0
-custom_minimum_size = Vector2( 70, 0 )
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/BuildQueueSide" index="0"]
-offset_right = 188.0
-offset_bottom = 25.0
+layout_mode = 2
 text = "BUILD_QUEUE"
-align = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/BuildQueueSide" index="1"]
-offset_top = 29.0
-offset_right = 188.0
-offset_bottom = 39.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
-scroll_horizontal_enabled = false
 
 [node name="Queue" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/BuildQueueSide/ScrollContainer" index="0"]
-offset_right = 188.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="GodTools" type="Button" parent="VBoxContainer/HBoxContainer/BuildQueueSide" index="2"]
-offset_top = 43.0
-offset_right = 188.0
-offset_bottom = 78.0
+layout_mode = 2
 text = "OPEN_GOD_TOOLS"
 
 [node name="PlanetStats" type="Label" parent="VBoxContainer" index="1"]
-offset_top = 82.0
-offset_right = 572.0
-offset_bottom = 107.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "CITY_SHORT_STATISTICS"
-autowrap = true
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BuildQueueSide/GodTools" to="." method="ForwardGodTools"]

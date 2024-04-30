@@ -424,6 +424,12 @@ public abstract class BaseThriveConverter : JsonConverter
 
         var node = scene.Instantiate();
 
+        if (node == null)
+        {
+            throw new JsonException("Please try restarting the game, encountered Godot scene instantiation error! " +
+                $"This should only happen due to engine bugs, failed scene: {data.ScenePath}");
+        }
+
         // Ensure that instance ended up being a good type
         if (!objectType.IsInstanceOfType(node))
         {

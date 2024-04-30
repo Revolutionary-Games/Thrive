@@ -1,17 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://6ol7cimb38sh"]
 
-[ext_resource type="ArrayMesh" uid="uid://con4180ata5ni" path="res://assets/models/organelles/Chemoreceptor.mesh" id="1"]
+[ext_resource type="Shader" path="res://shaders/OrganelleOpaque.gdshader" id="1_lbfvb"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="3"]
 [ext_resource type="Texture2D" uid="uid://c1khs2kh10ona" path="res://assets/textures/chemoreceptorAlbedo.png" id="4"]
+[ext_resource type="ArrayMesh" uid="uid://con4180ata5ni" path="res://assets/models/organelles/Chemoreceptor.mesh" id="4_qmnpp"]
 
 [sub_resource type="ShaderMaterial" id="3"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("3")
+shader = ExtResource("1_lbfvb")
 shader_parameter/dissolveValue = null
-shader_parameter/fresnelValue = 1.0
-shader_parameter/fresnelActive = false
 shader_parameter/outlineWidth = null
 shader_parameter/growColor = Color(0.156863, 0.0431373, 0.0431373, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
@@ -22,4 +20,4 @@ shader_parameter/dissolveTexture = ExtResource("2")
 [node name="Chemoreceptor" type="MeshInstance3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0.6)
 material_override = SubResource("3")
-mesh = ExtResource("1")
+mesh = ExtResource("4_qmnpp")
