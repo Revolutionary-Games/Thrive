@@ -15,6 +15,18 @@ visible = false
 tooltip_text = "BUILD_CITY"
 disabled = true
 
+[node name="ResearchScreen" parent="." index="4"]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 235.0
+offset_top = 93.0
+offset_right = 1035.0
+offset_bottom = 593.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [node name="CityScreen" parent="." index="8" instance=ExtResource("3")]
 layout_mode = 1
 anchors_preset = 4

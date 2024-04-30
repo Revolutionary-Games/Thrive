@@ -5,7 +5,7 @@
 
 [node name="GodToolsPopup" instance=ExtResource("1")]
 visible = true
-custom_minimum_size = Vector2(200, 225)
+custom_minimum_size = Vector2(200, 235)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -15,11 +15,11 @@ offset_right = 0.0
 offset_bottom = 285.0
 grow_horizontal = 0
 script = ExtResource("2")
+ActionButtonsContainerPath = NodePath("ScrollContainer/VBoxContainer/ActionButtons")
+TargetEntityNameLabelPath = NodePath("ScrollContainer/VBoxContainer/TargetEntity")
 WindowTitle = "GOD_TOOLS_TITLE"
 Resizable = true
 Exclusive = true
-ActionButtonsContainerPath = NodePath("ScrollContainer/VBoxContainer/ActionButtons")
-TargetEntityNameLabelPath = NodePath("ScrollContainer/VBoxContainer/TargetEntity")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." index="0"]
 custom_minimum_size = Vector2(220, 0)

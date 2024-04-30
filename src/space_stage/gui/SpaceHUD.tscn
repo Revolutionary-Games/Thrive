@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://i8evqpkyb68h"]
 
 [ext_resource type="PackedScene" uid="uid://bs5shdurovke8" path="res://src/society_stage/gui/SocietyHUD.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://src/space_stage/gui/PlanetScreen.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://c8k5d0maeisv" path="res://src/space_stage/gui/PlanetScreen.tscn" id="2"]
 [ext_resource type="Script" path="res://src/space_stage/gui/SpaceHUD.cs" id="3"]
-[ext_resource type="PackedScene" path="res://src/space_stage/gui/SpaceFleetInfoPopup.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bfhdxoesc44hj" path="res://src/space_stage/gui/SpaceFleetInfoPopup.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://src/space_stage/gui/SpaceConstructionPopup.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cdngxfctlsoox" path="res://src/space_stage/gui/SpaceStructureInfoPopup.tscn" id="7"]
@@ -25,6 +25,18 @@ visible = false
 [node name="Build" parent="ScrollContainer/HotBar" index="0"]
 visible = false
 disabled = true
+
+[node name="ResearchScreen" parent="." index="5"]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 239.0
+offset_top = 93.0
+offset_right = 1039.0
+offset_bottom = 593.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PlanetScreen" parent="." index="9" instance=ExtResource("2")]
 layout_mode = 1
