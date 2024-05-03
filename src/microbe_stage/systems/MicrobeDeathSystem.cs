@@ -144,7 +144,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                 PhysicsDensity = 1200.0f,
                 Radius = 1.0f,
                 Size = 3.0f,
-                VentAmount = 0.1f,
+                VentAmount = 0.2f,
 
                 // Add compounds
                 Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>(),

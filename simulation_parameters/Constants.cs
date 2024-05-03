@@ -826,7 +826,7 @@ public static class Constants
     public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
 
     // Corpse info
-    public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
+    public const float CORPSE_COMPOUND_COMPENSATION = 50.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
     public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
