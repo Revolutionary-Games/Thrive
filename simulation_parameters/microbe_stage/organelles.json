@@ -961,7 +961,20 @@
     "ConsumptionColour": "#00ffcc",
     "IconPath": "res://assets/textures/gui/bevel/parts/SlimeJetIcon.png",
     "EditorButtonGroup": "External",
-    "EditorButtonOrder": 4
+    "EditorButtonOrder": 4,
+    "AvailableUpgrades": {
+      "none": {
+        "IsDefault": true,
+        "Name": "UPGRADE_NAME_NONE",
+        "Description": "UPGRADE_DESCRIPTION_NONE"
+      },
+      "mucocyst": {
+        "Name": "UPGRADE_SLIME_JET_MUCOCYST",
+        "Description": "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION",
+        "MPCost": 40,
+        "IconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png"
+      }
+    }
   },
   "signalingAgent": {
     "MPCost": 45,

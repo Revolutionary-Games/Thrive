@@ -149,6 +149,12 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles, compounds,
                 delta);
 
+        if (control.State == MicrobeState.MucocystShield)
+        {
+            rotationSpeed *= 60;
+            movementImpulse /= 60;
+        }
+
         physicalWorld.ApplyBodyMicrobeControl(physics.Body!, movementImpulse, wantedRotation, rotationSpeed);
     }
 

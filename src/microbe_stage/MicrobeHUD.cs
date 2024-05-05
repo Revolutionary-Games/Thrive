@@ -74,6 +74,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     public delegate void OnSecreteSlimeButtonPressedEventHandler();
 
     [Signal]
+    public delegate void OnMucocystButtonPressedEventHandler();
+
+    [Signal]
     public delegate void OnToggleBindingButtonPressedEventHandler();
 
     [Signal]
@@ -420,8 +423,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         bool showToxin;
         bool showSlime;
+        bool showMucocyst = false;
 
         bool engulfing;
+        bool usingMucocyst;
 
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Has<MicrobeColony>())
@@ -435,13 +440,16 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             showSlime = slimeJets > 0;
 
             engulfing = colony.ColonyState == MicrobeState.Engulf;
+            usingMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
         }
         else
         {
             showToxin = organelles.AgentVacuoleCount > 0;
-            showSlime = organelles.SlimeJets is { Count: > 0 };
+            showSlime = organelles.SlimeJets is { Count: > 0 } && !organelles.SlimeJets.All(c => c.IsMucocyst);
+            showMucocyst = organelles.SlimeJets is { Count: > 0 } && !organelles.SlimeJets.All(c => !c.IsMucocyst);
 
             engulfing = control.State == MicrobeState.Engulf;
+            usingMucocyst = control.State == MicrobeState.MucocystShield;
         }
 
         bool isDigesting = false;
@@ -454,7 +462,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, engulfing, isDigesting, control.Sprinting, true);
+            organelles.HasSignalingAgent, showMucocyst, true, engulfing, isDigesting, usingMucocyst, control.Sprinting);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
@@ -782,6 +790,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void OnSecreteSlimePressed()
     {
         EmitSignal(SignalName.OnSecreteSlimeButtonPressed);
+    }
+
+    private void OnMucocystPressed()
+    {
+        EmitSignal(SignalName.OnMucocystButtonPressed);
     }
 
     private void OnEjectEngulfedPressed()

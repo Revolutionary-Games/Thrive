@@ -1,6 +1,7 @@
 ﻿namespace Components;
 
 using System;
+using System.Linq;
 using DefaultEcs;
 using Godot;
 
@@ -187,6 +188,10 @@ public static class MicrobeControlHelpers
         if (organelleInfo.SlimeJets == null || organelleInfo.SlimeJets.Count < 1)
             return;
 
+        // Not valid if all slime jets are mucocysts
+        if (organelleInfo.SlimeJets.All(c => c.IsMucocyst))
+            return;
+
         control.QueuedSlimeSecretionTime += duration;
     }
 
@@ -200,5 +205,42 @@ public static class MicrobeControlHelpers
             // Randomise the time spent ejecting slime, from 0 to 3 seconds
             control.QueuedSlimeSecretionTime = 3 * random.NextSingle();
         }
+    }
+
+    public static void SetMucocystState(this ref MicrobeControl control,
+        ref OrganelleContainer organelleInfo, in Entity entity, bool state)
+    {
+        if (entity.Has<MicrobeColony>())
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+
+            // TODO: is it a good idea to allocate a delegate here?
+            colony.PerformForOtherColonyMembersThanLeader(m =>
+                m.Get<MicrobeControl>()
+                    .SetMucocystState(ref m.Get<OrganelleContainer>(), m, state));
+        }
+
+        // It might be tricky as there is now mucocyst upgrade that doesn't emit slime normally
+        if (organelleInfo.SlimeJets == null || organelleInfo.SlimeJets.Count < 1)
+            return;
+
+        // Must have at least one mucocyst
+        if (organelleInfo.SlimeJets.All(c => c.IsMucocyst != true))
+            return;
+
+        if (entity.Has<CompoundStorage>())
+        {
+            ref var compoundStorage = ref entity.Get<CompoundStorage>();
+            var mucilage = SimulationParameters.Instance.GetCompound("mucilage");
+
+            if (compoundStorage.Compounds.Compounds[mucilage] < compoundStorage.Compounds
+                    .GetCapacityForCompound(mucilage))
+                return;
+        }
+
+        if (state)
+            control.State = MicrobeState.MucocystShield;
+        else
+            control.State = MicrobeState.Normal;
     }
 }

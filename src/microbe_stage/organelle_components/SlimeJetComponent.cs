@@ -7,7 +7,10 @@ using Godot;
 /// </summary>
 public class SlimeJetComponent : IOrganelleComponent
 {
+    public bool IsMucocyst;
+
     private const string SlimeJetAnimationName = "SlimeJet";
+    private const string MUCOCYST_UPGRADE_NAME = "mucocyst";
 
     private bool animationActive;
     private bool animationDirty = true;
@@ -41,6 +44,12 @@ public class SlimeJetComponent : IOrganelleComponent
         parentOrganelle = organelle;
 
         organellePosition = Hex.AxialToCartesian(organelle.Position);
+
+        // If it is not mucocyst, then leave IsMucocyst false
+        if (organelle.Upgrades?.UnlockedFeatures.Contains(MUCOCYST_UPGRADE_NAME) != true)
+            return;
+
+        IsMucocyst = true;
     }
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,

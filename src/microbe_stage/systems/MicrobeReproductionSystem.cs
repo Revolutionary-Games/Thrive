@@ -368,6 +368,13 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount, false,
                 reproductionDelta);
 
+        if (entity.Has<MicrobeControl>())
+        {
+            // Microbe can't passively absorb compounds with mucocyst active
+            if (entity.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
+                remainingFreeCompounds = 0;
+        }
+
         ref var storage = ref entity.Get<CompoundStorage>();
         var compounds = storage.Compounds;
 
