@@ -11,7 +11,6 @@ public static class UnhandledExceptionLogger
 
     private static bool reportedIssue;
 
-    // TODO: reimplement this:
     public static void OnUnhandledException(object sender, UnhandledExceptionEventArgs eventArgs)
     {
         // Only report the first as now Godot doesn't shut down on unhandled exception so this could keep getting

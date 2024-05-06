@@ -30,8 +30,13 @@ public partial class StartupActions : Node
         // Add unhandled exception logger if debugger is not attached
         if (!Debugger.IsAttached)
         {
+            // TODO: reimplement this (doesn't currently work in Godot 4)
+            // https://github.com/godotengine/godot/issues/73515
             AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
-            GD.Print("Unhandled exception logger attached");
+
+            // GD.Print("Unhandled exception logger attached");
+            GD.Print(
+                "TODO: reimplement unhandled exception handler: https://github.com/godotengine/godot/issues/73515");
         }
 
         NativeInterop.SetDllImportResolver();
