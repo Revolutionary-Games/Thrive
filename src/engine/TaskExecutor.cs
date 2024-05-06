@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics.X86;
 using System.Threading;
 using System.Threading.Tasks;
 using DefaultEcs.Threading;
@@ -224,14 +225,14 @@ public class TaskExecutor : IParallelRunner
 
         while (queuedParallelRunnableCount > 0)
         {
-            // TODO: add this when we can to reduce hyperthreading resource use while waiting
-            // System.Runtime.Intrinsics.X86.X86Base.Pause();
-
             // Busy loop a bit before checking the variable again
             for (int i = 0; i < 10; ++i)
             {
                 _ = i;
             }
+
+            // Reduce hyperthreading resource use while waiting
+            X86Base.Pause();
         }
 
 #if DEBUG
@@ -473,6 +474,9 @@ public class TaskExecutor : IParallelRunner
                 else
                 {
                     ++noWorkCounter;
+
+                    // Reduce hyperthreading resource use while just busy looping
+                    X86Base.Pause();
                 }
             }
         }
