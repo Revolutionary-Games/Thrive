@@ -30,10 +30,8 @@ public partial class StartupActions : Node
         // Add unhandled exception logger if debugger is not attached
         if (!Debugger.IsAttached)
         {
-            GD.PrintErr("TODO: reimplement unhandled exception logger");
-
-            // GD.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
-            // GD.Print("Unhandled exception logger attached");
+            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
+            GD.Print("Unhandled exception logger attached");
         }
 
         NativeInterop.SetDllImportResolver();
