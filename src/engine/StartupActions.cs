@@ -47,9 +47,6 @@ public partial class StartupActions : Node
         GD.Print("Game logs are written to: ", Path.Combine(userDir, ThriveLauncherSharedConstants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
 
-        // TODO: mono runtime doesn't have intrinsics support for checking AVX
-        // https://learn.microsoft.com/fi-fi/dotnet/api/system.runtime.intrinsics.x86.avx?view=net-8.0
-
         bool loadNative = true;
 
         try
