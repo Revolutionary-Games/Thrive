@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Line helping the player by showing a direction
@@ -11,7 +12,13 @@ public partial class GuidanceLine : MeshInstance3D
 
     private Color colour = Colors.White;
 
+    private float lineWidth = 0.3f;
+
     private bool dirty = true;
+
+    private XoShiRo128plus random = new();
+
+    private float yOffset;
 
     // Assigned as a child resource so this should be disposed automatically
 #pragma warning disable CA2213
@@ -60,6 +67,20 @@ public partial class GuidanceLine : MeshInstance3D
         }
     }
 
+    [Export]
+    public float LineWidth
+    {
+        get => lineWidth;
+        set
+        {
+            if (lineWidth == value)
+                return;
+
+            dirty = true;
+            lineWidth = value;
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -76,6 +97,7 @@ public partial class GuidanceLine : MeshInstance3D
         var material = new StandardMaterial3D();
         material.VertexColorUseAsAlbedo = true;
         MaterialOverride = material;
+        yOffset = random.NextFloat() - 2.0f;
     }
 
     public override void _Process(double delta)
@@ -85,15 +107,29 @@ public partial class GuidanceLine : MeshInstance3D
 
         dirty = false;
         mesh.ClearSurfaces();
-        mesh.SurfaceBegin(Mesh.PrimitiveType.Lines);
+
+        // If there is no line to be drawn, don't draw one
+        if (lineStart.IsEqualApprox(lineEnd))
+            return;
+
+        mesh.SurfaceBegin(Mesh.PrimitiveType.Triangles);
 
         mesh.SurfaceSetColor(colour);
-        mesh.SurfaceAddVertex(LineStart);
-        mesh.SurfaceAddVertex(LineEnd);
 
-        // TODO: if we want to have line thickness, we need to generate a quad here with the wanted *width* around the
-        // points (we need to figure out the right rotation for the line at both ends for where to place those points
-        // that are slightly off from the positions)
+        // To form quad, we want it in 'orgin + vector' form, not 'start + end' form
+        // Be sure to flatten the Y-axis of the vector, so it's all on a 2D plane
+        Vector3 lineVector = lineEnd - lineStart;
+        lineVector[1] = 0.0f;
+
+        // To get a vector that is at a right angle to the line in 2D
+        // swap the coords and negate one term, then normalize.
+        Vector3 lineNormal = new Vector3(-lineVector[2], 0.0f, lineVector[0]).Normalized();
+
+        Vector3 yOffsetVector = new Vector3(0.0f, yOffset, 0.0f);
+
+        mesh.SurfaceAddVertex(LineEnd + yOffsetVector);
+        mesh.SurfaceAddVertex(LineStart + lineNormal * lineWidth + yOffsetVector);
+        mesh.SurfaceAddVertex(LineStart - lineNormal * lineWidth + yOffsetVector);
 
         mesh.SurfaceEnd();
     }
