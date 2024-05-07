@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -44,22 +45,40 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
 
         var wiki = SimulationParameters.Instance.GetWiki();
 
-        var organellesRootScene =
-            GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.tscn");
-        var organellesRootPage = organellesRootScene.Instantiate<ThriveopediaOrganellesRootPage>();
-        organellesRootPage.PageContent = wiki.OrganellesRoot;
-        pages.Add(organellesRootPage);
+        // Generate Stage Pages
 
-        var organellePageScene =
-            GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn");
+        GeneratePage<ThriveopediaStagesRootPage>(pages, wiki.StagesRoot,
+            "res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.tscn");
 
-        foreach (var organellePage in wiki.Organelles)
-        {
-            var page = organellePageScene.Instantiate<ThriveopediaOrganellePage>();
-            page.PageContent = organellePage;
-            page.Organelle = SimulationParameters.Instance.GetOrganelleType(organellePage.InternalName);
-            pages.Add(page);
-        }
+        GeneratePages<ThriveopediaStagePage>(pages, wiki.Stages,
+            "res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagePage.tscn");
+
+        // Generate Mechanics Pages
+
+        GeneratePage<ThriveopediaMechanicsRootPage>(pages, wiki.MechanicsRoot,
+            "res://src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn");
+
+        GeneratePages<SimpleWikiPage>(pages, wiki.Mechanics,
+            "res://src/thriveopedia/pages/SimpleWikiPage.tscn",
+            p => p.Parent = "MechanicsRoot");
+
+        // Generate Organelle Pages
+
+        GeneratePage<ThriveopediaOrganellesRootPage>(pages, wiki.OrganellesRoot,
+            "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.tscn");
+
+        GeneratePages<ThriveopediaOrganellePage>(pages, wiki.Organelles,
+            "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellePage.tscn",
+            p => p.Organelle = SimulationParameters.Instance.GetOrganelleType(p.PageContent.InternalName));
+
+        // Generate Development Pages
+
+        GeneratePage<ThriveopediaDevelopmentRootPage>(pages, wiki.DevelopmentRoot,
+            "res://src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentRootPage.tscn");
+
+        GeneratePages<SimpleWikiPage>(pages, wiki.DevelopmentPages,
+            "res://src/thriveopedia/pages/SimpleWikiPage.tscn",
+            p => p.Parent = "DevelopmentRoot");
 
         return pages;
     }
@@ -101,5 +120,40 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         }
 
         base.Dispose(disposing);
+    }
+
+    private static T GeneratePage<T>(List<ThriveopediaWikiPage> pageList, GameWiki.Page page, string scenePath)
+        where T : ThriveopediaWikiPage
+    {
+        var pageScene = GD.Load<PackedScene>(scenePath);
+        var pageInstance = (T)pageScene.Instantiate();
+        pageInstance.PageContent = page;
+        pageList.Add(pageInstance);
+
+        return pageInstance;
+    }
+
+    private static void GeneratePages<T>(List<ThriveopediaWikiPage> pageList, List<GameWiki.Page> pages,
+        string scenePath, Action<T>? extraDataInit = null)
+        where T : ThriveopediaWikiPage
+    {
+        var pageScene = GD.Load<PackedScene>(scenePath);
+
+        foreach (var page in pages)
+        {
+            var pageInstance = (T)pageScene.Instantiate();
+            pageInstance.PageContent = page;
+
+            if (page.NoticeSceneName != null)
+            {
+                var noticeScene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/notices/{page.NoticeSceneName}.tscn");
+                var noticeInstance = noticeScene.Instantiate();
+                var noticeContainer = pageInstance.GetNode<VBoxContainer>(pageInstance.NoticeContainerPath);
+                noticeContainer.AddChild(noticeInstance);
+            }
+
+            extraDataInit?.Invoke(pageInstance);
+            pageList.Add(pageInstance);
+        }
     }
 }
