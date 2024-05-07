@@ -296,13 +296,13 @@ public partial class EvolutionaryTree : Control
         }
 
         // If there is already one, update it; otherwise, add a new one.
-        var existing = speciesNodeList.FirstOrDefault(n => (n.Position - position).Length() < MathUtils.EPSILON);
+        var existing = speciesNodeList.FirstOrDefault(n => Math.Abs(n.LogicalPosition.X - position.X) < MathUtils.EPSILON);
         var node = existing ?? treeNodeScene.Instantiate<EvolutionaryTreeNode>();
 
         node.Generation = generation;
         node.SpeciesID = species.ID;
         node.ParentNode = parent;
-        node.Position = position;
+        node.LogicalPosition = position;
         node.LastGeneration = isLastGeneration;
 
         // The remaining part only needs to be done when it is a new node.
@@ -324,10 +324,10 @@ public partial class EvolutionaryTree : Control
         {
             node.CustomMinimumSize = treeNodeSize;
 
-            // RectSize needs to be adjusted explicitly even when SizeFlag set to ShrinkEnd.
+            // RectSize needs to be adjusted explicitly to force the size to change
             node.Size = treeNodeSize;
 
-            node.Position = sizeFactor * (node.Position + dragOffset);
+            node.Position = sizeFactor * (node.LogicalPosition + dragOffset);
         }
     }
 
@@ -346,8 +346,9 @@ public partial class EvolutionaryTree : Control
         // Adjust nodes of this species' vertical position based on index
         foreach (var treeNode in speciesNodes[id])
         {
-            var position = treeNode.Position;
+            var position = treeNode.LogicalPosition;
             position.Y = index * SPECIES_SEPARATION;
+            treeNode.LogicalPosition = position;
             treeNode.Position = position;
         }
 
