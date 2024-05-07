@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.9.1\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D mozgás stílus:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Kloroplasztisz"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Szerkesztő"
@@ -30,6 +49,9 @@ msgstr "3D Mozgás"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D mozgás stílus:"
+
+msgid "8_BRACKET_16"
+msgstr ""
 
 msgid "ABILITIES"
 msgstr "Képességek"
@@ -96,8 +118,16 @@ msgstr "Speciális"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Speciális beállítási nézet megnyitása"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerob Nitrifikáció"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerob Nitrifikáció"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Aerob légzés"
 
 msgid "AGENTS"
 msgstr "Ügynökök"
@@ -196,6 +226,10 @@ msgstr "A rajzot {0} készítette"
 
 msgid "ART_GALLERY"
 msgstr "Rajz galéria"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Verzió:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Gratulálok!"
@@ -319,6 +353,13 @@ msgstr "fordított perjel"
 msgid "BACKSPACE"
 msgstr "Törlés"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Termoszintézis"
+
 msgid "BASE_MOBILITY"
 msgstr "Alap mozgékonyság"
 
@@ -415,6 +456,9 @@ msgstr "Foszforeszkáló vakuólum"
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
@@ -577,6 +621,10 @@ msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "A kemoreceptor segítségével messzebbi vegyületeket detektálhatsz. Az elhelyezése után módosítsd a kemoreceptort a vegyület kiválasztásával, és a segédvonal színének beállításával."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Kemoszintézis"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemoszintetizáló fehérjék"
 
@@ -616,6 +664,9 @@ msgstr "A kiválasztott fájl neve ({0}) már létezik. Lecseréled?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromatikus aberráció:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. A folyamat gyorsasága a [thrive:compound type=\"carbondioxide\"] koncentrációjától és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától függ."
@@ -2017,6 +2068,10 @@ msgstr "A glükóz koncentrációk drasztikusan csökkentek!"
 msgid "GLYCOLYSIS"
 msgstr "Glikolízis"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerob Nitrifikáció"
+
 msgid "GODMODE"
 msgstr "Isten mód"
 
@@ -2144,8 +2199,16 @@ msgstr "Végtelen MP"
 msgid "INFO_BOX_COST"
 msgstr "TÚLÉLTÉL!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "TÚLÉLTÉL!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Ozmoreguláció ára"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2155,8 +2218,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "TÚLÉLTÉL!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Ozmoreguláció ára"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "TÚLÉLTÉL!"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr ""
@@ -2186,6 +2257,9 @@ msgstr ""
 #, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Segítség"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "Bemenet"
@@ -3512,6 +3586,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Szerkesztő engedélyezése"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Észlelhető szálak:"
 
@@ -3582,8 +3660,15 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
+#, fuzzy
+msgid "NO"
+msgstr "Semmi"
+
 msgid "NONE"
 msgstr "Semmi"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normál"
@@ -3892,6 +3977,10 @@ msgstr "OxyToxy NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy szintézis"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxy szintézis"
+
 msgid "PAGEDOWN"
 msgstr "Page Down"
 
@@ -4153,8 +4242,15 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Proteinek"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Aerob légzés"
+
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull requestek / Programozás"
@@ -5024,6 +5120,9 @@ msgstr "Képernyőkép készítése"
 msgid "TARGET_TYPE_COLON"
 msgstr "Típus:"
 
+msgid "TBA"
+msgstr ""
+
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -5813,6 +5912,76 @@ msgid "WIKI"
 msgstr "Wikipédiánk"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Jelenlegi fejlesztők"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Külső effektek:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Gratulálok!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Kötőszövet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Felkelési fázis"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Tudatos fázis"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Tudatos fázis"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogenáz"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Tudatos fázis"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Külső effektek:"
 
@@ -6048,6 +6217,29 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Vegyületek:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
@@ -6073,6 +6265,34 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Sejtszervecskék"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitokondrium"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitokondrium"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -6101,13 +6321,74 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Jelenlegi fejlesztők"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Felkelési fázis"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Nitrogenáz"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Felkelési fázis"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Felkelési fázis"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Fizikai körülmények"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -6120,8 +6401,47 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Felkelési fázis"
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Végtelen vegyületek"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Felkelési fázis"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Kötőszövet"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Kötőszövet"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6149,6 +6469,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Sejtszervecskék"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6183,6 +6507,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Egy távoli idegen bolygón az évmilliók óta tartó vulkanikus aktivitások és meteoresők miatt egy új csoda jött létre az univerzumban.\n"
+"\n"
+"Élet.\n"
+"\n"
+"Egyszerű baktériumok jelentek meg az óceánok lenti régióiban. A játék elején a te fajod az utolsó univerzális közös ős (más néven LUCA) ezen a planétán.\n"
+"\n"
+"Ahhoz, hogy túléld ezt a kegyetlen világot, annyi vegyületet kell gyűjtened, amennyit csak találsz, és fejlesztened kell fajodat az evolúció során, hogy versenyképesek maradjanak a többi fajjal."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Sejtszerkesztő"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Egy távoli idegen bolygón az évmilliók óta tartó vulkanikus aktivitások és meteoresők miatt egy új csoda jött létre az univerzumban.\n"
+"\n"
+"Élet.\n"
+"\n"
+"Egyszerű baktériumok jelentek meg az óceánok lenti régióiban. A játék elején a te fajod az utolsó univerzális közös ős (más néven LUCA) ezen a planétán.\n"
+"\n"
+"Ahhoz, hogy túléld ezt a kegyetlen világot, annyi vegyületet kell gyűjtened, amennyit csak találsz, és fejlesztened kell fajodat az evolúció során, hogy versenyképesek maradjanak a többi fajjal."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Sejtfázis"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Egy távoli idegen bolygón az évmilliók óta tartó vulkanikus aktivitások és meteoresők miatt egy új csoda jött létre az univerzumban.\n"
+"\n"
+"Élet.\n"
+"\n"
+"Egyszerű baktériumok jelentek meg az óceánok lenti régióiban. A játék elején a te fajod az utolsó univerzális közös ős (más néven LUCA) ezen a planétán.\n"
+"\n"
+"Ahhoz, hogy túléld ezt a kegyetlen világot, annyi vegyületet kell gyűjtened, amennyit csak találsz, és fejlesztened kell fajodat az evolúció során, hogy versenyképesek maradjanak a többi fajjal."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Mitokondrium"
 
@@ -6211,6 +6576,34 @@ msgstr "Mitokondrium"
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Mitokondrium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Többsejtes fázis"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Többsejtes szerkesztő betöltése"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Többsejtes fázis"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Többsejtes fázis"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Többsejtes fázis"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Többsejtes fázis"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Többsejtes fázis"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6358,6 +6751,18 @@ msgstr "Oxytoxyszóma"
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Oxytoxyszóma"
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticyanin"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Felkelési fázis"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Tudatos fázis"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6389,24 +6794,59 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Citoplazma"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Citoplazma"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Sejtszervecske elhelyezése"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitokondrium"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitokondrium"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Ostor"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Kötőszövet"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lizoszóma"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Sejtszervecske elhelyezése"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metaboloszómák"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenáz"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitokondrium"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Többsejtes fázis"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6440,6 +6880,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplazma"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplazma"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticyanin"
 
@@ -6450,6 +6894,18 @@ msgstr "Jelző szövet"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Nyálka jet"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Sejtfázis"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Nyálka jet"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Sejtszervecske elhelyezése"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6524,6 +6980,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplazma"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6622,6 +7085,56 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Sejtfázis"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Sejtfázis"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Sejtfázis"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Sejtfázis"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Nyálka jet"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Sejtfázis"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogenáz"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Sejtfázis"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Sejtszervecskék"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6851,6 +7364,10 @@ msgstr ""
 msgid "YEARS"
 msgstr "évek"
 
+#, fuzzy
+msgid "YES"
+msgstr "évek"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Látogasd meg YouTube csatornánkat"
 
@@ -7020,9 +7537,6 @@ msgstr "Távolodás"
 
 #~ msgid "TYPE"
 #~ msgstr "Típus:"
-
-#~ msgid "VERSION"
-#~ msgstr "Verzió:"
 
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""

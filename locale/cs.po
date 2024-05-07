@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Styl pohybu 2D:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Společné fáze editoru a strategie"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Editor"
@@ -30,6 +49,10 @@ msgstr "3D Pohyb"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Styl pohybu 3D:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Otočit se doleva"
 
 msgid "ABILITIES"
 msgstr "Schopnosti"
@@ -90,8 +113,16 @@ msgstr "Pokročilé"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otevřít náhled pokročilého nastavení"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerobní fixace dusíku"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobní fixace dusíku"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Aerobní dýchání"
 
 msgid "AGENTS"
 msgstr "Činidlo"
@@ -189,6 +220,10 @@ msgstr "Ilustraci vytvořil(a) {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galerie"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Verze:"
 
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -315,6 +350,13 @@ msgstr "Lomítko"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Termosyntéza"
+
 msgid "BASE_MOBILITY"
 msgstr "Základní pohyblivost"
 
@@ -411,6 +453,9 @@ msgstr "Bioluminiscenční vakuola"
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 #, fuzzy
 msgid "BRAIN_CELL_NAME_DEFAULT"
@@ -566,6 +611,10 @@ msgstr "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto z
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umožňuje detekovat sloučeniny z větší vzdálenosti. Po umístění upravte výběr typu sloučeniny a barvu naváděcí čáry."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chemosyntéza"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosyntetizující proteiny"
 
@@ -604,6 +653,9 @@ msgstr "Soubor se jménem ({0}) již existuje. Přejete si jej nahradit?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatická aberace:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzitě [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -2051,6 +2103,10 @@ msgstr "Koncentrace glukózy drasticky klesla!"
 msgid "GLYCOLYSIS"
 msgstr "Glykolýza"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerobní fixace dusíku"
+
 msgid "GODMODE"
 msgstr "Nesmrtelnost"
 
@@ -2183,8 +2239,16 @@ msgstr "Nekonečné MP"
 msgid "INFO_BOX_COST"
 msgstr "PROSPERUJEŠ!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "PROSPERUJEŠ!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Náklady na osmoregulaci"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2194,8 +2258,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "PROSPERUJEŠ!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Náklady na osmoregulaci"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Neprobíhají žádné procesy"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -2226,6 +2298,9 @@ msgstr "Strávená hmota"
 #, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "Ovládání"
@@ -3539,6 +3614,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Zapnout editor"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Současná vlákna:"
 
@@ -3609,8 +3688,15 @@ msgstr "Dusík fixující plastid je protein schopný využít plynný [thrive:c
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Žádná"
+
 msgid "NONE"
 msgstr "Žádná"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normální"
@@ -3917,6 +4003,10 @@ msgstr "OxyToxyn NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Syntéza OxyToxynů"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Syntéza OxyToxynů"
+
 msgid "PAGEDOWN"
 msgstr "PgDown"
 
@@ -4175,8 +4265,15 @@ msgstr "Ochrana limitu počtu druhů pro druhy, které byly právě vytvořeny"
 msgid "PROTEINS"
 msgstr "Bílkoviny"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Aerobní dýchání"
+
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátoři"
@@ -5024,6 +5121,9 @@ msgstr "Udělat screenshot"
 msgid "TARGET_TYPE_COLON"
 msgstr "Typ:"
 
+msgid "TBA"
+msgstr ""
+
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -5824,6 +5924,76 @@ msgid "WIKI"
 msgstr "naše Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Současní vývojáři"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Vedlejší účinky:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticyanin je protein schopný využít plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound] k oxidaci železa z jednoho chemického stavu na jiný. Tento proces, nazývaný [b]respirace železa[/b], uvolňuje energii, kterou je pak buňka schopna sklidit."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Populace druhů"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticyanin je protein schopný využít plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound] k oxidaci železa z jednoho chemického stavu na jiný. Tento proces, nazývaný [b]respirace železa[/b], uvolňuje energii, kterou je pak buňka schopna sklidit."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Fáze Probuzení"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Pojící médium"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Fáze Probuzení"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Fáze Probuzení"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Fáze Probuzení"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Vedlejší účinky:"
 
@@ -6068,6 +6238,29 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Sloučeniny:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, proteinů, a jiných látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jedna z funkcí kterou provádí je [b]glykolýza[/b], konverze [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Spoléhají se na ni buňky, kterým chybí organely pro více pokročilý metabolismus, jako příjem energie. Je také používána pro růst velikosti a uschovávání molekul v buňce."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, proteinů, a jiných látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jedna z funkcí kterou provádí je [b]glykolýza[/b], konverze [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Spoléhají se na ni buňky, kterým chybí organely pro více pokročilý metabolismus, jako příjem energie. Je také používána pro růst velikosti a uschovávání molekul v buňce."
 
@@ -6093,6 +6286,34 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Organely"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitochondrie"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitochondrie"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(poměr glukózy ponecháno v prostředí za každou generaci)"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
@@ -6123,13 +6344,74 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Současní vývojáři"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Společné fáze editoru a strategie"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Společné fáze editoru a strategie"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Společné fáze editoru a strategie"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Fyzické podmínky"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -6142,8 +6424,47 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Společné fáze editoru a strategie"
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Nekonečné sloučeniny"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Společné fáze editoru a strategie"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Pojící médium"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Umístěním továrny postoupíte do průmyslové fáze. Pokračovat do další fáze?"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Přesun do průmyslové fáze?"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6171,6 +6492,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Organely"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6205,6 +6530,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosomy jsou shluky proteinů zabalené v proteinovém plášti. Mají schopnost změnit [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] daleko rychleji než cytoplasma skrze proces nazývaný [b]Buněčné dýchání[/b]. Potřebuje na to ale [thrive:compound type=\"oxygen\"][/thrive:compound] aby fungovalo, a nízký objem [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomalí schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]. Jelikož jsou metabolosomy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
+"\n"
+"Života.\n"
+"\n"
+"Jednoduché mikroby se nacházejí v hlubokých oblastech oceánu. Jsi poslední univerzální společný předek (LUCA) na této planetě.\n"
+"\n"
+"Abys v tomto nepřátelském světě přežil/a, budeš muset shromáždit všechny možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly ostatním druhům mikrobů."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Mikrobiální Editor"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
+"\n"
+"Života.\n"
+"\n"
+"Jednoduché mikroby se nacházejí v hlubokých oblastech oceánu. Jsi poslední univerzální společný předek (LUCA) na této planetě.\n"
+"\n"
+"Abys v tomto nepřátelském světě přežil/a, budeš muset shromáždit všechny možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly ostatním druhům mikrobů."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
+"\n"
+"Života.\n"
+"\n"
+"Jednoduché mikroby se nacházejí v hlubokých oblastech oceánu. Jsi poslední univerzální společný předek (LUCA) na této planetě.\n"
+"\n"
+"Abys v tomto nepřátelském světě přežil/a, budeš muset shromáždit všechny možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly ostatním druhům mikrobů."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná proteiny a enzymy. Jedná se o prokaryotu, která byla asimilována pro využití svým eukaryotickým hostitelem. Je schopná konvertovat [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] s daleko vyšší účinností než je možno v cytoplazmě, v procesu známém jako [b]buněčné dýchání[/b]. Potřebuje k tomu ale [thrive:compound type=\"oxygen\"][/thrive:compound], a nizké množství [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomaluje její schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -6235,6 +6601,34 @@ msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná pr
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná proteiny a enzymy. Jedná se o prokaryotu, která byla asimilována pro využití svým eukaryotickým hostitelem. Je schopná konvertovat [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] s daleko vyšší účinností než je možno v cytoplazmě, v procesu známém jako [b]buněčné dýchání[/b]. Potřebuje k tomu ale [thrive:compound type=\"oxygen\"][/thrive:compound], a nizké množství [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomaluje její schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Načítání editoru mikrobů"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Mnohobuněčné Období"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6385,6 +6779,18 @@ msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticyanin (protein mědi)"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Fáze Probuzení"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Mikrobiální Období"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6416,24 +6822,59 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Cytoplazma"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplazma"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitochondrie"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitochondrie"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Bičík"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Pojící médium"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysozom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Umístit organelu"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolozomy"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenáza"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrie"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Mnohobuněčné Období"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6467,6 +6908,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplazma"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplazma"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticyanin (protein mědi)"
 
@@ -6477,6 +6922,18 @@ msgstr "Signalizující Prvek"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Slizová tryska"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Slizová tryska"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Umístit organelu"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6551,6 +7008,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplazma"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6649,6 +7113,56 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Lipáza umožňuje buňce rozkládat většinu typů membrán. Vaše buňka již produkuje nějaké množství tohoto enzymu bez lysozomu, ale vybráním tohoto typu zvýšíte efektivitu."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Mikrobiální Období"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Slizová tryska"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Lipáza umožňuje buňce rozkládat většinu typů membrán. Vaše buňka již produkuje nějaké množství tohoto enzymu bez lysozomu, ale vybráním tohoto typu zvýšíte efektivitu."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Organely"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6876,6 +7390,10 @@ msgstr ""
 msgid "YEARS"
 msgstr "roky"
 
+#, fuzzy
+msgid "YES"
+msgstr "roky"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Navštiv náš YouTube kanál"
 
@@ -7060,9 +7578,6 @@ msgstr "Oddálit"
 #~ msgid "TYPE"
 #~ msgstr "Typ:"
 
-#~ msgid "VERSION"
-#~ msgstr "Verze:"
-
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
 #~ "Toto je mapa lokalit.\n"
@@ -7223,10 +7738,6 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Otočit se doleva"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

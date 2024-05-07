@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -19,7 +19,26 @@ msgstr ""
 "X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.9.1\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Chloroplast"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
 msgstr ""
 
 msgid "3D_EDITOR"
@@ -29,6 +48,9 @@ msgid "3D_MOVEMENT"
 msgstr "3D Pohyb"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+msgid "8_BRACKET_16"
 msgstr ""
 
 msgid "ABILITIES"
@@ -96,8 +118,16 @@ msgstr "Rozšírené"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otvoriť zobrazenie rozšírených nastavení"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Anaeróbna fixácia dusíka"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aeróbna fixácia dusíka"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Aeróbne Dýchanie"
 
 msgid "AGENTS"
 msgstr "Činidlo"
@@ -196,6 +226,9 @@ msgstr "Vytvoril {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galéria"
+
+msgid "ASCENSION"
+msgstr ""
 
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -314,6 +347,13 @@ msgstr "Backslash"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Termosyntéza"
+
 msgid "BASE_MOBILITY"
 msgstr "Základná mobilita"
 
@@ -419,6 +459,9 @@ msgstr "Bioluminiscenčná vakuola"
 
 msgid "BIOME_LABEL"
 msgstr "Bióm: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
@@ -577,6 +620,10 @@ msgstr ""
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umožňuje detegovať zlúčeniny z väčšej vzdialenosti. Po umiestnení je možné upraviť typ zlúčeniny a farbu vodiacej čiary."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chemosyntéza"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosyntetizujúce bielkoviny"
 
@@ -615,6 +662,9 @@ msgstr ""
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatická aberácia:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound]. Množstvo závisí od [thrive:compound type=\"carbondioxide\"]oxidu uhličitého[/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"]slnečného žiarenia[/thrive:compound]."
@@ -1960,6 +2010,10 @@ msgstr "Koncentrácia glukózy drasticky klesla!"
 msgid "GLYCOLYSIS"
 msgstr "Glykolýza"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Anaeróbna fixácia dusíka"
+
 msgid "GODMODE"
 msgstr ""
 
@@ -2086,8 +2140,16 @@ msgstr "Nekonečné MP"
 msgid "INFO_BOX_COST"
 msgstr ""
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Úložný priestor"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Náklady na osmoreguláciu"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2097,8 +2159,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Úložný priestor"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Náklady na osmoreguláciu"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Žiadne procesy"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -2127,6 +2197,9 @@ msgstr ""
 #, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "Ovládanie"
@@ -3359,6 +3432,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Zapni editor"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Súčasné vlákna:"
 
@@ -3427,8 +3504,15 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "NO"
+msgstr "Žiadne"
+
 msgid "NONE"
 msgstr "Žiadne"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normálne"
@@ -3733,6 +3817,10 @@ msgstr "OxyToxy NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Syntéza OxyToxynov"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Syntéza OxyToxynov"
+
 msgid "PAGEDOWN"
 msgstr "Page Down"
 
@@ -3993,8 +4081,15 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Bielkoviny"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Aeróbne Dýchanie"
+
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátori"
@@ -4834,6 +4929,9 @@ msgstr "Spraviť snímku obrazovky"
 msgid "TARGET_TYPE_COLON"
 msgstr "Typ:"
 
+msgid "TBA"
+msgstr ""
+
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -5515,6 +5613,77 @@ msgstr "Skrolovať hore"
 msgid "WIKI"
 msgstr "naša Wiki"
 
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Súčasní vývojári"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Rusticyanín"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticyanín"
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Populácia druhu"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticyanín"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Bunková signalizácia"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Spojivo"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Spojivo"
+
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr ""
+"Je tu kolízia s {0}.\n"
+"Chceš odstrániť priradený kláves z {1}?"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Spojivo"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Fáza Mikróbov"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Fáza Mikróbov"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Fáza Mikróbov"
+
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 
@@ -5745,6 +5914,29 @@ msgstr ""
 msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Zlúčeniny:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Cytoplazma"
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr ""
 
@@ -5769,6 +5961,34 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Organely"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitochondria"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitochondria"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(proporcia glukózy v prostredí každú generáciu"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -5797,13 +6017,72 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Spojivo"
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Chemoreceptor"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Súčasní vývojári"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Hlavný vývojár"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Spojivo"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Spojivo"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Spustiť automatickú evolúciu počas hry"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Spojivo"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Fáza Mikróbov"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Fyzické podmienky"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -5815,8 +6094,46 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr ""
+"Je tu kolízia s {0}.\n"
+"Chceš odstrániť priradený kláves z {1}?"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Nekonečné zlúčeniny"
+
+msgid "WIKI_HEADING_UI"
+msgstr ""
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Spojivo"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Spojivo"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Spojivo"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -5841,6 +6158,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Organely"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -5873,6 +6194,26 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolozómy"
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr "[b][u]{0}[/u][/b] vyhynul!"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Editor Mikróbov"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr "Fáza Mikróbov"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Fáza Mikróbov"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr "Nitrogenáza"
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Mitochondria"
 
@@ -5900,6 +6241,34 @@ msgstr "Mitochondria"
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Mitochondria"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Fáza Mnohobunkovcov"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Načítanie skorého editora mnohobunkovcov"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Fáza Mnohobunkovcov"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Fáza Mnohobunkovcov"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Fáza Mnohobunkovcov"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Fáza Mnohobunkovcov"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Fáza Mnohobunkovcov"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6047,6 +6416,18 @@ msgstr "Oxytoxizóm"
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Oxytoxizóm"
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticyanín"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Spojivo"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Fáza Mikróbov"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6078,24 +6459,59 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Cytoplazma"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplazma"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Umiestniť organelu"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitochondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitochondria"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Bičík"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Spojivo"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lyzozóm"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Umiestniť organelu"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolozómy"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenáza"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Fáza Mnohobunkovcov"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6129,6 +6545,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplazma"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplazma"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticyanín"
 
@@ -6138,6 +6558,18 @@ msgstr "Bunková signalizácia"
 
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Fáza Mikróbov"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Bunková signalizácia"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Umiestniť organelu"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6212,6 +6644,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplazma"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6308,6 +6747,56 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Fáza Mikróbov"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Mnoho organizmov produkuje lepkavé polysacharidy, ako napríklad sliz. Aj keď ho mnoho živočíchov používa pre pohyb, isté typy baktérií tieto látky vystreľujú vo vysokom tlaku. Takéto trysky pracujú ako raketový pohon. Posúvajú bunky neuveriteľnou rýchlosťou. Pre iné živočíchy bez trysiek je pohyb v takýchto látkach obtiažny."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Fáza Mikróbov"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Fáza Mikróbov"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Fáza Mikróbov"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Vyžaduje jadro"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Mnoho organizmov produkuje lepkavé polysacharidy, ako napríklad sliz. Aj keď ho mnoho živočíchov používa pre pohyb, isté typy baktérií tieto látky vystreľujú vo vysokom tlaku. Takéto trysky pracujú ako raketový pohon. Posúvajú bunky neuveriteľnou rýchlosťou. Pre iné živočíchy bez trysiek je pohyb v takýchto látkach obtiažny."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Fáza Mikróbov"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Fáza Mikróbov"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Organely"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6530,6 +7019,10 @@ msgid "XBOX_SERIES"
 msgstr ""
 
 msgid "YEARS"
+msgstr "roky"
+
+#, fuzzy
+msgid "YES"
 msgstr "roky"
 
 #, fuzzy

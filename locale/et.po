@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -19,7 +19,26 @@ msgstr ""
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
 msgstr ""
 
 #, fuzzy
@@ -31,6 +50,9 @@ msgid "3D_MOVEMENT"
 msgstr "Liikumine"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+msgid "8_BRACKET_16"
 msgstr ""
 
 msgid "ABILITIES"
@@ -100,8 +122,16 @@ msgstr ""
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Anaeroobne lämmastiku fikseerimine"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aeroobne lämmastiku fikseerimine"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Aeroobne hingamine"
 
 msgid "AGENTS"
 msgstr "ained"
@@ -208,6 +238,9 @@ msgstr "Kunst autorilt {0}"
 
 msgid "ART_GALLERY"
 msgstr "Kunstigalerii"
+
+msgid "ASCENSION"
+msgstr ""
 
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -338,6 +371,13 @@ msgstr "Kaldkriips"
 msgid "BACKSPACE"
 msgstr "Tagasilükkeklahv"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Kemosüntees"
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Liikuvus"
@@ -441,6 +481,9 @@ msgstr "Bioluminestseeruv vakuool"
 
 msgid "BIOME_LABEL"
 msgstr "biome: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
@@ -600,6 +643,10 @@ msgstr "Kõik rakud \"näevad\" ainult kemoretseptsiooni kaudu. Nii saavad rakud
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoretseptor võimaldab tuvastada ühendeid kaugemalt. Ühenduse tüübi ja juhtjoone värvi valimiseks muutke, kui see on asetatud."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Kemosüntees"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosünteesivad valgud"
 
@@ -640,6 +687,9 @@ msgstr "Valitud failinimi ({0}) on juba olemas. Kas kirjutada üle?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromaatiline aberratsioon:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] ja intensiivsusega [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -2070,6 +2120,10 @@ msgstr "Glükoosi kontsentratsioon on drastiliselt langenud!"
 msgid "GLYCOLYSIS"
 msgstr "Glükolüüs"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Anaeroobne lämmastiku fikseerimine"
+
 msgid "GODMODE"
 msgstr "Jumalarežiim"
 
@@ -2203,8 +2257,16 @@ msgstr "Lõpmatu MP"
 msgid "INFO_BOX_COST"
 msgstr "SA OLED ÕIDULIKUD!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "SA OLED ÕIDULIKUD!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Osmoregulatsiooni maksumus"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2214,8 +2276,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "SA OLED ÕIDULIKUD!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoregulatsiooni maksumus"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Protsesse pole"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -2246,6 +2316,9 @@ msgstr ""
 #, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "Sisendid"
@@ -3617,6 +3690,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Luba redaktor"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Praegused lõimed:"
 
@@ -3688,8 +3765,15 @@ msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaas
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
 
+#, fuzzy
+msgid "NO"
+msgstr "Mitte ühtegi"
+
 msgid "NONE"
 msgstr "Mitte ühtegi"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Tavaline"
@@ -4005,6 +4089,10 @@ msgstr "oksütotsiini nt"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Oksütotsiin"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Oksütotsiin"
+
 msgid "PAGEDOWN"
 msgstr "Lehekülg alla"
 
@@ -4267,8 +4355,15 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Valgud"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Aeroobne hingamine"
+
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Tõmbetaotlused / programmeerimine"
@@ -5151,6 +5246,9 @@ msgstr "Tehke ekraanipilt"
 msgid "TARGET_TYPE_COLON"
 msgstr "Tüüp:"
 
+msgid "TBA"
+msgstr ""
+
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -5963,6 +6061,96 @@ msgid "WIKI"
 msgstr "meie Viki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Praegused arendajad"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Välised mõjud:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdioksiidi ja hapnikku, et oksüdeerida rauda ühest keemilisest olekust teise. See protsess, mida nimetatakse raudseks hingamiseks, vabastab energiat, mida rakk saab seejärel koguda."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Liikide populatsioon"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdioksiidi ja hapnikku, et oksüdeerida rauda ühest keemilisest olekust teise. See protsess, mida nimetatakse raudseks hingamiseks, vabastab energiat, mida rakk saab seejärel koguda."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Sideaine"
+
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Sideaine"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Lämmastik"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Välised mõjud:"
 
@@ -6204,6 +6392,29 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Ühendid:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
@@ -6229,6 +6440,34 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Organellid"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitokondrid"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitokondrid"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
@@ -6259,13 +6498,79 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Kemoretseptor"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Praegused arendajad"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Juhtarendajad"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Sideaine"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Lämmastik"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Käivitage mängu ajal auto-evo"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Sideaine"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Füüsilised tingimused"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -6277,8 +6582,45 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Lõpmatud ühendid"
+
+msgid "WIKI_HEADING_UI"
+msgstr ""
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Sideaine"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Sideaine"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6306,6 +6648,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Organellid"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6340,6 +6686,54 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraanstruktuur, mis on täidetud valkude ja ensüümidega. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. See on võimeline muutma glükoosi ATP-ks palju suurema efektiivsusega kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist."
 
@@ -6370,6 +6764,34 @@ msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraa
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraanstruktuur, mis on täidetud valkude ja ensüümidega. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. See on võimeline muutma glükoosi ATP-ks palju suurema efektiivsusega kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6520,6 +6942,25 @@ msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT pri
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "rustitsüaniin"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Sideaine"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6551,24 +6992,59 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Tsütoplasma"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Tsütoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitokondrid"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitokondrid"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Vibur"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Sideaine"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Oksütoksisoom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Asetage organell"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosoomid"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Lämmastik"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitokondrid"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6602,6 +7078,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplasma"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "rustitsüaniin"
 
@@ -6611,6 +7091,25 @@ msgstr "Signaaliagent"
 
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Signaaliagent"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Asetage organell"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6685,6 +7184,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplasma"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6783,6 +7289,98 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Tuum"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Lämmastik"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Organellid"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -7008,6 +7606,10 @@ msgid "XBOX_SERIES"
 msgstr ""
 
 msgid "YEARS"
+msgstr "aastat"
+
+#, fuzzy
+msgid "YES"
 msgstr "aastat"
 
 #, fuzzy

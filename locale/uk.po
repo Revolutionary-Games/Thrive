@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2024-04-29 05:48+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.9.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Стиль 2D-пересування:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Загальний редактор та стратегічні стадії"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D-редактор"
@@ -30,6 +49,9 @@ msgstr "3D-пересування"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Стиль 3D-пересування:"
+
+msgid "8_BRACKET_16"
+msgstr ""
 
 msgid "ABILITIES"
 msgstr "Здібності"
@@ -90,8 +112,16 @@ msgstr "Детальніше"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Відкрити вікно розширених налаштувань"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Анаеробна фіксація азоту"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Аеробна фіксація азоту"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Аеробне Дихання"
 
 msgid "AGENTS"
 msgstr "Агенти"
@@ -199,6 +229,10 @@ msgstr "Малюнок від {0}"
 
 msgid "ART_GALLERY"
 msgstr "Галерея"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Версія:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Вітаємо!"
@@ -322,6 +356,13 @@ msgstr "Слеш назад"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Термосинтез"
+
 msgid "BASE_MOBILITY"
 msgstr "Базова мобільність"
 
@@ -417,6 +458,9 @@ msgstr "Біолюмінесцентна вакуоля"
 
 msgid "BIOME_LABEL"
 msgstr "Біом: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Нейрон"
@@ -571,6 +615,10 @@ msgstr "Усі клітини «бачають» лиш через хеморе�
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Хеморецептор дозволяє відстежувати сполуки на відстані. Модифікуйте один раз, аби вибрати тип сполуки та колір та колір вказівної лінії."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Хемосинтез"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Хемосинтезувальні білки"
 
@@ -609,6 +657,9 @@ msgstr "Обране файлове ім'я ({0}) уже існує. Переп�
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматична аберація:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та інтенсивності [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -1939,6 +1990,10 @@ msgstr "Концентрація глюкози раптово впала!"
 msgid "GLYCOLYSIS"
 msgstr "Гліколіз"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Анаеробна фіксація азоту"
+
 msgid "GODMODE"
 msgstr "Режим Бога"
 
@@ -2063,7 +2118,15 @@ msgstr "Нескінчені МО"
 msgid "INFO_BOX_COST"
 msgstr "Базова ціна (МО)"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Базова ціна (МО)"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr "Ензими"
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr "Ензими"
 
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2072,8 +2135,16 @@ msgstr "Внутрішня назва"
 msgid "INFO_BOX_MASS"
 msgstr "Маса"
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Зберігання"
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Вартість осморегуляції"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Процеси"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "Процеси"
@@ -2098,6 +2169,9 @@ msgstr "Поглинута матерія"
 
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Створити новий світ"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "Керування"
@@ -3361,6 +3435,10 @@ msgstr "{0} (СИЛА: {1})"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0} (Незав.)"
 
+#, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Увімкнути редактор"
+
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 "Нативні потоки використовуються не для тих же завдань, що керовані потоки.\n"
@@ -3434,8 +3512,15 @@ msgstr "Азотфіксувальні пластиди – це білки, щ�
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Нічого"
+
 msgid "NONE"
 msgstr "Нічого"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "нормальний"
@@ -3723,6 +3808,10 @@ msgstr "Окситоксин"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Синтез окситоксину"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез окситоксину"
+
 msgid "PAGEDOWN"
 msgstr "Сторінку Вниз"
 
@@ -3975,8 +4064,15 @@ msgstr "Захист нових клітин від витісняючих ви�
 msgid "PROTEINS"
 msgstr "Білки"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Аеробне Дихання"
+
 msgid "PROTOPLASM"
 msgstr "Протоплазма"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Програмування"
@@ -4785,6 +4881,9 @@ msgstr "Зробити знімок екрана"
 msgid "TARGET_TYPE_COLON"
 msgstr "Тип цілі:"
 
+msgid "TBA"
+msgstr ""
+
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Піднесення"
 
@@ -5550,6 +5649,89 @@ msgstr "Колесо вгору"
 msgid "WIKI"
 msgstr "Наша Wiki"
 
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Поточні розробники"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr ""
+"Для кожної клітини багатоклітинного організму, що містить [b]Аксони[/b], сила мозку цього організму підвищується пропорційно значенню цієї клітини.\n"
+"Клітини з [b]Аксонами[/b] класифікуються як ті, що містять тип мозкової тканини.\n"
+"\n"
+"Коли сила мозку перевищує [b]+0.5[/b], гравець переходить до Стадії Свідомості. Коли сила мозку перевищує [b]+5.0[/b], гравець переходить до Стадії Пробудження."
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Нервові тканини між нейронами, що доступні зі Стадії Багатоклітинності. Потрібні для підвищення сили мозку організму і прогресування до майбутніх стадій."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Вітаємо!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Нервові тканини між нейронами, що доступні зі Стадії Багатоклітинності. Потрібні для підвищення сили мозку організму і прогресування до майбутніх стадій."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Клітина повинна мати [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b], щоб розвинути собі [b]Зв'язувальні агенти[/b].\n"
+"\n"
+"Якщо покращення органел увімкнено у налаштуваннях гри, [i]обидві[/i] умови мають бути виконані [i]для клітини гравця[/i]:\n"
+"\n"
+"[indent]—   Містить [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b] протягом щонайменш [b]5[/b] поколінь.[/indent]\n"
+"[indent]—   Має баланс [thrive:compound type=\"atp\"][/thrive:compound] щонайменш [b]+15[/b].[/indent]"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Стадія пробудження"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr ""
+"Дозволяє клітині приєднуватись до інших клітин її виду для формування клітинної колонії. Зв'язані клітини рухаються як одна й розподіляють сполуки. Клітини повинні від'єднатися від колонії перш ніж уходити до клітинного редактора.\n"
+"\n"
+"Колонії клітин є першим кроком до багатоклітинності, тож [b]Зв'язувальні агенти[/b] є критичними для переходу до наступної стадії."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Стадія пробудження"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Стадія пробудження"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Стадія пробудження"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Стадія свідомості"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Стадія свідомості"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Нітрогеназа"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Стадія свідомості"
+
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "Для кожної клітини багатоклітинного організму, що містить [b]Аксони[/b], сила мозку цього організму підвищується пропорційно значенню цієї клітини.\n"
@@ -5802,6 +5984,29 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Сполуки:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Клейкий вміст клітини. Цитоплазма є базовою сумішшю йонів, білків та інших речовин, розчинених у воді, що заповнюють нутрощі клітини. Одна з функцій, яку вона виконує — [b]гліколіз[/b], перетворення [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Для клітин без органел для стабільного метаболізму, це є засобом отримання енергії. Також вона потрібна для збереження молекул в клітині та збільшення розміру останньої."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Клейкий вміст клітини. Цитоплазма є базовою сумішшю йонів, білків та інших речовин, розчинених у воді, що заповнюють нутрощі клітини. Одна з функцій, яку вона виконує — [b]гліколіз[/b], перетворення [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Для клітин без органел для стабільного метаболізму, це є засобом отримання енергії. Також вона потрібна для збереження молекул в клітині та збільшення розміру останньої."
 
@@ -5827,6 +6032,34 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Аксон"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Мітохондрія"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Мітохондрія"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(частка глюкози, що залишається в навколишньому серидовищі кожну генерацію)"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
@@ -5857,13 +6090,74 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Поточні розробники"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Загальний редактор та стратегічні стадії"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Нітрогеназа"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Загальний редактор та стратегічні стадії"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Загальний редактор та стратегічні стадії"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Фізичні умови"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -5876,8 +6170,57 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Загальний редактор та стратегічні стадії"
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Нескінченні сполуки"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Загальний редактор та стратегічні стадії"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Клітина повинна мати [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b], щоб розвинути собі [b]Зв'язувальні агенти[/b].\n"
+"\n"
+"Якщо покращення органел увімкнено у налаштуваннях гри, [i]обидві[/i] умови мають бути виконані [i]для клітини гравця[/i]:\n"
+"\n"
+"[indent]—   Містить [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b] протягом щонайменш [b]5[/b] поколінь.[/indent]\n"
+"[indent]—   Має баланс [thrive:compound type=\"atp\"][/thrive:compound] щонайменш [b]+15[/b].[/indent]"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Індустріальна стадія"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr ""
+"Дозволяє клітині приєднуватись до інших клітин її виду для формування клітинної колонії. Зв'язані клітини рухаються як одна й розподіляють сполуки. Клітини повинні від'єднатися від колонії перш ніж уходити до клітинного редактора.\n"
+"\n"
+"Колонії клітин є першим кроком до багатоклітинності, тож [b]Зв'язувальні агенти[/b] є критичними для переходу до наступної стадії."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Індустріальна стадія"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Індустріальна стадія"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Індустріальна стадія"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -5905,6 +6248,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Покращень немає."
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Аксон"
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Ефектів немає."
@@ -5937,6 +6284,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Метаболосоми є скупченнями білків в білковій оболонці. Вони набагато швидше перетворюють [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] ніж в цитоплазмі під час процесу, що зветься [b]Анаеробним Диханням[/b]. Та для цього потрібен [thrive:compound type=\"oxygen\"][/thrive:compound], а нищий рівень [thrive:compound type=\"oxygen\"][/thrive:compound] сповільнює синтез [thrive:compound type=\"atp\"][/thrive:compound]. Оскільки метаболосоми розміщені в цитоплазмі, навколишня рідина здійснює [b]гліколіз[/b]."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"На далекій чужій планеті в результаті еонів хімічної еволюції з'явилися молекули, здатні до самовідтворення, що призвело до виникнення новго феномену у всесвіті.\n"
+"\n"
+"Життя.\n"
+"\n"
+"Примітивні мікроби живуть в мілких теплих ставках. Ви - останній спільний універсальний предок (ОСУП) на цій планеті.\n"
+"\n"
+"Щоб вижити в цьому суворуму світі, ви маєте збирати будь-які сполуки, які знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Мікробний редактор"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"На далекій чужій планеті еони вулканічної активності та метеоритних дощів призвели до нового феномену у Всесвіті.\n"
+"\n"
+"Життя.\n"
+"\n"
+"Примітивні мікроби живуть в глибоких областях океану. Ви останній спільний універсальний предок(ОСУП) на цій планеті.\n"
+"\n"
+"Щоб вижити в цьому суворуму світі, ви маєте збирати сполуки, які лише знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Мікробна стадія"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"На далекій чужій планеті еони вулканічної активності та метеоритних дощів призвели до нового феномену у Всесвіті.\n"
+"\n"
+"Життя.\n"
+"\n"
+"Примітивні мікроби живуть в глибоких областях океану. Ви останній спільний універсальний предок(ОСУП) на цій планеті.\n"
+"\n"
+"Щоб вижити в цьому суворуму світі, ви маєте збирати сполуки, які лише знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Енергостанція клітини. Мітохондрія є двомембранною структурою, заповненою білками та ферментами. Це прокаріот, поглинутий для використання еукаріотичним господарем. Вона здатна перетворювати [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound] з сильно вищою ефективністю, аніж це робить цитоплазма, в процесі названому [b]анаеробним диханням[/b]. Однак для функціонування мітохондрії потрібен [thrive:compound type=\"oxygen\"][/thrive:compound], а нижчий рівень [thrive:compound type=\"oxygen\"][/thrive:compound] сповільнить продукування [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -5967,6 +6355,43 @@ msgstr "Енергостанція клітини. Мітохондрія є д�
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Енергостанція клітини. Мітохондрія є двомембранною структурою, заповненою білками та ферментами. Це прокаріот, поглинутий для використання еукаріотичним господарем. Вона здатна перетворювати [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound] з сильно вищою ефективністю, аніж це робить цитоплазма, в процесі названому [b]анаеробним диханням[/b]. Однак для функціонування мітохондрії потрібен [thrive:compound type=\"oxygen\"][/thrive:compound], а нижчий рівень [thrive:compound type=\"oxygen\"][/thrive:compound] сповільнить продукування [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Багатоклітинна стадія"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Вітаємо на ранній багатоклітинній стадії!\n"
+"\n"
+"Ви змогли довести свій вид крізь одноклітинну фазу.\n"
+"\n"
+"Геймплей наслідує основній механіці мікробної стадії. Вам ще треба рости своїм за організм, щоб розмножуватись та переходити до редактору.\n"
+"\n"
+"Проте зараз ви ще можите розробити макет колоніальної клітини в редакторі та спеціалізувати вашу клітину для різних цілей. Пам'ятайте, що члени колонії не здатні ділити між собою [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Якщо ви використовуєте розмноження брунькуванням( метод за замовчуванням) ви почнете керувати малою брунькою та потребуватимете вирощення решти клітинного макету."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Багатоклітинна стадія"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Багатоклітинна стадія"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Багатоклітинна стадія"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Багатоклітинна стадія"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Багатоклітинна стадія"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6116,6 +6541,18 @@ msgstr "Модифікована метаболосома відповідає �
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Модифікована метаболосома відповідає за продукування примітивної форми токсичного агента [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Рустіціанін"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Стадія пробудження"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Стадія свідомості"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6147,24 +6584,59 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Цитоплазма"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Цитоплазма"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Місце для органели"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Мітохондрія"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Мітохондрія"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Джгутик"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Індустріальна стадія"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Лізосома"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Місце для органели"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Метаболосоми"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Нітрогеназа"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Мітохондрія"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Багатоклітинна стадія"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6198,6 +6670,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Протоплазма"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Протоплазма"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Рустіціанін"
 
@@ -6208,6 +6684,18 @@ msgstr "Сигнальний агент"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Поросома"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Стадія суспільства"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Поросома"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Місце для органели"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6282,6 +6770,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Протоплазма"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6380,6 +6875,56 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Стадія суспільства"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Багато організмів продукують полісахариди, злизоподібну субстанцію, та слиз є одним з таких. Хоч багато видів використовують слиз для руху, деякі типи бектерій викидають ці речовини під високим тиском. Ці ядерні пории, наче ракетні двигуни, пхаючи клітину вперід з неймовірною швидкістю. Слиз також використовується для протидії хижакам, затримуючи їх у речовині, доступній лише для організмів, що володіють струменями."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Стадія суспільства"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Стадія суспільства"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Стадія суспільства"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Поросома"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Багато організмів продукують полісахариди, злизоподібну субстанцію, та слиз є одним з таких. Хоч багато видів використовують слиз для руху, деякі типи бектерій викидають ці речовини під високим тиском. Ці ядерні пории, наче ракетні двигуни, пхаючи клітину вперід з неймовірною швидкістю. Слиз також використовується для протидії хижакам, затримуючи їх у речовині, доступній лише для організмів, що володіють струменями."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Космічна стадія"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Нітрогеназа"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Космічна стадія"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Аксон"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6605,6 +7150,10 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "роки"
 
+#, fuzzy
+msgid "YES"
+msgstr "роки"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Відвідайте наш YouTube канал"
 
@@ -6806,9 +7355,6 @@ msgstr "Віддалитись"
 
 #~ msgid "TYPE"
 #~ msgstr "Тип:"
-
-#~ msgid "VERSION"
-#~ msgstr "Версія:"
 
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2024-04-29 05:48+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D hareket stili:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "[b]Siller[/b], özellikle avcılığa dayanan, büyük hücreler için önemlidir. Onlar olmadan büyük hücreler, bazen acı verici biçimde yavaş dönme hızından dolayı kısıtlanır. Bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, bu önemli organelin muazzam büyüklüğüne karşı koymak için, en kısa zamanda [b]Siller[/b] eklemenizi tavsiye ediyoruz. Ayrıca, dönme kuvvetini en üst düzeye çıkarmak için, bu organeli bir hücrenin merkezinden olabildiğince en uzağa yerleştirmenizi öneririz."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Düzenleyici"
@@ -30,6 +49,10 @@ msgstr "3D Hareket"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D hareket stili:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Sola döndür"
 
 msgid "ABILITIES"
 msgstr "Yetenekler"
@@ -90,8 +113,16 @@ msgstr "Gelişmiş"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Gelişmiş kurulum görünümünü aç"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Oksijensiz Azot Fiksasyonu"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Oksijenli Azot Fiksasyonu"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Oksijenli Solunum"
 
 msgid "AGENTS"
 msgstr "Ajanlar"
@@ -199,6 +230,10 @@ msgstr "Resmi yapan: {0}"
 
 msgid "ART_GALLERY"
 msgstr "Sanat Galerisi"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Sürüm:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Tebrikler!"
@@ -322,6 +357,13 @@ msgstr "Ters Eğik Çizgi"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Termosentez"
+
 msgid "BASE_MOBILITY"
 msgstr "Temel Hareketlilik"
 
@@ -417,6 +459,9 @@ msgstr "Biyolüminesan Koful"
 
 msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Nöron"
@@ -571,6 +616,10 @@ msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görü
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoreseptör, bileşikleri daha uzaktan algılamayı sağlar. Bu organeli yerleştirdikten sonra, algılanacak bileşik türünü ve bu bileşiğe işaret eden çizginin rengini seçmek için değişiklik yapın."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Kemosentez"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosentez Yapan Proteinler"
 
@@ -609,6 +658,9 @@ msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Renk sapması:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretir. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]güneş ışığı[/thrive:compound] şiddeti ile doğru orantılıdır."
@@ -1937,6 +1989,10 @@ msgstr "Glukoz konsantrasyonu sert bir şekilde düştü!"
 msgid "GLYCOLYSIS"
 msgstr "Glikoliz"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Oksijensiz Azot Fiksasyonu"
+
 msgid "GODMODE"
 msgstr "Tanrı Modu"
 
@@ -2061,7 +2117,15 @@ msgstr "Sonsuz MP"
 msgid "INFO_BOX_COST"
 msgstr "Taban Fiyatı (MP)"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Taban Fiyatı (MP)"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr "Enzimler"
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr "Enzimler"
 
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2070,8 +2134,16 @@ msgstr "İç Adı"
 msgid "INFO_BOX_MASS"
 msgstr "Kütle"
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Depo"
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Ozmoregülasyon Maliyeti"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "İşlemler"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "İşlemler"
@@ -2096,6 +2168,9 @@ msgstr "İçeri Alınmış Madde"
 
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Yeni bir dünya oluştur"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "Girişler"
@@ -3358,6 +3433,10 @@ msgstr "{0} (GÜÇ: {1})"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0} (Y)"
 
+#, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Düzenleyiciyi aç"
+
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 "Yerel iş parçacıkları, yönetilen iş parçacıklarından farklı görevler için kullanılır.\n"
@@ -3431,8 +3510,15 @@ msgstr "Azot Fiksasyon Plastidi, hücrelerde ana gelişim yapı maddesi olan [th
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. [thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
+#, fuzzy
+msgid "NO"
+msgstr "Yok"
+
 msgid "NONE"
 msgstr "Yok"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normal"
@@ -3720,6 +3806,10 @@ msgstr "OksiToksi NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OksiToksi Sentezi"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OksiToksi Sentezi"
+
 msgid "PAGEDOWN"
 msgstr "Page Down"
 
@@ -3972,8 +4062,15 @@ msgstr "Yeni oluşturulan türleri tür sınırından koru"
 msgid "PROTEINS"
 msgstr "Proteinler"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Oksijenli Solunum"
+
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Çekme İstekleri / Programlama"
@@ -4782,6 +4879,9 @@ msgstr "Ekran görüntüsü al"
 msgid "TARGET_TYPE_COLON"
 msgstr "Hedef Tür:"
 
+msgid "TBA"
+msgstr ""
+
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Tırmanış"
 
@@ -5549,6 +5649,91 @@ msgstr "Fare tekeri yukarı"
 msgid "WIKI"
 msgstr "Viki"
 
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Mevcut Oyun Geliştiricileri"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr ""
+"Çok hücreli bir organizmada, [b]Akson[/b] içeren her hücre için, organizmanın zihin gücü o hücrenin hacmi ile doğru orantılı olarak artar. [b]Aksonlu[/b] hücreler, beyin dokusu türüne sahip olarak sınıflandırılır.\n"
+"\n"
+"Zihin gücü[b]+0.5'i[/b] aştığında, oyuncu Farkındalık Evresi'ne girer. Zihin gücü[b]+5.0'ı[/b] aştığında, oyuncu Uyanış Evresi'ne girer."
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Nöronlar arasındaki sinir lifleridir ve Çok Hücreli Evresi'nde mevcuttur. Bu organel, bir organizmanın zihin gücünü arttırmada ve sonraki evrelere ilerlemede gereklidir."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Tebrikler!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Nöronlar arasındaki sinir lifleridir ve Çok Hücreli Evresi'nde mevcuttur. Bu organel, bir organizmanın zihin gücünü arttırmada ve sonraki evrelere ilerlemede gereklidir."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Bir hücre, [b]Bağlayıcı Ajanları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"\n"
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   En az [b]5[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] içermek.[/indent]\n"
+"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] dengesine sahip olmak.[/indent]"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Uyanış Evresi"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr ""
+"Bir hücrenin, diğer özdeş türlere katılıp bir hücre kolonisi kurmasını sağlar. Bir koloniye bağlandığında, hücreler hep birlikte hareket ederler ve bileşikleri paylaşırlar. Düzenleyiciye girmeden ve bölünmeden önce, hücreler koloniden bağını koparmalıdır.\n"
+"\n"
+"Hücre kolonileri, çok hücreliliğe doğru ilk adımdır. Bu yüzden [b]Bağlayıcı Ajanlar[/b], sonraki evreye ilerlemede çok önemlidir."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Uyanış Evresi"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Uyanış Evresi"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Uyanış Evresi"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Farkındalık Evresi"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr ""
+"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Azot Fiksasyon Plastidinden[/url][/color][/b] daha verimsizdir.\n"
+"\n"
+"Ayrıca [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [b]Glikoliz[/b] yapar."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Farkındalık Evresi"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrojenaz"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Farkındalık Evresi"
+
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "Çok hücreli bir organizmada, [b]Akson[/b] içeren her hücre için, organizmanın zihin gücü o hücrenin hacmi ile doğru orantılı olarak artar. [b]Aksonlu[/b] hücreler, beyin dokusu türüne sahip olarak sınıflandırılır.\n"
@@ -5823,6 +6008,32 @@ msgstr ""
 "\n"
 "[b]Silleri[/b]; [b]Çeken Sillere[/b] dönüştürmek için, [b]25[/b] mutasyon puanıyla, onlarda yerleştirdiğiniz an değişiklik yapın. Bu organelin sıradan etkilerine ek olarak, [b]Çeken Siller[/b] küçük hücreleri ve yüzen organeller gibi parçaları kendine çekmek için gelgitler oluşturur."
 
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Bileşikler:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr ""
+"Bir hücrenin yapışkan iç kısmı. [b]Sitoplazma[/b], hücrenin içini dolduran iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur.\n"
+"\n"
+"Yaptığı işlevlerden biri [b]Sitoplazma Glikolizi[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümüdür. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Herhangi bir organel, ek bir mutasyon puanına mal olmadan [b]Sitoplazmanın[/b] yerine geçebilir (organelin kendi maliyeti buna dahil değildir)."
 
@@ -5863,6 +6074,41 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Geliştirme yok."
 
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr ""
+"Organeller, tek hücreli organizmaların \"organlarıdır\". Thrive'da organeller, hücrenizin yapı taşlarıdır ve hücrenin iç işleyişini ve yeteneklerini kontrol ederler.\n"
+"\n"
+"Her çoğaldığınızda, mikrop editörünü kullanarak hücrenizin içine organeller ekleyebilir, organelleri taşıyabilir veya kaldırabilirsiniz. Bu eylemlerin neredeyse tümü mutasyon puanına mal olur. Organeller, hücre zarına sarılmış bir şekilde altıgen bir ızgarada düzenlenir ve her organelin belirgin bir altıgen izi vardır. Dış organeller hücre zarının dışına tutunurlar. Bu yüzden birçoğu için yerleştirme yönü önemlidir.\n"
+"\n"
+"Hücrenizi düzenlerken, diğer türler de organel düzenlerini değiştirirler. Onların da aynı güçlere ve yeteneklere erişimi vardır.\n"
+"\n"
+"Daha fazla şey öğrenmek için aşağıdaki listeden bir organel seçin."
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Hücrenin güç merkezidir. [b]Mitokondri[/b], [thrive:compound type=\"oxygen\"]oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. [b]Mitokondri[/b] bu işlevi [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi organellerden daha verimli bir şekilde gerçekleştirir."
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Hücrenin güç merkezidir. [b]Mitokondri[/b], [thrive:compound type=\"oxygen\"]oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. [b]Mitokondri[/b] bu işlevi [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi organellerden daha verimli bir şekilde gerçekleştirir."
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(her kuşakta boyunca ortamda tutulan glukoz oranı)"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Her [b]Kamçı[/b], bulunduğu yönün tersine doğru yönlü itiş sağlar. Bu organel ayrıca yönün tam tersine yakın doğrultulara doğru kısmi olarak itiş sağlar (daha kesin olmak gerekirse, vektörün tam tersi bileşeni pozitif olan doğrultular). Bir [b]Kamçı[/b] etkin olduğunda, [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketir."
 
@@ -5894,14 +6140,77 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Geliştirme yok."
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Geliştirmeler"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "İşlemler"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Strateji"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Gereksinimler"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Gereksinimler"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Etkiler"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr "Etkiler"
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "İşlemler"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Etkiler"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Strateji"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Geliştirmeler"
+
+#, fuzzy
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr "Değişiklikler"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "İşlemler"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "Değişiklikler"
 
+#, fuzzy
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr "Değişiklikler"
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "İşlemler"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Fiziksel Koşullar"
+
 msgid "WIKI_HEADING_PROCESSES"
 msgstr "İşlemler"
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "Gereksinimler"
@@ -5912,8 +6221,57 @@ msgstr "Bilimsel Geçmiş"
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Strateji"
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Strateji"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Değişiklikler"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Etkiler"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Geliştirmeler"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Geliştirmeler"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Bir hücre, [b]Bağlayıcı Ajanları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"\n"
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   En az [b]5[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] içermek.[/indent]\n"
+"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] dengesine sahip olmak.[/indent]"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Sanayi Evresi"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr ""
+"Bir hücrenin, diğer özdeş türlere katılıp bir hücre kolonisi kurmasını sağlar. Bir koloniye bağlandığında, hücreler hep birlikte hareket ederler ve bileşikleri paylaşırlar. Düzenleyiciye girmeden ve bölünmeden önce, hücreler koloniden bağını koparmalıdır.\n"
+"\n"
+"Hücre kolonileri, çok hücreliliğe doğru ilk adımdır. Bu yüzden [b]Bağlayıcı Ajanlar[/b], sonraki evreye ilerlemede çok önemlidir."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Sanayi Evresi"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Sanayi Evresi"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Sanayi Evresi"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -5963,6 +6321,17 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Geliştirme yok."
 
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr ""
+"Organeller, tek hücreli organizmaların \"organlarıdır\". Thrive'da organeller, hücrenizin yapı taşlarıdır ve hücrenin iç işleyişini ve yeteneklerini kontrol ederler.\n"
+"\n"
+"Her çoğaldığınızda, mikrop editörünü kullanarak hücrenizin içine organeller ekleyebilir, organelleri taşıyabilir veya kaldırabilirsiniz. Bu eylemlerin neredeyse tümü mutasyon puanına mal olur. Organeller, hücre zarına sarılmış bir şekilde altıgen bir ızgarada düzenlenir ve her organelin belirgin bir altıgen izi vardır. Dış organeller hücre zarının dışına tutunurlar. Bu yüzden birçoğu için yerleştirme yönü önemlidir.\n"
+"\n"
+"Hücrenizi düzenlerken, diğer türler de organel düzenlerini değiştirirler. Onların da aynı güçlere ve yeteneklere erişimi vardır.\n"
+"\n"
+"Daha fazla şey öğrenmek için aşağıdaki listeden bir organel seçin."
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Etki yok."
 
@@ -6000,6 +6369,47 @@ msgstr ""
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Geliştirme yok."
 
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren kimyasal evrimin kendi kendini kopyalayan moleküllere doğru ilerlemesi evrende yeni bir olayın gelişmesine neden oldu.\n"
+"\n"
+"Hayat.\n"
+"\n"
+"Ilık ve sığ göletlerde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
+"\n"
+"Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Mikrop Düzenleyicisi"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren volkanik aktiviteler ve göktaşı darbeleri evrende yeni bir olayın gelişmesine neden oldu.\n"
+"\n"
+"Hayat.\n"
+"\n"
+"Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
+"\n"
+"Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Mikrop Evresi"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren volkanik aktiviteler ve göktaşı darbeleri evrende yeni bir olayın gelişmesine neden oldu.\n"
+"\n"
+"Hayat.\n"
+"\n"
+"Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
+"\n"
+"Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
+
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Etki yok."
 
@@ -6035,6 +6445,43 @@ msgstr ""
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Geliştirme yok."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Çok Hücreli Evresi"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"İlk Çok Hücreli Evresi'ne hoş geldiniz!\n"
+"\n"
+"Tek hücreli aşamada türünüze rehberlik ederek başarıya ulaştınız.\n"
+"\n"
+"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Üremek ve düzenleyiciye girmek için yine organizmanızı geliştirmeye devam etmeniz gerekiyor.\n"
+"\n"
+"Ancak, artık düzenleyicide koloninizin hücre düzenini tasarlayabilir ve hücrelerinizi çeşitli görevler için özelleştirebilirsiniz. Unutmayın, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
+"\n"
+"Eğer tomorcuklanma ile üremeyi (varsayılan yöntem) kullanıyorsanız, ufak bir tomurcuğu kontrol etmeye başlarsınız ve hücre düzeninin geri kalanını büyütmeniz gerekir."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Çok Hücreli Evresi"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Çok Hücreli Evresi"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Çok Hücreli Evresi"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Çok Hücreli Evresi"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Çok Hücreli Evresi"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr "Çok hücreli bir organizmada, [b]Miyofibril[/b] içeren her hücre için, organizmanın hareket hızı o hücrenin hacmi ile doğru orantılı olarak artar. [b]Miyofibrilli[/b] hücreler, kas dokusu türüne sahip olarak sınıflandırılır."
@@ -6219,6 +6666,18 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Geliştirme yok."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Akson"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Uyanış Evresi"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Farkındalık Evresi"
+
 msgid "WIKI_PAGE_AXON"
 msgstr "Akson"
 
@@ -6243,20 +6702,55 @@ msgstr "Kloroplast"
 msgid "WIKI_PAGE_CILIA"
 msgstr "Siller"
 
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Sitoplazma"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Sitoplazma"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Organeller"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitokondri"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitokondri"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Kamçı"
 
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Sanayi Evresi"
+
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lizozom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Organeller"
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolozomlar"
 
+#, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrojenaz"
+
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitokondri"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Çok Hücreli Evresi"
 
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Miyofibril"
@@ -6282,6 +6776,10 @@ msgstr "Delici Pilus"
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplazma"
 
+#, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplazma"
+
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rustisiyanin"
 
@@ -6290,6 +6788,18 @@ msgstr "Sinyal Verici Ajan"
 
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Balçık Fışkırtıcı"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Topluluk Evresi"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Balçık Fışkırtıcı"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Organeller"
 
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Termoplast"
@@ -6384,6 +6894,16 @@ msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "Geliştirme yok."
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr ""
+"Oyuncu olmayan türler için depoyu arttırmak amacıyla tasarlanmış, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] önemli ölçüde gelişmiş bir biçimidir. Oyuncu hücrelere eklenemez ama oyuncunun ortamdan fosilleştirdiği hücrelerde mevcut olabilir.\n"
+"\n"
+"Görsel olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] benzer ve bu organelin birçok özelliğini alır."
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr ""
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6497,6 +7017,69 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Geliştirme yok."
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Topluluk Evresi"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr ""
+"[thrive:compound type=\"glucose\"]Glukozdan[/thrive:compound], [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] adı verilen bir yapışkan polimer üretir. Hücrenin kendini ileri doğru itmesi için, salınan maddenin alanına giren canlıları yavaşlatan, söz konusu [thrive:compound type=\"mucilage\"]Müsilajı[/thrive:compound] dışarı atmasını sağlar.\n"
+"\n"
+"[b][color=#3796e1][url=thriveopedia:flagellum]Kamçının[/url][/color][/b] aksine, yırtıcılardan kaçmak veya av yakalayabilmek için yararlı olacak ani bir hız artışı sağlar."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Topluluk Evresi"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Topluluk Evresi"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Topluluk Evresi"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Balçık Fışkırtıcı"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr ""
+"[thrive:compound type=\"glucose\"]Glukozdan[/thrive:compound], [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] adı verilen bir yapışkan polimer üretir. Hücrenin kendini ileri doğru itmesi için, salınan maddenin alanına giren canlıları yavaşlatan, söz konusu [thrive:compound type=\"mucilage\"]Müsilajı[/thrive:compound] dışarı atmasını sağlar.\n"
+"\n"
+"[b][color=#3796e1][url=thriveopedia:flagellum]Kamçının[/url][/color][/b] aksine, yırtıcılardan kaçmak veya av yakalayabilmek için yararlı olacak ani bir hız artışı sağlar."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Uzay Evresi"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrojenaz"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Uzay Evresi"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr ""
+"Organeller, tek hücreli organizmaların \"organlarıdır\". Thrive'da organeller, hücrenizin yapı taşlarıdır ve hücrenin iç işleyişini ve yeteneklerini kontrol ederler.\n"
+"\n"
+"Her çoğaldığınızda, mikrop editörünü kullanarak hücrenizin içine organeller ekleyebilir, organelleri taşıyabilir veya kaldırabilirsiniz. Bu eylemlerin neredeyse tümü mutasyon puanına mal olur. Organeller, hücre zarına sarılmış bir şekilde altıgen bir ızgarada düzenlenir ve her organelin belirgin bir altıgen izi vardır. Dış organeller hücre zarının dışına tutunurlar. Bu yüzden birçoğu için yerleştirme yönü önemlidir.\n"
+"\n"
+"Hücrenizi düzenlerken, diğer türler de organel düzenlerini değiştirirler. Onların da aynı güçlere ve yeteneklere erişimi vardır.\n"
+"\n"
+"Daha fazla şey öğrenmek için aşağıdaki listeden bir organel seçin."
 
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Etki yok."
@@ -6750,6 +7333,10 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "yıl"
 
+#, fuzzy
+msgid "YES"
+msgstr "yıl"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "YouTube kanalımızı ziyaret edin"
 
@@ -6993,9 +7580,6 @@ msgstr "Uzaklaştır"
 #~ msgid "TYPE"
 #~ msgstr "Tür:"
 
-#~ msgid "VERSION"
-#~ msgstr "Sürüm:"
-
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
 #~ "Bu arazi haritası.\n"
@@ -7176,10 +7760,6 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Sola döndür"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

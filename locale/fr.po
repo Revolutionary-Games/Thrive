@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2024-04-27 14:34+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Style de mouvement 2D :"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Éditeur commun et phases stratégie"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Éditeur tridimensionnel"
@@ -30,6 +49,10 @@ msgstr "Mouvement tridimensionnel"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Style de mouvement 3D :"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Tourner à gauche"
 
 msgid "ABILITIES"
 msgstr "Capacités"
@@ -90,8 +113,16 @@ msgstr "Avancée"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Ouvrir la vue de configuration avancée"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Fixation anaérobique d'azote"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fixation aérobique d'azote"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Respiration aérobie"
 
 msgid "AGENTS"
 msgstr "Agents"
@@ -199,6 +230,10 @@ msgstr "Œuvre de {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galerie d'art"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Version :"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Félicitations !"
@@ -322,6 +357,13 @@ msgstr "Barre oblique inversée"
 msgid "BACKSPACE"
 msgstr "Retour arrière"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Thermosynthèse"
+
 msgid "BASE_MOBILITY"
 msgstr "Mobilité de base"
 
@@ -418,6 +460,9 @@ msgstr "Vacuole bioluminescente"
 
 msgid "BIOME_LABEL"
 msgstr "Terrain : {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurone"
@@ -572,6 +617,10 @@ msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréceptio
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Le chimiorécepteur permet de détecter le composants de plus loin. Modifier une fois place pour choisir le composant détecté et la couleur de la ligne de guidage."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chimiosynthèse"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Protéines chimiosynthétiques"
 
@@ -610,6 +659,9 @@ msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Écraser le fichier 
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberration chromatique :"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produit [thrive:compound type=\"glucose\"][/thrive:compound]. Effet proportionnel avec la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound] et l'[thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -1949,6 +2001,10 @@ msgstr "La concentration de glucose a baissé drastiquement !"
 msgid "GLYCOLYSIS"
 msgstr "Glycolyse"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Fixation anaérobique d'azote"
+
 msgid "GODMODE"
 msgstr "Mode Tout-Puissant"
 
@@ -2075,7 +2131,15 @@ msgstr "PM illimités"
 msgid "INFO_BOX_COST"
 msgstr "Coût de base (PM)"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Coût de base (PM)"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr "Enzymes"
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr "Enzymes"
 
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2084,8 +2148,16 @@ msgstr "Nom interne"
 msgid "INFO_BOX_MASS"
 msgstr "Masse"
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Stockage"
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Coût en osmorégulation"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Processus"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "Processus"
@@ -2110,6 +2182,9 @@ msgstr "Matière ingérée"
 
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Créer un nouveau monde"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "Entrées"
@@ -3393,6 +3468,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Activer l'éditeur"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Threads actuels :"
 
@@ -3463,8 +3542,15 @@ msgstr "Le plaste fixateur d'azote est une protéine capable d'utiliser l'[thriv
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"nitrogen\"][/thrive:compound] et d'[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Aucun(e)"
+
 msgid "NONE"
 msgstr "Aucun(e)"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normal"
@@ -3764,6 +3850,10 @@ msgstr "NeuroToxyOxy"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Synthèse d'OxyToxy"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Synthèse d'OxyToxy"
+
 msgid "PAGEDOWN"
 msgstr "Page suivante"
 
@@ -4016,8 +4106,15 @@ msgstr "Protéger les espèces nouvellement créées de la limite d'espèces"
 msgid "PROTEINS"
 msgstr "Protéines"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Respiration aérobie"
+
 msgid "PROTOPLASM"
 msgstr "Protoplasme"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmation"
@@ -4840,6 +4937,9 @@ msgstr "Prendre une capture d'écran"
 msgid "TARGET_TYPE_COLON"
 msgstr "Type de cible :"
 
+msgid "TBA"
+msgstr ""
+
 #, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Progrès"
@@ -5647,6 +5747,76 @@ msgid "WIKI"
 msgstr "Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Développeurs actuels"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Effets externes :"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et le [thrive:compound type=\"oxygen\"][/thrive:compound] pour oxyder le fer d'un état chimique à un autre. Ce processus, appelé [b]respiration ferrique[/b], libère de l'énergie que la cellule peut ensuite récolter."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Félicitations !"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et le [thrive:compound type=\"oxygen\"][/thrive:compound] pour oxyder le fer d'un état chimique à un autre. Ce processus, appelé [b]respiration ferrique[/b], libère de l'énergie que la cellule peut ensuite récolter."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Phase d’éveil"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "relieur"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Phase d’éveil"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Phase d’éveil"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Phase d’éveil"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Phase consciente"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Phase consciente"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogénase"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Phase consciente"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Effets externes :"
 
@@ -5859,6 +6029,29 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Composés :"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui remplit l'intérieur de la cellule. L'une de ses fonctions est la [b]glycolyse[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Pour les cellules dépourvues d'organites aux métabolismes plus avancés, c'est ce qui leur permet d'obtenir de l'énergie. Elle est également utilisée pour stocker des molécules dans la cellule et pour accroître la taille de la cellule."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui remplit l'intérieur de la cellule. L'une de ses fonctions est la [b]glycolyse[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Pour les cellules dépourvues d'organites aux métabolismes plus avancés, c'est ce qui leur permet d'obtenir de l'énergie. Elle est également utilisée pour stocker des molécules dans la cellule et pour accroître la taille de la cellule."
 
@@ -5886,6 +6079,34 @@ msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Pas d'améliorations."
 
 #, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Axone"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitochondrie"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitochondrie"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(proportion de glucose retenue dans l'environnement à chaque génération)"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Le flagelle (pluriel : flagelle) est un faisceau de fibres protéiques en forme de fouet s’étendant de la membrane de la cellule qui utilisent l’ATP pour onduler et propulser la cellule dans une direction. La position du flagelle détermine la direction dans laquelle il fournit la poussée pour le mouvement de la cellule. La direction de poussée est opposée à la direction vers laquelle pointe le flagelle, par exemple un flagelle placé sur le côté gauche d’une cellule fournit une poussée lors du déplacement vers la droite."
 
@@ -5911,14 +6132,77 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Améliorations"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Processus"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Stratégie"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Conditions"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Conditions"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Effets"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr "Effets"
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Processus"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Effets"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Stratégie"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Améliorations"
+
+#, fuzzy
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr "Modifications"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Processus"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "Modifications"
 
+#, fuzzy
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr "Modifications"
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Processus"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Conditions physiques"
+
 msgid "WIKI_HEADING_PROCESSES"
 msgstr "Processus"
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "Conditions"
@@ -5929,8 +6213,48 @@ msgstr "Contexte scientifique"
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Stratégie"
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Stratégie"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Modifications"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Effets"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Améliorations"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Améliorations"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Phase industrielle"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "relieur"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Phase industrielle"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Phase industrielle"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Phase industrielle"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -5957,6 +6281,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Pas d'améliorations."
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Axone"
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Pas d'effets."
@@ -5986,6 +6314,47 @@ msgstr "Les métabolosomes sont des amas de protéines enveloppés dans des enve
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Éditeur de microbe"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Phase microbienne"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -6013,6 +6382,43 @@ msgstr "La centrale électrique de la cellule. La mitochondrie est une structure
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Pas d'améliorations."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Phase multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Bienvenue au début de la phase multicellulaire !\n"
+"\n"
+"Vous avez réussi à guider votre espèce à travers la phase unicellulaire.\n"
+"\n"
+"Le gameplay suit les mécanismes de base de la phase microbienne. Vous devez toujours faire croître votre organisme pour vous reproduire et atteindre l'éditeur.\n"
+"\n"
+"Cependant, vous pouvez maintenant concevoir la disposition des cellules de votre colonie dans l'éditeur et vous pouvez spécialiser vos cellules pour divers rôles. N'oubliez pas que les membres de la colonie ne peuvent pas partager l'[thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Si vous utilisez la reproduction par bourgeonnement (la méthode par défaut), vous commencez par contrôler un petit bourgeon et devez faire croître le reste de la disposition des cellules."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Phase multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Phase multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Phase multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Phase multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Phase multicellulaire"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6150,6 +6556,18 @@ msgstr "Un métabolosome responsable de la production d'une forme primitive de l
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Axone"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Phase d’éveil"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Phase consciente"
+
 msgid "WIKI_PAGE_AXON"
 msgstr "Axone"
 
@@ -6177,20 +6595,55 @@ msgstr "Chloroplaste"
 msgid "WIKI_PAGE_CILIA"
 msgstr "Cils"
 
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Cytoplasme"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplasme"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Organites"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitochondrie"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitochondrie"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelle"
 
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Phase industrielle"
+
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosome"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Organites"
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Métabolosomes"
 
+#, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogénase"
+
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrie"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Phase multicellulaire"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6218,6 +6671,10 @@ msgstr ""
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplasme"
 
+#, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplasme"
+
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticyanine"
 
@@ -6227,6 +6684,18 @@ msgstr "Agent de signalisation"
 
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Propulseur gélatineux"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Propulseur gélatineux"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Organites"
 
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Thermoplaste"
@@ -6296,6 +6765,13 @@ msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "Pas d'améliorations."
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplasme"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr ""
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6390,6 +6866,56 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Pas d'améliorations."
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Phase sociétale"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Propulseur gélatineux"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Phase spatiale"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogénase"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Phase spatiale"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Axone"
 
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Pas d'effets."
@@ -6605,6 +7131,10 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "années"
 
+#, fuzzy
+msgid "YES"
+msgstr "années"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Visitez notre chaîne YouTube"
 
@@ -6795,9 +7325,6 @@ msgstr "Dézoomer"
 #~ msgid "TYPE"
 #~ msgstr "Type :"
 
-#~ msgid "VERSION"
-#~ msgstr "Version :"
-
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
 #~ "C'est la carte des parcelles.\n"
@@ -6959,10 +7486,6 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Tourner à gauche"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

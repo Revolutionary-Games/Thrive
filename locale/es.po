@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2024-04-27 20:07+0000\n"
 "Last-Translator: Thiago Pombo <thiagopombo2201@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "estilo de movimiento 2D:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
@@ -30,6 +49,10 @@ msgstr "Movimiento 3D"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "estilo de movimiento 3D:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Girar a la izquierda"
 
 msgid "ABILITIES"
 msgstr "Habilidades"
@@ -90,8 +113,16 @@ msgstr "Avanzado"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abre las opciones avanzadas"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Fijación de Nitrógeno Anaeróbica"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fijación de Nitrógeno Aeróbica"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Respiración Aeróbica"
 
 msgid "AGENTS"
 msgstr "Agentes"
@@ -200,6 +231,10 @@ msgstr "Arte por {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galeria de arte"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Versión:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "¡Felicitaciones!"
@@ -323,6 +358,13 @@ msgstr "Barra invertida"
 msgid "BACKSPACE"
 msgstr "Retroceso"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Termosíntesis"
+
 msgid "BASE_MOBILITY"
 msgstr "Mobilidad"
 
@@ -418,6 +460,9 @@ msgstr "Vacuola Bioluminiscente"
 
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurona"
@@ -572,6 +617,10 @@ msgstr "Todas las células solo \"ven\" a través de la quimiorrecepción. Así 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "El quimioreceptor permite detectar compuestos desde más lejos. Modifícalo una vez colocado para seleccionar el tipo de compuesto y el color de la línea de guía."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Quimiosíntesis"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteinas quimiosintetizadoras"
 
@@ -610,6 +659,9 @@ msgstr "El nombre de archivo ({0}) ya existe. ¿Deseas sobreescribir?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberración cromática:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -2034,6 +2086,10 @@ msgstr "¡Las concentraciones de glucosa han bajado drásticamente!"
 msgid "GLYCOLYSIS"
 msgstr "Glicólisis"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Fijación de Nitrógeno Anaeróbica"
+
 msgid "GODMODE"
 msgstr "Modo Dios"
 
@@ -2164,8 +2220,16 @@ msgstr "MP infinito"
 msgid "INFO_BOX_COST"
 msgstr "¡HAS PROSPERADO!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "¡HAS PROSPERADO!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Costo de Osmorregulación"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2175,8 +2239,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "¡HAS PROSPERADO!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Costo de Osmorregulación"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Colocar orgánulos"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -2207,6 +2279,9 @@ msgstr "Material por Digestar"
 #, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Únete a nuestro servidor de Discord"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "Entradas"
@@ -3515,6 +3590,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Activar editor"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Hilos actuales:"
 
@@ -3585,8 +3664,15 @@ msgstr "El Nitroplasto es una proteína capaz de usar nitrógeno, oxígeno y ATP
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La tasa de conversión depende de la concentración de [thrive:compound type=\"nitrogen\"][/thrive:compound] y [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Ninguna"
+
 msgid "NONE"
 msgstr "Ninguna"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normal"
@@ -3903,6 +3989,10 @@ msgstr "OxiToxi NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Síntesis de OxiToxi"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Síntesis de OxiToxi"
+
 msgid "PAGEDOWN"
 msgstr "Retrasar página (Re Pág)"
 
@@ -4167,8 +4257,15 @@ msgstr "Proteger especies recientemente creadas del limite de población"
 msgid "PROTEINS"
 msgstr "Proteínas"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Respiración Aeróbica"
+
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / programación"
@@ -5021,6 +5118,9 @@ msgstr "Tomar una captura de pantalla"
 msgid "TARGET_TYPE_COLON"
 msgstr "Tipo:"
 
+msgid "TBA"
+msgstr ""
+
 #, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Construyendo centro de sociedad"
@@ -5847,6 +5947,76 @@ msgid "WIKI"
 msgstr "nuestro Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Desarrolladores actuales"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Efectos externos:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "La Rusticianina es una proteína capaz de usar dióxido de carbono gaseoso y oxigeno para oxidar el hierro de un estado químico a otro. Este proceso, llamado Respiración Férrica, libera energía para la célula."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "¡Felicitaciones!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "La Rusticianina es una proteína capaz de usar dióxido de carbono gaseoso y oxigeno para oxidar el hierro de un estado químico a otro. Este proceso, llamado Respiración Férrica, libera energía para la célula."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Permite la unión con otras células. Este es el primer paso hacia un ser multicelular. Cuando tu especie forma parte de una colonia, las células comparten sus compuestos. Mientras formes parte de una colonia no puedes entrar al editor, por lo que deberás romper la unión una vez recolectados los compuestos suficientes para dividir tu célula."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Agente de unión"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Estadio del despertar"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Estadio Consciente"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Estadio Consciente"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Estadio Consciente"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Efectos externos:"
 
@@ -6090,6 +6260,29 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Compuestos:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
 
@@ -6115,6 +6308,34 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Orgánulos"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitocondria"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(proporción de glucosa retenida en el ambiente en cada generación)"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
@@ -6145,13 +6366,74 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Desarrolladores actuales"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Estadio del despertar"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Estadio del despertar"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Estadio del despertar"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Condiciones Físicas"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -6164,8 +6446,48 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Estadio del despertar"
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Compuestos infinitos"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Estadio del despertar"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Permite la unión con otras células. Este es el primer paso hacia un ser multicelular. Cuando tu especie forma parte de una colonia, las células comparten sus compuestos. Mientras formes parte de una colonia no puedes entrar al editor, por lo que deberás romper la unión una vez recolectados los compuestos suficientes para dividir tu célula."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Estadio Industrial"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Agente de unión"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Estadio Industrial"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Estadio Industrial"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Estadio Industrial"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6193,6 +6515,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Orgánulos"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6227,6 +6553,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Los metabolosomas son aglomeraciones de proteínas envueltas en cápsides. Pueden convertir la [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] de forma mucho más eficiente que el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente causarán la ralentización de su producción de [thrive:compound type=\"atp\"][/thrive:compound]. Como los metabolosomas están directamente suspendidos en el citoplasma, este fluido realiza la [b]glucólisis[/b]."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"En un planeta distante, eones de actividad volcánica e impactos meteóricos han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
+"\n"
+"La vida.\n"
+"\n"
+"Simples microbios residen en las regiones más profundas del océano. Eres el último ancestro universal común (LUCA) en este planeta.\n"
+"\n"
+"Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar durante generaciones para competir contra los otros microbios."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Editor de microbio"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"En un planeta distante, eones de actividad volcánica e impactos meteóricos han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
+"\n"
+"La vida.\n"
+"\n"
+"Simples microbios residen en las regiones más profundas del océano. Eres el último ancestro universal común (LUCA) en este planeta.\n"
+"\n"
+"Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar durante generaciones para competir contra los otros microbios."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"En un planeta distante, eones de actividad volcánica e impactos meteóricos han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
+"\n"
+"La vida.\n"
+"\n"
+"Simples microbios residen en las regiones más profundas del océano. Eres el último ancestro universal común (LUCA) en este planeta.\n"
+"\n"
+"Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar durante generaciones para competir contra los otros microbios."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "La \"central energética\" de la célula. La mitocondria es una estructura de doble membrana llena de proteínas y enzimas. Es una célula procariota que ha sido asimilada por su anfitriona eucariota para su uso personal. Es capaz de convertir [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] con una eficiencia mucho mayor que la alcanzada en el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente ralentizarán su producción de [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -6257,6 +6624,43 @@ msgstr "La \"central energética\" de la célula. La mitocondria es una estructu
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "La \"central energética\" de la célula. La mitocondria es una estructura de doble membrana llena de proteínas y enzimas. Es una célula procariota que ha sido asimilada por su anfitriona eucariota para su uso personal. Es capaz de convertir [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] con una eficiencia mucho mayor que la alcanzada en el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente ralentizarán su producción de [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Etapa multicelular"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"¡Bienvenido al estadio multicelular inicial!\n"
+"\n"
+"Conseguiste guiar a tu especie a través de la fase unicelular.\n"
+"\n"
+"El juego continúa con las mecánicas básicas del estadio microbio. Aún necesitas seguir alimentando a tu organismo para reproducirte y entrar en el editor.\n"
+"\n"
+"Sin embargo, ahora puedes diseñar tu colonia celular en el editor y especializar tus células en varios roles. Ten en mente que los miembros de tu colonia no pueden compartir [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Si estás utilizando la reproducción por gemación (el método predeterminado), comenzaras controlando una pequeña yema y deberás crecer el resto de tus células."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Etapa multicelular"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Etapa multicelular"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Etapa multicelular"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Etapa multicelular"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Etapa multicelular"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6407,6 +6811,18 @@ msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Estadio Consciente"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6438,24 +6854,59 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Citoplasma"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Citoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitocondria"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelo"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Estadio Industrial"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lisosoma"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Colocar orgánulos"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomas"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenasa"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Etapa multicelular"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6489,6 +6940,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplasma"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticianina"
 
@@ -6499,6 +6954,18 @@ msgstr "Agente señalizador"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Jet de Slime"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Jet de Slime"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Colocar orgánulos"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6573,6 +7040,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplasma"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6671,6 +7145,56 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Muchos organismos producen sustacias polisacáridas similares a un slime, y el mucílago es una de ellas. Mientras muchas especies utilizan slime para moverse, ciertos tipos de bacterias liberan estas sustacias a altas velocidades al moverse. Estas \"turbinas de slime\" actúan como motores de cohete, empujando a las células a mucha velocidad. El slime también es utilizado para inmovilizar depredadores, ya que estos son atrapados en una sustacia que solo puede ser navegada por organismos con \"turbinas de slime\"."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Etapa de microbio"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Jet de Slime"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Muchos organismos producen sustacias polisacáridas similares a un slime, y el mucílago es una de ellas. Mientras muchas especies utilizan slime para moverse, ciertos tipos de bacterias liberan estas sustacias a altas velocidades al moverse. Estas \"turbinas de slime\" actúan como motores de cohete, empujando a las células a mucha velocidad. El slime también es utilizado para inmovilizar depredadores, ya que estos son atrapados en una sustacia que solo puede ser navegada por organismos con \"turbinas de slime\"."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Orgánulos"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6904,6 +7428,10 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "años"
 
+#, fuzzy
+msgid "YES"
+msgstr "años"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Visita nuestro canal de YouTube"
 
@@ -7092,9 +7620,6 @@ msgstr "Alejar el zoom"
 #~ msgid "TYPE"
 #~ msgstr "Tipo:"
 
-#~ msgid "VERSION"
-#~ msgstr "Versión:"
-
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
 #~ "Este es el mapa de biomas.\n"
@@ -7255,10 +7780,6 @@ msgstr "Alejar el zoom"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Girar a la izquierda"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

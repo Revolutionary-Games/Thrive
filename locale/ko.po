@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -19,7 +19,26 @@ msgstr ""
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
 msgstr ""
 
 msgid "3D_EDITOR"
@@ -30,6 +49,10 @@ msgstr "3차원 이동"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "왼쪽으로 회전"
 
 msgid "ABILITIES"
 msgstr "능력"
@@ -97,8 +120,16 @@ msgstr ""
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "혐기성 질소 고정"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "호기성 질소 고정"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "호흡"
 
 msgid "AGENTS"
 msgstr "물질"
@@ -197,6 +228,10 @@ msgstr ""
 
 msgid "ART_GALLERY"
 msgstr ""
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "버전:"
 
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -319,6 +354,13 @@ msgstr "뒤로가기"
 msgid "BACKSPACE"
 msgstr "뒤로가기"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "열합성"
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "기동성"
@@ -426,6 +468,9 @@ msgstr "생물발광 액포"
 
 msgid "BIOME_LABEL"
 msgstr "생태계: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
@@ -593,6 +638,10 @@ msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 �
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "화학적 합성"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "화학 단백질"
 
@@ -635,6 +684,9 @@ msgstr "선택한 파일명 ({0}) 은 이미 존재합니다. 덮어쓰겠습니
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "색수차:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 #, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
@@ -2023,6 +2075,10 @@ msgstr ""
 msgid "GLYCOLYSIS"
 msgstr "포도당"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "혐기성 질소 고정"
+
 msgid "GODMODE"
 msgstr ""
 
@@ -2155,8 +2211,16 @@ msgstr ""
 msgid "INFO_BOX_COST"
 msgstr "번영했습니다!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "번영했습니다!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "삼투압 비용"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2166,8 +2230,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "번영했습니다!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "삼투압 비용"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "세포 기관 배치"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -2198,6 +2270,9 @@ msgstr ""
 #, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "새로운 키 배치 추가"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "입력"
@@ -3503,6 +3578,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "편집기 활성화"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "저장 및 계속"
 
@@ -3580,7 +3659,14 @@ msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
+#, fuzzy
+msgid "NO"
+msgstr "실행 취소"
+
 msgid "NONE"
+msgstr ""
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
 msgid "NORMAL"
@@ -3901,6 +3987,10 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "산소 합성"
 
 #, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "산소 합성"
+
+#, fuzzy
 msgid "PAGEDOWN"
 msgstr "아래쪽으로 시야 이동"
 
@@ -4167,8 +4257,15 @@ msgstr "방금 생성된 종을 종 개수 제한으로부터 보호"
 msgid "PROTEINS"
 msgstr "단백질"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "호흡"
+
 msgid "PROTOPLASM"
 msgstr "원형질"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
@@ -5063,6 +5160,9 @@ msgstr "스크린샷 촬영"
 msgid "TARGET_TYPE_COLON"
 msgstr "생명력:"
 
+msgid "TBA"
+msgstr ""
+
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -5884,6 +5984,74 @@ msgstr "휠 위로"
 msgid "WIKI"
 msgstr ""
 
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "외부 효과:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "종:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "결합 기관"
+
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "결합 기관"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "미생물 단계"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "미생물 단계"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "니트로게나아제"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "미생물 단계"
+
 #, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "외부 효과:"
@@ -6128,6 +6296,29 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "화합물:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
@@ -6153,6 +6344,34 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "세포 기관"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "미토콘드리아"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "미토콘드리아"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(매 세대마다 환경에 남는 포도당의 비율)"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
@@ -6183,13 +6402,71 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "화학 수용체"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "결합 기관"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "니트로게나아제"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "게임 플레이 중 Auto-Evo 자동 진화 실행"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "결합 기관"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "미생물 단계"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "물리적 상태"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -6201,8 +6478,45 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "화합물"
+
+msgid "WIKI_HEADING_UI"
+msgstr ""
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "결합 기관"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "(AI 종이 변이하는 속도)"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "결합 기관"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6230,6 +6544,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "세포 기관"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6264,6 +6582,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"멀리 떨어진 외계 행성에서, 수 많은 화산 활동과 유성 충돌이 우주에서 새로운 현상을 만들어 냈습니다.\n"
+"\n"
+"생명.\n"
+"\n"
+"단순한 미생물이 바다 깊은 곳에 살고 있습니다. 당신은 이 행성에 남은 모든 생물의 마지막 공통 조상(LUCA) 입니다.\n"
+"\n"
+"이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화하여 다른 미생물들과 경쟁해야 합니다."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "미생물 편집기"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"멀리 떨어진 외계 행성에서, 수 많은 화산 활동과 유성 충돌이 우주에서 새로운 현상을 만들어 냈습니다.\n"
+"\n"
+"생명.\n"
+"\n"
+"단순한 미생물이 바다 깊은 곳에 살고 있습니다. 당신은 이 행성에 남은 모든 생물의 마지막 공통 조상(LUCA) 입니다.\n"
+"\n"
+"이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화하여 다른 미생물들과 경쟁해야 합니다."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "미생물 단계"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"멀리 떨어진 외계 행성에서, 수 많은 화산 활동과 유성 충돌이 우주에서 새로운 현상을 만들어 냈습니다.\n"
+"\n"
+"생명.\n"
+"\n"
+"단순한 미생물이 바다 깊은 곳에 살고 있습니다. 당신은 이 행성에 남은 모든 생물의 마지막 공통 조상(LUCA) 입니다.\n"
+"\n"
+"이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화하여 다른 미생물들과 경쟁해야 합니다."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
@@ -6294,6 +6653,34 @@ msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 �
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "다세포 단계"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "미생물 편집기 불러오는 중"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "다세포 단계"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "다세포 단계"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "다세포 단계"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "다세포 단계"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "다세포 단계"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6444,6 +6831,18 @@ msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "루스티시아닌"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "결합 기관"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "미생물 단계"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6475,24 +6874,59 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "세포질"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "세포질"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "세포 기관 배치"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "미토콘드리아"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "미토콘드리아"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "편모"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "결합 기관"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "리소좀"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "세포 기관 배치"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "대사체"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "니트로게나아제"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "미토콘드리아"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "다세포 단계"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6526,6 +6960,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "원형질"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "원형질"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "루스티시아닌"
 
@@ -6536,6 +6974,18 @@ msgstr "신호 기관"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "점액 분출"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "미생물 단계"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "점액 분출"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "세포 기관 배치"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6610,6 +7060,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "원형질"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6708,6 +7165,56 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "미생물 단계"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "미생물 단계"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "미생물 단계"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "미생물 단계"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "점액 분출"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "미생물 단계"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "니트로게나아제"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "미생물 단계"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "세포 기관"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6941,6 +7448,10 @@ msgid "YEARS"
 msgstr "년"
 
 #, fuzzy
+msgid "YES"
+msgstr "년"
+
+#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "재개"
 
@@ -7084,9 +7595,6 @@ msgstr "축소"
 
 #~ msgid "TYPE"
 #~ msgstr "유형:"
-
-#~ msgid "VERSION"
-#~ msgstr "버전:"
 
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
@@ -7243,10 +7751,6 @@ msgstr "축소"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "왼쪽으로 회전"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

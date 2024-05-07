@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2024-04-09 18:23+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Styl ruchu 2D:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Edytor 3D"
@@ -30,6 +49,10 @@ msgstr "Ruch 3D"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Styl ruchu 3D:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Obróć w lewo"
 
 msgid "ABILITIES"
 msgstr "Umiejętności"
@@ -90,8 +113,16 @@ msgstr "Zaawansowany"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otwórz widok konfiguracji zaawansowanej"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Beztlenowe Wiązanie Azotu"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Tlenowe Wiązanie Azotu"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Oddychanie Tlenowe"
 
 msgid "AGENTS"
 msgstr "Czynniki"
@@ -199,6 +230,10 @@ msgstr "Grafika autorstwa: {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galeria"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Wersja:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Gratulacje!"
@@ -315,6 +350,13 @@ msgstr "Ukośnik wsteczny"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Termosynteza"
+
 msgid "BASE_MOBILITY"
 msgstr "Podstawowa Mobilność"
 
@@ -410,6 +452,9 @@ msgstr "Świecąca Wakuola"
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
@@ -565,6 +610,10 @@ msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywa
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umożliwia wykrywanie związków z oddali. Modyfikuj gdy umieścisz by wybrać typ związku oraz kolor prowadzącej do niego linii."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chemosynteza siarkowa"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Białka Chemosyntezujące"
 
@@ -603,6 +652,9 @@ msgstr "Wybrana nazwa pliku ({0}) już istnieje. Nadpisać?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberracja chromatyczna:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Syntezuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -1984,6 +2036,10 @@ msgstr "Stężenie glukozy drastycznie spadło!"
 msgid "GLYCOLYSIS"
 msgstr "Glikoliza"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Beztlenowe Wiązanie Azotu"
+
 msgid "GODMODE"
 msgstr "Tryb Boga"
 
@@ -2113,8 +2169,16 @@ msgstr "Nieskończone Punkty Mutacji"
 msgid "INFO_BOX_COST"
 msgstr "PRZETRWAŁEŚ!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "PRZETRWAŁEŚ!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Koszt Osmoregulacji"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2124,8 +2188,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "PRZETRWAŁEŚ!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Koszt Osmoregulacji"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Procesy"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "Procesy"
@@ -2152,6 +2224,9 @@ msgstr "Wchłonięta Materia"
 
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Stwórz nowy świat"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "Wejścia"
@@ -3440,6 +3515,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Włącz edytor"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Obecne wątki:"
 
@@ -3510,8 +3589,15 @@ msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitro
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Przekształca wolny N₂ i O₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Brak"
+
 msgid "NONE"
 msgstr "Brak"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normalna"
@@ -3815,6 +3901,10 @@ msgstr "OxyToksy NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Synteza OxyToxy"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Synteza OxyToxy"
+
 msgid "PAGEDOWN"
 msgstr "Przesuń w dół"
 
@@ -4063,8 +4153,15 @@ msgstr "Chroń nowo stworzone gatunki od czapki gatunkowej"
 msgid "PROTEINS"
 msgstr "Białka"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Oddychanie Tlenowe"
+
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requesty / Programowanie"
@@ -4895,6 +4992,9 @@ msgstr "Zrzut ekranu"
 msgid "TARGET_TYPE_COLON"
 msgstr "Typ:"
 
+msgid "TBA"
+msgstr ""
+
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -5690,6 +5790,76 @@ msgid "WIKI"
 msgstr "Nasza strona Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Obecni Developerzy"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Zewnętrzne efekty:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Gratulacje!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Faza przebudzenia"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Czynnik Wiążący"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Faza przebudzenia"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Faza przebudzenia"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Faza przebudzenia"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Faza Świadomości"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Faza Świadomości"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogenaza"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Faza Świadomości"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Zewnętrzne efekty:"
 
@@ -5933,6 +6103,29 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Związki:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
 
@@ -5958,6 +6151,34 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Akson"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitochondrium"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitochondrium"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(proporcja glukozy zachowana w środowisku w każdym pokoleniu)"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
@@ -5988,13 +6209,72 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Chemoreceptor"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Obecni Developerzy"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Główni Developerzy"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Czynnik Wiążący"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Nitrogenaza"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Czynnik Wiążący"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Etap Mikroba"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Warunki Fizyczne"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -6006,8 +6286,46 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Włącz cykl dnia i nocy"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Nieskończone Związki"
+
+msgid "WIKI_HEADING_UI"
+msgstr ""
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Czynnik Wiążący"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Budując fabrykę przejdziesz w fazę cywilizacji. Kontynuować do następnego etapu?"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Przejść do Fazy Cywilizacji?"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6035,6 +6353,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Akson"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6069,6 +6391,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
+"\n"
+"Życia.\n"
+"\n"
+"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego życia na tej planecie.\n"
+"\n"
+"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Edytor Mikroba"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
+"\n"
+"Życia.\n"
+"\n"
+"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego życia na tej planecie.\n"
+"\n"
+"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Etap Mikroba"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
+"\n"
+"Życia.\n"
+"\n"
+"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego życia na tej planecie.\n"
+"\n"
+"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -6099,6 +6462,43 @@ msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to st
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Etap Wielokomórkowca"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Witaj we Wczesnym Etapie Wielokomórkowym!\n"
+"\n"
+"Twoje prowadzenie gatunku przez fazę jednokomórkową zakończyło się sukcesem.\n"
+"\n"
+"Rozgrywka toczy się wedle podstawowych mechanik Etapu Mikroba. Wciąż musisz rozwijać swój organizm by móc się rozmnożyć i dostać do edytora.\n"
+"\n"
+"Jednak teraz możesz tworzyć układ komórek twojej kolonii w edytorze jak i specjalizować swoje komórki do różnych zadań. Pamiętaj, że członkowie kolonii nie mogą dzielić się [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Etap Wielokomórkowca"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Etap Wielokomórkowca"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Etap Wielokomórkowca"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Etap Wielokomórkowca"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Etap Wielokomórkowca"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6249,6 +6649,18 @@ msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticyjanina"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Faza przebudzenia"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Faza Świadomości"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6280,24 +6692,59 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Cytozol"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytozol"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Dodaj organellę"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitochondrium"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitochondrium"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Wić"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Czynnik Wiążący"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lizosom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Dodaj organellę"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomy"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenaza"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrium"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Etap Wielokomórkowca"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6331,6 +6778,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplazma"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplazma"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticyjanina"
 
@@ -6341,6 +6792,18 @@ msgstr "Czynnik Komunikacyjny"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Gruczoł Śluzowy"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Etap Mikroba"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Gruczoł Śluzowy"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Dodaj organellę"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6415,6 +6878,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplazma"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6513,6 +6983,56 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Etap Mikroba"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Etap Mikroba"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Etap Mikroba"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Etap Mikroba"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Gruczoł Śluzowy"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Etap Mikroba"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogenaza"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Etap Mikroba"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Akson"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6738,6 +7258,10 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "lata"
 
+#, fuzzy
+msgid "YES"
+msgstr "lata"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Odwiedź nasz kanał Youtube"
 
@@ -6936,9 +7460,6 @@ msgstr "Oddal"
 #~ msgid "TYPE"
 #~ msgstr "Typ:"
 
-#~ msgid "VERSION"
-#~ msgstr "Wersja:"
-
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
 #~ "Oto mapa środowisk.\n"
@@ -7099,10 +7620,6 @@ msgstr "Oddal"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Obróć w lewo"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

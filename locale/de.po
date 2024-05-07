@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-07 20:13+0200\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D Bewegungsart:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Editor"
@@ -30,6 +49,10 @@ msgstr "Dreidimensionale Bewegung"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D Bewegungsart:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Nach rechts rotieren"
 
 msgid "ABILITIES"
 msgstr "Fähigkeiten"
@@ -90,8 +113,16 @@ msgstr "Fortgeschritten"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Erweiterte Einstellungen anzeigen"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerobe Stickstofffixierung"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobe Stickstofffixierung"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Aerobe Atmung"
 
 msgid "AGENTS"
 msgstr "Mittel"
@@ -201,6 +232,10 @@ msgstr "Grafiken von {0}"
 
 msgid "ART_GALLERY"
 msgstr "Kunstgalerie"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Version:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Gratulation!"
@@ -319,6 +354,13 @@ msgstr "Backslash"
 msgid "BACKSPACE"
 msgstr "Rücktaste"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Thermosynthese"
+
 msgid "BASE_MOBILITY"
 msgstr "Basis Mobilität"
 
@@ -414,6 +456,9 @@ msgstr "Biolumineszenz-Vakuole"
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
@@ -571,6 +616,10 @@ msgstr "Alle Zellen \"sehen\" nur durch Chemorezeption. Auf diese Weise erhalten
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Der Chemorezeptor ermöglicht die Erkennung von Substanzen aus größerer Entfernung. Nach der Platzierung können Sie die Art der Substanz und die Farbe der Führungslinie auswählen."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chemo-Synthese"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosynthetisierende Proteine"
 
@@ -609,6 +658,9 @@ msgstr "Der gewählte Dateiname ({0}) existiert bereits. Überschreiben?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Farbabweichung:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Rate skaliert mit der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] und der Intensität des [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -2019,6 +2071,10 @@ msgstr "Die Glukosekonzentration ist drastisch gesunken!"
 msgid "GLYCOLYSIS"
 msgstr "Glykolyse"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerobe Stickstofffixierung"
+
 msgid "GODMODE"
 msgstr "Unbesiegbar"
 
@@ -2149,7 +2205,15 @@ msgstr "Unendliche MP"
 msgid "INFO_BOX_COST"
 msgstr "DU HAST DICH ENTWICKELT!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "DU HAST DICH ENTWICKELT!"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr "Enzyme"
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr "Enzyme"
 
 #, fuzzy
@@ -2160,8 +2224,16 @@ msgid "INFO_BOX_MASS"
 msgstr "Masse"
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "DU HAST DICH ENTWICKELT!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoregulierungskosten"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Keine Prozesse"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -2191,6 +2263,9 @@ msgstr "Aufgenommene Materie"
 
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Neue Welt erstellen"
+
+msgid "INJECTISOME_PILUS"
+msgstr ""
 
 msgid "INPUTS"
 msgstr "Eingaben"
@@ -3478,6 +3553,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Editor aktivieren"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Aktuelle Threads:"
 
@@ -3548,8 +3627,15 @@ msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstof
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
 
+#, fuzzy
+msgid "NO"
+msgstr "Nichts"
+
 msgid "NONE"
 msgstr "Nichts"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normal"
@@ -3858,6 +3944,10 @@ msgstr "OxyToxid NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxid-Synthese"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxid-Synthese"
+
 msgid "PAGEDOWN"
 msgstr "Bild Ab"
 
@@ -4117,8 +4207,15 @@ msgstr "Schützt neu kreierte Spezies vor Artensterben"
 msgid "PROTEINS"
 msgstr "Proteine"
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Aerobe Atmung"
+
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmierung"
@@ -4963,6 +5060,9 @@ msgstr "Screenshot aufnehmen"
 msgid "TARGET_TYPE_COLON"
 msgstr "Suchziel:"
 
+msgid "TBA"
+msgstr ""
+
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Aufstieg"
 
@@ -5775,6 +5875,76 @@ msgid "WIKI"
 msgstr "unser Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Aktuelle Entwickler(innen)"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Externe Effekte:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticyanin ist ein Protein, welches in der Lage ist [thrive:compound type=\"carbondioxide\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] zu nutzen um [thrive:compound type=\"iron\"][/thrive:compound] zu oxidieren. Dieser Prozess, der [b]Eisenatmung[/b] genannt wird, setzt Energie frei, welche die Zelle dann sammeln kann."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Gratulation!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticyanin ist ein Protein, welches in der Lage ist [thrive:compound type=\"carbondioxide\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] zu nutzen um [thrive:compound type=\"iron\"][/thrive:compound] zu oxidieren. Dieser Prozess, der [b]Eisenatmung[/b] genannt wird, setzt Energie frei, welche die Zelle dann sammeln kann."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Phase des Erwachens"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Bindemittel"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Phase des Erwachens"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Phase des Erwachens"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Phase des Erwachens"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse durch."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Externe Effekte:"
 
@@ -6018,6 +6188,29 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Substanzen:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die [b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die [b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
 
@@ -6043,6 +6236,34 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Organellen"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitochondrium"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitochondrium"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(Anteil an Glukose in der Umwelt, welcher jede Generation erhalten bleibt)"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
@@ -6073,13 +6294,72 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Chemorezeptor"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Aktuelle Entwickler(innen)"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Leitende Entwickler"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Bindemittel"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Auto-Evo während des Spielens ausführen"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Bindemittel"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Mikroben Stadium"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Physikalische Bedingungen"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -6091,8 +6371,47 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Tag-/Nachtzyklus aktivieren"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Unendlich Substanzen"
+
+msgid "WIKI_HEADING_UI"
+msgstr ""
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Industrielle Stufe"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Bindemittel"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Industrielle Stufe"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Industrielle Stufe"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Industrielle Stufe"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6120,6 +6439,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Organellen"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6154,6 +6477,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt sind. Sie sind in der Lage, Glukose in einem Prozess, der aerobe Atmung genannt wird, mit einer viel höheren Geschwindigkeit in ATP umzuwandeln, als dies im Zytoplasma möglich ist. Für ihre Funktion benötigt sie jedoch Sauerstoff, und ein niedrigerer Sauerstoffgehalt in der Umgebung verlangsamt die Geschwindigkeit ihrer ATP-Produktion. Da die Metabolosomen direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Auf einem weit entfernten Planeten, haben Jahrtausende von vulkanischer Aktivität und die Einschläge etlicher Meteoriten zu einem ganz besonderen Phänomen im Universum geführt:\n"
+"\n"
+"Leben.\n"
+"\n"
+"In den tiefen Meeresregionen sind simple Mikroorganismen beheimatet. Du bist der letzte Urvorfahr aller kommenden Organismen auf diesem Planeten.\n"
+"\n"
+"Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche Substanzen sammeln, die du finden kannst, und dich über Generationen hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Mikrobeneditor"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Auf einem weit entfernten Planeten, haben Jahrtausende von vulkanischer Aktivität und die Einschläge etlicher Meteoriten zu einem ganz besonderen Phänomen im Universum geführt:\n"
+"\n"
+"Leben.\n"
+"\n"
+"In den tiefen Meeresregionen sind simple Mikroorganismen beheimatet. Du bist der letzte Urvorfahr aller kommenden Organismen auf diesem Planeten.\n"
+"\n"
+"Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche Substanzen sammeln, die du finden kannst, und dich über Generationen hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Auf einem weit entfernten Planeten, haben Jahrtausende von vulkanischer Aktivität und die Einschläge etlicher Meteoriten zu einem ganz besonderen Phänomen im Universum geführt:\n"
+"\n"
+"Leben.\n"
+"\n"
+"In den tiefen Meeresregionen sind simple Mikroorganismen beheimatet. Du bist der letzte Urvorfahr aller kommenden Organismen auf diesem Planeten.\n"
+"\n"
+"Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche Substanzen sammeln, die du finden kannst, und dich über Generationen hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist eine doppelte Membranstruktur, die mit Proteinen und Enzymen gefüllt ist. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Es ist in der Lage, Glukose mit einer viel höheren Effizienz in ATP umzuwandeln, als dies im Zytoplasma in einem Prozess namens Aerobe Atmung möglich ist. Es benötigt jedoch Sauerstoff, um zu funktionieren, und niedrigere Sauerstoffkonzentrationen in der Umgebung verlangsamen die Geschwindigkeit seiner ATP-Produktion."
 
@@ -6184,6 +6548,43 @@ msgstr "Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist e
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist eine doppelte Membranstruktur, die mit Proteinen und Enzymen gefüllt ist. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Es ist in der Lage, Glukose mit einer viel höheren Effizienz in ATP umzuwandeln, als dies im Zytoplasma in einem Prozess namens Aerobe Atmung möglich ist. Es benötigt jedoch Sauerstoff, um zu funktionieren, und niedrigere Sauerstoffkonzentrationen in der Umgebung verlangsamen die Geschwindigkeit seiner ATP-Produktion."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Willkommen im frühen multizellulären Stadium!\n"
+"\n"
+"Du hast deine Spezies erfolgreich durch die einzellige Phase geleitet.\n"
+"\n"
+"Das Gameplay hat im Kern die selben Mechaniken, wie das Mikroben Stadium. Du musst genauso deinen Organismus wachsen lassen und dich fortpflanzen um zum Editor zu gelangen. \n"
+"\n"
+"Allerdings kannst du das zelluläre Layout deiner Kolonie im Editor bearbeiten und deine Zellen für bestimmte Rollen spezialisieren. Bedenke, dass die Mitglieder deiner Kolonie [thrive:compound type=\"atp\"][/thrive:compound] nicht teilen können. \n"
+"\n"
+"Wenn du Knospung als Fortpflanzung benutzt (was Standard ist), beginnst du in Kontrolle einer kleinen Knospe und musst den Rest deines zellulären Layouts wachsen lassen."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Mehrzelliges Stadium"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6334,6 +6735,18 @@ msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticyanin"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Phase des Erwachens"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Mikroben Stadium"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6365,24 +6778,59 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Zytoplasma"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Zytoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitochondrium"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitochondrium"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Geißeln"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Industrielle Stufe"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Organelle platzieren"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolome"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenase"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrium"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Mehrzelliges Stadium"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6416,6 +6864,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplasma"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticyanin"
 
@@ -6426,6 +6878,18 @@ msgstr "Signalorganelle"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Schleimdüse"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Schleimdüse"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Organelle platzieren"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6500,6 +6964,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplasma"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6598,6 +7069,56 @@ msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Viele Organismen produzieren polysaccharide Substanzen, wie diesen Schleim. Oft wird dieser zur Fortbewegung benutzt. So auch von einigen Bakterien, welche Substanzen wie diese mit hohem Druck nach hinten schleudern. Dies wirkt wie ein Raketen Antrieb und treibt die Zellen mit unglaublicher Geschwindigkeit vorwärts. Der Schleim wird ebenfalls benutzt, um Räuber zu behindern. Sie werden im Schleim gefangen, den nur andere Organismen mit diesem Antrieb ungehindert durchqueren können."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Mikroben Stadium"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Schleimdüse"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Viele Organismen produzieren polysaccharide Substanzen, wie diesen Schleim. Oft wird dieser zur Fortbewegung benutzt. So auch von einigen Bakterien, welche Substanzen wie diese mit hohem Druck nach hinten schleudern. Dies wirkt wie ein Raketen Antrieb und treibt die Zellen mit unglaublicher Geschwindigkeit vorwärts. Der Schleim wird ebenfalls benutzt, um Räuber zu behindern. Sie werden im Schleim gefangen, den nur andere Organismen mit diesem Antrieb ungehindert durchqueren können."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Organellen"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6825,6 +7346,10 @@ msgstr ""
 msgid "YEARS"
 msgstr "Jahre"
 
+#, fuzzy
+msgid "YES"
+msgstr "Jahre"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Besuche unseren YouTube Kanal"
 
@@ -7008,9 +7533,6 @@ msgstr "Herauszoomen"
 #~ msgid "TYPE"
 #~ msgstr "Typ:"
 
-#~ msgid "VERSION"
-#~ msgstr "Version:"
-
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
 #~ "Dies ist die Gebietskarte.\n"
@@ -7175,10 +7697,6 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Nach rechts rotieren"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"
