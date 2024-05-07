@@ -296,7 +296,8 @@ public partial class EvolutionaryTree : Control
         }
 
         // If there is already one, update it; otherwise, add a new one.
-        var existing = speciesNodeList.FirstOrDefault(n => Math.Abs(n.LogicalPosition.X - position.X) < MathUtils.EPSILON);
+        var existing =
+            speciesNodeList.FirstOrDefault(n => Math.Abs(n.LogicalPosition.X - position.X) < MathUtils.EPSILON);
         var node = existing ?? treeNodeScene.Instantiate<EvolutionaryTreeNode>();
 
         node.Generation = generation;
@@ -489,6 +490,7 @@ public partial class EvolutionaryTree : Control
     /// </summary>
     private void TreeDraw()
     {
+        // TODO: isn't this slightly outside the bounds of the tree control?
         var drawRegion = new Rect2(Position - DrawMargin, Size + DrawMargin);
 
         // Draw new species connection lines
