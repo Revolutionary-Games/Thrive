@@ -57,27 +57,6 @@ public partial class DraggableScrollContainer : ScrollContainer
     [Export]
     public float ZoomStep { get; set; } = 0.1f;
 
-    /// <summary>
-    ///   Controls whether the horizontal and vertical scrollbars should be shown or not. This doesn't enable nor
-    ///   disable the scrollbars.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Workaround until scrollbar hiding feature <see href="https://github.com/godotengine/godot/pull/48008"/>
-    ///     is available.
-    ///   </para>
-    /// </remarks>
-    [Export]
-    public bool ShowScrollbars
-    {
-        get => showScrollbars;
-        set
-        {
-            showScrollbars = value;
-            UpdateScrollbars();
-        }
-    }
-
     public override void _Ready()
     {
         base._Ready();
@@ -91,7 +70,8 @@ public partial class DraggableScrollContainer : ScrollContainer
         GetVScrollBar().Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnScrollStarted)));
         GetHScrollBar().Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnScrollStarted)));
 
-        UpdateScrollbars();
+        if (HorizontalScrollMode == ScrollMode.Disabled || VerticalScrollMode == ScrollMode.Disabled)
+            throw new ArgumentException($"{nameof(DraggableScrollContainer)} shouldn't have scrolling disabled");
     }
 
     public override void _EnterTree()
@@ -250,11 +230,6 @@ public partial class DraggableScrollContainer : ScrollContainer
     {
         ScrollHorizontal = (int)coordinates.X;
         ScrollVertical = (int)coordinates.Y;
-    }
-
-    private void UpdateScrollbars()
-    {
-        GetHScrollBar().Scale = GetVScrollBar().Scale = ShowScrollbars ? Vector2.One : Vector2.Zero;
     }
 
     private void OnScrollStarted(float value)
