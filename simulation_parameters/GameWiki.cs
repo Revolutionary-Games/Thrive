@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
@@ -15,6 +16,18 @@ public class GameWiki : IRegistryType
 
     public List<Page> Organelles { get; set; } = null!;
 
+    public Page StagesRoot { get; set; } = null!;
+
+    public List<Page> Stages { get; set; } = null!;
+
+    public Page MechanicsRoot { get; set; } = null!;
+
+    public List<Page> Mechanics { get; set; } = null!;
+
+    public Page DevelopmentRoot { get; set; } = null!;
+
+    public List<Page> DevelopmentPages { get; set; } = null!;
+
     public void ApplyTranslations()
     {
     }
@@ -22,9 +35,14 @@ public class GameWiki : IRegistryType
     public void Check(string name)
     {
         OrganellesRoot.Check(name);
+        StagesRoot.Check(name);
+        MechanicsRoot.Check(name);
+        DevelopmentRoot.Check(name);
 
-        foreach (var page in Organelles)
-            page.Check(name);
+        Organelles.ForEach(p => p.Check(name));
+        Stages.ForEach(p => p.Check(name));
+        Mechanics.ForEach(p => p.Check(name));
+        DevelopmentPages.ForEach(p => p.Check(name));
     }
 
     public class Page
@@ -36,6 +54,10 @@ public class GameWiki : IRegistryType
         public string Url { get; set; } = null!;
 
         public List<Section> Sections { get; set; } = null!;
+
+        public List<InfoboxField> InfoboxData { get; set; } = new();
+
+        public string? NoticeSceneName { get; set; }
 
         public void Check(string name)
         {
@@ -76,5 +98,12 @@ public class GameWiki : IRegistryType
 
             public string SectionBody { get; set; } = null!;
         }
+    }
+
+    public class InfoboxField
+    {
+        public string InfoboxKey { get; set; } = null!;
+
+        public string InfoboxValue { get; set; } = null!;
     }
 }
