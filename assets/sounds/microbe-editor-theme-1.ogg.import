@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/microbe-editor-theme-1.ogg-a4ab445b605306d73802852bc6670938.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://6yrtaqfb7cst"
+path="res://.godot/imported/microbe-editor-theme-1.ogg-a4ab445b605306d73802852bc6670938.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/microbe-editor-theme-1.ogg"
-dest_files=[ "res://.import/microbe-editor-theme-1.ogg-a4ab445b605306d73802852bc6670938.oggstr" ]
+dest_files=["res://.godot/imported/microbe-editor-theme-1.ogg-a4ab445b605306d73802852bc6670938.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

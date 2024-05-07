@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/engulfment.ogg-611507f7591f8b37c22e7da0ff59f886.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cildagjtp6noc"
+path="res://.godot/imported/engulfment.ogg-611507f7591f8b37c22e7da0ff59f886.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/soundeffects/engulfment.ogg"
-dest_files=[ "res://.import/engulfment.ogg-611507f7591f8b37c22e7da0ff59f886.oggstr" ]
+dest_files=["res://.godot/imported/engulfment.ogg-611507f7591f8b37c22e7da0ff59f886.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
