@@ -30,10 +30,13 @@ public partial class StartupActions : Node
         // Add unhandled exception logger if debugger is not attached
         if (!Debugger.IsAttached)
         {
-            GD.PrintErr("TODO: reimplement unhandled exception logger");
+            // TODO: reimplement this (doesn't currently work in Godot 4)
+            // https://github.com/godotengine/godot/issues/73515
+            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
 
-            // GD.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
             // GD.Print("Unhandled exception logger attached");
+            GD.Print(
+                "TODO: reimplement unhandled exception handler: https://github.com/godotengine/godot/issues/73515");
         }
 
         NativeInterop.SetDllImportResolver();
@@ -48,9 +51,6 @@ public partial class StartupActions : Node
         // Print the logs folder to see in the output where they are stored
         GD.Print("Game logs are written to: ", Path.Combine(userDir, ThriveLauncherSharedConstants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
-
-        // TODO: mono runtime doesn't have intrinsics support for checking AVX
-        // https://learn.microsoft.com/fi-fi/dotnet/api/system.runtime.intrinsics.x86.avx?view=net-8.0
 
         bool loadNative = true;
 

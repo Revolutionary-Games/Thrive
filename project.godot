@@ -25,6 +25,10 @@ boot_splash/image="res://assets/misc/thrive_logo_big.png"
 config/icon="res://assets/misc/icon.png"
 config/windows_native_icon="res://assets/misc/icon.ico"
 
+[audio]
+
+driver/output_latency=20
+
 [autoload]
 
 Invoke="*res://src/engine/Invoke.cs"

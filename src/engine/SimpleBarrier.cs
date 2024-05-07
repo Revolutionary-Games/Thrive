@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Intrinsics.X86;
 using System.Threading;
 
 /// <summary>
@@ -22,7 +23,7 @@ public class SimpleBarrier
     private int threadsInWaitLoop;
 
     /// <summary>
-    ///   Setup a new barrier with a given thread count
+    ///   Set up a new barrier with a given thread count
     /// </summary>
     /// <param name="threadCount">
     ///   How many threads participate in this barrier. If different number of threads are used this will go extremely
@@ -65,6 +66,8 @@ public class SimpleBarrier
 
                     if (readCount == threadCount)
                         break;
+
+                    X86Base.Pause();
                 }
 
                 if (readCount == threadCount)
@@ -112,6 +115,8 @@ public class SimpleBarrier
         {
             // All threads should be releasing very fast, so just keep trying to read the variable
             readCount = blockedThreads;
+
+            X86Base.Pause();
         }
 
         // Ensure that after the barrier all thread writes and reads are seen by all threads
