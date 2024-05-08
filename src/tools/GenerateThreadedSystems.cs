@@ -382,15 +382,15 @@ public partial class GenerateThreadedSystems : Node
             var thread = threads[i];
             int threadId = thread.First().ThreadId;
             lineReceiver.Add($"var background{i} = new Task(() =>");
-            lineReceiver.Add($"{StringUtils.GetIndent(4)}{{");
+            lineReceiver.Add($"{StringUtils.GetIndent(1)}{{");
 
-            GenerateCodeForThread(thread, lineReceiver, 8);
+            GenerateCodeForThread(thread, lineReceiver, 2);
 
             lineReceiver.Add(string.Empty);
 
-            AddBarrierWait(lineReceiver, 1, threadId, 8);
+            AddBarrierWait(lineReceiver, 1, threadId, 2);
 
-            lineReceiver.Add($"{StringUtils.GetIndent(4)}}});");
+            lineReceiver.Add($"{StringUtils.GetIndent(1)}}});");
 
             lineReceiver.Add(string.Empty);
             lineReceiver.Add($"TaskExecutor.Instance.AddTask(background{i});");
@@ -466,16 +466,16 @@ public partial class GenerateThreadedSystems : Node
         lineReceiver.Add("elapsedSinceTimePrint += delta;");
         lineReceiver.Add("if (elapsedSinceTimePrint >= 1)");
         lineReceiver.Add("{");
-        lineReceiver.Add(StringUtils.GetIndent(4) + "elapsedSinceTimePrint = 0;");
+        lineReceiver.Add(StringUtils.GetIndent(1) + "elapsedSinceTimePrint = 0;");
 
         if (PrintThreadWaits)
-            lineReceiver.Add(StringUtils.GetIndent(4) + @"GD.Print($""Simulation thread wait times: "");");
+            lineReceiver.Add(StringUtils.GetIndent(1) + @"GD.Print($""Simulation thread wait times: "");");
 
         for (int i = 1; i <= threadCount; ++i)
         {
             if (PrintThreadWaits)
-                lineReceiver.Add(StringUtils.GetIndent(4) + $"GD.Print($\"\\t thread{i}:\\t{{waitTime{i}}}\");");
-            lineReceiver.Add(StringUtils.GetIndent(4) + $"waitTime{i} = 0;");
+                lineReceiver.Add(StringUtils.GetIndent(1) + $"GD.Print($\"\\t thread{i}:\\t{{waitTime{i}}}\");");
+            lineReceiver.Add(StringUtils.GetIndent(1) + $"waitTime{i} = 0;");
         }
 
         lineReceiver.Add("}");
@@ -713,7 +713,7 @@ public partial class GenerateThreadedSystems : Node
         writer.WriteLine($"public partial class {className}");
         writer.WriteLine('{');
 
-        indent += 4;
+        indent += 1;
         bool addedVariables = false;
 
         foreach (var pair in variables.OrderByDescending(p => p.Value.IsReadonly))
@@ -733,7 +733,7 @@ public partial class GenerateThreadedSystems : Node
 
         writer.WriteLine(StringUtils.GetIndent(indent) + "private void InitGenerated()");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         if (DebugGuardComponentWrites)
         {
@@ -748,7 +748,7 @@ public partial class GenerateThreadedSystems : Node
             }
         }
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
         writer.WriteLine();
@@ -771,7 +771,7 @@ public partial class GenerateThreadedSystems : Node
         writer.WriteLine();
         writer.WriteLine(StringUtils.GetIndent(indent) + "private void DisposeGenerated()");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         foreach (var pair in variables)
         {
@@ -781,12 +781,12 @@ public partial class GenerateThreadedSystems : Node
             }
         }
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
         // End of class
         writer.WriteLine('}');
-        indent -= 4;
+        indent -= 1;
 
         if (indent != 0)
             throw new Exception("Writer didn't end closing all indents");
@@ -799,27 +799,27 @@ public partial class GenerateThreadedSystems : Node
         writer.WriteLine(StringUtils.GetIndent(indent) +
             $"private void OnBarrierPhaseCompleted({BarrierType} barrier)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         writer.WriteLine(StringUtils.GetIndent(indent) + "lock (debugWriteLock)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         writer.WriteLine(StringUtils.GetIndent(indent) + "foreach (var entry in readsFromComponents)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        writer.WriteLine(StringUtils.GetIndent(indent + 4) + "entry.Value.Clear();");
+        writer.WriteLine(StringUtils.GetIndent(indent + 1) + "entry.Value.Clear();");
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
         writer.WriteLine();
         writer.WriteLine(StringUtils.GetIndent(indent) + "foreach (var entry in writesToComponents)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        writer.WriteLine(StringUtils.GetIndent(indent + 4) + "entry.Value.Clear();");
+        writer.WriteLine(StringUtils.GetIndent(indent + 1) + "entry.Value.Clear();");
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
         // Check method
@@ -827,7 +827,7 @@ public partial class GenerateThreadedSystems : Node
         writer.WriteLine(StringUtils.GetIndent(indent) +
             "private void OnThreadAccessComponent(bool write, string component, string system, int thread)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         bool firstBlank = true;
 
@@ -843,10 +843,10 @@ public partial class GenerateThreadedSystems : Node
             }
 
             // The code is indented here in the source code so a substring is taken to replace the indent sizes
-            writer.WriteLine(StringUtils.GetIndent(indent) + line.Substring(8));
+            writer.WriteLine(StringUtils.GetIndent(indent) + line.Substring(StringUtils.GetIndent(2).Length));
         }
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
         return indent;
     }
@@ -854,7 +854,7 @@ public partial class GenerateThreadedSystems : Node
     private int WriteBlockContents(StreamWriter writer, List<string> lines, int indent)
     {
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         foreach (var line in lines)
         {
@@ -867,7 +867,7 @@ public partial class GenerateThreadedSystems : Node
             writer.WriteLine(StringUtils.GetIndent(indent) + line);
         }
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
         return indent;
     }
