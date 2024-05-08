@@ -115,6 +115,10 @@ public partial class GUIFocusSetter : Control
                 if (targetNode.IsVisibleInTree())
                 {
                     targetNode.GrabFocus();
+#if DEBUG
+                    if (GetViewport().GuiGetFocusOwner() != targetNode)
+                        GD.PrintErr("Failed to grab focus to wanted node");
+#endif
                 }
             }
         }
