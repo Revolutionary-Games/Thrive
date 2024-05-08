@@ -80,9 +80,6 @@ public partial class MainMenu : NodeWithInput
     public NodePath SocialMediaContainerPath = null!;
 
     [Export]
-    public NodePath WebsiteButtonsContainerPath = null!;
-
-    [Export]
     public NodePath ItchButtonPath = null!;
 
     [Export]
@@ -152,7 +149,9 @@ public partial class MainMenu : NodeWithInput
     private Label storeLoggedInDisplay = null!;
 
     private Control socialMediaContainer = null!;
-    private PopupPanel websiteButtonsContainer = null!;
+
+    [Export]
+    private CustomWindow websiteButtonsContainer = null!;
 
     private TextureButton itchButton = null!;
     private TextureButton patreonButton = null!;
@@ -433,7 +432,6 @@ public partial class MainMenu : NodeWithInput
                 ModsInstalledButNotEnabledWarningPath.Dispose();
                 LowPerformanceWarningPath.Dispose();
                 SocialMediaContainerPath.Dispose();
-                WebsiteButtonsContainerPath.Dispose();
                 ItchButtonPath.Dispose();
                 PatreonButtonPath.Dispose();
                 StoreLoggedInDisplayPath.Dispose();
@@ -477,7 +475,6 @@ public partial class MainMenu : NodeWithInput
         patchNotesDisabler = GetNode<Control>(PatchNotesDisablerPath);
         feedPositioner = GetNode<Control>(FeedPositionerPath);
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
-        websiteButtonsContainer = GetNode<PopupPanel>(WebsiteButtonsContainerPath);
 
         itchButton = GetNode<TextureButton>(ItchButtonPath);
         patreonButton = GetNode<TextureButton>(PatreonButtonPath);
@@ -1115,17 +1112,7 @@ public partial class MainMenu : NodeWithInput
 
     private void OnWebsitesButtonPressed()
     {
-        // TODO: check that this new alternative works (or remake the GUI as something that can be modal)
-        // ModalManager.Instance.MakeModal(websiteButtonsContainer);
-        // websiteButtonsContainer.ShowModal();
-        websiteButtonsContainer.Popup();
-
-        // A plain PopupPanel doesn't resize automatically and using other popup types will be overkill,
-        // so we need to manually shrink it
-        websiteButtonsContainer.Size = Vector2I.Zero;
-
-        // Apparently initial position doesn't work, so we need this workaround in Godot 4
-        websiteButtonsContainer.Position = new Vector2I(8, 380);
+        websiteButtonsContainer.OpenModal();
     }
 
     private void OnSocialMediaButtonPressed(string url)
