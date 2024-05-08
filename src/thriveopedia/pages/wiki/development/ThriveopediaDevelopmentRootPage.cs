@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   Parent page for concept pages in the Thriveopedia. Content comes from the development category in the online
+///   Parent page for development pages in the Thriveopedia. Content comes from the development category in the online
 ///   wiki.
 /// </summary>
 public partial class ThriveopediaDevelopmentRootPage : ThriveopediaWikiPage

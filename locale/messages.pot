@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-07 20:13+0200\n"
+"POT-Creation-Date: 2024-05-08 23:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1731,6 +1731,10 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentRootPage.cs:11
+msgid "DEVELOPMENT"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:596
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
@@ -2831,7 +2835,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2006
 #: ../simulation_parameters/common/wiki.json:2084
 #: ../simulation_parameters/common/wiki.json:2162
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:75
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:75
 msgid "INFO_BOX_COST"
 msgstr ""
 
@@ -2843,6 +2847,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2509
 #: ../simulation_parameters/common/wiki.json:2559
 #: ../simulation_parameters/common/wiki.json:2609
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:108
 msgid "INFO_BOX_EDITORS"
 msgstr ""
 
@@ -2874,7 +2879,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2018
 #: ../simulation_parameters/common/wiki.json:2096
 #: ../simulation_parameters/common/wiki.json:2174
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:134
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:134
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
 
@@ -2886,14 +2891,16 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2497
 #: ../simulation_parameters/common/wiki.json:2547
 #: ../simulation_parameters/common/wiki.json:2597
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:51
 msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:269
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:269
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:127
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:153
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:153
 msgid "INFO_BOX_MASS"
 msgstr ""
 
@@ -2905,6 +2912,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2505
 #: ../simulation_parameters/common/wiki.json:2555
 #: ../simulation_parameters/common/wiki.json:2605
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:89
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr ""
 
@@ -2936,7 +2944,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2026
 #: ../simulation_parameters/common/wiki.json:2104
 #: ../simulation_parameters/common/wiki.json:2182
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:191
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:191
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr ""
 
@@ -2948,6 +2956,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2501
 #: ../simulation_parameters/common/wiki.json:2551
 #: ../simulation_parameters/common/wiki.json:2601
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:70
 msgid "INFO_BOX_PREVIOUS_STAGE"
 msgstr ""
 
@@ -2979,7 +2988,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2014
 #: ../simulation_parameters/common/wiki.json:2092
 #: ../simulation_parameters/common/wiki.json:2170
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:115
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:115
 msgid "INFO_BOX_PROCESSES"
 msgstr ""
 
@@ -3011,7 +3020,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2010
 #: ../simulation_parameters/common/wiki.json:2088
 #: ../simulation_parameters/common/wiki.json:2166
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:94
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:94
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr ""
 
@@ -3043,7 +3052,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2022
 #: ../simulation_parameters/common/wiki.json:2100
 #: ../simulation_parameters/common/wiki.json:2178
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:172
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:172
 msgid "INFO_BOX_SIZE"
 msgstr ""
 
@@ -3075,7 +3084,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2030
 #: ../simulation_parameters/common/wiki.json:2108
 #: ../simulation_parameters/common/wiki.json:2186
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:210
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:210
 msgid "INFO_BOX_STORAGE"
 msgstr ""
 
@@ -3107,7 +3116,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2034
 #: ../simulation_parameters/common/wiki.json:2112
 #: ../simulation_parameters/common/wiki.json:2190
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:229
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:229
 msgid "INFO_BOX_UNIQUE"
 msgstr ""
 
@@ -3139,7 +3148,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2038
 #: ../simulation_parameters/common/wiki.json:2116
 #: ../simulation_parameters/common/wiki.json:2194
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:250
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:250
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
@@ -3983,6 +3992,10 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:549
 msgid "MAY"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.cs:11
+msgid "MECHANICS"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:226
@@ -4880,9 +4893,9 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2195
 #: ../simulation_parameters/common/wiki.json:2248
 #: ../src/general/OptionsMenu.tscn:375
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:197
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:206
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:215
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:197
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:206
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:215
 msgid "NONE"
 msgstr ""
 
@@ -5143,7 +5156,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:674
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:75
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
+#: ../src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr ""
 
@@ -6521,6 +6534,10 @@ msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:739
 msgid "SPREAD_TO_PATCHES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.cs:19
+msgid "STAGES"
 msgstr ""
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:51
