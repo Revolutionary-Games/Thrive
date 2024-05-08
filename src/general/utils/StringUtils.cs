@@ -572,6 +572,15 @@ public static class StringUtils
         return new string(' ', indentLevel * INDENT_AMOUNT);
     }
 
+    public static bool ShouldSkipIndent(string line)
+    {
+        // No indent on preprocessor lines
+        if (line.StartsWith('#'))
+            return true;
+
+        return false;
+    }
+
     public static int DetectLineIndentationLevel(string line)
     {
         int spaceCount = 0;
