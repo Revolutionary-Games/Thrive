@@ -534,7 +534,8 @@ layout_mode = 2
 NodeToGiveFocusTo = NodePath("../MicrobeBenchmark")
 
 [node name="WebsiteButtons" type="PopupPanel" parent="MenuContainers"]
-position = Vector2i(8, 292)
+editor_description = "This needs to be positioned incorrectly in the editor to work in the game"
+position = Vector2i(8, 293)
 size = Vector2i(272, 391)
 theme = ExtResource("1")
 theme_override_styles/panel = SubResource("2")
@@ -545,8 +546,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 5.0
-offset_right = 267.0
-offset_bottom = 386.0
+offset_right = -5.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3

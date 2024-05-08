@@ -484,7 +484,7 @@ public partial class MainMenu : NodeWithInput
 
         menuArray?.Clear();
 
-        // Get all of menu items
+        // Get all the menu items
         menuArray = GetTree().GetNodesInGroup("MenuItem");
 
         if (menuArray == null)
@@ -1123,6 +1123,9 @@ public partial class MainMenu : NodeWithInput
         // A plain PopupPanel doesn't resize automatically and using other popup types will be overkill,
         // so we need to manually shrink it
         websiteButtonsContainer.Size = Vector2I.Zero;
+
+        // Apparently initial position doesn't work, so we need this workaround in Godot 4
+        websiteButtonsContainer.Position = new Vector2I(8, 380);
     }
 
     private void OnSocialMediaButtonPressed(string url)
