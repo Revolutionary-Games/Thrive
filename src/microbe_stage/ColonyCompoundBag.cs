@@ -4,6 +4,7 @@ using System.Linq;
 using Components;
 using DefaultEcs;
 using Godot;
+using JetBrains.Annotations;
 
 /// <summary>
 ///   Access to a microbe colony's compounds through a unified interface. Instances of this class should not be stored
@@ -111,6 +112,7 @@ public class ColonyCompoundBag : ICompoundStorage
         }
     }
 
+    [MustDisposeResource]
     public IEnumerator<KeyValuePair<Compound, float>> GetEnumerator()
     {
         return GetCompoundBags()
@@ -148,6 +150,7 @@ public class ColonyCompoundBag : ICompoundStorage
         return false;
     }
 
+    [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
