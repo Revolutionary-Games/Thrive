@@ -304,7 +304,7 @@ public class SystemToSchedule
             lineReceiver.Add(StringUtils.GetIndent(indent) + '{');
 
             // Indent inside the condition
-            indent += 4;
+            indent += 1;
             closeBrace = true;
         }
 
@@ -368,7 +368,7 @@ public class SystemToSchedule
 
         if (closeBrace)
         {
-            indent -= 4;
+            indent -= 1;
             lineReceiver.Add(StringUtils.GetIndent(indent) + '}');
             GenerateThreadedSystems.EnsureOneBlankLine(lineReceiver);
         }

@@ -65,7 +65,7 @@ public struct CollisionManagement
     ///     entities should just initially figure out how many max collisions they should handle.
     ///   </para>
     /// </remarks>
-    public int RecordActiveCollisions;
+    public volatile int RecordActiveCollisions;
 
     /// <summary>
     ///   Must be set to false after changing any properties to have them apply (after the initial creation)
