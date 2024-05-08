@@ -1661,6 +1661,7 @@ public static class Constants
     {
         var suffixRegex = new Regex(VERSION_HASH_SUFFIX_REGEX);
 
+        // TODO: apparently this just stopped working at some point (the hash suffix is now gone)
         var match = suffixRegex.Match(VersionFull);
 
         if (!match.Success)
