@@ -134,9 +134,11 @@ button_pressed = true
 text = "LAWK_ONLY"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "LAWK_ONLY_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 layout_mode = 2
@@ -159,6 +161,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "LIFE_ORIGIN_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -306,8 +309,10 @@ custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -347,10 +352,12 @@ text = "1"
 editable = false
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "MUTATION_COST_MULTIPLIER_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -390,10 +397,12 @@ text = "2"
 editable = false
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "AI_MUTATION_RATE_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -433,10 +442,12 @@ text = "1"
 editable = false
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -476,10 +487,12 @@ text = "1"
 editable = false
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -518,10 +531,12 @@ text = "80%"
 editable = false
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -561,10 +576,12 @@ text = "1"
 editable = false
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer11" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -586,9 +603,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer11"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -599,10 +618,12 @@ size_flags_horizontal = 0
 text = "FREE_GLUCOSE_CLOUD"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "FREE_GLUCOSE_CLOUD_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer9" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -613,10 +634,12 @@ size_flags_horizontal = 0
 text = "PASSIVE_REPRODUCTION_PROGRESS"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer10" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -627,10 +650,12 @@ size_flags_horizontal = 0
 text = "LIMIT_GROWTH_RATE"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LIMIT_GROWTH_RATE_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer12" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -641,10 +666,12 @@ size_flags_horizontal = 0
 text = "ORGANELLE_UNLOCKS_ENABLED"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
@@ -674,10 +701,12 @@ button_pressed = true
 text = "LAWK_ONLY"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LAWK_ONLY_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 layout_mode = 2
@@ -694,10 +723,12 @@ mouse_filter = 0
 text = "LIFE_ORIGIN"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LIFE_ORIGIN_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="LifeOriginAdvanced" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 25)
@@ -722,10 +753,12 @@ size_flags_horizontal = 0
 text = "DAY_NIGHT_CYCLE_ENABLED"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 label_settings = ExtResource("12_8raft")
+autowrap_mode = 3
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.501961)
@@ -769,10 +802,12 @@ text = "180"
 editable = false
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "DAY_LENGTH_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 layout_mode = 2
@@ -829,6 +864,7 @@ size_flags_horizontal = 3
 text = "PLANET_GENERATION_TEASER"
 label_settings = ExtResource("14_36v86")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 visible = false
@@ -852,10 +888,12 @@ button_pressed = true
 text = "INCLUDE_MULTICELLULAR_PROTOTYPE"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
 layout_mode = 2
@@ -867,10 +905,12 @@ button_pressed = true
 text = "EASTER_EGGS"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "EASTER_EGGS_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
