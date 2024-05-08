@@ -1,0 +1,133 @@
+[gd_scene load_steps=6 format=3 uid="uid://b725n2vco3c4u"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_nf8eo"]
+[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/stage/StageInfoBox.cs" id="2_hpa8j"]
+[ext_resource type="LabelSettings" uid="uid://dd3w1mc3ion6w" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall.tres" id="3_w64bo"]
+[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="4_me00w"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="5_nyoqx"]
+
+[node name="PanelContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(330, 0)
+offset_right = 330.0
+offset_bottom = 230.0
+theme = ExtResource("1_nf8eo")
+script = ExtResource("2_hpa8j")
+GameplayTypePath = NodePath("MarginContainer/VBoxContainer/GameplayType/Value")
+PreviousStagePath = NodePath("MarginContainer/VBoxContainer/PreviousStage/Value")
+NextStagePath = NodePath("MarginContainer/VBoxContainer/NextStage/Value")
+EditorsPath = NodePath("MarginContainer/VBoxContainer/Editors/Value")
+InternalNameLabelPath = NodePath("MarginContainer/VBoxContainer/InternalName/Value")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("3_w64bo")
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+
+[node name="GameplayType" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GameplayType"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "INFO_BOX_GAMEPLAY_TYPE"
+label_settings = ExtResource("4_me00w")
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/GameplayType"]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("5_nyoqx")
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+
+[node name="PreviousStage" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PreviousStage"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "INFO_BOX_PREVIOUS_STAGE"
+label_settings = ExtResource("4_me00w")
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/PreviousStage"]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("5_nyoqx")
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+
+[node name="NextStage" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/NextStage"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "INFO_BOX_NEXT_STAGE"
+label_settings = ExtResource("4_me00w")
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/NextStage"]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("5_nyoqx")
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+
+[node name="Editors" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Editors"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "INFO_BOX_EDITORS"
+label_settings = ExtResource("4_me00w")
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Editors"]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("5_nyoqx")
+
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+
+[node name="InternalName" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/InternalName"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "INFO_BOX_INTERNAL_NAME"
+label_settings = ExtResource("4_me00w")
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/InternalName"]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("5_nyoqx")

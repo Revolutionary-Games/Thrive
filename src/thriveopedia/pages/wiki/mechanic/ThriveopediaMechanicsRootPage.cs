@@ -4,7 +4,7 @@
 ///   Parent page for mechanic pages in the Thriveopedia. Content comes from the mechanics category in the online
 ///   wiki.
 /// </summary>
-public class ThriveopediaMechanicsRootPage : ThriveopediaWikiPage
+public partial class ThriveopediaMechanicsRootPage : ThriveopediaWikiPage
 {
     public override string PageName => "MechanicsRoot";
 
