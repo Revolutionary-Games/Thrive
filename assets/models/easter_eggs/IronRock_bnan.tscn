@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5bw8snk8mxbe"]
+
+[ext_resource type="Material" uid="uid://cjly5ovvgv0c5" path="res://assets/models/IronMaterial.material" id="1_umpqb"]
+[ext_resource type="ArrayMesh" uid="uid://dhk18cytp0i6f" path="res://assets/models/easter_eggs/IronRock_bnan.mesh" id="2_u4vle"]
+
+[node name="iron_bnan" type="MeshInstance3D"]
+material_override = ExtResource("1_umpqb")
+mesh = ExtResource("2_u4vle")
