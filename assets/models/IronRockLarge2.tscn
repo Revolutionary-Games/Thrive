@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfxl0yfq7aeis"]
 
 [ext_resource type="Material" uid="uid://cjly5ovvgv0c5" path="res://assets/models/IronMaterial.material" id="1_37tly"]
-[ext_resource type="ArrayMesh" uid="uid://dgkycegud6ju5" path="res://assets/models/IronRock_Large2.mesh" id="2_23yct"]
+[ext_resource type="ArrayMesh" uid="uid://dgkycegud6ju5" path="res://assets/models/IronRockLarge2.mesh" id="2_23yct"]
 
-[node name="IronRock_large2" type="MeshInstance3D"]
+[node name="IronRockLarge2" type="MeshInstance3D"]
 material_override = ExtResource("1_37tly")
 mesh = ExtResource("2_23yct")
