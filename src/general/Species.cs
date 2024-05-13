@@ -112,6 +112,9 @@ public abstract class Species : ICloneable
     [JsonProperty]
     public bool PlayerSpecies { get; private set; }
 
+    [JsonProperty]
+    public EndosymbiosisData Endosymbiosis { get; private set; } = new();
+
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
 
@@ -330,6 +333,8 @@ public abstract class Species : ICloneable
 
         foreach (var entry in Behaviour)
             species.Behaviour[entry.Key] = entry.Value;
+
+        species.Endosymbiosis = Endosymbiosis.Clone();
 
         // Genus and epithet aren't copied as they are required constructor parameters
         species.Colour = Colour;
