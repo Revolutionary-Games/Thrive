@@ -9,7 +9,7 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
 {
     /// <summary>
     ///   A list of "feature" names that have been unlocked for this organelle. Depends on the organelle components
-    ///   what names they look for
+    ///   what names they look for.
     /// </summary>
     public List<string> UnlockedFeatures { get; set; } = new();
 
