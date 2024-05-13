@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-05-08 15:07+0300\n"
-"PO-Revision-Date: 2024-04-27 14:34+0000\n"
+"PO-Revision-Date: 2024-05-09 15:10+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -2610,9 +2610,8 @@ msgstr "Très petit"
 msgid "LINE_COLOUR"
 msgstr "Couleur de la ligne :"
 
-#, fuzzy
 msgid "LINKS_TITLE"
-msgstr "Titre manquant"
+msgstr "Liens"
 
 msgid "LIPASE"
 msgstr "Lipase"
@@ -3095,9 +3094,8 @@ msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [t
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
 
-#, fuzzy
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr "Les instructions pour créer de nouvelles modifications sont accessibles depuis"
+msgstr "Les instructions pour créer des mods sont disponibles sur"
 
 msgid "MODELS"
 msgstr "Modèles"
@@ -3121,7 +3119,7 @@ msgstr ""
 "Les mods doivent être activés après l'installation. Visitez le gestionnaire de mods en utilisant le bouton mods dans le menu extras."
 
 msgid "MOD_ASSEMBLY"
-msgstr "Assembleur :"
+msgstr "Assembleur du mod :"
 
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Classe principale de l'assembleur du mod :"
@@ -3177,9 +3175,8 @@ msgstr "Impossible de charger des ressources de {0}"
 msgid "MOD_ICON_FILE"
 msgstr "Fichier d'icône :"
 
-#, fuzzy
 msgid "MOD_INFO_URL"
-msgstr "Lien d'information :"
+msgstr "Lien d'information du mod :"
 
 msgid "MOD_INTERNAL_NAME"
 msgstr "Nom interne (dossier) :"
@@ -3191,11 +3188,10 @@ msgid "MOD_LOAD_ERRORS"
 msgstr "Erreurs liées au chargement de mod"
 
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Des erreurs sont apparues lors du chargement d'un ou plusieurs mods. Les logs pourraient contenir des informations supplémentaires."
+msgstr "Des erreurs sont survenues lors du chargement d'un ou plusieurs mods. Les logs pourraient contenir des informations supplémentaires."
 
-#, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "Des erreurs sont survenues lors du chargement ou du déchargement d'un ou plusieurs mods. Le registre du jeu devrait contenir d'avantage d'informations."
+msgstr "Des erreurs sont survenues lors du chargement ou du déchargement d'un ou plusieurs mods. Les logs pourraient contenir des informations supplémentaires."
 
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Remarque : de nombreux mods nécessitent un redémarrage du jeu pour être chargés ou déchargés correctement. Ne chargez que les mods auxquels vous faites confiance car ils peuvent contenir du code exécutable."
@@ -3592,7 +3588,7 @@ msgid "OPENGL_MODE_WARNING"
 msgstr "Avertissement mode OpenGL"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
-msgstr "Vous utilisez Thrive avec OpenGL. Cela demeure non testé et risque de causer des problèmes. Veuillez à utiliser des cartes graphiques (processeurs graphiques ou intégrées) suffisamment récentes et essayez de mettre à jour vos pilotes vidéos. Pour les ordinateur portables vous pouvez avoir besoin de forcer l'utilisation des cartes graphiques AMD ou Nvidia dédiées pour lancer Thrive au lieu des cartes graphiques intégrées."
+msgstr "Vous utilisez Thrive avec OpenGL. Cela demeure non testé et risque de causer des problèmes. Assurez-vous d'utiliser des cartes graphiques (processeurs graphiques ou intégrées) suffisamment récentes et essayez de mettre à jour vos pilotes vidéos. Pour les ordinateur portables vous pouvez avoir besoin de forcer l'utilisation des cartes graphiques AMD ou Nvidia dédiées pour lancer Thrive au lieu des cartes graphiques intégrées."
 
 msgid "OPEN_FOLDER"
 msgstr "Ouvrir le dossier"
@@ -3619,7 +3615,7 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "Ouvrir le dossier des logs"
 
 msgid "OPEN_MOD_URL"
-msgstr "Ouvrir l'URL d'info"
+msgstr "Ouvrir le lien d'information"
 
 msgid "OPEN_ORGANELLES_PAGE"
 msgstr "Ouvrir la page des organites"
@@ -3825,10 +3821,10 @@ msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "Vous avez joué pour la dernière fois en version {0}, depuis il y a eu une nouvelle mise à jour"
+msgstr "Vous avez joué la dernière fois en version {0}, depuis il y a eu une nouvelle version"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr "Vous avez joué pour la dernière fois en version {0}, depuis il y a eu {1} nouvelle(s) parution(s)"
+msgstr "Vous avez joué la dernière fois en version {0}, depuis il y a eu {1} nouvelles versions"
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "Notes de correctif"
@@ -4352,7 +4348,6 @@ msgstr "Proportionel"
 msgid "SCALING_ON_INVERSE"
 msgstr "Inversement proportionnel"
 
-#, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "Effets d'écran"
 
