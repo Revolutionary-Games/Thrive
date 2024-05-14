@@ -4,13 +4,18 @@
 [ext_resource type="Script" path="res://src/microbe_stage/editor/EndosymbiosisPopup.cs" id="2_s4663"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_50ouf"]
 
-[node name="EndosymbiosisPopup" instance=ExtResource("1_o4oq3")]
+[node name="EndosymbiosisPopup" node_paths=PackedStringArray("generalExplanationLabel", "inProgressAdviceLabel", "prokaryoteFullLabel", "choicesContainer", "progressContainer") instance=ExtResource("1_o4oq3")]
 custom_minimum_size = Vector2(400, 400)
 offset_left = 444.0
 offset_top = 162.0
 offset_right = 844.0
 offset_bottom = 562.0
 script = ExtResource("2_s4663")
+generalExplanationLabel = NodePath("VBoxContainer/Explanation")
+inProgressAdviceLabel = NodePath("VBoxContainer/EndosymbiosisProgressExplanation")
+prokaryoteFullLabel = NodePath("VBoxContainer/ProkaryoticLimit")
+choicesContainer = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/EndosymbiontsToChoose")
+progressContainer = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/EndosymbiosisProgress")
 WindowTitle = "ENDOSYMBIOSIS_TITLE"
 Resizable = true
 Exclusive = true
@@ -28,15 +33,39 @@ text = "ENDOSYMBIOSIS_EXPLANATION"
 label_settings = ExtResource("3_50ouf")
 autowrap_mode = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" index="1"]
+[node name="EndosymbiosisProgressExplanation" type="Label" parent="VBoxContainer" index="1"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+label_settings = ExtResource("3_50ouf")
+autowrap_mode = 3
+
+[node name="ProkaryoticLimit" type="Label" parent="VBoxContainer" index="2"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+label_settings = ExtResource("3_50ouf")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" index="3"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="EndosymbiontsToChoose" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" index="0"]
+layout_mode = 2
+
+[node name="EndosymbiontsToChoose" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Close" type="Button" parent="VBoxContainer" index="2"]
+[node name="EndosymbiosisProgress" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Close" type="Button" parent="VBoxContainer" index="4"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8

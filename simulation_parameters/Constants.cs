@@ -1340,6 +1340,21 @@ public static class Constants
     public const int HEX_MAX_RENDER_PRIORITY = HEX_RENDER_PRIORITY_DISTANCE * HEX_RENDER_PRIORITY_DISTANCE;
 
     /// <summary>
+    ///   How many endosymbionts in total prokaryotes can have
+    /// </summary>
+    public const int ENDOSYMBIOSIS_MAX_FOR_PROKARYOTE = 1;
+
+    /// <summary>
+    ///   How many times a target species needs to be engulfed for it to be completed (in the base case, this is
+    ///   lowered with more organelle instances)
+    /// </summary>
+    public const int ENDOSYMBIOSIS_COST_BASE = 6;
+
+    public const int ENDOSYMBIOSIS_COST_REDUCTION_PER_ORGANELLE = 1;
+
+    public const int ENDOSYMBIOSIS_COST_MIN = 2;
+
+    /// <summary>
     ///   If membrane scene is updated this should be updated as well
     /// </summary>
     public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;

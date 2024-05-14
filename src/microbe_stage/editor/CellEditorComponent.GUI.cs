@@ -638,8 +638,17 @@ public partial class CellEditorComponent
     private void OnEndosymbiosisButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        endosymbiosisPopup.UpdateData(Editor.EditedBaseSpecies.Endosymbiosis);
+
+        endosymbiosisPopup.UpdateData(Editor.EditedBaseSpecies.Endosymbiosis,
+            Editor.EditedCellProperties?.IsBacteria ??
+            throw new Exception("Cell properties needs to be known already"));
+
         endosymbiosisPopup.OpenModal();
+    }
+
+    private void OnEndosymbiosisSelected(int targetSpecies, string targetOrganelle, int cost)
+    {
+        throw new NotImplementedException();
     }
 
     private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)

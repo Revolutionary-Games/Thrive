@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl0hbfaybtwpa"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_mr2ks"]
+[ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="2_46q7o"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/EndosymbiosisCandidateOption.cs" id="2_rtvoc"]
+[ext_resource type="LabelSettings" uid="uid://das77igcbl0vy" path="res://src/gui_common/fonts/Body-Italic-Small.tres" id="3_04q4h"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_ub6ah"]
+
+[node name="EndosymbiosisCandidateOption" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mr2ks")
+script = ExtResource("2_rtvoc")
+
+[node name="Name" type="Label" parent="."]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "Species name goes here"
+label_settings = ExtResource("3_04q4h")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SpeciesImage" parent="HBoxContainer" instance=ExtResource("2_46q7o")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+size_flags_horizontal = 1
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+label_settings = ExtResource("4_ub6ah")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OrganelleChoices" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="SelectButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "START"
