@@ -38,6 +38,7 @@ using World = DefaultEcs.World;
 [Without(typeof(EarlyMulticellularSpeciesMember))]
 [WritesToComponent(typeof(Engulfable))]
 [WritesToComponent(typeof(Engulfer))]
+[WritesToComponent(typeof(TemporaryEndosymbiontInfo))]
 [ReadsComponent(typeof(MicrobeStatus))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]

@@ -244,6 +244,12 @@ public static class OrganelleContainerHelpers
         container.UpdateEngulfingSizeData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
             cellDefinition.IsBacteria);
 
+        // Remove endosymbiont info as organelles were cleared
+        if (entity.Has<TemporaryEndosymbiontInfo>())
+        {
+            entity.Get<TemporaryEndosymbiontInfo>().Clear();
+        }
+
         // Reproduction progress is lost
         container.AllOrganellesDivided = false;
 
