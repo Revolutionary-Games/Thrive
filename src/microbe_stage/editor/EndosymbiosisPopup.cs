@@ -90,6 +90,7 @@ public partial class EndosymbiosisPopup : CustomWindow
 
     private void ShowInProgressData(EndosymbiosisData.InProgressEndosymbiosis startedData)
     {
+        _ = startedData;
         throw new NotImplementedException();
     }
 

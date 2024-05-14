@@ -6,7 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://das77igcbl0vy" path="res://src/gui_common/fonts/Body-Italic-Small.tres" id="3_04q4h"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_ub6ah"]
 
-[node name="EndosymbiosisCandidateOption" type="VBoxContainer"]
+[node name="EndosymbiosisCandidateOption" type="VBoxContainer" node_paths=PackedStringArray("organelleChoicesContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_mr2ks")
 script = ExtResource("2_rtvoc")
+organelleChoicesContainer = NodePath("HBoxContainer/VBoxContainer/ScrollContainer/OrganelleChoices")
 
 [node name="Name" type="Label" parent="."]
 editor_description = "PLACEHOLDER"

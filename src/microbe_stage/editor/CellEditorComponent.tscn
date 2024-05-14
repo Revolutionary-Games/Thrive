@@ -1291,4 +1291,5 @@ text = "CLOSE"
 [connection signal="DeletePressed" from="OrganellePopupMenu" to="." method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="OrganellePopupMenu" to="." method="OnModifyPressed"]
 [connection signal="MovePressed" from="OrganellePopupMenu" to="." method="OnMovePressed"]
+[connection signal="OnSpeciesSelected" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisSelected"]
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
