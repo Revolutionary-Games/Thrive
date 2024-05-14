@@ -236,6 +236,12 @@ public partial class CellEditorComponent :
 
     private CustomConfirmationDialog negativeAtpPopup = null!;
 
+    [Export]
+    private Button endosymbiosisButton = null!;
+
+    [Export]
+    private EndosymbiosisPopup endosymbiosisPopup = null!;
+
     private OrganellePopupMenu organelleMenu = null!;
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
@@ -660,6 +666,11 @@ public partial class CellEditorComponent :
         {
             behaviourEditor.Init(owningEditor, fresh);
         }
+        else
+        {
+            // Endosymbiosis is not managed through this component in multicellular
+            endosymbiosisButton.Visible = false;
+        }
 
         // Visual simulation is needed very early when loading a save
         previewSimulation = new MicrobeVisualOnlySimulation();
@@ -729,7 +740,7 @@ public partial class CellEditorComponent :
 
         UpdateMicrobePartSelections();
 
-        // After the if multicellular check so the tooltip cost factors are correct
+        // After the "if multicellular check" so the tooltip cost factors are correct
         // on changing editor types, as tooltip manager is persistent while the game is running
         UpdateMPCost();
 
@@ -1309,7 +1320,7 @@ public partial class CellEditorComponent :
         if (organelleHere == null)
             return null;
 
-        // Dont allow deletion of nucleus or the last organelle
+        // Don't allow deletion of nucleus or the last organelle
         if (organelleHere.Definition == nucleus || MicrobeSize - alreadyDeleted < 2)
             return null;
 

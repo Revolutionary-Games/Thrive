@@ -20,7 +20,7 @@ public partial class CellEditorComponent
     public delegate void ClickedEventHandler();
 
     /// <summary>
-    ///   Detects presses anywhere to notify the name input to unfocus
+    ///   Detects presses anywhere to notify the name input to defocus
     /// </summary>
     /// <param name="event">The input event</param>
     /// <remarks>
@@ -633,6 +633,13 @@ public partial class CellEditorComponent
             entry.Value.MPCost = (int)(entry.Key.EditorCost * CostMultiplier);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
+    }
+
+    private void OnEndosymbiosisButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        endosymbiosisPopup.UpdateData(Editor.EditedBaseSpecies.Endosymbiosis);
+        endosymbiosisPopup.OpenModal();
     }
 
     private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)
