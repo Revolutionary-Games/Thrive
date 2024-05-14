@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -41,6 +42,30 @@ public class EndosymbiosisData
             throw new ArgumentException("Specified species is not an in-progress endosymbiont");
 
         return StartedEndosymbiosis.TargetOrganelle;
+    }
+
+    /// <summary>
+    ///   Increments progress by one for the given species
+    /// </summary>
+    /// <returns>True on success</returns>
+    public bool ReportEndosymbiosisProgress(Species symbiontSpecies)
+    {
+        if (StartedEndosymbiosis == null)
+            return false;
+
+        if (StartedEndosymbiosis.Species != symbiontSpecies)
+        {
+            GD.PrintErr("Endosymbiont to update progress for doesn't match the in-progress endosymbiosis operation");
+            return false;
+        }
+
+        StartedEndosymbiosis.CurrentlyAcquiredCount += 1;
+
+        // Clamp to max to for example prevent progress indicators from showing more than full
+        if (StartedEndosymbiosis.CurrentlyAcquiredCount > StartedEndosymbiosis.RequiredCount)
+            StartedEndosymbiosis.CurrentlyAcquiredCount = StartedEndosymbiosis.RequiredCount;
+
+        return true;
     }
 
     public EndosymbiosisData Clone()

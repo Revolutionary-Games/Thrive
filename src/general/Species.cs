@@ -210,6 +210,7 @@ public abstract class Species : ICloneable
         // These don't mutate for a species
         // genus;
         // epithet;
+        // endosymbiosis
     }
 
     /// <summary>
@@ -280,6 +281,7 @@ public abstract class Species : ICloneable
     ///   referring to the old data. In for example the Mutations
     ///   code.
     /// </summary>
+    /// <returns>Deep-cloned instance of this object</returns>
     public abstract object Clone();
 
     /// <summary>
@@ -294,6 +296,7 @@ public abstract class Species : ICloneable
 
     public virtual string GetDetailString()
     {
+        // TODO: include endosymbiosis data?
         return Localization.Translate("SPECIES_DETAIL_TEXT").FormatSafe(FormattedNameBbCode,
             ID,
             Generation,
@@ -321,6 +324,10 @@ public abstract class Species : ICloneable
         species.Population = Population;
         species.Generation = Generation;
         species.PlayerSpecies = PlayerSpecies;
+
+        // Preserve endosymbiosis progress object as the same, as this is meant to be used when converting species
+        // types
+        species.Endosymbiosis = Endosymbiosis;
     }
 
     /// <summary>
