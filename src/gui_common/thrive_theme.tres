@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=69 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" load_steps=71 format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_fiqxx"]
 [ext_resource type="Texture2D" uid="uid://bjchgyy3gt2vp" path="res://assets/textures/gui/bevel/grab.png" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://di0aky3imukve" path="res://assets/textures/gui/bevel/checkAhover.png" id="18"]
 [ext_resource type="Texture2D" uid="uid://cfeu73wy2ton4" path="res://assets/textures/gui/bevel/checkBclick.png" id="19"]
 [ext_resource type="Texture2D" uid="uid://l2w3q2v8mr0e" path="res://assets/textures/gui/bevel/checkBhover.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://c8u4uaeedwcs3" path="res://assets/textures/gui/bevel/vSeparatorUp.png" id="20_4os0c"]
 [ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="23_s6elw"]
 [ext_resource type="Texture2D" uid="uid://2pv6otrocwru" path="res://assets/textures/gui/bevel/radioA.png" id="24"]
 [ext_resource type="FontFile" uid="uid://wd77bwcss1cf" path="res://assets/fonts/Lato-BoldItalic.ttf" id="24_3nnl8"]
@@ -461,6 +462,11 @@ bg_color = Color(0, 0, 0, 1)
 border_width_left = 3
 border_width_right = 3
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1ih5"]
+texture = ExtResource("20_4os0c")
+expand_margin_left = 2.0
+region_rect = Rect2(0, 0, 429, 1)
 
 [sub_resource type="StyleBoxFlat" id="39"]
 bg_color = Color(0, 0, 0, 0.588235)
@@ -924,7 +930,7 @@ VScrollBar/styles/grabber_pressed = SubResource("37")
 VScrollBar/styles/scroll = SubResource("38")
 VScrollBar/styles/scroll_focus = null
 VSeparator/constants/separation = 4
-VSeparator/styles/separator = null
+VSeparator/styles/separator = SubResource("StyleBoxTexture_n1ih5")
 VSlider/icons/grabber = null
 VSlider/icons/grabber_disabled = null
 VSlider/icons/grabber_highlight = null
