@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -30,6 +31,17 @@ public class EndosymbiosisData
     /// </summary>
     [JsonProperty]
     public List<Endosymbiont>? Endosymbionts { get; private set; }
+
+    public OrganelleDefinition GetOrganelleTypeForInProgressSymbiosis(Species symbiontSpecies)
+    {
+        if (StartedEndosymbiosis == null)
+            throw new InvalidOperationException("No in-progress endosymbiosis operations, can't find type");
+
+        if (StartedEndosymbiosis.Species != symbiontSpecies)
+            throw new ArgumentException("Specified species is not an in-progress endosymbiont");
+
+        return StartedEndosymbiosis.TargetOrganelle;
+    }
 
     public EndosymbiosisData Clone()
     {
@@ -68,6 +80,12 @@ public class EndosymbiosisData
         public int RequiredCount { get; } = requiredCount;
 
         /// <summary>
+        ///   The current progress towards <see cref="RequiredCount"/>
+        /// </summary>
+        [JsonProperty]
+        public int CurrentlyAcquiredCount { get; set; }
+
+        /// <summary>
         ///   Organelle that will be granted upon finishing the endosymbiosis
         /// </summary>
         [JsonProperty]
@@ -75,7 +93,10 @@ public class EndosymbiosisData
 
         public InProgressEndosymbiosis Clone()
         {
-            return new InProgressEndosymbiosis(Species, RequiredCount, TargetOrganelle);
+            return new InProgressEndosymbiosis(Species, RequiredCount, TargetOrganelle)
+            {
+                CurrentlyAcquiredCount = CurrentlyAcquiredCount,
+            };
         }
     }
 }

@@ -48,6 +48,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private ColonyStatsUpdateSystem colonyStatsUpdateSystem = null!;
     private CompoundAbsorptionSystem compoundAbsorptionSystem = null!;
     private DamageSoundSystem damageSoundSystem = null!;
+    private EndosymbiontOrganelleSystem endosymbiontOrganelleSystem = null!;
     private EngulfedDigestionSystem engulfedDigestionSystem = null!;
     private EngulfedHandlingSystem engulfedHandlingSystem = null!;
     private EngulfingSystem engulfingSystem = null!;
@@ -191,6 +192,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem, parallelRunner);
 
         damageSoundSystem = new DamageSoundSystem(EntitySystem, couldParallelize);
+        endosymbiontOrganelleSystem = new EndosymbiontOrganelleSystem(EntitySystem, couldParallelize);
         engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
         engulfedHandlingSystem = new EngulfedHandlingSystem(this, SpawnSystem, EntitySystem, couldParallelize);
 
@@ -421,6 +423,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 colonyStatsUpdateSystem.Dispose();
                 compoundAbsorptionSystem.Dispose();
                 damageSoundSystem.Dispose();
+                endosymbiontOrganelleSystem.Dispose();
                 engulfedDigestionSystem.Dispose();
                 engulfedHandlingSystem.Dispose();
                 engulfingSystem.Dispose();
