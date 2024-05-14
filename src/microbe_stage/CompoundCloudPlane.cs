@@ -873,7 +873,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 {
                     var velocity = fluidSystem!.VelocityAt(pos + new Vector2(x, y) * Resolution) * VISCOSITY;
 
-                    // This is ran in parallel, this may not touch the other compound clouds
+                    // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
                     float dy = y + (delta * velocity.Y);
 
@@ -911,7 +911,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 {
                     var velocity = fluidSystem!.VelocityAt(pos + new Vector2(x, y) * Resolution) * VISCOSITY;
 
-                    // This is ran in parallel, this may not touch the other compound clouds
+                    // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
                     float dy = y + (delta * velocity.Y);
 

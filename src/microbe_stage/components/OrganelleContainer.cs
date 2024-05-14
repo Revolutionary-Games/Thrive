@@ -104,7 +104,7 @@ public struct OrganelleContainer
     public bool OrganelleVisualsCreated;
 
     /// <summary>
-    ///   Reset this if organelles are changed. Otherwise <see cref="SlimeJets"/> etc. variables won't work
+    ///   Reset this if organelles are changed. Otherwise, <see cref="SlimeJets"/> etc. variables won't work
     ///   correctly
     /// </summary>
     [JsonIgnore]
