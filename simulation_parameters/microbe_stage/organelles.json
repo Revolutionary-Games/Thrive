@@ -124,7 +124,8 @@
       }
     ],
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 5
+    "EditorButtonOrder": 5,
+    "EndosymbiosisUnlocks": "nitrogenfixingplastid"
   },
   "protoplasm": {
     "MPCost": 55,
@@ -188,7 +189,8 @@
     "ConsumptionColour": "#ff7248",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoproteinsIcon.png",
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 3
+    "EditorButtonOrder": 3,
+    "EndosymbiosisUnlocks": "chemoplast"
   },
   "oxytoxyProteins": {
     "MPCost": 55,
@@ -231,7 +233,8 @@
       }
     ],
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 6
+    "EditorButtonOrder": 6,
+    "EndosymbiosisUnlocks": "oxytoxy"
   },
   "chromatophore": {
     "MPCost": 50,
@@ -271,7 +274,8 @@
       }
     ],
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 2
+    "EditorButtonOrder": 2,
+    "EndosymbiosisUnlocks": "chloroplast"
   },
   "metabolosome": {
     "MPCost": 45,
@@ -302,7 +306,8 @@
     "ConsumptionColour": "#ff5649",
     "IconPath": "res://assets/textures/gui/bevel/parts/MetabolosomeIcon.png",
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 1
+    "EditorButtonOrder": 1,
+    "EndosymbiosisUnlocks": "mitochondrion"
   },
   "nitrogenfixingplastid": {
     "MPCost": 50,
@@ -378,7 +383,8 @@
     ],
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 8,
-    "LAWK": false
+    "LAWK": false,
+    "EndosymbiosisUnlocks": "thermoplast"
   },
   "chemoplast": {
     "MPCost": 45,

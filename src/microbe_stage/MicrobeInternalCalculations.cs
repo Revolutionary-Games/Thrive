@@ -372,7 +372,51 @@ public static class MicrobeInternalCalculations
     public static void CalculatePossibleEndosymbiontsFromSpecies(MicrobeSpecies species,
         List<(OrganelleDefinition Organelle, int Cost)> result)
     {
-        throw new NotImplementedException();
+        var organelles = species.Organelles.Organelles;
+
+        int organelleCount = organelles.Count;
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            var organelle = organelles[i];
+
+            // Skip things that don't give anything from endosymbiosis
+            var resultType = organelle.Definition.EndosymbiosisUnlocks;
+            if (resultType == null)
+                continue;
+
+            // Handle each resulting organelle type just once
+            bool alreadyHandled = false;
+
+            foreach (var handledTuple in result)
+            {
+                if (handledTuple.Organelle == resultType)
+                {
+                    alreadyHandled = true;
+                    break;
+                }
+            }
+
+            if (alreadyHandled)
+                continue;
+
+            int count = 1;
+
+            // Count all other instances giving the same thing to calculate the cost
+            for (int j = i + 1; j < organelleCount; ++j)
+            {
+                if (organelles[j].Definition.EndosymbiosisUnlocks == resultType)
+                    ++count;
+            }
+
+            result.Add((resultType, EndosymbiosisCostFromCount(count)));
+        }
+    }
+
+    public static int EndosymbiosisCostFromCount(int organelleCount)
+    {
+        return Math.Max((int)Math.Ceiling(Constants.ENDOSYMBIOSIS_COST_BASE -
+                (float)organelleCount * Constants.ENDOSYMBIOSIS_COST_REDUCTION_PER_ORGANELLE),
+            Constants.ENDOSYMBIOSIS_COST_MIN);
     }
 
     private static float MovementForce(float movementForce, float directionFactor)
