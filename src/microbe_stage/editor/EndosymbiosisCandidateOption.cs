@@ -80,8 +80,8 @@ public partial class EndosymbiosisCandidateOption : VBoxContainer
             choice.Name = organelle.InternalName;
             choice.PartIcon = organelle.LoadedIcon;
 
-            // TODO: add option to hide the MP icon
             // TODO: far in the future this might be nice to have its own icon
+            choice.ShowMPIcon = false;
             choice.MPCost = cost;
 
             choice.Connect(MicrobePartSelection.SignalName.OnPartSelected,
