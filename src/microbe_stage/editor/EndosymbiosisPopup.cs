@@ -152,9 +152,11 @@ public partial class EndosymbiosisPopup : CustomWindow
 
     private void OnEndosymbiosisStarted(Species species, string organelleName, int cost)
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         EmitSignal(SignalName.OnSpeciesSelected, species.ID, organelleName, cost);
 
-        GUICommon.Instance.PlayButtonPressSound();
-        Close();
+        // Don't close automatically to make it clearer what happened, the one handling the signal can close this if
+        // desired
     }
 }
