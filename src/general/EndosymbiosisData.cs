@@ -68,6 +68,39 @@ public class EndosymbiosisData
         return true;
     }
 
+    public bool StartEndosymbiosis(int targetSpecies, OrganelleDefinition organelle, int cost)
+    {
+        if (StartedEndosymbiosis != null)
+        {
+            GD.PrintErr("Endosymbiosis is already in progress");
+            return false;
+        }
+
+        if (cost < 1)
+            throw new ArgumentException("Cost should be at least one for endosymbiosis");
+
+        // Need to resolve the species before can start
+        foreach (var candidate in EngulfedSpecies)
+        {
+            if (candidate.Key.ID != targetSpecies || candidate.Value <= 0)
+                continue;
+
+            StartedEndosymbiosis = new InProgressEndosymbiosis(candidate.Key, cost, organelle);
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool CancelEndosymbiosisTarget(int targetSpeciesId)
+    {
+        if (StartedEndosymbiosis == null || StartedEndosymbiosis.Species.ID != targetSpeciesId)
+            return false;
+
+        StartedEndosymbiosis = null;
+        return true;
+    }
+
     public EndosymbiosisData Clone()
     {
         var cloned = new EndosymbiosisData

@@ -648,7 +648,32 @@ public partial class CellEditorComponent
 
     private void OnEndosymbiosisSelected(int targetSpecies, string targetOrganelle, int cost)
     {
-        throw new NotImplementedException();
+        if (Editor.EditedBaseSpecies.Endosymbiosis.StartedEndosymbiosis != null)
+        {
+            GD.PrintErr("Already has endosymbiosis in-progress");
+            PlayInvalidActionSound();
+            endosymbiosisPopup.Hide();
+            return;
+        }
+
+        var organelle = SimulationParameters.Instance.GetOrganelleType(targetOrganelle);
+
+        if (!Editor.EditedBaseSpecies.Endosymbiosis.StartEndosymbiosis(targetSpecies, organelle, cost))
+        {
+            GD.PrintErr("Endosymbiosis failed to be started");
+            PlayInvalidActionSound();
+        }
+
+        // For now leave the GUI open to show the player the progress information as feedback to what they've done
+    }
+
+    private void OnAbandonEndosymbiosisOperation(int targetSpeciesId)
+    {
+        if (!Editor.EditedBaseSpecies.Endosymbiosis.CancelEndosymbiosisTarget(targetSpeciesId))
+        {
+            GD.PrintErr("Couldn't cancel endosymbiosis operation on target species: ", targetSpeciesId);
+            PlayInvalidActionSound();
+        }
     }
 
     private void OnEndosymbiosisFinished(int targetSpecies)
@@ -660,6 +685,11 @@ public partial class CellEditorComponent
             PlayInvalidActionSound();
             return;
         }
+
+        endosymbiosisPopup.Hide();
+
+        // TODO: start an inprogress placement action
+        GD.Print("Starting free organelle placement action after completing endosymbiosis");
 
         throw new NotImplementedException();
     }

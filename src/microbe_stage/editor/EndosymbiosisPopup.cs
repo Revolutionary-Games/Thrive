@@ -26,6 +26,7 @@ public partial class EndosymbiosisPopup : CustomWindow
 
     private PackedScene candidateGUIScene = null!;
     private PackedScene organelleButtonScene = null!;
+    private PackedScene progressDisplayScene = null!;
 #pragma warning restore CA2213
 
     private EndosymbiosisData? endosymbiosisData;
@@ -33,7 +34,13 @@ public partial class EndosymbiosisPopup : CustomWindow
     private bool limited;
 
     [Signal]
-    public delegate void OnSpeciesSelectedEventHandler(int speciesId, string organelleType, int cost);
+    public delegate void SpeciesSelectedEventHandler(int speciesId, string organelleType, int cost);
+
+    [Signal]
+    public delegate void EndosymbiosisFinishedEventHandler(int speciesId);
+
+    [Signal]
+    public delegate void EndosymbiosisCancelledEventHandler(int speciesId);
 
     public override void _Ready()
     {
@@ -41,6 +48,7 @@ public partial class EndosymbiosisPopup : CustomWindow
 
         candidateGUIScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EndosymbiosisCandidateOption.tscn");
         organelleButtonScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
+        progressDisplayScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn");
     }
 
     public void UpdateData(EndosymbiosisData endosymbiosis, bool isSpeciesProkaryote)
@@ -90,8 +98,19 @@ public partial class EndosymbiosisPopup : CustomWindow
 
     private void ShowInProgressData(EndosymbiosisData.InProgressEndosymbiosis startedData)
     {
-        _ = startedData;
-        throw new NotImplementedException();
+        var display = progressDisplayScene.Instantiate<EndosymbiosisProgressDisplay>();
+
+        display.SetSpecies(startedData.Species);
+        display.UpdateProgress(startedData.RequiredCount, startedData.CurrentlyAcquiredCount);
+
+        display.Connect(EndosymbiosisProgressDisplay.SignalName.OnFinished,
+            new Callable(this, nameof(OnEndosymbiosisFinished)));
+        display.Connect(EndosymbiosisProgressDisplay.SignalName.OnCancelled,
+            new Callable(this, nameof(OnEndosymbiosisCancelled)));
+
+        progressContainer.AddChild(display);
+
+        progressContainer.Visible = false;
     }
 
     private void ShowDataToStartNew(Dictionary<Species, int> candidates)
@@ -154,9 +173,37 @@ public partial class EndosymbiosisPopup : CustomWindow
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(SignalName.OnSpeciesSelected, species.ID, organelleName, cost);
+        EmitSignal(SignalName.SpeciesSelected, species.ID, organelleName, cost);
 
         // Don't close automatically to make it clearer what happened, the one handling the signal can close this if
         // desired
+
+        // If still visible at this point refresh the shown data that should have changed
+        if (IsVisibleInTree())
+        {
+            UpdateGUIState();
+        }
+    }
+
+    private void OnEndosymbiosisFinished(int targetSpecies)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EmitSignal(SignalName.EndosymbiosisFinished, targetSpecies);
+
+        // Hide this now by default as completed endosymbiosis means placing the free organelle associated with it
+        Hide();
+    }
+
+    private void OnEndosymbiosisCancelled(int targetSpecies)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EmitSignal(SignalName.EndosymbiosisCancelled, targetSpecies);
+
+        if (IsVisibleInTree())
+        {
+            UpdateGUIState();
+        }
     }
 }
