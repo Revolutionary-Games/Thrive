@@ -62,7 +62,7 @@ public partial class CellEditorComponent
 
         UpdateOrganelleLAWKSettings();
 
-        RemoveUndisoveredOrganelleButtons();
+        RemoveUndiscoveredOrganelleButtons();
     }
 
     protected override void RegisterTooltips()
@@ -408,7 +408,7 @@ public partial class CellEditorComponent
 
         // Remove any buttons that might've been created before
         if (refresh)
-            RemoveUndisoveredOrganelleButtons();
+            RemoveUndiscoveredOrganelleButtons();
 
         // Generate undiscovered organelle buttons
         foreach (var groupWithUndiscovered in groupsWithUndiscoveredOrganelles)
@@ -428,7 +428,7 @@ public partial class CellEditorComponent
         }
     }
 
-    private void RemoveUndisoveredOrganelleButtons()
+    private void RemoveUndiscoveredOrganelleButtons()
     {
         foreach (var child in partsSelectionContainer.GetChildren())
         {
