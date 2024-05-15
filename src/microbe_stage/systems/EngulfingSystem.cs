@@ -1194,7 +1194,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         if (species.Species.Endosymbiosis.StartedEndosymbiosis != null && engulfedObject.Has<SpeciesMember>())
         {
-            ref var engulfedSpecies = ref entity.Get<SpeciesMember>();
+            ref var engulfedSpecies = ref engulfedObject.Get<SpeciesMember>();
 
             if (engulfedSpecies.Species == species.Species.Endosymbiosis.StartedEndosymbiosis.Species)
             {
@@ -1242,6 +1242,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 }
 
                 // Destroy the object
+                // This is done like this as otherwise the endosymbiosis would count as a death
+                worldSimulation.DestroyEntity(engulfedObject);
                 RemoveEngulfedObject(ref engulfer, engulfedObject, ref engulfable, true);
 
                 entity.SendNoticeIfPossible(() =>
@@ -1565,7 +1567,9 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         engulfer.UsedEngulfingCapacity =
             Math.Max(0, engulfer.UsedEngulfingCapacity - engulfable.AdjustedEngulfSize);
 
-        if (destroy)
+        // Only destroy when not already, to ensure that this doesn't do unnecessary things for an already destroyed
+        // entity (like playing the dying animation again on cells)
+        if (destroy && !worldSimulation.IsQueuedForDeletion(engulfedEntity))
         {
             // Set the health to dead to ensure the microbe death system has a chance to see this dying and count
             // statistics
