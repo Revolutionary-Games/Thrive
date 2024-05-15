@@ -110,7 +110,7 @@ public partial class EndosymbiosisPopup : CustomWindow
 
         progressContainer.AddChild(display);
 
-        progressContainer.Visible = false;
+        progressContainer.Visible = true;
     }
 
     private void ShowDataToStartNew(Dictionary<Species, int> candidates)
