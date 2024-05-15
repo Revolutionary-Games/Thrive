@@ -121,8 +121,10 @@ public partial class EndosymbiosisPopup : CustomWindow
 
             MicrobeInternalCalculations.CalculatePossibleEndosymbiontsFromSpecies(microbeSpecies, tempSymbionts);
 
-            // TODO: should engulfed things that have no potential organelles be shown at all?
+            // TODO: should engulfed things that have no potential organelles be shown at all? (they are shown now
+            // with a text saying there's no candidate organelles)
 
+            choice.SetSpecies(microbeSpecies);
             choice.UpdateChoices(tempSymbionts);
             tempSymbionts.Clear();
 
@@ -144,6 +146,8 @@ public partial class EndosymbiosisPopup : CustomWindow
                 CustomMinimumSize = new Vector2(100, 0),
             });
         }
+
+        choicesContainer.Visible = true;
     }
 
     private void OnEndosymbiosisStarted(Species species, string organelleName, int cost)

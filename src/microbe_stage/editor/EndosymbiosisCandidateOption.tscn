@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl0hbfaybtwpa"]
+[gd_scene load_steps=7 format=3 uid="uid://dl0hbfaybtwpa"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_mr2ks"]
 [ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="2_46q7o"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/EndosymbiosisCandidateOption.cs" id="2_rtvoc"]
 [ext_resource type="LabelSettings" uid="uid://das77igcbl0vy" path="res://src/gui_common/fonts/Body-Italic-Small.tres" id="3_04q4h"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_ub6ah"]
+[ext_resource type="Script" path="res://src/gui_common/SpeciesPreview.cs" id="5_jvixx"]
 
-[node name="EndosymbiosisCandidateOption" type="VBoxContainer" node_paths=PackedStringArray("organelleChoicesContainer")]
+[node name="EndosymbiosisCandidateOption" type="VBoxContainer" node_paths=PackedStringArray("organelleChoicesContainer", "speciesNameLabel", "speciesPreview", "selectButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,6 +16,9 @@ grow_vertical = 2
 theme = ExtResource("1_mr2ks")
 script = ExtResource("2_rtvoc")
 organelleChoicesContainer = NodePath("HBoxContainer/VBoxContainer/ScrollContainer/OrganelleChoices")
+speciesNameLabel = NodePath("Name")
+speciesPreview = NodePath("HBoxContainer/SpeciesImage")
+selectButton = NodePath("HBoxContainer/SelectButton")
 
 [node name="Name" type="Label" parent="."]
 editor_description = "PLACEHOLDER"
@@ -29,6 +33,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 2
 size_flags_horizontal = 1
+script = ExtResource("5_jvixx")
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
@@ -54,3 +59,5 @@ layout_mode = 2
 layout_mode = 2
 disabled = true
 text = "START"
+
+[connection signal="pressed" from="HBoxContainer/SelectButton" to="." method="SelectPressed"]
