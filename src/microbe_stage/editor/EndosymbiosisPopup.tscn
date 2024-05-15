@@ -18,7 +18,6 @@ choicesContainer = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxC
 progressContainer = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EndosymbiosisProgress")
 WindowTitle = "ENDOSYMBIOSIS_TITLE"
 Resizable = true
-Exclusive = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 custom_minimum_size = Vector2(400, 400)

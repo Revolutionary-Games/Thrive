@@ -643,11 +643,24 @@ public partial class CellEditorComponent
             Editor.EditedCellProperties?.IsBacteria ??
             throw new Exception("Cell properties needs to be known already"));
 
-        endosymbiosisPopup.OpenModal();
+        endosymbiosisPopup.OpenCentered(false);
     }
 
     private void OnEndosymbiosisSelected(int targetSpecies, string targetOrganelle, int cost)
     {
+        throw new NotImplementedException();
+    }
+
+    private void OnEndosymbiosisFinished(int targetSpecies)
+    {
+        // Must disallow if a movement action is in progress as that'd otherwise conflict
+        if (CanCancelAction)
+        {
+            GD.PrintErr("Cannot complete endosymbiosis with another action in progress");
+            PlayInvalidActionSound();
+            return;
+        }
+
         throw new NotImplementedException();
     }
 
