@@ -9,6 +9,8 @@ public partial class EndosymbiosisCandidateOption : VBoxContainer
 {
     private readonly List<(OrganelleDefinition Organelle, int Cost)> shownChoices = new();
 
+    private readonly Dictionary<string, MicrobePartSelection> selectionButtons = new();
+
 #pragma warning disable CA2213
     [Export]
     private Container organelleChoicesContainer = null!;
@@ -39,6 +41,8 @@ public partial class EndosymbiosisCandidateOption : VBoxContainer
         PackedScene organelleSelectionScene)
     {
         shownChoices.Clear();
+        organelleChoicesContainer.FreeChildren();
+        selectionButtons.Clear();
 
         // Disable start button until an organelle type is selected
         selectButton.Disabled = true;
@@ -61,7 +65,7 @@ public partial class EndosymbiosisCandidateOption : VBoxContainer
 
         foreach (var (organelle, cost) in organelleChoices)
         {
-            if (shownChoices.Any(c => c.Organelle == organelle))
+            if (shownChoices.Any(c => c.Organelle == organelle) || selectionButtons.ContainsKey(organelle.InternalName))
             {
                 GD.PrintErr("Duplicate endosymbiosis choice: ", organelle.InternalName);
                 continue;
@@ -75,16 +79,20 @@ public partial class EndosymbiosisCandidateOption : VBoxContainer
             choice.PartName = organelle.UntranslatedName;
             choice.Name = organelle.InternalName;
             choice.PartIcon = organelle.LoadedIcon;
-            choice.AlwaysShowLabel = true;
 
             // TODO: add option to hide the MP icon
             // TODO: far in the future this might be nice to have its own icon
             choice.MPCost = cost;
 
             choice.Connect(MicrobePartSelection.SignalName.OnPartSelected,
-                Callable.From((string name) => OrganelleTypeSelected(name)));
+                new Callable(this, nameof(OrganelleTypeSelected)));
 
-            // TODO: tooltips?
+            // TODO: tooltips. For some reason this doesn't work:
+            // // Loan the editor tooltips for these as well
+            // choice.RegisterToolTipForControl(organelle.InternalName, "organelleSelection");
+            choice.AlwaysShowLabel = true;
+
+            selectionButtons[organelle.InternalName] = choice;
 
             organelleChoicesContainer.AddChild(choice);
         }
@@ -92,10 +100,20 @@ public partial class EndosymbiosisCandidateOption : VBoxContainer
 
     private void OrganelleTypeSelected(string name)
     {
+        // Deselect everything
+        foreach (var partSelection in selectionButtons)
+        {
+            partSelection.Value.Selected = false;
+        }
+
         foreach (var (organelle, cost) in shownChoices)
         {
             if (organelle.InternalName != name)
                 continue;
+
+            // Select the right button again
+            var control = selectionButtons[name];
+            control.Selected = true;
 
             selected = organelle;
             selectedCost = cost;
