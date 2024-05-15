@@ -549,7 +549,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             lock (workData2)
             {
                 // Spiral search for space for the organelle
-                organelles.FindValidPositionForNewOrganelle(newOrganelle, q, r, workData1, workData2);
+                organelles.FindAndPlaceAtValidPosition(newOrganelle, q, r, workData1, workData2);
             }
         }
 

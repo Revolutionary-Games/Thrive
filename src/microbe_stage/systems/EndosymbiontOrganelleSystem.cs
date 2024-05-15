@@ -103,7 +103,7 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
                 // Spiral search for space for the organelle. This will be pretty slow if huge non-player cells are
                 // allowed to do this.
                 // TODO: https://github.com/Revolutionary-Games/Thrive/issues/3273
-                organelles.FindValidPositionForNewOrganelle(newOrganelle, 0, 0, workData1, workData2);
+                organelles.FindAndPlaceAtValidPosition(newOrganelle, 0, 0, workData1, workData2);
             }
         }
     }

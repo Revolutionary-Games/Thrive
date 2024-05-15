@@ -129,7 +129,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     ///   Searches in a spiral pattern for a valid place to put the new organelle. Result is stored as the position
     ///   of the given new organelle object. Note that this is probably too slow for very huge cells.
     /// </summary>
-    public void FindValidPositionForNewOrganelle(T newOrganelle, int startQ, int startR, List<Hex> workData1,
+    public void FindAndPlaceAtValidPosition(T newOrganelle, int startQ, int startR, List<Hex> workData1,
         List<Hex> workData2)
     {
         int radius = 1;
