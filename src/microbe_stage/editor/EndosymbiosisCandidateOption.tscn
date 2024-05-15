@@ -13,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_mr2ks")
 script = ExtResource("2_rtvoc")
 organelleChoicesContainer = NodePath("HBoxContainer/VBoxContainer/ScrollContainer/OrganelleChoices")
@@ -39,6 +40,7 @@ script = ExtResource("5_jvixx")
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -51,12 +53,16 @@ horizontal_alignment = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+vertical_scroll_mode = 0
 
 [node name="OrganelleChoices" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 
 [node name="SelectButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 disabled = true
 text = "START"
 

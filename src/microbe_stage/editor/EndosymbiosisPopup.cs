@@ -125,7 +125,7 @@ public partial class EndosymbiosisPopup : CustomWindow
             // with a text saying there's no candidate organelles)
 
             choice.SetSpecies(microbeSpecies);
-            choice.UpdateChoices(tempSymbionts);
+            choice.UpdateChoices(tempSymbionts, organelleButtonScene);
             tempSymbionts.Clear();
 
             choice.Connect(EndosymbiosisCandidateOption.SignalName.OnOrganelleTypeSelected,
