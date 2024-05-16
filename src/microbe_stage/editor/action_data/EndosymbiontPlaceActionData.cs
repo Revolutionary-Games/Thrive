@@ -1,5 +1,7 @@
-﻿[JSONAlwaysDynamicType]
-public class EndosymbiontPlaceActionData : EditorCombinableActionData
+﻿using System;
+
+[JSONAlwaysDynamicType]
+public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
 {
     public OrganelleTemplate PlacedOrganelle;
     public bool PerformedUnlock;
@@ -41,11 +43,33 @@ public class EndosymbiontPlaceActionData : EditorCombinableActionData
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
-        throw new System.NotImplementedException();
+        // Endosymbionts can be moved for free after placing
+        if (other is OrganelleMoveActionData moveActionData)
+        {
+            // If moved after placing
+            if (moveActionData.MovedHex == PlacedOrganelle &&
+                moveActionData.OldLocation == PlacementLocation &&
+                moveActionData.OldRotation == PlacementRotation)
+            {
+                return ActionInterferenceMode.Combinable;
+            }
+        }
+
+        return ActionInterferenceMode.NoInterference;
     }
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        throw new System.NotImplementedException();
+        if (other is OrganelleMoveActionData moveActionData)
+        {
+            return new EndosymbiontPlaceActionData(PlacedOrganelle, moveActionData.NewLocation,
+                moveActionData.NewRotation, RelatedEndosymbiosisAction)
+            {
+                PerformedUnlock = PerformedUnlock,
+                OverriddenEndosymbiosisOnUndo = OverriddenEndosymbiosisOnUndo,
+            };
+        }
+
+        throw new NotSupportedException();
     }
 }

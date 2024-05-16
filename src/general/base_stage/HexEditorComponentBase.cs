@@ -743,9 +743,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
                 Editor.OnActionBlockedWhileMoving();
                 return false;
             }
-        }
 
-        OnMoveWillSucceed();
+            OnPendingActionWillSucceed();
+        }
 
         Editor.EnqueueAction(action);
         Editor.OnValidAction(action.Data);
@@ -911,7 +911,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         UpdateSymmetryButton();
     }
 
-    protected virtual void OnMoveWillSucceed()
+    protected virtual void OnPendingActionWillSucceed()
     {
         MovingPlacedHex = null;
 

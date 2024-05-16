@@ -1370,9 +1370,11 @@ public partial class CellEditorComponent :
         }
     }
 
-    protected override void OnMoveWillSucceed()
+    protected override void OnPendingActionWillSucceed()
     {
-        base.OnMoveWillSucceed();
+        PendingEndosymbiontPlace = null;
+
+        base.OnPendingActionWillSucceed();
 
         // Update rigidity slider in case it was disabled
         // TODO: could come up with a bit nicer design here
@@ -1549,8 +1551,6 @@ public partial class CellEditorComponent :
             DoEndosymbiontPlaceAction, UndoEndosymbiontPlaceAction, PendingEndosymbiontPlace));
 
         EnqueueAction(action);
-
-        PendingEndosymbiontPlace = null;
 
         return true;
     }
