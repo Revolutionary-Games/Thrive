@@ -770,6 +770,8 @@ public partial class CellEditorComponent
         UpdateStorage(GetNominalCapacity(), GetAdditionalCapacities());
 
         ApplyLightLevelOption();
+
+        UpdateCancelButtonVisibility();
     }
 
     private class ATPComparer : IComparer<string>

@@ -539,8 +539,12 @@ public partial class CellEditorComponent :
         }
     }
 
+    /// <summary>
+    ///   True when there are pending endosymbiosis actions. Only works after editor is fully initialized.
+    /// </summary>
     [JsonIgnore]
-    public bool HasFinishedPendingEndosymbiosis => Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
+    public bool HasFinishedPendingEndosymbiosis =>
+        Editor.EditorReady && Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
@@ -737,8 +741,6 @@ public partial class CellEditorComponent :
 
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInCurrentPatch();
-
-        UpdateCancelButtonVisibility();
 
         if (IsMulticellularEditor)
         {
