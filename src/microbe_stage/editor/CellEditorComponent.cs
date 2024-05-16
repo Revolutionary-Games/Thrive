@@ -160,6 +160,8 @@ public partial class CellEditorComponent :
 
     private readonly List<Hex> hexTemporaryMemory2 = new();
 
+    private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
+
 #pragma warning disable CA2213
 
     // Light level controls
@@ -235,6 +237,9 @@ public partial class CellEditorComponent :
     private SegmentedBar atpConsumptionBar = null!;
 
     private CustomConfirmationDialog negativeAtpPopup = null!;
+
+    [Export]
+    private CustomConfirmationDialog pendingEndosymbiosisPopup = null!;
 
     [Export]
     private Button endosymbiosisButton = null!;
@@ -527,9 +532,15 @@ public partial class CellEditorComponent :
             if (HasIslands)
                 return true;
 
+            if (HasFinishedPendingEndosymbiosis)
+                return true;
+
             return false;
         }
     }
+
+    [JsonIgnore]
+    public bool HasFinishedPendingEndosymbiosis => Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
@@ -895,7 +906,7 @@ public partial class CellEditorComponent :
         }
 
         // We set these here to make sure these are ready in the organelle add callbacks (even though currently
-        // that just marks things dirty and we update our stats on the next _Process call)
+        // that just marks things dirty, and we update our stats on the next _Process call)
         Membrane = properties!.MembraneType;
         Rigidity = properties.MembraneRigidity;
         Colour = properties.Colour;
@@ -996,12 +1007,17 @@ public partial class CellEditorComponent :
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
-        if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
-            return true;
+        // Show warning if the editor has an endosymbiosis that should be finished
+        if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
+        {
+            pendingEndosymbiosisPopup.PopupCenteredShrink();
+            return false;
+        }
 
         // Show warning popup if trying to exit with negative atp production
-        // Not shown in multicellular as the popup happens in kind of weird place
-        if (!IsMulticellularEditor && IsNegativeAtpProduction())
+        // Not shown in multicellular as the popup would happen in kind of weird place
+        if (!IsMulticellularEditor && IsNegativeAtpProduction() &&
+            !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
             negativeAtpPopup.PopupCenteredShrink();
             return false;

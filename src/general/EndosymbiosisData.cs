@@ -107,9 +107,21 @@ public class EndosymbiosisData
             throw new InvalidOperationException("No in-progress endosymbiosis");
 
         var endosymbiosis = StartedEndosymbiosis;
+
+        if (!endosymbiosis.IsComplete)
+            GD.PrintErr("Marking endosymbiosis that is not complete as done");
+
         StartedEndosymbiosis = null;
 
         return endosymbiosis;
+    }
+
+    public bool HasCompleteEndosymbiosis()
+    {
+        if (StartedEndosymbiosis == null)
+            return false;
+
+        return StartedEndosymbiosis.IsComplete;
     }
 
     /// <summary>

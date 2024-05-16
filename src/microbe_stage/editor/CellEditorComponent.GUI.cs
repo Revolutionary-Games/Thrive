@@ -734,8 +734,22 @@ public partial class CellEditorComponent
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        // If we add more things that can be overridden this needs to be updated
-        OnFinish.Invoke(new List<EditorUserOverride> { EditorUserOverride.NotProducingEnoughATP });
+        ignoredEditorWarnings.Add(EditorUserOverride.NotProducingEnoughATP);
+        OnFinish.Invoke(ignoredEditorWarnings);
+    }
+
+    private void ConfirmFinishEditingWithEndosymbiosis()
+    {
+        if (OnFinish == null)
+        {
+            GD.PrintErr("Confirmed editing for cell editor when finish callback is not set");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        ignoredEditorWarnings.Add(EditorUserOverride.EndosymbiosisPending);
+        OnFinish.Invoke(ignoredEditorWarnings);
     }
 
     private void UpdateGUIAfterLoadingSpecies(Species species, ICellDefinition definition)

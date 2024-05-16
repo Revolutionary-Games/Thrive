@@ -346,7 +346,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "endosymbiosisButton", "endosymbiosisPopup")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -403,6 +403,7 @@ RightPanelScrollContainerPath = NodePath("RightPanel/VBoxContainer/Statistics/VB
 ATPBalanceNormalText = ExtResource("24_ekuel")
 ATPBalanceNotEnoughText = ExtResource("4_fhdek")
 atpBalanceLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")
+pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
 endosymbiosisButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis")
 endosymbiosisPopup = NodePath("EndosymbiosisPopup")
 IslandErrorPath = NodePath("IslandError")
@@ -1183,6 +1184,15 @@ offset_bottom = 85.0
 DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 WindowTitle = "NEGATIVE_ATP_BALANCE"
 
+[node name="CompleteEndosymbiosisWarning" parent="." instance=ExtResource("9")]
+custom_minimum_size = Vector2(500, 0)
+offset_right = 500.0
+offset_bottom = 85.0
+NodeToGiveFocusOnOpen = NodePath("VBoxContainer/HBoxContainer/ConfirmButton")
+DialogText = "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+CancelText = "EXIT_EDITOR"
+WindowTitle = "PENDING_ENDOSYMBIOSIS_TITLE"
+
 [node name="IslandError" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(600, 0)
 offset_right = 600.0
@@ -1287,6 +1297,8 @@ text = "CLOSE"
 [connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
 [connection signal="animation_finished" from="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge/AnimationPlayer" to="." method="HideFinishButtonWarningAfterAnimation"]
 [connection signal="Confirmed" from="NegativeAtpWarning" to="." method="ConfirmFinishEditingWithNegativeATPPressed"]
+[connection signal="Canceled" from="CompleteEndosymbiosisWarning" to="." method="ConfirmFinishEditingWithEndosymbiosis"]
+[connection signal="Confirmed" from="CompleteEndosymbiosisWarning" to="." method="OnEndosymbiosisButtonPressed"]
 [connection signal="Accepted" from="OrganelleUpgradeGUI" to="." method="UpdateStats"]
 [connection signal="DeletePressed" from="OrganellePopupMenu" to="." method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="OrganellePopupMenu" to="." method="OnModifyPressed"]
@@ -1295,3 +1307,5 @@ text = "CLOSE"
 [connection signal="EndosymbiosisFinished" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisFinished"]
 [connection signal="SpeciesSelected" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisSelected"]
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
+
+[editable path="CompleteEndosymbiosisWarning"]
