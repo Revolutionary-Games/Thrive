@@ -653,6 +653,13 @@ public partial class CellEditorComponent
 
     private void OnEndosymbiosisButtonPressed()
     {
+        // Disallow if currently has an inprogress action as that would complicate logic and allow rare bugs
+        if (CanCancelAction)
+        {
+            GD.Print("Not allowing opening endosymbiosis menu with a pending action");
+            return;
+        }
+
         GUICommon.Instance.PlayButtonPressSound();
 
         endosymbiosisPopup.UpdateData(Editor.EditedBaseSpecies.Endosymbiosis,

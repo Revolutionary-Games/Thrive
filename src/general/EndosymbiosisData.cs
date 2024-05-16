@@ -101,6 +101,35 @@ public class EndosymbiosisData
         return true;
     }
 
+    public InProgressEndosymbiosis MarkEndosymbiosisDone()
+    {
+        if (StartedEndosymbiosis == null)
+            throw new InvalidOperationException("No in-progress endosymbiosis");
+
+        var endosymbiosis = StartedEndosymbiosis;
+        StartedEndosymbiosis = null;
+
+        return endosymbiosis;
+    }
+
+    /// <summary>
+    ///   Resumes a previous cancelled endosymbiosis progress
+    /// </summary>
+    /// <param name="inProgressDataToResume">The progress to resume</param>
+    /// <returns>
+    ///   The previously active endosymbiosis progress that was replaced, null if there was none or if it matched
+    ///   <see cref="inProgressDataToResume"/>
+    /// </returns>
+    public InProgressEndosymbiosis? ResumeEndosymbiosis(InProgressEndosymbiosis inProgressDataToResume)
+    {
+        if (StartedEndosymbiosis == inProgressDataToResume)
+            return null;
+
+        var previous = StartedEndosymbiosis;
+        StartedEndosymbiosis = inProgressDataToResume;
+        return previous;
+    }
+
     public EndosymbiosisData Clone()
     {
         var cloned = new EndosymbiosisData

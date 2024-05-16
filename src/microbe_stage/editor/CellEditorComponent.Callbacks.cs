@@ -341,6 +341,24 @@ public partial class CellEditorComponent
         {
             OnUnlockedOrganellesChanged();
         }
+
+        // With the endosymbiosis place done, the current endosymbiosis action is done
+        data.RelatedEndosymbiosisAction = Editor.EditedBaseSpecies.Endosymbiosis.MarkEndosymbiosisDone();
+
+        // Restore any inprogress data we overwrote on undo
+        if (data.OverriddenEndosymbiosisOnUndo != null)
+        {
+            var overwrote =
+                Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosis(data.OverriddenEndosymbiosisOnUndo);
+
+            // Hopefully there's no way to hit this condition, if there is then this needs some fix
+            if (overwrote != null && overwrote != data.RelatedEndosymbiosisAction)
+            {
+                GD.PrintErr("Losing an in-progress endosymbiosis info on redo");
+            }
+
+            data.OverriddenEndosymbiosisOnUndo = null;
+        }
     }
 
     [DeserializedCallbackAllowed]
@@ -369,6 +387,10 @@ public partial class CellEditorComponent
 
             OnUnlockedOrganellesChanged();
         }
+
+        // Need to restore the previous endosymbiosis action
+        data.OverriddenEndosymbiosisOnUndo =
+            Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosis(data.RelatedEndosymbiosisAction);
     }
 
     /// <summary>
