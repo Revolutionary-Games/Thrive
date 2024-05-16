@@ -1246,9 +1246,21 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 worldSimulation.DestroyEntity(engulfedObject);
                 RemoveEngulfedObject(ref engulfer, engulfedObject, ref engulfable, true);
 
-                entity.SendNoticeIfPossible(() =>
-                    new SimpleHUDMessage(Localization.Translate("ENDOSYMBIONT_ENGULFED_PROGRESS"),
-                        DisplayDuration.Long));
+                // Different message when endosymbiosis was already ready
+                // This relies on the fact that endosymbiosis progress is updated when going to the editor to know
+                // when things were already complete before the current engulfing
+                if (species.Species.Endosymbiosis.StartedEndosymbiosis.IsComplete)
+                {
+                    entity.SendNoticeIfPossible(() =>
+                        new SimpleHUDMessage(Localization.Translate("ENDOSYMBIONT_ENGULFED_ALREADY_DONE"),
+                            DisplayDuration.Long));
+                }
+                else
+                {
+                    entity.SendNoticeIfPossible(() =>
+                        new SimpleHUDMessage(Localization.Translate("ENDOSYMBIONT_ENGULFED_PROGRESS"),
+                            DisplayDuration.Long));
+                }
 
                 return;
             }
@@ -1440,7 +1452,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
                 ref var hostileEngulfer = ref engulfersEngulfable.HostileEngulfer.Get<Engulfer>();
 
-                // We have our own engulfer and it wants to claim this object we've just expelled
+                // We have our own engulfer, and it wants to claim this object we've just expelled
                 if (!IngestEngulfable(ref hostileEngulfer,
                         ref engulfersEngulfable.HostileEngulfer.Get<CellProperties>(),
                         engulfersEngulfable.HostileEngulfer, ref engulfable,

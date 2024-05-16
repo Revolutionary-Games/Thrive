@@ -35,12 +35,12 @@ public partial class EndosymbiosisProgressDisplay : VBoxContainer
         speciesPreview.PreviewSpecies = species;
     }
 
-    public void UpdateProgress(int requiredCount, int currentCount)
+    public void UpdateProgress(int requiredCount, int currentCount, bool isComplete)
     {
         progressBar.MaxValue = requiredCount;
         progressBar.Value = currentCount;
 
-        finishButton.Disabled = currentCount < requiredCount;
+        finishButton.Disabled = !isComplete;
     }
 
     private void OnFinish()

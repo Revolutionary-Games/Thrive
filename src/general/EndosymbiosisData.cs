@@ -149,6 +149,9 @@ public class EndosymbiosisData
         [JsonProperty]
         public OrganelleDefinition TargetOrganelle { get; } = targetOrganelle;
 
+        [JsonIgnore]
+        public bool IsComplete => CurrentlyAcquiredCount >= RequiredCount;
+
         public InProgressEndosymbiosis Clone()
         {
             return new InProgressEndosymbiosis(Species, RequiredCount, TargetOrganelle)

@@ -101,7 +101,7 @@ public partial class EndosymbiosisPopup : CustomWindow
         var display = progressDisplayScene.Instantiate<EndosymbiosisProgressDisplay>();
 
         display.SetSpecies(startedData.Species);
-        display.UpdateProgress(startedData.RequiredCount, startedData.CurrentlyAcquiredCount);
+        display.UpdateProgress(startedData.RequiredCount, startedData.CurrentlyAcquiredCount, startedData.IsComplete);
 
         display.Connect(EndosymbiosisProgressDisplay.SignalName.OnFinished,
             new Callable(this, nameof(OnEndosymbiosisFinished)));
