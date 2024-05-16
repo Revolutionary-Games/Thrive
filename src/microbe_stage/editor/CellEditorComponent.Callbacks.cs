@@ -70,12 +70,12 @@ public partial class CellEditorComponent
 
         if (data.ReplacedCytoplasm != null)
         {
-            foreach (var cytoplasm in data.ReplacedCytoplasm)
+            foreach (var replacedCytoplasm in data.ReplacedCytoplasm)
             {
-                GD.Print("Replacing ", cytoplasm.Definition.InternalName, " at: ",
-                    cytoplasm.Position);
+                GD.Print("Replacing ", replacedCytoplasm.Definition.InternalName, " at: ",
+                    replacedCytoplasm.Position);
 
-                editedMicrobeOrganelles.AddFast(cytoplasm, hexTemporaryMemory, hexTemporaryMemory2);
+                editedMicrobeOrganelles.AddFast(replacedCytoplasm, hexTemporaryMemory, hexTemporaryMemory2);
             }
         }
     }
@@ -299,7 +299,7 @@ public partial class CellEditorComponent
 
         UpdateStats();
 
-        // Organelle upgrades will in the future affect auto-evo
+        // Organelle upgrades will eventually affect auto-evo
         StartAutoEvoPrediction();
     }
 
@@ -313,7 +313,7 @@ public partial class CellEditorComponent
 
         UpdateStats();
 
-        // Organelle upgrades will in the future affect auto-evo
+        // Organelle upgrades will eventually affect auto-evo
         StartAutoEvoPrediction();
     }
 

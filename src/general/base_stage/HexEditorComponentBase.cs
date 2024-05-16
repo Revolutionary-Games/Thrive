@@ -504,8 +504,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         {
             OnCurrentActionCanceled();
 
-            // Re-enable undo/redo button
-            Editor.NotifyUndoRedoStateChanged();
+            UpdateCancelAndUndoActionState();
 
             return true;
         }
@@ -522,8 +521,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (!Visible)
             return false;
 
-        // Can't move anything while already moving one
-        if (MovingPlacedHex != null)
+        // Can't move anything while already moving one (or another pending action)
+        if (MovingPlacedHex != null || CanCancelAction)
         {
             Editor.OnActionBlockedWhileMoving();
             return true;
@@ -545,10 +544,11 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     public void StartHexMove(THexMove selectedHex)
     {
-        if (MovingPlacedHex != null)
+        if (MovingPlacedHex != null || CanCancelAction)
         {
             // Already moving something! some code went wrong
-            throw new InvalidOperationException("Can't begin hex move while another in progress");
+            throw new InvalidOperationException(
+                "Can't begin hex move while another in progress (or another in-progress action)");
         }
 
         MovingPlacedHex = selectedHex;
@@ -917,7 +917,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     {
         MovingPlacedHex = null;
 
-        // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
+        // Move succeeded; Update the cancel button visibility, so it is not hidden because the move has completed
+        UpdateCancelAndUndoActionState();
+    }
+
+    protected void UpdateCancelAndUndoActionState()
+    {
         // TODO: should this call be made through Editor here?
         UpdateCancelButtonVisibility();
 
@@ -1109,7 +1114,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     protected void UpdateSymmetryButton()
     {
-        componentBottomLeftButtons.SymmetryEnabled = MovingPlacedHex == null;
+        componentBottomLeftButtons.SymmetryEnabled = !CanCancelAction;
     }
 
     protected override void Dispose(bool disposing)

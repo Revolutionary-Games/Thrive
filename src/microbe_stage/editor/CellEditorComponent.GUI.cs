@@ -351,8 +351,7 @@ public partial class CellEditorComponent
         var groupsWithUndiscoveredOrganelles =
             new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
 
-        var worldAndPlayerArgs = new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, Editor.CurrentPatch,
-            energyBalanceInfo, Editor.EditedCellProperties);
+        var worldAndPlayerArgs = GetUnlockPlayerDataSource();
 
         foreach (var entry in allPartSelectionElements)
         {
@@ -437,6 +436,19 @@ public partial class CellEditorComponent
         }
 
         ToolTipManager.Instance.ClearToolTips("lockedOrganelles", false);
+    }
+
+    private void OnUnlockedOrganellesChanged()
+    {
+        UpdateOrganelleButtons(activeActionName);
+        UpdateMicrobePartSelections();
+        CreateUndiscoveredOrganellesButtons(true, false);
+    }
+
+    private WorldAndPlayerDataSource GetUnlockPlayerDataSource()
+    {
+        return new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, Editor.CurrentPatch,
+            energyBalanceInfo, Editor.EditedCellProperties);
     }
 
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)

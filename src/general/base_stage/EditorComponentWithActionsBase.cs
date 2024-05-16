@@ -37,7 +37,7 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
     }
 
     /// <summary>
-    ///   If true an editor (component) action is active and can be cancelled. By default just checks for moves
+    ///   If true an editor (component) action is active and can be cancelled. By default, just checks for moves
     /// </summary>
     [JsonIgnore]
     public virtual bool CanCancelAction => throw new GodotAbstractPropertyNotOverriddenException();

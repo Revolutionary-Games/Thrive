@@ -267,6 +267,7 @@ public partial class CellEditorComponent :
     private OrganelleDefinition flagellum = null!;
 
     private Compound sunlight = null!;
+    private OrganelleDefinition cytoplasm = null!;
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
@@ -438,7 +439,7 @@ public partial class CellEditorComponent :
 
     /// <summary>
     ///   If this is enabled the editor will show how the edited cell would look like in the environment with
-    ///   parameters set in the editor. Editing hexes is disabled during this (with the exception of undo/redo).
+    ///   parameters set in the editor. Editing hexes is disabled during this (except undo / redo).
     /// </summary>
     public bool MicrobePreviewMode
     {
@@ -591,6 +592,7 @@ public partial class CellEditorComponent :
             GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.tscn");
 
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+        cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
 
         SetupMicrobePartSelections();
 
@@ -798,8 +800,9 @@ public partial class CellEditorComponent :
             if (MovingPlacedHex == null && ActiveActionName != null)
             {
                 // Can place stuff at all?
-                isPlacementProbablyValid = IsValidPlacement(new OrganelleTemplate(
-                    GetOrganelleDefinition(ActiveActionName), new Hex(q, r), placementRotation));
+                isPlacementProbablyValid =
+                    IsValidPlacement(new OrganelleTemplate(GetOrganelleDefinition(ActiveActionName), new Hex(q, r),
+                        placementRotation), true);
 
                 shownOrganelle = SimulationParameters.Instance.GetOrganelleType(ActiveActionName);
             }
@@ -878,7 +881,7 @@ public partial class CellEditorComponent :
 
         UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
 
-        // Setup the display cell
+        // Set up the display cell
         CreatePreviewMicrobeIfNeeded();
 
         UpdateArrow(false);
@@ -1591,7 +1594,7 @@ public partial class CellEditorComponent :
             {
                 var data = new OrganelleRemoveActionData(organelle)
                 {
-                    GotReplaced = organelle.Definition.InternalName == "cytoplasm",
+                    GotReplaced = organelle.Definition.InternalName == cytoplasm.InternalName,
                     CostMultiplier = CostMultiplier,
                 };
                 action = new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction,
@@ -1637,12 +1640,12 @@ public partial class CellEditorComponent :
     private IEnumerable<OrganelleTemplate> GetReplacedCytoplasm(IEnumerable<OrganelleTemplate> organelles)
     {
         foreach (var templateHex in organelles
-                     .Where(o => o.Definition.InternalName != "cytoplasm")
+                     .Where(o => o.Definition.InternalName != cytoplasm.InternalName)
                      .SelectMany(o => o.RotatedHexes.Select(h => h + o.Position)))
         {
             var existingOrganelle = editedMicrobeOrganelles.GetElementAt(templateHex, hexTemporaryMemory);
 
-            if (existingOrganelle != null && existingOrganelle.Definition.InternalName == "cytoplasm")
+            if (existingOrganelle != null && existingOrganelle.Definition.InternalName == cytoplasm.InternalName)
             {
                 yield return existingOrganelle;
             }
@@ -1814,7 +1817,7 @@ public partial class CellEditorComponent :
         if (MicrobePreviewMode)
             return null;
 
-        if (!IsValidPlacement(organelle))
+        if (!IsValidPlacement(organelle, true))
         {
             // Play Sound
             Editor.OnInvalidAction();
@@ -1824,9 +1827,12 @@ public partial class CellEditorComponent :
         return CreateAddOrganelleAction(organelle);
     }
 
-    private bool IsValidPlacement(OrganelleTemplate organelle)
+    private bool IsValidPlacement(OrganelleTemplate organelle, bool allowOverwritingCytoplasm)
     {
-        bool notPlacingCytoplasm = organelle.Definition.InternalName != "cytoplasm";
+        bool notPlacingCytoplasm = organelle.Definition.InternalName != cytoplasm.InternalName;
+
+        if (!allowOverwritingCytoplasm)
+            notPlacingCytoplasm = false;
 
         return editedMicrobeOrganelles.CanPlaceAndIsTouching(organelle,
             notPlacingCytoplasm, hexTemporaryMemory, hexTemporaryMemory2,
