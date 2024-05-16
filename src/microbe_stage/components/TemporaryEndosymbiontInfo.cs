@@ -6,6 +6,7 @@ using Godot;
 /// <summary>
 ///   Holds data related to organelles that have been added as temporary endosymbionts
 /// </summary>
+[JSONDynamicTypeAllowed]
 public struct TemporaryEndosymbiontInfo
 {
     public List<Species>? EndosymbiontSpeciesPresent;
