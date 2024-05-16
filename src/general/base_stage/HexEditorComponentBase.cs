@@ -504,8 +504,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         {
             OnCurrentActionCanceled();
 
-            UpdateCancelAndUndoActionState();
-
             return true;
         }
 
@@ -536,9 +534,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             return true;
 
         StartHexMove(hex);
-
-        // Once a move has begun, the button visibility should be updated so it becomes visible
-        UpdateCancelState();
         return true;
     }
 
@@ -554,12 +549,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         MovingPlacedHex = selectedHex;
 
         OnMoveActionStarted();
-
-        // Disable undo/redo/symmetry button while moving (enabled after finishing move)
-        Editor.NotifyUndoRedoStateChanged();
-
-        // TODO: change this to go through the editor as well for consistency
-        UpdateSymmetryButton();
+        OnActionStatusChanged();
     }
 
     public void StartHexMoveWithSymmetry(IEnumerable<THexMove> selectedHexes)
@@ -745,7 +735,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (!Editor.CheckEnoughMPForAction(Editor.WhatWouldActionsCost(action.Data)))
             return false;
 
-        if (CanCancelMove)
+        if (CanCancelAction)
         {
             if (!DoesActionEndInProgressAction(action))
             {
@@ -766,6 +756,14 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected virtual TCombinedAction CreateCombinedAction(IEnumerable<EditorAction> actions)
     {
         return (TCombinedAction)new CombinedEditorAction(actions);
+    }
+
+    protected override void OnActionStatusChanged()
+    {
+        base.OnActionStatusChanged();
+
+        // TODO: change this to go through the editor object for consistency
+        UpdateSymmetryButton();
     }
 
     protected void OnSymmetryPressed()
@@ -905,9 +903,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
     }
 
-    protected virtual void OnCurrentActionCanceled()
+    protected override void OnCurrentActionCanceled()
     {
-        UpdateCancelButtonVisibility();
+        base.OnCurrentActionCanceled();
 
         // TODO: switch to this going through the editor
         UpdateSymmetryButton();
@@ -918,16 +916,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         MovingPlacedHex = null;
 
         // Move succeeded; Update the cancel button visibility, so it is not hidden because the move has completed
-        UpdateCancelAndUndoActionState();
-    }
-
-    protected void UpdateCancelAndUndoActionState()
-    {
-        // TODO: should this call be made through Editor here?
-        UpdateCancelButtonVisibility();
-
-        // Re-enable undo/redo button
-        Editor.NotifyUndoRedoStateChanged();
+        OnActionStatusChanged();
     }
 
     /// <summary>
@@ -1105,11 +1094,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected virtual float CalculateEditorArrowZPosition()
     {
         throw new GodotAbstractMethodNotOverriddenException();
-    }
-
-    protected virtual void UpdateCancelState()
-    {
-        UpdateCancelButtonVisibility();
     }
 
     protected void UpdateSymmetryButton()

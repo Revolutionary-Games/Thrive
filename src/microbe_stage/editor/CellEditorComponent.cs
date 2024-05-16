@@ -879,8 +879,6 @@ public partial class CellEditorComponent :
         if (Visible && PendingEndosymbiontPlace != null)
         {
             OnCurrentActionCanceled();
-
-            UpdateCancelAndUndoActionState();
             return true;
         }
 
@@ -1145,7 +1143,7 @@ public partial class CellEditorComponent :
     {
         int previousRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
-        if (MovingPlacedHex != null)
+        if (CanCancelAction)
         {
             Editor.OnActionBlockedWhileMoving();
             UpdateRigiditySlider(previousRigidity);
@@ -1192,7 +1190,7 @@ public partial class CellEditorComponent :
             return false;
 
         // Can't open organelle popup menu while moving something
-        if (MovingPlacedHex != null)
+        if (CanCancelAction)
         {
             Editor.OnActionBlockedWhileMoving();
             return true;
@@ -2206,9 +2204,6 @@ public partial class CellEditorComponent :
         {
             StartHexMove(organelleMenu.SelectedOrganelles.First());
         }
-
-        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
-        UpdateCancelButtonVisibility();
     }
 
     private void OnDeletePressed()

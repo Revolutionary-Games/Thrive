@@ -146,6 +146,20 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
         animator.Play(animation);
     }
 
+    protected virtual void OnActionStatusChanged()
+    {
+        // Disable undo/redo/symmetry button while acting is in progress (enabled after finishing the action)
+        Editor.NotifyUndoRedoStateChanged();
+
+        // Once a move (or other pending action) has begun, the button visibility should be updated to make it visible
+        UpdateCancelButtonVisibility();
+    }
+
+    protected virtual void OnCurrentActionCanceled()
+    {
+        OnActionStatusChanged();
+    }
+
     protected virtual void OnCancelActionClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();

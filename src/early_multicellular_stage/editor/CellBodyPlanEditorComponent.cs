@@ -830,9 +830,6 @@ public partial class CellBodyPlanEditorComponent :
         {
             StartHexMove(cellPopupMenu.SelectedCells.First());
         }
-
-        // Once an cell move has begun, the button visibility should be updated so it becomes visible
-        UpdateCancelButtonVisibility();
     }
 
     private void OnDeletePressed()
