@@ -15,16 +15,10 @@ public class Endosymbiont
     public OrganelleDefinition ResultingOrganelle { get; private set; }
 
     [JsonProperty]
-    public bool FreeOrganellePlaced { get; private set; }
-
-    [JsonProperty]
     public Species OriginallyFromSpecies { get; private set; }
 
     public Endosymbiont Clone()
     {
-        return new Endosymbiont(ResultingOrganelle, OriginallyFromSpecies)
-        {
-            FreeOrganellePlaced = FreeOrganellePlaced,
-        };
+        return new Endosymbiont(ResultingOrganelle, OriginallyFromSpecies);
     }
 }

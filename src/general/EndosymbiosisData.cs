@@ -85,6 +85,18 @@ public class EndosymbiosisData
             if (candidate.Key.ID != targetSpecies || candidate.Value <= 0)
                 continue;
 
+            if (Endosymbionts != null)
+            {
+                foreach (var endosymbiont in Endosymbionts)
+                {
+                    if (endosymbiont.OriginallyFromSpecies.ID == targetSpecies)
+                    {
+                        GD.PrintErr("Trying to form symbiosis with something that is already an endosymbiont");
+                        return false;
+                    }
+                }
+            }
+
             StartedEndosymbiosis = new InProgressEndosymbiosis(candidate.Key, cost, organelle);
             return true;
         }
@@ -106,6 +118,15 @@ public class EndosymbiosisData
         if (StartedEndosymbiosis == null)
             throw new InvalidOperationException("No in-progress endosymbiosis");
 
+        if (Endosymbionts != null)
+        {
+            foreach (var endosymbiont in Endosymbionts)
+            {
+                if (endosymbiont.OriginallyFromSpecies == endosymbiosisToComplete.Species)
+                    throw new ArgumentException("Target endosymbiont species already exists");
+            }
+        }
+
         var endosymbiosis = StartedEndosymbiosis;
 
         if (!endosymbiosis.IsComplete)
@@ -116,9 +137,16 @@ public class EndosymbiosisData
 
         StartedEndosymbiosis = null;
 
+        Endosymbionts ??= new List<Endosymbiont>();
+        Endosymbionts.Add(new Endosymbiont(endosymbiosisToComplete.TargetOrganelle, endosymbiosisToComplete.Species));
+
         return endosymbiosis;
     }
 
+    /// <summary>
+    ///   Checks if there is an already complete endosymbiosis operation that just needs to be finished
+    /// </summary>
+    /// <returns>True when there is a complete pending operation</returns>
     public bool HasCompleteEndosymbiosis()
     {
         if (StartedEndosymbiosis == null)
@@ -128,21 +156,60 @@ public class EndosymbiosisData
     }
 
     /// <summary>
-    ///   Resumes a previous cancelled endosymbiosis progress
+    ///   Resumes a previous cancelled endosymbiosis progress. Also removes the data from completed endosymbiosis
+    ///   operations.
     /// </summary>
     /// <param name="inProgressDataToResume">The progress to resume</param>
     /// <returns>
     ///   The previously active endosymbiosis progress that was replaced, null if there was none or if it matched
     ///   <see cref="inProgressDataToResume"/>
     /// </returns>
-    public InProgressEndosymbiosis? ResumeEndosymbiosis(InProgressEndosymbiosis inProgressDataToResume)
+    public InProgressEndosymbiosis? ResumeEndosymbiosisProcess(InProgressEndosymbiosis inProgressDataToResume)
     {
         if (StartedEndosymbiosis == inProgressDataToResume)
             return null;
 
+        bool removed = false;
+
+        if (Endosymbionts != null)
+        {
+            foreach (var endosymbiont in Endosymbionts)
+            {
+                if (endosymbiont.OriginallyFromSpecies == inProgressDataToResume.Species)
+                {
+                    removed = Endosymbionts.Remove(endosymbiont);
+                    break;
+                }
+            }
+        }
+
+        if (!removed)
+        {
+            GD.PrintErr("Endosymbiont result should exist to remove on resuming the process");
+        }
+
         var previous = StartedEndosymbiosis;
         StartedEndosymbiosis = inProgressDataToResume;
         return previous;
+    }
+
+    /// <summary>
+    ///   Checks if a species is already an endosymbiont
+    /// </summary>
+    /// <param name="speciesToCheck">Species to check</param>
+    /// <returns>True when already an endosymbiont</returns>
+    public bool IsEndosymbiontAlready(Species speciesToCheck)
+    {
+        if (Endosymbionts == null)
+            return false;
+
+        foreach (var endosymbiont in Endosymbionts)
+        {
+            if (endosymbiont.OriginallyFromSpecies == speciesToCheck)
+                return true;
+        }
+
+        return false;
     }
 
     public EndosymbiosisData Clone()

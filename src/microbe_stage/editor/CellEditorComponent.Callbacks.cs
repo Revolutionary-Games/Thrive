@@ -350,7 +350,7 @@ public partial class CellEditorComponent
         if (data.OverriddenEndosymbiosisOnUndo != null)
         {
             var overwrote =
-                Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosis(data.OverriddenEndosymbiosisOnUndo);
+                Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosisProcess(data.OverriddenEndosymbiosisOnUndo);
 
             // Hopefully there's no way to hit this condition, if there is then this needs some fix
             if (overwrote != null && overwrote != data.RelatedEndosymbiosisAction)
@@ -391,7 +391,7 @@ public partial class CellEditorComponent
 
         // Need to restore the previous endosymbiosis action
         data.OverriddenEndosymbiosisOnUndo =
-            Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosis(data.RelatedEndosymbiosisAction);
+            Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosisProcess(data.RelatedEndosymbiosisAction);
     }
 
     /// <summary>

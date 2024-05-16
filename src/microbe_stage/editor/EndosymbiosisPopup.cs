@@ -92,7 +92,10 @@ public partial class EndosymbiosisPopup : CustomWindow
         else
         {
             generalExplanationLabel.Visible = true;
-            ShowDataToStartNew(endosymbiosisData.EngulfedSpecies);
+
+            // Filter out things that were already made into endosymbionts
+            ShowDataToStartNew(
+                endosymbiosisData.EngulfedSpecies.Where(p => !endosymbiosisData.IsEndosymbiontAlready(p.Key)));
         }
     }
 
@@ -113,7 +116,7 @@ public partial class EndosymbiosisPopup : CustomWindow
         progressContainer.Visible = true;
     }
 
-    private void ShowDataToStartNew(Dictionary<Species, int> candidates)
+    private void ShowDataToStartNew(IEnumerable<KeyValuePair<Species, int>> candidates)
     {
         bool any = false;
 
