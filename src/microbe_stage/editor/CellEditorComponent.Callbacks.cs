@@ -317,6 +317,60 @@ public partial class CellEditorComponent
         StartAutoEvoPrediction();
     }
 
+    [DeserializedCallbackAllowed]
+    private void DoEndosymbiontPlaceAction(EndosymbiontPlaceActionData data)
+    {
+        // Perform unlock to make the endosymbiont placeable for later
+        if (Editor.CurrentGame.GameWorld.UnlockProgress.UnlockOrganelle(data.PlacedOrganelle.Definition,
+                Editor.CurrentGame))
+        {
+            GD.Print("Unlocking organelle due to endosymbiosis place");
+            data.PerformedUnlock = true;
+        }
+
+        var organelle = data.PlacedOrganelle;
+
+        // TODO: if wanted could allow replacing cytoplasm with this action type
+
+        GD.Print("Placing endosymbiont '", organelle.Definition.InternalName, "' at: ",
+            organelle.Position);
+
+        editedMicrobeOrganelles.AddFast(organelle, hexTemporaryMemory, hexTemporaryMemory2);
+
+        if (data.PerformedUnlock)
+        {
+            OnUnlockedOrganellesChanged();
+        }
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoEndosymbiontPlaceAction(EndosymbiontPlaceActionData data)
+    {
+        if (!editedMicrobeOrganelles.Remove(data.PlacedOrganelle))
+        {
+            throw new Exception("Couldn't find endosymbiont placement to remove");
+        }
+
+        // Undo unlock if required
+        if (data.PerformedUnlock)
+        {
+            GD.Print("Locking organelle type due to endosymbiont undo: ", data.PlacedOrganelle.Definition.InternalName);
+
+            // If the player selected the organelle type to place that is now again locked, reset it
+            if (activeActionName == data.PlacedOrganelle.Definition.InternalName)
+            {
+                activeActionName = null;
+                GD.Print("Resetting active action as it is an organelle type that will be locked now");
+            }
+
+            // NOTE: if we ever add support for unlock condition re-check after entering the editor, this needs to be
+            // re-thought out to make sure this doesn't interact badly with such a feature
+            Editor.CurrentGame.GameWorld.UnlockProgress.UndoOrganelleUnlock(data.PlacedOrganelle.Definition);
+
+            OnUnlockedOrganellesChanged();
+        }
+    }
+
     /// <summary>
     ///   In the case of the multicellular editor some actions need to work even if the editor has been reinitialized
     ///   in the meantime since they were performed. For sanity checking sake we throw an exception in those cases

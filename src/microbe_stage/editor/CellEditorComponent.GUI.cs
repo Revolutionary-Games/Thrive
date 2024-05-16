@@ -347,6 +347,10 @@ public partial class CellEditorComponent
 
     private void CreateUndiscoveredOrganellesButtons(bool refresh = false, bool autoUnlock = true)
     {
+        // Note that if autoUnlock is true and this is called after the editor is initialized there's a potential
+        // logic conflict with UndoEndosymbiontPlaceAction in case we ever decide to allow organelle actions to also
+        // occur after entering the editor (other than endosymbiosis unlocks)
+
         // Find groups with undiscovered organelles
         var groupsWithUndiscoveredOrganelles =
             new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();

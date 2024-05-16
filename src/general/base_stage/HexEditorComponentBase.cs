@@ -495,7 +495,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     /// </summary>
     /// <returns>True when the input is consumed</returns>
     [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
-    public bool CancelCurrentAction()
+    public virtual bool CancelCurrentAction()
     {
         if (!Visible)
             return false;

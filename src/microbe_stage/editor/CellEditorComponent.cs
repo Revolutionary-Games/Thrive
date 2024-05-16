@@ -437,6 +437,12 @@ public partial class CellEditorComponent :
         }
     }
 
+    [JsonIgnore]
+    public override bool CanCancelAction => base.CanCancelAction || PendingEndosymbiontPlace != null;
+
+    [JsonProperty]
+    public EndosymbiontPlaceActionData? PendingEndosymbiontPlace { get; protected set; }
+
     /// <summary>
     ///   If this is enabled the editor will show how the edited cell would look like in the environment with
     ///   parameters set in the editor. Editing hexes is disabled during this (except undo / redo).
@@ -814,6 +820,14 @@ public partial class CellEditorComponent :
                 if (!Settings.Instance.MoveOrganellesWithSymmetry)
                     effectiveSymmetry = HexEditorSymmetry.None;
             }
+            else if (PendingEndosymbiontPlace != null)
+            {
+                shownOrganelle = PendingEndosymbiontPlace.PlacedOrganelle.Definition;
+                isPlacementProbablyValid =
+                    IsValidPlacement(new OrganelleTemplate(shownOrganelle, new Hex(q, r), placementRotation), false);
+
+                effectiveSymmetry = HexEditorSymmetry.None;
+            }
 
             if (shownOrganelle != null)
             {
@@ -832,6 +846,32 @@ public partial class CellEditorComponent :
                 MouseHoverPositions = hoveredHexes.ToList();
             }
         }
+    }
+
+    [RunOnKeyDown("e_primary")]
+    public override bool PerformPrimaryAction()
+    {
+        if (Visible && PendingEndosymbiontPlace != null)
+        {
+            GetMouseHex(out var q, out var r);
+            return PerformEndosymbiosisPlace(q, r);
+        }
+
+        return base.PerformPrimaryAction();
+    }
+
+    [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
+    public override bool CancelCurrentAction()
+    {
+        if (Visible && PendingEndosymbiontPlace != null)
+        {
+            OnCurrentActionCanceled();
+
+            UpdateCancelAndUndoActionState();
+            return true;
+        }
+
+        return false;
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -1160,6 +1200,27 @@ public partial class CellEditorComponent :
         return true;
     }
 
+    public override void OnValidAction(IEnumerable<CombinableActionData> actions)
+    {
+        var endosymbiontPlace = typeof(EndosymbiontPlaceActionData);
+
+        // Most likely better to enumerate multiple times rather than allocate temporary memory
+        // ReSharper disable PossibleMultipleEnumeration
+        foreach (var data in actions)
+        {
+            var type = data.GetType();
+            if (type.IsAssignableToGenericType(endosymbiontPlace))
+            {
+                PlayHexPlacementSound();
+                break;
+            }
+        }
+
+        base.OnValidAction(actions);
+
+        // ReSharper restore PossibleMultipleEnumeration
+    }
+
     public float CalculateSpeed()
     {
         return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
@@ -1302,8 +1363,14 @@ public partial class CellEditorComponent :
 
     protected override void OnCurrentActionCanceled()
     {
-        editedMicrobeOrganelles.AddFast(MovingPlacedHex!, hexTemporaryMemory, hexTemporaryMemory2);
-        MovingPlacedHex = null;
+        if (MovingPlacedHex != null)
+        {
+            editedMicrobeOrganelles.AddFast(MovingPlacedHex, hexTemporaryMemory, hexTemporaryMemory2);
+            MovingPlacedHex = null;
+        }
+
+        PendingEndosymbiontPlace = null;
+
         base.OnCurrentActionCanceled();
     }
 
@@ -1420,6 +1487,38 @@ public partial class CellEditorComponent :
         }
 
         base.Dispose(disposing);
+    }
+
+    private bool PerformEndosymbiosisPlace(int q, int r)
+    {
+        if (PendingEndosymbiontPlace == null)
+        {
+            GD.PrintErr("No endosymbiosis place in progress, there should be at this point");
+            Editor.OnInvalidAction();
+            return false;
+        }
+
+        PendingEndosymbiontPlace.PlacementLocation = new Hex(q, r);
+        PendingEndosymbiontPlace.PlacementRotation = placementRotation;
+
+        PendingEndosymbiontPlace.PlacedOrganelle.Orientation = placementRotation;
+        PendingEndosymbiontPlace.PlacedOrganelle.Position = new Hex(q, r);
+
+        // Before finalizing the data, make sure it can be placed at the current position
+        if (!IsValidPlacement(PendingEndosymbiontPlace.PlacedOrganelle, false))
+        {
+            Editor.OnInvalidAction();
+            return false;
+        }
+
+        var action = new CombinedEditorAction(new SingleEditorAction<EndosymbiontPlaceActionData>(
+            DoEndosymbiontPlaceAction, UndoEndosymbiontPlaceAction, PendingEndosymbiontPlace));
+
+        EnqueueAction(action);
+
+        PendingEndosymbiontPlace = null;
+
+        return true;
     }
 
     private bool CreatePreviewMicrobeIfNeeded()
@@ -2124,7 +2223,7 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Lock / unlock a single organelle that needs a nucleus
+    ///   Lock / unlock organelle buttons that need a nucleus or are already placed (if unique)
     /// </summary>
     private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
         OrganelleDefinition organelle)
