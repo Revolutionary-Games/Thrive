@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 15:07+0300\n"
+"POT-Creation-Date: 2024-05-16 15:39+0300\n"
 "PO-Revision-Date: 2024-04-09 18:23+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -716,6 +716,10 @@ msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Odwiedź naszą wiki społeczności"
 
 msgid "COMPILED_AT_COLON"
+msgstr "Zbudowane w:"
+
+#, fuzzy
+msgid "COMPLETE_ACTION"
 msgstr "Zbudowane w:"
 
 msgid "COMPOUNDS"
@@ -1579,6 +1583,68 @@ msgstr "Włącz edytor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Włącz efekty świetlne GUI"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Wiele Organelli"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Odwiąż wszystkie"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Agresywne mikroby będą ścigać ofiarę przez długie dystanse\n"
+"oraz są bardziej skłonne do walki z drapieżnikami.\n"
+"Pokojowe mikroby nie będą zaczynać pościgu na długie odległości\n"
+"i mniej chętnie używają toksyn przeciwko drapieżnikom."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Niepołączone Organelle"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Agresywne mikroby będą ścigać ofiarę przez długie dystanse\n"
+"oraz są bardziej skłonne do walki z drapieżnikami.\n"
+"Pokojowe mikroby nie będą zaczynać pościgu na długie odległości\n"
+"i mniej chętnie używają toksyn przeciwko drapieżnikom."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Przekształcają [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Zmienia też [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Wejdź do edytora i modyfikuj swój gatunek"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Brak tytułu"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1683,6 +1749,10 @@ msgstr "Podaj Istniejące ID"
 
 msgid "EXIT"
 msgstr "Wyjdź"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Przejdź do następnej zakładki edytora"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Wyjdź do Launchera"
@@ -3921,6 +3991,13 @@ msgstr "Wczytywanie pliku pck ({0}) nie powiodło się, ponieważ ten plik nie i
 msgid "PEACEFUL"
 msgstr "Pokojowość"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie grafiki AMD lub Nvidia do uruchamiania Trive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4711,6 +4788,10 @@ msgstr "rozpowszechnił się do obszarów:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu pauzy"
+
+#, fuzzy
+msgid "START"
+msgstr "Zaczynanie"
 
 msgid "STARTING"
 msgstr "Zaczynanie"
@@ -5636,6 +5717,9 @@ msgid "VIEW_PATCH_NOTES"
 msgstr "Przeczytaj Notki Aktualizacji"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
+msgstr ""
+
+msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
 msgid "VIEW_SOURCE_CODE"

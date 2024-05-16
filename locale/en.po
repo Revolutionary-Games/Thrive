@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 15:07+0300\n"
-"PO-Revision-Date: 2024-05-08 15:07+0300\n"
+"POT-Creation-Date: 2024-05-16 15:39+0300\n"
+"PO-Revision-Date: 2024-05-16 16:03+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -723,6 +723,9 @@ msgstr "Visit our community wiki"
 
 msgid "COMPILED_AT_COLON"
 msgstr "Built at:"
+
+msgid "COMPLETE_ACTION"
+msgstr "Finish"
 
 msgid "COMPOUNDS"
 msgstr "Compounds"
@@ -1553,6 +1556,51 @@ msgstr "Enable the editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Enable GUI light effects"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr "Endosymbiosis process already complete, finish it in the editor"
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr "Turned endosymbiosis target into a temporary organelle, this will progress endosymbiosis if you make it to the editor"
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr "Endosymbiont type already present, enter the editor to progress the endosymbiosis process"
+
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Available organelles to turn into"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr "Endosymbiosis"
+
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Cancel this endosymbiosis process. This loses any current progress on this endosymbiont!"
+
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Finish this endosymbiosis process and place it as an organelle"
+
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Endosymbiosis is a process to turn another species into an endosymbiont (a species that lives inside another in a symbiotic relationship). This unlocks the created organelle and gives one free copy of that organelle. Viable candidates to turn into organelles are shown below once they have been engulfed before. How long the process takes depends on how suitable the candidate is for endosymbiosis (this is shown below each candidate organelle)."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr "No suitable species to turn into endosymbionts have been engulfed yet"
+
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "This species cannot be turned into any valid organelle"
+
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "To progress an endosymbiosis process, the target species needs to be engulfed to turn it into a temporary organelle (only one can be present at once). Then progress is saved once you make it to the editor with the temporary organelle present."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr "Prokaryotes can have at most one endosymbiont"
+
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Survive to the editor with this species as a temporary organelle to progress"
+
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Start endosymbiosis for this species (available once target organelle type is selected)"
+
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Endosymbiosis"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1657,6 +1705,9 @@ msgstr "Buildings"
 
 msgid "EXIT"
 msgstr "Exit"
+
+msgid "EXIT_EDITOR"
+msgstr "Exit Editor"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Exit to Launcher"
@@ -3824,6 +3875,12 @@ msgstr "Loading of pck file ({0}) failed because the file does not exist"
 msgid "PEACEFUL"
 msgstr "Peaceful"
 
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "There is a completed endosymbiosis process that can be finalized by placing it as an organelle. It is recommended to do this as soon as possible as no further progress on endosymbiosis can be made until that is done. View the endosymbiosis progress now?"
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr "Pending Endosymbiosis Process Completion"
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4605,6 +4662,9 @@ msgstr "spread to patches:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause menu"
+
+msgid "START"
+msgstr "Start"
 
 msgid "STARTING"
 msgstr "Starting"
@@ -5497,6 +5557,9 @@ msgstr "View Patch Notes"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "View latest or all Thrive patch notes now"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr "View Now"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "View Source Code"

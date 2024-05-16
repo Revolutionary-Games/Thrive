@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 15:07+0300\n"
+"POT-Creation-Date: 2024-05-16 15:39+0300\n"
 "PO-Revision-Date: 2024-05-09 15:10+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -722,6 +722,10 @@ msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Topluluk vikimizi ziyaret edin"
 
 msgid "COMPILED_AT_COLON"
+msgstr "Derlenme tarihi:"
+
+#, fuzzy
+msgid "COMPLETE_ACTION"
 msgstr "Derlenme tarihi:"
 
 msgid "COMPOUNDS"
@@ -1553,6 +1557,66 @@ msgstr "Düzenleyiciyi aç"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Arayüz ışık efektlerini etkinleştir"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Bütün Organellerin Kilidini Aç"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Kolonideki bütün hücrelerin bağını kopar"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Dünya oluşturmak için kullanılan değer pozitif bir tam sayı olmalıdır"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Saldırgan mikroplar, avlarını çok uzun mesafelerden bile takip ederler,\n"
+"yırtıcılar saldırdığında ise onlarla savaşmaları muhtemeldir.\n"
+"Barışçıl mikroplar, çok uzun mesafelerdeki mikroplarla uğraşmazlar,\n"
+"yırtıcılara karşı toksin kullanmaları ise düşük ihtimaldir."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Bağlı Olmayan Organeller"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Bu kısım, kullanıcı tarafından kalıcı olarak atlanan kaç tane pencere olduğunu gösterir.\n"
+"Eğer asıl görülmek istenen pencereler atlandıysa, bütün atlanan pencerelerin tekrar görülmesi için yandaki buton kullanılabilir."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "[thrive:compound type=\"hydrogensulfide\"]Hidrojen sülfürü[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır. Ayrıca [thrive:compound type=\"glucose\"]glukozu[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Düzenleyiciye gir ve türünde değişiklik yap"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Başlık eksik"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1657,6 +1721,10 @@ msgstr "Binalar"
 
 msgid "EXIT"
 msgstr "Çık"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Sonraki düzenleyici sekmesine git"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Çık ve Başlatıcıya Dön"
@@ -3824,6 +3892,13 @@ msgstr "pck dosyasının ({0}) yüklenmesi başarısız çünkü dosya mevcut de
 msgid "PEACEFUL"
 msgstr "Barışçıl"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Thrive'ı OpenGL ile çalıştırmaktasınız. Bu mod ciddi derecede test edilmemiştir ve bu modun sorunlara neden olması muhtemeldir. Yeterince yeni bir ekran kartı ya da dahili ekran kartı kullandığınızdan emin olun ve ekran kartı sürücülerinizi güncelleştirmeyi deneyin. Dizüstü bilgisayarlarda Thrive'ı çalıştırmak için, dahili grafiklerin yerine, harici AMD veya Nvidia grafiklerini kullanmaya zorlamanız gerekebilir."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
 
@@ -4605,6 +4680,10 @@ msgstr "yayıldığı araziler:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Ara menü"
+
+#, fuzzy
+msgid "START"
+msgstr "Başlıyor"
 
 msgid "STARTING"
 msgstr "Başlıyor"
@@ -5497,6 +5576,10 @@ msgstr "Yama Notlarını Görüntüle"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "En son ki veya tüm Thrive yama notlarını şimdi görüntüle"
+
+#, fuzzy
+msgid "VIEW_PENDING_ACTIONS"
+msgstr "Değişiklikler"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Kaynak Kodunu İncele"
