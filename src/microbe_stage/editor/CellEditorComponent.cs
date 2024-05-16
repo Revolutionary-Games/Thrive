@@ -816,7 +816,7 @@ public partial class CellEditorComponent :
 
             var effectiveSymmetry = Symmetry;
 
-            if (MovingPlacedHex == null && ActiveActionName != null)
+            if (!CanCancelAction && ActiveActionName != null)
             {
                 // Can place stuff at all?
                 isPlacementProbablyValid =
@@ -840,6 +840,10 @@ public partial class CellEditorComponent :
                     IsValidPlacement(new OrganelleTemplate(shownOrganelle, new Hex(q, r), placementRotation), false);
 
                 effectiveSymmetry = HexEditorSymmetry.None;
+            }
+            else
+            {
+                GD.PrintErr("Unknown editor state for showing hover hex");
             }
 
             if (shownOrganelle != null)
@@ -882,7 +886,7 @@ public partial class CellEditorComponent :
             return true;
         }
 
-        return false;
+        return base.CancelCurrentAction();
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -1312,6 +1316,10 @@ public partial class CellEditorComponent :
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
             return 0;
 
+        // Endosymbiosis placement is free
+        if (PendingEndosymbiontPlace != null)
+            return 0;
+
         var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!);
 
         // Calculated in this order to be consistent with placing unique organelles
@@ -1388,6 +1396,16 @@ public partial class CellEditorComponent :
         PendingEndosymbiontPlace = null;
 
         base.OnCurrentActionCanceled();
+    }
+
+    protected override bool DoesActionEndInProgressAction(CombinedEditorAction action)
+    {
+        if (PendingEndosymbiontPlace != null)
+        {
+            return action.Data.Any(d => d is EndosymbiontPlaceActionData);
+        }
+
+        return base.DoesActionEndInProgressAction(action);
     }
 
     protected override void OnMoveActionStarted()

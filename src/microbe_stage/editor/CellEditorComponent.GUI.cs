@@ -711,10 +711,21 @@ public partial class CellEditorComponent
 
         endosymbiosisPopup.Hide();
 
-        // TODO: start an inprogress placement action
         GD.Print("Starting free organelle placement action after completing endosymbiosis");
+        var targetData = Editor.EditedBaseSpecies.Endosymbiosis.StartedEndosymbiosis;
 
-        throw new NotImplementedException();
+        if (targetData == null)
+        {
+            GD.PrintErr("Couldn't find in-progress endosymbiosis even though there should be one");
+            PlayInvalidActionSound();
+            return;
+        }
+
+        // Create the pending placement action
+        PendingEndosymbiontPlace = new EndosymbiontPlaceActionData(targetData);
+
+        // There's now a pending action
+        OnActionStatusChanged();
     }
 
     private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)

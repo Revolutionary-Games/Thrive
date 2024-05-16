@@ -101,7 +101,7 @@ public class EndosymbiosisData
         return true;
     }
 
-    public InProgressEndosymbiosis MarkEndosymbiosisDone()
+    public InProgressEndosymbiosis MarkEndosymbiosisDone(InProgressEndosymbiosis endosymbiosisToComplete)
     {
         if (StartedEndosymbiosis == null)
             throw new InvalidOperationException("No in-progress endosymbiosis");
@@ -110,6 +110,9 @@ public class EndosymbiosisData
 
         if (!endosymbiosis.IsComplete)
             GD.PrintErr("Marking endosymbiosis that is not complete as done");
+
+        if (endosymbiosis != endosymbiosisToComplete)
+            GD.PrintErr("Wrong endosymbiosis object passed to marking it as complete");
 
         StartedEndosymbiosis = null;
 

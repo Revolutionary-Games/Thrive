@@ -27,6 +27,12 @@ public class EndosymbiontPlaceActionData : EditorCombinableActionData
         RelatedEndosymbiosisAction = relatedEndosymbiosisAction;
     }
 
+    public EndosymbiontPlaceActionData(EndosymbiosisData.InProgressEndosymbiosis fromEndosymbiosisData) : this(
+        new OrganelleTemplate(fromEndosymbiosisData.TargetOrganelle, new Hex(0, 0), 0),
+        new Hex(0, 0), 0, fromEndosymbiosisData)
+    {
+    }
+
     protected override int CalculateCostInternal()
     {
         // Endosymbiosis placement never costs MP

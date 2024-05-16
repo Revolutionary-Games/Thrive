@@ -343,7 +343,8 @@ public partial class CellEditorComponent
         }
 
         // With the endosymbiosis place done, the current endosymbiosis action is done
-        data.RelatedEndosymbiosisAction = Editor.EditedBaseSpecies.Endosymbiosis.MarkEndosymbiosisDone();
+        data.RelatedEndosymbiosisAction =
+            Editor.EditedBaseSpecies.Endosymbiosis.MarkEndosymbiosisDone(data.RelatedEndosymbiosisAction);
 
         // Restore any inprogress data we overwrote on undo
         if (data.OverriddenEndosymbiosisOnUndo != null)
