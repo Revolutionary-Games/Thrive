@@ -10,6 +10,7 @@ using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Saving;
+using Saving.Serializers;
 
 /// <summary>
 ///   Main JSON conversion class for Thrive handling all our custom stuff
@@ -43,6 +44,7 @@ public class ThriveJsonConverter : IDisposable
             new SystemVector4ArrayConverter(),
             new RandomConverter(),
             new ConvexPolygonShapeConverter(),
+            new NodePathConverter(),
 
             new CompoundCloudPlaneConverter(context),
 
