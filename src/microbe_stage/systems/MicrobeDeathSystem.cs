@@ -125,7 +125,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         // The default model for chunks is the cytoplasm model in case there isn't a model left in the species
         if (!SimulationParameters.Instance
                 .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME)
-                .TryGetCorpseChunkGraphics(out var defaultChunkScene))
+                .TryGetCorpseChunkGraphics(null, out var defaultChunkScene))
         {
             throw new Exception("No chunk scene set on default organelle type to use");
         }
@@ -180,7 +180,8 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             {
                 var organelleDefinition = organellesAvailableEnumerator.Current.Definition;
 
-                if (organelleDefinition.TryGetCorpseChunkGraphics(out var loaded))
+                if (organelleDefinition.TryGetCorpseChunkGraphics(organellesAvailableEnumerator.Current.Upgrades,
+                    out var loaded))
                 {
                     sceneToUse.ScenePath = loaded.LoadedScene.ResourcePath;
                     sceneToUse.SceneModelPath = loaded.ModelPath;

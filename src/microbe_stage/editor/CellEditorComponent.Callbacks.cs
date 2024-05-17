@@ -294,8 +294,9 @@ public partial class CellEditorComponent
     {
         data.UpgradedOrganelle.Upgrades = data.NewUpgrades;
 
-        // Uncomment when upgrades can visually affect the cell
-        // UpdateAlreadyPlacedVisuals();
+        microbeVisualizationOrganellePositionsAreDirty = true;
+
+        OnOrganellesChanged();
 
         UpdateStats();
 
@@ -308,8 +309,9 @@ public partial class CellEditorComponent
     {
         data.UpgradedOrganelle.Upgrades = data.OldUpgrades;
 
-        // Uncomment when upgrades can visually affect the cell
-        // UpdateAlreadyPlacedVisuals();
+        microbeVisualizationOrganellePositionsAreDirty = true;
+
+        OnOrganellesChanged();
 
         UpdateStats();
 

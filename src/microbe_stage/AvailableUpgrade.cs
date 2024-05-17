@@ -7,6 +7,14 @@ using Newtonsoft.Json;
 /// </summary>
 public class AvailableUpgrade : IRegistryType
 {
+    /// <summary>
+    ///   A path to a scene to display this organelle with. If empty won't have a display model.
+    /// </summary>
+    [JsonProperty]
+    private SceneWithModelInfo graphics;
+
+    private LoadedSceneWithModelInfo loadedSceneData;
+
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
     private string? untranslatedDescription;
@@ -75,6 +83,19 @@ public class AvailableUpgrade : IRegistryType
     {
         if (!string.IsNullOrEmpty(IconPath))
             LoadedIcon = GD.Load<Texture2D>(IconPath);
+
+        // Preload the scene for instantiating in microbes
+        // TODO: switch this to only load when loading the microbe stage to not load this in the future when we have
+        // playable stages that don't need these graphics
+        if (!string.IsNullOrEmpty(graphics.ScenePath))
+        {
+            loadedSceneData.LoadFrom(graphics);
+        }
+    }
+
+    public LoadedSceneWithModelInfo? TryGetGraphicsScene()
+    {
+        return loadedSceneData;
     }
 
     public void ApplyTranslations()

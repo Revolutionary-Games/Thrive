@@ -1861,7 +1861,7 @@ public partial class CellEditorComponent :
         bool showModel = !hadDuplicate;
 
         // Model
-        if (showModel && shownOrganelle.TryGetGraphicsScene(out var modelInfo))
+        if (showModel && shownOrganelle.TryGetGraphicsScene(null, out var modelInfo))
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
 
@@ -2157,7 +2157,7 @@ public partial class CellEditorComponent :
             // Hexes are handled by UpdateAlreadyPlacedHexes
 
             // Model of the organelle
-            if (organelle.Definition.TryGetGraphicsScene(out var modelInfo))
+            if (organelle.Definition.TryGetGraphicsScene(organelle.Upgrades, out var modelInfo))
             {
                 if (nextFreeOrganelle >= placedModels.Count)
                 {

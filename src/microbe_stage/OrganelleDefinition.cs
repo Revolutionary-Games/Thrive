@@ -276,31 +276,31 @@ public class OrganelleDefinition : IRegistryType
     ///   boxing)
     /// </para>
     /// <returns>True when this has a scene</returns>
-    public bool TryGetGraphicsScene(out LoadedSceneWithModelInfo modelInfo)
+    public bool TryGetGraphicsScene(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
-        // TODO: allow this to be affected by upgrades (add as a first parameter to this method)
+        var upgradeGraphics = TryGetGraphicsForUpgrade(upgrades);
 
         if (loadedSceneData.LoadedScene == null!)
         {
-            modelInfo = default(LoadedSceneWithModelInfo);
+            modelInfo = upgradeGraphics ?? default(LoadedSceneWithModelInfo);
             return false;
         }
 
-        modelInfo = loadedSceneData;
+        modelInfo = upgradeGraphics ?? loadedSceneData;
         return true;
     }
 
-    public bool TryGetCorpseChunkGraphics(out LoadedSceneWithModelInfo modelInfo)
+    public bool TryGetCorpseChunkGraphics(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
-        // TODO: allow this to be affected by upgrades (add as a first parameter to this method)
+        var upgradeGraphics = TryGetGraphicsForUpgrade(upgrades);
 
         if (loadedCorpseScene.LoadedScene == null!)
         {
-            modelInfo = default(LoadedSceneWithModelInfo);
+            modelInfo = upgradeGraphics ?? default(LoadedSceneWithModelInfo);
             return false;
         }
 
-        modelInfo = loadedCorpseScene;
+        modelInfo = upgradeGraphics ?? loadedCorpseScene;
         return true;
     }
 
@@ -655,6 +655,30 @@ public class OrganelleDefinition : IRegistryType
 
         offset /= Hexes.Count;
         return offset;
+    }
+
+    private LoadedSceneWithModelInfo? TryGetGraphicsForUpgrade(OrganelleUpgrades? upgrades)
+    {
+        if (upgrades != null)
+        {
+            foreach (var availableUpgrade in AvailableUpgrades)
+            {
+                var upgradeGraphics = availableUpgrade.Value.TryGetGraphicsScene();
+
+                if (upgradeGraphics != null)
+                {
+                    if (upgrades.UnlockedFeatures.Contains(availableUpgrade.Key))
+                    {
+                        if (availableUpgrade.Value.TryGetGraphicsScene().HasValue)
+                        {
+                            return availableUpgrade.Value.TryGetGraphicsScene();
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     public class OrganelleComponentFactoryInfo

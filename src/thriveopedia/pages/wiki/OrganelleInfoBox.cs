@@ -130,7 +130,7 @@ public partial class OrganelleInfoBox : PanelContainer
         if (organelle == null || finishedLoadingModelImage)
             return;
 
-        if (!organelle.TryGetGraphicsScene(out var sceneWithModelInfo))
+        if (!organelle.TryGetGraphicsScene(null, out var sceneWithModelInfo))
             return;
 
         if (modelImageTask != null)
