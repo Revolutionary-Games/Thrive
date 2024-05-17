@@ -841,10 +841,6 @@ public partial class CellEditorComponent :
 
                 effectiveSymmetry = HexEditorSymmetry.None;
             }
-            else
-            {
-                GD.PrintErr("Unknown editor state for showing hover hex");
-            }
 
             if (shownOrganelle != null)
             {
