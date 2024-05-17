@@ -367,6 +367,7 @@ public partial class CellEditorComponent
                     Editor.CurrentGame, autoUnlock))
             {
                 control.Undiscovered = false;
+                control.Show();
                 continue;
             }
 
@@ -444,9 +445,9 @@ public partial class CellEditorComponent
 
     private void OnUnlockedOrganellesChanged()
     {
-        UpdateOrganelleButtons(activeActionName);
         UpdateMicrobePartSelections();
         CreateUndiscoveredOrganellesButtons(true, false);
+        UpdateOrganelleButtons(activeActionName);
     }
 
     private WorldAndPlayerDataSource GetUnlockPlayerDataSource()
