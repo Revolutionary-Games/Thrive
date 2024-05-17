@@ -123,9 +123,12 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             organelleContainer.Organelles.Organelles.OrderBy(_ => random.Next()).GetEnumerator();
 
         // The default model for chunks is the cytoplasm model in case there isn't a model left in the species
-        var defaultChunkScene = SimulationParameters.Instance
-                .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).CorpseChunkScene ??
+        if (!SimulationParameters.Instance
+                .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME)
+                .TryGetCorpseChunkGraphics(out var defaultChunkScene))
+        {
             throw new Exception("No chunk scene set on default organelle type to use");
+        }
 
         var chunkName = Localization.Translate("CHUNK_CELL_CORPSE_PART");
 
@@ -167,9 +170,8 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
             chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
-            var sceneToUse = new ChunkConfiguration.ChunkScene
+            var sceneToUse = new ChunkConfiguration.ChunkScene(defaultChunkScene)
             {
-                ScenePath = defaultChunkScene,
                 PlayAnimation = false,
             };
 
@@ -178,15 +180,11 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             {
                 var organelleDefinition = organellesAvailableEnumerator.Current.Definition;
 
-                if (!string.IsNullOrEmpty(organelleDefinition.CorpseChunkScene))
+                if (organelleDefinition.TryGetCorpseChunkGraphics(out var loaded))
                 {
-                    sceneToUse.ScenePath = organelleDefinition.CorpseChunkScene!;
-                }
-                else if (!string.IsNullOrEmpty(organelleDefinition.DisplayScene))
-                {
-                    sceneToUse.ScenePath = organelleDefinition.DisplayScene!;
-                    sceneToUse.SceneModelPath = organelleDefinition.DisplaySceneModelPath;
-                    sceneToUse.SceneAnimationPath = organelleDefinition.DisplaySceneAnimation;
+                    sceneToUse.ScenePath = loaded.LoadedScene.ResourcePath;
+                    sceneToUse.SceneModelPath = loaded.ModelPath;
+                    sceneToUse.SceneAnimationPath = loaded.AnimationPlayerPath;
                 }
                 else
                 {

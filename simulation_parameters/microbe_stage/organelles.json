@@ -20,7 +20,9 @@
     "ChanceToCreate": 0.5,
     "Density": 1500,
     "RelativeDensityVolume": 0,
-    "DisplayScene": "res://assets/models/organelles/Pilus.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Pilus.tscn"
+    },
     "PositionedExternally": true,
     "Name": "ORGANELLE_PILUS",
     "IconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
@@ -78,7 +80,9 @@
     "ProkaryoteChance": 2,
     "ChanceToCreate": 0.5,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/Rusticyanin.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn"
+    },
     "Name": "RUSTICYANIN",
     "ProductionColour": "#3293f7",
     "ConsumptionColour": "#f04681",
@@ -110,7 +114,9 @@
     "ProkaryoteChance": 2,
     "ChanceToCreate": 1,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/Nitrogenase.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn"
+    },
     "Name": "NITROGENASE",
     "ProductionColour": "#3feb67",
     "ConsumptionColour": "#ff8425",
@@ -150,8 +156,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 0,
     "Density": 1100,
-    "DisplayScene": "",
-    "CorpseChunkScene": "res://assets/models/organelles/Cytoplasm.tscn",
+    "CorpseChunkGraphics": {
+      "ScenePath": "res://assets/models/organelles/Cytoplasm.tscn"
+    },
     "Name": "PROTOPLASM",
     "ProductionColour": "#1db7c5",
     "ConsumptionColour": "#c51d38",
@@ -183,7 +190,9 @@
     "ProkaryoteChance": 2,
     "ChanceToCreate": 0.5,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn"
+    },
     "Name": "CHEMOSYNTHESIZING_PROTEINS",
     "ProductionColour": "#64f995",
     "ConsumptionColour": "#ff7248",
@@ -220,7 +229,9 @@
     "ProkaryoteChance": 0.5,
     "ChanceToCreate": 1,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/OxytoxyProteins.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+    },
     "Name": "OXYTOXISOME",
     "ProductionColour": "#834acb",
     "ConsumptionColour": "#c4303d",
@@ -260,7 +271,9 @@
     "ProkaryoteChance": 2,
     "ChanceToCreate": 0.5,
     "Density": 1200,
-    "DisplayScene": "res://assets/models/organelles/Chromatophore.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Chromatophore.tscn"
+    },
     "Name": "THYLAKOIDS",
     "ProductionColour": "#40f0ac",
     "ConsumptionColour": "#fbae3a",
@@ -300,7 +313,9 @@
     "ProkaryoteChance": 2,
     "ChanceToCreate": 0.5,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/Metabolosome.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Metabolosome.tscn"
+    },
     "Name": "METABOLOSOMES",
     "ProductionColour": "#26e0ff",
     "ConsumptionColour": "#ff5649",
@@ -336,7 +351,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 1,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn"
+    },
     "Name": "NITROGEN_FIXING_PLASTID",
     "ProductionColour": "#4fc9ff",
     "ConsumptionColour": "#ffb74f",
@@ -368,7 +385,9 @@
     "ProkaryoteChance": 2,
     "ChanceToCreate": 0.5,
     "Density": 1200,
-    "DisplayScene": "res://assets/models/organelles/Thermosynthase.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Thermosynthase.tscn"
+    },
     "Name": "THERMOSYNTHASE",
     "ProductionColour": "#6a5cc6",
     "ConsumptionColour": "#ad5161",
@@ -413,7 +432,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 1,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/Chemoplast.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Chemoplast.tscn"
+    },
     "Name": "CHEMOPLAST",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
     "RequiresNucleus": true,
@@ -445,9 +466,11 @@
     "ChanceToCreate": 6,
     "Density": 1200,
     "RelativeDensityVolume": 1,
-    "DisplayScene": "res://assets/models/organelles/Flagellum.tscn",
-    "DisplaySceneModelPath": "Armature_001/Skeleton3D/flagella",
-    "DisplaySceneAnimation": "AnimationPlayer",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
+      "ModelPath": "Armature_001/Skeleton3D/flagella",
+      "AnimationPlayerPath": "AnimationPlayer"
+    },
     "PositionedExternally": true,
     "Name": "FLAGELLUM",
     "ProductionColour": "#ff9721",
@@ -490,7 +513,9 @@
     "ChanceToCreate": 3,
     "Density": 1200,
     "RelativeDensityVolume": 1,
-    "DisplayScene": "res://assets/models/organelles/Vacuole.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Vacuole.tscn"
+    },
     "Name": "VACUOLE",
     "IconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn",
@@ -525,7 +550,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 3,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/Mitochondrion.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn"
+    },
     "Name": "MITOCHONDRION",
     "ProductionColour": "#26ffce",
     "ConsumptionColour": "#ff2653",
@@ -573,7 +600,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 1,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/Oxytoxy.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn"
+    },
     "Name": "TOXIN_VACUOLE",
     "ProductionColour": "#624acb",
     "ConsumptionColour": "#c4307b",
@@ -617,7 +646,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 0,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/BindingAgent.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/BindingAgent.tscn"
+    },
     "Name": "BINDING_AGENT",
     "IconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
     "UnlockConditions": [
@@ -667,7 +698,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 1,
     "Density": 1200,
-    "DisplayScene": "res://assets/models/organelles/Chloroplast.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Chloroplast.tscn"
+    },
     "Name": "CHLOROPLAST",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
     "UnlockConditions": [
@@ -707,8 +740,9 @@
     "ProkaryoteChance": 2,
     "ChanceToCreate": 1,
     "Density": 1000,
-    "DisplayScene": "",
-    "CorpseChunkScene": "res://assets/models/organelles/Cytoplasm.tscn",
+    "CorpseChunkGraphics": {
+      "ScenePath": "res://assets/models/organelles/Cytoplasm.tscn"
+    },
     "Name": "CYTOPLASM",
     "ProductionColour": "#1db7c5",
     "ConsumptionColour": "#c51d38",
@@ -778,7 +812,9 @@
     "ChanceToCreate": 0,
     "Density": 1200,
     "RelativeDensityVolume": 1,
-    "DisplayScene": "res://assets/models/organelles/Nucleus.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Nucleus.tscn"
+    },
     "Name": "NUCLEUS",
     "IconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png",
     "Unique": true,
@@ -804,7 +840,9 @@
     "ProkaryoteChance": 0.2,
     "ChanceToCreate": 0.2,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/Chemoreceptor.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Chemoreceptor.tscn"
+    },
     "PositionedExternally": true,
     "Name": "CHEMORECEPTOR",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png",
@@ -836,9 +874,11 @@
     "ProkaryoteChance": 0.3,
     "ChanceToCreate": 0.3,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/SlimeJet.tscn",
-    "DisplaySceneModelPath": "Armature/Skeleton3D/Cube",
-    "DisplaySceneAnimation": "AnimationPlayer",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/SlimeJet.tscn",
+      "ModelPath": "Armature/Skeleton3D/Cube",
+      "AnimationPlayerPath": "AnimationPlayer"
+    },
     "PositionedExternally": true,
     "Name": "SLIME_JET",
     "ConsumptionColour": "#00ffcc",
@@ -865,7 +905,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 0.4,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/SignalingAgent.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/SignalingAgent.tscn"
+    },
     "Name": "SIGNALING_AGENT",
     "IconPath": "res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png",
     "RequiresNucleus": true,
@@ -923,7 +965,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 1,
     "Density": 1200,
-    "DisplayScene": "res://assets/models/organelles/Thermoplast.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Thermoplast.tscn"
+    },
     "Name": "THERMOPLAST",
     "ProductionColour": "#9168b5",
     "ConsumptionColour": "#d15378",
@@ -963,9 +1007,11 @@
     "ChanceToCreate": 6,
     "Density": 1100,
     "RelativeDensityVolume": 1,
-    "DisplayScene": "res://assets/models/organelles/Cilia.tscn",
-    "DisplaySceneModelPath": "Armature/Skeleton3D/Cube_003",
-    "DisplaySceneAnimation": "AnimationPlayer",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Cilia.tscn",
+      "ModelPath": "Armature/Skeleton3D/Cube_003",
+      "AnimationPlayerPath": "AnimationPlayer"
+    },
     "PositionedExternally": true,
     "Name": "CILIA",
     "ProductionColour": "#ffae21",
@@ -1015,7 +1061,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 0.4,
     "Density": 1100,
-    "DisplayScene": "res://assets/models/organelles/Lysosome.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Lysosome.tscn"
+    },
     "Name": "LYSOSOME",
     "IconPath": "res://assets/textures/gui/bevel/parts/LysosomeIcon.png",
     "UnlockConditions": [
@@ -1055,7 +1103,9 @@
     "ChanceToCreate": 0,
     "Density": 1100,
     "RelativeDensityVolume": 1,
-    "DisplayScene": "res://assets/models/organelles/Axon.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Axon.tscn"
+    },
     "PositionedExternally": true,
     "Name": "ORGANELLE_AXON",
     "IconPath": "res://assets/textures/gui/bevel/parts/AxonIcon.png",
@@ -1098,7 +1148,9 @@
     "ProkaryoteChance": 0,
     "ChanceToCreate": 0,
     "Density": 1200,
-    "DisplayScene": "res://assets/models/organelles/Myofibril.tscn",
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Myofibril.tscn"
+    },
     "Name": "ORGANELLE_MYOFIBRIL",
     "IconPath": "res://assets/textures/gui/bevel/parts/MyofibrilIcon.png",
     "RequiresNucleus": true,

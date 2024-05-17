@@ -78,16 +78,16 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
         foreach (var organelle in organelleLayout)
         {
             // Model of the organelle
-            if (organelle.Definition.DisplayScene != null)
-            {
-                var organelleModel = modelScene.Instantiate<SceneDisplayer>();
-                AddChild(organelleModel);
+            if (!organelle.Definition.TryGetGraphicsScene(out var sceneWithModelInfo))
+                continue;
 
-                CellEditorComponent.UpdateOrganelleDisplayerTransform(organelleModel, organelle);
+            var organelleModel = modelScene.Instantiate<SceneDisplayer>();
+            AddChild(organelleModel);
 
-                CellEditorComponent.UpdateOrganellePlaceHolderScene(organelleModel,
-                    organelle.Definition.DisplayScene, organelle.Definition, Hex.GetRenderPriority(organelle.Position));
-            }
+            CellEditorComponent.UpdateOrganelleDisplayerTransform(organelleModel, organelle);
+
+            CellEditorComponent.UpdateOrganellePlaceHolderScene(organelleModel,
+                sceneWithModelInfo, Hex.GetRenderPriority(organelle.Position));
         }
     }
 

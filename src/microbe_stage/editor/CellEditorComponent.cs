@@ -569,10 +569,10 @@ public partial class CellEditorComponent :
     ///   Updates the organelle model displayer to have the specified scene in it
     /// </summary>
     public static void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        string displayScene, OrganelleDefinition definition, int renderPriority)
+        LoadedSceneWithModelInfo displayScene, int renderPriority)
     {
-        organelleModel.Scene = displayScene;
-        var material = organelleModel.GetMaterial(definition.DisplaySceneModelNodePath);
+        organelleModel.Scene = displayScene.LoadedScene;
+        var material = organelleModel.GetMaterial(displayScene.ModelPath);
         if (material != null)
         {
             material.RenderPriority = renderPriority;
@@ -1868,7 +1868,7 @@ public partial class CellEditorComponent :
         bool showModel = !hadDuplicate;
 
         // Model
-        if (!string.IsNullOrEmpty(shownOrganelle.DisplayScene) && showModel)
+        if (showModel && shownOrganelle.TryGetGraphicsScene(out var modelInfo))
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
 
@@ -1882,8 +1882,7 @@ public partial class CellEditorComponent :
 
             organelleModel.Visible = true;
 
-            UpdateOrganellePlaceHolderScene(organelleModel, shownOrganelle.DisplayScene!,
-                shownOrganelle, Hex.GetRenderPriority(new Hex(q, r)));
+            UpdateOrganellePlaceHolderScene(organelleModel, modelInfo, Hex.GetRenderPriority(new Hex(q, r)));
         }
     }
 
@@ -2165,7 +2164,7 @@ public partial class CellEditorComponent :
             // Hexes are handled by UpdateAlreadyPlacedHexes
 
             // Model of the organelle
-            if (organelle.Definition.DisplayScene != null)
+            if (organelle.Definition.TryGetGraphicsScene(out var modelInfo))
             {
                 if (nextFreeOrganelle >= placedModels.Count)
                 {
@@ -2179,8 +2178,7 @@ public partial class CellEditorComponent :
 
                 organelleModel.Visible = !MicrobePreviewMode;
 
-                UpdateOrganellePlaceHolderScene(organelleModel,
-                    organelle.Definition.DisplayScene, organelle.Definition, Hex.GetRenderPriority(organelle.Position));
+                UpdateOrganellePlaceHolderScene(organelleModel, modelInfo, Hex.GetRenderPriority(organelle.Position));
             }
         }
 
