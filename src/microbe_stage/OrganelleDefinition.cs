@@ -30,39 +30,10 @@ public class OrganelleDefinition : IRegistryType
     public string Name = null!;
 
     /// <summary>
-    ///   A path to a scene to display this organelle with. If empty won't have a display model.
-    /// </summary>
-    public string? DisplayScene;
-
-    /// <summary>
-    ///   A path to a scene to display this organelle as a corpse chunk. Not needed if it is the same as DisplayScene.
-    /// </summary>
-    public string? CorpseChunkScene;
-
-    /// <summary>
-    ///   If the root of the display scene is not the MeshInstance this needs to have the relative node path
-    /// </summary>
-    public string? DisplaySceneModelPath;
-
-    [JsonIgnore]
-    public NodePath? DisplaySceneModelNodePath;
-
-    /// <summary>
-    ///   If this organelle's display scene has animation this needs to be the path to the animation player node
-    /// </summary>
-    public string? DisplaySceneAnimation;
-
-    /// <summary>
     ///   When true the graphics for this organelle are positioned externally (i.e. moved to the membrane edge and
     ///   point outside from the cell)
     /// </summary>
     public bool PositionedExternally;
-
-    /// <summary>
-    ///   Loaded scene instance to be used when organelle of this type is placed
-    /// </summary>
-    [JsonIgnore]
-    public PackedScene? LoadedScene;
 
     /// <summary>
     ///   Loaded icon for display in GUIs
@@ -213,6 +184,21 @@ public class OrganelleDefinition : IRegistryType
     private string? untranslatedName;
 #pragma warning restore 169,649
 
+    /// <summary>
+    ///   A path to a scene to display this organelle with. If empty won't have a display model.
+    /// </summary>
+    [JsonProperty]
+    private SceneWithModelInfo graphics;
+
+    /// <summary>
+    ///   How to display this organelle as a corpse chunk. Not needed if it is the same as <see cref="graphics"/>.
+    /// </summary>
+    [JsonProperty]
+    private SceneWithModelInfo corpseChunkGraphics;
+
+    private LoadedSceneWithModelInfo loadedSceneData;
+    private LoadedSceneWithModelInfo loadedCorpseScene;
+
     [JsonProperty]
     private string? endosymbiosisUnlocks;
 
@@ -281,6 +267,42 @@ public class OrganelleDefinition : IRegistryType
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
+
+    /// <summary>
+    ///   Gets the visual scene that should be used to represent this organelle (if there is one)
+    /// </summary>
+    /// <para cref="modelInfo">
+    ///   The model info returned like this (as it may be a struct type this can't return a nullable reference without
+    ///   boxing)
+    /// </para>
+    /// <returns>True when this has a scene</returns>
+    public bool TryGetGraphicsScene(out LoadedSceneWithModelInfo modelInfo)
+    {
+        // TODO: allow this to be affected by upgrades (add as a first parameter to this method)
+
+        if (loadedSceneData.LoadedScene == null!)
+        {
+            modelInfo = default(LoadedSceneWithModelInfo);
+            return false;
+        }
+
+        modelInfo = loadedSceneData;
+        return true;
+    }
+
+    public bool TryGetCorpseChunkGraphics(out LoadedSceneWithModelInfo modelInfo)
+    {
+        // TODO: allow this to be affected by upgrades (add as a first parameter to this method)
+
+        if (loadedCorpseScene.LoadedScene == null!)
+        {
+            modelInfo = default(LoadedSceneWithModelInfo);
+            return false;
+        }
+
+        modelInfo = loadedCorpseScene;
+        return true;
+    }
 
     public bool ContainsHex(Hex hex)
     {
@@ -408,14 +430,11 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "Hexes is empty");
         }
 
-        if (string.IsNullOrEmpty(DisplayScene) && string.IsNullOrEmpty(CorpseChunkScene))
+        if (string.IsNullOrEmpty(graphics.ScenePath) && string.IsNullOrEmpty(corpseChunkGraphics.ScenePath))
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Both DisplayScene and CorpseChunkScene are null");
         }
-
-        if (DisplaySceneModelPath != null)
-            DisplaySceneModelNodePath = new NodePath(DisplaySceneModelPath);
 
         // Check for duplicate position hexes
         for (int i = 0; i < Hexes.Count; ++i)
@@ -467,9 +486,9 @@ public class OrganelleDefinition : IRegistryType
         }
 
 #if DEBUG
-        if (!string.IsNullOrEmpty(CorpseChunkScene))
+        if (!string.IsNullOrEmpty(corpseChunkGraphics.ScenePath))
         {
-            if (!ResourceLoader.Exists(CorpseChunkScene))
+            if (!ResourceLoader.Exists(corpseChunkGraphics.ScenePath))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Corpse chunk scene path doesn't exist");
@@ -488,9 +507,19 @@ public class OrganelleDefinition : IRegistryType
         RunnableProcesses = new List<TweakedProcess>();
 
         // Preload the scene for instantiating in microbes
-        if (!string.IsNullOrEmpty(DisplayScene))
+        // TODO: switch this to only load when loading the microbe stage to not load this in the future when we have
+        // playable stages that don't need these graphics
+        if (!string.IsNullOrEmpty(graphics.ScenePath))
         {
-            LoadedScene = GD.Load<PackedScene>(DisplayScene);
+            loadedSceneData.LoadFrom(graphics);
+        }
+
+        // Use default values from the primary scene
+        loadedCorpseScene = loadedSceneData;
+
+        if (!string.IsNullOrEmpty(corpseChunkGraphics.ScenePath))
+        {
+            loadedCorpseScene.LoadFrom(corpseChunkGraphics);
         }
 
         if (!string.IsNullOrEmpty(IconPath))

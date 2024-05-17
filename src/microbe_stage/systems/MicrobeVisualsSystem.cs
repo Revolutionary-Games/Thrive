@@ -295,7 +295,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         foreach (var placedOrganelle in organelleContainer.Organelles!)
         {
             // Only handle organelles that have graphics
-            if (placedOrganelle.Definition.LoadedScene == null)
+            if (!placedOrganelle.Definition.TryGetGraphicsScene(out var graphicsInfo))
                 continue;
 
             inUseOrganelles.Add(placedOrganelle);
@@ -329,8 +329,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
                     Transform = transform,
                 };
 
-                var visualsInstance = placedOrganelle.Definition.LoadedScene.Instantiate<Node3D>();
-                placedOrganelle.ReportCreatedGraphics(visualsInstance);
+                var visualsInstance = graphicsInfo.LoadedScene.Instantiate<Node3D>();
+                placedOrganelle.ReportCreatedGraphics(visualsInstance, graphicsInfo);
 
                 extraLayer.AddChild(visualsInstance);
                 parentNode.AddChild(extraLayer);
@@ -351,10 +351,11 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
                 organelleMeshWithChildren.GetChildrenMaterials(tempMaterialsList);
             }
 
-            var material = graphics.GetMaterial(placedOrganelle.Definition.DisplaySceneModelNodePath);
+            // Use the model data from when the graphics were loaded for consistency
+            var material = graphics.GetMaterial(placedOrganelle.LoadedGraphicsSceneInfo.ModelPath);
             tempMaterialsList.Add(material);
 
-            // Apply tint (again) to make sure it is up to date
+            // Apply tint (again) to make sure it is up-to-date
             int count = tempMaterialsList.Count;
             for (int i = start; i < count; ++i)
             {

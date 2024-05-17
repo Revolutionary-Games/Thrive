@@ -259,7 +259,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             // Verify in debug mode that initialization didn't just fail for the graphics
             foreach (var organelle in organelles.Organelles!)
             {
-                if (organelle.Definition.LoadedScene == null)
+                if (!organelle.Definition.TryGetGraphicsScene(out _))
                     continue;
 
                 GD.PrintErr("Photographed a microbe with no initialized cell graphics but it should have some");
@@ -269,7 +269,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         }
         else
         {
-            GD.PrintErr("Photographing a microbe that didn't initialized it organelle visuals");
+            GD.PrintErr("Photographing a microbe that didn't initialize its organelle visuals");
         }
 
         return new Vector3(center.X,
