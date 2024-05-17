@@ -20,6 +20,7 @@ organelleChoicesContainer = NodePath("HBoxContainer/VBoxContainer/ScrollContaine
 speciesNameLabel = NodePath("Name")
 speciesPreview = NodePath("HBoxContainer/SpeciesImage")
 selectButton = NodePath("HBoxContainer/SelectButton")
+noValidOrganellesFont = ExtResource("4_ub6ah")
 
 [node name="Name" type="Label" parent="."]
 editor_description = "PLACEHOLDER"
