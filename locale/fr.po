@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 15:07+0300\n"
+"POT-Creation-Date: 2024-05-16 15:39+0300\n"
 "PO-Revision-Date: 2024-05-16 13:10+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -724,6 +724,10 @@ msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Visitez le wiki de la communauté"
 
 msgid "COMPILED_AT_COLON"
+msgstr "Compilée le :"
+
+#, fuzzy
+msgid "COMPLETE_ACTION"
 msgstr "Compilée le :"
 
 msgid "COMPOUNDS"
@@ -1560,6 +1564,66 @@ msgstr "Activer l'éditeur"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Activer les effets lumineux dans l'interface utilisateur"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Plusieurs organites"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Dissocier tout"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Les microbes agressifs pourchasseront leurs proies sur de plus longues distances\n"
+"et sont plus enclins à affronter un assaillant.\n"
+"Les microbes pacifiques ne poursuivront pas les autres cellules si elles se tiennent à distance\n"
+"et utiliseront moins de toxines contre les prédateurs."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Organites déconnectés"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Ceci indique le nombre de fenêtres contextuelles qui ont été définitivement désactivées par l'utilisateur.\n"
+"Si certaines fenêtres contextuelles, qui sont en fait souhaitées, ont été désactivées, le bouton situé à côté peut être utilisé pour faire réapparaître toutes les fenêtres contextuelles désactivées."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Transforme le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. Effet proportionnel avec la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Transforme aussi le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Entrer dans l'éditeur et modifier votre espèce"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Titre manquant"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0} : -{1} ATP"
 
@@ -1666,6 +1730,10 @@ msgstr "Constructions"
 
 msgid "EXIT"
 msgstr "Quitter"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Aller au prochain onglet de l'éditeur"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Revenir au lanceur"
@@ -3865,6 +3933,13 @@ msgstr "Échec du chargement du ficher pck ({0}) car le fichier est inexistant"
 msgid "PEACEFUL"
 msgstr "Pacifique"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Vous utilisez Thrive avec OpenGL. Cela demeure non testé et risque de causer des problèmes. Assurez-vous d'utiliser des cartes graphiques (processeurs graphiques ou intégrées) suffisamment récentes et essayez de mettre à jour vos pilotes vidéos. Pour les ordinateur portables vous pouvez avoir besoin de forcer l'utilisation des cartes graphiques AMD ou Nvidia dédiées pour lancer Thrive au lieu des cartes graphiques intégrées."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4652,6 +4727,10 @@ msgstr "s'est propagé dans les secteurs :"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
+
+#, fuzzy
+msgid "START"
+msgstr "Démarrage"
 
 msgid "STARTING"
 msgstr "Démarrage"
@@ -5590,6 +5669,10 @@ msgstr "Voir les notes de correctif"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Voir toutes ou les dernières notes de correctif maintenant"
+
+#, fuzzy
+msgid "VIEW_PENDING_ACTIONS"
+msgstr "Modifications"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Voir le code source"

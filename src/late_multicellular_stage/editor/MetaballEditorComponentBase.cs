@@ -364,8 +364,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         if (metaball != null)
             StartMetaballMove(metaball);
 
-        // Once a move has begun, the button visibility should be updated so it becomes visible
-        UpdateCancelState();
         return true;
     }
 
@@ -381,11 +379,8 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
         OnMoveActionStarted();
 
-        // Disable undo/redo/symmetry button while moving (enabled after finishing move)
-        Editor.NotifyUndoRedoStateChanged();
-
-        // TODO: change this to go through the editor as well for consistency
-        UpdateSymmetryButton();
+        // Once a move has begun, the button visibility should be updated to make it become visible
+        OnActionStatusChanged();
     }
 
     public void StartMetaballMoveWithSymmetry(IEnumerable<TMetaball> selectedMetaballs)
@@ -731,11 +726,18 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         }
     }
 
-    protected virtual void OnCurrentActionCanceled()
+    protected override void OnCurrentActionCanceled()
     {
-        UpdateCancelButtonVisibility();
+        base.OnCurrentActionCanceled();
 
         // TODO: switch to this going through the editor
+        UpdateSymmetryButton();
+    }
+
+    protected override void OnActionStatusChanged()
+    {
+        base.OnActionStatusChanged();
+
         UpdateSymmetryButton();
     }
 
@@ -743,12 +745,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     {
         MovingPlacedMetaball = null;
 
-        // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
-        // TODO: should this call be made through Editor here?
-        UpdateCancelButtonVisibility();
-
-        // Re-enable undo/redo button
-        Editor.NotifyUndoRedoStateChanged();
+        OnActionStatusChanged();
     }
 
     /// <summary>
@@ -821,11 +818,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     protected virtual float CalculateEditorArrowZPosition()
     {
         throw new GodotAbstractMethodNotOverriddenException();
-    }
-
-    protected virtual void UpdateCancelState()
-    {
-        UpdateCancelButtonVisibility();
     }
 
     protected void UpdateSymmetryButton()

@@ -198,6 +198,13 @@ public class OrganelleDefinition : IRegistryType
     public List<ConditionSet>? UnlockConditions;
 
     /// <summary>
+    ///   What organelle does this organelle turn into when doing endosymbiosis. See
+    ///   <see cref="MicrobeInternalCalculations.CalculatePossibleEndosymbiontsFromSpecies"/>.
+    /// </summary>
+    [JsonIgnore]
+    public OrganelleDefinition? EndosymbiosisUnlocks;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
@@ -205,6 +212,9 @@ public class OrganelleDefinition : IRegistryType
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
 #pragma warning restore 169,649
+
+    [JsonProperty]
+    private string? endosymbiosisUnlocks;
 
     private Vector3 modelOffset;
 
@@ -514,6 +524,12 @@ public class OrganelleDefinition : IRegistryType
         {
             foreach (var set in UnlockConditions)
                 set.Resolve(parameters);
+        }
+
+        // Resolve endosymbiosis data
+        if (!string.IsNullOrEmpty(endosymbiosisUnlocks))
+        {
+            EndosymbiosisUnlocks = parameters.GetOrganelleType(endosymbiosisUnlocks);
         }
 
         if (Unimplemented)

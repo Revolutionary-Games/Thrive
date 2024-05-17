@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=63 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bqq2yi8f6l4lt" path="res://assets/textures/gui/bevel/DigestionIcon.png" id="31"]
 [ext_resource type="Texture2D" uid="uid://ctdcp7ts77dhd" path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" id="32"]
 [ext_resource type="Texture2D" uid="uid://bssy7badj4d0y" path="res://assets/textures/gui/bevel/sliderTick.png" id="35"]
+[ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="38_e0n84"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="42"]
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="43"]
@@ -345,7 +346,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -369,7 +370,7 @@ BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginConta
 StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 AppearanceTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane")
 BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
-PartsSelectionContainerPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection")
+PartsSelectionContainerPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection")
 MembraneTypeSelectionPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes")
 SizeLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size")
 OrganismStatisticsPath = NodePath("RightPanel/VBoxContainer/Statistics")
@@ -402,6 +403,9 @@ RightPanelScrollContainerPath = NodePath("RightPanel/VBoxContainer/Statistics/VB
 ATPBalanceNormalText = ExtResource("24_ekuel")
 ATPBalanceNotEnoughText = ExtResource("4_fhdek")
 atpBalanceLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")
+pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
+endosymbiosisButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis")
+endosymbiosisPopup = NodePath("EndosymbiosisPopup")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
@@ -637,13 +641,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer"]
+[node name="StructureContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="SearchBar" type="LineEdit" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection"]
+[node name="SearchBar" type="LineEdit" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection"]
 visible = false
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
@@ -654,30 +661,35 @@ theme_override_colors/selection_color = Color(1, 1, 1, 1)
 placeholder_text = "SEARCH_DOT_DOT_DOT"
 selecting_enabled = false
 
-[node name="Structural" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource("45")]
+[node name="Structural" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "STRUCTURAL"
 Columns = 3
 
-[node name="Protein" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource("45")]
+[node name="Protein" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "PROTEINS"
 Columns = 3
 
-[node name="External" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource("45")]
+[node name="External" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "EXTERNAL"
 Columns = 3
 
-[node name="Organelle" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource("45")]
+[node name="Organelle" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "ORGANELLES"
 Columns = 3
 
-[node name="Multicellular" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource("45")]
+[node name="Multicellular" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "ORGANELLE_CATEGORY_MULTICELLULAR"
 Columns = 3
+
+[node name="Endosymbiosis" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "ENDOSYMBIOSIS_BUTTON"
 
 [node name="Membrane" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
@@ -1172,6 +1184,16 @@ offset_bottom = 85.0
 DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 WindowTitle = "NEGATIVE_ATP_BALANCE"
 
+[node name="CompleteEndosymbiosisWarning" parent="." instance=ExtResource("9")]
+custom_minimum_size = Vector2(500, 0)
+offset_right = 500.0
+offset_bottom = 85.0
+NodeToGiveFocusOnOpen = NodePath("VBoxContainer/HBoxContainer/ConfirmButton")
+DialogText = "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+ConfirmText = "VIEW_PENDING_ACTIONS"
+CancelText = "EXIT_EDITOR"
+WindowTitle = "PENDING_ENDOSYMBIOSIS_TITLE"
+
 [node name="IslandError" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(600, 0)
 offset_right = 600.0
@@ -1197,6 +1219,9 @@ anchor_right = 0.15625
 anchor_bottom = 0.183333
 offset_right = 0.0
 offset_bottom = 0.0
+
+[node name="EndosymbiosisPopup" parent="." instance=ExtResource("38_e0n84")]
+layout_mode = 1
 
 [node name="PredictionExplanation" parent="." instance=ExtResource("39")]
 custom_minimum_size = Vector2(550, 500)
@@ -1259,7 +1284,8 @@ text = "CLOSE"
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= ["Structure"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane" to="." method="SetSelectionMenuTab" binds= ["Membrane"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
-[connection signal="text_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/SearchBar" to="." method="OnSearchBoxTextChanged"]
+[connection signal="text_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection/SearchBar" to="." method="OnSearchBoxTextChanged"]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis" to="." method="OnEndosymbiosisButtonPressed"]
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigidityChanged"]
 [connection signal="color_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker" to="." method="OnColorChanged"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer/Details" to="." method="OpenAutoEvoPredictionDetails"]
@@ -1272,8 +1298,15 @@ text = "CLOSE"
 [connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
 [connection signal="animation_finished" from="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge/AnimationPlayer" to="." method="HideFinishButtonWarningAfterAnimation"]
 [connection signal="Confirmed" from="NegativeAtpWarning" to="." method="ConfirmFinishEditingWithNegativeATPPressed"]
+[connection signal="Canceled" from="CompleteEndosymbiosisWarning" to="." method="ConfirmFinishEditingWithEndosymbiosis"]
+[connection signal="Confirmed" from="CompleteEndosymbiosisWarning" to="." method="OnEndosymbiosisButtonPressed"]
 [connection signal="Accepted" from="OrganelleUpgradeGUI" to="." method="UpdateStats"]
 [connection signal="DeletePressed" from="OrganellePopupMenu" to="." method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="OrganellePopupMenu" to="." method="OnModifyPressed"]
 [connection signal="MovePressed" from="OrganellePopupMenu" to="." method="OnMovePressed"]
+[connection signal="EndosymbiosisCancelled" from="EndosymbiosisPopup" to="." method="OnAbandonEndosymbiosisOperation"]
+[connection signal="EndosymbiosisFinished" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisFinished"]
+[connection signal="SpeciesSelected" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisSelected"]
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
+
+[editable path="CompleteEndosymbiosisWarning"]
