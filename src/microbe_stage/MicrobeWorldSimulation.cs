@@ -147,7 +147,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
             parallelRunner = new DefaultParallelRunner(1);
         }
 
-        // Set on systems that can be ran in parallel but aren't currently as there's no real performance improvement
+        // Set on systems that can be run in parallel but aren't currently as there's no real performance improvement
         // / the system entity count per thread needs tweaking before there's any benefit
         var couldParallelize = new DefaultParallelRunner(1);
 
