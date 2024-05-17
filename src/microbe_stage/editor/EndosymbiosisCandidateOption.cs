@@ -23,6 +23,9 @@ public partial class EndosymbiosisCandidateOption : VBoxContainer
 
     [Export]
     private Button selectButton = null!;
+
+    [Export]
+    private LabelSettings noValidOrganellesFont = null!;
 #pragma warning restore CA2213
 
     private OrganelleDefinition? selected;
@@ -55,7 +58,9 @@ public partial class EndosymbiosisCandidateOption : VBoxContainer
                 Text = Localization.Translate("ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                SizeFlagsHorizontal = SizeFlags.ExpandFill,
                 CustomMinimumSize = new Vector2(100, 0),
+                LabelSettings = noValidOrganellesFont,
             });
 
             return;

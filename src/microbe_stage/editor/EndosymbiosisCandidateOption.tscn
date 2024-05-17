@@ -20,6 +20,7 @@ organelleChoicesContainer = NodePath("HBoxContainer/VBoxContainer/ScrollContaine
 speciesNameLabel = NodePath("Name")
 speciesPreview = NodePath("HBoxContainer/SpeciesImage")
 selectButton = NodePath("HBoxContainer/SelectButton")
+noValidOrganellesFont = ExtResource("4_ub6ah")
 
 [node name="Name" type="Label" parent="."]
 editor_description = "PLACEHOLDER"
@@ -54,12 +55,12 @@ horizontal_alignment = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 0
 mouse_force_pass_scroll_events = false
 vertical_scroll_mode = 0
 
 [node name="OrganelleChoices" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="SelectButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2

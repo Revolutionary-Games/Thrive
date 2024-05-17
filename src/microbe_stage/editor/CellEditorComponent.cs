@@ -841,10 +841,6 @@ public partial class CellEditorComponent :
 
                 effectiveSymmetry = HexEditorSymmetry.None;
             }
-            else
-            {
-                GD.PrintErr("Unknown editor state for showing hover hex");
-            }
 
             if (shownOrganelle != null)
             {
@@ -1859,9 +1855,6 @@ public partial class CellEditorComponent :
     /// </summary>
     private void RenderHighlightedOrganelle(int q, int r, int rotation, OrganelleDefinition shownOrganelle)
     {
-        if (MovingPlacedHex == null && ActiveActionName == null)
-            return;
-
         RenderHoveredHex(q, r, shownOrganelle.GetRotatedHexes(rotation), isPlacementProbablyValid,
             out bool hadDuplicate);
 

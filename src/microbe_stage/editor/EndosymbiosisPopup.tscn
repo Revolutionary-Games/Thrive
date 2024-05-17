@@ -8,12 +8,12 @@
 custom_minimum_size = Vector2(400, 400)
 offset_left = 444.0
 offset_top = 162.0
-offset_right = 844.0
+offset_right = 904.0
 offset_bottom = 562.0
 script = ExtResource("2_s4663")
-generalExplanationLabel = NodePath("VBoxContainer/Explanation")
-inProgressAdviceLabel = NodePath("VBoxContainer/EndosymbiosisProgressExplanation")
-prokaryoteFullLabel = NodePath("VBoxContainer/ProkaryoticLimit")
+generalExplanationLabel = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Explanation")
+inProgressAdviceLabel = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EndosymbiosisProgressExplanation")
+prokaryoteFullLabel = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticLimit")
 choicesContainer = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EndosymbiontsToChoose")
 progressContainer = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EndosymbiosisProgress")
 WindowTitle = "ENDOSYMBIOSIS_TITLE"
@@ -22,36 +22,12 @@ Resizable = true
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 460.0
+offset_bottom = 400.0
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="Explanation" type="Label" parent="VBoxContainer" index="0"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "ENDOSYMBIOSIS_EXPLANATION"
-label_settings = ExtResource("3_50ouf")
-autowrap_mode = 3
-
-[node name="EndosymbiosisProgressExplanation" type="Label" parent="VBoxContainer" index="1"]
-visible = false
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-label_settings = ExtResource("3_50ouf")
-autowrap_mode = 3
-
-[node name="ProkaryoticLimit" type="Label" parent="VBoxContainer" index="2"]
-visible = false
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-label_settings = ExtResource("3_50ouf")
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" index="3"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" index="0"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
@@ -64,17 +40,41 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="EndosymbiontsToChoose" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="Explanation" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "ENDOSYMBIOSIS_EXPLANATION"
+label_settings = ExtResource("3_50ouf")
+autowrap_mode = 3
+
+[node name="EndosymbiosisProgressExplanation" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+label_settings = ExtResource("3_50ouf")
+autowrap_mode = 3
+
+[node name="ProkaryoticLimit" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+label_settings = ExtResource("3_50ouf")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="EndosymbiontsToChoose" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="EndosymbiosisProgress" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="EndosymbiosisProgress" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Close" type="Button" parent="VBoxContainer" index="4"]
+[node name="Close" type="Button" parent="VBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
