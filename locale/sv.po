@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 15:07+0300\n"
+"POT-Creation-Date: 2024-05-16 15:39+0300\n"
 "PO-Revision-Date: 2024-04-21 10:59+0000\n"
 "Last-Translator: swedneck <github@swedneck.xyz>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -764,6 +764,10 @@ msgstr "Självmord"
 
 #, fuzzy
 msgid "COMPILED_AT_COLON"
+msgstr "Föreningar:"
+
+#, fuzzy
+msgid "COMPLETE_ACTION"
 msgstr "Föreningar:"
 
 msgid "COMPOUNDS"
@@ -1611,6 +1615,68 @@ msgstr "Aktivera Cellredigeraren"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Aktivera GUI ljus effecter"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Placera organell"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Lösgör alla"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Fortsätt"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Bortkopplade Organeller"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "DU HAR FRODATS!"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1731,6 +1797,10 @@ msgstr "Skriv över aktuell sparfil:"
 
 msgid "EXIT"
 msgstr "Lämna"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Aktivera Cellredigeraren"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -4025,6 +4095,13 @@ msgstr "Färdigladdat"
 msgid "PEACEFUL"
 msgstr "Fredlig"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4874,6 +4951,10 @@ msgstr "sprid till platser:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "START"
+msgstr "Börjar"
 
 msgid "STARTING"
 msgstr "Börjar"
@@ -5778,6 +5859,9 @@ msgstr "Grotta"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Grotta"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Visa Källkod"

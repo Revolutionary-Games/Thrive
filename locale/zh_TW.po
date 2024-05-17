@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 15:07+0300\n"
+"POT-Creation-Date: 2024-05-16 15:39+0300\n"
 "PO-Revision-Date: 2024-05-10 23:02+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -722,6 +722,10 @@ msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "造訪我們的社群 wiki"
 
 msgid "COMPILED_AT_COLON"
+msgstr "建置於："
+
+#, fuzzy
+msgid "COMPLETE_ACTION"
 msgstr "建置於："
 
 msgid "COMPOUNDS"
@@ -1553,6 +1557,66 @@ msgstr "啟用編輯器"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "啟用 GUI 燈光效果"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "解鎖所有細胞器"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "解散群落中的所有細胞"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "用來生成世界的隨機數，必須為正整數"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"激進型微生物會在更遠的距離追捕獵物，\n"
+"並且在受到攻擊時更有可能與掠食者作鬥爭。\n"
+"和平型微生物不會在意更遠距離的其它微生物，\n"
+"並且不太可能使用毒素來對付掠食者。"
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "未連接的細胞器"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"這顯示有多少彈出視窗已被使用者永久禁用。\n"
+"如果某些實際需要的彈出視窗被禁用，則可以使用旁邊的按鈕使所有被禁用的彈出視窗再次出現。"
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "將[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。同時也將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "進入編輯器並修改您的物種"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "缺少標題"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
 
@@ -1657,6 +1721,10 @@ msgstr "建築"
 
 msgid "EXIT"
 msgstr "退出"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "進入下一個編輯器分頁"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "退出至啟動器"
@@ -3824,6 +3892,13 @@ msgstr "由於檔案不存在，載入 pck 檔案（{0}）失敗"
 msgid "PEACEFUL"
 msgstr "和平"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "您正在使用 OpenGL 運行 Thrive。這未經嚴格測試並且很可能導致問題。確保您使用的是足夠新的 GPU 或整合式顯示卡，並嘗試更新您的視訊驅動程式。對於筆記型電腦，您可能需要強制使用專用 AMD 或 Nvidia 顯示卡而非整合式顯示卡來運行 Thrive。"
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4605,6 +4680,10 @@ msgstr "擴散到區域："
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暫停選單"
+
+#, fuzzy
+msgid "START"
+msgstr "啟動中"
 
 msgid "STARTING"
 msgstr "啟動中"
@@ -5495,6 +5574,10 @@ msgstr "查看更新說明"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "查看最新或所有 Thrive 更新說明"
+
+#, fuzzy
+msgid "VIEW_PENDING_ACTIONS"
+msgstr "修改選項"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看原始碼"

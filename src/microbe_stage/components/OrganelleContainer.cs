@@ -104,7 +104,7 @@ public struct OrganelleContainer
     public bool OrganelleVisualsCreated;
 
     /// <summary>
-    ///   Reset this if organelles are changed. Otherwise <see cref="SlimeJets"/> etc. variables won't work
+    ///   Reset this if organelles are changed. Otherwise, <see cref="SlimeJets"/> etc. variables won't work
     ///   correctly
     /// </summary>
     [JsonIgnore]
@@ -243,6 +243,12 @@ public static class OrganelleContainerHelpers
         container.CreateOrganelleLayout(cellDefinition, workMemory1, workMemory2);
         container.UpdateEngulfingSizeData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
             cellDefinition.IsBacteria);
+
+        // Remove endosymbiont info as organelles were cleared
+        if (entity.Has<TemporaryEndosymbiontInfo>())
+        {
+            entity.Get<TemporaryEndosymbiontInfo>().Clear();
+        }
 
         // Reproduction progress is lost
         container.AllOrganellesDivided = false;

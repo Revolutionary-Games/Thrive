@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 15:07+0300\n"
+"POT-Creation-Date: 2024-05-16 15:39+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -718,6 +718,10 @@ msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Navštivte naši komunitní wiki"
 
 msgid "COMPILED_AT_COLON"
+msgstr "Postaveno v:"
+
+#, fuzzy
+msgid "COMPLETE_ACTION"
 msgstr "Postaveno v:"
 
 msgid "COMPOUNDS"
@@ -1618,6 +1622,67 @@ msgstr "Zapnout editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povolit světelné efekty rozhraní"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Více organel"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Rozpojit všechny"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Agresivní mikrobi budou pronásledovat kořist na větší vzdálenosti\n"
+"a při napadení predátory jsou náchylnější k boji.\n"
+"Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
+"a je méně pravděpodobné, že budou používat toxiny proti predátorům."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Odpojené organely"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
+"a mohou být mnohem náročnější na kusy.\n"
+"Reagující mikroby se dříve přepnou na nové cíle."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Přeměňuje [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] na [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Také přeměňuje [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Vstupte do editoru a upravte svůj druh"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Chybí název"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1726,6 +1791,10 @@ msgstr "Zadejte existující ID"
 
 msgid "EXIT"
 msgstr "Odejít"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Přejít do následující záložky editoru"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -4030,6 +4099,13 @@ msgstr "Načítání souboru pck ({0}) se nezdařilo protože soubor neexistuje"
 msgid "PEACEFUL"
 msgstr "Mírumilovnost"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4840,6 +4916,10 @@ msgstr "rozšířen do prostředí:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu pozastavení"
+
+#, fuzzy
+msgid "START"
+msgstr "Začínání"
 
 msgid "STARTING"
 msgstr "Začínání"
@@ -5771,6 +5851,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zdrojový kód"

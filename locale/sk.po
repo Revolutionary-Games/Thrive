@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 15:07+0300\n"
+"POT-Creation-Date: 2024-05-16 15:39+0300\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -734,6 +734,10 @@ msgstr "Opustiť hru"
 
 #, fuzzy
 msgid "COMPILED_AT_COLON"
+msgstr "Zlúčeniny:"
+
+#, fuzzy
+msgid "COMPLETE_ACTION"
 msgstr "Zlúčeniny:"
 
 msgid "COMPOUNDS"
@@ -1534,6 +1538,60 @@ msgstr "Zapni editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povoliť svetelné efekty GUI"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Umiestniť organelu"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Rozpojiť všetky"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr "(začiatočná poloha)"
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Odpojené organely"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "(začiatočná poloha)"
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Premieňa [thrive:compound type=\"hydrogensulfide\"]sírovodík[/thrive:compound] na [thrive:compound type=\"glucose\"]glukózu[/thrive:compound]. Množstvo závisí od koncentrácie [thrive:compound type=\"carbondioxide\"]oxidu uhličitého [/thrive:compound]. Taktiežpremieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Vstúpte do editora a upravte svoj druh"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Chýba názov"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1646,6 +1704,10 @@ msgstr "Zadajte existujúce ID"
 
 msgid "EXIT"
 msgstr "Odísť"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Editor"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -3845,6 +3907,13 @@ msgstr "Načítanie súboru pck ({0}) zlyhalo"
 msgid "PEACEFUL"
 msgstr "Mierumilovný"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Spúšťaš Thrive pomocou vykresľovača GLES2. Táto možnosť nie je otestovaná a môže spôsobiť problémy. Skús si aktualizovať svoje grafické ovládače alebo vynútiť použitie AMD alebo Nvidia grafiky pre spustenie Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4648,6 +4717,10 @@ msgstr "rozšírenie do oblastí:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "START"
+msgstr "Spustenie"
 
 msgid "STARTING"
 msgstr "Spustenie"
@@ -5463,6 +5536,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zobraziť zdrojový kód"

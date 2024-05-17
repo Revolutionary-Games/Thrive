@@ -403,6 +403,14 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (CurrentGame == null)
             throw new InvalidOperationException("Stage has no current game");
 
+        // Update endosymbiosis progress now that the player got to the editor
+        if (Player.Has<TemporaryEndosymbiontInfo>())
+        {
+            ref var endosymbiontInfo = ref Player.Get<TemporaryEndosymbiontInfo>();
+
+            endosymbiontInfo.UpdateEndosymbiosisProgress(Player.Get<SpeciesMember>().Species);
+        }
+
         Node sceneInstance;
 
         if (Player.Has<EarlyMulticellularSpeciesMember>())

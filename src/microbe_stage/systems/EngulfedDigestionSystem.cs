@@ -34,6 +34,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
+[ReadsComponent(typeof(SpeciesMember))]
 [RunsAfter(typeof(EngulfingSystem))]
 [RuntimeCost(2)]
 public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
@@ -301,8 +302,27 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             {
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
 
-                if (engulferIsPlayer && engulfedObject.Has<CellProperties>())
-                    gameWorld!.StatisticsTracker.TotalDigestedByPlayer.Increment(1);
+                if (engulfedObject.Has<CellProperties>())
+                {
+                    if (engulferIsPlayer)
+                        gameWorld!.StatisticsTracker.TotalDigestedByPlayer.Increment(1);
+
+                    // TODO: maybe allow non-player and other species to to also perform endosymbiosis
+                    if (engulferIsPlayer && entity.Has<SpeciesMember>() && engulfedObject.Has<SpeciesMember>())
+                    {
+                        var engulferSpecies = entity.Get<SpeciesMember>().Species;
+                        var targetSpecies = engulfedObject.Get<SpeciesMember>().Species;
+
+                        // TODO: if all species can do endosymbiosis then there might be a need to clear out this every
+                        // now and then to not keep species history around forever
+                        var engulfedSpecies = engulferSpecies.Endosymbiosis.EngulfedSpecies;
+                        engulfedSpecies.TryGetValue(targetSpecies, out var existingCount);
+                        engulfedSpecies[targetSpecies] = existingCount + 1;
+
+                        // TODO: maybe add a notice that the player might be able to make an endosymbiont. That
+                        // shouldn't always trigger on each engulf but would be nice to have sometimes.
+                    }
+                }
             }
 
             // This is always applied, even when digested fully now. This is because EngulfingSystem will subtract

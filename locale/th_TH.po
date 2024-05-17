@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 15:07+0300\n"
+"POT-Creation-Date: 2024-05-16 15:39+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -744,6 +744,10 @@ msgstr "ดำเนินการต่อ"
 
 #, fuzzy
 msgid "COMPILED_AT_COLON"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "COMPLETE_ACTION"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 msgid "COMPOUNDS"
@@ -1555,6 +1559,58 @@ msgstr "เปิดใช้งานตัวแก้ไข"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "วางออร์แกเนลล์"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "โปรตีนสังเคราะห์ Chemosynthesizing เป็นกลุ่มโปรตีนขนาดเล็กในไซโทพลาซึมที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์ เนื่องจากโปรตีนสังเคราะห์ทางเคมีจะแขวนลอยอยู่ในไซโตพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
@@ -1664,6 +1720,10 @@ msgstr "รีเซ็ตอินพุต"
 
 msgid "EXIT"
 msgstr "ออก"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "เปิดใช้งานตัวแก้ไข"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -3933,6 +3993,13 @@ msgstr ""
 msgid "PEACEFUL"
 msgstr ""
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "คุณกำลังเจริญเติบโตด้วย GLES2 สิ่งนี้ยังไม่ผ่านการทดสอบอย่างรุนแรงและมีแนวโน้มที่จะทำให้เกิดปัญหา พยายามอัปเดตไดรเวอร์วิดีโอของคุณและ / หรือบังคับให้ใช้กราฟิก AMD หรือ Nvidia เพื่อเรียกใช้ Thrive"
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -4775,6 +4842,10 @@ msgstr "แพร่กระจายไปยังแพทช์:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "START"
+msgstr "เริ่มต้น"
 
 msgid "STARTING"
 msgstr "เริ่มต้น"
@@ -5677,6 +5748,9 @@ msgstr ""
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "\"{0}\" - {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "ดูซอร์สโค้ด"

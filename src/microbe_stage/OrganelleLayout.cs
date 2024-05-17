@@ -125,6 +125,52 @@ public class OrganelleLayout<T> : HexLayout<T>
         return true;
     }
 
+    /// <summary>
+    ///   Searches in a spiral pattern for a valid place to put the new organelle. Result is stored as the position
+    ///   of the given new organelle object. Note that this is probably too slow for very huge cells.
+    /// </summary>
+    public void FindAndPlaceAtValidPosition(T newOrganelle, int startQ, int startR, List<Hex> workData1,
+        List<Hex> workData2)
+    {
+        int radius = 1;
+
+        while (true)
+        {
+            // Moves into the ring of radius "radius" around the given starting point center the old organelle
+            var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BottomLeft];
+            startQ += radiusOffset.Q;
+            startR += radiusOffset.R;
+
+            // Iterates in the ring
+            for (int side = 1; side <= 6; ++side)
+            {
+                var offset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
+
+                // Moves "radius" times into each direction
+                for (int i = 1; i <= radius; ++i)
+                {
+                    startQ += offset.Q;
+                    startR += offset.R;
+
+                    // Checks every possible rotation value.
+                    for (int j = 0; j <= 5; ++j)
+                    {
+                        newOrganelle.Position = new Hex(startQ, startR);
+
+                        newOrganelle.Orientation = j;
+                        if (CanPlace(newOrganelle, workData1, workData2))
+                        {
+                            AddFast(newOrganelle, workData1, workData2);
+                            return;
+                        }
+                    }
+                }
+            }
+
+            ++radius;
+        }
+    }
+
     protected override void GetHexComponentPositions(T hex, List<Hex> result)
     {
         result.Clear();

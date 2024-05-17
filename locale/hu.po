@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 15:07+0300\n"
+"POT-Creation-Date: 2024-05-16 15:39+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -737,6 +737,10 @@ msgstr "Kilépés a játékból"
 
 #, fuzzy
 msgid "COMPILED_AT_COLON"
+msgstr "Vegyületek:"
+
+#, fuzzy
+msgid "COMPLETE_ACTION"
 msgstr "Vegyületek:"
 
 msgid "COMPOUNDS"
@@ -1569,6 +1573,66 @@ msgstr "Szerkesztő engedélyezése"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI fényeffektjeinek engedélyezése"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Sejtszervecske elhelyezése"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Összes szétválasztása"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Az agresszív sejtek a prédáikat távolabbról is le fogják vadászni,\n"
+"és nagyobb eséllyel küzdenek más ragadozók ellen, ha megtámadják őket.\n"
+"A békés sejtek nem kergetnek más prédákat,\n"
+"és kevesebb eséllyel használnak mérgeket ragadozók ellen."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Levált sejtszervecskék"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
+"A reszponzív sejtek hamar új célpontokat keresnek."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-ot alakít át [thrive:compound type=\"glucose\"][/thrive:compound]-zá. A folyamat sebessége a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától függ. Továbbá még a [thrive:compound type=\"glucose\"][/thrive:compound]-t alakítja át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Segítség"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Nincs cím"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1680,6 +1744,10 @@ msgstr "Írj be egy létező ID-t"
 
 msgid "EXIT"
 msgstr "Kilépés"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Menj a következő szerkesztő ablakba"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -4008,6 +4076,13 @@ msgstr "pck fájl ({0}) betöltése sikertelen"
 msgid "PEACEFUL"
 msgstr "Békés"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "A Thrive-ot GLES2 módban futtatod. Ennek a módnak a használata nincs letesztelve, és nagy eséllyel hibákat okozhat. Próbáld meg frissíteni a videókártyád driverét vagy/és kényszerítsd az AMD vagy Nvidia grafikai szoftverét a Thrive futtatására."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4836,6 +4911,10 @@ msgstr "ezen patch-ekben terjed:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menü"
+
+#, fuzzy
+msgid "START"
+msgstr "Indítás"
 
 msgid "STARTING"
 msgstr "Indítás"
@@ -5760,6 +5839,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "A forráskód megtekintése"
