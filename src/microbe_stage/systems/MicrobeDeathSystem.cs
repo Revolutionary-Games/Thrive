@@ -181,7 +181,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                 var organelleDefinition = organellesAvailableEnumerator.Current.Definition;
 
                 if (organelleDefinition.TryGetCorpseChunkGraphics(organellesAvailableEnumerator.Current.Upgrades,
-                    out var loaded))
+                        out var loaded))
                 {
                     sceneToUse.ScenePath = loaded.LoadedScene.ResourcePath;
                     sceneToUse.SceneModelPath = loaded.ModelPath;

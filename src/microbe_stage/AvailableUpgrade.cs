@@ -7,15 +7,15 @@ using Newtonsoft.Json;
 /// </summary>
 public class AvailableUpgrade : IRegistryType
 {
+    private LoadedSceneWithModelInfo loadedSceneData;
+
+#pragma warning disable 169,649 // Used through reflection
     /// <summary>
     ///   A path to a scene to display this organelle with. If empty won't have a display model.
     /// </summary>
     [JsonProperty]
     private SceneWithModelInfo graphics;
 
-    private LoadedSceneWithModelInfo loadedSceneData;
-
-#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
     private string? untranslatedDescription;
 #pragma warning restore 169,649
