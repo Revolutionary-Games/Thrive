@@ -281,29 +281,41 @@ public class OrganelleDefinition : IRegistryType
     /// <returns>True when this has a scene</returns>
     public bool TryGetGraphicsScene(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
-        var upgradeGraphics = TryGetGraphicsForUpgrade(upgrades);
+        var hasUpgradeGraphics = TryGetGraphicsForUpgrade(upgrades, out var upgradeGraphics);
+
+        if (hasUpgradeGraphics)
+        {
+            modelInfo = upgradeGraphics;
+            return true;
+        }
 
         if (loadedSceneData.LoadedScene == null!)
         {
-            modelInfo = upgradeGraphics ?? default(LoadedSceneWithModelInfo);
+            modelInfo = default(LoadedSceneWithModelInfo);
             return false;
         }
 
-        modelInfo = upgradeGraphics ?? loadedSceneData;
+        modelInfo = loadedSceneData;
         return true;
     }
 
     public bool TryGetCorpseChunkGraphics(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
-        var upgradeGraphics = TryGetGraphicsForUpgrade(upgrades);
+        var hasUpgradeGraphics = TryGetGraphicsForUpgrade(upgrades, out var upgradeGraphics);
+
+        if (hasUpgradeGraphics)
+        {
+            modelInfo = upgradeGraphics;
+            return true;
+        }
 
         if (loadedCorpseScene.LoadedScene == null!)
         {
-            modelInfo = upgradeGraphics ?? default(LoadedSceneWithModelInfo);
+            modelInfo = default(LoadedSceneWithModelInfo);
             return false;
         }
 
-        modelInfo = upgradeGraphics ?? loadedCorpseScene;
+        modelInfo = loadedCorpseScene;
         return true;
     }
 
@@ -660,10 +672,14 @@ public class OrganelleDefinition : IRegistryType
         return offset;
     }
 
-    private LoadedSceneWithModelInfo TryGetGraphicsForUpgrade(OrganelleUpgrades? upgrades)
+    private bool TryGetGraphicsForUpgrade(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo upgradeScene)
     {
         if (upgrades == null)
-            return default(LoadedSceneWithModelInfo);
+        {
+            upgradeScene = default(LoadedSceneWithModelInfo);
+
+            return false;
+        }
 
         foreach (var availableUpgrade in AvailableUpgrades)
         {
@@ -671,12 +687,15 @@ public class OrganelleDefinition : IRegistryType
 
             if (upgrades.UnlockedFeatures.Contains(availableUpgrade.Key))
             {
-                if (availableUpgrade.Value.TryGetGraphicsScene().)
-                {
-                    return availableUpgrade.Value.TryGetGraphicsScene();
-                }
+                upgradeScene = availableUpgrade.Value.TryGetGraphicsScene();
+
+                return true;
             }
         }
+
+        upgradeScene = default(LoadedSceneWithModelInfo);
+
+        return false;
     }
 
     public class OrganelleComponentFactoryInfo
