@@ -11,10 +11,10 @@ public class AvailableUpgrade : IRegistryType
 
 #pragma warning disable 169,649 // Used through reflection
     /// <summary>
-    ///   A path to a scene to display this organelle with. If empty won't have a display model.
+    ///   A path to a scene to override organelle's display scene. If empty won't have a display model.
     /// </summary>
     [JsonProperty]
-    private SceneWithModelInfo graphics;
+    private SceneWithModelInfo overrideGraphics;
 
     private string? untranslatedName;
     private string? untranslatedDescription;
@@ -87,14 +87,17 @@ public class AvailableUpgrade : IRegistryType
         // Preload the scene for instantiating in microbes
         // TODO: switch this to only load when loading the microbe stage to not load this in the future when we have
         // playable stages that don't need these graphics
-        if (!string.IsNullOrEmpty(graphics.ScenePath))
+        if (!string.IsNullOrEmpty(overrideGraphics.ScenePath))
         {
-            loadedSceneData.LoadFrom(graphics);
+            loadedSceneData.LoadFrom(overrideGraphics);
         }
     }
 
-    public LoadedSceneWithModelInfo? TryGetGraphicsScene()
+    public LoadedSceneWithModelInfo TryGetGraphicsScene()
     {
+        if (loadedSceneData.LoadedScene == null)
+            return default(LoadedSceneWithModelInfo);
+
         return loadedSceneData;
     }
 

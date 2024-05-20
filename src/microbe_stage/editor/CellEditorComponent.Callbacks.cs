@@ -297,11 +297,6 @@ public partial class CellEditorComponent
         microbeVisualizationOrganellePositionsAreDirty = true;
 
         OnOrganellesChanged();
-
-        UpdateStats();
-
-        // Organelle upgrades will eventually affect auto-evo
-        StartAutoEvoPrediction();
     }
 
     [DeserializedCallbackAllowed]
@@ -312,11 +307,6 @@ public partial class CellEditorComponent
         microbeVisualizationOrganellePositionsAreDirty = true;
 
         OnOrganellesChanged();
-
-        UpdateStats();
-
-        // Organelle upgrades will eventually affect auto-evo
-        StartAutoEvoPrediction();
     }
 
     [DeserializedCallbackAllowed]
