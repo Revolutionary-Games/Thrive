@@ -88,7 +88,8 @@
     "ConsumptionColour": "#f04681",
     "IconPath": "res://assets/textures/gui/bevel/parts/RusticyaninIcon.png",
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 4
+    "EditorButtonOrder": 4,
+    "EndosymbiosisUnlocks": "ferroplast"
   },
   "nitrogenase": {
     "MPCost": 55,
@@ -1082,6 +1083,57 @@
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 5
+  },
+  "ferroplast": {
+    "MPCost": 45,
+    "InitialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "Hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      }
+    ],
+    "Processes": {
+      "ferrosynthesis": 1
+    },
+    "Components": {
+      "Storage": {
+        "Capacity": 1
+      }
+    },
+    "Enzymes": {
+      "rusticyanin": 1
+    },
+    "ProkaryoteChance": 0,
+    "ChanceToCreate": 1,
+    "Density": 1100,
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Ferroplast.tscn"
+    },
+    "Name": "FERROPLAST",
+    "ProductionColour": "#3293f7",
+    "ConsumptionColour": "#f04681",
+    "IconPath": "res://assets/textures/gui/bevel/parts/FerroplastIcon.png",
+    "UnlockConditions": [
+      {
+        "ReproduceWithOrganelle": {
+          "Organelle": "rusticyanin",
+          "Generations": 7,
+          "InARow": true
+        }
+      }
+    ],
+    "RequiresNucleus": true,
+    "EditorButtonGroup": "Organelle",
+    "EditorButtonOrder": 5,
+    "LAWK": false
   },
   "axon": {
     "MPCost": 100,

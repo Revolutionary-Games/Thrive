@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://bnq8dgxlwg56c"]
+
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://bwh7qg218jx2o" path="res://assets/models/organelles/FerroplastMembrane.mesh" id="4_rf41b"]
+[ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="5_bxw2d"]
+[ext_resource type="Texture2D" uid="uid://cn2rgu7n46507" path="res://assets/textures/Ferroplast_membrane.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://bqk83uqsk07so" path="res://assets/textures/rusticyanin.png" id="7"]
+[ext_resource type="ArrayMesh" uid="uid://bhpesagcken13" path="res://assets/models/organelles/FerroplastInsides.mesh" id="7_pntbu"]
+[ext_resource type="ArrayMesh" uid="uid://bxrhxnkn3nr4d" path="res://assets/models/organelles/FerroplastIron.mesh" id="8_3f8yq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iy62y"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = true
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = null
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.005
+shader_parameter/texture = ExtResource("6")
+shader_parameter/dissolveTexture = ExtResource("2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssysu"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/dissolveValue = null
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = Color(0.486275, 0, 0.584314, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("7")
+shader_parameter/dissolveTexture = ExtResource("2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k2qsh"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/dissolveValue = null
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = Color(0.486275, 0, 0.584314, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.01
+shader_parameter/texture = ExtResource("7")
+shader_parameter/dissolveTexture = ExtResource("2")
+
+[node name="Ferroplast" type="MeshInstance3D"]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, -0.164064, 0)
+material_override = SubResource("ShaderMaterial_iy62y")
+cast_shadow = 0
+mesh = ExtResource("4_rf41b")
+script = ExtResource("5_bxw2d")
+
+[node name="Cores" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_ssysu")
+mesh = ExtResource("7_pntbu")
+
+[node name="Iron" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_k2qsh")
+mesh = ExtResource("8_3f8yq")

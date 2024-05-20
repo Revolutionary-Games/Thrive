@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cil2efpg6jdmd" path="res://src/gui_common/tooltip/DefaultToolTip.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bhy1rrdfux74j" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/tooltips/SpeciesPreviewTooltip.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b8tdhxl6kquhx" path="res://src/microbe_stage/editor/tooltips/SpeciesPreviewTooltip.tscn" id="3"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="4"]
 [ext_resource type="PackedScene" uid="uid://bl77ntlowknmp" path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://w33dve6al45k" path="res://assets/textures/gui/bevel/osmoregulationIcon.png" id="6"]
@@ -75,6 +75,7 @@ DisplayDelay = 0.0
 [node name="speciesPreview" parent="GroupHolder/default" instance=ExtResource("3")]
 visible = false
 layout_mode = 0
+anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 0.0
@@ -703,6 +704,16 @@ ModifierValue = "+2"
 ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
+[node name="ferroplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
+visible = false
+offset_right = 373.0
+offset_bottom = 226.0
+DisplayName = "FERROPLAST"
+ProcessesDescription = "FERROPLAST_PROCESSES_DESCRIPTION"
+Description = "FERROPLAST_DESCRIPTION"
+MutationPointCost = 45
+RequiresNucleus = true
+
 [node name="nitrogenfixingplastid" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
@@ -1261,6 +1272,13 @@ DescriptionLabelPath = NodePath("../../processesProduction/mitochondrion/MarginC
 DisplayDelay = 0.0
 Positioning = 1
 
+[node name="ferroplast" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+visible = false
+offset_bottom = 34.0
+DescriptionLabelPath = NodePath("../mitochondrion/MarginContainer/VBoxContainer/Description")
+DisplayDelay = 0.0
+Positioning = 1
+
 [node name="thermoplast" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
 visible = false
 layout_mode = 0
@@ -1462,6 +1480,7 @@ DisplayDelay = 2.5
 [editable path="GroupHolder/organelleSelection/thermoplast"]
 [editable path="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessList"]
 [editable path="GroupHolder/organelleSelection/chemoplast"]
+[editable path="GroupHolder/organelleSelection/ferroplast"]
 [editable path="GroupHolder/organelleSelection/nitrogenfixingplastid"]
 [editable path="GroupHolder/organelleSelection/vacuole"]
 [editable path="GroupHolder/organelleSelection/oxytoxy"]
