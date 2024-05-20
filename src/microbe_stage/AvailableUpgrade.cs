@@ -95,7 +95,7 @@ public class AvailableUpgrade : IRegistryType
 
     public LoadedSceneWithModelInfo TryGetGraphicsScene()
     {
-        if (loadedSceneData.LoadedScene == null)
+        if (string.IsNullOrEmpty(loadedSceneData.ModelPath))
             return default(LoadedSceneWithModelInfo);
 
         return loadedSceneData;
