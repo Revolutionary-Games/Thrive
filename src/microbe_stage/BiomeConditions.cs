@@ -83,8 +83,6 @@ public class BiomeConditions : ICloneable
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> MaximumCompounds { get; }
 
-    // This is kept to be consistent with the other values, in the future this should be updated
-    // ReSharper disable once CollectionNeverQueried.Global
     /// <summary>
     ///   Minimum compounds during an in-game day
     /// </summary>
@@ -103,8 +101,8 @@ public class BiomeConditions : ICloneable
     public IReadOnlyDictionary<Compound, BiomeCompoundProperties> Compounds => compounds;
 
     /// <summary>
-    ///   Allows access to changing the compound values in the biome permanently. Should only be used by auto-evo or
-    ///   map generator.
+    ///   Allows access to modification of the compound values in the biome permanently. Should only be used by
+    ///   auto-evo or map generator.
     /// </summary>
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> ChangeableCompounds => compounds;
@@ -155,6 +153,8 @@ public class BiomeConditions : ICloneable
                 return CurrentCompoundAmounts.TryGetValue(compound, out result);
             case CompoundAmountType.Maximum:
                 return MaximumCompounds.TryGetValue(compound, out result);
+            case CompoundAmountType.Minimum:
+                return MinimumCompounds.TryGetValue(compound, out result);
             case CompoundAmountType.Average:
                 return AverageCompounds.TryGetValue(compound, out result);
             case CompoundAmountType.Biome:

@@ -122,15 +122,16 @@ public class MicrobeSpecies : Species, ICellDefinition
     {
         // Since the initial compounds are only set once per species they can't be calculated for each Biome.
         // So, the compound balance calculation uses the default biome.
-        // Also we should not overtly punish photosynthesizers so we just use the consumption here (instead of
+        // Also, we should not overtly punish photosynthesizers, so we just use the consumption here (instead of
         // balance where the generated glucose would offset things and spawn photosynthesizers with no glucose,
         // which could basically make them die instantly in certain situations)
-        var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
+        var simulationParameters = SimulationParameters.Instance;
+        var biomeConditions = simulationParameters.GetBiome("default").Conditions;
         var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
             biomeConditions, CompoundAmountType.Biome);
 
-        var glucose = SimulationParameters.Instance.GetCompound("glucose");
-        var atp = SimulationParameters.Instance.GetCompound("atp");
+        var glucose = simulationParameters.GetCompound("glucose");
+        var atp = simulationParameters.GetCompound("atp");
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
         var cachedCapacity = StorageCapacity;
@@ -139,7 +140,7 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         foreach (var compoundBalance in compoundBalances)
         {
-            // Skip ATP as it we don't want to give any initial ATP
+            // Skip ATP as we don't want to give any initial ATP
             if (compoundBalance.Key == atp)
                 continue;
 

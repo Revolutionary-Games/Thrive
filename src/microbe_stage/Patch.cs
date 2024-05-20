@@ -537,11 +537,12 @@ public class Patch
     {
         switch (option)
         {
-            // TODO: minimum?
             case CompoundAmountType.Current:
                 return Biome.CurrentCompoundAmounts[compound].Ambient;
             case CompoundAmountType.Maximum:
                 return Biome.MaximumCompounds[compound].Ambient;
+            case CompoundAmountType.Minimum:
+                return Biome.MinimumCompounds[compound].Ambient;
             case CompoundAmountType.Average:
                 return Biome.AverageCompounds[compound].Ambient;
             case CompoundAmountType.Biome:
