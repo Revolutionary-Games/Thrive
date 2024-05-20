@@ -683,8 +683,6 @@ public class OrganelleDefinition : IRegistryType
 
         foreach (var availableUpgrade in AvailableUpgrades)
         {
-            var upgradeGraphics = availableUpgrade.Value.TryGetGraphicsScene();
-
             if (upgrades.UnlockedFeatures.Contains(availableUpgrade.Key))
             {
                 upgradeScene = availableUpgrade.Value.TryGetGraphicsScene();
