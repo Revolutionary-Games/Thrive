@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b0315b3i5bs5s"]
+[gd_scene load_steps=20 format=3 uid="uid://b0315b3i5bs5s"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" path="res://src/general/NewGameSettings.cs" id="2"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c6pe536xf5ime" path="res://assets/concept_art/planet_generation.jpg" id="10"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
-[ext_resource type="LabelSettings" uid="uid://58teykjxnrdt" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny-Red.tres" id="12_8raft"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="13"]
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="14_36v86"]
 
@@ -750,14 +749,15 @@ layout_mode = 2
 [node name="DayNightCycleEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
+button_pressed = true
 text = "DAY_NIGHT_CYCLE_ENABLED"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-label_settings = ExtResource("12_8raft")
+text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
