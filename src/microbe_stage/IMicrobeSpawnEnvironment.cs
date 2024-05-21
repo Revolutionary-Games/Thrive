@@ -15,5 +15,6 @@ public class DummyMicrobeSpawnEnvironment : IMicrobeSpawnEnvironment
     }
 
     public IDaylightInfo DaylightInfo { get; set; } = new DummyLightCycle();
+    public WorldGenerationSettings WorldSettings { get; set; } = new();
     public BiomeConditions CurrentBiome { get; set; }
 }

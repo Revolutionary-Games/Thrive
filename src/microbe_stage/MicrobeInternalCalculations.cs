@@ -405,7 +405,7 @@ public static class MicrobeInternalCalculations
             // Don't give resources for ridiculously long fill up times
             timeToGive = Math.Min(Constants.NIGHT_RESOURCE_BUFF_MAX_FILL_SECONDS, timeToGive);
 
-            var compoundAmount = totalToFill * (timeToFill / timeToGive);
+            var compoundAmount = totalToFill * (timeToGive / timeToFill);
 
             compoundReceiver.AddCompound(fillTime.Key, compoundAmount);
         }
@@ -419,14 +419,18 @@ public static class MicrobeInternalCalculations
     ///   that compound is
     /// </returns>
     public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
-        ICollection<OrganelleTemplate> organelles, BiomeConditions biomeConditions)
+        ICollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
+        BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
-        // TODO: would be better to compute balance at ATP equilibrium (and not moving)
-        var compoundBalances = ProcessSystem.ComputeCompoundBalance(organelles,
-            biomeConditions, CompoundAmountType.Biome);
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
+            playerSpecies, worldSettings, CompoundAmountType.Biome);
 
-        var minimums = ProcessSystem.ComputeCompoundBalance(organelles,
-            biomeConditions, CompoundAmountType.Minimum);
+        var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+            biomeConditions, CompoundAmountType.Biome, energyBalance);
+
+        // TODO: is it fine to use energy balance calculated with the biome numbers here?
+        var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+            biomeConditions, CompoundAmountType.Minimum, energyBalance);
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 
@@ -467,20 +471,15 @@ public static class MicrobeInternalCalculations
         ICollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
-        // TODO: would be better to compute balance at ATP equilibrium (and not moving)
-        var compoundBalances = ProcessSystem.ComputeCompoundBalance(organelles,
-            biomeConditions, CompoundAmountType.Biome);
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
+            playerSpecies, worldSettings, CompoundAmountType.Biome);
 
-        var minimums = ProcessSystem.ComputeCompoundBalance(organelles,
-            biomeConditions, CompoundAmountType.Minimum);
+        var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+            biomeConditions, CompoundAmountType.Biome, energyBalance);
 
-        // TODO: might be better to use actual energy balance? It would naturally include osmoregulation (but then
-        // again the above approach also has that as long as the ATP balance is at least positive for the cell)
-        // biomeConditions.GetAmbientCompoundsThatVary()
-        // var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-        //     playerSpecies, worldSettings, CompoundAmountType.Minimum);
-        _ = playerSpecies;
-        _ = membraneType;
+        // TODO: is it fine to use energy balance calculated with the biome numbers here?
+        var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+            biomeConditions, CompoundAmountType.Minimum, energyBalance);
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 

@@ -112,9 +112,11 @@ public class EarlyMulticellularSpecies : Species
             throw new ArgumentException("Early multicellular species must have microbe spawn environment info");
 
         // TODO: this would be excellent to match the actual cell type being used for spawning
+        var cellType = Cells[0].CellType;
+
         // TODO: CACHING IS MISSING from here (but microbe has it)
         var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
-            Cells[0].CellType.Organelles, microbeSpawnEnvironment.CurrentBiome);
+            cellType.Organelles, cellType.MembraneType, PlayerSpecies, microbeSpawnEnvironment.CurrentBiome, microbeSpawnEnvironment.WorldSettings);
 
         MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,
             spawnEnvironment.DaylightInfo);

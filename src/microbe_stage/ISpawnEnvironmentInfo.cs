@@ -4,4 +4,5 @@
 public interface ISpawnEnvironmentInfo
 {
     public IDaylightInfo DaylightInfo { get; }
+    public WorldGenerationSettings WorldSettings { get; }
 }

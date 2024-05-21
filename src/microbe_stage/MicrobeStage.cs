@@ -103,6 +103,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [JsonIgnore]
     public IDaylightInfo DaylightInfo => GameWorld.LightCycle;
 
+    public WorldGenerationSettings WorldSettings => GameWorld.WorldSettings;
+
     [JsonIgnore]
     public BiomeConditions CurrentBiome => GameWorld.Map.CurrentPatch?.Biome ??
         throw new InvalidOperationException("no current patch set");
