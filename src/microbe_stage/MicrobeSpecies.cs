@@ -17,6 +17,9 @@ using Systems;
 [UseThriveSerializer]
 public class MicrobeSpecies : Species, ICellDefinition
 {
+    private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
+        cachedFillTimes = new();
+
     [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
@@ -126,6 +129,8 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         RepositionToOrigin();
         UpdateInitialCompounds();
+
+        cachedFillTimes.Clear();
     }
 
     public override bool RepositionToOrigin()
@@ -184,6 +189,31 @@ public class MicrobeSpecies : Species, ICellDefinition
         }
     }
 
+    public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)
+    {
+        if (spawnEnvironment is not IMicrobeSpawnEnvironment microbeSpawnEnvironment)
+            throw new ArgumentException("Microbes must have microbe spawn environment info");
+
+        // TODO: cache the data
+        var biome = microbeSpawnEnvironment.CurrentBiome;
+
+        Dictionary<Compound, (float TimeToFill, float Storage)>? compoundTimes;
+
+        // This lock is here to allow multiple microbe spawns to happen in parallel. Lock is not used on clear as no
+        // spawns should be allowed to happen while species are being modified
+        lock (cachedFillTimes)
+        {
+            if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
+            {
+                compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(Organelles, biome);
+                cachedFillTimes[biome] = compoundTimes;
+            }
+        }
+
+        MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,
+            spawnEnvironment.DaylightInfo);
+    }
+
     public override void ApplyMutation(Species mutation)
     {
         base.ApplyMutation(mutation);
@@ -203,6 +233,8 @@ public class MicrobeSpecies : Species, ICellDefinition
         IsBacteria = casted.IsBacteria;
         MembraneType = casted.MembraneType;
         MembraneRigidity = casted.MembraneRigidity;
+
+        cachedFillTimes.Clear();
     }
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)

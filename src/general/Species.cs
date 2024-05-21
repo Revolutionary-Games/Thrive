@@ -256,6 +256,17 @@ public abstract class Species : ICloneable
     public abstract void UpdateInitialCompounds();
 
     /// <summary>
+    ///   Handles giving extra resources if spawned during the night (to prevent freshly spawned creatures not being
+    ///   able to survive the night)
+    /// </summary>
+    /// <param name="targetStorage">Where to give the extra night-surviving compounds</param>
+    /// <param name="spawnEnvironment">
+    ///   The spawn environment the species member is in, derived classes may need more specific environments like
+    ///   <see cref="IMicrobeSpawnEnvironment"/>.
+    /// </param>
+    public abstract void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment);
+
+    /// <summary>
     ///   Updates the name of this species if the new name is valid
     /// </summary>
     /// <param name="newName">The new name to try to switch to</param>

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public class DayNightCycle
+public class DayNightCycle : IDaylightInfo
 {
     [JsonProperty]
     private bool isEnabled;

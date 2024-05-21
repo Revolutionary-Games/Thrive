@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
+public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment
 {
     [Export]
     public NodePath? GuidanceLinePath;
@@ -99,6 +99,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
+
+    [JsonIgnore]
+    public IDaylightInfo DaylightInfo => GameWorld.LightCycle;
+
+    [JsonIgnore]
+    public BiomeConditions CurrentBiome => GameWorld.Map.CurrentPatch?.Biome ??
+        throw new InvalidOperationException("no current patch set");
 
     /// <summary>
     ///   Makes saving information related to the patch manager work. This checks the patch manager against null to
@@ -657,7 +664,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Spawn another cell from the player species
         // This needs to be done after updating the player so that multicellular organisms are accurately separated
         cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
-            WorldSimulation.SpawnSystem, (ref EntityRecord daughter) =>
+            this, WorldSimulation.SpawnSystem, (ref EntityRecord daughter) =>
             {
                 // Mark as player reproduced entity
                 daughter.Set(new PlayerOffspring
@@ -753,7 +760,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         EnsureWorldSimulationIsCreated();
 
         // Initialise the simulation on a basic level first to ensure the base stage setup has all the objects it needs
-        WorldSimulation.Init(rootOfDynamicallySpawned, Clouds);
+        WorldSimulation.Init(rootOfDynamicallySpawned, Clouds, this);
 
         patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.ProcessSystem, Clouds,
             WorldSimulation.TimedLifeSystem, worldLight);
@@ -820,7 +827,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             WorldSimulation.ClearPlayerLocationDependentCaches();
         }
 
-        var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, GameWorld.PlayerSpecies,
+        var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this,
+            GameWorld.PlayerSpecies,
             spawnLocation, false, (null, 0), out var entityRecord);
 
         entityRecord.Set(new MicrobeEventCallbacks
@@ -926,7 +934,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!))
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!, this))
         {
             if (promptPatchNameChange)
                 HUD.ShowPatchName(CurrentPatchName.ToString());
@@ -1058,8 +1066,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         var playerPosition = Player.Get<WorldPosition>().Position;
 
-        var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, randomSpecies,
-            playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
+        var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this,
+            randomSpecies, playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
 
         // Make the cell despawn like normal
         WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
@@ -1084,8 +1092,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         ref var organelles = ref Player.Get<OrganelleContainer>();
         var playerSpecies = Player.Get<SpeciesMember>().Species;
 
-        cellProperties.Divide(ref organelles, Player, playerSpecies, WorldSimulation, WorldSimulation.SpawnSystem,
-            null, MulticellularSpawnState.ChanceForFullColony);
+        cellProperties.Divide(ref organelles, Player, playerSpecies, WorldSimulation, this,
+            WorldSimulation.SpawnSystem, null, MulticellularSpawnState.ChanceForFullColony);
     }
 
     private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)

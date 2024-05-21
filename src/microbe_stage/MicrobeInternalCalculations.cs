@@ -382,7 +382,7 @@ public static class MicrobeInternalCalculations
     /// </param>
     /// <param name="lightLevel">Used to access current time</param>
     public static void GiveNearNightInitialCompoundBuff(CompoundBag compoundReceiver,
-        Dictionary<Compound, (float TimeToFill, float Storage)> fillTimes, DayNightCycle lightLevel)
+        Dictionary<Compound, (float TimeToFill, float Storage)> fillTimes, IDaylightInfo lightLevel)
     {
         var untilNight = lightLevel.SecondsUntilNightStart;
 

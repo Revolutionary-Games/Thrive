@@ -131,7 +131,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     /// <param name="cloudSystem">
     ///   Compound cloud simulation system. This method will call <see cref="CompoundCloudSystem.Init"/>
     /// </param>
-    public void Init(Node visualDisplayRoot, CompoundCloudSystem cloudSystem)
+    /// <param name="spawnEnvironment">Spawn environment data to give to microbes spawned by systems</param>
+    public void Init(Node visualDisplayRoot, CompoundCloudSystem cloudSystem, IMicrobeSpawnEnvironment spawnEnvironment)
     {
         InitGenerated();
         ResolveNodeReferences();
@@ -227,13 +228,15 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         TimedLifeSystem = new TimedLifeSystem(this, EntitySystem, couldParallelize);
 
-        microbeReproductionSystem = new MicrobeReproductionSystem(this, SpawnSystem, EntitySystem, parallelRunner);
+        microbeReproductionSystem =
+            new MicrobeReproductionSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, parallelRunner);
         microbeDeathSystem = new MicrobeDeathSystem(this, SpawnSystem, EntitySystem, couldParallelize);
         engulfingSystem = new EngulfingSystem(this, SpawnSystem, EntitySystem);
 
         delayedColonyOperationSystem =
-            new DelayedColonyOperationSystem(this, SpawnSystem, EntitySystem, couldParallelize);
-        multicellularGrowthSystem = new MulticellularGrowthSystem(this, SpawnSystem, EntitySystem, parallelRunner);
+            new DelayedColonyOperationSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, couldParallelize);
+        multicellularGrowthSystem =
+            new MulticellularGrowthSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, parallelRunner);
 
         CloudSystem = cloudSystem;
 
