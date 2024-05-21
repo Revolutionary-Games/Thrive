@@ -685,9 +685,13 @@ public class OrganelleDefinition : IRegistryType
         {
             if (upgrades.UnlockedFeatures.Contains(availableUpgrade.Key))
             {
-                upgradeScene = availableUpgrade.Value.TryGetGraphicsScene();
+                bool hasUpgradeScene = availableUpgrade.Value.TryGetGraphicsScene(out var upgradeGraphicsScene);
+                if (hasUpgradeScene)
+                {
+                    upgradeScene = upgradeGraphicsScene;
 
-                return true;
+                    return true;
+                }
             }
         }
 

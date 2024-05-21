@@ -93,12 +93,17 @@ public class AvailableUpgrade : IRegistryType
         }
     }
 
-    public LoadedSceneWithModelInfo TryGetGraphicsScene()
+    public bool TryGetGraphicsScene(out LoadedSceneWithModelInfo model)
     {
-        if (string.IsNullOrEmpty(loadedSceneData.ModelPath))
-            return default(LoadedSceneWithModelInfo);
+        if (loadedSceneData.LoadedScene == null)
+        {
+            model = default(LoadedSceneWithModelInfo);
 
-        return loadedSceneData;
+            return false;
+        }
+
+        model = loadedSceneData;
+        return true;
     }
 
     public void ApplyTranslations()
