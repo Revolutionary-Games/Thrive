@@ -271,13 +271,13 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   Gets the visual scene that should be used to represent this organelle (if there is one)
     /// </summary>
-    /// <para cref="modelInfo">
+    /// <param name="upgrades">
+    ///   Some upgrades alter organelle visuals
+    /// </param>
+    /// <param name="modelInfo">
     ///   The model info returned like this (as it may be a struct type this can't return a nullable reference without
     ///   boxing)
-    /// </para>
-    /// <para cref="upgrades">
-    ///   Some upgrades alter organelle visuals
-    /// </para>
+    /// </param>
     /// <returns>True when this has a scene</returns>
     public bool TryGetGraphicsScene(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {

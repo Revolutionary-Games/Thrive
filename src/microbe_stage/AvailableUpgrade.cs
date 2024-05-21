@@ -11,7 +11,7 @@ public class AvailableUpgrade : IRegistryType
 
 #pragma warning disable 169,649 // Used through reflection
     /// <summary>
-    ///   A path to a scene to override organelle's display scene. If empty won't have a display model.
+    ///   A path to a scene to override organelle's display scene. If empty will use organelle's default model.
     /// </summary>
     [JsonProperty]
     private SceneWithModelInfo overrideGraphics;
@@ -95,7 +95,7 @@ public class AvailableUpgrade : IRegistryType
 
     public bool TryGetGraphicsScene(out LoadedSceneWithModelInfo model)
     {
-        if (loadedSceneData.LoadedScene == null)
+        if (loadedSceneData.LoadedScene == null!)
         {
             model = default(LoadedSceneWithModelInfo);
 

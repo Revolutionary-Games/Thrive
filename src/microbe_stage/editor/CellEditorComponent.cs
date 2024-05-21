@@ -852,7 +852,7 @@ public partial class CellEditorComponent :
                 RunWithSymmetry(q, r,
                     (finalQ, finalR, rotation) =>
                     {
-                        RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle, MovingPlacedHex);
+                        RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle, MovingPlacedHex?.Upgrades);
                         hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
                     }, effectiveSymmetry);
 
@@ -1853,7 +1853,8 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   If not hovering over an organelle, render the to-be-placed organelle
     /// </summary>
-    private void RenderHighlightedOrganelle(int q, int r, int rotation, OrganelleDefinition shownOrganelleDefinition, OrganelleTemplate hexOrganelle)
+    private void RenderHighlightedOrganelle(int q, int r, int rotation, OrganelleDefinition shownOrganelleDefinition,
+        OrganelleUpgrades? upgrades)
     {
         RenderHoveredHex(q, r, shownOrganelleDefinition.GetRotatedHexes(rotation), isPlacementProbablyValid,
             out bool hadDuplicate);
@@ -1861,7 +1862,7 @@ public partial class CellEditorComponent :
         bool showModel = !hadDuplicate;
 
         // Model
-        if (showModel && shownOrganelleDefinition.TryGetGraphicsScene(hexOrganelle?.Upgrades, out var modelInfo))
+        if (showModel && shownOrganelleDefinition.TryGetGraphicsScene(upgrades, out var modelInfo))
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
 
