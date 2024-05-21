@@ -86,8 +86,25 @@ public class MicrobeSpecies : Species, ICellDefinition
     public float BaseHexSize => Organelles.Organelles.Sum(o => o.Definition.HexCount)
         * (IsBacteria ? 0.5f : 1.0f);
 
+    /// <summary>
+    ///   TODO: this should be removed as this is not accurate (only accurate if specialized storage vacuoles aren't
+    ///   used)
+    /// </summary>
     [JsonIgnore]
     public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);
+
+    /// <summary>
+    ///   Compound capacities members of this species can store in their default configurations
+    /// </summary>
+    [JsonIgnore]
+    public (float Nominal, Dictionary<Compound, float> Specific) StorageCapacities
+    {
+        get
+        {
+            var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(Organelles, out var nominal);
+            return (nominal, specific);
+        }
+    }
 
     [JsonIgnore]
     public bool CanEngulf => !MembraneType.CellWall;

@@ -166,6 +166,24 @@ public class BiomeConditions : ICloneable
         }
     }
 
+    /// <summary>
+    ///   Get compounds that vary during the day
+    /// </summary>
+    /// <returns>The compounds that vary</returns>
+    public IEnumerable<Compound> GetAmbientCompoundsThatVary()
+    {
+        const float epsilon = 0.000001f;
+
+        foreach (var minimumCompound in MinimumCompounds)
+        {
+            if (!MaximumCompounds.TryGetValue(minimumCompound.Key, out var maxValue) ||
+                Math.Abs(maxValue.Ambient - minimumCompound.Value.Ambient) > epsilon)
+            {
+                yield return minimumCompound.Key;
+            }
+        }
+    }
+
     public void Check(string name)
     {
         if (compounds == null)

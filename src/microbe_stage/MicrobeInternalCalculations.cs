@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Systems;
 
 public static class MicrobeInternalCalculations
 {
@@ -42,7 +43,8 @@ public static class MicrobeInternalCalculations
         return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(ICollection<OrganelleTemplate> organelles)
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(ICollection<OrganelleTemplate> organelles,
+        out float nominalCapacity)
     {
         var totalNominalCap = 0.0f;
 
@@ -72,6 +74,7 @@ public static class MicrobeInternalCalculations
             }
         }
 
+        nominalCapacity = totalNominalCap;
         return capacities;
     }
 
@@ -367,6 +370,152 @@ public static class MicrobeInternalCalculations
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///   Gives bonus compounds if time is close to night. This is done to compensate spawning stuff close to night to
+    ///   fill them up as if they had been spawned earlier.
+    /// </summary>
+    /// <param name="compoundReceiver">Compound bag to add the extra compounds to</param>
+    /// <param name="fillTimes">
+    ///   Info from <see cref="CalculateDayVaryingCompoundsFillTimes"/> used to determine how much compounds to give
+    /// </param>
+    /// <param name="lightLevel">Used to access current time</param>
+    public static void GiveNearNightInitialCompoundBuff(CompoundBag compoundReceiver,
+        Dictionary<Compound, (float TimeToFill, float Storage)> fillTimes, DayNightCycle lightLevel)
+    {
+        var untilNight = lightLevel.SecondsUntilNightStart;
+
+        if (untilNight > Constants.INITIAL_RESOURCE_BUFF_WHEN_NIGHT_CLOSER_THAN)
+            return;
+
+        // Night is close enough to give resources
+        foreach (var fillTime in fillTimes)
+        {
+            var (timeToFill, totalToFill) = fillTime.Value;
+
+            var timeToGive = timeToFill;
+
+            // Compensate for the still remaining time (when it is not night yet)
+            if (untilNight > 0)
+                timeToGive -= untilNight;
+
+            // TODO: give slightly less resources when it is starting to be early morning
+
+            // Don't give resources for ridiculously long fill up times
+            timeToGive = Math.Min(Constants.NIGHT_RESOURCE_BUFF_MAX_FILL_SECONDS, timeToGive);
+
+            var compoundAmount = totalToFill * (timeToFill / timeToGive);
+
+            compoundReceiver.AddCompound(fillTime.Key, compoundAmount);
+        }
+    }
+
+    /// <summary>
+    ///   Calculates how long it takes to fill up on compounds that vary throughout the day
+    /// </summary>
+    /// <returns>
+    ///   Dictionary mapping compounds to a tuple telling how long it takes to fill and what the storage capacity for
+    ///   that compound is
+    /// </returns>
+    public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
+        ICollection<OrganelleTemplate> organelles, BiomeConditions biomeConditions)
+    {
+        // TODO: would be better to compute balance at ATP equilibrium (and not moving)
+        var compoundBalances = ProcessSystem.ComputeCompoundBalance(organelles,
+            biomeConditions, CompoundAmountType.Biome);
+
+        var minimums = ProcessSystem.ComputeCompoundBalance(organelles,
+            biomeConditions, CompoundAmountType.Minimum);
+
+        var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
+
+        var result = new Dictionary<Compound, (float TimeToFill, float Storage)>();
+
+        foreach (var normalBalance in compoundBalances)
+        {
+            if (!minimums.TryGetValue(normalBalance.Key, out var minimumValue) ||
+                Math.Abs(minimumValue.Balance - normalBalance.Value.Balance) > 0.001f)
+            {
+                // Found a compound that varies during the day/night cycle
+
+                if (normalBalance.Value.Balance > 0.001f)
+                {
+                    // But it isn't generated so skip
+                    continue;
+                }
+
+                var capacity = cachedCapacities.GetValueOrDefault(normalBalance.Key, cachedCapacity);
+
+                var time = capacity / normalBalance.Value.Balance;
+
+                result[normalBalance.Key] = (time, capacity);
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Calculates how much storage is needed to survive the night for a cell.
+    /// </summary>
+    /// <returns>
+    ///   A tuple of bool indicating if the cell can survive the night, and then the specific checked capacities that
+    ///   should be present
+    /// </returns>
+    public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
+        ICollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
+        BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
+    {
+        // TODO: would be better to compute balance at ATP equilibrium (and not moving)
+        var compoundBalances = ProcessSystem.ComputeCompoundBalance(organelles,
+            biomeConditions, CompoundAmountType.Biome);
+
+        var minimums = ProcessSystem.ComputeCompoundBalance(organelles,
+            biomeConditions, CompoundAmountType.Minimum);
+
+        // TODO: might be better to use actual energy balance? It would naturally include osmoregulation (but then
+        // again the above approach also has that as long as the ATP balance is at least positive for the cell)
+        // biomeConditions.GetAmbientCompoundsThatVary()
+        // var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
+        //     playerSpecies, worldSettings, CompoundAmountType.Minimum);
+
+        var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
+
+        var nightSeconds = worldSettings.DayLength * Constants.LIGHT_NIGHT_FRACTION;
+
+        bool enoughStorage = true;
+        var requiredCapacities = new Dictionary<Compound, float>();
+
+        foreach (var normalBalance in compoundBalances)
+        {
+            if (!minimums.TryGetValue(normalBalance.Key, out var minimumValue) ||
+                Math.Abs(minimumValue.Balance - normalBalance.Value.Balance) > 0.001f)
+            {
+                if (normalBalance.Value.Balance > 0.001f)
+                    continue;
+
+                // Found a compound that is generated during the day more than night
+
+                var drainRate = minimumValue?.Balance ?? normalBalance.Value.Consumption.SumValues();
+
+                // As things slowly pick up again after the night, it isn't fully this bad, this is just a worst case
+                // scenario
+                // TODO: more accurate math
+                var overestimatedDrain = drainRate * nightSeconds;
+
+                var capacity = cachedCapacities.GetValueOrDefault(normalBalance.Key, cachedCapacity);
+
+                if (overestimatedDrain > capacity)
+                {
+                    enoughStorage = false;
+                }
+
+                requiredCapacities[normalBalance.Key] = overestimatedDrain;
+            }
+        }
+
+        return (enoughStorage, requiredCapacities);
     }
 
     public static void CalculatePossibleEndosymbiontsFromSpecies(MicrobeSpecies species,

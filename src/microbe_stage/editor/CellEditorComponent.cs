@@ -1262,7 +1262,8 @@ public partial class CellEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities()
     {
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles);
+        // TODO: merge this with nominal get to make this more efficient
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out _);
     }
 
     public float CalculateTotalDigestionSpeed()
