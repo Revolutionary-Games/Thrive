@@ -439,7 +439,7 @@ public static class MicrobeInternalCalculations
             {
                 // Found a compound that varies during the day/night cycle
 
-                if (normalBalance.Value.Balance > 0.001f)
+                if (normalBalance.Value.Balance < 0.001f)
                 {
                     // But it isn't generated so skip
                     continue;
@@ -479,6 +479,8 @@ public static class MicrobeInternalCalculations
         // biomeConditions.GetAmbientCompoundsThatVary()
         // var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
         //     playerSpecies, worldSettings, CompoundAmountType.Minimum);
+        _ = playerSpecies;
+        _ = membraneType;
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 
