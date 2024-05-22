@@ -271,9 +271,7 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   Gets the visual scene that should be used to represent this organelle (if there is one)
     /// </summary>
-    /// <param name="upgrades">
-    ///   Some upgrades alter organelle visuals
-    /// </param>
+    /// <param name="upgrades">Some upgrades alter organelle visuals</param>
     /// <param name="modelInfo">
     ///   The model info returned like this (as it may be a struct type this can't return a nullable reference without
     ///   boxing)
@@ -281,11 +279,8 @@ public class OrganelleDefinition : IRegistryType
     /// <returns>True when this has a scene</returns>
     public bool TryGetGraphicsScene(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
-        var hasUpgradeGraphics = TryGetGraphicsForUpgrade(upgrades, out var upgradeGraphics);
-
-        if (hasUpgradeGraphics)
+        if (TryGetGraphicsForUpgrade(upgrades, out modelInfo))
         {
-            modelInfo = upgradeGraphics;
             return true;
         }
 
@@ -301,11 +296,8 @@ public class OrganelleDefinition : IRegistryType
 
     public bool TryGetCorpseChunkGraphics(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
-        var hasUpgradeGraphics = TryGetGraphicsForUpgrade(upgrades, out var upgradeGraphics);
-
-        if (hasUpgradeGraphics)
+        if (TryGetGraphicsForUpgrade(upgrades, out modelInfo))
         {
-            modelInfo = upgradeGraphics;
             return true;
         }
 
@@ -685,11 +677,8 @@ public class OrganelleDefinition : IRegistryType
         {
             if (upgrades.UnlockedFeatures.Contains(availableUpgrade.Key))
             {
-                bool hasUpgradeScene = availableUpgrade.Value.TryGetGraphicsScene(out var upgradeGraphicsScene);
-                if (hasUpgradeScene)
+                if (availableUpgrade.Value.TryGetGraphicsScene(out upgradeScene))
                 {
-                    upgradeScene = upgradeGraphicsScene;
-
                     return true;
                 }
             }
