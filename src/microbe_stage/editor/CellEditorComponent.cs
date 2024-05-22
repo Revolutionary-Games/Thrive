@@ -972,23 +972,25 @@ public partial class CellEditorComponent :
 
         editedProperties.UpdateNameIfValid(newName);
 
+        // Update membrane
+        editedProperties.MembraneType = Membrane;
+        editedProperties.Colour = Colour;
+        editedProperties.MembraneRigidity = Rigidity;
+
         if (!IsMulticellularEditor)
         {
-            editedSpecies.UpdateInitialCompounds();
-
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
 
             behaviourEditor.OnFinishEditing();
+
+            // When this is the primary editor of the species data, this must refresh the species data properties that
+            // depend on being edited
+            editedSpecies.OnEdited();
         }
         else
         {
             GD.Print("MicrobeEditor: updated organelles for cell: ", editedProperties.FormattedName);
         }
-
-        // Update membrane
-        editedProperties.MembraneType = Membrane;
-        editedProperties.Colour = Colour;
-        editedProperties.MembraneRigidity = Rigidity;
     }
 
     public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
