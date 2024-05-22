@@ -115,8 +115,9 @@ public class EarlyMulticellularSpecies : Species
         var cellType = Cells[0].CellType;
 
         // TODO: CACHING IS MISSING from here (but microbe has it)
-        var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
-            cellType.Organelles, cellType.MembraneType, PlayerSpecies, microbeSpawnEnvironment.CurrentBiome, microbeSpawnEnvironment.WorldSettings);
+        var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(cellType.Organelles,
+            cellType.MembraneType, PlayerSpecies, microbeSpawnEnvironment.CurrentBiome,
+            microbeSpawnEnvironment.WorldSettings);
 
         MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,
             spawnEnvironment.DaylightInfo);
