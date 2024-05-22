@@ -376,7 +376,10 @@ public static class MicrobeInternalCalculations
     ///   Gives bonus compounds if time is close to night. This is done to compensate spawning stuff close to night to
     ///   fill them up as if they had been spawned earlier.
     /// </summary>
-    /// <param name="compoundReceiver">Compound bag to add the extra compounds to</param>
+    /// <param name="compoundReceiver">
+    ///   Compound bag to add the extra compounds to. Note that this gets the compounds added using a special method
+    ///   that allows initial compound adding when things aren't fully set up yet.
+    /// </param>
     /// <param name="fillTimes">
     ///   Info from <see cref="CalculateDayVaryingCompoundsFillTimes"/> used to determine how much compounds to give
     /// </param>
@@ -407,7 +410,7 @@ public static class MicrobeInternalCalculations
 
             var compoundAmount = totalToFill * (timeToGive / timeToFill);
 
-            compoundReceiver.AddCompound(fillTime.Key, compoundAmount);
+            compoundReceiver.AddExtraInitialCompoundIfUnderStorageLimit(fillTime.Key, compoundAmount);
         }
     }
 

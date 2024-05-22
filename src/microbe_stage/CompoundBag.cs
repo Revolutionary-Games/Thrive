@@ -53,18 +53,34 @@ public class CompoundBag : ICompoundStorage
     /// <summary>
     ///   Gets the capacity for a given compound
     /// </summary>
+    /// <param name="compound">Compound type to get capacity for</param>
+    /// <param name="ignoreUsefulness">
+    ///   If true then the capacity check ignores if the compound is not considered useful and returns the real
+    ///   physical capacity even if the compound is not considered useful to add
+    /// </param>
     /// <returns>
     ///   Returns the capacity this bag has for storing the compound if it is useful, otherwise 0
     /// </returns>
-    public float GetCapacityForCompound(Compound compound)
+    /// <remarks>
+    ///   <para>
+    ///     TODO: maybe put this in the base interface with the default value of false for ignore usefulness?
+    ///   </para>
+    /// </remarks>
+    public float GetCapacityForCompound(Compound compound, bool ignoreUsefulness)
     {
-        if (!IsUseful(compound))
+        if (!ignoreUsefulness && !IsUseful(compound))
             return 0;
 
         if (compoundCapacities != null && compoundCapacities.TryGetValue(compound, out var capacity))
             return capacity;
 
         return NominalCapacity;
+    }
+
+    /// <inheritdoc cref="GetCapacityForCompound(Compound,bool)"/>
+    public float GetCapacityForCompound(Compound compound)
+    {
+        return GetCapacityForCompound(compound, false);
     }
 
     /// <summary>
@@ -261,6 +277,21 @@ public class CompoundBag : ICompoundStorage
             if (toAdd > 0)
                 Compounds[entry.Key] = existingAmount + toAdd;
         }
+    }
+
+    /// <summary>
+    ///   Adds an extra initial compound that respects storage space (used for example for night compound buff)
+    /// </summary>
+    /// <param name="compound">Compound type</param>
+    /// <param name="amount">Amount</param>
+    public void AddExtraInitialCompoundIfUnderStorageLimit(Compound compound, float amount)
+    {
+        if (amount <= 0)
+            return;
+
+        Compounds.TryGetValue(compound, out var existingAmount);
+
+        Compounds[compound] = Math.Min(existingAmount + amount, GetCapacityForCompound(compound, true));
     }
 
     public void ClampNegativeCompoundAmounts()
