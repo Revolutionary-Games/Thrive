@@ -286,7 +286,6 @@ public class OrganelleDefinition : IRegistryType
 
         if (loadedSceneData.LoadedScene == null!)
         {
-            modelInfo = default(LoadedSceneWithModelInfo);
             return false;
         }
 
@@ -303,7 +302,6 @@ public class OrganelleDefinition : IRegistryType
 
         if (loadedCorpseScene.LoadedScene == null!)
         {
-            modelInfo = default(LoadedSceneWithModelInfo);
             return false;
         }
 
