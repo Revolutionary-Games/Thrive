@@ -317,6 +317,22 @@ public static class Constants
     public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
 
     /// <summary>
+    ///   Day and night are assumed to be the same length (half of the day)
+    /// </summary>
+    public const float LIGHT_NIGHT_FRACTION = 0.5f;
+
+    /// <summary>
+    ///   When night is closer than this number of seconds and a cell spawns, it gets extra resources to survive.
+    /// </summary>
+    public const float INITIAL_RESOURCE_BUFF_WHEN_NIGHT_CLOSER_THAN = 30.0f;
+
+    /// <summary>
+    ///   How many seconds of filling up during the day that a cell can be given when it is spawned close to or during
+    ///   the night
+    /// </summary>
+    public const float NIGHT_RESOURCE_BUFF_MAX_FILL_SECONDS = 45.0f;
+
+    /// <summary>
     ///   How often the microbe AI processes each microbe
     /// </summary>
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;

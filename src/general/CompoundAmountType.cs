@@ -14,9 +14,14 @@ public enum CompoundAmountType
     Current,
 
     /// <summary>
-    ///   Maximum possible ambient compound amount.
+    ///   Maximum possible ambient compound amount (during a day/night cycle).
     /// </summary>
     Maximum,
+
+    /// <summary>
+    ///   Minimum ambient compound amount.
+    /// </summary>
+    Minimum,
 
     /// <summary>
     ///   Average ambient compound amount over the course of a day.

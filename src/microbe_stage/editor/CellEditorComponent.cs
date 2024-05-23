@@ -972,23 +972,25 @@ public partial class CellEditorComponent :
 
         editedProperties.UpdateNameIfValid(newName);
 
+        // Update membrane
+        editedProperties.MembraneType = Membrane;
+        editedProperties.Colour = Colour;
+        editedProperties.MembraneRigidity = Rigidity;
+
         if (!IsMulticellularEditor)
         {
-            editedSpecies.UpdateInitialCompounds();
-
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
 
             behaviourEditor.OnFinishEditing();
+
+            // When this is the primary editor of the species data, this must refresh the species data properties that
+            // depend on being edited
+            editedSpecies.OnEdited();
         }
         else
         {
             GD.Print("MicrobeEditor: updated organelles for cell: ", editedProperties.FormattedName);
         }
-
-        // Update membrane
-        editedProperties.MembraneType = Membrane;
-        editedProperties.Colour = Colour;
-        editedProperties.MembraneRigidity = Rigidity;
     }
 
     public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
@@ -1262,7 +1264,8 @@ public partial class CellEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities()
     {
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles);
+        // TODO: merge this with nominal get to make this more efficient
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out _);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -2714,7 +2717,7 @@ public partial class CellEditorComponent :
             if (value > 0.0005f)
                 return Math.Round(value, 3);
 
-            // Small values can get really small (and still be different from getting 0 energy due to fitness) so
+            // Small values can get tiny (and still be different from getting 0 energy due to fitness) so
             // this is here for that reason
             return Math.Round(value, 8);
         }

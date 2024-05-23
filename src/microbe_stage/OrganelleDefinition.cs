@@ -519,12 +519,14 @@ public class OrganelleDefinition : IRegistryType
             loadedSceneData.LoadFrom(graphics);
         }
 
-        // Use default values from the primary scene
-        loadedCorpseScene = loadedSceneData;
-
         if (!string.IsNullOrEmpty(corpseChunkGraphics.ScenePath))
         {
             loadedCorpseScene.LoadFrom(corpseChunkGraphics);
+        }
+        else
+        {
+            // Use default values from the primary scene
+            loadedCorpseScene = loadedSceneData;
         }
 
         if (!string.IsNullOrEmpty(IconPath))
