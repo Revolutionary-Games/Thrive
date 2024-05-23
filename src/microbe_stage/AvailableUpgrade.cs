@@ -13,6 +13,11 @@ public class AvailableUpgrade : IRegistryType
     /// <summary>
     ///   A path to a scene to override organelle's display scene. If empty will use organelle's default model.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this overrides any cell corpse chunk scene set for the organelle type (if this is not empty)
+    ///   </para>
+    /// </remarks>
     [JsonProperty]
     private SceneWithModelInfo overrideGraphics;
 

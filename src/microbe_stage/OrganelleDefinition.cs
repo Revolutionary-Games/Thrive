@@ -271,7 +271,10 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   Gets the visual scene that should be used to represent this organelle (if there is one)
     /// </summary>
-    /// <param name="upgrades">Some upgrades alter organelle visuals</param>
+    /// <param name="upgrades">
+    ///   Some upgrades alter organelle visuals so when upgrades are set for this organelle they should be passed here
+    ///   to get the right visuals
+    /// </param>
     /// <param name="modelInfo">
     ///   The model info returned like this (as it may be a struct type this can't return a nullable reference without
     ///   boxing)
