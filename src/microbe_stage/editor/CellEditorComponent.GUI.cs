@@ -727,6 +727,9 @@ public partial class CellEditorComponent
             return;
         }
 
+        if (targetData.Species.ID != targetSpecies)
+            GD.PrintErr("Completed endosymbiosis place for wrong species");
+
         // Create the pending placement action
         PendingEndosymbiontPlace = new EndosymbiontPlaceActionData(targetData);
 
@@ -769,7 +772,7 @@ public partial class CellEditorComponent
         OnFinish.Invoke(ignoredEditorWarnings);
     }
 
-    private void UpdateGUIAfterLoadingSpecies(Species species, ICellDefinition definition)
+    private void UpdateGUIAfterLoadingSpecies(Species species)
     {
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
             " organelles in the microbe");
