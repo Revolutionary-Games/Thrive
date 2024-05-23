@@ -294,13 +294,9 @@ public partial class CellEditorComponent
     {
         data.UpgradedOrganelle.Upgrades = data.NewUpgrades;
 
-        // Uncomment when upgrades can visually affect the cell
-        // UpdateAlreadyPlacedVisuals();
+        microbeVisualizationOrganellePositionsAreDirty = true;
 
-        UpdateStats();
-
-        // Organelle upgrades will eventually affect auto-evo
-        StartAutoEvoPrediction();
+        OnOrganellesChanged();
     }
 
     [DeserializedCallbackAllowed]
@@ -308,13 +304,9 @@ public partial class CellEditorComponent
     {
         data.UpgradedOrganelle.Upgrades = data.OldUpgrades;
 
-        // Uncomment when upgrades can visually affect the cell
-        // UpdateAlreadyPlacedVisuals();
+        microbeVisualizationOrganellePositionsAreDirty = true;
 
-        UpdateStats();
-
-        // Organelle upgrades will eventually affect auto-evo
-        StartAutoEvoPrediction();
+        OnOrganellesChanged();
     }
 
     [DeserializedCallbackAllowed]

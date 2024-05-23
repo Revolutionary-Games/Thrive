@@ -563,6 +563,12 @@ PhysicsShape* CreateCylinderShape(float halfHeight, float radius, float density)
         CreateShapeWrapper(Thrive::Physics::SimpleShapes::CreateCylinder(halfHeight, radius, density)));
 }
 
+PhysicsShape* CreateCapsuleShape(float halfHeight, float radius, float density)
+{
+    return reinterpret_cast<PhysicsShape*>(
+        CreateShapeWrapper(Thrive::Physics::SimpleShapes::CreateCapsule(halfHeight, radius, density)));
+}
+
 PhysicsShape* CreateMicrobeShapeConvex(JVecF3* points, uint32_t pointCount, float density, float scale, float thickness)
 {
     // We don't want to do any extra data copies here (as the C# marshalling already copies stuff) so this API takes

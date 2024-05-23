@@ -78,7 +78,7 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
         foreach (var organelle in organelleLayout)
         {
             // Model of the organelle
-            if (!organelle.Definition.TryGetGraphicsScene(out var sceneWithModelInfo))
+            if (!organelle.Definition.TryGetGraphicsScene(organelle.Upgrades, out var sceneWithModelInfo))
                 continue;
 
             var organelleModel = modelScene.Instantiate<SceneDisplayer>();

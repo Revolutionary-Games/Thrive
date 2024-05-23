@@ -103,7 +103,7 @@ public class WorldGenerationSettings
     /// <summary>
     ///   Whether the day/night cycle in this game is enabled
     /// </summary>
-    public bool DayNightCycleEnabled { get; set; }
+    public bool DayNightCycleEnabled { get; set; } = true;
 
     /// <summary>
     ///   Real-time length of a full day on the planet in seconds

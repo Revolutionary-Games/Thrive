@@ -367,6 +367,8 @@ public partial class CellEditorComponent
                     Editor.CurrentGame, autoUnlock))
             {
                 control.Undiscovered = false;
+
+                // This can end up showing non-LAWK organelles in LAWK mode, so this needs a bit of post-processing
                 control.Show();
                 continue;
             }
@@ -430,6 +432,9 @@ public partial class CellEditorComponent
             ToolTipManager.Instance.AddToolTip(tooltip, "lockedOrganelles");
             button.RegisterToolTipForControl(tooltip, true);
         }
+
+        // Apply LAWK settings so that no-unexpected organelles are shown
+        UpdateOrganelleLAWKSettings();
     }
 
     private void RemoveUndiscoveredOrganelleButtons()

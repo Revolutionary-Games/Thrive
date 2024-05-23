@@ -271,18 +271,24 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   Gets the visual scene that should be used to represent this organelle (if there is one)
     /// </summary>
-    /// <para cref="modelInfo">
+    /// <param name="upgrades">
+    ///   Some upgrades alter organelle visuals so when upgrades are set for this organelle they should be passed here
+    ///   to get the right visuals
+    /// </param>
+    /// <param name="modelInfo">
     ///   The model info returned like this (as it may be a struct type this can't return a nullable reference without
     ///   boxing)
-    /// </para>
+    /// </param>
     /// <returns>True when this has a scene</returns>
-    public bool TryGetGraphicsScene(out LoadedSceneWithModelInfo modelInfo)
+    public bool TryGetGraphicsScene(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
-        // TODO: allow this to be affected by upgrades (add as a first parameter to this method)
+        if (TryGetGraphicsForUpgrade(upgrades, out modelInfo))
+        {
+            return true;
+        }
 
         if (loadedSceneData.LoadedScene == null!)
         {
-            modelInfo = default(LoadedSceneWithModelInfo);
             return false;
         }
 
@@ -290,13 +296,15 @@ public class OrganelleDefinition : IRegistryType
         return true;
     }
 
-    public bool TryGetCorpseChunkGraphics(out LoadedSceneWithModelInfo modelInfo)
+    public bool TryGetCorpseChunkGraphics(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
-        // TODO: allow this to be affected by upgrades (add as a first parameter to this method)
+        if (TryGetGraphicsForUpgrade(upgrades, out modelInfo))
+        {
+            return true;
+        }
 
         if (loadedCorpseScene.LoadedScene == null!)
         {
-            modelInfo = default(LoadedSceneWithModelInfo);
             return false;
         }
 
@@ -514,12 +522,14 @@ public class OrganelleDefinition : IRegistryType
             loadedSceneData.LoadFrom(graphics);
         }
 
-        // Use default values from the primary scene
-        loadedCorpseScene = loadedSceneData;
-
         if (!string.IsNullOrEmpty(corpseChunkGraphics.ScenePath))
         {
             loadedCorpseScene.LoadFrom(corpseChunkGraphics);
+        }
+        else
+        {
+            // Use default values from the primary scene
+            loadedCorpseScene = loadedSceneData;
         }
 
         if (!string.IsNullOrEmpty(IconPath))
@@ -655,6 +665,31 @@ public class OrganelleDefinition : IRegistryType
 
         offset /= Hexes.Count;
         return offset;
+    }
+
+    private bool TryGetGraphicsForUpgrade(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo upgradeScene)
+    {
+        if (upgrades == null)
+        {
+            upgradeScene = default(LoadedSceneWithModelInfo);
+
+            return false;
+        }
+
+        foreach (var availableUpgrade in AvailableUpgrades)
+        {
+            if (upgrades.UnlockedFeatures.Contains(availableUpgrade.Key))
+            {
+                if (availableUpgrade.Value.TryGetGraphicsScene(out upgradeScene))
+                {
+                    return true;
+                }
+            }
+        }
+
+        upgradeScene = default(LoadedSceneWithModelInfo);
+
+        return false;
     }
 
     public class OrganelleComponentFactoryInfo
