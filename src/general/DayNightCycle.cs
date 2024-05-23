@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public class DayNightCycle
+public class DayNightCycle : IDaylightInfo
 {
     [JsonProperty]
     private bool isEnabled;
@@ -57,6 +57,28 @@ public class DayNightCycle
     /// </summary>
     [JsonIgnore]
     public float DayLightFraction => isEnabled ? CalculatePointwiseSunlight(FractionOfDayElapsed) : 1.0f;
+
+    /// <summary>
+    ///   How long a single day/night cycle lasts in realtime seconds of gameplay
+    /// </summary>
+    [JsonIgnore]
+    public float DayLengthRealtimeSeconds => realTimePerDay;
+
+    /// <summary>
+    ///   How long until the night starts. When negative it is currently night.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: verify that this makes sense, this assumes mid-day is 0.5 and night is exactly half of the total day
+    ///     <see cref="Constants.LIGHT_NIGHT_FRACTION"/>
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
+    public float DayFractionUntilNightStart =>
+        FractionOfDayElapsed > 0.25f ? 0.75f - FractionOfDayElapsed : -FractionOfDayElapsed - 0.25f;
+
+    [JsonIgnore]
+    public float SecondsUntilNightStart => DayFractionUntilNightStart * DayLengthRealtimeSeconds;
 
     /// <summary>
     ///   Applies the world settings. This needs to be called when this object is created (and not loaded from JSON)

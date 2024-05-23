@@ -106,6 +106,23 @@ public class EarlyMulticellularSpecies : Species
         }
     }
 
+    public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)
+    {
+        if (spawnEnvironment is not IMicrobeSpawnEnvironment microbeSpawnEnvironment)
+            throw new ArgumentException("Early multicellular species must have microbe spawn environment info");
+
+        // TODO: this would be excellent to match the actual cell type being used for spawning
+        var cellType = Cells[0].CellType;
+
+        // TODO: CACHING IS MISSING from here (but microbe has it)
+        var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(cellType.Organelles,
+            cellType.MembraneType, PlayerSpecies, microbeSpawnEnvironment.CurrentBiome,
+            microbeSpawnEnvironment.WorldSettings);
+
+        MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,
+            spawnEnvironment.DaylightInfo);
+    }
+
     public override void ApplyMutation(Species mutation)
     {
         base.ApplyMutation(mutation);

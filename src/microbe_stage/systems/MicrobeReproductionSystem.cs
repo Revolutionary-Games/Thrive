@@ -52,6 +52,7 @@ using World = DefaultEcs.World;
 public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 {
     private readonly IWorldSimulation worldSimulation;
+    private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
 
     private readonly ConcurrentStack<PlacedOrganelle> organellesNeedingScaleUpdate = new();
@@ -71,10 +72,12 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
     private float reproductionDelta;
 
-    public MicrobeReproductionSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-        IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public MicrobeReproductionSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        ISpawnSystem spawnSystem, World world, IParallelRunner parallelRunner) :
+        base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
     {
         this.worldSimulation = worldSimulation;
+        this.spawnEnvironment = spawnEnvironment;
         this.spawnSystem = spawnSystem;
     }
 
@@ -614,7 +617,8 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
                         entity, species, species, worldSimulation, workData1, workData2);
 
                     // This is purely inside this lock to suppress a warning on worldSimulation
-                    cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
+                    cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnEnvironment,
+                        spawnSystem, null);
                 }
             }
         }
