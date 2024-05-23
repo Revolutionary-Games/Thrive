@@ -852,7 +852,7 @@ public partial class CellEditorComponent :
                 RunWithSymmetry(q, r,
                     (finalQ, finalR, rotation) =>
                     {
-                        RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle);
+                        RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle, MovingPlacedHex?.Upgrades);
                         hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
                     }, effectiveSymmetry);
 
@@ -1856,22 +1856,23 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   If not hovering over an organelle, render the to-be-placed organelle
     /// </summary>
-    private void RenderHighlightedOrganelle(int q, int r, int rotation, OrganelleDefinition shownOrganelle)
+    private void RenderHighlightedOrganelle(int q, int r, int rotation, OrganelleDefinition shownOrganelleDefinition,
+        OrganelleUpgrades? upgrades)
     {
-        RenderHoveredHex(q, r, shownOrganelle.GetRotatedHexes(rotation), isPlacementProbablyValid,
+        RenderHoveredHex(q, r, shownOrganelleDefinition.GetRotatedHexes(rotation), isPlacementProbablyValid,
             out bool hadDuplicate);
 
         bool showModel = !hadDuplicate;
 
         // Model
-        if (showModel && shownOrganelle.TryGetGraphicsScene(out var modelInfo))
+        if (showModel && shownOrganelleDefinition.TryGetGraphicsScene(upgrades, out var modelInfo))
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
 
             var organelleModel = hoverModels[usedHoverModel++];
 
             organelleModel.Transform = new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(rotation)),
-                cartesianPosition + shownOrganelle.ModelOffset);
+                cartesianPosition + shownOrganelleDefinition.ModelOffset);
 
             organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
                 Constants.DEFAULT_HEX_SIZE);
@@ -2160,7 +2161,7 @@ public partial class CellEditorComponent :
             // Hexes are handled by UpdateAlreadyPlacedHexes
 
             // Model of the organelle
-            if (organelle.Definition.TryGetGraphicsScene(out var modelInfo))
+            if (organelle.Definition.TryGetGraphicsScene(organelle.Upgrades, out var modelInfo))
             {
                 if (nextFreeOrganelle >= placedModels.Count)
                 {

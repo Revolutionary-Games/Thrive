@@ -295,7 +295,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         foreach (var placedOrganelle in organelleContainer.Organelles!)
         {
             // Only handle organelles that have graphics
-            if (!placedOrganelle.Definition.TryGetGraphicsScene(out var graphicsInfo))
+            if (!placedOrganelle.Definition.TryGetGraphicsScene(placedOrganelle.Upgrades, out var graphicsInfo))
                 continue;
 
             inUseOrganelles.Add(placedOrganelle);
