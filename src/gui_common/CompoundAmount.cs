@@ -184,6 +184,15 @@ public partial class CompoundAmount : HBoxContainer
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
+    /// <summary>
+    ///   Call if the state of the external extra text to show has changed without the property being re-assigned
+    /// </summary>
+    public void OnExtraTextChangedExternally()
+    {
+        if (ExtraValueDescription != null)
+            UpdateExtraDescription();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)

@@ -107,6 +107,8 @@ public partial class CompoundBalanceDisplay : VBoxContainer
 
                 updateTarget.UpdateFormatArgs(Math.Round(balance.FillTime, 1));
             }
+
+            compoundControl.OnExtraTextChangedExternally();
         }
     }
 
