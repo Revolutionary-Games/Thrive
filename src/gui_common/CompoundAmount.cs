@@ -254,7 +254,13 @@ public partial class CompoundAmount : HBoxContainer
         {
             if (extraDescriptionLabel == null)
             {
-                extraDescriptionLabel = new Label();
+                extraDescriptionLabel = new Label
+                {
+                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                    CustomMinimumSize = new Vector2(20, 0),
+                    SizeFlagsHorizontal = SizeFlags.ExpandFill,
+                };
+
                 AddChild(extraDescriptionLabel);
             }
 
@@ -270,6 +276,7 @@ public partial class CompoundAmount : HBoxContainer
         icon?.Free();
 
         icon = GUICommon.Instance.CreateCompoundIcon(compound!.InternalName);
+        icon.SizeFlagsVertical = SizeFlags.ShrinkCenter;
         AddChild(icon);
 
         if (extraDescriptionLabel != null)
