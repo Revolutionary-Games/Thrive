@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 14:35+0300\n"
+"POT-Creation-Date: 2024-05-24 14:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -283,12 +283,12 @@ msgstr ""
 msgid "ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:516
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:521
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:526
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:522
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:527
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
@@ -420,7 +420,7 @@ msgstr ""
 msgid "BASE_MOBILITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:582
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:587
 msgid "BASE_MOVEMENT"
 msgstr ""
 
@@ -1563,7 +1563,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:359
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:360
 msgid "DEATH"
 msgstr ""
 
@@ -2100,27 +2100,27 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:593
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:598
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:556
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:561
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2724
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2728
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2562
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2566
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2735
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2739
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2728
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2732
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2196,7 +2196,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1360
+#: ../src/microbe_stage/MicrobeStage.cs:1370
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2477,7 +2477,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2741
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2745
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2535,7 +2535,7 @@ msgstr ""
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:196
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:198
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:94
 #: ../src/engine/DebugOverlays.tscn:71
@@ -2578,7 +2578,7 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2662
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2666
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1060
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -3250,7 +3250,7 @@ msgstr ""
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1636
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1639
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3806,7 +3806,7 @@ msgstr ""
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:246
+#: ../src/microbe_stage/MicrobeSpecies.cs:297
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -4530,7 +4530,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:693
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2756
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2760
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4571,7 +4571,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1635
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1638
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4590,8 +4590,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:29
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:39
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:49
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2573
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2585
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2577
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2589
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:459
 msgid "N_A"
@@ -4728,7 +4728,7 @@ msgstr ""
 msgid "ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:403
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:405
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
@@ -4787,11 +4787,11 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:603
+#: ../src/microbe_stage/OrganelleDefinition.cs:613
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:576
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:581
 msgid "OSMOREGULATION"
 msgstr ""
 
@@ -5181,7 +5181,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2592
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2596
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -5338,8 +5338,8 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
-#: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:314
-#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:598
+#: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:317
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:601
 msgid "REPRODUCED"
 msgstr ""
 
@@ -6006,7 +6006,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1052
+#: ../src/microbe_stage/MicrobeStage.cs:1062
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6035,7 +6035,7 @@ msgstr ""
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/general/Species.cs:300
+#: ../src/general/Species.cs:311
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6296,11 +6296,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1358
+#: ../src/microbe_stage/MicrobeStage.cs:1368
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1359
+#: ../src/microbe_stage/MicrobeStage.cs:1369
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -6580,8 +6580,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:480
-#: ../src/microbe_stage/MicrobeStage.cs:484
+#: ../src/microbe_stage/MicrobeStage.cs:489
+#: ../src/microbe_stage/MicrobeStage.cs:493
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -7001,7 +7001,7 @@ msgstr ""
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:385
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
 
