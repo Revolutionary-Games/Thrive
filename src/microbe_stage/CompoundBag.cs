@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -157,6 +158,7 @@ public class CompoundBag : ICompoundStorage
         return newAmount - existingAmount;
     }
 
+    [MustDisposeResource]
     public IEnumerator<KeyValuePair<Compound, float>> GetEnumerator()
     {
         return Compounds.GetEnumerator();
@@ -338,6 +340,7 @@ public class CompoundBag : ICompoundStorage
         tempCompounds.Clear();
     }
 
+    [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();

@@ -726,9 +726,7 @@ public partial class CellEditorComponent :
 
             if (Editor.EditedCellProperties != null)
             {
-                var properties = Editor.EditedCellProperties;
-
-                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
+                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
                 CreateUndiscoveredOrganellesButtons();
                 CreatePreviewMicrobeIfNeeded();
                 UpdateArrow(false);
@@ -930,7 +928,7 @@ public partial class CellEditorComponent :
 
         UpdateOrganelleUnlockTooltips(true);
 
-        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
+        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
 
         // Set up the display cell
         CreatePreviewMicrobeIfNeeded();
@@ -1362,7 +1360,7 @@ public partial class CellEditorComponent :
 
     protected override void PerformMove(int q, int r)
     {
-        if (!MoveOrganelle(MovingPlacedHex!, MovingPlacedHex!.Position, new Hex(q, r), MovingPlacedHex.Orientation,
+        if (!MoveOrganelle(MovingPlacedHex!, new Hex(q, r),
                 placementRotation))
         {
             Editor.OnInvalidAction();
@@ -1849,8 +1847,28 @@ public partial class CellEditorComponent :
 
         UpdateEnergyBalance(energyBalance);
 
-        UpdateCompoundBalances(ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
-            CompoundAmountType.Current, energyBalance));
+        var storage = MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out var nominalCapacity);
+
+        Dictionary<Compound, CompoundBalance> compoundBalanceData;
+
+        switch (compoundBalance.CurrentDisplayType)
+        {
+            case BalanceDisplayType.MaxSpeed:
+                compoundBalanceData =
+                    ProcessSystem.ComputeCompoundBalance(organelles, biome, CompoundAmountType.Current);
+                break;
+            case BalanceDisplayType.EnergyEquilibrium:
+                compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
+                    CompoundAmountType.Current, energyBalance);
+                break;
+            default:
+                GD.PrintErr("Unknown compound balance type: ", compoundBalance.CurrentDisplayType);
+                goto case BalanceDisplayType.EnergyEquilibrium;
+        }
+
+        UpdateCompoundBalances(ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalCapacity, storage));
+
+        // TODO: storage lasting times and not surviving night warning
     }
 
     /// <summary>
@@ -1999,8 +2017,7 @@ public partial class CellEditorComponent :
     ///   Finishes an organelle move
     /// </summary>
     /// <returns>True if the organelle move succeeded.</returns>
-    private bool MoveOrganelle(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
-        int newRotation)
+    private bool MoveOrganelle(OrganelleTemplate organelle, Hex newLocation, int newRotation)
     {
         // TODO: consider allowing rotation inplace (https://github.com/Revolutionary-Games/Thrive/issues/2993)
 

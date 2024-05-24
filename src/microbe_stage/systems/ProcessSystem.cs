@@ -373,6 +373,29 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     /// <summary>
+    ///   Calculates into the balances how long it takes for each compound type to be filled
+    /// </summary>
+    /// <returns>The value of <see cref="balancesToSupplement"/> supplemented with the fill times</returns>
+    public static Dictionary<Compound, CompoundBalance> ComputeCompoundFillTimes(
+        Dictionary<Compound, CompoundBalance> balancesToSupplement,
+        float nominalCapacity, Dictionary<Compound, float> specificCapacities)
+    {
+        foreach (var entry in balancesToSupplement)
+        {
+            // TODO: should this calculate negative balance "drain" times?
+            var balance = entry.Value;
+            if (balance.Balance <= 0)
+                continue;
+
+            var capacity = specificCapacities.GetValueOrDefault(entry.Key, nominalCapacity);
+
+            balance.FillTime = capacity / balance.Balance;
+        }
+
+        return balancesToSupplement;
+    }
+
+    /// <summary>
     ///   Calculates the maximum speed a process can run at in a biome based on the environmental compounds.
     ///   Can be switched between the average, maximum etc. conditions that occur in the span of an in-game day.
     /// </summary>

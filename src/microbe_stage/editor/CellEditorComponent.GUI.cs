@@ -509,7 +509,14 @@ public partial class CellEditorComponent
 
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
     {
-        compoundBalance.UpdateBalances(balances);
+        var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
+            Constants.LIGHT_DAY_FILL_TIME_WARNING_THRESHOLD;
+
+        // Don't show warning when day/night is not enabled
+        if (!Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled)
+            warningTime = 10000000;
+
+        compoundBalance.UpdateBalances(balances, warningTime);
     }
 
     private void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
@@ -727,11 +734,21 @@ public partial class CellEditorComponent
             return;
         }
 
+        if (targetData.Species.ID != targetSpecies)
+            GD.PrintErr("Completed endosymbiosis place for wrong species");
+
         // Create the pending placement action
         PendingEndosymbiontPlace = new EndosymbiontPlaceActionData(targetData);
 
         // There's now a pending action
         OnActionStatusChanged();
+    }
+
+    private void OnCompoundBalanceTypeChanged(BalanceDisplayType newType)
+    {
+        _ = newType;
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
     }
 
     private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)
@@ -769,7 +786,7 @@ public partial class CellEditorComponent
         OnFinish.Invoke(ignoredEditorWarnings);
     }
 
-    private void UpdateGUIAfterLoadingSpecies(Species species, ICellDefinition definition)
+    private void UpdateGUIAfterLoadingSpecies(Species species)
     {
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
             " organelles in the microbe");

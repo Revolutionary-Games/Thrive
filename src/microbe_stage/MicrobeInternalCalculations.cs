@@ -43,8 +43,8 @@ public static class MicrobeInternalCalculations
         return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(ICollection<OrganelleTemplate> organelles,
-        out float nominalCapacity)
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(
+        IReadOnlyCollection<OrganelleTemplate> organelles, out float nominalCapacity)
     {
         var totalNominalCap = 0.0f;
 
@@ -422,7 +422,7 @@ public static class MicrobeInternalCalculations
     ///   that compound is
     /// </returns>
     public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
-        ICollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
+        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
@@ -471,7 +471,7 @@ public static class MicrobeInternalCalculations
     ///   should be present
     /// </returns>
     public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
-        ICollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
+        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
