@@ -322,6 +322,12 @@ public static class Constants
     public const float LIGHT_NIGHT_FRACTION = 0.5f;
 
     /// <summary>
+    ///   If filling up on some compound takes more than this fraction of the total day+night length a warning is given
+    ///   in the GUI
+    /// </summary>
+    public const float LIGHT_DAY_FILL_TIME_WARNING_THRESHOLD = 0.4f;
+
+    /// <summary>
     ///   When night is closer than this number of seconds and a cell spawns, it gets extra resources to survive.
     /// </summary>
     public const float INITIAL_RESOURCE_BUFF_WHEN_NIGHT_CLOSER_THAN = 30.0f;

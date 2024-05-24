@@ -1847,8 +1847,28 @@ public partial class CellEditorComponent :
 
         UpdateEnergyBalance(energyBalance);
 
-        UpdateCompoundBalances(ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
-            CompoundAmountType.Current, energyBalance));
+        var storage = MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out var nominalCapacity);
+
+        Dictionary<Compound, CompoundBalance> compoundBalanceData;
+
+        switch (compoundBalance.CurrentDisplayType)
+        {
+            case BalanceDisplayType.MaxSpeed:
+                compoundBalanceData =
+                    ProcessSystem.ComputeCompoundBalance(organelles, biome, CompoundAmountType.Current);
+                break;
+            case BalanceDisplayType.EnergyEquilibrium:
+                compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
+                    CompoundAmountType.Current, energyBalance);
+                break;
+            default:
+                GD.PrintErr("Unknown compound balance type: ", compoundBalance.CurrentDisplayType);
+                goto case BalanceDisplayType.EnergyEquilibrium;
+        }
+
+        UpdateCompoundBalances(ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalCapacity, storage));
+
+        // TODO: storage lasting times and not surviving night warning
     }
 
     /// <summary>

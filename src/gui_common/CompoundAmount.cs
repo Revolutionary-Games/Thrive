@@ -12,6 +12,7 @@ public partial class CompoundAmount : HBoxContainer
 #pragma warning disable CA2213
     private Label? amountLabel;
     private TextureRect? icon;
+    private Label? extraDescriptionLabel;
 #pragma warning restore CA2213
 
     private Compound? compound;
@@ -21,6 +22,7 @@ public partial class CompoundAmount : HBoxContainer
     private bool prefixPositiveWithPlus;
     private bool usePercentageDisplay;
     private Colour valueColour = Colour.White;
+    private LocalizedString? extraValueDescription;
 
     public enum Colour
     {
@@ -135,6 +137,22 @@ public partial class CompoundAmount : HBoxContainer
         }
     }
 
+    /// <summary>
+    ///   When set, extra information can be shown after the compound value
+    /// </summary>
+    public LocalizedString? ExtraValueDescription
+    {
+        get => extraValueDescription;
+        set
+        {
+            if (extraValueDescription != null && extraValueDescription.Equals(value))
+                return;
+
+            extraValueDescription = value;
+            UpdateExtraDescription();
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -149,6 +167,9 @@ public partial class CompoundAmount : HBoxContainer
         // Only apply non-default colour here. If it is later changed, it is then applied
         if (ValueColour != Colour.White)
             UpdateColour();
+
+        if (extraValueDescription != null)
+            UpdateExtraDescription();
     }
 
     public override void _EnterTree()
@@ -222,12 +243,37 @@ public partial class CompoundAmount : HBoxContainer
         amountLabel.AddThemeColorOverride(colourParameterName, color);
     }
 
+    private void UpdateExtraDescription()
+    {
+        if (ExtraValueDescription == null)
+        {
+            extraDescriptionLabel?.QueueFree();
+            extraDescriptionLabel = null;
+        }
+        else
+        {
+            if (extraDescriptionLabel == null)
+            {
+                extraDescriptionLabel = new Label();
+                AddChild(extraDescriptionLabel);
+            }
+
+            // Make sure the extra description label is last child
+            MoveChild(extraDescriptionLabel, -1);
+
+            extraDescriptionLabel.Text = ExtraValueDescription.ToString();
+        }
+    }
+
     private void UpdateIcon()
     {
         icon?.Free();
 
         icon = GUICommon.Instance.CreateCompoundIcon(compound!.InternalName);
         AddChild(icon);
+
+        if (extraDescriptionLabel != null)
+            UpdateExtraDescription();
     }
 
     private void UpdateTooltip()
@@ -240,5 +286,6 @@ public partial class CompoundAmount : HBoxContainer
     {
         UpdateTooltip();
         UpdateLabel();
+        UpdateExtraDescription();
     }
 }
