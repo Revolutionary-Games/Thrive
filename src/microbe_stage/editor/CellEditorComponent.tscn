@@ -840,6 +840,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body"]
 layout_mode = 2
+follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer"]
 layout_mode = 2
