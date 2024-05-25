@@ -327,7 +327,7 @@ public class Mutations
         {
             var mainHexes = mutatedOrganelles.ComputeHexCache().Except(islandHexes);
 
-            // Compute shortest hex distance
+            // Compute the shortest hex distance
             Hex minSubHex = default;
             int minDistance = int.MaxValue;
             foreach (var mainHex in mainHexes)
@@ -439,7 +439,8 @@ public class Mutations
             }
         }
 
-        // We didnt find an open spot, this doesn't make much sense
+        // TODO: don't throw here but signal failure with a return value
+        // We didn't find an open spot, this doesn't make much sense
         throw new ArgumentException("Mutation code could not find a good position " +
             "for a new organelle");
     }

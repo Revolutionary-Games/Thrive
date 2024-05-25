@@ -28,18 +28,21 @@ using World = DefaultEcs.World;
 public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
 {
     private readonly IWorldSimulation worldSimulation;
+    private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
 
-    public DelayedColonyOperationSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-        IParallelRunner runner) : base(world, runner, Constants.HUGE_MAX_SPAWNED_ENTITIES)
+    public DelayedColonyOperationSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        ISpawnSystem spawnSystem, World world, IParallelRunner runner) :
+        base(world, runner, Constants.HUGE_MAX_SPAWNED_ENTITIES)
     {
         this.worldSimulation = worldSimulation;
+        this.spawnEnvironment = spawnEnvironment;
         this.spawnSystem = spawnSystem;
     }
 
     public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
         int colonyTargetIndex, CellTemplate cellTemplate, EarlyMulticellularSpecies species,
-        IWorldSimulation worldSimulation,
+        IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds)
     {
         if (colonyTargetIndex == 0)
@@ -59,11 +62,11 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
             AttachedTo = colonyEntity,
         };
 
-        // For now we rely on absolute positions instead of needing to wait until all relevant membranes are ready
-        // and calculate the attach position like that
+        // For now, we rely on absolute positions instead of needing to wait until all relevant membranes are ready
+        // and calculate the attachment position like that
         attachPosition.CreateMulticellularAttachPosition(cellTemplate.Position, cellTemplate.Orientation);
 
-        var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species,
+        var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             colonyPosition.Position + colonyPosition.Rotation * attachPosition.RelativePosition, true,
             (cellTemplate.CellType, bodyPlanIndex), recorder, out var member, MulticellularSpawnState.Bud,
             giveStartingCompounds);
@@ -76,7 +79,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
 
         member.Set(new DelayedMicrobeColony(colonyEntity, colonyTargetIndex));
 
-        // Ensure no physics is created before the attach completes
+        // Ensure no physics is created before the attach-operation completes
         member.Set(PhysicsHelpers.CreatePhysicsForMicrobe(true));
     }
 
@@ -128,7 +131,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
             return;
         }
 
-        // First cell is at index 0 so it is always skipped (as it is the lead cell)
+        // First cell is at index 0, so it is always skipped (as it is the lead cell)
         int bodyPlanIndex = 1;
 
         if (!entity.Has<MicrobeColony>())
@@ -173,7 +176,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
         foreach (var cellTemplate in cellsToGrow)
         {
             CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++, cellTemplate, species.Species,
-                worldSimulation, recorder, spawnSystem, true);
+                worldSimulation, spawnEnvironment, recorder, spawnSystem, true);
 
             added = true;
         }

@@ -17,7 +17,7 @@ using Newtonsoft.Json;
 /// </remarks>
 /// <typeparam name="T">The concrete type of the hex to hold</typeparam>
 [UseThriveSerializer]
-public abstract class HexLayout<T> : ICollection<T>
+public abstract class HexLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     where T : class, IPositionedHex
 {
     [JsonProperty]

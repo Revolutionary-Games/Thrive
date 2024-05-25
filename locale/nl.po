@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-24 14:32+0300\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -725,14 +725,38 @@ msgstr "Bezoek onze gemeenschapswiki"
 msgid "COMPILED_AT_COLON"
 msgstr "Gebouwd op:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Gebouwd op:"
+
 msgid "COMPOUNDS"
 msgstr "Verbindingen"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Stof om te Vinden:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Stof om te Vinden:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Toon / verberg stoffen"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Verbindingen:"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Toon / verberg stoffen"
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Stofbalanzen"
@@ -1196,7 +1220,8 @@ msgstr "(lengte in werkelijke seconden voor een speldag)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Zet dag/nacht cyclus aan"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1600,6 +1625,66 @@ msgstr "Schakel de editor in"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Zet GUI Licht Effecten Aan"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Meerdere Organellen"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Ontbind al"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Aggressieve microben zullen prooi op lange afstand jagen\n"
+"en zullen vaker terugvechten tegen roofdieren wanneer ze aangevallen worden.\n"
+"Vredige microben zullen niet op lange afstand jagen\n"
+"en zullen minder vaak gifstoffen tegen roofdieren gebruiken."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Losgekoppelde Organellen"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Dit toont hoeveel vensters permanent uitgezet zijn door de gebruiker.\n"
+"Het kan zijn dat sommige wenselijke vensters per ongelijk uitgezet zijn. De knop hiernaast kan gebruikt worden om alle uitgezette vensters weer aan te zetten."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Zet [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] om in [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Zet ook [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Open bewerker en bewerk je soort"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Titel mist"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1706,6 +1791,10 @@ msgstr "Gebouwen"
 
 msgid "EXIT"
 msgstr "Sluit"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Ga naar het volgende bewerkertabblad"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Sluit af naar opstartprogramma"
@@ -2657,6 +2746,10 @@ msgstr "Zeer klein"
 
 msgid "LINE_COLOUR"
 msgstr "Lijnkleur:"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Titel mist"
 
 msgid "LIPASE"
 msgstr "Lipase"
@@ -3904,6 +3997,13 @@ msgstr "Laden van pck-bestand {{0}) mislukt omdat het bestand niet bestaat"
 msgid "PEACEFUL"
 msgstr "Vreedzaam"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4687,6 +4787,10 @@ msgstr "verspreid naar patches:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pauzeermenu"
+
+#, fuzzy
+msgid "START"
+msgstr "Starten"
 
 msgid "STARTING"
 msgstr "Starten"
@@ -5604,6 +5708,9 @@ msgstr "Zie Patchnotities"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Zie nu meest recente of alle Thrive patchnotities"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ga naar broncode"

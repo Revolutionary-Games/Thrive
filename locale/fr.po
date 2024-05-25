@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
-"PO-Revision-Date: 2024-04-27 14:34+0000\n"
+"POT-Creation-Date: 2024-05-24 14:32+0300\n"
+"PO-Revision-Date: 2024-05-24 11:18+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -726,14 +726,38 @@ msgstr "Visitez le wiki de la communauté"
 msgid "COMPILED_AT_COLON"
 msgstr "Compilée le :"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Compilée le :"
+
 msgid "COMPOUNDS"
 msgstr "Composés"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Composé à trouver :"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Composé à trouver :"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher l'environnement et les composés"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Composés :"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Équilibre des composants"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Équilibre des composants"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Afficher / cacher l'environnement et les composés"
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Équilibre des composants"
@@ -1048,7 +1072,7 @@ msgid "CRAFTING_TITLE"
 msgstr "Fabrication"
 
 msgid "CREATE"
-msgstr "Crée"
+msgstr "Créer"
 
 msgid "CREATED_AT"
 msgstr "Créé à :"
@@ -1153,8 +1177,8 @@ msgstr "(durée en secondes en temps réel pour une journée de jeu)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Activer le cycle jour/nuit"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr "(ATTENTION : la photosynthèse devient beaucoup moins viable)"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "(la photosynthèse devient inefficace pendant la nuit, ce qui nécessite une plus grande planification préalable)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Le calibrage des zones mortes est terminé. Les nouvelles zones mortes sont affichées ci-dessous sur les afficheurs de valeurs d'axes."
@@ -1560,6 +1584,65 @@ msgstr "Activer l'éditeur"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Activer les effets lumineux dans l'interface utilisateur"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Plusieurs organites"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr "Endosymbiose"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Dissocier tout"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Les microbes agressifs pourchasseront leurs proies sur de plus longues distances\n"
+"et sont plus enclins à affronter un assaillant.\n"
+"Les microbes pacifiques ne poursuivront pas les autres cellules si elles se tiennent à distance\n"
+"et utiliseront moins de toxines contre les prédateurs."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Organites déconnectés"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Ceci indique le nombre de fenêtres contextuelles qui ont été définitivement désactivées par l'utilisateur.\n"
+"Si certaines fenêtres contextuelles, qui sont en fait souhaitées, ont été désactivées, le bouton situé à côté peut être utilisé pour faire réapparaître toutes les fenêtres contextuelles désactivées."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr "Les procaryotes peuvent avoir au maximum un endosymbiote"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Transforme le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. Effet proportionnel avec la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Transforme aussi le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Entrer dans l'éditeur et modifier votre espèce"
+
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Endosymbiose"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0} : -{1} ATP"
 
@@ -1666,6 +1749,9 @@ msgstr "Constructions"
 
 msgid "EXIT"
 msgstr "Quitter"
+
+msgid "EXIT_EDITOR"
+msgstr "Quitter l'éditeur"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Revenir au lanceur"
@@ -2610,6 +2696,9 @@ msgstr "Très petit"
 msgid "LINE_COLOUR"
 msgstr "Couleur de la ligne :"
 
+msgid "LINKS_TITLE"
+msgstr "Liens"
+
 msgid "LIPASE"
 msgstr "Lipase"
 
@@ -3091,9 +3180,8 @@ msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [t
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
 
-#, fuzzy
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr "Les instructions pour créer de nouvelles modifications sont accessibles depuis"
+msgstr "Les instructions pour créer des mods sont disponibles sur"
 
 msgid "MODELS"
 msgstr "Modèles"
@@ -3117,7 +3205,7 @@ msgstr ""
 "Les mods doivent être activés après l'installation. Visitez le gestionnaire de mods en utilisant le bouton mods dans le menu extras."
 
 msgid "MOD_ASSEMBLY"
-msgstr "Assembleur :"
+msgstr "Assembleur du mod :"
 
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Classe principale de l'assembleur du mod :"
@@ -3173,9 +3261,8 @@ msgstr "Impossible de charger des ressources de {0}"
 msgid "MOD_ICON_FILE"
 msgstr "Fichier d'icône :"
 
-#, fuzzy
 msgid "MOD_INFO_URL"
-msgstr "Lien d'information :"
+msgstr "Lien d'information du mod :"
 
 msgid "MOD_INTERNAL_NAME"
 msgstr "Nom interne (dossier) :"
@@ -3187,11 +3274,10 @@ msgid "MOD_LOAD_ERRORS"
 msgstr "Erreurs liées au chargement de mod"
 
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Des erreurs sont apparues lors du chargement d'un ou plusieurs mods. Les logs pourraient contenir des informations supplémentaires."
+msgstr "Des erreurs sont survenues lors du chargement d'un ou plusieurs mods. Les journaux pourraient contenir des informations supplémentaires."
 
-#, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "Des erreurs sont survenues lors du chargement ou du déchargement d'un ou plusieurs mods. Le registre du jeu devrait contenir d'avantage d'informations."
+msgstr "Des erreurs sont survenues lors du chargement ou du déchargement d'un ou plusieurs mods. Les journaux pourraient contenir des informations supplémentaires."
 
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Remarque : de nombreux mods nécessitent un redémarrage du jeu pour être chargés ou déchargés correctement. Ne chargez que les mods auxquels vous faites confiance car ils peuvent contenir du code exécutable."
@@ -3588,7 +3674,7 @@ msgid "OPENGL_MODE_WARNING"
 msgstr "Avertissement mode OpenGL"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
-msgstr "Vous utilisez Thrive avec OpenGL. Cela demeure non testé et risque de causer des problèmes. Veuillez à utiliser des cartes graphiques (processeurs graphiques ou intégrées) suffisamment récentes et essayez de mettre à jour vos pilotes vidéos. Pour les ordinateur portables vous pouvez avoir besoin de forcer l'utilisation des cartes graphiques AMD ou Nvidia dédiées pour lancer Thrive au lieu des cartes graphiques intégrées."
+msgstr "Vous utilisez Thrive avec OpenGL. Cela demeure non testé et risque de causer des problèmes. Assurez-vous d'utiliser des cartes graphiques (processeurs graphiques ou intégrées) suffisamment récentes et essayez de mettre à jour vos pilotes vidéos. Pour les ordinateur portables vous pouvez avoir besoin de forcer l'utilisation des cartes graphiques AMD ou Nvidia dédiées pour lancer Thrive au lieu des cartes graphiques intégrées."
 
 msgid "OPEN_FOLDER"
 msgstr "Ouvrir le dossier"
@@ -3612,10 +3698,10 @@ msgid "OPEN_IN_FREEBUILD"
 msgstr "Construction Libre"
 
 msgid "OPEN_LOGS_FOLDER"
-msgstr "Ouvrir le dossier des logs"
+msgstr "Ouvrir le dossier des journaux"
 
 msgid "OPEN_MOD_URL"
-msgstr "Ouvrir l'URL d'info"
+msgstr "Ouvrir le lien d'information"
 
 msgid "OPEN_ORGANELLES_PAGE"
 msgstr "Ouvrir la page des organites"
@@ -3821,10 +3907,10 @@ msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "Vous avez joué pour la dernière fois en version {0}, depuis il y a eu une nouvelle mise à jour"
+msgstr "Vous avez joué la dernière fois en version {0}, depuis il y a eu une nouvelle version"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr "Vous avez joué pour la dernière fois en version {0}, depuis il y a eu {1} nouvelle(s) parution(s)"
+msgstr "Vous avez joué la dernière fois en version {0}, depuis il y a eu {1} nouvelles versions"
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "Notes de correctif"
@@ -3864,6 +3950,13 @@ msgstr "Échec du chargement du ficher pck ({0}) car le fichier est inexistant"
 
 msgid "PEACEFUL"
 msgstr "Pacifique"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Vous utilisez Thrive avec OpenGL. Cela demeure non testé et risque de causer des problèmes. Assurez-vous d'utiliser des cartes graphiques (processeurs graphiques ou intégrées) suffisamment récentes et essayez de mettre à jour vos pilotes vidéos. Pour les ordinateur portables vous pouvez avoir besoin de forcer l'utilisation des cartes graphiques AMD ou Nvidia dédiées pour lancer Thrive au lieu des cartes graphiques intégrées."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4271,7 +4364,7 @@ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
 msgstr "Pour rapporter une erreur de sauvegarde veuillez inclure [color=#3796e1][url={0}]{1}[/url][/color] depuis le [color=#3796e1][url={2}]dossier de logs[/url][/color] car il s'agit d'une information essentielle au développeurs pour savoir quelle est l'erreur. Sans ce fichier, il sera extrêmement difficile de corriger ce problème."
 
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Veuillez vous assurer que le mode de débogage JSON n'est pas désactivé avant de signaler cette erreur de sauvegarde. Le mode de débogage automatique JSON devrai avoir créé un dossier appelé {0} dans le [color=#3796e1][url={1}]dossier de logs[/url][/color]. Ce fichier contient des informations cruciales pour les développeurs de Thrive afin de comprendre quelle était l'erreur de sauvegarde."
+msgstr "Veuillez vous assurer que le mode de débogage JSON n'est pas désactivé avant de signaler cette erreur de sauvegarde. Le mode de débogage automatique JSON devrai avoir créé un dossier appelé {0} dans le [color=#3796e1][url={1}]dossier des journaux[/url][/color]. Ce fichier contient des informations cruciales pour les développeurs de Thrive afin de comprendre quelle était l'erreur de sauvegarde."
 
 msgid "SAVE_FAILED"
 msgstr "Sauvegarde échouée"
@@ -4348,7 +4441,6 @@ msgstr "Proportionel"
 msgid "SCALING_ON_INVERSE"
 msgstr "Inversement proportionnel"
 
-#, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "Effets d'écran"
 
@@ -4654,6 +4746,9 @@ msgstr "s'est propagé dans les secteurs :"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
 
+msgid "START"
+msgstr "Démarrer"
+
 msgid "STARTING"
 msgstr "Démarrage"
 
@@ -4796,7 +4891,7 @@ msgid "SUCCESS_BUT_MISSING_ID"
 msgstr "Le résultat a indiqué une réussite mais aucun ID n'a été renvoyé"
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "Suicide"
+msgstr "Périr instantanément"
 
 msgid "SUNLIGHT"
 msgstr "Lumière du soleil"
@@ -5270,11 +5365,11 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Vous devriez vous concentrer sur la spécialisation pour survivre avec une ou deux sources d'énergie afin de ne pas avoir besoin de nombreuses ressources différentes à la fois pour vous maintenir.\n"
+"Vous devriez vous concentrer sur la [b]spécialisation[/b] pour survivre avec une ou deux sources d'[thrive:compound type=\"atp\"][/thrive:compound] afin de ne pas avoir besoin de nombreuses ressources différentes à la fois pour vous maintenir.\n"
 "\n"
-"Demandez-vous également si l'ajout d'une partie est vraiment bénéfique. Il n'est pas toujours nécessaire de changer ce qui fonctionne déjà, car chaque partie coûte de l'ATP à entretenir et nécessite plus de ressources pour se reproduire.\n"
+"Demandez-vous également si l'ajout d'une partie est vraiment bénéfique. Il n'est pas toujours nécessaire de changer ce qui fonctionne déjà, car chaque partie coûte de l'[thrive:compound type=\"atp\"][/thrive:compound] pour entretenir [thrive:icon]OsmoIcon[/thrive:icon] et nécessite plus de ressources pour se reproduire.\n"
 "\n"
-"Une stratégie possible est de rester un seul hexagone de cytoplasme et de se diriger d'abord vers les secteurs de surface avant d'obtenir les organites de photosynthèse."
+"Une stratégie possible est de rester sur un seul hexagone de cytoplasme et de se diriger d'abord vers les secteurs de surface avant d'obtenir les organites de [b]photosynthèse[/b]."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -5288,7 +5383,7 @@ msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Votre cellule a été engloutie et est en cours de digestion. La progression est indiquée sur votre barre de santé. Votre cellule sera morte une fois qu'elle sera vidée ou qu'une limite de temps maximale sera atteinte.\n"
 "\n"
-"Vous pouvez utiliser le bouton suicide pour passer et renaitre, mais n'oubliez pas qu'il y a toujours une chance que vous vous échappiez !"
+"Vous pouvez utiliser le bouton périr pour passer et renaitre, mais n'oubliez pas qu'il y a toujours une chance que vous vous échappiez !"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
@@ -5591,6 +5686,10 @@ msgstr "Voir les notes de correctif"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Voir toutes ou les dernières notes de correctif maintenant"
+
+#, fuzzy
+msgid "VIEW_PENDING_ACTIONS"
+msgstr "Modifications"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Voir le code source"

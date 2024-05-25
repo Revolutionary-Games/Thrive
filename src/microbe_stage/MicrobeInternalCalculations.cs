@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Systems;
 
 public static class MicrobeInternalCalculations
 {
@@ -41,7 +43,8 @@ public static class MicrobeInternalCalculations
         return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(ICollection<OrganelleTemplate> organelles)
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(
+        IReadOnlyCollection<OrganelleTemplate> organelles, out float nominalCapacity)
     {
         var totalNominalCap = 0.0f;
 
@@ -71,6 +74,7 @@ public static class MicrobeInternalCalculations
             }
         }
 
+        nominalCapacity = totalNominalCap;
         return capacities;
     }
 
@@ -366,6 +370,206 @@ public static class MicrobeInternalCalculations
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///   Gives bonus compounds if time is close to night. This is done to compensate spawning stuff close to night to
+    ///   fill them up as if they had been spawned earlier.
+    /// </summary>
+    /// <param name="compoundReceiver">
+    ///   Compound bag to add the extra compounds to. Note that this gets the compounds added using a special method
+    ///   that allows initial compound adding when things aren't fully set up yet.
+    /// </param>
+    /// <param name="fillTimes">
+    ///   Info from <see cref="CalculateDayVaryingCompoundsFillTimes"/> used to determine how much compounds to give
+    /// </param>
+    /// <param name="lightLevel">Used to access current time</param>
+    public static void GiveNearNightInitialCompoundBuff(CompoundBag compoundReceiver,
+        Dictionary<Compound, (float TimeToFill, float Storage)> fillTimes, IDaylightInfo lightLevel)
+    {
+        var untilNight = lightLevel.SecondsUntilNightStart;
+
+        if (untilNight > Constants.INITIAL_RESOURCE_BUFF_WHEN_NIGHT_CLOSER_THAN)
+            return;
+
+        // Night is close enough to give resources
+        foreach (var fillTime in fillTimes)
+        {
+            var (timeToFill, totalToFill) = fillTime.Value;
+
+            var timeToGive = timeToFill;
+
+            // Compensate for the still remaining time (when it is not night yet)
+            if (untilNight > 0)
+                timeToGive -= untilNight;
+
+            // TODO: give slightly less resources when it is starting to be early morning
+
+            // Don't give resources for ridiculously long fill up times
+            timeToGive = Math.Min(Constants.NIGHT_RESOURCE_BUFF_MAX_FILL_SECONDS, timeToGive);
+
+            var compoundAmount = totalToFill * (timeToGive / timeToFill);
+
+            compoundReceiver.AddExtraInitialCompoundIfUnderStorageLimit(fillTime.Key, compoundAmount);
+        }
+    }
+
+    /// <summary>
+    ///   Calculates how long it takes to fill up on compounds that vary throughout the day
+    /// </summary>
+    /// <returns>
+    ///   Dictionary mapping compounds to a tuple telling how long it takes to fill and what the storage capacity for
+    ///   that compound is
+    /// </returns>
+    public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
+        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
+        BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
+    {
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
+            playerSpecies, worldSettings, CompoundAmountType.Biome);
+
+        var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+            biomeConditions, CompoundAmountType.Biome, energyBalance);
+
+        // TODO: is it fine to use energy balance calculated with the biome numbers here?
+        var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+            biomeConditions, CompoundAmountType.Minimum, energyBalance);
+
+        var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
+
+        var result = new Dictionary<Compound, (float TimeToFill, float Storage)>();
+
+        foreach (var normalBalance in compoundBalances)
+        {
+            if (!minimums.TryGetValue(normalBalance.Key, out var minimumValue) ||
+                Math.Abs(minimumValue.Balance - normalBalance.Value.Balance) > 0.001f)
+            {
+                // Found a compound that varies during the day/night cycle
+
+                if (normalBalance.Value.Balance < 0.001f)
+                {
+                    // But it isn't generated so skip
+                    continue;
+                }
+
+                var capacity = cachedCapacities.GetValueOrDefault(normalBalance.Key, cachedCapacity);
+
+                var time = capacity / normalBalance.Value.Balance;
+
+                result[normalBalance.Key] = (time, capacity);
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Calculates how much storage is needed to survive the night for a cell.
+    /// </summary>
+    /// <returns>
+    ///   A tuple of bool indicating if the cell can survive the night, and then the specific checked capacities that
+    ///   should be present
+    /// </returns>
+    public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
+        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
+        BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
+    {
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
+            playerSpecies, worldSettings, CompoundAmountType.Biome);
+
+        var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+            biomeConditions, CompoundAmountType.Biome, energyBalance);
+
+        // TODO: is it fine to use energy balance calculated with the biome numbers here?
+        var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+            biomeConditions, CompoundAmountType.Minimum, energyBalance);
+
+        var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
+
+        var nightSeconds = worldSettings.DayLength * Constants.LIGHT_NIGHT_FRACTION;
+
+        bool enoughStorage = true;
+        var requiredCapacities = new Dictionary<Compound, float>();
+
+        foreach (var normalBalance in compoundBalances)
+        {
+            if (!minimums.TryGetValue(normalBalance.Key, out var minimumValue) ||
+                Math.Abs(minimumValue.Balance - normalBalance.Value.Balance) > 0.001f)
+            {
+                if (normalBalance.Value.Balance > 0.001f)
+                    continue;
+
+                // Found a compound that is generated during the day more than night
+
+                var drainRate = minimumValue?.Balance ?? normalBalance.Value.Consumption.SumValues();
+
+                // As things slowly pick up again after the night, it isn't fully this bad, this is just a worst case
+                // scenario
+                // TODO: more accurate math
+                var overestimatedDrain = drainRate * nightSeconds;
+
+                var capacity = cachedCapacities.GetValueOrDefault(normalBalance.Key, cachedCapacity);
+
+                if (overestimatedDrain > capacity)
+                {
+                    enoughStorage = false;
+                }
+
+                requiredCapacities[normalBalance.Key] = overestimatedDrain;
+            }
+        }
+
+        return (enoughStorage, requiredCapacities);
+    }
+
+    public static void CalculatePossibleEndosymbiontsFromSpecies(MicrobeSpecies species,
+        List<(OrganelleDefinition Organelle, int Cost)> result)
+    {
+        var organelles = species.Organelles.Organelles;
+
+        int organelleCount = organelles.Count;
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            var organelle = organelles[i];
+
+            // Skip things that don't give anything from endosymbiosis
+            var resultType = organelle.Definition.EndosymbiosisUnlocks;
+            if (resultType == null)
+                continue;
+
+            // Handle each resulting organelle type just once
+            bool alreadyHandled = false;
+
+            foreach (var handledTuple in result)
+            {
+                if (handledTuple.Organelle == resultType)
+                {
+                    alreadyHandled = true;
+                    break;
+                }
+            }
+
+            if (alreadyHandled)
+                continue;
+
+            int count = 1;
+
+            // Count all other instances giving the same thing to calculate the cost
+            for (int j = i + 1; j < organelleCount; ++j)
+            {
+                if (organelles[j].Definition.EndosymbiosisUnlocks == resultType)
+                    ++count;
+            }
+
+            result.Add((resultType, EndosymbiosisCostFromCount(count)));
+        }
+    }
+
+    public static int EndosymbiosisCostFromCount(int organelleCount)
+    {
+        return Math.Max((int)Math.Ceiling(Constants.ENDOSYMBIOSIS_COST_BASE -
+                (float)organelleCount * Constants.ENDOSYMBIOSIS_COST_REDUCTION_PER_ORGANELLE),
+            Constants.ENDOSYMBIOSIS_COST_MIN);
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

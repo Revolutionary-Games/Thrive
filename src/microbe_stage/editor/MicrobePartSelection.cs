@@ -17,7 +17,14 @@ public partial class MicrobePartSelection : MarginContainer
     private Control? recentlyUnlockedControl;
     private Label? nameLabel;
 
+    [Export]
+    private TextureRect mpIcon = null!;
+
+    [Export]
+    private Control mpIconSpacer = null!;
+
     private Texture2D? partIcon;
+
 #pragma warning restore CA2213
 
     private int mpCost;
@@ -26,6 +33,7 @@ public partial class MicrobePartSelection : MarginContainer
     private bool recentlyUnlocked;
     private bool alwaysShowLabel;
     private bool selected;
+    private bool showMPIcon = true;
 
     /// <summary>
     ///   Emitted whenever the button is selected. Note that this sends the Node's Name as the parameter
@@ -47,6 +55,20 @@ public partial class MicrobePartSelection : MarginContainer
 
             mpCost = value;
             UpdateLabels();
+        }
+    }
+
+    [Export]
+    public bool ShowMPIcon
+    {
+        get => showMPIcon;
+        set
+        {
+            if (showMPIcon == value)
+                return;
+
+            showMPIcon = value;
+            UpdateCostIcon();
         }
     }
 
@@ -148,6 +170,7 @@ public partial class MicrobePartSelection : MarginContainer
         UpdateLabels();
         UpdateIcon();
         UpdateRecentlyUnlocked();
+        UpdateCostIcon();
     }
 
     public override void _ExitTree()
@@ -213,6 +236,12 @@ public partial class MicrobePartSelection : MarginContainer
 
         if (Locked)
             iconRect.Modulate = Colors.Gray;
+    }
+
+    private void UpdateCostIcon()
+    {
+        mpIcon.Visible = showMPIcon;
+        mpIconSpacer.Visible = showMPIcon;
     }
 
     private void UpdateRecentlyUnlocked()

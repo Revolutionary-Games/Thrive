@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-24 14:32+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -783,8 +783,20 @@ msgstr "Додајте ново везивање тастера"
 msgid "COMPILED_AT_COLON"
 msgstr "Једињења:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Једињења:"
+
 msgid "COMPOUNDS"
 msgstr "Једињење"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Облак једињења"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Облак једињења"
 
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -792,6 +804,16 @@ msgstr "Додајте ново везивање тастера"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Једињења:"
+
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
@@ -1209,8 +1231,9 @@ msgstr "Број популације од {0} променио се за {1} з
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "Избодите друге ћелије са ово."
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1630,6 +1653,60 @@ msgstr "Омогућите уређивач"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Спољни ефекти:"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Поставите органелу"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Одвоји све"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Наставити"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Искључене Органеле"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Хемосинтетизујући протеини су мале групе протеина у цитоплазми које су у стању да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида. Пошто су протеини хемосинтезе суспендовани директно у цитоплазми, околна течност врши ферментацију."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
@@ -1745,6 +1822,10 @@ msgstr "Препиши постојеће чување:"
 
 msgid "EXIT"
 msgstr "Изаћи"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Омогућите уређивач"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
@@ -2760,6 +2841,10 @@ msgstr ""
 #, fuzzy
 msgid "LINE_COLOUR"
 msgstr "Боја"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 
 msgid "LIPASE"
 msgstr ""
@@ -4078,6 +4163,13 @@ msgstr "Учитавање завршено"
 msgid "PEACEFUL"
 msgstr ""
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Користите Thrive витх GLES2. Ово је озбиљно непроверено и вероватно ће изазвати проблеме. Покушајте да ажурирате управљачке програме за видео и / или присилите АМД или Нвидиа графику да се користи за покретање програма Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -4947,6 +5039,10 @@ msgstr "се проширила на зоне:"
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+msgid "START"
+msgstr "Почиње"
 
 msgid "STARTING"
 msgstr "Почиње"
@@ -5917,6 +6013,9 @@ msgstr "Пећина"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Пећина"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Погледајте Изворни Код"

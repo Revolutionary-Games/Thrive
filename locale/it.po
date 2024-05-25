@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-24 14:32+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -740,14 +740,38 @@ msgstr "Esci dal gioco"
 msgid "COMPILED_AT_COLON"
 msgstr "Composti:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Composti:"
+
 msgid "COMPOUNDS"
 msgstr "Composti"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Composto da trovare:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Composto da trovare:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostra/nascondi i composti"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Composti:"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Mostra/nascondi i composti"
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Bilancio dei composti"
@@ -1157,8 +1181,9 @@ msgstr "(segreti che possono apparire casualmente nel gioco)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "(comincia ogni generazione vicino a una nuvola di glucosio)"
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1567,6 +1592,67 @@ msgstr "Editor istantaneo"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Abilita gli effetti di luce della GUI"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Organuli multipli"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Slega tutte"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Il valore usato per generare il mondo; deve essere un numero intero positivo"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"I microbi aggressivi inseguono le prede per grandi distanze\n"
+"e sono più propensi a combattere quando aggrediti.\n"
+"I microbi pacifici, invece, ignorano i soggetti lontani\n"
+"e sono meno inclini a sparare tossine ai propri predatori."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Organuli non connessi"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"I microbi focalizzati inseguono le prede e i frammenti di cibo per lunghe distanze\n"
+"e potrebbero essere più ambiziosi per questi ultimi.\n"
+"I microbi reattivi cambiano più facilmente bersaglio."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Trasforma l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Inoltre, trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Apri l'editor e modifica la tua specie"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Il titolo è mancante"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1675,6 +1761,10 @@ msgstr "Inserisci ID esistente"
 
 msgid "EXIT"
 msgstr "Esci"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Vai al prossimo pannello dell'editor"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -2699,6 +2789,10 @@ msgstr "Esiguo"
 
 msgid "LINE_COLOUR"
 msgstr "Colore linea:"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Il titolo è mancante"
 
 msgid "LIPASE"
 msgstr "Lipasi"
@@ -3991,6 +4085,13 @@ msgstr "Caricamento del file pck ({0}) non riuscito perché il file non esiste"
 msgid "PEACEFUL"
 msgstr "Pacifico"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Stai eseguendo Thrive con GLES2. Ciò non è collaudato a dovere, ed è probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o a forzare la grafica AMD o Nvidia a eseguire Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4804,6 +4905,10 @@ msgstr "è migrato nelle zone:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menù di pausa"
+
+#, fuzzy
+msgid "START"
+msgstr "Avvio"
 
 msgid "STARTING"
 msgstr "Avvio"
@@ -5736,6 +5841,9 @@ msgstr "{1} {0}o/a"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{1} {0}o/a"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Vedi codice sorgente"

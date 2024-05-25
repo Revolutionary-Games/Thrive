@@ -48,6 +48,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private ColonyStatsUpdateSystem colonyStatsUpdateSystem = null!;
     private CompoundAbsorptionSystem compoundAbsorptionSystem = null!;
     private DamageSoundSystem damageSoundSystem = null!;
+    private EndosymbiontOrganelleSystem endosymbiontOrganelleSystem = null!;
     private EngulfedDigestionSystem engulfedDigestionSystem = null!;
     private EngulfedHandlingSystem engulfedHandlingSystem = null!;
     private EngulfingSystem engulfingSystem = null!;
@@ -130,7 +131,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     /// <param name="cloudSystem">
     ///   Compound cloud simulation system. This method will call <see cref="CompoundCloudSystem.Init"/>
     /// </param>
-    public void Init(Node visualDisplayRoot, CompoundCloudSystem cloudSystem)
+    /// <param name="spawnEnvironment">Spawn environment data to give to microbes spawned by systems</param>
+    public void Init(Node visualDisplayRoot, CompoundCloudSystem cloudSystem, IMicrobeSpawnEnvironment spawnEnvironment)
     {
         InitGenerated();
         ResolveNodeReferences();
@@ -146,7 +148,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
             parallelRunner = new DefaultParallelRunner(1);
         }
 
-        // Set on systems that can be ran in parallel but aren't currently as there's no real performance improvement
+        // Set on systems that can be run in parallel but aren't currently as there's no real performance improvement
         // / the system entity count per thread needs tweaking before there's any benefit
         var couldParallelize = new DefaultParallelRunner(1);
 
@@ -191,6 +193,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem, parallelRunner);
 
         damageSoundSystem = new DamageSoundSystem(EntitySystem, couldParallelize);
+        endosymbiontOrganelleSystem = new EndosymbiontOrganelleSystem(EntitySystem, couldParallelize);
         engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
         engulfedHandlingSystem = new EngulfedHandlingSystem(this, SpawnSystem, EntitySystem, couldParallelize);
 
@@ -225,13 +228,15 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         TimedLifeSystem = new TimedLifeSystem(this, EntitySystem, couldParallelize);
 
-        microbeReproductionSystem = new MicrobeReproductionSystem(this, SpawnSystem, EntitySystem, parallelRunner);
+        microbeReproductionSystem =
+            new MicrobeReproductionSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, parallelRunner);
         microbeDeathSystem = new MicrobeDeathSystem(this, SpawnSystem, EntitySystem, couldParallelize);
         engulfingSystem = new EngulfingSystem(this, SpawnSystem, EntitySystem);
 
         delayedColonyOperationSystem =
-            new DelayedColonyOperationSystem(this, SpawnSystem, EntitySystem, couldParallelize);
-        multicellularGrowthSystem = new MulticellularGrowthSystem(this, SpawnSystem, EntitySystem, parallelRunner);
+            new DelayedColonyOperationSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, couldParallelize);
+        multicellularGrowthSystem =
+            new MulticellularGrowthSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, parallelRunner);
 
         CloudSystem = cloudSystem;
 
@@ -421,6 +426,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 colonyStatsUpdateSystem.Dispose();
                 compoundAbsorptionSystem.Dispose();
                 damageSoundSystem.Dispose();
+                endosymbiontOrganelleSystem.Dispose();
                 engulfedDigestionSystem.Dispose();
                 engulfedHandlingSystem.Dispose();
                 engulfingSystem.Dispose();

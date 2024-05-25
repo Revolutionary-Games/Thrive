@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="4_olfrb"]
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="5_hsw5o"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="6"]
-[ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="6_6emtj"]
+[ext_resource type="LabelSettings" uid="uid://bhs4dgsx2ut6q" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall-Red.tres" id="6_2mc08"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs" id="7"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9"]
 
@@ -93,7 +93,7 @@ mouse_filter = 2
 [node name="RequiresNucleus" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "REQUIRES_NUCLEUS"
-label_settings = ExtResource("6_6emtj")
+label_settings = ExtResource("6_2mc08")
 
 [node name="ProcessesDescription" parent="MarginContainer/VBoxContainer" instance=ExtResource("6")]
 layout_mode = 2

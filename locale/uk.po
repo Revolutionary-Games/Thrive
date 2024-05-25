@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-24 14:32+0300\n"
 "PO-Revision-Date: 2024-04-29 05:48+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -724,14 +724,38 @@ msgstr "Відвідайте наше wiki спільноти"
 msgid "COMPILED_AT_COLON"
 msgstr "Збірка в:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Збірка в:"
+
 msgid "COMPOUNDS"
 msgstr "Сполуки"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Знайдені сполуки:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Знайдені сполуки:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати/ приховати сполуки"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Сполуки:"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Баланс сполук"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Баланс сполук"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Показати/ приховати сполуки"
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс сполук"
@@ -1153,7 +1177,8 @@ msgstr "(тривалість у секундах реального часу)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Увімкнути цикл дня/ночі"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(УВАГА: фотосинтез стає дуже нежиттєзабезпечувальним)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1555,6 +1580,66 @@ msgstr "Увімкнути редактор"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Увімкнути світлові ефекти GUI"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Відкрити всі органели"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Роз'єднати всі клітини в колонії"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Значення, яке використовує для генерації світу, що мусить бути дадатним, цілим числом"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Агресивні мікроби переслідуватимуть зддобич на відстані\n"
+"та скоріше битимуться з нападниками.\n"
+"Мирні ж не нападуть на відстані\n"
+"і рідше використовують токсини проти хижаків."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Від'єднати органели"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Це показує як багато спливаючих вікон закрито користувачем остаточно.\n"
+"Якщо деякі спливаючі вікна закриті, та вони вам потрібні, тоді можна використати кнопку поблизу, щоб знову відновити спливаючі вікна."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Перетворює [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] на [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Також перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Увійдіть до редактора та модифікуйте свій вид"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Назва відсутня"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
@@ -1659,6 +1744,10 @@ msgstr "Споруди"
 
 msgid "EXIT"
 msgstr "Вихід"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Перейти до наступної вкладки редактору"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Вийти до лаунчера"
@@ -2596,6 +2685,10 @@ msgstr "Дуже малий"
 
 msgid "LINE_COLOUR"
 msgstr "Колір лінії:"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Назва відсутня"
 
 msgid "LIPASE"
 msgstr "Ліпаза"
@@ -3824,6 +3917,13 @@ msgstr "Завантаження pck файлу ({0}) невдалося том�
 msgid "PEACEFUL"
 msgstr "Мирність"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Ви граєте у Thrive за допомогою OpenGL. Це є дуже неперевіреним та напевно викличе проблеми. Переконайтеся, що ваша зовнішня або вбудована відеокарта є достатньо новою та спробуйте оновити свої відеодрайвери. Для ноутбуків вам може знадобитися діскретна графіка від Nvidia або AMD замість вбудованої."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4605,6 +4705,10 @@ msgstr "поширено в ділянці:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузи"
+
+#, fuzzy
+msgid "START"
+msgstr "Почати"
 
 msgid "STARTING"
 msgstr "Почати"
@@ -5495,6 +5599,9 @@ msgstr "Показати інформацію про зміни"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Показати останні з усіх новин про зміни Thrive зараз"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Перегляд вихідного коду"

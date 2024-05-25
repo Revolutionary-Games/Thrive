@@ -219,7 +219,7 @@ public partial class CellBodyPlanEditorComponent :
 
             if (Editor.EditedCellProperties != null)
             {
-                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
+                UpdateGUIAfterLoadingSpecies();
                 UpdateArrow(false);
             }
             else
@@ -335,7 +335,7 @@ public partial class CellBodyPlanEditorComponent :
 
         newName = species.FormattedName;
 
-        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
+        UpdateGUIAfterLoadingSpecies();
 
         UpdateArrow(false);
     }
@@ -500,12 +500,15 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override void PerformActiveAction()
     {
-        AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
+        if (AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active"))))
+        {
+            // Placed a cell, could trigger a tutorial or something
+        }
     }
 
     protected override void PerformMove(int q, int r)
     {
-        if (!MoveCell(MovingPlacedHex!, MovingPlacedHex!.Position, new Hex(q, r), MovingPlacedHex.Data!.Orientation,
+        if (!MoveCell(MovingPlacedHex!, new Hex(q, r),
                 placementRotation))
         {
             Editor.OnInvalidAction();
@@ -597,7 +600,7 @@ public partial class CellBodyPlanEditorComponent :
         base.Dispose(disposing);
     }
 
-    private void UpdateGUIAfterLoadingSpecies(Species species)
+    private void UpdateGUIAfterLoadingSpecies()
     {
         GD.Print("Starting early multicellular editor with: ", editedMicrobeCells.Count,
             " cells in the microbe");
@@ -789,7 +792,7 @@ public partial class CellBodyPlanEditorComponent :
         return new CombinedEditorAction(moveActionData);
     }
 
-    private bool MoveCell(HexWithData<CellTemplate> cell, Hex oldLocation, Hex newLocation, int oldRotation,
+    private bool MoveCell(HexWithData<CellTemplate> cell, Hex newLocation,
         int newRotation)
     {
         // TODO: consider allowing rotation inplace (https://github.com/Revolutionary-Games/Thrive/issues/2993)
@@ -830,9 +833,6 @@ public partial class CellBodyPlanEditorComponent :
         {
             StartHexMove(cellPopupMenu.SelectedCells.First());
         }
-
-        // Once an cell move has begun, the button visibility should be updated so it becomes visible
-        UpdateCancelButtonVisibility();
     }
 
     private void OnDeletePressed()

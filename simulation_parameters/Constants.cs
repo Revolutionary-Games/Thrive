@@ -317,6 +317,28 @@ public static class Constants
     public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
 
     /// <summary>
+    ///   Day and night are assumed to be the same length (half of the day)
+    /// </summary>
+    public const float LIGHT_NIGHT_FRACTION = 0.5f;
+
+    /// <summary>
+    ///   If filling up on some compound takes more than this fraction of the total day+night length a warning is given
+    ///   in the GUI
+    /// </summary>
+    public const float LIGHT_DAY_FILL_TIME_WARNING_THRESHOLD = 0.5f;
+
+    /// <summary>
+    ///   When night is closer than this number of seconds and a cell spawns, it gets extra resources to survive.
+    /// </summary>
+    public const float INITIAL_RESOURCE_BUFF_WHEN_NIGHT_CLOSER_THAN = 30.0f;
+
+    /// <summary>
+    ///   How many seconds of filling up during the day that a cell can be given when it is spawned close to or during
+    ///   the night
+    /// </summary>
+    public const float NIGHT_RESOURCE_BUFF_MAX_FILL_SECONDS = 45.0f;
+
+    /// <summary>
     ///   How often the microbe AI processes each microbe
     /// </summary>
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
@@ -1340,6 +1362,21 @@ public static class Constants
     public const int HEX_MAX_RENDER_PRIORITY = HEX_RENDER_PRIORITY_DISTANCE * HEX_RENDER_PRIORITY_DISTANCE;
 
     /// <summary>
+    ///   How many endosymbionts in total prokaryotes can have
+    /// </summary>
+    public const int ENDOSYMBIOSIS_MAX_FOR_PROKARYOTE = 1;
+
+    /// <summary>
+    ///   How many times a target species needs to be engulfed for it to be completed (in the base case, this is
+    ///   lowered with more organelle instances)
+    /// </summary>
+    public const int ENDOSYMBIOSIS_COST_BASE = 6;
+
+    public const int ENDOSYMBIOSIS_COST_REDUCTION_PER_ORGANELLE = 1;
+
+    public const int ENDOSYMBIOSIS_COST_MIN = 2;
+
+    /// <summary>
     ///   If membrane scene is updated this should be updated as well
     /// </summary>
     public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
@@ -1661,6 +1698,7 @@ public static class Constants
     {
         var suffixRegex = new Regex(VERSION_HASH_SUFFIX_REGEX);
 
+        // TODO: apparently this just stopped working at some point (the hash suffix is now gone)
         var match = suffixRegex.Match(VersionFull);
 
         if (!match.Success)

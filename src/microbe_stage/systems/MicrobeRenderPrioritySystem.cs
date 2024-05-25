@@ -99,8 +99,7 @@ public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
                 }
 
                 var material =
-                    placedOrganelle.OrganelleGraphics.GetMaterial(placedOrganelle.Definition
-                        .DisplaySceneModelNodePath);
+                    placedOrganelle.OrganelleGraphics.GetMaterial(placedOrganelle.LoadedGraphicsSceneInfo.ModelPath);
                 material.RenderPriority = organelleRenderOrder;
             }
         }

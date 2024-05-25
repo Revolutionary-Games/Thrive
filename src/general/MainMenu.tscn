@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dpxsicy6au2mh" path="res://assets/misc/thrive_logo_big.png" id="10"]
 [ext_resource type="PackedScene" uid="uid://cqwy12d33agr4" path="res://src/gui_common/CreditsScroll.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://c120hjc04sice" path="res://src/gui_common/dialogs/LicensesDisplay.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="12_a6o4c"]
 [ext_resource type="Texture2D" uid="uid://bv0644lcfansy" path="res://assets/textures/gui/social_media/discord.png" id="13"]
 [ext_resource type="PackedScene" uid="uid://d06pkd2hx1syf" path="res://src/modding/ModManager.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="15"]
@@ -52,22 +53,6 @@
 [ext_resource type="PackedScene" uid="uid://cpp1dl8aiumt7" path="res://src/gui_common/ThriveFeedDisplayer.tscn" id="57"]
 [ext_resource type="PackedScene" uid="uid://d0tfe6i1offy" path="res://src/gui_common/PatchNotesDisplayer.tscn" id="58"]
 [ext_resource type="PackedScene" uid="uid://3vnrqlyumqtd" path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.tscn" id="59"]
-
-[sub_resource type="StyleBoxFlat" id="2"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0, 0.129412, 0.141176, 0.752941)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [sub_resource type="Animation" id="1"]
 resource_name = "MenuSlide"
@@ -120,7 +105,7 @@ _data = {
 "RESET": SubResource("Animation_qunue")
 }
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("openGlPopup")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("websiteButtonsContainer", "openGlPopup")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -146,7 +131,6 @@ SafeModeWarningPath = NodePath("SafeModeWarningDialog")
 ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning")
 LowPerformanceWarningPath = NodePath("LowPerformanceDialog")
 SocialMediaContainerPath = NodePath("MenuContainers/SocialMedia")
-WebsiteButtonsContainerPath = NodePath("MenuContainers/WebsiteButtons")
 ItchButtonPath = NodePath("MenuContainers/SocialMedia/ItchButton")
 PatreonButtonPath = NodePath("MenuContainers/SocialMedia/PatreonButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
@@ -159,6 +143,7 @@ PatchNotesDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/P
 FeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 MenusPath = NodePath("MenuContainers/Menus")
+websiteButtonsContainer = NodePath("MenuContainers/WebsiteButtons")
 openGlPopup = NodePath("OpenGLWarningPopup")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -533,20 +518,24 @@ text = "BACK"
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../MicrobeBenchmark")
 
-[node name="WebsiteButtons" type="PopupPanel" parent="MenuContainers"]
-position = Vector2i(8, 292)
-size = Vector2i(272, 391)
-theme = ExtResource("1")
-theme_override_styles/panel = SubResource("2")
+[node name="WebsiteButtons" parent="MenuContainers" instance=ExtResource("12_a6o4c")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 359.0
+offset_right = 98.0
+offset_bottom = 428.0
+WindowTitle = "LINKS_TITLE"
+Movable = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuContainers/WebsiteButtons"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 5.0
-offset_right = 267.0
-offset_bottom = 386.0
+offset_right = 97.0
+offset_bottom = 226.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -625,7 +614,7 @@ text = "REPORT_BUG"
 layout_mode = 2
 size_flags_vertical = 0
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../CommunityWikiButton")
+focus_neighbor_top = NodePath("../ReportBugButton")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../OfficialWebsiteButton")
 focus_next = NodePath("../OfficialWebsiteButton")

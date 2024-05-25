@@ -26,7 +26,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     private float compoundCloudBrightness = 1.0f;
 
     /// <summary>
-    ///   Used to detect when an old save is loaded and we can't rely on the new logic for despawning things
+    ///   Used to detect when an old save is loaded, and we can't rely on the new logic for despawning things
     /// </summary>
     private bool skipDespawn;
 
@@ -56,10 +56,11 @@ public class PatchManager : IChildPropertiesLoadCallback
     ///   entities if the patch changed etc.
     /// </summary>
     /// <param name="currentPatch">The patch to apply settings from</param>
+    /// <param name="spawnEnvironment">Spawn environment to give to setup cell spawners</param>
     /// <returns>
     ///   True if the patch is changed from the previous one. False if the patch is not changed.
     /// </returns>
-    public bool ApplyChangedPatchSettingsIfNeeded(Patch currentPatch)
+    public bool ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, IMicrobeSpawnEnvironment spawnEnvironment)
     {
         var patchIsChanged = false;
 
@@ -102,7 +103,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         // total entity count is limited
         HandleCloudSpawns(currentPatch.Biome);
         HandleChunkSpawns(currentPatch.Biome);
-        HandleCellSpawns(currentPatch);
+        HandleCellSpawns(currentPatch, spawnEnvironment);
 
         RemoveNonMarkedSpawners();
 
@@ -198,7 +199,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
     }
 
-    private void HandleCellSpawns(Patch patch)
+    private void HandleCellSpawns(Patch patch, IMicrobeSpawnEnvironment spawnEnvironment)
     {
         if (CurrentGame == null)
             throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
@@ -228,8 +229,8 @@ public class PatchManager : IChildPropertiesLoadCallback
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(microbeSpawners, name, density,
-                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species), Constants.MICROBE_SPAWN_RADIUS),
-                new MicrobeSpawnerComparer());
+                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species, spawnEnvironment),
+                    Constants.MICROBE_SPAWN_RADIUS), new MicrobeSpawnerComparer());
         }
     }
 

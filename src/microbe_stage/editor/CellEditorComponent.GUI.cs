@@ -20,7 +20,7 @@ public partial class CellEditorComponent
     public delegate void ClickedEventHandler();
 
     /// <summary>
-    ///   Detects presses anywhere to notify the name input to unfocus
+    ///   Detects presses anywhere to notify the name input to defocus
     /// </summary>
     /// <param name="event">The input event</param>
     /// <remarks>
@@ -62,7 +62,7 @@ public partial class CellEditorComponent
 
         UpdateOrganelleLAWKSettings();
 
-        RemoveUndisoveredOrganelleButtons();
+        RemoveUndiscoveredOrganelleButtons();
     }
 
     protected override void RegisterTooltips()
@@ -347,12 +347,15 @@ public partial class CellEditorComponent
 
     private void CreateUndiscoveredOrganellesButtons(bool refresh = false, bool autoUnlock = true)
     {
+        // Note that if autoUnlock is true and this is called after the editor is initialized there's a potential
+        // logic conflict with UndoEndosymbiontPlaceAction in case we ever decide to allow organelle actions to also
+        // occur after entering the editor (other than endosymbiosis unlocks)
+
         // Find groups with undiscovered organelles
         var groupsWithUndiscoveredOrganelles =
             new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
 
-        var worldAndPlayerArgs = new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, Editor.CurrentPatch,
-            energyBalanceInfo, Editor.EditedCellProperties);
+        var worldAndPlayerArgs = GetUnlockPlayerDataSource();
 
         foreach (var entry in allPartSelectionElements)
         {
@@ -364,6 +367,9 @@ public partial class CellEditorComponent
                     Editor.CurrentGame, autoUnlock))
             {
                 control.Undiscovered = false;
+
+                // This can end up showing non-LAWK organelles in LAWK mode, so this needs a bit of post-processing
+                control.Show();
                 continue;
             }
 
@@ -408,7 +414,7 @@ public partial class CellEditorComponent
 
         // Remove any buttons that might've been created before
         if (refresh)
-            RemoveUndisoveredOrganelleButtons();
+            RemoveUndiscoveredOrganelleButtons();
 
         // Generate undiscovered organelle buttons
         foreach (var groupWithUndiscovered in groupsWithUndiscoveredOrganelles)
@@ -426,9 +432,12 @@ public partial class CellEditorComponent
             ToolTipManager.Instance.AddToolTip(tooltip, "lockedOrganelles");
             button.RegisterToolTipForControl(tooltip, true);
         }
+
+        // Apply LAWK settings so that no-unexpected organelles are shown
+        UpdateOrganelleLAWKSettings();
     }
 
-    private void RemoveUndisoveredOrganelleButtons()
+    private void RemoveUndiscoveredOrganelleButtons()
     {
         foreach (var child in partsSelectionContainer.GetChildren())
         {
@@ -437,6 +446,19 @@ public partial class CellEditorComponent
         }
 
         ToolTipManager.Instance.ClearToolTips("lockedOrganelles", false);
+    }
+
+    private void OnUnlockedOrganellesChanged()
+    {
+        UpdateMicrobePartSelections();
+        CreateUndiscoveredOrganellesButtons(true, false);
+        UpdateOrganelleButtons(activeActionName);
+    }
+
+    private WorldAndPlayerDataSource GetUnlockPlayerDataSource()
+    {
+        return new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, Editor.CurrentPatch,
+            energyBalanceInfo, Editor.EditedCellProperties);
     }
 
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
@@ -487,7 +509,14 @@ public partial class CellEditorComponent
 
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
     {
-        compoundBalance.UpdateBalances(balances);
+        var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
+            Constants.LIGHT_DAY_FILL_TIME_WARNING_THRESHOLD;
+
+        // Don't show warning when day/night is not enabled
+        if (!Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled)
+            warningTime = 10000000;
+
+        compoundBalance.UpdateBalances(balances, warningTime);
     }
 
     private void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
@@ -635,6 +664,93 @@ public partial class CellEditorComponent
         }
     }
 
+    private void OnEndosymbiosisButtonPressed()
+    {
+        // Disallow if currently has an inprogress action as that would complicate logic and allow rare bugs
+        if (CanCancelAction)
+        {
+            GD.Print("Not allowing opening endosymbiosis menu with a pending action");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        endosymbiosisPopup.UpdateData(Editor.EditedBaseSpecies.Endosymbiosis,
+            Editor.EditedCellProperties?.IsBacteria ??
+            throw new Exception("Cell properties needs to be known already"));
+
+        endosymbiosisPopup.OpenCentered(false);
+    }
+
+    private void OnEndosymbiosisSelected(int targetSpecies, string targetOrganelle, int cost)
+    {
+        if (Editor.EditedBaseSpecies.Endosymbiosis.StartedEndosymbiosis != null)
+        {
+            GD.PrintErr("Already has endosymbiosis in-progress");
+            PlayInvalidActionSound();
+            endosymbiosisPopup.Hide();
+            return;
+        }
+
+        var organelle = SimulationParameters.Instance.GetOrganelleType(targetOrganelle);
+
+        if (!Editor.EditedBaseSpecies.Endosymbiosis.StartEndosymbiosis(targetSpecies, organelle, cost))
+        {
+            GD.PrintErr("Endosymbiosis failed to be started");
+            PlayInvalidActionSound();
+        }
+
+        // For now leave the GUI open to show the player the progress information as feedback to what they've done
+    }
+
+    private void OnAbandonEndosymbiosisOperation(int targetSpeciesId)
+    {
+        if (!Editor.EditedBaseSpecies.Endosymbiosis.CancelEndosymbiosisTarget(targetSpeciesId))
+        {
+            GD.PrintErr("Couldn't cancel endosymbiosis operation on target species: ", targetSpeciesId);
+            PlayInvalidActionSound();
+        }
+    }
+
+    private void OnEndosymbiosisFinished(int targetSpecies)
+    {
+        // Must disallow if a movement action is in progress as that'd otherwise conflict
+        if (CanCancelAction)
+        {
+            GD.PrintErr("Cannot complete endosymbiosis with another action in progress");
+            PlayInvalidActionSound();
+            return;
+        }
+
+        endosymbiosisPopup.Hide();
+
+        GD.Print("Starting free organelle placement action after completing endosymbiosis");
+        var targetData = Editor.EditedBaseSpecies.Endosymbiosis.StartedEndosymbiosis;
+
+        if (targetData == null)
+        {
+            GD.PrintErr("Couldn't find in-progress endosymbiosis even though there should be one");
+            PlayInvalidActionSound();
+            return;
+        }
+
+        if (targetData.Species.ID != targetSpecies)
+            GD.PrintErr("Completed endosymbiosis place for wrong species");
+
+        // Create the pending placement action
+        PendingEndosymbiontPlace = new EndosymbiontPlaceActionData(targetData);
+
+        // There's now a pending action
+        OnActionStatusChanged();
+    }
+
+    private void OnCompoundBalanceTypeChanged(BalanceDisplayType newType)
+    {
+        _ = newType;
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
+    }
+
     private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)
     {
         var comparer = new ATPComparer();
@@ -652,11 +768,25 @@ public partial class CellEditorComponent
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        // If we add more things that can be overridden this needs to be updated
-        OnFinish.Invoke(new List<EditorUserOverride> { EditorUserOverride.NotProducingEnoughATP });
+        ignoredEditorWarnings.Add(EditorUserOverride.NotProducingEnoughATP);
+        OnFinish.Invoke(ignoredEditorWarnings);
     }
 
-    private void UpdateGUIAfterLoadingSpecies(Species species, ICellDefinition definition)
+    private void ConfirmFinishEditingWithEndosymbiosis()
+    {
+        if (OnFinish == null)
+        {
+            GD.PrintErr("Confirmed editing for cell editor when finish callback is not set");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        ignoredEditorWarnings.Add(EditorUserOverride.EndosymbiosisPending);
+        OnFinish.Invoke(ignoredEditorWarnings);
+    }
+
+    private void UpdateGUIAfterLoadingSpecies(Species species)
     {
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
             " organelles in the microbe");
@@ -674,6 +804,8 @@ public partial class CellEditorComponent
         UpdateStorage(GetNominalCapacity(), GetAdditionalCapacities());
 
         ApplyLightLevelOption();
+
+        UpdateCancelButtonVisibility();
     }
 
     private class ATPComparer : IComparer<string>

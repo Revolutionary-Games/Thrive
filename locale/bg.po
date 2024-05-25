@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-05-24 14:32+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -748,14 +748,38 @@ msgstr "Отваряне на обществената Уикипедия на �
 msgid "COMPILED_AT_COLON"
 msgstr "Създадена на:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Създадена на:"
+
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Обект на търсенето:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Обект на търсенето:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Превключване на химичните съединения"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Има химични съединения:"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Превключване на химичните съединения"
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс на химичните съединения"
@@ -1223,7 +1247,8 @@ msgstr "(в секунди)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Денонощен цикъл"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(ВНИМАНИЕ: понижава ефективността на фотосинтезата)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1628,6 +1653,66 @@ msgstr "Активиране на редактора"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Светлинни ефекти"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Няколко органела"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Разпадане"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Идентификаторът трябва да е положително цяло число"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Агресивните микроби преследват плячката си на големи разстояния\n"
+"и са склонни да се защитят, когато са нападнати.\n"
+"Пасивните микроби не преследват пляката си на големи разстояния\n"
+"и са склонни да избягат, когато са нападнати."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Несвързани органели"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Това е броят на отхвърлените съобщения.\n"
+"Ако желаете да ги възстановите, натиснете бутона „Нулиране“."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound] в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в околната среда. Също така, превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Отваряне на редактора"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Заглавието липсва"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
@@ -1737,6 +1822,10 @@ msgstr "Въвеждане на съществуващ идентификаци�
 
 msgid "EXIT"
 msgstr "Изход"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Преминаване към следващия раздел"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Стартираща програма"
@@ -2715,6 +2804,10 @@ msgstr "Много малък"
 
 msgid "LINE_COLOUR"
 msgstr "Цвят на линията:"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Заглавието липсва"
 
 msgid "LIPASE"
 msgstr "Липаза"
@@ -3978,6 +4071,13 @@ msgstr "Зареждането на основния файл „{0}“ е не�
 msgid "PEACEFUL"
 msgstr "Пасивно"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
 
@@ -4779,6 +4879,10 @@ msgstr "текущо разпространение в зоните:"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Отваряне на менюто"
+
+#, fuzzy
+msgid "START"
+msgstr "Започната"
 
 msgid "STARTING"
 msgstr "Започната"
@@ -5713,6 +5817,9 @@ msgstr "Бележки към изданието"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} — {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Изходен код"
