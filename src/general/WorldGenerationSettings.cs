@@ -127,6 +127,11 @@ public class WorldGenerationSettings
     public bool EasterEggs { get; set; } = true;
 
     /// <summary>
+    ///   This thing right here... It is... unforgiving.
+    /// </summary>
+    public bool UnforgivingMode { get; set; } = false;
+
+    /// <summary>
     ///   The auto-evo configuration this world uses
     /// </summary>
     public IAutoEvoConfiguration AutoEvoConfiguration { get; set; } =
@@ -186,6 +191,7 @@ public class WorldGenerationSettings
             $", Day length: {DayLength}" +
             $", Include multicellular: {IncludeMulticellular}" +
             $", Easter eggs: {EasterEggs}" +
+            $", Unforgiving mode: {UnforgivingMode}" +
             "]";
     }
 }

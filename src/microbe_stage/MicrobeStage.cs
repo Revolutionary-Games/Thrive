@@ -924,11 +924,23 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     protected override void AutoSave()
     {
+        if (WorldSettings.UnforgivingMode)
+        {
+            // Name: CurrentGame.GameWorld.WorldSettings...
+            SaveHelper.UnforgivingModeSave("Hard", this);
+            return;
+        }
+
         SaveHelper.AutoSave(this);
     }
 
     protected override void PerformQuickSave()
     {
+        if (WorldSettings.UnforgivingMode)
+        {
+            return;
+        }
+
         SaveHelper.QuickSave(this);
     }
 

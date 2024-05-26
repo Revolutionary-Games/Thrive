@@ -211,6 +211,9 @@ public partial class NewGameSettings : ControlWithInput
     private Button includeMulticellularButton = null!;
     private Button easterEggsButton = null!;
 
+    [Export]
+    private Button unforgivingModeButton = null!;
+
     // Other
     private Container checkOptionsMenuAdviceContainer = null!;
 #pragma warning restore CA2213
@@ -424,6 +427,7 @@ public partial class NewGameSettings : ControlWithInput
         lawkButton.ButtonPressed = false;
 
         easterEggsButton.ButtonPressed = settings.EasterEggs;
+        unforgivingModeButton.ButtonPressed = settings.UnforgivingMode;
     }
 
     public void ReportValidityOfGameSeed(bool valid)
@@ -608,6 +612,7 @@ public partial class NewGameSettings : ControlWithInput
 
         settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
         settings.EasterEggs = easterEggsButton.ButtonPressed;
+        settings.UnforgivingMode = unforgivingModeButton.ButtonPressed;
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)

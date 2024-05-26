@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Godot;
 using DirAccess = Godot.DirAccess;
 using FileAccess = Godot.FileAccess;
@@ -218,6 +219,27 @@ public static class SaveHelper
 
         LoadSave(save);
         return QuickLoadError.None;
+    }
+
+    /// <summary>
+    ///   Save the game into the main save (for unforgiving mode)
+    /// </summary>
+    public static void UnforgivingModeSave(string name, MicrobeStage state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MicrobeStage, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeStage = state;
+        }, () => state, name);
+    }
+
+    public static void UnforgivingModeSave(string name, MicrobeEditor state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MicrobeEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeEditor = state;
+        }, () => state, name);
     }
 
     /// <summary>

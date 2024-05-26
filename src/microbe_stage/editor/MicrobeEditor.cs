@@ -261,12 +261,33 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     protected override void PerformAutoSave()
     {
+        if (CurrentGame.GameWorld.WorldSettings.UnforgivingMode)
+        {
+            // Name: CurrentGame.GameWorld.WorldSettings...
+            SaveHelper.UnforgivingModeSave("Hard", this);
+            return;
+        }
+
         SaveHelper.AutoSave(this);
     }
 
     protected override void PerformQuickSave()
     {
+        if (CurrentGame.GameWorld.WorldSettings.UnforgivingMode)
+        {
+            return;
+        }
+
         SaveHelper.QuickSave(this);
+    }
+
+    protected override void PerformUnforgivingModeSave()
+    {
+        if (!CurrentGame.GameWorld.WorldSettings.UnforgivingMode)
+            return;
+
+        // Name: CurrentGame.GameWorld.WorldSettings...
+        SaveHelper.UnforgivingModeSave("Hard", this);
     }
 
     protected override void SaveGame(string name)

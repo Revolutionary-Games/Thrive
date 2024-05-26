@@ -501,6 +501,14 @@ public partial class PauseMenu : TopLevelContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        if (GameProperties != null)
+        {
+            if (GameProperties.GameWorld.WorldSettings.UnforgivingMode)
+            {
+                return;
+            }
+        }
+
         ActiveMenu = ActiveMenuType.Load;
     }
 
@@ -544,6 +552,14 @@ public partial class PauseMenu : TopLevelContainer
     private void OpenSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
+
+        if (GameProperties != null)
+        {
+            if (GameProperties.GameWorld.WorldSettings.UnforgivingMode)
+            {
+                return;
+            }
+        }
 
         ActiveMenu = ActiveMenuType.Save;
     }
