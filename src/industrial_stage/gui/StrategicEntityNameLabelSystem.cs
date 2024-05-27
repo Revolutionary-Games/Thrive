@@ -11,7 +11,7 @@ using Godot;
 ///     to prioritize some object types to have their labels on top would be nice
 ///   </para>
 /// </remarks>
-public class StrategicEntityNameLabelSystem : Control
+public partial class StrategicEntityNameLabelSystem : Control
 {
     /// <summary>
     ///   As the labels are (can be) type specific, we need to store them according to their types for reuse
@@ -19,23 +19,23 @@ public class StrategicEntityNameLabelSystem : Control
     private readonly Dictionary<Type, List<CreatedNameLabel>> createdNameLabels = new();
 
 #pragma warning disable CA2213
-    private Camera? camera;
+    private Camera3D? camera;
     private Node worldRoot = null!;
 #pragma warning restore CA2213
 
-    private float elapsed = 1;
+    private double elapsed = 1;
 
     public override void _Ready()
     {
     }
 
-    public void Init(Camera stageCamera, Node worldEntityRoot)
+    public void Init(Camera3D stageCamera, Node worldEntityRoot)
     {
         camera = stageCamera;
         worldRoot = worldEntityRoot;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (camera == null)
             throw new InvalidOperationException("This system is not initialized");
@@ -80,7 +80,7 @@ public class StrategicEntityNameLabelSystem : Control
             }
         }
 
-        var cameraPos = camera.GlobalTransform.origin;
+        var cameraPos = camera.GlobalTransform.Origin;
 
         foreach (Node node in nodes)
         {
@@ -90,7 +90,7 @@ public class StrategicEntityNameLabelSystem : Control
                 continue;
             }
 
-            var distance = cameraPos.DistanceSquaredTo(labelable.EntityNode.GlobalTranslation);
+            var distance = cameraPos.DistanceSquaredTo(labelable.EntityNode.GlobalPosition);
 
             // Skip too far away things
             if (distance > thresholdSquared)
@@ -129,7 +129,7 @@ public class StrategicEntityNameLabelSystem : Control
                 }
 
                 // Can create a new label
-                var newLabel = labelable.NameLabelScene.Instance<IEntityNameLabel>();
+                var newLabel = labelable.NameLabelScene.Instantiate<IEntityNameLabel>();
 
                 // TODO: sizing
                 // newLabel.RectSize =
@@ -184,8 +184,8 @@ public class StrategicEntityNameLabelSystem : Control
                 }
 
                 var entityTransform = entity.EntityNode.GlobalTransform;
-                var position = entityTransform.origin + InteractableEntityHelpers.RotateExtraInteractionOffset(
-                    entity.LabelOffset, entityTransform.basis);
+                var position = entityTransform.Origin +
+                    InteractableEntityHelpers.RotateExtraInteractionOffset(entity.LabelOffset, entityTransform.Basis);
 
                 if (camera!.IsPositionBehind(position))
                 {
@@ -208,9 +208,9 @@ public class StrategicEntityNameLabelSystem : Control
 
                 var control = createdLabel.NameLabel.LabelControl;
 
-                var screenPosition = camera.UnprojectPosition(position) - control.RectSize * 0.5f;
+                var screenPosition = camera.UnprojectPosition(position) - control.Size * 0.5f;
 
-                control.RectGlobalPosition = screenPosition;
+                control.GlobalPosition = screenPosition;
             }
         }
     }

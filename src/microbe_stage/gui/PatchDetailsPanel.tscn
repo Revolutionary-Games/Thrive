@@ -1,940 +1,450 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=24 format=3 uid="uid://bjl5o7oy7yr15"]
 
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.cs" type="Script" id=4]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/gui/bevel/carbondioxide.png" type="Texture" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/gui/bevel/glucose.png" type="Texture" id=10]
-[ext_resource path="res://assets/textures/gui/bevel/iron.png" type="Texture" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/oxygen.png" type="Texture" id=12]
-[ext_resource path="res://assets/textures/gui/bevel/ammonia.png" type="Texture" id=13]
-[ext_resource path="res://assets/textures/gui/bevel/hydrogensulfide.png" type="Texture" id=14]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=15]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=16]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=17]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=18]
-[ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture" id=19]
-[ext_resource path="res://assets/textures/gui/bevel/minusButton.png" type="Texture" id=20]
-[ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=21]
-[ext_resource path="res://assets/textures/gui/bevel/minusButtonHover.png" type="Texture" id=22]
-[ext_resource path="res://assets/textures/gui/bevel/Pressure.png" type="Texture" id=23]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=24]
-[ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=25]
-[ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=26]
-[ext_resource path="res://src/gui_common/CollapsibleList.cs" type="Script" id=27]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=28]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=29]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="1"]
+[ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_lpicf"]
+[ext_resource type="Script" path="res://src/microbe_stage/gui/PatchDetailsPanel.cs" id="4"]
+[ext_resource type="LabelSettings" uid="uid://tgseeon8t360" path="res://src/gui_common/fonts/Title-Bold-Smaller-Green.tres" id="5_133c0"]
+[ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="5_xv7pc"]
+[ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://d0nvs2bcnmdsd" path="res://assets/textures/gui/bevel/nitrogen.png" id="7"]
+[ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="7_np6c6"]
+[ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="7_o264b"]
+[ext_resource type="Texture2D" uid="uid://bpaa6v4n78ipl" path="res://assets/textures/gui/bevel/carbondioxide.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://bo70v3237p6iv" path="res://assets/textures/gui/bevel/hSeparatorCentered.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://cifmy0gatcl1q" path="res://assets/textures/gui/bevel/glucose.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://dlucsppj73dkc" path="res://assets/textures/gui/bevel/iron.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://dy74vv7vysixm" path="res://assets/textures/gui/bevel/oxygen.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://bsk2vo17bhwbv" path="res://assets/textures/gui/bevel/ammonia.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://dv67e1fovg0r2" path="res://assets/textures/gui/bevel/hydrogensulfide.png" id="14"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="15_ng6rp"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="19_6m1o4"]
+[ext_resource type="Texture2D" uid="uid://dify8alf16jac" path="res://assets/textures/gui/bevel/phosphates.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://bjgfupcxx2nop" path="res://assets/textures/gui/bevel/Pressure.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://c7cgjvfo1in67" path="res://assets/textures/gui/bevel/Temperature.png" id="25"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="28"]
 
-[sub_resource type="StyleBoxTexture" id=32]
-texture = ExtResource( 24 )
-region_rect = Rect2( 0, 0, 258, 1 )
+[sub_resource type="StyleBoxTexture" id="34"]
+texture = ExtResource("9")
+region_rect = Rect2(0, 0, 429, 1)
 
-[sub_resource type="Theme" id=33]
-default_font = ExtResource( 18 )
-
-[sub_resource type="StyleBoxTexture" id=34]
-texture = ExtResource( 9 )
-region_rect = Rect2( 0, 0, 429, 1 )
-
-[node name="PatchDetailsPanel" type="PanelContainer"]
-margin_right = 352.0
-margin_bottom = 620.0
-rect_min_size = Vector2( 340, 0 )
-theme = ExtResource( 28 )
-script = ExtResource( 4 )
-NothingSelectedPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected")
-DetailsPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer")
-NamePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PatchName")
-PlayerHerePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PlayerHereLabel")
-BiomePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Biome")
-DepthPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Depth")
-TemperaturePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature/TemperatureLabel")
-PressurePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure/PressureLabel")
-LightPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer/HBoxContainer/LightLabel")
-LightMaxPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer/LightMaxLabel")
-OxygenPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Oxygen/OxygenLabel")
-NitrogenPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen/NitrogenLabel")
-CO2Path = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/CO2/CO2Label")
-HydrogenSulfidePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide/HydrogenSulfideLabel")
-AmmoniaPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia/AmmoniaLabel")
-GlucosePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose/GlucoseLabel")
-PhosphatePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate/PhosphateLabel")
-IronPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron/IronLabel")
-SpeciesListBoxPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox")
-MoveToPatchHSeparatorPath = NodePath("VBoxContainer/HSeparator")
-MoveToPatchButtonPath = NodePath("VBoxContainer/MarginContainer2/MoveToPatchButton")
-TemperatureSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature/Situation")
-LightSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer/HBoxContainer/Situation")
-HydrogenSulfideSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide/Situation")
-GlucoseSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose/Situation")
-IronSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron/Situation")
-AmmoniaSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia/Situation")
-PhosphateSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate/Situation")
+[node name="PatchDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer")]
+custom_minimum_size = Vector2(340, 0)
+offset_right = 352.0
+offset_bottom = 620.0
+theme = ExtResource("28")
+script = ExtResource("4")
+nothingSelected = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected")
+unknownPatch = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch")
+detailsContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer")
+playerHere = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PlayerHereLabel")
+patchName = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PatchName")
+biome = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Biome")
+depth = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Depth")
+moveToPatchHSeparator = NodePath("VBoxContainer/HSeparator")
+moveToPatchButton = NodePath("VBoxContainer/MarginContainer2/MoveToPatchButton")
+physicalConditionsContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions")
+atmosphereContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses")
+compoundsContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds")
+speciesParentContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 351.0
-margin_bottom = 619.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 350.0
-margin_bottom = 556.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 340.0
-margin_bottom = 546.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
-scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
-margin_right = 330.0
-margin_bottom = 536.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NothingSelected" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 visible = false
-margin_right = 382.0
-margin_bottom = 55.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected"]
-margin_right = 382.0
-margin_bottom = 55.0
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
 text = "SELECT_A_PATCH"
-align = 1
-autowrap = true
+label_settings = ExtResource("3_lpicf")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="UnknownPatch" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "UNKNOWN_PATCH"
+label_settings = ExtResource("3_lpicf")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="PatchDetailsContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_right = 330.0
-margin_bottom = 536.0
+layout_mode = 2
 size_flags_vertical = 3
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_right = 330.0
-margin_bottom = 53.0
+layout_mode = 2
 
 [node name="PatchName" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
-margin_right = 330.0
-margin_bottom = 29.0
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 17 )
 text = "Patch Name Goes Here"
-align = 1
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("5_xv7pc")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="PlayerHereLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
-margin_top = 33.0
-margin_right = 330.0
-margin_bottom = 53.0
-custom_colors/font_color = Color( 0, 1, 0.117647, 1 )
-custom_fonts/font = ExtResource( 15 )
+layout_mode = 2
 text = "CURRENT_LOCATION_CAPITAL"
-align = 1
-autowrap = true
-__meta__ = {
-"_editor_description_": ""
-}
+label_settings = ExtResource("5_133c0")
+horizontal_alignment = 1
 
 [node name="Biome" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 63.0
-margin_right = 330.0
-margin_bottom = 88.0
-custom_fonts/font = ExtResource( 3 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Biome: BIOME HERE"
-align = 1
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("7_o264b")
+horizontal_alignment = 1
 
 [node name="Depth" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 98.0
-margin_right = 330.0
-margin_bottom = 123.0
-custom_fonts/font = ExtResource( 3 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "200-340m below sea level"
-align = 1
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("7_o264b")
+horizontal_alignment = 1
 
-[node name="PhysicalConditions" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 133.0
-margin_right = 330.0
-margin_bottom = 236.0
-script = ExtResource( 27 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-TitleLabelPath = NodePath("HBoxContainer/Title")
-CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("Clip")
-ItemContainerPath = NodePath("Clip/GridContainer")
-TweenPath = NodePath("Tween")
+[node name="PhysicalConditions" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+layout_mode = 2
+DisplayName = "PHYSICAL_CONDITIONS"
+Columns = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
-margin_right = 330.0
-margin_bottom = 20.0
+[node name="Temperature" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
 
-[node name="Buttons" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
+custom_minimum_size = Vector2(30, 25)
+layout_mode = 2
 size_flags_vertical = 4
+tooltip_text = "TEMPERATURE"
+texture = ExtResource("25")
+expand_mode = 1
 
-[node name="minusButton" type="TextureButton" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons"]
-margin_right = 20.0
-margin_bottom = 20.0
-texture_normal = ExtResource( 20 )
-texture_hover = ExtResource( 22 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "52 C"
+label_settings = ExtResource("15_ng6rp")
 
-[node name="plusButton" type="TextureButton" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons"]
-visible = false
-margin_right = 20.0
-margin_bottom = 20.0
-texture_normal = ExtResource( 19 )
-texture_hover = ExtResource( 26 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
-margin_left = 24.0
-margin_right = 198.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 5 )
-text = "PHYSICAL_CONDITIONS"
-valign = 1
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
-margin_left = 202.0
-margin_right = 330.0
-margin_bottom = 20.0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_styles/separator = SubResource( 32 )
-
-[node name="Clip" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
-margin_top = 24.0
-margin_right = 330.0
-margin_bottom = 103.0
-rect_clip_content = true
-mouse_filter = 2
-size_flags_horizontal = 3
-custom_constants/margin_right = 15
-custom_constants/margin_top = 5
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 5
-
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip"]
-margin_left = 15.0
-margin_top = 5.0
-margin_right = 315.0
-margin_bottom = 74.0
-mouse_filter = 2
-columns = 2
-
-[node name="Temperature" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
-margin_right = 148.0
-margin_bottom = 25.0
-mouse_filter = 2
-size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
-margin_right = 30.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 30, 25 )
-hint_tooltip = "TEMPERATURE"
+[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 25 )
-expand = true
-
-[node name="TemperatureLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
-margin_left = 34.0
-margin_top = 2.0
-margin_right = 123.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
-text = "Temperature"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
-margin_left = 127.0
-margin_right = 139.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 12, 12 )
 mouse_filter = 2
-size_flags_vertical = 0
-expand = true
+expand_mode = 1
 
-[node name="Pressure" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
-margin_left = 152.0
-margin_right = 300.0
-margin_bottom = 25.0
-mouse_filter = 2
+[node name="Pressure" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure"]
-margin_right = 30.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 30, 25 )
-hint_tooltip = "PRESSURE"
-size_flags_vertical = 4
-texture = ExtResource( 23 )
-expand = true
-
-[node name="PressureLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure"]
-margin_left = 34.0
-margin_top = 2.0
-margin_right = 95.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
-text = "Pressure"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="Light" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
-margin_top = 29.0
-margin_right = 148.0
-margin_bottom = 69.0
 mouse_filter = 2
-size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
-margin_top = 7.0
-margin_right = 30.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 30, 25 )
-hint_tooltip = "SUNLIGHT"
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
+custom_minimum_size = Vector2(30, 25)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 6 )
-expand = true
+tooltip_text = "PRESSURE"
+texture = ExtResource("23")
+expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
-margin_left = 34.0
-margin_right = 85.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "102 kPA"
+label_settings = ExtResource("15_ng6rp")
+
+[node name="Light" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light"]
+custom_minimum_size = Vector2(30, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "SUNLIGHT"
+texture = ExtResource("6")
+expand_mode = 1
+
+[node name="LightInfo" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer"]
-margin_right = 51.0
-margin_bottom = 20.0
+[node name="Current" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo"]
+layout_mode = 2
 
-[node name="LightLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer/HBoxContainer"]
-margin_right = 35.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 16 )
-text = "Light"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo/Current"]
+layout_mode = 2
+text = "100%"
+label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer/HBoxContainer"]
-margin_left = 39.0
-margin_right = 51.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 12, 12 )
+[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo/Current"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
-size_flags_vertical = 0
-expand = true
+expand_mode = 1
 
-[node name="LightMaxLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer"]
-modulate = Color( 1, 1, 1, 0.501961 )
-margin_top = 24.0
-margin_right = 51.0
-margin_bottom = 39.0
-custom_fonts/font = ExtResource( 29 )
+[node name="MaxLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo"]
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 2
 text = "LIGHT_MAX"
+label_settings = ExtResource("19_6m1o4")
 
-[node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+[node name="AtmosphericGasses" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+layout_mode = 2
+DisplayName = "ATMOSPHERIC_GASSES"
+Columns = 2
 
-[node name="AtmosphericGasses" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 246.0
-margin_right = 330.0
-margin_bottom = 334.0
-script = ExtResource( 27 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-TitleLabelPath = NodePath("HBoxContainer/Title")
-CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("Clip")
-ItemContainerPath = NodePath("Clip/GridContainer")
-TweenPath = NodePath("Tween")
+[node name="Oxygen" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
-margin_right = 330.0
-margin_bottom = 20.0
-
-[node name="Buttons" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen"]
+custom_minimum_size = Vector2(30, 25)
+layout_mode = 2
 size_flags_vertical = 4
+tooltip_text = "OXYGEN"
+texture = ExtResource("12")
+expand_mode = 1
 
-[node name="minusButton" type="TextureButton" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer/Buttons"]
-margin_right = 20.0
-margin_bottom = 20.0
-texture_normal = ExtResource( 20 )
-texture_hover = ExtResource( 22 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="plusButton" type="TextureButton" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer/Buttons"]
-visible = false
-margin_right = 20.0
-margin_bottom = 20.0
-texture_normal = ExtResource( 19 )
-texture_hover = ExtResource( 26 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
-margin_left = 24.0
-margin_right = 201.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 5 )
-text = "ATMOSPHERIC_GASSES"
-valign = 1
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
-margin_left = 205.0
-margin_right = 330.0
-margin_bottom = 20.0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_styles/separator = SubResource( 32 )
-
-[node name="Clip" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
-margin_top = 24.0
-margin_right = 330.0
-margin_bottom = 88.0
-rect_clip_content = true
-mouse_filter = 2
-size_flags_horizontal = 3
-custom_constants/margin_right = 15
-custom_constants/margin_top = 5
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 5
-
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip"]
-margin_left = 15.0
-margin_top = 5.0
-margin_right = 315.0
-margin_bottom = 59.0
-mouse_filter = 2
-columns = 2
-
-[node name="Oxygen" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
-margin_right = 148.0
-margin_bottom = 25.0
-mouse_filter = 2
-size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Oxygen"]
-margin_right = 30.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 30, 25 )
-hint_tooltip = "OXYGEN"
-size_flags_vertical = 4
-texture = ExtResource( 12 )
-expand = true
-
-[node name="OxygenLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Oxygen"]
-margin_left = 34.0
-margin_top = 2.0
-margin_right = 88.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Oxygen"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("15_ng6rp")
 
-[node name="Nitrogen" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
-margin_left = 152.0
-margin_right = 300.0
-margin_bottom = 25.0
-mouse_filter = 2
+[node name="Nitrogen" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen"]
-margin_right = 30.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 30, 25 )
-hint_tooltip = "NITROGEN"
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen"]
+custom_minimum_size = Vector2(30, 25)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 7 )
-expand = true
+tooltip_text = "NITROGEN"
+texture = ExtResource("7")
+expand_mode = 1
 
-[node name="NitrogenLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen"]
-margin_left = 34.0
-margin_top = 2.0
-margin_right = 96.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "Nitrogen"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("15_ng6rp")
 
-[node name="CO2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
-margin_top = 29.0
-margin_right = 148.0
-margin_bottom = 54.0
-mouse_filter = 2
+[node name="CO2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/CO2"]
-margin_right = 30.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 30, 25 )
-hint_tooltip = "CARBON_DIOXIDE"
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2"]
+custom_minimum_size = Vector2(30, 25)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 8 )
-expand = true
+tooltip_text = "CARBON_DIOXIDE"
+texture = ExtResource("8")
+expand_mode = 1
 
-[node name="CO2Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/CO2"]
-margin_left = 34.0
-margin_top = 2.0
-margin_right = 67.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
-text = "CO2"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "CO₂"
+label_settings = ExtResource("15_ng6rp")
 
-[node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+[node name="Compounds" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+layout_mode = 2
+DisplayName = "COMPOUNDS"
+Columns = 2
 
-[node name="Compounds" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 344.0
-margin_right = 330.0
-margin_bottom = 461.0
-script = ExtResource( 27 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-TitleLabelPath = NodePath("HBoxContainer/Title")
-CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("Clip")
-ItemContainerPath = NodePath("Clip/GridContainer")
-TweenPath = NodePath("Tween")
+[node name="HydrogenSulfide" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
-margin_right = 330.0
-margin_bottom = 20.0
-
-[node name="Buttons" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
 size_flags_vertical = 4
+tooltip_text = "HYDROGEN_SULFIDE"
+texture = ExtResource("14")
+expand_mode = 1
 
-[node name="minusButton" type="TextureButton" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer/Buttons"]
-margin_right = 20.0
-margin_bottom = 20.0
-texture_normal = ExtResource( 20 )
-texture_hover = ExtResource( 22 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "12%"
+label_settings = ExtResource("15_ng6rp")
 
-[node name="plusButton" type="TextureButton" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer/Buttons"]
-visible = false
-margin_right = 20.0
-margin_bottom = 20.0
-texture_normal = ExtResource( 19 )
-texture_hover = ExtResource( 26 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
-margin_left = 24.0
-margin_right = 123.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 5 )
-text = "COMPOUNDS"
-valign = 1
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
-margin_left = 127.0
-margin_right = 330.0
-margin_bottom = 20.0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_styles/separator = SubResource( 32 )
-
-[node name="Clip" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
-margin_top = 24.0
-margin_right = 330.0
-margin_bottom = 117.0
-rect_clip_content = true
-mouse_filter = 2
-size_flags_horizontal = 3
-custom_constants/margin_right = 15
-custom_constants/margin_top = 5
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 5
-
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip"]
-margin_left = 15.0
-margin_top = 5.0
-margin_right = 315.0
-margin_bottom = 88.0
-mouse_filter = 2
-columns = 2
-
-[node name="HydrogenSulfide" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
-margin_right = 164.0
-margin_bottom = 25.0
-size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
-margin_right = 25.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "HYDROGEN_SULFIDE"
+[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 14 )
-expand = true
-
-[node name="HydrogenSulfideLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
-margin_left = 29.0
-margin_top = 2.0
-margin_right = 148.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
-text = "Hydrogen Sulfide"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
-margin_left = 152.0
-margin_right = 164.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 12, 12 )
 mouse_filter = 2
-size_flags_vertical = 0
-expand = true
+expand_mode = 1
 
-[node name="Ammonia" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
-margin_left = 168.0
-margin_right = 300.0
-margin_bottom = 25.0
+[node name="Ammonia" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
-margin_right = 25.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "AMMONIA"
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 13 )
-expand = true
+tooltip_text = "AMMONIA"
+texture = ExtResource("13")
+expand_mode = 1
 
-[node name="AmmoniaLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
-margin_left = 29.0
-margin_top = 2.0
-margin_right = 96.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
-text = "Ammonia"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "5%"
+label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
-margin_left = 100.0
-margin_right = 112.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 12, 12 )
+[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
-size_flags_vertical = 0
-expand = true
+expand_mode = 1
 
-[node name="Glucose" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
-margin_top = 29.0
-margin_right = 164.0
-margin_bottom = 54.0
+[node name="Glucose" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
-margin_right = 25.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "GLUCOSE"
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 10 )
-expand = true
+tooltip_text = "GLUCOSE"
+texture = ExtResource("10")
+expand_mode = 1
 
-[node name="GlucoseLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
-margin_left = 29.0
-margin_top = 2.0
-margin_right = 85.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
-text = "Glucose"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "9%"
+label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
-margin_left = 89.0
-margin_right = 101.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 12, 12 )
+[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
-size_flags_vertical = 0
-expand = true
+expand_mode = 1
 
-[node name="Phosphate" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
-margin_left = 168.0
-margin_top = 29.0
-margin_right = 300.0
-margin_bottom = 54.0
+[node name="Phosphate" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
-margin_right = 25.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "PHOSPHATE"
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 21 )
-expand = true
+tooltip_text = "PHOSPHATE"
+texture = ExtResource("21")
+expand_mode = 1
 
-[node name="PhosphateLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
-margin_left = 29.0
-margin_top = 2.0
-margin_right = 104.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
-text = "Phosphate"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "5%"
+label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
-margin_left = 108.0
-margin_right = 120.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 12, 12 )
+[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
-size_flags_vertical = 0
-expand = true
+expand_mode = 1
 
-[node name="Iron" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
-margin_top = 58.0
-margin_right = 164.0
-margin_bottom = 83.0
+[node name="Iron" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
-margin_right = 25.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "IRON"
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 11 )
-expand = true
+tooltip_text = "IRON"
+texture = ExtResource("11")
+expand_mode = 1
 
-[node name="IronLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
-margin_left = 29.0
-margin_top = 2.0
-margin_right = 58.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
-text = "Iron"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "5%"
+label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
-margin_left = 62.0
-margin_right = 74.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 12, 12 )
-mouse_filter = 2
-size_flags_vertical = 0
-expand = true
-
-[node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
-
-[node name="SpeciesBox" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 471.0
-margin_right = 330.0
-margin_bottom = 536.0
-size_flags_vertical = 3
-script = ExtResource( 27 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-TitleLabelPath = NodePath("HBoxContainer/Title")
-CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
-ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
-ClipBoxPath = NodePath("Clip")
-ItemContainerPath = NodePath("Clip/GridContainer")
-TweenPath = NodePath("Tween")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
-margin_right = 330.0
-margin_bottom = 20.0
-
-[node name="Buttons" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
 size_flags_vertical = 4
-
-[node name="minusButton" type="TextureButton" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer/Buttons"]
-margin_right = 20.0
-margin_bottom = 20.0
-texture_normal = ExtResource( 20 )
-texture_hover = ExtResource( 22 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="plusButton" type="TextureButton" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer/Buttons"]
-visible = false
-margin_right = 20.0
-margin_bottom = 20.0
-texture_normal = ExtResource( 19 )
-texture_hover = ExtResource( 26 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
-margin_left = 24.0
-margin_right = 162.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 5 )
-text = "SPECIES_PRESENT"
-valign = 1
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
-margin_left = 166.0
-margin_right = 330.0
-margin_bottom = 20.0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_styles/separator = SubResource( 32 )
-
-[node name="Clip" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
-margin_top = 24.0
-margin_right = 330.0
-margin_bottom = 65.0
-rect_clip_content = true
 mouse_filter = 2
+expand_mode = 1
+
+[node name="SpeciesBox" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+layout_mode = 2
+DisplayName = "SPECIES_PRESENT"
+
+[node name="SpeciesList" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" instance=ExtResource("1")]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 15
-custom_constants/margin_top = 5
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 5
-
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/Clip"]
-margin_left = 15.0
-margin_top = 5.0
-margin_right = 315.0
-margin_bottom = 36.0
-mouse_filter = 2
-theme = SubResource( 33 )
-
-[node name="SpeciesList" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/Clip/GridContainer" instance=ExtResource( 1 )]
-margin_right = 300.0
-margin_bottom = 31.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
+fit_content = true
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 560.0
-margin_right = 350.0
-margin_bottom = 564.0
-custom_styles/separator = SubResource( 34 )
+layout_mode = 2
+theme_override_styles/separator = SubResource("34")
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 568.0
-margin_right = 350.0
-margin_bottom = 618.0
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="MoveToPatchButton" type="Button" parent="VBoxContainer/MarginContainer2"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 340.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 35 )
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
 focus_mode = 0
 disabled = true
 text = "MOVE_TO_THIS_PATCH"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons/minusButton" to="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" method="CollapseButtonPressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons/plusButton" to="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" method="ExpandButtonPressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer/Buttons/minusButton" to="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses" method="CollapseButtonPressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer/Buttons/plusButton" to="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses" method="ExpandButtonPressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer/Buttons/minusButton" to="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds" method="CollapseButtonPressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer/Buttons/plusButton" to="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds" method="ExpandButtonPressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer/Buttons/minusButton" to="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" method="CollapseButtonPressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer/Buttons/plusButton" to="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" method="ExpandButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/MoveToPatchButton" to="." method="MoveToPatchClicked"]

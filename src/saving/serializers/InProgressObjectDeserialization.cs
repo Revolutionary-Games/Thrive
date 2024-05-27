@@ -24,8 +24,6 @@ public class InProgressObjectDeserialization
 
     private readonly Func<string, bool> skipMember;
 
-    private readonly List<string> customFieldNames = new();
-
     private object? createdInstance;
     private bool instanceCreationStarted;
 
@@ -41,10 +39,6 @@ public class InProgressObjectDeserialization
     private Func<(string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)>?
         offeredConstructorParameter;
 
-    private List<(string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)?>?
-        pendingCustomFields;
-
-    private bool allowCustomFieldRead;
     private bool reachedEnd;
 
     public InProgressObjectDeserialization(Type staticType, JsonReader reader, JsonSerializer serializer,
@@ -103,16 +97,15 @@ public class InProgressObjectDeserialization
             }
         }
 
-        if (reachedEnd)
-            return (null, null, null, null);
-
-        // Try to find a non-ignored property in the json data
-        // This is a while true loop here as when we start reading the next thing, we need to call Read on
-        // the reader first
-        while (true)
+        // Try to find a non-ignored property in the json data to read
+        // This is while loop here as when we start reading the next thing, we need to call Read on
+        // the reader first. The loop is ended early if reading a property forces this to construct an instance and
+        // that reads all the remaining properties recursively looking for the right constructor parameters.
+        while (!reachedEnd)
         {
             reader.Read();
 
+            // Stop reading properties if reached the end of this object
             if (reader.TokenType == JsonToken.EndObject)
                 break;
 
@@ -140,19 +133,10 @@ public class InProgressObjectDeserialization
                 return (name, specialValue, null, null);
             }
 
+            // Read past the name
             reader.Read();
 
-            // Ignore properties we don't want to read (and use for something)
-            var isCustom = customFieldNames.Any(c => c.Equals(name, StringComparison.OrdinalIgnoreCase));
-            if (!IsPropertyUseful(name, out var valueType, out var field, out var property) && !isCustom)
-            {
-                GD.PrintErr("Ignoring save property at: ", reader.Path);
-
-                // Seems like reader.Skip is really hard to use so we need to deserialize some stuff here which we'll
-                // ignore then
-                serializer.Deserialize(reader);
-            }
-            else
+            if (IsPropertyUseful(name, out var valueType, out var field, out var property))
             {
                 // Because the first child property may already reference the current object, we need to make sure
                 // we deserialize it immediately here (and we don't deserialize the current property unless absolutely
@@ -179,42 +163,14 @@ public class InProgressObjectDeserialization
                 // Load this property's value
                 var readValue = (name, serializer.Deserialize(reader, valueType), field, property);
 
-                if (isCustom && !allowCustomFieldRead)
-                {
-                    // Too early to be reading a custom field
-                    pendingCustomFields ??=
-                        new List<(string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)?>();
-
-                    pendingCustomFields.Add(readValue);
-                }
-
                 return readValue;
             }
-        }
 
-        return (null, null, null, null);
-    }
+            GD.PrintErr("Ignoring save property at: ", reader.Path);
 
-    /// <summary>
-    ///   Gets an already parsed custom field. This should be the way to access custom fields as the default handling
-    ///   always reads all properties of objects.
-    /// </summary>
-    /// <param name="name">The name of the field to look for</param>
-    /// <returns>The field if found, nulls otherwise</returns>
-    public (string? Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)
-        GetCustomProperty(string name)
-    {
-        if (!allowCustomFieldRead)
-            throw new InvalidOperationException("Custom field read is not valid yet");
-
-        // Search in not consumed reads first
-        var value = pendingCustomFields?.FirstOrDefault(t =>
-            t!.Value.Name!.Equals(name, StringComparison.OrdinalIgnoreCase));
-
-        if (value != null)
-        {
-            pendingCustomFields!.Remove(value);
-            return value.Value;
+            // Seems like reader.Skip is really hard to use, so we need to deserialize some stuff here which we'll
+            // ignore then
+            serializer.Deserialize(reader);
         }
 
         return (null, null, null, null);
@@ -228,23 +184,9 @@ public class InProgressObjectDeserialization
     public (string? Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo) ReadPropertiesUntil(
         string lookForName)
     {
-        (string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)? alreadyReadValue;
-
         // Search in not consumed reads first
-        if (allowCustomFieldRead && pendingCustomFields != null)
-        {
-            alreadyReadValue = pendingCustomFields.FirstOrDefault(t =>
-                t!.Value.Name!.Equals(lookForName, StringComparison.OrdinalIgnoreCase));
-
-            if (alreadyReadValue != null)
-            {
-                pendingCustomFields!.Remove(alreadyReadValue);
-                return alreadyReadValue.Value;
-            }
-        }
-
-        alreadyReadValue = readButNotConsumedProperties?.FirstOrDefault(t =>
-            t!.Value.Name!.Equals(lookForName, StringComparison.OrdinalIgnoreCase));
+        var alreadyReadValue = readButNotConsumedProperties?.FirstOrDefault(t =>
+            t!.Value.Name.Equals(lookForName, StringComparison.OrdinalIgnoreCase));
 
         if (alreadyReadValue != null)
         {
@@ -326,24 +268,9 @@ public class InProgressObjectDeserialization
         RunPrePropertyDeserializeActions(createdInstance);
     }
 
-    public void MarkStartCustomFields()
-    {
-        allowCustomFieldRead = true;
-    }
-
     public void DisallowFurtherReading()
     {
         reachedEnd = true;
-    }
-
-    /// <summary>
-    ///   Must be used to inform this of all custom used fields (that are written by custom serializers) otherwise
-    ///   this will just skip reading them.
-    /// </summary>
-    /// <param name="propertyName">The name of the field</param>
-    public void RegisterExtraField(string propertyName)
-    {
-        customFieldNames.Add(propertyName);
     }
 
     private bool Skip(string name)
@@ -438,8 +365,7 @@ public class InProgressObjectDeserialization
         instanceCreationStarted = true;
 
         // Detect scene loaded type
-        bool sceneLoad = type.CustomAttributes.Any(
-            attr => attr.AttributeType == typeof(SceneLoadedClassAttribute));
+        bool sceneLoad = type.CustomAttributes.Any(a => a.AttributeType == typeof(SceneLoadedClassAttribute));
 
         createdInstance = !sceneLoad ?
             CreateDeserializedInstance(type) :
@@ -481,11 +407,10 @@ public class InProgressObjectDeserialization
 
         // Consider private constructors but ignore those that do not have the [JsonConstructor] attribute.
         var privateJsonConstructors = objectType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance)
-            .Where(
-                c => c.CustomAttributes.Any(a => a.AttributeType == constructorAttribute));
+            .Where(c => c.CustomAttributes.Any(a => a.AttributeType == constructorAttribute));
 
-        var potentialConstructors = objectType.GetConstructors().Concat(
-            privateJsonConstructors).Where(c => !c.ContainsGenericParameters);
+        var potentialConstructors = objectType.GetConstructors().Concat(privateJsonConstructors)
+            .Where(c => !c.ContainsGenericParameters);
 
         // For simplicity regarding the way we read properties now (and to avoid reading *all* properties),
         // we do it similarly as the default Newtonsoft JSON by requiring marking which constructor to use
@@ -532,6 +457,9 @@ public class InProgressObjectDeserialization
         // We need to read enough attributes to be able to call the constructor
         foreach (var param in constructorParameterInfo)
         {
+            if (param.Name == null)
+                throw new JsonException("Selected JSON constructor parameters must all have names");
+
             var fieldName = DetermineKey(param.Name, out _, out var fieldInfo, out var propertyInfo);
 
             if (fieldName == null)
@@ -545,8 +473,7 @@ public class InProgressObjectDeserialization
             {
                 if (fieldInfo.FieldType != param.ParameterType)
                 {
-                    throw new JsonException(
-                        $"Mismatching field and constructor parameter type for: {param.Name}, " +
+                    throw new JsonException($"Mismatching field and constructor parameter type for: {param.Name}, " +
                         $"class: {objectType.Name}");
                 }
             }
@@ -554,8 +481,7 @@ public class InProgressObjectDeserialization
             {
                 if (propertyInfo.PropertyType != param.ParameterType)
                 {
-                    throw new JsonException(
-                        $"Mismatching property and constructor parameter type for: {param.Name}, " +
+                    throw new JsonException($"Mismatching property and constructor parameter type for: {param.Name}, " +
                         $"class: {objectType.Name}");
                 }
             }
@@ -568,8 +494,20 @@ public class InProgressObjectDeserialization
 
             if (jsonName == null)
             {
-                throw new JsonException(
-                    $"Could not find field in JSON for constructor parameter: {param.Name}, " +
+                // Default values can be provided or missing. This requires reading all fields to determine if the
+                // value is really missing or not, so this is usable but should be avoided for types with many fields.
+                if (param.HasDefaultValue)
+                {
+                    constructorArgs[index++] = param.DefaultValue;
+
+                    // If the property was not found, this has now read all the object properties, meaning that
+                    // no further reads should be allowed as that would read the wrong object's properties next
+                    DisallowFurtherReading();
+
+                    continue;
+                }
+
+                throw new JsonException($"Could not find field in JSON for constructor parameter: {param.Name}, " +
                     $"class: {objectType.Name}");
             }
 

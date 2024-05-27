@@ -7,7 +7,20 @@ using Newtonsoft.Json;
 /// </summary>
 public class AvailableUpgrade : IRegistryType
 {
+    private LoadedSceneWithModelInfo loadedSceneData;
+
 #pragma warning disable 169,649 // Used through reflection
+    /// <summary>
+    ///   A path to a scene to override organelle's display scene. If empty will use organelle's default model.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this overrides any cell corpse chunk scene set for the organelle type (if this is not empty)
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    private SceneWithModelInfo overrideGraphics;
+
     private string? untranslatedName;
     private string? untranslatedDescription;
 #pragma warning restore 169,649
@@ -44,7 +57,7 @@ public class AvailableUpgrade : IRegistryType
     ///   </para>
     /// </remarks>
     [JsonIgnore]
-    public Texture? LoadedIcon { get; private set; }
+    public Texture2D? LoadedIcon { get; private set; }
 
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
@@ -74,7 +87,28 @@ public class AvailableUpgrade : IRegistryType
     public void Resolve()
     {
         if (!string.IsNullOrEmpty(IconPath))
-            LoadedIcon = GD.Load<Texture>(IconPath);
+            LoadedIcon = GD.Load<Texture2D>(IconPath);
+
+        // Preload the scene for instantiating in microbes
+        // TODO: switch this to only load when loading the microbe stage to not load this in the future when we have
+        // playable stages that don't need these graphics
+        if (!string.IsNullOrEmpty(overrideGraphics.ScenePath))
+        {
+            loadedSceneData.LoadFrom(overrideGraphics);
+        }
+    }
+
+    public bool TryGetGraphicsScene(out LoadedSceneWithModelInfo model)
+    {
+        if (loadedSceneData.LoadedScene == null!)
+        {
+            model = default(LoadedSceneWithModelInfo);
+
+            return false;
+        }
+
+        model = loadedSceneData;
+        return true;
     }
 
     public void ApplyTranslations()

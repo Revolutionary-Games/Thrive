@@ -2,17 +2,17 @@
 
 [ext_resource path="res://src/industrial_stage/IndustrialStage.cs" type="Script" id=1]
 [ext_resource path="res://src/society_stage/StrategicCamera.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/textures/environment/Terrain_01_Albedo.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/environment/Terrain_01_Normals.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/environment/Terrain_02_Normals.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/environment/Terrain_02_Albedo.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/environment/Terrain_01_Albedo.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/textures/environment/Terrain_01_Normals.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/textures/environment/Terrain_02_Normals.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/textures/environment/Terrain_02_Albedo.png" type="Texture2D" id=6]
 [ext_resource path="res://src/industrial_stage/gui/IndustrialHUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/industrial_stage/PlayerIndustrialInput.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/industrial_stage/gui/StrategicEntityNameLabelSystem.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="StandardMaterial3D" id=3]
 albedo_texture = ExtResource( 3 )
 normal_enabled = true
 normal_scale = 1.0
@@ -23,7 +23,7 @@ uv1_scale = Vector3( 105, 105, 105 )
 material = SubResource( 3 )
 size = Vector2( 800, 800 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="StandardMaterial3D" id=4]
 albedo_texture = ExtResource( 6 )
 normal_enabled = true
 normal_scale = 1.0
@@ -46,20 +46,20 @@ SpaceMoveConfirmationPopupPath = NodePath("ConfirmSpaceStage")
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
-[node name="WorldLight" type="DirectionalLight" parent="World"]
-transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
+[node name="WorldLight" type="DirectionalLight3D" parent="World"]
+transform = Transform3D( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
 shadow_enabled = true
 
 [node name="StrategicCamera" parent="World" instance=ExtResource( 2 )]
 MaxZoomLevel = 3.0
 
-[node name="TemporaryGround" type="Spatial" parent="World"]
+[node name="TemporaryGround" type="Node3D" parent="World"]
 
-[node name="Visual1" type="MeshInstance" parent="World/TemporaryGround"]
+[node name="Visual1" type="MeshInstance3D" parent="World/TemporaryGround"]
 mesh = SubResource( 2 )
 
-[node name="Visual2" type="MeshInstance" parent="World/TemporaryGround"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -800 )
+[node name="Visual2" type="MeshInstance3D" parent="World/TemporaryGround"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -800 )
 mesh = SubResource( 5 )
 
 [node name="PlayerIndustrialInput" parent="." instance=ExtResource( 9 )]
@@ -71,7 +71,7 @@ visible = false
 MenuPath = NodePath("../PauseMenu")
 
 [node name="ConfirmSpaceStage" parent="." instance=ExtResource( 11 )]
-rect_min_size = Vector2( 300, 0 )
+custom_minimum_size = Vector2( 300, 0 )
 WindowTitle = "CONFIRM_MOVE_TO_SPACE_STAGE"
 DialogText = "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 
@@ -80,5 +80,5 @@ DialogText = "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 [connection signal="OnOpenMenu" from="IndustrialHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="IndustrialHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnStartResearching" from="IndustrialHUD" to="." method="StartResearching"]
-[connection signal="Cancelled" from="ConfirmSpaceStage" to="." method="CancelMoveToNextStage"]
+[connection signal="Canceled" from="ConfirmSpaceStage" to="." method="CancelMoveToNextStage"]
 [connection signal="Confirmed" from="ConfirmSpaceStage" to="." method="ConfirmMoveToNextStage"]

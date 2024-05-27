@@ -1,20 +1,21 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://h6dsvt4v07um"]
 
-[ext_resource path="res://assets/models/IronRock1.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/textures/iron_01.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/iron_bump.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=4]
-[ext_resource path="res://shaders/IronChunk.shader" type="Shader" id=5]
+[ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://bu4uvavl0ieg2" path="res://assets/textures/iron_01.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
+[ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="5"]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
-shader = ExtResource( 5 )
-shader_param/dissolveValue = 0.0
-shader_param/outlineWidth = 0.005
-shader_param/growColor = Color( 0.282353, 0.282353, 0.282353, 1 )
-shader_param/albedoTexture = ExtResource( 2 )
-shader_param/normalTexture = ExtResource( 3 )
-shader_param/dissolveTexture = ExtResource( 4 )
+render_priority = 0
+shader = ExtResource("5")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/outlineWidth = 0.005
+shader_parameter/growColor = Color(0.282353, 0.282353, 0.282353, 1)
+shader_parameter/albedoTexture = ExtResource("2")
+shader_parameter/normalTexture = ExtResource("3")
+shader_parameter/dissolveTexture = ExtResource("4")
 
-[node name="MicIronBIG01" instance=ExtResource( 1 )]
-material_override = SubResource( 1 )
+[node name="MicIronBIG01" instance=ExtResource("1")]
+material_override = SubResource("1")

@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <OutputPath>../.mono/temp/lib/$(Configuration)/</OutputPath>
+    <OutputPath>../.godot/mono/temp/bin/$(Configuration)/</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,6 +33,21 @@
   <ItemGroup>
     <None Remove="boost\**" />
     <None Remove="JoltPhysics\**" />
+  </ItemGroup>
+
+  <!-- StyleCop Analyzers configuration and NetAnalyzers enabling -->
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)StyleCop.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)../RevolutionaryGamesCommon/stylecop.json"
+                     Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>

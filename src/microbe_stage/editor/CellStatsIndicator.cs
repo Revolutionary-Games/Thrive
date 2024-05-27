@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -6,7 +7,8 @@ using Newtonsoft.Json;
 ///   Shows cell stats (e.g. Storage: 2.1, Hp: 50, etc) for the organism statistics display.
 ///   Also functions as a comparison for old value with a new one, indicated with an up/down icon.
 /// </summary>
-public class CellStatsIndicator : HBoxContainer
+[JsonObject(MemberSerialization.OptIn)]
+public partial class CellStatsIndicator : HBoxContainer
 {
 #pragma warning disable CA2213
     /// <summary>
@@ -18,22 +20,22 @@ public class CellStatsIndicator : HBoxContainer
     ///   </para>
     /// </remarks>
     [Export]
-    public Texture? InvalidIcon;
+    public Texture2D? InvalidIcon;
 
     [Export]
-    public Texture? Icon;
+    public Texture2D? Icon;
 
     [Export]
-    public NodePath? ValuePath = null;
+    public NodePath? ValuePath;
 
     private Label? descriptionLabel;
     private Label? valueLabel;
     private TextureRect? changeIndicator;
     private TextureRect? iconRect;
 
-    private Texture blankIcon = null!;
-    private Texture increaseIcon = null!;
-    private Texture decreaseIcon = null!;
+    private Texture2D blankIcon = null!;
+    private Texture2D increaseIcon = null!;
+    private Texture2D decreaseIcon = null!;
 #pragma warning restore CA2213
 
     private string description = "unset";
@@ -103,32 +105,59 @@ public class CellStatsIndicator : HBoxContainer
         changeIndicator = GetNode<TextureRect>("Indicator");
         iconRect = GetNode<TextureRect>("Icon");
 
-        InvalidIcon ??= GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
+        InvalidIcon ??= GD.Load<Texture2D>("res://assets/textures/gui/bevel/helpButton.png");
 
-        blankIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/blankStat.png");
-        increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
-        decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
+        blankIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/blankStat.png");
+        increaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/increase.png");
+        decreaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/decrease.png");
 
         iconRect.Texture = Icon;
+
+        // Hide the icon displayer when no icon to save on some horizontal space
+        if (Icon == null)
+            iconRect.Visible = false;
 
         UpdateChangeIndicator();
         UpdateDescription();
         UpdateValue();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateDescription();
-            UpdateValue();
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     public void ResetInitialValue()
     {
         initialValue = null;
         UpdateValue();
+    }
+
+    /// <summary>
+    ///   Displays a multipart value on this indicator. Use when setting <see cref="Value"/> is not enough
+    /// </summary>
+    /// <param name="formattedValue">The text to display on this indicator</param>
+    /// <param name="rawValueForComparison">Value used to compare this indicator value against</param>
+    public void SetMultipartValue(string formattedValue, float rawValueForComparison)
+    {
+        if (!float.IsNaN(rawValueForComparison))
+            initialValue ??= rawValueForComparison;
+
+        value = rawValueForComparison;
+
+        if (valueLabel == null)
+            throw new InvalidOperationException("This method can only be called after adding to the scene tree");
+
+        UpdateChangeIndicator();
+
+        valueLabel.Text = formattedValue;
     }
 
     protected override void Dispose(bool disposing)
@@ -148,7 +177,7 @@ public class CellStatsIndicator : HBoxContainer
 
         if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
         {
-            changeIndicator.RectMinSize = ChangeIndicatorSize;
+            changeIndicator.CustomMinimumSize = ChangeIndicatorSize;
             if (Value > initialValue)
             {
                 changeIndicator.Texture = increaseIcon;
@@ -166,7 +195,7 @@ public class CellStatsIndicator : HBoxContainer
         }
         else
         {
-            changeIndicator.RectMinSize = InvalidIndicatorSize;
+            changeIndicator.CustomMinimumSize = InvalidIndicatorSize;
             changeIndicator.Texture = InvalidIcon;
             changeIndicator.Visible = true;
         }
@@ -177,7 +206,7 @@ public class CellStatsIndicator : HBoxContainer
         if (descriptionLabel == null)
             return;
 
-        descriptionLabel.Text = TranslationServer.Translate(Description);
+        descriptionLabel.Text = Localization.Translate(Description);
     }
 
     private void UpdateValue()
@@ -190,5 +219,11 @@ public class CellStatsIndicator : HBoxContainer
         valueLabel.Text = string.IsNullOrEmpty(Format) ?
             Value.ToString(CultureInfo.CurrentCulture) :
             Format!.FormatSafe(Value);
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateDescription();
+        UpdateValue();
     }
 }

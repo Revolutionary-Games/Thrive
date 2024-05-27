@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -6,7 +7,7 @@ using Newtonsoft.Json;
 ///   Type of a cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
 [JsonObject(IsReference = true)]
-public class CellType : ICellProperties, ICloneable
+public class CellType : ICellDefinition, ICloneable
 {
     [JsonConstructor]
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
@@ -25,18 +26,21 @@ public class CellType : ICellProperties, ICloneable
     ///   Creates a cell type from the cell type of a microbe species
     /// </summary>
     /// <param name="microbeSpecies">The microbe species to take the cell type parameters from</param>
-    public CellType(MicrobeSpecies microbeSpecies) : this(microbeSpecies.MembraneType)
+    /// <param name="workMemory1">Temporary memory needed to copy organelle data</param>
+    /// <param name="workMemory2">More temporary memory</param>
+    public CellType(MicrobeSpecies microbeSpecies, List<Hex> workMemory1, List<Hex> workMemory2) :
+        this(microbeSpecies.MembraneType)
     {
         foreach (var organelle in microbeSpecies.Organelles)
         {
-            Organelles.Add((OrganelleTemplate)organelle.Clone());
+            Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
         }
 
         MembraneRigidity = microbeSpecies.MembraneRigidity;
         Colour = microbeSpecies.Colour;
         IsBacteria = microbeSpecies.IsBacteria;
         CanEngulf = microbeSpecies.CanEngulf;
-        TypeName = TranslationServer.Translate("STEM_CELL_NAME");
+        TypeName = Localization.Translate("STEM_CELL_NAME");
     }
 
     [JsonProperty]
@@ -59,10 +63,11 @@ public class CellType : ICellProperties, ICloneable
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
-    public void RepositionToOrigin()
+    public bool RepositionToOrigin()
     {
-        Organelles.RepositionToOrigin();
+        var changes = Organelles.RepositionToOrigin();
         CalculateRotationSpeed();
+        return changes;
     }
 
     public void UpdateNameIfValid(string newName)
@@ -93,14 +98,27 @@ public class CellType : ICellProperties, ICloneable
         return false;
     }
 
+    public bool IsMuscularTissueType()
+    {
+        foreach (var organelle in Organelles)
+        {
+            if (organelle.Definition.HasFeatureTag(OrganelleFeatureTag.Myofibril))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
-        CellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
+        GeneralCellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
     }
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
+        return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public bool StateHasStabilized(IWorldSimulation worldSimulation)
@@ -119,9 +137,12 @@ public class CellType : ICellProperties, ICloneable
             IsBacteria = IsBacteria,
         };
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var organelle in Organelles)
         {
-            result.Organelles.Add((OrganelleTemplate)organelle.Clone());
+            result.Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
         }
 
         return result;
@@ -129,9 +150,9 @@ public class CellType : ICellProperties, ICloneable
 
     public override int GetHashCode()
     {
-        var hash = (TypeName.GetHashCode() * 131) ^ (MPCost * 2797) ^ (MembraneType.GetHashCode() * 2801) ^
-            (MembraneRigidity.GetHashCode() * 2803) ^ (Colour.GetHashCode() * 587) ^ ((IsBacteria ? 1 : 0) * 5171) ^
-            (Organelles.Count * 127);
+        var hash = TypeName.GetHashCode() * 131 ^ MPCost * 2797 ^ MembraneType.GetHashCode() * 2801 ^
+            MembraneRigidity.GetHashCode() * 2803 ^ Colour.GetHashCode() * 587 ^ (IsBacteria ? 1 : 0) * 5171 ^
+            Organelles.Count * 127;
 
         int counter = 0;
 
@@ -145,7 +166,6 @@ public class CellType : ICellProperties, ICloneable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed =
-            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
     }
 }

@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Button which links to an organelle Thriveopedia page.
 /// </summary>
-public class OrganelleLinkButton : VBoxContainer
+public partial class OrganelleLinkButton : VBoxContainer
 {
     [Export]
     public NodePath? ButtonPath;
@@ -28,7 +28,7 @@ public class OrganelleLinkButton : VBoxContainer
         button = GetNode<Button>(ButtonPath);
         label = GetNode<Label>(LabelPath);
 
-        button.Icon = GD.Load<Texture>(Organelle.IconPath);
+        button.Icon = GD.Load<Texture2D>(Organelle.IconPath);
         label.Text = Organelle.Name;
     }
 

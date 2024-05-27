@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -10,7 +9,11 @@ using Array = Godot.Collections.Array;
 /// </summary>
 public class MembraneShapeGenerator
 {
-    private static readonly ThreadLocal<MembraneShapeGenerator> ThreadLocalGenerator =
+    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+    // private static readonly ThreadLocal<MembraneShapeGenerator> ThreadLocalGenerator =
+    //    new(() => new MembraneShapeGenerator());
+
+    private static readonly Lazy<MembraneShapeGenerator> ThreadLocalGenerator =
         new(() => new MembraneShapeGenerator());
 
     /// <summary>
@@ -55,14 +58,14 @@ public class MembraneShapeGenerator
         for (int i = 0; i < hexCount; ++i)
         {
             var pos = hexPositions[i];
-            if (Mathf.Abs(pos.x) + 1 > cellDimensions)
+            if (Mathf.Abs(pos.X) + 1 > cellDimensions)
             {
-                cellDimensions = (int)Mathf.Abs(pos.x) + 1;
+                cellDimensions = (int)Mathf.Abs(pos.X) + 1;
             }
 
-            if (Mathf.Abs(pos.y) + 1 > cellDimensions)
+            if (Mathf.Abs(pos.Y) + 1 > cellDimensions)
             {
-                cellDimensions = (int)Mathf.Abs(pos.y) + 1;
+                cellDimensions = (int)Mathf.Abs(pos.Y) + 1;
             }
         }
 
@@ -82,8 +85,7 @@ public class MembraneShapeGenerator
 
         for (int i = MembraneResolution; i > 0; i--)
         {
-            startingBuffer.Add(new Vector2(
-                cellDimensions - 2 * cellDimensions / MembraneResolution * i,
+            startingBuffer.Add(new Vector2(cellDimensions - 2 * cellDimensions / MembraneResolution * i,
                 cellDimensions));
         }
 
@@ -95,8 +97,7 @@ public class MembraneShapeGenerator
 
         for (int i = MembraneResolution; i > 0; i--)
         {
-            startingBuffer.Add(new Vector2(
-                -cellDimensions + 2 * cellDimensions / MembraneResolution * i,
+            startingBuffer.Add(new Vector2(-cellDimensions + 2 * cellDimensions / MembraneResolution * i,
                 -cellDimensions));
         }
 
@@ -133,6 +134,16 @@ public class MembraneShapeGenerator
         return (mesh, surfaceIndex);
     }
 
+    /// <summary>
+    ///   Creates the visual engulf mesh from the overall shape (see GenerateShape method above) that is already created
+    /// </summary>
+    public (ArrayMesh Mesh, int SurfaceIndex) GenerateEngulfMesh(MembranePointData shapeData)
+    {
+        var mesh = BuildEngulfMesh(shapeData.Vertices2D, shapeData.VertexCount, out var surfaceIndex);
+
+        return (mesh, surfaceIndex);
+    }
+
     private static int InitializeCorrectMembrane(Vector2[] vertices2D, int vertexCount, int writeIndex,
         Vector3[] vertices, Vector2[] uvs, MembraneType membraneType)
     {
@@ -160,7 +171,7 @@ public class MembraneShapeGenerator
             float currentRadians = multiplier * i / end;
 
             var sourceVertex = vertices2D[i % end];
-            vertices[writeIndex] = new Vector3(sourceVertex.x, height / 2, sourceVertex.y);
+            vertices[writeIndex] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
 
             uvs[writeIndex] = center +
                 new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2;
@@ -242,13 +253,85 @@ public class MembraneShapeGenerator
 
         arrays[(int)Mesh.ArrayType.Vertex] = vertices;
         arrays[(int)Mesh.ArrayType.Index] = indices;
-        arrays[(int)Mesh.ArrayType.TexUv] = uvs;
+        arrays[(int)Mesh.ArrayType.TexUV] = uvs;
 
         // Create the mesh
         var generatedMesh = new ArrayMesh();
 
         surfaceIndex = generatedMesh.GetSurfaceCount();
         generatedMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
+
+        return generatedMesh;
+    }
+
+    /// <summary>
+    ///   Creates the engulf mesh object.
+    /// </summary>
+    private static ArrayMesh BuildEngulfMesh(Vector2[] vertices2D, int vertexCount, out int surfaceIndex)
+    {
+        // common variables
+        const float height = 0.1f;
+
+        var center = new Vector2(0.5f, 0.5f);
+
+        // Engulf Mesh is a triangle strip extruded from the shape
+        var trueVertexCount = vertexCount * 2;
+
+        // Need two exta indices to connect back to the orginal triangle
+        var indexSize = trueVertexCount + 2;
+
+        var arrays = new Array();
+        arrays.Resize((int)Mesh.ArrayType.Max);
+
+        // Write mesh data
+        var indices = new int[indexSize];
+        var vertices = new Vector3[trueVertexCount];
+        var uvs = new Vector2[trueVertexCount];
+
+        for (int i = 0; i < vertexCount; ++i)
+        {
+            var index = i * 2;
+
+            // This weird indexing is required to make the mesh respect winding order
+            // Otherwise it will get culled
+            var sourceVertex = vertices2D[vertexCount - i - 1];
+            var extrudeDir = sourceVertex - center;
+
+            Vector2 extrudedVertex = sourceVertex + extrudeDir *
+                Constants.MEMBRANE_ENGULF_ANIMATION_DISTANCE;
+
+            indices[index] = index;
+            indices[index + 1] = index + 1;
+
+            vertices[index] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
+            vertices[index + 1] = new Vector3(extrudedVertex.X, height / 2, extrudedVertex.Y);
+
+            // UVs are actually used like a distance calculation here instead of actual uvs
+            uvs[index] = new Vector2(0, 0);
+            uvs[index + 1] = new Vector2(0, 1);
+        }
+
+        // Connect back to the start
+
+        indices[trueVertexCount] = 0;
+        indices[trueVertexCount + 1] = 1;
+
+        // Godot might do this automatically
+        // // Set the bounds to get frustum culling and LOD to work correctly.
+        // // TODO: make this more accurate by calculating the actual extents
+        // m_mesh->_setBounds(Ogre::Aabb(Float3::ZERO, Float3::UNIT_SCALE * 50)
+        //     /*, false*/);
+        // m_mesh->_setBoundingSphereRadius(50);
+
+        arrays[(int)Mesh.ArrayType.Vertex] = vertices;
+        arrays[(int)Mesh.ArrayType.Index] = indices;
+        arrays[(int)Mesh.ArrayType.TexUV] = uvs;
+
+        // Create the mesh
+        var generatedMesh = new ArrayMesh();
+
+        surfaceIndex = generatedMesh.GetSurfaceCount();
+        generatedMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.TriangleStrip, arrays);
 
         return generatedMesh;
     }
@@ -333,7 +416,7 @@ public class MembraneShapeGenerator
             var direction = (nextPoint - point).Normalized();
 
             // Turn 90 degrees
-            direction = new Vector2(-direction.y, direction.x);
+            direction = new Vector2(-direction.Y, direction.X);
 
             var movement = direction * Mathf.Sin(waveFrequency * i) * waveHeight;
 

@@ -12,6 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scripts", "Scripts\Scripts.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevCenterCommunication", "RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj", "{308BA2D6-EF9C-408F-BEAE-7DACF6401350}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThriveTest", "test\code_tests\ThriveTest.csproj", "{03B05BE7-6A42-4317-8804-BB5C270ACF52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherThriveShared", "RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj", "{AE051448-5585-4A8E-9926-CF6F6C8A01A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,18 @@ Global
 		{308BA2D6-EF9C-408F-BEAE-7DACF6401350}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{308BA2D6-EF9C-408F-BEAE-7DACF6401350}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{308BA2D6-EF9C-408F-BEAE-7DACF6401350}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{03B05BE7-6A42-4317-8804-BB5C270ACF52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03B05BE7-6A42-4317-8804-BB5C270ACF52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03B05BE7-6A42-4317-8804-BB5C270ACF52}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03B05BE7-6A42-4317-8804-BB5C270ACF52}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{03B05BE7-6A42-4317-8804-BB5C270ACF52}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{03B05BE7-6A42-4317-8804-BB5C270ACF52}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{AE051448-5585-4A8E-9926-CF6F6C8A01A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE051448-5585-4A8E-9926-CF6F6C8A01A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE051448-5585-4A8E-9926-CF6F6C8A01A6}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE051448-5585-4A8E-9926-CF6F6C8A01A6}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{AE051448-5585-4A8E-9926-CF6F6C8A01A6}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE051448-5585-4A8E-9926-CF6F6C8A01A6}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

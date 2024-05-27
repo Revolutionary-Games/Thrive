@@ -1,10 +1,11 @@
 # Godot files
 /.import
+/.godot
 export.cfg
 /builds
 /cmake-build*
 
-/inspect_results.xml
+/inspect_results.json
 /files_to_check.txt
 /duplicate_results.xml
 /.jetbrains-cache
@@ -144,6 +145,7 @@ package-lock.json
 /Scripts/translators.json
 /steam_appid.txt
 simulation_parameters/revision.json
+/gitmodules
 
 /mods
 
@@ -151,3 +153,5 @@ simulation_parameters/revision.json
 out.txt
 output.png
 *.DS_Store
+
+*.mo

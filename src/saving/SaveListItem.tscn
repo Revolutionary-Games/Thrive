@@ -1,40 +1,37 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://bdmsha8frdeef"]
 
-[ext_resource path="res://assets/textures/gui/bevel/TrashIcon.png" type="Texture" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/misc/icon.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/trashButtonHover.png" type="Texture" id=4]
-[ext_resource path="res://src/saving/SaveListItem.cs" type="Script" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/trashButton.png" type="Texture" id=6]
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/trashButtonActive.png" type="Texture" id=9]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=10]
+[ext_resource type="Texture2D" uid="uid://cqa6onm0acff4" path="res://assets/textures/gui/bevel/TrashIcon.png" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://w21wmrogs2g5" path="res://assets/misc/icon.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cpqu1afcsgfr0" path="res://assets/textures/gui/bevel/trashButtonHover.png" id="4"]
+[ext_resource type="Script" path="res://src/saving/SaveListItem.cs" id="5"]
+[ext_resource type="LabelSettings" uid="uid://cwi2hxs06xut5" path="res://src/gui_common/fonts/Body-Bold-Normal.tres" id="5_bdxsg"]
+[ext_resource type="Texture2D" uid="uid://3bj404a6bnwb" path="res://assets/textures/gui/bevel/trashButton.png" id="6"]
+[ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall.tres" id="6_1cduv"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
+[ext_resource type="Texture2D" uid="uid://u85mqai0b0pt" path="res://assets/textures/gui/bevel/trashButtonActive.png" id="9"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.054902, 0.145098, 0.168627, 0.784314 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.054902, 0.145098, 0.168627, 0.784314)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.0666667, 0.6, 0.537255, 1 )
+border_color = Color(0.0666667, 0.6, 0.537255, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0.435294, 0.52549, 0.27451 )
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0, 0.435294, 0.52549, 0.27451)
 
 [node name="SaveListItem" type="PanelContainer"]
-margin_right = 838.0
-margin_bottom = 142.0
-theme = ExtResource( 2 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_right = 838.0
+offset_bottom = 142.0
+theme = ExtResource("2")
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("5")
 SaveNamePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/SaveName")
 ScreenshotPath = NodePath("MarginContainer/HBoxContainer/Screenshot")
 VersionPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/Version")
@@ -49,238 +46,179 @@ HighlightPath = NodePath("Highlight")
 
 [node name="Highlight" type="Panel" parent="."]
 visible = false
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 498.0
-margin_bottom = 162.0
+layout_mode = 2
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+theme_override_styles/panel = SubResource("2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 838.0
-margin_bottom = 140.0
-mouse_filter = 1
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 831.0
-margin_bottom = 133.0
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/separation = 15
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/separation = 15
 
 [node name="Screenshot" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-margin_right = 168.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 168, 128 )
+custom_minimum_size = Vector2(170, 128)
+layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource( 3 )
-expand = true
-stretch_mode = 6
+size_flags_stretch_ratio = 0.4
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 183.0
-margin_top = 17.0
-margin_right = 702.0
-margin_bottom = 111.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="SaveName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_right = 519.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 8 )
+layout_mode = 2
 text = "LOADING_DOT_DOT_DOT"
-autowrap = true
+label_settings = ExtResource("5_bdxsg")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 29.0
-margin_right = 519.0
-margin_bottom = 94.0
-custom_constants/separation = 15
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 211.0
-margin_bottom = 65.0
-size_flags_horizontal = 3
+layout_mode = 2
 size_flags_stretch_ratio = 4.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 211.0
-margin_bottom = 19.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2"]
-margin_right = 91.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
 text = "CREATED_AT"
+label_settings = ExtResource("6_1cduv")
 
 [node name="CreatedAt" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2"]
-margin_left = 95.0
-margin_right = 203.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
 text = "DOT_DOT_DOT"
+label_settings = ExtResource("6_1cduv")
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 23.0
-margin_right = 211.0
-margin_bottom = 42.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4"]
-margin_right = 95.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
 text = "TYPE_COLON"
+label_settings = ExtResource("6_1cduv")
 
 [node name="Type" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4"]
-margin_left = 99.0
-margin_right = 207.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
 text = "DOT_DOT_DOT"
+label_settings = ExtResource("6_1cduv")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 46.0
-margin_right = 211.0
-margin_bottom = 65.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3"]
-margin_right = 99.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
 text = "DESCRIPTION"
+label_settings = ExtResource("6_1cduv")
 
 [node name="Description" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3"]
-margin_left = 103.0
-margin_right = 211.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+size_flags_horizontal = 3
 text = "DOT_DOT_DOT"
+label_settings = ExtResource("6_1cduv")
+autowrap_mode = 3
+max_lines_visible = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 226.0
-margin_right = 519.0
-margin_bottom = 65.0
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
-margin_right = 293.0
-margin_bottom = 19.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
-margin_right = 124.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
 text = "VERSION_COLON"
+label_settings = ExtResource("6_1cduv")
 
 [node name="Version" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
-margin_left = 128.0
-margin_right = 236.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
 text = "DOT_DOT_DOT"
+label_settings = ExtResource("6_1cduv")
 
 [node name="VersionWarning" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
-margin_left = 240.0
-margin_right = 261.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 text = "( ! )"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("6_1cduv")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
-margin_top = 23.0
-margin_right = 293.0
-margin_bottom = 42.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2"]
-margin_right = 19.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
 text = "BY"
+label_settings = ExtResource("6_1cduv")
 
 [node name="Creator" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2"]
-margin_left = 23.0
-margin_right = 131.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
+size_flags_horizontal = 3
 text = "DOT_DOT_DOT"
+label_settings = ExtResource("6_1cduv")
+text_overrun_behavior = 3
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
-margin_top = 46.0
-margin_right = 293.0
-margin_bottom = 65.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3"]
-margin_right = 181.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
 text = "CREATED_ON_PLATFORM"
+label_settings = ExtResource("6_1cduv")
 
 [node name="Platform" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3"]
-margin_left = 185.0
-margin_right = 293.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
+size_flags_horizontal = 3
 text = "DOT_DOT_DOT"
+label_settings = ExtResource("6_1cduv")
+text_overrun_behavior = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 717.0
-margin_right = 826.0
-margin_bottom = 128.0
-size_flags_horizontal = 3
+layout_mode = 2
 alignment = 2
 
 [node name="Delete" type="TextureButton" parent="MarginContainer/HBoxContainer/HBoxContainer"]
-margin_right = 43.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 43, 43 )
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 2
 size_flags_vertical = 0
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 9 )
-texture_hover = ExtResource( 4 )
-texture_disabled = ExtResource( 1 )
-expand = true
+texture_normal = ExtResource("6")
+texture_pressed = ExtResource("9")
+texture_hover = ExtResource("4")
+texture_disabled = ExtResource("1")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Load" type="Button" parent="MarginContainer/HBoxContainer/HBoxContainer"]
-margin_left = 47.0
-margin_right = 109.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 55, 43 )
+custom_minimum_size = Vector2(55, 43)
+layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "LOAD"
 
-[node name="DeleteConfirmDialog" parent="MarginContainer/HBoxContainer" instance=ExtResource( 7 )]
-margin_left = 1354.0
-margin_right = 1854.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 500, 0 )
-WindowTitle = "DELETE_THIS_SAVE_PROMPT"
+[node name="DeleteConfirmDialog" parent="MarginContainer/HBoxContainer" instance=ExtResource("7")]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
 DialogText = "DELETE_SAVE_CONFIRMATION"
+WindowTitle = "DELETE_THIS_SAVE_PROMPT"
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]

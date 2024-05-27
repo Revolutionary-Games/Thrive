@@ -5,10 +5,21 @@ using Godot;
 
 // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 // [Tool]
-public class LicensesDisplay : CustomWindow
+/// <summary>
+///   Shows the game licenses
+/// </summary>
+public partial class LicensesDisplay : CustomWindow
 {
     [Export]
     public NodePath? TextsContainerPath;
+
+#pragma warning disable CA2213
+    [Export]
+    public LabelSettings HeadingFont = null!;
+
+    [Export]
+    public LabelSettings ContentFont = null!;
+#pragma warning restore CA2213
 
     private List<(string Heading, Func<string> Content)> licensesToShow = null!;
 
@@ -65,12 +76,12 @@ public class LicensesDisplay : CustomWindow
 
         if (!isSteamVersion)
         {
-            licensesToShow.Add((TranslationServer.Translate("GPL_LICENSE_HEADING"),
+            licensesToShow.Add((Localization.Translate("GPL_LICENSE_HEADING"),
                 () => LoadFile(Constants.GPL_LICENSE_FILE)));
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         // Keep the license texts only loaded when this is visible
         if (IsVisibleInTree())
@@ -104,9 +115,9 @@ public class LicensesDisplay : CustomWindow
 
     private static string LoadFile(string file)
     {
-        using var reader = new File();
+        using var reader = FileAccess.Open(file, FileAccess.ModeFlags.Read);
 
-        if (reader.Open(file, File.ModeFlags.Read) == Error.Ok)
+        if (reader != null)
         {
             return reader.GetAsText();
         }
@@ -120,20 +131,23 @@ public class LicensesDisplay : CustomWindow
         foreach (var licenseTuple in licensesToShow)
         {
             var heading = new Label { Text = licenseTuple.Heading };
-            heading.AddFontOverride("font", GetFont("lato_bold_regular", "Fonts"));
+            heading.LabelSettings = HeadingFont;
             textsContainer.AddChild(heading);
 
             var content = new Label
             {
                 Text = licenseTuple.Content(),
-                Align = Label.AlignEnum.Left,
-                Autowrap = true,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                AutowrapMode = TextServer.AutowrapMode.WordSmart,
+
+                // Increase the initial size to make loading faster
+                Size = new Vector2(5000, 0),
             };
 
-            content.AddFontOverride("font", GetFont("lato_normal", "Fonts"));
+            content.LabelSettings = ContentFont;
             textsContainer.AddChild(content);
 
-            textsContainer.AddChild(new Control { RectMinSize = new Vector2(0, 5) });
+            textsContainer.AddChild(new Control { CustomMinimumSize = new Vector2(0, 5) });
         }
     }
 

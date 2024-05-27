@@ -22,35 +22,42 @@ public class MicrobeEventArgs : TutorialEventArgs
 
 public class RotationEventArgs : TutorialEventArgs
 {
-    public RotationEventArgs(Quat rotation, Vector3 rotationInDegrees)
+    public RotationEventArgs(Quaternion rotation, Vector3 rotationInRadians)
     {
         Rotation = rotation;
-        RotationInDegrees = rotationInDegrees;
+        RotationInRadians = rotationInRadians;
     }
 
     /// <summary>
     ///   Quaternion of the rotation
     /// </summary>
-    public Quat Rotation { get; }
+    public Quaternion Rotation { get; }
 
     /// <summary>
-    ///   Axis-wise degree rotations
+    ///   Axis-wise rotation in radians
     /// </summary>
-    public Vector3 RotationInDegrees { get; }
+    public Vector3 RotationInRadians { get; }
 }
 
 public class MicrobeMovementEventArgs : TutorialEventArgs
 {
-    public MicrobeMovementEventArgs(bool usesScreenRelativeMovement, Vector3 movementDirection, Vector3 lookVector)
+    public MicrobeMovementEventArgs(bool usesScreenRelativeMovement, Vector3 movementDirection)
     {
         UsesScreenRelativeMovement = usesScreenRelativeMovement;
         MovementDirection = movementDirection;
-        LookVector = lookVector;
     }
 
-    public bool UsesScreenRelativeMovement { get; }
-    public Vector3 MovementDirection { get; }
-    public Vector3 LookVector { get; }
+    public bool UsesScreenRelativeMovement { get; private set; }
+    public Vector3 MovementDirection { get; private set; }
+
+    /// <summary>
+    ///   Reuses this event with new parameters. This method exists to reduce required memory allocations.
+    /// </summary>
+    public void ReuseEvent(bool usesScreenRelativeMovement, Vector3 movementDirection)
+    {
+        UsesScreenRelativeMovement = usesScreenRelativeMovement;
+        MovementDirection = movementDirection;
+    }
 }
 
 public class EntityPositionEventArgs : TutorialEventArgs
@@ -115,14 +122,16 @@ public class CallbackEventArgs : TutorialEventArgs
 
 public class MicrobeColonyEventArgs : TutorialEventArgs
 {
-    public MicrobeColonyEventArgs(bool hasColony, int memberCount)
+    public MicrobeColonyEventArgs(bool hasColony, int memberCount, bool isMulticellular)
     {
         HasColony = hasColony;
         MemberCount = memberCount;
+        IsMulticellular = isMulticellular;
     }
 
     public bool HasColony { get; }
     public int MemberCount { get; }
+    public bool IsMulticellular { get; }
 }
 
 public class EnergyBalanceEventArgs : TutorialEventArgs
@@ -133,4 +142,24 @@ public class EnergyBalanceEventArgs : TutorialEventArgs
     }
 
     public EnergyBalanceInfo EnergyBalanceInfo { get; }
+}
+
+public class OrganellePlacedEventArgs : TutorialEventArgs
+{
+    public OrganellePlacedEventArgs(OrganelleDefinition definition)
+    {
+        Definition = definition;
+    }
+
+    public OrganelleDefinition Definition { get; }
+}
+
+public class GameWorldEventArgs : TutorialEventArgs
+{
+    public GameWorldEventArgs(GameWorld world)
+    {
+        World = world;
+    }
+
+    public GameWorld World { get; }
 }

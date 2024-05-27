@@ -7,7 +7,8 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Singleton handling screenshot taking
 /// </summary>
-public class ScreenShotTaker : NodeWithInput
+[GodotAutoload]
+public partial class ScreenShotTaker : NodeWithInput
 {
     private static ScreenShotTaker? instance;
     private bool isCurrentlyTakingScreenshot;
@@ -30,7 +31,15 @@ public class ScreenShotTaker : NodeWithInput
     public override void _Ready()
     {
         // Keep this node running while paused
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
     }
 
     [RunOnKeyDown("screenshot", OnlyUnhandled = false)]
@@ -46,10 +55,10 @@ public class ScreenShotTaker : NodeWithInput
     /// <returns>The image</returns>
     public Image GetViewportTextureAsImage()
     {
-        var image = GetViewport().GetTexture().GetData();
+        var image = GetViewport().GetTexture().GetImage();
 
-        // TODO: do we always need this?
-        image.FlipY();
+        // Viewport is no longer flipped in Godot 4 (hopefully this is not renderer specific)
+        // image.FlipY();
 
         return image;
     }
@@ -94,7 +103,7 @@ public class ScreenShotTaker : NodeWithInput
 
         if (SteamHandler.Instance.IsLoaded)
         {
-            if (Input.IsKeyPressed((int)KeyList.F12))
+            if (Input.IsKeyPressed(Key.F12))
             {
                 GD.Print("Ignoring F12 as Steam is probably taking a screenshot with that");
                 return;

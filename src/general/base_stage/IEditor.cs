@@ -34,7 +34,7 @@ public interface IEditor : ISaveLoadedTracked
     /// <summary>
     ///   Root node under which editor components should put their 3D space Nodes (placed things, editor controls etc.)
     /// </summary>
-    public Spatial RootOfDynamicallySpawned { get; }
+    public Node3D RootOfDynamicallySpawned { get; }
 
     /// <summary>
     ///   The main current game object holding various details
@@ -50,7 +50,7 @@ public interface IEditor : ISaveLoadedTracked
     /// <summary>
     ///   True once auto-evo (and possibly other stuff) the editor needs to wait for is ready
     /// </summary>
-    public bool Ready { get; }
+    public bool EditorReady { get; }
 
     public float DayLightFraction { get; set; }
 
@@ -92,7 +92,7 @@ public interface IEditor : ISaveLoadedTracked
 
     public void OnInvalidAction();
 
-    public void OnValidAction();
+    public void OnValidAction(IEnumerable<CombinableActionData> actions);
 
     /// <summary>
     ///   Request from the user to exit the editor anyway

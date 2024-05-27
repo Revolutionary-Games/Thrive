@@ -1,31 +1,40 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+public class MicrobeEngulfmentStorageFull : TutorialPhase
 {
-    using System;
+    public override string ClosedByName => "MicrobeEngulfmentStorageFull";
 
-    public class MicrobeEngulfmentStorageFull : TutorialPhase
+    public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
-        public override string ClosedByName => "MicrobeEngulfmentStorageFull";
+        gui.EngulfmentFullCapacityVisible = ShownCurrently;
+    }
 
-        public override void ApplyGUIState(MicrobeTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.EngulfmentFullCapacityVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.MicrobePlayerEngulfmentFull:
             {
-                case TutorialEventType.MicrobePlayerEngulfmentFull:
-                {
-                    if (!HasBeenShown && !overallState.TutorialActive())
-                        Show();
+                if (!HasBeenShown && !overallState.TutorialActive())
+                    Show();
 
-                    break;
-                }
+                break;
             }
 
-            return false;
+            case TutorialEventType.MicrobePlayerEngulfmentNotFull:
+            {
+                if (ShownCurrently && Time >= 15)
+                {
+                    Hide();
+                }
+
+                break;
+            }
         }
+
+        return false;
     }
 }

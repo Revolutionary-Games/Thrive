@@ -1,212 +1,154 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://oslha78a5bb"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/PlaybackControls.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/general/OrbitCamera.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/gui_common/art_gallery/SlideScreen.cs" type="Script" id=7]
-[ext_resource path="res://src/gui_common/CrossFadableTextureRect.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/gui_common/TopLevelContainer.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/gui_common/art_gallery/CrossFadableGalleryViewport.cs" type="Script" id=10]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://dj12vy45xfnoj" path="res://src/gui_common/PlaybackControls.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://src/general/OrbitCamera.tscn" id="6"]
+[ext_resource type="Script" path="res://src/gui_common/art_gallery/SlideScreen.cs" id="7"]
+[ext_resource type="PackedScene" uid="uid://cgdp2u78cxxe7" path="res://src/gui_common/CrossFadableTextureRect.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://src/gui_common/TopLevelContainer.tscn" id="9"]
+[ext_resource type="Script" path="res://src/gui_common/art_gallery/CrossFadableGalleryViewport.cs" id="10"]
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 1 )
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ProceduralSky" id=5]
-sky_horizon_color = Color( 0.647059, 0.835294, 0.941176, 1 )
-ground_bottom_color = Color( 0.254902, 0.32549, 0.403922, 1 )
-ground_horizon_color = Color( 0.647059, 0.831373, 0.937255, 1 )
-
-[sub_resource type="Environment" id=4]
-background_mode = 2
-background_sky = SubResource( 5 )
-background_sky_custom_fov = 25.0
-background_color = Color( 0.647059, 0.839216, 0.945098, 1 )
-ambient_light_color = Color( 1, 1, 1, 1 )
-
-[sub_resource type="World" id=3]
-environment = SubResource( 4 )
-
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id="6"]
 content_margin_left = 3.0
-content_margin_right = 3.0
 content_margin_top = 3.0
+content_margin_right = 3.0
 content_margin_bottom = 3.0
-bg_color = Color( 0, 0, 0, 0.235294 )
+bg_color = Color(0, 0, 0, 0.235294)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="SlideScreen" instance=ExtResource( 9 )]
+[node name="SlideScreen" instance=ExtResource("9")]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
-theme = ExtResource( 1 )
-script = ExtResource( 7 )
-__meta__ = {
-"_editor_description_": ""
-}
-PreventsMouseCaptureWhileOpen = false
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
+script = ExtResource("7")
 SlideTextureRectPath = NodePath("Overlay/SlideableTextureRect")
 SlideToolbarPath = NodePath("Overlay/Toolbar")
 SlideCloseButtonPath = NodePath("Overlay/MarginContainer/CloseButton")
 SlideShowModeButtonPath = NodePath("Overlay/Toolbar/VBoxContainer/HBoxContainer/SlideshowModeButton")
 SlideTitleLabelPath = NodePath("Overlay/Toolbar/VBoxContainer/SlideTitle")
-ModelViewerContainerPath = NodePath("Overlay/ViewportContainer")
-ModelViewerPath = NodePath("Overlay/ViewportContainer/ModelViewer")
-ModelHolderPath = NodePath("Overlay/ViewportContainer/ModelViewer/ModelHolder")
-ModelViewerCameraPath = NodePath("Overlay/ViewportContainer/ModelViewer/OrbitCamera")
+ModelViewerContainerPath = NodePath("Overlay/SubViewportContainer")
+ModelViewerPath = NodePath("Overlay/SubViewportContainer/ModelViewer")
+ModelHolderPath = NodePath("Overlay/SubViewportContainer/ModelViewer/ModelHolder")
+ModelViewerCameraPath = NodePath("Overlay/SubViewportContainer/ModelViewer/OrbitCamera")
 PlaybackControlsPath = NodePath("Overlay/Toolbar/VBoxContainer/HBoxContainer/PlaybackControls")
+PreventsMouseCaptureWhileOpen = false
 
 [node name="Overlay" type="PanelContainer" parent="." index="0"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_styles/panel = SubResource("2")
 
-[node name="SlideableTextureRect" parent="Overlay" index="0" instance=ExtResource( 8 )]
+[node name="SlideableTextureRect" parent="Overlay" index="0" instance=ExtResource("8")]
+layout_mode = 2
 
-[node name="ViewportContainer" type="ViewportContainer" parent="Overlay" index="1"]
-margin_right = 1280.0
-margin_bottom = 720.0
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Overlay" index="1"]
+layout_mode = 2
 stretch = true
-script = ExtResource( 10 )
+script = ExtResource("10")
 
-[node name="ModelViewer" type="Viewport" parent="Overlay/ViewportContainer" index="0"]
-size = Vector2( 1280, 720 )
-own_world = true
-world = SubResource( 3 )
+[node name="ModelViewer" type="SubViewport" parent="Overlay/SubViewportContainer" index="0"]
 handle_input_locally = false
+size = Vector2i(1280, 720)
 render_target_update_mode = 0
 
-[node name="ModelHolder" type="Spatial" parent="Overlay/ViewportContainer/ModelViewer" index="0"]
+[node name="ModelHolder" type="Node3D" parent="Overlay/SubViewportContainer/ModelViewer" index="0"]
 
-[node name="OrbitCamera" parent="Overlay/ViewportContainer/ModelViewer" index="1" instance=ExtResource( 6 )]
-
-[node name="Tween" type="Tween" parent="Overlay/ViewportContainer" index="1"]
+[node name="OrbitCamera" parent="Overlay/SubViewportContainer/ModelViewer" index="1" instance=ExtResource("6")]
 
 [node name="MarginContainer" type="MarginContainer" parent="Overlay" index="2"]
-margin_left = 1242.0
-margin_right = 1280.0
-margin_bottom = 38.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
+mouse_filter = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 
 [node name="CloseButton" type="Button" parent="Overlay/MarginContainer" index="0"]
-margin_top = 10.0
-margin_right = 28.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 28, 28 )
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="Overlay/MarginContainer/CloseButton" index="0"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -9.0
-margin_top = -9.0
-margin_right = 9.0
-margin_bottom = 9.0
-rect_min_size = Vector2( 18, 18 )
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = 9.0
 mouse_filter = 2
-texture = ExtResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Toolbar" type="MarginContainer" parent="Overlay" index="3"]
-margin_top = 637.0
-margin_right = 1280.0
-margin_bottom = 720.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_vertical = 8
-custom_constants/margin_right = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Toolbar" index="0"]
-margin_left = 10.0
-margin_right = 1270.0
-margin_bottom = 73.0
-custom_constants/separation = 10
+layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="SlideTitle" type="Label" parent="Overlay/Toolbar/VBoxContainer" index="0"]
-margin_left = 627.0
-margin_right = 633.0
-margin_bottom = 31.0
+layout_mode = 2
 size_flags_horizontal = 4
-custom_styles/normal = SubResource( 6 )
-align = 1
+theme_override_styles/normal = SubResource("6")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Overlay/Toolbar/VBoxContainer" index="1"]
-margin_left = 321.0
-margin_top = 41.0
-margin_right = 938.0
-margin_bottom = 73.0
+layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
 [node name="PreviousButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="0"]
-margin_right = 20.0
-margin_bottom = 32.0
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 mouse_filter = 1
-custom_fonts/font = ExtResource( 3 )
+theme_override_font_sizes/font_size = 18
 text = "<"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="SlideshowModeButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="1"]
-margin_left = 24.0
-margin_right = 139.0
-margin_bottom = 32.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 8
-custom_fonts/font = ExtResource( 3 )
+mouse_filter = 1
+theme_override_font_sizes/font_size = 18
 toggle_mode = true
 text = "SLIDESHOW"
 
-[node name="PlaybackControls" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="2" instance=ExtResource( 5 )]
-margin_left = 143.0
-margin_top = 3.0
-margin_right = 593.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 450, 0 )
+[node name="PlaybackControls" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="2" instance=ExtResource("5")]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
 size_flags_vertical = 4
 
 [node name="NextButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="3"]
-margin_left = 597.0
-margin_right = 617.0
-margin_bottom = 32.0
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 mouse_filter = 1
-custom_fonts/font = ExtResource( 3 )
+theme_override_font_sizes/font_size = 18
 text = ">"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="PopupTween" type="Tween" parent="." index="1"]
-
-[node name="ToolbarTween" type="Tween" parent="." index="2"]
 
 [connection signal="Faded" from="Overlay/SlideableTextureRect" to="." method="UpdateScreen"]
-[connection signal="Faded" from="Overlay/ViewportContainer" to="." method="UpdateScreen"]
+[connection signal="Faded" from="Overlay/SubViewportContainer" to="." method="UpdateScreen"]
 [connection signal="draw" from="Overlay/MarginContainer/CloseButton" to="." method="OnCloseButtonUpdate"]
 [connection signal="pressed" from="Overlay/MarginContainer/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="pressed" from="Overlay/Toolbar/VBoxContainer/HBoxContainer/PreviousButton" to="." method="OnPreviousSlideButtonPressed"]

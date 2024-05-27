@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using DefaultEcs;
 using DefaultEcs.Command;
@@ -38,6 +39,11 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     protected float minimumTimeBetweenLogicUpdates = 1 / 60.0f;
 
     protected float accumulatedLogicTime;
+
+    /// <summary>
+    ///   Set this to true for worlds that do not use multithreading / aren't setup for component checks to be enabled
+    /// </summary>
+    protected bool disableComponentChecking;
 
     // TODO: are there situations where invokes not having run yet but a save being made could cause problems?
     private readonly Queue<Action> queuedInvokes = new();
@@ -123,8 +129,22 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// <returns>True when a game logic update happened. False if it wasn't time yet.</returns>
     public bool ProcessAll(float delta)
     {
+        bool useSpecialPhysicsMode = !disableComponentChecking && GenerateThreadedSystems.UseCheckedComponentAccess;
+
+        // See the comment below about this special physics
+        if (useSpecialPhysicsMode)
+            WaitForStartedPhysicsRun();
+
         bool processed = ProcessLogic(delta);
         ProcessFrameLogic(delta);
+
+        if (useSpecialPhysicsMode)
+        {
+            // Physics only runs after the frame systems to ensure physics callbacks triggered during frame systems
+            // are not detected incorrectly. This slightly changes the characteristics of the physics interactions
+            // with other systems, but is fine for this debugging purpose
+            OnProcessPhysics(delta);
+        }
 
         return processed;
     }
@@ -170,10 +190,38 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
         ApplyECSThreadCount(ecsThreadsToUse);
 
-        // Make sure physics is not running while the systems are
-        WaitForStartedPhysicsRun();
+        // See the similar check in ProcessAll to see what this is about (this is about special component debug mode)
+        bool useNormalPhysics = disableComponentChecking || !GenerateThreadedSystems.UseCheckedComponentAccess;
 
+        // Make sure physics is not running while the systems are
+        if (useNormalPhysics)
+            WaitForStartedPhysicsRun();
+
+        if (!disableComponentChecking)
+            ComponentAccessChecks.ReportSimulationActive(true);
+
+#if DEBUG
+        try
+        {
+            OnProcessFixedLogic(accumulatedLogicTime);
+        }
+        catch (Exception e)
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            GD.PrintErr($"Unhandled exception in world simulation: {e}");
+
+            // For now this quits so that other threads won't get stuck waiting for the world simulation to complete
+            SceneManager.Instance.QuitDueToError();
+            return false;
+        }
+#else
         OnProcessFixedLogic(accumulatedLogicTime);
+#endif
+
+        if (!disableComponentChecking)
+            ComponentAccessChecks.ReportSimulationActive(false);
 
         ApplyRecordedCommands();
 
@@ -187,7 +235,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             }
         }
 
-        OnProcessPhysics(accumulatedLogicTime);
+        if (useNormalPhysics)
+            OnProcessPhysics(accumulatedLogicTime);
 
         accumulatedLogicTime = 0;
         Processing = false;
@@ -210,15 +259,28 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///     needed here.
     ///   </para>
     /// </remarks>
-    public abstract void ProcessFrameLogic(float delta);
+    public void ProcessFrameLogic(float delta)
+    {
+        ThrowIfNotInitialized();
+
+        Processing = true;
+
+        if (!disableComponentChecking)
+            ComponentAccessChecks.ReportSimulationActive(true);
+
+        OnProcessFrameLogic(delta);
+
+        Processing = false;
+        if (!disableComponentChecking)
+            ComponentAccessChecks.ReportSimulationActive(false);
+    }
 
     public Entity CreateEmptyEntity()
     {
         // Ensure thread unsafe operation doesn't happen
         if (Processing)
         {
-            throw new InvalidOperationException(
-                "Can't use entity create at this time, use deferred create");
+            throw new InvalidOperationException("Can't use entity create at this time, use deferred create");
         }
 
         return entities.CreateEntity();
@@ -250,15 +312,28 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         if (Processing)
             throw new InvalidOperationException("Cannot destroy all entities while processing");
 
+        // Apply all commands first to clear these out to prevent these causing something to spawn after the clear
+        ApplyRecordedCommands();
+
         ProcessDestroyQueue();
 
-        // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
-        foreach (var entity in entities.ToList())
+        // This loop is here to ensure that no entities are left after destroy callbacks have been used
+        while (true)
         {
-            if (entity == skip)
-                continue;
+            bool despawned = false;
 
-            PerformEntityDestroy(entity);
+            // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
+            foreach (var entity in entities.ToList())
+            {
+                if (entity == skip)
+                    continue;
+
+                PerformEntityDestroy(entity);
+                despawned = true;
+            }
+
+            if (!despawned || skip != null)
+                break;
         }
 
         lock (queuedForDelete)
@@ -452,6 +527,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     protected abstract void OnProcessFixedLogic(float delta);
 
+    protected abstract void OnProcessFrameLogic(float delta);
+
     protected virtual void OnPlayerPositionSet(Vector3 playerPosition)
     {
     }
@@ -491,6 +568,10 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         {
             entitiesToNotSave.Remove(entity);
         }
+
+        // Skip multiple destruction of entities that were already destroyed but were queued to be destroyed again
+        if (!entity.IsAlive)
+            return;
 
         OnEntityDestroyed(entity);
 

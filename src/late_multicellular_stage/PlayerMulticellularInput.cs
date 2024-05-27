@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles input for the (late) multicellular stage
 /// </summary>
-public class PlayerMulticellularInput : NodeWithInput
+public partial class PlayerMulticellularInput : NodeWithInput
 {
     private bool autoMove;
     private bool mouseUnCapturePressed;
@@ -18,7 +18,7 @@ public class PlayerMulticellularInput : NodeWithInput
         // Not the cleanest that the parent has to be MulticellularStage type...
         stage = (MulticellularStage)GetParent();
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     public override void _ExitTree()
@@ -29,7 +29,7 @@ public class PlayerMulticellularInput : NodeWithInput
         MouseCaptureManager.SetGameStateWantedCaptureState(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -59,7 +59,7 @@ public class PlayerMulticellularInput : NodeWithInput
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
     [RunOnAxisGroup(InvokeAlsoWithNoInput = true)]
-    public void OnMovement(float delta, float forwardMovement, float leftRightMovement)
+    public void OnMovement(double delta, float forwardMovement, float leftRightMovement)
     {
         _ = delta;
         const float epsilon = 0.01f;
@@ -91,9 +91,9 @@ public class PlayerMulticellularInput : NodeWithInput
                 ThreeDimensionalMovementMode.WorldRelative)
             {
                 // Rotate movement direction by the 2D rotation of the camera
-                var rotation = new Quat(new Vector3(0, 1, 0), stage.PlayerCamera.YRotation);
+                var rotation = new Quaternion(new Vector3(0, 1, 0), stage.PlayerCamera.YRotation);
 
-                movement = rotation.Xform(movement);
+                movement = rotation * movement;
             }
 
             stage.Player.MovementDirection = movement;
@@ -101,19 +101,18 @@ public class PlayerMulticellularInput : NodeWithInput
     }
 
     [RunOnKey("g_move_up")]
-    public void SwimUpOrJump(float delta)
+    public void SwimUpOrJump(double delta)
     {
         stage.Player?.SwimUpOrJump(delta);
     }
 
     [RunOnKey("g_move_down")]
-    public void SwimDownOrCrouch(float delta)
+    public void SwimDownOrCrouch(double delta)
     {
         stage.Player?.SwimDownOrCrouch(delta);
     }
 
-    [RunOnAxis(
-        new[]
+    [RunOnAxis(new[]
         {
             RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
             nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Right),

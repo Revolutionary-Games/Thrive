@@ -3,17 +3,18 @@
 /// <summary>
 ///   Controls a video cutscene
 /// </summary>
-public class Cutscene : Control, ITransition
+public partial class Cutscene : Control, ITransition
 {
 #pragma warning disable CA2213
-    private VideoPlayer? cutsceneVideoPlayer;
-#pragma warning restore CA2213
+    private VideoStreamPlayer? cutsceneVideoPlayer;
 
     private VideoStream? stream;
+#pragma warning restore CA2213
+
     private float volume;
 
     [Signal]
-    public delegate void OnFinishedSignal();
+    public delegate void OnFinishedSignalEventHandler();
 
     public bool Finished { get; private set; }
 
@@ -42,9 +43,9 @@ public class Cutscene : Control, ITransition
 
     public override void _Ready()
     {
-        cutsceneVideoPlayer = GetNode<VideoPlayer>("VideoPlayer");
+        cutsceneVideoPlayer = GetNode<VideoStreamPlayer>("VideoStreamPlayer");
 
-        cutsceneVideoPlayer.Connect("finished", this, nameof(OnFinished));
+        cutsceneVideoPlayer.Connect(VideoStreamPlayer.SignalName.Finished, new Callable(this, nameof(OnFinished)));
 
         UpdateVideoPlayer();
         Hide();

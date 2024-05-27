@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Components;
 using DefaultEcs;
 using DefaultEcs.Threading;
@@ -10,6 +11,11 @@ using Systems;
 /// </summary>
 public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 {
+    private readonly IMicrobeSpawnEnvironment dummyEnvironment = new DummyMicrobeSpawnEnvironment();
+
+    private readonly List<Hex> hexWorkData1 = new();
+    private readonly List<Hex> hexWorkData2 = new();
+
     // Base systems
     private AnimationControlSystem animationControlSystem = null!;
     private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
@@ -19,8 +25,6 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     private PathBasedSceneLoader pathBasedSceneLoader = null!;
     private PredefinedVisualLoaderSystem predefinedVisualLoaderSystem = null!;
 
-    // private RenderOrderSystem renderOrderSystem = null! = null!;
-
     private SpatialAttachSystem spatialAttachSystem = null!;
     private SpatialPositionSystem spatialPositionSystem = null!;
 
@@ -29,9 +33,10 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     // private ColonyBindingSystem colonyBindingSystem = null!;
     private MicrobeFlashingSystem microbeFlashingSystem = null!;
+    private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
-    private TintColourAnimationSystem tintColourAnimationSystem = null!;
+    private TintColourApplyingSystem tintColourApplyingSystem = null!;
 
 #pragma warning disable CA2213
     private Node visualsParent = null!;
@@ -43,6 +48,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <param name="visualDisplayRoot">Root node to place all visuals under</param>
     public void Init(Node visualDisplayRoot)
     {
+        disableComponentChecking = true;
+
         ResolveNodeReferences();
 
         visualsParent = visualDisplayRoot;
@@ -52,7 +59,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         var runner = new DefaultParallelRunner(1);
 
         animationControlSystem = new AnimationControlSystem(EntitySystem);
-        attachedEntityPositionSystem = new AttachedEntityPositionSystem(EntitySystem, runner);
+        attachedEntityPositionSystem = new AttachedEntityPositionSystem(this, EntitySystem, runner);
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, runner);
 
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
@@ -69,6 +76,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // colonyBindingSystem = new ColonyBindingSystem(this, EntitySystem, parallelRunner);
 
         microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, runner);
+        microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
@@ -79,18 +87,9 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // if those are used then also OrganelleComponentFetchSystem would be needed
         // organelleTickSystem = new OrganelleTickSystem(EntitySystem, runner);
 
-        tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem);
+        tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
 
         OnInitialized();
-    }
-
-    public override void ProcessFrameLogic(float delta)
-    {
-        ThrowIfNotInitialized();
-
-        colourAnimationSystem.Update(delta);
-        microbeShaderSystem.Update(delta);
-        tintColourAnimationSystem.Update(delta);
     }
 
     /// <summary>
@@ -105,7 +104,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         // We pass AI controlled true here to avoid creating player specific data but as we don't have the AI system
         // it is fine to create the AI properties as it won't actually do anything
-        SpawnHelpers.SpawnMicrobe(this, species, Vector3.Zero, true);
+        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true);
 
         ProcessDelaySpawnedEntitiesImmediately();
 
@@ -144,7 +143,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         // Do a full update apply with the general code method
         ref var cellProperties = ref microbe.Get<CellProperties>();
-        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this);
+        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this, hexWorkData1, hexWorkData2);
 
         // TODO: update species member component if species changed?
     }
@@ -225,7 +224,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
 #if DEBUG
         var graphical = microbe.Get<SpatialInstance>().GraphicalInstance;
-        if (graphical?.GlobalTranslation != Vector3.Zero)
+        if (graphical?.GlobalPosition != Vector3.Zero)
         {
             GD.PrintErr("Photographed cell has moved or not initialized graphics");
         }
@@ -248,7 +247,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
                 // TODO: is there another way to not need to call so many Godot data access methods here
                 // Organelle positions might be usable as the visual positions are derived from them, but this requires
                 // using the global translation for some reason as translation gives just 0 here and doesn't help.
-                center += node.GlobalTranslation;
+                center += node.GlobalPosition;
             }
 
             center /= organelles.CreatedOrganelleVisuals.Count;
@@ -262,7 +261,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             // Verify in debug mode that initialization didn't just fail for the graphics
             foreach (var organelle in organelles.Organelles!)
             {
-                if (organelle.Definition.LoadedScene == null)
+                if (!organelle.Definition.TryGetGraphicsScene(organelle.Upgrades, out _))
                     continue;
 
                 GD.PrintErr("Photographed a microbe with no initialized cell graphics but it should have some");
@@ -272,12 +271,12 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         }
         else
         {
-            GD.PrintErr("Photographing a microbe that didn't initialized it organelle visuals");
+            GD.PrintErr("Photographing a microbe that didn't initialize its organelle visuals");
         }
 
-        return new Vector3(center.x,
+        return new Vector3(center.X,
             PhotoStudio.CameraDistanceFromRadiusOfObject(radius * Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER),
-            center.z);
+            center.Z);
     }
 
     public override bool HasSystemsWithPendingOperations()
@@ -318,11 +317,18 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         fadeOutActionSystem.Update(delta);
 
-        // renderOrderSystem.Update(delta);
+        microbeRenderPrioritySystem.Update(delta);
 
         cellBurstEffectSystem.Update(delta);
 
         microbeFlashingSystem.Update(delta);
+    }
+
+    protected override void OnProcessFrameLogic(float delta)
+    {
+        colourAnimationSystem.Update(delta);
+        microbeShaderSystem.Update(delta);
+        tintColourApplyingSystem.Update(delta);
     }
 
     protected override void ApplyECSThreadCount(int ecsThreadsToUse)
@@ -345,9 +351,10 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             spatialPositionSystem.Dispose();
             cellBurstEffectSystem.Dispose();
             microbeFlashingSystem.Dispose();
+            microbeRenderPrioritySystem.Dispose();
             microbeShaderSystem.Dispose();
             microbeVisualsSystem.Dispose();
-            tintColourAnimationSystem.Dispose();
+            tintColourApplyingSystem.Dispose();
         }
 
         base.Dispose(disposing);

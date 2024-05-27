@@ -4,114 +4,63 @@ using System.Linq;
 using System.Text;
 using Godot;
 
-public class PatchDetailsPanel : PanelContainer
+/// <summary>
+///   Shows details about a <see cref="Patch"/> in the GUI
+/// </summary>
+public partial class PatchDetailsPanel : PanelContainer
 {
-    [Export]
-    public NodePath? NothingSelectedPath;
-
-    [Export]
-    public NodePath DetailsPath = null!;
-
-    [Export]
-    public NodePath NamePath = null!;
-
-    [Export]
-    public NodePath PlayerHerePath = null!;
-
-    [Export]
-    public NodePath BiomePath = null!;
-
-    [Export]
-    public NodePath DepthPath = null!;
-
-    [Export]
-    public NodePath TemperaturePath = null!;
-
-    [Export]
-    public NodePath PressurePath = null!;
-
-    [Export]
-    public NodePath LightPath = null!;
-
-    [Export]
-    public NodePath LightMaxPath = null!;
-
-    [Export]
-    public NodePath OxygenPath = null!;
-
-    [Export]
-    public NodePath NitrogenPath = null!;
-
-    [Export]
-    public NodePath CO2Path = null!;
-
-    [Export]
-    public NodePath HydrogenSulfidePath = null!;
-
-    [Export]
-    public NodePath AmmoniaPath = null!;
-
-    [Export]
-    public NodePath GlucosePath = null!;
-
-    [Export]
-    public NodePath PhosphatePath = null!;
-
-    [Export]
-    public NodePath IronPath = null!;
-
-    [Export]
-    public NodePath SpeciesListBoxPath = null!;
-
-    [Export]
-    public NodePath MoveToPatchHSeparatorPath = null!;
-
-    [Export]
-    public NodePath MoveToPatchButtonPath = null!;
-
-    [Export]
-    public NodePath TemperatureSituationPath = null!;
-
-    [Export]
-    public NodePath LightSituationPath = null!;
-
-    [Export]
-    public NodePath HydrogenSulfideSituationPath = null!;
-
-    [Export]
-    public NodePath GlucoseSituationPath = null!;
-
-    [Export]
-    public NodePath IronSituationPath = null!;
-
-    [Export]
-    public NodePath AmmoniaSituationPath = null!;
-
-    [Export]
-    public NodePath PhosphateSituationPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Control nothingSelected = null!;
-    private Control details = null!;
+
+    [Export]
+    private Control unknownPatch = null!;
+
+    [Export]
+    private Control detailsContainer = null!;
+
+    [Export]
     private Control playerHere = null!;
-    private Label name = null!;
+
+    [Export]
+    private Label patchName = null!;
+
+    [Export]
     private Label biome = null!;
+
+    [Export]
     private Label depth = null!;
-    private Label temperatureLabel = null!;
-    private Label pressure = null!;
-    private Label light = null!;
-    private Label lightMax = null!;
-    private Label oxygen = null!;
-    private Label nitrogen = null!;
-    private Label co2 = null!;
-    private Label hydrogenSulfide = null!;
-    private Label ammonia = null!;
-    private Label glucose = null!;
-    private Label phosphate = null!;
-    private Label iron = null!;
-    private CollapsibleList speciesListBox = null!;
+
+    [Export]
     private HSeparator? moveToPatchHSeparator;
+
+    [Export]
     private Button? moveToPatchButton;
+
+    [Export]
+    private CollapsibleList physicalConditionsContainer = null!;
+
+    [Export]
+    private CollapsibleList atmosphereContainer = null!;
+
+    [Export]
+    private CollapsibleList compoundsContainer = null!;
+
+    [Export]
+    private CollapsibleList speciesParentContainer = null!;
+
+    private Label temperatureLabel = null!;
+    private Label pressureLabel = null!;
+    private Label lightLabel = null!;
+    private Label lightMax = null!;
+    private Label oxygenLabel = null!;
+    private Label nitrogenLabel = null!;
+    private Label co2Label = null!;
+    private Label hydrogenSulfideLabel = null!;
+    private Label ammoniaLabel = null!;
+    private Label glucoseLabel = null!;
+    private Label phosphateLabel = null!;
+    private Label ironLabel = null!;
 
     private TextureRect temperatureSituation = null!;
     private TextureRect lightSituation = null!;
@@ -121,8 +70,10 @@ public class PatchDetailsPanel : PanelContainer
     private TextureRect ammoniaSituation = null!;
     private TextureRect phosphateSituation = null!;
 
-    private Texture increaseIcon = null!;
-    private Texture decreaseIcon = null!;
+    private CustomRichTextLabel speciesInfoDisplay = null!;
+
+    private Texture2D increaseIcon = null!;
+    private Texture2D decreaseIcon = null!;
 #pragma warning restore CA2213
 
     private Compound ammoniaCompound = null!;
@@ -180,36 +131,72 @@ public class PatchDetailsPanel : PanelContainer
 
     public override void _Ready()
     {
-        nothingSelected = GetNode<Control>(NothingSelectedPath);
-        details = GetNode<Control>(DetailsPath);
-        playerHere = GetNode<Control>(PlayerHerePath);
-        name = GetNode<Label>(NamePath);
-        biome = GetNode<Label>(BiomePath);
-        depth = GetNode<Label>(DepthPath);
-        temperatureLabel = GetNode<Label>(TemperaturePath);
-        pressure = GetNode<Label>(PressurePath);
-        light = GetNode<Label>(LightPath);
-        lightMax = GetNode<Label>(LightMaxPath);
-        oxygen = GetNode<Label>(OxygenPath);
-        nitrogen = GetNode<Label>(NitrogenPath);
-        co2 = GetNode<Label>(CO2Path);
-        hydrogenSulfide = GetNode<Label>(HydrogenSulfidePath);
-        ammonia = GetNode<Label>(AmmoniaPath);
-        glucose = GetNode<Label>(GlucosePath);
-        phosphate = GetNode<Label>(PhosphatePath);
-        iron = GetNode<Label>(IronPath);
-        speciesListBox = GetNode<CollapsibleList>(SpeciesListBoxPath);
-        moveToPatchHSeparator = GetNode<HSeparator>(MoveToPatchHSeparatorPath);
-        moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
+        using var labelPath = new NodePath("Label");
+        using var situation = new NodePath("Situation");
 
-        temperatureSituation = GetNode<TextureRect>(TemperatureSituationPath);
-        lightSituation = GetNode<TextureRect>(LightSituationPath);
-        hydrogenSulfideSituation = GetNode<TextureRect>(HydrogenSulfideSituationPath);
-        glucoseSituation = GetNode<TextureRect>(GlucoseSituationPath);
-        ironSituation = GetNode<TextureRect>(IronSituationPath);
-        ammoniaSituation = GetNode<TextureRect>(AmmoniaSituationPath);
-        phosphateSituation = GetNode<TextureRect>(PhosphateSituationPath);
+        // Physical conditions list
+        var temperatureBase = physicalConditionsContainer.GetItem<Control>("Temperature");
+        temperatureLabel = temperatureBase.GetNode<Label>(labelPath);
+        temperatureSituation = temperatureBase.GetNode<TextureRect>(situation);
 
+        var pressureBase = physicalConditionsContainer.GetItem<Control>("Pressure");
+        pressureLabel = pressureBase.GetNode<Label>(labelPath);
+
+        // pressureSituation = pressureBase.GetNode<TextureRect>(situation);
+
+        var lightBase = physicalConditionsContainer.GetItem<Control>("Light");
+        lightLabel = lightBase.GetNode<Label>("LightInfo/Current/Label");
+        lightSituation = lightBase.GetNode<TextureRect>("LightInfo/Current/Situation");
+        lightMax = lightBase.GetNode<Label>("LightInfo/MaxLabel");
+
+        // Atmosphere list
+        var oxygenBase = atmosphereContainer.GetItem<Control>("Oxygen");
+        oxygenLabel = oxygenBase.GetNode<Label>(labelPath);
+
+        // oxygenSituation = oxygenBase.GetNode<TextureRect>(situation);
+
+        nitrogenLabel = null!;
+        var nitrogenBase = atmosphereContainer.GetItem<Control>("Nitrogen");
+        nitrogenLabel = nitrogenBase.GetNode<Label>(labelPath);
+
+        // nitrogenSituation = nitrogenBase.GetNode<TextureRect>(situation);
+
+        co2Label = null!;
+        var co2Base = atmosphereContainer.GetItem<Control>("CO2");
+        co2Label = co2Base.GetNode<Label>(labelPath);
+
+        // co2Situation = co2Base.GetNode<TextureRect>(situation);
+
+        // Compounds list
+        hydrogenSulfideLabel = null!;
+        var hydrogenSulfideBase = compoundsContainer.GetItem<Control>("HydrogenSulfide");
+        hydrogenSulfideLabel = hydrogenSulfideBase.GetNode<Label>(labelPath);
+        hydrogenSulfideSituation = hydrogenSulfideBase.GetNode<TextureRect>(situation);
+
+        ammoniaLabel = null!;
+        var ammoniaBase = compoundsContainer.GetItem<Control>("Ammonia");
+        ammoniaLabel = ammoniaBase.GetNode<Label>(labelPath);
+        ammoniaSituation = ammoniaBase.GetNode<TextureRect>(situation);
+
+        glucoseLabel = null!;
+        var glucoseBase = compoundsContainer.GetItem<Control>("Glucose");
+        glucoseLabel = glucoseBase.GetNode<Label>(labelPath);
+        glucoseSituation = glucoseBase.GetNode<TextureRect>(situation);
+
+        phosphateLabel = null!;
+        var phosphateBase = compoundsContainer.GetItem<Control>("Phosphate");
+        phosphateLabel = phosphateBase.GetNode<Label>(labelPath);
+        phosphateSituation = phosphateBase.GetNode<TextureRect>(situation);
+
+        ironLabel = null!;
+        var ironBase = compoundsContainer.GetItem<Control>("Iron");
+        ironLabel = ironBase.GetNode<Label>(labelPath);
+        ironSituation = ironBase.GetNode<TextureRect>(situation);
+
+        // Species list
+        speciesInfoDisplay = speciesParentContainer.GetItem<CustomRichTextLabel>("SpeciesList");
+
+        // Get compound references
         ammoniaCompound = SimulationParameters.Instance.GetCompound("ammonia");
         carbondioxideCompound = SimulationParameters.Instance.GetCompound("carbondioxide");
         glucoseCompound = SimulationParameters.Instance.GetCompound("glucose");
@@ -220,8 +207,8 @@ public class PatchDetailsPanel : PanelContainer
         phosphatesCompound = SimulationParameters.Instance.GetCompound("phosphates");
         sunlightCompound = SimulationParameters.Instance.GetCompound("sunlight");
 
-        increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
-        decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
+        increaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/increase.png");
+        decreaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/decrease.png");
 
         UpdateMoveToPatchButton();
     }
@@ -230,16 +217,27 @@ public class PatchDetailsPanel : PanelContainer
     {
         if (SelectedPatch == null)
         {
-            details.Visible = false;
+            detailsContainer.Visible = false;
             nothingSelected.Visible = true;
+            unknownPatch.Visible = false;
 
             return;
         }
 
-        details.Visible = true;
-        nothingSelected.Visible = false;
+        if (SelectedPatch.Visibility != MapElementVisibility.Shown)
+        {
+            detailsContainer.Visible = false;
+            nothingSelected.Visible = false;
+            unknownPatch.Visible = true;
+        }
+        else
+        {
+            detailsContainer.Visible = true;
+            nothingSelected.Visible = false;
+            unknownPatch.Visible = false;
 
-        UpdatePatchDetails();
+            UpdatePatchDetails();
+        }
 
         if (moveToPatchButton != null)
         {
@@ -248,106 +246,78 @@ public class PatchDetailsPanel : PanelContainer
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (NothingSelectedPath != null)
-            {
-                NothingSelectedPath.Dispose();
-                DetailsPath.Dispose();
-                NamePath.Dispose();
-                PlayerHerePath.Dispose();
-                BiomePath.Dispose();
-                DepthPath.Dispose();
-                TemperaturePath.Dispose();
-                PressurePath.Dispose();
-                LightPath.Dispose();
-                LightMaxPath.Dispose();
-                OxygenPath.Dispose();
-                NitrogenPath.Dispose();
-                CO2Path.Dispose();
-                HydrogenSulfidePath.Dispose();
-                AmmoniaPath.Dispose();
-                GlucosePath.Dispose();
-                PhosphatePath.Dispose();
-                IronPath.Dispose();
-                SpeciesListBoxPath.Dispose();
-                MoveToPatchHSeparatorPath.Dispose();
-                MoveToPatchButtonPath.Dispose();
-                TemperatureSituationPath.Dispose();
-                LightSituationPath.Dispose();
-                HydrogenSulfideSituationPath.Dispose();
-                GlucoseSituationPath.Dispose();
-                IronSituationPath.Dispose();
-                AmmoniaSituationPath.Dispose();
-                PhosphateSituationPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Updates patch-specific GUI elements with data from a patch
     /// </summary>
     private void UpdatePatchDetails()
     {
-        name.Text = SelectedPatch!.Name.ToString();
+        patchName.Text = SelectedPatch!.Name.ToString();
 
         // Biome: {0}
-        biome.Text = TranslationServer.Translate("BIOME_LABEL").FormatSafe(SelectedPatch.BiomeTemplate.Name);
+        biome.Text = Localization.Translate("BIOME_LABEL").FormatSafe(SelectedPatch.BiomeTemplate.Name);
 
         // {0}-{1}m below sea level
         depth.Text = new LocalizedString("BELOW_SEA_LEVEL", SelectedPatch.Depth[0], SelectedPatch.Depth[1]).ToString();
         playerHere.Visible = CurrentPatch == SelectedPatch;
 
-        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
-        var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
+        var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
 
         // Atmospheric gasses
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
         temperatureLabel.Text =
             unitFormat.FormatSafe(SelectedPatch.Biome.CurrentCompoundAmounts[temperature].Ambient, temperature.Unit);
-        pressure.Text = unitFormat.FormatSafe(20, "bar");
+        pressureLabel.Text = unitFormat.FormatSafe(20, "bar");
 
         var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName, CompoundAmountType.Maximum);
-        light.Text = unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(
-            GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName))), "lx");
-        lightMax.Text = TranslationServer.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
+        lightLabel.Text =
+            unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch,
+                sunlightCompound.InternalName))), "lx");
+        lightMax.Text = Localization.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
             unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx"));
         lightMax.Visible = maxLightLevel > 0;
 
-        oxygen.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, oxygenCompound.InternalName));
-        nitrogen.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, nitrogenCompound.InternalName));
-        co2.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, carbondioxideCompound.InternalName));
+        oxygenLabel.Text = percentageFormat.FormatSafe(Math.Round(
+            GetCompoundAmount(SelectedPatch, oxygenCompound.InternalName),
+            Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
+        nitrogenLabel.Text =
+            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, nitrogenCompound.InternalName),
+                Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
+        co2Label.Text =
+            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound.InternalName),
+                Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
 
         // Compounds
-        hydrogenSulfide.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName), 3)
+        hydrogenSulfideLabel.Text =
+            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName),
+                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
-        ammonia.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName), 3)
+        ammoniaLabel.Text =
+            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName),
+                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
-        glucose.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName), 3)
+        glucoseLabel.Text =
+            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName),
+                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
-        phosphate.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName), 3)
+        phosphateLabel.Text =
+            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName),
+                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
-        iron.Text = GetCompoundAmount(SelectedPatch, ironCompound.InternalName)
-            .ToString(CultureInfo.CurrentCulture);
+        ironLabel.Text =
+            Math.Round(GetCompoundAmount(SelectedPatch, ironCompound.InternalName),
+                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
+                .ToString(CultureInfo.CurrentCulture);
 
-        var label = speciesListBox.GetItem<CustomRichTextLabel>("SpeciesList");
         var speciesList = new StringBuilder(100);
 
         foreach (var species in SelectedPatch.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName))
         {
-            speciesList.AppendLine(TranslationServer.Translate("SPECIES_WITH_POPULATION").FormatSafe(
+            speciesList.AppendLine(Localization.Translate("SPECIES_WITH_POPULATION").FormatSafe(
                 species.FormattedNameBbCode, SelectedPatch.GetSpeciesSimulationPopulation(species)));
         }
 
-        label.ExtendedBbcode = speciesList.ToString();
+        speciesInfoDisplay.ExtendedBbcode = speciesList.ToString();
 
         UpdateConditionDifferencesBetweenPatches();
     }

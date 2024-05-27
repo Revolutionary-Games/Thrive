@@ -1,36 +1,32 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://ga8wtlmr2tau"]
 
-[ext_resource path="res://src/engine/PhotoStudio.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/engine/PhotoStudio.cs" id="1"]
 
-[sub_resource type="Environment" id=2]
-background_mode = 1
-background_color = Color( 0, 0, 0, 0 )
-background_energy = 0.0
-ambient_light_color = Color( 1, 1, 1, 1 )
+[sub_resource type="Environment" id="Environment_o7qnf"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
 
-[sub_resource type="World" id=1]
-environment = SubResource( 2 )
+[sub_resource type="World3D" id="World3D_t70mg"]
+environment = SubResource("Environment_o7qnf")
 
-[node name="PhotoStudio" type="Viewport"]
-size = Vector2( 600, 600 )
-own_world = true
-world = SubResource( 1 )
+[node name="PhotoStudio" type="SubViewport"]
+own_world_3d = true
+world_3d = SubResource("World3D_t70mg")
 transparent_bg = true
 handle_input_locally = false
-msaa = 1
-render_target_v_flip = true
+msaa_3d = 1
 gui_disable_input = true
-shadow_atlas_size = 512
-script = ExtResource( 1 )
-CameraPath = NodePath("Camera")
+size = Vector2i(600, 600)
+script = ExtResource("1")
+CameraPath = NodePath("Camera3D")
 RenderedObjectHolderPath = NodePath("RenderedObjectHolder")
 SimulationWorldsParentPath = NodePath("SimulationWorldsParent")
 UseBackgroundSceneLoad = true
 UseBackgroundSceneInstance = true
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0 )
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
 
-[node name="RenderedObjectHolder" type="Spatial" parent="."]
+[node name="RenderedObjectHolder" type="Node3D" parent="."]
 
 [node name="SimulationWorldsParent" type="Node" parent="."]

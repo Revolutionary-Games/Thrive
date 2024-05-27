@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   A specialized button to display a microbe part for selection in the cell editor.
 /// </summary>
-public class MicrobePartSelection : MarginContainer
+public partial class MicrobePartSelection : MarginContainer
 {
 #pragma warning disable CA2213
     [Export]
@@ -14,22 +14,35 @@ public class MicrobePartSelection : MarginContainer
     private Label? mpLabel;
     private Button? button;
     private TextureRect? iconRect;
+    private Control? recentlyUnlockedControl;
     private Label? nameLabel;
+
+    [Export]
+    private TextureRect mpIcon = null!;
+
+    [Export]
+    private Control mpIconSpacer = null!;
+
+    private Texture2D? partIcon;
+
 #pragma warning restore CA2213
 
     private int mpCost;
-    private Texture? partIcon;
     private string name = "Error: unset";
     private bool locked;
+    private bool recentlyUnlocked;
     private bool alwaysShowLabel;
     private bool selected;
+    private bool showMPIcon = true;
 
     /// <summary>
     ///   Emitted whenever the button is selected. Note that this sends the Node's Name as the parameter
     ///   (and not PartName)
     /// </summary>
     [Signal]
-    public delegate void OnPartSelected(string name);
+    public delegate void OnPartSelectedEventHandler(string name);
+
+    public bool Undiscovered { get; set; }
 
     [Export]
     public int MPCost
@@ -46,7 +59,21 @@ public class MicrobePartSelection : MarginContainer
     }
 
     [Export]
-    public Texture? PartIcon
+    public bool ShowMPIcon
+    {
+        get => showMPIcon;
+        set
+        {
+            if (showMPIcon == value)
+                return;
+
+            showMPIcon = value;
+            UpdateCostIcon();
+        }
+    }
+
+    [Export]
+    public Texture2D? PartIcon
     {
         get => partIcon;
         set
@@ -116,12 +143,24 @@ public class MicrobePartSelection : MarginContainer
         }
     }
 
+    public bool RecentlyUnlocked
+    {
+        get => recentlyUnlocked;
+        set
+        {
+            recentlyUnlocked = value;
+
+            UpdateRecentlyUnlocked();
+        }
+    }
+
     public override void _Ready()
     {
         contentContainer = GetChild<Control>(0);
         mpLabel = GetNode<Label>("VBoxContainer/HBoxContainer/MP");
         button = GetNode<Button>("VBoxContainer/Button");
         iconRect = GetNode<TextureRect>("VBoxContainer/Button/Icon");
+        recentlyUnlockedControl = GetNode<Control>("VBoxContainer/Button/RecentlyUnlocked");
         nameLabel = GetNode<Label>("VBoxContainer/Name");
 
         OnDisplayPartNamesChanged(Settings.Instance.DisplayPartNames);
@@ -130,6 +169,8 @@ public class MicrobePartSelection : MarginContainer
         UpdateButton();
         UpdateLabels();
         UpdateIcon();
+        UpdateRecentlyUnlocked();
+        UpdateCostIcon();
     }
 
     public override void _ExitTree()
@@ -148,7 +189,7 @@ public class MicrobePartSelection : MarginContainer
 
         nameLabel.Visible = showNameLabel;
 
-        contentContainer.AddConstantOverride("separation", showNameLabel ? 1 : 4);
+        contentContainer.AddThemeConstantOverride("separation", showNameLabel ? 1 : 4);
     }
 
     private void UpdateLabels()
@@ -197,13 +238,27 @@ public class MicrobePartSelection : MarginContainer
             iconRect.Modulate = Colors.Gray;
     }
 
+    private void UpdateCostIcon()
+    {
+        mpIcon.Visible = showMPIcon;
+        mpIconSpacer.Visible = showMPIcon;
+    }
+
+    private void UpdateRecentlyUnlocked()
+    {
+        if (recentlyUnlockedControl == null)
+            return;
+
+        recentlyUnlockedControl.Visible = recentlyUnlocked;
+    }
+
     private void UpdateButton()
     {
         if (button == null)
             return;
 
-        button.Group = SelectionGroup;
-        button.Pressed = Selected;
+        button.ButtonGroup = SelectionGroup;
+        button.ButtonPressed = Selected;
         button.Disabled = Locked;
     }
 
@@ -213,6 +268,6 @@ public class MicrobePartSelection : MarginContainer
             return;
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnPartSelected), Name);
+        EmitSignal(SignalName.OnPartSelected, Name);
     }
 }

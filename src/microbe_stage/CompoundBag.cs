@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Object that stores compound amounts and capacities
 /// </summary>
-/// <remarks>
-///   <para>
-///     TODO: determine if this is now actually used in multiple places in saves or not (as this is marked as having
-///     an ID)
-///   </para>
-/// </remarks>
 [UseThriveSerializer]
-[JsonObject(IsReference = true)]
 public class CompoundBag : ICompoundStorage
 {
     private readonly HashSet<Compound> usefulCompounds = new();
 
+    /// <summary>
+    ///   Temporary data holder used to avoid extraneous allocations each game update
+    /// </summary>
+    private readonly List<Compound> tempCompounds = new();
+
     [JsonProperty]
     private Dictionary<Compound, float>? compoundCapacities;
+
+    private float nominalCapacity;
 
     public CompoundBag(float nominalCapacity)
     {
@@ -32,7 +32,17 @@ public class CompoundBag : ICompoundStorage
     ///   not have a specific capacity set in <see cref="compoundCapacities"/>
     /// </summary>
     [JsonProperty]
-    public float NominalCapacity { get; set; }
+    public float NominalCapacity
+    {
+        get => nominalCapacity;
+        set
+        {
+            nominalCapacity = value;
+
+            if (nominalCapacity < 0)
+                throw new ArgumentException("Capacity can't be negative", nameof(NominalCapacity));
+        }
+    }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
@@ -44,18 +54,34 @@ public class CompoundBag : ICompoundStorage
     /// <summary>
     ///   Gets the capacity for a given compound
     /// </summary>
+    /// <param name="compound">Compound type to get capacity for</param>
+    /// <param name="ignoreUsefulness">
+    ///   If true then the capacity check ignores if the compound is not considered useful and returns the real
+    ///   physical capacity even if the compound is not considered useful to add
+    /// </param>
     /// <returns>
     ///   Returns the capacity this bag has for storing the compound if it is useful, otherwise 0
     /// </returns>
-    public float GetCapacityForCompound(Compound compound)
+    /// <remarks>
+    ///   <para>
+    ///     TODO: maybe put this in the base interface with the default value of false for ignore usefulness?
+    ///   </para>
+    /// </remarks>
+    public float GetCapacityForCompound(Compound compound, bool ignoreUsefulness)
     {
-        if (!IsUseful(compound))
+        if (!ignoreUsefulness && !IsUseful(compound))
             return 0;
 
         if (compoundCapacities != null && compoundCapacities.TryGetValue(compound, out var capacity))
             return capacity;
 
         return NominalCapacity;
+    }
+
+    /// <inheritdoc cref="GetCapacityForCompound(Compound,bool)"/>
+    public float GetCapacityForCompound(Compound compound)
+    {
+        return GetCapacityForCompound(compound, false);
     }
 
     /// <summary>
@@ -73,6 +99,9 @@ public class CompoundBag : ICompoundStorage
     /// </remarks>
     public void AddSpecificCapacityForCompound(Compound compound, float capacityToAdd)
     {
+        if (capacityToAdd < 0)
+            throw new ArgumentException("Capacity to set can't be negative", nameof(capacityToAdd));
+
         compoundCapacities ??= new Dictionary<Compound, float>();
 
         if (!compoundCapacities.TryGetValue(compound, out var existing))
@@ -129,6 +158,7 @@ public class CompoundBag : ICompoundStorage
         return newAmount - existingAmount;
     }
 
+    [MustDisposeResource]
     public IEnumerator<KeyValuePair<Compound, float>> GetEnumerator()
     {
         return Compounds.GetEnumerator();
@@ -178,9 +208,45 @@ public class CompoundBag : ICompoundStorage
         return usefulCompounds.Contains(compound);
     }
 
+    /// <summary>
+    ///   Checks if any of the given compounds are marked specifically useful. This variant exists to be hopefully more
+    ///   efficient in terms of enumerator allocation.
+    /// </summary>
+    /// <param name="compounds">Compounds to check</param>
+    /// <returns>True if any are set specifically useful</returns>
+    public bool AreAnySpecificallySetUseful(IList<Compound> compounds)
+    {
+        foreach (var compound in compounds)
+        {
+            if (usefulCompounds.Contains(compound))
+                return true;
+        }
+
+        return false;
+    }
+
     public bool AreAnySpecificallySetUseful(IEnumerable<Compound> compounds)
     {
-        return compounds.Any(usefulCompounds.Contains);
+        foreach (var compound in compounds)
+        {
+            if (usefulCompounds.Contains(compound))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///   Copies the useful data from another bag
+    /// </summary>
+    public void CopyUsefulFrom(CompoundBag other)
+    {
+        ClearUseful();
+
+        foreach (var useful in other.usefulCompounds)
+        {
+            usefulCompounds.Add(useful);
+        }
     }
 
     /// <summary>
@@ -215,14 +281,38 @@ public class CompoundBag : ICompoundStorage
         }
     }
 
+    /// <summary>
+    ///   Adds an extra initial compound that respects storage space (used for example for night compound buff)
+    /// </summary>
+    /// <param name="compound">Compound type</param>
+    /// <param name="amount">Amount</param>
+    public void AddExtraInitialCompoundIfUnderStorageLimit(Compound compound, float amount)
+    {
+        if (amount <= 0)
+            return;
+
+        Compounds.TryGetValue(compound, out var existingAmount);
+
+        Compounds[compound] = Math.Min(existingAmount + amount, GetCapacityForCompound(compound, true));
+    }
+
     public void ClampNegativeCompoundAmounts()
     {
-        var negative = Compounds.Where(c => c.Value < 0.0f).ToList();
-
-        foreach (var entry in negative)
+        foreach (var entry in Compounds)
         {
-            Compounds[entry.Key] = 0;
+            if (entry.Value < 0.0f)
+                tempCompounds.Add(entry.Key);
         }
+
+        if (tempCompounds.Count < 1)
+            return;
+
+        foreach (var entry in tempCompounds)
+        {
+            Compounds[entry] = 0;
+        }
+
+        tempCompounds.Clear();
     }
 
     /// <summary>
@@ -231,15 +321,26 @@ public class CompoundBag : ICompoundStorage
     /// </summary>
     public void FixNaNCompounds()
     {
-        var nan = Compounds.Where(c => float.IsNaN(c.Value)).ToList();
-
-        foreach (var entry in nan)
+        foreach (var entry in Compounds)
         {
-            // GD.PrintErr("Detected compound amount of ", entry.Key, " to be NaN. Setting amount to 0.");
-            Compounds[entry.Key] = 0;
+            if (float.IsNaN(entry.Value))
+                tempCompounds.Add(entry.Key);
         }
+
+        if (tempCompounds.Count < 1)
+            return;
+
+        foreach (var entry in tempCompounds)
+        {
+            // TODO: should maybe re-enable this print to track this issue happening?
+            // GD.PrintErr("Detected compound amount of ", entry.Key, " to be NaN. Setting amount to 0.");
+            Compounds[entry] = 0;
+        }
+
+        tempCompounds.Clear();
     }
 
+    [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();

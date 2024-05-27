@@ -1,60 +1,59 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+using Godot;
+using Newtonsoft.Json;
+
+/// <summary>
+///   Redo tutorial in the cell editor
+/// </summary>
+public class EditorRedoTutorial : TutorialPhase
 {
-    using System;
-    using Godot;
-    using Newtonsoft.Json;
+    public override string ClosedByName => "CellEditorRedo";
 
-    /// <summary>
-    ///   Redo tutorial in the cell editor
-    /// </summary>
-    public class EditorRedoTutorial : TutorialPhase
+    [JsonIgnore]
+    public Control? EditorRedoButtonControl { get; set; }
+
+    public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
-        public override string ClosedByName => "CellEditorRedo";
+        if (gui.CellEditorRedoHighlight == null)
+            throw new InvalidOperationException($"{nameof(gui.CellEditorRedoHighlight)} has not been set");
 
-        [JsonIgnore]
-        public Control? EditorRedoButtonControl { get; set; }
+        gui.CellEditorRedoHighlight.TargetControl = ShownCurrently ? EditorRedoButtonControl : null;
 
-        public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
+        gui.CellEditorRedoVisible = ShownCurrently;
+        gui.CellEditorRedoHighlight.Visible = ShownCurrently;
+    }
+
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            if (gui.CellEditorRedoHighlight == null)
-                throw new InvalidOperationException($"{nameof(gui.CellEditorRedoHighlight)} has not been set");
-
-            gui.CellEditorRedoHighlight.TargetControl = ShownCurrently ? EditorRedoButtonControl : null;
-
-            gui.CellEditorRedoVisible = ShownCurrently;
-            gui.CellEditorRedoHighlight.Visible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.MicrobeEditorUndo:
             {
-                case TutorialEventType.MicrobeEditorUndo:
+                if (!HasBeenShown && CanTrigger)
                 {
-                    if (!HasBeenShown && CanTrigger)
-                    {
-                        Show();
-                        overallState.EditorTutorialEnd.CanTrigger = true;
+                    Show();
+                    overallState.EditorTutorialEnd.CanTrigger = true;
 
-                        return true;
-                    }
-
-                    break;
+                    return true;
                 }
 
-                case TutorialEventType.MicrobeEditorRedo:
-                {
-                    if (ShownCurrently)
-                    {
-                        Hide();
-                    }
-
-                    break;
-                }
+                break;
             }
 
-            return false;
+            case TutorialEventType.MicrobeEditorRedo:
+            {
+                if (ShownCurrently)
+                {
+                    Hide();
+                }
+
+                break;
+            }
         }
+
+        return false;
     }
 }

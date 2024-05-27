@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
+/// <summary>
+///   Upgrade GUI for the lysosome that allows picking what enzymes it provides
+/// </summary>
+public partial class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
     public NodePath? EnzymesPath;

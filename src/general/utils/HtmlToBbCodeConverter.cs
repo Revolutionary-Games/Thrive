@@ -50,6 +50,7 @@ public class HtmlToBbCodeConverter
 
     private void HandleNode(INode node, ref bool truncated)
     {
+        // TODO: unify as much of this handling with WikiUpdater.ConvertParagraphToBbcode as possible
         switch (node)
         {
             // Ignoring nodes we don't want to do anything with

@@ -5,33 +5,33 @@ using Godot;
 /// <summary>
 ///   Displays progress bars above entities that want to display a progress
 /// </summary>
-public class ProgressBarSystem : Control
+public partial class ProgressBarSystem : Control
 {
     private readonly List<CreatedProgressBar> createdProgressBars = new();
 
 #pragma warning disable CA2213
     private PackedScene progressBarScene = null!;
 
-    private Camera? camera;
+    private Camera3D? camera;
     private Node worldRoot = null!;
 #pragma warning restore CA2213
 
     private Vector3 playerPosition;
 
-    private float elapsed = 1;
+    private double elapsed = 1;
 
     public override void _Ready()
     {
         progressBarScene = GD.Load<PackedScene>("res://src/gui_common/WorldProgressBar.tscn");
     }
 
-    public void Init(Camera stageCamera, Node worldEntityRoot)
+    public void Init(Camera3D stageCamera, Node worldEntityRoot)
     {
         camera = stageCamera;
         worldRoot = worldEntityRoot;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (camera == null)
             throw new InvalidOperationException("This system is not initialized");
@@ -97,7 +97,7 @@ public class ProgressBarSystem : Control
             if (!progressSource.ActionInProgress)
                 continue;
 
-            var distance = playerPosition.DistanceSquaredTo(entity.EntityNode.GlobalTranslation);
+            var distance = playerPosition.DistanceSquaredTo(entity.EntityNode.GlobalPosition);
 
             if (distance > thresholdSquared)
                 continue;
@@ -115,7 +115,7 @@ public class ProgressBarSystem : Control
                     break;
                 }
 
-                var newBar = progressBarScene.Instance<ProgressBar>();
+                var newBar = progressBarScene.Instantiate<ProgressBar>();
                 var barHolder = new CreatedProgressBar(newBar, entity, progressSource);
 
                 AddChild(newBar);
@@ -164,7 +164,7 @@ public class ProgressBarSystem : Control
             }
 
             var entityTransform = entity.EntityNode.GlobalTransform;
-            var position = entityTransform.origin +
+            var position = entityTransform.Origin +
                 new Vector3(0, Constants.WORLD_PROGRESS_DEFAULT_Y_OFFSET, 0);
 
             var extraOffset = progressData.ExtraProgressBarWorldOffset;
@@ -172,7 +172,7 @@ public class ProgressBarSystem : Control
             if (extraOffset != null)
             {
                 // Extra offset is relative to a non-rotated state of the object, so we need to correct that here
-                position += entityTransform.basis.Xform(extraOffset.Value);
+                position += entityTransform.Basis * extraOffset.Value;
             }
 
             if (camera!.IsPositionBehind(position))
@@ -260,9 +260,9 @@ public class ProgressBarSystem : Control
             height = Mathf.Clamp(height, Constants.WORLD_PROGRESS_BAR_MIN_HEIGHT,
                 Constants.WORLD_PROGRESS_BAR_DEFAULT_HEIGHT);
 
-            Bar.RectSize = new Vector2(width, height);
+            Bar.Size = new Vector2(width, height);
 
-            Bar.RectGlobalPosition = screenPosition - new Vector2(width * 0.5f, height * 0.5f);
+            Bar.GlobalPosition = screenPosition - new Vector2(width * 0.5f, height * 0.5f);
         }
     }
 }

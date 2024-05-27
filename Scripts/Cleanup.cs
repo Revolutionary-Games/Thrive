@@ -16,7 +16,7 @@ public static class Cleanup
 {
     private static readonly IEnumerable<string> FoldersToDelete = new List<string>
     {
-        ".import",
+        ".godot",
         ".mono",
         JetBrainsCheck.JET_BRAINS_CACHE,
     };

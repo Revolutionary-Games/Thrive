@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Godot;
 using Steamworks;
 using Directory = System.IO.Directory;
 using File = System.IO.File;
-using Object = Godot.Object;
 using Path = System.IO.Path;
 
 /// <summary>
@@ -62,17 +62,21 @@ public sealed class SteamClient : ISteamClient
 
         GD.Print("Starting Steam load");
 
+        // Need to ensure this is set for steam library loading to work
+        NativeInterop.SetDllImportResolver(Assembly.GetAssembly(typeof(SteamAPI)) ??
+            throw new Exception("Couldn't determine Steamworks.NET assembly"));
+
         if (!SteamAPI.Init())
         {
             GD.PrintErr("Failed to init Steam");
-            SetError(TranslationServer.Translate("STEAM_CLIENT_INIT_FAILED"), "Steamworks initialization failed");
+            SetError(Localization.Translate("STEAM_CLIENT_INIT_FAILED"), "Steamworks initialization failed");
             return;
         }
 
         if (!SteamAPI.IsSteamRunning())
         {
             GD.PrintErr("Steam is not running");
-            SetError(TranslationServer.Translate("STEAM_CLIENT_INIT_FAILED"), "Steam is not running");
+            SetError(Localization.Translate("STEAM_CLIENT_INIT_FAILED"), "Steam is not running");
             return;
         }
 
@@ -96,7 +100,7 @@ public sealed class SteamClient : ISteamClient
     }
 
     public void ConnectSignals<T>(T receiver)
-        where T : Object, ISteamSignalReceiver
+        where T : GodotObject, ISteamSignalReceiver
     {
         if (!IsLoaded)
             return;
@@ -145,7 +149,7 @@ public sealed class SteamClient : ISteamClient
         lowPowerCallback = new Callback<LowBatteryPower_t>(t => receiver.LowPower(t.m_nMinutesBatteryLeft));
     }
 
-    public void Process(float delta)
+    public void Process(double delta)
     {
         if (!IsLoaded)
             return;
@@ -258,8 +262,7 @@ public sealed class SteamClient : ISteamClient
         // description max length
         if (changeNotes?.Length > Steamworks.Constants.k_cchPublishedDocumentChangeDescriptionMax)
         {
-            callback.Invoke(
-                WorkshopResult.CreateFailure(TranslationServer.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG")));
+            callback.Invoke(WorkshopResult.CreateFailure(Localization.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG")));
             return;
         }
 
@@ -525,33 +528,33 @@ public sealed class SteamClient : ISteamClient
                 return null;
 
             case EResult.k_EResultInsufficientPrivilege:
-                return TranslationServer.Translate("STEAM_ERROR_INSUFFICIENT_PRIVILEGE");
+                return Localization.Translate("STEAM_ERROR_INSUFFICIENT_PRIVILEGE");
             case EResult.k_EResultBanned:
-                return TranslationServer.Translate("STEAM_ERROR_BANNED");
+                return Localization.Translate("STEAM_ERROR_BANNED");
             case EResult.k_EResultTimeout:
-                return TranslationServer.Translate("STEAM_ERROR_TIMEOUT");
+                return Localization.Translate("STEAM_ERROR_TIMEOUT");
             case EResult.k_EResultNotLoggedOn:
-                return TranslationServer.Translate("STEAM_ERROR_NOT_LOGGED_IN");
+                return Localization.Translate("STEAM_ERROR_NOT_LOGGED_IN");
             case EResult.k_EResultServiceUnavailable:
-                return TranslationServer.Translate("STEAM_ERROR_UNAVAILABLE");
+                return Localization.Translate("STEAM_ERROR_UNAVAILABLE");
             case EResult.k_EResultInvalidParam:
-                return TranslationServer.Translate("STEAM_ERROR_INVALID_PARAMETER");
+                return Localization.Translate("STEAM_ERROR_INVALID_PARAMETER");
             case EResult.k_EResultLimitExceeded:
-                return TranslationServer.Translate("STEAM_ERROR_CLOUD_LIMIT_EXCEEDED");
+                return Localization.Translate("STEAM_ERROR_CLOUD_LIMIT_EXCEEDED");
             case EResult.k_EResultFileNotFound:
-                return TranslationServer.Translate("STEAM_ERROR_FILE_NOT_FOUND");
+                return Localization.Translate("STEAM_ERROR_FILE_NOT_FOUND");
             case EResult.k_EResultDuplicateRequest:
-                return TranslationServer.Translate("STEAM_ERROR_ALREADY_UPLOADED");
+                return Localization.Translate("STEAM_ERROR_ALREADY_UPLOADED");
             case EResult.k_EResultDuplicateName:
-                return TranslationServer.Translate("STEAM_ERROR_DUPLICATE_NAME");
+                return Localization.Translate("STEAM_ERROR_DUPLICATE_NAME");
             case EResult.k_EResultServiceReadOnly:
-                return TranslationServer.Translate("STEAM_ERROR_ACCOUNT_READ_ONLY");
+                return Localization.Translate("STEAM_ERROR_ACCOUNT_READ_ONLY");
             case EResult.k_EResultAccessDenied:
-                return TranslationServer.Translate("STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT");
+                return Localization.Translate("STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT");
             case EResult.k_EResultLockingFailed:
-                return TranslationServer.Translate("STEAM_ERROR_LOCKING_FAILED");
+                return Localization.Translate("STEAM_ERROR_LOCKING_FAILED");
             default:
-                return TranslationServer.Translate("STEAM_ERROR_UNKNOWN");
+                return Localization.Translate("STEAM_ERROR_UNKNOWN");
         }
     }
 

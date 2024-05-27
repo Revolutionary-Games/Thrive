@@ -9,7 +9,8 @@ using Systems;
 /// <summary>
 ///   Manages spawning and processing compound clouds
 /// </summary>
-public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked
+[RuntimeCost(35)]
+public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked
 {
     [JsonProperty]
     private int neededCloudsAtOnePosition;
@@ -30,7 +31,7 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
     private Vector3 cloudGridCenter;
 
     [JsonProperty]
-    private float elapsed;
+    private double elapsed;
 
     [JsonIgnore]
     private float currentBrightness = 1.0f;
@@ -67,7 +68,7 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
         // We need to dynamically spawn more / delete some if this doesn't match
         while (clouds.Count < neededCloudsAtOnePosition)
         {
-            var createdCloud = (CompoundCloudPlane)cloudScene.Instance();
+            var createdCloud = cloudScene.Instantiate<CompoundCloudPlane>();
             clouds.Add(createdCloud);
             AddChild(createdCloud);
         }
@@ -125,11 +126,11 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
 
             clouds[i].Init(fluidSystem, renderPriority, cloud1, cloud2, cloud3, cloud4);
             --renderPriority;
-            clouds[i].Translation = new Vector3(0, 0, 0);
+            clouds[i].Position = new Vector3(0, 0, 0);
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         elapsed += delta;
 
@@ -137,13 +138,13 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
         // are a major performance sink
         if (elapsed >= Settings.Instance.CloudUpdateInterval)
         {
-            UpdateCloudContents(elapsed);
-            elapsed = 0.0f;
+            UpdateCloudContents((float)elapsed);
+            elapsed = 0;
         }
     }
 
     /// <summary>
-    ///   Places specified amount of compound at position
+    ///   Places specified amount of compound at position using interlocked operations for thread safety
     /// </summary>
     /// <returns>True when placing succeeded, false if out of range</returns>
     public bool AddCloud(Compound compound, float density, Vector3 worldPosition)
@@ -155,12 +156,9 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
             {
                 // Within cloud
 
-                // Skip wrong types
-                if (!cloud.HandlesCompound(compound))
-                    continue;
-
-                cloud.AddCloud(compound, density, x, y);
-                return true;
+                // Add if cloud handles this type
+                if (cloud.AddCloudInterlockedIfHandlesType(compound, x, y, density))
+                    return true;
             }
         }
 
@@ -168,7 +166,8 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
     }
 
     /// <summary>
-    ///   Takes compound at world position
+    ///   Takes compound at world position. This doesn't use locks or interlocked read so this is not thread safe
+    ///   unlike <see cref="AbsorbCompounds"/>, which is basically what should be used instead.
     /// </summary>
     /// <param name="compound">The compound type to take</param>
     /// <param name="worldPosition">World position to take from</param>
@@ -263,32 +262,28 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
             int xEnd = (int)Mathf.Round(cloudRelativeX + localGrabRadius);
             int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
 
-            // TODO: try to improve performance here regarding this lock, as we have just 2 clouds so only 2 threads
-            // can even in theory run absorption code at once
-            lock (cloud.MultithreadedLock)
+            // No lock needed here now as AbsorbCompounds now uses atomic reads and updates
+            for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
             {
-                for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
+                for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
                 {
-                    for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
+                    // Negative coordinates are always outside the cloud area
+                    if (x < 0 || y < 0)
+                        continue;
+
+                    // Circle check
+                    if (Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2) >
+                        localGrabRadiusSquared)
                     {
-                        // Negative coordinates are always outside the cloud area
-                        if (x < 0 || y < 0)
-                            continue;
+                        // Not in it
+                        continue;
+                    }
 
-                        // Circle check
-                        if (Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2) >
-                            localGrabRadiusSquared)
-                        {
-                            // Not in it
-                            continue;
-                        }
-
-                        // Then just need to check that it is within the cloud simulation array
-                        if (x < cloud.Size && y < cloud.Size)
-                        {
-                            // Absorb all compounds in the cloud
-                            cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
-                        }
+                    // Then just need to check that it is within the cloud simulation array
+                    if (x < cloud.Size && y < cloud.Size)
+                    {
+                        // Absorb all compounds in the cloud
+                        cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
                     }
                 }
             }
@@ -404,10 +399,9 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
     {
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves
-        return new Vector3(
-            (int)Math.Round(pos.x / (Constants.CLOUD_X_EXTENT / 3)),
+        return new Vector3((int)Math.Round(pos.X / (Constants.CLOUD_X_EXTENT / 3)),
             0,
-            (int)Math.Round(pos.z / (Constants.CLOUD_Y_EXTENT / 3)));
+            (int)Math.Round(pos.Z / (Constants.CLOUD_Y_EXTENT / 3)));
     }
 
     /// <summary>
@@ -418,8 +412,8 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
         foreach (var cloud in clouds)
         {
             // TODO: make sure the cloud knows where we moved.
-            cloud.Translation = cloudGridCenter * Constants.CLOUD_Y_EXTENT / 3;
-            cloud.UpdatePosition(new Int2((int)cloudGridCenter.x, (int)cloudGridCenter.z));
+            cloud.Position = cloudGridCenter * Constants.CLOUD_Y_EXTENT / 3;
+            cloud.UpdatePosition(new Vector2I((int)cloudGridCenter.X, (int)cloudGridCenter.Z));
         }
     }
 

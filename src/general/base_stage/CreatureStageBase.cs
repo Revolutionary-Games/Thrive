@@ -11,11 +11,12 @@ using Newtonsoft.Json;
 /// <typeparam name="TSimulation">The type of simulation this stage uses</typeparam>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
+[GodotAbstract]
+public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
     where TSimulation : class, IWorldSimulation, new()
 {
 #pragma warning disable CA2213
-    protected DirectionalLight worldLight = null!;
+    protected DirectionalLight3D worldLight = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -25,7 +26,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     protected bool spawnedPlayer;
 
     [JsonProperty]
-    protected float playerRespawnTimer;
+    protected double playerRespawnTimer;
 
     /// <summary>
     ///   True when the player is extinct in the current patch. The player can still move to another patch.
@@ -37,8 +38,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     {
     }
 
-    [JsonConstructor]
-    public CreatureStageBase(TSimulation worldSimulation)
+    protected CreatureStageBase(TSimulation worldSimulation)
     {
         WorldSimulation = worldSimulation;
     }
@@ -57,7 +57,10 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     public TPlayer? Player { get; protected set; }
 
     [JsonIgnore]
-    public abstract bool HasPlayer { get; }
+    public virtual bool HasPlayer => throw new GodotAbstractPropertyNotOverriddenException();
+
+    [JsonIgnore]
+    public virtual bool HasAlivePlayer => throw new GodotAbstractPropertyNotOverriddenException();
 
     [JsonProperty]
     public TSimulation WorldSimulation { get; private set; } = null!;
@@ -70,7 +73,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     public bool MovingToEditor { get; set; }
 
     [JsonIgnore]
-    protected abstract ICreatureStageHUD BaseHUD { get; }
+    protected virtual ICreatureStageHUD BaseHUD => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void ResolveNodeReferences()
     {
@@ -79,7 +82,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
 
         base.ResolveNodeReferences();
 
-        worldLight = world.GetNode<DirectionalLight>("WorldLight");
+        worldLight = world.GetNode<DirectionalLight3D>("WorldLight");
     }
 
     public override void _ExitTree()
@@ -94,7 +97,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -141,30 +144,20 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
 
             foreach (var entity in WorldSimulation.EntitySystem)
             {
+                ++totalEntityCount;
+
                 if (!entity.Has<Spawned>())
                     continue;
 
                 totalEntityWeight += entity.Get<Spawned>().EntityWeight;
-                ++totalEntityCount;
             }
 
-            var childCount = rootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(totalEntityWeight, childCount - totalEntityCount);
+            debugOverlay.ReportEntities(totalEntityWeight, totalEntityCount);
         }
 
         if (CheatManager.ManuallySetTime)
         {
             GameWorld.LightCycle.FractionOfDayElapsed = CheatManager.DayNightFraction;
-        }
-    }
-
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            // TODO: the following doesn't seem to do anything so confirm that and remove
-            if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
-                throw new InvalidOperationException("Stage not initialized properly");
         }
     }
 
@@ -191,7 +184,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
             GameWorld.GenerationHistory[lastGeneration].UpdateSpeciesData(GameWorld.PlayerSpecies);
         }
 
-        // Now the editor increases the generation so we don't do that here anymore
+        // Now the editor increases the generation, so we don't do that here anymore
 
         // Make sure player is spawned
         SpawnPlayer();
@@ -199,7 +192,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         BaseHUD.OnEnterStageTransition(false, true);
         BaseHUD.HideReproductionDialog();
 
-        // Pass some extra time to hud messages to make short lived messages from the previous life (like editor ready
+        // Pass some extra time to hud messages to make short-lived messages from the previous life (like editor ready
         // disappear)
         BaseHUD.HUDMessages.PassExtraTime(Constants.HUD_MESSAGES_EXTRA_ELAPSE_TIME_FROM_EDITOR);
 
@@ -217,9 +210,15 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
-    public abstract void MoveToEditor();
+    public virtual void MoveToEditor()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
-    public abstract void OnSuicide();
+    public virtual void OnSuicide()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Called when the player died out in a patch and selected a new one
@@ -257,7 +256,10 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         BaseHUD.OnEnterStageTransition(longDuration, returnFromEditor);
     }
 
-    protected abstract void UpdatePatchSettings(bool promptPatchNameChange = true);
+    protected virtual void UpdatePatchSettings(bool promptPatchNameChange = true)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Increases the population by the constant for the player reproducing
@@ -265,14 +267,14 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     protected void GiveReproductionPopulationBonus()
     {
         var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
-            TranslationServer.Translate("PLAYER_REPRODUCED"),
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(playerSpecies,
+            Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
+            Localization.Translate("PLAYER_REPRODUCED"),
             false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
     }
 
     /// <summary>
-    ///   Handles respawning the player and checking for extinction
+    ///   Handles respawning the player and checking for Extinction
     /// </summary>
     protected void HandlePlayerRespawn()
     {
@@ -320,10 +322,9 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         GD.Print("The player has died");
 
         // Decrease the population by the constant for the player dying
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            GameWorld.PlayerSpecies,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
             Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
-            TranslationServer.Translate("PLAYER_DIED"),
+            Localization.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
             / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 
@@ -352,7 +353,10 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     /// <summary>
     ///   Spawns the player if there isn't currently a player node existing
     /// </summary>
-    protected abstract void SpawnPlayer();
+    protected virtual void SpawnPlayer()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     protected override void OnGameOver()
     {
@@ -389,9 +393,9 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         // Decrease the population by the constant for the player dying out in a patch
         // If the player does not have sufficient population in the new patch then the population drops to 0 and
         // they have to select a new patch if they die again.
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
-            TranslationServer.Translate("EXTINCT_IN_PATCH"),
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
+            Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
+            Localization.Translate("EXTINCT_IN_PATCH"),
             true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT
             / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 

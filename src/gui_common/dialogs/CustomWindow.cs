@@ -46,7 +46,7 @@ using Godot.Collections;
 /// </remarks>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class CustomWindow : TopLevelContainer
+public partial class CustomWindow : TopLevelContainer
 {
     /// <summary>
     ///   Paths to window reordering nodes in ancestors.
@@ -108,7 +108,7 @@ public class CustomWindow : TopLevelContainer
 
 #pragma warning disable CA2213
     private TextureButton? closeButton;
-    private Texture closeButtonTexture = null!;
+    private Texture2D closeButtonTexture = null!;
 
     private StyleBox customPanel = null!;
     private StyleBox titleBarPanel = null!;
@@ -121,6 +121,8 @@ public class CustomWindow : TopLevelContainer
 
     private DragType dragType = DragType.None;
 
+    private int titleFontSize;
+
     private int titleBarHeight;
     private int titleHeight;
     private int scaleBorderSize;
@@ -130,13 +132,13 @@ public class CustomWindow : TopLevelContainer
 
     /// <summary>
     ///   This is emitted by any means to hide this dialog (when not accepting) but NOT the hiding itself, for that use
-    ///   <see cref="TopLevelContainer.Closed"/> signal OR <see cref="OnHidden"/>.
+    ///   <see cref="ClosedEventHandler"/> signal OR <see cref="OnHidden"/>.
     /// </summary>
     [Signal]
-    public delegate void Cancelled();
+    public delegate void CanceledEventHandler();
 
     [Signal]
-    public delegate void Dragged(TopLevelContainer window);
+    public delegate void DraggedEventHandler(TopLevelContainer window);
 
     [Flags]
     private enum DragType
@@ -162,10 +164,10 @@ public class CustomWindow : TopLevelContainer
                 return;
 
             windowTitle = value;
-            translatedWindowTitle = TranslationServer.Translate(value);
+            translatedWindowTitle = Localization.Translate(value);
 
-            MinimumSizeChanged();
-            Update();
+            UpdateMinimumSize();
+            QueueRedraw();
         }
     }
 
@@ -221,23 +223,24 @@ public class CustomWindow : TopLevelContainer
             decorate = value;
 
             // TODO: doesn't this need to adjust titleBarHeight value here as that's only set on tree entry?
-            Update();
+            QueueRedraw();
         }
     }
 
     public override void _EnterTree()
     {
-        customPanel = GetStylebox("custom_panel", "WindowDialog");
-        titleBarPanel = GetStylebox("custom_titlebar", "WindowDialog");
-        titleBarHeight = decorate ? GetConstant("custom_titlebar_height", "WindowDialog") : 0;
-        titleFont = GetFont("custom_title_font", "WindowDialog");
-        titleHeight = GetConstant("custom_title_height", "WindowDialog");
-        titleColor = GetColor("custom_title_color", "WindowDialog");
-        closeButtonColor = GetColor("custom_close_color", "WindowDialog");
-        closeButtonHighlight = GetStylebox("custom_close_highlight", "WindowDialog");
-        closeButtonTexture = GetIcon("custom_close", "WindowDialog");
-        scaleBorderSize = GetConstant("custom_scaleBorder_size", "WindowDialog");
-        customMargin = decorate ? GetConstant("custom_margin", "Dialogs") : 0;
+        customPanel = GetThemeStylebox("custom_panel", "Window");
+        titleBarPanel = GetThemeStylebox("custom_titlebar", "Window");
+        titleBarHeight = decorate ? GetThemeConstant("custom_titlebar_height", "Window") : 0;
+        titleFont = GetThemeFont("title_font", "Window");
+        titleFontSize = GetThemeFontSize("title_font_size", "Window");
+        titleHeight = GetThemeConstant("custom_title_height", "Window");
+        titleColor = GetThemeColor("custom_title_color", "Window");
+        closeButtonColor = GetThemeColor("custom_close_color", "Window");
+        closeButtonHighlight = GetThemeStylebox("custom_close_highlight", "Window");
+        closeButtonTexture = GetThemeIcon("custom_close", "Window");
+        scaleBorderSize = GetThemeConstant("custom_scaleBorder_size", "Window");
+        customMargin = decorate ? GetThemeConstant("custom_margin", "Dialogs") : 0;
 
         // Make the close button style be fully created when this is initialized
         if (showCloseButton)
@@ -246,12 +249,15 @@ public class CustomWindow : TopLevelContainer
         ConnectToWindowReorderingNodes();
 
         base._EnterTree();
+
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
 
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
         DisconnectFromWindowReorderingNodes();
     }
 
@@ -259,7 +265,7 @@ public class CustomWindow : TopLevelContainer
     {
         base._Notification(what);
 
-        switch (what)
+        switch ((long)what)
         {
             case NotificationReady:
             {
@@ -285,12 +291,6 @@ public class CustomWindow : TopLevelContainer
 
                 break;
             }
-
-            case NotificationTranslationChanged:
-            {
-                translatedWindowTitle = TranslationServer.Translate(windowTitle);
-                break;
-            }
         }
     }
 
@@ -300,20 +300,19 @@ public class CustomWindow : TopLevelContainer
             return;
 
         // Draw background panels
-        DrawStyleBox(customPanel, new Rect2(
-            new Vector2(0, -titleBarHeight), new Vector2(RectSize.x, RectSize.y + titleBarHeight)));
+        DrawStyleBox(customPanel,
+            new Rect2(new Vector2(0, -titleBarHeight), new Vector2(Size.X, Size.Y + titleBarHeight)));
 
-        DrawStyleBox(titleBarPanel, new Rect2(
-            new Vector2(3, -titleBarHeight + 3), new Vector2(RectSize.x - 6, titleBarHeight - 3)));
+        DrawStyleBox(titleBarPanel,
+            new Rect2(new Vector2(3, -titleBarHeight + 3), new Vector2(Size.X - 6, titleBarHeight - 3)));
 
         // Draw title in the title bar
-        var fontHeight = titleFont!.GetHeight() - titleFont.GetDescent() * 2;
+        var fontHeight = titleFont!.GetHeight(titleFontSize) - titleFont.GetDescent(titleFontSize) * 2;
 
-        var titlePosition = new Vector2(
-            (RectSize.x - titleFont.GetStringSize(translatedWindowTitle).x) / 2, (-titleHeight + fontHeight) / 2);
+        var titlePosition = new Vector2(0, (-titleHeight + fontHeight) * 0.5f);
 
-        DrawString(titleFont, titlePosition, translatedWindowTitle, titleColor,
-            (int)(RectSize.x - customPanel.GetMinimumSize().x));
+        DrawString(titleFont, titlePosition, translatedWindowTitle, HorizontalAlignment.Center, Size.X,
+            titleFontSize, titleColor);
 
         // Draw close button (if this window has a close button)
         if (closeButton != null)
@@ -339,24 +338,26 @@ public class CustomWindow : TopLevelContainer
     public override void _GuiInput(InputEvent @event)
     {
         // Handle title bar dragging
-        if (@event is InputEventMouseButton { ButtonIndex: (int)ButtonList.Left } mouseButton)
+        if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left } mouseButton)
         {
             if (mouseButton.Pressed && Movable && !closeHovered)
             {
                 // Begin a possible dragging operation
-                dragType = DragHitTest(new Vector2(mouseButton.Position.x, mouseButton.Position.y));
+                dragType = DragHitTest(new Vector2(mouseButton.Position.X, mouseButton.Position.Y));
 
                 if (dragType != DragType.None)
-                    dragOffset = GetGlobalMousePosition() - RectPosition;
+                    dragOffset = GetGlobalMousePosition() - Position;
 
-                dragOffsetFar = RectPosition + RectSize - GetGlobalMousePosition();
+                dragOffsetFar = Position + Size - GetGlobalMousePosition();
 
-                EmitSignal(nameof(Dragged), this);
+                EmitSignal(SignalName.Dragged, this);
+                GetViewport().SetInputAsHandled();
             }
             else if (dragType != DragType.None && !mouseButton.Pressed)
             {
                 // End a dragging operation
                 dragType = DragType.None;
+                GetViewport().SetInputAsHandled();
             }
         }
 
@@ -374,14 +375,14 @@ public class CustomWindow : TopLevelContainer
     }
 
     /// <summary>
-    ///   Overrides the minimum size to account for default elements (e.g title, close button, margin) rect size
+    ///   Overrides the minimum size to account for default elements (e.g. title, close button, margin) rect size
     ///   and for the other custom added contents on the window.
     /// </summary>
     public override Vector2 _GetMinimumSize()
     {
-        var buttonWidth = closeButton?.GetCombinedMinimumSize().x;
-        var titleWidth = titleFont?.GetStringSize(translatedWindowTitle).x;
-        var buttonArea = buttonWidth + (buttonWidth / 2);
+        var buttonWidth = closeButton?.GetCombinedMinimumSize().X;
+        var titleWidth = titleFont?.GetStringSize(translatedWindowTitle).X;
+        var buttonArea = buttonWidth + buttonWidth / 2;
 
         var contentSize = Vector2.Zero;
 
@@ -389,40 +390,38 @@ public class CustomWindow : TopLevelContainer
         {
             var child = GetChildOrNull<Control>(i);
 
-            if (child == null || child == closeButton || child.IsSetAsToplevel())
+            if (child == null || child == closeButton || child.TopLevel)
                 continue;
 
             var childMinSize = child.GetCombinedMinimumSize();
 
-            contentSize = new Vector2(
-                Mathf.Max(childMinSize.x, contentSize.x),
-                Mathf.Max(childMinSize.y, contentSize.y));
+            contentSize = new Vector2(Mathf.Max(childMinSize.X, contentSize.X),
+                Mathf.Max(childMinSize.Y, contentSize.Y));
         }
 
         // Re-decide whether the largest rect is the default elements' or the contents'
         return new Vector2(Mathf.Max(2 * buttonArea.GetValueOrDefault() + titleWidth.GetValueOrDefault(),
-            contentSize.x + customMargin * 2), contentSize.y + customMargin * 2);
+            contentSize.X + customMargin * 2), contentSize.Y + customMargin * 2);
     }
 
     /// <summary>
     ///   This is overriden so mouse position could take the titlebar into account due to it being drawn
     ///   outside of the normal Control's rect bounds.
     /// </summary>
-    public override bool HasPoint(Vector2 point)
+    public override bool _HasPoint(Vector2 point)
     {
         // Enlarge upwards for title bar
         var position = Vector2.Zero;
-        var size = RectSize;
-        position.y -= titleBarHeight;
-        size.y += titleBarHeight;
+        var size = Size;
+        position.Y -= titleBarHeight;
+        size.Y += titleBarHeight;
         var rect = new Rect2(position, size);
 
         // Inflate by the resizable border thickness
         if (Resizable)
         {
-            rect = new Rect2(
-                new Vector2(rect.Position.x - scaleBorderSize, rect.Position.y - scaleBorderSize),
-                new Vector2(rect.Size.x + scaleBorderSize * 2, rect.Size.y + scaleBorderSize * 2));
+            rect = new Rect2(new Vector2(rect.Position.X - scaleBorderSize, rect.Position.Y - scaleBorderSize),
+                new Vector2(rect.Size.X + scaleBorderSize * 2, rect.Size.Y + scaleBorderSize * 2));
         }
 
         return rect.HasPoint(point);
@@ -446,12 +445,15 @@ public class CustomWindow : TopLevelContainer
     {
         var rect = base.GetFullRect();
         rect.Position = new Vector2(0, titleBarHeight);
-        rect.Size = new Vector2(rect.Size.x, rect.Size.y - titleBarHeight);
+        rect.Size = new Vector2(rect.Size.X, rect.Size.Y - titleBarHeight);
         return rect;
     }
 
     protected override void ApplyRectSettings()
     {
+        // For debugging warnings coming from window uneven anchors:
+        // GD.Print("Applying rect to: " + GetPath());
+
         base.ApplyRectSettings();
 
         var screenSize = GetViewportRect().Size;
@@ -459,16 +461,17 @@ public class CustomWindow : TopLevelContainer
         if (BoundToScreenArea)
         {
             // Clamp position to ensure window stays inside the screen
-            RectPosition = new Vector2(
-                Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
-                Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
+            // titleBarHeight may be larger than the space left after the window fills the entire screen so that last
+            // Max is needed
+            Position = new Vector2(Mathf.Clamp(Position.X, 0, Math.Max(screenSize.X - Size.X, 0)),
+                Mathf.Clamp(Position.Y, titleBarHeight, Math.Max(titleBarHeight, screenSize.Y - Size.Y)));
         }
 
         if (Resizable)
         {
             // Size can't be bigger than the viewport
-            RectSize = new Vector2(
-                Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
+            Size = new Vector2(Mathf.Min(Size.X, screenSize.X),
+                Mathf.Min(Size.Y, screenSize.Y - titleBarHeight));
         }
     }
 
@@ -515,8 +518,7 @@ public class CustomWindow : TopLevelContainer
 
         foreach (var (reorderingNode, nodeSibling) in windowReorderingAncestors)
         {
-            reorderingNode.ConnectWindow(
-                this, nodeSibling, usedAllowWindowReorderingRecursion);
+            reorderingNode.ConnectWindow(this, nodeSibling, usedAllowWindowReorderingRecursion);
             windowReorderingNodes.Add(reorderingNode);
         }
     }
@@ -538,26 +540,26 @@ public class CustomWindow : TopLevelContainer
 
         if (Resizable)
         {
-            if (position.y < (-titleBarHeight + scaleBorderSize))
+            if (position.Y < -titleBarHeight + scaleBorderSize)
             {
                 result = DragType.ResizeTop;
             }
-            else if (position.y >= (RectSize.y - scaleBorderSize))
+            else if (position.Y >= Size.Y - scaleBorderSize)
             {
                 result = DragType.ResizeBottom;
             }
 
-            if (position.x < scaleBorderSize)
+            if (position.X < scaleBorderSize)
             {
                 result |= DragType.ResizeLeft;
             }
-            else if (position.x >= (RectSize.x - scaleBorderSize))
+            else if (position.X >= Size.X - scaleBorderSize)
             {
                 result |= DragType.ResizeRight;
             }
         }
 
-        if (result == DragType.None && position.y < 0)
+        if (result == DragType.None && position.Y < 0)
             result = DragType.Move;
 
         return result;
@@ -572,7 +574,7 @@ public class CustomWindow : TopLevelContainer
 
         if (Resizable)
         {
-            var previewDragType = DragHitTest(new Vector2(mouseMotion.Position.x, mouseMotion.Position.y));
+            var previewDragType = DragHitTest(new Vector2(mouseMotion.Position.X, mouseMotion.Position.Y));
 
             switch (previewDragType)
             {
@@ -608,8 +610,8 @@ public class CustomWindow : TopLevelContainer
 
         var minSize = GetCombinedMinimumSize();
 
-        var newPosition = new Vector2(RectPosition);
-        var newSize = new Vector2(RectSize);
+        var newPosition = Position;
+        var newSize = Size;
 
         if (dragType == DragType.Move)
         {
@@ -622,33 +624,33 @@ public class CustomWindow : TopLevelContainer
 
             if (dragType.HasFlag(DragType.ResizeTop))
             {
-                var bottom = RectPosition.y + RectSize.y;
-                var maxY = bottom - minSize.y;
+                var bottom = Position.Y + Size.Y;
+                var maxY = bottom - minSize.Y;
 
-                newPosition.y = Mathf.Clamp(globalMousePos.y - dragOffset.y, titleBarHeight, maxY);
-                newSize.y = bottom - newPosition.y;
+                newPosition.Y = Mathf.Clamp(globalMousePos.Y - dragOffset.Y, titleBarHeight, maxY);
+                newSize.Y = bottom - newPosition.Y;
             }
             else if (dragType.HasFlag(DragType.ResizeBottom))
             {
-                newSize.y = Mathf.Min(globalMousePos.y - newPosition.y + dragOffsetFar.y, screenSize.y - newPosition.y);
+                newSize.Y = Mathf.Min(globalMousePos.Y - newPosition.Y + dragOffsetFar.Y, screenSize.Y - newPosition.Y);
             }
 
             if (dragType.HasFlag(DragType.ResizeLeft))
             {
-                var right = RectPosition.x + RectSize.x;
-                var maxX = right - minSize.x;
+                var right = Position.X + Size.X;
+                var maxX = right - minSize.X;
 
-                newPosition.x = Mathf.Clamp(globalMousePos.x - dragOffset.x, 0, maxX);
-                newSize.x = right - newPosition.x;
+                newPosition.X = Mathf.Clamp(globalMousePos.X - dragOffset.X, 0, maxX);
+                newSize.X = right - newPosition.X;
             }
             else if (dragType.HasFlag(DragType.ResizeRight))
             {
-                newSize.x = Mathf.Min(globalMousePos.x - newPosition.x + dragOffsetFar.x, screenSize.x - newPosition.x);
+                newSize.X = Mathf.Min(globalMousePos.X - newPosition.X + dragOffsetFar.X, screenSize.X - newPosition.X);
             }
         }
 
-        RectPosition = newPosition;
-        RectSize = newSize;
+        Position = newPosition;
+        Size = newSize;
 
         ApplyRectSettings();
     }
@@ -671,22 +673,22 @@ public class CustomWindow : TopLevelContainer
 
         closeButton = new TextureButton
         {
-            Expand = true,
-            RectMinSize = new Vector2(14, 14),
-            MouseFilter = MouseFilterEnum.Pass,
+            StretchMode = TextureButton.StretchModeEnum.KeepAspectCentered,
+            CustomMinimumSize = new Vector2(14, 14),
+            MouseFilter = MouseFilterEnum.Stop,
+            MouseForcePassScrollEvents = false,
         };
 
         closeButton.SetAnchorsPreset(LayoutPreset.TopRight);
 
-        closeButton.RectPosition = new Vector2(
-            -GetConstant("custom_close_h_ofs", "WindowDialog"),
-            -GetConstant("custom_close_v_ofs", "WindowDialog"));
+        closeButton.Position = new Vector2(-GetThemeConstant("custom_close_h_ofs", "Window"),
+            -GetThemeConstant("custom_close_v_ofs", "Window"));
 
-        closeButton.Connect("mouse_entered", this, nameof(OnCloseButtonMouseEnter));
-        closeButton.Connect("mouse_exited", this, nameof(OnCloseButtonMouseExit));
-        closeButton.Connect("pressed", this, nameof(OnCloseButtonPressed));
-        closeButton.Connect("focus_entered", this, nameof(OnCloseButtonFocused));
-        closeButton.Connect("focus_exited", this, nameof(OnCloseButtonFocusLost));
+        closeButton.Connect(Control.SignalName.MouseEntered, new Callable(this, nameof(OnCloseButtonMouseEnter)));
+        closeButton.Connect(Control.SignalName.MouseExited, new Callable(this, nameof(OnCloseButtonMouseExit)));
+        closeButton.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnCloseButtonPressed)));
+        closeButton.Connect(Control.SignalName.FocusEntered, new Callable(this, nameof(OnCloseButtonFocused)));
+        closeButton.Connect(Control.SignalName.FocusExited, new Callable(this, nameof(OnCloseButtonFocusLost)));
 
         AddChild(closeButton);
     }
@@ -694,48 +696,60 @@ public class CustomWindow : TopLevelContainer
     private void UpdateChildRects()
     {
         var childPos = new Vector2(customMargin, customMargin);
-        var childSize = new Vector2(RectSize.x - customMargin * 2, RectSize.y - customMargin * 2);
+        var childSize = new Vector2(Size.X - customMargin * 2, Size.Y - customMargin * 2);
 
         for (int i = 0; i < GetChildCount(); ++i)
         {
             var child = GetChildOrNull<Control>(i);
 
-            if (child == null || child == closeButton || child.IsSetAsToplevel())
+            if (child == null || child == closeButton || child.TopLevel)
                 continue;
 
-            child.RectPosition = childPos;
-            child.RectSize = childSize;
+            // Leaving the anchors alone here causes a warning in Godot 4
+            child.AnchorLeft = 0;
+            child.AnchorTop = 0;
+
+            child.AnchorBottom = 0;
+            child.AnchorRight = 0;
+
+            child.Position = childPos;
+            child.Size = childSize;
         }
     }
 
     private void OnCloseButtonMouseEnter()
     {
         closeHovered = true;
-        Update();
+        QueueRedraw();
     }
 
     private void OnCloseButtonMouseExit()
     {
         closeHovered = false;
-        Update();
+        QueueRedraw();
     }
 
     private void OnCloseButtonFocused()
     {
         closeFocused = true;
-        Update();
+        QueueRedraw();
     }
 
     private void OnCloseButtonFocusLost()
     {
         closeFocused = false;
-        Update();
+        QueueRedraw();
     }
 
     private void OnCloseButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(Cancelled));
+        EmitSignal(SignalName.Canceled);
         Close();
+    }
+
+    private void OnTranslationsChanged()
+    {
+        translatedWindowTitle = Localization.Translate(windowTitle);
     }
 }

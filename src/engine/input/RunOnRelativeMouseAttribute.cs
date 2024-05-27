@@ -50,33 +50,33 @@ public class RunOnRelativeMouseAttribute : RunOnInputWithStrengthAttribute
         switch (axis)
         {
             case CapturedMouseAxis.Left:
-                if (relative.x < 0)
+                if (relative.X < 0)
                 {
-                    Strength = -relative.x;
+                    Strength = -relative.X;
                     HeldDown = true;
                 }
 
                 break;
             case CapturedMouseAxis.Right:
-                if (relative.x > 0)
+                if (relative.X > 0)
                 {
-                    Strength = relative.x;
+                    Strength = relative.X;
                     HeldDown = true;
                 }
 
                 break;
             case CapturedMouseAxis.Up:
-                if (relative.y < 0)
+                if (relative.Y < 0)
                 {
-                    Strength = -relative.y;
+                    Strength = -relative.Y;
                     HeldDown = true;
                 }
 
                 break;
             case CapturedMouseAxis.Down:
-                if (relative.y > 0)
+                if (relative.Y > 0)
                 {
-                    Strength = relative.y;
+                    Strength = relative.Y;
                     HeldDown = true;
                 }
 
@@ -88,11 +88,14 @@ public class RunOnRelativeMouseAttribute : RunOnInputWithStrengthAttribute
         return false;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
         if (HeldDown)
         {
-            CallMethod(delta, Strength);
+            PrepareMethodParameters(ref cachedMethodCallParameters, 2, delta);
+            cachedMethodCallParameters![1] = Strength;
+
+            CallMethod(cachedMethodCallParameters);
 
             MarkMouseMotionRead();
         }

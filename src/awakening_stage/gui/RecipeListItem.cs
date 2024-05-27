@@ -2,7 +2,10 @@
 using System.Text;
 using Godot;
 
-public class RecipeListItem : Button
+/// <summary>
+///   Item in the crafting recipe list that can be selected to be crafted
+/// </summary>
+public partial class RecipeListItem : Button
 {
     [Export(PropertyHint.ColorNoAlpha)]
     public Color UncraftableItemColor = new(0.5f, 0.5f, 0.5f);
@@ -21,7 +24,7 @@ public class RecipeListItem : Button
     private IReadOnlyDictionary<WorldResource, int> availableMaterials = new Dictionary<WorldResource, int>();
 
     [Signal]
-    public delegate void OnSelected();
+    public delegate void OnSelectedEventHandler(RecipeListItem selectedItem);
 
     public CraftingRecipe? DisplayedRecipe
     {
@@ -57,6 +60,18 @@ public class RecipeListItem : Button
         UpdateShownRecipe();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += UpdateShownRecipe;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= UpdateShownRecipe;
+    }
+
     public override void _Notification(int what)
     {
         base._Notification(what);
@@ -65,19 +80,15 @@ public class RecipeListItem : Button
         {
             SetLabelSize();
         }
-        else if (what == NotificationTranslationChanged)
-        {
-            UpdateShownRecipe();
-        }
     }
 
     private void SetLabelSize()
     {
         if (textLabel != null)
         {
-            textLabel.RectSize = RectSize - new Vector2(MarginAroundLabel, MarginAroundLabel);
+            textLabel.Size = Size - new Vector2(MarginAroundLabel, MarginAroundLabel);
             var halfMargin = MarginAroundLabel / 2;
-            textLabel.RectPosition = new Vector2(halfMargin, halfMargin);
+            textLabel.Position = new Vector2(halfMargin, halfMargin);
         }
     }
 
@@ -107,7 +118,7 @@ public class RecipeListItem : Button
         ResourceAmountHelpers.CreateRichTextForResourceAmounts(displayedRecipe.RequiredResources, availableMaterials,
             materialsStringBuilder);
 
-        topLevelStringBuilder.Append(TranslationServer.Translate("CRAFTING_RECIPE_DISPLAY")
+        topLevelStringBuilder.Append(Localization.Translate("CRAFTING_RECIPE_DISPLAY")
             .FormatSafe(displayedRecipe.Name, materialsStringBuilder));
 
         // TODO: display for recipes that require tools to be present but won't consume them
@@ -124,6 +135,6 @@ public class RecipeListItem : Button
     private void OnToggledChanged(bool pressed)
     {
         if (pressed)
-            EmitSignal(nameof(OnSelected));
+            EmitSignal(SignalName.OnSelected, this);
     }
 }

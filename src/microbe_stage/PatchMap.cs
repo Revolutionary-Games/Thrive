@@ -29,6 +29,9 @@ public class PatchMap : ISaveLoadable
         Regions.Values.Aggregate(Vector2.Zero, (current, region) => current + region.ScreenCoordinates)
         / Regions.Count;
 
+    [JsonProperty]
+    public FogOfWarMode FogOfWar { get; set; }
+
     /// <summary>
     ///   Currently active patch (the one player is in)
     /// </summary>
@@ -65,8 +68,7 @@ public class PatchMap : ISaveLoadable
     {
         if (Patches.ContainsKey(patch.ID))
         {
-            throw new ArgumentException(
-                "patch cannot be added to this map, the ID is already in use: " + patch.ID);
+            throw new ArgumentException("patch cannot be added to this map, the ID is already in use: " + patch.ID);
         }
 
         Patches[patch.ID] = patch;
@@ -110,17 +112,10 @@ public class PatchMap : ISaveLoadable
         // Verify all adjacent patches are valid
         foreach (var entry in Patches)
         {
-            if (entry.Value == null)
-                return false;
-
-            if (!incomingLinks.ContainsKey(entry.Value))
-                incomingLinks[entry.Value] = false;
+            incomingLinks.TryAdd(entry.Value, false);
 
             foreach (var neighbour in entry.Value.Adjacent)
             {
-                if (neighbour == null)
-                    return false;
-
                 if (!ContainsPatch(neighbour))
                 {
                     GD.PrintErr("Patch ", entry.Value.Name, " links to non-existing patch: ",
@@ -430,6 +425,52 @@ public class PatchMap : ISaveLoadable
         }
     }
 
+    /// <summary>
+    ///   Updates the visibility of a given patch and its neighbours according to the <see cref="FogOfWarMode"/>
+    /// </summary>
+    /// <param name="patch">The patch to be updated</param>
+    /// <returns>Whether or not an update has actually been performed</returns>
+    public bool UpdatePatchVisibility(Patch patch)
+    {
+        switch (FogOfWar)
+        {
+            case FogOfWarMode.Ignored:
+                return false;
+
+            case FogOfWarMode.Intense:
+            {
+                patch.ApplyVisibility(MapElementVisibility.Shown);
+                patch.ApplyVisibilityToNeighbours(MapElementVisibility.Unknown);
+                return true;
+            }
+
+            case FogOfWarMode.Regular:
+            {
+                patch.ApplyVisibility(MapElementVisibility.Shown);
+                patch.ApplyVisibilityToNeighbours(MapElementVisibility.Shown);
+
+                foreach (var neighbour in patch.Adjacent)
+                    neighbour.ApplyVisibilityToNeighbours(MapElementVisibility.Unknown);
+
+                return true;
+            }
+
+            default:
+                return false;
+        }
+    }
+
+    /// <summary>
+    ///   Reveals all patches in the patch map
+    /// </summary>
+    public void RevealAllPatches()
+    {
+        foreach (var patch in Patches)
+        {
+            patch.Value.ApplyVisibility(MapElementVisibility.Shown);
+        }
+    }
+
     public void FinishLoading(ISaveContext? context)
     {
         RecreateAdjacencies();
@@ -444,6 +485,12 @@ public class PatchMap : ISaveLoadable
 
             patch1.AddNeighbour(patch2);
             patch2.AddNeighbour(patch1);
+
+            var region1 = patch1.Region;
+            var region2 = patch2.Region;
+
+            region1.AddPatchAdjacency(region2, patch2);
+            region2.AddPatchAdjacency(region1, patch1);
         }
 
         foreach (var (id1, id2) in RegionAdjacencies)

@@ -1,8 +1,13 @@
 ﻿using Godot;
 
-public class ScreenFilter : ColorRect
+/// <summary>
+///   Provides fun fullscreen filters
+/// </summary>
+public partial class ScreenFilter : ColorRect
 {
+#pragma warning disable CA2213
     private ShaderMaterial? material;
+#pragma warning restore CA2213
 
     public override void _EnterTree()
     {

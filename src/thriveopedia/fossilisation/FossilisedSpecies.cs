@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Formats.Tar;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using Godot;
-using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
-using Directory = Godot.Directory;
-using File = Godot.File;
+using DirAccess = Godot.DirAccess;
+using FileAccess = Godot.FileAccess;
 using Path = System.IO.Path;
 
 /// <summary>
@@ -63,39 +63,39 @@ public class FossilisedSpecies
     {
         var result = new List<string>();
 
-        using (var directory = new Directory())
+        using var directory = DirAccess.Open(Constants.FOSSILISED_SPECIES_FOLDER);
+        if (directory == null)
+            return result;
+
+        if (directory.ListDirBegin() != Error.Ok)
         {
-            if (!directory.DirExists(Constants.FOSSILISED_SPECIES_FOLDER))
-                return result;
-
-            directory.Open(Constants.FOSSILISED_SPECIES_FOLDER);
-            directory.ListDirBegin(true, true);
-
-            while (true)
-            {
-                var filename = directory.GetNext();
-
-                if (string.IsNullOrEmpty(filename))
-                    break;
-
-                if (!filename.EndsWith(Constants.FOSSIL_EXTENSION, StringComparison.Ordinal))
-                    continue;
-
-                // Skip folders
-                if (!directory.FileExists(filename))
-                    continue;
-
-                result.Add(filename);
-            }
-
-            directory.ListDirEnd();
+            GD.PrintErr("Failed to start listing fossils folder contents");
+            return result;
         }
+
+        while (true)
+        {
+            var filename = directory.GetNext();
+
+            if (string.IsNullOrEmpty(filename))
+                break;
+
+            if (!filename.EndsWith(Constants.FOSSIL_EXTENSION, StringComparison.Ordinal))
+                continue;
+
+            // Skip folders
+            if (!directory.FileExists(filename))
+                continue;
+
+            result.Add(filename);
+        }
+
+        directory.ListDirEnd();
 
         if (orderByDate)
         {
-            using var file = new File();
-            result = result.OrderBy(item =>
-                file.GetModifiedTime(Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, item))).ToList();
+            result = result.OrderBy(s =>
+                FileAccess.GetModifiedTime(Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, s))).ToList();
         }
 
         return result;
@@ -147,12 +147,10 @@ public class FossilisedSpecies
     {
         var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, fossilName);
 
-        using var directory = new Directory();
-
-        if (!directory.FileExists(target))
+        if (!FileAccess.FileExists(target))
             throw new IOException("Fossil with the given name doesn't exist");
 
-        if (directory.Remove(target) != Error.Ok)
+        if (DirAccess.RemoveAbsolute(target) != Error.Ok)
         {
             throw new IOException("Cannot delete: " + target);
         }
@@ -186,18 +184,21 @@ public class FossilisedSpecies
 
     private static void WriteDataToFossilFile(string target, string justInfo, string serialized, Image? previewImage)
     {
-        using var file = new File();
-        if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
+        using var file = FileAccess.Open(target, FileAccess.ModeFlags.Write);
+        if (file == null)
         {
             throw new IOException("Cannot open: " + target);
         }
 
         using var fileStream = new GodotFileStream(file);
         using Stream gzoStream = new GZipStream(fileStream, CompressionLevel.Optimal);
-        using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
+        using var tar = new TarWriter(gzoStream, TarEntryFormat.Pax);
 
-        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
-        TarHelper.OutputEntry(tar, SAVE_FOSSIL_JSON, Encoding.UTF8.GetBytes(serialized));
+        using var entryContent = new MemoryStream(serialized.Length);
+        using var entryWriter = new StreamWriter(entryContent, Encoding.UTF8);
+
+        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, justInfo, entryContent, entryWriter);
+        TarHelper.OutputEntry(tar, SAVE_FOSSIL_JSON, serialized, entryContent, entryWriter);
 
         if (previewImage != null)
         {
@@ -210,11 +211,8 @@ public class FossilisedSpecies
 
     private static (FossilisedSpeciesInformation Info, Species Species, Image? PreviewImage) LoadFromFile(string file)
     {
-        using (var directory = new Directory())
-        {
-            if (!directory.FileExists(file))
-                throw new IOException("Fossil with the given name doesn't exist");
-        }
+        if (!FileAccess.FileExists(file))
+            throw new IOException("Fossil with the given name doesn't exist");
 
         var (infoStr, fossilStr, previewImageData) = LoadDataFromFile(file);
 
@@ -228,11 +226,11 @@ public class FossilisedSpecies
             throw new IOException("Couldn't find fossil content in fossil file");
         }
 
-        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr!) ??
+        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr) ??
             throw new JsonException("FossilisedSpeciesInformation is null");
 
         // Use the info file to deserialize the species to the correct type
-        var speciesResult = ThriveJsonConverter.Instance.DeserializeObject<Species>(fossilStr!) ??
+        var speciesResult = ThriveJsonConverter.Instance.DeserializeObject<Species>(fossilStr) ??
             throw new JsonException("Fossil data is null");
 
         Image? previewImage = null;
@@ -251,37 +249,38 @@ public class FossilisedSpecies
         string? fossilStr = null;
         byte[]? previewImageData = null;
 
-        using var reader = new File();
-        reader.Open(file, File.ModeFlags.Read);
+        using var reader = FileAccess.Open(file, FileAccess.ModeFlags.Read);
 
-        if (!reader.IsOpen())
+        if (reader == null)
             throw new IOException("Couldn't open the file for reading");
 
         using var stream = new GodotFileStream(reader);
         using Stream gzoStream = new GZipStream(stream, CompressionMode.Decompress);
-        using var tar = new TarInputStream(gzoStream, Encoding.UTF8);
+        using var tar = new TarReader(gzoStream);
 
-        TarEntry tarEntry;
-        while ((tarEntry = tar.GetNextEntry()) != null)
+        while (tar.GetNextEntry(false) is { } tarEntry)
         {
-            if (tarEntry.IsDirectory)
+            if (tarEntry.EntryType is not TarEntryType.V7RegularFile and not TarEntryType.RegularFile)
+                continue;
+
+            if (tarEntry.DataStream == null)
                 continue;
 
             if (tarEntry.Name == SAVE_INFO_JSON)
             {
-                infoStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
+                infoStr = TarHelper.ReadStringEntry(tarEntry);
             }
             else if (tarEntry.Name == SAVE_FOSSIL_JSON)
             {
-                fossilStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
+                fossilStr = TarHelper.ReadStringEntry(tarEntry);
             }
             else if (tarEntry.Name == SAVE_PREVIEW_IMAGE)
             {
-                previewImageData = TarHelper.ReadBytesEntry(tar, (int)tarEntry.Size);
+                previewImageData = TarHelper.ReadBytesEntry(tarEntry);
             }
             else
             {
-                GD.PrintErr("Unknown file in fossil: ", tarEntry.Name);
+                GD.Print("Unknown file in fossil: ", tarEntry.Name);
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Allows placing individual hexes with data in a layout
@@ -14,13 +15,16 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>
     {
     }
 
+    [JsonConstructor]
     public IndividualHexLayout()
     {
     }
 
-    protected override IEnumerable<Hex> GetHexComponentPositions(HexWithData<TData> hex)
+    protected override void GetHexComponentPositions(HexWithData<TData> hex, List<Hex> result)
     {
+        result.Clear();
+
         // The single hex is always at 0,0 as it's at the exact position the hex's overall position is
-        yield return new Hex(0, 0);
+        result.Add(new Hex(0, 0));
     }
 }

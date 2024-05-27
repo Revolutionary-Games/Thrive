@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   A widget containing a list of saves
 /// </summary>
-public class SaveList : ScrollContainer
+public partial class SaveList : ScrollContainer
 {
     [Export]
     public bool AutoRefreshOnFirstVisible = true;
@@ -90,16 +90,16 @@ public class SaveList : ScrollContainer
     private bool isLoadingSave;
 
     [Signal]
-    public delegate void OnSelectedChanged();
+    public delegate void OnSelectedChangedEventHandler();
 
     [Signal]
-    public delegate void OnItemsChanged();
+    public delegate void OnItemsChangedEventHandler();
 
     [Signal]
-    public delegate void OnConfirmed(SaveListItem item);
+    public delegate void OnConfirmedEventHandler(SaveListItem item);
 
     [Signal]
-    public delegate void OnSaveLoaded(string saveName);
+    public delegate void OnSaveLoadedEventHandler(string saveName);
 
     public override void _Ready()
     {
@@ -119,7 +119,7 @@ public class SaveList : ScrollContainer
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         bool isCurrentlyVisible = IsVisibleInTree();
 
@@ -150,30 +150,33 @@ public class SaveList : ScrollContainer
 
             foreach (var save in saves)
             {
-                var item = (SaveListItem)listItemScene.Instance();
+                var item = listItemScene.Instantiate<SaveListItem>();
                 item.Selectable = SelectableItems;
                 item.Loadable = LoadableItems;
 
                 if (SelectableItems)
-                    item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
+                {
+                    item.Connect(SaveListItem.SignalName.OnSelectedChanged,
+                        new Callable(this, nameof(OnSubItemSelectedChanged)));
+                }
 
-                item.Connect(nameof(SaveListItem.OnDoubleClicked), this, nameof(OnItemDoubleClicked),
-                    new Array { item });
+                item.Connect(SaveListItem.SignalName.OnDoubleClicked, Callable.From(() => OnItemDoubleClicked(item)));
 
-                item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
+                item.Connect(SaveListItem.SignalName.OnDeleted, Callable.From(() => OnDeletePressed(save)));
 
-                item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
+                item.Connect(SaveListItem.SignalName.OnOldSaveLoaded, Callable.From(() => OnOldSaveLoaded(save)));
 
-                // This can't use binds because we need an additional dynamic parameter from the list item here
-                item.Connect(nameof(SaveListItem.OnUpgradeableSaveLoaded), this, nameof(OnUpgradeableSaveLoaded));
-                item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
-                item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded),
-                    new Array { save });
-                item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
-                item.Connect(nameof(SaveListItem.OnDifferentVersionPrototypeLoaded), this,
-                    nameof(OnDifferentVersionPrototypeLoaded));
-                item.Connect(nameof(SaveListItem.OnProblemFreeSaveLoaded), this, nameof(OnProblemFreeLoaded),
-                    new Array { save });
+                // This can't use binds because we need an additional Dynamic parameter from the list item here
+                item.Connect(SaveListItem.SignalName.OnUpgradeableSaveLoaded,
+                    new Callable(this, nameof(OnUpgradeableSaveLoaded)));
+                item.Connect(SaveListItem.SignalName.OnNewSaveLoaded, Callable.From(() => OnNewSaveLoaded(save)));
+                item.Connect(SaveListItem.SignalName.OnBrokenSaveLoaded, Callable.From(() => OnInvalidLoaded(save)));
+                item.Connect(SaveListItem.SignalName.OnKnownIncompatibleLoaded,
+                    new Callable(this, nameof(OnKnownIncompatibleLoaded)));
+                item.Connect(SaveListItem.SignalName.OnDifferentVersionPrototypeLoaded,
+                    new Callable(this, nameof(OnDifferentVersionPrototypeLoaded)));
+                item.Connect(SaveListItem.SignalName.OnProblemFreeSaveLoaded,
+                    Callable.From(() => OnProblemFreeLoaded(save)));
 
                 item.SaveName = save;
                 savesList.AddChild(item);
@@ -190,7 +193,7 @@ public class SaveList : ScrollContainer
 
     public IEnumerable<SaveListItem> GetSelectedItems()
     {
-        foreach (SaveListItem child in savesList.GetChildren())
+        foreach (var child in savesList.GetChildren().OfType<SaveListItem>())
         {
             if (child.Selectable && child.Selected)
                 yield return child;
@@ -210,7 +213,7 @@ public class SaveList : ScrollContainer
         loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
         TaskExecutor.Instance.AddTask(readSavesList);
-        EmitSignal(nameof(OnItemsChanged));
+        EmitSignal(SignalName.OnItemsChanged);
     }
 
     protected override void Dispose(bool disposing)
@@ -239,7 +242,7 @@ public class SaveList : ScrollContainer
 
     private void OnSubItemSelectedChanged()
     {
-        EmitSignal(nameof(OnSelectedChanged));
+        EmitSignal(SignalName.OnSelectedChanged);
     }
 
     private void OnDeletePressed(string saveName)
@@ -249,7 +252,7 @@ public class SaveList : ScrollContainer
         saveToBeDeleted = saveName;
 
         // Deleting this save cannot be undone, are you sure you want to permanently delete {0}?
-        deleteConfirmDialog.DialogText = TranslationServer.Translate("SAVE_DELETE_WARNING").FormatSafe(saveName);
+        deleteConfirmDialog.DialogText = Localization.Translate("SAVE_DELETE_WARNING").FormatSafe(saveName);
         deleteConfirmDialog.PopupCenteredShrink();
     }
 
@@ -278,7 +281,7 @@ public class SaveList : ScrollContainer
         saveToBeDeleted = null;
 
         Refresh();
-        EmitSignal(nameof(OnItemsChanged));
+        EmitSignal(SignalName.OnItemsChanged);
     }
 
     private void OnOldSaveLoaded(string saveName)
@@ -435,7 +438,7 @@ public class SaveList : ScrollContainer
 
     private void OnItemDoubleClicked(SaveListItem item)
     {
-        EmitSignal(nameof(OnConfirmed), item);
+        EmitSignal(SignalName.OnConfirmed, item);
     }
 
     private void LoadSave()
@@ -448,7 +451,7 @@ public class SaveList : ScrollContainer
 
         SaveHelper.LoadSave(saveToBeLoaded);
 
-        EmitSignal(nameof(OnSaveLoaded), saveToBeLoaded);
+        EmitSignal(SignalName.OnSaveLoaded, saveToBeLoaded);
         saveToBeLoaded = null;
         isLoadingSave = false;
     }

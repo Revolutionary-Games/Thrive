@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -8,8 +9,17 @@ public static class UnhandledExceptionLogger
 {
     private static bool modsEnabled;
 
-    public static void OnUnhandledException(object sender, UnhandledExceptionArgs args)
+    private static bool reportedIssue;
+
+    public static void OnUnhandledException(object sender, UnhandledExceptionEventArgs eventArgs)
     {
+        // Only report the first as now Godot doesn't shut down on unhandled exception so this could keep getting
+        // printed a lot
+        if (reportedIssue)
+            return;
+
+        reportedIssue = true;
+
         var builder = new StringBuilder(500);
 
         // Don't change this as the launcher depends on this, in fact it would be nice to move this to a shared
@@ -25,7 +35,7 @@ public static class UnhandledExceptionLogger
             builder.Append("The following exception prevented the game from running:\n\n");
         }
 
-        builder.Append(args.Exception);
+        builder.Append(eventArgs.ExceptionObject);
 
         if (modsEnabled)
         {
@@ -42,6 +52,8 @@ public static class UnhandledExceptionLogger
         builder.Append("------------  End of Unhandled Exception Log  ------------");
 
         GD.PrintErr(builder.ToString());
+
+        // TODO: maybe this should signal the game to quit or trigger a popup or something to inform the user?
     }
 
     /// <summary>

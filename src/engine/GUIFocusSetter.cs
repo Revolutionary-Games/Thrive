@@ -5,24 +5,28 @@ using Godot;
 /// <summary>
 ///   Manages setting the right GUI control to grab focus based on <see cref="FocusGrabber"/> Nodes that are visible
 /// </summary>
-public class GUIFocusSetter : Control
+[GodotAutoload]
+public partial class GUIFocusSetter : Control
 {
     private static GUIFocusSetter? instance;
 
     private readonly List<FocusGrabber> activeGrabbers = new();
     private bool dirty = true;
-    private float elapsed;
+    private double elapsed;
 
     private GUIFocusSetter()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
         MouseFilter = MouseFilterEnum.Ignore;
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     public static GUIFocusSetter Instance => instance ?? throw new InstanceNotLoadedYetException();
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         elapsed += delta;
 
@@ -63,7 +67,17 @@ public class GUIFocusSetter : Control
     private void CheckNodeToGiveFocusTo()
     {
         // Highest priority grabber has focus
-        var grabber = activeGrabbers.OrderByDescending(g => g.Priority).FirstOrDefault();
+        float highestPriorityGrabber = float.MinValue;
+        FocusGrabber? grabber = null;
+
+        foreach (var activeGrabber in activeGrabbers)
+        {
+            if (activeGrabber.Priority > highestPriorityGrabber)
+            {
+                highestPriorityGrabber = activeGrabber.Priority;
+                grabber = activeGrabber;
+            }
+        }
 
         if (grabber == null)
         {
@@ -71,7 +85,7 @@ public class GUIFocusSetter : Control
             return;
         }
 
-        var currentlyFocused = GetFocusOwner();
+        var currentlyFocused = GetViewport().GuiGetFocusOwner();
 
         if (currentlyFocused != null && currentlyFocused.IsVisibleInTree())
         {
@@ -101,6 +115,13 @@ public class GUIFocusSetter : Control
                 if (targetNode.IsVisibleInTree())
                 {
                     targetNode.GrabFocus();
+
+#if DEBUG
+
+                    // Focus grabs sometimes fail. Maybe only when using a Node that is inside a Window container?
+                    if (GetViewport().GuiGetFocusOwner() != targetNode)
+                        GD.PrintErr("Failed to grab focus to wanted node");
+#endif
                 }
             }
         }

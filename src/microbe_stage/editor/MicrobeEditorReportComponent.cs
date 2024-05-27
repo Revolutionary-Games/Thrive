@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 /// </summary>
 [IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn", UsesEarlyResolve = false)]
-public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
+public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
 {
     [Export]
     public NodePath? AutoEvoSubtabButtonPath;
@@ -31,24 +31,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     public NodePath TimeIndicatorPath = null!;
 
     [Export]
-    public NodePath PhysicalConditionsIconLegendPath = null!;
-
-    [Export]
-    public NodePath TemperatureChartPath = null!;
-
-    [Export]
-    public NodePath SunlightChartPath = null!;
-
-    [Export]
-    public NodePath AtmosphericGassesChartPath = null!;
-
-    [Export]
-    public NodePath CompoundsChartPath = null!;
-
-    [Export]
-    public NodePath SpeciesPopulationChartPath = null!;
-
-    [Export]
     public NodePath GlucoseReductionLabelPath = null!;
 
     [Export]
@@ -62,6 +44,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
     [Export]
     public NodePath ReportTabPatchSelectorPath = null!;
+
+    private readonly NodePath scaleReference = new("scale");
 
 #pragma warning disable CA2213
     private Button autoEvoSubtabButton = null!;
@@ -77,6 +61,18 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     private Label reportTabPatchName = null!;
     private OptionButton reportTabPatchSelector = null!;
 
+    [Export]
+    private CollapsibleList speciesChartContainer = null!;
+
+    [Export]
+    private CollapsibleList physicalConditionsChartContainer = null!;
+
+    [Export]
+    private CollapsibleList atmosphereChartContainer = null!;
+
+    [Export]
+    private CollapsibleList compoundsChartContainer = null!;
+
     private HBoxContainer physicalConditionsIconLegends = null!;
     private LineChart temperatureChart = null!;
     private LineChart sunlightChart = null!;
@@ -84,7 +80,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     private LineChart compoundsChart = null!;
     private LineChart speciesPopulationChart = null!;
 
-    private Texture temperatureIcon = null!;
+    private Texture2D temperatureIcon = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -113,16 +109,17 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         autoEvoLabel = GetNode<CustomRichTextLabel>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<CustomRichTextLabel>(ExternalEffectsLabelPath);
 
-        physicalConditionsIconLegends = GetNode<HBoxContainer>(PhysicalConditionsIconLegendPath);
-        temperatureChart = GetNode<LineChart>(TemperatureChartPath);
-        sunlightChart = GetNode<LineChart>(SunlightChartPath);
-        atmosphericGassesChart = GetNode<LineChart>(AtmosphericGassesChartPath);
-        compoundsChart = GetNode<LineChart>(CompoundsChartPath);
-        speciesPopulationChart = GetNode<LineChart>(SpeciesPopulationChartPath);
+        physicalConditionsIconLegends = physicalConditionsChartContainer.GetItem<Container>("LegendContainer")
+            .GetChild<HBoxContainer>(0);
+        temperatureChart = physicalConditionsChartContainer.GetItem<LineChart>("Temperature");
+        sunlightChart = physicalConditionsChartContainer.GetItem<LineChart>("Sunlight");
+        atmosphericGassesChart = atmosphereChartContainer.GetItem<LineChart>("AtmosphereChart");
+        compoundsChart = compoundsChartContainer.GetItem<LineChart>("CompoundsChart");
+        speciesPopulationChart = speciesChartContainer.GetItem<LineChart>("SpeciesChart");
 
         reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
 
-        temperatureIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/Temperature.png");
+        temperatureIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/Temperature.png");
 
         ApplyReportSubtab();
         RegisterTooltips();
@@ -141,6 +138,9 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
         foreach (var patch in Editor.CurrentPatch.GetClosestConnectedPatches())
         {
+            if (patch.Visibility != MapElementVisibility.Shown)
+                continue;
+
             reportTabPatchSelector.AddItem(patch.Name.ToString(), patch.ID);
         }
 
@@ -163,23 +163,23 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     public void UpdateTimeIndicator(double value)
     {
         timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " "
-            + TranslationServer.Translate("MEGA_YEARS");
+            + Localization.Translate("MEGA_YEARS");
 
         var tooltip = ToolTipManager.Instance.GetToolTip("timeIndicator", "editor");
 
         if (tooltip == null)
             throw new InvalidOperationException("Could not find time indicator tooltip");
 
-        tooltip.Description = TranslationServer.Translate("TIME_INDICATOR_TOOLTIP")
+        tooltip.Description = Localization.Translate("TIME_INDICATOR_TOOLTIP")
             .FormatSafe(Editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
     public void UpdateGlucoseReduction(float value)
     {
-        var percentage = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(value * 100));
+        var percentage = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(value * 100));
 
         // The amount of glucose has been reduced to {0} of the previous amount.
-        glucoseReductionLabel.Text = TranslationServer.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED")
+        glucoseReductionLabel.Text = Localization.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED")
             .FormatSafe(percentage);
     }
 
@@ -206,7 +206,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     {
     }
 
-    public override void OnValidAction()
+    public override void OnValidAction(IEnumerable<CombinableActionData> actions)
     {
     }
 
@@ -245,18 +245,14 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
                 TimelineSubtabPath.Dispose();
                 TimelineEventsContainerPath.Dispose();
                 TimeIndicatorPath.Dispose();
-                PhysicalConditionsIconLegendPath.Dispose();
-                TemperatureChartPath.Dispose();
-                SunlightChartPath.Dispose();
-                AtmosphericGassesChartPath.Dispose();
-                CompoundsChartPath.Dispose();
-                SpeciesPopulationChartPath.Dispose();
                 GlucoseReductionLabelPath.Dispose();
                 AutoEvoLabelPath.Dispose();
                 ExternalEffectsLabelPath.Dispose();
                 ReportTabPatchNamePath.Dispose();
                 ReportTabPatchSelectorPath.Dispose();
             }
+
+            scaleReference.Dispose();
         }
 
         base.Dispose(disposing);
@@ -287,7 +283,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
             Colour = new Color(0.67f, 1, 0.24f),
         };
 
-        temperatureChart.AddDataSet(TranslationServer.Translate("TEMPERATURE"), temperatureData);
+        temperatureChart.AddDataSet(Localization.Translate("TEMPERATURE"), temperatureData);
 
         foreach (var snapshot in patch.History)
         {
@@ -354,7 +350,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
                 // We test if the species info was recorded before using it.
                 // This is especially for compatibility with older versions, to avoid crashed due to an invalid key.
                 // TODO: Use a proper save upgrade (e.g. summing population to generate info).
-                if (snapshot.RecordedSpeciesInfo.TryGetValue(entry.Key, out SpeciesInfo speciesInfo))
+                if (snapshot.RecordedSpeciesInfo.TryGetValue(entry.Key, out var speciesInfo))
                 {
                     extinctEverywhere = speciesInfo.Population <= 0;
                 }
@@ -399,7 +395,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
             }
         }
 
-        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
 
         sunlightChart.TooltipYAxisFormat = percentageFormat + " lx";
         atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
@@ -417,25 +413,23 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
             speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.CustomOrNone;
         }
 
-        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5, null, null, null, 5);
-        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5, null, null, null, 5);
-        atmosphericGassesChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"), null,
-            null, 5);
-        speciesPopulationChart.Plot(
-            TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"),
-            speciesPopDatasetsLegend,
+        sunlightChart.Plot(Localization.Translate("YEARS"), "% lx", 5, null, null, null, 5);
+        temperatureChart.Plot(Localization.Translate("YEARS"), "°C", 5, null, null, null, 5);
+        atmosphericGassesChart.Plot(Localization.Translate("YEARS"), "%", 5,
+            Localization.Translate("ATMOSPHERIC_GASSES"), null, null, 5);
+        speciesPopulationChart.Plot(Localization.Translate("YEARS"), string.Empty, 5,
+            Localization.Translate("SPECIES_LIST"), speciesPopDatasetsLegend,
             Editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
-        compoundsChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"), null, null, 5);
+        compoundsChart.Plot(Localization.Translate("YEARS"), "%", 5, Localization.Translate("COMPOUNDS"),
+            null, null, 5);
 
         OnPhysicalConditionsChartLegendPressed("temperature");
 
         foreach (var point in extinctPoints)
         {
             var extinctionType = point.ExtinctEverywhere ?
-                TranslationServer.Translate("EXTINCT_FROM_THE_PLANET") :
-                TranslationServer.Translate("EXTINCT_FROM_PATCH");
+                Localization.Translate("EXTINCT_FROM_THE_PLANET") :
+                Localization.Translate("EXTINCT_FROM_PATCH");
 
             // Override datapoint tooltip to show extinction type instead of just zero.
             // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
@@ -443,11 +437,11 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
                 $"{point.Name}\n{point.TimePeriod.FormatNumber()}\n{extinctionType}");
         }
 
-        var cross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
-        var skull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
+        var cross = GD.Load<Texture2D>("res://assets/textures/gui/bevel/graphMarkerCross.png");
+        var skull = GD.Load<Texture2D>("res://assets/textures/gui/bevel/SuicideIcon.png");
 
-        speciesPopulationChart.AddIconLegend(cross, TranslationServer.Translate("EXTINCT_FROM_PATCH"));
-        speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
+        speciesPopulationChart.AddIconLegend(cross, Localization.Translate("EXTINCT_FROM_PATCH"));
+        speciesPopulationChart.AddIconLegend(skull, Localization.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
     private void UpdateTimeline(Patch? mapSelectedPatch, Patch? patch = null)
@@ -477,11 +471,11 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         {
             case ReportSubtab.AutoEvo:
                 autoEvoSubtab.Show();
-                autoEvoSubtabButton.Pressed = true;
+                autoEvoSubtabButton.ButtonPressed = true;
                 break;
             case ReportSubtab.Timeline:
                 timelineSubtab.Show();
-                timelineSubtabButton.Pressed = true;
+                timelineSubtabButton.ButtonPressed = true;
                 Invoke.Instance.Queue(timelineSubtab.TimelineAutoScrollToCurrentTimePeriod);
                 break;
             default:
@@ -546,21 +540,19 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     private void OnPhysicalConditionsChartLegendMoused(string name, bool hover)
     {
         var button = physicalConditionsIconLegends.GetNode<TextureButton>(name);
-        var tween = physicalConditionsIconLegends.GetNode<Tween>("Tween");
+        var tween = CreateTween();
 
         if (hover)
         {
-            tween.InterpolateProperty(button, "rect_scale", Vector2.One, new Vector2(1.1f, 1.1f), 0.1f);
-            tween.Start();
+            tween.TweenProperty(button, scaleReference, new Vector2(1.1f, 1.1f), 0.1);
 
             button.Modulate = Colors.LightGray;
         }
         else
         {
-            tween.InterpolateProperty(button, "rect_scale", new Vector2(1.1f, 1.1f), Vector2.One, 0.1f);
-            tween.Start();
+            tween.TweenProperty(button, scaleReference, Vector2.One, 0.1);
 
-            button.Modulate = button.Pressed ? Colors.White : Colors.DarkGray;
+            button.Modulate = button.ButtonPressed ? Colors.White : Colors.DarkGray;
         }
     }
 }

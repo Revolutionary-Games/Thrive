@@ -1,10 +1,11 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
 
 /// <summary>
 ///   A custom <see cref="Control"/> that displays a list of options. Opening and closing can be animated.
 ///   For the built-in engine version, see <see cref="PopupMenu"/>.
 /// </summary>
-public class CustomPopupMenu : TopLevelContainer
+public partial class CustomPopupMenu : TopLevelContainer
 {
     [Export]
     public NodePath? PanelContainerPath;
@@ -28,7 +29,7 @@ public class CustomPopupMenu : TopLevelContainer
 
     public void RemapDynamicChildren()
     {
-        foreach (Control child in GetChildren())
+        foreach (var child in GetChildren().OfType<Control>())
         {
             if (child.Equals(panelContainer))
                 continue;
@@ -43,7 +44,7 @@ public class CustomPopupMenu : TopLevelContainer
 
     protected override void OnOpen()
     {
-        CreateTween().TweenProperty(this, "rect_scale", Vector2.One, 0.2f)
+        CreateTween().TweenProperty(this, "scale", Vector2.One, 0.2)
             .From(Vector2.Zero)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
@@ -52,11 +53,11 @@ public class CustomPopupMenu : TopLevelContainer
     protected override void OnClose()
     {
         var tween = CreateTween();
-        tween.TweenProperty(this, "rect_scale", Vector2.Zero, 0.15f)
+        tween.TweenProperty(this, "scale", Vector2.Zero, 0.15)
             .From(Vector2.One)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
-        tween.TweenCallback(this, nameof(OnClosingAnimationFinished));
+        tween.TweenCallback(new Callable(this, nameof(OnClosingAnimationFinished)));
     }
 
     protected override void Dispose(bool disposing)

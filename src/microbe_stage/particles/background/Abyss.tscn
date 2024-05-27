@@ -1,55 +1,54 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://1o1h5xtb81cj"]
 
-[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=1]
+[ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="1"]
 
-[sub_resource type="SpatialMaterial" id=1]
-flags_transparent = true
-flags_unshaded = true
-flags_ensure_correct_normals = true
+[sub_resource type="StandardMaterial3D" id="1"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
-params_blend_mode = 1
-params_billboard_mode = 3
+albedo_color = Color(0.396078, 0.439216, 0.541176, 1)
+albedo_texture = ExtResource("1")
+billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_color = Color( 0.396078, 0.439216, 0.541176, 1 )
-albedo_texture = ExtResource( 1 )
 
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.392593, 0.592593, 1 )
-colors = PoolColorArray( 0.572549, 0.580392, 0.6, 0.0392157, 1, 1, 1, 1, 1, 1, 1, 1, 0.572549, 0.580392, 0.6, 0.0392157 )
+[sub_resource type="Gradient" id="2"]
+offsets = PackedFloat32Array(0, 0.392593, 0.592593, 1)
+colors = PackedColorArray(0.572549, 0.580392, 0.6, 0.0392157, 1, 1, 1, 1, 1, 1, 1, 1, 0.572549, 0.580392, 0.6, 0.0392157)
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture2D" id="3"]
+gradient = SubResource("2")
 
-[sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 0.784091 ), 0.0, 1.25103, 0, 0, Vector2( 0.512658, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.729545 ), -1.58756, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="4"]
+_data = [Vector2(0, 0.784091), 0.0, 1.25103, 0, 0, Vector2(0.512658, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.729545), -1.58756, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id="5"]
+curve = SubResource("4")
 
-[sub_resource type="ParticlesMaterial" id=6]
-emission_shape = 2
-emission_box_extents = Vector3( 100, 100, 100 )
+[sub_resource type="ParticleProcessMaterial" id="6"]
+emission_shape = 3
+emission_box_extents = Vector3(100, 100, 100)
 spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 0.5
-initial_velocity_random = 1.0
-scale = 2.0
-scale_random = 1.0
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
+initial_velocity_min = -0.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+scale_curve = SubResource("5")
+color_ramp = SubResource("3")
 
-[sub_resource type="QuadMesh" id=7]
+[sub_resource type="QuadMesh" id="7"]
 
-[node name="Abyss" type="Particles"]
-pause_mode = 1
-material_override = SubResource( 1 )
+[node name="Abyss" type="GPUParticles3D"]
+process_mode = 1
+material_override = SubResource("1")
 cast_shadow = 0
 amount = 15
 lifetime = 5.0
 preprocess = 5.0
 randomness = 0.5
-visibility_aabb = AABB( -99.0033, -25.7145, -118.539, 198.007, 51.429, 237.077 )
-process_material = SubResource( 6 )
-draw_pass_1 = SubResource( 7 )
+visibility_aabb = AABB(-99.0033, -25.7145, -118.539, 198.007, 51.429, 237.077)
+process_material = SubResource("6")
+draw_pass_1 = SubResource("7")

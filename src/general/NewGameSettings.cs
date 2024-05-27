@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG64;
+using Container = Godot.Container;
 
-public class NewGameSettings : ControlWithInput
+/// <summary>
+///   New game settings screen
+/// </summary>
+public partial class NewGameSettings : ControlWithInput
 {
     /// <summary>
     ///   When true this menu works differently to facilitate beginning the microbe stage in a descended game
@@ -91,6 +97,12 @@ public class NewGameSettings : ControlWithInput
     public NodePath OsmoregulationMultiplierReadoutPath = null!;
 
     [Export]
+    public NodePath FogOfWarModeDropdownPath = null!;
+
+    [Export]
+    public NodePath FogOfWarModeDescriptionPath = null!;
+
+    [Export]
     public NodePath FreeGlucoseCloudButtonPath = null!;
 
     [Export]
@@ -98,6 +110,9 @@ public class NewGameSettings : ControlWithInput
 
     [Export]
     public NodePath LimitGrowthRateButtonPath = null!;
+
+    [Export]
+    public NodePath OrganelleUnlocksEnabledPath = null!;
 
     [Export]
     public NodePath LifeOriginButtonPath = null!;
@@ -173,9 +188,12 @@ public class NewGameSettings : ControlWithInput
     private LineEdit glucoseDecayRateReadout = null!;
     private HSlider osmoregulationMultiplier = null!;
     private LineEdit osmoregulationMultiplierReadout = null!;
+    private OptionButton fogOfWarModeDropdown = null!;
+    private Label fogOfWarModeDescription = null!;
     private Button freeGlucoseCloudButton = null!;
     private Button passiveReproductionButton = null!;
     private Button limitGrowthRateButton = null!;
+    private Button organelleUnlocksEnabled = null!;
 
     // Planet controls
     private OptionButton lifeOriginButton = null!;
@@ -204,20 +222,20 @@ public class NewGameSettings : ControlWithInput
     /// </summary>
     private GameProperties? descendedGame;
 
-    private int latestValidSeed;
+    private long latestValidSeed;
 
     private IEnumerable<DifficultyPreset> difficultyPresets = null!;
     private DifficultyPreset normal = null!;
     private DifficultyPreset custom = null!;
 
     [Signal]
-    public delegate void OnNewGameSettingsClosed();
+    public delegate void OnNewGameSettingsClosedEventHandler();
 
     [Signal]
-    public delegate void OnWantToSwitchToOptionsMenu();
+    public delegate void OnWantToSwitchToOptionsMenuEventHandler();
 
     [Signal]
-    public delegate void OnNewGameVideoStarted();
+    public delegate void OnNewGameVideoStartedEventHandler();
 
     private enum SelectedOptionsTab
     {
@@ -255,9 +273,12 @@ public class NewGameSettings : ControlWithInput
         glucoseDecayRateReadout = GetNode<LineEdit>(GlucoseDecayRateReadoutPath);
         osmoregulationMultiplier = GetNode<HSlider>(OsmoregulationMultiplierPath);
         osmoregulationMultiplierReadout = GetNode<LineEdit>(OsmoregulationMultiplierReadoutPath);
+        fogOfWarModeDropdown = GetNode<OptionButton>(FogOfWarModeDropdownPath);
+        fogOfWarModeDescription = GetNode<Label>(FogOfWarModeDescriptionPath);
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
         passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
         limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
+        organelleUnlocksEnabled = GetNode<Button>(OrganelleUnlocksEnabledPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
@@ -272,6 +293,20 @@ public class NewGameSettings : ControlWithInput
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
         backButton = GetNode<Button>(BackButtonPath);
         startButton = GetNode<Button>(StartButtonPath);
+
+        // Difficulty presets need to be set here as the value sets below will trigger difficulty change callbacks
+        var simulationParameters = SimulationParameters.Instance;
+
+        difficultyPresets = simulationParameters.GetAllDifficultyPresets();
+        normal = simulationParameters.GetDifficultyPreset("normal");
+        custom = simulationParameters.GetDifficultyPreset("custom");
+
+        foreach (var preset in difficultyPresets.OrderBy(p => p.Index))
+        {
+            // The untranslated name will be translated automatically by Godot during runtime
+            difficultyPresetButton.AddItem(preset.UntranslatedName);
+            difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
+        }
 
         mpMultiplier.MinValue = Constants.MIN_MP_MULTIPLIER;
         mpMultiplier.MaxValue = Constants.MAX_MP_MULTIPLIER;
@@ -288,17 +323,11 @@ public class NewGameSettings : ControlWithInput
 
         checkOptionsMenuAdviceContainer = GetNode<Container>(CheckOptionsMenuAdviceContainerPath);
 
-        var simulationParameters = SimulationParameters.Instance;
-
-        difficultyPresets = simulationParameters.GetAllDifficultyPresets();
-        normal = simulationParameters.GetDifficultyPreset("normal");
-        custom = simulationParameters.GetDifficultyPreset("custom");
-
-        foreach (var preset in difficultyPresets.OrderBy(p => p.Index))
+        // Add items to the fog of war dropdown
+        foreach (var mode in new[] { FogOfWarMode.Ignored, FogOfWarMode.Regular, FogOfWarMode.Intense })
         {
-            // The untranslated name will be translated automatically by Godot during runtime
-            difficultyPresetButton.AddItem(preset.UntranslatedName);
-            difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
+            fogOfWarModeDropdown.AddItem(Localization.Translate(mode.GetAttribute<DescriptionAttribute>().Description),
+                (int)mode);
         }
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
@@ -310,7 +339,7 @@ public class NewGameSettings : ControlWithInput
         SetSeed(seed);
 
         // Make sure non-lawk options are disabled if lawk is set to true on start-up
-        UpdateLifeOriginOptions(lawkButton.Pressed);
+        UpdateLifeOriginOptions(lawkButton.ButtonPressed);
 
         if (Descending)
         {
@@ -365,16 +394,19 @@ public class NewGameSettings : ControlWithInput
         playerDeathPopulationPenalty.Value = difficulty.PlayerDeathPopulationPenalty;
         glucoseDecayRate.Value = difficulty.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = difficulty.OsmoregulationMultiplier;
-        freeGlucoseCloudButton.Pressed = difficulty.FreeGlucoseCloud;
-        passiveReproductionButton.Pressed = difficulty.PassiveReproduction;
-        limitGrowthRateButton.Pressed = difficulty.LimitGrowthRate;
+        fogOfWarModeDropdown.Selected = (int)difficulty.FogOfWarMode;
+        freeGlucoseCloudButton.ButtonPressed = difficulty.FreeGlucoseCloud;
+        passiveReproductionButton.ButtonPressed = difficulty.PassiveReproduction;
+        limitGrowthRateButton.ButtonPressed = difficulty.LimitGrowthRate;
+        organelleUnlocksEnabled.ButtonPressed = difficulty.OrganelleUnlocksEnabled;
 
+        UpdateFogOfWarModeDescription(difficulty.FogOfWarMode);
         UpdateSelectedDifficultyPresetControl();
 
         lifeOriginButton.Selected = (int)settings.Origin;
 
-        lawkButton.Pressed = settings.LAWK;
-        dayNightCycleButton.Pressed = settings.DayNightCycleEnabled;
+        lawkButton.ButtonPressed = settings.LAWK;
+        dayNightCycleButton.ButtonPressed = settings.DayNightCycleEnabled;
         dayLength.Value = settings.DayLength;
 
         // Copy the seed from the settings, as there isn't one method to set this, this is done a bit clumsily like
@@ -385,13 +417,13 @@ public class NewGameSettings : ControlWithInput
         SetSeed(seedText);
 
         // Always set prototypes to true as the player must have been there to descend
-        includeMulticellularButton.Pressed = true;
+        includeMulticellularButton.ButtonPressed = true;
 
         // And also turn LAWK off because if the player initially played with it on they'll probably want to experience
         // what they missed now. If they still wanted to play with LAWK on they can just put the checkbox back
-        lawkButton.Pressed = false;
+        lawkButton.ButtonPressed = false;
 
-        easterEggsButton.Pressed = settings.EasterEggs;
+        easterEggsButton.ButtonPressed = settings.EasterEggs;
     }
 
     public void ReportValidityOfGameSeed(bool valid)
@@ -401,14 +433,14 @@ public class NewGameSettings : ControlWithInput
             GUICommon.MarkInputAsValid(gameSeed);
             GUICommon.MarkInputAsValid(gameSeedAdvanced);
             startButton.Disabled = false;
-            startButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
+            startButton.TooltipText = Localization.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
         }
         else
         {
             GUICommon.MarkInputAsInvalid(gameSeed);
             GUICommon.MarkInputAsInvalid(gameSeedAdvanced);
             startButton.Disabled = true;
-            startButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
+            startButton.TooltipText = Localization.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
     }
 
@@ -443,9 +475,12 @@ public class NewGameSettings : ControlWithInput
                 GlucoseDecayRateReadoutPath.Dispose();
                 OsmoregulationMultiplierPath.Dispose();
                 OsmoregulationMultiplierReadoutPath.Dispose();
+                FogOfWarModeDropdownPath.Dispose();
+                FogOfWarModeDescriptionPath.Dispose();
                 FreeGlucoseCloudButtonPath.Dispose();
                 PassiveReproductionButtonPath.Dispose();
                 LimitGrowthRateButtonPath.Dispose();
+                OrganelleUnlocksEnabledPath.Dispose();
                 LifeOriginButtonPath.Dispose();
                 LifeOriginButtonAdvancedPath.Dispose();
                 LAWKButtonPath.Dispose();
@@ -474,13 +509,23 @@ public class NewGameSettings : ControlWithInput
 
     private string GenerateNewRandomSeed()
     {
-        var random = new Random();
-        return random.Next().ToString();
+        var random = new XoShiRo256starstar();
+
+        string result;
+
+        // Generate seeds until valid (0 is not considered valid)
+        do
+        {
+            result = random.Next64().ToString();
+        }
+        while (result == "0");
+
+        return result;
     }
 
     private void SetSeed(string text)
     {
-        bool valid = int.TryParse(text, out int seed) && seed > 0;
+        bool valid = long.TryParse(text, out var seed) && seed > 0;
         ReportValidityOfGameSeed(valid);
         if (valid)
             latestValidSeed = seed;
@@ -506,15 +551,15 @@ public class NewGameSettings : ControlWithInput
         {
             case SelectedOptionsTab.Difficulty:
                 difficultyTab.Show();
-                difficultyTabButton.Pressed = true;
+                difficultyTabButton.ButtonPressed = true;
                 break;
             case SelectedOptionsTab.Planet:
                 planetTab.Show();
-                planetTabButton.Pressed = true;
+                planetTabButton.ButtonPressed = true;
                 break;
             case SelectedOptionsTab.Miscellaneous:
                 miscTab.Show();
-                miscTabButton.Pressed = true;
+                miscTabButton.ButtonPressed = true;
                 break;
             default:
                 GD.PrintErr("Invalid tab");
@@ -541,9 +586,11 @@ public class NewGameSettings : ControlWithInput
                 PlayerDeathPopulationPenalty = (float)playerDeathPopulationPenalty.Value,
                 GlucoseDecay = (float)glucoseDecayRate.Value * 0.01f,
                 OsmoregulationMultiplier = (float)osmoregulationMultiplier.Value,
-                FreeGlucoseCloud = freeGlucoseCloudButton.Pressed,
-                PassiveReproduction = passiveReproductionButton.Pressed,
-                LimitGrowthRate = limitGrowthRateButton.Pressed,
+                FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
+                FreeGlucoseCloud = freeGlucoseCloudButton.ButtonPressed,
+                PassiveReproduction = passiveReproductionButton.ButtonPressed,
+                LimitGrowthRate = limitGrowthRateButton.ButtonPressed,
+                OrganelleUnlocksEnabled = organelleUnlocksEnabled.ButtonPressed,
             };
 
             settings.Difficulty = customDifficulty;
@@ -554,13 +601,13 @@ public class NewGameSettings : ControlWithInput
         }
 
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
-        settings.LAWK = lawkButton.Pressed;
-        settings.DayNightCycleEnabled = dayNightCycleButton.Pressed;
+        settings.LAWK = lawkButton.ButtonPressed;
+        settings.DayNightCycleEnabled = dayNightCycleButton.ButtonPressed;
         settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
 
-        settings.IncludeMulticellular = includeMulticellularButton.Pressed;
-        settings.EasterEggs = easterEggsButton.Pressed;
+        settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
+        settings.EasterEggs = easterEggsButton.ButtonPressed;
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -571,7 +618,7 @@ public class NewGameSettings : ControlWithInput
             MainMenu.OnEnteringGame();
 
             // TODO: Add loading screen while changing between scenes
-            var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
+            var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instantiate();
             microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
 
             if (descendedGame != null)
@@ -586,21 +633,22 @@ public class NewGameSettings : ControlWithInput
         if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled &&
             SafeModeStartupHandler.AreVideosAllowed())
         {
-            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateScreenFade(
-                ScreenFade.FadeType.FadeOut, 1.5f), () =>
-            {
-                // Notify that the video now starts to allow the main menu to hide its expensive 3D rendering
-                EmitSignal(nameof(OnNewGameVideoStarted));
-            });
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f), () =>
+                {
+                    // Notify that the video now starts to allow the main menu to hide its expensive 3D rendering
+                    EmitSignal(SignalName.OnNewGameVideoStarted);
+                });
 
-            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame, true, false);
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame,
+                true, false);
         }
         else
         {
             // People who disable the cutscene are impatient anyway so use a reduced fade time
-            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateScreenFade(
-                ScreenFade.FadeType.FadeOut, 0.2f), OnStartGame);
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f), OnStartGame);
         }
     }
 
@@ -615,7 +663,7 @@ public class NewGameSettings : ControlWithInput
 
     private bool Exit()
     {
-        EmitSignal(nameof(OnNewGameSettingsClosed));
+        EmitSignal(SignalName.OnNewGameSettingsClosed);
         return true;
     }
 
@@ -673,9 +721,13 @@ public class NewGameSettings : ControlWithInput
         playerDeathPopulationPenalty.Value = preset.PlayerDeathPopulationPenalty;
         glucoseDecayRate.Value = preset.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = preset.OsmoregulationMultiplier;
-        freeGlucoseCloudButton.Pressed = preset.FreeGlucoseCloud;
-        passiveReproductionButton.Pressed = preset.PassiveReproduction;
-        limitGrowthRateButton.Pressed = preset.LimitGrowthRate;
+        fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
+        freeGlucoseCloudButton.ButtonPressed = preset.FreeGlucoseCloud;
+        passiveReproductionButton.ButtonPressed = preset.PassiveReproduction;
+        limitGrowthRateButton.ButtonPressed = preset.LimitGrowthRate;
+        organelleUnlocksEnabled.ButtonPressed = preset.OrganelleUnlocksEnabled;
+
+        UpdateFogOfWarModeDescription(preset.FogOfWarMode);
 
         UpdateSelectedDifficultyPresetControl();
     }
@@ -707,13 +759,19 @@ public class NewGameSettings : ControlWithInput
             if (Math.Abs((float)osmoregulationMultiplier.Value - preset.OsmoregulationMultiplier) > MathUtils.EPSILON)
                 continue;
 
-            if (freeGlucoseCloudButton.Pressed != preset.FreeGlucoseCloud)
+            if (fogOfWarModeDropdown.Selected != (int)preset.FogOfWarMode)
                 continue;
 
-            if (passiveReproductionButton.Pressed != preset.PassiveReproduction)
+            if (freeGlucoseCloudButton.ButtonPressed != preset.FreeGlucoseCloud)
                 continue;
 
-            if (limitGrowthRateButton.Pressed != preset.LimitGrowthRate)
+            if (passiveReproductionButton.ButtonPressed != preset.PassiveReproduction)
+                continue;
+
+            if (limitGrowthRateButton.ButtonPressed != preset.LimitGrowthRate)
+                continue;
+
+            if (organelleUnlocksEnabled.ButtonPressed != preset.OrganelleUnlocksEnabled)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -762,7 +820,7 @@ public class NewGameSettings : ControlWithInput
     private void OnGlucoseDecayRateValueChanged(double percentage)
     {
         percentage = Math.Round(percentage, 2);
-        glucoseDecayRateReadout.Text = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(percentage);
+        glucoseDecayRateReadout.Text = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(percentage);
 
         UpdateSelectedDifficultyPresetControl();
     }
@@ -773,6 +831,33 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
 
         UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnFogOfWarModeChanged(int index)
+    {
+        var mode = (FogOfWarMode)index;
+        UpdateFogOfWarModeDescription(mode);
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void UpdateFogOfWarModeDescription(FogOfWarMode mode)
+    {
+        var description = string.Empty;
+
+        switch (mode)
+        {
+            case FogOfWarMode.Ignored:
+                description = Localization.Translate("FOG_OF_WAR_DISABLED_DESCRIPTION");
+                break;
+            case FogOfWarMode.Regular:
+                description = Localization.Translate("FOG_OF_WAR_REGULAR_DESCRIPTION");
+                break;
+            case FogOfWarMode.Intense:
+                description = Localization.Translate("FOG_OF_WAR_INTENSE_DESCRIPTION");
+                break;
+        }
+
+        fogOfWarModeDescription.Text = description;
     }
 
     private void OnFreeGlucoseCloudToggled(bool pressed)
@@ -793,6 +878,12 @@ public class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
     }
 
+    private void OnOrganelleUnlocksToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
     private void OnLifeOriginSelected(int index)
     {
         // Set both buttons here as we only received a signal from one of them
@@ -800,7 +891,7 @@ public class NewGameSettings : ControlWithInput
         lifeOriginButtonAdvanced.Selected = index;
     }
 
-    // This and a few other callbacks are not currently needed to detect anything, but I left them in in case we
+    // This and a few other callbacks are not currently needed to detect anything, but I left them in, in case we
     // need them in the future / this is refactored to build the custom difficulty object in steps - hhyyrylainen
     private void OnMapTypeSelected(int index)
     {
@@ -810,8 +901,8 @@ public class NewGameSettings : ControlWithInput
     private void OnLAWKToggled(bool pressed)
     {
         // Set both buttons here as we only received a signal from one of them
-        lawkButton.Pressed = pressed;
-        lawkAdvancedButton.Pressed = pressed;
+        lawkButton.ButtonPressed = pressed;
+        lawkAdvancedButton.ButtonPressed = pressed;
 
         UpdateLifeOriginOptions(pressed);
     }
@@ -820,7 +911,6 @@ public class NewGameSettings : ControlWithInput
     {
         dayLengthContainer.Modulate = pressed ? Colors.White : new Color(1.0f, 1.0f, 1.0f, 0.5f);
         dayLength.Editable = pressed;
-        dayLength.Scrollable = pressed;
     }
 
     private void OnDayLengthChanged(double length)
@@ -878,10 +968,16 @@ public class NewGameSettings : ControlWithInput
         _ = pressed;
     }
 
-    private void PerformanceNoteLinkClicked(object meta)
+    private void PerformanceNoteLinkClicked(Variant meta)
     {
-        _ = meta;
+        if (meta.VariantType != Variant.Type.String)
+        {
+            GD.PrintErr("Unexpected new game info text meta clicked");
+            return;
+        }
 
-        EmitSignal(nameof(OnWantToSwitchToOptionsMenu));
+        // TODO: check that the meta has the correct content?
+
+        EmitSignal(SignalName.OnWantToSwitchToOptionsMenu);
     }
 }

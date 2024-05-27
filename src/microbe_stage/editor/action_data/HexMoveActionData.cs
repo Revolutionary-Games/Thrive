@@ -41,7 +41,9 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
             // If this hex got moved twice
             if ((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
                 (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation))
+            {
                 return ActionInterferenceMode.Combinable;
+            }
         }
 
         // If this hex got placed in this session

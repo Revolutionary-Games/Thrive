@@ -1,61 +1,66 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://cqwy12d33agr4"]
 
-[ext_resource path="res://src/gui_common/CreditsScroll.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/misc/thrive_logo_big.png" type="Texture" id=3]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=5]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-BiggerPlus.tres" type="DynamicFont" id=6]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=7]
+[ext_resource type="Script" path="res://src/gui_common/CreditsScroll.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://dpxsicy6au2mh" path="res://assets/misc/thrive_logo_big.png" id="3"]
+[ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="3_xqvak"]
+[ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="6_8g7ur"]
+[ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="7_86jbp"]
 
-[node name="CreditsScroll" type="Container"]
+[node name="CreditsScroll" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 2 )
-script = ExtResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
 LogoPath = NodePath("LogoContainer")
 RevolutionaryGamesPath = NodePath("ByRevolutionaryGames")
 SupportedByPath = NodePath("SupportedBy")
 DevelopersHeadingPath = NodePath("Developers")
-TeamNameFont = ExtResource( 7 )
-SectionNameFont = ExtResource( 6 )
+TeamNameFont = ExtResource("3_xqvak")
+SectionNameFont = ExtResource("6_8g7ur")
 
 [node name="LogoContainer" type="CenterContainer" parent="."]
-anchor_right = 1.0
-margin_top = 250.0
-margin_bottom = 418.0
+layout_mode = 2
+offset_left = -1.0
+offset_top = 238.0
+offset_right = 1281.0
+offset_bottom = 443.0
 
 [node name="Logo" type="TextureRect" parent="LogoContainer"]
-margin_left = 540.0
-margin_right = 740.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 200, 200 )
-texture = ExtResource( 3 )
-expand = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("3")
+expand_mode = 1
 stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ByRevolutionaryGames" type="Label" parent="."]
-anchor_right = 1.0
-margin_top = 450.0
-margin_bottom = 472.0
-custom_fonts/font = ExtResource( 5 )
+layout_mode = 2
+offset_top = 458.0
+offset_right = 1280.0
+offset_bottom = 511.0
 text = "BY_REVOLUTIONARY_GAMES"
-align = 1
+label_settings = ExtResource("6_8g7ur")
+horizontal_alignment = 1
 
 [node name="SupportedBy" type="Label" parent="."]
-anchor_right = 1.0
-margin_top = 600.0
-margin_bottom = 622.0
+layout_mode = 2
+offset_top = 625.0
+offset_right = 1280.0
+offset_bottom = 656.0
 text = "DEVELOPMENT_SUPPORTED_BY"
-align = 1
+horizontal_alignment = 1
 
 [node name="Developers" type="Label" parent="."]
-anchor_right = 1.0
-margin_top = 650.0
-margin_bottom = 672.0
-custom_fonts/font = ExtResource( 4 )
+editor_description = "This is slightly wider than the sceen to make this visually look better above the \"lead developers\" dynamic part"
+layout_mode = 2
+offset_top = 677.0
+offset_right = 1311.0
+offset_bottom = 720.0
 text = "DEVELOPERS"
-align = 1
+label_settings = ExtResource("7_86jbp")
+horizontal_alignment = 1

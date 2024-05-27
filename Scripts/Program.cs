@@ -16,30 +16,45 @@ public class Program
     {
         RunFolderChecker.EnsureRightRunningFolder("Thrive.sln");
 
-        var result = CommandLineHelpers.CreateParser()
-            .ParseArguments<CheckOptions, NativeLibOptions, TestOptions, ChangesOptions, LocalizationOptions,
-                CleanupOptions,
-                PackageOptions, UploadOptions, ContainerOptions, SteamOptions, GodotTemplateOptions,
-                TranslationProgressOptions, CreditsOptions, WikiOptions, GeneratorOptions,
-                GodotProjectValidMakerOptions>(args)
-            .MapResult(
-                (CheckOptions options) => RunChecks(options),
-                (NativeLibOptions options) => RunNativeLibsTool(options),
-                (TestOptions options) => RunTests(options),
-                (ChangesOptions options) => RunChangesFinding(options),
-                (LocalizationOptions options) => RunLocalization(options),
-                (CleanupOptions options) => RunCleanup(options),
-                (PackageOptions options) => RunPackage(options),
-                (UploadOptions options) => RunUpload(options),
-                (ContainerOptions options) => RunContainer(options),
-                (SteamOptions options) => SetSteamOptions(options),
-                (GodotTemplateOptions options) => RunTemplateInstall(options),
-                (TranslationProgressOptions options) => RunTranslationProgress(options),
-                (CreditsOptions options) => RunCreditsUpdate(options),
-                (WikiOptions options) => RunWikiUpdate(options),
-                (GeneratorOptions options) => RunFileGenerator(options),
-                (GodotProjectValidMakerOptions options) => RunProjectValidMaker(options),
-                CommandLineHelpers.PrintCommandLineErrors);
+        // This has too many verbs now so some more manual work is required here as this has ran out of the template
+        // arguments available from the library
+        var parserResult = CommandLineHelpers.CreateParser()
+            .ParseArguments(args, [
+                typeof(CheckOptions), typeof(NativeLibOptions), typeof(TestOptions), typeof(ChangesOptions),
+                typeof(LocalizationOptions), typeof(CleanupOptions), typeof(PackageOptions), typeof(UploadOptions),
+                typeof(ContainerOptions), typeof(SteamOptions), typeof(GodotTemplateOptions),
+                typeof(TranslationProgressOptions), typeof(CreditsOptions), typeof(WikiOptions),
+                typeof(GeneratorOptions), typeof(GodotProjectValidMakerOptions),
+            ]);
+
+        int result;
+        if (parserResult is Parsed<object> parsed)
+        {
+            result = parsed.Value switch
+            {
+                CheckOptions value => RunChecks(value),
+                NativeLibOptions value => RunNativeLibsTool(value),
+                TestOptions value => RunTests(value),
+                ChangesOptions value => RunChangesFinding(value),
+                LocalizationOptions value => RunLocalization(value),
+                CleanupOptions value => RunCleanup(value),
+                PackageOptions value => RunPackage(value),
+                UploadOptions value => RunUpload(value),
+                ContainerOptions value => RunContainer(value),
+                SteamOptions value => SetSteamOptions(value),
+                GodotTemplateOptions value => RunTemplateInstall(value),
+                TranslationProgressOptions value => RunTranslationProgress(value),
+                CreditsOptions value => RunCreditsUpdate(value),
+                WikiOptions value => RunWikiUpdate(value),
+                GeneratorOptions value => RunFileGenerator(value),
+                GodotProjectValidMakerOptions value => RunProjectValidMaker(value),
+                _ => throw new InvalidOperationException(),
+            };
+        }
+        else
+        {
+            result = CommandLineHelpers.PrintCommandLineErrors(((NotParsed<object>)parserResult).Errors);
+        }
 
         ConsoleHelpers.CleanConsoleStateForExit();
 
@@ -245,7 +260,9 @@ public class Program
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        return WikiUpdater.Run(tokenSource.Token).Result ? 0 : 1;
+        var tool = new WikiUpdater();
+
+        return tool.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
     private static int RunFileGenerator(GeneratorOptions options)
@@ -265,18 +282,16 @@ public class Program
     {
         CommandLineHelpers.HandleDefaultOptions(options);
 
-        ColourConsole.WriteInfoLine("Attempting to make Thrive Godot project valid for C# compile...");
+        ColourConsole.WriteInfoLine("Attempting to compile C# Thrive code with Godot");
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        var tool = new GodotProjectValidMaker(options);
+        var tool = new GodotProjectCompiler(options);
 
         return tool.Run(tokenSource.Token).Result;
     }
 
-    public class CheckOptions : CheckOptionsBase
-    {
-    }
+    public class CheckOptions : CheckOptionsBase;
 
     [Verb("native", HelpText = "Handling for native libraries needed by Thrive")]
     public class NativeLibOptions : SymbolUploadOptionsBase
@@ -293,6 +308,7 @@ public class Program
             /// </summary>
             CheckDistributable,
 
+            // TODO: maybe remove this operation entirely (should also update documentation)
             /// <summary>
             ///   Installs a library to work with Godot editor
             /// </summary>
@@ -333,8 +349,6 @@ public class Program
             {
                 yield return new Example("download all available libraries",
                     new NativeLibOptions { Operations = new[] { OperationMode.Fetch } });
-                yield return new Example("install library locally to make Godot Editor debugging work",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Install } });
                 yield return new Example("compile libraries locally",
                     new NativeLibOptions { Operations = new[] { OperationMode.Build } });
                 yield return new Example("prepare library versions for distribution or uploading with podman",
@@ -347,11 +361,15 @@ public class Program
 
         [Option('l', "library", Required = false, Default = null, MetaValue = "LIBRARIES",
             HelpText = "Libraries to work on, default is all.")]
-        public IList<NativeLibs.Library>? Libraries { get; set; } = new List<NativeLibs.Library>();
+        public IList<NativeConstants.Library>? Libraries { get; set; } = new List<NativeConstants.Library>();
 
         [Option('d', "debug", Required = false, Default = false,
             HelpText = "Set to work on debug versions of the libraries")]
         public bool DebugLibrary { get; set; }
+
+        [Option("disable-avx", Required = false, Default = false,
+            HelpText = "Disable building locally with AVX (container builds always make both variants)")]
+        public bool DisableLocalAvx { get; set; }
 
         [Option('t', "platform", Required = false, Default = null,
             HelpText = "Use to override detected platforms for selected operation")]
@@ -375,9 +393,7 @@ public class Program
     }
 
     [Verb("test", HelpText = "Run tests using 'dotnet' command")]
-    public class TestOptions : ScriptOptionsBase
-    {
-    }
+    public class TestOptions : ScriptOptionsBase;
 
     public class ChangesOptions : ChangesOptionsBase
     {
@@ -385,9 +401,7 @@ public class Program
         public override string RemoteBranch { get; set; } = "master";
     }
 
-    public class LocalizationOptions : LocalizationOptionsBase
-    {
-    }
+    public class LocalizationOptions : LocalizationOptionsBase;
 
     [Verb("cleanup", HelpText = "Cleanup Godot temporary files. WARNING: will lose uncommitted changes")]
     public class CleanupOptions : ScriptOptionsBase
@@ -416,6 +430,10 @@ public class Program
             HelpText = "Fallback to using native library only meant for local play (not recommended for release)")]
         public bool FallbackToLocalNative { get; set; }
 
+        [Option("skip-godot-check", Default = false,
+            HelpText = "Skip checking if godot is installed and correct version and just try to use it")]
+        public bool SkipGodotCheck { get; set; }
+
         public override bool Compress => CompressRaw == true;
     }
 
@@ -426,8 +444,8 @@ public class Program
             HelpText = "Set to a valid DevCenter key (not user token) to use non-anonymous uploading.")]
         public string? Key { get; set; }
 
-        [Option('k', "key", Required = false, Default = Uploader.DEFAULT_DEVCENTER_URL, MetaValue = "DEVCENTER_URL",
-            HelpText = "DevCenter URL to upload to.")]
+        [Option('u', "devcenter-url", Required = false, Default = Uploader.DEFAULT_DEVCENTER_URL,
+            MetaValue = "DEVCENTER_URL", HelpText = "DevCenter URL to upload to.")]
         public string Url { get; set; } = Uploader.DEFAULT_DEVCENTER_URL;
 
         [Option('r', "retries", Required = false, Default = 3, MetaValue = "COUNT",
@@ -457,24 +475,16 @@ public class Program
     }
 
     [Verb("godot-templates", HelpText = "Tool to automatically install Godot templates")]
-    public class GodotTemplateOptions : ScriptOptionsBase
-    {
-    }
+    public class GodotTemplateOptions : ScriptOptionsBase;
 
     [Verb("translation-progress", HelpText = "Updates the translation progress file")]
-    public class TranslationProgressOptions : ScriptOptionsBase
-    {
-    }
+    public class TranslationProgressOptions : ScriptOptionsBase;
 
     [Verb("credits", HelpText = "Updates credits with some automatically (and some needing manual) retrieved files")]
-    public class CreditsOptions : ScriptOptionsBase
-    {
-    }
+    public class CreditsOptions : ScriptOptionsBase;
 
     [Verb("wiki", HelpText = "Updates the Thriveopedia with content from the online wiki")]
-    public class WikiOptions : ScriptOptionsBase
-    {
-    }
+    public class WikiOptions : ScriptOptionsBase;
 
     [Verb("generate", HelpText = "Generates various kinds of files")]
     public class GeneratorOptions : ScriptOptionsBase
@@ -484,8 +494,6 @@ public class Program
         public FileTypeToGenerate Type { get; set; }
     }
 
-    [Verb("make-project-valid", HelpText = "Makes the Godot project valid for C# compile")]
-    public class GodotProjectValidMakerOptions : ScriptOptionsBase
-    {
-    }
+    [Verb("make-project-valid", HelpText = "Makes the Godot project valid for C# compile (deprecated)")]
+    public class GodotProjectValidMakerOptions : ScriptOptionsBase;
 }

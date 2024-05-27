@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 
@@ -32,8 +33,7 @@ public partial class CellEditorComponent
         // Check if there is cytoplasm under this organelle.
         foreach (var hex in organelle.RotatedHexes)
         {
-            var organelleHere = editedMicrobeOrganelles.GetElementAt(
-                hex + organelle.Position);
+            var organelleHere = editedMicrobeOrganelles.GetElementAt(hex + organelle.Position, hexTemporaryMemory);
 
             if (organelleHere == null)
                 continue;
@@ -52,7 +52,7 @@ public partial class CellEditorComponent
         GD.Print("Placing organelle '", organelle.Definition.InternalName, "' at: ",
             organelle.Position);
 
-        editedMicrobeOrganelles.Add(organelle);
+        editedMicrobeOrganelles.AddFast(organelle, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
     [DeserializedCallbackAllowed]
@@ -70,12 +70,12 @@ public partial class CellEditorComponent
 
         if (data.ReplacedCytoplasm != null)
         {
-            foreach (var cytoplasm in data.ReplacedCytoplasm)
+            foreach (var replacedCytoplasm in data.ReplacedCytoplasm)
             {
-                GD.Print("Replacing ", cytoplasm.Definition.InternalName, " at: ",
-                    cytoplasm.Position);
+                GD.Print("Replacing ", replacedCytoplasm.Definition.InternalName, " at: ",
+                    replacedCytoplasm.Position);
 
-                editedMicrobeOrganelles.Add(cytoplasm);
+                editedMicrobeOrganelles.AddFast(replacedCytoplasm, hexTemporaryMemory, hexTemporaryMemory2);
             }
         }
     }
@@ -85,6 +85,8 @@ public partial class CellEditorComponent
     {
         if (!editedMicrobeOrganelles.Remove(data.RemovedHex))
         {
+            // TODO: it seems very rarely this can be hit in "normal" microbe freebuild by spamming undo and redo with
+            // new cell button sprinkled in (reproduction steps for the bug are unconfirmed)
             ThrowIfNotMulticellular();
 
             var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o => o.Position == data.RemovedHex.Position);
@@ -97,7 +99,7 @@ public partial class CellEditorComponent
     [DeserializedCallbackAllowed]
     private void UndoOrganelleRemoveAction(OrganelleRemoveActionData data)
     {
-        editedMicrobeOrganelles.Add(data.RemovedHex);
+        editedMicrobeOrganelles.AddFast(data.RemovedHex, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
     [DeserializedCallbackAllowed]
@@ -127,7 +129,7 @@ public partial class CellEditorComponent
         }
         else
         {
-            editedMicrobeOrganelles.Add(data.MovedHex);
+            editedMicrobeOrganelles.AddFast(data.MovedHex, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         // TODO: dynamic MP PR had this line:
@@ -168,8 +170,8 @@ public partial class CellEditorComponent
         Editor.MutationPoints = Constants.BASE_MUTATION_POINTS;
         Membrane = SimulationParameters.Instance.GetMembrane("single");
         editedMicrobeOrganelles.Clear();
-        editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
-            new Hex(0, 0), 0));
+        editedMicrobeOrganelles.AddFast(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
+            new Hex(0, 0), 0), hexTemporaryMemory, hexTemporaryMemory2);
         Rigidity = 0;
         Colour = Colors.White;
 
@@ -189,11 +191,14 @@ public partial class CellEditorComponent
 
         foreach (var organelle in data.OldEditedMicrobeOrganelles)
         {
-            editedMicrobeOrganelles.Add(organelle);
+            editedMicrobeOrganelles.AddFast(organelle, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         if (!IsMulticellularEditor)
         {
+            if (data.OldBehaviourValues == null)
+                throw new InvalidOperationException("Behaviour data should have been initialized for restore");
+
             foreach (var oldBehaviour in data.OldBehaviourValues)
             {
                 behaviourEditor.SetBehaviouralValue(oldBehaviour.Key, oldBehaviour.Value);
@@ -289,13 +294,9 @@ public partial class CellEditorComponent
     {
         data.UpgradedOrganelle.Upgrades = data.NewUpgrades;
 
-        // Uncomment when upgrades can visually affect the cell
-        // UpdateAlreadyPlacedVisuals();
+        microbeVisualizationOrganellePositionsAreDirty = true;
 
-        UpdateStats();
-
-        // Organelle upgrades will in the future affect auto-evo
-        StartAutoEvoPrediction();
+        OnOrganellesChanged();
     }
 
     [DeserializedCallbackAllowed]
@@ -303,13 +304,86 @@ public partial class CellEditorComponent
     {
         data.UpgradedOrganelle.Upgrades = data.OldUpgrades;
 
-        // Uncomment when upgrades can visually affect the cell
-        // UpdateAlreadyPlacedVisuals();
+        microbeVisualizationOrganellePositionsAreDirty = true;
 
-        UpdateStats();
+        OnOrganellesChanged();
+    }
 
-        // Organelle upgrades will in the future affect auto-evo
-        StartAutoEvoPrediction();
+    [DeserializedCallbackAllowed]
+    private void DoEndosymbiontPlaceAction(EndosymbiontPlaceActionData data)
+    {
+        // Perform unlock to make the endosymbiont placeable for later
+        if (Editor.CurrentGame.GameWorld.UnlockProgress.UnlockOrganelle(data.PlacedOrganelle.Definition,
+                Editor.CurrentGame))
+        {
+            GD.Print("Unlocking organelle due to endosymbiosis place");
+            data.PerformedUnlock = true;
+        }
+
+        var organelle = data.PlacedOrganelle;
+
+        // TODO: if wanted could allow replacing cytoplasm with this action type
+
+        GD.Print("Placing endosymbiont '", organelle.Definition.InternalName, "' at: ",
+            organelle.Position);
+
+        editedMicrobeOrganelles.AddFast(organelle, hexTemporaryMemory, hexTemporaryMemory2);
+
+        if (data.PerformedUnlock)
+        {
+            OnUnlockedOrganellesChanged();
+        }
+
+        // With the endosymbiosis place done, the current endosymbiosis action is done
+        data.RelatedEndosymbiosisAction =
+            Editor.EditedBaseSpecies.Endosymbiosis.MarkEndosymbiosisDone(data.RelatedEndosymbiosisAction);
+
+        // Restore any inprogress data we overwrote on undo
+        if (data.OverriddenEndosymbiosisOnUndo != null)
+        {
+            var overwrote =
+                Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosisProcess(data.OverriddenEndosymbiosisOnUndo);
+
+            // Hopefully there's no way to hit this condition, if there is then this needs some fix
+            if (overwrote != null && overwrote != data.RelatedEndosymbiosisAction)
+            {
+                GD.PrintErr("Losing an in-progress endosymbiosis info on redo");
+            }
+
+            data.OverriddenEndosymbiosisOnUndo = null;
+        }
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoEndosymbiontPlaceAction(EndosymbiontPlaceActionData data)
+    {
+        if (!editedMicrobeOrganelles.Remove(data.PlacedOrganelle))
+        {
+            throw new Exception("Couldn't find endosymbiont placement to remove");
+        }
+
+        // Undo unlock if required
+        if (data.PerformedUnlock)
+        {
+            GD.Print("Locking organelle type due to endosymbiont undo: ", data.PlacedOrganelle.Definition.InternalName);
+
+            // If the player selected the organelle type to place that is now again locked, reset it
+            if (activeActionName == data.PlacedOrganelle.Definition.InternalName)
+            {
+                activeActionName = null;
+                GD.Print("Resetting active action as it is an organelle type that will be locked now");
+            }
+
+            // NOTE: if we ever add support for unlock condition re-check after entering the editor, this needs to be
+            // re-thought out to make sure this doesn't interact badly with such a feature
+            Editor.CurrentGame.GameWorld.UnlockProgress.UndoOrganelleUnlock(data.PlacedOrganelle.Definition);
+
+            OnUnlockedOrganellesChanged();
+        }
+
+        // Need to restore the previous endosymbiosis action
+        data.OverriddenEndosymbiosisOnUndo =
+            Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosisProcess(data.RelatedEndosymbiosisAction);
     }
 
     /// <summary>
@@ -321,6 +395,13 @@ public partial class CellEditorComponent
     private void ThrowIfNotMulticellular()
     {
         if (!IsMulticellularEditor)
+        {
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
+
             throw new InvalidOperationException("This operation should only happen in multicellular");
+        }
     }
 }

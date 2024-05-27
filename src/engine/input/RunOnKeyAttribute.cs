@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 /// <example>
 ///   [RunOnKey("g_cheat_glucose")]
-///   public void CheatGlucose(float delta)
+///   public void CheatGlucose(double delta)
 /// </example>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public class RunOnKeyAttribute : InputAttribute
@@ -16,6 +16,8 @@ public class RunOnKeyAttribute : InputAttribute
     ///   When an input action starts with this, it's not a Godot action but a mouse motion we handle in a custom way
     /// </summary>
     public const string CAPTURED_MOUSE_AS_AXIS_PREFIX = "captured_mouse:";
+
+    protected object[]? cachedMethodCallParameters;
 
     /// <summary>
     ///   Priming comes to effect when an input gets pressed for less than one frame
@@ -30,7 +32,18 @@ public class RunOnKeyAttribute : InputAttribute
 
     public RunOnKeyAttribute(string inputName)
     {
-        InputName = inputName;
+        if (inputName.StartsWith(CAPTURED_MOUSE_AS_AXIS_PREFIX))
+        {
+            InputName = new StringName("unused");
+
+            // TODO: maybe split this actively
+            MultiPartInputName = CAPTURED_MOUSE_AS_AXIS_PREFIX;
+        }
+        else
+        {
+            InputName = inputName;
+            MultiPartInputName = null;
+        }
     }
 
     /// <summary>
@@ -42,12 +55,21 @@ public class RunOnKeyAttribute : InputAttribute
     ///   The internal godot input name. Except in some cases, <see cref="CAPTURED_MOUSE_AS_AXIS_PREFIX"/>.
     /// </summary>
     /// <example>ui_select</example>
-    public string InputName { get; }
+    public StringName InputName { get; }
+
+    public string? MultiPartInputName { get; }
 
     /// <summary>
     ///   If this is set to false the callback method is allowed to be called without the delta value (using 0.0f)
     /// </summary>
     public bool CallbackRequiresElapsedTime { get; set; } = true;
+
+    /// <summary>
+    ///   When true the input is primed when it is pressed and can trigger callback after releasing. If there is an
+    ///   action very sensitive to this potential last input method call, this can be set to false to disable priming
+    ///   and only perform actions if the key is really currently held.
+    /// </summary>
+    public bool UsesPriming { get; set; } = true;
 
     /// <summary>
     ///   Should OnInput run the callback method instantly
@@ -79,12 +101,15 @@ public class RunOnKeyAttribute : InputAttribute
             {
                 if (TrackInputMethod)
                 {
-                    result = CallMethod(0.0f, LastUsedInputMethod);
+                    PrepareMethodParameters(ref cachedMethodCallParameters, 2, 0.0f);
+                    cachedMethodCallParameters![1] = LastUsedInputMethod;
                 }
                 else
                 {
-                    result = CallMethod(0.0f);
+                    PrepareMethodParameters(ref cachedMethodCallParameters, 1, 0.0f);
                 }
+
+                result = CallMethod(cachedMethodCallParameters!);
             }
             else
             {
@@ -97,27 +122,51 @@ public class RunOnKeyAttribute : InputAttribute
 
         if (@event.IsActionReleased(InputName, false))
         {
-            result = true;
-            HeldDown = false;
+            if (HeldDown)
+            {
+                result = true;
+                HeldDown = false;
+            }
         }
 
         return result;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
-        if (HeldDown || primed)
-        {
-            primed = false;
+        if (!HeldDown && !primed)
+            return;
 
+        primed = false;
+
+        if (!CallMethodInOnInput || CallbackRequiresElapsedTime)
+        {
+            // Warnings for methods that only trigger here and not early in OnInput allowing ignoring input
             if (TrackInputMethod)
             {
-                CallMethod(delta, LastUsedInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, delta);
+                cachedMethodCallParameters![1] = LastUsedInputMethod;
             }
             else
             {
-                CallMethod(delta);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, delta);
             }
+
+            CallDelayedMethod(cachedMethodCallParameters!);
+        }
+        else
+        {
+            if (TrackInputMethod)
+            {
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, delta);
+                cachedMethodCallParameters![1] = LastUsedInputMethod;
+            }
+            else
+            {
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, delta);
+            }
+
+            CallMethod(cachedMethodCallParameters!);
         }
     }
 
@@ -128,6 +177,9 @@ public class RunOnKeyAttribute : InputAttribute
 
     protected void Prime()
     {
+        if (!UsesPriming)
+            return;
+
         primed = true;
     }
 }

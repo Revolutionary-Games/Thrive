@@ -27,13 +27,13 @@ public partial class CellBodyPlanEditorComponent
     [DeserializedCallbackAllowed]
     private void UndoCellRemoveAction(CellRemoveActionData data)
     {
-        editedMicrobeCells.Add(data.RemovedHex);
+        editedMicrobeCells.AddFast(data.RemovedHex, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
     [DeserializedCallbackAllowed]
     private void DoCellPlaceAction(CellPlacementActionData data)
     {
-        editedMicrobeCells.Add(data.PlacedHex);
+        editedMicrobeCells.AddFast(data.PlacedHex, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
     [DeserializedCallbackAllowed]
@@ -59,7 +59,7 @@ public partial class CellBodyPlanEditorComponent
         Editor.EditedSpecies.CellTypes.Add(data.CellType);
         GD.Print("New cell type created: ", data.CellType.TypeName);
 
-        EmitSignal(nameof(OnCellTypeToEditSelected), data.CellType.TypeName, false);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.TypeName, false);
 
         UpdateCellTypeSelections();
 
@@ -88,7 +88,7 @@ public partial class CellBodyPlanEditorComponent
         }
         else
         {
-            editedMicrobeCells.Add(data.MovedHex);
+            editedMicrobeCells.AddFast(data.MovedHex, hexTemporaryMemory, hexTemporaryMemory2);
         }
     }
 

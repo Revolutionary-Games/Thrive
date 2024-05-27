@@ -7,8 +7,8 @@
 
 [sub_resource type="Gradient" id=40]
 interpolation_mode = 2
-offsets = PoolRealArray( 0, 0.519084, 0.564885 )
-colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.160784, 0, 0, 0, 0 )
+offsets = PackedFloat32Array( 0, 0.519084, 0.564885 )
+colors = PackedColorArray( 0, 0, 0, 0, 1, 1, 1, 0.160784, 0, 0, 0, 0 )
 
 [sub_resource type="GradientTexture2D" id=41]
 gradient = SubResource( 40 )
@@ -18,7 +18,7 @@ fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 fill_to = Vector2( 1, 0.9 )
 
-[sub_resource type="SpatialMaterial" id=39]
+[sub_resource type="StandardMaterial3D" id=39]
 render_priority = 2
 flags_transparent = true
 flags_unshaded = true
@@ -51,8 +51,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 60 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 60 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 720, 0 ) ]
 }
@@ -63,8 +63,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 60 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 60 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, -360, 0 ) ]
 }
@@ -78,30 +78,30 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector3( 0, 100, 0 ) ]
 }
 
-[node name="PlacedPlanet" type="Spatial"]
-transform = Transform( -0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 0, 0, 0 )
+[node name="PlacedPlanet" type="Node3D"]
+transform = Transform3D( -0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 0, 0, 0 )
 script = ExtResource( 1 )
 
-[node name="PlaceholderPlanetGraphics" type="Spatial" parent="."]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
+[node name="PlaceholderPlanetGraphics" type="Node3D" parent="."]
+transform = Transform3D( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 
 [node name="MenuPlanet" parent="PlaceholderPlanetGraphics" instance=ExtResource( 2 )]
-transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
+transform = Transform3D( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
 
 [node name="MenuPlanetClouds" parent="PlaceholderPlanetGraphics/MenuPlanet" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Ahtmosphere" parent="PlaceholderPlanetGraphics/MenuPlanet" instance=ExtResource( 4 )]
-transform = Transform( 1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0 )
+transform = Transform3D( 1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0 )
 
-[node name="FakeAtmoshereParticle" type="CPUParticles" parent="PlaceholderPlanetGraphics/MenuPlanet"]
-transform = Transform( 650, 0, 0, 0, 650, 0, 0, 0, 650, 0, 0, 0 )
+[node name="FakeAtmoshereParticle" type="CPUParticles3D" parent="PlaceholderPlanetGraphics/MenuPlanet"]
+transform = Transform3D( 650, 0, 0, 0, 650, 0, 0, 0, 650, 0, 0, 0 )
 amount = 2
 lifetime = 1.42
 preprocess = 2.08

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 using Tutorial;
 
@@ -7,7 +8,7 @@ using Tutorial;
 ///   Should be placed over any game state GUI so that things drawn by this are on top. Visibility of things is
 ///   Controlled by TutorialState object
 /// </summary>
-public class MicrobeTutorialGUI : Control, ITutorialGUI
+public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 {
     [Export]
     public NodePath? MicrobeWelcomeMessagePath;
@@ -55,6 +56,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath DayNightTutorialPath = null!;
 
     [Export]
+    public NodePath OrganelleDivisionTutorialPath = null!;
+
+    [Export]
     public NodePath BecomeMulticellularTutorialPath = null!;
 
     [Export]
@@ -73,7 +77,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath EditorButtonHighlightPath = null!;
 
 #pragma warning disable CA2213
-    private CustomWindow microbeWelcomeMessage = null!;
+    private TutorialDialog microbeWelcomeMessage = null!;
     private Control microbeMovementKeyPrompts = null!;
     private Control microbeMovementKeyForward = null!;
     private Control microbeMovementKeyLeft = null!;
@@ -93,10 +97,11 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomWindow earlyMulticellularWelcome = null!;
     private CustomWindow dayNightTutorial = null!;
     private CustomWindow becomeMulticellularTutorial = null!;
+    private CustomWindow organelleDivisionTutorial = null!;
 #pragma warning restore CA2213
 
     [Signal]
-    public delegate void OnHelpMenuOpenRequested();
+    public delegate void OnHelpMenuOpenRequestedEventHandler();
 
     public ITutorialInput? EventReceiver { get; set; }
 
@@ -132,7 +137,19 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public bool MicrobeMovementPromptsVisible
     {
         get => microbeMovementKeyPrompts.Visible;
-        set => microbeMovementKeyPrompts.Visible = value;
+        set
+        {
+            if (value == microbeMovementKeyPrompts.Visible)
+                return;
+
+            microbeMovementKeyPrompts.Visible = value;
+
+            // Apply visible to children to make the key prompts visible. This saves a lot of processing time overall
+            foreach (var child in microbeMovementKeyPrompts.GetChildren().OfType<Control>())
+            {
+                child.Visible = value;
+            }
+        }
     }
 
     public bool MicrobeMovementPopupVisible
@@ -289,13 +306,13 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public float MicrobeMovementRotation
     {
-        get => microbeMovementKeyPrompts.RectRotation;
+        get => microbeMovementKeyPrompts.Rotation;
         set
         {
-            if (Math.Abs(value - microbeMovementKeyPrompts.RectRotation) < 0.01f)
+            if (Math.Abs(value - microbeMovementKeyPrompts.Rotation) < 0.001f)
                 return;
 
-            microbeMovementKeyPrompts.RectRotation = value;
+            microbeMovementKeyPrompts.Rotation = value;
         }
     }
 
@@ -390,6 +407,18 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool OrganelleDivisionTutorialVisible
+    {
+        get => organelleDivisionTutorial.Visible;
+        set
+        {
+            if (value == organelleDivisionTutorial.Visible)
+                return;
+
+            organelleDivisionTutorial.Visible = value;
+        }
+    }
+
     public bool BecomeMulticellularTutorialVisible
     {
         get => becomeMulticellularTutorial.Visible;
@@ -404,7 +433,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        microbeWelcomeMessage = GetNode<CustomWindow>(MicrobeWelcomeMessagePath);
+        microbeWelcomeMessage = GetNode<TutorialDialog>(MicrobeWelcomeMessagePath);
         microbeMovementKeyPrompts = GetNode<Control>(MicrobeMovementKeyPromptsPath);
         microbeMovementPopup = GetNode<CustomWindow>(MicrobeMovementPopupPath);
         microbeMovementKeyForward = GetNode<Control>(MicrobeMovementKeyForwardPath);
@@ -424,15 +453,16 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         earlyMulticellularWelcome = GetNode<CustomWindow>(EarlyMulticellularWelcomePath);
         dayNightTutorial = GetNode<CustomWindow>(DayNightTutorialPath);
         becomeMulticellularTutorial = GetNode<CustomWindow>(BecomeMulticellularTutorialPath);
+        organelleDivisionTutorial = GetNode<CustomWindow>(OrganelleDivisionTutorialPath);
 
         PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        TutorialHelper.ProcessTutorialGUI(this, delta);
+        TutorialHelper.ProcessTutorialGUI(this, (float)delta);
     }
 
     public void OnClickedCloseAll()
@@ -448,6 +478,18 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public void OnTutorialEnabledValueChanged(bool value)
     {
         TutorialEnabledSelected = value;
+    }
+
+    public void SetWelcomeTextForLifeOrigin(WorldGenerationSettings.LifeOrigin gameLifeOrigin)
+    {
+        microbeWelcomeMessage.Description = gameLifeOrigin switch
+        {
+            WorldGenerationSettings.LifeOrigin.Vent => "MICROBE_STAGE_INITIAL",
+            WorldGenerationSettings.LifeOrigin.Pond => "MICROBE_STAGE_INITIAL_POND",
+            WorldGenerationSettings.LifeOrigin.Panspermia => "MICROBE_STAGE_INITIAL_PANSPERMIA",
+            _ => throw new ArgumentOutOfRangeException(nameof(gameLifeOrigin), gameLifeOrigin,
+                "Unhandled life origin for tutorial message"),
+        };
     }
 
     protected override void Dispose(bool disposing)
@@ -471,6 +513,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
                 LeaveColonyTutorialPath.Dispose();
                 EarlyMulticellularWelcomePath.Dispose();
                 DayNightTutorialPath.Dispose();
+                OrganelleDivisionTutorialPath.Dispose();
                 BecomeMulticellularTutorialPath.Dispose();
                 CheckTheHelpMenuPath.Dispose();
                 EngulfmentExplanationPath.Dispose();
@@ -489,6 +532,12 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
         // Note that this opening while the tutorial box is still visible is a bit problematic due to:
         // https://github.com/Revolutionary-Games/Thrive/issues/2326
-        EmitSignal(nameof(OnHelpMenuOpenRequested));
+        EmitSignal(SignalName.OnHelpMenuOpenRequested);
+    }
+
+    private void DummyKeepInitialTextTranslations()
+    {
+        Localization.Translate("MICROBE_STAGE_INITIAL_POND");
+        Localization.Translate("MICROBE_STAGE_INITIAL_PANSPERMIA");
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   A ProgressBar that is split up into IconProgressBars, data is stored in a dictionary
 /// </summary>
-public class SegmentedBar : HBoxContainer
+public partial class SegmentedBar : HBoxContainer
 {
     public readonly List<IconProgressBar> SubBars = new();
 
@@ -36,10 +35,10 @@ public class SegmentedBar : HBoxContainer
     }
 
     [Signal]
-    public delegate void SubBarMouseEnter();
+    public delegate void SubBarMouseEnterEventHandler();
 
     [Signal]
-    public delegate void SubBarMouseExit();
+    public delegate void SubBarMouseExitEventHandler();
 
     public enum Type
     {
@@ -109,7 +108,7 @@ public class SegmentedBar : HBoxContainer
     {
         var progressBar = FindBar(dataPair.Key);
 
-        var progressBarBarSize = new Vector2((float)Math.Floor(dataPair.Value / MaxValue * RectSize.x), RectSize.y);
+        var progressBarBarSize = new Vector2((float)Math.Floor(dataPair.Value / MaxValue * Size.X), Size.Y);
 
         if (progressBar != null)
         {
@@ -117,23 +116,24 @@ public class SegmentedBar : HBoxContainer
         }
         else
         {
-            progressBar = (IconProgressBar)iconProgressBarScene.Instance();
+            progressBar = (IconProgressBar)iconProgressBarScene.Instantiate();
             progressBar.Name = dataPair.Key;
             AddChild(progressBar);
             SubBars.Add(progressBar);
 
             progressBar.Color = BarHelper.GetBarColour(SelectedType, dataPair.Key, IsProduction);
-            progressBar.HighlightColor = new Color(progressBar.Color.r + 0.5f, progressBar.Color.g + 0.5f,
-                progressBar.Color.b + 0.5f, 0.3f);
+            progressBar.HighlightColor = new Color(progressBar.Color.R + 0.5f, progressBar.Color.G + 0.5f,
+                progressBar.Color.B + 0.5f, 0.3f);
             progressBar.BarSize = progressBarBarSize;
             progressBar.IconTexture = BarHelper.GetBarIcon(SelectedType, dataPair.Key);
             progressBar.IconModulation = BarHelper.GetBarIconColor(SelectedType);
 
             progressBar.MouseFilter = MouseFilterEnum.Pass;
 
-            progressBar.Connect("gui_input", this, nameof(BarToggled), new Array { progressBar });
-            progressBar.Connect("mouse_entered", this, nameof(OnBarMouseOver), new Array { progressBar });
-            progressBar.Connect("mouse_exited", this, nameof(OnBarMouseExit), new Array { progressBar });
+            progressBar.Connect(Control.SignalName.GuiInput,
+                Callable.From<InputEvent>(@event => BarToggled(@event, progressBar)));
+            progressBar.Connect(Control.SignalName.MouseEntered, Callable.From(() => OnBarMouseOver(progressBar)));
+            progressBar.Connect(Control.SignalName.MouseExited, Callable.From(() => OnBarMouseExit(progressBar)));
         }
     }
 
@@ -141,7 +141,7 @@ public class SegmentedBar : HBoxContainer
     {
         if (@event is InputEventMouseButton eventMouse && @event.IsPressed())
         {
-            if (eventMouse.ButtonIndex != (int)ButtonList.Left)
+            if (eventMouse.ButtonIndex != MouseButton.Left)
                 return;
 
             bar.Disabled = !bar.Disabled;
@@ -153,14 +153,14 @@ public class SegmentedBar : HBoxContainer
     {
         bar.Highlight = true;
 
-        EmitSignal(nameof(SubBarMouseEnter));
+        EmitSignal(SignalName.SubBarMouseEnter);
     }
 
     private void OnBarMouseExit(IconProgressBar bar)
     {
         bar.Highlight = false;
 
-        EmitSignal(nameof(SubBarMouseExit));
+        EmitSignal(SignalName.SubBarMouseExit);
     }
 
     private void HandleBarDisabling(IconProgressBar bar)
@@ -188,8 +188,8 @@ public class SegmentedBar : HBoxContainer
             if (b.Disabled && !a.Disabled)
                 return -1;
 
-            return barValues.FindIndex(pair => pair.Key == a.Name) -
-                barValues.FindIndex(pair => pair.Key == b.Name);
+            return barValues.FindIndex(v => v.Key == a.Name) -
+                barValues.FindIndex(v => v.Key == b.Name);
         });
 
         int location = 0;

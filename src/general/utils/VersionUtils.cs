@@ -87,7 +87,10 @@ public static class VersionUtils
         // If only one of the version has a suffix, that one is older
         if (aSplit.Length != bSplit.Length)
         {
-            return bSplit.Length - aSplit.Length;
+            if (bSplit.Length - aSplit.Length > 0)
+                return 1;
+
+            return -1;
         }
 
         // Versions are equal if the splits are the same (or if either had no suffix)
@@ -101,7 +104,15 @@ public static class VersionUtils
         int bSuffixIndex = Array.IndexOf(Suffixes, bSplit[1].ToLowerInvariant());
         if (aSuffixIndex >= 0 && bSuffixIndex >= 0)
         {
-            return aSuffixIndex - bSuffixIndex;
+            var difference = aSuffixIndex - bSuffixIndex;
+
+            if (difference < 0)
+                return -1;
+
+            if (difference > 0)
+                return 1;
+
+            return 0;
         }
 
         // Fallback in case one of the suffixes is unknown
@@ -119,21 +130,5 @@ public static class VersionUtils
         }
 
         return version;
-    }
-
-    // TODO: Use actual unit tests instead
-    // https://github.com/Revolutionary-Games/Thrive/issues/1571
-    public static bool TestCompare()
-    {
-        return Compare("1.2.3-pre-alpha", "1.2.3") < 0
-            && Compare("1.2.3-rc1", "1.2.3-pre-alpha") > 0
-            && Compare("1.2.3-rc1", "1.2.4-pre-alpha") < 0
-            && Compare("3.2.1-pre-alpha", "1.2.3") > 0
-            && Compare("1.2.3-alpha", "1.2.3-potato") < 0
-            && Compare("1.2.3", "1.2.3.0") == 0
-            && Compare("1.2.3.1", "1.2.3.0") > 0
-            && Compare("0.5.3.1-alpha", "0.5.3.1") < 1
-            && Compare("0.5.3.1-alpha", "0.5.3") > 0
-            ;
     }
 }

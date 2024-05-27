@@ -2,23 +2,24 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v21
+    image: thrive/godot-ci:v24
     cache:
       loadFrom:
-        - v8-{Branch}-build
-        - v8-master-build
-      writeTo: v8-{Branch}-build
+        - v10-{Branch}-build
+        - v10-master-build
+      writeTo: v10-{Branch}-build
       shared:
-        .git/lfs: v5-lfs
-        .import: v8-import
-        builds: v4-builds
+        .git/lfs: v6-lfs
+        .import: v11-import
+        builds: v6-builds
         native_libs: v1-native
       system:
-        /root/.nuget: v4-nuget
+        /root/.nuget: v6-nuget
     steps:
-      - run:
-          name: Make project valid for compile
-          command: dotnet run --project Scripts -- make-project-valid
+      # Doesn't seem required for Godot 4
+      # - run:
+      #     name: Make project valid for compile
+      #     command: dotnet run --project Scripts -- make-project-valid
       - run:
            command: dotnet restore Thrive.sln
       - run:
@@ -34,18 +35,16 @@ jobs:
           name: Upload devbuilds
           command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v21
+    image: thrive/godot-ci:v24
     cache:
       loadFrom:
-        - v5-{Branch}-jetbrains
-        - v5-master-jetbrains
-      writeTo: v5-{Branch}-jetbrains
+        - v8-{Branch}-jetbrains
+        - v8-master-jetbrains
+      writeTo: v8-{Branch}-jetbrains
       shared:
-        .git/lfs: v5-lfs
-        .import: v8-import
-        builds: v4-jetbrains-dummy-builds
+        .git/lfs: v7-lfs
       system:
-        /root/.nuget: v4-nuget
+        /root/.nuget: v6-nuget
     artifacts:
       paths:
         - files_to_check.txt
@@ -61,10 +60,8 @@ jobs:
             echo Changed files:
             cat files_to_check.txt
       - run:
-          name: Make project valid for compile
-          command: dotnet run --project Scripts -- make-project-valid
-      - run:
-          command: dotnet restore Thrive.sln
+          name: Make sure Thrive is compiled
+          command: dotnet build Thrive.sln
       - run:
            command: dotnet tool restore
       # Makes sure that there aren't any changes at this point to not make the CI trip up on them
@@ -95,22 +92,25 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_script:
-    image: thrive/godot-ci:v21
+    image: thrive/godot-ci:v24
     cache:
       loadFrom:
-        - v5-{Branch}-format
-        - v5-master-format
-      writeTo: v5-{Branch}-format
+        - v8-{Branch}-format
+        - v8-master-format
+      writeTo: v8-{Branch}-format
       shared:
-        .git/lfs: v5-lfs
+        .git/lfs: v7-lfs
       system:
-        /root/.nuget: v4-nuget
+        /root/.nuget: v6-nuget
     artifacts:
       paths:
         - format_diff.patch
     steps:
       - run:
           command: dotnet restore Scripts/Scripts.csproj
+      - run:
+          name: Simple Thrive code-only tests
+          command: dotnet test test/code_tests
       - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite

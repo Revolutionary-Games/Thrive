@@ -61,6 +61,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
+    private readonly List<Hex> hexTemporaryMemory = new();
+    private readonly List<Hex> hexTemporaryMemory2 = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -115,7 +118,7 @@ public partial class CellBodyPlanEditorComponent :
     private bool forceUpdateCellGraphics;
 
     [Signal]
-    public delegate void OnCellTypeToEditSelected(string name, bool switchTab);
+    public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
     public enum SelectionMenuTab
     {
@@ -204,16 +207,19 @@ public partial class CellBodyPlanEditorComponent :
         {
             // We assume that the loaded save layout did not have anything weird set for the callbacks as we
             // do this rather than use SaveApplyHelpers
+            var workMemory1 = new List<Hex>();
+            var workMemory2 = new List<Hex>();
+
             foreach (var editedMicrobeOrganelle in editedMicrobeCells)
             {
-                newLayout.Add(editedMicrobeOrganelle);
+                newLayout.AddFast(editedMicrobeOrganelle, workMemory1, workMemory2);
             }
 
             editedMicrobeCells = newLayout;
 
             if (Editor.EditedCellProperties != null)
             {
-                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
+                UpdateGUIAfterLoadingSpecies();
                 UpdateArrow(false);
             }
             else
@@ -225,7 +231,7 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCancelButtonVisibility();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -237,7 +243,7 @@ public partial class CellBodyPlanEditorComponent :
         if (debugOverlay.PerformanceMetricsVisible)
         {
             var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(roughCount, 0);
+            debugOverlay.ReportEntities(roughCount);
         }
 
         if (cellDataDirty)
@@ -259,11 +265,10 @@ public partial class CellBodyPlanEditorComponent :
             {
                 // Can place stuff at all?
                 // TODO: should placementRotation be used here in some way?
-                isPlacementProbablyValid = IsValidPlacement(
-                    new HexWithData<CellTemplate>(new CellTemplate(cellType))
-                    {
-                        Position = new Hex(q, r),
-                    });
+                isPlacementProbablyValid = IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType))
+                {
+                    Position = new Hex(q, r),
+                });
             }
             else
             {
@@ -321,7 +326,7 @@ public partial class CellBodyPlanEditorComponent :
             {
                 var positionVector = direction * distance;
 
-                if (TryAddHexToEditedLayout(hex, (int)positionVector.x, (int)positionVector.y))
+                if (TryAddHexToEditedLayout(hex, (int)positionVector.X, (int)positionVector.Y))
                     break;
 
                 distance += 0.8f;
@@ -330,7 +335,7 @@ public partial class CellBodyPlanEditorComponent :
 
         newName = species.FormattedName;
 
-        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
+        UpdateGUIAfterLoadingSpecies();
 
         UpdateArrow(false);
     }
@@ -339,9 +344,18 @@ public partial class CellBodyPlanEditorComponent :
     {
         var editedSpecies = Editor.EditedSpecies;
 
+        // Note that for the below calculations to work all cell types need to be positioned correctly. So we need
+        // to force that to happen here first. This also ensures that the skipped positioning to origin of the cell
+        // editor component (that is used as a special mode in multicellular) is performed.
+        foreach (var cellType in editedSpecies.CellTypes)
+        {
+            cellType.RepositionToOrigin();
+        }
+
         // Compute final cell layout positions and update the species
         // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
-        // editor so this step can be skipped
+        // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
+        // than this approach that can move around the cells a lot.
         editedSpecies.Cells.Clear();
 
         foreach (var hexWithData in editedMicrobeCells)
@@ -360,11 +374,11 @@ public partial class CellBodyPlanEditorComponent :
             while (true)
             {
                 var positionVector = direction * distance;
-                hexWithData.Data!.Position = new Hex((int)positionVector.x, (int)positionVector.y);
+                hexWithData.Data!.Position = new Hex((int)positionVector.X, (int)positionVector.Y);
 
-                if (editedSpecies.Cells.CanPlace(hexWithData.Data))
+                if (editedSpecies.Cells.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
                 {
-                    editedSpecies.Cells.Add(hexWithData.Data);
+                    editedSpecies.Cells.AddFast(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2);
                     break;
                 }
 
@@ -430,7 +444,7 @@ public partial class CellBodyPlanEditorComponent :
 
         RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
         {
-            var cell = editedMicrobeCells.GetElementAt(new Hex(symmetryQ, symmetryR));
+            var cell = editedMicrobeCells.GetElementAt(new Hex(symmetryQ, symmetryR), hexTemporaryMemory);
 
             if (cell != null)
                 cells.Add(cell);
@@ -486,12 +500,15 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override void PerformActiveAction()
     {
-        AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
+        if (AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active"))))
+        {
+            // Placed a cell, could trigger a tutorial or something
+        }
     }
 
     protected override void PerformMove(int q, int r)
     {
-        if (!MoveCell(MovingPlacedHex!, MovingPlacedHex!.Position, new Hex(q, r), MovingPlacedHex.Data!.Orientation,
+        if (!MoveCell(MovingPlacedHex!, new Hex(q, r),
                 placementRotation))
         {
             Editor.OnInvalidAction();
@@ -500,12 +517,12 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override bool IsMoveTargetValid(Hex position, int rotation, HexWithData<CellTemplate> cell)
     {
-        return editedMicrobeCells.CanPlace(cell);
+        return editedMicrobeCells.CanPlace(cell, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
     protected override void OnCurrentActionCanceled()
     {
-        editedMicrobeCells.Add(MovingPlacedHex!);
+        editedMicrobeCells.AddFast(MovingPlacedHex!, hexTemporaryMemory, hexTemporaryMemory2);
         MovingPlacedHex = null;
         base.OnCurrentActionCanceled();
     }
@@ -517,12 +534,12 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override HexWithData<CellTemplate>? GetHexAt(Hex position)
     {
-        return editedMicrobeCells.GetElementAt(position);
+        return editedMicrobeCells.GetElementAt(position, hexTemporaryMemory);
     }
 
     protected override EditorAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted)
     {
-        var hexHere = editedMicrobeCells.GetElementAt(location);
+        var hexHere = editedMicrobeCells.GetElementAt(location, hexTemporaryMemory);
         if (hexHere == null)
             return null;
 
@@ -550,7 +567,7 @@ public partial class CellBodyPlanEditorComponent :
             var cartesian = Hex.AxialToCartesian(hex.Position);
 
             // Get the min z-axis (highest point in the editor)
-            highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z);
+            highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.Z);
         }
 
         return highestPointInMiddleRows;
@@ -583,7 +600,7 @@ public partial class CellBodyPlanEditorComponent :
         base.Dispose(disposing);
     }
 
-    private void UpdateGUIAfterLoadingSpecies(Species species)
+    private void UpdateGUIAfterLoadingSpecies()
     {
         GD.Print("Starting early multicellular editor with: ", editedMicrobeCells.Count,
             " cells in the microbe");
@@ -603,9 +620,9 @@ public partial class CellBodyPlanEditorComponent :
     private bool TryAddHexToEditedLayout(HexWithData<CellTemplate> hex, int q, int r)
     {
         hex.Position = new Hex(q, r);
-        if (editedMicrobeCells.CanPlace(hex))
+        if (editedMicrobeCells.CanPlace(hex, hexTemporaryMemory, hexTemporaryMemory2))
         {
-            editedMicrobeCells.Add(hex);
+            editedMicrobeCells.AddFast(hex, hexTemporaryMemory, hexTemporaryMemory2);
             return true;
         }
 
@@ -712,7 +729,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool IsValidPlacement(HexWithData<CellTemplate> cell)
     {
-        return editedMicrobeCells.CanPlaceAndIsTouching(cell);
+        return editedMicrobeCells.CanPlaceAndIsTouching(cell, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
     private EditorAction CreateAddCellAction(HexWithData<CellTemplate> cell)
@@ -775,7 +792,7 @@ public partial class CellBodyPlanEditorComponent :
         return new CombinedEditorAction(moveActionData);
     }
 
-    private bool MoveCell(HexWithData<CellTemplate> cell, Hex oldLocation, Hex newLocation, int oldRotation,
+    private bool MoveCell(HexWithData<CellTemplate> cell, Hex newLocation,
         int newRotation)
     {
         // TODO: consider allowing rotation inplace (https://github.com/Revolutionary-Games/Thrive/issues/2993)
@@ -816,9 +833,6 @@ public partial class CellBodyPlanEditorComponent :
         {
             StartHexMove(cellPopupMenu.SelectedCells.First());
         }
-
-        // Once an cell move has begun, the button visibility should be updated so it becomes visible
-        UpdateCancelButtonVisibility();
     }
 
     private void OnDeletePressed()
@@ -832,7 +846,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnModifyPressed()
     {
-        EmitSignal(nameof(OnCellTypeToEditSelected), cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName, true);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName,
+            true);
     }
 
     /// <summary>
@@ -846,7 +861,7 @@ public partial class CellBodyPlanEditorComponent :
             if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
             {
                 // Need new button
-                control = (CellTypeSelection)cellTypeSelectionButtonScene.Instance();
+                control = (CellTypeSelection)cellTypeSelectionButtonScene.Instantiate();
                 control.SelectionGroup = cellTypeButtonGroup;
 
                 control.PartName = cellType.TypeName;
@@ -856,7 +871,8 @@ public partial class CellBodyPlanEditorComponent :
                 cellTypeSelectionList.AddItem(control);
                 cellTypeSelectionButtons.Add(cellType.TypeName, control);
 
-                control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnCellToPlaceSelected));
+                control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
+                    new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
             control.MPCost = cellType.MPCost;
@@ -929,7 +945,7 @@ public partial class CellBodyPlanEditorComponent :
         OnCurrentActionChanged();
 
         // After clearing the selected cell, emit a signal to let the editor know
-        EmitSignal(nameof(OnCellTypeToEditSelected), null, false);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant), false);
     }
 
     private void OnCellsChanged()
@@ -948,9 +964,8 @@ public partial class CellBodyPlanEditorComponent :
         var islands = editedMicrobeCells.GetIslandHexes();
 
         // Build the entities to show the current microbe
-        UpdateAlreadyPlacedHexes(
-            editedMicrobeCells.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(),
-                Editor.HexPlacedThisSession<HexWithData<CellTemplate>, EarlyMulticellularSpecies>(o))), islands);
+        UpdateAlreadyPlacedHexes(editedMicrobeCells.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(),
+            Editor.HexPlacedThisSession<HexWithData<CellTemplate>, EarlyMulticellularSpecies>(o))), islands);
 
         int nextFreeCell = 0;
 
@@ -979,7 +994,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void ShowCellTypeInModelHolder(SceneDisplayer modelHolder, CellType cell, Vector3 position, int orientation)
     {
-        modelHolder.Transform = new Transform(Quat.Identity, position);
+        modelHolder.Transform = new Transform3D(Basis.Identity, position);
 
         var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
 
@@ -994,11 +1009,11 @@ public partial class CellBodyPlanEditorComponent :
         }
         else
         {
-            billboard = (CellBillboard)billboardScene.Instance();
+            billboard = (CellBillboard)billboardScene.Instantiate();
         }
 
         // Set look direction
-        billboard.Transform = new Transform(rotation, new Vector3(0, 0, 0));
+        billboard.Transform = new Transform3D(new Basis(rotation), new Vector3(0, 0, 0));
 
         billboard.DisplayedCell = cell;
 
@@ -1009,9 +1024,8 @@ public partial class CellBodyPlanEditorComponent :
 
         modelHolder.LoadFromAlreadyLoadedNode(billboard);
 
-        // TODO: render order setting for the cells? (similarly to how organelles are handled in the cell editor)
-        // This is probably not needed but when converted to quads, maybe 0.01 of randomness in y-position would be
-        // fine?
+        // TODO: render priority setting for the cells? (similarly to how organelles are handled in the cell editor)
+        // Alternatively maybe 0.01 of randomness in y-position would be fine?
     }
 
     private void OnSpeciesNameChanged(string newText)
@@ -1039,7 +1053,7 @@ public partial class CellBodyPlanEditorComponent :
         // the entire time and doesn't change due to the focus grabber a tiny bit later
         duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
-        duplicateCellTypeName.CaretPosition = type.TypeName.Length;
+        duplicateCellTypeName.CaretColumn = type.TypeName.Length;
     }
 
     private void OnNewCellTypeNameChanged(string newText)
@@ -1124,7 +1138,7 @@ public partial class CellBodyPlanEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnCellTypeToEditSelected), activeActionName, true);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, activeActionName, true);
     }
 
     private void RegenerateCellTypeIcon(CellType type)
@@ -1164,21 +1178,21 @@ public partial class CellBodyPlanEditorComponent :
             case SelectionMenuTab.Structure:
             {
                 structureTab.Show();
-                structureTabButton.Pressed = true;
+                structureTabButton.ButtonPressed = true;
                 break;
             }
 
             case SelectionMenuTab.Reproduction:
             {
                 reproductionTab.Show();
-                reproductionTabButton.Pressed = true;
+                reproductionTabButton.ButtonPressed = true;
                 break;
             }
 
             case SelectionMenuTab.Behaviour:
             {
                 behaviourEditor.Show();
-                behaviourTabButton.Pressed = true;
+                behaviourTabButton.ButtonPressed = true;
                 break;
             }
 

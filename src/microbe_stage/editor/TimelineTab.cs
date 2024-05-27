@@ -4,7 +4,10 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 
-public class TimelineTab : PanelContainer
+/// <summary>
+///   Shows a timeline of world or local patch events on a long timescale (from auto-evo data)
+/// </summary>
+public partial class TimelineTab : PanelContainer
 {
     [Export]
     public NodePath? GlobalEventsContainerPath;
@@ -22,6 +25,15 @@ public class TimelineTab : PanelContainer
     public NodePath GlobalFilterButtonPath = null!;
 
 #pragma warning disable CA2213
+    [Export]
+    public LabelSettings TimePeriodTitleFont = null!;
+
+    [Export]
+    public LabelSettings EventLabelNormalFont = null!;
+
+    [Export]
+    public LabelSettings EventLabelBoldFont = null!;
+
     private readonly PackedScene customRichTextLabelScene;
 
     private readonly StyleBoxTexture eventHighlightStyleBox;
@@ -42,11 +54,9 @@ public class TimelineTab : PanelContainer
 
     public TimelineTab()
     {
-        customRichTextLabelScene = GD.Load<PackedScene>(
-            "res://src/gui_common/CustomRichTextLabel.tscn");
+        customRichTextLabelScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
 
-        eventHighlightStyleBox = GD.Load<StyleBoxTexture>(
-            "res://src/microbe_stage/editor/TimelineEventHighlight.tres");
+        eventHighlightStyleBox = GD.Load<StyleBoxTexture>("res://src/microbe_stage/editor/TimelineEventHighlight.tres");
     }
 
     public enum Filters
@@ -102,8 +112,13 @@ public class TimelineTab : PanelContainer
 
             foreach (var entry in editor.CurrentGame.GameWorld.EventsLog)
             {
-                var section = new TimelineSection(
-                    customRichTextLabelScene, eventHighlightStyleBox, (entry.Key, entry.Value));
+                var section = new TimelineSection(customRichTextLabelScene, eventHighlightStyleBox,
+                    (entry.Key, entry.Value))
+                {
+                    TitleFont = TimePeriodTitleFont,
+                    NormalFont = EventLabelNormalFont,
+                    BoldFont = EventLabelBoldFont,
+                };
 
                 cachedGlobalTimelineElements.Add(section);
                 globalEventsContainer.AddChild(section);
@@ -118,8 +133,13 @@ public class TimelineTab : PanelContainer
         for (int i = targetPatch.History.Count - 1; i >= 0; i--)
         {
             var snapshot = targetPatch.History[i];
-            var section = new TimelineSection(
-                customRichTextLabelScene, eventHighlightStyleBox, (snapshot.TimePeriod, snapshot.EventsLog));
+            var section = new TimelineSection(customRichTextLabelScene, eventHighlightStyleBox,
+                (snapshot.TimePeriod, snapshot.EventsLog))
+            {
+                TitleFont = TimePeriodTitleFont,
+                NormalFont = EventLabelNormalFont,
+                BoldFont = EventLabelBoldFont,
+            };
 
             cachedLocalTimelineElements.Add(section);
             localEventsContainer.AddChild(section);
@@ -144,10 +164,10 @@ public class TimelineTab : PanelContainer
             anchorRect = last?.HeaderGlobalRect ?? new Rect2(Vector2.Zero, Vector2.Zero);
         }
 
-        var diff = Mathf.Max(Mathf.Min(anchorRect.Position.y, scrollRect.Position.y), anchorRect.Position.y +
-            anchorRect.Size.y - scrollRect.Size.y + (scrollRect.Size.y - anchorRect.Size.y));
+        var diff = Mathf.Max(Mathf.Min(anchorRect.Position.Y, scrollRect.Position.Y), anchorRect.Position.Y +
+            anchorRect.Size.Y - scrollRect.Size.Y + (scrollRect.Size.Y - anchorRect.Size.Y));
 
-        scrollContainer.ScrollVertical += (int)(diff - scrollRect.Position.y);
+        scrollContainer.ScrollVertical += (int)(diff - scrollRect.Position.Y);
     }
 
     protected override void Dispose(bool disposing)
@@ -174,12 +194,12 @@ public class TimelineTab : PanelContainer
             case Filters.Global:
                 localEventsContainer.Hide();
                 globalEventsContainer.Show();
-                globalFilterButton.Pressed = true;
+                globalFilterButton.ButtonPressed = true;
                 break;
             case Filters.Local:
                 globalEventsContainer.Hide();
                 localEventsContainer.Show();
-                localFilterButton.Pressed = true;
+                localFilterButton.ButtonPressed = true;
                 break;
             default:
                 throw new Exception("Not a valid event filter");
@@ -198,8 +218,16 @@ public class TimelineTab : PanelContainer
         EventFilter = (Filters)index;
     }
 
-    private class TimelineSection : VBoxContainer
+    // Instances are created only through code
+    // ReSharper disable once Godot.MissingParameterlessConstructor
+    private partial class TimelineSection : VBoxContainer
     {
+#pragma warning disable CA2213
+        public LabelSettings TitleFont = null!;
+        public LabelSettings NormalFont = null!;
+        public LabelSettings BoldFont = null!;
+#pragma warning restore CA2213
+
         private readonly PackedScene customRichTextLabelScene;
         private readonly StyleBoxTexture eventHighlightStyleBox;
 
@@ -221,20 +249,20 @@ public class TimelineTab : PanelContainer
 
         public override void _Ready()
         {
-            AddConstantOverride("separation", 2);
+            AddThemeConstantOverride("separation", 2);
 
             headerContainer = new HBoxContainer();
-            var spacer = new Control { RectMinSize = new Vector2(26, 0) };
+            var spacer = new Control { CustomMinimumSize = new Vector2(26, 0) };
 
             var timePeriodLabel = new Label
             {
                 Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", data.TimePeriod) + " "
-                    + TranslationServer.Translate("MEGA_YEARS"),
-                RectMinSize = new Vector2(0, 55),
-                Valign = Label.VAlign.Center,
+                    + Localization.Translate("MEGA_YEARS"),
+                CustomMinimumSize = new Vector2(0, 55),
+                VerticalAlignment = VerticalAlignment.Center,
             };
 
-            timePeriodLabel.AddFontOverride("font", GetFont("jura_bold", "Fonts"));
+            timePeriodLabel.LabelSettings = TitleFont;
 
             headerContainer.AddChild(spacer);
             headerContainer.AddChild(timePeriodLabel);
@@ -249,10 +277,10 @@ public class TimelineTab : PanelContainer
                 {
                     iconRect = new TextureRect
                     {
-                        RectMinSize = new Vector2(25, 25),
-                        SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
+                        CustomMinimumSize = new Vector2(25, 25),
+                        SizeFlagsVertical = SizeFlags.ShrinkCenter,
                         Texture = GUICommon.LoadGuiTexture(entry.IconPath!),
-                        Expand = true,
+                        ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
                         StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                     };
                 }
@@ -260,20 +288,24 @@ public class TimelineTab : PanelContainer
                 var highlight = new PanelContainer
                 {
                     SelfModulate = entry.Highlighted ? Colors.White : Colors.Transparent,
-                    SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
+                    SizeFlagsHorizontal = SizeFlags.ExpandFill,
                 };
 
-                highlight.AddStyleboxOverride("panel", eventHighlightStyleBox);
-                itemContainer.AddConstantOverride("separation", 5);
+                highlight.AddThemeStyleboxOverride("panel", eventHighlightStyleBox);
+                itemContainer.AddThemeConstantOverride("separation", 5);
 
-                var eventLabel = customRichTextLabelScene.Instance<CustomRichTextLabel>();
-                eventLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+                var eventLabel = customRichTextLabelScene.Instantiate<CustomRichTextLabel>();
+                eventLabel.SizeFlagsHorizontal = SizeFlags.ExpandFill;
                 eventLabel.ExtendedBbcode = entry.Description.ToString();
-                eventLabel.FitContentHeight = true;
+                eventLabel.FitContent = true;
 
-                eventLabel.AddFontOverride("normal_font", GetFont("jura_almost_smaller", "Fonts"));
-                eventLabel.AddFontOverride("bold_font", GetFont("jura_demibold_almost_smaller", "Fonts"));
-                eventLabel.AddConstantOverride("line_separation", 0);
+                eventLabel.AddThemeFontOverride("normal_font", NormalFont.Font);
+                eventLabel.AddThemeFontSizeOverride("normal_font_size", NormalFont.FontSize);
+
+                eventLabel.AddThemeFontOverride("bold_font", BoldFont.Font);
+                eventLabel.AddThemeFontSizeOverride("bold_font_size", BoldFont.FontSize);
+
+                eventLabel.AddThemeConstantOverride("line_separation", 0);
 
                 if (iconRect != null)
                     itemContainer.AddChild(iconRect);
@@ -282,14 +314,15 @@ public class TimelineTab : PanelContainer
                 AddChild(itemContainer);
             }
 
-            if (data.Events?.Any() == false)
+            if (data.Events.Any() == false)
             {
                 var noneLabelContainer = new HBoxContainer();
-                var noneLabelSpacer = new Control { RectMinSize = new Vector2(25, 25) };
-                var noneLabel = new Label { Text = TranslationServer.Translate("NO_EVENTS_RECORDED") };
+                var noneLabelSpacer = new Control { CustomMinimumSize = new Vector2(25, 25) };
+                var noneLabel = new Label { Text = Localization.Translate("NO_EVENTS_RECORDED") };
 
-                noneLabelContainer.AddConstantOverride("separation", 5);
-                noneLabel.AddFontOverride("font", GetFont("jura_almost_smaller", "Fonts"));
+                noneLabelContainer.AddThemeConstantOverride("separation", 5);
+                noneLabel.AddThemeFontOverride("normal_font", NormalFont.Font);
+                noneLabel.AddThemeFontSizeOverride("normal_font_size", NormalFont.FontSize);
 
                 noneLabelContainer.AddChild(noneLabelSpacer);
                 noneLabelContainer.AddChild(noneLabel);

@@ -7,7 +7,7 @@ using Godot;
 ///   Manages a custom context menu solely for showing list of options for a placed organelle
 ///   in the microbe editor.
 /// </summary>
-public class OrganellePopupMenu : HexPopupMenu
+public partial class OrganellePopupMenu : HexPopupMenu
 {
     private List<OrganelleTemplate>? selectedOrganelles;
 
@@ -59,7 +59,7 @@ public class OrganellePopupMenu : HexPopupMenu
         }
         else
         {
-            titleLabel.Text = TranslationServer.Translate("MULTIPLE_ORGANELLES");
+            titleLabel.Text = Localization.Translate("MULTIPLE_ORGANELLES");
         }
     }
 
@@ -68,12 +68,11 @@ public class OrganellePopupMenu : HexPopupMenu
         if (deleteButton == null)
             return;
 
-        var mpCost = GetActionPrice?.Invoke(
-                SelectedOrganelles
-                    .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o)
-                    {
-                        CostMultiplier = CostMultiplier,
-                    })) ??
+        var mpCost = GetActionPrice?.Invoke(SelectedOrganelles
+                .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o)
+                {
+                    CostMultiplier = CostMultiplier,
+                })) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -81,7 +80,7 @@ public class OrganellePopupMenu : HexPopupMenu
         mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
 
         deleteButton.Disabled = !EnableDeleteOption;
-        deleteButton.HintTooltip = DeleteOptionTooltip;
+        deleteButton.TooltipText = DeleteOptionTooltip;
     }
 
     protected override void UpdateMoveButton()

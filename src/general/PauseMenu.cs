@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-public class PauseMenu : TopLevelContainer
+public partial class PauseMenu : TopLevelContainer
 {
     [Export]
     public string HelpCategory = null!;
@@ -35,7 +35,7 @@ public class PauseMenu : TopLevelContainer
 
 #pragma warning disable CA2213
     private Control primaryMenu = null!;
-    private Thriveopedia thriveopedia = null!;
+    private Thriveopedia? thriveopedia;
     private HelpScreen helpScreen = null!;
     private Control loadMenu = null!;
     private OptionsMenu optionsMenu = null!;
@@ -43,6 +43,8 @@ public class PauseMenu : TopLevelContainer
     private CustomConfirmationDialog unsavedProgressWarning = null!;
     private AnimationPlayer animationPlayer = null!;
 #pragma warning restore CA2213
+
+    private GameProperties? gameProperties;
 
     private bool paused;
 
@@ -57,20 +59,20 @@ public class PauseMenu : TopLevelContainer
     private int exitTries;
 
     [Signal]
-    public delegate void OnResumed();
+    public delegate void OnResumedEventHandler();
 
     /// <summary>
     ///   Triggered when the user hits ESC to open the pause menu
     /// </summary>
     [Signal]
-    public delegate void OnOpenWithKeyPress();
+    public delegate void OnOpenWithKeyPressEventHandler();
 
     /// <summary>
     ///   Called when a save needs to be made
     /// </summary>
     /// <param name="name">Name of the save to make or empty string</param>
     [Signal]
-    public delegate void MakeSave(string name);
+    public delegate void MakeSaveEventHandler(string name);
 
     /// <summary>
     ///   Types of exit the player can request. Used to store the action for when the warning popup
@@ -96,7 +98,19 @@ public class PauseMenu : TopLevelContainer
     /// <summary>
     ///   The GameProperties object holding settings and state for the current game session.
     /// </summary>
-    public GameProperties? GameProperties { get; set; } = null!;
+    public GameProperties? GameProperties
+    {
+        get => gameProperties;
+        set
+        {
+            gameProperties = value;
+
+            // Forward the game properties to the Thriveopedia, even before it is opened for it to respond to
+            // data requests
+            if (gameProperties != null && thriveopedia != null)
+                thriveopedia.CurrentGame = value;
+        }
+    }
 
     public bool GameLoading { get; set; }
 
@@ -153,7 +167,7 @@ public class PauseMenu : TopLevelContainer
                             $"{nameof(GameProperties)} is required before opening options"));
                     break;
                 case ActiveMenuType.Thriveopedia:
-                    thriveopedia.OpenInGame(GameProperties ??
+                    thriveopedia!.OpenInGame(GameProperties ??
                         throw new InvalidOperationException(
                             $"{nameof(GameProperties)} is required before opening Thriveopedia in-game"));
                     break;
@@ -207,7 +221,10 @@ public class PauseMenu : TopLevelContainer
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
-        unsavedProgressWarning.Connect(nameof(CustomWindow.Cancelled), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(CustomWindow.SignalName.Canceled, new Callable(this, nameof(CancelExit)));
+
+        if (GameProperties != null)
+            thriveopedia.CurrentGame = GameProperties;
     }
 
     public override void _EnterTree()
@@ -218,6 +235,8 @@ public class PauseMenu : TopLevelContainer
         InputManager.RegisterReceiver(this);
 
         GetTree().AutoAcceptQuit = false;
+
+        ThriveopediaManager.Instance.OnPageOpenedHandler += OnThriveopediaOpened;
 
         base._EnterTree();
     }
@@ -230,13 +249,15 @@ public class PauseMenu : TopLevelContainer
         Paused = false;
 
         GetTree().AutoAcceptQuit = true;
+
+        ThriveopediaManager.Instance.OnPageOpenedHandler -= OnThriveopediaOpened;
     }
 
     public override void _Notification(int notification)
     {
         base._Notification(notification);
 
-        if (notification == NotificationWmQuitRequest)
+        if (notification == NotificationWMCloseRequest)
         {
             // For some reason we need to perform this later, otherwise Godot complains about a node being busy
             // setting up children
@@ -252,7 +273,7 @@ public class PauseMenu : TopLevelContainer
             ActiveMenu = ActiveMenuType.Primary;
 
             Close();
-            EmitSignal(nameof(OnResumed));
+            EmitSignal(SignalName.OnResumed);
 
             return true;
         }
@@ -261,7 +282,7 @@ public class PauseMenu : TopLevelContainer
             return false;
 
         Open();
-        EmitSignal(nameof(OnOpenWithKeyPress));
+        EmitSignal(SignalName.OnOpenWithKeyPress);
 
         return true;
     }
@@ -273,7 +294,7 @@ public class PauseMenu : TopLevelContainer
             return false;
 
         Open();
-        EmitSignal(nameof(OnOpenWithKeyPress));
+        EmitSignal(SignalName.OnOpenWithKeyPress);
 
         ShowHelpScreen();
         return true;
@@ -288,25 +309,10 @@ public class PauseMenu : TopLevelContainer
         helpScreen.RandomizeEasterEgg();
     }
 
-    public void ShowThriveopedia(string pageName)
-    {
-        if (ActiveMenu == ActiveMenuType.Thriveopedia)
-            return;
-
-        ActiveMenu = ActiveMenuType.Thriveopedia;
-        thriveopedia.ChangePage(pageName);
-    }
-
     public void OpenToHelp()
     {
         Open();
         ShowHelpScreen();
-    }
-
-    public void OpenToStatistics()
-    {
-        Open();
-        ShowThriveopedia("CurrentWorld");
     }
 
     public void SetNewSaveName(string name)
@@ -327,6 +333,10 @@ public class PauseMenu : TopLevelContainer
 
     protected override void OnOpen()
     {
+        // Godot being very silly: https://github.com/godotengine/godot/issues/73908
+        if (animationPlayer == null!)
+            return;
+
         animationPlayer.Play("Open");
         Paused = true;
         exiting = false;
@@ -381,7 +391,7 @@ public class PauseMenu : TopLevelContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
         Close();
-        EmitSignal(nameof(OnResumed));
+        EmitSignal(SignalName.OnResumed);
     }
 
     private void ReturnToMenuPressed()
@@ -396,7 +406,7 @@ public class PauseMenu : TopLevelContainer
         }
         else
         {
-            unsavedProgressWarning.DialogText = TranslationServer.Translate("RETURN_TO_MENU_WARNING");
+            unsavedProgressWarning.DialogText = Localization.Translate("RETURN_TO_MENU_WARNING");
             unsavedProgressWarning.PopupCenteredShrink();
         }
     }
@@ -415,7 +425,7 @@ public class PauseMenu : TopLevelContainer
         else
         {
             GUICommon.Instance.PlayButtonPressSound();
-            unsavedProgressWarning.DialogText = TranslationServer.Translate("QUIT_GAME_WARNING");
+            unsavedProgressWarning.DialogText = Localization.Translate("QUIT_GAME_WARNING");
             unsavedProgressWarning.PopupCenteredShrink();
         }
     }
@@ -461,6 +471,16 @@ public class PauseMenu : TopLevelContainer
     private void Quit()
     {
         SceneManager.Instance.QuitThrive();
+    }
+
+    private void OnThriveopediaOpened(string pageName)
+    {
+        if (thriveopedia == null)
+            throw new InvalidOperationException("Pause menu needs to be added to the scene first");
+
+        Open();
+        OpenThriveopediaPressed();
+        thriveopedia.ChangePage(pageName);
     }
 
     private void OpenThriveopediaPressed()
@@ -541,8 +561,8 @@ public class PauseMenu : TopLevelContainer
 
         // Close this first to get the menus out of the way to capture the save screenshot
         Hide();
-        EmitSignal(nameof(OnResumed));
-        EmitSignal(nameof(MakeSave), name);
+        EmitSignal(SignalName.OnResumed);
+        EmitSignal(SignalName.MakeSave, name);
         Paused = false;
     }
 

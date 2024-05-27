@@ -14,8 +14,10 @@ using Godot;
 ///     may no longer work.
 ///   </para>
 /// </remarks>
-public class PlayerMicrobeInput : NodeWithInput
+public partial class PlayerMicrobeInput : NodeWithInput
 {
+    private readonly MicrobeMovementEventArgs cachedEventArgs = new(true, Vector3.Zero);
+
     private bool autoMove;
 
 #pragma warning disable CA2213 // this is our parent object
@@ -41,7 +43,7 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
     [RunOnAxisGroup(InvokeAlsoWithNoInput = true, TrackInputMethod = true)]
-    public void OnMovement(float delta, float forwardMovement, float leftRightMovement, ActiveInputMethod inputMethod)
+    public void OnMovement(double delta, float forwardMovement, float leftRightMovement, ActiveInputMethod inputMethod)
     {
         _ = delta;
         const float epsilon = 0.01f;
@@ -94,7 +96,7 @@ public class PlayerMicrobeInput : NodeWithInput
                 // Rotate the opposite of the player orientation to get back to screen (as when applying movement
                 // vector the normal rotation is used to rotate the movement direction so these two operations cancel
                 // out)
-                movement = position.Rotation.Inverse().Xform(movement);
+                movement = position.Rotation.Inverse() * movement;
             }
 
             if (autoMove)
@@ -107,9 +109,10 @@ public class PlayerMicrobeInput : NodeWithInput
                 control.MovementDirection = movement.Length() > 1 ? movement.Normalized() : movement;
             }
 
-            stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement,
-                new MicrobeMovementEventArgs(screenRelative, control.MovementDirection,
-                    control.LookAtPoint - position.Position), this);
+            // A cached event args is used as otherwise this generates quite a large fraction of allocated objects
+            // by the game
+            cachedEventArgs.ReuseEvent(screenRelative, control.MovementDirection);
+            stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement, cachedEventArgs, this);
         }
     }
 
@@ -126,14 +129,14 @@ public class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_secrete_slime")]
-    public void SecreteSlime(float delta)
+    public void SecreteSlime(double delta)
     {
         if (!stage.HasPlayer)
             return;
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
-        control.QueueSecreteSlime(ref stage.Player.Get<OrganelleContainer>(), stage.Player, delta);
+        control.QueueSecreteSlime(ref stage.Player.Get<OrganelleContainer>(), stage.Player, (float)delta);
     }
 
     [RunOnKeyDown("g_toggle_engulf")]
@@ -145,13 +148,39 @@ public class PlayerMicrobeInput : NodeWithInput
         ref var control = ref stage.Player.Get<MicrobeControl>();
         ref var cellProperties = ref stage.Player.Get<CellProperties>();
 
-        if (control.State == MicrobeState.Engulf)
+        var currentState = control.State;
+
+        if (stage.Player.Has<MicrobeColony>())
         {
-            control.State = MicrobeState.Normal;
+            ref var colony = ref stage.Player.Get<MicrobeColony>();
+
+            currentState = colony.ColonyState;
+        }
+
+        if (currentState == MicrobeState.Engulf)
+        {
+            control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
         }
         else if (cellProperties.CanEngulfInColony(stage.Player))
         {
-            control.State = MicrobeState.Engulf;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Engulf);
+        }
+    }
+
+    [RunOnKeyDown("g_eject_engulfed")]
+    public void EjectAllEngulfed()
+    {
+        if (!stage.HasAlivePlayer)
+            return;
+
+        ref var engulfer = ref stage.Player.Get<Engulfer>();
+
+        if (engulfer.EngulfedObjects is { Count: > 0 })
+        {
+            foreach (var engulfedObject in engulfer.EngulfedObjects)
+            {
+                engulfer.EjectEngulfable(ref engulfedObject.Get<Engulfable>());
+            }
         }
     }
 
@@ -164,13 +193,16 @@ public class PlayerMicrobeInput : NodeWithInput
         ref var control = ref stage.Player.Get<MicrobeControl>();
         ref var organelles = ref stage.Player.Get<OrganelleContainer>();
 
+        // This doesn't check colony data as the player cell is always able to bind when in a colony so the state
+        // should not be able to be out of sync
+
         if (control.State == MicrobeState.Binding)
         {
-            control.State = MicrobeState.Normal;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
         }
         else if (organelles.HasBindingAgent)
         {
-            control.State = MicrobeState.Binding;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Binding);
         }
     }
 
@@ -185,12 +217,12 @@ public class PlayerMicrobeInput : NodeWithInput
         if (control.State == MicrobeState.Unbinding)
         {
             stage.HUD.HintText = string.Empty;
-            control.State = MicrobeState.Normal;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
         }
         else if (stage.Player.Has<MicrobeColony>() && stage.GameWorld.PlayerSpecies is MicrobeSpecies)
         {
-            stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
-            control.State = MicrobeState.Unbinding;
+            stage.HUD.HintText = Localization.Translate("UNBIND_HELP_TEXT");
+            control.SetStateColonyAware(stage.Player, MicrobeState.Unbinding);
 
             ref var callbacks = ref stage.Player.Get<MicrobeEventCallbacks>();
 
@@ -265,7 +297,7 @@ public class PlayerMicrobeInput : NodeWithInput
     {
         var command = stage.HUD.SelectSignalCommandIfOpen();
 
-        if (stage.HasPlayer)
+        if (command != null && stage.HasPlayer)
             stage.HUD.ApplySignalCommand(command, stage.Player);
     }
 
@@ -279,7 +311,7 @@ public class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_cheat_glucose")]
-    public void CheatGlucose(float delta)
+    public void CheatGlucose(double delta)
     {
         if (Settings.Instance.CheatsEnabled)
         {
@@ -288,7 +320,7 @@ public class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_cheat_ammonia")]
-    public void CheatAmmonia(float delta)
+    public void CheatAmmonia(double delta)
     {
         if (Settings.Instance.CheatsEnabled)
         {
@@ -297,7 +329,7 @@ public class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_cheat_phosphates")]
-    public void CheatPhosphates(float delta)
+    public void CheatPhosphates(double delta)
     {
         if (Settings.Instance.CheatsEnabled)
         {
@@ -313,7 +345,7 @@ public class PlayerMicrobeInput : NodeWithInput
         }
     }
 
-    private void SpawnCheatCloud(string name, float delta)
+    private void SpawnCheatCloud(string name, double delta)
     {
         float multiplier = 1.0f;
 
@@ -322,6 +354,6 @@ public class PlayerMicrobeInput : NodeWithInput
             multiplier = 4;
 
         stage.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
-            Constants.CLOUD_CHEAT_DENSITY * delta * multiplier, stage.Camera.CursorWorldPos);
+            (float)(Constants.CLOUD_CHEAT_DENSITY * delta * multiplier), stage.Camera.CursorWorldPos);
     }
 }

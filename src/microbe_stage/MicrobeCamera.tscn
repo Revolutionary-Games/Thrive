@@ -1,39 +1,39 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://bako5jivv1dji"]
 
-[ext_resource path="res://assets/textures/background/Thrive_vent1.png" type="Texture" id=1]
-[ext_resource path="res://assets/textures/background/Thrive_vent2.png" type="Texture" id=2]
-[ext_resource path="res://src/microbe_stage/MicrobeCamera.cs" type="Script" id=3]
-[ext_resource path="res://assets/textures/background/Thrive_vent3.png" type="Texture" id=4]
-[ext_resource path="res://shaders/MicrobeBackground.shader" type="Shader" id=5]
-[ext_resource path="res://assets/textures/background/Thrive_vent0.png" type="Texture" id=6]
+[ext_resource type="Texture2D" uid="uid://d3msr0kfa34w2" path="res://assets/textures/background/Thrive_vent1.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bddntbgykd7uq" path="res://assets/textures/background/Thrive_vent2.png" id="2"]
+[ext_resource type="Script" path="res://src/microbe_stage/MicrobeCamera.cs" id="3"]
+[ext_resource type="Texture2D" uid="uid://bsvls5moner1g" path="res://assets/textures/background/Thrive_vent3.png" id="4"]
+[ext_resource type="Shader" path="res://shaders/MicrobeBackground.gdshader" id="5"]
+[ext_resource type="Texture2D" uid="uid://c3i2n4piw6ln0" path="res://assets/textures/background/Thrive_vent0.png" id="6"]
 
-[sub_resource type="PlaneMesh" id=1]
-size = Vector2( 800, 400 )
+[sub_resource type="PlaneMesh" id="1"]
+size = Vector2(800, 400)
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
 render_priority = -100
-shader = ExtResource( 5 )
-shader_param/lightLevel = 1.0
-shader_param/repeats = Vector2( 2, 1 )
-shader_param/layer0 = ExtResource( 6 )
-shader_param/layer1 = ExtResource( 1 )
-shader_param/layer2 = ExtResource( 2 )
-shader_param/layer3 = ExtResource( 4 )
+shader = ExtResource("5")
+shader_parameter/lightLevel = 1.0
+shader_parameter/repeats = Vector2(2, 1)
+shader_parameter/layer0 = ExtResource("6")
+shader_parameter/layer1 = ExtResource("1")
+shader_parameter/layer2 = ExtResource("2")
+shader_parameter/layer3 = ExtResource("4")
 
-[node name="MicrobeCamera" type="Camera"]
+[node name="MicrobeCamera" type="Camera3D"]
 process_priority = 100
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
+transform = Transform3D(1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0)
 current = true
 fov = 90.0
-script = ExtResource( 3 )
+script = ExtResource("3")
 DefaultCameraHeight = 30.0
 
-[node name="BackgroundPlane" type="CSGMesh" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 5.96247e-08, -15 )
+[node name="BackgroundPlane" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 5.96247e-08, -15)
 cast_shadow = 0
-mesh = SubResource( 1 )
-material = SubResource( 2 )
+mesh = SubResource("1")
+material = SubResource("2")
 
-[node name="Listener" type="Listener" parent="."]
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true

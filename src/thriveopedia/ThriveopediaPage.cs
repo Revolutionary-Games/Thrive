@@ -1,10 +1,11 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
-///   A page that can be opened in the Thriveopedia.
+///   A page that can be opened in the Thriveopedia. This doesn't implement <see cref="IThriveopediaPage"/> as
+///   Godot node types can no longer be abstract.
 /// </summary>
-public abstract class ThriveopediaPage : PanelContainer
+[GodotAbstract]
+public partial class ThriveopediaPage : PanelContainer
 {
     /// <summary>
     ///   Whether this page should display the default panel background.
@@ -17,29 +18,12 @@ public abstract class ThriveopediaPage : PanelContainer
     /// </summary>
     private GameProperties? currentGame;
 
+    protected ThriveopediaPage()
+    {
+    }
+
     [Signal]
-    public delegate void OnSceneChanged();
-
-    /// <summary>
-    ///   Method to call to change to another page. Must receive that page's PageName as the argument.
-    /// </summary>
-    public Action<string> ChangePage { get; set; } = null!;
-
-    /// <summary>
-    ///   The internal name of this page. If this page is the only instance of a specific Godot scene, must be
-    ///   PascalCase to open the scene correctly.
-    /// </summary>
-    public abstract string PageName { get; }
-
-    /// <summary>
-    ///   The translated name of this page.
-    /// </summary>
-    public abstract string TranslatedPageName { get; }
-
-    /// <summary>
-    ///   The internal name of the parent of this page in the tree, or null if this page is at the top level.
-    /// </summary>
-    public abstract string? ParentPageName { get; }
+    public delegate void OnSceneChangedEventHandler();
 
     /// <summary>
     ///   Whether this page is initially collapsed in the page tree to save space.
@@ -61,21 +45,27 @@ public abstract class ThriveopediaPage : PanelContainer
         }
     }
 
+    public Node PageNode => this;
+
     public override void _Ready()
     {
         base._Ready();
 
         // If we're not displaying the background, show a blank panel instead
         if (!DisplayBackground)
-            AddStyleboxOverride("panel", new StyleBoxEmpty());
+            AddThemeStyleboxOverride("panel", new StyleBoxEmpty());
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        base._Notification(what);
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
 
-        if (what == NotificationTranslationChanged)
-            OnTranslationChanged();
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     /// <summary>
@@ -103,7 +93,7 @@ public abstract class ThriveopediaPage : PanelContainer
     /// <summary>
     ///   Called when <see cref="Node.NotificationTranslationChanged"/> is received.
     /// </summary>
-    public virtual void OnTranslationChanged()
+    public virtual void OnTranslationsChanged()
     {
     }
 }

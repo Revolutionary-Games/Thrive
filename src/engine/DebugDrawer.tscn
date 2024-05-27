@@ -3,7 +3,7 @@
 [ext_resource path="res://src/engine/DebugDrawer.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 render_priority = 127
 flags_transparent = true
 flags_unshaded = true
@@ -13,7 +13,7 @@ flags_disable_ambient_light = true
 vertex_color_use_as_albedo = true
 params_depth_draw_mode = 2
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="StandardMaterial3D" id=2]
 render_priority = 126
 flags_transparent = true
 flags_unshaded = true
@@ -24,7 +24,7 @@ vertex_color_use_as_albedo = true
 params_depth_draw_mode = 2
 
 [node name="DebugDrawer" type="Control"]
-pause_mode = 2
+process_mode = 3
 process_priority = 10000
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,7 +36,7 @@ script = ExtResource( 1 )
 LineMaterial = SubResource( 1 )
 TriangleMaterial = SubResource( 2 )
 
-[node name="LineDrawer" type="MeshInstance" parent="."]
+[node name="LineDrawer" type="MeshInstance3D" parent="."]
 portal_mode = 4
 include_in_bound = false
 allow_merging = false
@@ -45,7 +45,7 @@ generate_lightmap = false
 skeleton = NodePath("")
 software_skinning_transform_normals = false
 
-[node name="TriangleDrawer" type="MeshInstance" parent="."]
+[node name="TriangleDrawer" type="MeshInstance3D" parent="."]
 portal_mode = 4
 include_in_bound = false
 allow_merging = false

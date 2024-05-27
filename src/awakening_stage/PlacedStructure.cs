@@ -7,13 +7,13 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A structure placed in the world. May or may not be fully constructed
 /// </summary>
-public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
+public partial class PlacedStructure : Node3D, IInteractableEntity, IConstructable
 {
     private readonly List<StructureComponent> componentInstances = new();
 
 #pragma warning disable CA2213
-    private Spatial scaffoldingParent = null!;
-    private Spatial visualsParent = null!;
+    private Node3D scaffoldingParent = null!;
+    private Node3D visualsParent = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -26,7 +26,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     public StructureDefinition? Definition { get; private set; }
 
@@ -39,12 +39,12 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
             if (Completed)
                 return typeName;
 
-            return TranslationServer.Translate("STRUCTURE_IN_PROGRESS_CONSTRUCTION").FormatSafe(typeName);
+            return Localization.Translate("STRUCTURE_IN_PROGRESS_CONSTRUCTION").FormatSafe(typeName);
         }
     }
 
     [JsonIgnore]
-    public Texture Icon => Definition?.Icon ?? throw new InvalidOperationException("Not initialized");
+    public Texture2D Icon => Definition?.Icon ?? throw new InvalidOperationException("Not initialized");
 
     [JsonIgnore]
     public WeakReference<InventorySlot>? ShownAsGhostIn { get; set; }
@@ -66,12 +66,12 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
                 return null;
 
             if (missingResourcesToFullyConstruct == null)
-                return TranslationServer.Translate("STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD");
+                return Localization.Translate("STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD");
 
             // Display the still required resources
-            string resourceAmountFormat = TranslationServer.Translate("RESOURCE_AMOUNT_SHORT");
+            string resourceAmountFormat = Localization.Translate("RESOURCE_AMOUNT_SHORT");
 
-            return TranslationServer.Translate("STRUCTURE_REQUIRED_RESOURCES_TO_FINISH")
+            return Localization.Translate("STRUCTURE_REQUIRED_RESOURCES_TO_FINISH")
                 .FormatSafe(string.Join(", ",
                     missingResourcesToFullyConstruct.Select(r =>
                         resourceAmountFormat.FormatSafe(r.Key.Name, r.Value))));
@@ -97,15 +97,15 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
     public override void _Ready()
     {
-        scaffoldingParent = GetNode<Spatial>("ScaffoldingHolder");
-        visualsParent = GetNode<Spatial>("VisualSceneHolder");
+        scaffoldingParent = GetNode<Node3D>("ScaffoldingHolder");
+        visualsParent = GetNode<Node3D>("VisualSceneHolder");
     }
 
     public void Init(StructureDefinition definition, bool fullyConstructed = false)
     {
         Definition = definition;
 
-        visualsParent.AddChild(definition.WorldRepresentation.Instance());
+        visualsParent.AddChild(definition.WorldRepresentation.Instantiate());
 
         // TODO: move the physics from the visual scene to this type directly
 
@@ -114,10 +114,10 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
             missingResourcesToFullyConstruct = definition.RequiredResources.CloneShallow();
 
             // Setup scaffolding
-            scaffoldingParent.AddChild(definition.ScaffoldingScene.Instance());
+            scaffoldingParent.AddChild(definition.ScaffoldingScene.Instantiate());
 
             // And the real visuals but placed really low to play a simple building animation
-            visualsParent.Translation = new Vector3(0, definition.WorldSize.y * -0.9f, 0);
+            visualsParent.Position = new Vector3(0, definition.WorldSize.Y * -0.9f, 0);
         }
         else
         {
@@ -252,7 +252,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
         // Update the construction animation
         // TODO: slerp if this can be too jittery otherwise
-        visualsParent.Translation = new Vector3(0, Definition.WorldSize.y * (-0.9f + 0.9f * progress), 0);
+        visualsParent.Position = new Vector3(0, Definition.WorldSize.Y * (-0.9f + 0.9f * progress), 0);
     }
 
     public void OnFinishTimeTakingAction()
@@ -298,7 +298,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
         scaffoldingParent.QueueFreeChildren();
 
         // Ensure visuals are at the right position
-        visualsParent.Translation = Vector3.Zero;
+        visualsParent.Position = Vector3.Zero;
 
         // Create the components
         foreach (var factory in Definition.Components.Factories)

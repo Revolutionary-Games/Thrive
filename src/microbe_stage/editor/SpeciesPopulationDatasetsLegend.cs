@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
+// Instances are created only through code
+// ReSharper disable once Godot.MissingParameterlessConstructor
 /// <summary>
 ///   Extension of LineChart's default datasets dropdown legend to allow sectioning of extinct species.
 /// </summary>
-public class SpeciesPopulationDatasetsLegend : LineChart.DataSetsDropdownLegend
+public partial class SpeciesPopulationDatasetsLegend : LineChart.DataSetsDropdownLegend
 {
     private List<KeyValuePair<string, ChartDataSet>> extinctSpecies;
 
@@ -20,7 +22,7 @@ public class SpeciesPopulationDatasetsLegend : LineChart.DataSetsDropdownLegend
         var result = (CustomDropDown)base.CreateLegend(datasets, title, createdToolTips);
 
         foreach (var species in extinctSpecies)
-            AddSpeciesToList(species, TranslationServer.Translate("EXTINCT_SPECIES"));
+            AddSpeciesToList(species, Localization.Translate("EXTINCT_SPECIES"));
 
         result.CreateElements();
 

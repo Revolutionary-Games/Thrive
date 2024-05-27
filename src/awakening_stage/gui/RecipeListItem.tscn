@@ -1,63 +1,69 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://d1f3a7hqfxgsh"]
 
-[ext_resource path="res://src/awakening_stage/gui/RecipeListItem.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=3]
+[ext_resource type="Script" path="res://src/awakening_stage/gui/RecipeListItem.cs" id="1"]
+[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="1_d61pw"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="3"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.6, 0.6, 0.6, 0.313726 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.6, 0.6, 0.6, 0.313726)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0, 0.74902, 0.713726, 1 )
+border_color = Color(0, 0.74902, 0.713726, 1)
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.6, 0.6, 0.6, 0.313726 )
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.6, 0.6, 0.6, 0.313726)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id="4"]
 
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0, 0.290196, 0.34902, 1 )
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(0, 0.290196, 0.34902, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.00392157, 0.956863, 0.905882, 1 )
+border_color = Color(0.00392157, 0.956863, 0.905882, 1)
 
-[sub_resource type="Theme" id=2]
-default_font = ExtResource( 2 )
+[sub_resource type="Theme" id="2"]
+default_font = ExtResource("1_d61pw")
+default_font_size = 14
 Button/styles/disabled = null
-Button/styles/focus = SubResource( 1 )
-Button/styles/hover = SubResource( 3 )
-Button/styles/normal = SubResource( 4 )
-Button/styles/pressed = SubResource( 5 )
+Button/styles/focus = SubResource("1")
+Button/styles/hover = SubResource("3")
+Button/styles/normal = SubResource("4")
+Button/styles/pressed = SubResource("5")
 
 [node name="RecipeListItem" type="Button"]
+editor_description = "Clipping children is on to make sure line wrapping text doesn't overflow"
+clip_contents = true
+custom_minimum_size = Vector2(10, 27)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 10, 25 )
-rect_clip_content = true
 size_flags_horizontal = 3
-theme = SubResource( 2 )
+theme = SubResource("2")
 toggle_mode = true
-script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": "Clipping children is on to make sure line wrapping text doesn't overflow"
-}
+script = ExtResource("1")
+MarginAroundLabel = 8
 
-[node name="Label" parent="." instance=ExtResource( 3 )]
+[node name="Label" parent="." instance=ExtResource("3")]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1258.0
-margin_bottom = -698.0
-mouse_filter = 2
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 text = "CRAFTING_RECIPE_DISPLAY"
+fit_content = true
 
 [connection signal="toggled" from="." to="." method="OnToggledChanged"]

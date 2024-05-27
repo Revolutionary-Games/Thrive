@@ -1,25 +1,27 @@
-[gd_resource type="ParticlesMaterial" load_steps=5 format=2]
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://bs8pe2iwtfsr4"]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.386076, 0.525926, 1 )
-colors = PoolColorArray( 1, 0.489815, 0.0898438, 0.0392157, 1, 0.490196, 0.0901961, 1, 1, 0.490196, 0.0901961, 1, 1, 0.489815, 0.0898438, 0.0392157 )
+[sub_resource type="Gradient" id="1"]
+offsets = PackedFloat32Array(0, 0.386076, 0.525926, 1)
+colors = PackedColorArray(1, 0.489815, 0.0898438, 0.0392157, 1, 0.490196, 0.0901961, 1, 1, 0.490196, 0.0901961, 1, 1, 0.489815, 0.0898438, 0.0392157)
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("1")
 
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 0.497727 ), 0.0, 2.71313, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -4.81781, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="3"]
+_data = [Vector2(0, 0.497727), 0.0, 2.71313, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.81781, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id="4"]
+curve = SubResource("3")
 
 [resource]
-emission_shape = 2
-emission_box_extents = Vector3( 100, 100, 100 )
+emission_shape = 3
+emission_box_extents = Vector3(100, 100, 100)
 spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 0.5
-initial_velocity_random = 1.0
-scale_random = 1.0
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
+initial_velocity_min = -0.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 2.0
+scale_curve = SubResource("4")
+color_ramp = SubResource("2")

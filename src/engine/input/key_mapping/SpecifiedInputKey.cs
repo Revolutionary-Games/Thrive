@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Godot;
 using Newtonsoft.Json;
 
@@ -7,32 +8,40 @@ using Newtonsoft.Json;
 /// </summary>
 public class SpecifiedInputKey : ICloneable
 {
+    private StringBuilder? toStringBuilder;
+
     [JsonConstructor]
     public SpecifiedInputKey()
     {
     }
 
-    public SpecifiedInputKey(InputEvent @event)
+    /// <summary>
+    ///   Constructs an input key from an event
+    /// </summary>
+    /// <param name="event">Event to use</param>
+    /// <param name="fromUserInput">Set to true when the user is rebinding inputs and this is from the user</param>
+    /// <exception cref="ArgumentException">If something is wrong with the event</exception>
+    public SpecifiedInputKey(InputEvent @event, bool fromUserInput)
     {
         switch (@event)
         {
             case InputEventKey inputKey:
-                ConstructFrom(inputKey);
+                ConstructFrom(inputKey, fromUserInput);
                 return;
             case InputEventMouseButton inputMouse:
-                ConstructFrom(inputMouse);
+                ConstructFrom(inputMouse, fromUserInput);
                 return;
             case InputEventJoypadButton inputControllerButton:
                 if (inputControllerButton.ButtonIndex < 0)
                     throw new ArgumentException("Controller button index is invalid");
 
                 Type = InputType.ControllerButton;
-                Code = PackCodeWithDevice(inputControllerButton.ButtonIndex, inputControllerButton.Device);
+                Code = PackCodeWithDevice((int)inputControllerButton.ButtonIndex, inputControllerButton.Device);
                 break;
 
             case InputEventJoypadMotion inputControllerAxis:
                 Type = InputType.ControllerAxis;
-                Code = PackAxisWithDirection(inputControllerAxis.Axis, inputControllerAxis.AxisValue,
+                Code = PackAxisWithDirection((int)inputControllerAxis.Axis, inputControllerAxis.AxisValue,
                     inputControllerAxis.Device);
                 break;
 
@@ -51,17 +60,139 @@ public class SpecifiedInputKey : ICloneable
         MouseButton,
         ControllerButton,
         ControllerAxis,
+
+        // Variants of "Key"
+        PhysicalKey,
+        KeyLabel,
     }
 
     public bool Control { get; set; }
     public bool Alt { get; set; }
     public bool Shift { get; set; }
     public InputType Type { get; set; }
-    public uint Code { get; set; }
+    public ulong Code { get; set; }
 
     [JsonIgnore]
     public bool PrefersGraphicalRepresentation =>
         Type is InputType.ControllerAxis or InputType.ControllerButton or InputType.MouseButton;
+
+    /// <summary>
+    ///   Packs an int and a sign into a single uint
+    /// </summary>
+    /// <param name="axis">The axis to pack, note that this needs to be less than 31 bits</param>
+    /// <param name="value">The direction value to pack</param>
+    /// <param name="device">The device to pack in, note that this needs to be less than 32 bits</param>
+    /// <returns>The packed value</returns>
+    public static ulong PackAxisWithDirection(int axis, float value, int device)
+    {
+        // For direction we just need to preserve the sign
+        ulong result = value < 0 ? 1U : 0U;
+
+        // For axis we preserve the sign with one bit
+        if (axis < 0)
+        {
+            result |= (0x1 << 1) | ((ulong)(axis * -1) << 2);
+        }
+        else
+        {
+            result |= (ulong)axis << 2;
+        }
+
+        // For device we also preserve a sign bit
+        if (device < 0)
+        {
+            result = (result & 0xffffffffL) | (0x1L << 32) | ((ulong)(device * -1) << 33);
+        }
+        else
+        {
+            result = (result & 0xffffffffL) | ((ulong)device << 33);
+        }
+
+        return result;
+    }
+
+    public static (JoyAxis Axis, float Direction, int Device) UnpackAxis(ulong packed)
+    {
+        float direction = 1;
+
+        if ((packed & 0x1) != 0)
+        {
+            direction *= -1;
+        }
+
+        int axis = (int)((packed & 0xfffcL) >> 2);
+
+        if ((packed & 0x2) != 0)
+        {
+            axis *= -1;
+        }
+
+        int device = (int)((packed & 0xffffffff00000000L) >> 33);
+
+        if ((packed & 0x100000000L) != 0)
+        {
+            device *= -1;
+        }
+
+        return ((JoyAxis)axis, direction, device);
+    }
+
+    /// <summary>
+    ///   Packs a code along with a device identifier
+    /// </summary>
+    /// <param name="code">The input code to pack, needs to be 31 bytes or less</param>
+    /// <param name="device">The device, needs to be 32 bytes or less</param>
+    /// <returns>The packed value</returns>
+    public static ulong PackCodeWithDevice(long code, int device)
+    {
+#if DEBUG
+        if (code >= 0xffffffffL)
+            throw new ArgumentException("Code too long to pack");
+#endif
+
+        ulong result;
+
+        // For code we preserve the sign with one bit
+        if (code < 0)
+        {
+            result = 0x1 | ((ulong)(code * -1) << 1);
+        }
+        else
+        {
+            result = (ulong)code << 1;
+        }
+
+        // For device we also preserve a sign bit
+        if (device < 0)
+        {
+            result = (result & 0xffffffffL) | (0x1L << 32) | ((ulong)(device * -1) << 33);
+        }
+        else
+        {
+            result = (result & 0xffffffffL) | ((ulong)device << 33);
+        }
+
+        return result;
+    }
+
+    public static (JoyButton Code, int Device) UnpackCodeAndDevice(ulong packed)
+    {
+        long code = (int)((packed & 0xfffffffeL) >> 1);
+
+        if ((packed & 0x1) != 0)
+        {
+            code *= -1;
+        }
+
+        int device = (int)((packed & 0xffffffff00000000L) >> 33);
+
+        if ((packed & 0x100000000L) != 0)
+        {
+            device *= -1;
+        }
+
+        return ((JoyButton)code, device);
+    }
 
     public Control GenerateGraphicalRepresentation()
     {
@@ -73,7 +204,7 @@ public class SpecifiedInputKey : ICloneable
             {
                 var (button, device) = UnpackCodeAndDevice(Code);
 
-                container.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerButton((JoystickList)button)));
+                container.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerButton(button)));
 
                 if (device >= 0)
                     GD.Print("TODO: displaying device restriction");
@@ -90,10 +221,9 @@ public class SpecifiedInputKey : ICloneable
 
                 var (axis, direction, device) = UnpackAxis(Code);
 
-                overlayPositioner.AddChild(
-                    CreateTextureRect(KeyPromptHelper.GetPathForControllerAxis((JoystickList)axis)));
+                overlayPositioner.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerAxis(axis)));
 
-                var directionImage = KeyPromptHelper.GetPathForControllerAxisDirection((JoystickList)axis, direction);
+                var directionImage = KeyPromptHelper.GetPathForControllerAxisDirection(axis, direction);
 
                 if (directionImage != null)
                 {
@@ -114,7 +244,7 @@ public class SpecifiedInputKey : ICloneable
                     MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
                 };
 
-                var (primary, overlay) = KeyPromptHelper.GetPathForMouseButton((ButtonList)Code);
+                var (primary, overlay) = KeyPromptHelper.GetPathForMouseButton((MouseButton)Code);
 
                 if (overlay != null)
                 {
@@ -146,7 +276,7 @@ public class SpecifiedInputKey : ICloneable
     {
         switch (Type)
         {
-            case InputType.Key or InputType.MouseButton:
+            case InputType.Key or InputType.PhysicalKey or InputType.KeyLabel or InputType.MouseButton:
                 return ToInputEventWithModifiers();
 
             case InputType.ControllerButton:
@@ -156,6 +286,7 @@ public class SpecifiedInputKey : ICloneable
                 {
                     ButtonIndex = button,
                     Device = device,
+                    Pressed = true,
                 };
             }
 
@@ -197,10 +328,10 @@ public class SpecifiedInputKey : ICloneable
         return new SpecifiedInputKey
         {
             Alt = Alt,
+            Type = Type,
             Code = Code,
             Control = Control,
             Shift = Shift,
-            Type = Type,
         };
     }
 
@@ -209,10 +340,10 @@ public class SpecifiedInputKey : ICloneable
         unchecked
         {
             var hashCode = Control.GetHashCode();
-            hashCode = (hashCode * 397) ^ Alt.GetHashCode();
-            hashCode = (hashCode * 397) ^ Shift.GetHashCode();
-            hashCode = (hashCode * 397) ^ (int)Type;
-            hashCode = (hashCode * 397) ^ (int)Code;
+            hashCode = hashCode * 397 ^ Alt.GetHashCode();
+            hashCode = hashCode * 397 ^ Shift.GetHashCode();
+            hashCode = hashCode * 397 ^ (int)Type;
+            hashCode = hashCode * 397 ^ Code.GetHashCode();
             return hashCode;
         }
     }
@@ -223,240 +354,144 @@ public class SpecifiedInputKey : ICloneable
     /// <returns>A human readable string.</returns>
     public override string ToString()
     {
-        var text = string.Empty;
+        if (toStringBuilder == null)
+        {
+            toStringBuilder = new StringBuilder();
+        }
+        else
+        {
+            toStringBuilder.Clear();
+        }
 
         if (Control)
-            text += TranslationServer.Translate("CTRL") + "+";
-        if (Alt)
-            text += TranslationServer.Translate("ALT") + "+";
-        if (Shift)
-            text += TranslationServer.Translate("SHIFT") + "+";
+        {
+            toStringBuilder.Append(Localization.Translate("CTRL"));
+            toStringBuilder.Append('+');
+        }
 
-        if (Type == InputType.Key)
+        if (Alt)
+        {
+            toStringBuilder.Append(Localization.Translate("ALT"));
+            toStringBuilder.Append('+');
+        }
+
+        if (Shift)
+        {
+            toStringBuilder.Append(Localization.Translate("SHIFT"));
+            toStringBuilder.Append('+');
+        }
+
+        if (Type is InputType.Key or InputType.KeyLabel or InputType.PhysicalKey)
         {
             // If the key is not defined in KeyNames.cs, the string will just be returned unmodified by Translate()
-            text += KeyNames.Translate(Code);
+
+            var key = (Key)Code;
+
+            if (Type == InputType.PhysicalKey)
+            {
+                key = DisplayServer.KeyboardGetKeycodeFromPhysical(key);
+            }
+
+            // Key labels are hopefully already in a format that makes sense when translated
+
+            toStringBuilder.Append(KeyNames.Translate(key));
         }
         else if (Type == InputType.MouseButton)
         {
-            text += Code switch
+            toStringBuilder.Append(Code switch
             {
-                1 => TranslationServer.Translate("LEFT_MOUSE"),
-                2 => TranslationServer.Translate("RIGHT_MOUSE"),
-                3 => TranslationServer.Translate("MIDDLE_MOUSE"),
-                4 => TranslationServer.Translate("WHEEL_UP"),
-                5 => TranslationServer.Translate("WHEEL_DOWN"),
-                6 => TranslationServer.Translate("WHEEL_LEFT"),
-                7 => TranslationServer.Translate("WHEEL_RIGHT"),
-                8 => TranslationServer.Translate("SPECIAL_MOUSE_1"),
-                9 => TranslationServer.Translate("SPECIAL_MOUSE_2"),
-                _ => TranslationServer.Translate("UNKNOWN_MOUSE"),
-            };
+                1 => Localization.Translate("LEFT_MOUSE"),
+                2 => Localization.Translate("RIGHT_MOUSE"),
+                3 => Localization.Translate("MIDDLE_MOUSE"),
+                4 => Localization.Translate("WHEEL_UP"),
+                5 => Localization.Translate("WHEEL_DOWN"),
+                6 => Localization.Translate("WHEEL_LEFT"),
+                7 => Localization.Translate("WHEEL_RIGHT"),
+                8 => Localization.Translate("SPECIAL_MOUSE_1"),
+                9 => Localization.Translate("SPECIAL_MOUSE_2"),
+                _ => Localization.Translate("UNKNOWN_MOUSE"),
+            });
         }
         else if (Type == InputType.ControllerAxis)
         {
-            // TODO: add translations for the text here
             var (axis, direction, device) = UnpackAxis(Code);
-            text += direction < 0 ? "Negative " : "Positive ";
-            text += Input.GetJoyAxisString(axis);
+            toStringBuilder.Append(KeyNames.TranslateAxis(axis, direction, KeyPromptHelper.ActiveControllerType));
 
             if (device != -1)
             {
-                text += $" Device {device + 1}";
+                toStringBuilder.Append(" Device ");
+                toStringBuilder.Append(device + 1);
             }
             else
             {
-                text += " Any Device";
+                toStringBuilder.Append(' ');
+                toStringBuilder.Append(Localization.Translate("CONTROLLER_ANY_DEVICE"));
             }
         }
         else if (Type == InputType.ControllerButton)
         {
-            // TODO: and also translations here
             var (button, device) = UnpackCodeAndDevice(Code);
-            text += Input.GetJoyButtonString(button);
+            toStringBuilder.Append(KeyNames.TranslateControllerButton(button, KeyPromptHelper.ActiveControllerType));
 
             if (device != -1)
             {
-                text += $" Device {device + 1}";
+                toStringBuilder.Append(" Device ");
+                toStringBuilder.Append(device + 1);
             }
             else
             {
-                text += " Any Device";
+                toStringBuilder.Append(' ');
+                toStringBuilder.Append(Localization.Translate("CONTROLLER_ANY_DEVICE"));
             }
         }
         else
         {
-            text += "Invalid input key type";
+            toStringBuilder.Append("Invalid input key type");
         }
 
-        return text;
+        return toStringBuilder.ToString();
     }
 
-    /// <summary>
-    ///   Packs an int and a sign into a single uint
-    /// </summary>
-    /// <param name="axis">The axis to pack, note that this needs to be less than 14 bits</param>
-    /// <param name="value">The direction value to pack</param>
-    /// <param name="device">The device to pack in, note that this needs to be less than 15 bits</param>
-    /// <returns>The packed value</returns>
-    private static uint PackAxisWithDirection(int axis, float value, int device)
+    private void ConstructFrom(InputEventWithModifiers @event, bool preferKeyLabel)
     {
-        // For direction we just need to preserve the sign
-        uint result = value < 0 ? 1U : 0U;
+        Control = @event.CtrlPressed || @event.MetaPressed;
+        Alt = @event.AltPressed;
+        Shift = @event.ShiftPressed;
 
-        // For axis we preserve the sign with one bit
-        if (axis < 0)
-        {
-            result |= (0x1 << 1) | ((uint)(axis * -1) << 2);
-        }
-        else
-        {
-            result |= (uint)axis << 2;
-        }
-
-        // For device we also preserve a sign bit
-        if (device < 0)
-        {
-            result = (result & 0xffff) | (0x1 << 16) | ((uint)(device * -1) << 17);
-        }
-        else
-        {
-            result = (result & 0xffff) | ((uint)device << 17);
-        }
-
-        return result;
-    }
-
-    private static (int Axis, float Direction, int Device) UnpackAxis(uint packed)
-    {
-        float direction = 1;
-
-        if ((packed & 0x1) != 0)
-        {
-            direction *= -1;
-        }
-
-        int axis = (int)((packed & 0xfffc) >> 2);
-
-        if ((packed & 0x2) != 0)
-        {
-            axis *= -1;
-        }
-
-        int device = (int)((packed & 0xffff0000) >> 17);
-
-        if ((packed & 0x10000) != 0)
-        {
-            device *= -1;
-        }
-
-        return (axis, direction, device);
-    }
-
-    /// <summary>
-    ///   Packs a code along with a device identifier
-    /// </summary>
-    /// <param name="code">The input code to pack, needs to be 15 bytes or less</param>
-    /// <param name="device">The device, needs to be 15 bytes or less</param>
-    /// <returns>The packed value</returns>
-    private static uint PackCodeWithDevice(int code, int device)
-    {
-        uint result;
-
-        // For code we preserve the sign with one bit
-        if (code < 0)
-        {
-            result = 0x1 | ((uint)(code * -1) << 1);
-        }
-        else
-        {
-            result = (uint)code << 1;
-        }
-
-        // For device we also preserve a sign bit
-        if (device < 0)
-        {
-            result = (result & 0xffff) | (0x1 << 16) | ((uint)(device * -1) << 17);
-        }
-        else
-        {
-            result = (result & 0xffff) | ((uint)device << 17);
-        }
-
-        return result;
-    }
-
-    private static (int Code, int Device) UnpackCodeAndDevice(uint packed)
-    {
-        int code = (int)((packed & 0xfffe) >> 1);
-
-        if ((packed & 0x1) != 0)
-        {
-            code *= -1;
-        }
-
-        int device = (int)((packed & 0xffff0000) >> 17);
-
-        if ((packed & 0x10000) != 0)
-        {
-            device *= -1;
-        }
-
-        return (code, device);
-    }
-
-    // TODO: proper unit testing
-    private static void TestCodePacking()
-    {
-        if (UnpackCodeAndDevice(PackCodeWithDevice(0, -1)) != (0, -1))
-            throw new Exception();
-
-        if (UnpackCodeAndDevice(PackCodeWithDevice(5, -1)) != (5, -1))
-            throw new Exception();
-
-        if (UnpackCodeAndDevice(PackCodeWithDevice(-5, -1)) != (-5, -1))
-            throw new Exception();
-
-        if (UnpackCodeAndDevice(PackCodeWithDevice(5, 5)) != (5, 5))
-            throw new Exception();
-
-        if (UnpackCodeAndDevice(PackCodeWithDevice(155, 128)) != (155, 128))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(1, -1, -1)) != (1, -1, -1))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(-1, -1, -1)) != (-1, -1, -1))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(1, 1, -1)) != (1, 1, -1))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(5, 1, -1)) != (5, 1, -1))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(5, 1, 15)) != (5, 1, 15))
-            throw new Exception();
-
-        if (UnpackAxis(PackAxisWithDirection(150, 1, 128)) != (150, 1, 128))
-            throw new Exception();
-    }
-
-    private void ConstructFrom(InputEventWithModifiers @event)
-    {
-        Control = @event.Control;
-        Alt = @event.Alt;
-        Shift = @event.Shift;
         switch (@event)
         {
             case InputEventKey inputKey:
-                Type = InputType.Key;
-                Code = inputKey.Scancode;
+            {
+                // TODO: unicode key value support?
+                if (inputKey.PhysicalKeycode != Key.None && !preferKeyLabel)
+                {
+                    // Physical key
+                    Type = InputType.PhysicalKey;
+                    Code = (ulong)inputKey.PhysicalKeycode;
+                }
+                else if (inputKey.KeyLabel != Key.None)
+                {
+                    // Key label
+                    Type = InputType.KeyLabel;
+                    Code = (ulong)inputKey.KeyLabel;
+                }
+                else
+                {
+                    // A "normal" key code
+                    Type = InputType.Key;
+                    Code = (ulong)inputKey.Keycode;
+                }
+
                 break;
+            }
+
             case InputEventMouseButton inputMouse:
+            {
                 Type = InputType.MouseButton;
-                Code = (uint)inputMouse.ButtonIndex;
+                Code = (ulong)inputMouse.ButtonIndex;
                 break;
+            }
+
             default:
                 throw new ArgumentException("Unknown type of event to convert to input key");
         }
@@ -466,14 +501,26 @@ public class SpecifiedInputKey : ICloneable
     {
         InputEventWithModifiers result = Type switch
         {
-            InputType.Key => new InputEventKey { Scancode = Code },
-            InputType.MouseButton => new InputEventMouseButton { ButtonIndex = (int)Code },
+            InputType.Key => new InputEventKey { Keycode = (Key)Code, Pressed = true },
+            InputType.PhysicalKey => new InputEventKey { PhysicalKeycode = (Key)Code, Pressed = true },
+            InputType.KeyLabel => new InputEventKey { KeyLabel = (Key)Code, Pressed = true },
+            InputType.MouseButton => new InputEventMouseButton { ButtonIndex = (MouseButton)Code, Pressed = true },
             _ => throw new NotSupportedException("Unsupported InputType given"),
         };
 
-        result.Alt = Alt;
-        result.Control = Control;
-        result.Shift = Shift;
+        result.AltPressed = Alt;
+
+        // Handle automatic control to meta remapping
+        if (FeatureInformation.IsMac())
+        {
+            result.MetaPressed = Control;
+        }
+        else
+        {
+            result.CtrlPressed = Control;
+        }
+
+        result.ShiftPressed = Shift;
         return result;
     }
 
@@ -481,10 +528,10 @@ public class SpecifiedInputKey : ICloneable
     {
         return new TextureRect
         {
-            Texture = GD.Load<Texture>(image),
-            Expand = true,
-            StretchMode = TextureRect.StretchModeEnum.ScaleOnExpand,
-            RectMinSize = small ? new Vector2(14, 14) : new Vector2(32, 32),
+            Texture = GD.Load<Texture2D>(image),
+            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
+            CustomMinimumSize = small ? new Vector2(14, 14) : new Vector2(32, 32),
         };
     }
 }

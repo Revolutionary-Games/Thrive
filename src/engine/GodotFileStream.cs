@@ -1,15 +1,15 @@
 ﻿using System;
 using System.IO;
-using File = Godot.File;
+using FileAccess = Godot.FileAccess;
 
 /// <summary>
 ///   Wraps a Godot.File as a Stream
 /// </summary>
 public class GodotFileStream : Stream
 {
-    private readonly File file;
+    private readonly FileAccess file;
 
-    public GodotFileStream(File file)
+    public GodotFileStream(FileAccess file)
     {
         this.file = file;
     }
@@ -17,12 +17,12 @@ public class GodotFileStream : Stream
     public override bool CanRead => true;
     public override bool CanSeek => true;
     public override bool CanWrite => true;
-    public override long Length => checked((long)file.GetLen());
+    public override long Length => checked((long)file.GetLength());
 
     public override long Position
     {
         get => checked((long)file.GetPosition());
-        set => file.Seek(value);
+        set => file.Seek(checked((ulong)value));
     }
 
     /// <summary>
@@ -44,10 +44,10 @@ public class GodotFileStream : Stream
         switch (origin)
         {
             case SeekOrigin.Begin:
-                file.Seek(offset);
+                file.Seek((ulong)offset);
                 break;
             case SeekOrigin.Current:
-                file.Seek(checked((long)file.GetPosition()) + offset);
+                file.Seek(checked((ulong)((long)file.GetPosition() + offset)));
                 break;
             case SeekOrigin.End:
                 file.SeekEnd(offset);

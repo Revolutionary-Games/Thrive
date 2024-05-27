@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   Shows message lines on screen that fade after some time to give the player some gameplay related messages
 /// </summary>
-public class HUDMessages : VBoxContainer
+public partial class HUDMessages : VBoxContainer
 {
     /// <summary>
     ///   When this is true any new messages are added *above* existing messages. Otherwise new messages appear below
@@ -17,14 +17,8 @@ public class HUDMessages : VBoxContainer
 
 #pragma warning disable CA2213
     [Export]
-    public Font MessageFont = null!;
+    public LabelSettings MessageFontSettings = null!;
 #pragma warning restore CA2213
-
-    [Export(PropertyHint.ColorNoAlpha)]
-    public Color BaseMessageColour = new(1, 1, 1);
-
-    [Export]
-    public Color MessageShadowColour = new(0, 0, 0, 0.7f);
 
     [Export]
     public int MaxShownMessages = 4;
@@ -40,22 +34,29 @@ public class HUDMessages : VBoxContainer
 
     private readonly List<(IHUDMessage Message, Label Displayer)> hudMessages = new();
 
+    private Color messageShadowColour = new(0, 0, 0, 0.7f);
+    private Color baseMessageColour = new(1, 1, 1);
+
     private string multipliedMessageTemplate = string.Empty;
 
-    private float extraTime;
+    private double extraTime;
 
     public override void _Ready()
     {
-        multipliedMessageTemplate = TranslationServer.Translate("HUD_MESSAGE_MULTIPLE");
+        multipliedMessageTemplate = Localization.Translate("HUD_MESSAGE_MULTIPLE");
 
         if (MaxShownMessages < 1)
         {
             GD.PrintErr($"{nameof(MaxShownMessages)} needs to be at least one");
             MaxShownMessages = 1;
         }
+
+        messageShadowColour = MessageFontSettings.ShadowColor;
+        baseMessageColour = MessageFontSettings.FontColor;
+        baseMessageColour.A = 1;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         bool clean = false;
 
@@ -65,9 +66,11 @@ public class HUDMessages : VBoxContainer
             extraTime = 0;
         }
 
+        var convertedDelta = (float)delta;
+
         foreach (var (message, displayer) in hudMessages)
         {
-            message.TimeRemaining -= delta;
+            message.TimeRemaining -= convertedDelta;
 
             if (message.TimeRemaining < 0)
             {
@@ -76,15 +79,15 @@ public class HUDMessages : VBoxContainer
                 continue;
             }
 
-            message.TotalDisplayedTime += delta;
+            message.TotalDisplayedTime += convertedDelta;
 
             // Update fade
             // TODO: should different types of messages (more urgent?) have different colours
             var alpha = CalculateMessageAlpha(message.TimeRemaining, message.OriginalTimeRemaining);
-            displayer.SelfModulate = new Color(BaseMessageColour, alpha);
+            displayer.SelfModulate = new Color(baseMessageColour, alpha);
 
-            displayer.AddColorOverride("font_color_shadow",
-                new Color(MessageShadowColour, MessageShadowColour.a * alpha));
+            displayer.AddThemeColorOverride("font_color_shadow",
+                new Color(messageShadowColour, messageShadowColour.A * alpha));
         }
 
         if (clean)
@@ -116,17 +119,20 @@ public class HUDMessages : VBoxContainer
         // Can't combine, need to add a new label to display this
         var label = new Label
         {
-            SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
-            Align = Label.AlignEnum.Center,
-            Autowrap = true,
+            SizeFlagsHorizontal = SizeFlags.ExpandFill,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            AutowrapMode = TextServer.AutowrapMode.WordSmart,
             MouseFilter = MouseFilterEnum.Ignore,
             Text = TextForMessage(message),
         };
 
-        label.AddFontOverride("font", MessageFont);
-        label.AddColorOverride("font_color_shadow", MessageShadowColour);
-        label.AddConstantOverride("shadow_offset_x", 1);
-        label.AddConstantOverride("shadow_offset_y", 1);
+        // Due to the colour animation this cannot use the font settings directly, so this needs to copy the relevant
+        // options
+        label.AddThemeFontOverride("font", MessageFontSettings.Font);
+        label.AddThemeFontSizeOverride("font_size", MessageFontSettings.FontSize);
+        label.AddThemeColorOverride("font_color_shadow", messageShadowColour);
+        label.AddThemeConstantOverride("shadow_offset_x", (int)MessageFontSettings.ShadowOffset.X);
+        label.AddThemeConstantOverride("shadow_offset_y", (int)MessageFontSettings.ShadowOffset.Y);
 
         AddChild(label);
 

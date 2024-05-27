@@ -60,9 +60,8 @@ public static class SaveUpgrader
                         Constants.SAVE_EXTENSION_WITH_DOT.Length) +
                     Constants.SAVE_BACKUP_SUFFIX;
 
-                using var folder = new Directory();
-
-                if (folder.Rename(SaveFileInfo.SaveNameToPath(toSave), SaveFileInfo.SaveNameToPath(fromSave)) !=
+                if (DirAccess.RenameAbsolute(SaveFileInfo.SaveNameToPath(toSave),
+                        SaveFileInfo.SaveNameToPath(fromSave)) !=
                     Error.Ok)
                 {
                     throw new Exception("Failed to rename save to backup name");
@@ -110,8 +109,7 @@ public static class SaveUpgrader
 
     public static string RemoveBackupSuffix(string saveName)
     {
-        return saveName.Remove(
-            saveName.IndexOf(Constants.SAVE_BACKUP_SUFFIX, StringComparison.InvariantCulture),
+        return saveName.Remove(saveName.IndexOf(Constants.SAVE_BACKUP_SUFFIX, StringComparison.InvariantCulture),
             Constants.SAVE_BACKUP_SUFFIX.Length) + Constants.SAVE_EXTENSION_WITH_DOT;
     }
 

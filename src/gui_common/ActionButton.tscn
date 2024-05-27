@@ -3,7 +3,7 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/ActionButton.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/textures/blank.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/blank.png" type="Texture2D" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 draw_center = false
@@ -36,12 +36,12 @@ bg_color = Color( 0.0666667, 1, 0.835294, 0.588235 )
 light_mask = 2
 anchor_right = 0.0359375
 anchor_bottom = 0.0708333
-rect_min_size = Vector2( 46, 51 )
+custom_minimum_size = Vector2( 46, 51 )
 focus_mode = 0
 theme = ExtResource( 1 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 1 )
-custom_styles/normal = SubResource( 3 )
+theme_override_styles/hover = SubResource( 1 )
+theme_override_styles/pressed = SubResource( 1 )
+theme_override_styles/normal = SubResource( 3 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -49,60 +49,60 @@ __meta__ = {
 
 [node name="Highlight" type="Panel" parent="."]
 visible = false
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 44.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 42, 47 )
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 44.0
+offset_bottom = 49.0
+custom_minimum_size = Vector2( 42, 47 )
 mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 2 )
+theme_override_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 46.0
-margin_bottom = 65.0
+offset_right = 46.0
+offset_bottom = 65.0
 mouse_filter = 2
-custom_constants/margin_right = 3
-custom_constants/margin_top = 3
-custom_constants/margin_left = 3
-custom_constants/margin_bottom = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_bottom = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 43.0
-margin_bottom = 62.0
-custom_constants/separation = -7
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 43.0
+offset_bottom = 62.0
+theme_override_constants/separation = -7
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+offset_right = 40.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 40, 40 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 expand = true
 
 [node name="KeyPrompt" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_left = 7.0
-margin_top = 33.0
-margin_right = 33.0
-margin_bottom = 59.0
-rect_min_size = Vector2( 26, 26 )
+offset_left = 7.0
+offset_top = 33.0
+offset_right = 33.0
+offset_bottom = 59.0
+custom_minimum_size = Vector2( 26, 26 )
 size_flags_horizontal = 4
 UnpressedColour = Color( 1, 1, 1, 0.784314 )
 PressedColour = Color( 0.701961, 0.701961, 0.701961, 0.784314 )
 
-[node name="Mask" type="Light2D" parent="."]
+[node name="Mask" type="PointLight2D" parent="."]
 position = Vector2( 23, 49 )
 scale = Vector2( 0.806852, 0.78202 )
 texture = ExtResource( 4 )

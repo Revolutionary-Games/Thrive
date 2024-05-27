@@ -1,31 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://socrfv15x3ql"]
 
-[ext_resource path="res://src/thriveopedia/pages/wiki/OrganelleLinkButton.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
+[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/OrganelleLinkButton.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_bvs72"]
 
 [node name="OrganelleLinkButton" type="VBoxContainer"]
-margin_right = 150.0
-margin_bottom = 195.0
-rect_min_size = Vector2( 0, 195 )
-theme = ExtResource( 3 )
-script = ExtResource( 1 )
+custom_minimum_size = Vector2(0, 195)
+offset_right = 150.0
+offset_bottom = 195.0
+theme = ExtResource("3")
+script = ExtResource("1")
 ButtonPath = NodePath("Button")
 LabelPath = NodePath("Label")
 
 [node name="Button" type="Button" parent="."]
-margin_right = 150.0
-margin_bottom = 150.0
-rect_min_size = Vector2( 150, 150 )
-icon_align = 1
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+icon_alignment = 1
 expand_icon = true
 
 [node name="Label" type="Label" parent="."]
-margin_top = 154.0
-margin_right = 150.0
-margin_bottom = 171.0
-custom_fonts/font = ExtResource( 2 )
-align = 1
-autowrap = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+label_settings = ExtResource("3_bvs72")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="pressed" from="Button" to="." method="OnPressed"]

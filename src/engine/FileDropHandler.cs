@@ -4,28 +4,34 @@ using Godot;
 /// <summary>
 ///   Handles signal from Godot when files are dragged and dropped onto the game window
 /// </summary>
-public class FileDropHandler : Node
+[GodotAutoload]
+public partial class FileDropHandler : Node
 {
     public override void _Ready()
     {
-        GetTree().Connect("files_dropped", this, nameof(OnFilesDropped));
+        if (Engine.IsEditorHint())
+            return;
+
+        GetTree().Root.Connect(Window.SignalName.FilesDropped, new Callable(this, nameof(OnFilesDropped)));
     }
 
-    private void OnFilesDropped(string[] files, int screen)
+    private void OnFilesDropped(Variant files)
     {
-        foreach (var file in files)
+        if (files.VariantType != Variant.Type.PackedStringArray)
         {
-            GD.Print("Detected file drop \"", file, "\" on screen ", screen);
-            HandleFileDrop(file, screen);
+            GD.PrintErr("Unknown type of data in files dropped callback: " + files.VariantType);
+            return;
+        }
+
+        foreach (var file in files.AsStringArray())
+        {
+            GD.Print("Detected file drop \"", file, "\"");
+            HandleFileDrop(file);
         }
     }
 
-    private void HandleFileDrop(string file, int screen)
+    private void HandleFileDrop(string file)
     {
-        // Currently nothing depends on this (this might be the game window index, at least on Linux this doesn't seem
-        // to change when the monitor is changed the drag happens on...)
-        _ = screen;
-
         // For now just the load save functionality is done, but in the future this might be extended to allow
         // other code to dynamically register listeners here
 

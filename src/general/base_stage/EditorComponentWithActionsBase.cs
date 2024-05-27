@@ -6,7 +6,8 @@ using Newtonsoft.Json;
 /// </summary>
 /// <typeparam name="TEditor">The type of editor this component is contained in</typeparam>
 /// <typeparam name="TAction">Editor action type the editor this will be used with will use</typeparam>
-public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorComponentBase<TEditor>
+[GodotAbstract]
+public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorComponentBase<TEditor>
     where TEditor : IEditorWithActions
     where TAction : EditorAction
 {
@@ -31,11 +32,15 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     private TextureRect finishButtonWarningBadge = null!;
 #pragma warning restore CA2213
 
+    protected EditorComponentWithActionsBase()
+    {
+    }
+
     /// <summary>
-    ///   If true an editor (component) action is active and can be cancelled. By default just checks for moves
+    ///   If true an editor (component) action is active and can be cancelled. By default, just checks for moves
     /// </summary>
     [JsonIgnore]
-    public abstract bool CanCancelAction { get; }
+    public virtual bool CanCancelAction => throw new GodotAbstractPropertyNotOverriddenException();
 
     /// <summary>
     ///   If true, the finish button will have a warning badge shown on the top right to indicate that something
@@ -141,6 +146,20 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
         animator.Play(animation);
     }
 
+    protected virtual void OnActionStatusChanged()
+    {
+        // Disable undo/redo/symmetry button while acting is in progress (enabled after finishing the action)
+        Editor.NotifyUndoRedoStateChanged();
+
+        // Once a move (or other pending action) has begun, the button visibility should be updated to make it visible
+        UpdateCancelButtonVisibility();
+    }
+
+    protected virtual void OnCurrentActionCanceled()
+    {
+        OnActionStatusChanged();
+    }
+
     protected virtual void OnCancelActionClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -170,7 +189,10 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     /// <summary>
     ///   Calculates the cost of the current editor action (may be 0 if free or no active action)
     /// </summary>
-    protected abstract int CalculateCurrentActionCost();
+    protected virtual int CalculateCurrentActionCost()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
 
     /// <summary>
     ///   Special enqueue that can have special logic in specific components to pre-process actions before passing

@@ -9,7 +9,7 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
 {
     /// <summary>
     ///   A list of "feature" names that have been unlocked for this organelle. Depends on the organelle components
-    ///   what names they look for
+    ///   what names they look for.
     /// </summary>
     public List<string> UnlockedFeatures { get; set; } = new();
 
@@ -18,8 +18,12 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
     /// </summary>
     public IComponentSpecificUpgrades? CustomUpgradeData { get; set; }
 
-    public bool Equals(OrganelleUpgrades other)
+    public bool Equals(OrganelleUpgrades? other)
     {
+        // TODO: allow default value to equal null, see: https://github.com/Revolutionary-Games/Thrive/issues/4091
+        if (other == null)
+            return false;
+
         if (!UnlockedFeatures.SequenceEqual(other.UnlockedFeatures))
             return false;
 
@@ -43,7 +47,7 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
 
     public override int GetHashCode()
     {
-        return (UnlockedFeatures.GetHashCode() * 3) ^
-            ((CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151);
+        return UnlockedFeatures.GetHashCode() * 3 ^
+            (CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151;
     }
 }

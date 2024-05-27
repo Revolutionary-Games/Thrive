@@ -72,6 +72,11 @@ public:
     Ref<PhysicsBody> CreateStaticBody(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
         JPH::Quat rotation = JPH::Quat::sIdentity(), bool addToWorld = true);
 
+    /// \brief Create a sensor that doesn't react to physics forces but still can record active collisions (overlaps)
+    Ref<PhysicsBody> CreateSensor(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
+        JPH::Quat rotation = JPH::Quat::sIdentity(), JPH::EMotionType motionType = JPH::EMotionType::Static,
+        bool detectStaticBodies = false);
+
     /// \brief Add a body that has been created but not added to the physics simulation in this world
     void AddBody(PhysicsBody& body, bool activate);
 
@@ -107,13 +112,16 @@ public:
 
     void SetPosition(JPH::BodyID bodyId, JPH::DVec3Arg position, bool activate = true);
 
+    void SetPositionAndRotation(
+        JPH::BodyID bodyId, JPH::DVec3Arg position, JPH::QuatArg rotation, bool activate = true);
+
     void SetBodyAllowSleep(JPH::BodyID bodyId, bool allowSleeping);
 
     /// \brief Ensures body's Y coordinate is 0, if not moves it so that it is 0
     /// \returns True if the body's position changed, false if no fix was needed
     bool FixBodyYCoordinateToZero(JPH::BodyID bodyId);
 
-    void ChangeBodyShape(JPH::BodyID bodyId, const JPH::RefConst<JPH::Shape>& shape, bool activate = true);
+    void ChangeBodyShape(PhysicsBody& body, const JPH::RefConst<JPH::Shape>& shape, bool activate = true);
 
     // ------------------------------------ //
     // Collisions
@@ -220,7 +228,7 @@ private:
 
     Ref<PhysicsBody> CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
         JPH::RVec3Arg position, JPH::Quat rotation = JPH::Quat::sIdentity(),
-        JPH::EAllowedDOFs allowedDegreesOfFreedom = JPH::EAllowedDOFs::All);
+        JPH::EAllowedDOFs allowedDegreesOfFreedom = JPH::EAllowedDOFs::All, bool isSensor = false);
 
     /// \brief Called after body has been created
     Ref<PhysicsBody> OnBodyCreated(Ref<PhysicsBody>&& body, bool addToWorld);

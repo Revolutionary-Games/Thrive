@@ -1,4 +1,6 @@
-﻿using System;
+﻿namespace Saving.Serializers;
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -18,56 +20,69 @@ public class RegistryTypeStringConverter : TypeConverter
             {
                 "compound",
                 new SupportedRegistryType(typeof(Compound), "compound",
-                    name => SimulationParameters.Instance.GetCompound(name))
+                    n => SimulationParameters.Instance.GetCompound(n))
             },
             {
                 "enzyme",
                 new SupportedRegistryType(typeof(Enzyme), "enzyme",
-                    name => SimulationParameters.Instance.GetEnzyme(name))
+                    n => SimulationParameters.Instance.GetEnzyme(n))
             },
             {
                 "worldResource",
                 new SupportedRegistryType(typeof(WorldResource), "worldResource",
-                    name => SimulationParameters.Instance.GetWorldResource(name))
+                    n => SimulationParameters.Instance.GetWorldResource(n))
             },
             {
                 "equipment",
                 new SupportedRegistryType(typeof(EquipmentDefinition), "equipment",
-                    name => SimulationParameters.Instance.GetBaseEquipmentDefinition(name))
+                    n => SimulationParameters.Instance.GetBaseEquipmentDefinition(n))
             },
             {
                 "recipe",
                 new SupportedRegistryType(typeof(CraftingRecipe), "recipe",
-                    name => SimulationParameters.Instance.GetCraftingRecipe(name))
+                    n => SimulationParameters.Instance.GetCraftingRecipe(n))
             },
             {
                 "structure",
                 new SupportedRegistryType(typeof(StructureDefinition), "structure",
-                    name => SimulationParameters.Instance.GetStructure(name))
+                    n => SimulationParameters.Instance.GetStructure(n))
             },
             {
                 "unitType",
                 new SupportedRegistryType(typeof(UnitType), "unitType",
-                    name => SimulationParameters.Instance.GetUnitType(name))
+                    n => SimulationParameters.Instance.GetUnitType(n))
             },
             {
                 "spaceStructure",
                 new SupportedRegistryType(typeof(SpaceStructureDefinition), "spaceStructure",
-                    name => SimulationParameters.Instance.GetSpaceStructure(name))
+                    n => SimulationParameters.Instance.GetSpaceStructure(n))
+            },
+            {
+                "biome",
+                new SupportedRegistryType(typeof(Biome), "biome",
+                    n => SimulationParameters.Instance.GetBiome(n))
+            },
+            {
+                "organelle",
+                new SupportedRegistryType(typeof(OrganelleDefinition), "organelle",
+                    n => SimulationParameters.Instance.GetOrganelleType(n))
             },
         };
 
-    public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+    public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
     {
         return typeof(string) == sourceType;
     }
 
-    public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+    public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
     {
+        if (destinationType == null)
+            return false;
+
         return typeof(string) == destinationType || GetRegistryByType(destinationType) != null;
     }
 
-    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
+    public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object? value)
     {
         if (value == null)
             return null;
@@ -84,9 +99,12 @@ public class RegistryTypeStringConverter : TypeConverter
         return SupportedRegistryTypes[split[0]].RetrieveInstance(split[1]);
     }
 
-    public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value,
+    public override object ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value,
         Type destinationType)
     {
+        if (value == null)
+            throw new ArgumentException("Cannot convert null", nameof(value));
+
         if (destinationType == typeof(string))
         {
             var type = GetRegistryByType(value.GetType());
@@ -133,12 +151,12 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
 {
     protected abstract string TypeName { get; }
 
-    public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+    public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
     {
         return typeof(string) == destinationType || typeof(TType) == destinationType;
     }
 
-    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
+    public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object? value)
     {
         if (value == null)
             return null;
@@ -146,9 +164,12 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
         return SupportedRegistryTypes[TypeName].RetrieveInstance((string)value);
     }
 
-    public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value,
+    public override object ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value,
         Type destinationType)
     {
+        if (value == null)
+            throw new ArgumentException("Cannot convert null", nameof(value));
+
         if (destinationType == typeof(string))
         {
             var type = GetRegistryByType(typeof(TType));
@@ -225,4 +246,20 @@ public class UnitTypeStringConverter : RegistryTypeStringSingleTypeConverter<Uni
 public class SpaceStructureStringConverter : RegistryTypeStringSingleTypeConverter<SpaceStructureDefinition>
 {
     protected override string TypeName => "spaceStructure";
+}
+
+/// <summary>
+///   Specific converter for <see cref="Biome"/>
+/// </summary>
+public class BiomeStringConverter : RegistryTypeStringSingleTypeConverter<Biome>
+{
+    protected override string TypeName => "biome";
+}
+
+/// <summary>
+///   Specific converter for <see cref="OrganelleDefinition"/>
+/// </summary>
+public class OrganelleDefinitionStringConverter : RegistryTypeStringSingleTypeConverter<OrganelleDefinition>
+{
+    protected override string TypeName => "organelle";
 }

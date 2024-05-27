@@ -3,7 +3,7 @@
 /// <summary>
 ///   Display for an item in a build queue based on data from <see cref="IBuildQueueProgressItem"/>
 /// </summary>
-public class BuildQueueItemGUI : VBoxContainer
+public partial class BuildQueueItemGUI : VBoxContainer
 {
     [Export]
     public NodePath? ProgressBarPath;
@@ -26,7 +26,7 @@ public class BuildQueueItemGUI : VBoxContainer
         // TODO: a cancel button?
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (progressItem == null)
             return;

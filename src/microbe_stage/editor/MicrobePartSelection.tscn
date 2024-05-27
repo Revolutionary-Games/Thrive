@@ -1,153 +1,163 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://bkck67cp1p68u"]
 
-[ext_resource path="res://assets/textures/gui/bevel/MPNoCircleLight.png" type="Texture" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/microbe_stage/editor/MicrobePartSelection.cs" type="Script" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Tiny.tres" type="DynamicFont" id=4]
+[ext_resource type="Texture2D" uid="uid://c7p7qgm0w77eo" path="res://assets/textures/gui/bevel/MPNoCircleLight.png" id="1"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobePartSelection.cs" id="3"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="3_ykdou"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
+[ext_resource type="LabelSettings" uid="uid://dr66v8g56c3vj" path="res://src/gui_common/fonts/Body-Bold-Tiny.tres" id="5_gh0u2"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0.435294, 0.52549, 1 )
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.0666667, 1, 0.835294, 1 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0.435294, 0.52549, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.164706, 0.215686, 0.235294, 1 )
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.396078, 0.623529, 0.584314, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="ButtonGroup" id=5]
+[sub_resource type="StyleBoxFlat" id="6"]
+bg_color = Color(0.741176, 0.360784, 0.909804, 0.686275)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
-[node name="MicrobePartSelection" type="MarginContainer"]
-margin_right = 80.0
-margin_bottom = 103.0
-mouse_filter = 1
+[node name="MicrobePartSelection" type="MarginContainer" node_paths=PackedStringArray("mpIcon", "mpIconSpacer")]
+offset_right = 80.0
+offset_bottom = 103.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_top = 5
-custom_constants/margin_bottom = 5
-script = ExtResource( 3 )
+theme = ExtResource("5")
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("3")
+mpIcon = NodePath("VBoxContainer/HBoxContainer/MPIcon")
+mpIconSpacer = NodePath("VBoxContainer/HBoxContainer/Spacer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_top = 5.0
-margin_right = 85.0
-margin_bottom = 98.0
+layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 2
-custom_constants/separation = 1
+theme_override_constants/separation = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_left = 2.0
-margin_right = 82.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 80, 60 )
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+size_flags_horizontal = 4
 focus_mode = 0
 mouse_filter = 1
-size_flags_horizontal = 4
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_styles/normal = SubResource("4")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("2")
+theme_override_styles/disabled = SubResource("3")
+theme_override_styles/focus = SubResource("1")
 toggle_mode = true
 action_mode = 0
-group = SubResource( 5 )
 expand_icon = true
 
 [node name="Icon" type="TextureRect" parent="VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-size_flags_vertical = 0
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RecentlyUnlocked" type="MarginContainer" parent="VBoxContainer/Button"]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Button/RecentlyUnlocked"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("6")
+
+[node name="Label" type="Label" parent="VBoxContainer/Button/RecentlyUnlocked"]
+layout_mode = 2
+text = "UNLOCKED_NEW_ORGANELLE"
+vertical_alignment = 1
 
 [node name="Name" type="Label" parent="VBoxContainer"]
-margin_top = 61.0
-margin_right = 85.0
-margin_bottom = 76.0
-rect_min_size = Vector2( 85, 0 )
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
 size_flags_horizontal = 4
-custom_constants/line_spacing = -3
-custom_fonts/font = ExtResource( 2 )
-text = "PART NAME"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
+theme_override_constants/line_spacing = -3
+text = "Cytoplasm"
+label_settings = ExtResource("3_ykdou")
+horizontal_alignment = 1
+autowrap_mode = 3
+max_lines_visible = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 77.0
-margin_right = 85.0
-margin_bottom = 92.0
-custom_constants/separation = 0
+layout_mode = 2
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
-margin_left = 16.0
-margin_right = 31.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 15, 15 )
-texture = ExtResource( 1 )
-expand = true
+[node name="MPIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture = ExtResource("1")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="MP" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_left = 31.0
-margin_right = 54.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 4 )
+layout_mode = 2
 text = "N_A"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
+label_settings = ExtResource("5_gh0u2")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
-margin_left = 54.0
-margin_right = 68.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 14, 0 )
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="OnPressed"]

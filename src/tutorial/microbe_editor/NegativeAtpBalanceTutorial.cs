@@ -1,44 +1,49 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Tells the player about negative ATP balance (but only after the ATP introduction tutorial has triggered)
+/// </summary>
+public class NegativeAtpBalanceTutorial : TutorialPhase
 {
-    using System;
-
-    /// <summary>
-    ///   Tells the player about negative ATP balance
-    /// </summary>
-    public class NegativeAtpBalanceTutorial : TutorialPhase
+    public NegativeAtpBalanceTutorial()
     {
-        public override string ClosedByName => "NegativeAtpBalanceTutorial";
+        CanTrigger = false;
+    }
 
-        public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
-        {
-            gui.NegativeAtpBalanceTutorialVisible = ShownCurrently;
-        }
+    public override string ClosedByName => "NegativeAtpBalanceTutorial";
 
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
+    public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
+    {
+        gui.NegativeAtpBalanceTutorialVisible = ShownCurrently;
+        gui.HandleShowingATPBarHighlight();
+    }
+
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            switch (eventType)
+            case TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged:
             {
-                case TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged:
+                if (args is EnergyBalanceEventArgs energyBalanceEventArgs)
                 {
-                    if (args is EnergyBalanceEventArgs energyBalanceEventArgs)
+                    var energyBalanceInfo = energyBalanceEventArgs.EnergyBalanceInfo;
+                    bool isNegativeAtpBalance =
+                        energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption;
+
+                    if (!HasBeenShown && isNegativeAtpBalance && CanTrigger && !overallState.TutorialActive())
                     {
-                        var energyBalanceInfo = energyBalanceEventArgs.EnergyBalanceInfo;
-                        bool isNegativeAtpBalance =
-                            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption;
-
-                        if (!HasBeenShown && isNegativeAtpBalance && CanTrigger && !overallState.TutorialActive())
-                        {
-                            Show();
-                            return true;
-                        }
+                        Show();
+                        return true;
                     }
-
-                    break;
                 }
-            }
 
-            return false;
+                break;
+            }
         }
+
+        return false;
     }
 }

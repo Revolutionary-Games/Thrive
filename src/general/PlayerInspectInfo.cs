@@ -7,7 +7,7 @@ using Godot;
 /// <summary>
 ///   A system that manages detecting what the player is pointing with the cursor.
 /// </summary>
-public class PlayerInspectInfo : Node
+public partial class PlayerInspectInfo : Node
 {
     /// <summary>
     ///   The distance for detection.
@@ -28,14 +28,19 @@ public class PlayerInspectInfo : Node
     /// <summary>
     ///   All (physics) entities the player is pointing at.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: switch this away from LINQ to reduce memory allocations
+    ///   </para>
+    /// </remarks>
     public IEnumerable<Entity> Entities =>
         hits.Take(validHits).Where(h => h.BodyEntity != default).Select(h => h.BodyEntity);
 
-    public virtual void Process(float delta)
+    public virtual void Process(double delta)
     {
         var viewport = GetViewport();
         var mousePos = viewport.GetMousePosition();
-        var camera = viewport.GetCamera();
+        var camera = viewport.GetCamera3D();
 
         // Safety check to disable this node when there's no active camera
         if (camera == null)

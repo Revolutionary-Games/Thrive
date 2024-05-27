@@ -5,8 +5,10 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Visuals of engulfing something and encasing it in a "membrane" bubble
 /// </summary>
-public class Endosome : Spatial, IEntity
+public partial class Endosome : Node3D, IEntity
 {
+    private readonly StringName tintParameterName = new("tint");
+
     [JsonProperty]
     private Color tint = Colors.White;
 
@@ -14,7 +16,7 @@ public class Endosome : Spatial, IEntity
     private int renderPriority;
 
     [JsonIgnore]
-    public MeshInstance? Mesh { get; private set; }
+    public MeshInstance3D? Mesh { get; private set; }
 
     [JsonIgnore]
     public Color Tint
@@ -44,23 +46,24 @@ public class Endosome : Spatial, IEntity
     }
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
 
     public override void _Ready()
     {
-        Mesh = GetNode<MeshInstance>("EngulfedObjectHolder") ?? throw new Exception("mesh node not found");
+        Mesh = GetNode<MeshInstance3D>("EngulfedObjectHolder") ?? throw new Exception("mesh node not found");
 
         var material = Mesh!.MaterialOverride as ShaderMaterial;
 
         if (material == null)
             GD.PrintErr("Material is not found from the EngulfedObjectHolder mesh for Endosome");
 
+        // TODO: check if this could now be done in Godot 4
         // This has to be done here because setting this in Godot editor truncates
         // the number to only 3 decimal places.
-        material?.SetShaderParam("jiggleAmount", 0.0001f);
+        material?.SetShaderParameter("jiggleAmount", 0.0001f);
 
         ApplyTint();
         ApplyRenderPriority();
@@ -71,10 +74,20 @@ public class Endosome : Spatial, IEntity
         AliveMarker.Alive = false;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            tintParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void ApplyTint()
     {
         var material = Mesh?.MaterialOverride as ShaderMaterial;
-        material?.SetShaderParam("tint", tint);
+        material?.SetShaderParameter(tintParameterName, tint);
     }
 
     private void ApplyRenderPriority()

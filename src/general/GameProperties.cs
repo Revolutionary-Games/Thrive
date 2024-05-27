@@ -156,20 +156,23 @@ public class GameProperties
 
         // Create the brain tissue type
         var brainType = (CellType)playerSpecies.CellTypes.First().Clone();
-        brainType.TypeName = TranslationServer.Translate("BRAIN_CELL_NAME_DEFAULT");
+        brainType.TypeName = Localization.Translate("BRAIN_CELL_NAME_DEFAULT");
         brainType.Colour = new Color(0.807f, 0.498f, 0.498f);
 
         var axon = SimulationParameters.Instance.GetOrganelleType("axon");
+
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
 
         for (int r = 0; r > -1000; --r)
         {
             var template = new OrganelleTemplate(axon, new Hex(0, r), 0);
 
             // Add no longer allows replacing cytoplasm by default
-            if (!brainType.Organelles.CanPlaceAndIsTouching(template, false, false))
+            if (!brainType.Organelles.CanPlaceAndIsTouching(template, false, workMemory1, workMemory2, false))
                 continue;
 
-            brainType.Organelles.Add(template);
+            brainType.Organelles.AddFast(template, workMemory1, workMemory2);
             brainType.RepositionToOrigin();
             break;
         }
@@ -328,20 +331,23 @@ public class GameProperties
         var simulationParameters = SimulationParameters.Instance;
         var playerSpecies = (MicrobeSpecies)game.GameWorld.PlayerSpecies;
 
-        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
-            new Hex(0, -3), 0));
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
+            new Hex(0, -3), 0), workMemory1, workMemory2);
         playerSpecies.IsBacteria = false;
 
         var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
 
-        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
-            new Hex(-1, 1), 0));
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
+            new Hex(-1, 1), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
-            new Hex(1, 0), 0));
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
+            new Hex(1, 0), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
-            new Hex(0, 1), 0));
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
+            new Hex(0, 1), 0), workMemory1, workMemory2);
 
         playerSpecies.OnEdited();
         return playerSpecies;
@@ -361,6 +367,9 @@ public class GameProperties
         var startHex = new Hex(0, 0);
         var columnCellOffset = new Hex(0, -1);
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var columnDirection in new[] { 0, 1, -1 })
         {
             var columnStart = startHex + new Hex(columnDirection, 0);
@@ -375,9 +384,9 @@ public class GameProperties
                 while (!placed)
                 {
                     var template = new CellTemplate(type, columnStart, 0);
-                    if (species.Cells.CanPlace(template))
+                    if (species.Cells.CanPlace(template, workMemory1, workMemory2))
                     {
-                        species.Cells.Add(template);
+                        species.Cells.AddFast(template, workMemory1, workMemory2);
                         placed = true;
                         break;
                     }
@@ -401,9 +410,9 @@ public class GameProperties
             for (int distance = 0; distance < 10000; ++distance)
             {
                 var template = new CellTemplate(type, columnStart + columnCellOffset * distance, 0);
-                if (species.Cells.CanPlace(template))
+                if (species.Cells.CanPlace(template, workMemory1, workMemory2))
                 {
-                    species.Cells.Add(template);
+                    species.Cells.AddFast(template, workMemory1, workMemory2);
                     --columnCellsLeft;
 
                     if (columnCellsLeft < 1)
@@ -421,11 +430,11 @@ public class GameProperties
             {
                 var finalPos = direction * distance;
                 var template = new CellTemplate(type,
-                    new Hex(Mathf.RoundToInt(finalPos.x), Mathf.RoundToInt(finalPos.y)), 0);
+                    new Hex(Mathf.RoundToInt(finalPos.X), Mathf.RoundToInt(finalPos.Y)), 0);
 
-                if (species.Cells.CanPlace(template))
+                if (species.Cells.CanPlace(template, workMemory1, workMemory2))
                 {
-                    species.Cells.Add(template);
+                    species.Cells.AddFast(template, workMemory1, workMemory2);
                     break;
                 }
             }

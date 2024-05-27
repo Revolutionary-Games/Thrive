@@ -38,6 +38,11 @@ JPH_SUPPRESS_WARNINGS
 namespace Thrive::Physics
 {
 
+// When on, a more efficient calculation is used for body control
+#define ASSUME_BODY_ROTATION_IS_UNIT
+
+// #define CHECK_ROTATION_PROBLEMS
+
 class PhysicalWorld::Pimpl
 {
 public:
@@ -158,6 +163,21 @@ public:
         activeBodiesWithCollisions.clear();
     }
 
+    void DebugCheckActiveCollisions()
+    {
+        const auto size = activeBodiesWithCollisions.size();
+        for (size_t i = 0; i < size; ++i)
+        {
+            auto body = activeBodiesWithCollisions[i];
+            if (body->activeRecordedCollisionCount > body->maxCollisionsToRecord)
+            {
+                LOG_ERROR("Detected body with more collisions than it should have, " +
+                    std::to_string(body->activeRecordedCollisionCount) + " > " +
+                    std::to_string(body->maxCollisionsToRecord) + " (max)");
+            }
+        }
+    }
+
     inline void IncrementStepCounter() noexcept
     {
         ++stepCounter;
@@ -193,7 +213,7 @@ public:
 #ifdef JPH_DEBUG_RENDERER
     JPH::BodyManager::DrawSettings bodyDrawSettings;
 
-    JPH::Vec3Arg debugDrawCameraLocation = {};
+    JPH::Vec3 debugDrawCameraLocation = {};
 #endif
 };
 
@@ -306,10 +326,15 @@ void PhysicalWorld::ProcessInBackground(float delta)
     if (elapsedSinceUpdate < singlePhysicsFrame)
     {
         // We can just early exit if there's nothing to do
+        previous = true;
+        if (!runningBackgroundSimulation.compare_exchange_strong(previous, false))
+        {
+            LOG_ERROR(
+                "Failed to unset threaded running flag when it was not time to run physics yet, game will deadlock");
+        }
+
         return;
     }
-
-    runningBackgroundSimulation = true;
 
     TaskSystem::Get().QueueTask([this]() { StepAllPhysicsStepsInBackground(); });
 }
@@ -414,6 +439,39 @@ Ref<PhysicsBody> PhysicalWorld::CreateStaticBody(const JPH::RefConst<JPH::Shape>
         physicsSystem->GetBodyInterface().AddBody(body->GetId(), JPH::EActivation::DontActivate);
         OnPostBodyAdded(*body);
     }
+
+    return body;
+}
+
+Ref<PhysicsBody> PhysicalWorld::CreateSensor(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
+    JPH::Quat rotation, JPH::EMotionType motionType, bool detectStaticBodies)
+{
+    if (shape == nullptr)
+    {
+        LOG_ERROR("No shape given to sensor create");
+        return nullptr;
+    }
+
+    // Being on the moving layer also makes the sensor to detect debris, sensor layer only detects moving bodies
+    auto body = CreateBody(*shape, JPH::EMotionType::Static, detectStaticBodies ? Layers::MOVING : Layers::SENSOR,
+        position, rotation, JPH::EAllowedDOFs::All, true);
+
+    if (body == nullptr)
+        return nullptr;
+
+    // Detecting static bodies is probably rare enough that this is fine to have a bit slower path
+    if (detectStaticBodies)
+    {
+        auto underlyingBody = physicsSystem->GetBodyLockInterface().TryGetBody(body->GetId());
+        if (underlyingBody != nullptr)
+        {
+            // TODO: test that this works (the documentation says the body needs to be kinematic)
+            underlyingBody->SetCollideKinematicVsNonDynamic(true);
+        }
+    }
+
+    physicsSystem->GetBodyInterface().AddBody(body->GetId(), JPH::EActivation::Activate);
+    OnPostBodyAdded(*body);
 
     return body;
 }
@@ -647,6 +705,12 @@ void PhysicalWorld::SetBodyControl(
         return;
     }
 
+    if (bodyWrapper.IsDetached())
+    {
+        LOG_ERROR("Cannot set body control on detached body");
+        return;
+    }
+
     BodyControlState* state;
 
     bool justEnabled = bodyWrapper.EnableBodyControlIfNotAlready();
@@ -681,6 +745,21 @@ void PhysicalWorld::SetPosition(JPH::BodyID bodyId, JPH::DVec3Arg position, bool
 {
     physicsSystem->GetBodyInterface().SetPosition(
         bodyId, position, activate ? JPH::EActivation::Activate : JPH::EActivation::DontActivate);
+}
+
+void PhysicalWorld::SetPositionAndRotation(
+    JPH::BodyID bodyId, JPH::DVec3Arg position, JPH::QuatArg rotation, bool activate)
+{
+    if (!activate)
+    {
+        physicsSystem->GetBodyInterface().SetPositionAndRotationWhenChanged(
+            bodyId, position, rotation, JPH::EActivation::DontActivate);
+    }
+    else
+    {
+        physicsSystem->GetBodyInterface().SetPositionAndRotation(
+            bodyId, position, rotation, JPH::EActivation::Activate);
+    }
 }
 
 void PhysicalWorld::SetBodyAllowSleep(JPH::BodyID bodyId, bool allowSleeping)
@@ -724,11 +803,15 @@ bool PhysicalWorld::FixBodyYCoordinateToZero(JPH::BodyID bodyId)
     return false;
 }
 
-void PhysicalWorld::ChangeBodyShape(JPH::BodyID bodyId, const JPH::RefConst<JPH::Shape>& shape, bool activate)
+void PhysicalWorld::ChangeBodyShape(PhysicsBody& body, const JPH::RefConst<JPH::Shape>& shape, bool activate)
 {
+    // Must force no-activation when detached to prevent crashing
+    if (body.IsDetached())
+        activate = false;
+
     // For now this always recalculates mass and inertia
     physicsSystem->GetBodyInterface().SetShape(
-        bodyId, shape, true, activate ? JPH::EActivation::Activate : JPH::EActivation::DontActivate);
+        body.GetId(), shape, true, activate ? JPH::EActivation::Activate : JPH::EActivation::DontActivate);
 }
 
 // ------------------------------------ //
@@ -1141,11 +1224,14 @@ void PhysicalWorld::PerformPhysicsStepOperations(float delta)
     }
 
     pimpl->bodiesStepControlLock.Unlock();
+
+    // Enable for some extreme checking of collision write data indices
+    // pimpl->DebugCheckActiveCollisions();
 }
 
 Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
     JPH::RVec3Arg position, JPH::Quat rotation /*= JPH::Quat::sIdentity()*/,
-    JPH::EAllowedDOFs allowedDegreesOfFreedom /*= JPH::EAllowedDOFs::All*/)
+    JPH::EAllowedDOFs allowedDegreesOfFreedom /*= JPH::EAllowedDOFs::All*/, bool isSensor /*= false*/)
 {
 #ifndef NDEBUG
     // Sanity check some layer stuff
@@ -1157,6 +1243,12 @@ Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotion
 #endif
 
     auto creationSettings = JPH::BodyCreationSettings(&shape, position, rotation, motionType, layer);
+
+    if (isSensor)
+    {
+        creationSettings.mIsSensor = true;
+    }
+
     creationSettings.mAllowedDOFs = allowedDegreesOfFreedom;
 
     const auto body = physicsSystem->GetBodyInterface().CreateBody(creationSettings);
@@ -1205,6 +1297,20 @@ void PhysicalWorld::OnPostBodyAdded(PhysicsBody& body)
     // TODO: does detached body also need to keep an extra reference?
     body.AddRef();
     ++bodyCount;
+
+#ifndef NDEBUG
+    JPH::BodyLockRead lock(physicsSystem->GetBodyLockInterface(), body.GetId());
+    if (!lock.Succeeded()) [[unlikely]]
+    {
+        LOG_ERROR("Body can't be locked after adding");
+        return;
+    }
+
+    if (!lock.GetBody().IsInBroadPhase())
+    {
+        LOG_ERROR("Body added to physics world is not marked as being in the broadphase");
+    }
+#endif
 }
 
 void PhysicalWorld::OnBodyPreLeaveWorld(PhysicsBody& body)
@@ -1254,7 +1360,8 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
     const auto bodyId = bodyWrapper.GetId();
 
     // This method is called by the step listener meaning that all bodies are already locked so this needs to be used
-    // like this
+    // like this. The call to activate probably needs to be protected with a lock if body control is applied in the
+    // future by multiple threads.
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterfaceNoLock(), bodyId);
     if (!lock.Succeeded()) [[unlikely]]
     {
@@ -1264,15 +1371,49 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
 
     JPH::Body& body = lock.GetBody();
 
+    // Ensure this doesn't cause a crash if there's a bug elsewhere in body handling
+    if (!body.IsInBroadPhase())
+    {
+        LOG_ERROR("Body not in broadphase used in body control");
+        return;
+    }
+
     if (controlState->movement.LengthSq() > 0.000001f)
+    {
         body.AddImpulse(controlState->movement * normalizedDelta);
+
+        // Activate inactive bodies when controlled to ensure they cannot accumulate a lot of impulse and eventually
+        // shoot off at high velocity when touched
+        if (!body.IsActive())
+        {
+            physicsSystem->GetBodyInterfaceNoLock().ActivateBody(bodyId);
+        }
+    }
 
     // A really simple rotation matching based on JPH::Body::MoveKinematic approach. Now this doesn't seem to need
     // to have any rotation value being close to target threshold or overshoot detection.
     const auto& currentRotation = body.GetRotation();
 
+#ifdef CHECK_ROTATION_PROBLEMS
+    if (std::abs(currentRotation.Length() - 1) > 0.000001f)
+        LOG_ERROR("Body rotation is nor normalized, length: " + std::to_string(currentRotation.Length()));
+
+    if (currentRotation.IsNaN())
+    {
+        LOG_ERROR("Body rotation is NaN! Something has corrupted it, resetting to identity");
+
+        physicsSystem->GetBodyInterfaceNoLock().SetRotation(
+            bodyId, JPH::Quat::sIdentity(), JPH::EActivation::DontActivate);
+        return;
+    }
+#endif
+
+#ifdef ASSUME_BODY_ROTATION_IS_UNIT
     // Can use conjugated here as the rotation is always a unit rotation
     const auto difference = controlState->targetRotation * currentRotation.Conjugated();
+#else
+    const auto difference = controlState->targetRotation * currentRotation.Inversed();
+#endif
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
@@ -1282,6 +1423,8 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
     float angle;
     difference.GetAxisAngle(axis, angle);
     body.SetAngularVelocityClamped(axis * (angle / controlState->rotationRate * normalizedDelta));
+
+    // TODO: should enough applied angular velocity also wake up the body?
 }
 
 #pragma clang diagnostic push

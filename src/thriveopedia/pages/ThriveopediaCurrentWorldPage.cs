@@ -3,7 +3,7 @@
 /// <summary>
 ///   Thriveopedia page displaying information about the current game in progress.
 /// </summary>
-public class ThriveopediaCurrentWorldPage : ThriveopediaPage
+public partial class ThriveopediaCurrentWorldPage : ThriveopediaPage, IThriveopediaPage
 {
     [Export]
     public NodePath? DifficultyDetailsPath;
@@ -20,10 +20,10 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
     private RichTextLabel miscDetails = null!;
 #pragma warning restore CA2213
 
-    public override string PageName => "CurrentWorld";
-    public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE");
+    public string PageName => "CurrentWorld";
+    public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE");
 
-    public override string? ParentPageName => null;
+    public string? ParentPageName => null;
 
     public override void _Ready()
     {
@@ -48,7 +48,7 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
         miscDetails.Text = settings.GetTranslatedMiscString();
     }
 
-    public override void OnTranslationChanged()
+    public override void OnTranslationsChanged()
     {
         UpdateCurrentWorldDetails();
     }

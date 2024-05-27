@@ -4,40 +4,44 @@
 ///   Handles fade effects in the gallery's model viewer. For generic fades, see
 ///   <see cref="CrossFadableTextureRect"/> or <see cref="ScreenFade"/>.
 /// </summary>
-public class CrossFadableGalleryViewport : ViewportContainer
+public partial class CrossFadableGalleryViewport : SubViewportContainer
 {
-#pragma warning disable CA2213
-    private Tween tween = null!;
-#pragma warning restore CA2213
+    private NodePath modulationReference = new("modulate");
 
     [Signal]
-    public delegate void Faded();
+    public delegate void FadedEventHandler();
 
     [Export]
-    public float FadeDuration { get; set; } = 0.5f;
+    public double FadeDuration { get; set; } = 0.5;
 
     public override void _Ready()
     {
-        tween = GetNode<Tween>("Tween");
     }
 
     public void BeginFade()
     {
-        tween.InterpolateProperty(this, "modulate", null, Colors.Black, FadeDuration);
-        tween.Start();
+        var tween = CreateTween();
 
-        tween.CheckAndConnect(
-            "tween_completed", this, nameof(OnFaded), null, (uint)ConnectFlags.Oneshot);
+        tween.TweenProperty(this, modulationReference, Colors.Black, FadeDuration);
+
+        tween.TweenCallback(new Callable(this, nameof(OnFaded)));
     }
 
-    private void OnFaded(Object @object, NodePath key)
+    protected override void Dispose(bool disposing)
     {
-        _ = @object;
-        _ = key;
+        if (disposing)
+        {
+            modulationReference.Dispose();
+        }
 
-        EmitSignal(nameof(Faded));
+        base.Dispose(disposing);
+    }
 
-        tween.InterpolateProperty(this, "modulate", null, Colors.White, FadeDuration);
-        tween.Start();
+    private void OnFaded()
+    {
+        EmitSignal(SignalName.Faded);
+
+        var tween = CreateTween();
+        tween.TweenProperty(this, modulationReference, Colors.White, FadeDuration);
     }
 }

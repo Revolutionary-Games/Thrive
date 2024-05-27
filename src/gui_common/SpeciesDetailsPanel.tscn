@@ -1,58 +1,50 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://b1boea8qjx6xx"]
 
-[ext_resource path="res://src/gui_common/SpeciesDetailsPanel.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=6]
-[ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=7]
+[ext_resource type="Script" path="res://src/gui_common/SpeciesDetailsPanel.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
+[ext_resource type="Script" path="res://src/gui_common/SpeciesPreview.cs" id="6"]
+[ext_resource type="Script" path="res://src/microbe_stage/CellHexesPreview.cs" id="7"]
 
 [node name="SpeciesDetailsPanel" type="MarginContainer"]
-margin_right = 352.0
-margin_bottom = 562.0
-rect_min_size = Vector2( 352, 300 )
+custom_minimum_size = Vector2(352, 300)
+offset_right = 352.0
+offset_bottom = 562.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-script = ExtResource( 2 )
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("2")
 SpeciesDetailsLabelPath = NodePath("ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 SpeciesPreviewPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
 HexPreviewPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 342.0
-margin_bottom = 552.0
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 332.0
-margin_bottom = 542.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_right = 332.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 0, 200 )
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
 
-[node name="SpeciesPreview" parent="ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-margin_right = 164.0
-margin_bottom = 200.0
-script = ExtResource( 6 )
+[node name="SpeciesPreview" parent="ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4")]
+layout_mode = 2
+script = ExtResource("6")
 
-[node name="CellHexPreview" parent="ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-margin_left = 168.0
-margin_right = 332.0
-margin_bottom = 200.0
-script = ExtResource( 7 )
+[node name="CellHexPreview" parent="ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4")]
+layout_mode = 2
+script = ExtResource("7")
 
-[node name="SpeciesInfoLabel" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
-margin_top = 204.0
-margin_right = 332.0
-margin_bottom = 542.0
+[node name="SpeciesInfoLabel" parent="ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+fit_content = true
 scroll_active = false
+EnableTooltipsForMetaTags = false

@@ -17,7 +17,8 @@ using Nito.Collections;
 ///     Godot 4.0 should make background loading much more doable so this should be reworked at that time.
 ///   </para>
 /// </remarks>
-public class ResourceManager : Node
+[GodotAutoload]
+public partial class ResourceManager : Node
 {
     private static ResourceManager? instance;
 
@@ -33,21 +34,29 @@ public class ResourceManager : Node
     private ResourceManager()
     {
         instance = this;
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     public static ResourceManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
-    public Texture LoadingIcon { get; private set; } = null!;
+    public Texture2D LoadingIcon { get; private set; } = null!;
 
     public override void _Ready()
     {
         base._Ready();
 
-        LoadingIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/IconGenerating.png");
+        LoadingIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/IconGenerating.png");
     }
 
-    public override void _Process(float delta)
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
+    }
+
+    public override void _Process(double delta)
     {
         base._Process(delta);
 

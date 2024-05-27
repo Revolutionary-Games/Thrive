@@ -1,0 +1,19 @@
+[gd_resource type="FontVariation" load_steps=10 format=3 uid="uid://b2ptqrb5vibaf"]
+
+[ext_resource type="FontFile" uid="uid://by0stmndcb85x" path="res://assets/fonts/NotoSans-Variable.ttf" id="1_whlxd"]
+[ext_resource type="FontFile" uid="uid://bfm1oj61iaq27" path="res://assets/fonts/NotoEmoji-Regular.ttf" id="2_8u2qi"]
+[ext_resource type="FontFile" uid="uid://kfqqnkpn6ko3" path="res://assets/fonts/NotoSansCJKsc-Regular.otf" id="3_hlj5b"]
+[ext_resource type="FontFile" uid="uid://cgtj2idmx1wqo" path="res://assets/fonts/NotoSansCJKtc-Regular.otf" id="4_rdjjf"]
+[ext_resource type="FontFile" uid="uid://r4iolw78xdcc" path="res://assets/fonts/NotoSansHebrew-Black.ttf" id="5_1rkkm"]
+[ext_resource type="FontFile" uid="uid://d11ax3l37eyal" path="res://assets/fonts/NotoSansThai-Black.ttf" id="6_aaabe"]
+[ext_resource type="FontFile" uid="uid://b6nyrbfxefhqu" path="res://assets/fonts/NotoSansSinhala-Black.ttf" id="7_v4a58"]
+[ext_resource type="FontFile" uid="uid://xax31ln08y7c" path="res://assets/fonts/NotoSansGeorgian-Black.ttf" id="8_ao72n"]
+[ext_resource type="FontFile" uid="uid://kg27m3xbcakf" path="res://assets/fonts/NotoSansBengali-Black.ttf" id="9_li04l"]
+
+[resource]
+fallbacks = Array[Font]([ExtResource("2_8u2qi"), ExtResource("3_hlj5b"), ExtResource("4_rdjjf"), ExtResource("5_1rkkm"), ExtResource("6_aaabe"), ExtResource("7_v4a58"), ExtResource("8_ao72n"), ExtResource("9_li04l")])
+base_font = ExtResource("1_whlxd")
+variation_opentype = {
+2003072104: 99,
+2003265652: 900
+}

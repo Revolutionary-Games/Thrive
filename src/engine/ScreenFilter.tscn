@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://c10c7kaxjt7xi"]
 
-[ext_resource path="res://src/engine/ScreenFilter.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/engine/ScreenFilter.cs" id="1"]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
 
 [node name="ScreenFilter" type="ColorRect"]
-material = SubResource( 2 )
+material = SubResource("2")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 1, 1, 1, 0 )
-script = ExtResource( 1 )
+color = Color(1, 1, 1, 0)
+script = ExtResource("1")

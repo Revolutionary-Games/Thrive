@@ -5,11 +5,14 @@ using Godot;
 /// <summary>
 ///   Shows a compound amount along with an icon
 /// </summary>
-public class CompoundAmount : HBoxContainer
+public partial class CompoundAmount : HBoxContainer
 {
+    private readonly StringName colourParameterName = new("font_color");
+
 #pragma warning disable CA2213
     private Label? amountLabel;
     private TextureRect? icon;
+    private Label? extraDescriptionLabel;
 #pragma warning restore CA2213
 
     private Compound? compound;
@@ -19,6 +22,7 @@ public class CompoundAmount : HBoxContainer
     private bool prefixPositiveWithPlus;
     private bool usePercentageDisplay;
     private Colour valueColour = Colour.White;
+    private LocalizedString? extraValueDescription;
 
     public enum Colour
     {
@@ -133,6 +137,22 @@ public class CompoundAmount : HBoxContainer
         }
     }
 
+    /// <summary>
+    ///   When set, extra information can be shown after the compound value
+    /// </summary>
+    public LocalizedString? ExtraValueDescription
+    {
+        get => extraValueDescription;
+        set
+        {
+            if (extraValueDescription != null && extraValueDescription.Equals(value))
+                return;
+
+            extraValueDescription = value;
+            UpdateExtraDescription();
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -147,16 +167,40 @@ public class CompoundAmount : HBoxContainer
         // Only apply non-default colour here. If it is later changed, it is then applied
         if (ValueColour != Colour.White)
             UpdateColour();
+
+        if (extraValueDescription != null)
+            UpdateExtraDescription();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateTooltip();
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
 
-            UpdateLabel();
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
+    /// <summary>
+    ///   Call if the state of the external extra text to show has changed without the property being re-assigned
+    /// </summary>
+    public void OnExtraTextChangedExternally()
+    {
+        if (ExtraValueDescription != null)
+            UpdateExtraDescription();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            colourParameterName.Dispose();
         }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateLabel()
@@ -170,11 +214,11 @@ public class CompoundAmount : HBoxContainer
         string numberPart;
         if (!string.IsNullOrEmpty(compound!.Unit))
         {
-            numberPart = TranslationServer.Translate("VALUE_WITH_UNIT").FormatSafe(Math.Round(amount), compound.Unit);
+            numberPart = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(Math.Round(amount), compound.Unit);
         }
         else if (UsePercentageDisplay)
         {
-            numberPart = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(amount * 100, 1));
+            numberPart = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(amount * 100, 1));
         }
         else
         {
@@ -205,7 +249,35 @@ public class CompoundAmount : HBoxContainer
                 throw new Exception("unhandled colour");
         }
 
-        amountLabel.AddColorOverride("font_color", color);
+        amountLabel.AddThemeColorOverride(colourParameterName, color);
+    }
+
+    private void UpdateExtraDescription()
+    {
+        if (ExtraValueDescription == null)
+        {
+            extraDescriptionLabel?.QueueFree();
+            extraDescriptionLabel = null;
+        }
+        else
+        {
+            if (extraDescriptionLabel == null)
+            {
+                extraDescriptionLabel = new Label
+                {
+                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                    CustomMinimumSize = new Vector2(20, 0),
+                    SizeFlagsHorizontal = SizeFlags.ExpandFill,
+                };
+
+                AddChild(extraDescriptionLabel);
+            }
+
+            // Make sure the extra description label is last child
+            MoveChild(extraDescriptionLabel, -1);
+
+            extraDescriptionLabel.Text = ExtraValueDescription.ToString();
+        }
     }
 
     private void UpdateIcon()
@@ -213,12 +285,23 @@ public class CompoundAmount : HBoxContainer
         icon?.Free();
 
         icon = GUICommon.Instance.CreateCompoundIcon(compound!.InternalName);
+        icon.SizeFlagsVertical = SizeFlags.ShrinkCenter;
         AddChild(icon);
+
+        if (extraDescriptionLabel != null)
+            UpdateExtraDescription();
     }
 
     private void UpdateTooltip()
     {
         if (icon != null)
-            icon.HintTooltip = compound!.Name;
+            icon.TooltipText = compound!.Name;
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateTooltip();
+        UpdateLabel();
+        UpdateExtraDescription();
     }
 }

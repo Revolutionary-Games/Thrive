@@ -1,20 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 using Systems;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class MicrobeSpecies : Species, ICellProperties
+public class MicrobeSpecies : Species, ICellDefinition
 {
+    private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
+        cachedFillTimes = new();
+
     [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
@@ -25,23 +30,25 @@ public class MicrobeSpecies : Species, ICellProperties
     ///   Creates a wrapper around a cell properties object for use with auto-evo predictions
     /// </summary>
     /// <param name="cloneOf">Grabs the ID and species name from here</param>
-    /// <param name="withCellProperties">
+    /// <param name="withCellDefinition">
     ///   Properties from here are copied to this (except organelle objects are shared)
     /// </param>
-    public MicrobeSpecies(Species cloneOf, ICellProperties withCellProperties) : this(cloneOf.ID, cloneOf.Genus,
-        cloneOf.Epithet)
+    /// <param name="workMemory1">Temporary memory needed to copy the organelles</param>
+    /// <param name="workMemory2">More needed temporary memory</param>
+    public MicrobeSpecies(Species cloneOf, ICellDefinition withCellDefinition, List<Hex> workMemory1,
+        List<Hex> workMemory2) : this(cloneOf.ID, cloneOf.Genus, cloneOf.Epithet)
     {
         cloneOf.ClonePropertiesTo(this);
 
-        foreach (var organelle in withCellProperties.Organelles)
+        foreach (var organelle in withCellDefinition.Organelles)
         {
-            Organelles.Add(organelle);
+            Organelles.AddFast(organelle, workMemory1, workMemory2);
         }
 
-        MembraneType = withCellProperties.MembraneType;
-        MembraneRigidity = withCellProperties.MembraneRigidity;
-        Colour = withCellProperties.Colour;
-        IsBacteria = withCellProperties.IsBacteria;
+        MembraneType = withCellDefinition.MembraneType;
+        MembraneRigidity = withCellDefinition.MembraneRigidity;
+        Colour = withCellDefinition.Colour;
+        IsBacteria = withCellDefinition.IsBacteria;
     }
 
     public bool IsBacteria { get; set; }
@@ -53,6 +60,11 @@ public class MicrobeSpecies : Species, ICellProperties
 
     public float MembraneRigidity { get; set; }
 
+    /// <summary>
+    ///   Organelles this species consist of. This is saved last to ensure organelle data that may refer back to this
+    ///   species can be loaded (for example cell-detecting chemoreceptors).
+    /// </summary>
+    [JsonProperty(Order = 1)]
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
 
     [JsonIgnore]
@@ -74,11 +86,28 @@ public class MicrobeSpecies : Species, ICellProperties
     ///   match between these two.
     /// </summary>
     [JsonIgnore]
-    public float BaseHexSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount)
+    public float BaseHexSize => Organelles.Organelles.Sum(o => o.Definition.HexCount)
         * (IsBacteria ? 0.5f : 1.0f);
 
+    /// <summary>
+    ///   TODO: this should be removed as this is not accurate (only accurate if specialized storage vacuoles aren't
+    ///   used)
+    /// </summary>
     [JsonIgnore]
     public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);
+
+    /// <summary>
+    ///   Compound capacities members of this species can store in their default configurations
+    /// </summary>
+    [JsonIgnore]
+    public (float Nominal, Dictionary<Compound, float> Specific) StorageCapacities
+    {
+        get
+        {
+            var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(Organelles, out var nominal);
+            return (nominal, specific);
+        }
+    }
 
     [JsonIgnore]
     public bool CanEngulf => !MembraneType.CellWall;
@@ -100,27 +129,31 @@ public class MicrobeSpecies : Species, ICellProperties
 
         RepositionToOrigin();
         UpdateInitialCompounds();
+
+        cachedFillTimes.Clear();
     }
 
-    public override void RepositionToOrigin()
+    public override bool RepositionToOrigin()
     {
-        Organelles.RepositionToOrigin();
+        var changes = Organelles.RepositionToOrigin();
         CalculateRotationSpeed();
+        return changes;
     }
 
     public override void UpdateInitialCompounds()
     {
         // Since the initial compounds are only set once per species they can't be calculated for each Biome.
         // So, the compound balance calculation uses the default biome.
-        // Also we should not overtly punish photosynthesizers so we just use the consumption here (instead of
+        // Also, we should not overtly punish photosynthesizers, so we just use the consumption here (instead of
         // balance where the generated glucose would offset things and spawn photosynthesizers with no glucose,
         // which could basically make them die instantly in certain situations)
-        var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
+        var simulationParameters = SimulationParameters.Instance;
+        var biomeConditions = simulationParameters.GetBiome("default").Conditions;
         var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
             biomeConditions, CompoundAmountType.Biome);
 
-        var glucose = SimulationParameters.Instance.GetCompound("glucose");
-        var atp = SimulationParameters.Instance.GetCompound("atp");
+        var glucose = simulationParameters.GetCompound("glucose");
+        var atp = simulationParameters.GetCompound("atp");
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
         var cachedCapacity = StorageCapacity;
@@ -129,7 +162,7 @@ public class MicrobeSpecies : Species, ICellProperties
 
         foreach (var compoundBalance in compoundBalances)
         {
-            // Skip ATP as it we don't want to give any initial ATP
+            // Skip ATP as we don't want to give any initial ATP
             if (compoundBalance.Key == atp)
                 continue;
 
@@ -156,6 +189,32 @@ public class MicrobeSpecies : Species, ICellProperties
         }
     }
 
+    public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)
+    {
+        if (spawnEnvironment is not IMicrobeSpawnEnvironment microbeSpawnEnvironment)
+            throw new ArgumentException("Microbes must have microbe spawn environment info");
+
+        // TODO: cache the data
+        var biome = microbeSpawnEnvironment.CurrentBiome;
+
+        Dictionary<Compound, (float TimeToFill, float Storage)>? compoundTimes;
+
+        // This lock is here to allow multiple microbe spawns to happen in parallel. Lock is not used on clear as no
+        // spawns should be allowed to happen while species are being modified
+        lock (cachedFillTimes)
+        {
+            if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
+            {
+                compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(Organelles,
+                    MembraneType, PlayerSpecies, biome, spawnEnvironment.WorldSettings);
+                cachedFillTimes[biome] = compoundTimes;
+            }
+        }
+
+        MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,
+            spawnEnvironment.DaylightInfo);
+    }
+
     public override void ApplyMutation(Species mutation)
     {
         base.ApplyMutation(mutation);
@@ -164,19 +223,24 @@ public class MicrobeSpecies : Species, ICellProperties
 
         Organelles.Clear();
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var organelle in casted.Organelles)
         {
-            Organelles.Add((OrganelleTemplate)organelle.Clone());
+            Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
         }
 
         IsBacteria = casted.IsBacteria;
         MembraneType = casted.MembraneType;
         MembraneRigidity = casted.MembraneRigidity;
+
+        cachedFillTimes.Clear();
     }
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
+        return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
@@ -199,9 +263,12 @@ public class MicrobeSpecies : Species, ICellProperties
         result.MembraneType = MembraneType;
         result.MembraneRigidity = MembraneRigidity;
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var organelle in Organelles)
         {
-            result.Organelles.Add((OrganelleTemplate)organelle.Clone());
+            result.Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
         }
 
         return result;
@@ -211,9 +278,8 @@ public class MicrobeSpecies : Species, ICellProperties
     {
         var hash = base.GetVisualHashCode();
 
-        hash ^= (MembraneType.GetHashCode() * 5743) ^ (MembraneRigidity.GetHashCode() * 5749) ^
-            ((IsBacteria ? 1 : 0) * 5779) ^
-            (Organelles.Count * 131);
+        hash ^= MembraneType.GetHashCode() * 5743 ^ MembraneRigidity.GetHashCode() * 5749 ^
+            (IsBacteria ? 1 : 0) * 5779 ^ Organelles.Count * 131;
 
         int counter = 0;
 
@@ -228,8 +294,7 @@ public class MicrobeSpecies : Species, ICellProperties
     public override string GetDetailString()
     {
         return base.GetDetailString() + "\n" +
-            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
-                MembraneType.Name,
+            Localization.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(MembraneType.Name,
                 MembraneRigidity,
                 BaseSpeed,
                 BaseRotationSpeed,
@@ -238,7 +303,6 @@ public class MicrobeSpecies : Species, ICellProperties
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed =
-            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
     }
 }

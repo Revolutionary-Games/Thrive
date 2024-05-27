@@ -4,4 +4,5 @@
 public enum EditorUserOverride
 {
     NotProducingEnoughATP,
+    EndosymbiosisPending,
 }

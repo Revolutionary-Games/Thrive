@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
-using Directory = Godot.Directory;
-using File = Godot.File;
+using DirAccess = Godot.DirAccess;
+using FileAccess = Godot.FileAccess;
 using Path = System.IO.Path;
 
 /// <summary>
@@ -25,6 +26,7 @@ public static class SaveHelper
         "0.5.5.0-alpha",
         "0.5.9.0-alpha",
         "0.6.4.0-alpha",
+        "0.6.6.0-alpha",
     };
 
     private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving = new[]
@@ -226,50 +228,50 @@ public static class SaveHelper
     {
         var result = new List<string>();
 
-        using (var directory = new Directory())
+        using var directory = DirAccess.Open(Constants.SAVE_FOLDER);
+
+        if (directory == null)
+            return result;
+
+        if (directory.ListDirBegin() != Error.Ok)
         {
-            if (!directory.DirExists(Constants.SAVE_FOLDER))
-                return result;
-
-            directory.Open(Constants.SAVE_FOLDER);
-            directory.ListDirBegin(true, true);
-
-            while (true)
-            {
-                var filename = directory.GetNext();
-
-                if (string.IsNullOrEmpty(filename))
-                    break;
-
-                if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
-                    continue;
-
-                // Skip folders
-                if (!directory.FileExists(filename))
-                    continue;
-
-                result.Add(filename);
-            }
-
-            directory.ListDirEnd();
+            GD.PrintErr("Failed to begin listing files in saves folder");
+            return result;
         }
+
+        while (true)
+        {
+            var filename = directory.GetNext();
+
+            if (string.IsNullOrEmpty(filename))
+                break;
+
+            if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
+                continue;
+
+            // Skip folders
+            if (!directory.FileExists(filename))
+                continue;
+
+            result.Add(filename);
+        }
+
+        directory.ListDirEnd();
 
         switch (order)
         {
             case SaveOrder.LastModifiedFirst:
             {
-                using var file = new File();
-                result = result.OrderByDescending(item =>
-                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, item))).ToList();
+                result = result.OrderByDescending(s =>
+                    FileAccess.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, s))).ToList();
 
                 break;
             }
 
             case SaveOrder.FirstModifiedFirst:
             {
-                using var file = new File();
-                result = result.OrderBy(item =>
-                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, item))).ToList();
+                result = result.OrderBy(s =>
+                    FileAccess.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, s))).ToList();
 
                 break;
             }
@@ -286,19 +288,21 @@ public static class SaveHelper
         int count = 0;
         ulong totalSize = 0;
 
-        using var file = new File();
         foreach (var save in CreateListOfSaves())
         {
             if (nameMatches?.IsMatch(save) != false)
             {
-                if (file.Open(Path.Combine(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
+                // TODO: is there a way to be more economical with these objects
+                using var file = FileAccess.Open(Path.Combine(Constants.SAVE_FOLDER, save), FileAccess.ModeFlags.Read);
+
+                if (file == null)
                 {
                     GD.PrintErr("Can't read size of save file: ", save);
                     continue;
                 }
 
                 ++count;
-                totalSize += file.GetLen();
+                totalSize += file.GetLength();
             }
         }
 
@@ -310,11 +314,10 @@ public static class SaveHelper
     /// </summary>
     public static void DeleteSave(string saveName)
     {
-        using var directory = new Directory();
         var finalPath = Path.Combine(Constants.SAVE_FOLDER, saveName);
-        directory.Remove(finalPath);
+        DirAccess.RemoveAbsolute(finalPath);
 
-        if (directory.FileExists(finalPath))
+        if (FileAccess.FileExists(finalPath))
             throw new IOException($"Failed to delete: {finalPath}");
     }
 
@@ -508,7 +511,7 @@ public static class SaveHelper
             }
             catch (NullReferenceException e)
             {
-                inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
+                inProgress.ReportStatus(false, Localization.Translate("SAVING_FAILED_WITH_EXCEPTION"),
                     e.ToString(), true);
                 return true;
             }
@@ -517,8 +520,8 @@ public static class SaveHelper
         if (!save.SavedProperties.GameWorld.PlayerSpecies.IsExtinct)
             return false;
 
-        inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
-            TranslationServer.Translate("PLAYER_EXTINCT"), false);
+        inProgress.ReportStatus(false, Localization.Translate("SAVING_NOT_POSSIBLE"),
+            Localization.Translate("PLAYER_EXTINCT"), false);
         return true;
     }
 
@@ -536,8 +539,8 @@ public static class SaveHelper
 
     private static void SetMessageAboutPrototypeSaving(InProgressSave inProgressSave)
     {
-        inProgressSave.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
-            TranslationServer.Translate("IN_PROTOTYPE"), false);
+        inProgressSave.ReportStatus(false, Localization.Translate("SAVING_NOT_POSSIBLE"),
+            Localization.Translate("IN_PROTOTYPE"), false);
     }
 
     private static void PerformSave(InProgressSave inProgress, Save save)
@@ -549,17 +552,22 @@ public static class SaveHelper
         try
         {
             save.SaveToFile();
-            inProgress.ReportStatus(true, TranslationServer.Translate("SAVING_SUCCEEDED"));
+            inProgress.ReportStatus(true, Localization.Translate("SAVING_SUCCEEDED"));
         }
         catch (Exception e)
         {
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
+
             // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
             if (!Constants.CATCH_SAVE_ERRORS)
 #pragma warning disable 162
                 throw;
 #pragma warning restore 162
 
-            inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
+            inProgress.ReportStatus(false, Localization.Translate("SAVING_FAILED_WITH_EXCEPTION"),
                 e.ToString());
             return;
         }

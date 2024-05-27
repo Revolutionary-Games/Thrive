@@ -30,6 +30,8 @@ public class RunOnAxisAttribute : InputAttribute
 
     private bool useDiscreteKeyInputs;
 
+    private object[]? cachedMethodCallParameters;
+
     /// <summary>
     ///   Instantiates a new RunOnAxisAttribute.
     /// </summary>
@@ -57,8 +59,7 @@ public class RunOnAxisAttribute : InputAttribute
             {
                 if (nextInputMouse != null)
                 {
-                    throw new ArgumentException(
-                        "Mouse axis inputs need to be specified between the other inputs " +
+                    throw new ArgumentException("Mouse axis inputs need to be specified between the other inputs " +
                         "(before the action it applies to)");
                 }
 
@@ -259,20 +260,25 @@ public class RunOnAxisAttribute : InputAttribute
         return result;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
         // If UseDiscreteKeyInputs is true CurrentResult evaluation actually changes state, which is not optimal...
-        var currentResult = GetCurrentResult(delta);
+        var currentResult = GetCurrentResult((float)delta);
         if (Math.Abs(currentResult - DefaultState) > MathUtils.EPSILON || InvokeAlsoWithNoInput)
         {
             if (TrackInputMethod)
             {
-                CallMethod(delta, currentResult, TrackInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 3, delta);
+                cachedMethodCallParameters![1] = currentResult;
+                cachedMethodCallParameters![2] = LastUsedInputMethod;
             }
             else
             {
-                CallMethod(delta, currentResult);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, delta);
+                cachedMethodCallParameters![1] = currentResult;
             }
+
+            CallMethod(cachedMethodCallParameters);
         }
     }
 
@@ -440,13 +446,13 @@ public class RunOnAxisAttribute : InputAttribute
         {
             if (Look == LookMode.Pitch)
             {
-                scaling = Constants.BASE_VERTICAL_RESOLUTION_FOR_INPUT / InputManager.WindowSizeForInputs.y;
+                scaling = Constants.BASE_VERTICAL_RESOLUTION_FOR_INPUT / InputManager.WindowSizeForInputs.Y;
             }
             else
             {
                 // Assume yaw direction stands in also for other mouse input modes well enough
 
-                scaling = Constants.BASE_HORIZONTAL_RESOLUTION_FOR_INPUT / InputManager.WindowSizeForInputs.x;
+                scaling = Constants.BASE_HORIZONTAL_RESOLUTION_FOR_INPUT / InputManager.WindowSizeForInputs.X;
             }
         }
 
