@@ -48,6 +48,7 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     ///   Hardcore mode auto-saves during gameplay regularly.
     /// </summary>
     private double hardcoreModeAutosaveTimer = 2;
+
     protected StageBase()
     {
     }
