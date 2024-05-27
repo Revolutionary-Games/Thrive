@@ -846,6 +846,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     private void OnCameraPositionChanged(Transform3D newPosition)
     {
         // TODO: implement camera position saving
+        _ = newPosition;
     }
 
     // TODO: make this method trigger automatically on Symmetry assignment
