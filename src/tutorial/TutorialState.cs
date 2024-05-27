@@ -230,7 +230,7 @@ public class TutorialState : ITutorialInput
         {
             if (hasPaused)
             {
-                UnPause(gui);
+                UnPause();
             }
 
             if (needsToApplyEvenIfDisabled)
@@ -354,7 +354,7 @@ public class TutorialState : ITutorialInput
             if (hasPaused)
             {
                 // Unpause
-                UnPause(gui);
+                UnPause();
             }
             else
             {
@@ -369,7 +369,7 @@ public class TutorialState : ITutorialInput
         }
     }
 
-    private void UnPause(ITutorialGUI gui)
+    private void UnPause()
     {
         if (hasPaused)
             PauseManager.Instance.Resume(nameof(TutorialState));
