@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -33,6 +34,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
     public T this[int index] => metaballs[index];
 
+    [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()
     {
         return metaballs.GetEnumerator();
@@ -185,6 +187,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
         return IsDescendantsOf(descendant.Parent, parent);
     }
 
+    [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();

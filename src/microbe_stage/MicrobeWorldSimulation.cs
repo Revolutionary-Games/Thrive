@@ -384,6 +384,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void Dispose(bool disposing)
     {
+        // Must disable recording to avoid dispose exceptions from metrics reporting
+        physics.DisablePhysicsTimeRecording = true;
         WaitForStartedPhysicsRun();
 
         if (disposing)
