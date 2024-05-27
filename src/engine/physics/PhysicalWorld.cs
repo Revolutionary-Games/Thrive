@@ -53,6 +53,12 @@ public class PhysicalWorld : IDisposable
     /// </summary>
     public float AveragePhysicsDuration => NativeMethods.PhysicalWorldGetPhysicsAverageTime(AccessWorldInternal());
 
+    /// <summary>
+    ///   Used to turn off metrics reporting when game is closing to no longer access metrics object which may be
+    ///   disposed already
+    /// </summary>
+    public bool DisablePhysicsTimeRecording { get; set; }
+
     public static PhysicalWorld Create()
     {
         return new PhysicalWorld(NativeMethods.CreatePhysicalWorld());
@@ -67,7 +73,7 @@ public class PhysicalWorld : IDisposable
     {
         bool processed = NativeMethods.ProcessPhysicalWorld(AccessWorldInternal(), delta);
 
-        if (processed)
+        if (processed && !DisablePhysicsTimeRecording)
         {
             if (DebugOverlays.Instance.PerformanceMetricsVisible)
                 DebugOverlays.Instance.ReportPhysicalWorldStats(this);
@@ -92,7 +98,7 @@ public class PhysicalWorld : IDisposable
     {
         bool processed = NativeMethods.WaitForPhysicsToCompleteInPhysicalWorld(AccessWorldInternal());
 
-        if (processed)
+        if (processed && !DisablePhysicsTimeRecording)
         {
             if (DebugOverlays.Instance.PerformanceMetricsVisible)
                 DebugOverlays.Instance.ReportPhysicalWorldStats(this);
