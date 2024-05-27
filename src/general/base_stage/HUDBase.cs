@@ -32,9 +32,12 @@ public partial class HUDBase : Control, IStageHUD
         return GetViewport().GuiGetFocusOwner();
     }
 
+    /// <summary>
+    ///   Fade into the stage for that smooth satisfying transition
+    /// </summary>
     protected void AddFadeIn(IStageBase stageBase, bool longerDuration)
     {
-        // Fade out for that smooth satisfying transition
+        // Skip if a fade was already added, makes derived HUD scenes easier to override core behaviour
         if (!stageBase.TransitionFinished)
             return;
 
