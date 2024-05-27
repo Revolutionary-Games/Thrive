@@ -129,7 +129,7 @@ public class WorldGenerationSettings
     /// <summary>
     ///   This thing right here... It is... unforgiving.
     /// </summary>
-    public bool HardcoreMode { get; set; } = false;
+    public bool HardcoreMode { get; set; }
 
     /// <summary>
     ///   Unchangeable name for hardcore mode save

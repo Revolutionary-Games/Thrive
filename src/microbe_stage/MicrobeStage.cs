@@ -1137,6 +1137,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (!engulfed)
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
 
+        if (CurrentGame!.GameWorld.WorldSettings.HardcoreMode)
+            AutoSave();
+
         // Don't clear the player object here as we want to wait until the player entity is deleted before creating
         // a new one to avoid having two player entities existing at the same time
     }

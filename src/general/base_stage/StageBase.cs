@@ -44,6 +44,10 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     /// </summary>
     private double elapsedSinceLightLevelUpdate = 1;
 
+    /// <summary>
+    ///   Hardcore mode auto-saves during gameplay regularly.
+    /// </summary>
+    private double hardcoreModeAutosaveTimer = 2;
     protected StageBase()
     {
     }
@@ -125,6 +129,19 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
                 AutoSave();
 
             wantsToSave = false;
+        }
+
+        if (CurrentGame != null)
+        {
+            if (CurrentGame.GameWorld.WorldSettings.HardcoreMode)
+            {
+                hardcoreModeAutosaveTimer -= delta;
+                if (hardcoreModeAutosaveTimer <= 0)
+                {
+                    hardcoreModeAutosaveTimer = Constants.HARDCORE_AUTOSAVE_INTERVAL;
+                    AutoSave();
+                }
+            }
         }
 
         GameWorld.Process((float)delta);

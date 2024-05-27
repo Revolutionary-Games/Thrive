@@ -1162,6 +1162,8 @@ public static class Constants
     /// </summary>
     public const float MICROBE_MIN_ABSORB_RADIUS = 3;
 
+    public const float HARDCORE_AUTOSAVE_INTERVAL = 60;
+
     public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
     public const float PROCEDURAL_CACHE_MICROBE_SHAPE_TIME = 7000;
