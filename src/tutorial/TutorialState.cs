@@ -243,7 +243,7 @@ public class TutorialState : ITutorialInput
             return;
         }
 
-        HandlePausing(gui);
+        HandlePausing();
 
         // Pause if the game is paused, but we didn't want to pause things
         if (PauseManager.Instance.Paused && !WantsGamePaused)
@@ -347,7 +347,7 @@ public class TutorialState : ITutorialInput
             tutorial.ApplyGUIState(gui);
     }
 
-    private void HandlePausing(ITutorialGUI gui)
+    private void HandlePausing()
     {
         if (WantsGamePaused != hasPaused)
         {
