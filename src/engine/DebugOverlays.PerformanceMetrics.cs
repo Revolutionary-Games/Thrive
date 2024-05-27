@@ -25,7 +25,7 @@ public partial class DebugOverlays
     ///   out of the display.
     /// </summary>
     [Export]
-    public float TimeToKeepPhysicalWorldData = 0.4f;
+    public double TimeToKeepPhysicalWorldData = 0.4f;
 
     // TODO: make this time based
     private const int SpawnHistoryLength = 300;
@@ -148,15 +148,15 @@ public partial class DebugOverlays
             Constants.MEBIBYTE, 1);
         var mibFormat = Localization.Translate("MIB_VALUE");
 
-        float customPhysicsTime = customPhysics.Sum(s => s.LatestPhysicsTime);
+        var customPhysicsTime = customPhysics.Sum(s => s.LatestPhysicsTime);
 
         // TODO: show the average physics time as well
-        float customPhysicsAverage = customPhysics.Sum(s => s.AveragePhysicsTime);
+        var customPhysicsAverage = customPhysics.Sum(s => s.AveragePhysicsTime);
         _ = customPhysicsAverage;
 
         metricsText.Text =
             new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
-                    Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess) + customPhysicsTime,
+                    Math.Round(Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess) + customPhysicsTime, 10),
                     entityCount, Math.Round(entityWeight, 1),
                     Math.Round(spawnHistory.Sum(), 1), Math.Round(despawnHistory.Sum(), 1),
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
@@ -186,7 +186,7 @@ public partial class DebugOverlays
         currentDespawned = 0.0f;
     }
 
-    private void UpdatePhysicalWorldDataExpiration(float delta)
+    private void UpdatePhysicalWorldDataExpiration(double delta)
     {
         foreach (var entry in customPhysics)
         {
@@ -207,7 +207,7 @@ public partial class DebugOverlays
     private class PhysicalWorldStats
     {
         public readonly WeakReference<PhysicalWorld> World;
-        public float TimeSinceUpdate;
+        public double TimeSinceUpdate;
         public float LatestPhysicsTime;
         public float AveragePhysicsTime;
 
