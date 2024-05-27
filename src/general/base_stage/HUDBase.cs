@@ -37,10 +37,6 @@ public partial class HUDBase : Control, IStageHUD
     /// </summary>
     protected void AddFadeIn(IStageBase stageBase, bool longerDuration)
     {
-        // Skip if a fade was already added, makes derived HUD scenes easier to override core behaviour
-        if (!stageBase.TransitionFinished)
-            return;
-
         stageBase.TransitionFinished = false;
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f,
