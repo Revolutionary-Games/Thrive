@@ -770,8 +770,7 @@ public partial class MetaballBodyEditorComponent :
                         metaball.Position, position, editedMetaballs);
 
                 var data = new MetaballMoveActionData<MulticellularMetaball>(metaball, metaball.Position, position,
-                    metaball.Parent,
-                    parent, childMoves);
+                    metaball.Parent, parent, childMoves);
                 action = new SingleEditorAction<MetaballMoveActionData<MulticellularMetaball>>(DoMetaballMoveAction,
                     UndoMetaballMoveAction, data);
             }
