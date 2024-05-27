@@ -27,7 +27,7 @@ font = ExtResource("5_otvf3")
 
 [sub_resource type="StyleBoxEmpty" id="4"]
 
-[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("unforgivingModeButton")]
+[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("hardcoreModeButton", "hardcoreModeName")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,7 +82,8 @@ IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/Advance
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
 CheckOptionsMenuAdviceContainerPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer")
-unforgivingModeButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/UnforgivingMode")
+hardcoreModeButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/HardcoreMode")
+hardcoreModeName = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/HardcoreGameName")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -916,19 +917,26 @@ autowrap_mode = 3
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
 layout_mode = 2
 
-[node name="UnforgivingMode" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
+[node name="HardcoreMode" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 0
-button_pressed = true
-text = "UNFORGIVING_MODE"
+text = "HARDCORE_MODE"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "UNFORGIVING_MODE_EXPLANATION"
+text = "HARDCORE_MODE_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
+
+[node name="HardcoreGameName" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+tooltip_text = "RANDOM_SEED_TOOLTIP"
+placeholder_text = "HARDCORE_GAME_NAME_EXPLANATION"
+editable = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -1006,7 +1014,7 @@ text = "START_GAME"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButtonAdvanced" to="." method="OnRandomisedGameSeedPressed"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs" to="." method="OnEasterEggsToggled"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/UnforgivingMode" to="." method="OnEasterEggsToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/HardcoreMode" to="." method="OnHardcoreModeToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Basic" to="." method="OnBasicPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]

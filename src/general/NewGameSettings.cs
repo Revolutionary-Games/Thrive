@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 using Xoshiro.PRNG64;
 using Container = Godot.Container;
@@ -212,7 +213,10 @@ public partial class NewGameSettings : ControlWithInput
     private Button easterEggsButton = null!;
 
     [Export]
-    private Button unforgivingModeButton = null!;
+    private Button hardcoreModeButton = null!;
+
+    [Export]
+    private LineEdit hardcoreModeName = null!;
 
     // Other
     private Container checkOptionsMenuAdviceContainer = null!;
@@ -230,6 +234,10 @@ public partial class NewGameSettings : ControlWithInput
     private IEnumerable<DifficultyPreset> difficultyPresets = null!;
     private DifficultyPreset normal = null!;
     private DifficultyPreset custom = null!;
+
+    private Task<List<string>>? saveListTask;
+    private bool isListingSaves;
+    private bool listedSavesDone;
 
     [Signal]
     public delegate void OnNewGameSettingsClosedEventHandler();
@@ -351,6 +359,37 @@ public partial class NewGameSettings : ControlWithInput
         }
     }
 
+    public override void _Process(double delta)
+    {
+        if (!isListingSaves || saveListTask == null)
+            return;
+
+        if (saveListTask.IsCanceled)
+        {
+            saveListTask.Dispose();
+            saveListTask = null;
+
+            isListingSaves = false;
+            listedSavesDone = false;
+
+            startButton.Disabled = false;
+
+            return;
+        }
+
+        if (saveListTask.IsCompleted)
+        {
+            // saveListTask disposing is handled further down in the code
+            isListingSaves = false;
+            listedSavesDone = true;
+
+            startButton.Disabled = false;
+
+            // Re-do the start button pressed action as it is what started the task
+            OnConfirmPressed();
+        }
+    }
+
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
     public bool OnEscapePressed()
     {
@@ -427,7 +466,7 @@ public partial class NewGameSettings : ControlWithInput
         lawkButton.ButtonPressed = false;
 
         easterEggsButton.ButtonPressed = settings.EasterEggs;
-        unforgivingModeButton.ButtonPressed = settings.UnforgivingMode;
+        hardcoreModeButton.ButtonPressed = settings.HardcoreMode;
     }
 
     public void ReportValidityOfGameSeed(bool valid)
@@ -500,6 +539,12 @@ public partial class NewGameSettings : ControlWithInput
                 BackButtonPath.Dispose();
                 StartButtonPath.Dispose();
                 CheckOptionsMenuAdviceContainerPath.Dispose();
+            }
+
+            if (saveListTask != null)
+            {
+                saveListTask.Dispose();
+                saveListTask = null;
             }
         }
 
@@ -612,7 +657,12 @@ public partial class NewGameSettings : ControlWithInput
 
         settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
         settings.EasterEggs = easterEggsButton.ButtonPressed;
-        settings.UnforgivingMode = unforgivingModeButton.ButtonPressed;
+        settings.HardcoreMode = hardcoreModeButton.ButtonPressed;
+
+        if (settings.HardcoreMode)
+            settings.HardcoreModeName = hardcoreModeName.Text;
+        else
+            settings.HardcoreModeName = null;
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -696,6 +746,52 @@ public partial class NewGameSettings : ControlWithInput
 
     private void OnConfirmPressed()
     {
+        if (hardcoreModeButton.ButtonPressed)
+        {
+            // Hardcore mode name must not be null or empty
+            if (string.IsNullOrEmpty(hardcoreModeName.Text))
+                return;
+
+            // Check if there isn't any saves with same name as new hardcore mode name
+            if (!isListingSaves)
+            {
+                if (listedSavesDone)
+                {
+                    isListingSaves = false;
+                    listedSavesDone = false;
+                    var saveList = saveListTask!.Result;
+
+                    saveListTask.Dispose();
+                    saveListTask = null;
+
+                    // Final check
+                    foreach (var saveName in saveList)
+                    {
+                        if (saveName.GetBaseName().GetFile() == hardcoreModeName.Text)
+                        {
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    isListingSaves = true;
+
+                    saveListTask = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
+                    TaskExecutor.Instance.AddTask(saveListTask);
+
+                    // Greys out start button for more information
+                    startButton.Disabled = true;
+
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
         GUICommon.Instance.PlayButtonPressSound();
 
         StartGame();
@@ -971,6 +1067,11 @@ public partial class NewGameSettings : ControlWithInput
     private void OnEasterEggsToggled(bool pressed)
     {
         _ = pressed;
+    }
+
+    private void OnHardcoreModeToggled(bool pressed)
+    {
+        hardcoreModeName.Editable = pressed;
     }
 
     private void PerformanceNoteLinkClicked(Variant meta)

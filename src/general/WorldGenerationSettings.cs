@@ -129,7 +129,12 @@ public class WorldGenerationSettings
     /// <summary>
     ///   This thing right here... It is... unforgiving.
     /// </summary>
-    public bool UnforgivingMode { get; set; } = false;
+    public bool HardcoreMode { get; set; } = false;
+
+    /// <summary>
+    ///   Unchangeable name for hardcore mode save
+    /// </summary>
+    public string? HardcoreModeName { get; set; }
 
     /// <summary>
     ///   The auto-evo configuration this world uses
@@ -191,7 +196,7 @@ public class WorldGenerationSettings
             $", Day length: {DayLength}" +
             $", Include multicellular: {IncludeMulticellular}" +
             $", Easter eggs: {EasterEggs}" +
-            $", Unforgiving mode: {UnforgivingMode}" +
+            $", Hardcore mode: {HardcoreMode}" +
             "]";
     }
 }

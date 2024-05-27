@@ -261,10 +261,10 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     protected override void PerformAutoSave()
     {
-        if (CurrentGame.GameWorld.WorldSettings.UnforgivingMode)
+        if (CurrentGame.GameWorld.WorldSettings.HardcoreMode)
         {
-            // Name: CurrentGame.GameWorld.WorldSettings...
-            SaveHelper.UnforgivingModeSave("Hard", this);
+            PerformHardcoreModeSave();
+
             return;
         }
 
@@ -273,7 +273,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     protected override void PerformQuickSave()
     {
-        if (CurrentGame.GameWorld.WorldSettings.UnforgivingMode)
+        if (CurrentGame.GameWorld.WorldSettings.HardcoreMode)
         {
             return;
         }
@@ -281,13 +281,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         SaveHelper.QuickSave(this);
     }
 
-    protected override void PerformUnforgivingModeSave()
+    protected override void PerformHardcoreModeSave()
     {
-        if (!CurrentGame.GameWorld.WorldSettings.UnforgivingMode)
+        if (!CurrentGame.GameWorld.WorldSettings.HardcoreMode)
             return;
 
-        // Name: CurrentGame.GameWorld.WorldSettings...
-        SaveHelper.UnforgivingModeSave("Hard", this);
+        SaveHelper.HardcoreModeSave(CurrentGame.GameWorld.WorldSettings.HardcoreModeName!, this);
     }
 
     protected override void SaveGame(string name)

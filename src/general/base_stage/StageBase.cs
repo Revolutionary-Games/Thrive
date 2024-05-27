@@ -271,6 +271,11 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
+    protected virtual void PerformHardcoreModeSave()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
     protected virtual void OnLightLevelUpdate()
     {
         throw new GodotAbstractMethodNotOverriddenException();

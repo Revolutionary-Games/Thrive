@@ -924,10 +924,10 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     protected override void AutoSave()
     {
-        if (WorldSettings.UnforgivingMode)
+        if (WorldSettings.HardcoreMode)
         {
-            // Name: CurrentGame.GameWorld.WorldSettings...
-            SaveHelper.UnforgivingModeSave("Hard", this);
+            PerformHardcoreModeSave();
+
             return;
         }
 
@@ -936,12 +936,20 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     protected override void PerformQuickSave()
     {
-        if (WorldSettings.UnforgivingMode)
+        if (WorldSettings.HardcoreMode)
         {
             return;
         }
 
         SaveHelper.QuickSave(this);
+    }
+
+    protected override void PerformHardcoreModeSave()
+    {
+        if (!WorldSettings.HardcoreMode)
+            return;
+
+        SaveHelper.HardcoreModeSave(WorldSettings.HardcoreModeName!, this);
     }
 
     protected override void UpdatePatchSettings(bool promptPatchNameChange = true)

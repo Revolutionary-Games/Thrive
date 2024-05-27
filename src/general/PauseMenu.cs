@@ -503,7 +503,7 @@ public partial class PauseMenu : TopLevelContainer
 
         if (GameProperties != null)
         {
-            if (GameProperties.GameWorld.WorldSettings.UnforgivingMode)
+            if (GameProperties.GameWorld.WorldSettings.HardcoreMode)
             {
                 return;
             }
@@ -555,7 +555,7 @@ public partial class PauseMenu : TopLevelContainer
 
         if (GameProperties != null)
         {
-            if (GameProperties.GameWorld.WorldSettings.UnforgivingMode)
+            if (GameProperties.GameWorld.WorldSettings.HardcoreMode)
             {
                 return;
             }
