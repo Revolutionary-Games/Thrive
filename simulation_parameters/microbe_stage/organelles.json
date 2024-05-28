@@ -361,7 +361,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 7
+    "EditorButtonOrder": 9
   },
   "thermosynthase": {
     "MPCost": 50,
@@ -440,7 +440,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 6
+    "EditorButtonOrder": 8
   },
   "flagellum": {
     "MPCost": 55,
@@ -522,7 +522,7 @@
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 8
+    "EditorButtonOrder": 10
   },
   "mitochondrion": {
     "MPCost": 45,
@@ -621,7 +621,7 @@
     ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 9
+    "EditorButtonOrder": 11
   },
   "bindingAgent": {
     "MPCost": 55,
@@ -914,7 +914,7 @@
     "RequiresNucleus": true,
     "Unique": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 10
+    "EditorButtonOrder": 12
   },
   "bioluminescentVacuole": {
     "MPCost": 40,
@@ -936,7 +936,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/BioluminescentIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 11,
+    "EditorButtonOrder": 13,
     "Unimplemented": true
   },
   "thermoplast": {
@@ -985,7 +985,7 @@
     ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 5,
+    "EditorButtonOrder": 7,
     "LAWK": false
   },
   "cilia": {
@@ -1082,7 +1082,7 @@
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 5
+    "EditorButtonOrder": 6
   },
   "ferroplast": {
     "MPCost": 45,
@@ -1132,8 +1132,7 @@
     ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 5,
-    "LAWK": false
+    "EditorButtonOrder": 5
   },
   "axon": {
     "MPCost": 100,
