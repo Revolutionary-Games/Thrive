@@ -19,6 +19,7 @@ public partial class CompoundAmount : HBoxContainer
 
     private int decimals = 3;
     private float amount = float.NegativeInfinity;
+    private string? amountSuffix;
     private bool prefixPositiveWithPlus;
     private bool usePercentageDisplay;
     private Colour valueColour = Colour.White;
@@ -65,6 +66,23 @@ public partial class CompoundAmount : HBoxContainer
                 return;
 
             amount = value;
+            if (amountLabel != null)
+                UpdateLabel();
+        }
+    }
+
+    /// <summary>
+    ///   If not null this suffix is added to the amount (with a space added between the values)
+    /// </summary>
+    public string? AmountSuffix
+    {
+        get => amountSuffix;
+        set
+        {
+            if (amountSuffix == value)
+                return;
+
+            amountSuffix = value;
             if (amountLabel != null)
                 UpdateLabel();
         }
@@ -223,6 +241,11 @@ public partial class CompoundAmount : HBoxContainer
         else
         {
             numberPart = Math.Round(amount, decimals).ToString(CultureInfo.CurrentCulture);
+        }
+
+        if (amountSuffix != null)
+        {
+            numberPart += $" {amountSuffix}";
         }
 
         amountLabel.Text = PrefixPositiveWithPlus ?

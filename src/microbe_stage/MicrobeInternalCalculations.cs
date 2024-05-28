@@ -572,6 +572,37 @@ public static class MicrobeInternalCalculations
             Constants.ENDOSYMBIOSIS_COST_MIN);
     }
 
+    /// <summary>
+    ///   Checks if stocking up compound during the day is possible. <see cref="nightBalance"/> should be negative
+    ///   otherwise this will just return true and not fill the out variables
+    /// </summary>
+    /// <returns>True if there is enough compound generation during the day</returns>
+    public static bool CanGenerateEnoughCompoundToSurviveNight(float nightBalance, float dayBalance,
+        float nightDuration, float timeToFillDuringDay, out float generated, out float required)
+    {
+        if (nightBalance >= 0)
+        {
+            // Positive during the night, this is a pointless calculation
+            // TODO: should this give some kind of error?
+            required = -1;
+            generated = -1;
+            return false;
+        }
+
+        required = -(nightDuration * nightBalance);
+
+        if (dayBalance <= 0)
+        {
+            generated = 0;
+            return false;
+        }
+
+        generated = timeToFillDuringDay * dayBalance;
+
+        // Give tiny bit of wiggle room in the amounts
+        return required <= generated + 0.1f;
+    }
+
     private static float MovementForce(float movementForce, float directionFactor)
     {
         if (directionFactor < 0)

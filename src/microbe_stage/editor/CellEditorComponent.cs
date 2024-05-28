@@ -131,9 +131,6 @@ public partial class CellEditorComponent :
     public NodePath OrganelleMenuPath = null!;
 
     [Export]
-    public NodePath CompoundBalancePath = null!;
-
-    [Export]
     public NodePath AutoEvoPredictionExplanationPopupPath = null!;
 
     [Export]
@@ -250,7 +247,20 @@ public partial class CellEditorComponent :
     private OrganellePopupMenu organelleMenu = null!;
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
+    [Export]
+    private CheckBox calculateBalancesAsIfDay = null!;
+
+    [Export]
+    private CheckBox calculateBalancesWhenMoving = null!;
+
+    [Export]
     private CompoundBalanceDisplay compoundBalance = null!;
+
+    [Export]
+    private CompoundStorageStatistics compoundStorageLastingTimes = null!;
+
+    [Export]
+    private CustomRichTextLabel notEnoughStorageWarning = null!;
 
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
@@ -670,8 +680,6 @@ public partial class CellEditorComponent :
         organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
 
         rightPanelScrollContainer = GetNode<ScrollContainer>(RightPanelScrollContainerPath);
-
-        compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
         autoEvoPredictionExplanationPopup = GetNode<CustomWindow>(AutoEvoPredictionExplanationPopupPath);
         autoEvoPredictionExplanationLabel = GetNode<CustomRichTextLabel>(AutoEvoPredictionExplanationLabelPath);
@@ -1505,7 +1513,6 @@ public partial class CellEditorComponent :
                 RigiditySliderPath.Dispose();
                 NegativeAtpPopupPath.Dispose();
                 OrganelleMenuPath.Dispose();
-                CompoundBalancePath.Dispose();
                 AutoEvoPredictionExplanationPopupPath.Dispose();
                 AutoEvoPredictionExplanationLabelPath.Dispose();
                 OrganelleUpgradeGUIPath.Dispose();
@@ -1838,33 +1845,57 @@ public partial class CellEditorComponent :
     {
         biome ??= Editor.CurrentPatch.Biome;
 
+        bool moving = calculateBalancesWhenMoving.ButtonPressed;
+
+        // TODO: pass moving variable
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
-            Editor.CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Current);
+            Editor.CurrentGame.GameWorld.WorldSettings,
+            calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current);
 
         UpdateEnergyBalance(energyBalance);
 
-        var storage = MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out var nominalCapacity);
+        float nominalStorage = 0;
+        Dictionary<Compound, float>? specificStorages = null;
 
+        var compoundBalanceData =
+            CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
+                calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current,
+                organelles, biome, energyBalance,
+                ref specificStorages, ref nominalStorage);
+
+        UpdateCompoundBalances(compoundBalanceData);
+
+        var nightBalanceData = CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
+            CompoundAmountType.Minimum, organelles, biome, energyBalance, ref specificStorages, ref nominalStorage);
+
+        UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
+            specificStorages ?? throw new Exception("Special storages should have been calculated"));
+    }
+
+    private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
+        CompoundAmountType amountType, IReadOnlyCollection<OrganelleTemplate> organelles,
+        BiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
+        ref float nominalStorage)
+    {
         Dictionary<Compound, CompoundBalance> compoundBalanceData;
-
-        switch (compoundBalance.CurrentDisplayType)
+        switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
                 compoundBalanceData =
-                    ProcessSystem.ComputeCompoundBalance(organelles, biome, CompoundAmountType.Current);
+                    ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
                 compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
-                    CompoundAmountType.Current, energyBalance);
+                    amountType, energyBalance);
                 break;
             default:
                 GD.PrintErr("Unknown compound balance type: ", compoundBalance.CurrentDisplayType);
                 goto case BalanceDisplayType.EnergyEquilibrium;
         }
 
-        UpdateCompoundBalances(ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalCapacity, storage));
+        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
 
-        // TODO: storage lasting times and not surviving night warning
+        return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
 
     /// <summary>
