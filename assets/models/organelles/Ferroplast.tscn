@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bnq8dgxlwg56c"]
+[gd_scene load_steps=12 format=3 uid="uid://b3wc7kw7ptj1f"]
 
 [ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2"]
-[ext_resource type="ArrayMesh" uid="uid://bwh7qg218jx2o" path="res://assets/models/organelles/FerroplastMembrane.mesh" id="4_rf41b"]
+[ext_resource type="ArrayMesh" uid="uid://buyf7lndrguk2" path="res://assets/models/organelles/FerroplastMembrane.mesh" id="4_rf41b"]
 [ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="5_bxw2d"]
-[ext_resource type="Texture2D" uid="uid://cn2rgu7n46507" path="res://assets/textures/Ferroplast_membrane.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://bqk83uqsk07so" path="res://assets/textures/rusticyanin.png" id="7"]
-[ext_resource type="ArrayMesh" uid="uid://bhpesagcken13" path="res://assets/models/organelles/FerroplastInsides.mesh" id="7_pntbu"]
-[ext_resource type="ArrayMesh" uid="uid://bxrhxnkn3nr4d" path="res://assets/models/organelles/FerroplastIron.mesh" id="8_3f8yq"]
+[ext_resource type="Texture2D" uid="uid://cbcxk42q2x355" path="res://assets/textures/Ferroplast_membrane.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://c5hugfarngq4o" path="res://assets/textures/rusticyanin.png" id="7"]
+[ext_resource type="ArrayMesh" uid="uid://buiivhngdmlad" path="res://assets/models/organelles/FerroplastInsides.mesh" id="7_pntbu"]
+[ext_resource type="ArrayMesh" uid="uid://qujayp6el6a0" path="res://assets/models/organelles/FerroplastIron.mesh" id="8_3f8yq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iy62y"]
 resource_local_to_scene = true
