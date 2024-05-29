@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-29 14:35+0300\n"
-"PO-Revision-Date: 2024-05-29 14:49+0300\n"
+"POT-Creation-Date: 2024-05-29 15:02+0300\n"
+"PO-Revision-Date: 2024-05-29 15:08+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -768,6 +768,11 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compound Balances"
 
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr ""
+"This section shows the total balance (production - consumption) per each compound.\n"
+"For example to make a plant cell the glucose balance needs to be quite positive."
+
 msgid "COMPOUND_CLOUDS"
 msgstr "Compound clouds"
 
@@ -783,6 +788,9 @@ msgstr "{0} concentrations have decreased by {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumption"
 
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "(not enough to last the night which is {0} s long)"
+
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
 msgstr "Only {1} [thrive:compound type=\"{0}\"][/thrive:compound] can be generated during the day but to survive the night {2} is required."
 
@@ -791,6 +799,13 @@ msgstr "There isn't enough storage space for [thrive:compound type=\"{0}\"][/thr
 
 msgid "COMPOUND_STORAGE_STATS_TITLE"
 msgstr "Storage Capacities"
+
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr ""
+"This section shows how long the cell takes to use up each compound type when starting from full storage.\n"
+"These numbers are always calculated as if it was night and can be used to check if the cell has enough storage\n"
+"in order to survive the entire night. Turning off movement cost with the checkbox gives minimum numbers to survive\n"
+"with when staying still the entire night to conserve energy."
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Compound to Find:"

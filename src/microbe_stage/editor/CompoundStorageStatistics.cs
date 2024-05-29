@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Godot;
@@ -60,26 +60,30 @@ public partial class CompoundStorageStatistics : VBoxContainer
 
                 compoundControl.Amount = lastingTime;
 
-                compoundControl.ValueColour = lastingTime <= nightDuration ?
-                    CompoundAmount.Colour.Red :
-                    CompoundAmount.Colour.White;
-
-                if (lastingTime < nightDuration)
-                {
-                    UpdateExtraValueDescription(compoundControl, entry.Value, nightDuration);
-                    storageWarningBuilder.Append(new LocalizedString("COMPOUND_STORAGE_NOT_ENOUGH_SPACE",
-                        entry.Key.InternalName, Math.Round(lastingTime, 1),
-                        Math.Round(nightDuration)));
-                    storageWarningBuilder.Append(' ');
-                }
-                else
-                {
-                    compoundControl.ExtraValueDescription = null;
-                }
-
-                // Check and give warnings if not enough compound can be generated during the day to survive the night
+                // Provide info on what to do with resources that are generated during the day. For other resource
+                // types it is not very useful to know if it lasts the night
+                // TODO: if we ever have stuff like compound clouds or cell spawns that are less during the night then
+                // this could make sense to enable for other compound types as well.
                 if (entry.Value.Balance > 0)
                 {
+                    if (lastingTime < nightDuration)
+                    {
+                        UpdateExtraValueDescription(compoundControl, nightDuration);
+                        compoundControl.ValueColour = CompoundAmount.Colour.Red;
+
+                        storageWarningBuilder.Append(new LocalizedString("COMPOUND_STORAGE_NOT_ENOUGH_SPACE",
+                            entry.Key.InternalName, Math.Round(lastingTime, 1),
+                            Math.Round(nightDuration)));
+                        storageWarningBuilder.Append(' ');
+                    }
+                    else
+                    {
+                        compoundControl.ExtraValueDescription = null;
+                        compoundControl.ValueColour = CompoundAmount.Colour.White;
+                    }
+
+                    // Check and give warnings if not enough compound can be generated during the day to survive
+                    // the night
                     if (!MicrobeInternalCalculations.CanGenerateEnoughCompoundToSurviveNight(nightEntry.Balance,
                             entry.Value.Balance, nightDuration, fillTimeWarning, out var generated, out var required))
                     {
@@ -89,6 +93,10 @@ public partial class CompoundStorageStatistics : VBoxContainer
                             Math.Round(required, 1)));
                         storageWarningBuilder.Append(' ');
                     }
+                }
+                else
+                {
+                    compoundControl.ValueColour = CompoundAmount.Colour.White;
                 }
             }
             else
@@ -125,62 +133,36 @@ public partial class CompoundStorageStatistics : VBoxContainer
         }
     }
 
-    private static void UpdateExtraValueDescription(CompoundAmount compoundControl, CompoundBalance balance,
-        float dayLengthWarningThreshold)
+    private static void UpdateExtraValueDescription(CompoundAmount compoundControl, float nightLength)
     {
+        // See CompoundBalanceDisplay.UpdateExtraValueDescription for why this method is written like this
+
         if (compoundControl.ExtraValueDescription == null)
         {
-            SetNewExtraDescription(compoundControl, balance, dayLengthWarningThreshold);
+            SetNewExtraDescription(compoundControl, nightLength);
         }
         else
         {
             // For object allocation efficiency reuse the existing string but just update the value
             var updateTarget = compoundControl.ExtraValueDescription;
 
-            if (balance.FillTime > dayLengthWarningThreshold)
+            if (updateTarget.TranslationKey != "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT")
             {
-                if (updateTarget.TranslationKey != "COMPOUND_BALANCE_FILL_TIME_TOO_LONG")
-                {
-                    // Need to swap base key
-                    SetNewExtraDescription(compoundControl, balance, dayLengthWarningThreshold);
-                    return;
-                }
-
-                // Can just update the values to avoid one list allocation
-                // TODO: test if this is any kind of improvement as there needs to be boxing of the primitive values
-                // anyway
-
-                updateTarget.UpdateFormatArgs(Math.Round(balance.FillTime), Math.Round(dayLengthWarningThreshold));
+                // Need to swap base key
+                SetNewExtraDescription(compoundControl, nightLength);
+                return;
             }
-            else
-            {
-                if (updateTarget.TranslationKey != "COMPOUND_BALANCE_FILL_TIME")
-                {
-                    // Need to swap base key
-                    SetNewExtraDescription(compoundControl, balance, dayLengthWarningThreshold);
-                    return;
-                }
 
-                updateTarget.UpdateFormatArgs(Math.Round(balance.FillTime, 1));
-            }
+            updateTarget.UpdateFormatArgs(Math.Round(nightLength));
 
             compoundControl.OnExtraTextChangedExternally();
         }
     }
 
-    private static void SetNewExtraDescription(CompoundAmount compoundControl, CompoundBalance balance,
-        float dayLengthWarningThreshold)
+    private static void SetNewExtraDescription(CompoundAmount compoundControl, float nightLength)
     {
-        if (balance.FillTime > dayLengthWarningThreshold)
-        {
-            compoundControl.ExtraValueDescription = new LocalizedString("COMPOUND_BALANCE_FILL_TIME_TOO_LONG",
-                Math.Round(balance.FillTime), Math.Round(dayLengthWarningThreshold));
-        }
-        else
-        {
-            compoundControl.ExtraValueDescription =
-                new LocalizedString("COMPOUND_BALANCE_FILL_TIME", Math.Round(balance.FillTime, 1));
-        }
+        compoundControl.ExtraValueDescription =
+            new LocalizedString("COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT", Math.Round(nightLength));
     }
 
     private void UpdateLabelTextFormat()
