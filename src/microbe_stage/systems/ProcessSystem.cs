@@ -149,14 +149,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <param name="biome">The conditions the organelles are simulated in</param>
     /// <param name="membrane">The membrane type to adjust the energy balance with</param>
     /// <param name="onlyMovementInDirection">
-    ///     Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
-    ///     movement organelles are assumed to be inactive in the balance calculation.
+    ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
+    ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
     /// <param name="includeMovementCost">
     ///   Only when true are movement related energy costs included in the calculation. When false base movement data
     ///   is provided but it is not taken into account in the sums, but total movement cost is not calculated. If that
     ///   is required then include movement cost parameter should be set to true and from the result the variables
-    ///   giving balance without movement should be used.
+    ///   giving balance without movement should be used as an alternative to setting this false.
     /// </param>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
     /// <param name="worldSettings">The world generation settings for this game</param>
