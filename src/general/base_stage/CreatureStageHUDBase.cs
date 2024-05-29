@@ -446,6 +446,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         if (!editorButton.Disabled || stage?.HasPlayer != true)
             return;
 
+        if (stage.MovingToEditor)
+            return;
+
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
 
         editorButton.ShowReproductionDialog();
