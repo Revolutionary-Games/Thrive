@@ -8,11 +8,12 @@
 default_font = ExtResource("3_jli72")
 default_font_size = 14
 
-[node name="CompoundStorageStatistics" type="VBoxContainer"]
+[node name="CompoundStorageStatistics" type="VBoxContainer" node_paths=PackedStringArray("compoundListContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1_kuvhf")
+compoundListContainer = NodePath("VBoxContainer")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

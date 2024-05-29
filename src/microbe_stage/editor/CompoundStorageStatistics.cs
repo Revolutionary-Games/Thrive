@@ -14,9 +14,6 @@ public partial class CompoundStorageStatistics : VBoxContainer
 #pragma warning disable CA2213
     [Export]
     private VBoxContainer compoundListContainer = null!;
-
-    [Export]
-    private OptionButton modeSelector = null!;
 #pragma warning restore CA2213
 
     private ChildObjectCache<Compound, CompoundAmount> childCache = null!;

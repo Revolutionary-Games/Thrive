@@ -422,11 +422,11 @@ public static class MicrobeInternalCalculations
     ///   that compound is
     /// </returns>
     public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
-        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
+        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-            playerSpecies, worldSettings, CompoundAmountType.Biome);
+            moving, playerSpecies, worldSettings, CompoundAmountType.Biome);
 
         var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
             biomeConditions, CompoundAmountType.Biome, energyBalance);
@@ -471,11 +471,11 @@ public static class MicrobeInternalCalculations
     ///   should be present
     /// </returns>
     public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
-        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
+        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-            playerSpecies, worldSettings, CompoundAmountType.Biome);
+            moving, playerSpecies, worldSettings, CompoundAmountType.Biome);
 
         var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
             biomeConditions, CompoundAmountType.Biome, energyBalance);
