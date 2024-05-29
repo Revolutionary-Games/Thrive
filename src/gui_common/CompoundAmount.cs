@@ -11,6 +11,8 @@ public partial class CompoundAmount : HBoxContainer
 
 #pragma warning disable CA2213
     private Label? amountLabel;
+    private Control? amountSuffixSpacer;
+    private Label? amountSuffixLabel;
     private TextureRect? icon;
     private Label? extraDescriptionLabel;
 #pragma warning restore CA2213
@@ -225,7 +227,10 @@ public partial class CompoundAmount : HBoxContainer
     {
         if (amountLabel == null)
         {
-            amountLabel = new Label();
+            amountLabel = new Label
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+            };
             AddChild(amountLabel);
         }
 
@@ -245,7 +250,45 @@ public partial class CompoundAmount : HBoxContainer
 
         if (amountSuffix != null)
         {
-            numberPart += $" {amountSuffix}";
+            if (amountSuffixSpacer == null)
+            {
+                amountSuffixSpacer = new Control
+                {
+                    CustomMinimumSize = new Vector2(3, 0),
+                };
+
+                AddChild(amountSuffixSpacer);
+            }
+
+            if (amountSuffixLabel == null)
+            {
+                amountSuffixLabel = new Label
+                {
+                    VerticalAlignment = VerticalAlignment.Center,
+                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
+
+                    // TODO: find a better solution than a hardcoded minimum size
+                    CustomMinimumSize = new Vector2(30, 0),
+                };
+
+                AddChild(amountSuffixLabel);
+            }
+
+            amountSuffixLabel.Text = amountSuffix;
+        }
+        else
+        {
+            if (amountSuffixLabel != null)
+            {
+                amountSuffixLabel.QueueFree();
+                amountSuffixLabel = null;
+            }
+
+            if (amountSuffixSpacer != null)
+            {
+                amountSuffixSpacer.QueueFree();
+                amountSuffixSpacer = null;
+            }
         }
 
         amountLabel.Text = PrefixPositiveWithPlus ?

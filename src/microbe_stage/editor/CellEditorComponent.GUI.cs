@@ -509,6 +509,23 @@ public partial class CellEditorComponent
         }
     }
 
+    private void UpdateLightSelectionPanelVisibility()
+    {
+        topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
+            Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
+
+        // When not in a patch with light, hide the useless always day selector
+        if (!topPanel.Visible)
+        {
+            calculateBalancesAsIfDay.ButtonPressed = false;
+            calculateBalancesAsIfDay.Visible = false;
+        }
+        else
+        {
+            calculateBalancesAsIfDay.Visible = true;
+        }
+    }
+
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
     {
         var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *

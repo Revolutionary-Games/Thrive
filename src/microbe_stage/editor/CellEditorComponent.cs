@@ -770,8 +770,7 @@ public partial class CellEditorComponent :
         // Do this here as we know the editor and hence world settings have been initialised by now
         UpdateOrganelleLAWKSettings();
 
-        topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
-            Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
+        UpdateLightSelectionPanelVisibility();
 
         ApplySymmetryForCurrentOrganelle();
     }
@@ -1066,8 +1065,7 @@ public partial class CellEditorComponent :
         if (IsMulticellularEditor && editedMicrobeOrganelles.Organelles.Count < 1)
             return;
 
-        topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
-            Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
+        UpdateLightSelectionPanelVisibility();
 
         // Calculate and send energy balance and compound balance to the GUI
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
@@ -2507,6 +2505,8 @@ public partial class CellEditorComponent :
 
     private void ApplyLightLevelOption()
     {
+        calculateBalancesAsIfDay.Disabled = false;
+
         // Show selected light level
         switch (selectedLightLevelOption)
         {
@@ -2514,6 +2514,9 @@ public partial class CellEditorComponent :
             {
                 dayButton.ButtonPressed = true;
                 Editor.DayLightFraction = 1;
+
+                calculateBalancesAsIfDay.ButtonPressed = true;
+                calculateBalancesAsIfDay.Disabled = true;
                 break;
             }
 
@@ -2521,6 +2524,9 @@ public partial class CellEditorComponent :
             {
                 nightButton.ButtonPressed = true;
                 Editor.DayLightFraction = 0;
+
+                calculateBalancesAsIfDay.ButtonPressed = false;
+                calculateBalancesAsIfDay.Disabled = true;
                 break;
             }
 
@@ -2528,6 +2534,8 @@ public partial class CellEditorComponent :
             {
                 averageLightButton.ButtonPressed = true;
                 Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
+
+                calculateBalancesAsIfDay.ButtonPressed = false;
                 break;
             }
 
