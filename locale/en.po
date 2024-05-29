@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-24 14:32+0300\n"
-"PO-Revision-Date: 2024-05-24 14:35+0300\n"
+"POT-Creation-Date: 2024-05-29 14:35+0300\n"
+"PO-Revision-Date: 2024-05-29 14:49+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -321,6 +321,18 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr "Calculate as if it was day"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr "When checked the numbers calculated in this panel calculate as if it is always day"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr "Include movement cost"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "When checked calculates the balance and other numbers in this panel assuming the cell is constantly moving"
 
 msgid "BASE_MOBILITY"
 msgstr "Base Mobility"
@@ -770,6 +782,15 @@ msgstr "{0} concentrations have decreased by {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumption"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr "Only {1} [thrive:compound type=\"{0}\"][/thrive:compound] can be generated during the day but to survive the night {2} is required."
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "There isn't enough storage space for [thrive:compound type=\"{0}\"][/thrive:compound] as night lasts {2} s but storage can only hold {1} s of compounds."
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Storage Capacities"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Compound to Find:"
@@ -4765,6 +4786,9 @@ msgstr "Storage"
 
 msgid "STORAGE_COLON"
 msgstr "Storage:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr "seconds of"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"

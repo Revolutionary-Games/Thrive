@@ -70,6 +70,7 @@ public partial class CompoundStorageStatistics : VBoxContainer
                     storageWarningBuilder.Append(new LocalizedString("COMPOUND_STORAGE_NOT_ENOUGH_SPACE",
                         entry.Key.InternalName, Math.Round(lastingTime, 1),
                         Math.Round(nightDuration)));
+                    storageWarningBuilder.Append(' ');
                 }
                 else
                 {
@@ -86,6 +87,7 @@ public partial class CompoundStorageStatistics : VBoxContainer
                             "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY", entry.Key.InternalName,
                             Math.Round(generated, 1),
                             Math.Round(required, 1)));
+                        storageWarningBuilder.Append(' ');
                     }
                 }
             }
@@ -114,7 +116,7 @@ public partial class CompoundStorageStatistics : VBoxContainer
 
         if (storageWarningBuilder.Length > 0)
         {
-            notEnoughStorageWarning.Text = storageWarningBuilder.ToString();
+            notEnoughStorageWarning.ExtendedBbcode = storageWarningBuilder.ToString();
             notEnoughStorageWarning.Visible = true;
         }
         else

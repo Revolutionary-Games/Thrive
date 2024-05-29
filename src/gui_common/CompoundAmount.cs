@@ -254,7 +254,7 @@ public partial class CompoundAmount : HBoxContainer
             {
                 amountSuffixSpacer = new Control
                 {
-                    CustomMinimumSize = new Vector2(3, 0),
+                    CustomMinimumSize = new Vector2(1, 0),
                 };
 
                 AddChild(amountSuffixSpacer);
@@ -265,10 +265,10 @@ public partial class CompoundAmount : HBoxContainer
                 amountSuffixLabel = new Label
                 {
                     VerticalAlignment = VerticalAlignment.Center,
-                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
 
-                    // TODO: find a better solution than a hardcoded minimum size
-                    CustomMinimumSize = new Vector2(30, 0),
+                    // TODO: find a solution for turning on word wrapping
+                    // AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                    // CustomMinimumSize = new Vector2(30, 0),
                 };
 
                 AddChild(amountSuffixLabel);
