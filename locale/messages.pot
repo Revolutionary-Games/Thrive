@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 17:46+0100\n"
+"POT-Creation-Date: 2024-05-30 09:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr ""
 msgid "ABORTED_DOT"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:884
+#: ../simulation_parameters/microbe_stage/biomes.json:888
 msgid "ABYSSOPELAGIC"
 msgstr ""
 
@@ -101,7 +101,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1385
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1402
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -137,11 +137,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:373
+#: ../src/general/NewGameSettings.tscn:372
 msgid "AI_MUTATION_RATE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:403
+#: ../src/general/NewGameSettings.tscn:402
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
 
@@ -262,7 +262,7 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1406
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1423
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
@@ -279,16 +279,16 @@ msgstr ""
 msgid "ATP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:929
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:935
 msgid "ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:516
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:521
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:568
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:573
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:522
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:574
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
@@ -312,7 +312,7 @@ msgstr ""
 msgid "AUTO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1266
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
@@ -320,12 +320,12 @@ msgstr ""
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1004
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1228
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1047
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1271
 msgid "AUTO-EVO_PREDICTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:989
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1032
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
@@ -410,17 +410,33 @@ msgstr ""
 msgid "BACKSPACE"
 msgstr ""
 
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1004
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1002
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1012
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr ""
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:177
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:924
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:961
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:998
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1052
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:934
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1008
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1062
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1116
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1170
 msgid "BASE_MOBILITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:582
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:634
 msgid "BASE_MOVEMENT"
 msgstr ""
 
@@ -432,7 +448,7 @@ msgstr ""
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:625
+#: ../simulation_parameters/microbe_stage/biomes.json:627
 msgid "BATHYPELAGIC"
 msgstr ""
 
@@ -452,7 +468,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:440
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:450
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:627
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:632
 msgid "BEHAVIOUR"
 msgstr ""
 
@@ -496,21 +512,21 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1069
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1112
 msgid "BEST_PATCH_COLON"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:82
-#: ../simulation_parameters/microbe_stage/biomes.json:344
-#: ../simulation_parameters/microbe_stage/biomes.json:524
-#: ../simulation_parameters/microbe_stage/biomes.json:703
-#: ../simulation_parameters/microbe_stage/biomes.json:962
-#: ../simulation_parameters/microbe_stage/biomes.json:1221
-#: ../simulation_parameters/microbe_stage/biomes.json:1481
-#: ../simulation_parameters/microbe_stage/biomes.json:1660
-#: ../simulation_parameters/microbe_stage/biomes.json:1863
-#: ../simulation_parameters/microbe_stage/biomes.json:2043
-#: ../simulation_parameters/microbe_stage/biomes.json:2222
+#: ../simulation_parameters/microbe_stage/biomes.json:346
+#: ../simulation_parameters/microbe_stage/biomes.json:526
+#: ../simulation_parameters/microbe_stage/biomes.json:705
+#: ../simulation_parameters/microbe_stage/biomes.json:966
+#: ../simulation_parameters/microbe_stage/biomes.json:1227
+#: ../simulation_parameters/microbe_stage/biomes.json:1489
+#: ../simulation_parameters/microbe_stage/biomes.json:1668
+#: ../simulation_parameters/microbe_stage/biomes.json:1871
+#: ../simulation_parameters/microbe_stage/biomes.json:2051
+#: ../simulation_parameters/microbe_stage/biomes.json:2230
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
@@ -518,7 +534,7 @@ msgstr ""
 msgid "BILLION_ABBREVIATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:653
+#: ../simulation_parameters/microbe_stage/organelles.json:656
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:572
 msgid "BINDING_AGENT"
 msgstr ""
@@ -551,8 +567,8 @@ msgstr ""
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:935
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:803
+#: ../simulation_parameters/microbe_stage/organelles.json:938
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:813
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
@@ -599,11 +615,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1091
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
 msgid "CALCIUM_CARBONATE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1092
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -625,7 +641,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:573
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:664
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1140
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1183
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
@@ -644,14 +660,14 @@ msgstr ""
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1024
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1078
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1137
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1034
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1088
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1147
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1201
 msgid "CANNOT_ENGULF"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:801
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -680,27 +696,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:739
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:742
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:743
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:746
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:747
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:750
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:741
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:744
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:745
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:748
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:749
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:752
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -726,15 +742,15 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:983
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:993
 msgid "CELLULOSE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:984
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:994
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:753
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:755
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -764,7 +780,7 @@ msgstr ""
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:439
+#: ../simulation_parameters/microbe_stage/organelles.json:442
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "CHEMOPLAST"
 msgstr ""
@@ -777,7 +793,7 @@ msgstr ""
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:848
+#: ../simulation_parameters/microbe_stage/organelles.json:851
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:539
 msgid "CHEMORECEPTOR"
 msgstr ""
@@ -790,7 +806,7 @@ msgstr ""
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:197
+#: ../simulation_parameters/microbe_stage/organelles.json:200
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr ""
@@ -809,7 +825,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1037
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1047
 msgid "CHITIN"
 msgstr ""
 
@@ -821,11 +837,11 @@ msgstr ""
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1038
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1048
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:705
+#: ../simulation_parameters/microbe_stage/organelles.json:708
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:640
 msgid "CHLOROPLAST"
 msgstr ""
@@ -858,7 +874,7 @@ msgstr ""
 msgid "CHUNK_FOOD_SOURCE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1017
+#: ../simulation_parameters/microbe_stage/organelles.json:1020
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:555
 msgid "CILIA"
 msgstr ""
@@ -887,7 +903,7 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:94
 #: ../src/gui_common/charts/line/LineChart.tscn:215
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1274
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1317
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:81
 #: ../src/microbe_stage/ProcessPanel.tscn:74 ../src/modding/ModManager.tscn:709
 #: ../src/thriveopedia/Thriveopedia.tscn:293
@@ -910,7 +926,7 @@ msgstr ""
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1402
+#: ../simulation_parameters/microbe_stage/biomes.json:1410
 msgid "COASTAL"
 msgstr ""
 
@@ -918,7 +934,7 @@ msgstr ""
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:778
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:783
 msgid "COLOUR"
 msgstr ""
 
@@ -1016,6 +1032,14 @@ msgstr ""
 msgid "COMPOUNDS"
 msgstr ""
 
+#: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:37
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:39
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr ""
+
 #: ../src/microbe_stage/HUDBottomBar.tscn:84
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
@@ -1024,19 +1048,35 @@ msgstr ""
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:20
+#: ../src/microbe_stage/editor/CompoundBalanceDisplay.cs:126
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundBalanceDisplay.cs:120
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:34
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:23
 msgid "COMPOUND_BALANCE_TITLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:21
+msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:779
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:418
+#: ../src/general/NewGameSettings.tscn:417
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:448
+#: ../src/general/NewGameSettings.tscn:447
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 
@@ -1046,6 +1086,26 @@ msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:45
 msgid "COMPOUND_FOOD_SOURCE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundStorageStatistics.cs:165
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundStorageStatistics.cs:91
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundStorageStatistics.cs:74
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundStorageStatistics.tscn:22
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundStorageStatistics.tscn:20
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:40
@@ -1514,7 +1574,7 @@ msgstr ""
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:747
+#: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:255
 msgid "CYTOPLASM"
 msgstr ""
@@ -1544,7 +1604,7 @@ msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:759
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:220
@@ -1563,7 +1623,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:359
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:360
 msgid "DEATH"
 msgstr ""
 
@@ -1698,7 +1758,7 @@ msgstr ""
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:248
+#: ../src/general/NewGameSettings.tscn:247
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:39
 msgid "DIFFICULTY"
 msgstr ""
@@ -1708,8 +1768,8 @@ msgstr ""
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:117
-#: ../src/general/NewGameSettings.tscn:300
+#: ../src/general/NewGameSettings.tscn:116
+#: ../src/general/NewGameSettings.tscn:299
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
@@ -1730,23 +1790,23 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:837
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:847
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:895
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:901
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:831
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:841
 msgid "DIGESTION_SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
 msgid "DIGESTION_SPEED_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:253
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:255
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1782,11 +1842,11 @@ msgstr ""
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1203
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
 msgid "DISCONNECTED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1202
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
@@ -1853,7 +1913,7 @@ msgid "DOT_DOT_DOT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:946
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:956
 msgid "DOUBLE"
 msgstr ""
 
@@ -1861,7 +1921,7 @@ msgstr ""
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:947
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:957
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -2056,7 +2116,7 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:692
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:697
 msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr ""
 
@@ -2100,27 +2160,27 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:593
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:645
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:556
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:608
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2724
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2780
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2562
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2618
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2735
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2791
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2728
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2784
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2140,11 +2200,11 @@ msgstr ""
 msgid "ENVIRONMENT"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:508
+#: ../src/general/NewGameSettings.tscn:507
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:537
+#: ../src/general/NewGameSettings.tscn:536
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr ""
 
@@ -2196,11 +2256,11 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1360
+#: ../src/microbe_stage/MicrobeStage.cs:1370
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1964
+#: ../simulation_parameters/microbe_stage/biomes.json:1972
 msgid "ESTUARY"
 msgstr ""
 
@@ -2237,7 +2297,7 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1194
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1237
 msgid "EXIT_EDITOR"
 msgstr ""
 
@@ -2257,7 +2317,7 @@ msgstr ""
 msgid "EXPORT_SUCCESS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:676
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:681
 msgid "EXTERNAL"
 msgstr ""
 
@@ -2303,7 +2363,7 @@ msgstr ""
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1055
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 msgid "FAILED"
 msgstr ""
 
@@ -2355,15 +2415,16 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1120
+#: ../simulation_parameters/microbe_stage/organelles.json:1123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:710
 msgid "FERROPLAST"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:712
 msgid "FERROPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:712
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:711
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -2402,7 +2463,7 @@ msgstr ""
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:476
+#: ../simulation_parameters/microbe_stage/organelles.json:479
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:473
 msgid "FLAGELLUM"
 msgstr ""
@@ -2429,23 +2490,23 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:27
 #: ../simulation_parameters/microbe_stage/biomes.json:209
-#: ../simulation_parameters/microbe_stage/biomes.json:469
-#: ../simulation_parameters/microbe_stage/biomes.json:648
-#: ../simulation_parameters/microbe_stage/biomes.json:907
-#: ../simulation_parameters/microbe_stage/biomes.json:1166
-#: ../simulation_parameters/microbe_stage/biomes.json:1426
-#: ../simulation_parameters/microbe_stage/biomes.json:1605
-#: ../simulation_parameters/microbe_stage/biomes.json:1788
-#: ../simulation_parameters/microbe_stage/biomes.json:1988
-#: ../simulation_parameters/microbe_stage/biomes.json:2167
+#: ../simulation_parameters/microbe_stage/biomes.json:471
+#: ../simulation_parameters/microbe_stage/biomes.json:650
+#: ../simulation_parameters/microbe_stage/biomes.json:911
+#: ../simulation_parameters/microbe_stage/biomes.json:1172
+#: ../simulation_parameters/microbe_stage/biomes.json:1434
+#: ../simulation_parameters/microbe_stage/biomes.json:1613
+#: ../simulation_parameters/microbe_stage/biomes.json:1796
+#: ../simulation_parameters/microbe_stage/biomes.json:1996
+#: ../simulation_parameters/microbe_stage/biomes.json:2175
 msgid "FLOATING_HAZARD"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:742
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:747
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:728
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:733
 msgid "FLUIDITY_RIGIDITY"
 msgstr ""
 
@@ -2473,7 +2534,7 @@ msgstr ""
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:597
+#: ../src/general/NewGameSettings.tscn:596
 msgid "FOG_OF_WAR_MODE"
 msgstr ""
 
@@ -2489,7 +2550,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2741
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2797
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2547,9 +2608,9 @@ msgstr ""
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:196
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:198
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:94
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:128
 #: ../src/engine/DebugOverlays.tscn:71
 msgid "FPS"
 msgstr ""
@@ -2558,7 +2619,7 @@ msgstr ""
 msgid "FPS_DISPLAY"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:95
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:129
 msgid "FRAME_DURATION"
 msgstr ""
 
@@ -2566,11 +2627,11 @@ msgstr ""
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:618
+#: ../src/general/NewGameSettings.tscn:617
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:624
+#: ../src/general/NewGameSettings.tscn:623
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
@@ -2590,8 +2651,8 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2662
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1060
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2718
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1103
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
 
@@ -2603,7 +2664,7 @@ msgstr ""
 msgid "GENERATIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:911
 msgid "GENERATION_COLON"
 msgstr ""
 
@@ -2645,16 +2706,16 @@ msgid "GOD_TOOLS_TITLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:110
-#: ../simulation_parameters/microbe_stage/biomes.json:372
-#: ../simulation_parameters/microbe_stage/biomes.json:552
-#: ../simulation_parameters/microbe_stage/biomes.json:811
-#: ../simulation_parameters/microbe_stage/biomes.json:1070
-#: ../simulation_parameters/microbe_stage/biomes.json:1329
-#: ../simulation_parameters/microbe_stage/biomes.json:1509
-#: ../simulation_parameters/microbe_stage/biomes.json:1688
-#: ../simulation_parameters/microbe_stage/biomes.json:1891
-#: ../simulation_parameters/microbe_stage/biomes.json:2071
-#: ../simulation_parameters/microbe_stage/biomes.json:2330
+#: ../simulation_parameters/microbe_stage/biomes.json:374
+#: ../simulation_parameters/microbe_stage/biomes.json:554
+#: ../simulation_parameters/microbe_stage/biomes.json:815
+#: ../simulation_parameters/microbe_stage/biomes.json:1076
+#: ../simulation_parameters/microbe_stage/biomes.json:1337
+#: ../simulation_parameters/microbe_stage/biomes.json:1517
+#: ../simulation_parameters/microbe_stage/biomes.json:1696
+#: ../simulation_parameters/microbe_stage/biomes.json:1899
+#: ../simulation_parameters/microbe_stage/biomes.json:2079
+#: ../simulation_parameters/microbe_stage/biomes.json:2340
 msgid "GOOGLY_EYE_CELL"
 msgstr ""
 
@@ -2683,7 +2744,7 @@ msgstr ""
 msgid "GUI"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1399
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1416
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
@@ -2696,12 +2757,12 @@ msgid "GUI_VOLUME"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:182
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:940
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1068
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1122
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1176
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:950
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:987
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1024
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1078
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1132
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
 msgid "HEALTH"
 msgstr ""
 
@@ -2758,7 +2819,7 @@ msgstr ""
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:865
 msgid "HP_COLON"
 msgstr ""
 
@@ -2775,11 +2836,11 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1843
+#: ../simulation_parameters/microbe_stage/biomes.json:1851
 msgid "ICESHARD"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1761
+#: ../simulation_parameters/microbe_stage/biomes.json:1769
 msgid "ICESHELF"
 msgstr ""
 
@@ -3263,7 +3324,7 @@ msgstr ""
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1636
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1638
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3343,13 +3404,13 @@ msgstr ""
 msgid "LAUNCHMEDIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:134
-#: ../src/general/NewGameSettings.tscn:701
+#: ../src/general/NewGameSettings.tscn:133
+#: ../src/general/NewGameSettings.tscn:700
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:139
-#: ../src/general/NewGameSettings.tscn:707
+#: ../src/general/NewGameSettings.tscn:138
+#: ../src/general/NewGameSettings.tscn:706
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
@@ -3429,35 +3490,35 @@ msgstr ""
 msgid "LICENSES_COVERING_THRIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:155
-#: ../src/general/NewGameSettings.tscn:723
+#: ../src/general/NewGameSettings.tscn:154
+#: ../src/general/NewGameSettings.tscn:722
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:162
-#: ../src/general/NewGameSettings.tscn:729
+#: ../src/general/NewGameSettings.tscn:161
+#: ../src/general/NewGameSettings.tscn:728
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:181
-#: ../src/general/NewGameSettings.tscn:744
+#: ../src/general/NewGameSettings.tscn:180
+#: ../src/general/NewGameSettings.tscn:743
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:179
-#: ../src/general/NewGameSettings.tscn:742
+#: ../src/general/NewGameSettings.tscn:178
+#: ../src/general/NewGameSettings.tscn:741
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:174
-#: ../src/general/NewGameSettings.tscn:737
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:736
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:177
-#: ../src/general/NewGameSettings.tscn:740
+#: ../src/general/NewGameSettings.tscn:176
+#: ../src/general/NewGameSettings.tscn:739
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
@@ -3466,15 +3527,15 @@ msgstr ""
 msgid "LIGHT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:519
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:524
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:468
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:473
 msgid "LIGHT_LEVEL_CURRENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:485
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
@@ -3482,7 +3543,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:502
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:507
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr ""
 
@@ -3494,11 +3555,11 @@ msgstr ""
 msgid "LIMIT_EXTREME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:650
+#: ../src/general/NewGameSettings.tscn:649
 msgid "LIMIT_GROWTH_RATE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:656
+#: ../src/general/NewGameSettings.tscn:655
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr ""
 
@@ -3634,16 +3695,16 @@ msgstr ""
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1068
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:823
+#: ../simulation_parameters/microbe_stage/organelles.json:1071
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:833
 msgid "LYSOSOME"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:835
 msgid "LYSOSOME_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:824
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:834
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -3660,10 +3721,10 @@ msgid "MARCH"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:264
-#: ../simulation_parameters/microbe_stage/biomes.json:731
-#: ../simulation_parameters/microbe_stage/biomes.json:990
-#: ../simulation_parameters/microbe_stage/biomes.json:1249
-#: ../simulation_parameters/microbe_stage/biomes.json:2250
+#: ../simulation_parameters/microbe_stage/biomes.json:733
+#: ../simulation_parameters/microbe_stage/biomes.json:994
+#: ../simulation_parameters/microbe_stage/biomes.json:1255
+#: ../simulation_parameters/microbe_stage/biomes.json:2258
 msgid "MARINE_SNOW"
 msgstr ""
 
@@ -3722,7 +3783,7 @@ msgstr ""
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:609
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:614
 msgid "MEMBRANE"
 msgstr ""
 
@@ -3730,7 +3791,7 @@ msgstr ""
 msgid "MEMBRANE_RIGIDITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:720
 msgid "MEMBRANE_TYPES"
 msgstr ""
 
@@ -3738,11 +3799,11 @@ msgstr ""
 msgid "MENU"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1143
+#: ../simulation_parameters/microbe_stage/biomes.json:1149
 msgid "MESOPELAGIC"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:320
+#: ../simulation_parameters/microbe_stage/organelles.json:323
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:279
 msgid "METABOLOSOMES"
 msgstr ""
@@ -3759,12 +3820,12 @@ msgstr ""
 msgid "METRICS"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:118
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:158
 #: ../src/engine/DebugOverlays.tscn:82
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:115
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:149
 #: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr ""
@@ -3819,7 +3880,7 @@ msgstr ""
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:246
+#: ../src/microbe_stage/MicrobeSpecies.cs:298
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -3960,7 +4021,7 @@ msgstr ""
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:264 ../src/general/OptionsMenu.tscn:209
+#: ../src/general/NewGameSettings.tscn:263 ../src/general/OptionsMenu.tscn:209
 msgid "MISC"
 msgstr ""
 
@@ -3989,7 +4050,7 @@ msgstr ""
 msgid "MISSING_TITLE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:557
+#: ../simulation_parameters/microbe_stage/organelles.json:560
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:617
 msgid "MITOCHONDRION"
 msgstr ""
@@ -4002,7 +4063,7 @@ msgstr ""
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:266
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 msgid "MIXED_DOT_DOT_DOT"
 msgstr ""
 
@@ -4345,11 +4406,11 @@ msgstr ""
 msgid "MUTATIONS_PER_SPECIES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:328
+#: ../src/general/NewGameSettings.tscn:327
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:358
+#: ../src/general/NewGameSettings.tscn:357
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -4384,11 +4445,11 @@ msgstr ""
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1185
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1228
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1184
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1227
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
@@ -4416,7 +4477,7 @@ msgstr ""
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:235
+#: ../src/general/NewGameSettings.tscn:234
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4436,7 +4497,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1150
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1193
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:174
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
 msgid "NEXT_CAPITAL"
@@ -4451,7 +4512,7 @@ msgstr ""
 msgid "NITROGEN"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:121
+#: ../simulation_parameters/microbe_stage/organelles.json:124
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:373
 msgid "NITROGENASE"
 msgstr ""
@@ -4464,16 +4525,16 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:358
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:709
+#: ../simulation_parameters/microbe_stage/organelles.json:361
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:719
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:711
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:721
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:710
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:720
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -4485,11 +4546,11 @@ msgid "NONE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:909
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:919
 msgid "NORMAL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:910
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -4522,7 +4583,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:453
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:456
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4543,7 +4604,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:693
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2756
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2812
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4579,12 +4640,12 @@ msgstr ""
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:819
+#: ../simulation_parameters/microbe_stage/organelles.json:822
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:595
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1635
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1637
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4603,8 +4664,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:29
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:39
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:49
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2573
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2585
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2629
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2641
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:459
 msgid "N_A"
@@ -4735,35 +4796,35 @@ msgstr ""
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:681
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:75
 #: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:403
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:407
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1162
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:860
+#: ../simulation_parameters/microbe_stage/organelles.json:1164
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "ORGANELLE_AXON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:861
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:871
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:691
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1206
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:882
+#: ../simulation_parameters/microbe_stage/organelles.json:1208
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:892
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:883
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:893
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr ""
 
@@ -4788,23 +4849,23 @@ msgstr ""
 msgid "ORGANELLE_SINGULAR"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:666
+#: ../src/general/NewGameSettings.tscn:665
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:672
+#: ../src/general/NewGameSettings.tscn:671
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:826
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:831
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:603
+#: ../src/microbe_stage/OrganelleDefinition.cs:613
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:576
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:628
 msgid "OSMOREGULATION"
 msgstr ""
 
@@ -4827,25 +4888,25 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:678
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:701
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:724
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:748
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:771
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:851
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:966
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1003
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1111
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:734
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:758
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:781
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:804
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:861
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:939
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:976
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1013
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1067
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1175
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:552
+#: ../src/general/NewGameSettings.tscn:551
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:582
+#: ../src/general/NewGameSettings.tscn:581
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -4878,7 +4939,7 @@ msgstr ""
 msgid "OXYGEN"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:236
+#: ../simulation_parameters/microbe_stage/organelles.json:239
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:396
 msgid "OXYTOXISOME"
 msgstr ""
@@ -4940,11 +5001,11 @@ msgstr ""
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:634
+#: ../src/general/NewGameSettings.tscn:633
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:640
+#: ../src/general/NewGameSettings.tscn:639
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr ""
 
@@ -4964,7 +5025,7 @@ msgstr ""
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1458
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
@@ -5035,20 +5096,20 @@ msgstr ""
 msgid "PEACEFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1192
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1235
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1195
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1238
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
 #: ../src/general/NewGameSettings.cs:823
 #: ../src/general/WorldGenerationSettings.cs:149
-#: ../src/gui_common/CompoundAmount.cs:191
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:261
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:287
+#: ../src/gui_common/CompoundAmount.cs:244
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:263
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:289
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:398
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:422
@@ -5091,9 +5152,9 @@ msgstr ""
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1019
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1127
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1181
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1029
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1137
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
@@ -5101,7 +5162,7 @@ msgstr ""
 msgid "PLACE_ORGANELLE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:256
+#: ../src/general/NewGameSettings.tscn:255
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:58
 msgid "PLANET"
 msgstr ""
@@ -5115,7 +5176,7 @@ msgstr ""
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:818
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -5124,11 +5185,11 @@ msgstr ""
 msgid "PLAYER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:463
+#: ../src/general/NewGameSettings.tscn:462
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:493
+#: ../src/general/NewGameSettings.tscn:492
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
@@ -5194,7 +5255,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2592
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2648
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -5202,7 +5263,7 @@ msgstr ""
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1012
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1055
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
 
@@ -5258,11 +5319,11 @@ msgstr ""
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:671
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:676
 msgid "PROTEINS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:163
+#: ../simulation_parameters/microbe_stage/organelles.json:166
 msgid "PROTOPLASM"
 msgstr ""
 
@@ -5295,7 +5356,7 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:203
+#: ../src/general/NewGameSettings.tscn:202
 #: ../src/general/NewGameSettings.tscn:827
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr ""
@@ -5351,8 +5412,8 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
-#: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:314
-#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:598
+#: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:317
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:601
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5410,8 +5471,8 @@ msgstr ""
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1030
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1084
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1040
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1094
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -5419,12 +5480,12 @@ msgstr ""
 msgid "RESOLUTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:935
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1063
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1117
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:945
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:982
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1019
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1073
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1127
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1181
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
@@ -5499,7 +5560,7 @@ msgstr ""
 msgid "RIGHT_MOUSE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:751
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
 msgid "RIGID"
 msgstr ""
 
@@ -5515,7 +5576,7 @@ msgstr ""
 msgid "ROTATE_RIGHT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:882
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:888
 msgid "ROTATION_COLON"
 msgstr ""
 
@@ -5560,7 +5621,7 @@ msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
-#: ../simulation_parameters/microbe_stage/organelles.json:86
+#: ../simulation_parameters/microbe_stage/organelles.json:89
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:351
 msgid "RUSTICYANIN"
 msgstr ""
@@ -5727,7 +5788,7 @@ msgstr ""
 msgid "SCROLLLOCK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:661
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:666
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr ""
 
@@ -5739,7 +5800,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2144
+#: ../simulation_parameters/microbe_stage/biomes.json:2152
 msgid "SEA_FLOOR"
 msgstr ""
 
@@ -5836,7 +5897,7 @@ msgstr ""
 msgid "SESSILE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1392
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1409
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
@@ -5877,7 +5938,7 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1411
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1428
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
@@ -5885,8 +5946,8 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:912
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:779
+#: ../simulation_parameters/microbe_stage/organelles.json:915
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:789
 msgid "SIGNALING_AGENT"
 msgstr ""
 
@@ -5894,11 +5955,11 @@ msgstr ""
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:781
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:791
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:780
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:790
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -5927,15 +5988,15 @@ msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1145
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "SILICA"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1146
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1156
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:864
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:870
 msgid "SIZE_COLON"
 msgstr ""
 
@@ -5944,7 +6005,7 @@ msgstr ""
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:884
+#: ../simulation_parameters/microbe_stage/organelles.json:887
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:501
 msgid "SLIME_JET"
 msgstr ""
@@ -5959,15 +6020,15 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:46
 #: ../simulation_parameters/microbe_stage/biomes.json:228
-#: ../simulation_parameters/microbe_stage/biomes.json:488
-#: ../simulation_parameters/microbe_stage/biomes.json:667
-#: ../simulation_parameters/microbe_stage/biomes.json:926
-#: ../simulation_parameters/microbe_stage/biomes.json:1185
-#: ../simulation_parameters/microbe_stage/biomes.json:1445
-#: ../simulation_parameters/microbe_stage/biomes.json:1624
-#: ../simulation_parameters/microbe_stage/biomes.json:1807
-#: ../simulation_parameters/microbe_stage/biomes.json:2007
-#: ../simulation_parameters/microbe_stage/biomes.json:2186
+#: ../simulation_parameters/microbe_stage/biomes.json:490
+#: ../simulation_parameters/microbe_stage/biomes.json:669
+#: ../simulation_parameters/microbe_stage/biomes.json:930
+#: ../simulation_parameters/microbe_stage/biomes.json:1191
+#: ../simulation_parameters/microbe_stage/biomes.json:1453
+#: ../simulation_parameters/microbe_stage/biomes.json:1632
+#: ../simulation_parameters/microbe_stage/biomes.json:1815
+#: ../simulation_parameters/microbe_stage/biomes.json:2015
+#: ../simulation_parameters/microbe_stage/biomes.json:2194
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
@@ -6019,7 +6080,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1052
+#: ../src/microbe_stage/MicrobeStage.cs:1062
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6048,7 +6109,7 @@ msgstr ""
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/general/Species.cs:300
+#: ../src/general/Species.cs:311
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6098,7 +6159,7 @@ msgstr ""
 msgid "SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:877
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
 msgid "SPEED_COLON"
 msgstr ""
 
@@ -6232,16 +6293,21 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:649
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:672
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:695
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:718
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:742
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:765
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:788
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:844
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:728
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:752
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:775
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:798
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
 msgid "STORAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:869
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
 msgid "STORAGE_COLON"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundStorageStatistics.cs:21
+#: ../src/microbe_stage/editor/CompoundStorageStatistics.cs:170
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
 
 #: ../src/general/MainMenu.cs:670
@@ -6256,13 +6322,13 @@ msgstr ""
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:666
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:671
 msgid "STRUCTURAL"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:408
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:417
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:591
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:596
 msgid "STRUCTURE"
 msgstr ""
 
@@ -6309,11 +6375,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1358
+#: ../src/microbe_stage/MicrobeStage.cs:1368
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1359
+#: ../src/microbe_stage/MicrobeStage.cs:1369
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -6326,8 +6392,8 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:204
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1430
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:444
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1447
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:449
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:465
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:198
 msgid "SUNLIGHT"
@@ -6434,12 +6500,12 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:189
-#: ../src/late_multicellular_stage/MulticellularStage.cs:880
+#: ../src/late_multicellular_stage/MulticellularStage.cs:882
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:223
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1424
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:286
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:458
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:153
@@ -6470,7 +6536,7 @@ msgstr ""
 msgid "THEORY_TEAM"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:972
+#: ../simulation_parameters/microbe_stage/organelles.json:975
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:663
 msgid "THERMOPLAST"
 msgstr ""
@@ -6483,7 +6549,7 @@ msgstr ""
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:392
+#: ../simulation_parameters/microbe_stage/organelles.json:395
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:419
 msgid "THERMOSYNTHASE"
 msgstr ""
@@ -6561,7 +6627,7 @@ msgstr ""
 msgid "THYLAKOID"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:278
+#: ../simulation_parameters/microbe_stage/organelles.json:281
 msgid "THYLAKOIDS"
 msgstr ""
 
@@ -6569,7 +6635,7 @@ msgstr ""
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:445
+#: ../simulation_parameters/microbe_stage/biomes.json:447
 msgid "TIDEPOOL"
 msgstr ""
 
@@ -6593,8 +6659,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:480
-#: ../src/microbe_stage/MicrobeStage.cs:484
+#: ../src/microbe_stage/MicrobeStage.cs:489
+#: ../src/microbe_stage/MicrobeStage.cs:493
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -6696,7 +6762,7 @@ msgstr ""
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1062
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr ""
 
@@ -6704,26 +6770,26 @@ msgstr ""
 msgid "TOTAL_SAVES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1073
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1132
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1142
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1196
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:607
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:756
+#: ../simulation_parameters/microbe_stage/organelles.json:610
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:766
 msgid "TOXIN_VACUOLE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:758
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:768
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:757
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:767
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:804
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:814
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -6887,7 +6953,7 @@ msgstr ""
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1582
+#: ../simulation_parameters/microbe_stage/biomes.json:1590
 msgid "UNDERWATERCAVE"
 msgstr ""
 
@@ -7014,7 +7080,7 @@ msgstr ""
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:385
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:389
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
 
@@ -7026,21 +7092,21 @@ msgstr ""
 msgid "UNTITLED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1031
+#: ../simulation_parameters/microbe_stage/organelles.json:1034
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1032
+#: ../simulation_parameters/microbe_stage/organelles.json:1035
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:47
-#: ../simulation_parameters/microbe_stage/organelles.json:1028
+#: ../simulation_parameters/microbe_stage/organelles.json:1031
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:46
-#: ../simulation_parameters/microbe_stage/organelles.json:1027
+#: ../simulation_parameters/microbe_stage/organelles.json:1030
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -7104,12 +7170,12 @@ msgstr ""
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:520
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:733
+#: ../simulation_parameters/microbe_stage/organelles.json:523
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:743
 msgid "VACUOLE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:735
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:745
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 
@@ -7121,7 +7187,7 @@ msgstr ""
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:734
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:744
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -7129,7 +7195,7 @@ msgstr ""
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/CompoundAmount.cs:187
+#: ../src/gui_common/CompoundAmount.cs:240
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:426
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:501
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
@@ -7182,7 +7248,7 @@ msgstr ""
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1193
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1236
 msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
@@ -8572,7 +8638,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1085
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1128
 msgid "WORST_PATCH_COLON"
 msgstr ""
 

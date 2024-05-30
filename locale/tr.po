@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 17:46+0100\n"
+"POT-Creation-Date: 2024-05-30 09:59+0300\n"
 "PO-Revision-Date: 2024-05-09 15:10+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -153,7 +153,7 @@ msgid "ALT"
 msgstr "Alt"
 
 msgid "AMBIANCE_VOLUME"
-msgstr "Ortam seviyesi"
+msgstr "Ortam Sesi"
 
 msgid "AMMONIA"
 msgstr "Amonyak"
@@ -321,6 +321,19 @@ msgstr "Ters Eğik Çizgi"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Gelişmiş kurulum görünümünü aç"
 
 msgid "BASE_MOBILITY"
 msgstr "Temel Hareketlilik"
@@ -724,12 +737,19 @@ msgstr "Topluluk vikimizi ziyaret edin"
 msgid "COMPILED_AT_COLON"
 msgstr "Derlenme tarihi:"
 
-#, fuzzy
 msgid "COMPLETE_ACTION"
-msgstr "Derlenme tarihi:"
+msgstr "Bitir"
 
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Aranacak Bileşik:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Aranacak Bileşik:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Bileşikleri göster / gizle"
@@ -737,11 +757,27 @@ msgstr "Bileşikleri göster / gizle"
 msgid "COMPOUNDS_COLON"
 msgstr "Bileşikler:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Bileşik Dengesi"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Bileşik Dengesi"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Bileşikleri göster / gizle"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Bileşik Dengesi"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Bileşikleri göster / gizle"
+
 msgid "COMPOUND_CLOUDS"
-msgstr "Bileşik bulutları"
+msgstr "Bileşik bulutu"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Bileşik bulutu yoğunluğu"
@@ -754,6 +790,25 @@ msgstr "{0} konsantrasyonu {1} azaldı"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} tüketimi"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Bileşik Dengesi"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0} tüketimi"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Bileşik Dengesi"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Bileşik Dengesi"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Aranacak Bileşik:"
@@ -1155,7 +1210,8 @@ msgstr "(oyun içinde geçen bir günün gerçek zamandaki saniye uzunluğu)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Gece gündüz döngüsünü etkinleştir"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(UYARI: fotosentez daha elverişsiz hale gelir)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1558,64 +1614,49 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Arayüz ışık efektlerini etkinleştir"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "Endosimbiyoz işlemi zaten tamamlandı, bu işlemi düzenleyicide bitirin"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "Endosimbiyoz hedefi geçici bir organele dönüştürüldü; eğer düzenleyiciye ulaşırsanız, bu işlem endosimbiyozu ilerletecek"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "Endosimbiyont türü zaten mevcut, endosimbiyoz işlemini ilerletmek için düzenleyiciye girin"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
-msgstr "Bütün Organellerin Kilidini Aç"
+msgstr "Dönüşülebilecek mevcut organeller"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "Endosimbiyoz"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr "Kolonideki bütün hücrelerin bağını kopar"
+msgstr "Bu endosimbiyoz işlemini iptal et. Bu durumda, bu endosimbiyonttaki mevcut ilerleme kaybedilir!"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
-msgstr "Dünya oluşturmak için kullanılan değer pozitif bir tam sayı olmalıdır"
+msgstr "Bu endosimbiyoz işlemini bitir ve bu işlemi bir organel olarak yerleştir"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
-"Saldırgan mikroplar, avlarını çok uzun mesafelerden bile takip ederler,\n"
-"yırtıcılar saldırdığında ise onlarla savaşmaları muhtemeldir.\n"
-"Barışçıl mikroplar, çok uzun mesafelerdeki mikroplarla uğraşmazlar,\n"
-"yırtıcılara karşı toksin kullanmaları ise düşük ihtimaldir."
+msgstr "Endosimbiyoz, başka bir türü endosimbiyont (başka bir türün içinde, simbiyotik ilişki içinde yaşayan bir tür) haline dönüştüren bir işlemdir. Bu işlem, oluşturulan organelin kilidini açar ve bu organelin bedava bir kopyasını verir. Organellere dönüşecek elverişli adaylar, daha önce yutulmuşlarsa, aşağıda gösterilir. Bu işlemin ne kadar uzun süreceği, adayın endosimbiyoz için ne kadar uygun olduğuna bağlıdır (bu, her aday organelin altında gösterilir)."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Endosimbiyonta dönüştürülecek uygun bir tür henüz yutulmadı"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
-msgstr "Bağlı Olmayan Organeller"
+msgstr "Bu tür, geçerli herhangi bir organele dönüştürülemez"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
-"Bu kısım, kullanıcı tarafından kalıcı olarak atlanan kaç tane pencere olduğunu gösterir.\n"
-"Eğer asıl görülmek istenen pencereler atlandıysa, bütün atlanan pencerelerin tekrar görülmesi için yandaki buton kullanılabilir."
+msgstr "Endosimbiyoz işlemini ilerletmek için hedef türün geçici bir organele dönüşmek üzere yutulması gerekir (tek seferde, yalnızca bir tane bulunabilir). Mevcut geçici organel ile düzenleyiciye ulaştığınızda, ardından ilerlemeniz kaydedilir."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "Prokaryotlar en fazla bir endosimbiyonta sahip olabilir"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr "[thrive:compound type=\"hydrogensulfide\"]Hidrojen sülfürü[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır. Ayrıca [thrive:compound type=\"glucose\"]glukozu[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür."
+msgstr "İlerlemek için geçici bir organel gibi çalışacak bu tür ile, düzenleyiciye erişene dek, hayatta kal"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
-msgstr "Düzenleyiciye gir ve türünde değişiklik yap"
+msgstr "Bu tür için endosimbiyozu başlat (hedef organel türü seçildiğinde kullanılabilir)"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_TITLE"
-msgstr "Başlık eksik"
+msgstr "Endosimbiyoz"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1722,9 +1763,8 @@ msgstr "Binalar"
 msgid "EXIT"
 msgstr "Çık"
 
-#, fuzzy
 msgid "EXIT_EDITOR"
-msgstr "Sonraki düzenleyici sekmesine git"
+msgstr "Düzenleyiciden Çık"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Çık ve Başlatıcıya Dön"
@@ -1814,14 +1854,17 @@ msgstr "{0} tarihinde yayınlandı"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Bu öğe, gereğinden fazla uzun olduğu için kısaltıldı. Bütün içeriği görmek için lütfen bu öğenin orijinalini okuyun. {0}"
 
+#, fuzzy
 msgid "FERROPLAST"
-msgstr ""
+msgstr "Termoplast"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklıkla[/thrive:compound] doğru orantılıdır."
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Öğeleri kategori cinsinden filtrele:"
@@ -2033,7 +2076,7 @@ msgid "GPU_NAME"
 msgstr "GPU:"
 
 msgid "GRAPHICS"
-msgstr "Grafikler"
+msgstr "Görüntü"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik Ekibi"
@@ -2052,7 +2095,7 @@ msgid "GUI_TAB_NAVIGATION"
 msgstr "Kullanıcı Arayüzünde Sekme Gezinme"
 
 msgid "GUI_VOLUME"
-msgstr "Arayüz seviyesi"
+msgstr "Arayüz sesi"
 
 msgid "HEALTH"
 msgstr "Sağlık"
@@ -2175,7 +2218,7 @@ msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Yeni bir dünya oluştur"
 
 msgid "INPUTS"
-msgstr "Girişler"
+msgstr "Kontroller"
 
 msgid "INPUT_NAME_BUILD_STRUCTURE"
 msgstr "Bir yapı inşa et"
@@ -2277,7 +2320,7 @@ msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "Yer"
 
 msgid "INVERTED"
-msgstr "Ters Çevrilmiş"
+msgstr "Ters"
 
 msgid "IN_PROTOTYPE"
 msgstr ""
@@ -2709,7 +2752,7 @@ msgid "LOAD_FINISHED"
 msgstr "Yükleme bitti"
 
 msgid "LOAD_GAME"
-msgstr "Oyun Yükle"
+msgstr "Oyunu Yükle"
 
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Daha önce kaydedilmiş oyunları yükle"
@@ -3409,7 +3452,7 @@ msgid "MUSIC"
 msgstr "Müzik"
 
 msgid "MUSIC_VOLUME"
-msgstr "Müzik seviyesi"
+msgstr "Müzik sesi"
 
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Tür başına mutasyon girişimi"
@@ -3424,7 +3467,7 @@ msgid "MUTATION_POINTS"
 msgstr "Mutasyon Puanı"
 
 msgid "MUTE"
-msgstr "Sessiz"
+msgstr "Sustur"
 
 msgid "NAME"
 msgstr "Ad:"
@@ -3901,12 +3944,11 @@ msgstr "pck dosyasının ({0}) yüklenmesi başarısız çünkü dosya mevcut de
 msgid "PEACEFUL"
 msgstr "Barışçıl"
 
-#, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
-msgstr "Thrive'ı OpenGL ile çalıştırmaktasınız. Bu mod ciddi derecede test edilmemiştir ve bu modun sorunlara neden olması muhtemeldir. Yeterince yeni bir ekran kartı ya da dahili ekran kartı kullandığınızdan emin olun ve ekran kartı sürücülerinizi güncelleştirmeyi deneyin. Dizüstü bilgisayarlarda Thrive'ı çalıştırmak için, dahili grafiklerin yerine, harici AMD veya Nvidia grafiklerini kullanmaya zorlamanız gerekebilir."
+msgstr "Tamamlanmış bir endosimbiyoz işlemi var ve bu işlem, bir organel olarak yerleştirilerek sonlandırılabilir. Endosimbiyoz üzerinde daha fazla ilerleme yapılabilmesi için bunun mümkün olduğunca hızlı yapılması önerilir. Endosimbiyoz ilerlemesini şimdi görüntülemek ister misiniz?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "Endosimbiyoz İşleminin Tamamlanması Bekleniyor"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
@@ -3991,7 +4033,7 @@ msgid "PLAYSTATION_5"
 msgstr "PlayStation 5"
 
 msgid "PLAY_INTRO_VIDEO"
-msgstr "Tanıtım videosunu oynat"
+msgstr "İntroyu oynat"
 
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Yeni oyunda mikrop tanıtımını oynat"
@@ -4161,7 +4203,7 @@ msgid "RESET_KEYBINDINGS"
 msgstr "Tuş atamalarını sıfırla"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr "Varsayılanlar"
+msgstr "Varsayılan"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Varsayılanlara sıfırlansın mı?"
@@ -4492,7 +4534,7 @@ msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Bu ayar değiştirilirse, değişiklik yalnızca yeni başlatılan oyunlara uygulanır"
 
 msgid "SFX_VOLUME"
-msgstr "Ses efekti seviyesi"
+msgstr "Ses efektleri"
 
 msgid "SHIFT"
 msgstr "Shift"
@@ -4507,13 +4549,13 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Yeni Thrive sürümlerinin yama notlarını ana menüde otomatik olarak göster"
 
 msgid "SHOW_TUTORIALS"
-msgstr "Oyun rehberini göster"
+msgstr "Rehberi göster"
 
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr "Oyun rehberini göster (mevcut oyunda)"
+msgstr "Rehberi göster (mevcut oyunda)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr "Oyun rehberini göster (yeni oyunlarda)"
+msgstr "Rehberi göster (yeni oyunlarda)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Kaydedilmemiş ilerlemeler uyarısını göster"
@@ -4690,9 +4732,8 @@ msgstr "yayıldığı araziler:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Ara menü"
 
-#, fuzzy
 msgid "START"
-msgstr "Başlıyor"
+msgstr "Başla"
 
 msgid "STARTING"
 msgstr "Başlıyor"
@@ -4776,6 +4817,9 @@ msgstr "Depo"
 
 msgid "STORAGE_COLON"
 msgstr "Depo:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
@@ -5586,9 +5630,8 @@ msgstr "Yama Notlarını Görüntüle"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "En son ki veya tüm Thrive yama notlarını şimdi görüntüle"
 
-#, fuzzy
 msgid "VIEW_PENDING_ACTIONS"
-msgstr "Değişiklikler"
+msgstr "Şimdi Görüntüle"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Kaynak Kodunu İncele"

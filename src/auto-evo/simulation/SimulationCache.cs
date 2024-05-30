@@ -54,7 +54,7 @@ public class SimulationCache
 
         // Auto-evo uses the average values of compound during the course of a simulated day
         cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, biomeConditions, species.MembraneType,
-            species.PlayerSpecies, worldSettings, CompoundAmountType.Average);
+            true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average);
 
         cachedEnergyBalances.Add(key, cached);
         return cached;

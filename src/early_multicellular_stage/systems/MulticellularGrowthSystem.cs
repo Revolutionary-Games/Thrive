@@ -47,13 +47,16 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     private readonly List<Compound> temporaryWorkData = new();
 
     private readonly IWorldSimulation worldSimulation;
+    private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
     private GameWorld? gameWorld;
 
-    public MulticellularGrowthSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-        IParallelRunner runner) : base(world, runner, Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
+    public MulticellularGrowthSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        ISpawnSystem spawnSystem, World world, IParallelRunner runner) :
+        base(world, runner, Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
     {
         this.worldSimulation = worldSimulation;
+        this.spawnEnvironment = spawnEnvironment;
         this.spawnSystem = spawnSystem;
     }
 
@@ -247,7 +250,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
                 var recorder = worldSimulation.StartRecordingEntityCommands();
 
                 multicellularGrowth.AddMulticellularGrowthCell(entity, speciesData.Species, worldSimulation,
-                    recorder, spawnSystem);
+                    spawnEnvironment, recorder, spawnSystem);
 
                 worldSimulation.FinishRecordingEntityCommands(recorder);
             }
@@ -319,7 +322,8 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
         try
         {
             // Create the colony bud (for now this is the only reproduction type)
-            cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
+            cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnEnvironment, spawnSystem,
+                null);
         }
         catch (Exception e)
         {

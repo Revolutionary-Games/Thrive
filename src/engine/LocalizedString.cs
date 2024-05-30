@@ -41,6 +41,50 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
             this.formatStringArgs = formatStringArgs;
     }
 
+    /// <summary>
+    ///   Access to the translation key to be able to inspect what this string is based on
+    /// </summary>
+    [JsonIgnore]
+    public string TranslationKey => translationKey;
+
+    /// <summary>
+    ///   Override current format arguments (reusing the existing args array if possible). Note that only the first
+    ///   argument is updated and others are left as-is
+    /// </summary>
+    /// <param name="arg1">First argument to set</param>
+    /// <typeparam name="T">Type of the argument</typeparam>
+    /// <exception cref="InvalidOperationException">
+    ///   If there isn't space for at least one format arg in the args array to put the new argument into
+    /// </exception>
+    /// <remarks>
+    ///   <para>
+    ///     I'm not fully sure if this is a good optimization to do or if this is just pointless complication
+    ///     -hhyyrylainen
+    ///   </para>
+    /// </remarks>
+    public void UpdateFormatArgs<T>(T arg1)
+        where T : notnull
+    {
+        if (formatStringArgs is not { Length: > 0 })
+            throw new ArgumentException("This localized string doesn't have argument space allocated for 1 argument");
+
+        formatStringArgs[0] = arg1;
+    }
+
+    /// <summary>
+    ///   Variant for more arguments. See the documentation for <see cref="UpdateFormatArgs{T}"/>.
+    /// </summary>
+    public void UpdateFormatArgs<T, T2>(T arg1, T2 arg2)
+        where T : notnull
+        where T2 : notnull
+    {
+        if (formatStringArgs is not { Length: > 1 })
+            throw new ArgumentException("This localized string doesn't have argument space allocated for 2 arguments");
+
+        formatStringArgs[0] = arg1;
+        formatStringArgs[1] = arg2;
+    }
+
     public override bool Equals(object? obj)
     {
         return Equals(obj as LocalizedString);

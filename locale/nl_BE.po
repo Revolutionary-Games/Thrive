@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 17:46+0100\n"
+"POT-Creation-Date: 2024-05-30 09:59+0300\n"
 "PO-Revision-Date: 2024-04-10 06:38+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -324,6 +324,19 @@ msgstr "Terug"
 
 msgid "BACKSPACE"
 msgstr "Terug"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Open de weergave voor uitgebreide instellingen"
 
 #, fuzzy
 msgid "BASE_MOBILITY"
@@ -752,14 +765,38 @@ msgid "COMPOUNDS"
 msgstr "Chemische verbindingen"
 
 #, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Wolken met chemische stoffen"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Wolken met chemische stoffen"
+
+#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Toon / verstop omgeving en verbindingen"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Chemische verbindingen:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Balansen van de Chemische Verbindingen"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Balansen van de Chemische Verbindingen"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Toon / verstop omgeving en verbindingen"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balansen van de Chemische Verbindingen"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Toon / verstop omgeving en verbindingen"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Wolken met chemische stoffen"
@@ -781,6 +818,25 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Wolken met chemische stoffen"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Balansen van de Chemische Verbindingen"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Wolken met chemische stoffen"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Balansen van de Chemische Verbindingen"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Balansen van de Chemische Verbindingen"
 
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
@@ -1179,8 +1235,12 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1893,14 +1953,17 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
+#, fuzzy
 msgid "FERROPLAST"
-msgstr ""
+msgstr "Thermoplast"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "De thermoplast is een door twee membranen omsloten celorganel dat warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie van hitteverschillen in de omgeving te gebruiken om glucose uit water en gasvormige koolstofdioxide te produceren in een proces dat thermosyntese heet. De snelheid van de glucoseproductie hangt af van de koolstofdioxideconcentratie en de temperatuur."
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Produceert [thrive:compound type=\"atp\"][/thrive:compound] met gebruik van de temperatuurgradiënt. Snelheid schaalt met [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -5037,6 +5100,9 @@ msgstr "Opslag"
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "Opslag"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als : {0}"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 17:46+0100\n"
-"PO-Revision-Date: 2024-05-10 23:02+0000\n"
+"POT-Creation-Date: 2024-05-30 09:59+0300\n"
+"PO-Revision-Date: 2024-05-23 23:49+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -321,6 +321,19 @@ msgstr "\\"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "開啟進階選單"
 
 msgid "BASE_MOBILITY"
 msgstr "基礎移動能力"
@@ -724,12 +737,19 @@ msgstr "造訪我們的社群 wiki"
 msgid "COMPILED_AT_COLON"
 msgstr "建置於："
 
-#, fuzzy
 msgid "COMPLETE_ACTION"
-msgstr "建置於："
+msgstr "完成"
 
 msgid "COMPOUNDS"
 msgstr "化合物"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "要尋找的化合物："
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "要尋找的化合物："
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏化合物"
@@ -737,8 +757,24 @@ msgstr "顯示／隱藏化合物"
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "化合物平衡"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "化合物平衡"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "顯示／隱藏化合物"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物平衡"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "顯示／隱藏化合物"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
@@ -754,6 +790,25 @@ msgstr "{0}的濃度降低了 {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "化合物平衡"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0}消耗"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "化合物平衡"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "化合物平衡"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "要尋找的化合物："
@@ -1155,8 +1210,8 @@ msgstr "（遊戲內一日在現實中對應的秒數）"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "啟用晝夜循環"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr "（警告：光合作用會被削弱）"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "（光合作用在夜間無效，需要更好的事先計劃）"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "死區校準完成。新的死區顯示在軸值顯示器的下方。"
@@ -1558,64 +1613,49 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "啟用 GUI 燈光效果"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "內共生已經在編輯器中完成"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "將內共生目標轉變為臨時細胞器，如果您將其提交給編輯器，將會增加內共生進度"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "內共生型態已存在，進入編輯器以推進內共生進度"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
-msgstr "解鎖所有細胞器"
+msgstr "轉化可用的細胞器成為"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "內共生"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr "解散群落中的所有細胞"
+msgstr "取消此內共生過程。這會失去該內共生體目前的所有進度！"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
-msgstr "用來生成世界的隨機數，必須為正整數"
+msgstr "完成此內共生過程並將其放置為細胞器"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
-"激進型微生物會在更遠的距離追捕獵物，\n"
-"並且在受到攻擊時更有可能與掠食者作鬥爭。\n"
-"和平型微生物不會在意更遠距離的其它微生物，\n"
-"並且不太可能使用毒素來對付掠食者。"
+msgstr "內共生是將另一個物種轉變為內共生體（以共生關係生活在另一個物種體內的物種）的過程。這將解鎖創建的細胞器並提供該細胞器的免費副本。下方顯示吞噬後可以轉化為細胞器的可行候選者。這個過程需要多久取決於候選細胞器是否適合內共生（顯示在每種候選細胞器下方）。"
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "目前還沒有吞噬過適合轉化為內共生體的物種"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
-msgstr "未連接的細胞器"
+msgstr "該物種無法轉化為任何有效的細胞器"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
-"這顯示有多少彈出視窗已被使用者永久禁用。\n"
-"如果某些實際需要的彈出視窗被禁用，則可以使用旁邊的按鈕使所有被禁用的彈出視窗再次出現。"
+msgstr "為了進行內共生過程，目標物種需要被吞噬，將其轉變成一種臨時細胞器（一次只能存在一個）。然後，一旦您將臨時細胞器提交給編輯器，進度就會被儲存。"
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "原核生物最多可以有一種內共生體"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr "將[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。同時也將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。"
+msgstr "以該物種作為臨時細胞器生存到下次編輯以增加進度"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
-msgstr "進入編輯器並修改您的物種"
+msgstr "開始該物種的內共生（選擇目標細胞器類型後可用）"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_TITLE"
-msgstr "缺少標題"
+msgstr "內共生"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
@@ -1722,9 +1762,8 @@ msgstr "建築"
 msgid "EXIT"
 msgstr "退出"
 
-#, fuzzy
 msgid "EXIT_EDITOR"
-msgstr "進入下一個編輯器分頁"
+msgstr "退出編輯器"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "退出至啟動器"
@@ -1814,14 +1853,17 @@ msgstr "發布於 {0}"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "本篇因篇幅過長被刪節，詳情請閱讀原文。{0}"
 
+#, fuzzy
 msgid "FERROPLAST"
-msgstr ""
+msgstr "熱能體"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "熱能體是一種雙層膜結構，包含在膜囊中堆疊在一起的熱敏色素。它是一種被其真核宿主同化的原核生物。熱能體中的色素能夠利用周圍環境的熱能梯度產生能量，從水中生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/b]。其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "按類別過濾項目："
@@ -3901,12 +3943,11 @@ msgstr "由於檔案不存在，載入 pck 檔案（{0}）失敗"
 msgid "PEACEFUL"
 msgstr "和平"
 
-#, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
-msgstr "您正在使用 OpenGL 運行 Thrive。這未經嚴格測試並且很可能導致問題。確保您使用的是足夠新的 GPU 或整合式顯示卡，並嘗試更新您的視訊驅動程式。對於筆記型電腦，您可能需要強制使用專用 AMD 或 Nvidia 顯示卡而非整合式顯示卡來運行 Thrive。"
+msgstr "有一個完整的內共生過程，可以透過將其作為細胞器來完成。建議盡快這樣做，在此之前，內共生無法取得進一步的進展。現在查看內共生進度？"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "等待內共生過程完成"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4690,9 +4731,8 @@ msgstr "擴散到區域："
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暫停選單"
 
-#, fuzzy
 msgid "START"
-msgstr "啟動中"
+msgstr "開始"
 
 msgid "STARTING"
 msgstr "啟動中"
@@ -4776,6 +4816,9 @@ msgstr "儲存空間"
 
 msgid "STORAGE_COLON"
 msgstr "儲存空間："
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "登入身分：{0}"
@@ -5584,9 +5627,8 @@ msgstr "查看更新說明"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "查看最新或所有 Thrive 更新說明"
 
-#, fuzzy
 msgid "VIEW_PENDING_ACTIONS"
-msgstr "修改選項"
+msgstr "現在查看"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看原始碼"

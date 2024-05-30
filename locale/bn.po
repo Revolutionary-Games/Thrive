@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 17:46+0100\n"
+"POT-Creation-Date: 2024-05-30 09:59+0300\n"
 "PO-Revision-Date: 2023-09-10 12:18+0000\n"
 "Last-Translator: Mahbeer Alam Sarker <mahbeeralamsarker@gmail.com>\n"
 "Language-Team: Bengali <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bn/>\n"
@@ -297,6 +297,19 @@ msgstr ""
 
 msgid "BACKSPACE"
 msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "উন্নত সেটআপ ভিউ খুলুন"
 
 msgid "BASE_MOBILITY"
 msgstr ""
@@ -697,14 +710,34 @@ msgstr ""
 msgid "COMPOUNDS"
 msgstr ""
 
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr ""
+
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr ""
+
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "জাগ্রত পর্যায়ে চলে যাওয়া। আপনার পর্যাপ্ত মস্তিষ্কের শক্তি (অ্যাক্সন সহ টিস্যু টাইপ) থাকলে উপলব্ধ।"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "জাগ্রত পর্যায়ে চলে যাওয়া। আপনার পর্যাপ্ত মস্তিষ্কের শক্তি (অ্যাক্সন সহ টিস্যু টাইপ) থাকলে উপলব্ধ।"
 
 msgid "COMPOUND_CLOUDS"
 msgstr ""
@@ -720,6 +753,22 @@ msgstr ""
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
+
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "জাগ্রত পর্যায়ে চলে যাওয়া। আপনার পর্যাপ্ত মস্তিষ্কের শক্তি (অ্যাক্সন সহ টিস্যু টাইপ) থাকলে উপলব্ধ।"
 
 msgid "COMPOUND_TO_FIND"
 msgstr ""
@@ -1084,7 +1133,7 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -4426,6 +4475,9 @@ msgid "STORAGE"
 msgstr ""
 
 msgid "STORAGE_COLON"
+msgstr ""
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 17:46+0100\n"
-"PO-Revision-Date: 2024-05-16 13:10+0000\n"
+"POT-Creation-Date: 2024-05-30 09:59+0300\n"
+"PO-Revision-Date: 2024-05-24 11:18+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -321,6 +321,19 @@ msgstr "Barre oblique inversée"
 
 msgid "BACKSPACE"
 msgstr "Retour arrière"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Ouvrir la vue de configuration avancée"
 
 msgid "BASE_MOBILITY"
 msgstr "Mobilité de base"
@@ -733,14 +746,38 @@ msgstr "Compilée le :"
 msgid "COMPOUNDS"
 msgstr "Composés"
 
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Composé à trouver :"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Composé à trouver :"
+
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher l'environnement et les composés"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Composés :"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Équilibre des composants"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Équilibre des composants"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Afficher / cacher l'environnement et les composés"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Équilibre des composants"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Afficher / cacher l'environnement et les composés"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuages de composés"
@@ -756,6 +793,25 @@ msgstr "La concentration de {0} a diminué de {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consommation de {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Équilibre des composants"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Consommation de {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Équilibre des composants"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Équilibre des composants"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composé à trouver :"
@@ -1157,8 +1213,8 @@ msgstr "(durée en secondes en temps réel pour une journée de jeu)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Activer le cycle jour/nuit"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr "(ATTENTION : la photosynthèse devient beaucoup moins viable)"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "(la photosynthèse devient inefficace pendant la nuit, ce qui nécessite une plus grande planification préalable)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Le calibrage des zones mortes est terminé. Les nouvelles zones mortes sont affichées ci-dessous sur les afficheurs de valeurs d'axes."
@@ -1578,7 +1634,7 @@ msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr "Plusieurs organites"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "Endosymbiose"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
@@ -1610,7 +1666,7 @@ msgstr ""
 "Si certaines fenêtres contextuelles, qui sont en fait souhaitées, ont été désactivées, le bouton situé à côté peut être utilisé pour faire réapparaître toutes les fenêtres contextuelles désactivées."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "Les procaryotes peuvent avoir au maximum un endosymbiote"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
@@ -1620,9 +1676,8 @@ msgstr "Transforme le [thrive:compound type=\"hydrogensulfide\"][/thrive:compoun
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
 msgstr "Entrer dans l'éditeur et modifier votre espèce"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_TITLE"
-msgstr "Titre manquant"
+msgstr "Endosymbiose"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0} : -{1} ATP"
@@ -1731,9 +1786,8 @@ msgstr "Constructions"
 msgid "EXIT"
 msgstr "Quitter"
 
-#, fuzzy
 msgid "EXIT_EDITOR"
-msgstr "Aller au prochain onglet de l'éditeur"
+msgstr "Quitter l'éditeur"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Revenir au lanceur"
@@ -1823,14 +1877,17 @@ msgstr "Publié le {0}"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Cet élément à été coupé car il était trop long, pour la version complète, veuillez lire l'original. {0}"
 
+#, fuzzy
 msgid "FERROPLAST"
-msgstr ""
+msgstr "Thermoplaste"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire de l'[thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production d'[thrive:compound type=\"atp\"][/thrive:compound] varie avec la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrer les objets par catégories :"
@@ -4737,9 +4794,8 @@ msgstr "s'est propagé dans les secteurs :"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
 
-#, fuzzy
 msgid "START"
-msgstr "Démarrage"
+msgstr "Démarrer"
 
 msgid "STARTING"
 msgstr "Démarrage"
@@ -4825,6 +4881,9 @@ msgstr "Stockage"
 msgid "STORAGE_COLON"
 msgstr "Stockage :"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Connecté sous le nom de : {0}"
 
@@ -4883,7 +4942,7 @@ msgid "SUCCESS_BUT_MISSING_ID"
 msgstr "Le résultat a indiqué une réussite mais aucun ID n'a été renvoyé"
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "Suicide"
+msgstr "Périr instantanément"
 
 msgid "SUNLIGHT"
 msgstr "Lumière du soleil"
@@ -5357,11 +5416,11 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Vous devriez vous concentrer sur la spécialisation pour survivre avec une ou deux sources d'énergie afin de ne pas avoir besoin de nombreuses ressources différentes à la fois pour vous maintenir.\n"
+"Vous devriez vous concentrer sur la [b]spécialisation[/b] pour survivre avec une ou deux sources d'[thrive:compound type=\"atp\"][/thrive:compound] afin de ne pas avoir besoin de nombreuses ressources différentes à la fois pour vous maintenir.\n"
 "\n"
-"Demandez-vous également si l'ajout d'une partie est vraiment bénéfique. Il n'est pas toujours nécessaire de changer ce qui fonctionne déjà, car chaque partie coûte de l'ATP à entretenir et nécessite plus de ressources pour se reproduire.\n"
+"Demandez-vous également si l'ajout d'une partie est vraiment bénéfique. Il n'est pas toujours nécessaire de changer ce qui fonctionne déjà, car chaque partie coûte de l'[thrive:compound type=\"atp\"][/thrive:compound] pour entretenir [thrive:icon]OsmoIcon[/thrive:icon] et nécessite plus de ressources pour se reproduire.\n"
 "\n"
-"Une stratégie possible est de rester un seul hexagone de cytoplasme et de se diriger d'abord vers les secteurs de surface avant d'obtenir les organites de photosynthèse."
+"Une stratégie possible est de rester sur un seul hexagone de cytoplasme et de se diriger d'abord vers les secteurs de surface avant d'obtenir les organites de [b]photosynthèse[/b]."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -5375,7 +5434,7 @@ msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Votre cellule a été engloutie et est en cours de digestion. La progression est indiquée sur votre barre de santé. Votre cellule sera morte une fois qu'elle sera vidée ou qu'une limite de temps maximale sera atteinte.\n"
 "\n"
-"Vous pouvez utiliser le bouton suicide pour passer et renaitre, mais n'oubliez pas qu'il y a toujours une chance que vous vous échappiez !"
+"Vous pouvez utiliser le bouton périr pour passer et renaitre, mais n'oubliez pas qu'il y a toujours une chance que vous vous échappiez !"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"

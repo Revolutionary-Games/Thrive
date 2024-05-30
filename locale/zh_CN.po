@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 17:46+0100\n"
+"POT-Creation-Date: 2024-05-30 09:59+0300\n"
 "PO-Revision-Date: 2024-05-10 23:02+0000\n"
 "Last-Translator: Unkown_lpy <Unkown_lpy@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -321,6 +321,19 @@ msgstr "反斜杠"
 
 msgid "BACKSPACE"
 msgstr "退格键"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "打开高级菜单"
 
 msgid "BASE_MOBILITY"
 msgstr "基础移动能力"
@@ -731,14 +744,38 @@ msgstr "编译于："
 msgid "COMPOUNDS"
 msgstr "化合物"
 
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "寻找的化合物："
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "寻找的化合物："
+
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏化合物"
 
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "化合物收支"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "化合物收支"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "显示/隐藏化合物"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物收支"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "显示/隐藏化合物"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物云"
@@ -754,6 +791,25 @@ msgstr "{0}的浓度已减少了{1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "化合物收支"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0}消耗"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "化合物收支"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "化合物收支"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "寻找的化合物："
@@ -1155,7 +1211,8 @@ msgstr "（游戏中一天在现实中对应的秒数）"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "启用昼夜循环"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "（提示：光合作用会被削弱）"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1814,14 +1871,17 @@ msgstr "发表于{0}"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "本篇因篇幅过长而被删节，详情请阅读原文。 {0}"
 
+#, fuzzy
 msgid "FERROPLAST"
-msgstr ""
+msgstr "热能体"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与环境温度成正比。"
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "按类别过滤项目："
@@ -4776,6 +4836,9 @@ msgstr "存储"
 
 msgid "STORAGE_COLON"
 msgstr "存储："
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"

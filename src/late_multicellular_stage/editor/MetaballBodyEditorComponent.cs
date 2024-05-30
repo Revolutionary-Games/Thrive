@@ -211,7 +211,7 @@ public partial class MetaballBodyEditorComponent :
 
         if (!fresh)
         {
-            UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
+            UpdateGUIAfterLoadingSpecies();
         }
 
         UpdateCancelButtonVisibility();
@@ -281,7 +281,7 @@ public partial class MetaballBodyEditorComponent :
 
         newName = species.FormattedName;
 
-        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
+        UpdateGUIAfterLoadingSpecies();
 
         UpdateArrow(false);
     }
@@ -459,7 +459,13 @@ public partial class MetaballBodyEditorComponent :
 
     protected override void PerformActiveAction()
     {
-        AddMetaball(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
+        bool added =
+            AddMetaball(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
+
+        if (added)
+        {
+            // TODO: maybe a tutorial for this editor?
+        }
     }
 
     protected override void PerformMove(Vector3 position, MulticellularMetaball parent)
@@ -551,7 +557,7 @@ public partial class MetaballBodyEditorComponent :
         base.Dispose(disposing);
     }
 
-    private void UpdateGUIAfterLoadingSpecies(Species species)
+    private void UpdateGUIAfterLoadingSpecies()
     {
         GD.Print("Starting early multicellular editor with: ", editedMetaballs.Count,
             " cells in the microbe");
@@ -693,6 +699,8 @@ public partial class MetaballBodyEditorComponent :
     {
         // TODO: in the future we might want to prevent metaballs from overlapping too much, for now just check it has
         // a parent
+        _ = position;
+
         return parent != null;
     }
 
@@ -700,7 +708,10 @@ public partial class MetaballBodyEditorComponent :
     {
         return new SingleEditorAction<MetaballPlacementActionData<MulticellularMetaball>>(DoMetaballPlaceAction,
             UndoMetaballPlaceAction,
-            new MetaballPlacementActionData<MulticellularMetaball>(metaball));
+            new MetaballPlacementActionData<MulticellularMetaball>(metaball)
+            {
+                Parent = parent,
+            });
     }
 
     /// <summary>
@@ -759,8 +770,7 @@ public partial class MetaballBodyEditorComponent :
                         metaball.Position, position, editedMetaballs);
 
                 var data = new MetaballMoveActionData<MulticellularMetaball>(metaball, metaball.Position, position,
-                    metaball.Parent,
-                    parent, childMoves);
+                    metaball.Parent, parent, childMoves);
                 action = new SingleEditorAction<MetaballMoveActionData<MulticellularMetaball>>(DoMetaballMoveAction,
                     UndoMetaballMoveAction, data);
             }

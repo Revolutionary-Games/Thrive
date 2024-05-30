@@ -50,7 +50,10 @@
         "Name": "UPGRADE_PILUS_INJECTISOME",
         "Description": "UPGRADE_PILUS_INJECTISOME_DESCRIPTION",
         "MPCost": 25,
-        "IconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png"
+        "IconPath": "res://assets/textures/gui/bevel/parts/InjectisomeIcon.png",
+        "OverrideGraphics": {
+          "ScenePath": "res://assets/models/organelles/PilusInjector.tscn"
+        }
       }
     }
   },

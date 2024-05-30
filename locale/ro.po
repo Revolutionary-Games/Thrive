@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 17:46+0100\n"
+"POT-Creation-Date: 2024-05-30 09:59+0300\n"
 "PO-Revision-Date: 2024-03-30 03:50+0000\n"
 "Last-Translator: edy <lazareduard702@gmail.com>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -328,6 +328,19 @@ msgstr "Backslash"
 #, fuzzy
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Deschide meniul setărilor avansate"
 
 msgid "BASE_MOBILITY"
 msgstr "Mobilitate de bază"
@@ -732,14 +745,34 @@ msgstr ""
 msgid "COMPOUNDS"
 msgstr ""
 
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr ""
+
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr ""
+
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "COMPOUND_CLOUDS"
 msgstr ""
@@ -755,6 +788,22 @@ msgstr ""
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
+
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "COMPOUND_TO_FIND"
 msgstr ""
@@ -1119,7 +1168,7 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1736,8 +1785,9 @@ msgstr ""
 msgid "FERROPLAST_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -4517,6 +4567,9 @@ msgid "STORAGE"
 msgstr ""
 
 msgid "STORAGE_COLON"
+msgstr ""
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"

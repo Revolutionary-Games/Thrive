@@ -14,6 +14,12 @@ public class CompoundBalance
     /// </summary>
     public float Balance;
 
+    /// <summary>
+    ///   Optionally calculated value for how long it takes for this compound to fill storage (0 when not calculated,
+    ///   can be negative if the balance is not positive).
+    /// </summary>
+    public float FillTime;
+
     public void AddConsumption(string organelleName, float amount)
     {
         Consumption.TryGetValue(organelleName, out var existing);

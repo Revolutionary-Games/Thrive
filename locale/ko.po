@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 17:46+0100\n"
+"POT-Creation-Date: 2024-05-30 09:59+0300\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -318,6 +318,19 @@ msgstr "뒤로가기"
 #, fuzzy
 msgid "BACKSPACE"
 msgstr "뒤로가기"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 #, fuzzy
 msgid "BASE_MOBILITY"
@@ -770,6 +783,14 @@ msgid "COMPOUNDS"
 msgstr "화합물"
 
 #, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "화합물 구름"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "화합물 구름"
+
+#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
@@ -777,8 +798,24 @@ msgid "COMPOUNDS_COLON"
 msgstr "화합물:"
 
 #, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "화합물 구름"
@@ -797,6 +834,25 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "화합물 구름"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "성분 비율"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "화합물 구름"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "성분 비율"
 
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
@@ -1192,8 +1248,9 @@ msgstr "(게임 시간으로 하루의 길이가 현실 시간으로 몇 초인�
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "이것으로 다른 세포를 찌르세요."
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "데드존 보정이 끝났습니다. 새로운 데드존은 아래의 축 설정값 표시기에 표시됩니다."
@@ -1880,14 +1937,17 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
+#, fuzzy
 msgid "FERROPLAST"
-msgstr ""
+msgstr "열 세포"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -5046,6 +5106,9 @@ msgstr "저장소"
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "저장소"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
