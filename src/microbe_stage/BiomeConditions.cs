@@ -184,6 +184,26 @@ public class BiomeConditions : ICloneable
         }
     }
 
+    /// <summary>
+    ///   Checks if the method <see cref="GetAmbientCompoundsThatVary"/> would return true.
+    /// </summary>
+    /// <returns>True if there are compounds that vary</returns>
+    public bool HasCompoundsThatVary()
+    {
+        const float epsilon = 0.000001f;
+
+        foreach (var minimumCompound in MinimumCompounds)
+        {
+            if (!MaximumCompounds.TryGetValue(minimumCompound.Key, out var maxValue) ||
+                Math.Abs(maxValue.Ambient - minimumCompound.Value.Ambient) > epsilon)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void Check(string name)
     {
         if (compounds == null)

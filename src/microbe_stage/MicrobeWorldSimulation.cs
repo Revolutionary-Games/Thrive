@@ -199,7 +199,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
 
-        microbeAI = new MicrobeAISystem(cloudSystem, EntitySystem, parallelRunner);
+        microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, EntitySystem, parallelRunner);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, couldParallelize);
         microbeEmissionSystem = new MicrobeEmissionSystem(this, cloudSystem, EntitySystem, couldParallelize);
 
@@ -263,6 +263,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         multicellularGrowthSystem.SetWorld(currentGame.GameWorld);
         engulfingSystem.SetWorld(currentGame.GameWorld);
         engulfedDigestionSystem.SetWorld(currentGame.GameWorld);
+        microbeAI.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(fluidCurrentsSystem);
     }

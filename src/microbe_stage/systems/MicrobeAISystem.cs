@@ -54,6 +54,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     private readonly Compound phosphates;
 
     private readonly IReadonlyCompoundClouds clouds;
+    private readonly IDaylightInfo lightInfo;
 
     // TODO: for actual consistency these should probably be in the MicrobeAI component so that each AI entity
     // consistently uses its own random instance, instead of just a few being used per update for whatever set of
@@ -76,6 +77,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     private readonly List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)>
         chunkDataCache = new();
 
+    private GameWorld? gameWorld;
+    private bool currentlyNight;
+
     private bool microbeCacheBuilt;
     private bool chunkCacheBuilt;
 
@@ -89,10 +93,12 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private bool skipAI;
 
-    public MicrobeAISystem(IReadonlyCompoundClouds cloudSystem, World world, IParallelRunner runner) :
+    public MicrobeAISystem(IReadonlyCompoundClouds cloudSystem, IDaylightInfo lightInfo, World world,
+        IParallelRunner runner) :
         base(world, runner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
     {
         clouds = cloudSystem;
+        this.lightInfo = lightInfo;
 
         // Microbes that aren't colony non-leaders (and also not eaten)
         // The WorldPosition require is here to just ensure that the AI won't accidentally throw an exception if
@@ -130,15 +136,17 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         potentiallyKnownPlayerPosition = playerPosition;
     }
 
+    public void SetWorld(GameWorld gameWorld)
+    {
+        this.gameWorld = gameWorld;
+    }
+
     public IReadOnlyList<(Entity Entity, Vector3 Position, float EngulfSize)>? GetSpeciesMembers(Species species)
     {
         BuildMicrobesCache();
         var id = species.ID;
 
-        if (microbesBySpecies.TryGetValue(id, out var result))
-            return result;
-
-        return null;
+        return microbesBySpecies.GetValueOrDefault(id);
     }
 
     public override void Dispose()
@@ -159,6 +167,18 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             // Clean up old cached microbes
             CleanMicrobeCache();
             CleanChunkCache();
+        }
+
+        if (gameWorld == null)
+            throw new InvalidOperationException("Current world not set for AI");
+
+        if (gameWorld.WorldSettings.DayNightCycleEnabled && gameWorld.Map.CurrentPatch?.HasDayAndNight == true)
+        {
+            currentlyNight = lightInfo.IsNightCurrently;
+        }
+        else
+        {
+            currentlyNight = false;
         }
     }
 
