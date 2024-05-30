@@ -132,14 +132,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   can be specified to be a different type of value)
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane, bool isPlayerSpecies,
+        BiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
-        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, isPlayerSpecies,
-            worldSettings, amountType);
+        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
+            isPlayerSpecies, worldSettings, amountType);
     }
 
     /// <summary>
@@ -152,12 +152,19 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
     ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
+    /// <param name="includeMovementCost">
+    ///   Only when true are movement related energy costs included in the calculation. When false base movement data
+    ///   is provided but it is not taken into account in the sums, but total movement cost is not calculated. If that
+    ///   is required then include movement cost parameter should be set to true and from the result the variables
+    ///   giving balance without movement should be used as an alternative to setting this false.
+    /// </param>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
     /// <param name="worldSettings">The world generation settings for this game</param>
     /// <param name="amountType">Specifies how changes during an in-game day are taken into account</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
-        bool isPlayerSpecies, WorldGenerationSettings worldSettings, CompoundAmountType amountType)
+        bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
+        CompoundAmountType amountType)
     {
         var result = new EnergyBalanceInfo();
 
@@ -189,7 +196,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
 
             // Take special cell components that take energy into account
-            if (organelle.Definition.HasMovementComponent)
+            if (includeMovementCost && organelle.Definition.HasMovementComponent)
             {
                 var amount = Constants.FLAGELLA_ENERGY_COST;
 
@@ -202,7 +209,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 }
             }
 
-            if (organelle.Definition.HasCiliaComponent)
+            if (includeMovementCost && organelle.Definition.HasCiliaComponent)
             {
                 var amount = Constants.CILIA_ENERGY_COST;
 
@@ -215,10 +222,18 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             hexCount += organelle.Definition.HexCount;
         }
 
-        // Add movement consumption together
         result.BaseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
-        result.AddConsumption("baseMovement", result.BaseMovement);
-        result.TotalMovement = movementATPConsumption + result.BaseMovement;
+
+        if (includeMovementCost)
+        {
+            // Add movement consumption together
+            result.AddConsumption("baseMovement", result.BaseMovement);
+            result.TotalMovement = movementATPConsumption + result.BaseMovement;
+        }
+        else
+        {
+            result.TotalMovement = -1;
+        }
 
         // Add osmoregulation
         result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
@@ -234,7 +249,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // Compute totals
         result.TotalProduction = processATPProduction;
         result.TotalConsumptionStationary = processATPConsumption + result.Osmoregulation;
-        result.TotalConsumption = result.TotalConsumptionStationary + result.TotalMovement;
+
+        if (includeMovementCost)
+        {
+            result.TotalConsumption = result.TotalConsumptionStationary + result.TotalMovement;
+        }
+        else
+        {
+            result.TotalConsumption = result.TotalConsumptionStationary;
+        }
 
         result.FinalBalance = result.TotalProduction - result.TotalConsumption;
         result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;

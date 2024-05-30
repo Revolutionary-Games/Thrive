@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=64 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bmu3av0d807dw" path="res://assets/textures/gui/bevel/StorageIcon.png" id="27"]
 [ext_resource type="Texture2D" uid="uid://c4w7v5wtq2d1b" path="res://assets/textures/gui/bevel/SpeedIcon.png" id="28"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="28_qclxk"]
+[ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="28_vnd4w"]
 [ext_resource type="Texture2D" uid="uid://5ivblyrfrfc0" path="res://assets/textures/gui/bevel/RotationIcon.png" id="29"]
 [ext_resource type="PackedScene" uid="uid://c0ihn5gix4eyp" path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" id="30"]
 [ext_resource type="Texture2D" uid="uid://bqq2yi8f6l4lt" path="res://assets/textures/gui/bevel/DigestionIcon.png" id="31"]
@@ -346,7 +347,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -395,7 +396,6 @@ ATPConsumptionBarPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContai
 RigiditySliderPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 NegativeAtpPopupPath = NodePath("NegativeAtpWarning")
 OrganelleMenuPath = NodePath("OrganellePopupMenu")
-CompoundBalancePath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
 AutoEvoPredictionExplanationLabelPath = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
 OrganelleUpgradeGUIPath = NodePath("OrganelleUpgradeGUI")
@@ -406,6 +406,11 @@ atpBalanceLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Bo
 pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
 endosymbiosisButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis")
 endosymbiosisPopup = NodePath("EndosymbiosisPopup")
+calculateBalancesAsIfDay = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay")
+calculateBalancesWhenMoving = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving")
+compoundBalance = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
+compoundStorageLastingTimes = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundStorageStatistics")
+notEnoughStorageWarning = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/StorageNotEnough")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
@@ -984,12 +989,37 @@ popup/item_0/id = 0
 popup/item_1/text = "ATP_BALANCE_AT_MAX_SPEED"
 popup/item_1/id = 1
 
+[node name="StorageNotEnough" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("11")]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.301961, 0.301961, 1)
+fit_content = true
+
+[node name="NumbersAtDay" type="CheckBox" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+theme_override_font_sizes/font_size = 12
+text = "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+
+[node name="NumbersWhenMoving" type="CheckBox" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+theme_override_font_sizes/font_size = 12
+button_pressed = true
+text = "BALANCE_DISPLAY_WHILE_MOVING"
+
 [node name="Separator2" type="Control" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 mouse_filter = 1
 
 [node name="CompoundBalanceDisplay" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("42")]
+layout_mode = 2
+
+[node name="CompoundStorageStatistics" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("28_vnd4w")]
 layout_mode = 2
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
@@ -1301,6 +1331,8 @@ text = "CLOSE"
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis" to="." method="OnEndosymbiosisButtonPressed"]
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigidityChanged"]
 [connection signal="color_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker" to="." method="OnColorChanged"]
+[connection signal="toggled" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay" to="." method="OnBalanceShowOptionsChanged"]
+[connection signal="toggled" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving" to="." method="OnBalanceShowOptionsChanged"]
 [connection signal="BalanceTypeChanged" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay" to="." method="OnCompoundBalanceTypeChanged"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer/Details" to="." method="OpenAutoEvoPredictionDetails"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]

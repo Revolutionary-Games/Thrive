@@ -87,6 +87,8 @@ public partial class CellEditorComponent
 
         UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
     }
 
     private void CheckRunningAutoEvoPrediction()
@@ -507,6 +509,23 @@ public partial class CellEditorComponent
         }
     }
 
+    private void UpdateLightSelectionPanelVisibility()
+    {
+        topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
+            Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
+
+        // When not in a patch with light, hide the useless always day selector
+        if (!topPanel.Visible)
+        {
+            calculateBalancesAsIfDay.ButtonPressed = false;
+            calculateBalancesAsIfDay.Visible = false;
+        }
+        else
+        {
+            calculateBalancesAsIfDay.Visible = true;
+        }
+    }
+
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
     {
         var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
@@ -517,6 +536,27 @@ public partial class CellEditorComponent
             warningTime = 10000000;
 
         compoundBalance.UpdateBalances(balances, warningTime);
+    }
+
+    private void UpdateCompoundLastingTimes(Dictionary<Compound, CompoundBalance> normalBalance,
+        Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
+        Dictionary<Compound, float> specificStorages)
+    {
+        var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
+            Constants.LIGHT_NIGHT_FRACTION;
+
+        var fillingUpTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
+            Constants.LIGHT_DAY_FILL_TIME_WARNING_THRESHOLD;
+
+        // Don't show warning when day/night is not enabled
+        if (!Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled)
+        {
+            warningTime = 10000000;
+            fillingUpTime = warningTime;
+        }
+
+        compoundStorageLastingTimes.UpdateStorage(normalBalance, nightBalance, nominalStorage, specificStorages,
+            warningTime, fillingUpTime, notEnoughStorageWarning);
     }
 
     private void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
@@ -746,7 +786,16 @@ public partial class CellEditorComponent
 
     private void OnCompoundBalanceTypeChanged(BalanceDisplayType newType)
     {
+        // Called by 2 different things so ignore the parameter and read the new values directly from the relevant
+        // objects
         _ = newType;
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
+    }
+
+    private void OnBalanceShowOptionsChanged(bool pressed)
+    {
+        _ = pressed;
 
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
     }

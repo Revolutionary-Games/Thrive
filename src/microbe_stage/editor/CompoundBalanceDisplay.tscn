@@ -18,6 +18,8 @@ modeSelector = NodePath("CompoundBalanceMode")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
+tooltip_text = "COMPOUND_BALANCE_TOOLTIP"
+mouse_filter = 0
 text = "COMPOUND_BALANCE_TITLE"
 label_settings = ExtResource("2_uuwk2")
 
