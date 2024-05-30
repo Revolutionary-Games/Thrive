@@ -286,17 +286,26 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         var compounds = entity.Get<CompoundStorage>().Compounds;
 
         // Adjusted behaviour values (calculated here as these are needed by various methods)
-        float speciesAggression = ourSpecies.Species.Behaviour.Aggression *
+        var speciesBehaviour = ourSpecies.Species.Behaviour;
+        float speciesAggression = speciesBehaviour.Aggression *
             (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.5f : 1.0f);
 
-        float speciesFear = ourSpecies.Species.Behaviour.Fear *
+        float speciesFear = speciesBehaviour.Fear *
             (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 0.75f : 1.0f);
 
-        float speciesActivity = ourSpecies.Species.Behaviour.Activity *
+        float speciesActivity = speciesBehaviour.Activity *
             (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.25f : 1.0f);
 
-        float speciesFocus = ourSpecies.Species.Behaviour.Focus;
-        float speciesOpportunism = ourSpecies.Species.Behaviour.Opportunism;
+        // Adjust activity for night if it is currently night
+        // TODO: also check if the current species relies on varying compounds (otherwise it shouldn't react to it
+        // being night)
+        if (currentlyNight)
+        {
+            speciesActivity *= MicrobeInternalCalculations.GetActivityNightModifier(speciesBehaviour.Activity);
+        }
+
+        float speciesFocus = speciesBehaviour.Focus;
+        float speciesOpportunism = speciesBehaviour.Opportunism;
 
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
         Vector3? predator =

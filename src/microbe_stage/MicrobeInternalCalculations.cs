@@ -603,6 +603,22 @@ public static class MicrobeInternalCalculations
         return required <= generated + 0.1f;
     }
 
+    /// <summary>
+    ///   Gets a modifier telling how active a species is during the night
+    /// </summary>
+    /// <param name="activity">The base activity of the species</param>
+    /// <returns>A multiplier to multiply the activity with to get effective activity during the night</returns>
+    public static float GetActivityNightModifier(float activity)
+    {
+        if (activity >= Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT)
+            return 1;
+
+        if (activity <= Constants.AI_ACTIVITY_TO_BE_SESSILE_DURING_NIGHT)
+            return Constants.AI_ACTIVITY_NIGHT_MULTIPLIER_SESSILE;
+
+        return Constants.AI_ACTIVITY_NIGHT_MULTIPLIER;
+    }
+
     private static float MovementForce(float movementForce, float directionFactor)
     {
         if (directionFactor < 0)
