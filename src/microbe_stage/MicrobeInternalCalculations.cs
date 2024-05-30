@@ -464,6 +464,45 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
+    ///   Checks if the organelles use any processes that depend on compounds that vary during the day
+    /// </summary>
+    /// <param name="organelles">Organelles to check</param>
+    /// <param name="biomeConditions">Patch to check this in</param>
+    /// <param name="usedProcessesCache">Can be non-null to give existing memory access</param>
+    /// <returns>True if the organelles depend on any compounds that vary during the day</returns>
+    public static bool UsesDayVaryingCompounds(IReadOnlyCollection<OrganelleTemplate> organelles,
+        BiomeConditions biomeConditions, HashSet<BioProcess>? usedProcessesCache)
+    {
+        if (usedProcessesCache == null)
+        {
+            usedProcessesCache = new HashSet<BioProcess>();
+        }
+        else
+        {
+            usedProcessesCache.Clear();
+        }
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var tweakedProcess in organelle.Definition.RunnableProcesses)
+            {
+                usedProcessesCache.Add(tweakedProcess.Process);
+            }
+        }
+
+        foreach (var usedProcess in usedProcessesCache)
+        {
+            foreach (var input in usedProcess.Inputs)
+            {
+                if (biomeConditions.IsVaryingCompound(input.Key))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
     ///   Calculates how much storage is needed to survive the night for a cell.
     /// </summary>
     /// <returns>

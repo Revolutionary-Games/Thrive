@@ -185,7 +185,7 @@ public class BiomeConditions : ICloneable
     }
 
     /// <summary>
-    ///   Checks if the method <see cref="GetAmbientCompoundsThatVary"/> would return true.
+    ///   Checks if the method <see cref="GetAmbientCompoundsThatVary"/> would return true
     /// </summary>
     /// <returns>True if there are compounds that vary</returns>
     public bool HasCompoundsThatVary()
@@ -202,6 +202,28 @@ public class BiomeConditions : ICloneable
         }
 
         return false;
+    }
+
+    /// <summary>
+    ///   Returns true if the specified compound varies during the day / night cycle
+    /// </summary>
+    /// <param name="compound">Compound type to check</param>
+    /// <returns>True if compound varies</returns>
+    public bool IsVaryingCompound(Compound compound)
+    {
+        const float epsilon = 0.000001f;
+
+        bool hasNormally = Compounds.TryGetValue(compound, out var normal);
+        bool hasMinimum = MinimumCompounds.TryGetValue(compound, out var minimnum);
+
+        // Not varying if the numbers are the same
+        if (!hasNormally && !hasMinimum)
+            return false;
+
+        if (hasNormally && hasMinimum && Math.Abs(normal.Ambient - minimnum.Ambient) < epsilon)
+            return false;
+
+        return true;
     }
 
     public void Check(string name)

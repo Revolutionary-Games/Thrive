@@ -77,6 +77,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     private readonly List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)>
         chunkDataCache = new();
 
+    private readonly Dictionary<Species, bool> speciesUsingVaryingCompounds = new();
+    private readonly HashSet<BioProcess> varyingCompoundsTemporary = new();
+
     private GameWorld? gameWorld;
     private bool currentlyNight;
 
@@ -167,6 +170,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             // Clean up old cached microbes
             CleanMicrobeCache();
             CleanChunkCache();
+            CleanSpeciesUsingVaryingCompound();
         }
 
         if (gameWorld == null)
@@ -299,7 +303,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // Adjust activity for night if it is currently night
         // TODO: also check if the current species relies on varying compounds (otherwise it shouldn't react to it
         // being night)
-        if (currentlyNight)
+        if (currentlyNight && GetIsSpeciesUsingVaryingCompounds(ourSpecies.Species))
         {
             speciesActivity *= MicrobeInternalCalculations.GetActivityNightModifier(speciesBehaviour.Activity);
         }
@@ -1162,6 +1166,55 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     {
         chunkDataCache.Clear();
         chunkCacheBuilt = false;
+    }
+
+    private bool GetIsSpeciesUsingVaryingCompounds(Species species)
+    {
+        // TODO: switch this to thread local data storage
+        lock (speciesUsingVaryingCompounds)
+        {
+            if (speciesUsingVaryingCompounds.TryGetValue(species, out var result))
+                return result;
+
+            if (gameWorld == null)
+                throw new InvalidOperationException("Game world should be set here");
+
+            var patch = gameWorld.Map.CurrentPatch;
+
+            if (patch == null)
+            {
+                GD.PrintErr("Current patch should be set for the microbe AI");
+                patch = gameWorld.Map.Patches.First().Value;
+            }
+
+            if (species is MicrobeSpecies microbeSpecies)
+            {
+                // TODO: thread local storage for this cache
+                result = MicrobeInternalCalculations.UsesDayVaryingCompounds(microbeSpecies.Organelles, patch.Biome,
+                    varyingCompoundsTemporary);
+            }
+            else if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
+            {
+                // TODO: should this use the actual cell from the species that is running the AI? This isn't fully
+                // accurate.
+                // TODO: thread local storage for this cache
+                result = MicrobeInternalCalculations.UsesDayVaryingCompounds(
+                    earlyMulticellularSpecies.Cells[0].Organelles, patch.Biome, varyingCompoundsTemporary);
+            }
+            else
+            {
+                result = false;
+                GD.PrintErr("Unhandled species type in microbe AI system varying compounds check");
+            }
+
+            speciesUsingVaryingCompounds[species] = result;
+            return result;
+        }
+    }
+
+    private void CleanSpeciesUsingVaryingCompound()
+    {
+        speciesUsingVaryingCompounds.Clear();
     }
 
     /// <summary>
