@@ -571,6 +571,45 @@ public static class MicrobeInternalCalculations
         return (enoughStorage, requiredCapacities);
     }
 
+    /// <summary>
+    ///   Finds all compounds that are produced from the given compound.
+    /// </summary>
+    /// <param name="compound">Compound that is used as an input</param>
+    /// <param name="organelles">Organelles present in cell</param>
+    /// <returns>The produced compounds</returns>
+    public static HashSet<Compound> GetCompoundsProducedByProcessesTakingIn(Compound compound,
+        IReadOnlyCollection<OrganelleTemplate> organelles)
+    {
+        var result = new HashSet<Compound>();
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var process in organelle.Definition.RunnableProcesses)
+            {
+                bool usesInput = false;
+
+                foreach (var processInput in process.Process.Inputs)
+                {
+                    if (processInput.Key == compound)
+                    {
+                        usesInput = true;
+                        break;
+                    }
+                }
+
+                if (!usesInput)
+                    continue;
+
+                foreach (var processOutput in process.Process.Outputs)
+                {
+                    result.Add(processOutput.Key);
+                }
+            }
+        }
+
+        return result;
+    }
+
     public static void CalculatePossibleEndosymbiontsFromSpecies(MicrobeSpecies species,
         List<(OrganelleDefinition Organelle, int Cost)> result)
     {

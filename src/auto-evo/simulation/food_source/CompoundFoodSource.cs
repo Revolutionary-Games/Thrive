@@ -35,9 +35,7 @@ public class CompoundFoodSource : RandomEncounterFoodSource
             simulationCache, worldSettings);
 
         // Species that are less active during the night get a small penalty here based on their activity
-        if (isDayNightCycleEnabled &&
-            MicrobeInternalCalculations.UsesDayVaryingCompounds(((MicrobeSpecies)species).Organelles, patch.Biome,
-                null))
+        if (isDayNightCycleEnabled && simulationCache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
         {
             var multiplier = species.Behaviour.Activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 

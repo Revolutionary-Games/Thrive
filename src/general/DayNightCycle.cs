@@ -30,6 +30,12 @@ public class DayNightCycle : IDaylightInfo
     private float daytimeMultiplier;
 
     /// <summary>
+    ///   How big part of the day is considered to be the day. Defaults to 0.5f.
+    /// </summary>
+    [JsonIgnore]
+    private float daytimeFraction;
+
+    /// <summary>
     ///   Controller for variation in sunlight during an in-game day for the current game.
     /// </summary>
     public DayNightCycle()
@@ -68,15 +74,10 @@ public class DayNightCycle : IDaylightInfo
     /// <summary>
     ///   How long until the night starts. When negative it is currently night.
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: verify that this makes sense, this assumes mid-day is 0.5 and night is exactly half of the total day
-    ///     <see cref="Constants.LIGHT_NIGHT_FRACTION"/>
-    ///   </para>
-    /// </remarks>
     [JsonIgnore]
-    public float DayFractionUntilNightStart =>
-        FractionOfDayElapsed > 0.25f ? 0.75f - FractionOfDayElapsed : -FractionOfDayElapsed - 0.25f;
+    public float DayFractionUntilNightStart => FractionOfDayElapsed > daytimeFraction * 0.5f ?
+        1 - daytimeFraction * 0.5f - FractionOfDayElapsed :
+        -FractionOfDayElapsed - daytimeFraction * 0.5f;
 
     [JsonIgnore]
     public float SecondsUntilNightStart => DayFractionUntilNightStart * DayLengthRealtimeSeconds;
@@ -116,7 +117,8 @@ public class DayNightCycle : IDaylightInfo
     /// </summary>
     public void CalculateDependentLightData(WorldGenerationSettings worldSettings)
     {
-        daytimeMultiplier = CalculateDayTimeMultiplier(worldSettings.DaytimeFraction);
+        daytimeFraction = worldSettings.DaytimeFraction;
+        daytimeMultiplier = CalculateDayTimeMultiplier(daytimeFraction);
 
         AverageSunlight = isEnabled ? CalculateAverageSunlight(daytimeMultiplier) : 1.0f;
     }
