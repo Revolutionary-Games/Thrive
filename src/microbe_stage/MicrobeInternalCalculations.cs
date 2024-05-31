@@ -511,51 +511,61 @@ public static class MicrobeInternalCalculations
     /// </returns>
     public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
         IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
-        BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
+        BiomeConditions biomeConditions, WorldGenerationSettings worldSettings,
+        ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-            moving, playerSpecies, worldSettings, CompoundAmountType.Biome);
+        if (dayCompoundBalances == null)
+        {
+            var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
+                moving, playerSpecies, worldSettings, CompoundAmountType.Biome);
 
-        var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-            biomeConditions, CompoundAmountType.Biome, energyBalance);
+            dayCompoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+                biomeConditions, CompoundAmountType.Biome, energyBalance);
+        }
 
-        // TODO: is it fine to use energy balance calculated with the biome numbers here?
         var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-            biomeConditions, CompoundAmountType.Minimum, energyBalance);
+            biomeConditions, CompoundAmountType.Minimum, ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions,
+                membraneType,
+                moving, playerSpecies, worldSettings, CompoundAmountType.Minimum));
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 
-        var nightSeconds = worldSettings.DayLength * Constants.LIGHT_NIGHT_FRACTION;
+        var nightSeconds = worldSettings.DayLength * (1 - worldSettings.DaytimeFraction);
 
         bool enoughStorage = true;
         var requiredCapacities = new Dictionary<Compound, float>();
 
-        foreach (var normalBalance in compoundBalances)
+        foreach (var normalBalance in dayCompoundBalances)
         {
-            if (!minimums.TryGetValue(normalBalance.Key, out var minimumValue) ||
-                Math.Abs(minimumValue.Balance - normalBalance.Value.Balance) > 0.001f)
+            // Only handle compounds that are differently generated during the night and don't have a positive night
+            // balance
+            if (minimums.TryGetValue(normalBalance.Key, out var minimumValue) && !(minimumValue.Balance < 0) &&
+                !(Math.Abs(minimumValue.Balance - normalBalance.Value.Balance) > 0.001f))
             {
-                if (normalBalance.Value.Balance > 0.001f)
-                    continue;
-
-                // Found a compound that is generated during the day more than night
-
-                var drainRate = minimumValue?.Balance ?? normalBalance.Value.Consumption.SumValues();
-
-                // As things slowly pick up again after the night, it isn't fully this bad, this is just a worst case
-                // scenario
-                // TODO: more accurate math
-                var overestimatedDrain = drainRate * nightSeconds;
-
-                var capacity = cachedCapacities.GetValueOrDefault(normalBalance.Key, cachedCapacity);
-
-                if (overestimatedDrain > capacity)
-                {
-                    enoughStorage = false;
-                }
-
-                requiredCapacities[normalBalance.Key] = overestimatedDrain;
+                continue;
             }
+
+            // Skip things that aren't generated during the day
+            if (normalBalance.Value.Balance < 0.00001f)
+                continue;
+
+            // Found a compound that is generated during the day more than night
+
+            var drainRate = -minimumValue?.Balance ?? normalBalance.Value.Consumption.SumValues();
+
+            // As things slowly pick up again after the night, it isn't fully this bad, this is just a worst case
+            // scenario
+            // TODO: more accurate math
+            var overestimatedDrain = drainRate * nightSeconds;
+
+            var capacity = cachedCapacities.GetValueOrDefault(normalBalance.Key, cachedCapacity);
+
+            if (overestimatedDrain > capacity)
+            {
+                enoughStorage = false;
+            }
+
+            requiredCapacities[normalBalance.Key] = overestimatedDrain;
         }
 
         return (enoughStorage, requiredCapacities);
