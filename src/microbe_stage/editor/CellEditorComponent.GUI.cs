@@ -529,7 +529,7 @@ public partial class CellEditorComponent
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
     {
         var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
-            Constants.LIGHT_DAY_FILL_TIME_WARNING_THRESHOLD;
+            Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
 
         // Don't show warning when day/night is not enabled
         if (!Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled)
@@ -542,11 +542,11 @@ public partial class CellEditorComponent
         Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
         Dictionary<Compound, float> specificStorages)
     {
-        var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
-            Constants.LIGHT_NIGHT_FRACTION;
+        float lightFraction = Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
 
-        var fillingUpTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
-            Constants.LIGHT_DAY_FILL_TIME_WARNING_THRESHOLD;
+        var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds * (1 - lightFraction);
+
+        var fillingUpTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds * lightFraction;
 
         // Don't show warning when day/night is not enabled
         if (!Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled)

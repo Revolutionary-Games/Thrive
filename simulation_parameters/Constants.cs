@@ -317,17 +317,6 @@ public static class Constants
     public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
 
     /// <summary>
-    ///   Day and night are assumed to be the same length (half of the day)
-    /// </summary>
-    public const float LIGHT_NIGHT_FRACTION = 0.5f;
-
-    /// <summary>
-    ///   If filling up on some compound takes more than this fraction of the total day+night length a warning is given
-    ///   in the GUI
-    /// </summary>
-    public const float LIGHT_DAY_FILL_TIME_WARNING_THRESHOLD = 0.5f;
-
-    /// <summary>
     ///   When night is closer than this number of seconds and a cell spawns, it gets extra resources to survive.
     /// </summary>
     public const float INITIAL_RESOURCE_BUFF_WHEN_NIGHT_CLOSER_THAN = 30.0f;
@@ -1016,8 +1005,11 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
 
-    public const float AUTO_EVO_MINIMUM_VIABLE_RESERVE_PER_TIME_UNIT = 1.0f;
-    public const float AUTO_EVO_NON_VIABLE_RESERVE_PENALTY = 10;
+    public const float AUTO_EVO_NIGHT_STORAGE_NOT_ENOUGH_PENALTY = 0.1f;
+    public const float AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER = 1.2f;
+    public const float AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY = 0.7f;
+
+    public const float AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE = 2.5f;
 
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;

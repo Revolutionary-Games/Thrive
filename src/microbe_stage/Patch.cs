@@ -167,7 +167,7 @@ public class Patch
     /// <summary>
     ///   True when this patch has compounds that vary during the day / night cycle
     /// </summary>
-    [JsonProperty]
+    [JsonIgnore]
     public bool HasDayAndNight => Biome.HasCompoundsThatVary();
 
     /// <summary>
@@ -364,12 +364,8 @@ public class Patch
         gameplayPopulations.Clear();
     }
 
-    public float GetCompoundAmount(string compoundName, CompoundAmountType amountType = CompoundAmountType.Current)
-    {
-        return GetCompoundAmount(SimulationParameters.Instance.GetCompound(compoundName), amountType);
-    }
-
-    public float GetCompoundAmount(Compound compound, CompoundAmountType amountType = CompoundAmountType.Current)
+    public float GetCompoundAmountForDisplay(Compound compound,
+        CompoundAmountType amountType = CompoundAmountType.Current)
     {
         switch (compound.InternalName)
         {
@@ -400,7 +396,7 @@ public class Patch
         }
     }
 
-    public float GetCompoundAmountInSnapshot(PatchSnapshot snapshot, string compoundName)
+    public float GetCompoundAmountInSnapshotForDisplay(PatchSnapshot snapshot, string compoundName)
     {
         var compound = SimulationParameters.Instance.GetCompound(compoundName);
 
@@ -478,7 +474,7 @@ public class Patch
     {
         Biome.AverageCompounds[sunlight] = new BiomeCompoundProperties
         {
-            Ambient = Biome.MaximumCompounds[sunlight].Ambient * multiplier,
+            Ambient = Biome.Compounds[sunlight].Ambient * multiplier,
         };
     }
 
@@ -486,7 +482,7 @@ public class Patch
     {
         Biome.CurrentCompoundAmounts[sunlight] = new BiomeCompoundProperties
         {
-            Ambient = Biome.MaximumCompounds[sunlight].Ambient * multiplier,
+            Ambient = Biome.Compounds[sunlight].Ambient * multiplier,
         };
     }
 

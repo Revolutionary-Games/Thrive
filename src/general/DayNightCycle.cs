@@ -30,6 +30,12 @@ public class DayNightCycle : IDaylightInfo
     private float daytimeMultiplier;
 
     /// <summary>
+    ///   How big part of the day is considered to be the day. Defaults to 0.5f.
+    /// </summary>
+    [JsonIgnore]
+    private float daytimeFraction;
+
+    /// <summary>
     ///   Controller for variation in sunlight during an in-game day for the current game.
     /// </summary>
     public DayNightCycle()
@@ -56,7 +62,8 @@ public class DayNightCycle : IDaylightInfo
     ///   desmos: https://www.desmos.com/calculator/vrrk1bkac2
     /// </summary>
     [JsonIgnore]
-    public float DayLightFraction => isEnabled ? CalculatePointwiseSunlight(FractionOfDayElapsed) : 1.0f;
+    public float DayLightFraction =>
+        isEnabled ? CalculatePointwiseSunlight(FractionOfDayElapsed, daytimeMultiplier) : 1.0f;
 
     /// <summary>
     ///   How long a single day/night cycle lasts in realtime seconds of gameplay
@@ -67,18 +74,28 @@ public class DayNightCycle : IDaylightInfo
     /// <summary>
     ///   How long until the night starts. When negative it is currently night.
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: verify that this makes sense, this assumes mid-day is 0.5 and night is exactly half of the total day
-    ///     <see cref="Constants.LIGHT_NIGHT_FRACTION"/>
-    ///   </para>
-    /// </remarks>
     [JsonIgnore]
-    public float DayFractionUntilNightStart =>
-        FractionOfDayElapsed > 0.25f ? 0.75f - FractionOfDayElapsed : -FractionOfDayElapsed - 0.25f;
+    public float DayFractionUntilNightStart => FractionOfDayElapsed > daytimeFraction * 0.5f ?
+        1 - daytimeFraction * 0.5f - FractionOfDayElapsed :
+        -FractionOfDayElapsed - daytimeFraction * 0.5f;
 
     [JsonIgnore]
     public float SecondsUntilNightStart => DayFractionUntilNightStart * DayLengthRealtimeSeconds;
+
+    public static float CalculateDayTimeMultiplier(float daytimeFraction)
+    {
+        // This converts the fraction in daytimeFraction to the power of two needed for DayLightFraction
+        return Mathf.Pow(2, 2 / daytimeFraction);
+    }
+
+    public static float CalculateAverageSunlight(float daytimeMultiplier,
+        WorldGenerationSettings worldGenerationSettings)
+    {
+        if (!worldGenerationSettings.DayNightCycleEnabled)
+            return 1;
+
+        return CalculateAverageSunlight(daytimeMultiplier);
+    }
 
     /// <summary>
     ///   Applies the world settings. This needs to be called when this object is created (and not loaded from JSON)
@@ -100,10 +117,10 @@ public class DayNightCycle : IDaylightInfo
     /// </summary>
     public void CalculateDependentLightData(WorldGenerationSettings worldSettings)
     {
-        // This converts the fraction in DaytimeFraction to the power of two needed for DayLightFraction
-        daytimeMultiplier = Mathf.Pow(2, 2 / worldSettings.DaytimeFraction);
+        daytimeFraction = worldSettings.DaytimeFraction;
+        daytimeMultiplier = CalculateDayTimeMultiplier(daytimeFraction);
 
-        AverageSunlight = isEnabled ? CalculateAverageSunlight() : 1.0f;
+        AverageSunlight = isEnabled ? CalculateAverageSunlight(daytimeMultiplier) : 1.0f;
     }
 
     public void Process(float delta)
@@ -123,7 +140,8 @@ public class DayNightCycle : IDaylightInfo
     ///   </para>
     /// </remarks>
     /// <param name="x">Fraction of the day completed, between 0-1</param>
-    private float CalculatePointwiseSunlight(float x)
+    /// <param name="daytimeMultiplier">Converted daylight fraction to usable form</param>
+    private static float CalculatePointwiseSunlight(float x, float daytimeMultiplier)
     {
         return Math.Max(1 - daytimeMultiplier * Mathf.Pow(x - 0.5f, 2), 0);
     }
@@ -132,7 +150,7 @@ public class DayNightCycle : IDaylightInfo
     ///   Calculates average sunlight over the course of a day. A relatively expensive operation so should be used
     ///   sparingly.
     /// </summary>
-    private float CalculateAverageSunlight()
+    private static float CalculateAverageSunlight(float daytimeMultiplier)
     {
         // Average is the integral across the interval divided by length of the interval. Since the interval is
         // [0, 1] and hence has length 1, we just return the integral. The current function is only non-zero in the
@@ -141,7 +159,8 @@ public class DayNightCycle : IDaylightInfo
         var daytimeMultiplierRootReciprocal = 1.0f / Mathf.Sqrt(daytimeMultiplier);
         var start = 0.5f - daytimeMultiplierRootReciprocal;
         var end = 0.5f + daytimeMultiplierRootReciprocal;
-        return IntegratePointwiseSunlight(end) - IntegratePointwiseSunlight(start);
+        return IntegratePointwiseSunlight(end, daytimeMultiplier) -
+            IntegratePointwiseSunlight(start, daytimeMultiplier);
     }
 
     /// <summary>
@@ -153,7 +172,8 @@ public class DayNightCycle : IDaylightInfo
     ///   </para>
     /// </remarks>
     /// <param name="x">Fraction of the day completed</param>
-    private float IntegratePointwiseSunlight(float x)
+    /// <param name="daytimeMultiplier">Converted daylight fraction to usable form</param>
+    private static float IntegratePointwiseSunlight(float x, float daytimeMultiplier)
     {
         return x - daytimeMultiplier * (Mathf.Pow(x, 3) / 3 - Mathf.Pow(x, 2) / 2 + 0.25f * x);
     }
