@@ -78,7 +78,8 @@ public class BiomeConditions : ICloneable
     public IDictionary<Compound, BiomeCompoundProperties> AverageCompounds { get; }
 
     /// <summary>
-    ///   Maximum compounds during an in-game day
+    ///   Maximum compounds this patch can reach. Not related to maximum during an in-game day, for that use
+    ///   <see cref="Compounds"/>!
     /// </summary>
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> MaximumCompounds { get; }
@@ -90,7 +91,8 @@ public class BiomeConditions : ICloneable
     public IDictionary<Compound, BiomeCompoundProperties> MinimumCompounds { get; }
 
     /// <summary>
-    ///   The normal, large timescale compound amounts
+    ///   The normal, large timescale compound amounts. The maximum amounts compounds are at during a day in this
+    ///   patch (if they wary during a day).
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -102,7 +104,7 @@ public class BiomeConditions : ICloneable
 
     /// <summary>
     ///   Allows access to modification of the compound values in the biome permanently. Should only be used by
-    ///   auto-evo or map generator.
+    ///   auto-evo or map generator. After changing <see cref="AverageCompounds"/> must to be updated.
     /// </summary>
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> ChangeableCompounds => compounds;
@@ -176,7 +178,7 @@ public class BiomeConditions : ICloneable
 
         foreach (var minimumCompound in MinimumCompounds)
         {
-            if (!MaximumCompounds.TryGetValue(minimumCompound.Key, out var maxValue) ||
+            if (!Compounds.TryGetValue(minimumCompound.Key, out var maxValue) ||
                 Math.Abs(maxValue.Ambient - minimumCompound.Value.Ambient) > epsilon)
             {
                 yield return minimumCompound.Key;
@@ -194,7 +196,7 @@ public class BiomeConditions : ICloneable
 
         foreach (var minimumCompound in MinimumCompounds)
         {
-            if (!MaximumCompounds.TryGetValue(minimumCompound.Key, out var maxValue) ||
+            if (!Compounds.TryGetValue(minimumCompound.Key, out var maxValue) ||
                 Math.Abs(maxValue.Ambient - minimumCompound.Value.Ambient) > epsilon)
             {
                 return true;
@@ -214,13 +216,13 @@ public class BiomeConditions : ICloneable
         const float epsilon = 0.000001f;
 
         bool hasNormally = Compounds.TryGetValue(compound, out var normal);
-        bool hasMinimum = MinimumCompounds.TryGetValue(compound, out var minimnum);
+        bool hasMinimum = MinimumCompounds.TryGetValue(compound, out var minimum);
 
         // Not varying if the numbers are the same
         if (!hasNormally && !hasMinimum)
             return false;
 
-        if (hasNormally && hasMinimum && Math.Abs(normal.Ambient - minimnum.Ambient) < epsilon)
+        if (hasNormally && hasMinimum && Math.Abs(normal.Ambient - minimum.Ambient) < epsilon)
             return false;
 
         return true;

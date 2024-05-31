@@ -707,7 +707,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             if (GameWorld.WorldSettings.DayNightCycleEnabled)
             {
                 var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-                var patchSunlight = GameWorld.Map.CurrentPatch!.GetCompoundAmount(sunlight, CompoundAmountType.Biome);
+                var patchSunlight = GameWorld.Map.CurrentPatch!.Biome.GetCompound(sunlight, CompoundAmountType.Biome)
+                    .Ambient;
 
                 if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
                 {
@@ -972,7 +973,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
         {
             // This might need to be refactored for efficiency but, it works for now
-            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") *
+            var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+            var lightLevel =
+                GameWorld.Map.CurrentPatch!.Biome.GetCompound(sunlight, CompoundAmountType.Current).Ambient *
                 GameWorld.LightCycle.DayLightFraction;
 
             // Normalise by maximum light level in the patch
@@ -1009,8 +1012,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // This wasn't updated to check if the patch has day / night cycle as it might be plausible in the future
         // that other compounds than sunlight are varying so in those cases stage visuals should probably not update
         var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-        maxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum);
-        templateMaxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
+        maxLightLevel = GameWorld.Map.CurrentPatch.Biome.GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+        templateMaxLightLevel = GameWorld.Map.CurrentPatch.BiomeTemplate.Conditions
+            .GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
     }
 
     private void SaveGame(string name)
