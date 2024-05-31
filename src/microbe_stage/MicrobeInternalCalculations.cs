@@ -464,6 +464,45 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
+    ///   Checks if the organelles use any processes that depend on compounds that vary during the day
+    /// </summary>
+    /// <param name="organelles">Organelles to check</param>
+    /// <param name="biomeConditions">Patch to check this in</param>
+    /// <param name="usedProcessesCache">Can be non-null to give existing memory access</param>
+    /// <returns>True if the organelles depend on any compounds that vary during the day</returns>
+    public static bool UsesDayVaryingCompounds(IReadOnlyCollection<OrganelleTemplate> organelles,
+        BiomeConditions biomeConditions, HashSet<BioProcess>? usedProcessesCache)
+    {
+        if (usedProcessesCache == null)
+        {
+            usedProcessesCache = new HashSet<BioProcess>();
+        }
+        else
+        {
+            usedProcessesCache.Clear();
+        }
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var tweakedProcess in organelle.Definition.RunnableProcesses)
+            {
+                usedProcessesCache.Add(tweakedProcess.Process);
+            }
+        }
+
+        foreach (var usedProcess in usedProcessesCache)
+        {
+            foreach (var input in usedProcess.Inputs)
+            {
+                if (biomeConditions.IsVaryingCompound(input.Key))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
     ///   Calculates how much storage is needed to survive the night for a cell.
     /// </summary>
     /// <returns>
@@ -601,6 +640,22 @@ public static class MicrobeInternalCalculations
 
         // Give tiny bit of wiggle room in the amounts
         return required <= generated + 0.1f;
+    }
+
+    /// <summary>
+    ///   Gets a modifier telling how active a species is during the night
+    /// </summary>
+    /// <param name="activity">The base activity of the species</param>
+    /// <returns>A multiplier to multiply the activity with to get effective activity during the night</returns>
+    public static float GetActivityNightModifier(float activity)
+    {
+        if (activity >= Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT)
+            return 1;
+
+        if (activity <= Constants.AI_ACTIVITY_TO_BE_SESSILE_DURING_NIGHT)
+            return Constants.AI_ACTIVITY_NIGHT_MULTIPLIER_SESSILE;
+
+        return Constants.AI_ACTIVITY_NIGHT_MULTIPLIER;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

@@ -7,6 +7,12 @@ public interface IDaylightInfo
 
     [JsonIgnore]
     public float SecondsUntilNightStart { get; }
+
+    /// <summary>
+    ///   True if currently in the night half of the day
+    /// </summary>
+    [JsonIgnore]
+    public bool IsNightCurrently => DayFractionUntilNightStart < 0;
 }
 
 public class DummyLightCycle : IDaylightInfo

@@ -967,6 +967,16 @@ public static class Constants
 
     public const float AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION = 5;
 
+    /// <summary>
+    ///   How much less active cells are during the night
+    /// </summary>
+    public const float AI_ACTIVITY_NIGHT_MULTIPLIER = 0.5f;
+
+    public const float AI_ACTIVITY_NIGHT_MULTIPLIER_SESSILE = 0.02f;
+
+    public const float AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT = 340;
+    public const float AI_ACTIVITY_TO_BE_SESSILE_DURING_NIGHT = 50;
+
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -40.0f;

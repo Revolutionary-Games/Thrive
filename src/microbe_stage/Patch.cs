@@ -165,6 +165,12 @@ public class Patch
     }
 
     /// <summary>
+    ///   True when this patch has compounds that vary during the day / night cycle
+    /// </summary>
+    [JsonProperty]
+    public bool HasDayAndNight => Biome.HasCompoundsThatVary();
+
+    /// <summary>
     ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
     /// </summary>
     /// <param name="patch">The <see cref="Patch"/> to start from</param>

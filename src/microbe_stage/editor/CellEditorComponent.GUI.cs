@@ -512,7 +512,7 @@ public partial class CellEditorComponent
     private void UpdateLightSelectionPanelVisibility()
     {
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
-            Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
+            Editor.CurrentPatch.HasDayAndNight;
 
         // When not in a patch with light, hide the useless always day selector
         if (!topPanel.Visible)

@@ -1006,8 +1006,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (GameWorld.Map.CurrentPatch == null)
             throw new InvalidOperationException("Unknown current patch");
 
-        maxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
-        templateMaxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
+        // This wasn't updated to check if the patch has day / night cycle as it might be plausible in the future
+        // that other compounds than sunlight are varying so in those cases stage visuals should probably not update
+        var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+        maxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum);
+        templateMaxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
     }
 
     private void SaveGame(string name)
