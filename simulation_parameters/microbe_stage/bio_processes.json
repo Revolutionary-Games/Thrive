@@ -155,5 +155,16 @@
     "Outputs": {
       "atp": 4
     }
+  },
+  "ferrosynthesis": {
+    "Name": "IRON_CHEMOLITHOAUTOTROPHY",
+    "Inputs": {
+      "carbondioxide": 0.09,
+      "oxygen": 0.21,
+      "iron": 0.033
+    },
+    "Outputs": {
+      "atp": 13
+    }
   }
 }
