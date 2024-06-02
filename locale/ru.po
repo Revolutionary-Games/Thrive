@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 23:09+0200\n"
+"POT-Creation-Date: 2024-05-31 10:44+0300\n"
 "PO-Revision-Date: 2024-04-28 13:59+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -357,12 +357,18 @@ msgstr "Обратный Слэш"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr ""
 
 #, fuzzy
-msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Термосинтез"
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Открыть продвинутый вид настроек"
 
 msgid "BASE_MOBILITY"
 msgstr "Базовая Мобильность"
@@ -776,8 +782,20 @@ msgstr "Зайти на нашу Wiki"
 msgid "COMPILED_AT_COLON"
 msgstr "Собрано в:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Собрано в:"
+
 msgid "COMPOUNDS"
 msgstr "Соединения"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Соединение, которое нужно найти:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Соединение, которое нужно найти:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показать/скрыть соединения"
@@ -785,8 +803,24 @@ msgstr "Показать/скрыть соединения"
 msgid "COMPOUNDS_COLON"
 msgstr "Соединения:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Показать/скрыть соединения"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Показать/скрыть соединения"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Облака веществ"
@@ -802,6 +836,25 @@ msgstr "Концентрация {0} снизилась на {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} потребления"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Компонентный Баланс"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0} потребления"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Компонентный Баланс"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Соединение, которое нужно найти:"
@@ -1244,7 +1297,8 @@ msgstr "(длительность дней, выраженная в реальн
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Включить цикл день/ночь"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(ВНИМАНИЕ: фотосинтез становится гораздо менее жизнеспособным)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1652,6 +1706,66 @@ msgstr "Включить редактор"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Включить световые эффекты GUI"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Открыть все органеллы"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Отвязать все клетки в колонии"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Это значение используется для генерации мира, оно должно быть положительным целым числом"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Агрессивные микробы будут преследовать добычу на больших расстояниях\n"
+"и с большей вероятностью будут сражаться с хищниками при нападении.\n"
+"Мирные микробы не будут нападать на больших расстояниях\n"
+"и с меньшей вероятностью будут использовать токсины против хищников."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Отсоединённые Органеллы"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Это показывает, сколько всплывающих окон было навсегда отклонено пользователем.\n"
+"Если некоторые всплывающие окна, которые действительно нужны, будут отклонены, можно использовать кнопку рядом с этим, чтобы все отклоненные всплывающие окна снова появились."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Превращает [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Также превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Войдите в редактор для модификации видов"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Название отсутствует"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
@@ -1757,6 +1871,10 @@ msgstr "Постройки"
 msgid "EXIT"
 msgstr "Выход"
 
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Перейдите в новую вкладку редактора"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Выйти в лаунчер"
 
@@ -1844,6 +1962,18 @@ msgstr "Опубликовано на {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Этот пункт был усечен из-за слишком большой длины, пожалуйста, прочитайте оригинал для полного содержания. {0}"
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Термопласт"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Термопласт — двумембранная структура, содержащая термочувствительные пигменты, сложенные вместе в мембранные мешочки. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в термопласте способны использовать энергию разности температур в окружающей среде для получения [thrive:compound type=\"atp\"][/thrive:compound] из воды и газообразного углекислого газа в процессе, называемом [b]термосинтез[/b]. Скорость выработки [thrive:compound type=\"atp\"][/thrive:compound] зависит [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и температуры."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Отфильтровать предметы по категориям:"
@@ -2722,6 +2852,10 @@ msgstr "Очень маленькое"
 
 msgid "LINE_COLOUR"
 msgstr "Цвет Линии:"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Название отсутствует"
 
 msgid "LIPASE"
 msgstr "Липаза"
@@ -3974,6 +4108,13 @@ msgstr "Не удалось загрузить файл pck ({0}), его не �
 msgid "PEACEFUL"
 msgstr "Мирный"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4766,6 +4907,10 @@ msgstr ""
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузы"
 
+#, fuzzy
+msgid "START"
+msgstr "Запуск"
+
 msgid "STARTING"
 msgstr "Запуск"
 
@@ -4848,6 +4993,9 @@ msgstr "Вместимость"
 
 msgid "STORAGE_COLON"
 msgstr "Вместимость:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Авторизован как: {0}"
@@ -5662,6 +5810,10 @@ msgstr "Просмотреть Заметки Обновления"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Просмотреть последние или все заметки обновлений Thrive"
+
+#, fuzzy
+msgid "VIEW_PENDING_ACTIONS"
+msgstr "Модификации"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Открыть исходный код"

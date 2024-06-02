@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://doveokjve1v3t"]
+
+[ext_resource type="Script" path="res://src/microbe_stage/editor/CompoundStorageStatistics.cs" id="1_kuvhf"]
+[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="2_8tkg3"]
+[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="3_jli72"]
+
+[sub_resource type="Theme" id="1"]
+default_font = ExtResource("3_jli72")
+default_font_size = 14
+
+[node name="CompoundStorageStatistics" type="VBoxContainer" node_paths=PackedStringArray("compoundListContainer")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_kuvhf")
+compoundListContainer = NodePath("VBoxContainer")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+tooltip_text = "COMPOUND_STORAGE_STATS_TOOLTIP"
+mouse_filter = 0
+text = "COMPOUND_STORAGE_STATS_TITLE"
+label_settings = ExtResource("2_8tkg3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("1")

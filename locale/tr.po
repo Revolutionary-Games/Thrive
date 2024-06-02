@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 23:09+0200\n"
-"PO-Revision-Date: 2024-04-29 05:48+0000\n"
+"POT-Creation-Date: 2024-05-31 10:44+0300\n"
+"PO-Revision-Date: 2024-05-09 15:10+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -184,7 +184,7 @@ msgid "ALT"
 msgstr "Alt"
 
 msgid "AMBIANCE_VOLUME"
-msgstr "Ortam seviyesi"
+msgstr "Ortam sesi"
 
 msgid "AMMONIA"
 msgstr "Amonyak"
@@ -269,7 +269,7 @@ msgid "ATP"
 msgstr "ATP"
 
 msgid "ATP_BALANCE"
-msgstr "ATP Dengesi"
+msgstr "ATP Tutarı"
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP Üretimi"
@@ -357,12 +357,17 @@ msgstr "Ters Eğik Çizgi"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr "Gündüz vaktiymiş gibi hesapla"
 
-#, fuzzy
-msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Termosentez"
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr "İşaretlendiğinde, bu paneldeki sayılar her zaman gündüz vaktiymiş gibi hesaplanır"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr "Hareket maliyetini dahil et"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "İşaretlendiğinde, bu paneldeki tutarı ve diğer sayıları hücrenin sürekli hareket ettiğini varsayarak hesaplar"
 
 msgid "BASE_MOBILITY"
 msgstr "Temel Hareketlilik"
@@ -776,8 +781,17 @@ msgstr "Topluluk vikimizi ziyaret edin"
 msgid "COMPILED_AT_COLON"
 msgstr "Derlenme tarihi:"
 
+msgid "COMPLETE_ACTION"
+msgstr "Bitir"
+
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
+
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Dengedeki Tutar"
+
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Maksimum Hızda Tutar"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Bileşikleri göster / gizle"
@@ -785,11 +799,27 @@ msgstr "Bileşikleri göster / gizle"
 msgid "COMPOUNDS_COLON"
 msgstr "Bileşikler:"
 
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "({0} s içinde depoyu doldurur)"
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "({0} s içinde depoyu doldurur, bu süre, {1} s'lik kullanılabilir gün ışığından daha uzundur)"
+
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr ""
+"Bileşik tutarını hesaplama modudur. Örneğin maksimum hız, tüm işlemlerin maksimum hızda çalıştığını varsayarak hesaplarken,\n"
+"denge, işlemlerin sadece negatif olmayan ATP tutarına sahip olacak kadar hızlı şekilde çalıştığını hesaplar."
+
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr "Bileşik Dengesi"
+msgstr "Bileşik Tutarları"
+
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr ""
+"Bu bölüm, her bir bileşik için toplam tutarı (üretim - tüketim) gösterir.\n"
+"Örneğin, bir bitki hücresi oluşturmak için glukoz tutarının oldukça pozitif olması gerekir."
 
 msgid "COMPOUND_CLOUDS"
-msgstr "Bileşik bulutları"
+msgstr "Bileşik bulutu"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Bileşik bulutu yoğunluğu"
@@ -802,6 +832,25 @@ msgstr "{0} konsantrasyonu {1} azaldı"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} tüketimi"
+
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "({0} s uzun bir gece vaktine dayanmak için yeterli değil)"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr "Gündüz vakti, yalnızca {1} [thrive:compound type=\"{0}\"][/thrive:compound] oluşturulabilir. Ancak, gece hayatta kalmak için {2} gereklidir."
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Gece vakti {2} s sürmekte ve depo bileşikleri yalnızca {1} s tutabilmektedir. Bu yüzden, [thrive:compound type=\"{0}\"][/thrive:compound] için yeterli depo alanı yok."
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Depo Kapasiteleri"
+
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr ""
+"Bu bölüm, tamamen dolu bir depoyla başlayan hücrenin her bir bileşik türünü ne kadar uzun bir sürede harcadığını gösterir.\n"
+"Bu sayılar, her zaman gece vaktiymiş gibi hesaplanır ve tüm gece boyunca hayatta kalmak için hücrenin yeterli deposunun olup\n"
+"olmadığını kontrol etmede kullanılabilir. İşaret kutucuğu olan hareket maliyetini devre dışı bırakmak, enerjiyi korumak için tüm gece\n"
+"boyunca hareketsiz durarak hayatta kalmada gerekli minimum sayıları verir."
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Aranacak Bileşik:"
@@ -1203,8 +1252,8 @@ msgstr "(oyun içinde geçen bir günün gerçek zamandaki saniye uzunluğu)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Gece gündüz döngüsünü etkinleştir"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr "(UYARI: fotosentez daha elverişsiz hale gelir)"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "(gece boyunca fotosentez daha elverişsiz hale gelir ve daha fazla ön planlama gerektirir)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Ölü bölge kalibrasyon işlemi tamamlandı. Yeni ölü bölgeler, aşağıda bulunan eksen değeri görüntüleyicilerinde gösterilmektedir."
@@ -1609,6 +1658,51 @@ msgstr "Düzenleyiciyi aç"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Arayüz ışık efektlerini etkinleştir"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr "Endosimbiyoz işlemi zaten tamamlandı, bu işlemi düzenleyicide bitirin"
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr "Endosimbiyoz hedefi geçici bir organele dönüştürüldü; eğer düzenleyiciye ulaşırsanız, bu işlem endosimbiyozu ilerletecek"
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr "Endosimbiyont türü zaten mevcut, endosimbiyoz işlemini ilerletmek için düzenleyiciye girin"
+
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Dönüşülebilecek mevcut organeller"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr "Endosimbiyoz"
+
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Bu endosimbiyoz işlemini iptal et. Bu durumda, bu endosimbiyonttaki mevcut ilerleme kaybedilir!"
+
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Bu endosimbiyoz işlemini bitir ve bu işlemi bir organel olarak yerleştir"
+
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Endosimbiyoz, başka bir türü endosimbiyont (başka bir türün içinde, simbiyotik ilişki içinde yaşayan bir tür) haline dönüştüren bir işlemdir. Bu işlem, oluşturulan organelin kilidini açar ve bu organelin bedava bir kopyasını verir. Organellere dönüşecek elverişli adaylar, daha önce yutulmuşlarsa, aşağıda gösterilir. Bu işlemin ne kadar uzun süreceği, adayın endosimbiyoz için ne kadar uygun olduğuna bağlıdır (bu, her aday organelin altında gösterilir)."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr "Endosimbiyonta dönüştürülecek uygun bir tür henüz yutulmadı"
+
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Bu tür, geçerli herhangi bir organele dönüştürülemez"
+
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "Endosimbiyoz işlemini ilerletmek için hedef türün geçici bir organele dönüşmek üzere yutulması gerekir (tek seferde, yalnızca bir tane bulunabilir). Mevcut geçici organel ile düzenleyiciye ulaştığınızda, ardından ilerlemeniz kaydedilir."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr "Prokaryotlar en fazla bir endosimbiyonta sahip olabilir"
+
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "İlerlemek için geçici bir organel gibi çalışacak bu tür ile, düzenleyiciye erişene dek, hayatta kal"
+
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Bu tür için endosimbiyozu başlat (hedef organel türü seçildiğinde kullanılabilir)"
+
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Endosimbiyoz"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1714,6 +1808,9 @@ msgstr "Binalar"
 msgid "EXIT"
 msgstr "Çık"
 
+msgid "EXIT_EDITOR"
+msgstr "Düzenleyiciden Çık"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Çık ve Başlatıcıya Dön"
 
@@ -1801,6 +1898,18 @@ msgstr "{0} tarihinde yayınlandı"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Bu öğe, gereğinden fazla uzun olduğu için kısaltıldı. Bütün içeriği görmek için lütfen bu öğenin orijinalini okuyun. {0}"
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklıkla[/thrive:compound] doğru orantılıdır."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Öğeleri kategori cinsinden filtrele:"
@@ -2016,7 +2125,7 @@ msgid "GPU_NAME"
 msgstr "GPU:"
 
 msgid "GRAPHICS"
-msgstr "Grafikler"
+msgstr "Görüntü"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik Ekibi"
@@ -2035,7 +2144,7 @@ msgid "GUI_TAB_NAVIGATION"
 msgstr "Kullanıcı Arayüzünde Sekme Gezinme"
 
 msgid "GUI_VOLUME"
-msgstr "Arayüz seviyesi"
+msgstr "Arayüz sesi"
 
 msgid "HEALTH"
 msgstr "Sağlık"
@@ -2177,7 +2286,7 @@ msgid "INJECTISOME_PILUS"
 msgstr ""
 
 msgid "INPUTS"
-msgstr "Girişler"
+msgstr "Kontroller"
 
 msgid "INPUT_NAME_BUILD_STRUCTURE"
 msgstr "Bir yapı inşa et"
@@ -2279,7 +2388,7 @@ msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "Yer"
 
 msgid "INVERTED"
-msgstr "Ters Çevrilmiş"
+msgstr "Ters"
 
 msgid "IN_PROTOTYPE"
 msgstr ""
@@ -2673,6 +2782,9 @@ msgstr "Çok küçük"
 
 msgid "LINE_COLOUR"
 msgstr "Çizgi Rengi:"
+
+msgid "LINKS_TITLE"
+msgstr "Bağlantılar"
 
 msgid "LIPASE"
 msgstr "Lipaz"
@@ -3411,7 +3523,7 @@ msgid "MUSIC"
 msgstr "Müzik"
 
 msgid "MUSIC_VOLUME"
-msgstr "Müzik seviyesi"
+msgstr "Müzik sesi"
 
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Tür başına mutasyon girişimi"
@@ -3426,7 +3538,7 @@ msgid "MUTATION_POINTS"
 msgstr "Mutasyon Puanı"
 
 msgid "MUTE"
-msgstr "Sessiz"
+msgstr "Sustur"
 
 msgid "NAME"
 msgstr "Ad:"
@@ -3451,7 +3563,7 @@ msgstr ""
 "Toplam iş parçacığı aşırı fazla ise performans azalmaya başlar."
 
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr "Negatif ATP Dengesi"
+msgstr "Negatif ATP Tutarı"
 
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
@@ -3889,7 +4001,7 @@ msgid "PATCH_NOTE_CHANGES_HEADING"
 msgstr "Değişiklikler:"
 
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr "Bu sürümün tüm ayrıntılarını [color=#3796e1][url={0}]GitHub[/url][/color] üzerinde görüntüle"
+msgstr "Bu sürümün tüm ayrıntılarını [color=#3796e1][url={0}]GitHub[/url][/color] üzerinden görüntüle"
 
 msgid "PATREON_TOOLTIP"
 msgstr "Patreon sayfamızı ziyaret edin"
@@ -3917,6 +4029,12 @@ msgstr "pck dosyasının ({0}) yüklenmesi başarısız çünkü dosya mevcut de
 
 msgid "PEACEFUL"
 msgstr "Barışçıl"
+
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Tamamlanmış bir endosimbiyoz işlemi var ve bu işlem, bir organel olarak yerleştirilerek sonlandırılabilir. Endosimbiyoz üzerinde daha fazla ilerleme yapılabilmesi için bunun mümkün olduğunca hızlı yapılması önerilir. Endosimbiyoz ilerlemesini şimdi görüntülemek ister misiniz?"
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr "Endosimbiyoz İşleminin Tamamlanması Bekleniyor"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
@@ -4001,7 +4119,7 @@ msgid "PLAYSTATION_5"
 msgstr "PlayStation 5"
 
 msgid "PLAY_INTRO_VIDEO"
-msgstr "Tanıtım videosunu oynat"
+msgstr "Tanıtımı oynat"
 
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Yeni oyunda mikrop tanıtımını oynat"
@@ -4178,7 +4296,7 @@ msgid "RESET_KEYBINDINGS"
 msgstr "Tuş atamalarını sıfırla"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr "Varsayılanlar"
+msgstr "Varsayılan"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Varsayılanlara sıfırlansın mı?"
@@ -4509,7 +4627,7 @@ msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Bu ayar değiştirilirse, değişiklik yalnızca yeni başlatılan oyunlara uygulanır"
 
 msgid "SFX_VOLUME"
-msgstr "Ses efekti seviyesi"
+msgstr "Ses efektleri"
 
 msgid "SHIFT"
 msgstr "Shift"
@@ -4524,13 +4642,13 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Yeni Thrive sürümlerinin yama notlarını ana menüde otomatik olarak göster"
 
 msgid "SHOW_TUTORIALS"
-msgstr "Oyun rehberini göster"
+msgstr "Rehberi göster"
 
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr "Oyun rehberini göster (mevcut oyunda)"
+msgstr "Rehberi göster (mevcut oyunda)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr "Oyun rehberini göster (yeni oyunlarda)"
+msgstr "Rehberi göster (yeni oyunlarda)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Kaydedilmemiş ilerlemeler uyarısını göster"
@@ -4710,6 +4828,9 @@ msgstr ""
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Ara menü"
 
+msgid "START"
+msgstr "Başla"
+
 msgid "STARTING"
 msgstr "Başlıyor"
 
@@ -4792,6 +4913,9 @@ msgstr "Depo"
 
 msgid "STORAGE_COLON"
 msgstr "Depo:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr "saniye hızda"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
@@ -5257,7 +5381,7 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
-"[thrive:compound type=\"atp\"]ATP[/thrive:compound]dengeniz negatif.\n"
+"[thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarınız negatif.\n"
 "\n"
 "Bütün işlemleri çalıştırırken ve hareket ederken, hücreniz [thrive:compound type=\"atp\"]ATP'sini[/thrive:compound] tüketecek ve ölecek.\n"
 "\n"
@@ -5605,6 +5729,9 @@ msgstr "Yama Notlarını Görüntüle"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "En son ki veya tüm Thrive yama notlarını şimdi görüntüle"
 
+msgid "VIEW_PENDING_ACTIONS"
+msgstr "Şimdi Görüntüle"
+
 msgid "VIEW_SOURCE_CODE"
 msgstr "Kaynak Kodunu İncele"
 
@@ -5796,7 +5923,7 @@ msgstr ""
 "Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[indent]—   En az [b]5[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] içermek.[/indent]\n"
-"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] dengesine sahip olmak.[/indent]"
+"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olmak.[/indent]"
 
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
@@ -6145,7 +6272,7 @@ msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr ""
 "Hem avcı hem de av için hız önemlidir. Bu yüzden [b]Kamçı[/b], mikrobiyal ortamda yaygın olarak görülmektedir. Hücreniz ağırlıklı olarak durağan değilse, kovalamanıza ve diğer hücrelerden kaçmanıza yardımcı olması için en azından birkaç [b]Kamçı[/b] eklemenizi tavsiye ediyoruz. Özellikle, bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra hız azalmasını dengelemek için bu organeli eklemenizi öneriyoruz.\n"
 "\n"
-"Hücrenizin [thrive:compound type=\"atp\"]ATP[/thrive:compound] dengesine dikkat edin. [b]Kamçı[/b] tarafından başlatılan tüketim yoksayıldığında; eğer kendinizi sürdürmek için yalnızca kısa süreliğine hareket edip dinlenir ve yeterince [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretirseniz, toplamda negatif dengeye sahip bir hücrenin hayatta kalması mümkündür."
+"Hücrenizin [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına dikkat edin. [b]Kamçı[/b] tarafından başlatılan tüketim yoksayıldığında; eğer kendinizi sürdürmek için yalnızca kısa süreliğine hareket edip dinlenir ve yeterince [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretirseniz, toplamda negatif tutara sahip bir hücrenin hayatta kalması mümkündür."
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Geliştirme yok."
@@ -6617,7 +6744,7 @@ msgstr "TBA"
 
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
-"Hücrenize bir [b]Çekirdek[/b] eklemeden önce çok iyi düşünün. Bu organeli sürdürmek pahalıdır ve bu organel, hücrenizi önemli ölçüde yavaşlatır. Bu yüzden, önemli bir pozitif [thrive:compound type=\"atp\"]ATP[/thrive:compound] dengesine sahip olduğunuzdan ve, bir ya da iki nesil boyunca, daha sakin bir yaşam tarzını sağlayabileceğinizden emin olun. Daha sonraki nesillerde, biraz çeviklik kazanmak için [b][color=#3796e1][url=thriveopedia:cilia]Siller[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:flagellum]Kamçıyı[/url][/color][/b] eklemenizi tavsiye ediyoruz.\n"
+"Hücrenize bir [b]Çekirdek[/b] eklemeden önce çok iyi düşünün. Bu organeli sürdürmek pahalıdır ve bu organel, hücrenizi önemli ölçüde yavaşlatır. Bu yüzden, önemli bir pozitif [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olduğunuzdan ve, bir ya da iki nesil boyunca, daha sakin bir yaşam tarzını sağlayabileceğinizden emin olun. Daha sonraki nesillerde, biraz çeviklik kazanmak için [b][color=#3796e1][url=thriveopedia:cilia]Siller[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:flagellum]Kamçıyı[/url][/color][/b] eklemenizi tavsiye ediyoruz.\n"
 "\n"
 "Ama, bu organelin faydaları bellidir. Ökaryotlar ([b]Çekirdekli[/b] hücreler), prokaryotlara (çekirdeksiz hücreler) göre, ileride daha çok yönlü geliştirmelere erişim kazanır.\n"
 "\n"
@@ -7023,7 +7150,7 @@ msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 "Av yakalamaya çalışırken veya yırtıcılardan kaçarken anlık bir hız artışı yeteneği kazanmak, özellikle de salınan [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] gelmekte olan yırtıcıları yavaşlatabildiği için, kullanışlıdır. Hem toplam itiş kuvveti hem de [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] deposu, dolayısıyla da dışarı salma süresi, bir hücredeki [b]Balçık Fışkırtıcı[/b] sayısı ile doğru orantılıdır.\n"
 "\n"
-"Şunu da belirtmek gerekir ki, bu organel, [thrive:compound type=\"atp\"]ATP[/thrive:compound] yerine [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] kullanır. O yüzden, bu organeli eklerken, hücrenizin bileşik dengesini incelediğinizden emin olun."
+"Şunu da belirtmek gerekir ki, bu organel, [thrive:compound type=\"atp\"]ATP[/thrive:compound] yerine [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] kullanır. O yüzden, bu organeli eklerken, hücrenizin bileşik tutarını incelediğinizden emin olun."
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Geliştirme yok."

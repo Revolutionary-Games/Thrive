@@ -13,6 +13,11 @@ using Systems;
 ///     caching is moved to a higher level in the auto-evo, that needs to be considered.
 ///   </para>
 /// </remarks>
+/// <remarks>
+///   <para>
+///     TODO: would be better to reuse instances of this class after clearing them for next use
+///   </para>
+/// </remarks>
 public class SimulationCache
 {
     private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
@@ -38,6 +43,10 @@ public class SimulationCache
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float>
         cachedEnergyCreationScoreForSpecies = new();
 
+    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
+
+    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), float> cachedStorageScores = new();
+
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
         this.worldSettings = worldSettings;
@@ -54,7 +63,7 @@ public class SimulationCache
 
         // Auto-evo uses the average values of compound during the course of a simulated day
         cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, biomeConditions, species.MembraneType,
-            species.PlayerSpecies, worldSettings, CompoundAmountType.Average);
+            true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average);
 
         cachedEnergyBalances.Add(key, cached);
         return cached;
@@ -231,6 +240,37 @@ public class SimulationCache
         return cached;
     }
 
+    public bool GetUsesVaryingCompoundsForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
+    {
+        var key = (species, biomeConditions);
+
+        if (cachedUsesVaryingCompounds.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(species.Organelles, biomeConditions, null);
+
+        cachedUsesVaryingCompounds.Add(key, cached);
+        return cached;
+    }
+
+    public float GetStorageAndDayGenerationScore(MicrobeSpecies species, BiomeConditions biomeConditions,
+        Compound compound)
+    {
+        var key = (species, biomeConditions);
+
+        if (cachedStorageScores.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        cached = CalculateStorageScore(species, biomeConditions, compound);
+
+        cachedStorageScores.Add(key, cached);
+        return cached;
+    }
+
     public bool MatchesSettings(WorldGenerationSettings checkAgainst)
     {
         return worldSettings.Equals(checkAgainst);
@@ -272,5 +312,80 @@ public class SimulationCache
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;
+    }
+
+    private float CalculateStorageScore(MicrobeSpecies species, BiomeConditions biomeConditions, Compound compound)
+    {
+        // TODO: maybe a bit lower value to determine when moving kicks in (though optimally the calculation could
+        // take in a float in range 0-1 to make much more gradual behaviour changes possible)
+        var moving = species.Behaviour.Activity >= Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
+
+        float daySeconds = worldSettings.DayLength * worldSettings.DaytimeFraction;
+
+        var cachedCapacities =
+            MicrobeInternalCalculations.GetTotalSpecificCapacity(species.Organelles, out var cachedCapacity);
+
+        Dictionary<Compound, CompoundBalance>? dayCompoundBalances = null;
+        var (canSurvive, requiredAmounts) = MicrobeInternalCalculations.CalculateNightStorageRequirements(
+            species.Organelles, species.MembraneType, moving, species.PlayerSpecies, biomeConditions, worldSettings,
+            ref dayCompoundBalances);
+
+        if (dayCompoundBalances == null)
+            throw new Exception("Day compound balance should have been calculated");
+
+        var resultCompounds =
+            MicrobeInternalCalculations.GetCompoundsProducedByProcessesTakingIn(compound, species.Organelles);
+
+        float cacheScore = 0;
+        int scoreCount = 0;
+
+        foreach (var requiredAmount in requiredAmounts)
+        {
+            // Handle only the relevant compound type
+            if (requiredAmount.Value <= 0 ||
+                (!resultCompounds.Contains(requiredAmount.Key) && requiredAmount.Key != compound))
+            {
+                continue;
+            }
+
+            cacheScore += cachedCapacities.GetValueOrDefault(requiredAmount.Key, cachedCapacity) / requiredAmount.Value;
+            ++scoreCount;
+        }
+
+        if (scoreCount == 0)
+        {
+            // No scores (maybe all production is negative or irrelevant compound type)
+            return 1;
+        }
+
+        // Additionally penalize species that cannot generate enough compounds during the day to fill required
+        // amount of storage
+        foreach (var handledCompound in resultCompounds)
+        {
+            if (!dayCompoundBalances.TryGetValue(handledCompound, out var dayBalance) || !(dayBalance.Balance >= 0))
+                continue;
+
+            var dayGenerated = dayBalance.Balance * daySeconds;
+            var required = requiredAmounts.GetValueOrDefault(handledCompound, 0);
+
+            if (!(dayGenerated < required))
+                continue;
+
+            if (required <= 0)
+                throw new Exception("Required compound amount should not be zero or negative");
+
+            float insufficientProductionScore = dayGenerated / required;
+            cacheScore *= insufficientProductionScore;
+        }
+
+        cacheScore /= scoreCount;
+
+        // Extra penalty if cell cannot store enough stuff to survive to make that situation much more harsh
+        if (!canSurvive)
+        {
+            cacheScore *= Constants.AUTO_EVO_NIGHT_STORAGE_NOT_ENOUGH_PENALTY;
+        }
+
+        return Math.Clamp(cacheScore, 0, Constants.AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE);
     }
 }

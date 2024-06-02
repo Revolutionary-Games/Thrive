@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 23:09+0200\n"
+"POT-Creation-Date: 2024-05-31 10:44+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -350,12 +350,18 @@ msgstr "Lomítko"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr ""
 
 #, fuzzy
-msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Termosyntéza"
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Otevřít náhled pokročilého nastavení"
 
 msgid "BASE_MOBILITY"
 msgstr "Základní pohyblivost"
@@ -772,8 +778,20 @@ msgstr "Navštivte naši komunitní wiki"
 msgid "COMPILED_AT_COLON"
 msgstr "Postaveno v:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Postaveno v:"
+
 msgid "COMPOUNDS"
 msgstr "Sloučeniny"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Sloučenina k nalezení:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Sloučenina k nalezení:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt sloučeniny"
@@ -781,8 +799,24 @@ msgstr "Zobrazit / skrýt sloučeniny"
 msgid "COMPOUNDS_COLON"
 msgstr "Sloučeniny:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Mračna sloučenin"
@@ -798,6 +832,25 @@ msgstr "{0} koncentrace se snížily o {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Spotřeba {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Balanc sloučenin"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Spotřeba {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Balanc sloučenin"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Sloučenina k nalezení:"
@@ -1252,7 +1305,8 @@ msgstr "(náhodně spawnuté překvapení ve hře)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Povolení cyklu den/noc"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(POZOR: fotosyntéza se stává mnohem méně životaschopnou)"
 
 #, fuzzy
@@ -1674,6 +1728,67 @@ msgstr "Zapnout editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povolit světelné efekty rozhraní"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Více organel"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Rozpojit všechny"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Agresivní mikrobi budou pronásledovat kořist na větší vzdálenosti\n"
+"a při napadení predátory jsou náchylnější k boji.\n"
+"Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
+"a je méně pravděpodobné, že budou používat toxiny proti predátorům."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Odpojené organely"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
+"a mohou být mnohem náročnější na kusy.\n"
+"Reagující mikroby se dříve přepnou na nové cíle."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Přeměňuje [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] na [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Také přeměňuje [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Vstupte do editoru a upravte svůj druh"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Chybí název"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1782,6 +1897,10 @@ msgstr "Zadejte existující ID"
 
 msgid "EXIT"
 msgstr "Odejít"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Přejít do následující záložky editoru"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -1897,6 +2016,18 @@ msgstr "Zveřejněno na {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Tato položka byla zkrácena z důvodu přílišné délky, celý obsah si prosím přečtěte v originále. {0}"
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Termoplast je struktura dvou membrán, která obsahuje termosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, která byla asimilována pro použití svým eukaryotickým hostitelem. Pigmenty v termoplastu jsou schopny využít energii rozdílných teplot v prostředí k produkci [thrive:compound type=\"atp\"][/thrive:compound] ve vodě v procesu známem jako [b]termosyntéza[/b]. Rychlost produkce [thrive:compound type=\"atp\"][/thrive:compound] je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a teplotě."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrovat věci podle kategorie:"
@@ -2827,6 +2958,10 @@ msgstr "Maličký"
 
 msgid "LINE_COLOUR"
 msgstr "Barva čáry:"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Chybí název"
 
 msgid "LIPASE"
 msgstr "Lipáza"
@@ -4123,6 +4258,13 @@ msgstr "Načítání souboru pck ({0}) se nezdařilo protože soubor neexistuje"
 msgid "PEACEFUL"
 msgstr "Mírumilovnost"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4944,6 +5086,10 @@ msgstr ""
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu pozastavení"
 
+#, fuzzy
+msgid "START"
+msgstr "Začínání"
+
 msgid "STARTING"
 msgstr "Začínání"
 
@@ -5029,6 +5175,9 @@ msgstr "Úložný prostor"
 
 msgid "STORAGE_COLON"
 msgstr "Úložný prostor:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Přihlášen jako: {0}"
@@ -5877,6 +6026,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zdrojový kód"

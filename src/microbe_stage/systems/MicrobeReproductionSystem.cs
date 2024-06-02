@@ -38,6 +38,7 @@ using World = DefaultEcs.World;
 [Without(typeof(EarlyMulticellularSpeciesMember))]
 [WritesToComponent(typeof(Engulfable))]
 [WritesToComponent(typeof(Engulfer))]
+[WritesToComponent(typeof(TemporaryEndosymbiontInfo))]
 [ReadsComponent(typeof(MicrobeStatus))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
@@ -51,6 +52,7 @@ using World = DefaultEcs.World;
 public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 {
     private readonly IWorldSimulation worldSimulation;
+    private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
 
     private readonly ConcurrentStack<PlacedOrganelle> organellesNeedingScaleUpdate = new();
@@ -70,10 +72,12 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
     private float reproductionDelta;
 
-    public MicrobeReproductionSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-        IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public MicrobeReproductionSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        ISpawnSystem spawnSystem, World world, IParallelRunner parallelRunner) :
+        base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
     {
         this.worldSimulation = worldSimulation;
+        this.spawnEnvironment = spawnEnvironment;
         this.spawnSystem = spawnSystem;
     }
 
@@ -136,7 +140,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         ref float remainingFreeCompounds, bool consumeInReverseOrder,
         List<Compound> tempStorageForProcessing, Dictionary<Compound, float>? trackCompoundUse = null)
     {
-        // If no info created yet we don't know if we are done
+        // If no info created yet, we don't know if we are done
         if (requiredCompoundsForBaseReproduction == null)
             return false;
 
@@ -298,7 +302,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             remainingFreeCompounds -= usedFreeCompounds;
         }
 
-        // For consistency we apply the ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST constant here like for
+        // For consistency, we apply the ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST constant here like for
         // organelle growth
         var amountAvailable =
             compounds.GetCompoundAmount(compound) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
@@ -470,7 +474,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
                     break;
                 }
 
-                // Unique organelles don't split so we use the growth value to know when something is fully grown
+                // Unique organelles don't split, so we use the growth value to know when something is fully grown
                 if (organelle.GrowthValue < 1.0f)
                 {
                     if (organelle.GrowOrganelle(compounds, ref remainingAllowedCompoundUse,
@@ -542,56 +546,17 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         var workData1 = hexWorkData;
         var workData2 = hexWorkData2;
 
-        // Spiral search for space for the organelle
-        int radius = 1;
-
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
         lock (workData1)
         {
             lock (workData2)
             {
-                while (true)
-                {
-                    // Moves into the ring of radius "radius" and center the old organelle
-                    var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BottomLeft];
-                    q += radiusOffset.Q;
-                    r += radiusOffset.R;
-
-                    // Iterates in the ring
-                    for (int side = 1; side <= 6; ++side)
-                    {
-                        var offset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
-
-                        // Moves "radius" times into each direction
-                        for (int i = 1; i <= radius; ++i)
-                        {
-                            q += offset.Q;
-                            r += offset.R;
-
-                            // Checks every possible rotation value.
-                            for (int j = 0; j <= 5; ++j)
-                            {
-                                newOrganelle.Position = new Hex(q, r);
-
-                                // TODO: in the old code this was always i *
-                                // 60 so this didn't actually do what it meant
-                                // to do. But perhaps that was right? This is
-                                // now fixed to actually try the different
-                                // rotations.
-                                newOrganelle.Orientation = j;
-                                if (organelles.CanPlace(newOrganelle, workData1, workData2))
-                                {
-                                    organelles.AddFast(newOrganelle, workData1, workData2);
-                                    return newOrganelle;
-                                }
-                            }
-                        }
-                    }
-
-                    ++radius;
-                }
+                // Spiral search for space for the organelle
+                organelles.FindAndPlaceAtValidPosition(newOrganelle, q, r, workData1, workData2);
             }
         }
+
+        return newOrganelle;
     }
 
     /// <summary>
@@ -652,7 +617,8 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
                         entity, species, species, worldSimulation, workData1, workData2);
 
                     // This is purely inside this lock to suppress a warning on worldSimulation
-                    cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
+                    cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnEnvironment,
+                        spawnSystem, null);
                 }
             }
         }

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 23:09+0200\n"
-"PO-Revision-Date: 2024-04-29 05:48+0000\n"
+"POT-Creation-Date: 2024-05-31 10:44+0300\n"
+"PO-Revision-Date: 2024-05-23 23:49+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -357,12 +357,17 @@ msgstr "\\"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr "如同白天一樣計算"
 
-#, fuzzy
-msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "熱合成"
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr "選中後，將按白天計算此面板中的數值"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr "包含移動成本"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "選中後，將假設細胞不斷移動並計算此面板中的平衡和其他數值"
 
 msgid "BASE_MOBILITY"
 msgstr "基礎移動能力"
@@ -776,8 +781,17 @@ msgstr "造訪我們的社群 wiki"
 msgid "COMPILED_AT_COLON"
 msgstr "建置於："
 
+msgid "COMPLETE_ACTION"
+msgstr "完成"
+
 msgid "COMPOUNDS"
 msgstr "化合物"
+
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "靜平衡"
+
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "最大速率時平衡"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏化合物"
@@ -785,8 +799,24 @@ msgstr "顯示／隱藏化合物"
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "（在 {0} 秒內填滿儲存空間）"
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "（在 {0} 秒內填滿儲存空間，這比有效日光時間長 {1} 秒）"
+
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr ""
+"計算化合物平衡的模式，例如最大速率假設所有代謝都以最大速率運作\n"
+"而靜平衡計算的代謝速率僅與非負 ATP 平衡相同。"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物平衡"
+
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr ""
+"本節顯示每種化合物的總平衡（生產 - 消耗）。\n"
+"例如，為了製造植物細胞，需要相當程度的葡萄糖平衡。"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
@@ -802,6 +832,25 @@ msgstr "{0}的濃度降低了 {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
+
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "（不足以維持 {0} 秒長的夜晚）"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr "白天只能產生 {1} [thrive:compound type=\"{0}\"][/thrive:compound]，但要在夜間生存則需要 {2}。"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "夜晚持續 {2} 秒，但沒有足夠的[thrive:compound type=\"{0}\"][/thrive:compound] 儲存空間，其僅能容納 {1} 秒的化合物。"
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "儲存容量"
+
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr ""
+"本節顯示從最大儲存量開始時，細胞需要多長時間才能用完每種化合物。\n"
+"這些數字總是以夜晚環境計算，可用於檢查細胞是否有足夠的儲存空間\n"
+"為了度過整個夜晚。關閉移動成本核取方塊可以得出生存所需的最低數值\n"
+"整夜保持靜止以節省能量。"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "要尋找的化合物："
@@ -1203,8 +1252,8 @@ msgstr "（遊戲內一日在現實中對應的秒數）"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "啟用晝夜循環"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr "（警告：光合作用會被削弱）"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "（光合作用在夜間無效，需要更好的事先計劃）"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "死區校準完成。新的死區顯示在軸值顯示器的下方。"
@@ -1609,6 +1658,51 @@ msgstr "啟用編輯器"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "啟用 GUI 燈光效果"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr "內共生已經在編輯器中完成"
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr "將內共生目標轉變為臨時細胞器，如果您將其提交給編輯器，將會增加內共生進度"
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr "內共生型態已存在，進入編輯器以推進內共生進度"
+
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "轉化可用的細胞器成為"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr "內共生"
+
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "取消此內共生過程。這會失去該內共生體目前的所有進度！"
+
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "完成此內共生過程並將其放置為細胞器"
+
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr "內共生是將另一個物種轉變為內共生體（以共生關係生活在另一個物種體內的物種）的過程。這將解鎖創建的細胞器並提供該細胞器的免費副本。下方顯示吞噬後可以轉化為細胞器的可行候選者。這個過程需要多久取決於候選細胞器是否適合內共生（顯示在每種候選細胞器下方）。"
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr "目前還沒有吞噬過適合轉化為內共生體的物種"
+
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "該物種無法轉化為任何有效的細胞器"
+
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "為了進行內共生過程，目標物種需要被吞噬，將其轉變成一種臨時細胞器（一次只能存在一個）。然後，一旦您將臨時細胞器提交給編輯器，進度就會被儲存。"
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr "原核生物最多可以有一種內共生體"
+
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "以該物種作為臨時細胞器生存到下次編輯以增加進度"
+
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "開始該物種的內共生（選擇目標細胞器類型後可用）"
+
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "內共生"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
 
@@ -1714,6 +1808,9 @@ msgstr "建築"
 msgid "EXIT"
 msgstr "退出"
 
+msgid "EXIT_EDITOR"
+msgstr "退出編輯器"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr "退出至啟動器"
 
@@ -1801,6 +1898,18 @@ msgstr "發布於 {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "本篇因篇幅過長被刪節，詳情請閱讀原文。{0}"
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "熱能體"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "熱能體是一種雙層膜結構，包含在膜囊中堆疊在一起的熱敏色素。它是一種被其真核宿主同化的原核生物。熱能體中的色素能夠利用周圍環境的熱能梯度產生能量，從水中生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/b]。其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "按類別過濾項目："
@@ -2673,6 +2782,9 @@ msgstr "少"
 
 msgid "LINE_COLOUR"
 msgstr "線條顏色："
+
+msgid "LINKS_TITLE"
+msgstr "連結"
 
 msgid "LIPASE"
 msgstr "脂肪酶"
@@ -3918,6 +4030,12 @@ msgstr "由於檔案不存在，載入 pck 檔案（{0}）失敗"
 msgid "PEACEFUL"
 msgstr "和平"
 
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "有一個完整的內共生過程，可以透過將其作為細胞器來完成。建議盡快這樣做，在此之前，內共生無法取得進一步的進展。現在查看內共生進度？"
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr "等待內共生過程完成"
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4710,6 +4828,9 @@ msgstr ""
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暫停選單"
 
+msgid "START"
+msgstr "開始"
+
 msgid "STARTING"
 msgstr "啟動中"
 
@@ -4792,6 +4913,9 @@ msgstr "儲存空間"
 
 msgid "STORAGE_COLON"
 msgstr "儲存空間："
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr "秒數"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "登入身分：{0}"
@@ -5602,6 +5726,9 @@ msgstr "查看更新說明"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "查看最新或所有 Thrive 更新說明"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr "現在查看"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看原始碼"

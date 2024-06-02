@@ -17,6 +17,9 @@ using Systems;
 [UseThriveSerializer]
 public class MicrobeSpecies : Species, ICellDefinition
 {
+    private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
+        cachedFillTimes = new();
+
     [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
@@ -86,8 +89,25 @@ public class MicrobeSpecies : Species, ICellDefinition
     public float BaseHexSize => Organelles.Organelles.Sum(o => o.Definition.HexCount)
         * (IsBacteria ? 0.5f : 1.0f);
 
+    /// <summary>
+    ///   TODO: this should be removed as this is not accurate (only accurate if specialized storage vacuoles aren't
+    ///   used)
+    /// </summary>
     [JsonIgnore]
     public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);
+
+    /// <summary>
+    ///   Compound capacities members of this species can store in their default configurations
+    /// </summary>
+    [JsonIgnore]
+    public (float Nominal, Dictionary<Compound, float> Specific) StorageCapacities
+    {
+        get
+        {
+            var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(Organelles, out var nominal);
+            return (nominal, specific);
+        }
+    }
 
     [JsonIgnore]
     public bool CanEngulf => !MembraneType.CellWall;
@@ -109,6 +129,8 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         RepositionToOrigin();
         UpdateInitialCompounds();
+
+        cachedFillTimes.Clear();
     }
 
     public override bool RepositionToOrigin()
@@ -122,15 +144,16 @@ public class MicrobeSpecies : Species, ICellDefinition
     {
         // Since the initial compounds are only set once per species they can't be calculated for each Biome.
         // So, the compound balance calculation uses the default biome.
-        // Also we should not overtly punish photosynthesizers so we just use the consumption here (instead of
+        // Also, we should not overtly punish photosynthesizers, so we just use the consumption here (instead of
         // balance where the generated glucose would offset things and spawn photosynthesizers with no glucose,
         // which could basically make them die instantly in certain situations)
-        var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
+        var simulationParameters = SimulationParameters.Instance;
+        var biomeConditions = simulationParameters.GetBiome("default").Conditions;
         var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
             biomeConditions, CompoundAmountType.Biome);
 
-        var glucose = SimulationParameters.Instance.GetCompound("glucose");
-        var atp = SimulationParameters.Instance.GetCompound("atp");
+        var glucose = simulationParameters.GetCompound("glucose");
+        var atp = simulationParameters.GetCompound("atp");
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
         var cachedCapacity = StorageCapacity;
@@ -139,7 +162,7 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         foreach (var compoundBalance in compoundBalances)
         {
-            // Skip ATP as it we don't want to give any initial ATP
+            // Skip ATP as we don't want to give any initial ATP
             if (compoundBalance.Key == atp)
                 continue;
 
@@ -166,6 +189,33 @@ public class MicrobeSpecies : Species, ICellDefinition
         }
     }
 
+    public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)
+    {
+        if (spawnEnvironment is not IMicrobeSpawnEnvironment microbeSpawnEnvironment)
+            throw new ArgumentException("Microbes must have microbe spawn environment info");
+
+        // TODO: cache the data
+        var biome = microbeSpawnEnvironment.CurrentBiome;
+
+        Dictionary<Compound, (float TimeToFill, float Storage)>? compoundTimes;
+
+        // This lock is here to allow multiple microbe spawns to happen in parallel. Lock is not used on clear as no
+        // spawns should be allowed to happen while species are being modified
+        lock (cachedFillTimes)
+        {
+            if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
+            {
+                // TODO: should moving be false in some cases?
+                compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(Organelles,
+                    MembraneType, true, PlayerSpecies, biome, spawnEnvironment.WorldSettings);
+                cachedFillTimes[biome] = compoundTimes;
+            }
+        }
+
+        MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,
+            spawnEnvironment.DaylightInfo);
+    }
+
     public override void ApplyMutation(Species mutation)
     {
         base.ApplyMutation(mutation);
@@ -185,6 +235,8 @@ public class MicrobeSpecies : Species, ICellDefinition
         IsBacteria = casted.IsBacteria;
         MembraneType = casted.MembraneType;
         MembraneRigidity = casted.MembraneRigidity;
+
+        cachedFillTimes.Clear();
     }
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)

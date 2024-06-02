@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 23:09+0200\n"
+"POT-Creation-Date: 2024-05-31 10:44+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -374,12 +374,18 @@ msgstr "Backslash"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr ""
 
 #, fuzzy
-msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Termosintesis"
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 #, fuzzy
 msgid "BASE_MOBILITY"
@@ -819,8 +825,20 @@ msgstr "Keluar dari permainan"
 msgid "COMPILED_AT_COLON"
 msgstr "Senyawa:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Senyawa:"
+
 msgid "COMPOUNDS"
 msgstr "Senyawa"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Awan senyawa"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Awan senyawa"
 
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -829,8 +847,24 @@ msgstr "Tambah keybind baru"
 msgid "COMPOUNDS_COLON"
 msgstr "Senyawa:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Tambah keybind baru"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Awan senyawa"
@@ -848,6 +882,25 @@ msgstr "Konsentrasi {0} menurun sebanyak {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "konsumsi {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Keseimbangan Senyawa"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "konsumsi {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Keseimbangan Senyawa"
 
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
@@ -1242,8 +1295,9 @@ msgstr "{0} populasi berubah {1} karena: {2}"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "Tusuk sel lain dengan ini."
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1667,6 +1721,64 @@ msgstr "Aktifkan editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Aktifkan Efek Cahaya GUI"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Letakkan organel"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Lepas semua"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Lanjutkan"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Mikroba agresif akan mengejar mangsa pada jarak yang lebih besar\n"
+"dan akan mungkin sekali untuk berkelahi dengan pemangsa jika terserang.\n"
+"Mikroba damai tidak akan melawan yang lain pada jarak yang lebih besar\n"
+"dan tidak mungkin untuk menggunakan toksin lawan pemangsa."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Organel Terputus"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Mengubah [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] menjadi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Juga mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "KAMU TELAH BERKEMBANG!"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1781,6 +1893,10 @@ msgstr "Timpa save yang sudah ada:"
 
 msgid "EXIT"
 msgstr "Keluar"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Aktifkan editor"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -1899,6 +2015,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplas"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan suhu."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -2837,6 +2965,10 @@ msgstr ""
 #, fuzzy
 msgid "LINE_COLOUR"
 msgstr "Warna"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "KAMU TELAH BERKEMBANG!"
 
 msgid "LIPASE"
 msgstr "Lipase"
@@ -4133,6 +4265,13 @@ msgstr "Selesai memuat"
 msgid "PEACEFUL"
 msgstr ""
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4992,6 +5131,10 @@ msgstr ""
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+#, fuzzy
+msgid "START"
+msgstr "Memulai"
+
 msgid "STARTING"
 msgstr "Memulai"
 
@@ -5083,6 +5226,9 @@ msgstr "Penyimpanan"
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "Penyimpanan"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Masuk sebagai {0}"
@@ -5956,6 +6102,9 @@ msgstr "Gua"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Gua"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Lihat Kode Sumber"

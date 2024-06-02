@@ -14,9 +14,16 @@ public enum CompoundAmountType
     Current,
 
     /// <summary>
-    ///   Maximum possible ambient compound amount.
+    ///   Maximum possible ambient compound amount when patch conditions change over larger time spans. This is not
+    ///   the max during an in-game day, for that see <see cref="Biome"/>! Basically none of the gameplay code should
+    ///   use it, only things like patch condition update when elapsing millions of years should use this.
     /// </summary>
     Maximum,
+
+    /// <summary>
+    ///   Minimum ambient compound amount.
+    /// </summary>
+    Minimum,
 
     /// <summary>
     ///   Average ambient compound amount over the course of a day.

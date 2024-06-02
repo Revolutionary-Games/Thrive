@@ -11,16 +11,21 @@ public partial class CompoundAmount : HBoxContainer
 
 #pragma warning disable CA2213
     private Label? amountLabel;
+    private Control? amountSuffixSpacer;
+    private Label? amountSuffixLabel;
     private TextureRect? icon;
+    private Label? extraDescriptionLabel;
 #pragma warning restore CA2213
 
     private Compound? compound;
 
     private int decimals = 3;
     private float amount = float.NegativeInfinity;
+    private string? amountSuffix;
     private bool prefixPositiveWithPlus;
     private bool usePercentageDisplay;
     private Colour valueColour = Colour.White;
+    private LocalizedString? extraValueDescription;
 
     public enum Colour
     {
@@ -63,6 +68,23 @@ public partial class CompoundAmount : HBoxContainer
                 return;
 
             amount = value;
+            if (amountLabel != null)
+                UpdateLabel();
+        }
+    }
+
+    /// <summary>
+    ///   If not null this suffix is added to the amount (with a space added between the values)
+    /// </summary>
+    public string? AmountSuffix
+    {
+        get => amountSuffix;
+        set
+        {
+            if (amountSuffix == value)
+                return;
+
+            amountSuffix = value;
             if (amountLabel != null)
                 UpdateLabel();
         }
@@ -135,6 +157,22 @@ public partial class CompoundAmount : HBoxContainer
         }
     }
 
+    /// <summary>
+    ///   When set, extra information can be shown after the compound value
+    /// </summary>
+    public LocalizedString? ExtraValueDescription
+    {
+        get => extraValueDescription;
+        set
+        {
+            if (extraValueDescription != null && extraValueDescription.Equals(value))
+                return;
+
+            extraValueDescription = value;
+            UpdateExtraDescription();
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -149,6 +187,9 @@ public partial class CompoundAmount : HBoxContainer
         // Only apply non-default colour here. If it is later changed, it is then applied
         if (ValueColour != Colour.White)
             UpdateColour();
+
+        if (extraValueDescription != null)
+            UpdateExtraDescription();
     }
 
     public override void _EnterTree()
@@ -161,6 +202,15 @@ public partial class CompoundAmount : HBoxContainer
     {
         base._ExitTree();
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
+    /// <summary>
+    ///   Call if the state of the external extra text to show has changed without the property being re-assigned
+    /// </summary>
+    public void OnExtraTextChangedExternally()
+    {
+        if (ExtraValueDescription != null)
+            UpdateExtraDescription();
     }
 
     protected override void Dispose(bool disposing)
@@ -177,7 +227,10 @@ public partial class CompoundAmount : HBoxContainer
     {
         if (amountLabel == null)
         {
-            amountLabel = new Label();
+            amountLabel = new Label
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+            };
             AddChild(amountLabel);
         }
 
@@ -193,6 +246,49 @@ public partial class CompoundAmount : HBoxContainer
         else
         {
             numberPart = Math.Round(amount, decimals).ToString(CultureInfo.CurrentCulture);
+        }
+
+        if (amountSuffix != null)
+        {
+            if (amountSuffixSpacer == null)
+            {
+                amountSuffixSpacer = new Control
+                {
+                    CustomMinimumSize = new Vector2(1, 0),
+                };
+
+                AddChild(amountSuffixSpacer);
+            }
+
+            if (amountSuffixLabel == null)
+            {
+                amountSuffixLabel = new Label
+                {
+                    VerticalAlignment = VerticalAlignment.Center,
+
+                    // TODO: find a solution for turning on word wrapping
+                    // AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                    // CustomMinimumSize = new Vector2(30, 0),
+                };
+
+                AddChild(amountSuffixLabel);
+            }
+
+            amountSuffixLabel.Text = amountSuffix;
+        }
+        else
+        {
+            if (amountSuffixLabel != null)
+            {
+                amountSuffixLabel.QueueFree();
+                amountSuffixLabel = null;
+            }
+
+            if (amountSuffixSpacer != null)
+            {
+                amountSuffixSpacer.QueueFree();
+                amountSuffixSpacer = null;
+            }
         }
 
         amountLabel.Text = PrefixPositiveWithPlus ?
@@ -222,12 +318,44 @@ public partial class CompoundAmount : HBoxContainer
         amountLabel.AddThemeColorOverride(colourParameterName, color);
     }
 
+    private void UpdateExtraDescription()
+    {
+        if (ExtraValueDescription == null)
+        {
+            extraDescriptionLabel?.QueueFree();
+            extraDescriptionLabel = null;
+        }
+        else
+        {
+            if (extraDescriptionLabel == null)
+            {
+                extraDescriptionLabel = new Label
+                {
+                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                    CustomMinimumSize = new Vector2(20, 0),
+                    SizeFlagsHorizontal = SizeFlags.ExpandFill,
+                };
+
+                AddChild(extraDescriptionLabel);
+            }
+
+            // Make sure the extra description label is last child
+            MoveChild(extraDescriptionLabel, -1);
+
+            extraDescriptionLabel.Text = ExtraValueDescription.ToString();
+        }
+    }
+
     private void UpdateIcon()
     {
         icon?.Free();
 
         icon = GUICommon.Instance.CreateCompoundIcon(compound!.InternalName);
+        icon.SizeFlagsVertical = SizeFlags.ShrinkCenter;
         AddChild(icon);
+
+        if (extraDescriptionLabel != null)
+            UpdateExtraDescription();
     }
 
     private void UpdateTooltip()
@@ -240,5 +368,6 @@ public partial class CompoundAmount : HBoxContainer
     {
         UpdateTooltip();
         UpdateLabel();
+        UpdateExtraDescription();
     }
 }

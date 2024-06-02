@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4vme2vxaxfkw"]
+[gd_scene load_steps=20 format=3 uid="uid://b4vme2vxaxfkw"]
 
 [ext_resource type="PackedScene" uid="uid://cil2efpg6jdmd" path="res://src/gui_common/tooltip/DefaultToolTip.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bhy1rrdfux74j" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/tooltips/SpeciesPreviewTooltip.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b8tdhxl6kquhx" path="res://src/microbe_stage/editor/tooltips/SpeciesPreviewTooltip.tscn" id="3"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="4"]
 [ext_resource type="PackedScene" uid="uid://bl77ntlowknmp" path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://w33dve6al45k" path="res://assets/textures/gui/bevel/osmoregulationIcon.png" id="6"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="13"]
 [ext_resource type="Texture2D" uid="uid://dgnaltjd8hysi" path="res://assets/textures/gui/bevel/parts/PilusIcon.png" id="15"]
 [ext_resource type="Texture2D" uid="uid://bvqcyxabp8g4g" path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" id="16"]
+[ext_resource type="LabelSettings" uid="uid://ijvk6u0w1c0j" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall-Red.tres" id="16_dd0bc"]
+[ext_resource type="LabelSettings" uid="uid://bm5md8yedxcr2" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall-Green.tres" id="17_ftkue"]
 [ext_resource type="Script" path="res://src/gui_common/tooltip/ToolTipManager.cs" id="23"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
@@ -701,6 +703,16 @@ ModifierValue = "+2"
 ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
+[node name="ferroplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
+visible = false
+offset_right = 373.0
+offset_bottom = 226.0
+DisplayName = "FERROPLAST"
+ProcessesDescription = "FERROPLAST_PROCESSES_DESCRIPTION"
+Description = "FERROPLAST_DESCRIPTION"
+MutationPointCost = 45
+RequiresNucleus = true
+
 [node name="nitrogenfixingplastid" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
@@ -1020,11 +1032,13 @@ ModifierIcon = ExtResource("15")
 [node name="canEngulf" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
+ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
 [node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
+ModifierNameFont = ExtResource("17_ftkue")
 ShowValue = false
 
 [node name="chitin" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
@@ -1072,11 +1086,13 @@ ModifierIcon = ExtResource("16")
 [node name="canEngulf" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
+ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
 [node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
+ModifierNameFont = ExtResource("17_ftkue")
 ShowValue = false
 
 [node name="calciumCarbonate" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
@@ -1129,6 +1145,7 @@ ModifierIcon = ExtResource("16")
 [node name="canEngulf" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
+ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
 [node name="silica" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
@@ -1182,6 +1199,7 @@ ModifierIcon = ExtResource("16")
 [node name="canEngulf" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
+ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
 [node name="processesProduction" type="Control" parent="GroupHolder"]
@@ -1250,6 +1268,13 @@ Positioning = 1
 visible = false
 layout_mode = 0
 DescriptionLabelPath = NodePath("../../processesProduction/mitochondrion/MarginContainer/VBoxContainer/Description")
+DisplayDelay = 0.0
+Positioning = 1
+
+[node name="ferroplast" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+visible = false
+offset_bottom = 34.0
+DescriptionLabelPath = NodePath("../mitochondrion/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
@@ -1454,6 +1479,7 @@ DisplayDelay = 2.5
 [editable path="GroupHolder/organelleSelection/thermoplast"]
 [editable path="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessList"]
 [editable path="GroupHolder/organelleSelection/chemoplast"]
+[editable path="GroupHolder/organelleSelection/ferroplast"]
 [editable path="GroupHolder/organelleSelection/nitrogenfixingplastid"]
 [editable path="GroupHolder/organelleSelection/vacuole"]
 [editable path="GroupHolder/organelleSelection/oxytoxy"]

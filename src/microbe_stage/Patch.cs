@@ -165,6 +165,12 @@ public class Patch
     }
 
     /// <summary>
+    ///   True when this patch has compounds that vary during the day / night cycle
+    /// </summary>
+    [JsonIgnore]
+    public bool HasDayAndNight => Biome.HasCompoundsThatVary();
+
+    /// <summary>
     ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
     /// </summary>
     /// <param name="patch">The <see cref="Patch"/> to start from</param>
@@ -358,12 +364,8 @@ public class Patch
         gameplayPopulations.Clear();
     }
 
-    public float GetCompoundAmount(string compoundName, CompoundAmountType amountType = CompoundAmountType.Current)
-    {
-        return GetCompoundAmount(SimulationParameters.Instance.GetCompound(compoundName), amountType);
-    }
-
-    public float GetCompoundAmount(Compound compound, CompoundAmountType amountType = CompoundAmountType.Current)
+    public float GetCompoundAmountForDisplay(Compound compound,
+        CompoundAmountType amountType = CompoundAmountType.Current)
     {
         switch (compound.InternalName)
         {
@@ -394,7 +396,7 @@ public class Patch
         }
     }
 
-    public float GetCompoundAmountInSnapshot(PatchSnapshot snapshot, string compoundName)
+    public float GetCompoundAmountInSnapshotForDisplay(PatchSnapshot snapshot, string compoundName)
     {
         var compound = SimulationParameters.Instance.GetCompound(compoundName);
 
@@ -472,7 +474,7 @@ public class Patch
     {
         Biome.AverageCompounds[sunlight] = new BiomeCompoundProperties
         {
-            Ambient = Biome.MaximumCompounds[sunlight].Ambient * multiplier,
+            Ambient = Biome.Compounds[sunlight].Ambient * multiplier,
         };
     }
 
@@ -480,7 +482,7 @@ public class Patch
     {
         Biome.CurrentCompoundAmounts[sunlight] = new BiomeCompoundProperties
         {
-            Ambient = Biome.MaximumCompounds[sunlight].Ambient * multiplier,
+            Ambient = Biome.Compounds[sunlight].Ambient * multiplier,
         };
     }
 
@@ -537,11 +539,12 @@ public class Patch
     {
         switch (option)
         {
-            // TODO: minimum?
             case CompoundAmountType.Current:
                 return Biome.CurrentCompoundAmounts[compound].Ambient;
             case CompoundAmountType.Maximum:
                 return Biome.MaximumCompounds[compound].Ambient;
+            case CompoundAmountType.Minimum:
+                return Biome.MinimumCompounds[compound].Ambient;
             case CompoundAmountType.Average:
                 return Biome.AverageCompounds[compound].Ambient;
             case CompoundAmountType.Biome:

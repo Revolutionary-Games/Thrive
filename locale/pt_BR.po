@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-08 23:09+0200\n"
+"POT-Creation-Date: 2024-05-31 10:44+0300\n"
 "PO-Revision-Date: 2024-03-21 09:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -358,12 +358,18 @@ msgstr "Barra Invertida"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr ""
 
 #, fuzzy
-msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Termossíntese"
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Abrir as configurações avançadas"
 
 msgid "BASE_MOBILITY"
 msgstr "Mobilidade"
@@ -778,8 +784,20 @@ msgstr "Visite a nossa wiki comunitária"
 msgid "COMPILED_AT_COLON"
 msgstr "Compilado em:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Compilado em:"
+
 msgid "COMPOUNDS"
 msgstr "Compostos"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Composto:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Composto:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder compostos"
@@ -787,8 +805,24 @@ msgstr "Mostrar/esconder compostos"
 msgid "COMPOUNDS_COLON"
 msgstr "Compostos:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Compostos"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Compostos"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Mostrar/esconder compostos"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compostos"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Mostrar/esconder compostos"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvens de compostos"
@@ -804,6 +838,25 @@ msgstr "As concentrações de {0} diminuíram em {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "consumo de {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Compostos"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "consumo de {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Compostos"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Compostos"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composto:"
@@ -1249,7 +1302,8 @@ msgstr "(duração do dia no jogo em segundos)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Ativar o ciclo dia/noite"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(AVISO: a fotossíntese se tornará menos viável)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1657,6 +1711,66 @@ msgstr "Habilitar o editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efeitos de luz na interface"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Múltiplas Organelas"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Desconectar todos"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positivo"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Micróbios agressivos perseguirão sua presa por mais tempo\n"
+"e são mais propensos a lutar com predadores quando atacados.\n"
+"Entretanto, os micróbios mais pacíficos não vão perseguir outros por tanto tempo\n"
+"e são menos inclinados a usar toxinas contra predadores."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Organelas Desconectadas"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Isso mostra quantos pop-ups foram dispensados permanentemente pelo usuário.\n"
+"Se alguns dos pop-ups que necessita foram dispensados, o botão junto a isso pode ser usado para fazer todos os pop-ups reaparecerem."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] em [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Também transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Abre o editor e modifica a sua espécie"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Falta um título"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1762,6 +1876,10 @@ msgstr "Construções"
 msgid "EXIT"
 msgstr "Sair"
 
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Ir para a próxima aba do editor"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Sair para o Lançador"
 
@@ -1849,6 +1967,18 @@ msgstr "Publicado em {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Esse item foi truncado por ser muito longo, leia o original para obter todo o conteúdo. {0}"
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplasto"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrar os itens por categoria:"
@@ -2728,6 +2858,10 @@ msgstr "Bem pequeno"
 
 msgid "LINE_COLOUR"
 msgstr "Cor da Linha:"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Falta um título"
 
 msgid "LIPASE"
 msgstr "Lipase"
@@ -3979,6 +4113,13 @@ msgstr "Carregamento do arquivo pck ({0}) falhou, pois o arquivo não existe"
 msgid "PEACEFUL"
 msgstr "Pacífico"
 
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Você está usando Thrive usando GLES2, que não é testado e pode causar problemas. Tente atualizar seus drivers de vídeo e/ou forçar o uso do AMD ou Nvidia."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
+
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4771,6 +4912,10 @@ msgstr ""
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
 
+#, fuzzy
+msgid "START"
+msgstr "Começando"
+
 msgid "STARTING"
 msgstr "Começando"
 
@@ -4853,6 +4998,9 @@ msgstr "Armazenamento"
 
 msgid "STORAGE_COLON"
 msgstr "Armazenamento:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Entrou como: {0}"
@@ -5692,6 +5840,10 @@ msgstr "Ver as Notas de Atualização"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Ver todas as notas de atualização do jogo ou as mais recentes"
+
+#, fuzzy
+msgid "VIEW_PENDING_ACTIONS"
+msgstr "Modificações"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ver Código Fonte"

@@ -405,3 +405,33 @@
     - Updated AngleSharp from 1.1.0 to 1.1.2
     - Updated code checking tools version
     - Updated translations
+
+0.6.6.1:
+  IntroductionText: |
+    This is a quick patch release to address some of the biggest issues with the previous release. This doesn't fix every single issue report we got after 0.6.6 as many of the issues still don't have known root causes and wouldn't be easily fixable in a small amount of time. The biggest visible things are the fixed organelle models as well as fixing the size and position of many GUI elements.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.6.1
+  PatchNotes:
+    - Fixed organelle models looking bad in Godot 4
+    - Improved the visuals of the chemoreceptor and tutorial lines
+    - Turned off compression on the clouds perlin noise texture which was accidentally turned on with the Godot 4 update
+    - Did some minor organelle visuals tweaks
+    - Organelle placement sound is now only played if a placement action was done (fixes it being played for organelle removal)
+    - Fixed evolutionary tree zooming in and out not working correctly
+    - Fixed screen effects in miscellaneous settings not working
+    - Fixed win and extinction screens
+    - Fixed various GUI popup related problems in the later prototypes
+    - Increased audio latency to 20ms which helps crackling audio if the game was running slightly too slow
+    - Added extra error handling to Thriveopedia load and save load against scene load failures which seems like a randomly occurring bug in Godot 4 engine itself
+    - Added extra safety checks around native library load and printing of current CPU name if it is not detected as sufficient for running Thrive
+    - Added extra checks to our simulation running code to maybe start to narrow down a few bugs
+    - Redid modal manager connect and check operation to hopefully fix one case of signal connection errors printed in Godot 4
+    - Fixed position of our links popup in the main menu
+    - Other GUI fixes
+    - Added hyperthreading throttling instructions to our busy-wait loops
+    - Our CI builds system works again
+    - Updated our automated code checks to work on Windows again
+    - Removed trailing spaces in shaders that Godot did automatically
+    - Added game export script flag to ignore problems with installed Godot to just try to export anyway
+    - Updated Nix flake to use Godot 4.2.2
+    - Updated xunit from 2.7.1 to 2.8.0
+    - Updated translations

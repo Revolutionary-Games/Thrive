@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using JetBrains.Annotations;
 
 /// <summary>
 ///   Container for results before they are applied.
@@ -1002,6 +1003,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     ///   Call this only when auto-evo has finished. Calling at runtime will result in
     ///   incorrect result and random CollectionModifiedException.
     /// </summary>
+    [MustDisposeResource]
     public IEnumerator GetEnumerator()
     {
         return results.GetEnumerator();
@@ -1011,6 +1013,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     ///   Call this only when auto-evo has finished. Calling at runtime will result in
     ///   incorrect result and random CollectionModifiedException.
     /// </summary>
+    [MustDisposeResource]
     IEnumerator<KeyValuePair<Species, SpeciesResult>> IEnumerable<KeyValuePair<Species, SpeciesResult>>.
         GetEnumerator()
     {
