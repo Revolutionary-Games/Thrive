@@ -248,6 +248,39 @@
       }
     ],
     "EditorButtonGroup": "Protein",
+    "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn",
+    "UpgraderSkipDefaultControls": true,
+    "AvailableUpgrades": {
+      "none": {
+        "IsDefault": true,
+        "Name": "UPGRADE_NAME_NONE",
+        "Description": "UPGRADE_DESCRIPTION_NONE"
+      },
+      "macrolide": {
+        "Name": "TOXIN_MACROLIDE",
+        "Description": "TOXIN_MACROLIDE_DESCRIPTION",
+        "MPCost": 20,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "channel": {
+        "Name": "TOXIN_CHANNEL_INHIBITOR",
+        "Description": "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION",
+        "MPCost": 30,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "oxygen_inhibitor": {
+        "Name": "TOXIN_OXYGEN_METABOLISM_INHIBITOR",
+        "Description": "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION",
+        "MPCost": 25,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "cytotoxin": {
+        "Name": "TOXIN_CYTOTOXIN",
+        "Description": "TOXIN_CYTOTOXIN_DESCRIPTION",
+        "MPCost": 10,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      }
+    },
     "EditorButtonOrder": 6,
     "EndosymbiosisUnlocks": "oxytoxy"
   },
@@ -623,6 +656,39 @@
       }
     ],
     "RequiresNucleus": true,
+    "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn",
+    "UpgraderSkipDefaultControls": true,
+    "AvailableUpgrades": {
+      "none": {
+        "IsDefault": true,
+        "Name": "UPGRADE_NAME_NONE",
+        "Description": "UPGRADE_DESCRIPTION_NONE"
+      },
+      "macrolide": {
+        "Name": "TOXIN_MACROLIDE",
+        "Description": "TOXIN_MACROLIDE_DESCRIPTION",
+        "MPCost": 20,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "channel": {
+        "Name": "TOXIN_CHANNEL_INHIBITOR",
+        "Description": "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION",
+        "MPCost": 30,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "oxygen_inhibitor": {
+        "Name": "TOXIN_OXYGEN_METABOLISM_INHIBITOR",
+        "Description": "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION",
+        "MPCost": 25,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "cytotoxin": {
+        "Name": "TOXIN_CYTOTOXIN",
+        "Description": "TOXIN_CYTOTOXIN_DESCRIPTION",
+        "MPCost": 10,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      }
+    },
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 11
   },

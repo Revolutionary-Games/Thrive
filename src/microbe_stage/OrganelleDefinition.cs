@@ -159,6 +159,12 @@ public class OrganelleDefinition : IRegistryType
     public string? UpgradeGUI;
 
     /// <summary>
+    ///   If set to true then <see cref="AvailableUpgrades"/> won't be displayed by the default upgrader control, but
+    ///   everything must be handled by <see cref="UpgradeGUI"/>.
+    /// </summary>
+    public bool UpgraderSkipDefaultControls;
+
+    /// <summary>
     ///   The upgrades that are available for this organelle type
     /// </summary>
     public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
@@ -482,8 +488,13 @@ public class OrganelleDefinition : IRegistryType
         // Fail with multiple default upgrades
         if (AvailableUpgrades.Values.Count(u => u.IsDefault) > 1)
         {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Multiple default upgrades specified");
+        }
+
+        if (UpgraderSkipDefaultControls && string.IsNullOrEmpty(UpgradeGUI))
+        {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Multiple default upgrades specified");
+                "Upgrader scene is required when default upgrade controls are suppressed");
         }
 
         // Check unlock conditions
