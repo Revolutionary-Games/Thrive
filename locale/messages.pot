@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 20:04+0200\n"
+"POT-Creation-Date: 2024-06-03 22:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1797,6 +1797,7 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:102
 #: ../src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentRootPage.cs:11
 msgid "DEVELOPMENT"
 msgstr ""
@@ -2990,7 +2991,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2509
 #: ../simulation_parameters/common/wiki.json:2559
 #: ../simulation_parameters/common/wiki.json:2609
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:108
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:109
 msgid "INFO_BOX_EDITORS"
 msgstr ""
 
@@ -3034,12 +3035,12 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2497
 #: ../simulation_parameters/common/wiki.json:2547
 #: ../simulation_parameters/common/wiki.json:2597
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:51
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:52
 msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr ""
 
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:269
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:127
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:128
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr ""
 
@@ -3055,7 +3056,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2505
 #: ../simulation_parameters/common/wiki.json:2555
 #: ../simulation_parameters/common/wiki.json:2605
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:89
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:90
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr ""
 
@@ -3099,7 +3100,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2501
 #: ../simulation_parameters/common/wiki.json:2551
 #: ../simulation_parameters/common/wiki.json:2601
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:70
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:71
 msgid "INFO_BOX_PREVIOUS_STAGE"
 msgstr ""
 
@@ -4142,6 +4143,7 @@ msgstr ""
 msgid "MAY"
 msgstr ""
 
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:75
 #: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.cs:11
 msgid "MECHANICS"
 msgstr ""
@@ -5251,6 +5253,9 @@ msgid "OPEN_MOD_URL"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:71
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:80
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:89
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:98
 msgid "OPEN_ORGANELLES_PAGE"
 msgstr ""
 
@@ -5303,7 +5308,7 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:75
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:93
 #: ../src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr ""
@@ -5418,6 +5423,10 @@ msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:72
 msgid "OUR_WIKI"
+msgstr ""
+
+#: ../src/thriveopedia/pages/notices/OutdatedNotice.tscn:50
+msgid "OUTDATED_NOTICE"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:525
@@ -6692,6 +6701,7 @@ msgstr ""
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:84
 #: ../src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.cs:19
 msgid "STAGES"
 msgstr ""
@@ -9660,6 +9670,10 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2089
 #: ../simulation_parameters/common/wiki.json:2167
 msgid "YES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/notices/YetToBeImplementedNotice.tscn:50
+msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:705

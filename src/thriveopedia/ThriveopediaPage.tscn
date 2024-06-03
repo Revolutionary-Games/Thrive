@@ -1,48 +1,41 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cckki1kx0cnol"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/thriveopedia/ThriveopediaPage.cs" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/thriveopedia/ThriveopediaPage.cs" id="2"]
 
 [node name="ThriveopediaPage" type="PanelContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -344.0
 offset_bottom = -120.0
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
+theme = ExtResource("1")
+script = ExtResource("2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 935.0
-offset_bottom = 599.0
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_top = 30
+layout_mode = 2
 theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 904.0
-offset_bottom = 568.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer"]
-offset_right = 874.0
-offset_bottom = 538.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer"]
-offset_right = 864.0
-offset_bottom = 528.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="Notices" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2

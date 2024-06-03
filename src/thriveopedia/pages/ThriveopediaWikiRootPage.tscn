@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cnhgueotwqave"]
 
-[ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="3"]
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="3_n4hnu"]
 [ext_resource type="Texture2D" uid="uid://bax5eq6vw1chn" path="res://assets/concept_art/flagellum-concepts.jpg" id="4"]
@@ -65,14 +65,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="OrganellesButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="0"]
+[node name="MechanicsButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="0"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "OPEN_ORGANELLES_PAGE"
 focus_neighbor_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-text = "ORGANELLES"
+text = "MECHANICS"
 
 [node name="StagesButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="1"]
 custom_minimum_size = Vector2(250, 40)
@@ -83,14 +83,14 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "STAGES"
 
-[node name="MechanicsButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="2"]
+[node name="OrganellesButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="2"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "OPEN_ORGANELLES_PAGE"
 focus_neighbor_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-text = "MECHANICS"
+text = "ORGANELLES"
 
 [node name="DevelopmentButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="3"]
 custom_minimum_size = Vector2(250, 40)
@@ -112,7 +112,7 @@ mouse_filter = 1
 disabled = true
 text = "???"
 
-[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/OrganellesButton" to="." method="OnOrganellesPressed"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/StagesButton" to="." method="OnStagesPressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/MechanicsButton" to="." method="OnMechanicsPressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/StagesButton" to="." method="OnStagesPressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/OrganellesButton" to="." method="OnOrganellesPressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/DevelopmentButton" to="." method="OnDevelopmentPressed"]

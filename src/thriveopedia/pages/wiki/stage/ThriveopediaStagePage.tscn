@@ -1,28 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddx5iuk72ucfx"]
 
-[ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
 [ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagePage.cs" id="2_x2y32"]
 [ext_resource type="PackedScene" uid="uid://b725n2vco3c4u" path="res://src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn" id="3_2basw"]
 
 [node name="ThriveopediaPage" instance=ExtResource("1")]
-anchors_preset = 15
 script = ExtResource("2_x2y32")
 InfoBoxPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/StageDetails/PanelContainer")
 MainArticlePath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle")
+NoticeContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Notices")
 
-[node name="MarginContainer" parent="." index="0"]
-layout_mode = 2
-
-[node name="ScrollContainer" parent="MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
-layout_mode = 2
-
-[node name="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 
 [node name="MainArticle" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0"]

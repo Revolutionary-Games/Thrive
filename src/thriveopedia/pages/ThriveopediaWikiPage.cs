@@ -11,6 +11,9 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     [Export]
     public NodePath? MainArticlePath;
 
+    [Export]
+    public NodePath NoticeContainerPath;
+
 #pragma warning disable CA2213
     protected PackedScene pageSectionScene = null!;
     protected VBoxContainer mainArticle = null!;
@@ -116,6 +119,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
             {
                 MainArticlePath.Dispose();
                 pageSectionScene.Dispose();
+                NoticeContainerPath.Dispose();
             }
         }
 
@@ -144,13 +148,13 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
             var pageInstance = (T)pageScene.Instantiate();
             pageInstance.PageContent = page;
 
-           //if (page.NoticeSceneName != null)
-           //{
-           //    var noticeScene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/notices/{page.NoticeSceneName}.tscn");
-           //    var noticeInstance = noticeScene.Instantiate();
-           //    var noticeContainer = pageInstance.GetNode<VBoxContainer>(pageInstance.NoticeContainerPath);
-           //    noticeContainer.AddChild(noticeInstance);
-           //}
+            if (page.NoticeSceneName != null)
+            {
+                var noticeScene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/notices/{page.NoticeSceneName}.tscn");
+                var noticeInstance = noticeScene.Instantiate();
+                var container = pageInstance.GetNode(pageInstance.NoticeContainerPath);
+                container.AddChild(noticeInstance);
+            }
 
             extraDataInit?.Invoke(pageInstance);
             pageList.Add(pageInstance);
