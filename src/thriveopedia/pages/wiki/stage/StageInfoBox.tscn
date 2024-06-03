@@ -12,6 +12,7 @@ offset_right = 330.0
 offset_bottom = 230.0
 theme = ExtResource("1_nf8eo")
 script = ExtResource("2_hpa8j")
+NameLabelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Name")
 GameplayTypePath = NodePath("MarginContainer/VBoxContainer/GameplayType/Value")
 PreviousStagePath = NodePath("MarginContainer/VBoxContainer/PreviousStage/Value")
 NextStagePath = NodePath("MarginContainer/VBoxContainer/NextStage/Value")

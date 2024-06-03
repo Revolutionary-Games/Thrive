@@ -8,7 +8,10 @@ using Godot;
 public partial class StageInfoBox : PanelContainer
 {
     [Export]
-    public NodePath? GameplayTypePath;
+    public NodePath? NameLabelPath;
+
+    [Export]
+    public NodePath GameplayTypePath = null!;
 
     [Export]
     public NodePath PreviousStagePath = null!;
@@ -25,6 +28,7 @@ public partial class StageInfoBox : PanelContainer
     private GameWiki.Page page = null!;
 
 #pragma warning disable CA2213
+    private Label nameLabel = null!;
     private Label gameplayType = null!;
     private Label previousStage = null!;
     private Label nextStage = null!;
@@ -46,6 +50,7 @@ public partial class StageInfoBox : PanelContainer
     {
         base._Ready();
 
+        nameLabel = GetNode<Label>(NameLabelPath);
         gameplayType = GetNode<Label>(GameplayTypePath);
         previousStage = GetNode<Label>(PreviousStagePath);
         nextStage = GetNode<Label>(NextStagePath);
@@ -57,8 +62,9 @@ public partial class StageInfoBox : PanelContainer
     {
         if (disposing)
         {
-            if (GameplayTypePath != null)
+            if (NameLabelPath != null)
             {
+                NameLabelPath.Dispose();
                 GameplayTypePath.Dispose();
                 PreviousStagePath.Dispose();
                 NextStagePath.Dispose();
@@ -80,6 +86,7 @@ public partial class StageInfoBox : PanelContainer
 
         Dictionary<string, string> infoboxData = Page.InfoboxData.ToDictionary(f => f.InfoboxKey, f => f.InfoboxValue);
 
+        nameLabel.Text = Page.Name;
         gameplayType.Text = infoboxData["INFO_BOX_GAMEPLAY_TYPE"];
         previousStage.Text = infoboxData["INFO_BOX_PREVIOUS_STAGE"];
         nextStage.Text = infoboxData["INFO_BOX_NEXT_STAGE"];

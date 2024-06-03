@@ -12,5 +12,5 @@ public partial class ThriveopediaDevelopmentRootPage : ThriveopediaWikiPage
 
     public override string ParentPageName => "WikiRoot";
 
-    public override bool StartsCollapsed => false;
+    public override bool StartsCollapsed => true;
 }

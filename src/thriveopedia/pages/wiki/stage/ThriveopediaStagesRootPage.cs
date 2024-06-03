@@ -20,6 +20,8 @@ public partial class ThriveopediaStagesRootPage : ThriveopediaWikiPage
 
     public override string ParentPageName => "WikiRoot";
 
+    public override bool StartsCollapsed => true;
+
     public override void _Ready()
     {
         base._Ready();

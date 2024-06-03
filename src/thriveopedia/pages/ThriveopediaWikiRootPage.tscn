@@ -74,8 +74,36 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "ORGANELLES"
 
-[node name="ComingSoonButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="1"]
+[node name="StagesButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "OPEN_ORGANELLES_PAGE"
+focus_neighbor_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+text = "STAGES"
+
+[node name="MechanicsButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "OPEN_ORGANELLES_PAGE"
+focus_neighbor_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+text = "MECHANICS"
+
+[node name="DevelopmentButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="3"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "OPEN_ORGANELLES_PAGE"
+focus_neighbor_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+text = "DEVELOPMENT"
+
+[node name="ComingSoonButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="4"]
 editor_description = "PLACEHOLDER"
+visible = false
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 focus_neighbor_top = NodePath(".")
@@ -85,3 +113,6 @@ disabled = true
 text = "???"
 
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/OrganellesButton" to="." method="OnOrganellesPressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/StagesButton" to="." method="OnStagesPressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/MechanicsButton" to="." method="OnMechanicsPressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/DevelopmentButton" to="." method="OnDevelopmentPressed"]
