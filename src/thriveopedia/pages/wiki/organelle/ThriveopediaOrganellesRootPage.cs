@@ -27,7 +27,7 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
         base._Ready();
 
         organelleListContainer = GetNode<HFlowContainer>(OrganelleListContainerPath);
-        linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/OrganelleLinkButton.tscn");
+        linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/PageLinkButton.tscn");
     }
 
     public override void OnThriveopediaOpened()

@@ -51,6 +51,7 @@ public class WikiUpdater
         "carbondioxide",
 
         "sunlight",
+        "temperature"
     };
 
     /// <summary>
