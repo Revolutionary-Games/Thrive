@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=74 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" load_steps=75 format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_fiqxx"]
 [ext_resource type="Texture2D" uid="uid://bjchgyy3gt2vp" path="res://assets/textures/gui/bevel/grab.png" id="2"]
@@ -435,6 +435,9 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxEmpty" id="47"]
 
 [sub_resource type="StyleBoxEmpty" id="48"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stjwr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_544ol"]
 bg_color = Color(0.0117647, 0.109804, 0.117647, 1)
@@ -925,6 +928,7 @@ Tree/styles/cursor_unfocused = null
 Tree/styles/custom_button = null
 Tree/styles/custom_button_hover = null
 Tree/styles/custom_button_pressed = null
+Tree/styles/focus = SubResource("StyleBoxFlat_stjwr")
 Tree/styles/panel = SubResource("StyleBoxFlat_544ol")
 Tree/styles/selected = SubResource("StyleBoxFlat_bxqtd")
 Tree/styles/selected_focus = SubResource("StyleBoxFlat_swtua")
