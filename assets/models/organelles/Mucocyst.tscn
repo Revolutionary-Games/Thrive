@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://pus3h1fglxro"]
+
+[ext_resource type="Shader" path="res://shaders/OrganelleOpaque.gdshader" id="1_31p7k"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_juk0m"]
+[ext_resource type="Texture2D" path="res://assets/textures/Mucocyst.png" id="3_ckofx"]
+[ext_resource type="ArrayMesh" uid="uid://m8a1qwog4st5" path="res://assets/models/organelles/Mucocyst.mesh" id="4_n3x7c"]
+
+[sub_resource type="ShaderMaterial" id="3"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_31p7k")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/outlineWidth = 0.0
+shader_parameter/growColor = Color(0, 0, 0, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.01
+shader_parameter/texture = ExtResource("3_ckofx")
+shader_parameter/dissolveTexture = ExtResource("2_juk0m")
+
+[node name="Mucocyst" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("3")
+mesh = ExtResource("4_n3x7c")

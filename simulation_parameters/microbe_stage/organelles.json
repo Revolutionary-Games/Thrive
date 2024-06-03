@@ -972,7 +972,10 @@
         "Name": "UPGRADE_SLIME_JET_MUCOCYST",
         "Description": "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION",
         "MPCost": 40,
-        "IconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png"
+        "IconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
+        "OverrideGraphics": {
+          "ScenePath": "res://assets/models/organelles/Mucocyst.tscn"
+        }
       }
     }
   },
