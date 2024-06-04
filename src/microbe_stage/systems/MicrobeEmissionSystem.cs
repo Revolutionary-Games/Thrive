@@ -131,12 +131,47 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
         float amountAvailable = compounds.GetCompoundAmount(agentType);
 
+        var selectedToxinType = ToxinType.Oxytoxy;
+
+        // Pick the next toxin type to fire, but only if the data is present (for example loading an earlier save
+        // wouldn't have this data set). This uses a round-robin algorithm to pick the next toxin type.
+        if (organelles.AvailableToxinTypes != null)
+        {
+            var totalToxins = organelles.AvailableToxinTypes.Count;
+
+            // TODO: should there be a shortcut path for cases where there is just one toxin type?
+
+            if (totalToxins != 0)
+            {
+                var selectedRange = control.FiredToxinCount % totalToxins;
+
+                int typeCounter = 0;
+
+                foreach (var toxinType in organelles.AvailableToxinTypes)
+                {
+                    if (typeCounter > selectedRange)
+                        break;
+
+                    selectedToxinType = toxinType.Key;
+                    ++typeCounter;
+                }
+            }
+            else
+            {
+                GD.PrintErr("Cell has total count of toxin types 0 with agent vacuoles above 0");
+            }
+        }
+
+        // TODO: this needs changing if fire/toxicity is customizable per agent type (and separate compounds aren't
+        // used per agent type)
+
         // Emit as much as you have, but don't start the cooldown if that's zero
         float amountEmitted = Math.Min(amountAvailable, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
         if (amountEmitted < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
             return;
 
-        // TODO: the above part is already implemented as extension for PlayerMicrobeInput
+        // TODO: the above part is already implemented as extension for PlayerMicrobeInput (so could share a bit of
+        // code for checking if ready to shoot yet)
 
         compounds.TakeCompound(agentType, amountEmitted);
 
@@ -157,7 +192,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         var emissionPosition = position.Position + (direction * ejectionDistance);
 
         var agent = SpawnHelpers.SpawnAgentProjectile(worldSimulation,
-            new AgentProperties(entity.Get<SpeciesMember>().Species, agentType), amountEmitted,
+            new AgentProperties(entity.Get<SpeciesMember>().Species, agentType, selectedToxinType), amountEmitted,
             Constants.EMITTED_AGENT_LIFETIME, emissionPosition, direction, amountEmitted, entity);
 
         ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
@@ -170,6 +205,8 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         {
             soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
+
+        ++control.FiredToxinCount;
     }
 
     private void HandleSlimeSecretion(in Entity entity, ref MicrobeControl control,

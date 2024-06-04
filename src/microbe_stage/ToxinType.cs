@@ -3,6 +3,11 @@
 /// <summary>
 ///   Toxin types. See <see cref="ToxinUpgradeNames"/> for what names match each enum value in the upgrades list.
 /// </summary>
+/// <remarks>
+///   <para>
+///     Don't reorder the values here as that will cause save compatibility to break
+///   </para>
+/// </remarks>
 public enum ToxinType
 {
     /// <summary>
