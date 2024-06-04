@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
-"PO-Revision-Date: 2024-05-29 15:08+0300\n"
+"POT-Creation-Date: 2024-06-04 10:54+0300\n"
+"PO-Revision-Date: 2024-06-04 11:16+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -5165,8 +5165,50 @@ msgstr "Gathered Energy:"
 msgid "TOTAL_SAVES"
 msgstr "Total saves:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr "Channel Inhibitor"
+
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Inhibits ATP production of affected cell, which effectively prevents them from moving fast and can cause cells with not a lot of excess ATP production to die."
+
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Cytotoxin"
+
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "A simple toxin that is reasonably effective against cells without specialized membranes."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr "Fire Rate and Toxicity:"
+
+msgid "TOXIN_MACROLIDE"
+msgstr "Macrolide"
+
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Toxin that massively reduces base movement speed making simple cells basically unable to move."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr "Oxygen Metabolism Inhibitor"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Toxin that targets oxygen metabolism processes and is very effective against cells with oxygen-based metabolism."
+
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Toxin based on oxygen causing cellular damage. Less effective against species that utilize oxygen for metabolism."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr "Fast-firing"
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr "Toxic"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Toxin Resistance"
+
+msgid "TOXIN_TYPE_COLON"
+msgstr "Toxin Type:"
+
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Different toxin types have various effects that are more effective against certain types of cells. For cells that have multiple different toxin types they are used in sequence rather than firing all at once."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5522,6 +5564,9 @@ msgstr "Pulling Cilia"
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "When in engulf mode ([thrive:input]g_toggle_engulf[/thrive:input]) this type of cilia will cause vortices in the water that pull in nearby objects. Useful for capturing prey."
+
+msgid "UPGRADE_COST"
+msgstr "{0} ({1} MP)"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "The default non-upgraded state"

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Godot;
@@ -38,7 +38,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         {
             var info = typeToUpgradeInfo[toxinType];
 
-            toxinTypeSelection.AddItem(upgradeTranslationTemplate.FormatSafe(Localization.Translate(info.Description),
+            toxinTypeSelection.AddItem(upgradeTranslationTemplate.FormatSafe(Localization.Translate(info.Name),
                 Math.Round(info.MPCost * costMultiplier)), (int)toxinType);
         }
 
@@ -111,7 +111,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public Vector2 GetMinDialogSize()
     {
-        return new Vector2(350, 300);
+        return new Vector2(350, 350);
     }
 
     private void ApplySelection(ToxinType toxinType)

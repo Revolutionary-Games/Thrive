@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
+"POT-Creation-Date: 2024-06-04 10:54+0300\n"
 "PO-Revision-Date: 2024-05-31 14:03+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -5241,8 +5241,66 @@ msgstr "Énergie récoltée :"
 msgid "TOTAL_SAVES"
 msgstr "Nombre de sauvegardes :"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La vitesse de production et sécrétion augmente proportionnellement au nombre de vacuoles à toxines."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Certaines options peuvent être désactivées si l'option \"LAWK uniquement\" est activée"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La vitesse de production et sécrétion augmente proportionnellement au nombre de vacuoles à toxines."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Vacuole\n"
+"à toxine"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La vitesse de production et sécrétion augmente proportionnellement au nombre de vacuoles à toxines."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Les métabolosomes sont des amas de protéines enveloppés dans des enveloppes protéiques. Ils sont capables de convertir le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] à une vitesse bien supérieure à celle du cytoplasme dans un processus appelé [b]Respiration aérobie[/b]. Elle a toutefois besoin d'[thrive:compound type=\"oxygen\"][/thrive:compound] pour fonctionner, et des niveaux inférieurs d'[thrive:compound type=\"oxygen\"][/thrive:compound] dans l'environnement ralentiront le rythme de sa production d'[thrive:compound type=\"atp\"][/thrive:compound]. Comme les métabolosomes sont suspendus directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La vitesse de production et sécrétion augmente proportionnellement au nombre de vacuoles à toxines."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Résistance aux toxines"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Type :"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Dévoluer vous retirera votre statut évolué et vous fera retourner à la phase microbienne. De là vous pourrez rejouer au jeu dans la sauvegarde actuelle.\n"
+"\n"
+"Vous recevrez un avantage de dévolution pour la nouvelle partie. Dans une version future vous pourrez choisir votre avantage mais pour l'instant ce sera toujours une diminution de 20% de l'osmorégulation.\n"
+"\n"
+"Une fois votre dévolution confirmée, vous pourrez modifier les paramètres du jeu pour choisir une autre graine de monde et ainsi jouer sur une carte différente ou désactiver LAWK, par exemple."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5622,6 +5680,10 @@ msgstr "Cils de traction"
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Quand vous êtes en mode phagocytage ([thrive:input]g_toggle_engulf[/thrive:input]) ce type de cils créera des vortex dans l'eau qui attireront les objets proches. Utile pour capturer des proies."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} PM"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "L'état non-amélioré par défaut"

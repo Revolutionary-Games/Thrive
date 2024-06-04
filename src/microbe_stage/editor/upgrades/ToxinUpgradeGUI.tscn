@@ -45,8 +45,10 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "TOXIN_FIRE_RATE_TOXICITY_COLON"
+autowrap_mode = 3
 
 [node name="HSlider" type="HSlider" parent="."]
 layout_mode = 2
@@ -74,3 +76,5 @@ layout_mode = 2
 size_flags_vertical = 1
 text = "TOXIN_PREFER_TOXICITY"
 label_settings = ExtResource("2_ysgr0")
+
+[connection signal="item_selected" from="ToxinType" to="." method="OnToxinTypeSelected"]
