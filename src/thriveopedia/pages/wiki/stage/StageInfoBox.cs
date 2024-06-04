@@ -81,9 +81,6 @@ public partial class StageInfoBox : PanelContainer
     /// </summary>
     private void UpdateValues()
     {
-        if (Page == null)
-            return;
-
         Dictionary<string, string> infoboxData = Page.InfoboxData.ToDictionary(f => f.InfoboxKey, f => f.InfoboxValue);
 
         nameLabel.Text = Page.Name;

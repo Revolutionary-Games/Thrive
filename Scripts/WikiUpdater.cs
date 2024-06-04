@@ -51,7 +51,7 @@ public class WikiUpdater
         "carbondioxide",
 
         "sunlight",
-        "temperature"
+        "temperature",
     };
 
     /// <summary>
@@ -106,7 +106,7 @@ public class WikiUpdater
         var developmentPages = ProcessPagesFromCategory(developmentPagesRaw);
         ColourConsole.WriteSuccessLine("Processed all wiki pages");
 
-        var untranslatedWiki = new Wiki()
+        var untranslatedWiki = new Wiki
         {
             OrganellesRoot = organellesRoot.UntranslatedPage,
             StagesRoot = stagesRoot.UntranslatedPage,
@@ -128,7 +128,7 @@ public class WikiUpdater
 
         ColourConsole.WriteSuccessLine("Translations update succeeded, inserting English strings for wiki content");
 
-        var pages = new List<TranslationPair>()
+        var pages = new List<TranslationPair>
         {
             organellesRoot,
             stagesRoot,
@@ -155,7 +155,8 @@ public class WikiUpdater
         return body;
     }
 
-    private async Task<List<IHtmlElement>> FetchPagesFromCategory(string categoryUrl, string pageType, CancellationToken cancellationToken)
+    private async Task<List<IHtmlElement>> FetchPagesFromCategory(string categoryUrl,
+        string pageType, CancellationToken cancellationToken)
     {
         ColourConsole.WriteInfoLine($"Fetching {pageType} pages");
         var allPages = new List<IHtmlElement>();
@@ -179,7 +180,8 @@ public class WikiUpdater
             // Ignore page if specified
             if (body.QuerySelector(IGNORE_PAGE_SELECTOR) != null)
             {
-                ColourConsole.WriteLineWithColour($"Ignored {pageType} {name} due to Only Online category", ConsoleColor.Red);
+                ColourConsole.WriteLineWithColour($"Ignored {pageType} {name} due to Only Online category",
+                    ConsoleColor.Red);
                 continue;
             }
 
@@ -295,7 +297,7 @@ public class WikiUpdater
 
         foreach (var row in infobox.Children)
         {
-            if (row.Children.Count() <= 1)
+            if (row.Children.Length <= 1)
                 continue;
 
             // Parse the HTML table to get keys and values
@@ -365,7 +367,11 @@ public class WikiUpdater
                         .Aggregate((a, b) => a + "\n" + b) + "\n\n";
                     break;
                 case "H3":
-                    text = $"[b][u]{child.Children.Where(c => c.ClassList.Contains("mw-headline")).First().TextContent}[/u][/b]\n\n";
+                    var headline = child.Children
+                        .Where(c => c.ClassList.Contains("mw-headline"))
+                        .First();
+
+                    text = $"[b][u]{headline.TextContent}[/u][/b]\n\n";
                     break;
                 default:
                     // Ignore all other tag types
@@ -524,13 +530,13 @@ public class WikiUpdater
             translationPairs.TryAdd(untranslatedPage.Name, translatedPage.Name);
 
             // Translate infobox
-            var untranslatedInfobox = untranslatedPage!.InfoboxData;
-            var translatedInfobox = translatedPage!.InfoboxData;
+            var untranslatedInfobox = untranslatedPage.InfoboxData;
+            var translatedInfobox = translatedPage.InfoboxData;
 
             for (int i = 0; i < untranslatedInfobox.Count; i++)
             {
                 // Skip adding translations for numbers or "-"
-                if (Regex.IsMatch(translatedInfobox[i].InfoboxValue, @"^[0-9,. -]*$"))
+                if (Regex.IsMatch(translatedInfobox[i].InfoboxValue, "^[0-9,. -]*$"))
                     continue;
 
                 translationPairs.TryAdd(untranslatedInfobox[i].InfoboxKey, translatedInfobox[i].InfoboxKey);
@@ -670,13 +676,13 @@ public class WikiUpdater
         public class Page
         {
             public Page(string name, string internalName, string url, List<Section> sections,
-                List<InfoboxField> infobox = null!, string? noticeSceneName = null)
+                List<InfoboxField> infobox = null, string? noticeSceneName = null)
             {
                 Name = name;
                 InternalName = internalName;
                 Url = url;
                 Sections = sections;
-                InfoboxData = infobox ?? new();
+                InfoboxData = infobox ?? new List<InfoboxField>();
                 NoticeSceneName = noticeSceneName;
             }
 

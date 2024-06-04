@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///  The bare minimum wiki page.
+///   The bare minimum wiki page.
 /// </summary>
 public partial class SimpleWikiPage : ThriveopediaWikiPage
 {

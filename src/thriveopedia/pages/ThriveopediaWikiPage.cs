@@ -12,7 +12,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     public NodePath? MainArticlePath;
 
     [Export]
-    public NodePath NoticeContainerPath;
+    public NodePath NoticeContainerPath = null!;
 
 #pragma warning disable CA2213
     protected PackedScene pageSectionScene = null!;
@@ -150,7 +150,8 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
 
             if (page.NoticeSceneName != null)
             {
-                var noticeScene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/notices/{page.NoticeSceneName}.tscn");
+                var noticePath = $"res://src/thriveopedia/pages/notices/{page.NoticeSceneName}.tscn";
+                var noticeScene = GD.Load<PackedScene>(noticePath);
                 var noticeInstance = noticeScene.Instantiate();
                 var container = pageInstance.GetNode(pageInstance.NoticeContainerPath);
                 container.AddChild(noticeInstance);
