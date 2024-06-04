@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 22:01+0200\n"
+"POT-Creation-Date: 2024-06-04 19:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -441,7 +441,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:417 ../src/general/MainMenu.tscn:476
 #: ../src/general/MainMenu.tscn:515 ../src/general/MainMenu.tscn:816
 #: ../src/general/NewGameSettings.tscn:923 ../src/general/OptionsMenu.tscn:1638
-#: ../src/general/PauseMenu.tscn:294
+#: ../src/general/PauseMenu.tscn:287
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:66
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
@@ -965,7 +965,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:137
-#: ../src/general/HelpScreen.tscn:84 ../src/general/OptionsMenu.tscn:1795
+#: ../src/general/OptionsMenu.tscn:1795
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:94
 #: ../src/gui_common/charts/line/LineChart.tscn:215
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
@@ -1095,6 +1095,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/CompoundPanels.tscn:662
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:293
+#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:47
 msgid "COMPOUNDS"
 msgstr ""
 
@@ -1195,7 +1196,7 @@ msgid "CONFIRM_DELETE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:735
-#: ../src/general/PauseMenu.tscn:325
+#: ../src/general/PauseMenu.tscn:313
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 msgid "CONFIRM_EXIT"
 msgstr ""
@@ -1797,7 +1798,7 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:102
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:89
 #: ../src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentRootPage.cs:11
 msgid "DEVELOPMENT"
 msgstr ""
@@ -2130,9 +2131,17 @@ msgstr ""
 msgid "EDGE_PAN_SPEED"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:96
+msgid "EDITING"
+msgstr ""
+
 #: ../simulation_parameters/common/input_options.json:123
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:142
 msgid "EDITOR"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:119
+msgid "EDITORS_AND_MUTATIONS"
 msgstr ""
 
 #: ../src/microbe_stage/gui/EditorEntryButton.tscn:61
@@ -2272,6 +2281,10 @@ msgstr ""
 msgid "ENVIRONMENT"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:155
+msgid "ENVIRONMENTAL_CONDITIONS"
+msgstr ""
+
 #: ../src/general/NewGameSettings.tscn:507
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
@@ -2365,7 +2378,7 @@ msgstr ""
 msgid "EXISTING_BUILDINGS"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:270
+#: ../src/general/PauseMenu.tscn:263
 msgid "EXIT"
 msgstr ""
 
@@ -2723,6 +2736,10 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:24
+msgid "GAME_SYSTEMS"
+msgstr ""
+
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2719
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1103
 msgid "GATHERED_ENERGY_TOOLTIP"
@@ -2843,11 +2860,7 @@ msgstr ""
 msgid "HEALTH"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:247
-msgid "HELP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:246 ../src/microbe_stage/HUDBottomBar.tscn:132
+#: ../src/microbe_stage/HUDBottomBar.tscn:132
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4032,12 +4045,12 @@ msgstr ""
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:303 ../src/general/PauseMenu.tscn:235
+#: ../src/general/MainMenu.tscn:303 ../src/general/PauseMenu.tscn:234
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:115
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:301 ../src/general/PauseMenu.tscn:234
+#: ../src/general/MainMenu.tscn:301 ../src/general/PauseMenu.tscn:233
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4143,7 +4156,7 @@ msgstr ""
 msgid "MAY"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:75
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:62
 #: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.cs:11
 msgid "MECHANICS"
 msgstr ""
@@ -5252,10 +5265,10 @@ msgstr ""
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:71
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:80
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:89
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:98
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:58
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:67
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:76
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:85
 msgid "OPEN_ORGANELLES_PAGE"
 msgstr ""
 
@@ -5299,16 +5312,16 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:258
+#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:251
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:257
+#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:250
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:93
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:80
 #: ../src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr ""
@@ -5592,7 +5605,7 @@ msgstr ""
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:222
+#: ../src/general/PauseMenu.tscn:221
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr ""
 
@@ -5873,11 +5886,11 @@ msgid "QUIT"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:346
-#: ../src/general/PauseMenu.tscn:269
+#: ../src/general/PauseMenu.tscn:262
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:428
+#: ../src/general/PauseMenu.cs:395
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
@@ -5937,7 +5950,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:611 ../src/general/PauseMenu.tscn:252
+#: ../src/general/MainMenu.tscn:611 ../src/general/PauseMenu.tscn:245
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -5948,6 +5961,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:424
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:502
+#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:83
 msgid "REPRODUCTION"
 msgstr ""
 
@@ -6052,7 +6066,7 @@ msgstr ""
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:223
+#: ../src/general/PauseMenu.tscn:222
 msgid "RESUME"
 msgstr ""
 
@@ -6060,16 +6074,16 @@ msgstr ""
 msgid "RESUME_TOOLTIP"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:264
+#: ../src/general/PauseMenu.tscn:257
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "RETURN_TO_MENU"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:263
+#: ../src/general/PauseMenu.tscn:256
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:734 ../src/general/PauseMenu.cs:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:734 ../src/general/PauseMenu.cs:376
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
@@ -6202,11 +6216,11 @@ msgstr ""
 msgid "SAVE_FAILED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:229
+#: ../src/general/PauseMenu.tscn:228
 msgid "SAVE_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:227
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -6701,7 +6715,7 @@ msgstr ""
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:84
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:71
 #: ../src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.cs:19
 msgid "STAGES"
 msgstr ""
@@ -6942,6 +6956,10 @@ msgstr ""
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:60
+msgid "SURVIVAL"
+msgstr ""
+
 #: ../simulation_parameters/common/input_options.json:238
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -7122,6 +7140,10 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:132
+msgid "THE_WORLD"
+msgstr ""
+
 #: ../src/modding/ModManager.cs:956
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
@@ -7134,7 +7156,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:438 ../src/general/PauseMenu.tscn:241
+#: ../src/general/MainMenu.tscn:438 ../src/general/PauseMenu.tscn:240
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -7146,7 +7168,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:240
+#: ../src/general/PauseMenu.tscn:239
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -9239,11 +9261,11 @@ msgstr ""
 msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:44
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:31
 msgid "WIKI_ROOT_BODY"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:30
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:17
 msgid "WIKI_ROOT_HEADING"
 msgstr ""
 
