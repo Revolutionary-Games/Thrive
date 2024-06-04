@@ -59,8 +59,8 @@ public class WikiUpdater
     /// </summary>
     private readonly Regex[] whitelistedDomains =
     {
-        new Regex(@".*\.wikipedia\.org\/.*"),
-        new Regex(@".*\.revolutionarygamesstudio\.com\/.*"),
+        new(@".*\.wikipedia\.org\/.*"),
+        new(@".*\.revolutionarygamesstudio\.com\/.*"),
     };
 
     /// <summary>
