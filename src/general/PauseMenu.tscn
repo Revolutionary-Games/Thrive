@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://devtugnggmuol"]
+[gd_scene load_steps=14 format=3 uid="uid://devtugnggmuol"]
 
 [ext_resource type="Script" path="res://src/general/PauseMenu.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://src/saving/SaveList.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://l3t2irtebxii" path="res://src/general/HelpScreen.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://ddi31qylscfyh" path="res://src/saving/SaveList.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://src/saving/NewSaveMenu.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/general/OptionsMenu.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
@@ -185,7 +184,7 @@ script = ExtResource("1")
 HelpCategory = "MicrobeStage"
 PrimaryMenuPath = NodePath("CenterContainer/PrimaryMenu")
 ThriveopediaPath = NodePath("Thriveopedia")
-HelpScreenPath = NodePath("HelpScreen")
+HelpScreenPath = NodePath("")
 LoadMenuPath = NodePath("CenterContainer/LoadMenu")
 OptionsMenuPath = NodePath("OptionsMenu")
 SaveMenuPath = NodePath("CenterContainer/NewSaveMenu")
@@ -240,36 +239,30 @@ layout_mode = 2
 tooltip_text = "THRIVEOPEDIA_HINT_IN_GAME"
 text = "THRIVEOPEDIA"
 
-[node name="Help" type="Button" parent="CenterContainer/PrimaryMenu" index="5"]
-custom_minimum_size = Vector2(250, 40)
-layout_mode = 2
-tooltip_text = "HELP_BUTTON_TOOLTIP"
-text = "HELP"
-
-[node name="ReportBug" type="Button" parent="CenterContainer/PrimaryMenu" index="6"]
+[node name="ReportBug" type="Button" parent="CenterContainer/PrimaryMenu" index="5"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 text = "REPORT_BUG"
 
-[node name="Options" type="Button" parent="CenterContainer/PrimaryMenu" index="7"]
+[node name="Options" type="Button" parent="CenterContainer/PrimaryMenu" index="6"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "OPTIONS_BUTTON_TOOLTIP"
 text = "OPTIONS"
 
-[node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu" index="8"]
+[node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu" index="7"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "RETURN_TO_MENU_TOOLTIP"
 text = "RETURN_TO_MENU"
 
-[node name="Exit" type="Button" parent="CenterContainer/PrimaryMenu" index="9"]
+[node name="Exit" type="Button" parent="CenterContainer/PrimaryMenu" index="8"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "QUIT_BUTTON_TOOLTIP"
 text = "EXIT"
 
-[node name="FocusGrabber" parent="CenterContainer/PrimaryMenu" index="10" instance=ExtResource("9")]
+[node name="FocusGrabber" parent="CenterContainer/PrimaryMenu" index="9" instance=ExtResource("9")]
 layout_mode = 2
 Priority = 1
 NodeToGiveFocusTo = NodePath("../Resume")
@@ -305,26 +298,21 @@ visible = false
 custom_minimum_size = Vector2(1000, 600)
 layout_mode = 2
 
-[node name="HelpScreen" parent="." index="2" instance=ExtResource("4")]
-visible = false
-layout_mode = 1
-Category = "MicrobeStage"
-
-[node name="OptionsMenu" parent="." index="3" instance=ExtResource("6")]
+[node name="OptionsMenu" parent="." index="2" instance=ExtResource("6")]
 visible = false
 layout_mode = 1
 
-[node name="Thriveopedia" parent="." index="4" instance=ExtResource("8")]
+[node name="Thriveopedia" parent="." index="3" instance=ExtResource("8")]
 visible = false
 layout_mode = 1
 
-[node name="UnsavedProgressWarning" parent="." index="5" instance=ExtResource("7")]
+[node name="UnsavedProgressWarning" parent="." index="4" instance=ExtResource("7")]
 custom_minimum_size = Vector2(391, 0)
 layout_mode = 1
 offset_right = 391.0
 WindowTitle = "CONFIRM_EXIT"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 libraries = {
 "": SubResource("AnimationLibrary_y4xuc")
 }
@@ -333,7 +321,6 @@ libraries = {
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/SaveGame" to="." method="OpenSavePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Thriveopedia" to="." method="OpenThriveopediaPressed"]
-[connection signal="pressed" from="CenterContainer/PrimaryMenu/Help" to="." method="OpenHelpPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/ReportBug" to="." method="OpenReportBugPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Options" to="." method="OpenOptionsPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
@@ -343,7 +330,6 @@ libraries = {
 [connection signal="pressed" from="CenterContainer/LoadMenu/Back" to="." method="CloseLoadPressed"]
 [connection signal="OnClosed" from="CenterContainer/NewSaveMenu" to="." method="CloseSavePressed"]
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
-[connection signal="HelpScreenClosed" from="HelpScreen" to="." method="CloseHelpPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnOptionsClosed"]
 [connection signal="OnSceneChanged" from="Thriveopedia" to="." method="OnSceneChangedFromThriveopedia"]
 [connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnThriveopediaClosed"]
