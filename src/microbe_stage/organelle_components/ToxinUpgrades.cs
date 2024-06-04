@@ -23,11 +23,6 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
     // TODO: add this (and add MP cost for modifying this)
     // public float Potency { get; set; }
 
-    public object Clone()
-    {
-        return new ToxinUpgrades(BaseType);
-    }
-
     public bool Equals(IComponentSpecificUpgrades? other)
     {
         if (other is ToxinUpgrades toxinUpgrades)
@@ -36,5 +31,10 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
         }
 
         return false;
+    }
+
+    public object Clone()
+    {
+        return new ToxinUpgrades(BaseType);
     }
 }
