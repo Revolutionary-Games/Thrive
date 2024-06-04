@@ -177,7 +177,7 @@ public partial class OrganelleUpgradeGUI : Control
         popup.PopupCenteredShrink();
 
         scrollContainer.ScrollVertical = 0;
-        upgrader?.OnStartFor(organelle, currentGame);
+        upgrader?.OnStartFor(organelle, currentGame, costMultiplier);
         storedEditor = editorComponent;
     }
 

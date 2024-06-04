@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://flyqgxf6unel"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_cq84u"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs" id="2_w0q76"]
+[ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="2_ysgr0"]
+
+[node name="ToxinUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("toxinTypeSelection", "toxinTypeDescription")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cq84u")
+script = ExtResource("2_w0q76")
+toxinTypeSelection = NodePath("ToxinType")
+toxinTypeDescription = NodePath("TypeExplanation")
+
+[node name="Explanation" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "TOXIN_TYPE_COLON"
+
+[node name="ToxinType" type="OptionButton" parent="."]
+layout_mode = 2
+
+[node name="TypeExplanation" type="Label" parent="."]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Selected toxin type explanation goes here"
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "TOXIN_FIRE_RATE_TOXICITY_COLON"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 2
+value = 50.0
+editable = false
+scrollable = false
+tick_count = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="FireRate" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "TOXIN_PREFER_FIRE_RATE"
+label_settings = ExtResource("2_ysgr0")
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Toxicity" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "TOXIN_PREFER_TOXICITY"
+label_settings = ExtResource("2_ysgr0")
