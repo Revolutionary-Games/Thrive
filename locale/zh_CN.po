@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-04 19:06+0200\n"
-"PO-Revision-Date: 2024-05-10 23:02+0000\n"
-"Last-Translator: Unkown_lpy <Unkown_lpy@outlook.com>\n"
+"POT-Creation-Date: 2024-06-03 09:46+0300\n"
+"PO-Revision-Date: 2024-06-02 17:09+0000\n"
+"Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D"
@@ -366,17 +366,16 @@ msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "热合成"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "以白天计算"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "当打开时，各数值按白天计算"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "包括移动花费"
 
-#, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr "打开高级菜单"
+msgstr "当打开时，各数值按细胞持续移动的情况下计算"
 
 msgid "BASE_MOBILITY"
 msgstr "基础移动能力"
@@ -821,9 +820,10 @@ msgstr "显示/隐藏化合物"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物收支"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
-msgstr "显示/隐藏化合物"
+msgstr ""
+"这个区域显示了各化合物的总平衡情况（生产 - 消耗）\n"
+"比如说对植物细胞而言葡萄糖的平衡情况需要是一个不小的正数。"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物云"
@@ -840,9 +840,8 @@ msgstr "{0}的浓度已减少了{1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr "化合物收支"
+msgstr "（无法熬过{0}秒长的夜晚）"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
 msgstr ""
@@ -1259,9 +1258,8 @@ msgstr "（游戏中一天在现实中对应的秒数）"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "启用昼夜循环"
 
-#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-msgstr "（提示：光合作用会被削弱）"
+msgstr "（在晚上光合作用无法进行，需要更多的提前规划）"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "死区校准完成。 新的死区显示在轴值显示器的下方。"
@@ -1675,64 +1673,49 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "启用GUI闪烁特效"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "内共生进度已满，请在编辑器中完成"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "将内共生的目标转化为一个临时的细胞器，如果您成功存活到进入编辑器，内共生进度将会增加"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr ""
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
-msgstr "解锁所有细胞器"
+msgstr "该物种可以转化成的细胞器"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "内共生"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr "解绑群落内的所有细胞"
+msgstr "取消该内共生进程。这样做会失去该内共生进程的所有进度！"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
-msgstr "用于生成世界的随机数种子，必须为正整数"
+msgstr "完结该内共生进程并将对应物种变成细胞器放置到细胞中"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
-"激进型微生物会在更远的距离追捕猎物，\n"
-"并且在受到攻击时更有可能与捕食者作斗争。\n"
-"和平型微生物不会在意更远距离的其它微生物，\n"
-"并且不太可能使用毒素来对付捕食者。"
+msgstr "内共生是把其他物种转变为内共生体（生活在其它物种内并与之共生的物种）的过程。这将会送你一个免费的细胞器并将其解锁。以下展示了您以前胞吞的细胞以及它们可以转变为的细胞器。内共生进程的长短取决于该物种被内共生的难易程度（在该物种所对应的各个细胞器下有显示）。"
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "您之前没有胞吞过适合内共生的物种"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
-msgstr "未连接的细胞器"
+msgstr "该物种不能被转化成任何细胞器"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
-"这显示了多少弹出窗口已被永久禁用。\n"
-"如果有一些你想要看到的弹出窗口被禁用了，旁边的那个按钮可以使所有被禁用的弹出窗口再次出现。"
+msgstr "为了增加内共生进度，目标物种需要被胞吞并转化为一个临时细胞器（同一时间最多只能有一个）。一旦你带着临时细胞器进入编辑器进度就会被保存。"
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "原核细胞最多只能有一个内共生体"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr "将[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]转换成[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度成正比。同时也会将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。"
+msgstr "活着把这个物种变成的临时细胞器带进编辑器来增加进度"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
-msgstr "进入编辑器并修改你的物种"
+msgstr "开启与该物种的内共生进程（在选定目标细胞器类型后即可开始）"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_TITLE"
-msgstr "缺少标题"
+msgstr "内共生"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
@@ -1843,9 +1826,8 @@ msgstr "建筑"
 msgid "EXIT"
 msgstr "退出"
 
-#, fuzzy
 msgid "EXIT_EDITOR"
-msgstr "进入下一个编辑器标签"
+msgstr "退出编辑器"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "退出至启动器"
@@ -4071,12 +4053,11 @@ msgstr "pck文件（{0}）因不存在载入失败"
 msgid "PEACEFUL"
 msgstr "和平"
 
-#, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
-msgstr "您正在使用 OpenGL 运行 Thrive。这是完全未经测试的，很可能会导致问题。请确保您使用了足够新的 GPU 或集成显卡，并尝试更新视频驱动程序。对于笔记本电脑，您可能需要强制使用专用的 AMD 或 Nvidia 显卡来运行 Thrive，而不是集成显卡。"
+msgstr "一个内共生进度已满，您可以把对应物种作为细胞器放置在细胞中来完结它。建议您尽快这样做因为在这之前你不能在内共生方面取得新的进展。您现在要查看内共生进程吗？"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "一个内共生进度已满"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -5777,9 +5758,8 @@ msgstr "查看补丁说明"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "查看最近或所有的Thrive补丁信息"
 
-#, fuzzy
 msgid "VIEW_PENDING_ACTIONS"
-msgstr "修改选项"
+msgstr "现在查看"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代码"
