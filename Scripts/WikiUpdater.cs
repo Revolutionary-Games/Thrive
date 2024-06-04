@@ -33,7 +33,7 @@ public class WikiUpdater
     ///   List of compound names, used to differentate between using the thrive:compound and
     ///   thrive:icon bbcode tags
     /// </summary>
-    private readonly string[] compoundNames = new[]
+    private readonly string[] compoundNames =
     {
         "glucose",
         "ammonia",
@@ -57,7 +57,7 @@ public class WikiUpdater
     /// <summary>
     ///   List of regexes for domains we're allowing Thriveopedia content to link to.
     /// </summary>
-    private readonly Regex[] whitelistedDomains = new[]
+    private readonly Regex[] whitelistedDomains =
     {
         new Regex(@".*\.wikipedia\.org\/.*"),
         new Regex(@".*\.revolutionarygamesstudio\.com\/.*"),
@@ -252,8 +252,7 @@ public class WikiUpdater
             }
 
             var sections = GetMainBodySections(page);
-            var untranslatedSections = sections.Select(
-                s => UntranslateSection(s, untranslatedPageName)).ToList();
+            var untranslatedSections = sections.Select(s => UntranslateSection(s, untranslatedPageName)).ToList();
 
             var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{untranslatedPageName}",
                 internalName,
