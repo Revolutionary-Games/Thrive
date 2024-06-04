@@ -126,15 +126,13 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         base.Dispose(disposing);
     }
 
-    private static T GeneratePage<T>(List<ThriveopediaWikiPage> pageList, GameWiki.Page page, string scenePath)
+    private static void GeneratePage<T>(List<ThriveopediaWikiPage> pageList, GameWiki.Page page, string scenePath)
         where T : ThriveopediaWikiPage
     {
         var pageScene = GD.Load<PackedScene>(scenePath);
         var pageInstance = (T)pageScene.Instantiate();
         pageInstance.PageContent = page;
         pageList.Add(pageInstance);
-
-        return pageInstance;
     }
 
     private static void GeneratePages<T>(List<ThriveopediaWikiPage> pageList, List<GameWiki.Page> pages,

@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Simple way to link mechanic pages from the mechanics root page
+/// </summary>
 public partial class MechanicLinkButton : Button
 {
     [Export]

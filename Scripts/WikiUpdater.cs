@@ -290,7 +290,7 @@ public class WikiUpdater
 
         // Get the infobox element
         var infobox = body.QuerySelector(INFO_BOX_SELECTOR) ?? throw new InvalidOperationException(
-                $"Did not find infobox on page with internal name {internalName}");
+            $"Did not find infobox on page with internal name {internalName}");
 
         var translated = new List<InfoboxField>();
         var untranslated = new List<InfoboxField>();
@@ -308,7 +308,7 @@ public class WikiUpdater
             if (id == null)
                 continue;
 
-            var textContent = value.TextContent!.Trim();
+            var textContent = value.TextContent.Trim();
 
             if (textContent == internalName)
                 continue;
@@ -322,7 +322,7 @@ public class WikiUpdater
                 .Replace("__", "_");
 
             // Remove any leftorver characters that are not supposed to be present in translation keys
-            var validUntraslatedValue = Regex.Replace(untranslatedValue, @"[^A-Z0-9_]", string.Empty);
+            var validUntraslatedValue = Regex.Replace(untranslatedValue, "[^A-Z0-9_]", string.Empty);
 
             untranslated.Add(new InfoboxField(untranlsatedKey, validUntraslatedValue));
             translated.Add(new InfoboxField(translatedKey, textContent));
@@ -676,7 +676,7 @@ public class WikiUpdater
         public class Page
         {
             public Page(string name, string internalName, string url, List<Section> sections,
-                List<InfoboxField> infobox = null, string? noticeSceneName = null)
+                List<InfoboxField>? infobox = null, string? noticeSceneName = null)
             {
                 Name = name;
                 InternalName = internalName;
@@ -701,6 +701,7 @@ public class WikiUpdater
             [JsonInclude]
             public List<InfoboxField> InfoboxData { get; }
 
+            [JsonInclude]
             public string? NoticeSceneName { get; }
 
             public class Section
