@@ -7,20 +7,7 @@
 [ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaWikiRootPage.cs" id="5"]
 
 [node name="ThriveopediaPage" instance=ExtResource("1")]
-anchors_preset = 15
 script = ExtResource("5")
-
-[node name="MarginContainer" parent="." index="0"]
-layout_mode = 2
-
-[node name="ScrollContainer" parent="MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
-layout_mode = 2
-
-[node name="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" index="0"]
-layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2

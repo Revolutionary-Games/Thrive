@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdv2c5vo31w83"]
+[gd_scene load_steps=5 format=3 uid="uid://bdv2c5vo31w83"]
 
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1_mt8qb"]
 [ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.cs" id="2_oop0a"]
+[ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="3_0ivu5"]
+[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/mechanic/MechanicLinkButton.cs" id="4_7tlog"]
 
 [node name="ThriveopediaPage" instance=ExtResource("1_mt8qb")]
 script = ExtResource("2_oop0a")
@@ -9,4 +11,151 @@ MainArticlePath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBox
 NoticeContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Notices")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="0"]
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer2" index="0"]
+layout_mode = 2
+text = "GAME_SYSTEMS"
+label_settings = ExtResource("3_0ivu5")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer2" index="1"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer2" index="2"]
+layout_mode = 2
+
+[node name="Button" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer2/HFlowContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 1
+
+[node name="Compounds" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer2/HFlowContainer/Button" index="0"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+text = "COMPOUNDS"
+script = ExtResource("4_7tlog")
+PageName = "Compounds"
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer2" index="3"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="1"]
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer" index="0"]
+layout_mode = 2
+text = "SURVIVAL"
+label_settings = ExtResource("3_0ivu5")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer" index="1"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="Button" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/HFlowContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 1
+
+[node name="Reproduction" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/HFlowContainer/Button" index="0"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+text = "REPRODUCTION"
+script = ExtResource("4_7tlog")
+PageName = "Reproduction"
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer" index="3"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="2"]
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4" index="0"]
+layout_mode = 2
+text = "EDITING"
+label_settings = ExtResource("3_0ivu5")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4" index="1"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4" index="2"]
+layout_mode = 2
+
+[node name="Button" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4/HFlowContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 1
+
+[node name="EditorsAndMutations" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4/HFlowContainer/Button" index="0"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+text = "EDITORS_AND_MUTATIONS"
+script = ExtResource("4_7tlog")
+PageName = "EditorsAndMutations"
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4" index="3"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="3"]
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="0"]
+layout_mode = 2
+text = "THE_WORLD"
+label_settings = ExtResource("3_0ivu5")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="1"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="2"]
+layout_mode = 2
+
+[node name="Button" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3/HFlowContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 1
+
+[node name="EnvironmentalConditions" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3/HFlowContainer/Button" index="0"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+text = "ENVIRONMENTAL_CONDITIONS"
+script = ExtResource("4_7tlog")
+PageName = "EnvironmentalConditions"
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="3"]
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
