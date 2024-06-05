@@ -393,6 +393,8 @@ public static class Constants
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
+    public const float CYTOTOXIN_DAMAGE = 12.0f;
+
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
     /// </summary>

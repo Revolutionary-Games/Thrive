@@ -1,4 +1,5 @@
-﻿using Components;
+﻿using System;
+using Components;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -29,6 +30,12 @@ public class AgentProperties
     /// </summary>
     public ToxinType ToxinSubType { get; set; }
 
+    /// <summary>
+    ///   True if this toxin has a special effect (instead of / in addition to) dealing damage
+    /// </summary>
+    [JsonIgnore]
+    public bool HasSpecialEffect => ToxinSubType is ToxinType.Macrolide or ToxinType.ChannelInhibitor;
+
     // TODO: subtypes (not high priority as it is pretty hard to hover over toxins in the game)
     // This has to be used like this to ensure the translation extractor sees this
     // ReSharper disable once ArrangeObjectCreationWhenTypeEvident
@@ -38,14 +45,14 @@ public class AgentProperties
 
     public void DealDamage(ref Health health, ref CellProperties hitCellProperties, float toxinAmount)
     {
-        var damage = Constants.OXYTOXY_DAMAGE * toxinAmount;
+        var damage = CalculateBaseDamage(toxinAmount);
 
         health.DealMicrobeDamage(ref hitCellProperties, damage, DamageTypeName);
     }
 
     public void DealDamage(ref Health health, float toxinAmount)
     {
-        var damage = Constants.OXYTOXY_DAMAGE * toxinAmount;
+        var damage = CalculateBaseDamage(toxinAmount);
 
         health.DealDamage(damage, DamageTypeName);
     }
@@ -53,5 +60,21 @@ public class AgentProperties
     public override string ToString()
     {
         return Name.ToString();
+    }
+
+    private float CalculateBaseDamage(float toxinAmount)
+    {
+        switch (ToxinSubType)
+        {
+            case ToxinType.Cytotoxin:
+                return Constants.CYTOTOXIN_DAMAGE * toxinAmount;
+            case ToxinType.Macrolide:
+            case ToxinType.ChannelInhibitor:
+                return 0;
+            case ToxinType.OxygenMetabolismInhibitor:
+                break;
+        }
+
+        return Constants.OXYTOXY_DAMAGE * toxinAmount;
     }
 }
