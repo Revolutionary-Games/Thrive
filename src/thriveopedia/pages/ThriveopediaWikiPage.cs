@@ -143,6 +143,9 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     ///   Additionally, performs extraDataInit for each page if needed.
     ///   Also adds an infobox to the page if present.
     /// </summary>
+    /// <param name="pageList">A reference to all the pages</param>
+    /// <param name="pages">Pages to generate</param>
+    /// <param name="scenePath">The scene to load for all the pages</param>
     /// <param name="extraDataInit">
     ///   An action to be performed on all pages. Used to pass extra data to the page.
     /// </param>
