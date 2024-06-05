@@ -74,11 +74,13 @@ public class WikiUpdater
     /// </summary>
     public async Task<bool> Run(CancellationToken cancellationToken)
     {
+        // Get root pages
         var organellesRootTask = FetchRootPage(ORGANELLE_CATEGORY, "Organelles", cancellationToken);
         var stagesRootTask = FetchRootPage(STAGES_CATEGORY, "Stages", cancellationToken);
         var mechanicsRootTask = FetchRootPage(MECHANICS_CATEGORY, "Mechanics", cancellationToken);
         var developmentRootTask = FetchRootPage(DEVELOPMENT_CATEGORY, "Development", cancellationToken);
 
+        // Get pages in categories
         var organellesTask = FetchPagesFromCategory(ORGANELLE_CATEGORY, "Organelle", cancellationToken);
         var stagesTask = FetchPagesFromCategory(STAGES_CATEGORY, "Stage", cancellationToken);
         var mechanicsTask = FetchPagesFromCategory(MECHANICS_CATEGORY, "Mechainc", cancellationToken);
@@ -93,6 +95,7 @@ public class WikiUpdater
         var stagesRaw = await stagesTask;
         var mechanicsRaw = await mechanicsTask;
         var developmentPagesRaw = await developmentPagesTask;
+
         ColourConsole.WriteSuccessLine("Fetched all wiki pages");
 
         var organellesRoot = ProcessRootPage(organellesRootRaw, "Organelles", ORGANELLE_CATEGORY);
@@ -104,6 +107,7 @@ public class WikiUpdater
         var stages = ProcessPagesFromCategory(stagesRaw);
         var mechanics = ProcessPagesFromCategory(mechanicsRaw);
         var developmentPages = ProcessPagesFromCategory(developmentPagesRaw);
+
         ColourConsole.WriteSuccessLine("Processed all wiki pages");
 
         var untranslatedWiki = new Wiki
@@ -147,6 +151,10 @@ public class WikiUpdater
         return true;
     }
 
+    /// <summary>
+    ///   Fetches a page from the online wiki
+    /// </summary>
+    /// <returns>The HTML content of the page</returns>
     private async Task<IHtmlElement> FetchRootPage(string url, string categoryName, CancellationToken cancellationToken)
     {
         ColourConsole.WriteInfoLine($"Fetching {categoryName.ToLowerInvariant()} root page");
@@ -155,6 +163,10 @@ public class WikiUpdater
         return body;
     }
 
+    /// <summary>
+    ///   Fetches all the pages from a category, ignores pages in the OnlyOnline category
+    /// </summary>
+    /// <returns>A list of all the pages' HTML content</returns>
     private async Task<List<IHtmlElement>> FetchPagesFromCategory(string categoryUrl,
         string pageType, CancellationToken cancellationToken)
     {
@@ -197,6 +209,10 @@ public class WikiUpdater
         return allPages;
     }
 
+    /// <summary>
+    ///   Generates all the data, translated and untranslated variants for a page
+    /// </summary>
+    /// <returns>The translated and untranslated variants of the page</returns>
     private TranslationPair ProcessRootPage(IHtmlElement body, string categoryName, string url)
     {
         var fullPageName = $"{categoryName}Root";
@@ -214,6 +230,11 @@ public class WikiUpdater
         return new TranslationPair(untranslatedPage, translatedPage);
     }
 
+    /// <summary>
+    ///   Generates all the data for a list of pages. This includes infobox data and any notices.
+    ///   Compiles translated and untranslated versions of all the pages
+    /// </summary>
+    /// <returns>A list of all the translated and untranslated variants</returns>
     private List<TranslationPair> ProcessPagesFromCategory(List<IHtmlElement> pages)
     {
         var allPages = new List<TranslationPair>();
@@ -736,6 +757,10 @@ public class WikiUpdater
         public Wiki.Page TranslatedPage { get; }
     }
 
+    /// <summary>
+    ///   A key-value pair containing keys and values in an infobox.
+    ///   Used for easier json serialization.
+    /// </summary>
     private class InfoboxField
     {
         public InfoboxField(string key, string value)

@@ -126,6 +126,9 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         base.Dispose(disposing);
     }
 
+    /// <summary>
+    ///   Loads a page scene and populates it with content
+    /// </summary>
     private static void GeneratePage<T>(List<ThriveopediaWikiPage> pageList, GameWiki.Page page, string scenePath)
         where T : ThriveopediaWikiPage
     {
@@ -135,6 +138,14 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         pageList.Add(pageInstance);
     }
 
+    /// <summary>
+    ///   Loads a set of pages and populates them with content.
+    ///   Additionally, performs extraDataInit for each page if needed.
+    ///   Also adds an infobox to the page if present.
+    /// </summary>
+    /// <param name="extraDataInit">
+    ///   An action to be performed on all pages. Used to pass extra data to the page.
+    /// </param>
     private static void GeneratePages<T>(List<ThriveopediaWikiPage> pageList, List<GameWiki.Page> pages,
         string scenePath, Action<T>? extraDataInit = null)
         where T : ThriveopediaWikiPage

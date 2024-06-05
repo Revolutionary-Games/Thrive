@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///   The bare minimum wiki page.
+///   The bare minimum wiki page. Requires the parent to be set manually when created.
 /// </summary>
 public partial class SimpleWikiPage : ThriveopediaWikiPage
 {
