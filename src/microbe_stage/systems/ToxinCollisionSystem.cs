@@ -21,6 +21,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
+[ReadsComponent(typeof(OrganelleContainer))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(0.5f, false)]
 public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
@@ -192,10 +193,35 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
                 return true;
             }
 
+            var toxinType = damageSource.ToxinProperties.ToxinSubType;
+
+            if (toxinType == ToxinType.Macrolide)
+            {
+                // TODO: speed debuff
+                return true;
+            }
+
+            if (toxinType == ToxinType.ChannelInhibitor)
+            {
+                // TODO: limit target ATP production
+                return true;
+            }
+
+            if (damageSource.ToxinProperties.HasSpecialEffect)
+                GD.PrintErr("Applying a special agent as just plain damage, this is likely wrong");
+
             if (damageTarget.Has<CellProperties>())
             {
+                float modifier = 1;
+
+                if (damageTarget.Has<OrganelleContainer>())
+                {
+                    modifier = CalculateToxinOrganelleDamageMultiplier(ref damageTarget.Get<OrganelleContainer>(),
+                        damageSource.ToxinProperties);
+                }
+
                 damageSource.ToxinProperties.DealDamage(ref health, ref damageTarget.Get<CellProperties>(),
-                    damageSource.ToxinAmount);
+                    damageSource.ToxinAmount * modifier);
             }
             else
             {
@@ -211,5 +237,32 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
             // Destroy this toxin to avoid recurring error printing spam
             return true;
         }
+    }
+
+    private static float CalculateToxinOrganelleDamageMultiplier(ref OrganelleContainer organelleContainer,
+        AgentProperties toxinProperties)
+    {
+        var oxygenParts = organelleContainer.OxygenUsingOrganelles;
+
+        // For now all effects are based on oxygen use so this method can just exit if there aren't any of those
+        if (oxygenParts == 0)
+            return 1;
+
+        // Oxygen targeting toxin has increased damage based on the number of oxygen using parts
+        if (toxinProperties.ToxinSubType == ToxinType.OxygenMetabolismInhibitor)
+        {
+            return 1 + Math.Min(oxygenParts * Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE,
+                Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX);
+        }
+
+        // Oxytoxy is less effective against targets with oxygen using organelles to model how those cells are
+        // naturally adapted to avoid damage from oxygen
+        if (toxinProperties.ToxinSubType == ToxinType.Oxytoxy)
+        {
+            return 1 - Math.Min(oxygenParts * Constants.OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE,
+                Constants.OXYTOXY_DAMAGE_DEBUFF_MAX);
+        }
+
+        return 1;
     }
 }

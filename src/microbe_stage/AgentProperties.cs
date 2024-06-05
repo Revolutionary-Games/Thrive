@@ -1,5 +1,4 @@
-﻿using System;
-using Components;
+﻿using Components;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -72,7 +71,7 @@ public class AgentProperties
             case ToxinType.ChannelInhibitor:
                 return 0;
             case ToxinType.OxygenMetabolismInhibitor:
-                break;
+                return Constants.OXYGEN_INHIBITOR_DAMAGE * toxinAmount;
         }
 
         return Constants.OXYTOXY_DAMAGE * toxinAmount;

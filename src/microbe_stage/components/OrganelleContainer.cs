@@ -85,6 +85,12 @@ public struct OrganelleContainer
     public int HexCount;
 
     /// <summary>
+    ///   Count of how many oxygen-using parts this cell has. Used for example to adjust different toxin damage in
+    ///   relation to oxygen users.
+    /// </summary>
+    public int OxygenUsingOrganelles;
+
+    /// <summary>
     ///   Lower values are faster rotation
     /// </summary>
     public float RotationSpeed;
@@ -446,6 +452,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
+        container.OxygenUsingOrganelles = 0;
 
         if (container.Organelles == null)
             throw new InvalidOperationException("Organelle list needs to be initialized first");
@@ -467,6 +474,10 @@ public static class OrganelleContainerHelpers
         for (int i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
+            var organelleDefinition = organelle.Definition;
+
+            if (organelleDefinition.IsOxygenMetabolism)
+                ++container.OxygenUsingOrganelles;
 
             var components = organelle.Components;
             int componentCount = components.Count;
@@ -502,14 +513,14 @@ public static class OrganelleContainerHelpers
                 }
             }
 
-            if (organelle.Definition.HasSignalingFeature)
+            if (organelleDefinition.HasSignalingFeature)
                 container.HasSignalingAgent = true;
 
-            if (organelle.Definition.HasBindingFeature)
+            if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
 
             container.OrganellesCapacity +=
-                MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelle.Definition,
+                MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelleDefinition,
                     organelle.Upgrades);
 
             var enzymes = organelle.GetEnzymes();

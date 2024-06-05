@@ -270,6 +270,12 @@ public class OrganelleDefinition : IRegistryType
 
     public bool HasSignalingFeature { get; private set; }
 
+    /// <summary>
+    ///   True when this organelle is one that uses oxygen as a process input (and is metabolism related). This is
+    ///   used to adjust toxin effects that have a distinction between oxygen breathers and others.
+    /// </summary>
+    public bool IsOxygenMetabolism { get; private set; }
+
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
@@ -523,6 +529,8 @@ public class OrganelleDefinition : IRegistryType
     {
         CalculateModelOffset();
 
+        IsOxygenMetabolism = false;
+
         RunnableProcesses = new List<TweakedProcess>();
 
         // Preload the scene for instantiating in microbes
@@ -551,10 +559,23 @@ public class OrganelleDefinition : IRegistryType
         // Resolve process names
         if (Processes != null)
         {
+            var oxygen = parameters.GetCompound("oxygen");
+
             foreach (var process in Processes)
             {
-                RunnableProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key),
-                    process.Value));
+                var resolvedProcess = new TweakedProcess(parameters.GetBioProcess(process.Key),
+                    process.Value);
+
+                if (process.Value <= 0)
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Process speed value should be above 0");
+                }
+
+                if (resolvedProcess.Process.IsMetabolismProcess && ProcessUsesOxygen(resolvedProcess, oxygen))
+                    IsOxygenMetabolism = true;
+
+                RunnableProcesses.Add(resolvedProcess);
             }
         }
 
@@ -699,6 +720,17 @@ public class OrganelleDefinition : IRegistryType
         }
 
         upgradeScene = default(LoadedSceneWithModelInfo);
+
+        return false;
+    }
+
+    private bool ProcessUsesOxygen(TweakedProcess resolvedProcess, Compound oxygen)
+    {
+        foreach (var processInput in resolvedProcess.Process.Inputs)
+        {
+            if (processInput.Key == oxygen)
+                return true;
+        }
 
         return false;
     }
