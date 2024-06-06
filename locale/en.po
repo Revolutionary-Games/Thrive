@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
-"PO-Revision-Date: 2024-05-29 15:08+0300\n"
+"POT-Creation-Date: 2024-06-06 22:42+0200\n"
+"PO-Revision-Date: 2024-06-06 22:43+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -5118,6 +5118,9 @@ msgstr "The amount of glucose has been reduced to {0} of the previous amount."
 msgid "THE_DISTURBANCE"
 msgstr "The Disturbance"
 
+msgid "THE_PATCH_MAP"
+msgstr "The Patch Map"
+
 msgid "THE_WORLD"
 msgstr "The World"
 
@@ -6449,6 +6452,9 @@ msgstr "Environmental gasses"
 msgid "WIKI_HEADING_FEATURES"
 msgstr "Features"
 
+msgid "WIKI_HEADING_FOG_OF_WAR"
+msgstr "Fog Of War"
+
 msgid "WIKI_HEADING_GAMEPLAY"
 msgstr "Gameplay"
 
@@ -6470,6 +6476,9 @@ msgstr "Mutations and Mutation Points"
 msgid "WIKI_HEADING_OVERVIEW"
 msgstr "Overview"
 
+msgid "WIKI_HEADING_PATCHES"
+msgstr "Patches"
+
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
 msgstr "Physical Conditions"
 
@@ -6490,6 +6499,9 @@ msgstr "Strategy"
 
 msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
 msgstr "The day/night cycle"
+
+msgid "WIKI_HEADING_THE_PATCH_MAP"
+msgstr "The Patch Map"
 
 msgid "WIKI_HEADING_TRANSITIONS"
 msgstr "Transitions"
@@ -6580,7 +6592,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_MECHANICS_ROOT_INTRO"
-msgstr "These are various concepts shared by multiple stages or editors."
+msgstr ""
+"These are various concepts shared by multiple stages or editors.\n"
+"\n"
+"The below pages explain various mechanics. Feel free to browse the pages for tips and help with the game."
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "No effects."
@@ -7114,6 +7129,9 @@ msgstr "Thermoplast"
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
+msgid "WIKI_PAGE_THE_PATCH_MAP"
+msgstr "The Patch Map"
+
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "Thylakoids"
 
@@ -7477,6 +7495,26 @@ msgstr ""
 
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "No upgrades."
+
+msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+msgstr ""
+"Fog of War is a game setting which can be enabled, which limits which patches the player can preview.\n"
+"\n"
+"When set to [b]regular[/b], only patches to which the player has been, as well as any adjacent patches will be visible. While patches adjacent to [i]those[/i] are visible on the map, but their type, [color=#3796e1][url=thriveopedia:Compounds]compound information[/url][/color] and [color=#3796e1][url=thriveopedia:EnvironmentalConditions]Environmental Conditions[/url][/color] are hidden.\n"
+"\n"
+"When set to [b]intense[/b], [b]only[/b] patches to which the player has been will be visible. Adjacent patches will be visible but will have hidden type and compound information"
+
+msgid "WIKI_THE_PATCH_MAP_INTRO"
+msgstr "The planet on which your species resides is a vast place with many different environments and biomes. In the [color=#3796e1][url=thriveopedia:microbe_stage]Microbe Stage[/url][/color] this is represented via [b]Patches[/b] and [b]Regions[/b] on the [b]Patch Map[/b]."
+
+msgid "WIKI_THE_PATCH_MAP_PATCHES"
+msgstr ""
+"[b]Patches[/b] represent distinct biomes with different environments. Each patch has different [color=#3796e1][url=thriveopedia:EnvironmentalConditions]Environmental Conditions[/url][/color] and [color=#3796e1][url=thriveopedia:Compounds]Compounds[/url][/color], which can affect which [b]processes[/b] can take place and with what efficiency. During each [color=#3796e1][url=thriveopedia:EditorsAndMutations]Editor Session[/url][/color], you can move to any adjacent patch or to any patch with your species in it. \n"
+"\n"
+"Patches also contain populations of other species, which can migrate between patches and serve as competition for the player. Be sure to check for predators and prey when moving between patches."
+
+msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
+msgstr "The [b]Patch Map[/b] is a representation of your planet. It is comprised of [b]Patches[/b] and [b]Regions[/b] (explained below). Each region contains multiple connected (or adjacent) patches and is connected to other regions."
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "No special effects."

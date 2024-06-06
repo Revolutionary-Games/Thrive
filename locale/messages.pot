@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
+"POT-Creation-Date: 2024-06-06 22:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -441,7 +441,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:417 ../src/general/MainMenu.tscn:476
 #: ../src/general/MainMenu.tscn:515 ../src/general/MainMenu.tscn:816
 #: ../src/general/NewGameSettings.tscn:923 ../src/general/OptionsMenu.tscn:1638
-#: ../src/general/PauseMenu.tscn:294
+#: ../src/general/PauseMenu.tscn:285
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:66
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
@@ -1095,7 +1095,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/CompoundPanels.tscn:662
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:293
-#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:47
+#: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:47
 msgid "COMPOUNDS"
 msgstr ""
 
@@ -1196,7 +1196,7 @@ msgid "CONFIRM_DELETE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:735
-#: ../src/general/PauseMenu.tscn:313
+#: ../src/general/PauseMenu.tscn:311
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 msgid "CONFIRM_EXIT"
 msgstr ""
@@ -2131,7 +2131,7 @@ msgstr ""
 msgid "EDGE_PAN_SPEED"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:96
+#: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:113
 msgid "EDITING"
 msgstr ""
 
@@ -2140,7 +2140,7 @@ msgstr ""
 msgid "EDITOR"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:119
+#: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:136
 msgid "EDITORS_AND_MUTATIONS"
 msgstr ""
 
@@ -2281,7 +2281,7 @@ msgstr ""
 msgid "ENVIRONMENT"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:155
+#: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:172
 msgid "ENVIRONMENTAL_CONDITIONS"
 msgstr ""
 
@@ -2378,7 +2378,7 @@ msgstr ""
 msgid "EXISTING_BUILDINGS"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:263
+#: ../src/general/PauseMenu.tscn:261
 msgid "EXIT"
 msgstr ""
 
@@ -2736,6 +2736,10 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:24
+msgid "GAME_SYSTEMS"
+msgstr ""
+
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2719
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1103
 msgid "GATHERED_ENERGY_TOOLTIP"
@@ -2988,7 +2992,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2006
 #: ../simulation_parameters/common/wiki.json:2084
 #: ../simulation_parameters/common/wiki.json:2162
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:75
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:75
 msgid "INFO_BOX_COST"
 msgstr ""
 
@@ -3000,7 +3004,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2509
 #: ../simulation_parameters/common/wiki.json:2559
 #: ../simulation_parameters/common/wiki.json:2609
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:109
+#: ../src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn:109
 msgid "INFO_BOX_EDITORS"
 msgstr ""
 
@@ -3032,7 +3036,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2018
 #: ../simulation_parameters/common/wiki.json:2096
 #: ../simulation_parameters/common/wiki.json:2174
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:134
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:134
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
 
@@ -3044,16 +3048,16 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2497
 #: ../simulation_parameters/common/wiki.json:2547
 #: ../simulation_parameters/common/wiki.json:2597
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:52
+#: ../src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn:52
 msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:269
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:128
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:269
+#: ../src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn:128
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:153
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:153
 msgid "INFO_BOX_MASS"
 msgstr ""
 
@@ -3065,7 +3069,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2505
 #: ../simulation_parameters/common/wiki.json:2555
 #: ../simulation_parameters/common/wiki.json:2605
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:90
+#: ../src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn:90
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr ""
 
@@ -3097,7 +3101,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2026
 #: ../simulation_parameters/common/wiki.json:2104
 #: ../simulation_parameters/common/wiki.json:2182
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:191
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:191
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr ""
 
@@ -3109,7 +3113,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2501
 #: ../simulation_parameters/common/wiki.json:2551
 #: ../simulation_parameters/common/wiki.json:2601
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:71
+#: ../src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn:71
 msgid "INFO_BOX_PREVIOUS_STAGE"
 msgstr ""
 
@@ -3141,7 +3145,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2014
 #: ../simulation_parameters/common/wiki.json:2092
 #: ../simulation_parameters/common/wiki.json:2170
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:115
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:115
 msgid "INFO_BOX_PROCESSES"
 msgstr ""
 
@@ -3173,7 +3177,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2010
 #: ../simulation_parameters/common/wiki.json:2088
 #: ../simulation_parameters/common/wiki.json:2166
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:94
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:94
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr ""
 
@@ -3205,7 +3209,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2022
 #: ../simulation_parameters/common/wiki.json:2100
 #: ../simulation_parameters/common/wiki.json:2178
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:172
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:172
 msgid "INFO_BOX_SIZE"
 msgstr ""
 
@@ -3237,7 +3241,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2030
 #: ../simulation_parameters/common/wiki.json:2108
 #: ../simulation_parameters/common/wiki.json:2186
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:210
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:210
 msgid "INFO_BOX_STORAGE"
 msgstr ""
 
@@ -3269,7 +3273,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2034
 #: ../simulation_parameters/common/wiki.json:2112
 #: ../simulation_parameters/common/wiki.json:2190
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:229
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:229
 msgid "INFO_BOX_UNIQUE"
 msgstr ""
 
@@ -3301,7 +3305,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2038
 #: ../simulation_parameters/common/wiki.json:2116
 #: ../simulation_parameters/common/wiki.json:2194
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:250
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:250
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
@@ -4041,12 +4045,12 @@ msgstr ""
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:303 ../src/general/PauseMenu.tscn:234
+#: ../src/general/MainMenu.tscn:303 ../src/general/PauseMenu.tscn:232
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:115
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:301 ../src/general/PauseMenu.tscn:233
+#: ../src/general/MainMenu.tscn:301 ../src/general/PauseMenu.tscn:231
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4153,7 +4157,7 @@ msgid "MAY"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:62
-#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.cs:11
+#: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.cs:11
 msgid "MECHANICS"
 msgstr ""
 
@@ -5052,9 +5056,9 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2195
 #: ../simulation_parameters/common/wiki.json:2248
 #: ../src/general/OptionsMenu.tscn:375
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:200
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:209
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:218
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:200
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:209
+#: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:218
 msgid "NONE"
 msgstr ""
 
@@ -5308,17 +5312,17 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:251
+#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:249
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:250
+#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:248
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:80
-#: ../src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.cs:19
+#: ../src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr ""
 
@@ -5601,7 +5605,7 @@ msgstr ""
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:221
+#: ../src/general/PauseMenu.tscn:219
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr ""
 
@@ -5882,7 +5886,7 @@ msgid "QUIT"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:346
-#: ../src/general/PauseMenu.tscn:262
+#: ../src/general/PauseMenu.tscn:260
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -5946,7 +5950,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:611 ../src/general/PauseMenu.tscn:245
+#: ../src/general/MainMenu.tscn:611 ../src/general/PauseMenu.tscn:243
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -5957,7 +5961,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:424
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:502
-#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:83
+#: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:100
 msgid "REPRODUCTION"
 msgstr ""
 
@@ -6062,7 +6066,7 @@ msgstr ""
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:222
+#: ../src/general/PauseMenu.tscn:220
 msgid "RESUME"
 msgstr ""
 
@@ -6070,12 +6074,12 @@ msgstr ""
 msgid "RESUME_TOOLTIP"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:257
+#: ../src/general/PauseMenu.tscn:255
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "RETURN_TO_MENU"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:256
+#: ../src/general/PauseMenu.tscn:254
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
@@ -6212,11 +6216,11 @@ msgstr ""
 msgid "SAVE_FAILED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:226
 msgid "SAVE_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:227
+#: ../src/general/PauseMenu.tscn:225
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -6712,7 +6716,7 @@ msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:71
-#: ../src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.cs:19
+#: ../src/thriveopedia/pages/wiki/stages/ThriveopediaStagesRootPage.cs:19
 msgid "STAGES"
 msgstr ""
 
@@ -6952,7 +6956,7 @@ msgstr ""
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:60
+#: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:77
 msgid "SURVIVAL"
 msgstr ""
 
@@ -7136,7 +7140,11 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn:132
+#: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:64
+msgid "THE_PATCH_MAP"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:149
 msgid "THE_WORLD"
 msgstr ""
 
@@ -7152,7 +7160,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:438 ../src/general/PauseMenu.tscn:240
+#: ../src/general/MainMenu.tscn:438 ../src/general/PauseMenu.tscn:238
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -7164,7 +7172,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:239
+#: ../src/general/PauseMenu.tscn:237
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -8217,31 +8225,31 @@ msgstr ""
 msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2645
+#: ../simulation_parameters/common/wiki.json:2666
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2637
+#: ../simulation_parameters/common/wiki.json:2658
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2641
+#: ../simulation_parameters/common/wiki.json:2662
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2748
+#: ../simulation_parameters/common/wiki.json:2773
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2736
+#: ../simulation_parameters/common/wiki.json:2761
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2744
+#: ../simulation_parameters/common/wiki.json:2769
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2740
+#: ../simulation_parameters/common/wiki.json:2765
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
@@ -8277,35 +8285,35 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2722
+#: ../simulation_parameters/common/wiki.json:2747
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2662
+#: ../simulation_parameters/common/wiki.json:2641
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2658
+#: ../simulation_parameters/common/wiki.json:2637
 msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2666
+#: ../simulation_parameters/common/wiki.json:2645
 msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2687
+#: ../simulation_parameters/common/wiki.json:2729
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2679
+#: ../simulation_parameters/common/wiki.json:2721
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2683
+#: ../simulation_parameters/common/wiki.json:2725
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2691
+#: ../simulation_parameters/common/wiki.json:2733
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
@@ -8345,7 +8353,7 @@ msgstr ""
 msgid "WIKI_HEADING_APPENDICES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2747
+#: ../simulation_parameters/common/wiki.json:2772
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
 
@@ -8363,7 +8371,7 @@ msgstr ""
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2644
+#: ../simulation_parameters/common/wiki.json:2665
 msgid "WIKI_HEADING_DEVELOPMENT"
 msgstr ""
 
@@ -8402,7 +8410,7 @@ msgstr ""
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2686
+#: ../simulation_parameters/common/wiki.json:2728
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
 msgstr ""
 
@@ -8416,6 +8424,10 @@ msgstr ""
 msgid "WIKI_HEADING_FEATURES"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:2686
+msgid "WIKI_HEADING_FOG_OF_WAR"
+msgstr ""
+
 #: ../simulation_parameters/common/wiki.json:2225
 msgid "WIKI_HEADING_GAMEPLAY"
 msgstr ""
@@ -8424,11 +8436,11 @@ msgstr ""
 msgid "WIKI_HEADING_GDD"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2661
+#: ../simulation_parameters/common/wiki.json:2640
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2743
+#: ../simulation_parameters/common/wiki.json:2768
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr ""
 
@@ -8463,7 +8475,7 @@ msgstr ""
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2665
+#: ../simulation_parameters/common/wiki.json:2644
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
 
@@ -8474,11 +8486,15 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2475
 #: ../simulation_parameters/common/wiki.json:2525
 #: ../simulation_parameters/common/wiki.json:2575
-#: ../simulation_parameters/common/wiki.json:2739
+#: ../simulation_parameters/common/wiki.json:2764
 msgid "WIKI_HEADING_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2682
+#: ../simulation_parameters/common/wiki.json:2690
+msgid "WIKI_HEADING_PATCHES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2724
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
 msgstr ""
 
@@ -8610,8 +8626,12 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2690
+#: ../simulation_parameters/common/wiki.json:2732
 msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2682
+msgid "WIKI_HEADING_THE_PATCH_MAP"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:2275
@@ -8624,7 +8644,7 @@ msgstr ""
 msgid "WIKI_HEADING_TRANSITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2640
+#: ../simulation_parameters/common/wiki.json:2661
 msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
 msgstr ""
 
@@ -9049,11 +9069,11 @@ msgstr ""
 msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2631
+#: ../simulation_parameters/common/wiki.json:2652
 msgid "WIKI_PAGE_COMPOUNDS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2730
+#: ../simulation_parameters/common/wiki.json:2755
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
 msgstr ""
 
@@ -9061,15 +9081,15 @@ msgstr ""
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2716
+#: ../simulation_parameters/common/wiki.json:2741
 msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2652
+#: ../simulation_parameters/common/wiki.json:2631
 msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2673
+#: ../simulation_parameters/common/wiki.json:2715
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr ""
 
@@ -9171,6 +9191,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1889
 msgid "WIKI_PAGE_THERMOSYNTHASE"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2673
+msgid "WIKI_PAGE_THE_PATCH_MAP"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1967
@@ -9475,6 +9499,22 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1915
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2687
+msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2679
+msgid "WIKI_THE_PATCH_MAP_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2691
+msgid "WIKI_THE_PATCH_MAP_PATCHES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2683
+msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1989

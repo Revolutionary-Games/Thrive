@@ -81,7 +81,7 @@ public partial class StageInfoBox : PanelContainer
     /// </summary>
     private void UpdateValues()
     {
-        Dictionary<string, string> infoboxData = Page.InfoboxData.ToDictionary(f => f.InfoboxKey, f => f.InfoboxValue);
+        Dictionary<string, string> infoboxData = Page.InfoboxData.ToDictionary(f => f.Name, f => f.DisplayedValue);
 
         nameLabel.Text = Page.Name;
         gameplayType.Text = infoboxData["INFO_BOX_GAMEPLAY_TYPE"];

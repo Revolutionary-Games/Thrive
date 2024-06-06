@@ -556,11 +556,11 @@ public class WikiUpdater
             for (int i = 0; i < untranslatedInfobox.Count; i++)
             {
                 // Skip adding translations for numbers or "-"
-                if (Regex.IsMatch(translatedInfobox[i].InfoboxValue, "^[0-9,. -]*$"))
+                if (Regex.IsMatch(translatedInfobox[i].DisplayedValue, "^[0-9,. -]*$"))
                     continue;
 
-                translationPairs.TryAdd(untranslatedInfobox[i].InfoboxKey, translatedInfobox[i].InfoboxKey);
-                translationPairs.TryAdd(untranslatedInfobox[i].InfoboxValue, translatedInfobox[i].InfoboxValue);
+                translationPairs.TryAdd(untranslatedInfobox[i].Name, translatedInfobox[i].Name);
+                translationPairs.TryAdd(untranslatedInfobox[i].DisplayedValue, translatedInfobox[i].DisplayedValue);
             }
 
             for (var i = 0; i < untranslatedPage.Sections.Count; ++i)
@@ -765,14 +765,14 @@ public class WikiUpdater
     {
         public InfoboxField(string key, string value)
         {
-            InfoboxKey = key;
-            InfoboxValue = value;
+            Name = key;
+            DisplayedValue = value;
         }
 
         [JsonInclude]
-        public string InfoboxKey { get; }
+        public string Name { get; }
 
         [JsonInclude]
-        public string InfoboxValue { get; }
+        public string DisplayedValue { get; }
     }
 }

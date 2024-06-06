@@ -101,8 +101,8 @@ public class GameWiki : IRegistryType
 
     public class InfoboxField
     {
-        public string InfoboxKey { get; set; } = null!;
+        public string Name { get; set; } = null!;
 
-        public string InfoboxValue { get; set; } = null!;
+        public string DisplayedValue { get; set; } = null!;
     }
 }

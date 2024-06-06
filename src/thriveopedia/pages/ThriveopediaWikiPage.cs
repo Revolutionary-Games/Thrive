@@ -51,7 +51,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         // Generate Mechanics Pages
 
         GeneratePage<ThriveopediaMechanicsRootPage>(pages, wiki.MechanicsRoot,
-            "res://src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn");
+            "res://src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn");
 
         GeneratePages<SimpleWikiPage>(pages, wiki.Mechanics,
             "res://src/thriveopedia/pages/SimpleWikiPage.tscn",
@@ -60,18 +60,18 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         // Generate Stage Pages
 
         GeneratePage<ThriveopediaStagesRootPage>(pages, wiki.StagesRoot,
-            "res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.tscn");
+            "res://src/thriveopedia/pages/wiki/stages/ThriveopediaStagesRootPage.tscn");
 
         GeneratePages<ThriveopediaStagePage>(pages, wiki.Stages,
-            "res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagePage.tscn");
+            "res://src/thriveopedia/pages/wiki/stages/ThriveopediaStagePage.tscn");
 
         // Generate Organelle Pages
 
         GeneratePage<ThriveopediaOrganellesRootPage>(pages, wiki.OrganellesRoot,
-            "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.tscn");
+            "res://src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellesRootPage.tscn");
 
         GeneratePages<ThriveopediaOrganellePage>(pages, wiki.Organelles,
-            "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellePage.tscn",
+            "res://src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellePage.tscn",
             p => p.Organelle = SimulationParameters.Instance.GetOrganelleType(p.PageContent.InternalName));
 
         // Generate Development Pages
