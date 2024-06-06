@@ -1,24 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://flyqgxf6unel"]
+[gd_scene load_steps=5 format=3 uid="uid://flyqgxf6unel"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_cq84u"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs" id="2_w0q76"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="2_ysgr0"]
+[ext_resource type="PackedScene" uid="uid://c027xyogk08vx" path="res://src/microbe_stage/editor/CellStatsIndicator.tscn" id="4_dj6ma"]
 
-[node name="ToxinUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("toxinTypeSelection", "toxinTypeDescription")]
+[node name="ToxinUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("toxinTypeSelection", "toxinTypeDescription", "damageIndicator", "damagePerOxygenIndicator", "baseMovementIndicator", "atpIndicator")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_cq84u")
 script = ExtResource("2_w0q76")
 toxinTypeSelection = NodePath("ToxinType")
 toxinTypeDescription = NodePath("TypeExplanation")
+damageIndicator = NodePath("StatsContainer/Damage")
+damagePerOxygenIndicator = NodePath("StatsContainer/DamagPerOxygen")
+baseMovementIndicator = NodePath("StatsContainer/BaseMovementReduction")
+atpIndicator = NodePath("StatsContainer/ATPReduction")
 
 [node name="Explanation" type="Label" parent="."]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 text = "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 autowrap_mode = 3
 
@@ -33,7 +39,7 @@ layout_mode = 2
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 text = "Selected toxin type explanation goes here"
 autowrap_mode = 3
 
@@ -76,5 +82,30 @@ layout_mode = 2
 size_flags_vertical = 1
 text = "TOXIN_PREFER_TOXICITY"
 label_settings = ExtResource("2_ysgr0")
+
+[node name="Label3" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "TOXIN_PROPERTIES_HEADING"
+autowrap_mode = 3
+
+[node name="StatsContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Damage" parent="StatsContainer" instance=ExtResource("4_dj6ma")]
+layout_mode = 2
+Description = "STAT_DAMAGE"
+
+[node name="DamagPerOxygen" parent="StatsContainer" instance=ExtResource("4_dj6ma")]
+layout_mode = 2
+Description = "STAT_DAMAGE_PER_OXYGEN"
+
+[node name="ATPReduction" parent="StatsContainer" instance=ExtResource("4_dj6ma")]
+layout_mode = 2
+Description = "STAT_ATP_PRODUCTION_REDUCTION"
+
+[node name="BaseMovementReduction" parent="StatsContainer" instance=ExtResource("4_dj6ma")]
+layout_mode = 2
+Description = "STAT_BASE_MOVEMENT_REDUCTION"
 
 [connection signal="item_selected" from="ToxinType" to="." method="OnToxinTypeSelected"]

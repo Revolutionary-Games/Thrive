@@ -16,6 +16,18 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     [Export]
     private Label toxinTypeDescription = null!;
+
+    [Export]
+    private CellStatsIndicator damageIndicator = null!;
+
+    [Export]
+    private CellStatsIndicator damagePerOxygenIndicator = null!;
+
+    [Export]
+    private CellStatsIndicator baseMovementIndicator = null!;
+
+    [Export]
+    private CellStatsIndicator atpIndicator = null!;
 #pragma warning restore CA2213
 
     public ToxinUpgradeGUI()
@@ -26,6 +38,16 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         {
             typeToUpgradeInfo[ToxinUpgradeNames.ToxinTypeFromName(availableUpgrade.Key)] = availableUpgrade.Value;
         }
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        var percentage = Localization.Translate("PERCENTAGE_VALUE");
+        damagePerOxygenIndicator.Format = percentage;
+        baseMovementIndicator.Format = percentage;
+        atpIndicator.Format = percentage;
     }
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame, float costMultiplier)
@@ -111,7 +133,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public Vector2 GetMinDialogSize()
     {
-        return new Vector2(350, 350);
+        return new Vector2(350, 370);
     }
 
     private void ApplySelection(ToxinType toxinType)
@@ -119,6 +141,71 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         toxinTypeSelection.Select(toxinTypeSelection.GetItemIndex((int)toxinType));
 
         toxinTypeDescription.Text = Localization.Translate(toxinType.GetAttribute<DescriptionAttribute>().Description);
+
+        UpdateStatIndicators(toxinType);
+    }
+
+    private void UpdateStatIndicators(ToxinType toxinType)
+    {
+        damageIndicator.Visible = true;
+        damagePerOxygenIndicator.Visible = false;
+        baseMovementIndicator.Visible = false;
+        atpIndicator.Visible = false;
+
+        switch (toxinType)
+        {
+            case ToxinType.Oxytoxy:
+            {
+                damageIndicator.Value = Constants.OXYTOXY_DAMAGE;
+                damagePerOxygenIndicator.Visible = true;
+                damagePerOxygenIndicator.Value = -100 * Constants.OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE;
+                baseMovementIndicator.Value = 0;
+                atpIndicator.Value = 0;
+                break;
+            }
+
+            case ToxinType.Cytotoxin:
+            {
+                damageIndicator.Value = Constants.CYTOTOXIN_DAMAGE;
+                damagePerOxygenIndicator.Value = 0;
+                baseMovementIndicator.Value = 0;
+                atpIndicator.Value = 0;
+                break;
+            }
+
+            case ToxinType.Macrolide:
+            {
+                damageIndicator.Value = 0;
+                damagePerOxygenIndicator.Value = 0;
+                baseMovementIndicator.Visible = true;
+                baseMovementIndicator.Value = 100 * Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF;
+                atpIndicator.Value = 0;
+                break;
+            }
+
+            case ToxinType.ChannelInhibitor:
+            {
+                damageIndicator.Value = 0;
+                damagePerOxygenIndicator.Value = 0;
+                baseMovementIndicator.Value = 0;
+                atpIndicator.Visible = true;
+                atpIndicator.Value = 100 * Constants.CHANNEL_INHIBITOR_ATP_DEBUFF;
+                break;
+            }
+
+            case ToxinType.OxygenMetabolismInhibitor:
+            {
+                damageIndicator.Value = Constants.OXYGEN_INHIBITOR_DAMAGE;
+                damagePerOxygenIndicator.Visible = true;
+                damagePerOxygenIndicator.Value = 100 * Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE;
+                baseMovementIndicator.Value = 0;
+                atpIndicator.Value = 0;
+                break;
+            }
+
+            default:
+                throw new ArgumentOutOfRangeException(nameof(toxinType), toxinType, null);
+        }
     }
 
     private void OnToxinTypeSelected(int index)

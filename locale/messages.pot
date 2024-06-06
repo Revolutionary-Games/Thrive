@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-04 10:54+0300\n"
+"POT-Creation-Date: 2024-06-06 12:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,7 +113,7 @@ msgstr ""
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:90
+#: ../simulation_parameters/microbe_stage/bio_processes.json:95
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgstr ""
 msgid "AGENTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/AgentProperties.cs:23
+#: ../src/microbe_stage/AgentProperties.cs:43
 msgid "AGENT_NAME"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:101
+#: ../simulation_parameters/microbe_stage/bio_processes.json:106
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
@@ -819,8 +819,8 @@ msgstr ""
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:70
-#: ../simulation_parameters/microbe_stage/bio_processes.json:80
+#: ../simulation_parameters/microbe_stage/bio_processes.json:73
+#: ../simulation_parameters/microbe_stage/bio_processes.json:84
 msgid "CHEMO_SYNTHESIS"
 msgstr ""
 
@@ -1583,7 +1583,7 @@ msgstr ""
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:22
+#: ../simulation_parameters/microbe_stage/bio_processes.json:24
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr ""
 
@@ -2693,7 +2693,7 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:13
+#: ../simulation_parameters/microbe_stage/bio_processes.json:14
 msgid "GLYCOLYSIS"
 msgstr ""
 
@@ -3075,8 +3075,8 @@ msgstr ""
 msgid "IRON"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:131
-#: ../simulation_parameters/microbe_stage/bio_processes.json:160
+#: ../simulation_parameters/microbe_stage/bio_processes.json:137
+#: ../simulation_parameters/microbe_stage/bio_processes.json:167
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr ""
 
@@ -4349,7 +4349,7 @@ msgstr ""
 msgid "MUCILAGE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:61
+#: ../simulation_parameters/microbe_stage/bio_processes.json:64
 msgid "MUCILAGE_SYNTHESIS"
 msgstr ""
 
@@ -4861,7 +4861,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:624
+#: ../src/microbe_stage/OrganelleDefinition.cs:645
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -4953,11 +4953,13 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:97
+#: ../simulation_parameters/microbe_stage/organelles.json:256
+#: ../simulation_parameters/microbe_stage/organelles.json:664
 msgid "OXYTOXY_NT"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:41
-#: ../simulation_parameters/microbe_stage/bio_processes.json:51
+#: ../simulation_parameters/microbe_stage/bio_processes.json:44
+#: ../simulation_parameters/microbe_stage/bio_processes.json:54
 msgid "OXYTOXY_SYNTHESIS"
 msgstr ""
 
@@ -5112,6 +5114,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:289
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:398
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:47
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:422
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:497
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
@@ -5142,8 +5145,8 @@ msgstr ""
 msgid "PHOSPHATE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:31
-#: ../simulation_parameters/microbe_stage/bio_processes.json:121
+#: ../simulation_parameters/microbe_stage/bio_processes.json:34
+#: ../simulation_parameters/microbe_stage/bio_processes.json:127
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -5511,7 +5514,7 @@ msgid "RESOURCE_WOOD"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
-#: ../simulation_parameters/microbe_stage/bio_processes.json:111
+#: ../simulation_parameters/microbe_stage/bio_processes.json:116
 msgid "RESPIRATION"
 msgstr ""
 
@@ -6197,6 +6200,22 @@ msgstr ""
 msgid "STATISTICS"
 msgstr ""
 
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:104
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:108
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:96
+msgid "STAT_DAMAGE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:100
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
+
 #: ../src/steam/SteamClient.cs:72 ../src/steam/SteamClient.cs:79
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
@@ -6562,8 +6581,8 @@ msgstr ""
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:142
-#: ../simulation_parameters/microbe_stage/bio_processes.json:151
+#: ../simulation_parameters/microbe_stage/bio_processes.json:149
+#: ../simulation_parameters/microbe_stage/bio_processes.json:158
 msgid "THERMOSYNTHESIS"
 msgstr ""
 
@@ -6777,7 +6796,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:267
 #: ../simulation_parameters/microbe_stage/organelles.json:675
-#: ../src/microbe_stage/ToxinType.cs:29
+#: ../src/microbe_stage/ToxinType.cs:34
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr ""
 
@@ -6788,11 +6807,11 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:279
 #: ../simulation_parameters/microbe_stage/organelles.json:687
-#: ../src/microbe_stage/ToxinType.cs:17
+#: ../src/microbe_stage/ToxinType.cs:22
 msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:49
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:55
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
 msgstr ""
 
@@ -6803,7 +6822,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:261
 #: ../simulation_parameters/microbe_stage/organelles.json:669
-#: ../src/microbe_stage/ToxinType.cs:23
+#: ../src/microbe_stage/ToxinType.cs:28
 msgid "TOXIN_MACROLIDE_DESCRIPTION"
 msgstr ""
 
@@ -6814,22 +6833,26 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:273
 #: ../simulation_parameters/microbe_stage/organelles.json:681
-#: ../src/microbe_stage/ToxinType.cs:35
+#: ../src/microbe_stage/ToxinType.cs:40
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:257
 #: ../simulation_parameters/microbe_stage/organelles.json:665
-#: ../src/microbe_stage/ToxinType.cs:11
+#: ../src/microbe_stage/ToxinType.cs:16
 msgid "TOXIN_OXYTOXY_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:64
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:71
 msgid "TOXIN_PREFER_FIRE_RATE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:75
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:82
 msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:88
+msgid "TOXIN_PROPERTIES_HEADING"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
@@ -6838,11 +6861,11 @@ msgstr ""
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:27
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:32
 msgid "TOXIN_TYPE_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:22
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:27
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr ""
 
@@ -7170,7 +7193,7 @@ msgstr ""
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:35
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:57
 msgid "UPGRADE_COST"
 msgstr ""
 
@@ -7180,8 +7203,6 @@ msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:46
-#: ../simulation_parameters/microbe_stage/organelles.json:256
-#: ../simulation_parameters/microbe_stage/organelles.json:664
 #: ../simulation_parameters/microbe_stage/organelles.json:1096
 msgid "UPGRADE_NAME_NONE"
 msgstr ""

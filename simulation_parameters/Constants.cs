@@ -397,6 +397,10 @@ public static class Constants
 
     public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
 
+    public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
+
+    public const float MACROLIDE_BASE_MOVEMENT_DEBUFF = 0.8f;
+
     /// <summary>
     ///   Each oxygen using organelle in a cell increases damage caused by oxygen-inhibiting toxin by this amount,
     ///   up to a cap.
