@@ -22,6 +22,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(OrganelleContainer))]
+[ReadsComponent(typeof(MicrobeEventCallbacks))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(0.5f, false)]
 public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
@@ -193,25 +194,63 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
                 return true;
             }
 
-            var toxinType = damageSource.ToxinProperties.ToxinSubType;
-
-            if (toxinType == ToxinType.Macrolide)
-            {
-                // TODO: speed debuff
-                return true;
-            }
-
-            if (toxinType == ToxinType.ChannelInhibitor)
-            {
-                // TODO: limit target ATP production
-                return true;
-            }
-
-            if (damageSource.ToxinProperties.HasSpecialEffect)
-                GD.PrintErr("Applying a special agent as just plain damage, this is likely wrong");
-
             if (damageTarget.Has<CellProperties>())
             {
+                var toxinType = damageSource.ToxinProperties.ToxinSubType;
+
+                // These are checked within here to allow special effect toxins to try to damage non-cell things but
+                // ultimately fail to apply their effect
+
+                if (toxinType == ToxinType.Macrolide)
+                {
+                    // Speed debuff toxin
+                    if (!damageTarget.Has<MicrobeTemporaryEffects>())
+                    {
+                        // Return false to indicate an error with a microbe that is missing the effects
+                        return false;
+                    }
+
+                    ref var temporaryEffects = ref damageTarget.Get<MicrobeTemporaryEffects>();
+
+                    // TODO: should there be a cooldown for when this can trigger again?
+                    if (temporaryEffects.SpeedDebuffDuration <= 0)
+                    {
+                        damageTarget.SendNoticeIfPossible(() =>
+                            new SimpleHUDMessage(Localization.Translate("NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN")));
+                    }
+
+                    temporaryEffects.SpeedDebuffDuration =
+                        Constants.MACROLIDE_DEBUFF_DURATION * damageSource.ToxinAmount;
+                    temporaryEffects.StateApplied = true;
+
+                    return true;
+                }
+
+                if (toxinType == ToxinType.ChannelInhibitor)
+                {
+                    // ATP debuff toxin
+                    if (!damageTarget.Has<MicrobeTemporaryEffects>())
+                        return false;
+
+                    ref var temporaryEffects = ref damageTarget.Get<MicrobeTemporaryEffects>();
+
+                    // TODO: should there be a cooldown for when this can trigger again?
+                    if (temporaryEffects.ATPDebuffDuration <= 0)
+                    {
+                        damageTarget.SendNoticeIfPossible(() =>
+                            new SimpleHUDMessage(Localization.Translate("NOTICE_HIT_BY_ATP_TOXIN")));
+                    }
+
+                    temporaryEffects.ATPDebuffDuration =
+                        Constants.CHANNEL_INHIBITOR_DEBUFF_DURATION * damageSource.ToxinAmount;
+                    temporaryEffects.StateApplied = true;
+
+                    return true;
+                }
+
+                if (damageSource.ToxinProperties.HasSpecialEffect)
+                    GD.PrintErr("Applying a special agent as just plain damage, this is likely wrong");
+
                 float modifier = 1;
 
                 if (damageTarget.Has<OrganelleContainer>())

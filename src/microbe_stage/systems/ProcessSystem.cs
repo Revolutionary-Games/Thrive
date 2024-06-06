@@ -604,12 +604,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     lock (currentProcessStatistics)
                     {
                         currentProcessStatistics.BeginFrame(delta);
-                        RunProcess(delta, processData, bag, process, currentProcessStatistics);
+                        RunProcess(delta, processData, bag, process, ref processor, currentProcessStatistics);
                     }
                 }
                 else
                 {
-                    RunProcess(delta, processData, bag, process, null);
+                    RunProcess(delta, processData, bag, process, ref processor, null);
                 }
             }
         }
@@ -621,7 +621,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
-        SingleProcessStatistics? currentProcessStatistics)
+        ref BioProcesses processorInfo, SingleProcessStatistics? currentProcessStatistics)
     {
         // Can your cell do the process
         bool canDoProcess = true;
@@ -638,7 +638,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // check of normal compound input amounts
         foreach (var entry in processData.Inputs)
         {
-            // Set used compounds to be useful, we dont want to purge those
+            // Set used compounds to be useful, we don't want to purge those
             bag.SetUseful(entry.Key);
 
             if (!entry.Key.IsEnvironmental)
@@ -706,6 +706,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
+        bool isATPProducer = false;
+
         foreach (var entry in processData.Outputs)
         {
             // For now lets assume compounds we produce are also useful
@@ -738,7 +740,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                         canRun = true;
                     }
 
-                    // With all of the modifiers we can lose a tiny bit of compound that won't fit due to rounding
+                    // With all the modifiers we can lose a tiny bit of compound that won't fit due to rounding
                     // errors, but we ignore that here
                 }
 
@@ -748,6 +750,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     currentProcessStatistics?.AddCapacityProblem(entry.Key);
                 }
             }
+
+            if (entry.Key == ATP)
+                isATPProducer = true;
         }
 
         // Only carry out this process if you have all the required ingredients and enough space for the outputs
@@ -759,6 +764,22 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier;
+
+        // Apply ATP production speed cap if in effect
+        if (isATPProducer && processorInfo.ATPProductionSpeedModifier != 0)
+        {
+            // TODO: should external modifier effects be shown in the process info somehow?
+
+            if (processorInfo.ATPProductionSpeedModifier < 0)
+            {
+                // Process is disabled
+                if (currentProcessStatistics != null)
+                    currentProcessStatistics.CurrentSpeed = 0;
+                return;
+            }
+
+            totalModifier *= processorInfo.ATPProductionSpeedModifier;
+        }
 
         if (currentProcessStatistics != null)
             currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier;
@@ -774,7 +795,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
 
             // This should always succeed (due to the earlier check) so it is always assumed here that this
-            // succeeded
+            // succeeded. Caveat: see: BioProcesses.ATPProductionSpeedModifier
             bag.TakeCompound(entry.Key, inputRemoved);
         }
 

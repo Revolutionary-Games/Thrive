@@ -70,6 +70,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobeMovementSoundSystem microbeMovementSoundSystem = null!;
     private MicrobeMovementSystem microbeMovementSystem = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
+    private MicrobeTemporaryEffectsSystem microbeTemporaryEffectsSystem = null!;
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
     private OrganelleComponentFetchSystem organelleComponentFetchSystem = null!;
     private OrganelleTickSystem organelleTickSystem = null!;
@@ -207,6 +208,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, couldParallelize);
         microbeMovementSoundSystem = new MicrobeMovementSoundSystem(EntitySystem, couldParallelize);
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
+        microbeTemporaryEffectsSystem = new MicrobeTemporaryEffectsSystem(EntitySystem, parallelRunner);
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
         organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, couldParallelize);
@@ -444,6 +446,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 microbeMovementSoundSystem.Dispose();
                 microbeMovementSystem.Dispose();
                 microbeShaderSystem.Dispose();
+                microbeTemporaryEffectsSystem.Dispose();
                 microbeVisualsSystem.Dispose();
                 organelleComponentFetchSystem.Dispose();
                 organelleTickSystem.Dispose();
