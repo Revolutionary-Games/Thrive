@@ -23,6 +23,13 @@ public struct MicrobeTemporaryEffects
     ///   False when something needs to be performed. Must be set false when any other fields are modified in this
     ///   struct.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This doesn't absolutely have to be JSON ignored as the debuff states applied are in other components that
+    ///     should be saved, but this doesn't do much harm to re-apply temporary effects each time a save is loaded to
+    ///     all microbes.
+    ///   </para>
+    /// </remarks>
     [JsonIgnore]
     public bool StateApplied;
 }

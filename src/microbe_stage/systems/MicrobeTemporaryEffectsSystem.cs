@@ -51,7 +51,7 @@ public class MicrobeTemporaryEffectsSystem : AEntitySetSystem<float>
         else
         {
             // Remove effect
-            processes.ATPProductionSpeedModifier = 1;
+            processes.ATPProductionSpeedModifier = 0;
         }
 
         if (!hasDebuff)
