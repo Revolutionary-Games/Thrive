@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-06 12:00+0300\n"
+"POT-Creation-Date: 2024-06-06 16:15+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4583,6 +4583,14 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+#: ../src/microbe_stage/systems/ToxinCollisionSystem.cs:241
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#: ../src/microbe_stage/systems/ToxinCollisionSystem.cs:219
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr ""
+
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:456
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
@@ -6200,19 +6208,19 @@ msgstr ""
 msgid "STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:104
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:105
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:108
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:109
 msgid "STAT_BASE_MOVEMENT_REDUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:96
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:97
 msgid "STAT_DAMAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:100
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:101
 msgid "STAT_DAMAGE_PER_OXYGEN"
 msgstr ""
 
@@ -6811,7 +6819,7 @@ msgstr ""
 msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:55
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:56
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
 msgstr ""
 
@@ -6843,15 +6851,15 @@ msgstr ""
 msgid "TOXIN_OXYTOXY_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:71
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:72
 msgid "TOXIN_PREFER_FIRE_RATE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:83
 msgid "TOXIN_PREFER_TOXICITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:88
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:89
 msgid "TOXIN_PROPERTIES_HEADING"
 msgstr ""
 
@@ -6861,11 +6869,11 @@ msgstr ""
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:33
 msgid "TOXIN_TYPE_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:27
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:28
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr ""
 

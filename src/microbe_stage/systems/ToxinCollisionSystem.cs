@@ -238,7 +238,8 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
                     if (temporaryEffects.ATPDebuffDuration <= 0)
                     {
                         damageTarget.SendNoticeIfPossible(() =>
-                            new SimpleHUDMessage(Localization.Translate("NOTICE_HIT_BY_ATP_TOXIN")));
+                            new SimpleHUDMessage(Localization.Translate("NOTICE_HIT_BY_ATP_TOXIN"),
+                                DisplayDuration.Long));
                     }
 
                     temporaryEffects.ATPDebuffDuration =
