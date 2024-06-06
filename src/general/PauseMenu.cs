@@ -7,16 +7,10 @@ using Godot;
 public partial class PauseMenu : TopLevelContainer
 {
     [Export]
-    public string HelpCategory = null!;
-
-    [Export]
     public NodePath? PrimaryMenuPath;
 
     [Export]
     public NodePath ThriveopediaPath = null!;
-
-    [Export]
-    public NodePath HelpScreenPath = null!;
 
     [Export]
     public NodePath LoadMenuPath = null!;
@@ -36,7 +30,6 @@ public partial class PauseMenu : TopLevelContainer
 #pragma warning disable CA2213
     private Control primaryMenu = null!;
     private Thriveopedia? thriveopedia;
-    private HelpScreen helpScreen = null!;
     private Control loadMenu = null!;
     private OptionsMenu optionsMenu = null!;
     private NewSaveMenu saveMenu = null!;
@@ -88,7 +81,6 @@ public partial class PauseMenu : TopLevelContainer
     {
         Primary,
         Thriveopedia,
-        Help,
         Load,
         Options,
         Save,
@@ -229,9 +221,6 @@ public partial class PauseMenu : TopLevelContainer
 
     public override void _EnterTree()
     {
-        // This needs to be done early here to make sure the help screen loads the right text
-        helpScreen = GetNode<HelpScreen>(HelpScreenPath);
-        helpScreen.Category = HelpCategory;
         InputManager.RegisterReceiver(this);
 
         GetTree().AutoAcceptQuit = false;
@@ -288,31 +277,11 @@ public partial class PauseMenu : TopLevelContainer
     }
 
     [RunOnKeyDown("help")]
-    public bool ShowHelpPressed()
-    {
-        if (IsPausingBlocked)
-            return false;
-
-        Open();
-        EmitSignal(SignalName.OnOpenWithKeyPress);
-
-        ShowHelpScreen();
-        return true;
-    }
-
-    public void ShowHelpScreen()
-    {
-        if (ActiveMenu == ActiveMenuType.Help)
-            return;
-
-        ActiveMenu = ActiveMenuType.Help;
-        helpScreen.RandomizeEasterEgg();
-    }
-
     public void OpenToHelp()
     {
         Open();
-        ShowHelpScreen();
+        OpenThriveopediaPressed();
+        ThriveopediaManager.OpenPage("MechanicsRoot");
     }
 
     public void SetNewSaveName(string name)
@@ -360,7 +329,6 @@ public partial class PauseMenu : TopLevelContainer
             {
                 PrimaryMenuPath.Dispose();
                 ThriveopediaPath.Dispose();
-                HelpScreenPath.Dispose();
                 LoadMenuPath.Dispose();
                 OptionsMenuPath.Dispose();
                 SaveMenuPath.Dispose();
@@ -378,7 +346,6 @@ public partial class PauseMenu : TopLevelContainer
         {
             ActiveMenuType.Primary => primaryMenu,
             ActiveMenuType.Thriveopedia => thriveopedia,
-            ActiveMenuType.Help => helpScreen,
             ActiveMenuType.Load => loadMenu,
             ActiveMenuType.Options => optionsMenu,
             ActiveMenuType.Save => saveMenu,
@@ -428,14 +395,6 @@ public partial class PauseMenu : TopLevelContainer
             unsavedProgressWarning.DialogText = Localization.Translate("QUIT_GAME_WARNING");
             unsavedProgressWarning.PopupCenteredShrink();
         }
-    }
-
-    private void OpenHelpPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        ActiveMenu = ActiveMenuType.Help;
-        helpScreen.RandomizeEasterEgg();
     }
 
     private void ConfirmExit()

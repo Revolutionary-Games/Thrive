@@ -15,4 +15,19 @@ public partial class ThriveopediaWikiRootPage : ThriveopediaPage, IThriveopediaP
     {
         ThriveopediaManager.OpenPage("OrganellesRoot");
     }
+
+    public void OnStagesPressed()
+    {
+        ThriveopediaManager.OpenPage("StagesRoot");
+    }
+
+    public void OnMechanicsPressed()
+    {
+        ThriveopediaManager.OpenPage("MechanicsRoot");
+    }
+
+    public void OnDevelopmentPressed()
+    {
+        ThriveopediaManager.OpenPage("DevelopmentRoot");
+    }
 }

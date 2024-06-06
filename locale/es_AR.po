@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
+"POT-Creation-Date: 2024-06-06 22:42+0200\n"
 "PO-Revision-Date: 2024-02-25 11:36+0000\n"
 "Last-Translator: Levi Monjeau <iamaoenguin@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Movimiento 2D:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Cloroplasto"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
@@ -30,6 +49,9 @@ msgstr "Movimiento 3D"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Estilo de movimiento 3D:"
+
+msgid "8_BRACKET_16"
+msgstr ""
 
 msgid "ABILITIES"
 msgstr "Habilidades"
@@ -90,7 +112,15 @@ msgstr "Avanzado"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abrir el modo de vista avanzado (Topo deja de ponerte la gorra)"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Fijación aeróbica de nitrógeno"
+
 msgid "AEROBIC_NITROGEN_FIXING"
+msgstr "Fijación aeróbica de nitrógeno"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
 msgstr "Fijación aeróbica de nitrógeno"
 
 msgid "AGENTS"
@@ -199,6 +229,9 @@ msgstr "Arte creado por {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galería de Arte"
+
+msgid "ASCENSION"
+msgstr ""
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr ""
@@ -311,6 +344,13 @@ msgstr "Barra inversa ( / )"
 msgid "BACKSPACE"
 msgstr "Retroceso"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Fotosíntesis"
+
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr ""
 
@@ -419,6 +459,9 @@ msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
 msgid "BIOME_LABEL"
+msgstr ""
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
@@ -575,6 +618,10 @@ msgstr ""
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Fotosíntesis"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteínas de quimiosíntesis"
 
@@ -613,6 +660,9 @@ msgstr ""
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberración cromática:"
+
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -1263,6 +1313,10 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "DEVELOPMENT"
+msgstr "Movimiento 3D"
+
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
@@ -1549,8 +1603,16 @@ msgstr ""
 msgid "EDGE_PAN_SPEED"
 msgstr "población:"
 
+#, fuzzy
+msgid "EDITING"
+msgstr "Quitina"
+
 msgid "EDITOR"
 msgstr ""
+
+#, fuzzy
+msgid "EDITORS_AND_MUTATIONS"
+msgstr "Mitocondria"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
@@ -1663,6 +1725,10 @@ msgstr ""
 
 msgid "ENVIRONMENT"
 msgstr ""
+
+#, fuzzy
+msgid "ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitocondria"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
@@ -2012,6 +2078,9 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
+msgid "GAME_SYSTEMS"
+msgstr ""
+
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Activar/Desactivar engullir"
@@ -2046,6 +2115,10 @@ msgstr ""
 #, fuzzy
 msgid "GLYCOLYSIS"
 msgstr "Nivel de Glucósis"
+
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Fijación aeróbica de nitrógeno"
 
 msgid "GODMODE"
 msgstr ""
@@ -2085,9 +2158,6 @@ msgid "GUI_VOLUME"
 msgstr "Volumen de la interfaz"
 
 msgid "HEALTH"
-msgstr ""
-
-msgid "HELP"
 msgstr ""
 
 msgid "HELP_BUTTON_TOOLTIP"
@@ -2173,7 +2243,14 @@ msgstr ""
 msgid "INFO_BOX_COST"
 msgstr ""
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Habilitar el editor"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr ""
 
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2182,8 +2259,16 @@ msgstr ""
 msgid "INFO_BOX_MASS"
 msgstr ""
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Núcleo"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr ""
@@ -2208,6 +2293,9 @@ msgid "INGESTED_MATTER"
 msgstr ""
 
 msgid "INIT_NEW_WORLD_TOOLTIP"
+msgstr ""
+
+msgid "INJECTISOME_PILUS"
 msgstr ""
 
 msgid "INPUTS"
@@ -2844,6 +2932,9 @@ msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 
 msgid "MAY"
+msgstr ""
+
+msgid "MECHANICS"
 msgstr ""
 
 msgid "MEDIANEXT"
@@ -3504,6 +3595,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Habilitar el editor"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Hilos actuales:"
 
@@ -3574,8 +3669,15 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "NO"
+msgstr "Ninguno (no activado)"
+
 msgid "NONE"
 msgstr "Ninguno (no activado)"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normal"
@@ -3836,6 +3938,10 @@ msgstr ""
 msgid "OUR_WIKI"
 msgstr ""
 
+#, fuzzy
+msgid "OUTDATED_NOTICE"
+msgstr "Abortado."
+
 msgid "OUTREACH_TEAM"
 msgstr ""
 
@@ -3869,6 +3975,9 @@ msgid "OXYTOXY_NT"
 msgstr "OxyToxy (Neurotoxina)"
 
 msgid "OXYTOXY_SYNTHESIS"
+msgstr ""
+
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr ""
 
 msgid "PAGEDOWN"
@@ -4130,8 +4239,15 @@ msgstr ""
 msgid "PROTEINS"
 msgstr ""
 
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Aberración cromática:"
+
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
+
+msgid "PULLING_CILIA"
+msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
@@ -4777,6 +4893,9 @@ msgstr ""
 msgid "SPREAD_TO_PATCHES"
 msgstr "propagación debido a \"parches\""
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4935,6 +5054,9 @@ msgstr "Luz solar"
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
+msgid "SURVIVAL"
+msgstr ""
+
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
 
@@ -4968,6 +5090,9 @@ msgstr "Hacer una screenshot (captura de pantalla)"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "anterior:"
+
+msgid "TBA"
+msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5059,6 +5184,13 @@ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
 msgid "THE_DISTURBANCE"
+msgstr ""
+
+#, fuzzy
+msgid "THE_PATCH_MAP"
+msgstr "Quimioplastia"
+
+msgid "THE_WORLD"
 msgstr ""
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -5707,6 +5839,81 @@ msgstr ""
 msgid "WIKI"
 msgstr ""
 
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticianina"
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Recién levantado"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Despierto"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Despierto"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Despierto"
+
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 
@@ -5931,6 +6138,28 @@ msgstr ""
 msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Citoplasma"
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr ""
 
@@ -5954,6 +6183,33 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Pili de depredador"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitocondria"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitocondria"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -5981,13 +6237,86 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Recién levantado"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_FOG_OF_WAR"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Recién levantado"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Recién levantado"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_PATCHES"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr ""
+"Hay un conflicto con el control {0}\n"
+"Queres quitarlo de la esa tecla de {1}?"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -6000,8 +6329,57 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Recién levantado"
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_THE_PATCH_MAP"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Recién levantado"
+
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Recién levantado"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr ""
+"Hay un conflicto con el control {0}\n"
+"Queres quitarlo de la esa tecla de {1}?"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr ""
+"Agente de \n"
+"vinculación"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6026,6 +6404,10 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Pili de depredador"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6057,6 +6439,37 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolismo"
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Habilitar el editor"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr "Nitrogenasa"
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Mitocondria"
 
@@ -6084,6 +6497,34 @@ msgstr "Mitocondria"
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Poner organela"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -6225,6 +6666,18 @@ msgstr "Oxitocina"
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Oxitocina"
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Despierto"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6256,24 +6709,61 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Citoplasma"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Citoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitocondria"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelo"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Oxitocina"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Poner organela"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolismo"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenasa"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Poner organela"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6307,6 +6797,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplasma"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticianina"
 
@@ -6319,12 +6813,30 @@ msgstr ""
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Poner organela"
+
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr ""
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Fotosíntesis"
+
+#, fuzzy
+msgid "WIKI_PAGE_THE_PATCH_MAP"
+msgstr "Quimioplastia"
 
 #, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
@@ -6390,6 +6902,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplasma"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6499,6 +7018,56 @@ msgstr ""
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
 
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "población:"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Núcleo"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "población:"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Pili de depredador"
+
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr ""
 
@@ -6554,6 +7123,20 @@ msgstr "población:"
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "población:"
+
+msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_INTRO"
+msgstr "Quimioplastia"
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_PATCHES"
+msgstr "Recién levantado"
+
+msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
@@ -6711,6 +7294,12 @@ msgid "XBOX_SERIES"
 msgstr ""
 
 msgid "YEARS"
+msgstr ""
+
+msgid "YES"
+msgstr ""
+
+msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr ""
 
 msgid "YOUTUBE_TOOLTIP"

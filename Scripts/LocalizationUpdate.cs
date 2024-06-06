@@ -118,6 +118,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "Name",
         "SectionHeading",
         "SectionBody",
+        "DisplayedValue",
     };
 
     // This constructor is needed for checks to be able to run this
