@@ -121,7 +121,7 @@ public static class SpawnHelpers
 
         entity.Set(new PredefinedVisuals
         {
-            VisualIdentifier = VisualResourceIdentifier.AgentProjectile,
+            VisualIdentifier = properties.GetVisualResource(),
         });
 
         entity.Set(new SpatialInstance

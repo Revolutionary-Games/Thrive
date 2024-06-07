@@ -56,6 +56,27 @@ public class AgentProperties
         health.DealDamage(damage, DamageTypeName);
     }
 
+    /// <summary>
+    ///   Gets visuals for this agent based on the type
+    /// </summary>
+    /// <returns>The visual ID to use</returns>
+    public VisualResourceIdentifier GetVisualResource()
+    {
+        switch (ToxinSubType)
+        {
+            case ToxinType.Cytotoxin:
+                return VisualResourceIdentifier.AgentProjectileCytotoxin;
+            case ToxinType.Macrolide:
+                return VisualResourceIdentifier.AgentProjectileMacrolide;
+            case ToxinType.ChannelInhibitor:
+                return VisualResourceIdentifier.AgentProjectileChannelInhibitor;
+            case ToxinType.OxygenMetabolismInhibitor:
+                return VisualResourceIdentifier.AgentProjectileCyanide;
+        }
+
+        return VisualResourceIdentifier.AgentProjectile;
+    }
+
     public override string ToString()
     {
         return Name.ToString();
