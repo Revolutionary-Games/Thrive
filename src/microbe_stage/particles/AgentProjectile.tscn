@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0ag8a5ioxgkw"]
+
+[ext_resource type="Material" path="res://src/microbe_stage/particles/projectile_material.tres" id="1_kipu5"]
+
+[sub_resource type="Gradient" id="2"]
+offsets = PackedFloat32Array(0.00740741, 0.481481, 1)
+colors = PackedColorArray(1, 1, 1, 0.0352941, 1, 1, 1, 1, 1, 1, 1, 0.0352941)
+
+[sub_resource type="GradientTexture2D" id="3"]
+gradient = SubResource("2")
+
+[sub_resource type="Curve" id="4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.318182), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="5"]
+curve = SubResource("4")
+
+[sub_resource type="ParticleProcessMaterial" id="6"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(5, 0, 0)
+scale_curve = SubResource("5")
+color_ramp = SubResource("3")
+
+[sub_resource type="PlaneMesh" id="7"]
+material = ExtResource("1_kipu5")
+size = Vector2(5, 5)
+
+[node name="AgentProjectile" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128502, 0, -0.092073)
+amount = 55
+visibility_aabb = AABB(-100, -50, -100, 200, 100, 200)
+process_material = SubResource("6")
+draw_pass_1 = SubResource("7")
