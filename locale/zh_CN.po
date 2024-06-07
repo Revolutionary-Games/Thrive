@@ -39,7 +39,7 @@ msgid "ABORT"
 msgstr "中止"
 
 msgid "ABORTED_DOT"
-msgstr "中止。"
+msgstr "已中止。"
 
 msgid "ABYSSOPELAGIC"
 msgstr "深海带"
@@ -1727,7 +1727,7 @@ msgstr ""
 "将会增加"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "内共生形态已经存在，进入编辑器以推进内共生进度"
 
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr "该物种可以转化成的细胞器"
@@ -1969,16 +1969,19 @@ msgstr "发表于{0}"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "本篇因篇幅过长而被删节，详情请阅读原文。 {0}"
 
-#, fuzzy
 msgid "FERROPLAST"
-msgstr "热能体"
+msgstr "铁化能质体"
 
-#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr ""
-"它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同"
-"化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡"
-"萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
+"一个以金属为原料的“动力工厂”。铁化能质体是一种充满了蛋白质与酶的双层膜结构，"
+"起源于一种被其真核宿主吸收利用了原核生物。它能够将[thrive:compound "
+"type=\"iron\"][/thrive:compound] 从一种化学状态氧化到另一种，且效率远高于铁硫"
+"菌蓝蛋白。此過程这一过程称为[b]铁呼吸[/b]，释放并供给细胞能量。然而，它需要"
+"[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和[thrive:"
+"compound type=\"oxygen\"][/thrive:compound] 才能发挥作用，并且其中任何一样环"
+"境的浓度较低都会降低其[thrive:compound type=\"atp\"][/thrive:compound] 的生产"
+"速率。"
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -5044,9 +5047,8 @@ msgstr "传播到的地区："
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暂停菜单"
 
-#, fuzzy
 msgid "START"
-msgstr "启动中"
+msgstr "开始"
 
 msgid "STARTING"
 msgstr "启动中"
