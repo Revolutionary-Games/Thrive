@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Scripts;
 using ScriptsBase.Models;
 using ScriptsBase.Utilities;
@@ -222,12 +223,29 @@ public class WikiUpdater
         var fullPageName = $"{categoryName}Root";
         var translationKey = $"{categoryName.ToUpperInvariant()}_ROOT";
 
+        var restrictTo = body.QuerySelector(".thriveopedia-restrict-to");
+        int[]? restrictedToStages = null;
+
+        if (restrictTo != null)
+        {
+            var stagesRaw = restrictTo.GetAttribute("data-stages");
+
+            if (string.IsNullOrEmpty(stagesRaw))
+            {
+                throw new InvalidOperationException(
+                    $"{categoryName} root page marked as restriced to stages but has no specified stages");
+            }
+
+            restrictedToStages = StageStringToEnumValues(stagesRaw);
+        }
+
         var sections = GetMainBodySections(body);
         var untranslatedSections = sections.Select(s => UntranslateSection(s, translationKey)).ToList();
 
         var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{translationKey}", fullPageName, url,
-            untranslatedSections);
-        var translatedPage = new Wiki.Page(categoryName, fullPageName, url, sections);
+            untranslatedSections, restrictedToStages: restrictedToStages );
+        var translatedPage = new Wiki.Page(categoryName, fullPageName, url, sections,
+            restrictedToStages: restrictedToStages);
 
         ColourConsole.WriteSuccessLine($"Populated content for {categoryName.ToLowerInvariant()} root page");
 
@@ -276,6 +294,22 @@ public class WikiUpdater
                 noticeSceneName = textInfo.ToTitleCase(sceneNameLowercase).Replace(" ", string.Empty) + "Notice";
             }
 
+            var restrictTo = page.QuerySelector(".thriveopedia-restrict-to");
+            int[]? restrictedToStages = null;
+
+            if (restrictTo != null)
+            {
+                var stagesRaw = restrictTo.GetAttribute("data-stages");
+
+                if (string.IsNullOrEmpty(stagesRaw))
+                {
+                    throw new InvalidOperationException(
+                        $"Page with internal name {internalName} marked as restriced to stages but has no specified stages");
+                }
+
+                restrictedToStages = StageStringToEnumValues(stagesRaw);
+            }
+
             var sections = GetMainBodySections(page);
             var untranslatedSections = sections.Select(s => UntranslateSection(s, untranslatedPageName)).ToList();
 
@@ -284,13 +318,15 @@ public class WikiUpdater
                 pageUrl,
                 untranslatedSections,
                 untranslatedInfobox,
-                noticeSceneName);
+                noticeSceneName,
+                restrictedToStages);
             var translatedPage = new Wiki.Page(name,
                 internalName,
                 pageUrl,
                 sections,
                 translatedInfobox,
-                noticeSceneName);
+                noticeSceneName,
+                restrictedToStages);
 
             allPages.Add(new TranslationPair(untranslatedPage, translatedPage));
 
@@ -355,6 +391,35 @@ public class WikiUpdater
         ColourConsole.WriteInfoLine($"Completed extracting infobox content for page with internal name {internalName}");
 
         return (untranslated, translated);
+    }
+
+    /// <summary>
+    ///   Converts a list of space separated stage names (excluding the word 'stage') into a list of integers.
+    ///   Integers have to match with the Stage enum in Thrive.
+    /// </summary>
+    private int[] StageStringToEnumValues(string rawStageStrings)
+    {
+        var strings = rawStageStrings.ToLowerInvariant().Split(" ");
+
+        var stages = new int[strings.Length];
+
+        for (int i = 0; i < strings.Length; i++)
+        {
+            stages[i] = strings[i] switch
+            {
+                "microbe" => 0,
+                "multicellular" => 1,
+                "aware" => 2,
+                "awakening" => 3,
+                "society" => 4,
+                "industrial" => 5,
+                "space" => 6,
+                "ascension" => 7,
+                _ => throw new InvalidOperationException($"No stage of name {strings[i]} exists"),
+            };
+        }
+
+        return stages;
     }
 
     /// <summary>
@@ -700,7 +765,8 @@ public class WikiUpdater
         public class Page
         {
             public Page(string name, string internalName, string url, List<Section> sections,
-                List<InfoboxField>? infobox = null, string? noticeSceneName = null)
+                List<InfoboxField>? infobox = null, string? noticeSceneName = null, 
+                int[]? restrictedToStages = null)
             {
                 Name = name;
                 InternalName = internalName;
@@ -708,6 +774,8 @@ public class WikiUpdater
                 Sections = sections;
                 InfoboxData = infobox ?? new List<InfoboxField>();
                 NoticeSceneName = noticeSceneName;
+                RestrictedToStages = restrictedToStages;
+
             }
 
             [JsonInclude]
@@ -727,6 +795,9 @@ public class WikiUpdater
 
             [JsonInclude]
             public string? NoticeSceneName { get; }
+
+            [JsonInclude]
+            public int[]? RestrictedToStages { get; }
 
             public class Section
             {

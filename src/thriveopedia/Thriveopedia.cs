@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -137,6 +139,8 @@ public partial class Thriveopedia : ControlWithInput
         }
     }
 
+    public Stage CurrentSelectedStage { get; private set; } = Stage.MicrobeStage;
+
     public override void _Ready()
     {
         backButton = GetNode<TextureButton>(BackButtonPath);
@@ -188,6 +192,7 @@ public partial class Thriveopedia : ControlWithInput
             if (!hasGeneratedWiki)
             {
                 AddPage("WikiRoot");
+                AddStageDropdown();
                 foreach (var page in ThriveopediaWikiPage.GenerateAllWikiPages())
                     AddPage(page.Name, page);
 
@@ -349,6 +354,59 @@ public partial class Thriveopedia : ControlWithInput
         page.Hide();
     }
 
+    private void AddStageDropdown()
+    {
+        // Makes use of a basically undocumented Godot feature to add a dropdown menu to the tree
+
+        var treeItem = pageTree.CreateItem(index: 0);
+        treeItem.SetCellMode(0, TreeItem.TreeCellMode.Range);
+        treeItem.SetEditable(0, true);
+
+        Stage[] allStages = (Stage[])typeof(Stage).GetEnumValues();
+        var optionsText = new StringBuilder();
+
+        for (int i = 0; i < allStages.Length; i++)
+        {
+            if (i != 0)
+                optionsText.Append(',');
+
+            optionsText.Append(TranslationServer.Translate(
+                allStages[i].GetAttribute<DescriptionAttribute>().Description));
+        }
+
+        treeItem.SetText(0, optionsText.ToString());
+    }
+
+    private void OnItemEdited()
+    {
+        // Triggers when the stage dropdown has been edited
+        var item = pageTree.GetEdited();
+        CurrentSelectedStage = (Stage)item.GetRange(0);
+
+        foreach (var treeItem in allPages.Values)
+        {
+            IThriveopediaPage page;
+            try
+            {
+                page = allPages.First(x => x.Value == treeItem).Key;
+            }
+            catch (InvalidOperationException)
+            {
+                continue;
+            }
+
+            if (page is ThriveopediaWikiPage wikiPage)
+            {
+                var restrictedTo = wikiPage.PageContent.RestrictedToStages;
+
+                if (restrictedTo == null)
+                    continue;
+
+                treeItem.Visible = restrictedTo.Contains(CurrentSelectedStage);
+            }
+        }
+    }
+
     /// <summary>
     ///   Creates an item in the page tree associated with a page.
     /// </summary>
@@ -385,8 +443,15 @@ public partial class Thriveopedia : ControlWithInput
     private void OnPageSelectedFromPageTree()
     {
         var selected = pageTree.GetSelected();
-        var name = allPages.First(p => p.Value == selected).Key.PageName;
-        ChangePage(name);
+
+        try
+        {
+            var name = allPages.First(p => p.Value == selected).Key.PageName;
+            ChangePage(name);
+        }
+        catch (InvalidOperationException)
+        {
+        }
     }
 
     /// <summary>

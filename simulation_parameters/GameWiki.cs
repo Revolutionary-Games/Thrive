@@ -58,6 +58,8 @@ public class GameWiki : IRegistryType
 
         public string? NoticeSceneName { get; set; }
 
+        public Stage[]? RestrictedToStages { get; set; }
+
         public void Check(string name)
         {
             if (string.IsNullOrEmpty(InternalName))
