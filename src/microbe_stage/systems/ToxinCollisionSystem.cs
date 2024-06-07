@@ -221,7 +221,7 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
 
                     temporaryEffects.SpeedDebuffDuration =
                         Constants.MACROLIDE_DEBUFF_DURATION * damageSource.ToxinAmount;
-                    temporaryEffects.StateApplied = true;
+                    temporaryEffects.StateApplied = false;
 
                     return true;
                 }
@@ -244,7 +244,7 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
 
                     temporaryEffects.ATPDebuffDuration =
                         Constants.CHANNEL_INHIBITOR_DEBUFF_DURATION * damageSource.ToxinAmount;
-                    temporaryEffects.StateApplied = true;
+                    temporaryEffects.StateApplied = false;
 
                     return true;
                 }
