@@ -602,6 +602,7 @@
         "ReproduceWithOrganelle": {
           "Organelle": "metabolosome",
           "Generations": 7,
+          "MinimumCount": 5,
           "InARow": true
         }
       }
@@ -640,7 +641,7 @@
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn"
     },
-    "Name": "TOXIN_VACUOLE",
+    "Name": "_VACUOLE",
     "ProductionColour": "#624acb",
     "ConsumptionColour": "#c4307b",
     "IconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
@@ -651,7 +652,8 @@
         },
         "ReproduceWithOrganelle": {
           "Organelle": "oxytoxyProteins",
-          "Generations": 5
+          "Generations": 5,
+          "MinimumCount": 3
         }
       }
     ],
@@ -725,7 +727,7 @@
       {
         "ReproduceWithOrganelle": {
           "Organelle": "nucleus",
-          "Generations": 5
+          "Generations": 5,
         },
         "ExcessAtpAbove": {
           "Atp": 15
