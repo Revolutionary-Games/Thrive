@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
+"POT-Creation-Date: 2024-06-06 16:15+0300\n"
 "PO-Revision-Date: 2024-02-20 12:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -3846,6 +3846,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Perus liikkuminen"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -5129,6 +5136,20 @@ msgstr "Uudelleenkäynnistys Vaaditaan"
 msgid "STATISTICS"
 msgstr "Statistiikkaa"
 
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP:n TUOTANTO ON LIIAN ALHAINEN!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Perus liikkuminen"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
@@ -5573,8 +5594,69 @@ msgstr "edellinen:"
 msgid "TOTAL_SAVES"
 msgstr "Tallennusten määrä:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Kuole"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Myrkky-\n"
+"vakuoli"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Myrkyn kestävyys"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Myrkyn kestävyys"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Terv.:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Aggressiiviset mikrobit kulkevat pidempiä etäisyyksiä jahdatessaan muita\n"
+"ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
+"Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
+"käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5951,6 +6033,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"

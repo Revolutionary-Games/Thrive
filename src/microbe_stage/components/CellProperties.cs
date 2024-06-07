@@ -17,7 +17,7 @@ public struct CellProperties
 {
     /// <summary>
     ///   Base colour of the cell. This is used when initializing organelles as it would otherwise be difficult to
-    ///   to obtain the colour
+    ///   obtain the colour
     /// </summary>
     public Color Colour;
 
@@ -59,6 +59,7 @@ public struct CellProperties
         ShapeCreated = false;
     }
 
+    [JsonIgnore]
     public float Radius => IsBacteria ? UnadjustedRadius * 0.5f : UnadjustedRadius;
 }
 

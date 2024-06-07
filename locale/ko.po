@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
+"POT-Creation-Date: 2024-06-06 16:15+0300\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -3745,6 +3745,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "기초 이동"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -5033,6 +5040,20 @@ msgstr ""
 msgid "STATISTICS"
 msgstr "상태"
 
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP 생산이 너무 적음!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "기초 이동"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
@@ -5461,8 +5482,65 @@ msgstr "총 소모 시간:"
 msgid "TOTAL_SAVES"
 msgstr "총 저장:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"독소 \n"
+"액포"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "독소 저항"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "독소 저항"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "생명력:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5856,6 +5934,9 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
+msgid "UPGRADE_COST"
+msgstr ""
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"

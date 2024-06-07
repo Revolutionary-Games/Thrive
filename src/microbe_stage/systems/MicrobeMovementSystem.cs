@@ -16,6 +16,11 @@ using World = DefaultEcs.World;
 ///     The only write this does to <see cref="MicrobeControl"/> is ensuring the movement direction is normalized.
 ///   </para>
 /// </remarks>
+/// <remarks>
+///   <para>
+///     Once save compatibility is broken after 0.6.7 add with temporary effects
+///   </para>
+/// </remarks>
 [With(typeof(MicrobeControl))]
 [With(typeof(OrganelleContainer))]
 [With(typeof(CellProperties))]
@@ -23,10 +28,13 @@ using World = DefaultEcs.World;
 [With(typeof(Physics))]
 [With(typeof(WorldPosition))]
 [With(typeof(Health))]
+
+// [With(typeof(MicrobeTemporaryEffects))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeColony))]
+[ReadsComponent(typeof(MicrobeTemporaryEffects))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
@@ -186,6 +194,18 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         {
             // Not enough ATP to move at full speed
             force *= 0.5f;
+        }
+
+        // TODO: this if check can be removed (can be assumed to be present) once save compatibility is next broken
+        if (entity.Has<MicrobeTemporaryEffects>())
+        {
+            ref var temporaryEffects = ref entity.Get<MicrobeTemporaryEffects>();
+
+            // Apply base movement debuff if cell is currently affected by one
+            if (temporaryEffects.SpeedDebuffDuration > 0)
+            {
+                force *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF;
+            }
         }
 
         // Speed from flagella (these also take ATP otherwise they won't work)

@@ -653,6 +653,8 @@ public static class SpawnHelpers
         // Used in certain damage types to apply a cooldown
         entity.Set<DamageCooldown>();
 
+        entity.Set<MicrobeTemporaryEffects>();
+
         entity.Set(new CollisionManagement
         {
             RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,

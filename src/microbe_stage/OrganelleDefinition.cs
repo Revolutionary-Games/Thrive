@@ -159,6 +159,12 @@ public class OrganelleDefinition : IRegistryType
     public string? UpgradeGUI;
 
     /// <summary>
+    ///   If set to true then <see cref="AvailableUpgrades"/> won't be displayed by the default upgrader control, but
+    ///   everything must be handled by <see cref="UpgradeGUI"/>.
+    /// </summary>
+    public bool UpgraderSkipDefaultControls;
+
+    /// <summary>
     ///   The upgrades that are available for this organelle type
     /// </summary>
     public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
@@ -263,6 +269,12 @@ public class OrganelleDefinition : IRegistryType
     public bool HasBindingFeature { get; private set; }
 
     public bool HasSignalingFeature { get; private set; }
+
+    /// <summary>
+    ///   True when this organelle is one that uses oxygen as a process input (and is metabolism related). This is
+    ///   used to adjust toxin effects that have a distinction between oxygen breathers and others.
+    /// </summary>
+    public bool IsOxygenMetabolism { get; private set; }
 
     [JsonIgnore]
     public string UntranslatedName =>
@@ -482,8 +494,13 @@ public class OrganelleDefinition : IRegistryType
         // Fail with multiple default upgrades
         if (AvailableUpgrades.Values.Count(u => u.IsDefault) > 1)
         {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Multiple default upgrades specified");
+        }
+
+        if (UpgraderSkipDefaultControls && string.IsNullOrEmpty(UpgradeGUI))
+        {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Multiple default upgrades specified");
+                "Upgrader scene is required when default upgrade controls are suppressed");
         }
 
         // Check unlock conditions
@@ -511,6 +528,8 @@ public class OrganelleDefinition : IRegistryType
     public void Resolve(SimulationParameters parameters)
     {
         CalculateModelOffset();
+
+        IsOxygenMetabolism = false;
 
         RunnableProcesses = new List<TweakedProcess>();
 
@@ -540,10 +559,23 @@ public class OrganelleDefinition : IRegistryType
         // Resolve process names
         if (Processes != null)
         {
+            var oxygen = parameters.GetCompound("oxygen");
+
             foreach (var process in Processes)
             {
-                RunnableProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key),
-                    process.Value));
+                var resolvedProcess = new TweakedProcess(parameters.GetBioProcess(process.Key),
+                    process.Value);
+
+                if (process.Value <= 0)
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Process speed value should be above 0");
+                }
+
+                if (resolvedProcess.Process.IsMetabolismProcess && ProcessUsesOxygen(resolvedProcess, oxygen))
+                    IsOxygenMetabolism = true;
+
+                RunnableProcesses.Add(resolvedProcess);
             }
         }
 
@@ -688,6 +720,17 @@ public class OrganelleDefinition : IRegistryType
         }
 
         upgradeScene = default(LoadedSceneWithModelInfo);
+
+        return false;
+    }
+
+    private bool ProcessUsesOxygen(TweakedProcess resolvedProcess, Compound oxygen)
+    {
+        foreach (var processInput in resolvedProcess.Process.Inputs)
+        {
+            if (processInput.Key == oxygen)
+                return true;
+        }
 
         return false;
     }

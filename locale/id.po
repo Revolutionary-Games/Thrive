@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
+"POT-Creation-Date: 2024-06-06 16:15+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -3776,6 +3776,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Pergerakan Dasar"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -5052,6 +5059,20 @@ msgstr ""
 msgid "STATISTICS"
 msgstr "Statistika"
 
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "PRODUKSI ATP TERLALU RENDAH!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Pergerakan Dasar"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
@@ -5487,8 +5508,65 @@ msgstr "Status:"
 msgid "TOTAL_SAVES"
 msgstr "Jumlah save total:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Vakuola\n"
+"Racun"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosom adalah gugusan protein terbungkus dalam kulit protein. Mereka dapat mengkonversi glukosa menjadi ATP pada laju yang lebih tinggi daripada yang terjadi di sitoplasma dengan proses yang dinamakan Respirasi Aerob. Namun, proses tersebut tentu membutuhkan oksigen untuk berfungsi, dan tingkat oksigen yang lebih rendah di lingkungan akan memperlambat laju produksi ATP-nya. Karena metabolosom tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Kekebalan Racun"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Kekebalan Racun"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "HP:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5881,6 +5959,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} PM"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"

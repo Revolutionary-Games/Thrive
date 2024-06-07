@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
+"POT-Creation-Date: 2024-06-06 16:15+0300\n"
 "PO-Revision-Date: 2024-06-02 17:09+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -3578,6 +3578,13 @@ msgstr "目前细胞大小不足以吞噬目标"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "没有足够存储空间以摄入被吞噬的目标"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "移动需求"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "现在可以进入编辑器"
 
@@ -4745,6 +4752,20 @@ msgstr "开始研究"
 msgid "STATISTICS"
 msgstr "统计数据"
 
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP产出不足！"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "移动需求"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam 客户端库初始化失败"
 
@@ -5165,8 +5186,63 @@ msgstr "收集到的能量："
 msgid "TOTAL_SAVES"
 msgstr "存档数："
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "发射毒素投射物对命中细胞造成伤害"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr "毒素液泡"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "代谢体是包裹在蛋白质外壳中的蛋白质团块。它们能够以比在细胞质中更高的速率将葡萄糖转换成ATP，这个过程称为[b]有氧呼吸[/b]。不管怎样，它需要氧才能运作，低水平的环境氧会导致ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "游戏内Thrive百科"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "毒抗"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "类型："
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "（当启用多线程进行游戏逻辑更新时，游戏可能会因为后台核心少而降低性能表现）"
 
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
@@ -5520,6 +5596,10 @@ msgstr "捕食纤毛"
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "当处于胞吞模式时（[thrive:input]g_toggle_engulf[/thrive:input]），这种类型的纤毛会在水中产生涡流，将附近的物体拉近来捕猎。"
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} 变异点"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "默认状态"

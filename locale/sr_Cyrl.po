@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
+"POT-Creation-Date: 2024-06-06 16:15+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -3804,6 +3804,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Подразумевано Кретање"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -5107,6 +5114,20 @@ msgstr ""
 msgid "STATISTICS"
 msgstr "Статистика"
 
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP ПРОИЗВОДЊА ПРЕНИЗАК!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Подразумевано Кретање"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
@@ -5549,8 +5570,65 @@ msgstr "Врсте:"
 msgid "TOTAL_SAVES"
 msgstr "Укупно сачување:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Отровна вакуола је вакуола која је модификована за специфичну производњу, складиштење и излучивање окситокси токсина. Више отровне вакуола повећаће брзину ослобађања токсина."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Отровна вакуола је вакуола која је модификована за специфичну производњу, складиштење и излучивање окситокси токсина. Више отровне вакуола повећаће брзину ослобађања токсина."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Отровна\n"
+"Вацуоле"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Отровна вакуола је вакуола која је модификована за специфичну производњу, складиштење и излучивање окситокси токсина. Више отровне вакуола повећаће брзину ослобађања токсина."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Отровна вакуола је вакуола која је модификована за специфичну производњу, складиштење и излучивање окситокси токсина. Више отровне вакуола повећаће брзину ослобађања токсина."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Отпорност на токсине"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Отпорност на токсине"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Здрав.:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5944,6 +6022,9 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
+
+msgid "UPGRADE_COST"
+msgstr ""
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"

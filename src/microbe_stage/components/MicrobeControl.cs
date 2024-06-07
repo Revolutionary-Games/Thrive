@@ -49,6 +49,17 @@ public struct MicrobeControl
     public MicrobeState State;
 
     /// <summary>
+    ///   A counter to determine the next toxin type to be fired (keeps an approximate count of fired toxins).
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is a byte to increase the size of this struct less, and it is unlikely there needs to be more than
+    ///     256 types of toxins to be fired so overflows are not serious.
+    ///   </para>
+    /// </remarks>
+    public byte FiredToxinCount;
+
+    /// <summary>
     ///   Whether this microbe is currently being slowed by environmental slime
     /// </summary>
     public bool SlowedBySlime;
@@ -124,6 +135,7 @@ public static class MicrobeControlHelpers
         {
             ref var colony = ref entity.Get<MicrobeColony>();
 
+            // TODO: remove the delegate allocation here
             colony.PerformForOtherColonyMembersThanLeader(m =>
                 m.Get<MicrobeControl>()
                     .EmitToxin(ref m.Get<OrganelleContainer>(), m.Get<CompoundStorage>().Compounds,

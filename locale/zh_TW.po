@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:46+0300\n"
+"POT-Creation-Date: 2024-06-06 16:15+0300\n"
 "PO-Revision-Date: 2024-06-01 06:34+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -3579,6 +3579,13 @@ msgstr "目前細胞大小不足以吞噬目標"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "沒有足夠的儲存空間以攝入被吞噬的目標"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "基礎移動"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "可以進入編輯器了"
 
@@ -4745,6 +4752,20 @@ msgstr "開始研究"
 msgid "STATISTICS"
 msgstr "統計數據"
 
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP 產量過低！"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "基礎移動"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam 客戶端程式庫初始化失敗"
 
@@ -5165,8 +5186,63 @@ msgstr "已收集能量："
 msgid "TOTAL_SAVES"
 msgstr "總存檔數："
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "毒素液泡是為了專門生產、儲存和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "發射毒素對命中的細胞造成傷害"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "毒素液泡是為了專門生產、儲存和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。"
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr "毒素液泡"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "毒素液泡是為了專門生產、儲存和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "代謝體是包裹在蛋白質殼中的蛋白質叢。它們能夠將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]，其速度比在細胞質中快得多，此過程被稱為[b]有氧呼吸[/b]。然而，它需要[thrive:compound type=\"oxygen\"][/thrive:compound] 才能發揮作用，低含量的[thrive:compound type=\"oxygen\"][/thrive:compound] 會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速度。由於代謝體直接懸浮在細胞質中，周圍的細胞質也能進行一些[b]糖解[/b]。"
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "毒素液泡是為了專門生產、儲存和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。"
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "遊戲內 Thrive 百科"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "毒素抗性"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "類型："
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "（當啟用多個執行緒用於執行核心遊戲邏輯更新時，可能會因後台執行緒數量較少而降低效能）"
 
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
@@ -5520,6 +5596,10 @@ msgstr "捕食纖毛"
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "當處於吞噬模式（[thrive:input]g_toggle_engulf[/thrive:input]）時，這種類型的纖毛會在水中引起渦流，從而吸引附近的物體。對於捕捉獵物很有用。"
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} 突變點數"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "預設未升級狀態"
