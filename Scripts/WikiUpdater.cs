@@ -83,7 +83,7 @@ public class WikiUpdater
         // Get pages in categories
         var organellesTask = FetchPagesFromCategory(ORGANELLE_CATEGORY, "Organelle", cancellationToken);
         var stagesTask = FetchPagesFromCategory(STAGES_CATEGORY, "Stage", cancellationToken);
-        var mechanicsTask = FetchPagesFromCategory(MECHANICS_CATEGORY, "Mechainc", cancellationToken);
+        var mechanicsTask = FetchPagesFromCategory(MECHANICS_CATEGORY, "Mechanic", cancellationToken);
         var developmentPagesTask = FetchPagesFromCategory(DEVELOPMENT_CATEGORY, "Development Page", cancellationToken);
 
         var organellesRootRaw = await organellesRootTask;
@@ -187,7 +187,6 @@ public class WikiUpdater
             ColourConsole.WriteInfoLine($"Found {pageType} {name}");
 
             var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
-            var internalName = textInfo.ToTitleCase(name).Replace(" ", string.Empty);
 
             // Ignore page if specified
             if (body.QuerySelector(IGNORE_PAGE_SELECTOR) != null)
@@ -197,9 +196,14 @@ public class WikiUpdater
                 continue;
             }
 
+            string internalName;
             if (body.QuerySelector(".infobox") != null)
             {
                 internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
+            }
+            else
+            {
+                internalName = textInfo.ToTitleCase(name).Replace(" ", string.Empty);
             }
 
             pageNames.Add(name, internalName);
@@ -336,8 +340,8 @@ public class WikiUpdater
             // Format the found content for use in translation files
             var untranlsatedKey = id.Replace("#", string.Empty).ToUpperInvariant().Replace("-", "_");
             var untranslatedValue = textContent.ToUpperInvariant()
+                .Replace(", ", "_COMMA_")
                 .Replace(' ', '_')
-                .Replace(",", "_COMMA")
                 .Replace("(", "_BRACKET_")
                 .Replace("__", "_");
 
@@ -491,9 +495,9 @@ public class WikiUpdater
 
         if (!pageNames.TryGetValue(translatedPageName, out var internalPageName))
         {
-            return ConvertTextToBbcode(link.InnerHtml);
+            ColourConsole.WriteErrorLine($"Tried to create link to page {translatedPageName} but it doesn't exist");
 
-            // throw new Exception($"Tried to create link to page {translatedPageName} but it doesn't exist");
+            return ConvertTextToBbcode(link.InnerHtml);
         }
 
         var linkText = ConvertTextToBbcode(link.InnerHtml);
@@ -547,7 +551,7 @@ public class WikiUpdater
             var translatedPage = page.TranslatedPage;
 
             // Translate page names
-            translationPairs.TryAdd(untranslatedPage.Name, translatedPage.Name);
+            translationPairs.Add(untranslatedPage.Name, translatedPage.Name);
 
             // Translate infobox
             var untranslatedInfobox = untranslatedPage.InfoboxData;

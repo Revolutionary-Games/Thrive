@@ -53,8 +53,8 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         GeneratePage<ThriveopediaMechanicsRootPage>(pages, wiki.MechanicsRoot,
             "res://src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn");
 
-        GeneratePages<SimpleWikiPage>(pages, wiki.Mechanics,
-            "res://src/thriveopedia/pages/SimpleWikiPage.tscn",
+        GeneratePages<ThriveopediaSimpleWikiPage>(pages, wiki.Mechanics,
+            "res://src/thriveopedia/pages/ThriveopediaSimpleWikiPage.tscn",
             p => p.Parent = "MechanicsRoot");
 
         // Generate Stage Pages
@@ -79,8 +79,8 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         GeneratePage<ThriveopediaDevelopmentRootPage>(pages, wiki.DevelopmentRoot,
             "res://src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentRootPage.tscn");
 
-        GeneratePages<SimpleWikiPage>(pages, wiki.DevelopmentPages,
-            "res://src/thriveopedia/pages/SimpleWikiPage.tscn",
+        GeneratePages<ThriveopediaSimpleWikiPage>(pages, wiki.DevelopmentPages,
+            "res://src/thriveopedia/pages/ThriveopediaSimpleWikiPage.tscn",
             p => p.Parent = "DevelopmentRoot");
 
         return pages;
@@ -141,7 +141,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     /// <summary>
     ///   Loads a set of pages and populates them with content.
     ///   Additionally, performs extraDataInit for each page if needed.
-    ///   Also adds an infobox to the page if present.
+    ///   Also adds a notice to the page if present.
     /// </summary>
     /// <param name="pageList">A reference to all the pages</param>
     /// <param name="pages">Pages to generate</param>

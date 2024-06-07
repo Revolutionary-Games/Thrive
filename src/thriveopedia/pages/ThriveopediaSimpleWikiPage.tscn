@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://76gcnkye6lfk"]
 
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1_esejg"]
-[ext_resource type="Script" path="res://src/thriveopedia/pages/SimpleWikiPage.cs" id="2_ign54"]
+[ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaSimpleWikiPage.cs" id="2_ign54"]
 
 [node name="ThriveopediaPage" instance=ExtResource("1_esejg")]
 script = ExtResource("2_ign54")
