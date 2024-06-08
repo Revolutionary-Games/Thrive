@@ -18,6 +18,10 @@
       $(DefaultItemExcludes);Scripts\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
     </DefaultItemExcludes>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ThriveScriptsShared\obj\**" />
+    <EmbeddedResource Remove="ThriveScriptsShared\obj\**" />
+  </ItemGroup>
   <!-- Non-Steam build needs to skip this file -->
   <ItemGroup>
     <Compile Remove="src\steam\SteamClient.cs" />

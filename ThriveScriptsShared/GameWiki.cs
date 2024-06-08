@@ -60,6 +60,20 @@ public class GameWiki : IRegistryType
 
         public Stage[]? RestrictedToStages { get; set; }
 
+        public Page(string name, string internalName, string url, List<Section> sections,
+            List<InfoboxField>? infoboxData = null, string? noticeSceneName = null,
+            Stage[]? restrictedToStages = null)
+        {
+            Name = name;
+            InternalName = internalName;
+            Url = url;
+            Sections = sections;
+            InfoboxData = infoboxData ?? new List<InfoboxField>();
+            NoticeSceneName = noticeSceneName;
+            RestrictedToStages = restrictedToStages;
+
+        }
+
         public void Check(string name)
         {
             if (string.IsNullOrEmpty(InternalName))
@@ -95,6 +109,12 @@ public class GameWiki : IRegistryType
 
         public class Section
         {
+            public Section(string? sectionHeading, string sectionBody)
+            {
+                SectionHeading = sectionHeading;
+                SectionBody = sectionBody;
+            }
+
             public string? SectionHeading { get; set; }
 
             public string SectionBody { get; set; } = null!;
@@ -103,6 +123,13 @@ public class GameWiki : IRegistryType
 
     public class InfoboxField
     {
+        public InfoboxField(string name, string displayedValue)
+        {
+            Name = name;
+            DisplayedValue = displayedValue;
+        }
+
+
         public string Name { get; set; } = null!;
 
         public string DisplayedValue { get; set; } = null!;

@@ -10,7 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Scripts;
 using ScriptsBase.Models;
 using ScriptsBase.Utilities;
@@ -111,7 +110,7 @@ public class WikiUpdater
 
         ColourConsole.WriteSuccessLine("Processed all wiki pages");
 
-        var untranslatedWiki = new Wiki
+        var untranslatedWiki = new GameWiki
         {
             OrganellesRoot = organellesRoot.UntranslatedPage,
             StagesRoot = stagesRoot.UntranslatedPage,
@@ -224,7 +223,7 @@ public class WikiUpdater
         var translationKey = $"{categoryName.ToUpperInvariant()}_ROOT";
 
         var restrictTo = body.QuerySelector(".thriveopedia-restrict-to");
-        int[]? restrictedToStages = null;
+        Stage[]? restrictedToStages = null;
 
         if (restrictTo != null)
         {
@@ -242,9 +241,9 @@ public class WikiUpdater
         var sections = GetMainBodySections(body);
         var untranslatedSections = sections.Select(s => UntranslateSection(s, translationKey)).ToList();
 
-        var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{translationKey}", fullPageName, url,
+        var untranslatedPage = new GameWiki.Page($"WIKI_PAGE_{translationKey}", fullPageName, url,
             untranslatedSections, restrictedToStages: restrictedToStages );
-        var translatedPage = new Wiki.Page(categoryName, fullPageName, url, sections,
+        var translatedPage = new GameWiki.Page(categoryName, fullPageName, url, sections,
             restrictedToStages: restrictedToStages);
 
         ColourConsole.WriteSuccessLine($"Populated content for {categoryName.ToLowerInvariant()} root page");
@@ -269,8 +268,8 @@ public class WikiUpdater
 
             var untranslatedPageName = name.ToUpperInvariant().Replace(" ", "_");
 
-            var translatedInfobox = new List<InfoboxField>();
-            var untranslatedInfobox = new List<InfoboxField>();
+            var translatedInfobox = new List<GameWiki.InfoboxField>();
+            var untranslatedInfobox = new List<GameWiki.InfoboxField>();
 
             var internalName = textInfo.ToTitleCase(name).Replace(" ", string.Empty);
 
@@ -295,7 +294,7 @@ public class WikiUpdater
             }
 
             var restrictTo = page.QuerySelector(".thriveopedia-restrict-to");
-            int[]? restrictedToStages = null;
+            Stage[]? restrictedToStages = null;
 
             if (restrictTo != null)
             {
@@ -313,14 +312,14 @@ public class WikiUpdater
             var sections = GetMainBodySections(page);
             var untranslatedSections = sections.Select(s => UntranslateSection(s, untranslatedPageName)).ToList();
 
-            var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{untranslatedPageName}",
+            var untranslatedPage = new GameWiki.Page($"WIKI_PAGE_{untranslatedPageName}",
                 internalName,
                 pageUrl,
                 untranslatedSections,
                 untranslatedInfobox,
                 noticeSceneName,
                 restrictedToStages);
-            var translatedPage = new Wiki.Page(name,
+            var translatedPage = new GameWiki.Page(name,
                 internalName,
                 pageUrl,
                 sections,
@@ -343,7 +342,7 @@ public class WikiUpdater
     /// <param name="internalName">Internal name of the page</param>
     /// <returns>A tuple containing the translated and untranlsated versions of the detected fields</returns>
     /// <exception cref="InvalidOperationException">Thrown when an infobox is not found</exception>
-    private (List<InfoboxField> Untranslated, List<InfoboxField> Translated)
+    private (List<GameWiki.InfoboxField> Untranslated, List<GameWiki.InfoboxField> Translated)
         GetInfoBoxFields(IHtmlElement body, string internalName)
     {
         ColourConsole.WriteInfoLine($"Extracting infobox content for page with internal name {internalName}");
@@ -352,8 +351,8 @@ public class WikiUpdater
         var infobox = body.QuerySelector(INFO_BOX_SELECTOR) ?? throw new InvalidOperationException(
             $"Did not find infobox on page with internal name {internalName}");
 
-        var translated = new List<InfoboxField>();
-        var untranslated = new List<InfoboxField>();
+        var translated = new List<GameWiki.InfoboxField>();
+        var untranslated = new List<GameWiki.InfoboxField>();
 
         foreach (var row in infobox.Children)
         {
@@ -384,8 +383,8 @@ public class WikiUpdater
             // Remove any leftorver characters that are not supposed to be present in translation keys
             var validUntraslatedValue = Regex.Replace(untranslatedValue, "[^A-Z0-9_]", string.Empty);
 
-            untranslated.Add(new InfoboxField(untranlsatedKey, validUntraslatedValue));
-            translated.Add(new InfoboxField(translatedKey, textContent));
+            untranslated.Add(new GameWiki.InfoboxField(untranlsatedKey, validUntraslatedValue));
+            translated.Add(new GameWiki.InfoboxField(translatedKey, textContent));
         }
 
         ColourConsole.WriteInfoLine($"Completed extracting infobox content for page with internal name {internalName}");
@@ -394,27 +393,25 @@ public class WikiUpdater
     }
 
     /// <summary>
-    ///   Converts a list of space separated stage names (excluding the word 'stage') into a list of integers.
-    ///   Integers have to match with the Stage enum in Thrive.
-    /// </summary>
-    private int[] StageStringToEnumValues(string rawStageStrings)
+    ///   Converts a list of space separated stage names (excluding the word 'stage') into a list of stages.
+    private Stage[] StageStringToEnumValues(string rawStageStrings)
     {
         var strings = rawStageStrings.ToLowerInvariant().Split(" ");
 
-        var stages = new int[strings.Length];
+        var stages = new Stage[strings.Length];
 
         for (int i = 0; i < strings.Length; i++)
         {
             stages[i] = strings[i] switch
             {
-                "microbe" => 0,
-                "multicellular" => 1,
-                "aware" => 2,
-                "awakening" => 3,
-                "society" => 4,
-                "industrial" => 5,
-                "space" => 6,
-                "ascension" => 7,
+                "microbe" => Stage.MicrobeStage,
+                "multicellular" => Stage.MulticellularStage,
+                "aware" => Stage.AwareStage,
+                "awakening" => Stage.AwakeningStage,
+                "society" => Stage.SocietyStage,
+                "industrial" => Stage.IndustrialStage,
+                "space" => Stage.SpaceStage,
+                "ascension" => Stage.AscensionStage,
                 _ => throw new InvalidOperationException($"No stage of name {strings[i]} exists"),
             };
         }
@@ -427,9 +424,9 @@ public class WikiUpdater
     ///   which are taken as the headings (or null for the first section).
     /// </summary>
     /// <param name="body">Body content of the whole page</param>
-    private List<Wiki.Page.Section> GetMainBodySections(IHtmlElement body)
+    private List<GameWiki.Page.Section> GetMainBodySections(IHtmlElement body)
     {
-        var sections = new List<Wiki.Page.Section> { new(null, string.Empty) };
+        var sections = new List<GameWiki.Page.Section> { new(null, string.Empty) };
 
         var children = body.QuerySelector(".mw-parser-output")!.Children;
         foreach (var child in children)
@@ -437,7 +434,7 @@ public class WikiUpdater
             if (child.TagName == "H2")
             {
                 // Complete the previous section and start a new one with this heading
-                sections.Add(new Wiki.Page.Section(child.TextContent, string.Empty));
+                sections.Add(new GameWiki.Page.Section(child.TextContent, string.Empty));
                 continue;
             }
 
@@ -468,23 +465,23 @@ public class WikiUpdater
             }
 
             // Concatenate this tag with the rest of the section so far
-            sections[^1] = new Wiki.Page.Section(sections[^1].SectionHeading, sections[^1].SectionBody + text);
+            sections[^1] = new GameWiki.Page.Section(sections[^1].SectionHeading, sections[^1].SectionBody + text);
         }
 
-        return sections.Select(s => new Wiki.Page.Section(s.SectionHeading, s.SectionBody.Trim())).ToList();
+        return sections.Select(s => new GameWiki.Page.Section(s.SectionHeading, s.SectionBody.Trim())).ToList();
     }
 
     /// <summary>
     ///   Returns an equivalent section of a wiki page where the heading and body have been replaced with appropriate
     ///   translation keys.
     /// </summary>
-    private Wiki.Page.Section UntranslateSection(Wiki.Page.Section section, string pageName)
+    private GameWiki.Page.Section UntranslateSection(GameWiki.Page.Section section, string pageName)
     {
         var sectionName = section.SectionHeading?.ToUpperInvariant().Replace(" ", "_");
         var heading = sectionName != null ? $"WIKI_HEADING_{sectionName}" : null;
         var body = sectionName != null ? $"WIKI_{pageName}_{sectionName}" : $"WIKI_{pageName}_INTRO";
 
-        return new Wiki.Page.Section(heading, body);
+        return new GameWiki.Page.Section(heading, body);
     }
 
     /// <summary>
@@ -733,121 +730,18 @@ public class WikiUpdater
     }
 
     /// <summary>
-    ///   Game wiki on our side. Must match the game's GameWiki class. It's currently not shared as there is no
-    ///   common module for the scripts and the game code.
-    /// </summary>
-    private class Wiki
-    {
-        [JsonInclude]
-        public Page OrganellesRoot { get; init; } = null!;
-
-        [JsonInclude]
-        public List<Page> Organelles { get; init; } = null!;
-
-        [JsonInclude]
-        public Page StagesRoot { get; init; } = null!;
-
-        [JsonInclude]
-        public List<Page> Stages { get; init; } = null!;
-
-        [JsonInclude]
-        public Page MechanicsRoot { get; init; } = null!;
-
-        [JsonInclude]
-        public List<Page> Mechanics { get; init; } = null!;
-
-        [JsonInclude]
-        public Page DevelopmentRoot { get; init; } = null!;
-
-        [JsonInclude]
-        public List<Page> DevelopmentPages { get; init; } = null!;
-
-        public class Page
-        {
-            public Page(string name, string internalName, string url, List<Section> sections,
-                List<InfoboxField>? infobox = null, string? noticeSceneName = null, 
-                int[]? restrictedToStages = null)
-            {
-                Name = name;
-                InternalName = internalName;
-                Url = url;
-                Sections = sections;
-                InfoboxData = infobox ?? new List<InfoboxField>();
-                NoticeSceneName = noticeSceneName;
-                RestrictedToStages = restrictedToStages;
-
-            }
-
-            [JsonInclude]
-            public string Name { get; }
-
-            [JsonInclude]
-            public string InternalName { get; }
-
-            [JsonInclude]
-            public string Url { get; }
-
-            [JsonInclude]
-            public List<Section> Sections { get; }
-
-            [JsonInclude]
-            public List<InfoboxField> InfoboxData { get; }
-
-            [JsonInclude]
-            public string? NoticeSceneName { get; }
-
-            [JsonInclude]
-            public int[]? RestrictedToStages { get; }
-
-            public class Section
-            {
-                public Section(string? heading, string body)
-                {
-                    SectionHeading = heading;
-                    SectionBody = body;
-                }
-
-                [JsonInclude]
-                public string? SectionHeading { get; }
-
-                [JsonInclude]
-                public string SectionBody { get; }
-            }
-        }
-    }
-
-    /// <summary>
     ///   The untranslated and translated (English) versions of a single wiki page.
     /// </summary>
     private class TranslationPair
     {
-        public TranslationPair(Wiki.Page untranslatedPage, Wiki.Page translatedPage)
+        public TranslationPair(GameWiki.Page untranslatedPage, GameWiki.Page translatedPage)
         {
             UntranslatedPage = untranslatedPage;
             TranslatedPage = translatedPage;
         }
 
-        public Wiki.Page UntranslatedPage { get; }
+        public GameWiki.Page UntranslatedPage { get; }
 
-        public Wiki.Page TranslatedPage { get; }
-    }
-
-    /// <summary>
-    ///   A key-value pair containing keys and values in an infobox.
-    ///   Used for easier json serialization.
-    /// </summary>
-    private class InfoboxField
-    {
-        public InfoboxField(string key, string value)
-        {
-            Name = key;
-            DisplayedValue = value;
-        }
-
-        [JsonInclude]
-        public string Name { get; }
-
-        [JsonInclude]
-        public string DisplayedValue { get; }
+        public GameWiki.Page TranslatedPage { get; }
     }
 }
