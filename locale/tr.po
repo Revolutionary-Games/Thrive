@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-07 10:19+0300\n"
-"PO-Revision-Date: 2024-06-07 07:01+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-06-08 08:22+0000\n"
+"Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -1344,7 +1344,7 @@ msgstr ""
 "Mutasyon maliyet çarpanı: {1}\n"
 "AI mutasyon hızı: {2}\n"
 "Bileşik bulutu sıklığı: {3}\n"
-"Oyuncu ölümü popülasyon cezası: {4}\n"
+"Oyuncu ölümünden kaynaklanan popülasyon kaybı: {4}\n"
 "Çevresel glukoz tutulma payı: {5}\n"
 "Ozmoregülasyon maliyet çarpanı: {6}\n"
 "Düzenleyiciden ayrıldığında bedava glukoz bulutu: {7}\n"
@@ -3580,11 +3580,10 @@ msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "İçeri alınan maddelere ait depoda, hedefi yutmak için yeterli alan yok"
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
-msgstr ""
+msgstr "ATP üretimi, toksin tarafından durduruldu"
 
-#, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
-msgstr "Temel Hareket"
+msgstr "Temel hareket hızı, toksinden dolayı azaldı"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Düzenleyici, şimdi girilmek için hazır"
@@ -3833,9 +3832,8 @@ msgstr "Oksijen"
 msgid "OXYTOXISOME"
 msgstr "Oksitoksizom"
 
-#, fuzzy
 msgid "OXYTOXISOME_DESC"
-msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
+msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur. Diğer etkiler için, üretilen toksin türünü değiştirmek amacıyla, üzerinde değişiklik yapılabilir."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
@@ -4001,7 +3999,7 @@ msgid "PLAYER"
 msgstr "Oyuncu"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr "Oyuncu ölümünden gelen popülasyon cezası"
+msgstr "Oyuncu ölümünden kaynaklanan popülasyon kaybı"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(her oyuncu ölümü için oyuncu türünün popülasyonunda azalma katsayısı)"
@@ -4753,19 +4751,17 @@ msgstr "Araştırmaya Başla"
 msgid "STATISTICS"
 msgstr "İstatistikler"
 
-#, fuzzy
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
-msgstr "ATP ÜRETİMİ ÇOK DÜŞÜK!"
+msgstr "ATP Üretimi Kaybı"
 
-#, fuzzy
 msgid "STAT_BASE_MOVEMENT_REDUCTION"
-msgstr "Temel Hareket"
+msgstr "Temel Harekette Azalma"
 
 msgid "STAT_DAMAGE"
-msgstr ""
+msgstr "Hasar"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
-msgstr ""
+msgstr "Oksijen Kullanan Organel Başına Hasar Artışı"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam istemci kütüphanesi başlatma başarısız"
@@ -5188,73 +5184,60 @@ msgid "TOTAL_SAVES"
 msgstr "Toplam kaydetme:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Kanal İnhibitörü"
 
-#, fuzzy
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
-msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
+msgstr "Etkilenen hücrenin ATP üretimini durdurur. Böylece, hücrelerin hızlı hareket etmesini etkili bir şekilde önler ve fazla ATP üretimi olmayan hücrelerin ölmesine neden olabilir."
 
-#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
-msgstr "Vurulan hücrelerde hasara yol açan toksin mermisi ateş et"
+msgstr "Sitotoksin"
 
-#, fuzzy
 msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
-msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
+msgstr "Özelleşmiş hücre zarı olmayan hücrelere karşı oldukça etkili basit bir toksindir."
 
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
-msgstr ""
+msgstr "Ateş Hızı ve Zehirlilik:"
 
-#, fuzzy
 msgid "TOXIN_MACROLIDE"
-msgstr ""
-"Toksin\n"
-"Kofulu"
+msgstr "Makrolid"
 
-#, fuzzy
 msgid "TOXIN_MACROLIDE_DESCRIPTION"
-msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
+msgstr "Basit hücreleri esasında hareketsiz hale getiren, temel hareket hızını büyük ölçüde azaltan bir toksindir."
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
-msgstr ""
+msgstr "Siyanür"
 
-#, fuzzy
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
-msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. Sitoplazmada gerçekleşen [b]Oksijenli Solunuma[/b] kıyasla, metabolozomlar [thrive:compound type=\"glucose\"]glukozu[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çok daha yüksek hızda dönüştürebilir. Ancak, metabolozomlar çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda düşük seviyelerde bulunan [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "Siyanür, oksijen metabolizmasındaki işlemleri hedef alır ve oksijen bazlı metabolizmaya sahip hücrelere karşı çok etkilidir."
 
-#, fuzzy
 msgid "TOXIN_OXYTOXY_DESCRIPTION"
-msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
+msgstr "Hücresel hasara yol açan, oksijene dayalı bir toksindir. Oksijeni metabolizmada kullanan türlere karşı daha az etkilidir."
 
 msgid "TOXIN_PREFER_FIRE_RATE"
-msgstr ""
+msgstr "Hızlı ateş"
 
 msgid "TOXIN_PREFER_TOXICITY"
-msgstr ""
+msgstr "Zehirli"
 
-#, fuzzy
 msgid "TOXIN_PROPERTIES_HEADING"
-msgstr "Thrive Oyun İçi Vikisi"
+msgstr "Hedef Üzerindeki Toksin Etkileri"
 
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksin Direnci"
 
-#, fuzzy
 msgid "TOXIN_TYPE_COLON"
-msgstr "Tür:"
+msgstr "Toksin Türü:"
 
-#, fuzzy
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
-msgstr "(etkinleştirildiğinde, temel oyun mantık güncellemelerini çalıştırmak için birden fazla iş parçacığı kullanılır; arkaplanda düşük sayıda iş parçacığı varken performansın düşmesine neden olabilir)"
+msgstr "Farklı toksin türleri, belirli hücre türlerine karşı daha etkili olan, çeşitli etkilere sahiptir. Birden fazla farklı toksin türüne sahip olan hücrelerde, bu toksinler aynı anda ateşlenmek yerine sırayla kullanılır."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toksin\n"
 "Kofulu"
 
-#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
+msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır. Diğer etkiler için, üretilen toksin türünü değiştirmek amacıyla, üzerinde değişiklik yapılabilir."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
@@ -5603,9 +5586,8 @@ msgstr "Çeken Siller"
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Yutma modunda ([thrive:input]g_toggle_engulf[/thrive:input]), bu sil türü suda girdaplara yol açarak yakınındaki nesneleri üzerine çeker. Av yakalamak için kullanışlıdır."
 
-#, fuzzy
 msgid "UPGRADE_COST"
-msgstr "{0} MP"
+msgstr "{0} ({1} MP)"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Varsayılan yükseltilmemiş durum"
