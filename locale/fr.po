@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-07 10:19+0300\n"
-"PO-Revision-Date: 2024-06-07 07:01+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-06-08 08:22+0000\n"
+"Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -3629,7 +3629,7 @@ msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
-msgstr ""
+msgstr "Production d'ATP inhibée par une toxine"
 
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
@@ -3890,9 +3890,8 @@ msgstr "Oxygène"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisome"
 
-#, fuzzy
 msgid "OXYTOXISOME_DESC"
-msgstr "Un métabolosome modifié responsable de la production d'une forme primitive de l'agent toxique [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+msgstr "Un métabolosome modifié responsable de la production d'une forme primitive de l'agent toxique [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Peut être modifié pour changer le type de toxine généré pour obtenir d'autres effets."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
@@ -4816,16 +4815,14 @@ msgstr "Commencer la recherche"
 msgid "STATISTICS"
 msgstr "Statistiques"
 
-#, fuzzy
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
-msgstr "LA PRODUCTION D'ATP EST TROP FAIBLE !"
+msgstr "Pénalité de production d'ATP"
 
-#, fuzzy
 msgid "STAT_BASE_MOVEMENT_REDUCTION"
-msgstr "Mouvement de base"
+msgstr "Réduction de mouvement de base"
 
 msgid "STAT_DAMAGE"
-msgstr ""
+msgstr "Dégâts"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
 msgstr ""
@@ -4897,7 +4894,7 @@ msgid "STORAGE"
 msgstr "Stockage"
 
 msgid "STORAGE_COLON"
-msgstr "Stockage :"
+msgstr "Stockage :"
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
@@ -5264,60 +5261,49 @@ msgid "TOTAL_SAVES"
 msgstr "Nombre de sauvegardes :"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Inhibiteur de canal"
 
-#, fuzzy
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
-msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La vitesse de production et sécrétion augmente proportionnellement au nombre de vacuoles à toxines."
+msgstr "Inhibe la production d'ATP des cellules affectées, ce qui les empêche de se déplacer rapidement et peut entraîner la mort des cellules dont la production d'ATP n'a pas beaucoup d'excédent."
 
-#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
-msgstr "Certaines options peuvent être désactivées si l'option \"LAWK uniquement\" est activée"
+msgstr "Cytotoxine"
 
-#, fuzzy
 msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
-msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La vitesse de production et sécrétion augmente proportionnellement au nombre de vacuoles à toxines."
+msgstr "Une toxine simple qui est raisonnablement efficace contre les cellules dépourvues de membranes spécialisées."
 
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
-msgstr ""
+msgstr "Vitesse de tir et toxicité :"
 
-#, fuzzy
 msgid "TOXIN_MACROLIDE"
-msgstr ""
-"Vacuole\n"
-"à toxine"
+msgstr "Macrolide"
 
-#, fuzzy
 msgid "TOXIN_MACROLIDE_DESCRIPTION"
-msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La vitesse de production et sécrétion augmente proportionnellement au nombre de vacuoles à toxines."
+msgstr "Toxine qui réduit énormément la vitesse de déplacement de base, rendant les cellules simples pratiquement incapables de se déplacer."
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
-msgstr ""
+msgstr "Cyanure"
 
-#, fuzzy
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
-msgstr "Les métabolosomes sont des amas de protéines enveloppés dans des enveloppes protéiques. Ils sont capables de convertir le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] à une vitesse bien supérieure à celle du cytoplasme dans un processus appelé [b]Respiration aérobie[/b]. Elle a toutefois besoin d'[thrive:compound type=\"oxygen\"][/thrive:compound] pour fonctionner, et des niveaux inférieurs d'[thrive:compound type=\"oxygen\"][/thrive:compound] dans l'environnement ralentiront le rythme de sa production d'[thrive:compound type=\"atp\"][/thrive:compound]. Comme les métabolosomes sont suspendus directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+msgstr "Le cyanure cible les processus de métabolisation de l'oxygène et est très efficace contre les cellules dont le métabolisme est basé sur l'oxygène."
 
-#, fuzzy
 msgid "TOXIN_OXYTOXY_DESCRIPTION"
-msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La vitesse de production et sécrétion augmente proportionnellement au nombre de vacuoles à toxines."
+msgstr "Toxine basée sur l'oxygène causant des dommages cellulaires. Moins efficace contre les espèces qui utilisent l'oxygène pour leur métabolisme."
 
 msgid "TOXIN_PREFER_FIRE_RATE"
-msgstr ""
+msgstr "Tir rapide"
 
 msgid "TOXIN_PREFER_TOXICITY"
-msgstr ""
+msgstr "Toxique"
 
-#, fuzzy
 msgid "TOXIN_PROPERTIES_HEADING"
-msgstr "Wiki en jeu de Thrive"
+msgstr "Effets de la toxine sur la cible"
 
 msgid "TOXIN_RESISTANCE"
 msgstr "Résistance aux toxines"
 
-#, fuzzy
 msgid "TOXIN_TYPE_COLON"
-msgstr "Type :"
+msgstr "Type de toxine :"
 
 #, fuzzy
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
@@ -5333,12 +5319,11 @@ msgstr ""
 "Vacuole\n"
 "à toxine"
 
-#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La vitesse de production et sécrétion augmente proportionnellement au nombre de vacuoles à toxines."
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, stocker et sécréter des [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Un plus grand nombre de vacuoles à toxines augmente la vitesse à laquelle les toxines peuvent être libérées. Peut être modifié pour changer le type de toxine généré pour obtenir d'autres effets."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la concentration d'[thrive:compound type=\"oxygen\"][thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
+msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]. Lorsque la quantité d'[thrive:compound type=\"oxytoxy\"][/thrive:compound] est faible, il est toujours possible de tirer mais les dégâts sont réduits."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Doit être implémenté."
@@ -5708,9 +5693,8 @@ msgstr "Cils de traction"
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Quand vous êtes en mode phagocytage ([thrive:input]g_toggle_engulf[/thrive:input]) ce type de cils créera des vortex dans l'eau qui attireront les objets proches. Utile pour capturer des proies."
 
-#, fuzzy
 msgid "UPGRADE_COST"
-msgstr "{0} PM"
+msgstr "{0} ({1} PM)"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "L'état non-amélioré par défaut"
