@@ -18,9 +18,10 @@
       $(DefaultItemExcludes);Scripts\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
     </DefaultItemExcludes>
   </PropertyGroup>
+  <!-- Exclude the ThriveScriptsShared project from existing in two places at once-->
   <ItemGroup>
-    <Compile Remove="ThriveScriptsShared\obj\**" />
-    <EmbeddedResource Remove="ThriveScriptsShared\obj\**" />
+    <Compile Remove="ThriveScriptsShared\**" />
+    <EmbeddedResource Remove="ThriveScriptsShared\**" />
   </ItemGroup>
   <!-- Non-Steam build needs to skip this file -->
   <ItemGroup>
@@ -87,6 +88,7 @@
     <ProjectReference Include="RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj" />
     <ProjectReference Include="RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
     <ProjectReference Include="third_party\ThirdParty.csproj" />
+    <ProjectReference Include="ThriveScriptsShared\ThriveScriptsShared.csproj" />
   </ItemGroup>
   <!-- StyleCop Analyzers configuration -->
   <PropertyGroup>
