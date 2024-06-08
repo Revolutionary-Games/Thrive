@@ -4,6 +4,11 @@
 ///   Contains all the game stages. Used for the Thriveopedia.
 ///   Includes <b>only</b> stages, not editors.
 /// </summary>
+/// <remarks>
+///   <para>
+///     In the Thrive project there is also MainGameState. Reordering values here will cause issues.
+///   </para>
+/// </remarks>
 public enum Stage
 {
     [Description("MICROBE_STAGE")]

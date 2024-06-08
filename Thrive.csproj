@@ -15,14 +15,9 @@
   <!-- Ignore the subproject source files -->
   <PropertyGroup>
     <DefaultItemExcludes>
-      $(DefaultItemExcludes);Scripts\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
+      $(DefaultItemExcludes);Scripts\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*;ThriveScriptsShared\**\*
     </DefaultItemExcludes>
   </PropertyGroup>
-  <!-- Exclude the ThriveScriptsShared project from existing in two places at once-->
-  <ItemGroup>
-    <Compile Remove="ThriveScriptsShared\**" />
-    <EmbeddedResource Remove="ThriveScriptsShared\**" />
-  </ItemGroup>
   <!-- Non-Steam build needs to skip this file -->
   <ItemGroup>
     <Compile Remove="src\steam\SteamClient.cs" />

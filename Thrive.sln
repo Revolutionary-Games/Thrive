@@ -1,24 +1,22 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34221.43
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thrive", "Thrive.csproj", "{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}"
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrive", "Thrive.csproj", "{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThirdParty", "third_party\ThirdParty.csproj", "{11034E11-96F1-4C3D-A343-72261921B542}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThirdParty", "third_party\ThirdParty.csproj", "{11034E11-96F1-4C3D-A343-72261921B542}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScriptsBase", "RevolutionaryGamesCommon\ScriptsBase\ScriptsBase.csproj", "{48B517EC-5F5C-4DE2-A2D3-ED4662918437}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptsBase", "RevolutionaryGamesCommon\ScriptsBase\ScriptsBase.csproj", "{48B517EC-5F5C-4DE2-A2D3-ED4662918437}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedBase", "RevolutionaryGamesCommon\SharedBase\SharedBase.csproj", "{2B59E08B-951E-489F-BDB9-38C5B175A2CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedBase", "RevolutionaryGamesCommon\SharedBase\SharedBase.csproj", "{2B59E08B-951E-489F-BDB9-38C5B175A2CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scripts", "Scripts\Scripts.csproj", "{CA4C9272-3D47-4DCE-AFA2-07D6D6442C3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scripts", "Scripts\Scripts.csproj", "{CA4C9272-3D47-4DCE-AFA2-07D6D6442C3D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevCenterCommunication", "RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj", "{308BA2D6-EF9C-408F-BEAE-7DACF6401350}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevCenterCommunication", "RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj", "{308BA2D6-EF9C-408F-BEAE-7DACF6401350}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThriveTest", "test\code_tests\ThriveTest.csproj", "{03B05BE7-6A42-4317-8804-BB5C270ACF52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThriveTest", "test\code_tests\ThriveTest.csproj", "{03B05BE7-6A42-4317-8804-BB5C270ACF52}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LauncherThriveShared", "RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj", "{AE051448-5585-4A8E-9926-CF6F6C8A01A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherThriveShared", "RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj", "{AE051448-5585-4A8E-9926-CF6F6C8A01A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThriveScriptsShared", "ThriveScriptsShared\ThriveScriptsShared.csproj", "{A3AFE6EA-2295-42D0-9ED9-4808C294C729}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThriveScriptsShared", "ThriveScriptsShared\ThriveScriptsShared.csproj", "{0FFB62E7-0899-4DB8-BE3D-1C407D4095BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +31,6 @@ Global
 		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
-		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Release|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Release|Any CPU.Build.0 = ExportRelease|Any CPU
 		{11034E11-96F1-4C3D-A343-72261921B542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11034E11-96F1-4C3D-A343-72261921B542}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11034E11-96F1-4C3D-A343-72261921B542}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -77,12 +73,12 @@ Global
 		{AE051448-5585-4A8E-9926-CF6F6C8A01A6}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{AE051448-5585-4A8E-9926-CF6F6C8A01A6}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE051448-5585-4A8E-9926-CF6F6C8A01A6}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
-		{A3AFE6EA-2295-42D0-9ED9-4808C294C729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3AFE6EA-2295-42D0-9ED9-4808C294C729}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3AFE6EA-2295-42D0-9ED9-4808C294C729}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3AFE6EA-2295-42D0-9ED9-4808C294C729}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
-		{A3AFE6EA-2295-42D0-9ED9-4808C294C729}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{A3AFE6EA-2295-42D0-9ED9-4808C294C729}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
+		{0FFB62E7-0899-4DB8-BE3D-1C407D4095BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFB62E7-0899-4DB8-BE3D-1C407D4095BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FFB62E7-0899-4DB8-BE3D-1C407D4095BE}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFB62E7-0899-4DB8-BE3D-1C407D4095BE}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{0FFB62E7-0899-4DB8-BE3D-1C407D4095BE}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFB62E7-0899-4DB8-BE3D-1C407D4095BE}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
@@ -99,9 +95,9 @@ Global
 		$4.TabsToSpaces = True
 		$4.NoTabsAfterNonTabs = True
 		$4.scope = text/plain
+		$0.TextStylePolicy = $5
 		$5.inheritsSet = null
 		$5.scope = application/json
-		$0.TextStylePolicy = $5
 		$0.StandardHeader = $6
 		$6.IncludeInNewFiles = False
 	EndGlobalSection
