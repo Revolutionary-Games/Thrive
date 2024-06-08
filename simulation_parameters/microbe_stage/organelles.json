@@ -602,6 +602,7 @@
         "ReproduceWithOrganelle": {
           "Organelle": "metabolosome",
           "Generations": 7,
+          "MinimumCount": 5,
           "InARow": true
         }
       }
@@ -651,7 +652,8 @@
         },
         "ReproduceWithOrganelle": {
           "Organelle": "oxytoxyProteins",
-          "Generations": 5
+          "Generations": 5,
+          "MinimumCount": 3
         }
       }
     ],
