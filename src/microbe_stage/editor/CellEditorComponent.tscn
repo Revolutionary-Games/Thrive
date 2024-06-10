@@ -1282,6 +1282,8 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
 horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="PredictionExplanation/VBoxContainer/ScrollContainer"]
