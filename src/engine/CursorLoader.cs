@@ -12,11 +12,14 @@ public partial class CursorLoader : Node
     private Resource? canDropCursor;
     private Resource? noDropCursor;
 #pragma warning restore CA2213
+    private Vector2 iconHotspot;
 
     public override void _Ready()
     {
         if (Engine.IsEditorHint())
             return;
+
+        iconHotspot = new Vector2(24, 24);
 
         hoverCursor = GD.Load<Resource>("res://assets/textures/gui/cursors/cursor_hover.png");
         Input.SetCustomMouseCursor(hoverCursor, Input.CursorShape.PointingHand);
