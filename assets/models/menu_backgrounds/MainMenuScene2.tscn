@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjy0kv58k8fuk"]
+[gd_scene load_steps=23 format=3 uid="uid://bjy0kv58k8fuk"]
 
 [ext_resource type="PackedScene" uid="uid://dktxuj5u5dkmy" path="res://assets/models/menu_backgrounds/UnderwaterChimney.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bbc87m2s4lt5b" path="res://assets/models/menu_backgrounds/UnderwaterSmoke.tscn" id="2_ggksx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://h6dsvt4v07um" path="res://assets/models/menu_backgrounds/UnderwaterRock.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://bu4uvavl0ieg2" path="res://assets/textures/iron_01.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="6"]
+[ext_resource type="ArrayMesh" uid="uid://cwq0ljxprn2y5" path="res://assets/models/IronRock1.mesh" id="7_n7lxf"]
 
 [sub_resource type="Gradient" id="Gradient_evfme"]
 offsets = PackedFloat32Array(0, 0.670732)
@@ -53,8 +54,11 @@ glow_hdr_threshold = 0.5
 glow_hdr_scale = 1.47
 glow_hdr_luminance_cap = 28.96
 fog_enabled = true
-fog_light_color = Color(0.0855954, 0.0971605, 0.115342, 1)
-fog_density = 0.0942
+fog_light_color = Color(0.101078, 0.112227, 0.186586, 1)
+fog_light_energy = 0.8
+fog_sun_scatter = 1.0
+fog_density = 0.008
+fog_sky_affect = 0.57
 adjustment_enabled = true
 adjustment_brightness = 1.01
 adjustment_contrast = 1.07
@@ -166,15 +170,31 @@ albedo_texture = ExtResource("5")
 normal_enabled = true
 normal_texture = ExtResource("6")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pj41a"]
+resource_local_to_scene = true
+albedo_color = Color(0.862745, 0.784314, 0.647059, 1)
+albedo_texture = ExtResource("5")
+normal_enabled = true
+normal_texture = ExtResource("6")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10rpa"]
+resource_local_to_scene = true
+albedo_color = Color(0.862745, 0.784314, 0.647059, 1)
+albedo_texture = ExtResource("5")
+normal_enabled = true
+normal_texture = ExtResource("6")
+uv1_scale = Vector3(10, 10, 10)
+
 [node name="MainMenuScene2" type="Node3D"]
-transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 0, 0, 0)
+transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 0, 20, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("2")
 camera_attributes = SubResource("CameraAttributesPractical_73sbg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 13.962, 4.231, 2.151)
+transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403593, 0.142228, 13.962, 4.231, 2.151)
 fov = 50.7
 near = 0.11
 far = 503.4
@@ -201,7 +221,7 @@ transform = Transform3D(-3.8743e-07, 6.33299e-08, 1, 1.81608e-08, 1, -5.96046e-0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0279763, -0.995088, 0.0949602, -0.0108348, 0.0952938, 0.99539, -0.99955, 0.0268189, -0.0134484, 2.04458, 17.2006, -0.294029)
 light_color = Color(0.647059, 0.72549, 0.929412, 1)
-light_energy = 1.588
+light_volumetric_fog_energy = 0.7
 shadow_bias = 0.283
 directional_shadow_blend_splits = true
 
@@ -234,39 +254,45 @@ color_ramp = SubResource("13")
 hue_variation_min = 0.2
 hue_variation_max = 0.6
 
+[node name="MicIron01" parent="." instance=ExtResource("4")]
+transform = Transform3D(-1.23894, -0.599981, 0.595855, 0.823522, -1.09604, 0.608696, 0.191916, 0.829893, 1.23468, 3.28674, 2.71791, 6.09312)
+material_override = SubResource("20")
+
+[node name="MicIron02" parent="." instance=ExtResource("4")]
+transform = Transform3D(0.000600524, -1.39594, -0.658755, -1.33706, 0.248328, -0.759513, 0.679899, 0.489585, -1.49304, 4.14095, 3.97021, -0.559708)
+material_override = SubResource("20")
+
+[node name="MicIron03" parent="." instance=ExtResource("4")]
+transform = Transform3D(-0.21555, -0.0117389, -1.48439, -0.708849, -1.31707, 0.113349, -1.30425, 0.717758, 0.183716, 5.83912, 2.56639, -2.33573)
+material_override = SubResource("20")
+
+[node name="MicIron04" parent="." instance=ExtResource("4")]
+transform = Transform3D(-0.195675, 0.965392, -1.13125, -0.749695, -1.04945, -0.765907, -1.28439, 0.465483, 0.6194, 3.95268, 2.69188, 3.33375)
+material_override = SubResource("20")
+skeleton = NodePath("../MicIron01")
+
+[node name="MicIron05" parent="." instance=ExtResource("4")]
+transform = Transform3D(0.021556, -0.659978, -1.27856, -0.959621, 0.28261, -0.582985, 0.472824, 0.603659, -1.12491, 2.82712, 4.56597, 1.62095)
+material_override = SubResource("20")
+
+[node name="MicIronBIG01" type="MeshInstance3D" parent="."]
+transform = Transform3D(-27.5111, -38.6375, -54.5048, -71.857, 9.6862, 71.8418, -21.9022, 16.7536, -167.236, -200.013, -25.4691, 109.995)
+material_override = SubResource("StandardMaterial3D_pj41a")
+mesh = ExtResource("7_n7lxf")
+
 [node name="MicIronBIG02" parent="." instance=ExtResource("4")]
-transform = Transform3D(0.06005, -139.594, -145.547, -133.706, 24.8329, -167.808, 67.9896, 48.9587, -329.877, 4.14095, 3.97021, -0.559708)
-material_override = SubResource("20")
-
-[node name="MicIronBIG09" parent="." instance=ExtResource("4")]
-transform = Transform3D(2.16048, -66.1489, -198.237, -96.1797, 28.3256, -90.3905, 47.3896, 60.5041, -174.415, 2.82712, 4.56597, 1.62095)
-material_override = SubResource("20")
-
-[node name="MicIronBIG05" parent="." instance=ExtResource("4")]
-transform = Transform3D(-807.919, -4021.62, -6016.7, -4886.71, 715.419, 373.411, 175.055, 1410.47, -17344.6, -200, 15.077, 120)
-material_override = SubResource("20")
-
-[node name="MicIronBIG06" parent="." instance=ExtResource("4")]
-transform = Transform3D(799.573, 4224.27, -2492.71, -4886.71, 715.419, 373.411, 209.905, 564.244, 18188.5, -231.539, 0.2477, 33.095)
-material_override = SubResource("20")
-
-[node name="MicIronBIG07" parent="." instance=ExtResource("4")]
-transform = Transform3D(-1917, 6891.31, -8049.11, -6497.47, -3649.37, 17052, 4905.02, 7951.75, 30106.4, -374.724, 2.66869, -44.8635)
-material_override = SubResource("20")
-
-[node name="MicIronBIG08" parent="." instance=ExtResource("4")]
-transform = Transform3D(631.646, 6246.68, 5818.51, -4823.14, -2708.96, 12657.8, 6877.54, 1085.02, 38471.9, -204.974, -31.6544, -184.716)
+transform = Transform3D(10.3881, 41.871, -24.0872, -45.1211, 10.4721, 61.5558, 17.674, 2.12451, 171.308, -231.539, 0.247698, 33.095)
 material_override = SubResource("20")
 
 [node name="MicIronBIG03" parent="." instance=ExtResource("4")]
-transform = Transform3D(-21.555, -1.17384, -148.438, -70.8848, -131.707, 11.3349, -130.425, 71.7759, 18.3717, 5.83912, 2.56639, -2.33573)
+transform = Transform3D(6.09195, 78.753, 14.8076, -33.6892, -4.38819, 90.8228, 49.274, -12.7368, 60.2658, -249.935, 5.86099, -35.4817)
 material_override = SubResource("20")
 
 [node name="MicIronBIG04" parent="." instance=ExtResource("4")]
-transform = Transform3D(-19.5674, 96.5391, -113.125, -74.9692, -104.945, -76.591, -128.439, 46.5481, 61.9401, 3.95268, 2.69188, 3.33375)
+transform = Transform3D(12.6501, 97.4799, 7.39772, 90.0298, -11.7926, 78.0195, 78.3238, -2.18896, -90.8748, -459.588, 43, -380.183)
 material_override = SubResource("20")
-skeleton = NodePath("../MicIronBIG01")
 
-[node name="MicIronBIG01" parent="." instance=ExtResource("4")]
-transform = Transform3D(-123.894, -59.998, 59.5854, 82.352, -109.604, 60.8696, 19.1916, 82.9893, 123.469, 3.2331, 2.33866, 5.82775)
-material_override = SubResource("20")
+[node name="MicIronBIG05" type="MeshInstance3D" parent="."]
+transform = Transform3D(-9.60686, 55.8217, -231.644, -75.3161, 24.5646, 149.756, 48.324, 49.3831, 187.353, -162.77, -57.8115, -215.321)
+material_override = SubResource("StandardMaterial3D_10rpa")
+mesh = ExtResource("7_n7lxf")
