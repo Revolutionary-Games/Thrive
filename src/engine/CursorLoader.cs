@@ -9,6 +9,8 @@ public partial class CursorLoader : Node
 {
 #pragma warning disable CA2213
     private Resource? hoverCursor;
+    private Resource? canDropCursor;
+    private Resource? noDropCursor;
 #pragma warning restore CA2213
 
     public override void _Ready()
@@ -18,5 +20,9 @@ public partial class CursorLoader : Node
 
         hoverCursor = GD.Load<Resource>("res://assets/textures/gui/cursors/cursor_hover.png");
         Input.SetCustomMouseCursor(hoverCursor, Input.CursorShape.PointingHand);
+        canDropCursor = GD.Load<Resource>("res://assets/textures/gui/cursors/cursor_hand_drop.png");
+        Input.SetCustomMouseCursor(canDropCursor, Input.CursorShape.CanDrop, new Vector2(24, 24));
+        noDropCursor = GD.Load<Resource>("res://assets/textures/gui/cursors/cursor_hand.png");
+        Input.SetCustomMouseCursor(noDropCursor, Input.CursorShape.Forbidden, new Vector2(24, 24));
     }
 }
