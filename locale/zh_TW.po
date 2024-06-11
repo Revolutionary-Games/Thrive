@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-07 10:19+0300\n"
 "PO-Revision-Date: 2024-06-11 06:06+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -3834,7 +3834,7 @@ msgid "OXYTOXISOME"
 msgstr "氧化毒酶體"
 
 msgid "OXYTOXISOME_DESC"
-msgstr "一種被修飾的代謝體，負責生產原始形式的有毒物質[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以修改以切換生成的毒素類型來獲得其他效果。"
+msgstr "一種修飾過的代謝體，負責生產原始形式的有毒物質[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以修改以切換生成的毒素類型來獲得其他效果。"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
@@ -4762,7 +4762,7 @@ msgid "STAT_DAMAGE"
 msgstr "傷害"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
-msgstr "每個耗氧細胞器的損傷比例"
+msgstr "每個耗氧細胞器的損傷等級"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam 客戶端程式庫初始化失敗"
@@ -5197,7 +5197,7 @@ msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
 msgstr "一種簡單的毒素，對沒有特化細胞膜的細胞相當有效。"
 
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
-msgstr "發射速率與毒性："
+msgstr "射速與毒性："
 
 msgid "TOXIN_MACROLIDE"
 msgstr "巨環內酯"
@@ -5212,13 +5212,13 @@ msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
 msgstr "氰化物針對氧代謝過程，對氧代謝細胞非常有效。"
 
 msgid "TOXIN_OXYTOXY_DESCRIPTION"
-msgstr "基於氧的毒素會導致細胞損傷。對利用氧氣進行新陳代謝的物種效果較差。"
+msgstr "基於氧的毒素會導致細胞損傷。對利用氧氣進行代謝的物種效果較差。"
 
 msgid "TOXIN_PREFER_FIRE_RATE"
-msgstr "快速射擊"
+msgstr "射速"
 
 msgid "TOXIN_PREFER_TOXICITY"
-msgstr "毒"
+msgstr "毒性"
 
 msgid "TOXIN_PROPERTIES_HEADING"
 msgstr "毒素對目標的影響"
