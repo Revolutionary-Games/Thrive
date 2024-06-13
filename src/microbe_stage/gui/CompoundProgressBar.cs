@@ -466,7 +466,7 @@ public partial class CompoundProgressBar : Control
         if (SmoothBarValue)
         {
             var tween = CreateTween();
-            tween.SetTrans(Tween.TransitionType.Expo);
+            tween.SetTrans(Tween.TransitionType.Cubic);
             tween.TweenProperty(progressBar, valueReference, target,
                 Constants.COMPOUND_BAR_VALUE_ANIMATION_TIME);
         }
