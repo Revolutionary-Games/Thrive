@@ -196,12 +196,14 @@ public partial class PlayerMicrobeInput : NodeWithInput
         // This doesn't check colony data as the player cell is always able to bind when in a colony so the state
         // should not be able to be out of sync
 
-        if (control.State == MicrobeState.Binding)
+        if (control.State is MicrobeState.Binding or MicrobeState.Unbinding)
         {
             control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
         }
-        else if (organelles.HasBindingAgent)
+        else if (organelles.HasBindingAgent && stage.GameWorld.PlayerSpecies is MicrobeSpecies)
         {
+            // Only microbe species can bind new members, multicellular ones cannot
+
             control.SetStateColonyAware(stage.Player, MicrobeState.Binding);
         }
     }
@@ -214,7 +216,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
-        if (control.State == MicrobeState.Unbinding)
+        if (control.State is MicrobeState.Unbinding or MicrobeState.Binding)
         {
             stage.HUD.HintText = string.Empty;
             control.SetStateColonyAware(stage.Player, MicrobeState.Normal);

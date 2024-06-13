@@ -730,18 +730,21 @@ public static class MicrobeColonyHelpers
         entityWorld.FinishRecordingEntityCommands(recorder);
 
 #if DEBUG
-        if (entity.Has<MicrobeColony>() || entity.Has<MicrobeColonyMember>())
+        if (result)
         {
-            throw new Exception("Microbe colony unbind didn't delete components correctly");
-        }
-
-        if (members != null)
-        {
-            foreach (var member in members)
+            if (entity.Has<MicrobeColony>() || entity.Has<MicrobeColonyMember>())
             {
-                if (member.Has<MicrobeColonyMember>() || member.Has<AttachedToEntity>())
+                throw new Exception("Microbe colony unbind didn't delete components correctly");
+            }
+
+            if (members != null)
+            {
+                foreach (var member in members)
                 {
-                    throw new Exception("Microbe colony unbind didn't delete components correctly");
+                    if (member.Has<MicrobeColonyMember>() || member.Has<AttachedToEntity>())
+                    {
+                        throw new Exception("Microbe colony unbind didn't delete components correctly");
+                    }
                 }
             }
         }
