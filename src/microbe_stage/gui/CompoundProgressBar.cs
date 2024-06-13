@@ -460,7 +460,7 @@ public partial class CompoundProgressBar : Control
 
     private void SetBarValue()
     {
-        var target = Math.Clamp(currentValue / maxValue, 0, maxValue);
+        var target = Math.Clamp(currentValue / maxValue, 0, 1);
 
         if (SmoothBarValue)
         {
