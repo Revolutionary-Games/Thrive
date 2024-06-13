@@ -234,6 +234,33 @@ public static class NodeHelpers
     }
 
     /// <summary>
+    ///   Recursively counts the children of the given Node
+    /// </summary>
+    /// <param name="node">Where to start counting</param>
+    /// <param name="includeInternal">If true internal Nodes are also counted</param>
+    public static int RecursiveCountChildren(this Node node, bool includeInternal = false)
+    {
+        int childCount = node.GetChildCount(includeInternal);
+
+        int count = 0;
+
+        for (int i = 0; i < childCount; ++i)
+        {
+            var child = node.GetChild(i, includeInternal);
+
+            if (child == null)
+            {
+                GD.PrintErr("Error getting child when counting recursively");
+                break;
+            }
+
+            count += RecursiveCountChildren(child, includeInternal);
+        }
+
+        return childCount + count;
+    }
+
+    /// <summary>
     ///   Gets the parent of a Node as a Spatial in a way that actually works (Godot inbuilt method for this fails
     ///   randomly)
     /// </summary>
