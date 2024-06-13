@@ -21,6 +21,11 @@ public partial class DebugOverlays
 
         file.Close();
 
+        // TODO: maybe this should have a separate button?
+#if DEBUG
+        PrintOrphanedNodes();
+#endif
+
         GD.Print("Scene tree dumped to \"", SCENE_DUMP_FILE, "\"");
     }
 
@@ -30,5 +35,11 @@ public partial class DebugOverlays
 
         foreach (Node child in node.GetChildren())
             DumpSceneTreeToFile(child, file, indent + 1);
+    }
+
+    private static void PrintOrphanedNodes()
+    {
+        GD.Print("Orphaned nodes:");
+        PrintOrphanNodes();
     }
 }
