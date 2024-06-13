@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bjy0kv58k8fuk"]
+[gd_scene load_steps=31 format=3 uid="uid://bjy0kv58k8fuk"]
 
 [ext_resource type="PackedScene" uid="uid://dktxuj5u5dkmy" path="res://assets/models/menu_backgrounds/UnderwaterChimney.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bbc87m2s4lt5b" path="res://assets/models/menu_backgrounds/UnderwaterSmoke.tscn" id="2_ggksx"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://h6dsvt4v07um" path="res://assets/models/menu_backgrounds/UnderwaterRock.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://bu4uvavl0ieg2" path="res://assets/textures/iron_01.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="6"]
-[ext_resource type="ArrayMesh" uid="uid://cwq0ljxprn2y5" path="res://assets/models/IronRock1.mesh" id="7_n7lxf"]
+[ext_resource type="Texture2D" uid="uid://bkyg5fh4aafqu" path="res://assets/textures/menu_backgrounds/UnderWaterChimney_Mat_Normal_DirectX.png" id="6_g81tr"]
+[ext_resource type="PackedScene" uid="uid://bxyq7khmy5j8v" path="res://assets/models/menu_backgrounds/UnderwaterBGRock.tscn" id="7_k4o2y"]
 
 [sub_resource type="Gradient" id="Gradient_evfme"]
 offsets = PackedFloat32Array(0, 0.670732)
@@ -29,6 +30,7 @@ radiance_size = 2
 background_mode = 2
 sky = SubResource("5")
 sky_custom_fov = 113.6
+sky_rotation = Vector3(0, 0.349066, 0)
 ambient_light_color = Color(0.207843, 0.376471, 0.509804, 1)
 ambient_light_sky_contribution = 0.0
 tonemap_mode = 2
@@ -57,7 +59,6 @@ fog_enabled = true
 fog_light_color = Color(0.101078, 0.112227, 0.186586, 1)
 fog_light_energy = 0.8
 fog_sun_scatter = 1.0
-fog_density = 0.008
 fog_sky_affect = 0.57
 adjustment_enabled = true
 adjustment_brightness = 1.01
@@ -68,9 +69,9 @@ adjustment_saturation = 1.37
 dof_blur_far_enabled = true
 dof_blur_far_distance = 14.85
 dof_blur_near_enabled = true
-dof_blur_near_distance = 10.4
+dof_blur_near_distance = 12.0
 dof_blur_near_transition = 3.0
-dof_blur_amount = 0.11
+dof_blur_amount = 0.09
 
 [sub_resource type="Animation" id="21"]
 resource_name = "CameraAnimation"
@@ -164,26 +165,181 @@ material = SubResource("11")
 offsets = PackedFloat32Array(0, 0.519553, 1)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.129412, 1, 1, 1, 0)
 
-[sub_resource type="StandardMaterial3D" id="20"]
-albedo_color = Color(0.862745, 0.784314, 0.647059, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5u236"]
+cull_mode = 2
+vertex_color_is_srgb = true
+albedo_color = Color(0.71, 1, 0.932333, 1)
 albedo_texture = ExtResource("5")
+metallic_specular = 0.0
+roughness_texture_channel = 4
 normal_enabled = true
-normal_texture = ExtResource("6")
+normal_scale = 1.04
+normal_texture = ExtResource("6_g81tr")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pj41a"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8c8d"]
 resource_local_to_scene = true
-albedo_color = Color(0.862745, 0.784314, 0.647059, 1)
+resource_name = "UnderWaterChimney_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.71, 1, 0.932333, 1)
 albedo_texture = ExtResource("5")
+metallic_specular = 0.0
+roughness_texture_channel = 4
 normal_enabled = true
+normal_scale = 1.04
+normal_texture = ExtResource("6_g81tr")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2xw7"]
+resource_local_to_scene = true
+resource_name = "UnderWaterChimney_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.71, 1, 0.932333, 1)
+albedo_texture = ExtResource("5")
+metallic_specular = 0.0
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 1.04
+normal_texture = ExtResource("6_g81tr")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prain"]
+resource_local_to_scene = true
+resource_name = "UnderWaterChimney_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.71, 1, 0.932333, 1)
+albedo_texture = ExtResource("5")
+metallic_specular = 0.0
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 1.04
+normal_texture = ExtResource("6_g81tr")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgx42"]
+resource_local_to_scene = true
+resource_name = "UnderWaterChimney_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.71, 1, 0.932333, 1)
+albedo_texture = ExtResource("5")
+metallic_specular = 0.0
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 1.04
+normal_texture = ExtResource("6_g81tr")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piire"]
+resource_local_to_scene = true
+resource_name = "UnderWaterChimney_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.5994, 0.81, 0.76437, 1)
+albedo_texture = ExtResource("5")
+metallic_specular = 0.0
+roughness_texture_channel = 4
+normal_scale = 1.04
 normal_texture = ExtResource("6")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
 uv1_scale = Vector3(10, 10, 10)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10rpa"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afky6"]
 resource_local_to_scene = true
-albedo_color = Color(0.862745, 0.784314, 0.647059, 1)
+resource_name = "UnderWaterChimney_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.5994, 0.81, 0.76437, 1)
 albedo_texture = ExtResource("5")
-normal_enabled = true
+metallic_specular = 0.0
+roughness_texture_channel = 4
+normal_scale = 1.04
 normal_texture = ExtResource("6")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7uh8s"]
+resource_local_to_scene = true
+resource_name = "UnderWaterChimney_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.5994, 0.81, 0.76437, 1)
+albedo_texture = ExtResource("5")
+metallic_specular = 0.0
+roughness_texture_channel = 4
+normal_scale = 1.04
+normal_texture = ExtResource("6")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l57cn"]
+resource_local_to_scene = true
+resource_name = "UnderWaterChimney_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.5994, 0.81, 0.76437, 1)
+albedo_texture = ExtResource("5")
+metallic_specular = 0.0
+roughness_texture_channel = 4
+normal_scale = 1.04
+normal_texture = ExtResource("6")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7e3a"]
+resource_local_to_scene = true
+resource_name = "UnderWaterChimney_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.5994, 0.81, 0.76437, 1)
+albedo_texture = ExtResource("5")
+metallic_specular = 0.0
+roughness_texture_channel = 4
+normal_scale = 1.04
+normal_texture = ExtResource("6")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
 uv1_scale = Vector3(10, 10, 10)
 
 [node name="MainMenuScene2" type="Node3D"]
@@ -194,7 +350,7 @@ environment = SubResource("2")
 camera_attributes = SubResource("CameraAttributesPractical_73sbg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403593, 0.142228, 13.962, 4.231, 2.151)
+transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 13.962, 4.231, 2.151)
 fov = 50.7
 near = 0.11
 far = 503.4
@@ -207,26 +363,32 @@ autoplay = "CameraAnimation"
 speed_scale = 0.5
 
 [node name="UnderwaterChimney" parent="." instance=ExtResource("1")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-1.04308e-07, 3.72529e-09, 1, 3.81842e-08, 1, -1.49012e-08, -1, -1.21072e-07, 1.49012e-08, 8.45773e-10, 0.237944, -0.0675197)
 
 [node name="UnderwaterSmoke" parent="." instance=ExtResource("2_ggksx")]
-transform = Transform3D(-7.45058e-08, 3.72529e-09, 1, 3.72529e-08, 1, -7.45058e-09, -1, -6.0536e-08, -1.49012e-08, -0.171367, 8.09691, -0.131783)
+transform = Transform3D(-1.3411e-07, 1.11759e-08, 1, 3.95812e-08, 1, -2.23517e-08, -1, -1.53203e-07, 4.47035e-08, -0.171367, 8.33485, -0.199303)
+amount = 45
 
 [node name="UnderwaterSmoke3" parent="." instance=ExtResource("2_ggksx")]
-transform = Transform3D(-4.61936e-07, 7.82311e-08, 1, 4.84288e-08, 1, -7.45058e-08, -1, -1.62516e-07, 1.63913e-07, 2.19401, 4.71154, -4.48352)
+transform = Transform3D(-5.81145e-07, 9.31323e-08, 1, 5.68107e-08, 1, -9.31323e-08, -1, -1.64844e-07, 1.49012e-07, 2.19401, 4.94948, -4.55104)
+amount = 45
 
 [node name="UnderwaterSmoke2" parent="." instance=ExtResource("2_ggksx")]
-transform = Transform3D(-3.8743e-07, 6.33299e-08, 1, 1.81608e-08, 1, -5.96046e-08, -1, -1.60653e-07, 1.63913e-07, -0.914389, 3.76822, 6.01451)
+transform = Transform3D(-5.06639e-07, 7.82311e-08, 1, 2.23517e-08, 1, -7.45058e-08, -1, -1.62516e-07, 1.63913e-07, -0.914389, 4.00617, 5.94699)
+amount = 45
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.0279763, -0.995088, 0.0949602, -0.0108348, 0.0952938, 0.99539, -0.99955, 0.0268189, -0.0134484, 2.04458, 17.2006, -0.294029)
-light_color = Color(0.647059, 0.72549, 0.929412, 1)
+transform = Transform3D(0.0377496, -0.958749, 0.281736, 0.0414382, 0.283196, 0.958167, -0.998428, -0.0244959, 0.0504194, 2.04458, 17.2006, -0.294027)
+light_color = Color(0.5115, 0.727725, 0.93, 1)
+light_energy = 1.4
 light_volumetric_fog_energy = 0.7
 shadow_bias = 0.283
 directional_shadow_blend_splits = true
+directional_shadow_fade_start = 0.0
+directional_shadow_max_distance = 2.9
 
 [node name="UnderwaterParticle" type="CPUParticles3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 1.09711, -4.79564e-08, 4.79564e-08, 6.0306e-08, 1.37964, 2.63606e-15, 11.0658, 4.18832, -0.542366)
+transform = Transform3D(-2.23517e-08, 1.3411e-07, 1, 1.09711, -7.35745e-08, 4.09782e-08, 5.02914e-08, 1.37964, 7.45058e-08, 11.0658, 4.42627, -0.609888)
 amount = 10
 lifetime = 6.0
 preprocess = 3.0
@@ -255,44 +417,47 @@ hue_variation_min = 0.2
 hue_variation_max = 0.6
 
 [node name="MicIron01" parent="." instance=ExtResource("4")]
-transform = Transform3D(-1.23894, -0.599981, 0.595855, 0.823522, -1.09604, 0.608696, 0.191916, 0.829893, 1.23468, 3.28674, 2.71791, 6.09312)
-material_override = SubResource("20")
+transform = Transform3D(-1.36145, -0.327708, 0.53763, 0.561249, -1.21216, 0.682401, 0.285377, 0.820536, 1.22281, 3.28674, 2.77764, 6.07618)
+material_override = SubResource("StandardMaterial3D_5u236")
 
 [node name="MicIron02" parent="." instance=ExtResource("4")]
-transform = Transform3D(0.000600524, -1.39594, -0.658755, -1.33706, 0.248328, -0.759513, 0.679899, 0.489585, -1.49304, 4.14095, 3.97021, -0.559708)
-material_override = SubResource("20")
+transform = Transform3D(-0.926986, 1.00265, -0.744954, 1.08048, 1.0385, 0.0766625, 0.472498, -0.407694, -1.63682, 4.68444, 3.59314, -0.902511)
+material_override = SubResource("StandardMaterial3D_a8c8d")
 
 [node name="MicIron03" parent="." instance=ExtResource("4")]
-transform = Transform3D(-0.21555, -0.0117389, -1.48439, -0.708849, -1.31707, 0.113349, -1.30425, 0.717758, 0.183716, 5.83912, 2.56639, -2.33573)
-material_override = SubResource("20")
+transform = Transform3D(-0.360173, -0.654195, -1.30089, -0.670062, -1.11531, 0.746394, -1.29278, 0.760335, -0.0244336, 5.56655, 2.65982, -1.7794)
+material_override = SubResource("StandardMaterial3D_h2xw7")
 
 [node name="MicIron04" parent="." instance=ExtResource("4")]
-transform = Transform3D(-0.195675, 0.965392, -1.13125, -0.749695, -1.04945, -0.765907, -1.28439, 0.465483, 0.6194, 3.95268, 2.69188, 3.33375)
-material_override = SubResource("20")
+transform = Transform3D(-0.532813, -0.24943, -1.37981, 0.670184, -1.34186, -0.0162234, -1.23165, -0.622251, 0.588081, 3.89438, 2.8259, 3.30479)
+material_override = SubResource("StandardMaterial3D_prain")
 skeleton = NodePath("../MicIron01")
 
 [node name="MicIron05" parent="." instance=ExtResource("4")]
-transform = Transform3D(0.021556, -0.659978, -1.27856, -0.959621, 0.28261, -0.582985, 0.472824, 0.603659, -1.12491, 2.82712, 4.56597, 1.62095)
-material_override = SubResource("20")
+transform = Transform3D(-0.517362, 0.717379, 0.76643, 0.876839, 0.531358, -0.156466, -0.329222, 0.28787, -1.62115, 2.84574, 4.36142, 1.44398)
+material_override = SubResource("StandardMaterial3D_mgx42")
 
-[node name="MicIronBIG01" type="MeshInstance3D" parent="."]
-transform = Transform3D(-27.5111, -38.6375, -54.5048, -71.857, 9.6862, 71.8418, -21.9022, 16.7536, -167.236, -200.013, -25.4691, 109.995)
-material_override = SubResource("StandardMaterial3D_pj41a")
-mesh = ExtResource("7_n7lxf")
+[node name="LargeBGRock1" parent="." instance=ExtResource("7_k4o2y")]
+transform = Transform3D(-41.1176, -27.1256, -69.7541, -68.5437, 14.8173, 46.0343, -3.33546, 29.8941, -86.1115, -200.151, -20.4111, 51.4848)
+material_override = SubResource("StandardMaterial3D_piire")
+skeleton = NodePath("../MicIron01")
 
-[node name="MicIronBIG02" parent="." instance=ExtResource("4")]
-transform = Transform3D(10.3881, 41.871, -24.0872, -45.1211, 10.4721, 61.5558, 17.674, 2.12451, 171.308, -231.539, 0.247698, 33.095)
-material_override = SubResource("20")
+[node name="LargeBGRock2" parent="." instance=ExtResource("7_k4o2y")]
+transform = Transform3D(10.4329, 42.0053, -5.42037, -46.3064, 9.1283, 42.3752, 14.0401, -1.10669, 143.788, -230.383, -8.87336, -18.0273)
+material_override = SubResource("StandardMaterial3D_afky6")
+skeleton = NodePath("../MicIron01")
 
-[node name="MicIronBIG03" parent="." instance=ExtResource("4")]
-transform = Transform3D(6.09195, 78.753, 14.8076, -33.6892, -4.38819, 90.8228, 49.274, -12.7368, 60.2658, -249.935, 5.86099, -35.4817)
-material_override = SubResource("20")
+[node name="LargeBGRock3" parent="." instance=ExtResource("7_k4o2y")]
+transform = Transform3D(59.6203, 39.6847, -42.7257, 36.2915, 53.6106, 40.6701, 97.6133, -44.1705, 10.9754, -256.378, 0.893318, -36.8873)
+material_override = SubResource("StandardMaterial3D_7uh8s")
+skeleton = NodePath("../MicIron01")
 
-[node name="MicIronBIG04" parent="." instance=ExtResource("4")]
-transform = Transform3D(12.6501, 97.4799, 7.39772, 90.0298, -11.7926, 78.0195, 78.3238, -2.18896, -90.8748, -459.588, 43, -380.183)
-material_override = SubResource("20")
+[node name="LargeBGRock4" parent="." instance=ExtResource("7_k4o2y")]
+transform = Transform3D(-8.32702, 55.3495, -232.599, -75.5187, 25.1237, 145.978, 48.2451, 48.8797, 188.355, -161, -57, -215)
+material_override = SubResource("StandardMaterial3D_l57cn")
+skeleton = NodePath("../MicIron01")
 
-[node name="MicIronBIG05" type="MeshInstance3D" parent="."]
-transform = Transform3D(-9.60686, 55.8217, -231.644, -75.3161, 24.5646, 149.756, 48.324, 49.3831, 187.353, -162.77, -57.8115, -215.321)
-material_override = SubResource("StandardMaterial3D_10rpa")
-mesh = ExtResource("7_n7lxf")
+[node name="LargeBGRock5" parent="." instance=ExtResource("7_k4o2y")]
+transform = Transform3D(11.9783, 97.2947, 7.94097, 89.9908, -11.6401, 78.0929, 78.474, -1.50268, -90.7659, -459.6, 43, -380)
+material_override = SubResource("StandardMaterial3D_n7e3a")
+skeleton = NodePath("../MicIron01")

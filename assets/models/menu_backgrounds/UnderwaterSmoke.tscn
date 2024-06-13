@@ -1,11 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbc87m2s4lt5b"]
+[gd_scene load_steps=12 format=3 uid="uid://bbc87m2s4lt5b"]
 
 [ext_resource type="Texture2D" uid="uid://kloyvken30uu" path="res://assets/textures/menu_backgrounds/SingleClouds.png" id="1_64woj"]
 [ext_resource type="Texture2D" uid="uid://dhad2rl5f4478" path="res://assets/textures/menu_backgrounds/SingleClouds_Normal.png" id="2_j5pel"]
 
+[sub_resource type="Curve" id="Curve_egsrj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.519149, 0.651685), -2.31039, -2.31039, 0, 0, Vector2(1, 0), -1.21867, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wpf3b"]
+curve = SubResource("Curve_egsrj")
+
 [sub_resource type="Gradient" id="Gradient_ao0qh"]
-offsets = PackedFloat32Array(0, 0.306, 0.711, 0.978, 1)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0.956863, 0.447059, 0.447059, 0.447059, 0, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.306, 0.711, 1)
+colors = PackedColorArray(0, 0, 0, 0.254902, 0.3, 0.3, 0.3, 1, 0.35, 0.35, 0.35, 1, 0.447059, 0.447059, 0.447059, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_nw6x7"]
 gradient = SubResource("Gradient_ao0qh")
@@ -23,15 +30,16 @@ emission_sphere_radius = 0.07
 angle_min = 343.9
 angle_max = 369.0
 direction = Vector3(0, 1, 0)
-spread = 5.572
+spread = 6.0
 initial_velocity_min = 5.0
 initial_velocity_max = 5.0
-gravity = Vector3(0, 0, 0)
+gravity = Vector3(0, -1.5, 0)
 scale_min = 4.0
 scale_max = 4.2
 scale_curve = SubResource("CurveTexture_tcvuo")
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0.0392157, 0.956863)
 color_ramp = SubResource("GradientTexture1D_nw6x7")
+alpha_curve = SubResource("CurveTexture_wpf3b")
 
 [sub_resource type="StandardMaterial3D" id="19"]
 transparency = 1
@@ -57,10 +65,11 @@ material = SubResource("19")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 cast_shadow = 0
 amount = 50
-lifetime = 1.5
+lifetime = 2.0
 preprocess = 2.08
 speed_scale = 0.26
 fixed_fps = 60
+collision_base_size = 0.0
 local_coords = true
 draw_order = 2
 process_material = SubResource("ParticleProcessMaterial_yukih")
