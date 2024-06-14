@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
+using JetBrains.Annotations;
 using DirAccess = Godot.DirAccess;
 using FileAccess = Godot.FileAccess;
 using Path = System.IO.Path;
@@ -15,6 +16,8 @@ using Path = System.IO.Path;
 /// </summary>
 public static class SaveHelper
 {
+    public static Action<InProgressSave, Save>? CurrentSaveAction;
+
     /// <summary>
     ///   This is a list of known versions where save compatibility is very broken and loading needs to be prevented
     ///   (unless there exists a version converter)
@@ -223,22 +226,34 @@ public static class SaveHelper
     /// <summary>
     ///   Save the game into the main save (for hardcore mode)
     /// </summary>
-    public static void HardcoreModeSave(string name, MicrobeStage state)
+    public static void HardcoreModeSave(string name, MicrobeStage state, bool instant = false)
     {
+        if (instant)
+        {
+            new Save
+            {
+                SavedProperties = state.CurrentGame,
+                MicrobeStage = state,
+            }.SaveToFile();
+
+            return;
+        }
+
         InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MicrobeStage, save =>
         {
             save.SavedProperties = state.CurrentGame;
             save.MicrobeStage = state;
-        }, () => state, name);
+            save.SaveToFile();
+        }, () => state, name, true);
     }
 
-    public static void HardcoreModeSave(string name, MicrobeEditor state)
+    public static void HardcoreModeSave(string name, MicrobeEditor state, bool instant = false)
     {
         InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MicrobeEditor, save =>
         {
             save.SavedProperties = state.CurrentGame;
             save.MicrobeEditor = state;
-        }, () => state, name);
+        }, () => state, name, true);
     }
 
     /// <summary>
@@ -481,7 +496,7 @@ public static class SaveHelper
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
-        Action<Save> copyInfoToSave, Func<Node> stateRoot, string? saveName = null)
+        Action<Save> copyInfoToSave, Func<Node> stateRoot, string? saveName = null, bool instant = false)
     {
         if (type == SaveInformation.SaveType.QuickSave && !AllowQuickSavingAndLoading)
         {
@@ -495,21 +510,22 @@ public static class SaveHelper
             return;
         }
 
+        CurrentSaveAction = (inProgress, save) =>
+        {
+            copyInfoToSave.Invoke(save);
+
+            if (PreventSavingIfExtinct(inProgress, save))
+                return;
+
+            if (PreventSavingIfInPrototype(inProgress, save))
+                return;
+
+            PerformSave(inProgress, save);
+        };
+
         new InProgressSave(type, stateRoot, data =>
-                CreateSaveObject(gameState, data.Type),
-            (inProgress, save) =>
-            {
-                copyInfoToSave.Invoke(save);
-
-                if (PreventSavingIfExtinct(inProgress, save))
-                    return;
-
-                if (PreventSavingIfInPrototype(inProgress, save))
-                    return;
-
-                PerformSave(inProgress, save);
-            }, saveName).Start();
-    }
+                CreateSaveObject(gameState, data.Type), CurrentSaveAction, saveName).Start(instant);
+        }
 
     private static Save CreateSaveObject(MainGameState gameState, SaveInformation.SaveType type)
     {
