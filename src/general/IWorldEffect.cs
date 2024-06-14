@@ -61,7 +61,8 @@ public class GlucoseReductionEffect : IWorldEffect
 
                 glucoseValue.Density = Math.Max(glucoseValue.Density * targetWorld.WorldSettings.GlucoseDecay,
                     Constants.GLUCOSE_MIN);
-                patch.Biome.ChangeableCompounds[glucose] = glucoseValue;
+
+                patch.Biome.ModifyLongTermCondition(glucose, glucoseValue);
 
                 var finalGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
                     patch.GetTotalChunkCompoundAmount(glucose), 3);

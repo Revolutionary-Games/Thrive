@@ -8,17 +8,18 @@ public class AgentProperties
 {
     private const string DamageTypeName = "oxytoxy";
 
-    public AgentProperties(Species species, Compound compound)
-    {
-        Species = species;
-        Compound = compound;
-    }
-
     public AgentProperties(Species species, Compound compound, ToxinType toxinSubType)
     {
         Species = species;
         Compound = compound;
         ToxinSubType = toxinSubType;
+    }
+
+    [JsonConstructor]
+    public AgentProperties(Species species, Compound compound)
+    {
+        Species = species;
+        Compound = compound;
     }
 
     public Species Species { get; set; }
