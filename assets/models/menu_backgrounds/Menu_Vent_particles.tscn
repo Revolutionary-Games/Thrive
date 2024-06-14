@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://c46w6nmb14i0m"]
+
+[ext_resource type="Texture2D" uid="uid://kloyvken30uu" path="res://assets/textures/menu_backgrounds/SingleClouds.png" id="1_x45yp"]
+[ext_resource type="Texture2D" uid="uid://dhad2rl5f4478" path="res://assets/textures/menu_backgrounds/SingleClouds_Normal.png" id="2_6n6kd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ixe1"]
+resource_local_to_scene = true
+transparency = 4
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_x45yp")
+metallic = 0.18
+metallic_specular = 1.0
+roughness = 0.7
+normal_enabled = true
+normal_scale = 6.2
+normal_texture = ExtResource("2_6n6kd")
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_wlhej"]
+resource_local_to_scene = true
+_data = [Vector2(0.00344828, 1), 0.0, 0.0, 0, 0, Vector2(0.544828, 0.438202), -3.2615, -3.2615, 0, 0, Vector2(0.996552, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qy5n7"]
+resource_local_to_scene = true
+curve = SubResource("Curve_wlhej")
+
+[sub_resource type="Gradient" id="Gradient_pi44u"]
+offsets = PackedFloat32Array(0, 0.212121, 0.617424, 1)
+colors = PackedColorArray(0.572549, 0.211765, 0, 0.568627, 0.113725, 0.113725, 0.113725, 0.85098, 0.160784, 0.160784, 0.160784, 0.854902, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_egiip"]
+gradient = SubResource("Gradient_pi44u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ioqy"]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 0.03
+angle_min = -179.0
+angle_max = 179.0
+direction = Vector3(0, 1, 0)
+spread = 1.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -0.1, 0)
+color_ramp = SubResource("GradientTexture1D_egiip")
+alpha_curve = SubResource("CurveTexture_qy5n7")
+turbulence_influence_min = 0.0
+turbulence_initial_displacement_max = 0.2
+
+[sub_resource type="QuadMesh" id="QuadMesh_ysona"]
+resource_local_to_scene = true
+size = Vector2(3, 3)
+
+[node name="VentParticles" type="GPUParticles3D"]
+transform = Transform3D(5, 0, 0, 0, 3, 0, 0, 0, 5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5ixe1")
+cast_shadow = 0
+amount = 40
+lifetime = 1.8
+preprocess = 5.0
+speed_scale = 0.2
+randomness = 0.05
+interpolate = false
+fract_delta = false
+collision_base_size = 0.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_2ioqy")
+draw_pass_1 = SubResource("QuadMesh_ysona")

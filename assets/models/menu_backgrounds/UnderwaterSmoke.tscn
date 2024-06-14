@@ -27,8 +27,8 @@ curve = SubResource("Curve_516cl")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yukih"]
 emission_shape = 1
 emission_sphere_radius = 0.07
-angle_min = 343.9
-angle_max = 369.0
+angle_min = -179.0
+angle_max = 179.0
 direction = Vector3(0, 1, 0)
 spread = 6.0
 initial_velocity_min = 5.0
@@ -60,15 +60,16 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="7"]
 material = SubResource("19")
+size = Vector2(1.7, 1.7)
 
 [node name="UnderwaterSmoke" type="GPUParticles3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 cast_shadow = 0
 amount = 50
 lifetime = 2.0
-preprocess = 2.08
+preprocess = 3.3
 speed_scale = 0.26
-fixed_fps = 60
+fixed_fps = 50
 collision_base_size = 0.0
 local_coords = true
 draw_order = 2

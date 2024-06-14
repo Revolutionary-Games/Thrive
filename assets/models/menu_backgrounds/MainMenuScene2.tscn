@@ -1,12 +1,12 @@
 [gd_scene load_steps=31 format=3 uid="uid://bjy0kv58k8fuk"]
 
-[ext_resource type="PackedScene" uid="uid://dktxuj5u5dkmy" path="res://assets/models/menu_backgrounds/UnderwaterChimney.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dktxuj5u5dkmy" path="res://assets/models/menu_backgrounds/UnderwaterChimney1.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bbc87m2s4lt5b" path="res://assets/models/menu_backgrounds/UnderwaterSmoke.tscn" id="2_ggksx"]
 [ext_resource type="Texture2D" uid="uid://tss2on640obh" path="res://assets/textures/menu_backgrounds/UnderwaterParticle.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://h6dsvt4v07um" path="res://assets/models/menu_backgrounds/UnderwaterRock.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://bu4uvavl0ieg2" path="res://assets/textures/iron_01.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://bkyg5fh4aafqu" path="res://assets/textures/menu_backgrounds/UnderWaterChimney_Mat_Normal_DirectX.png" id="6_g81tr"]
+[ext_resource type="Texture2D" uid="uid://bkyg5fh4aafqu" path="res://assets/textures/menu_backgrounds/UnderWaterChimney_1_Normal.png" id="6_g81tr"]
 [ext_resource type="PackedScene" uid="uid://bxyq7khmy5j8v" path="res://assets/models/menu_backgrounds/UnderwaterBGRock.tscn" id="7_k4o2y"]
 
 [sub_resource type="Gradient" id="Gradient_evfme"]
@@ -366,15 +366,15 @@ speed_scale = 0.5
 transform = Transform3D(-1.04308e-07, 3.72529e-09, 1, 3.81842e-08, 1, -1.49012e-08, -1, -1.21072e-07, 1.49012e-08, 8.45773e-10, 0.237944, -0.0675197)
 
 [node name="UnderwaterSmoke" parent="." instance=ExtResource("2_ggksx")]
-transform = Transform3D(-1.3411e-07, 1.11759e-08, 1, 3.95812e-08, 1, -2.23517e-08, -1, -1.53203e-07, 4.47035e-08, -0.171367, 8.33485, -0.199303)
+transform = Transform3D(-5.24537e-08, 1.34111e-08, 1.2, 4.74974e-08, 1.2, -1.34111e-08, -1.2, 4.74974e-08, -5.24537e-08, -0.171367, 8.33485, -0.199303)
 amount = 45
 
 [node name="UnderwaterSmoke3" parent="." instance=ExtResource("2_ggksx")]
-transform = Transform3D(-5.81145e-07, 9.31323e-08, 1, 5.68107e-08, 1, -9.31323e-08, -1, -1.64844e-07, 1.49012e-07, 2.19401, 4.94948, -4.55104)
-amount = 45
+transform = Transform3D(-1.27952e-07, 1.19209e-07, 0.2, 3.39156e-08, 1, -2.38419e-08, -0.2, 1.69578e-07, -1.27952e-07, 2.14645, 5.15188, -4.64297)
+amount = 35
 
 [node name="UnderwaterSmoke2" parent="." instance=ExtResource("2_ggksx")]
-transform = Transform3D(-5.06639e-07, 7.82311e-08, 1, 2.23517e-08, 1, -7.45058e-08, -1, -1.62516e-07, 1.63913e-07, -0.914389, 4.00617, 5.94699)
+transform = Transform3D(-4.16439e-07, 7.82312e-08, 0.8, 1.78814e-08, 1, -6.25849e-08, -0.8, 2.23517e-08, -4.16439e-07, -0.914389, 4.00617, 5.94699)
 amount = 45
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
