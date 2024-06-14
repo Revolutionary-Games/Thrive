@@ -105,6 +105,8 @@ public class BiomeConditions : ICloneable
     /// <summary>
     ///   Allows access to modification of the compound values in the biome permanently. Should only be used by
     ///   auto-evo or map generator. After changing <see cref="AverageCompounds"/> must to be updated.
+    ///   <see cref="ModifyLongTermCondition"/> is the preferred method to update this data which handles that
+    ///   automatically.
     /// </summary>
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> ChangeableCompounds => compounds;
@@ -166,6 +168,23 @@ public class BiomeConditions : ICloneable
             default:
                 throw new ArgumentOutOfRangeException(nameof(amountType), amountType, null);
         }
+    }
+
+    /// <summary>
+    ///   Modifies the long-term amount of a compound in this biome. This is preferable to directly modifying
+    ///   <see cref="ChangeableCompounds"/>. This is only usable for compounds that don't vary along an in-game day.
+    /// </summary>
+    /// <param name="compound">The compound to modify</param>
+    /// <param name="newValue">New value to set</param>
+    public void ModifyLongTermCondition(Compound compound, BiomeCompoundProperties newValue)
+    {
+        ChangeableCompounds[compound] = newValue;
+
+        // Reset other related values
+        AverageCompounds[compound] = newValue;
+
+        // This is only fine to do on compounds that don't vary along a day
+        CurrentCompoundAmounts[compound] = newValue;
     }
 
     /// <summary>
