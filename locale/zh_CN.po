@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-07 10:19+0300\n"
-"PO-Revision-Date: 2024-06-07 07:01+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-06-11 19:18+0000\n"
+"Last-Translator: Unkown_lpy <Unkown_lpy@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -2967,6 +2967,8 @@ msgstr ""
 "\n"
 "化学质体：用[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]生产[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
 "\n"
+"铁化能质体：将[thrive:compound type=\"iron\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]，比铁硫菌蓝蛋白更高效\n"
+"\n"
 "固氮质体：用大气中的氧气，氮和[thrive:compound type=\"atp\"][/thrive:compound]生产[thrive:compound type=\"ammonia\"][/thrive:compound]。\n"
 "\n"
 "液泡：储存8单位收集的化合物\n"
@@ -3578,11 +3580,10 @@ msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "没有足够存储空间以摄入被吞噬的目标"
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
-msgstr ""
+msgstr "ATP 生产受毒素抑制"
 
-#, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
-msgstr "移动需求"
+msgstr "基础运动速度因毒素而降低"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "现在可以进入编辑器"
@@ -3831,9 +3832,8 @@ msgstr "氧"
 msgid "OXYTOXISOME"
 msgstr "毒素体"
 
-#, fuzzy
 msgid "OXYTOXISOME_DESC"
-msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
+msgstr "修改版的代谢体，用来产出一种原始的有毒物质：[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以切换以修改生成的毒素类型来获得其他效果。"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/thrive:input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]数量不足时仍能释放，但是伤害会降低。"
@@ -4751,19 +4751,17 @@ msgstr "开始研究"
 msgid "STATISTICS"
 msgstr "统计数据"
 
-#, fuzzy
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
-msgstr "ATP产出不足！"
+msgstr "ATP 产量惩罚"
 
-#, fuzzy
 msgid "STAT_BASE_MOVEMENT_REDUCTION"
-msgstr "移动需求"
+msgstr "基础移动降低"
 
 msgid "STAT_DAMAGE"
-msgstr ""
+msgstr "伤害"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
-msgstr ""
+msgstr "每个耗氧细胞器的损伤等级"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam 客户端库初始化失败"
@@ -5186,69 +5184,58 @@ msgid "TOTAL_SAVES"
 msgstr "存档数："
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "通道抑制剂"
 
-#, fuzzy
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
-msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
+msgstr "抑制受影响细胞的 ATP 产生，有效地阻止它们快速移动，并可能导致没有太多过量 ATP 产生的细胞死亡。"
 
-#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
-msgstr "发射毒素投射物对命中细胞造成伤害"
+msgstr "细胞毒素"
 
-#, fuzzy
 msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
-msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
+msgstr "一种简单的毒素，对没有特殊细胞壁的细胞效果不错。"
 
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
-msgstr ""
+msgstr "射速与毒性："
 
-#, fuzzy
 msgid "TOXIN_MACROLIDE"
-msgstr "毒素液泡"
+msgstr "大环内酯物"
 
-#, fuzzy
 msgid "TOXIN_MACROLIDE_DESCRIPTION"
-msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
+msgstr "这种毒素会急剧降低细胞的基础移动速度，让简单的细胞基本上无法移动。"
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
-msgstr ""
+msgstr "氰化物"
 
-#, fuzzy
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
-msgstr "代谢体是包裹在蛋白质外壳中的蛋白质团块。它们能够以比在细胞质中更高的速率将葡萄糖转换成ATP，这个过程称为[b]有氧呼吸[/b]。不管怎样，它需要氧才能运作，低水平的环境氧会导致ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
+msgstr "氰化物会攻击有氧气参与的代谢过程，因此对使用这些代谢过程的细胞非常有效。"
 
-#, fuzzy
 msgid "TOXIN_OXYTOXY_DESCRIPTION"
-msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
+msgstr "这种毒素利用氧气的氧化性对细胞造成伤害，因此对将氧气用于代谢过程的种族效果会大打折扣。"
 
 msgid "TOXIN_PREFER_FIRE_RATE"
-msgstr ""
+msgstr "高射速"
 
 msgid "TOXIN_PREFER_TOXICITY"
-msgstr ""
+msgstr "毒性强"
 
-#, fuzzy
 msgid "TOXIN_PROPERTIES_HEADING"
-msgstr "游戏内Thrive百科"
+msgstr "对目标的毒性效果"
 
 msgid "TOXIN_RESISTANCE"
 msgstr "毒抗"
 
-#, fuzzy
 msgid "TOXIN_TYPE_COLON"
-msgstr "类型："
+msgstr "毒素类型："
 
-#, fuzzy
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
-msgstr "（当启用多线程进行游戏逻辑更新时，游戏可能会因为后台核心少而降低性能表现）"
+msgstr "不同种类的毒素的效果不同，有些对特定种类的细胞会有奇效。当一个细胞有多种毒素时，它们会被依序发射而不是被同时发射。"
 
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
-#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
+msgstr "毒素液泡是一种专门用于产出，存储和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound]的液泡。更多毒素液泡可以加快释放毒素的速度。可以修改其产生的毒素种类以产生不同效果。"
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也能释放，但伤害会降低。"
@@ -5597,9 +5584,8 @@ msgstr "捕食纤毛"
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "当处于胞吞模式时（[thrive:input]g_toggle_engulf[/thrive:input]），这种类型的纤毛会在水中产生涡流，将附近的物体拉近来捕猎。"
 
-#, fuzzy
 msgid "UPGRADE_COST"
-msgstr "{0} 变异点"
+msgstr "{0} ({1} 变异点)"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "默认状态"
