@@ -52,6 +52,20 @@ public class UnlockProgress
     }
 
     /// <summary>
+    ///   Undoes an organelle unlock. Should be used sparingly, for example good to use when the user can undo an
+    ///   action that unlocked something
+    /// </summary>
+    /// <returns>True when could be performed, false if the organelle was not marked as unlocked</returns>
+    public bool UndoOrganelleUnlock(OrganelleDefinition organelle)
+    {
+        if (!unlockedOrganelles.Remove(organelle))
+            return false;
+
+        recentlyUnlocked.Remove(organelle);
+        return true;
+    }
+
+    /// <summary>
     ///   Is the organelle unlocked?
     /// </summary>
     public bool IsUnlocked(OrganelleDefinition organelle, WorldAndPlayerDataSource worldAndPlayerArgs,

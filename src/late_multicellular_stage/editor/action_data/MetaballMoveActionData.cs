@@ -38,13 +38,18 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
 
         var movementVector = newPosition - oldPosition;
 
-        if (descendantList.Count < 1 || movementVector.IsEqualApprox(Vector3.Zero))
+        // As the descendant list always includes self, 2 is the minimum size to have some items
+        if (descendantList.Count < 2 || movementVector.IsEqualApprox(Vector3.Zero))
             return null;
 
         var result = new List<MetaballMoveActionData<TMetaball>>();
 
         foreach (var descendant in descendantList)
         {
+            // Skip the self that is always in the descendants list
+            if (ReferenceEquals(descendant, movedMetaball))
+                continue;
+
             var descendantPosition = descendant.Position + movementVector;
 
             if (descendantPosition.IsEqualApprox(descendant.Position))

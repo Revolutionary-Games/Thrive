@@ -149,49 +149,98 @@ public class PhysicsShape : IDisposable
         if (cached != null)
             return cached;
 
+        // Base scale for physics bodies. This is now always one as shapes are assumed to be scaled correctly when
+        // saved to disk
+        const float scale = 1;
+
         // TODO: pre-bake collision shapes for game export (the fallback conversion below should only need to be used
         // when debugging to make the release version perform better)
 
-        var godotData = GD.Load<ConvexPolygonShape3D>(path);
+        var godotData = GD.Load<Shape3D>(path);
 
         if (godotData == null)
         {
-            // TODO: support for other shapes if we need them
-            GD.PrintErr("Failed to load Godot physics shape for converting: ", path);
+            GD.PrintErr("Physics shape data is not a Shape3D derived type, when loading path: ", path);
             return null;
         }
 
-        var dataSource = godotData.Points;
-        int points = dataSource.Length;
+        // This is probably similar kind of configuration thing for Jolt as the margin is in Godot Bullet integration
+        var margin = godotData.Margin > 0 ? godotData.Margin : 0.01f;
 
-        if (points < 1)
-            throw new NotSupportedException("Can't convert convex polygon with no points");
-
-        // We need a temporary buffer in case the data byte format is not exactly right
-        var pool = ArrayPool<JVecF3>.Shared;
-        var buffer = pool.Rent(points);
-
-        for (int i = 0; i < points; ++i)
+        switch (godotData)
         {
-            buffer[i] = new JVecF3(dataSource[i]);
+            case SphereShape3D sphereShape:
+            {
+                cached = new PhysicsShape(NativeMethods.CreateSphereShape(sphereShape.Radius * scale, density));
+                break;
+            }
+
+            case BoxShape3D boxShape:
+            {
+                // Need to convert from full lengths to half lengths (as Godot 4 switched to full lengths for boxes)
+                cached = new PhysicsShape(
+                    NativeMethods.CreateBoxShapeWithDimensions(new JVecF3(boxShape.Size * 0.5f * scale), density));
+                break;
+            }
+
+            case CapsuleShape3D capsuleShape:
+            {
+                cached = new PhysicsShape(NativeMethods.CreateCapsuleShape(capsuleShape.Height * 0.5f * scale,
+                    capsuleShape.Radius * scale, density));
+                break;
+            }
+
+            case CylinderShape3D cylinderShape:
+            {
+                cached = new PhysicsShape(NativeMethods.CreateCylinderShape(cylinderShape.Height * 0.5f * scale,
+                    cylinderShape.Radius * scale, density));
+                break;
+            }
+
+            case ConvexPolygonShape3D convexShape:
+            {
+                var dataSource = convexShape.Points;
+                int points = dataSource.Length;
+
+                if (points < 1)
+                    throw new NotSupportedException("Can't convert convex polygon with no points");
+
+                // We need a temporary buffer in case the data byte format is not exactly right when coming directly
+                // from Godot
+                var pool = ArrayPool<JVecF3>.Shared;
+                var buffer = pool.Rent(points);
+
+                for (int i = 0; i < points; ++i)
+                {
+                    buffer[i] = new JVecF3(dataSource[i]);
+                }
+
+                // TODO: does this need to fix the buffer memory?
+                cached = new PhysicsShape(NativeMethods.CreateConvexShape(buffer[0], (uint)points, density, scale,
+                    margin));
+
+                pool.Return(buffer);
+                break;
+            }
+
+            case ConcavePolygonShape3D:
+            {
+                GD.PrintErr(
+                    "Jolt, the physics engine, does not support concave shapes, shape cannot be loaded from path: ",
+                    path);
+                return null;
+            }
+
+            // Probably don't need to support these weird types for a long time
+            /*case HeightMapShape3D heightMapShape:
+            case WorldBoundaryShape3D worldBoundaryShape:*/
+
+            default:
+                GD.PrintErr("Failed to load Godot physics shape for converting (unknown type): ", path);
+                return null;
         }
 
-        // TODO: if different godot imports need different scales add this is a parameter (probably is the case and
-        // caused by different real scales of the meshes used for collisions)
-        // TODO: base rotations are also problematic here (the rock chunks are rotated differently visually compared to
-        // the physics shape, this is now fixed for the big iron)
-        float scale = 100;
-
-        // This is probably similar kind of configuration thing for Jolt as the margin is in Godot Bullet integration
-        float convexRadius = godotData.Margin > 0 ? godotData.Margin : 0.01f;
-
-        // TODO: does this need to fix the buffer memory?
-        cached = new PhysicsShape(
-            NativeMethods.CreateConvexShape(buffer[0], (uint)points, density, scale, convexRadius));
-
         cache.WriteLoadedShape(path, density, cached);
-
-        pool.Return(buffer);
 
         return cached;
     }
@@ -292,6 +341,9 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern IntPtr CreateCylinderShape(float halfHeight, float radius, float density);
+
+    [DllImport("thrive_native")]
+    internal static extern IntPtr CreateCapsuleShape(float halfHeight, float radius, float density);
 
     [DllImport("thrive_native")]
     internal static extern IntPtr CreateMicrobeShapeConvex(in JVecF3 microbePoints, uint pointCount, float density,

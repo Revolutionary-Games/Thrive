@@ -11,6 +11,8 @@ using Systems;
 /// </summary>
 public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 {
+    private readonly IMicrobeSpawnEnvironment dummyEnvironment = new DummyMicrobeSpawnEnvironment();
+
     private readonly List<Hex> hexWorkData1 = new();
     private readonly List<Hex> hexWorkData2 = new();
 
@@ -102,7 +104,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         // We pass AI controlled true here to avoid creating player specific data but as we don't have the AI system
         // it is fine to create the AI properties as it won't actually do anything
-        SpawnHelpers.SpawnMicrobe(this, species, Vector3.Zero, true);
+        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true);
 
         ProcessDelaySpawnedEntitiesImmediately();
 
@@ -259,7 +261,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             // Verify in debug mode that initialization didn't just fail for the graphics
             foreach (var organelle in organelles.Organelles!)
             {
-                if (organelle.Definition.LoadedScene == null)
+                if (!organelle.Definition.TryGetGraphicsScene(organelle.Upgrades, out _))
                     continue;
 
                 GD.PrintErr("Photographed a microbe with no initialized cell graphics but it should have some");
@@ -269,7 +271,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         }
         else
         {
-            GD.PrintErr("Photographing a microbe that didn't initialized it organelle visuals");
+            GD.PrintErr("Photographing a microbe that didn't initialize its organelle visuals");
         }
 
         return new Vector3(center.X,

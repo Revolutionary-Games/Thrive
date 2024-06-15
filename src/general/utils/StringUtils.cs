@@ -9,6 +9,8 @@ using Godot;
 /// </summary>
 public static class StringUtils
 {
+    public const int INDENT_AMOUNT = 4;
+
     /// <summary>
     ///   Truncates large numbers with suffix added (e.g. M for million).
     ///   Adapted from https://stackoverflow.com/a/30181106 to allow negatives and translation.
@@ -562,12 +564,21 @@ public static class StringUtils
         return builder.ToString();
     }
 
-    public static string GetIndent(int indent)
+    public static string GetIndent(int indentLevel)
     {
-        if (indent < 1)
+        if (indentLevel < 1)
             return string.Empty;
 
-        return new string(' ', indent);
+        return new string(' ', indentLevel * INDENT_AMOUNT);
+    }
+
+    public static bool ShouldSkipIndent(string line)
+    {
+        // No indent on preprocessor lines
+        if (line.StartsWith('#'))
+            return true;
+
+        return false;
     }
 
     public static int DetectLineIndentationLevel(string line)

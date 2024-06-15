@@ -7,7 +7,8 @@
     },
     "Outputs": {
       "atp": 91
-    }
+    },
+    "IsMetabolismProcess": true
   },
   "glycolysis": {
     "Name": "GLYCOLYSIS",
@@ -16,7 +17,8 @@
     },
     "Outputs": {
       "atp": 2
-    }
+    },
+    "IsMetabolismProcess": true
   },
   "glycolysis_cytoplasm": {
     "Name": "CYTOPLASM_GLYCOLYSIS",
@@ -25,7 +27,8 @@
     },
     "Outputs": {
       "atp": 3
-    }
+    },
+    "IsMetabolismProcess": true
   },
   "photosynthesis": {
     "Name": "PHOTOSYNTHESIS",
@@ -74,7 +77,8 @@
     },
     "Outputs": {
       "glucose": 0.1
-    }
+    },
+    "IsMetabolismProcess": true
   },
   "bacterial_ChemoSynthesis": {
     "Name": "CHEMO_SYNTHESIS",
@@ -84,7 +88,8 @@
     },
     "Outputs": {
       "glucose": 0.04
-    }
+    },
+    "IsMetabolismProcess": true
   },
   "nitrogenFixing": {
     "Name": "AEROBIC_NITROGEN_FIXING",
@@ -115,7 +120,8 @@
     },
     "Outputs": {
       "atp": 38
-    }
+    },
+    "IsMetabolismProcess": true
   },
   "chromatophore_photosynthesis": {
     "Name": "PHOTOSYNTHESIS",
@@ -136,7 +142,8 @@
     },
     "Outputs": {
       "atp": 5
-    }
+    },
+    "IsMetabolismProcess": false
   },
   "thermosynthesis": {
     "Name": "THERMOSYNTHESIS",
@@ -155,5 +162,17 @@
     "Outputs": {
       "atp": 4
     }
+  },
+  "ferrosynthesis": {
+    "Name": "IRON_CHEMOLITHOAUTOTROPHY",
+    "Inputs": {
+      "carbondioxide": 0.09,
+      "oxygen": 0.21,
+      "iron": 0.033
+    },
+    "Outputs": {
+      "atp": 13
+    },
+    "IsMetabolismProcess": false
   }
 }

@@ -118,8 +118,8 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
 
     public override void AddContextToActions(IEnumerable<CombinableActionData> actions)
     {
-        // If a cell type is being edited, add its type to each action data
-        // so we can use it for undoing and redoing later
+        // If a cell type is being edited, add its type to each action data, so that we can use it for undoing and
+        // redoing later
         if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
         {
             foreach (var actionData in actions)

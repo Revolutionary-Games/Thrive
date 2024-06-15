@@ -325,6 +325,8 @@ public partial class PhysicsTest : Node
 
     protected override void Dispose(bool disposing)
     {
+        physicalWorld.DisablePhysicsTimeRecording = true;
+
         if (disposing)
         {
             foreach (var body in allCreatedBodies)

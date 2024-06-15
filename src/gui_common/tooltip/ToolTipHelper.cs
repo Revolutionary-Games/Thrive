@@ -55,6 +55,19 @@ public static class ToolTipHelper
         DefaultToolTipCache.Push(toolTip);
     }
 
+    public static int GetDefaultToolTipCacheSize()
+    {
+        int count = 0;
+
+        // Need to also count children to get an accurate count
+        foreach (var toolTip in DefaultToolTipCache)
+        {
+            count += 1 + toolTip.RecursiveCountChildren();
+        }
+
+        return count;
+    }
+
     /// <summary>
     ///   Registers a Control mouse enter and exit event if hasn't already yet to the callbacks for the given
     ///   custom tooltip. Note that the code calling this must call

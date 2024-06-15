@@ -891,7 +891,7 @@ public partial class NewGameSettings : ControlWithInput
         lifeOriginButtonAdvanced.Selected = index;
     }
 
-    // This and a few other callbacks are not currently needed to detect anything, but I left them in in case we
+    // This and a few other callbacks are not currently needed to detect anything, but I left them in, in case we
     // need them in the future / this is refactored to build the custom difficulty object in steps - hhyyrylainen
     private void OnMapTypeSelected(int index)
     {

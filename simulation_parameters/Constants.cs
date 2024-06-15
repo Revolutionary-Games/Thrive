@@ -317,6 +317,17 @@ public static class Constants
     public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
 
     /// <summary>
+    ///   When night is closer than this number of seconds and a cell spawns, it gets extra resources to survive.
+    /// </summary>
+    public const float INITIAL_RESOURCE_BUFF_WHEN_NIGHT_CLOSER_THAN = 30.0f;
+
+    /// <summary>
+    ///   How many seconds of filling up during the day that a cell can be given when it is spawned close to or during
+    ///   the night
+    /// </summary>
+    public const float NIGHT_RESOURCE_BUFF_MAX_FILL_SECONDS = 45.0f;
+
+    /// <summary>
     ///   How often the microbe AI processes each microbe
     /// </summary>
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
@@ -381,6 +392,28 @@ public static class Constants
     public const float AGENT_EMISSION_VELOCITY = 16.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
+
+    public const float CYTOTOXIN_DAMAGE = 12.0f;
+
+    public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
+
+    public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
+    public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
+
+    public const float MACROLIDE_BASE_MOVEMENT_DEBUFF = 0.8f;
+    public const float MACROLIDE_DEBUFF_DURATION = 5;
+
+    /// <summary>
+    ///   Each oxygen using organelle in a cell increases damage caused by oxygen-inhibiting toxin by this amount,
+    ///   up to a cap.
+    /// </summary>
+    public const float OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE = 0.05f;
+
+    public const float OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX = 0.5f;
+
+    public const float OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE = 0.05f;
+
+    public const float OXYTOXY_DAMAGE_DEBUFF_MAX = 0.75f;
 
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
@@ -513,7 +546,7 @@ public static class Constants
     /// </summary>
     public const int FLOATING_CHUNK_MAX_COUNT = 35;
 
-    public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
+    public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 5000.0f;
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
 
@@ -826,7 +859,7 @@ public static class Constants
     public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
 
     // Corpse info
-    public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
+    public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
     public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
@@ -945,6 +978,16 @@ public static class Constants
 
     public const float AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION = 5;
 
+    /// <summary>
+    ///   How much less active cells are during the night
+    /// </summary>
+    public const float AI_ACTIVITY_NIGHT_MULTIPLIER = 0.5f;
+
+    public const float AI_ACTIVITY_NIGHT_MULTIPLIER_SESSILE = 0.02f;
+
+    public const float AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT = 340;
+    public const float AI_ACTIVITY_TO_BE_SESSILE_DURING_NIGHT = 50;
+
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -40.0f;
@@ -984,8 +1027,11 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
 
-    public const float AUTO_EVO_MINIMUM_VIABLE_RESERVE_PER_TIME_UNIT = 1.0f;
-    public const float AUTO_EVO_NON_VIABLE_RESERVE_PENALTY = 10;
+    public const float AUTO_EVO_NIGHT_STORAGE_NOT_ENOUGH_PENALTY = 0.1f;
+    public const float AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER = 1.2f;
+    public const float AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY = 0.7f;
+
+    public const float AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE = 2.5f;
 
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
@@ -1340,6 +1386,21 @@ public static class Constants
     public const int HEX_MAX_RENDER_PRIORITY = HEX_RENDER_PRIORITY_DISTANCE * HEX_RENDER_PRIORITY_DISTANCE;
 
     /// <summary>
+    ///   How many endosymbionts in total prokaryotes can have
+    /// </summary>
+    public const int ENDOSYMBIOSIS_MAX_FOR_PROKARYOTE = 1;
+
+    /// <summary>
+    ///   How many times a target species needs to be engulfed for it to be completed (in the base case, this is
+    ///   lowered with more organelle instances)
+    /// </summary>
+    public const int ENDOSYMBIOSIS_COST_BASE = 6;
+
+    public const int ENDOSYMBIOSIS_COST_REDUCTION_PER_ORGANELLE = 1;
+
+    public const int ENDOSYMBIOSIS_COST_MIN = 2;
+
+    /// <summary>
     ///   If membrane scene is updated this should be updated as well
     /// </summary>
     public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
@@ -1661,6 +1722,7 @@ public static class Constants
     {
         var suffixRegex = new Regex(VERSION_HASH_SUFFIX_REGEX);
 
+        // TODO: apparently this just stopped working at some point (the hash suffix is now gone)
         var match = suffixRegex.Match(VersionFull);
 
         if (!match.Success)

@@ -32,7 +32,7 @@ public class TaskExecutor : IParallelRunner
     private int currentThreadCount;
     private int usedNativeTaskCount;
 
-    private int queuedParallelRunnableCount;
+    private volatile int queuedParallelRunnableCount;
 
     private int ecsThrottling = 4;
 

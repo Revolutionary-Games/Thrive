@@ -93,6 +93,8 @@ public partial class MicrobeBenchmark : Node
     // to be added
     private readonly DummySpawnSystem dummySpawnSystem = new();
 
+    private readonly IMicrobeSpawnEnvironment dummyEnvironment = new DummyMicrobeSpawnEnvironment();
+
     private readonly List<Entity> spawnedMicrobes = new();
     private readonly List<Species> generatedSpecies = new();
 
@@ -489,14 +491,13 @@ public partial class MicrobeBenchmark : Node
         worldRoot.AddChild(cloudSystem);
 
         microbeSimulation = new MicrobeWorldSimulation();
-        microbeSimulation.Init(dynamicRoot, cloudSystem);
+        microbeSimulation.Init(dynamicRoot, cloudSystem, dummyEnvironment);
         microbeSimulation.InitForCurrentGame(gameProperties ?? throw new Exception("game properties not set"));
 
         microbeEntities = microbeSimulation.EntitySystem.GetEntities().With<MicrobeSpeciesMember>().With<Health>()
             .AsSet();
 
-        // ReSharper disable once StringLiteralTypo
-        microbeSimulation.SetSimulationBiome(SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions);
+        microbeSimulation.SetSimulationBiome(dummyEnvironment.CurrentBiome);
     }
 
     private void SpawnAndUpdatePositionState()
@@ -520,8 +521,8 @@ public partial class MicrobeBenchmark : Node
 
     private void SpawnMicrobe(Vector3 position)
     {
-        SpawnHelpers.SpawnMicrobe(microbeSimulation!, generatedSpecies[spawnCounter % generatedSpecies.Count], position,
-            true);
+        SpawnHelpers.SpawnMicrobe(microbeSimulation!, dummyEnvironment,
+            generatedSpecies[spawnCounter % generatedSpecies.Count], position, true);
 
         spawnedSomething = true;
         ++spawnCounter;

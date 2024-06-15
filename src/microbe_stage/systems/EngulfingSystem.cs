@@ -42,6 +42,7 @@ using World = DefaultEcs.World;
 [WritesToComponent(typeof(AttachedToEntity))]
 [WritesToComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(MicrobeAI))]
+[WritesToComponent(typeof(TemporaryEndosymbiontInfo))]
 [ReadsComponent(typeof(CollisionManagement))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(OrganelleContainer))]
@@ -342,7 +343,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 switch (engulfable.PhagocytosisStep)
                 {
                     case PhagocytosisPhase.Ingestion:
-                        CompleteIngestion(entity, ref engulfable, engulfedEntity);
+                        CompleteIngestion(ref engulfer, entity, ref engulfable, engulfedEntity);
                         break;
 
                     case PhagocytosisPhase.Digested:
@@ -1185,8 +1186,86 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         return true;
     }
 
-    private void CompleteIngestion(in Entity entity, ref Engulfable engulfable, in Entity engulfedObject)
+    private void CompleteIngestion(ref Engulfer engulfer, in Entity entity, ref Engulfable engulfable,
+        in Entity engulfedObject)
     {
+        // Check for pending endosymbiosis
+        ref var species = ref entity.Get<SpeciesMember>();
+
+        if (species.Species.Endosymbiosis.StartedEndosymbiosis != null && engulfedObject.Has<SpeciesMember>())
+        {
+            ref var engulfedSpecies = ref engulfedObject.Get<SpeciesMember>();
+
+            if (engulfedSpecies.Species == species.Species.Endosymbiosis.StartedEndosymbiosis.Species)
+            {
+                // When doing endosymbiosis process, instead of becoming ingested, an entity can become a temporary
+                // organelle
+
+                // Queue a temporary organelle to be added. This is handled by a different system as this engulfing
+                // system is already massively complicated
+                if (!entity.Has<TemporaryEndosymbiontInfo>())
+                {
+                    // This may lose some data if multiple endosymbionts are added on the same frame, but that should
+                    // be so rare situation (and even at the time of writing only one pending endosymbiosis operation
+                    // is allowed) that this is not worried about
+                    var recorder = worldSimulation.StartRecordingEntityCommands();
+
+                    var recorderEntity = recorder.Record(entity);
+
+                    var endosymbiontInfo = new TemporaryEndosymbiontInfo
+                    {
+                        EndosymbiontSpeciesPresent = [engulfedSpecies.Species],
+                    };
+
+                    recorderEntity.Set(endosymbiontInfo);
+
+                    worldSimulation.FinishRecordingEntityCommands(recorder);
+                }
+                else
+                {
+                    ref var endosymbiontInfo = ref entity.Get<TemporaryEndosymbiontInfo>();
+
+                    // Disallow if endosymbiont of this species is already in
+                    if (endosymbiontInfo.EndosymbiontSpeciesPresent?.Contains(engulfedSpecies.Species) == true)
+                    {
+                        entity.SendNoticeIfPossible(() =>
+                            new SimpleHUDMessage(Localization.Translate("ENDOSYMBIONT_TYPE_ALREADY_PRESENT"),
+                                DisplayDuration.Long));
+
+                        // TODO: test that this works correctly
+                        engulfable.PhagocytosisStep = PhagocytosisPhase.RequestExocytosis;
+                        return;
+                    }
+
+                    // Otherwise record this and continue
+                    endosymbiontInfo.AddSpeciesEndosymbiont(engulfedSpecies.Species);
+                }
+
+                // Destroy the object
+                // This is done like this as otherwise the endosymbiosis would count as a death
+                worldSimulation.DestroyEntity(engulfedObject);
+                RemoveEngulfedObject(ref engulfer, engulfedObject, ref engulfable, true);
+
+                // Different message when endosymbiosis was already ready
+                // This relies on the fact that endosymbiosis progress is updated when going to the editor to know
+                // when things were already complete before the current engulfing
+                if (species.Species.Endosymbiosis.StartedEndosymbiosis.IsComplete)
+                {
+                    entity.SendNoticeIfPossible(() =>
+                        new SimpleHUDMessage(Localization.Translate("ENDOSYMBIONT_ENGULFED_ALREADY_DONE"),
+                            DisplayDuration.Long));
+                }
+                else
+                {
+                    entity.SendNoticeIfPossible(() =>
+                        new SimpleHUDMessage(Localization.Translate("ENDOSYMBIONT_ENGULFED_PROGRESS"),
+                            DisplayDuration.Long));
+                }
+
+                return;
+            }
+        }
+
         engulfable.PhagocytosisStep = PhagocytosisPhase.Ingested;
 
         if (entity.Has<MicrobeEventCallbacks>())
@@ -1196,7 +1275,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             callbacks.OnSuccessfulEngulfment?.Invoke(entity, engulfedObject);
         }
 
-        // There used to be an ingest callback like for the ejection but it didn't end up having any code in it
+        // There used to be an ingest callback like for the ejection, but it didn't end up having any code in it,
         // so it is now removed. Just the event callback above is left.
     }
 
@@ -1373,7 +1452,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
                 ref var hostileEngulfer = ref engulfersEngulfable.HostileEngulfer.Get<Engulfer>();
 
-                // We have our own engulfer and it wants to claim this object we've just expelled
+                // We have our own engulfer, and it wants to claim this object we've just expelled
                 if (!IngestEngulfable(ref hostileEngulfer,
                         ref engulfersEngulfable.HostileEngulfer.Get<CellProperties>(),
                         engulfersEngulfable.HostileEngulfer, ref engulfable,
@@ -1500,7 +1579,9 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         engulfer.UsedEngulfingCapacity =
             Math.Max(0, engulfer.UsedEngulfingCapacity - engulfable.AdjustedEngulfSize);
 
-        if (destroy)
+        // Only destroy when not already, to ensure that this doesn't do unnecessary things for an already destroyed
+        // entity (like playing the dying animation again on cells)
+        if (destroy && !worldSimulation.IsQueuedForDeletion(engulfedEntity))
         {
             // Set the health to dead to ensure the microbe death system has a chance to see this dying and count
             // statistics

@@ -59,6 +59,7 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateConvex(const JVecF3* points, size_
     return settings.Create().Get();
 }
 
+// ------------------------------------ //
 JPH::RefConst<JPH::Shape> ShapeCreator::CreateStaticCompound(
     const std::vector<std::tuple<JPH::RefConst<JPH::Shape>, JPH::Vec3, JPH::Quat, uint32_t>>& subShapes)
 {

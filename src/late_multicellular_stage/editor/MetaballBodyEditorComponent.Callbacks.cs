@@ -1,4 +1,7 @@
-﻿/// <summary>
+﻿using System.Diagnostics;
+using Godot;
+
+/// <summary>
 ///   Callbacks for the metaball body editor
 /// </summary>
 [DeserializedCallbackTarget]
@@ -78,6 +81,18 @@ public partial class MetaballBodyEditorComponent
         {
             foreach (var movementAction in data.MovedChildMetaballs)
             {
+#if DEBUG
+                if (ReferenceEquals(data.MovedMetaball, movementAction.MovedMetaball))
+                {
+                    GD.PrintErr("Child metaball move references the primary metaball");
+                    if (Debugger.IsAttached)
+                        Debugger.Break();
+
+                    return;
+                }
+
+#endif
+
                 DoMetaballMoveAction(movementAction);
             }
         }

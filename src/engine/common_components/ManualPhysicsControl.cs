@@ -8,7 +8,7 @@ using Godot;
 [JSONDynamicTypeAllowed]
 public struct ManualPhysicsControl
 {
-    // Note: to allow multiple places in the code to use this this should have values added with += instead of
+    // Note: to allow multiple places in the code to use this, this should have values added with += instead of
     // assigning to not remove the previous value.
     public Vector3 ImpulseToGive;
     public Vector3 AngularImpulseToGive;

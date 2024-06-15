@@ -70,6 +70,12 @@ public class PlacedOrganelle : IPositionedOrganelle
     public Node3D? OrganelleGraphics { get; private set; }
 
     /// <summary>
+    ///   Graphics metadata that is set to valid data if <see cref="OrganelleGraphics"/> is not null.
+    /// </summary>
+    [JsonIgnore]
+    public LoadedSceneWithModelInfo LoadedGraphicsSceneInfo { get; private set; }
+
+    /// <summary>
     ///   Animation player this organelle has
     /// </summary>
     [JsonIgnore]
@@ -259,17 +265,19 @@ public class PlacedOrganelle : IPositionedOrganelle
     ///   Called by <see cref="MicrobeVisualsSystem"/> when graphics have been created for this organelle
     /// </summary>
     /// <param name="visualsInstance">The graphics initialized from this organelle's type's specified scene</param>
-    public void ReportCreatedGraphics(Node3D visualsInstance)
+    /// <param name="visualSceneData">Data related to this scene to access extra metadata</param>
+    public void ReportCreatedGraphics(Node3D visualsInstance, in LoadedSceneWithModelInfo visualSceneData)
     {
         if (OrganelleGraphics != null)
             throw new InvalidOperationException("Can't set organelle graphics multiple times");
 
         OrganelleGraphics = visualsInstance;
+        LoadedGraphicsSceneInfo = visualSceneData;
 
         // Store animation player for later use
-        if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
+        if (visualSceneData.AnimationPlayerPath != null)
         {
-            OrganelleAnimation = visualsInstance.GetNode<AnimationPlayer>(Definition.DisplaySceneAnimation);
+            OrganelleAnimation = visualsInstance.GetNode<AnimationPlayer>(visualSceneData.AnimationPlayerPath);
         }
     }
 

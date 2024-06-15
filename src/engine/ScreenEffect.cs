@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -45,6 +46,13 @@ public class ScreenEffect : IRegistryType
 
         if (Index < 0)
             throw new InvalidRegistryDataException(name, GetType().Name, "Index is negative");
+
+#if DEBUG
+        if (!string.IsNullOrEmpty(ShaderPath) && !ResourceLoader.Exists(ShaderPath))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Effect shader doesn't exist");
+        }
+#endif
     }
 
     public void ApplyTranslations()

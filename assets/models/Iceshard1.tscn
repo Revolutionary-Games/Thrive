@@ -1,7 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkkpsrifquemw"]
+[gd_scene load_steps=3 format=3 uid="uid://bkkpsrifquemw"]
 
-[ext_resource type="ArrayMesh" uid="uid://byjencfeo7mxv" path="res://assets/models/Iceshard1.mesh" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://11xed06uehhu" path="res://assets/models/Iceshard1.mesh" id="1"]
+[ext_resource type="Material" uid="uid://cgkier4sxqw0f" path="res://assets/models/iceshard.material" id="1_fj7f3"]
 
 [node name="iceshard1" type="MeshInstance3D"]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+material_override = ExtResource("1_fj7f3")
 mesh = ExtResource("1")

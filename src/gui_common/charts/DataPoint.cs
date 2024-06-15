@@ -158,6 +158,12 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         DataPointCache.Push(point);
     }
 
+    public static int GetDataPointCacheSize()
+    {
+        // This works only as long as no child nodes are added to any DataPoint node
+        return DataPointCache.Count;
+    }
+
     public override void _Ready()
     {
         graphMarkerCircle = GD.Load<Texture2D>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
@@ -310,7 +316,7 @@ public partial class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 
     private void UpdateRectSize()
     {
-        // Increased by 10 for a more bigger cursor detection area
+        // Increased by 10 for a bigger cursor detection area
         Size = new Vector2(size + 10, size + 10);
     }
 

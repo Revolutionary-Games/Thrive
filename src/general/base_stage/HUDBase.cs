@@ -32,9 +32,11 @@ public partial class HUDBase : Control, IStageHUD
         return GetViewport().GuiGetFocusOwner();
     }
 
+    /// <summary>
+    ///   Fade into the stage for that smooth satisfying transition
+    /// </summary>
     protected void AddFadeIn(IStageBase stageBase, bool longerDuration)
     {
-        // Fade out for that smooth satisfying transition
         stageBase.TransitionFinished = false;
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f,

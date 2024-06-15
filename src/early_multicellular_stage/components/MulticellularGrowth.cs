@@ -79,7 +79,7 @@ public static class MulticellularGrowthHelpers
     /// </summary>
     public static void AddMulticellularGrowthCell(this ref MulticellularGrowth multicellularGrowth,
         in Entity entity, EarlyMulticellularSpecies species, IWorldSimulation worldSimulation,
-        EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo)
+        IMicrobeSpawnEnvironment spawnEnvironment, EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo)
     {
         if (!entity.Has<MicrobeColony>())
         {
@@ -95,8 +95,8 @@ public static class MulticellularGrowthHelpers
         // Remove the starting compounds as this is a growth cell which shouldn't give free resources to the
         // colony it joins
         DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref colonyPosition, entity,
-            multicellularGrowth.NextBodyPlanCellToGrowIndex, cellTemplate, species, worldSimulation, recorder,
-            notifySpawnTo, false);
+            multicellularGrowth.NextBodyPlanCellToGrowIndex, cellTemplate, species, worldSimulation, spawnEnvironment,
+            recorder, notifySpawnTo, false);
 
         ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
         multicellularGrowth.CompoundsNeededForNextCell = null;

@@ -832,6 +832,8 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
 
     private void SaveGame(string name)
     {
+        // TODO: saving for this stage
+        _ = name;
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 

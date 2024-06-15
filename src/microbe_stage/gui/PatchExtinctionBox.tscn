@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://bh5jgkxx1boyf" path="res://src/gui_common/fonts/Thrive-Humongous.tres" id="3_xy8f2"]
 [ext_resource type="Script" path="res://src/microbe_stage/gui/PatchExtinctionBox.cs" id="4"]
 [ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://src/gui_common/DraggableScrollContainer.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="7"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="8"]
 [ext_resource type="Shader" path="res://shaders/Monochrome.gdshader" id="9"]
 
@@ -40,7 +40,11 @@ _data = {
 [node name="PatchExtinctionBox" type="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4")
 PatchMapDrawerPath = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 PatchDetailsPanelPath = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2/PatchDetailsPanel")

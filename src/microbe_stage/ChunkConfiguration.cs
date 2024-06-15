@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   See FloatingChunk for what many of the fields here do
@@ -137,27 +139,27 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public class ChunkScene
     {
-        public string ScenePath = null!;
+        /// <summary>
+        ///   Scene to use for this chunk. Note that this and the following 2 variables reflect
+        ///   <see cref="SceneWithModelInfo"/> but this isn't converted to use that for save compatibility (and this
+        ///   would be a slight variant with the scene path not being a loaded scene).
+        /// </summary>
+        public string ScenePath;
+
+        /// <summary>
+        ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
+        /// </summary>
+        public NodePath? SceneModelPath;
+
+        /// <summary>
+        ///   Path to the AnimationPlayer inside the ScenePath scene, null if no animation
+        /// </summary>
+        public NodePath? SceneAnimationPath;
 
         /// <summary>
         ///   Path to the convex collision shape of this chunk's graphical mesh (if any).
         /// </summary>
         public string? ConvexShapePath;
-
-        /// <summary>
-        ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
-        /// </summary>
-        /// <remarks>
-        ///   <para>
-        ///     TODO: switch this to NodePath (though JSON loading will get a bit more complex)
-        ///   </para>
-        /// </remarks>
-        public string? SceneModelPath;
-
-        /// <summary>
-        ///   Path to the AnimationPlayer inside the ScenePath scene, null if no animation
-        /// </summary>
-        public string? SceneAnimationPath;
 
         /// <summary>
         ///   Need to be set to true on particle type visuals as those need special handling
@@ -170,9 +172,39 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         public bool PlayAnimation;
 
         /// <summary>
-        ///   If true then the default shader (material retrieve) is not done and it is assumed that normal shader
+        ///   If true then the default shader (material retrieve) is not done, and it is assumed that normal shader
         ///   operations like dissolving is unavailable
         /// </summary>
         public bool MissingDefaultShaderSupport;
+
+        [JsonConstructor]
+        public ChunkScene(string scenePath)
+        {
+            ScenePath = scenePath;
+
+            SceneModelPath = null;
+            SceneAnimationPath = null;
+            ConvexShapePath = null;
+            IsParticles = false;
+            PlayAnimation = false;
+            MissingDefaultShaderSupport = false;
+        }
+
+        public ChunkScene(LoadedSceneWithModelInfo fromModelInfo)
+        {
+            // TODO: investigate if it would make sense to switch ScenePath to be also a loaded scene (that would be
+            // saved and loaded from JSON)
+            ScenePath = fromModelInfo.LoadedScene.ResourcePath;
+
+            SceneModelPath = fromModelInfo.ModelPath;
+
+            SceneAnimationPath = fromModelInfo.AnimationPlayerPath;
+
+            // Default init for non-copied things
+            ConvexShapePath = null;
+            IsParticles = false;
+            PlayAnimation = false;
+            MissingDefaultShaderSupport = false;
+        }
     }
 }

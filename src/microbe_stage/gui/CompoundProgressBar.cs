@@ -460,12 +460,13 @@ public partial class CompoundProgressBar : Control
 
     private void SetBarValue()
     {
-        var target = Math.Clamp(currentValue / maxValue, 0, maxValue);
+        // Scale the progress to range 0-1 which is what is used in the bar
+        var target = Math.Clamp(currentValue / maxValue, 0, 1);
 
         if (SmoothBarValue)
         {
             var tween = CreateTween();
-            tween.SetTrans(Tween.TransitionType.Expo);
+            tween.SetTrans(Tween.TransitionType.Cubic);
             tween.TweenProperty(progressBar, valueReference, target,
                 Constants.COMPOUND_BAR_VALUE_ANIMATION_TIME);
         }

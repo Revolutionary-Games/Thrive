@@ -35,4 +35,9 @@ public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>
     {
         return Amount == other.Amount && Density == other.Density && Ambient == other.Ambient;
     }
+
+    public override string ToString()
+    {
+        return $"Amount: {Amount} ({Density} density), ambient: {Ambient}";
+    }
 }

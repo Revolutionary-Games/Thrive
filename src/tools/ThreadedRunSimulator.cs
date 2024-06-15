@@ -118,7 +118,7 @@ public class ThreadedRunSimulator
             var (currentTime, currentDifference) = currentSimulationAttempt.AttemptOrdering(random.Next());
             Interlocked.Increment(ref attempts);
 
-            // This is a bit cumbersome condition, but needed due to equal value being good enough if the thread
+            // This is a somewhat cumbersome condition, but needed due to equal value being good enough if the thread
             // deviance is smaller
             if (!(currentTime <= bestThreadTime))
                 continue;

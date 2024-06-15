@@ -269,43 +269,42 @@ public partial class PatchDetailsPanel : PanelContainer
             unitFormat.FormatSafe(SelectedPatch.Biome.CurrentCompoundAmounts[temperature].Ambient, temperature.Unit);
         pressureLabel.Text = unitFormat.FormatSafe(20, "bar");
 
-        var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName, CompoundAmountType.Maximum);
+        var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound, CompoundAmountType.Biome);
         lightLabel.Text =
             unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch,
-                sunlightCompound.InternalName))), "lx");
+                sunlightCompound))), "lx");
         lightMax.Text = Localization.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
             unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx"));
         lightMax.Visible = maxLightLevel > 0;
 
-        oxygenLabel.Text = percentageFormat.FormatSafe(Math.Round(
-            GetCompoundAmount(SelectedPatch, oxygenCompound.InternalName),
+        oxygenLabel.Text = percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, oxygenCompound),
             Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
         nitrogenLabel.Text =
-            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, nitrogenCompound.InternalName),
+            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, nitrogenCompound),
                 Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
         co2Label.Text =
-            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound.InternalName),
+            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound),
                 Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
 
         // Compounds
         hydrogenSulfideLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName),
+            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound),
                     Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         ammoniaLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName),
+            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound),
                     Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         glucoseLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName),
+            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound),
                     Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         phosphateLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName),
+            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound),
                     Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         ironLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, ironCompound.InternalName),
+            Math.Round(GetCompoundAmount(SelectedPatch, ironCompound),
                     Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
 
@@ -335,10 +334,10 @@ public partial class PatchDetailsPanel : PanelContainer
         }
     }
 
-    private float GetCompoundAmount(Patch patch, string compoundName,
+    private float GetCompoundAmount(Patch patch, Compound compound,
         CompoundAmountType amountType = CompoundAmountType.Current)
     {
-        return patch.GetCompoundAmount(compoundName, amountType);
+        return patch.GetCompoundAmountForDisplay(compound, amountType);
     }
 
     /// <remarks>
@@ -384,13 +383,13 @@ public partial class PatchDetailsPanel : PanelContainer
             lightSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName);
+        nextCompound = GetCompoundAmount(SelectedPatch, hydrogensulfideCompound);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, hydrogensulfideCompound.InternalName))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, hydrogensulfideCompound))
         {
             hydrogenSulfideSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, hydrogensulfideCompound.InternalName))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, hydrogensulfideCompound))
         {
             hydrogenSulfideSituation.Texture = decreaseIcon;
         }
@@ -399,13 +398,13 @@ public partial class PatchDetailsPanel : PanelContainer
             hydrogenSulfideSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName);
+        nextCompound = GetCompoundAmount(SelectedPatch, glucoseCompound);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, glucoseCompound.InternalName))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, glucoseCompound))
         {
             glucoseSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, glucoseCompound.InternalName))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, glucoseCompound))
         {
             glucoseSituation.Texture = decreaseIcon;
         }
@@ -414,13 +413,13 @@ public partial class PatchDetailsPanel : PanelContainer
             glucoseSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, ironCompound.InternalName);
+        nextCompound = GetCompoundAmount(SelectedPatch, ironCompound);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, ironCompound.InternalName))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, ironCompound))
         {
             ironSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, ironCompound.InternalName))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, ironCompound))
         {
             ironSituation.Texture = decreaseIcon;
         }
@@ -429,13 +428,13 @@ public partial class PatchDetailsPanel : PanelContainer
             ironSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName);
+        nextCompound = GetCompoundAmount(SelectedPatch, ammoniaCompound);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, ammoniaCompound.InternalName))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, ammoniaCompound))
         {
             ammoniaSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, ammoniaCompound.InternalName))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, ammoniaCompound))
         {
             ammoniaSituation.Texture = decreaseIcon;
         }
@@ -444,13 +443,13 @@ public partial class PatchDetailsPanel : PanelContainer
             ammoniaSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName);
+        nextCompound = GetCompoundAmount(SelectedPatch, phosphatesCompound);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, phosphatesCompound.InternalName))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, phosphatesCompound))
         {
             phosphateSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, phosphatesCompound.InternalName))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, phosphatesCompound))
         {
             phosphateSituation.Texture = decreaseIcon;
         }

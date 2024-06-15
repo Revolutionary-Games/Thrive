@@ -115,6 +115,13 @@ public partial class GUIFocusSetter : Control
                 if (targetNode.IsVisibleInTree())
                 {
                     targetNode.GrabFocus();
+
+#if DEBUG
+
+                    // Focus grabs sometimes fail. Maybe only when using a Node that is inside a Window container?
+                    if (GetViewport().GuiGetFocusOwner() != targetNode)
+                        GD.PrintErr("Failed to grab focus to wanted node");
+#endif
                 }
             }
         }

@@ -8,15 +8,18 @@
 default_font = ExtResource("3_oyn8i")
 default_font_size = 14
 
-[node name="CompoundBalanceDisplay" type="VBoxContainer"]
+[node name="CompoundBalanceDisplay" type="VBoxContainer" node_paths=PackedStringArray("compoundListContainer", "modeSelector")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1")
-CompoundListContainerPath = NodePath("VBoxContainer")
+compoundListContainer = NodePath("VBoxContainer")
+modeSelector = NodePath("CompoundBalanceMode")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
+tooltip_text = "COMPOUND_BALANCE_TOOLTIP"
+mouse_filter = 0
 text = "COMPOUND_BALANCE_TITLE"
 label_settings = ExtResource("2_uuwk2")
 
@@ -25,3 +28,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource("1")
+
+[node name="CompoundBalanceMode" type="OptionButton" parent="."]
+layout_mode = 2
+tooltip_text = "COMPOUND_BALANCE_MODE_TOOLTIP"
+item_count = 2
+selected = 0
+popup/item_0/text = "COMPOUNDS_AT_EQUILIBRIUM"
+popup/item_0/id = 1
+popup/item_1/text = "COMPOUNDS_AT_MAX_SPEED"
+popup/item_1/id = 0
+
+[connection signal="item_selected" from="CompoundBalanceMode" to="." method="OnBalanceModeChanged"]

@@ -168,8 +168,9 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     {
         base.OnLightLevelChanged(dayLightFraction);
 
-        var maxLightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
-        var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
+        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+        var templateMaxLightLevel =
+            Editor.CurrentPatch.GetCompoundAmountForDisplay(sunlight, CompoundAmountType.Template);
 
         // We don't want the light level in other patches be changed to zero if this callback is called while
         // we're on a patch that isn't affected by day/night effects
@@ -177,11 +178,11 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         {
             foreach (var patch in Editor.CurrentGame.GameWorld.Map.Patches.Values)
             {
-                var targetMaxLightLevel = patch.Biome.MaximumCompounds[sunlight].Ambient;
+                var targetMaxLightLevel = patch.Biome.GetCompound(sunlight, CompoundAmountType.Biome);
 
                 var lightLevelAmount = new BiomeCompoundProperties
                 {
-                    Ambient = targetMaxLightLevel * dayLightFraction,
+                    Ambient = targetMaxLightLevel.Ambient * dayLightFraction,
                 };
 
                 patch.Biome.CurrentCompoundAmounts[sunlight] = lightLevelAmount;

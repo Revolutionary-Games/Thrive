@@ -38,7 +38,10 @@ public partial class TransitionManager : ControlWithInput
 
     public override void _Process(double delta)
     {
-        if (queuedSequences.Count > 0)
+        // This is a loop to allow multiple sequences to finish on the same frame (for example if multiple transitions
+        // are queued with the mode to cancel the previous one this wouldn't work correctly if not all sequences could
+        // be deleted during a single update)
+        while (queuedSequences.Count > 0)
         {
             var sequence = queuedSequences.Peek();
 
@@ -48,6 +51,10 @@ public partial class TransitionManager : ControlWithInput
             {
                 queuedSequences.Dequeue();
                 SaveHelper.AllowQuickSavingAndLoading = !HasQueuedTransitions;
+            }
+            else
+            {
+                break;
             }
         }
     }

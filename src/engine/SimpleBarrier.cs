@@ -17,10 +17,10 @@ public class SimpleBarrier
 
     private readonly int threadCount;
 
-    private int waitingThreads;
+    private volatile int waitingThreads;
 
-    private int blockedThreads;
-    private int threadsInWaitLoop;
+    private volatile int blockedThreads;
+    private volatile int threadsInWaitLoop;
 
     /// <summary>
     ///   Set up a new barrier with a given thread count

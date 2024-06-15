@@ -78,13 +78,12 @@ public class BiomeConditions : ICloneable
     public IDictionary<Compound, BiomeCompoundProperties> AverageCompounds { get; }
 
     /// <summary>
-    ///   Maximum compounds during an in-game day
+    ///   Maximum compounds this patch can reach. Not related to maximum during an in-game day, for that use
+    ///   <see cref="Compounds"/>!
     /// </summary>
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> MaximumCompounds { get; }
 
-    // This is kept to be consistent with the other values, in the future this should be updated
-    // ReSharper disable once CollectionNeverQueried.Global
     /// <summary>
     ///   Minimum compounds during an in-game day
     /// </summary>
@@ -92,7 +91,8 @@ public class BiomeConditions : ICloneable
     public IDictionary<Compound, BiomeCompoundProperties> MinimumCompounds { get; }
 
     /// <summary>
-    ///   The normal, large timescale compound amounts
+    ///   The normal, large timescale compound amounts. The maximum amounts compounds are at during a day in this
+    ///   patch (if they wary during a day).
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -103,8 +103,10 @@ public class BiomeConditions : ICloneable
     public IReadOnlyDictionary<Compound, BiomeCompoundProperties> Compounds => compounds;
 
     /// <summary>
-    ///   Allows access to changing the compound values in the biome permanently. Should only be used by auto-evo or
-    ///   map generator.
+    ///   Allows access to modification of the compound values in the biome permanently. Should only be used by
+    ///   auto-evo or map generator. After changing <see cref="AverageCompounds"/> must to be updated.
+    ///   <see cref="ModifyLongTermCondition"/> is the preferred method to update this data which handles that
+    ///   automatically.
     /// </summary>
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> ChangeableCompounds => compounds;
@@ -155,6 +157,8 @@ public class BiomeConditions : ICloneable
                 return CurrentCompoundAmounts.TryGetValue(compound, out result);
             case CompoundAmountType.Maximum:
                 return MaximumCompounds.TryGetValue(compound, out result);
+            case CompoundAmountType.Minimum:
+                return MinimumCompounds.TryGetValue(compound, out result);
             case CompoundAmountType.Average:
                 return AverageCompounds.TryGetValue(compound, out result);
             case CompoundAmountType.Biome:
@@ -164,6 +168,83 @@ public class BiomeConditions : ICloneable
             default:
                 throw new ArgumentOutOfRangeException(nameof(amountType), amountType, null);
         }
+    }
+
+    /// <summary>
+    ///   Modifies the long-term amount of a compound in this biome. This is preferable to directly modifying
+    ///   <see cref="ChangeableCompounds"/>. This is only usable for compounds that don't vary along an in-game day.
+    /// </summary>
+    /// <param name="compound">The compound to modify</param>
+    /// <param name="newValue">New value to set</param>
+    public void ModifyLongTermCondition(Compound compound, BiomeCompoundProperties newValue)
+    {
+        ChangeableCompounds[compound] = newValue;
+
+        // Reset other related values
+        AverageCompounds[compound] = newValue;
+
+        // This is only fine to do on compounds that don't vary along a day
+        CurrentCompoundAmounts[compound] = newValue;
+    }
+
+    /// <summary>
+    ///   Get compounds that vary during the day
+    /// </summary>
+    /// <returns>The compounds that vary</returns>
+    public IEnumerable<Compound> GetAmbientCompoundsThatVary()
+    {
+        const float epsilon = 0.000001f;
+
+        foreach (var minimumCompound in MinimumCompounds)
+        {
+            if (!Compounds.TryGetValue(minimumCompound.Key, out var maxValue) ||
+                Math.Abs(maxValue.Ambient - minimumCompound.Value.Ambient) > epsilon)
+            {
+                yield return minimumCompound.Key;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Checks if the method <see cref="GetAmbientCompoundsThatVary"/> would return true
+    /// </summary>
+    /// <returns>True if there are compounds that vary</returns>
+    public bool HasCompoundsThatVary()
+    {
+        const float epsilon = 0.000001f;
+
+        foreach (var minimumCompound in MinimumCompounds)
+        {
+            if (!Compounds.TryGetValue(minimumCompound.Key, out var maxValue) ||
+                Math.Abs(maxValue.Ambient - minimumCompound.Value.Ambient) > epsilon)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///   Returns true if the specified compound varies during the day / night cycle
+    /// </summary>
+    /// <param name="compound">Compound type to check</param>
+    /// <returns>True if compound varies</returns>
+    public bool IsVaryingCompound(Compound compound)
+    {
+        const float epsilon = 0.000001f;
+
+        bool hasNormally = Compounds.TryGetValue(compound, out var normal);
+        bool hasMinimum = MinimumCompounds.TryGetValue(compound, out var minimum);
+
+        // Not varying if the numbers are the same
+        if (!hasNormally && !hasMinimum)
+            return false;
+
+        if (hasNormally && hasMinimum && Math.Abs(normal.Ambient - minimum.Ambient) < epsilon)
+            return false;
+
+        return true;
     }
 
     public void Check(string name)

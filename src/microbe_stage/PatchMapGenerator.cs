@@ -167,6 +167,14 @@ public static class PatchMapGenerator
         ConnectPatchesBetweenRegions(map, random);
         map.CreateAdjacenciesFromPatchData();
 
+        // Fix up initial average sunlight values. Note that in the future if there are things that update the biome
+        // available sunlight in a patch, this needs to be done again
+        float daytimeMultiplier = DayNightCycle.CalculateDayTimeMultiplier(settings.DaytimeFraction);
+        foreach (var entry in map.Patches)
+        {
+            entry.Value.UpdateAverageSunlight(DayNightCycle.CalculateAverageSunlight(daytimeMultiplier, settings));
+        }
+
         return map;
     }
 
@@ -413,6 +421,8 @@ public static class PatchMapGenerator
                 sunlightProperty.Ambient = sunlightAmount;
 
                 seafloor.Biome.ChangeableCompounds[sunlightCompound] = sunlightProperty;
+
+                // Average sunlight is updated later
 
                 // Build vents and cave position
                 if (vents != null || cave != null)

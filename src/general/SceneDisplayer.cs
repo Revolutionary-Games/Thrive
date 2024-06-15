@@ -1,17 +1,19 @@
 ﻿using Godot;
 
 /// <summary>
-///   Displays a scene based on its path. Also stores the previous path to avoid duplicate loads
+///   Displays a loaded scene object. Also stores the previous instance to avoid duplicate instantiations.
 /// </summary>
 public partial class SceneDisplayer : Node3D
 {
-    private string? currentScene;
+#pragma warning disable CA2213
+    private PackedScene? currentScene;
+#pragma warning restore CA2213
 
 #pragma warning disable CA2213 // manually managed
     private Node? currentlyShown;
 #pragma warning restore CA2213
 
-    public string? Scene
+    public PackedScene? Scene
     {
         get => currentScene;
         set
@@ -60,12 +62,10 @@ public partial class SceneDisplayer : Node3D
     {
         RemovePreviousScene();
 
-        if (string.IsNullOrEmpty(currentScene))
+        if (currentScene == null)
             return;
 
-        var scene = GD.Load<PackedScene>(currentScene);
-
-        currentlyShown = scene.Instantiate();
+        currentlyShown = currentScene.Instantiate();
         AddChild(currentlyShown);
     }
 

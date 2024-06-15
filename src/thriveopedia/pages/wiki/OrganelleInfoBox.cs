@@ -127,7 +127,10 @@ public partial class OrganelleInfoBox : PanelContainer
     {
         base._Process(delta);
 
-        if (organelle == null || string.IsNullOrEmpty(organelle.DisplayScene) || finishedLoadingModelImage)
+        if (organelle == null || finishedLoadingModelImage)
+            return;
+
+        if (!organelle.TryGetGraphicsScene(null, out var sceneWithModelInfo))
             return;
 
         if (modelImageTask != null)
@@ -141,8 +144,8 @@ public partial class OrganelleInfoBox : PanelContainer
             return;
         }
 
-        modelImageTask = new ImageTask(new GalleryCardModel.ModelPreview(organelle.DisplayScene!,
-            organelle.DisplaySceneModelNodePath));
+        modelImageTask = new ImageTask(new GalleryCardModel.ModelPreview(sceneWithModelInfo.LoadedScene.ResourcePath,
+            sceneWithModelInfo.ModelPath));
 
         PhotoStudio.Instance.SubmitTask(modelImageTask);
 

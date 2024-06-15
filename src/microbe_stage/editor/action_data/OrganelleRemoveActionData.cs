@@ -26,6 +26,15 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
+        // Endosymbionts can be deleted for free after placing (not that it is very useful, but it should be free)
+        if (other is EndosymbiontPlaceActionData endosymbiontPlaceActionData)
+        {
+            if (RemovedHex == endosymbiontPlaceActionData.PlacedOrganelle)
+            {
+                return ActionInterferenceMode.CancelsOut;
+            }
+        }
+
         var baseResult = base.GetInterferenceModeWithGuaranteed(other);
 
         if (baseResult != ActionInterferenceMode.NoInterference)

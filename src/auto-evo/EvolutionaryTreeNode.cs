@@ -42,6 +42,11 @@ public partial class EvolutionaryTreeNode : TextureButton
 
     public EvolutionaryTreeNode? ParentNode { get; set; }
 
+    /// <summary>
+    ///   Logical position this node is at in the evolutionary tree.
+    /// </summary>
+    public Vector2 LogicalPosition { get; set; }
+
     public Vector2 Center => Position + Size / 2;
 
     public override void _Ready()

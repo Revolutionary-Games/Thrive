@@ -710,9 +710,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         ApplyAutoEvoResults();
 
-        // Recompute average sunlight in case auto-evo modifies things
-        CurrentGame.GameWorld.UpdateGlobalAverageSunlight();
-
         FadeIn();
     }
 

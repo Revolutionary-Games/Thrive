@@ -76,7 +76,7 @@ public sealed class PredefinedVisualLoaderSystem : AEntitySetSystem<float>
 
             if (scene == null)
             {
-                // Try to fallback to an error scene
+                // Try to fall back to an error scene
                 errorScene ??= LoadVisual(simulationParameters.GetErrorVisual());
                 scene = errorScene;
             }

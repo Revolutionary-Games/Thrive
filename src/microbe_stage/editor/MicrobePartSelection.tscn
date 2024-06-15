@@ -61,7 +61,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="MicrobePartSelection" type="MarginContainer"]
+[node name="MicrobePartSelection" type="MarginContainer" node_paths=PackedStringArray("mpIcon", "mpIconSpacer")]
 offset_right = 80.0
 offset_bottom = 103.0
 size_flags_horizontal = 3
@@ -70,6 +70,8 @@ theme = ExtResource("5")
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 script = ExtResource("3")
+mpIcon = NodePath("VBoxContainer/HBoxContainer/MPIcon")
+mpIconSpacer = NodePath("VBoxContainer/HBoxContainer/Spacer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -140,7 +142,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+[node name="MPIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
 texture = ExtResource("1")
@@ -151,6 +153,7 @@ stretch_mode = 6
 layout_mode = 2
 text = "N_A"
 label_settings = ExtResource("5_gh0u2")
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]

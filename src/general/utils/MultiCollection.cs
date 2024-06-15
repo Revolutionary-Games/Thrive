@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -39,11 +40,13 @@ public class MultiCollection<T> : ICollection<T>
     [JsonIgnore]
     public bool IsReadOnly => primary.IsReadOnly;
 
+    [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()
     {
         return primary.Concat(secondary).Distinct().GetEnumerator();
     }
 
+    [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();

@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://din62wkc2pcnk"]
 
-[ext_resource path="res://src/gui_common/DraggableScrollContainer.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/gui_common/DraggableScrollContainer.cs" id="1"]
 
 [node name="DraggableScrollContainer" type="ScrollContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+script = ExtResource("1")

@@ -80,7 +80,7 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         TypeChanged((int)TargetType.Compound);
     }
 
-    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
+    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame, float costMultiplier)
     {
         shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds()
             .OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase).ToList();
