@@ -233,8 +233,7 @@ public static class MicrobeControlHelpers
             ref var compoundStorage = ref entity.Get<CompoundStorage>();
             var mucilage = SimulationParameters.Instance.GetCompound("mucilage");
 
-            if (compoundStorage.Compounds.Compounds[mucilage] < compoundStorage.Compounds
-                    .GetCapacityForCompound(mucilage))
+            if (compoundStorage.Compounds.Compounds[mucilage] < Constants.MUCOCYST_SPEED_MINIMUM_MUCILAGE)
                 return;
         }
 

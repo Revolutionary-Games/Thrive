@@ -43,6 +43,7 @@ public partial class MicrobeWorldSimulation
                     multicellularGrowthSystem.Update(delta);
                     engulfedDigestionSystem.Update(delta);
                     organelleComponentFetchSystem.Update(delta);
+                    mucocystSystem.Update(delta);
                     slimeSlowdownSystem.Update(delta);
                     if (RunAI)
                     {
@@ -55,6 +56,9 @@ public partial class MicrobeWorldSimulation
                     microbeMovementSystem.Update(delta);
                     microbeMovementSoundSystem.Update(delta);
                     colonyBindingSystem.Update(delta);
+                    delayedColonyOperationSystem.Update(delta);
+                    microbeMovementSoundSystem.Update(delta);
+                    microbeFlashingSystem.Update(delta);
                     barrier1.SignalAndWait();
 
                     // Timeslot 7 on thread 2
@@ -71,6 +75,7 @@ public partial class MicrobeWorldSimulation
                     // Timeslot 9 on thread 2
                     strainSystem.Update(delta);
                     microbeEventCallbackSystem.Update(delta);
+                    damageSoundSystem.Update(delta);
                     barrier1.SignalAndWait();
 
                     // Timeslot 10 on thread 2
@@ -110,6 +115,8 @@ public partial class MicrobeWorldSimulation
 
             // Timeslot 2 on thread 1
             microbeVisualsSystem.Update(delta);
+            microbePhysicsCreationAndSizeSystem.Update(delta);
+            collisionShapeLoaderSystem.Update(delta);
             entityMaterialFetchSystem.Update(delta);
             microbePhysicsCreationAndSizeSystem.Update(delta);
             physicsBodyCreationSystem.Update(delta);
@@ -129,6 +136,7 @@ public partial class MicrobeWorldSimulation
 
             // Timeslot 3 on thread 1
             osmoregulationAndHealingSystem.Update(delta);
+            physicsUpdateAndPositionSystem.Update(delta);
             microbeReproductionSystem.Update(delta);
             barrier1.SignalAndWait();
 
@@ -143,6 +151,7 @@ public partial class MicrobeWorldSimulation
 
             // Timeslot 6 on thread 1
             spatialAttachSystem.Update(delta);
+            CameraFollowSystem.Update(delta);
             spatialPositionSystem.Update(delta);
             barrier1.SignalAndWait();
 
@@ -152,6 +161,11 @@ public partial class MicrobeWorldSimulation
 
             // Timeslot 8 on thread 1
             physicsSensorSystem.Update(delta);
+            soundListenerSystem.Update(delta);
+            barrier1.SignalAndWait();
+
+            // Timeslot 11 on thread 1
+            soundEffectSystem.Update(delta);
             barrier1.SignalAndWait();
 
             // Timeslot 9 on thread 1
