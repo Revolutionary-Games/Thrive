@@ -49,23 +49,11 @@ public class EnvironmentalFoodSource : FoodSource
     protected override float StorageScore(MicrobeSpecies species, Compound compound, Patch patch,
         SimulationCache simulationCache, WorldGenerationSettings worldSettings)
     {
-        if (worldSettings.DayNightCycleEnabled)
+        if (worldSettings.DayNightCycleEnabled &&
+            simulationCache.GetUsesVaryingCompoundsForSpecies(species, patch.Biome))
         {
-            var nightTime = worldSettings.DaytimeFraction * worldSettings.HoursPerDay;
-
-            // If a species consumes a lot, it ought to store more.
-            // NOTE: might artificially penalize overproducers but I'm willing to accept it for now - Maxonovien
-            var reserveScore = simulationCache.GetCompoundUseScoreForSpecies(species, patch.Biome, compound) *
-                simulationCache.GetStorageCapacityForSpecies(species);
-
-            // Severely penalize species not storing enough for their production
-            var minimumViableReserveScore = Constants.AUTO_EVO_MINIMUM_VIABLE_RESERVE_PER_TIME_UNIT * nightTime;
-
-            if (reserveScore <= minimumViableReserveScore)
-                return minimumViableReserveScore / Constants.AUTO_EVO_NON_VIABLE_RESERVE_PENALTY;
-
-            // TODO: consider using a cap, e.g two times the viable reserve (i.e. osmoregulation + base movement.
-            return reserveScore;
+            // Penalize species that cannot store enough compounds to survive the night
+            return simulationCache.GetStorageAndDayGenerationScore(species, patch.Biome, compound);
         }
 
         return 1.0f;

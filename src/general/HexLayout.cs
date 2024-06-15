@@ -302,7 +302,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     }
 
     /// <summary>
-    ///   Loops though all hexes and checks if there any without connection to the rest.
+    ///   Loops though all hexes and checks if there are any without connection to the rest.
     /// </summary>
     /// <returns>
     ///   Returns a list of hexes that are not connected to the rest
@@ -379,7 +379,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     /// </summary>
     /// <param name="hex">The hex to get the neighbours for</param>
     /// <param name="hexCache">The cache of all existing hex locations for fast lookup</param>
-    /// <returns>A list of neighbors that are part of an hex</returns>
+    /// <returns>A list of neighbors that are part of a hex</returns>
     private IEnumerable<Hex> GetNeighborHexes(Hex hex, HashSet<Hex> hexCache)
     {
         return Hex.HexNeighbourOffset

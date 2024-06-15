@@ -260,14 +260,14 @@ public class Mutations
             }
 
             // Copy the organelle
-            try
+            if (mutatedOrganelles.CanPlace(organelle, workMemory1, workMemory2))
             {
                 mutatedOrganelles.AddFast(organelle, workMemory1, workMemory2);
             }
-            catch (ArgumentException)
+            else
             {
-                // Add the organelle randomly back to the list to make
-                // sure we don't throw it away
+                // Add the organelle randomly back to the list to make sure we don't throw it away. Note that this
+                // can still fail if unable to find any valid position.
                 AddNewOrganelle(mutatedOrganelles, organelle.Definition, workMemory1, workMemory2);
             }
         }
@@ -371,20 +371,22 @@ public class Mutations
     }
 
     /// <summary>
-    ///   Adds a new organelle to a mutation result
+    ///   Adds a new organelle to a mutation result (but only if possible to place)
     /// </summary>
     private void AddNewOrganelle(OrganelleLayout<OrganelleTemplate> organelles,
         OrganelleDefinition organelle, List<Hex> workMemory1, List<Hex> workMemory2)
     {
-        try
-        {
-            organelles.AddFast(GetRealisticPosition(organelle, organelles, workMemory1, workMemory2), workMemory1,
-                workMemory2);
-        }
-        catch (ArgumentException)
+        var hex = GetRealisticPosition(organelle, organelles, workMemory1, workMemory2);
+
+        if (hex == null || !organelles.CanPlace(hex, workMemory1, workMemory2))
         {
             // Failing to add a mutation is not serious
+            return;
         }
+
+        // There's no longer an exception catch here as we check above that the placement is valid. The catch on the
+        // expected path was removed to make the mutations code cleaner and hopefully less prone to locking things up.
+        organelles.AddFast(hex, workMemory1, workMemory2);
     }
 
     private OrganelleDefinition GetRandomOrganelle(bool isBacteria, bool lawkOnly)
@@ -397,7 +399,7 @@ public class Mutations
         return SimulationParameters.Instance.GetRandomEukaryoticOrganelle(random, lawkOnly);
     }
 
-    private OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,
+    private OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
         OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1, List<Hex> workMemory2)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
@@ -439,10 +441,9 @@ public class Mutations
             }
         }
 
-        // TODO: don't throw here but signal failure with a return value
-        // We didn't find an open spot, this doesn't make much sense
-        throw new ArgumentException("Mutation code could not find a good position " +
-            "for a new organelle");
+        // Not good to signal normal program flow with exceptions so this now returns null when not being able to find
+        // a position
+        return null;
     }
 
     private MembraneType RandomMembraneType(SimulationParameters simulation)
@@ -727,7 +728,7 @@ public class Mutations
         // Our base case
         if (letterChanges < letterChangeLimit && changes == 0)
         {
-            // We didnt change our word at all, try recursively until we do
+            // We didn't change our word at all, try recursively until we do
             return MutateWord(name, lowercase);
         }
 

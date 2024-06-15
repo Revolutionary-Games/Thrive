@@ -121,7 +121,7 @@ public static class SpawnHelpers
 
         entity.Set(new PredefinedVisuals
         {
-            VisualIdentifier = VisualResourceIdentifier.AgentProjectile,
+            VisualIdentifier = properties.GetVisualResource(),
         });
 
         entity.Set(new SpatialInstance
@@ -652,6 +652,8 @@ public static class SpawnHelpers
 
         // Used in certain damage types to apply a cooldown
         entity.Set<DamageCooldown>();
+
+        entity.Set<MicrobeTemporaryEffects>();
 
         entity.Set(new CollisionManagement
         {

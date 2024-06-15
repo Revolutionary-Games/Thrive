@@ -317,17 +317,6 @@ public static class Constants
     public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
 
     /// <summary>
-    ///   Day and night are assumed to be the same length (half of the day)
-    /// </summary>
-    public const float LIGHT_NIGHT_FRACTION = 0.5f;
-
-    /// <summary>
-    ///   If filling up on some compound takes more than this fraction of the total day+night length a warning is given
-    ///   in the GUI
-    /// </summary>
-    public const float LIGHT_DAY_FILL_TIME_WARNING_THRESHOLD = 0.5f;
-
-    /// <summary>
     ///   When night is closer than this number of seconds and a cell spawns, it gets extra resources to survive.
     /// </summary>
     public const float INITIAL_RESOURCE_BUFF_WHEN_NIGHT_CLOSER_THAN = 30.0f;
@@ -403,6 +392,28 @@ public static class Constants
     public const float AGENT_EMISSION_VELOCITY = 16.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
+
+    public const float CYTOTOXIN_DAMAGE = 12.0f;
+
+    public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
+
+    public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
+    public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
+
+    public const float MACROLIDE_BASE_MOVEMENT_DEBUFF = 0.8f;
+    public const float MACROLIDE_DEBUFF_DURATION = 5;
+
+    /// <summary>
+    ///   Each oxygen using organelle in a cell increases damage caused by oxygen-inhibiting toxin by this amount,
+    ///   up to a cap.
+    /// </summary>
+    public const float OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE = 0.05f;
+
+    public const float OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX = 0.5f;
+
+    public const float OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE = 0.05f;
+
+    public const float OXYTOXY_DAMAGE_DEBUFF_MAX = 0.75f;
 
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
@@ -967,6 +978,16 @@ public static class Constants
 
     public const float AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION = 5;
 
+    /// <summary>
+    ///   How much less active cells are during the night
+    /// </summary>
+    public const float AI_ACTIVITY_NIGHT_MULTIPLIER = 0.5f;
+
+    public const float AI_ACTIVITY_NIGHT_MULTIPLIER_SESSILE = 0.02f;
+
+    public const float AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT = 340;
+    public const float AI_ACTIVITY_TO_BE_SESSILE_DURING_NIGHT = 50;
+
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -40.0f;
@@ -1006,8 +1027,11 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
 
-    public const float AUTO_EVO_MINIMUM_VIABLE_RESERVE_PER_TIME_UNIT = 1.0f;
-    public const float AUTO_EVO_NON_VIABLE_RESERVE_PENALTY = 10;
+    public const float AUTO_EVO_NIGHT_STORAGE_NOT_ENOUGH_PENALTY = 0.1f;
+    public const float AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER = 1.2f;
+    public const float AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY = 0.7f;
+
+    public const float AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE = 2.5f;
 
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;

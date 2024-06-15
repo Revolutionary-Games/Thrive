@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-27 17:05+0200\n"
-"PO-Revision-Date: 2024-05-23 23:49+0000\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-11 19:18+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -322,6 +322,18 @@ msgstr "\\"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr "如同白天一樣計算"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr "選中後，將按白天計算此面板中的數值"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr "包含移動成本"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "選中後，將假設細胞不斷移動並計算此面板中的平衡和其他數值"
+
 msgid "BASE_MOBILITY"
 msgstr "基礎移動能力"
 
@@ -554,10 +566,10 @@ msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏細胞代謝過程"
 
 msgid "CHEMOPLAST"
-msgstr "化能質體"
+msgstr "化能體"
 
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr "化能質體是一種雙層膜結構，能夠將[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]、氣態[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和水轉化為[thrive:compound type=\"glucose\"][/thrive:compound]，此過程被稱為[b]硫化氫化能合成[/b]。其[thrive:compound type=\"glucose\"][/thrive:compound] 生產速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
+msgstr "化能體是一種雙層膜結構，能夠將[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]、氣態[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和水轉化為[thrive:compound type=\"glucose\"][/thrive:compound]，此過程被稱為[b]硫化氫化能合成[/b]。其[thrive:compound type=\"glucose\"][/thrive:compound] 生產速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
@@ -730,13 +742,11 @@ msgstr "完成"
 msgid "COMPOUNDS"
 msgstr "化合物"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
-msgstr "要尋找的化合物："
+msgstr "靜平衡"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr "要尋找的化合物："
+msgstr "最大速率時平衡"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏化合物"
@@ -744,20 +754,24 @@ msgstr "顯示／隱藏化合物"
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr "化合物平衡"
+msgstr "（在 {0} 秒內填滿儲存空間）"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
-msgstr "化合物平衡"
+msgstr "（在 {0} 秒內填滿儲存空間，這比有效日光時間長 {1} 秒）"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
-msgstr "顯示／隱藏化合物"
+msgstr ""
+"計算化合物平衡的模式，例如最大速率假設所有代謝都以最大速率運作\n"
+"而靜平衡計算的代謝速率僅與非負 ATP 平衡相同。"
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物平衡"
+
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr ""
+"本節顯示每種化合物的總平衡（生產 - 消耗）。\n"
+"例如，為了製造植物細胞，需要相當程度的葡萄糖平衡。"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
@@ -773,6 +787,25 @@ msgstr "{0}的濃度降低了 {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
+
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "（不足以維持 {0} 秒長的夜晚）"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr "白天只能產生 {1} [thrive:compound type=\"{0}\"][/thrive:compound]，但要在夜間生存則需要 {2}。"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "夜晚持續 {2} 秒，但沒有足夠的[thrive:compound type=\"{0}\"][/thrive:compound] 儲存空間，其僅能容納 {1} 秒的化合物。"
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "儲存容量"
+
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr ""
+"本節顯示從最大儲存量開始時，細胞需要多長時間才能用完每種化合物。\n"
+"這些數字總是以夜晚環境計算，可用於檢查細胞是否有足夠的儲存空間\n"
+"為了度過整個夜晚。關閉移動成本核取方塊可以得出生存所需的最低數值\n"
+"整夜保持靜止以節省能量。"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "要尋找的化合物："
@@ -1817,6 +1850,15 @@ msgstr "發布於 {0}"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "本篇因篇幅過長被刪節，詳情請閱讀原文。{0}"
 
+msgid "FERROPLAST"
+msgstr "鐵能體"
+
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "一個金屬發電廠。鐵能體是一種充滿蛋白質和酶的雙層膜結構。它是一種已被其真核宿主同化的原核生物。它能夠將[thrive:compound type=\"iron\"][/thrive:compound] 從一種化學狀態氧化為另一種化學狀態，其效率比鐵硫菌藍蛋白更高。此過程被稱為[b]鐵呼吸[/b]，釋放能量，然後細胞可以收集這些能量。然而，它需要[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 才能發揮作用，並且其中任何較低的環境濃度都會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。"
+
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
+
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "按類別過濾項目："
 
@@ -2047,21 +2089,6 @@ msgstr "使用者介面分頁引導"
 
 msgid "GUI_VOLUME"
 msgstr "GUI 音量"
-
-msgid "HARDCORE_MODE"
-msgstr ""
-
-#, fuzzy
-msgid "HARDCORE_MODE_EXPLANATION"
-msgstr ""
-"由於先前的啟動失敗，Thrive 已在安全模式下啟動。\n"
-"\n"
-"這可能是由模組或視訊播放器引起的。作為預防措施，已啟用的模組載入可能被跳過且／或視訊播放可能被停用。直到 Thrive 重新啟動為止將一直生效。\n"
-"\n"
-"重新啟動之前，請停用任何可能有問題或與此版本 Thrive 不相容的模組（您可以閱讀先前啟動的記錄檔，查看某些模組是否是可能的罪魁禍首）。\n"
-"對於視訊播放器相關的問題，請使用啟動器選項強制停用影片。\n"
-"\n"
-"如果您不解決導致啟動失敗的問題，您將需要多次重新啟動並崩潰 Thrive 才能返回安全模式。"
 
 msgid "HEALTH"
 msgstr "生命值"
@@ -2895,7 +2922,7 @@ msgstr ""
 "\n"
 "類囊體：生產的[thrive:compound type=\"glucose\"][/thrive:compound] 量是正常葉綠體的 1/3，但能同時進行糖解，佔用 1 六邊形網格\n"
 "\n"
-"化能合成蛋白：從[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 生產[thrive:compound type=\"glucose\"][/thrive:compound] 的速率是化能質體的一半，但能同時進行糖解，佔用 1 六邊形網格\n"
+"化能合成蛋白：從[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 生產[thrive:compound type=\"glucose\"][/thrive:compound] 的速率是化能體的一半，但能同時進行糖解，佔用 1 六邊形網格\n"
 "\n"
 "鐵硫菌藍蛋白：將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
@@ -2930,7 +2957,7 @@ msgstr ""
 "\n"
 "連接器：允許和其它細胞連接在一起。進入多細胞階段需要此細胞器。\n"
 "\n"
-"粒線體：用[thrive:compound type=\"glucose\"][/thrive:compound] 和氧氣生產[thrive:compound type=\"atp\"][/thrive:compound]，比細胞質的更高效\n"
+"粒線體：用[thrive:compound type=\"glucose\"][/thrive:compound] 和氧氣生產[thrive:compound type=\"atp\"][/thrive:compound]，比細胞質更高效\n"
 "\n"
 "葉綠體：用日光和二氧化碳生產[thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
@@ -2938,9 +2965,11 @@ msgstr ""
 "\n"
 "溶酶體：含有消化酶。酶可以加速並提高消化效率\n"
 "\n"
-"化能質體：用[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 生產[thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"化能體：用[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 生產[thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"固氮質體：用[thrive:compound type=\"atp\"][/thrive:compound]、氮氣和氧氣生產[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"鐵能體：將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]，比鐵硫菌藍蛋白更高效\n"
+"\n"
+"固氮體：用[thrive:compound type=\"atp\"][/thrive:compound]、氮氣和氧氣生產[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "\n"
 "液泡：儲存 8 單位的化合物\n"
 "\n"
@@ -3073,7 +3102,7 @@ msgstr ""
 "[thrive:compound type=\"glucose\"][/thrive:compound] 用於製造[thrive:compound type=\"atp\"][/thrive:compound]。"
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 可以透過化能質體和化能合成蛋白轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound] 可以透過鐵硫菌藍蛋白轉化為[thrive:compound type=\"atp\"][/thrive:compound]。"
+msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 可以透過化能體和化能合成蛋白轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound] 可以透過鐵硫菌藍蛋白轉化為[thrive:compound type=\"atp\"][/thrive:compound]。"
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -3512,10 +3541,10 @@ msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與[thrive:compound type=\"nitrogen\"][/thrive:compound] 的濃度成正比。"
 
 msgid "NITROGEN_FIXING_PLASTID"
-msgstr "固氮質體"
+msgstr "固氮體"
 
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr "固氮質體是一種能夠使用氣態[thrive:compound type=\"nitrogen\"][/thrive:compound]、[thrive:compound type=\"oxygen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，細胞生長的關鍵營養物質。此過程被稱為[b]有氧固氮[/b]。"
+msgstr "固氮體是一種能夠使用氣態[thrive:compound type=\"nitrogen\"][/thrive:compound]、[thrive:compound type=\"oxygen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，細胞生長的關鍵營養物質。此過程被稱為[b]有氧固氮[/b]。"
 
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
@@ -3549,6 +3578,12 @@ msgstr "目前細胞大小不足以吞噬目標"
 
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "沒有足夠的儲存空間以攝入被吞噬的目標"
+
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr "ATP 生產受毒素抑制"
+
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "基礎移動速度因毒素而降低"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "可以進入編輯器了"
@@ -3751,7 +3786,7 @@ msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "啟用細胞器解鎖"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
-msgstr "（部分細胞器擁有放置它們所需的解鎖條件）"
+msgstr "（某些細胞器需要滿足特定解鎖條件才能放置）"
 
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
@@ -3798,7 +3833,7 @@ msgid "OXYTOXISOME"
 msgstr "氧化毒酶體"
 
 msgid "OXYTOXISOME_DESC"
-msgstr "一種被修飾的代謝體，負責生產原始形式的有毒物質[thrive:compound type=\"oxytoxy\"][/thrive:compound]。"
+msgstr "一種修飾過的代謝體，負責生產原始形式的有毒物質[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以修改以切換生成的毒素類型來獲得其他效果。"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
@@ -4716,6 +4751,18 @@ msgstr "開始研究"
 msgid "STATISTICS"
 msgstr "統計數據"
 
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP 產量懲罰"
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "基礎移動降低"
+
+msgid "STAT_DAMAGE"
+msgstr "傷害"
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr "每個耗氧細胞器的損傷等級"
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam 客戶端程式庫初始化失敗"
 
@@ -4783,6 +4830,9 @@ msgstr "儲存空間"
 
 msgid "STORAGE_COLON"
 msgstr "儲存空間："
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr "秒數"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "登入身分：{0}"
@@ -5133,14 +5183,59 @@ msgstr "已收集能量："
 msgid "TOTAL_SAVES"
 msgstr "總存檔數："
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr "通道抑制劑"
+
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "抑制受影響細胞的 ATP 生產，有效防止它們快速移動，並可能導致 ATP 產量不高的細胞死亡。"
+
+msgid "TOXIN_CYTOTOXIN"
+msgstr "細胞毒素"
+
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "一種簡單的毒素，對沒有特化細胞膜的細胞相當有效。"
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr "射速與毒性："
+
+msgid "TOXIN_MACROLIDE"
+msgstr "巨環內酯"
+
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "毒素會大幅降低基礎移動速度，使簡單的細胞基本上無法移動。"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr "氰化物"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "氰化物針對氧代謝過程，對氧代謝細胞非常有效。"
+
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "基於氧的毒素會導致細胞損傷。對利用氧氣進行代謝的物種效果較差。"
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr "射速"
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr "毒性"
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "毒素對目標的影響"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "毒素抗性"
+
+msgid "TOXIN_TYPE_COLON"
+msgstr "毒素類型："
+
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "不同類型的毒素具有不同的作用，對某些類型的細胞更有效。對於具有多種不同毒素類型的細胞，它們按順序使用，而不是一次全部發射。"
 
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "毒素液泡是為了專門生產、儲存和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。"
+msgstr "毒素液泡是為了專門生產、儲存和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。可以修改以切換生成的毒素類型來獲得其他效果。"
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
@@ -5489,6 +5584,9 @@ msgstr "捕食纖毛"
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "當處於吞噬模式（[thrive:input]g_toggle_engulf[/thrive:input]）時，這種類型的纖毛會在水中引起渦流，從而吸引附近的物體。對於捕捉獵物很有用。"
 
+msgid "UPGRADE_COST"
+msgstr "{0}（{1} 突變點數）"
+
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "預設未升級狀態"
 
@@ -5765,7 +5863,7 @@ msgstr ""
 "一種[thrive:compound type=\"glucose\"][/thrive:compound] 合成方法。需要[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]，反應速率與環境中[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。它優於[b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]化能合成蛋白[/url][/color][/b]中進行的類似代謝。"
 
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]化能質體[/b]。"
+msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]化能體[/b]。"
 
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
@@ -5774,7 +5872,7 @@ msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr ""
 "與[b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]化能合成蛋白[/url][/color][/b]一樣，此細胞器使細胞能夠在某些區域中獲得豐富的[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]。隨著環境中[thrive:compound type=\"glucose\"][/thrive:compound] 的濃度在整個遊戲過程中衰減，建議尋找其他能量來源，如果您待在海底熱泉，[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 可能很適合您的細胞。\n"
 "\n"
-"我們建議在演化[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]後，將[b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]化能合成蛋白[/url][/color][/b]替換為[b]化能質體[/b]，因為後者效率較高。"
+"我們建議在演化[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]後，將[b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]化能合成蛋白[/url][/color][/b]替換為[b]化能體[/b]，因為後者效率較高。"
 
 msgid "WIKI_CHEMOPLAST_UPGRADES"
 msgstr "無升級。"
@@ -6175,16 +6273,16 @@ msgstr ""
 "透過消耗能量將大氣中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與環境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。效率高於[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]中的同種代謝。"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]固氮質體[/b]。"
+msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]固氮體[/b]。"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
 msgstr ""
-"我們建議您在演化[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]後用[b]固氮質體[/b]取代[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]，因為後者可以更有效地產生繁殖所需的資源。\n"
+"我們建議您在演化[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]後用[b]固氮體[/b]取代[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]，因為後者可以更有效地產生繁殖所需的資源。\n"
 "\n"
-"與[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]一樣，如果您有多餘的[thrive:compound type=\"atp\"][/thrive:compound]，[b]固氮質體[/b]是明智的選擇。自行生產繁殖所需資源可以讓您消除限制傳代的因素。"
+"與[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]一樣，如果您有多餘的[thrive:compound type=\"atp\"][/thrive:compound]，[b]固氮體[/b]是明智的選擇。自行生產繁殖所需資源可以讓您消除限制傳代的因素。"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
 msgstr "無升級。"
@@ -6194,7 +6292,7 @@ msgstr "無效果。"
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
-"進行[b]厭氧固氮[/b]，消耗氣態[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，產生細胞繁殖生長所需的成分之一。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮質體[/url][/color][/b]。\n"
+"進行[b]厭氧固氮[/b]，消耗氣態[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，產生細胞繁殖生長所需的成分之一。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮體[/url][/color][/b]。\n"
 "\n"
 "也會進行一些[b]糖解[/b]，消耗[thrive:compound type=\"glucose\"][/thrive:compound] 生產[thrive:compound type=\"atp\"][/thrive:compound]。"
 
@@ -6205,7 +6303,7 @@ msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
 "[b]厭氧固氮[/b]：[thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "\n"
-"透過消耗能量將大氣中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與環境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 的濃度成正比。效率低於[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮質體[/url][/color][/b]中的同種代謝。\n"
+"透過消耗能量將大氣中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與環境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 的濃度成正比。效率低於[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮體[/url][/color][/b]中的同種代謝。\n"
 "\n"
 "[b]糖解[/b]\n"
 "\n"
@@ -6328,7 +6426,7 @@ msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
 msgstr "生物發光液泡"
 
 msgid "WIKI_PAGE_CHEMOPLAST"
-msgstr "化能質體"
+msgstr "化能體"
 
 msgid "WIKI_PAGE_CHEMORECEPTOR"
 msgstr "化學感受器"
@@ -6361,7 +6459,7 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "肌原纖維"
 
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "固氮質體"
+msgstr "固氮體"
 
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "固氮酶"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-27 17:05+0200\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
 "PO-Revision-Date: 2023-09-10 12:18+0000\n"
 "Last-Translator: Mahbeer Alam Sarker <mahbeeralamsarker@gmail.com>\n"
 "Language-Team: Bengali <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bn/>\n"
@@ -297,6 +297,19 @@ msgstr ""
 
 msgid "BACKSPACE"
 msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "উন্নত সেটআপ ভিউ খুলুন"
 
 msgid "BASE_MOBILITY"
 msgstr ""
@@ -722,6 +735,10 @@ msgstr "জাগ্রত পর্যায়ে চলে যাওয়া। �
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "জাগ্রত পর্যায়ে চলে যাওয়া। আপনার পর্যাপ্ত মস্তিষ্কের শক্তি (অ্যাক্সন সহ টিস্যু টাইপ) থাকলে উপলব্ধ।"
+
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
@@ -736,6 +753,22 @@ msgstr ""
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
+
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "জাগ্রত পর্যায়ে চলে যাওয়া। আপনার পর্যাপ্ত মস্তিষ্কের শক্তি (অ্যাক্সন সহ টিস্যু টাইপ) থাকলে উপলব্ধ।"
 
 msgid "COMPOUND_TO_FIND"
 msgstr ""
@@ -1709,6 +1742,15 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
+msgid "FERROPLAST"
+msgstr ""
+
+msgid "FERROPLAST_DESCRIPTION"
+msgstr ""
+
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr ""
+
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
 
@@ -1932,17 +1974,6 @@ msgstr ""
 
 msgid "GUI_VOLUME"
 msgstr ""
-
-msgid "HARDCORE_MODE"
-msgstr ""
-
-#, fuzzy
-msgid "HARDCORE_MODE_EXPLANATION"
-msgstr ""
-"আক্রমণাত্মক জীবাণু বেশি দূরত্বে শিকারকে তাড়া করবে\n"
-"এবং আক্রমনিত হওয়ার পর শিকারীদের সাথে লড়াই করার সম্ভাবনা বেশি।\n"
-"শান্তিপূর্ণ জীবাণুরা বেশি দূরত্বে অন্যদের নিযুক্ত করবে না\n"
-"এবং শিকারীদের বিরুদ্ধে বিষ ব্যবহার করার সম্ভাবনা কম।"
 
 msgid "HEALTH"
 msgstr ""
@@ -3254,6 +3285,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr ""
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4380,6 +4417,18 @@ msgstr ""
 msgid "STATISTICS"
 msgstr ""
 
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr ""
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr ""
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
@@ -4444,6 +4493,9 @@ msgid "STORAGE"
 msgstr ""
 
 msgid "STORAGE_COLON"
+msgstr ""
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
@@ -4777,8 +4829,55 @@ msgstr ""
 msgid "TOTAL_SAVES"
 msgstr ""
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "একটি নতুন কী বাইন্ডিং যোগ করুন"
+
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr ""
+
 msgid "TOXIN_RESISTANCE"
 msgstr ""
+
+msgid "TOXIN_TYPE_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5013,6 +5112,9 @@ msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
+msgstr ""
+
+msgid "UPGRADE_COST"
 msgstr ""
 
 msgid "UPGRADE_DESCRIPTION_NONE"

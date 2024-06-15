@@ -802,6 +802,7 @@ public class Settings
 
         if (mode != wantedMode)
         {
+            GD.Print($"Switching window mode from {mode} to {wantedMode}");
             DisplayServer.WindowSetMode(wantedMode);
         }
 

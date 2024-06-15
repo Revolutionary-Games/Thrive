@@ -422,11 +422,11 @@ public static class MicrobeInternalCalculations
     ///   that compound is
     /// </returns>
     public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
-        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
+        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-            playerSpecies, worldSettings, CompoundAmountType.Biome);
+            moving, playerSpecies, worldSettings, CompoundAmountType.Biome);
 
         var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
             biomeConditions, CompoundAmountType.Biome, energyBalance);
@@ -464,6 +464,45 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
+    ///   Checks if the organelles use any processes that depend on compounds that vary during the day
+    /// </summary>
+    /// <param name="organelles">Organelles to check</param>
+    /// <param name="biomeConditions">Patch to check this in</param>
+    /// <param name="usedProcessesCache">Can be non-null to give existing memory access</param>
+    /// <returns>True if the organelles depend on any compounds that vary during the day</returns>
+    public static bool UsesDayVaryingCompounds(IReadOnlyCollection<OrganelleTemplate> organelles,
+        BiomeConditions biomeConditions, HashSet<BioProcess>? usedProcessesCache)
+    {
+        if (usedProcessesCache == null)
+        {
+            usedProcessesCache = new HashSet<BioProcess>();
+        }
+        else
+        {
+            usedProcessesCache.Clear();
+        }
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var tweakedProcess in organelle.Definition.RunnableProcesses)
+            {
+                usedProcessesCache.Add(tweakedProcess.Process);
+            }
+        }
+
+        foreach (var usedProcess in usedProcessesCache)
+        {
+            foreach (var input in usedProcess.Inputs)
+            {
+                if (biomeConditions.IsVaryingCompound(input.Key))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
     ///   Calculates how much storage is needed to survive the night for a cell.
     /// </summary>
     /// <returns>
@@ -471,55 +510,104 @@ public static class MicrobeInternalCalculations
     ///   should be present
     /// </returns>
     public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
-        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool playerSpecies,
-        BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
+        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
+        BiomeConditions biomeConditions, WorldGenerationSettings worldSettings,
+        ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-            playerSpecies, worldSettings, CompoundAmountType.Biome);
+        if (dayCompoundBalances == null)
+        {
+            var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
+                moving, playerSpecies, worldSettings, CompoundAmountType.Biome);
 
-        var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-            biomeConditions, CompoundAmountType.Biome, energyBalance);
+            dayCompoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+                biomeConditions, CompoundAmountType.Biome, energyBalance);
+        }
 
-        // TODO: is it fine to use energy balance calculated with the biome numbers here?
         var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-            biomeConditions, CompoundAmountType.Minimum, energyBalance);
+            biomeConditions, CompoundAmountType.Minimum, ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions,
+                membraneType,
+                moving, playerSpecies, worldSettings, CompoundAmountType.Minimum));
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 
-        var nightSeconds = worldSettings.DayLength * Constants.LIGHT_NIGHT_FRACTION;
+        var nightSeconds = worldSettings.DayLength * (1 - worldSettings.DaytimeFraction);
 
         bool enoughStorage = true;
         var requiredCapacities = new Dictionary<Compound, float>();
 
-        foreach (var normalBalance in compoundBalances)
+        foreach (var normalBalance in dayCompoundBalances)
         {
-            if (!minimums.TryGetValue(normalBalance.Key, out var minimumValue) ||
-                Math.Abs(minimumValue.Balance - normalBalance.Value.Balance) > 0.001f)
+            // Only handle compounds that are differently generated during the night and don't have a positive night
+            // balance
+            if (minimums.TryGetValue(normalBalance.Key, out var minimumValue) && !(minimumValue.Balance < 0) &&
+                !(Math.Abs(minimumValue.Balance - normalBalance.Value.Balance) > 0.001f))
             {
-                if (normalBalance.Value.Balance > 0.001f)
-                    continue;
-
-                // Found a compound that is generated during the day more than night
-
-                var drainRate = minimumValue?.Balance ?? normalBalance.Value.Consumption.SumValues();
-
-                // As things slowly pick up again after the night, it isn't fully this bad, this is just a worst case
-                // scenario
-                // TODO: more accurate math
-                var overestimatedDrain = drainRate * nightSeconds;
-
-                var capacity = cachedCapacities.GetValueOrDefault(normalBalance.Key, cachedCapacity);
-
-                if (overestimatedDrain > capacity)
-                {
-                    enoughStorage = false;
-                }
-
-                requiredCapacities[normalBalance.Key] = overestimatedDrain;
+                continue;
             }
+
+            // Skip things that aren't generated during the day
+            if (normalBalance.Value.Balance < 0.00001f)
+                continue;
+
+            // Found a compound that is generated during the day more than night
+
+            var drainRate = -minimumValue?.Balance ?? normalBalance.Value.Consumption.SumValues();
+
+            // As things slowly pick up again after the night, it isn't fully this bad, this is just a worst case
+            // scenario
+            // TODO: more accurate math
+            var overestimatedDrain = drainRate * nightSeconds;
+
+            var capacity = cachedCapacities.GetValueOrDefault(normalBalance.Key, cachedCapacity);
+
+            if (overestimatedDrain > capacity)
+            {
+                enoughStorage = false;
+            }
+
+            requiredCapacities[normalBalance.Key] = overestimatedDrain;
         }
 
         return (enoughStorage, requiredCapacities);
+    }
+
+    /// <summary>
+    ///   Finds all compounds that are produced from the given compound.
+    /// </summary>
+    /// <param name="compound">Compound that is used as an input</param>
+    /// <param name="organelles">Organelles present in cell</param>
+    /// <returns>The produced compounds</returns>
+    public static HashSet<Compound> GetCompoundsProducedByProcessesTakingIn(Compound compound,
+        IReadOnlyCollection<OrganelleTemplate> organelles)
+    {
+        var result = new HashSet<Compound>();
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var process in organelle.Definition.RunnableProcesses)
+            {
+                bool usesInput = false;
+
+                foreach (var processInput in process.Process.Inputs)
+                {
+                    if (processInput.Key == compound)
+                    {
+                        usesInput = true;
+                        break;
+                    }
+                }
+
+                if (!usesInput)
+                    continue;
+
+                foreach (var processOutput in process.Process.Outputs)
+                {
+                    result.Add(processOutput.Key);
+                }
+            }
+        }
+
+        return result;
     }
 
     public static void CalculatePossibleEndosymbiontsFromSpecies(MicrobeSpecies species,
@@ -570,6 +658,53 @@ public static class MicrobeInternalCalculations
         return Math.Max((int)Math.Ceiling(Constants.ENDOSYMBIOSIS_COST_BASE -
                 (float)organelleCount * Constants.ENDOSYMBIOSIS_COST_REDUCTION_PER_ORGANELLE),
             Constants.ENDOSYMBIOSIS_COST_MIN);
+    }
+
+    /// <summary>
+    ///   Checks if stocking up compound during the day is possible. <see cref="nightBalance"/> should be negative
+    ///   otherwise this will just return true and not fill the out variables
+    /// </summary>
+    /// <returns>True if there is enough compound generation during the day</returns>
+    public static bool CanGenerateEnoughCompoundToSurviveNight(float nightBalance, float dayBalance,
+        float nightDuration, float timeToFillDuringDay, out float generated, out float required)
+    {
+        if (nightBalance >= 0)
+        {
+            // Positive during the night, this is a pointless calculation
+            // TODO: should this give some kind of error?
+            required = -1;
+            generated = -1;
+            return false;
+        }
+
+        required = -(nightDuration * nightBalance);
+
+        if (dayBalance <= 0)
+        {
+            generated = 0;
+            return false;
+        }
+
+        generated = timeToFillDuringDay * dayBalance;
+
+        // Give tiny bit of wiggle room in the amounts
+        return required <= generated + 0.1f;
+    }
+
+    /// <summary>
+    ///   Gets a modifier telling how active a species is during the night
+    /// </summary>
+    /// <param name="activity">The base activity of the species</param>
+    /// <returns>A multiplier to multiply the activity with to get effective activity during the night</returns>
+    public static float GetActivityNightModifier(float activity)
+    {
+        if (activity >= Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT)
+            return 1;
+
+        if (activity <= Constants.AI_ACTIVITY_TO_BE_SESSILE_DURING_NIGHT)
+            return Constants.AI_ACTIVITY_NIGHT_MULTIPLIER_SESSILE;
+
+        return Constants.AI_ACTIVITY_NIGHT_MULTIPLIER;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

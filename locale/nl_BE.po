@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-27 17:05+0200\n"
-"PO-Revision-Date: 2024-04-10 06:38+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -324,6 +324,19 @@ msgstr "Terug"
 
 msgid "BACKSPACE"
 msgstr "Terug"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Open de weergave voor uitgebreide instellingen"
 
 #, fuzzy
 msgid "BASE_MOBILITY"
@@ -781,6 +794,10 @@ msgstr "Toon / verstop omgeving en verbindingen"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balansen van de Chemische Verbindingen"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Toon / verstop omgeving en verbindingen"
+
 msgid "COMPOUND_CLOUDS"
 msgstr "Wolken met chemische stoffen"
 
@@ -801,6 +818,25 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Wolken met chemische stoffen"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Balansen van de Chemische Verbindingen"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Wolken met chemische stoffen"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Balansen van de Chemische Verbindingen"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Balansen van de Chemische Verbindingen"
 
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
@@ -1917,6 +1953,18 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Thermoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "De thermoplast is een door twee membranen omsloten celorganel dat warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie van hitteverschillen in de omgeving te gebruiken om glucose uit water en gasvormige koolstofdioxide te produceren in een proces dat thermosyntese heet. De snelheid van de glucoseproductie hangt af van de koolstofdioxideconcentratie en de temperatuur."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Produceert [thrive:compound type=\"atp\"][/thrive:compound] met gebruik van de temperatuurgradiënt. Snelheid schaalt met [thrive:compound type=\"temperature\"][/thrive:compound]."
+
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
 
@@ -2181,17 +2229,6 @@ msgstr "{0} K"
 
 msgid "GUI_VOLUME"
 msgstr "GUI volume"
-
-msgid "HARDCORE_MODE"
-msgstr ""
-
-#, fuzzy
-msgid "HARDCORE_MODE_EXPLANATION"
-msgstr ""
-"Angstige microben zullen over grotere afstanden vluchten\n"
-"en hebben meer kans om te vluchten voor roofdieren in het algemeen.\n"
-"Dappere microben worden niet geïntimideerd door nabijgelegen roofdieren\n"
-"en zullen waarschijnlijk terug aanvallen."
 
 msgid "HEALTH"
 msgstr "Gezondheid"
@@ -3716,6 +3753,13 @@ msgstr "Grootte van huidige cel is te klein om doelwit op te slokken"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Niet genoeg plaats in opslag voor ingeslikte materie om doelwit op te slokken"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Basisbeweging"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Bewerker is nu klaar om er in te gaan"
 
@@ -3994,6 +4038,7 @@ msgstr "Zuurstof"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisoom"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Een gemodificeerd metabolosoom dat verantwoordelijk is voor de productie van een primitieve vorm van het giftige middel OxyToxy NT."
 
@@ -4992,6 +5037,20 @@ msgstr "Herstart vereist"
 msgid "STATISTICS"
 msgstr "Statistieken"
 
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP PRODUCTIE TE LAAG!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Basisbeweging"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Initialisatie van Steam-clientbibliotheek mislukt"
 
@@ -5063,6 +5122,9 @@ msgstr "Opslag"
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "Opslag"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als : {0}"
@@ -5424,14 +5486,76 @@ msgstr "Verzamelde Energie:"
 msgid "TOTAL_SAVES"
 msgstr "Totaal aantal opgeslagen bestanden:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Zelfmoord"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toxine\n"
+"Vacuole"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit door middel van een proces genaamd aerobe respiratie. Het heeft echter wel zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving vertragen dus de ATP-productie. Omdat de metabolosomen direct in het cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse uit."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Thrive Wiki In Het Spel"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Toxine-resistentie"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "HP:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Agressieve microben zullen prooien over grotere afstanden achtervolgen\n"
+"en hebben meer kans om roofdieren te bestrijden wanneer ze worden aangevallen.\n"
+"Vreedzame microben zullen anderen over grotere afstanden niet betrekken\n"
+"en zullen minder snel gifstoffen tegen roofdieren te gebruiken."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxine\n"
 "Vacuole"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
 
@@ -5813,6 +5937,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"

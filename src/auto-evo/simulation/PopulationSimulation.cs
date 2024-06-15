@@ -164,6 +164,7 @@ public static class PopulationSimulation
 
         var populations = simulationConfiguration.Results;
         bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
+        bool dayNightCycle = worldSettings.DayNightCycleEnabled;
 
         // This algorithm version is for microbe species
         // TODO: add simulation for multicellular
@@ -186,9 +187,9 @@ public static class PopulationSimulation
         {
             new EnvironmentalFoodSource(patch, Sunlight, Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT),
             new EnvironmentalFoodSource(patch, Temperature, Constants.AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT),
-            new CompoundFoodSource(patch, Glucose),
-            new CompoundFoodSource(patch, HydrogenSulfide),
-            new CompoundFoodSource(patch, Iron),
+            new CompoundFoodSource(patch, Glucose, dayNightCycle),
+            new CompoundFoodSource(patch, HydrogenSulfide, dayNightCycle),
+            new CompoundFoodSource(patch, Iron, dayNightCycle),
             new ChunkFoodSource(patch, "marineSnow"),
             new ChunkFoodSource(patch, "ironSmallChunk"),
             new ChunkFoodSource(patch, "ironBigChunk"),

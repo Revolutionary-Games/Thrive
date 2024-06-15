@@ -22,7 +22,17 @@ public struct OrganelleContainer
 
     public Dictionary<Enzyme, int>? AvailableEnzymes;
 
-    // The following few component vectors exist to allow access ti update the state of a few organelle components
+    /// <summary>
+    ///   Breakdown of available toxin types rather than just the overall count in <see cref="AgentVacuoleCount"/>
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is nullable for now to avoid potential bugs when loading older saves.
+    ///   </para>
+    /// </remarks>
+    public Dictionary<ToxinType, int>? AvailableToxinTypes;
+
+    // The following few component vectors exist to allow access to update the state of a few organelle components
     // from various systems to update the visuals state
 
     // TODO: maybe move these component caches to a separate component to reduce this component's size?
@@ -73,6 +83,12 @@ public struct OrganelleContainer
     public float OrganellesCapacity;
 
     public int HexCount;
+
+    /// <summary>
+    ///   Count of how many oxygen-using parts this cell has. Used for example to adjust different toxin damage in
+    ///   relation to oxygen users.
+    /// </summary>
+    public int OxygenUsingOrganelles;
 
     /// <summary>
     ///   Lower values are faster rotation
@@ -414,8 +430,14 @@ public static class OrganelleContainerHelpers
 
     public static void CalculateOrganelleLayoutStatistics(this ref OrganelleContainer container)
     {
-        container.AvailableEnzymes?.Clear();
-        container.AvailableEnzymes ??= new Dictionary<Enzyme, int>();
+        if (container.AvailableEnzymes == null)
+        {
+            container.AvailableEnzymes = new Dictionary<Enzyme, int>();
+        }
+        else
+        {
+            container.AvailableEnzymes.Clear();
+        }
 
         // TODO: should the cached components (like slime jets) be cleared here? or is it better to keep the old
         // components around for a little bit?
@@ -430,9 +452,19 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
+        container.OxygenUsingOrganelles = 0;
 
         if (container.Organelles == null)
             throw new InvalidOperationException("Organelle list needs to be initialized first");
+
+        if (container.AvailableToxinTypes == null)
+        {
+            container.AvailableToxinTypes = new Dictionary<ToxinType, int>();
+        }
+        else
+        {
+            container.AvailableToxinTypes.Clear();
+        }
 
         container.HexCount = container.Organelles.HexCount;
 
@@ -442,6 +474,10 @@ public static class OrganelleContainerHelpers
         for (int i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
+            var organelleDefinition = organelle.Definition;
+
+            if (organelleDefinition.IsOxygenMetabolism)
+                ++container.OxygenUsingOrganelles;
 
             var components = organelle.Components;
             int componentCount = components.Count;
@@ -453,6 +489,12 @@ public static class OrganelleContainerHelpers
                 if (organelleComponent is AgentVacuoleComponent)
                 {
                     ++container.AgentVacuoleCount;
+
+                    // Keep track of specific toxin types
+                    var toxinType = organelle.Upgrades.GetToxinTypeFromUpgrades();
+
+                    container.AvailableToxinTypes.TryGetValue(toxinType, out var existing);
+                    container.AvailableToxinTypes[toxinType] = existing + 1;
                 }
                 else if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
@@ -471,14 +513,14 @@ public static class OrganelleContainerHelpers
                 }
             }
 
-            if (organelle.Definition.HasSignalingFeature)
+            if (organelleDefinition.HasSignalingFeature)
                 container.HasSignalingAgent = true;
 
-            if (organelle.Definition.HasBindingFeature)
+            if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
 
             container.OrganellesCapacity +=
-                MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelle.Definition,
+                MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelleDefinition,
                     organelle.Upgrades);
 
             var enzymes = organelle.GetEnzymes();

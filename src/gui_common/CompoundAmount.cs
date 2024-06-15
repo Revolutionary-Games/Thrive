@@ -11,6 +11,8 @@ public partial class CompoundAmount : HBoxContainer
 
 #pragma warning disable CA2213
     private Label? amountLabel;
+    private Control? amountSuffixSpacer;
+    private Label? amountSuffixLabel;
     private TextureRect? icon;
     private Label? extraDescriptionLabel;
 #pragma warning restore CA2213
@@ -19,6 +21,7 @@ public partial class CompoundAmount : HBoxContainer
 
     private int decimals = 3;
     private float amount = float.NegativeInfinity;
+    private string? amountSuffix;
     private bool prefixPositiveWithPlus;
     private bool usePercentageDisplay;
     private Colour valueColour = Colour.White;
@@ -65,6 +68,23 @@ public partial class CompoundAmount : HBoxContainer
                 return;
 
             amount = value;
+            if (amountLabel != null)
+                UpdateLabel();
+        }
+    }
+
+    /// <summary>
+    ///   If not null this suffix is added to the amount (with a space added between the values)
+    /// </summary>
+    public string? AmountSuffix
+    {
+        get => amountSuffix;
+        set
+        {
+            if (amountSuffix == value)
+                return;
+
+            amountSuffix = value;
             if (amountLabel != null)
                 UpdateLabel();
         }
@@ -207,7 +227,10 @@ public partial class CompoundAmount : HBoxContainer
     {
         if (amountLabel == null)
         {
-            amountLabel = new Label();
+            amountLabel = new Label
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+            };
             AddChild(amountLabel);
         }
 
@@ -223,6 +246,49 @@ public partial class CompoundAmount : HBoxContainer
         else
         {
             numberPart = Math.Round(amount, decimals).ToString(CultureInfo.CurrentCulture);
+        }
+
+        if (amountSuffix != null)
+        {
+            if (amountSuffixSpacer == null)
+            {
+                amountSuffixSpacer = new Control
+                {
+                    CustomMinimumSize = new Vector2(1, 0),
+                };
+
+                AddChild(amountSuffixSpacer);
+            }
+
+            if (amountSuffixLabel == null)
+            {
+                amountSuffixLabel = new Label
+                {
+                    VerticalAlignment = VerticalAlignment.Center,
+
+                    // TODO: find a solution for turning on word wrapping
+                    // AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                    // CustomMinimumSize = new Vector2(30, 0),
+                };
+
+                AddChild(amountSuffixLabel);
+            }
+
+            amountSuffixLabel.Text = amountSuffix;
+        }
+        else
+        {
+            if (amountSuffixLabel != null)
+            {
+                amountSuffixLabel.QueueFree();
+                amountSuffixLabel = null;
+            }
+
+            if (amountSuffixSpacer != null)
+            {
+                amountSuffixSpacer.QueueFree();
+                amountSuffixSpacer = null;
+            }
         }
 
         amountLabel.Text = PrefixPositiveWithPlus ?

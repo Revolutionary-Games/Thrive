@@ -100,12 +100,6 @@ public class GameWorld : ISaveLoadable
         GenerationHistory.Add(0, new GenerationRecord(0,
             new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
 
-        if (WorldSettings.DayNightCycleEnabled)
-        {
-            // Make sure average light levels are computed already
-            UpdateGlobalAverageSunlight();
-        }
-
         UnlockProgress.UnlockAll = !settings.Difficulty.OrganelleUnlocksEnabled;
     }
 
@@ -668,17 +662,6 @@ public class GameWorld : ISaveLoadable
         foreach (var patch in Map.Patches.Values)
         {
             patch.UpdateCurrentSunlight(LightCycle.DayLightFraction);
-        }
-    }
-
-    /// <summary>
-    ///   Updates/sets the average light level of all patches according to <see cref="LightCycle"/> data.
-    /// </summary>
-    public void UpdateGlobalAverageSunlight()
-    {
-        foreach (var patch in Map.Patches.Values)
-        {
-            patch.UpdateAverageSunlight(LightCycle.AverageSunlight);
         }
     }
 

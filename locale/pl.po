@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-27 17:05+0200\n"
-"PO-Revision-Date: 2024-05-23 23:49+0000\n"
-"Last-Translator: Adam Duży <scootaloo@onet.pl>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-11 06:06+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -133,18 +133,18 @@ msgstr "Ogólne Statystyki Wszystkich Światów"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Pokolenia:[/b]\n"
-"    {0}\n"
-"[b]Wszystkie Gatunki:[/b]\n"
-"    Średnio {1}; Standardowe odchylenie {2}\n"
-"[b]Nadal Żyjące Gatunki:[/b]\n"
-"    Średnio {3}; Standardowe odchylenie {4}\n"
-"[b]Liczba Gatunków na Obszar:[/b]\n"
-"    Średnio {5}; Standardowe odchylenie {6}\n"
-"[b]Całkowita Populacja na Obszar:[/b]\n"
-"    Średnio {7}; Standardowe odchylenie {8}\n"
-"[b]Średni Rozmiar Gatunków Mikrobów w Heksach:[/b]\n"
-"    Średnio {9}; Standardowe odchylenie {10}\n"
-"[b]Ogólne Dane Organelli:[/b]"
+"  {0}\n"
+"[b]Ogólna Liczba Gatunków:[/b]\n"
+"  Średnio {1}; Standardowe Odchylenie {2}\n"
+"[b]Gatunki Wciąż Żyjące:[/b]\n"
+"  Średnio {3}; Standardowe Odchylenie {4}\n"
+"[b]Liczba Gatunków na Strefę:[/b]\n"
+"  Średnio {5}; Standardowe Odchylenie {6}\n"
+"[b]Ogólna Populacja na Strefę:[/b]\n"
+"  Średnio {7}; Standardowe Odchylenie {8}\n"
+"[b]Średnia Wielkość Gatunków Mikrobów w Polach:[/b]\n"
+"  Średnio {9}; Standardowe Odchylenie {10}\n"
+"[b]Ogólne Dane Ogranelli:[/b]"
 
 msgid "ALREADY_ASCENDED"
 msgstr ""
@@ -227,7 +227,7 @@ msgid "ATP"
 msgstr "ATP"
 
 msgid "ATP_BALANCE"
-msgstr "Balans ATP"
+msgstr "Bilans ATP"
 
 msgid "ATP_PRODUCTION"
 msgstr "Produkcja ATP"
@@ -315,8 +315,20 @@ msgstr "Ukośnik wsteczny"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr "Obliczaj jak w dzień"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr "Kiedy zaznaczone, dane w tym panelu są obliczane jakby był zawsze dzień"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr "Obejmij koszt ruchu"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Kiedy zaznaczone, dane w tym panelu są obliczane zakładając, że komórka jest w ciągłym ruchu"
+
 msgid "BASE_MOBILITY"
-msgstr "Podstawowa Mobilność"
+msgstr "Bazowa Mobilność"
 
 msgid "BASE_MOVEMENT"
 msgstr "Bazowa prędkość"
@@ -361,7 +373,7 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m poniżej poziomu morza"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Testy wydajności"
 
 msgid "BENCHMARK_FINISHED"
 msgstr "Test wydajności zakończony"
@@ -426,9 +438,8 @@ msgstr "Przeglądaj Warsztat Steam"
 msgid "BUILD_CITY"
 msgstr "Zbuduj Miasto"
 
-#, fuzzy
 msgid "BUILD_QUEUE"
-msgstr "Struktura"
+msgstr "Kolejka Budowy"
 
 msgid "BUILD_STRUCTURE"
 msgstr "Zbuduj Strukturę"
@@ -724,13 +735,11 @@ msgstr "Zakończ"
 msgid "COMPOUNDS"
 msgstr "Związki"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
-msgstr "Związek do Znalezienia:"
+msgstr "Bilans przy Równowadze"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr "Związek do Znalezienia:"
+msgstr "Bilans przy Maksymalnej Prędkości"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Pokaż / ukryj związki"
@@ -738,20 +747,25 @@ msgstr "Pokaż / ukryj związki"
 msgid "COMPOUNDS_COLON"
 msgstr "Związki:"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr "Balans Związków"
+msgstr "(wypełnia przestrzeń na przechowywanie w {0} s)"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr "Balans Związków"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
-msgstr "Pokaż / ukryj związki"
+msgstr ""
+"Tryb w którym obliczać bilans związków, na przykład maksymalna prędkość oblicza dane zakładając, że wszystkie procesy działają w maksymalnej prędkości\n"
+"natomiast równowaga oblicza dane zakładając, że procesy działają tylko tak szybko jak mogą by bilans ATP nie był negatywny."
 
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr "Balans Związków"
+msgstr "Bilans Związków"
+
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr ""
+"Ta część pokazuje bilans (produkcja - konsumpcja) dla każdego związku.\n"
+"Na przykład by stworzyć komórkę rośliny, bilans glukozy powinien być pozytywny z zapasem."
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Chmury związków"
@@ -767,6 +781,25 @@ msgstr "Stężenie {0} zmniejszyło się o {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Konsumpcja {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Balans Związków"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr "Tylko {1} [thrive:compound type=\"{0}\"][/thrive:compound] może być generowane podczas dnia, ale żeby przetrwać noc {2} jest potrzebne."
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Konsumpcja {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Balans Związków"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Balans Związków"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Związek do Znalezienia:"
@@ -1392,6 +1425,8 @@ msgstr "Ukryte popupy:"
 
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
+"To pokazuje ile pop-up'ów zostało permanentnie wyłączonych przez użytkownika.\n"
+"Jeśli jakieś pożądane pop-up'y są wyłączone, przycisk obok może zostać użyty by znów pokazywać wszystkie ukryte pop-up'y."
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr "Już więcej tego nie pokazuj"
@@ -1579,10 +1614,10 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Włącz efekty świetlne GUI"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "Proces endosymbiozy już skończony, ukończ go w edytorze"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "Zamieniono cel endosymbiozy w tymczasowego organella, to zwiększy postęp w procesie endosymbiozy jeśli uda ci się wejść w edytor"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr ""
@@ -1602,7 +1637,7 @@ msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
 msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
 
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
+msgstr "Endosymbioza to process który zamienia gatunek w endosymbiont (gatunek który żyje wewnątrz innego gatunku w relacji symbiotycznej). To odblokowuje nowego organella i daje ci jedną darmową kopie tego organella. Kandydaci na zamianę w organelle są pokazane poniżej kiedy były one raz pochłonięte. Jak długo zajmie by zamienić kandydata na organella zależy od tego jak bardzo dostosowany jest kandydat do endosymbiozy (to jest pokazane poniżej każdego kandydata)."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
 msgstr "Żaden gatunek odpowiedni do przemiany w endosymbionta nie został jeszcze pochłonięty"
@@ -1823,6 +1858,18 @@ msgstr "Opublikowany o {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtruj przedmioty kategorią:"
@@ -2057,13 +2104,6 @@ msgstr "Nawigacja Zakładek IU"
 
 msgid "GUI_VOLUME"
 msgstr "Głośność interfejsu"
-
-msgid "HARDCORE_MODE"
-msgstr ""
-
-#, fuzzy
-msgid "HARDCORE_MODE_EXPLANATION"
-msgstr "(zacznij z darmową chmurą glukozy w pobliżu, każdego pokolenia)"
 
 msgid "HEALTH"
 msgstr "Zdrowie"
@@ -3477,7 +3517,7 @@ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr "Negatywny balans ATP"
+msgstr "Negatywny bilans ATP"
 
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
@@ -3572,6 +3612,13 @@ msgstr ""
 
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
+
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Bazowa prędkość"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
@@ -3745,9 +3792,8 @@ msgstr "Zmień swoje ustawienia"
 msgid "ORGANELLES"
 msgstr "Organella komórkowe"
 
-#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr "(UWAGA: fotosynteza staje się znacznie mniej wartościowa)"
+msgstr "Warunki odblokowania są sprawdzane jeden raz na generacje przy wejściu do edytora"
 
 msgid "ORGANELLE_AXON"
 msgstr "Akson"
@@ -3786,7 +3832,7 @@ msgstr ""
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
-msgstr "(UWAGA: fotosynteza staje się znacznie mniej wartościowa)"
+msgstr "(Niektóre organelle będą mieć warunki odblokowania wymagane by je postawić)"
 
 msgid "ORGANISM_STATISTICS"
 msgstr "Statystyki Organizmu"
@@ -3830,6 +3876,7 @@ msgstr "Tlen (O₂)"
 msgid "OXYTOXISOME"
 msgstr "Oxytoksysoma"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
 
@@ -4756,6 +4803,20 @@ msgstr "Wymagany Restart"
 msgid "STATISTICS"
 msgstr "Statystyki"
 
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "PRODUKCJA ATP JEST ZA NISKA!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Bazowa prędkość"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
@@ -4824,6 +4885,9 @@ msgstr "Magazyn"
 
 msgid "STORAGE_COLON"
 msgstr "Magazyn:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Zalogowano jako: {0}"
@@ -5170,14 +5234,72 @@ msgstr "Status:"
 msgid "TOTAL_SAVES"
 msgstr "Łączna liczba zapisów:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Niektóre opcje mogą być wyłączone jeśli \"wyłącznie ŻTJZ\" jest włączone"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toksyczna\n"
+"Wakuola"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Odporność Na Toksyny"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Odporność Na Toksyny"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Typ:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "(lokalizacja początkowa)"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toksyczna\n"
 "Wakuola"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
 
@@ -5220,6 +5342,12 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
+"Grafik produkcji ATP po prawej pokazuje ile [thrive:compound type=\"atp\"][/thrive:compound] twoja komórka produkuje w porównaniu do ile jest zużywane. Jeżeli górny słupek jest krótszy od dolnego, to produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest za niska.\n"
+"\n"
+"Dolny słupek obejmuje koszt [b]osmoregulacji[/b] [thrive:icon]OsmoIcon[/thrive:icon] i koszt [b]ruchu[/b] [thrive:icon]MovementIcon[/thrive:icon].\n"
+"Koszt [b]osmoregulacji[/b] [thrive:icon]OsmoIcon[/thrive:icon] to [u] bazowy koszt potrzebny to przeżycia[/u]. Każda część którą dodasz zwiększa ten koszt.\n"
+"\n"
+"Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
 
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -5260,6 +5388,13 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
+"Twój bilans [thrive:compound type=\"atp\"][/thrive:compound] jest negatywny.\n"
+"\n"
+"Podczas działania wszystkich procesów i poruszania się, twoja komórka wyczerpie swoje zasoby [thrive:compound type=\"atp\"][/thrive:compound] i umrze.\n"
+"\n"
+"Istnieje wiele sposobów regulacji produkcji [thrive:compound type=\"atp\"][/thrive:compound]. Możesz ją podnieść poprzez dodawanie organelli które produkują [thrive:compound type=\"atp\"][/thrive:compound] tak jak [b]Metabolosome[/b]. Niektóre [b]membrany[/b] także obniżą twój koszt osmoregulacji [thrive:icon]OsmoIcon[/thrive:icon].\n"
+"\n"
+"Alternatywnie, możesz usunąć niepotrzebne organelle."
 
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
@@ -5455,7 +5590,7 @@ msgid "UNLOCK_ALL_ORGANELLES"
 msgstr "Wiele Organelli"
 
 msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
-msgstr ""
+msgstr "Produkcja [thrive:compound type=\"atp\"][/thrive:compound] dotrze do {0}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
 msgstr ""
@@ -5506,6 +5641,10 @@ msgstr ""
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Kiedy w trybie połykania ([thrive:input]g_toggle_engulf[/thrive:input]) ten typ rzęs wywołuje wiry w wodzie które wsysają pobliskie obiekty. Przydatne przy łapaniu ofiar."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Domyślny nie-ulepszony stan"
@@ -5666,9 +5805,8 @@ msgstr "Koło w prawo"
 msgid "WHEEL_UP"
 msgstr "Koło w górę"
 
-#, fuzzy
 msgid "WIKI"
-msgstr "Nasza strona Wiki"
+msgstr "Wiki"
 
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
@@ -5700,27 +5838,29 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
-msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+msgstr "Brak modyfikacji."
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_PROCESSES"
-msgstr "Naciśnij [thrive:input]g_toggle_binding[/thrive:input] aby przełączyć tryb wiązania. W trybie wiązania możesz dołączać inne komórki twojego gatunku do swojej kolonii wpływając w nie. Aby opuścić kolonię naciśnij [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Brak procesów."
 
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
+"Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] by wyewoluować [b]Czynniki Wiążące[/b].\n"
+"\n"
+"Jeżeli warunki odblokowania organelli są włączone w ustawieniach, [i]wszystkie[/i] poniższe warunki muszą być spełnione [i] dla komórki gracza[/i]:\n"
+"\n"
+"[indent]—   Zawiera [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] przez [b]5[/b] generacji.[/indent]\n"
+"[indent]—   Ma bilans [thrive:compound type=\"atp\"][/thrive:compound] równy [b]+15[/b] lub większy.[/indent]"
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
-msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+msgstr "Brak Danych"
 
 msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_UPGRADES"
-msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "Brak efektów. Jeszcze nie zaimplementowane."
@@ -5746,16 +5886,14 @@ msgstr ""
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
-msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Brak efektów."
 
 msgid "WIKI_CHEMOPLAST_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr ""
@@ -5763,16 +5901,14 @@ msgstr ""
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Brak Danych"
 
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
-msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
 msgstr ""
@@ -5780,27 +5916,23 @@ msgstr ""
 msgid "WIKI_CHEMORECEPTOR_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
-msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+msgstr "Modyfikuj [b]Chemoreceptory[/b] by ustawić związek lub gatunek który ma być wykrywany. Można też ustawić promień wykrycia, kolor linii, a także minimalna ilość związku do wykrycia (jeśli szukane są związki)."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_PROCESSES"
-msgstr "Chemoreceptor umożliwia wykrywanie związków z oddali. Modyfikuj gdy umieścisz by wybrać typ związku oraz kolor prowadzącej do niego linii."
+msgstr "Brak procesów."
 
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
 msgstr "Brak wymagań"
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
-msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+msgstr "Brak Danych"
 
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
-msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
 msgstr "Brak specjalnych efektów."
@@ -5808,9 +5940,8 @@ msgstr "Brak specjalnych efektów."
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
-msgstr "Białka chemosyntezujące są małymi białkowymi strukturami, które umieją przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wodę w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie nazywającym się [b]chemosyntezą siarkową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się z koncentracją [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Jako iż białka chemosyntezujące są zawieszone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
 msgstr ""
@@ -5818,9 +5949,8 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "Brak wymagań."
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
-msgstr "Białka chemosyntezujące są małymi białkowymi strukturami, które umieją przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wodę w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie nazywającym się [b]chemosyntezą siarkową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się z koncentracją [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Jako iż białka chemosyntezujące są zawieszone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr "Brak Danych"
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr ""
@@ -5828,16 +5958,14 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Brak ulepszeń."
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
-msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wody w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Brak efektów."
 
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
-msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wody w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr ""
@@ -5845,9 +5973,8 @@ msgstr ""
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wody w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Brak Danych"
 
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr ""
@@ -5881,9 +6008,8 @@ msgstr ""
 msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
-msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+msgstr "Inna organella może zastąpić [b]Cytoplazmę[/b] bez dodatkowych kosztów (oprócz kosztu postawienia organelli)."
 
 msgid "WIKI_CYTOPLASM_INTRO"
 msgstr ""
@@ -5916,7 +6042,7 @@ msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, kt
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
-msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa ATP do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której wić jest umiejscowiona, na przykład wić umieszczona po lewej napędza komórkę w prawo."
+msgstr "[b]Wić[/b] to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa [thrive:compound type=\"atp\"][/thrive:compoundATP] do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której [b]Wić[/b] jest umiejscowiona, na przykład [b]Wić[/b] umieszczona po lewej napędza komórkę w prawo."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
@@ -5962,9 +6088,11 @@ msgstr ""
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
-msgstr "[/b]Lizosom[/b] jest organellą przymocowaną do błony komórkowej która zawiera hydrolityczne enzymy które mogą rozbijać wiele biomolekuł. [b]Lizosomy[/b] umożliwiają komórce trawienie materiałów przyjmowanych poprzez endocytozę oraz oczyszczanie odpadów komórki w procesie zwanym autofagią."
+msgstr ""
+"Zawiera enzymy trawienne. Może być zmodyfikowany by zmienić typ enzymu który zawiera. Każdy [b]Lizosom[/b] może korzystać z tylko jednego typu enzym. Enzymy przyspieszają trawienie i polepszają efektywność trawienia.\n"
+"\n"
+"[b]Lizosom[/b] jest organellą otoczoną błoną która zawiera enzymy hydrolityczne które potrafią rozkładać wiele związków biologicznych. [b]Lizosom[/b] daje komórce umiejętność trawienia materiałów pochłoniętych w procesie endocytozy, a także oczyszczają odpady komórki w procesie zwanym autofagią."
 
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
 msgstr ""
@@ -6178,13 +6306,11 @@ msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
 msgstr "Czynnik Wiążący"
 
-#, fuzzy
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
-msgstr "Świecąca Wakuola"
+msgstr "Wakuola Bioluminescencyjna"
 
 msgid "WIKI_PAGE_CHEMOPLAST"
 msgstr "Chemoplast"
@@ -6192,9 +6318,8 @@ msgstr "Chemoplast"
 msgid "WIKI_PAGE_CHEMORECEPTOR"
 msgstr "Chemoreceptor"
 
-#, fuzzy
 msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
-msgstr "Białka Chemosyntezujące"
+msgstr "Proteiny Chemosyntezujące"
 
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Chloroplast"
@@ -6202,23 +6327,18 @@ msgstr "Chloroplast"
 msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
-msgstr "Cytozol"
+msgstr "Cytoplazma"
 
-#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Wić"
 
-#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lizosom"
 
-#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomy"
 
-#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrium"
 
@@ -6226,21 +6346,17 @@ msgstr "Mitochondrium"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Miofibryle"
 
-#, fuzzy
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
 msgstr "Plastyd Wiążący Azot"
 
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
-msgstr "Nitrogenaza"
+msgstr "Azotaza"
 
-#, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
-msgstr "Wymaga Jądra"
+msgstr "Jądro Komórkowe"
 
-#, fuzzy
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
-msgstr "Dodaj organellę"
+msgstr "Organelle"
 
 #, fuzzy
 msgid "WIKI_PAGE_OXYTOXISOME"
@@ -6249,15 +6365,12 @@ msgstr "Oxytoksysoma"
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplazma"
 
-#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
-msgstr "Rusticyjanina"
+msgstr "Rustycyjanina"
 
-#, fuzzy
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "Czynnik Komunikacyjny"
 
@@ -6415,9 +6528,11 @@ msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, ś
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
-msgstr "Zmienia [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"mucilage\"][/thrive:compound]. Naciśnij [thrive:input]g_secrete_slime[/thrive:input] by wypuścić przechowywany [thrive:compound type=\"mucilage\"][/thrive:compound], zwiększając prędkość komórki jak i spowalniając drapieżniki."
+msgstr ""
+"[b]Synteza Śluzu[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"mucilage\"][/thrive:compound]\n"
+"\n"
+"Wytwarza [thrive:compound type=\"mucilage\"][/thrive:compound] do wydalenia."
 
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr ""
@@ -6435,17 +6550,21 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
-msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"Wyciąga energię w formie [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów [thrive:compound type=\"temperature\"][/thrive:compound] w środowisku. Eukariotyczny variant mniej wydajnej [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosyntazy[/url][/color][/b].\n"
+"\n"
+"Organella spekulacyjna nie wykryta w prawdziwym życiu. Niedostępne w grach z włączonym trybem ŻTJZ (Życie Takie Jakie Znamy)."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
-msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"[b]Termosynteza[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Generuje energie z [thrive:compound type=\"temperature\"][/thrive:compound] w środowisku. Bardziej wydajna wersja [b]Termoyntezy Bakteryjnej[/b] która występuje w [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazie[/url][/color][/b]."
 
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
@@ -6454,9 +6573,11 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
-msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"Ponieważ [b]Termosynteza[/b] nie wymaga innych zasobów prócz [thrive:compound type=\"temperature\"][/thrive:compound], w praktyce jest darmową energią. Dodatkowo [b]Termoplast[/b] jest bardziej wydajny od [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazy[/url][/color][/b], co sprawia, że jest on najłatwiejszą metodą generacji energii w grze, pod warunkiem, że będziesz chciał zostać w gorącej strefie jak kominy hydrotermalne.\n"
+"\n"
+"Jeśli warunki odblokowania organelli są włączone, warunek rozmnożenia się wiele razy z [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazą[/url][/color][/b] oznacza, że gracz który wyewoluował [b]Termoplasty[/b] pewnie już jest bardzo wyspecjalizowany w [b]Termosyntezie[/b] kiedy zdobędzie [b]termoplasty[/b]."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_UPGRADES"

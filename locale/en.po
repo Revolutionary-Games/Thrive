@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-27 17:05+0200\n"
-"PO-Revision-Date: 2024-05-27 17:10+0200\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-11 06:06+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -321,6 +321,18 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr "Calculate as if it was day"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr "When checked the numbers calculated in this panel calculate as if it is always day"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr "Include movement cost"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "When checked calculates the balance and other numbers in this panel assuming the cell is constantly moving"
 
 msgid "BASE_MOBILITY"
 msgstr "Base Mobility"
@@ -756,6 +768,11 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compound Balances"
 
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr ""
+"This section shows the total balance (production - consumption) per each compound.\n"
+"For example to make a plant cell the glucose balance needs to be quite positive."
+
 msgid "COMPOUND_CLOUDS"
 msgstr "Compound clouds"
 
@@ -770,6 +787,25 @@ msgstr "{0} concentrations have decreased by {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumption"
+
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "(not enough to last the night which is {0} s long)"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr "Only {1} [thrive:compound type=\"{0}\"][/thrive:compound] can be generated during the day but to survive the night {2} is required."
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "There isn't enough storage space for [thrive:compound type=\"{0}\"][/thrive:compound] as night lasts {2} s but storage can only hold {1} s of compounds."
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Storage Capacities"
+
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr ""
+"This section shows how long the cell takes to use up each compound type when starting from full storage.\n"
+"These numbers are always calculated as if it was night and can be used to check if the cell has enough storage\n"
+"in order to survive the entire night. Turning off movement cost with the checkbox gives minimum numbers to survive\n"
+"with when staying still the entire night to conserve energy."
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Compound to Find:"
@@ -1814,6 +1850,15 @@ msgstr "Published at {0}"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "This item was truncated due to being too long, please read the original for all content. {0}"
 
+msgid "FERROPLAST"
+msgstr "Ferroplast"
+
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "A metallic powerhouse. The ferroplast is a double membrane structure filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It is able to oxidize [thrive:compound type=\"iron\"][/thrive:compound] from one chemical state to another at a much higher efficiency than can be achieved with rusticyanin. This process, called [b]iron respiration[/b], releases energy which the cell can then harvest. It does, however, require [thrive:compound type=\"carbondioxide\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound] to function, and lower levels of either of these in the environment will slow down the rate of its [thrive:compound type=\"atp\"][/thrive:compound] production."
+
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Turns [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filter items by category:"
 
@@ -2044,12 +2089,6 @@ msgstr "UI Tab Navigation"
 
 msgid "GUI_VOLUME"
 msgstr "GUI volume"
-
-msgid "HARDCORE_MODE"
-msgstr "Hardcore Mode"
-
-msgid "HARDCORE_MODE_EXPLANATION"
-msgstr "Hardcore Mode changes the way game saves: it removes ability to make manual or quick saves. Instead it will regularly auto-save without the ability to come back once it does so. It will auto save into a save name specified below."
 
 msgid "HEALTH"
 msgstr "Health"
@@ -2928,6 +2967,8 @@ msgstr ""
 "\n"
 "Chemoplast: Makes [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
+"Ferroplast: Converts [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound] much more efficiently than rusticyanin\n"
+"\n"
 "Nitrogen Fixing Plastid: Makes [thrive:compound type=\"ammonia\"][/thrive:compound] from [thrive:compound type=\"atp\"][/thrive:compound] and atmospheric Nitrogen and Oxygen\n"
 "\n"
 "Vacuole: Stores 8 collected compounds\n"
@@ -3538,6 +3579,12 @@ msgstr "Current cell size too small to engulf target"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Not enough space in ingested matter storage to engulf target"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr "ATP production inhibited by toxin"
+
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Base movement speed decreased due to toxin"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editor is now ready to be entered"
 
@@ -3739,7 +3786,7 @@ msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Organelle unlocks enabled"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
-msgstr "(Some organelles will have unlock conditions needed to place them)"
+msgstr "(some organelles will have unlock conditions needed to place them)"
 
 msgid "ORGANISM_STATISTICS"
 msgstr "Organism Statistics"
@@ -3786,7 +3833,7 @@ msgid "OXYTOXISOME"
 msgstr "Oxytoxisome"
 
 msgid "OXYTOXISOME_DESC"
-msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have reduced damage."
@@ -4704,6 +4751,18 @@ msgstr "Start Research"
 msgid "STATISTICS"
 msgstr "Statistics"
 
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP Production Penalty"
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Base Movement Reduction"
+
+msgid "STAT_DAMAGE"
+msgstr "Damage"
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr "Damage Scaling Per Oxygen-using Organelle"
+
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam client library initialization failed"
 
@@ -4771,6 +4830,9 @@ msgstr "Storage"
 
 msgid "STORAGE_COLON"
 msgstr "Storage:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr "seconds of"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
@@ -5121,8 +5183,53 @@ msgstr "Gathered Energy:"
 msgid "TOTAL_SAVES"
 msgstr "Total saves:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr "Channel Inhibitor"
+
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Inhibits ATP production of affected cell, which effectively prevents them from moving fast and can cause cells with not a lot of excess ATP production to die."
+
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Cytotoxin"
+
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "A simple toxin that is reasonably effective against cells without specialized membranes."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr "Fire Rate and Toxicity:"
+
+msgid "TOXIN_MACROLIDE"
+msgstr "Macrolide"
+
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Toxin that massively reduces base movement speed making simple cells basically unable to move."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr "Cyanide"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Cyanide targets oxygen metabolism processes and is very effective against cells with oxygen-based metabolism."
+
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Toxin based on oxygen causing cellular damage. Less effective against species that utilize oxygen for metabolism."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr "Fast-firing"
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr "Toxic"
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Toxin Effects on Target"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Toxin Resistance"
+
+msgid "TOXIN_TYPE_COLON"
+msgstr "Toxin Type:"
+
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Different toxin types have various effects that are more effective against certain types of cells. For cells that have multiple different toxin types they are used in sequence rather than firing all at once."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5130,7 +5237,7 @@ msgstr ""
 "Vacuole"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of [thrive:compound type=\"oxytoxy\"][/thrive:compound]. More toxin vacuoles will increase the rate at which toxins can be released."
+msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of [thrive:compound type=\"oxytoxy\"][/thrive:compound]. More toxin vacuoles will increase the rate at which toxins can be released. Can be modified to switch the generated toxin type for other effects."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
@@ -5478,6 +5585,9 @@ msgstr "Pulling Cilia"
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "When in engulf mode ([thrive:input]g_toggle_engulf[/thrive:input]) this type of cilia will cause vortices in the water that pull in nearby objects. Useful for capturing prey."
+
+msgid "UPGRADE_COST"
+msgstr "{0} ({1} MP)"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "The default non-upgraded state"
@@ -6966,9 +7076,6 @@ msgstr "Zoom out"
 
 #~ msgid "STUFF_AT"
 #~ msgstr "Stuff at {0:F1}, {1:F1}:"
-
-#~ msgid "NOTICE_DAMAGED_BY_ENVIRONMENTAL_TOXIN"
-#~ msgstr "Damaged by environmental toxin"
 
 #~ msgid "PREDATORY_PILUS"
 #~ msgstr "Predatory Pilus"

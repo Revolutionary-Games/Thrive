@@ -91,7 +91,8 @@
     "ConsumptionColour": "#f04681",
     "IconPath": "res://assets/textures/gui/bevel/parts/RusticyaninIcon.png",
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 4
+    "EditorButtonOrder": 4,
+    "EndosymbiosisUnlocks": "ferroplast"
   },
   "nitrogenase": {
     "MPCost": 55,
@@ -244,9 +245,47 @@
         "EngulfedMicrobesAbove": {
           "Required": 5
         }
+      },
+      {
+        "PlayerDeathsAbove": {
+          "Required": 3
+        }
       }
     ],
     "EditorButtonGroup": "Protein",
+    "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn",
+    "UpgraderSkipDefaultControls": true,
+    "AvailableUpgrades": {
+      "none": {
+        "IsDefault": true,
+        "Name": "OXYTOXY_NT",
+        "Description": "TOXIN_OXYTOXY_DESCRIPTION"
+      },
+      "macrolide": {
+        "Name": "TOXIN_MACROLIDE",
+        "Description": "TOXIN_MACROLIDE_DESCRIPTION",
+        "MPCost": 20,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "channel": {
+        "Name": "TOXIN_CHANNEL_INHIBITOR",
+        "Description": "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION",
+        "MPCost": 30,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "oxygen_inhibitor": {
+        "Name": "TOXIN_OXYGEN_METABOLISM_INHIBITOR",
+        "Description": "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION",
+        "MPCost": 25,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "cytotoxin": {
+        "Name": "TOXIN_CYTOTOXIN",
+        "Description": "TOXIN_CYTOTOXIN_DESCRIPTION",
+        "MPCost": 10,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      }
+    },
     "EditorButtonOrder": 6,
     "EndosymbiosisUnlocks": "oxytoxy"
   },
@@ -363,7 +402,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 7
+    "EditorButtonOrder": 9
   },
   "thermosynthase": {
     "MPCost": 50,
@@ -442,7 +481,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 6
+    "EditorButtonOrder": 8
   },
   "flagellum": {
     "MPCost": 55,
@@ -524,7 +563,7 @@
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 8
+    "EditorButtonOrder": 10
   },
   "mitochondrion": {
     "MPCost": 45,
@@ -568,6 +607,7 @@
         "ReproduceWithOrganelle": {
           "Organelle": "metabolosome",
           "Generations": 7,
+          "MinimumCount": 5,
           "InARow": true
         }
       }
@@ -617,13 +657,47 @@
         },
         "ReproduceWithOrganelle": {
           "Organelle": "oxytoxyProteins",
-          "Generations": 5
+          "Generations": 5,
+          "MinimumCount": 3
         }
       }
     ],
     "RequiresNucleus": true,
+    "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn",
+    "UpgraderSkipDefaultControls": true,
+    "AvailableUpgrades": {
+      "none": {
+        "IsDefault": true,
+        "Name": "OXYTOXY_NT",
+        "Description": "TOXIN_OXYTOXY_DESCRIPTION"
+      },
+      "macrolide": {
+        "Name": "TOXIN_MACROLIDE",
+        "Description": "TOXIN_MACROLIDE_DESCRIPTION",
+        "MPCost": 20,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "channel": {
+        "Name": "TOXIN_CHANNEL_INHIBITOR",
+        "Description": "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION",
+        "MPCost": 30,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "oxygen_inhibitor": {
+        "Name": "TOXIN_OXYGEN_METABOLISM_INHIBITOR",
+        "Description": "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION",
+        "MPCost": 25,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "cytotoxin": {
+        "Name": "TOXIN_CYTOTOXIN",
+        "Description": "TOXIN_CYTOTOXIN_DESCRIPTION",
+        "MPCost": 10,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      }
+    },
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 9
+    "EditorButtonOrder": 11
   },
   "bindingAgent": {
     "MPCost": 55,
@@ -916,7 +990,7 @@
     "RequiresNucleus": true,
     "Unique": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 10
+    "EditorButtonOrder": 12
   },
   "bioluminescentVacuole": {
     "MPCost": 40,
@@ -938,7 +1012,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/BioluminescentIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 11,
+    "EditorButtonOrder": 13,
     "Unimplemented": true
   },
   "thermoplast": {
@@ -987,7 +1061,7 @@
     ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 5,
+    "EditorButtonOrder": 7,
     "LAWK": false
   },
   "cilia": {
@@ -1082,6 +1156,56 @@
       }
     ],
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn",
+    "RequiresNucleus": true,
+    "EditorButtonGroup": "Organelle",
+    "EditorButtonOrder": 6
+  },
+  "ferroplast": {
+    "MPCost": 45,
+    "InitialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "Hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      }
+    ],
+    "Processes": {
+      "ferrosynthesis": 1
+    },
+    "Components": {
+      "Storage": {
+        "Capacity": 1
+      }
+    },
+    "Enzymes": {
+      "rusticyanin": 1
+    },
+    "ProkaryoteChance": 0,
+    "ChanceToCreate": 1,
+    "Density": 1100,
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Ferroplast.tscn"
+    },
+    "Name": "FERROPLAST",
+    "ProductionColour": "#3d9eff",
+    "ConsumptionColour": "#f04681",
+    "IconPath": "res://assets/textures/gui/bevel/parts/FerroplastIcon.png",
+    "UnlockConditions": [
+      {
+        "ReproduceWithOrganelle": {
+          "Organelle": "rusticyanin",
+          "Generations": 7,
+          "InARow": true
+        }
+      }
+    ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 5
