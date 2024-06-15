@@ -1,5 +1,6 @@
 ﻿namespace Systems;
 
+using System;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -16,6 +17,8 @@ using DefaultEcs.Threading;
 [RuntimeCost(7)]
 public sealed class MucocystSystem : AEntitySetSystem<float>
 {
+    private Compound mucilageCompound = SimulationParameters.Instance.GetCompound("mucilage");
+
     public MucocystSystem(World world, IParallelRunner runner) :
         base(world, runner)
     {
@@ -29,6 +32,12 @@ public sealed class MucocystSystem : AEntitySetSystem<float>
         if (control.State == MicrobeState.MucocystShield)
         {
             entity.Get<Health>().Invulnerable = true;
+            entity.Get<CompoundStorage>().Compounds.
+                Compounds[mucilageCompound] -= Math.Min(
+                    0.025f, entity.Get<Components.CompoundStorage>().Compounds.Compounds[mucilageCompound]);
+
+            if (entity.Get<CompoundStorage>().Compounds.Compounds[mucilageCompound] <= 0)
+                control.State = MicrobeState.Normal;
         }
         else
         {
