@@ -303,7 +303,7 @@ public class MembraneShapeGenerator
             indices[index] = index;
             indices[index + 1] = index + 1;
 
-            vertices[index] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
+            vertices[index] = new Vector3(0.5f, height / 2, 0.5f);
             vertices[index + 1] = new Vector3(extrudedVertex.X, height / 2, extrudedVertex.Y);
 
             // UVs are actually used like a distance calculation here instead of actual uvs
