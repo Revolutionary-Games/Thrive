@@ -20,14 +20,6 @@ public partial class Membrane : MeshInstance3D
     private readonly StringName wigglynessParameterName = new("wigglyNess");
     private readonly StringName movementWigglynessParameterName = new("movementWigglyNess");
     private readonly StringName fadeParameterName = new("fade");
-    private EffectMeshType lastUsedEffectMesh;
-
-    public enum EffectMeshType
-{
-        EngulfingEffectMesh,
-        MucocystEffectMesh,
-        NoEffectMesh,
-}
 
     [Export]
     private MeshInstance3D effectAnimationMeshInstance = null!;
@@ -216,14 +208,6 @@ public partial class Membrane : MeshInstance3D
         }
 
         return crosses;
-    }
-
-    public void ScaleEffectMesh(Vector2 sourceVertex, double delta)
-    {
-        var center = new Vector2(0.5f, 0.5f);
-
-        Vector2 extrudedVertex = sourceVertex * 2.0f - center *
-            Constants.MEMBRANE_ENGULF_ANIMATION_DISTANCE;
     }
 
     public void HandleEngulfAnimation(bool enable, double delta)
