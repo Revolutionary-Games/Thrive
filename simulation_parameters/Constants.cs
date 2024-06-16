@@ -438,7 +438,7 @@ public static class Constants
     /// <summary>
     ///   How many time cell gets slowed down with mucocyst (slime jet upgrade) on
     /// </summary>
-    public const float MUCOCYST_SPEED_DIVISOR = 60f;
+    public const float MUCOCYST_SPEED_DIVISOR = 60;
 
     public const float MUCOCYST_SPEED_MINIMUM_MUCILAGE = 0.2f;
 
