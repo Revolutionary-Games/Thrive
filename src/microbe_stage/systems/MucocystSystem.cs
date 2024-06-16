@@ -34,7 +34,8 @@ public sealed class MucocystSystem : AEntitySetSystem<float>
             entity.Get<Health>().Invulnerable = true;
             entity.Get<CompoundStorage>().Compounds.
                 Compounds[mucilageCompound] -= Math.Min(
-                    0.025f, entity.Get<Components.CompoundStorage>().Compounds.Compounds[mucilageCompound]);
+                    Constants.MUCOCYST_MUCILAGE_DRAIN * delta,
+                    entity.Get<CompoundStorage>().Compounds.Compounds[mucilageCompound]);
 
             if (entity.Get<CompoundStorage>().Compounds.Compounds[mucilageCompound] <= 0)
                 control.State = MicrobeState.Normal;
