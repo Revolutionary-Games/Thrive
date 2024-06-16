@@ -26,7 +26,7 @@ public sealed class MucocystSystem : AEntitySetSystem<float>
 
     protected override void Update(float delta, in Entity entity)
     {
-        // Handles invurnebility from mucocyst. Other buffs/debuffs from mucocyst are in related systems
+        // Handles invulnerability from mucocyst. Other buffs/debuffs from mucocyst are in related systems
         ref var control = ref entity.Get<MicrobeControl>();
 
         if (control.State == MicrobeState.MucocystShield)
