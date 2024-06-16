@@ -14,15 +14,23 @@ public partial class Membrane : MeshInstance3D
     public ShaderMaterial? MembraneShaderMaterial;
 
     [Export]
-    public ShaderMaterial? EngulfShaderMaterial;
+    public ShaderMaterial? EffectShaderMaterial;
 
     private readonly StringName healthParameterName = new("healthFraction");
     private readonly StringName wigglynessParameterName = new("wigglyNess");
     private readonly StringName movementWigglynessParameterName = new("movementWigglyNess");
     private readonly StringName fadeParameterName = new("fade");
+    private EffectMeshType lastUsedEffectMesh;
+
+    public enum EffectMeshType
+{
+        EngulfingEffectMesh,
+        MucocystEffectMesh,
+        NoEffectMesh,
+}
 
     [Export]
-    private MeshInstance3D engulfAnimationMeshInstance = null!;
+    private MeshInstance3D effectAnimationMeshInstance = null!;
 #pragma warning disable CA2213
     private Texture2D? albedoTexture;
 
@@ -162,8 +170,8 @@ public partial class Membrane : MeshInstance3D
         if (MembraneShaderMaterial == null)
             throw new Exception("MembraneShaderMaterial on Membrane is not set");
 
-        if (EngulfShaderMaterial == null)
-            throw new Exception("EngulfShaderMaterial on Membrane is not set");
+        if (EffectShaderMaterial == null)
+            throw new Exception("EffectShaderMaterial on Membrane is not set");
 
         SetMesh();
     }
@@ -210,6 +218,14 @@ public partial class Membrane : MeshInstance3D
         return crosses;
     }
 
+    public void ScaleEffectMesh(Vector2 sourceVertex, double delta)
+    {
+        var center = new Vector2(0.5f, 0.5f);
+
+        Vector2 extrudedVertex = sourceVertex * 2.0f - center *
+            Constants.MEMBRANE_ENGULF_ANIMATION_DISTANCE;
+    }
+
     public void HandleEngulfAnimation(bool enable, double delta)
     {
         if (enable && engulfFade < 1)
@@ -225,14 +241,14 @@ public partial class Membrane : MeshInstance3D
 
         if (engulfFade != 0)
         {
-            EngulfShaderMaterial?.SetShaderParameter(fadeParameterName, (float)engulfFade);
-            engulfAnimationMeshInstance.Visible = true;
+            EffectShaderMaterial?.SetShaderParameter(fadeParameterName, (float)engulfFade);
+            effectAnimationMeshInstance.Visible = true;
         }
         else
         {
             // Disabling visibility when fade is 0 stops the shader from
             // being run when it can't be seen anyway.
-            engulfAnimationMeshInstance.Visible = false;
+            effectAnimationMeshInstance.Visible = false;
         }
     }
 
@@ -292,8 +308,8 @@ public partial class Membrane : MeshInstance3D
         Mesh = membraneData.GeneratedMesh;
         MaterialOverride = MembraneShaderMaterial;
 
-        engulfAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
-        engulfAnimationMeshInstance.MaterialOverride = EngulfShaderMaterial;
+        effectAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
+        effectAnimationMeshInstance.MaterialOverride = EffectShaderMaterial;
     }
 
     private void ApplyAllMaterialParameters()
@@ -306,7 +322,7 @@ public partial class Membrane : MeshInstance3D
 
     private void ApplyWiggly()
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null)
+        if (MembraneShaderMaterial == null || EffectShaderMaterial == null)
             return;
 
         float wigglyNessToApply =
@@ -315,12 +331,12 @@ public partial class Membrane : MeshInstance3D
         float finalWiggly = Mathf.Min(WigglyNess, wigglyNessToApply);
 
         MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
-        EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
+        EffectShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
     }
 
     private void ApplyMovementWiggly()
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null)
+        if (MembraneShaderMaterial == null || EffectShaderMaterial == null)
             return;
 
         float wigglyNessToApply =
@@ -329,7 +345,7 @@ public partial class Membrane : MeshInstance3D
         float finalWiggly = Mathf.Min(MovementWigglyNess, wigglyNessToApply);
 
         MembraneShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
-        EngulfShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
+        EffectShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
     }
 
     private void ApplyHealth()
