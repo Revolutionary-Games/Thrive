@@ -53,4 +53,3 @@ public class MutationLibrary
         return PermittedOrganelleDefinitions.Values;
     }
 }
-

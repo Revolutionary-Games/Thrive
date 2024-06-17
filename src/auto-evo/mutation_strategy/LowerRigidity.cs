@@ -20,4 +20,3 @@ public class LowerRigidity : IMutationStrategy<MicrobeSpecies>
         return new List<MicrobeSpecies> { newSpecies };
     }
 }
-

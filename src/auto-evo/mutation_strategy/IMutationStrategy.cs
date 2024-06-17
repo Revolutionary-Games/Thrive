@@ -6,4 +6,3 @@ public interface IMutationStrategy<T>
 {
     public abstract List<T> MutationsOf(T baseSpecies, MutationLibrary partList);
 }
-

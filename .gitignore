@@ -30,6 +30,7 @@ export.cfg
 /JSVendor
 /Videos
 
+# Vs stuff
 .svn
 .vs
 .vscode
@@ -38,7 +39,6 @@ export.cfg
 *.orig
 
 # Website directory
-
 website/*
 index.html
 
@@ -103,6 +103,7 @@ $tf*/
 build-win/
 build*/
 /build
+
 # CMake cache
 CMakeCache.txt
 CMakeFiles
@@ -116,13 +117,11 @@ nbproject/
 # Vim swap files
 *.swp
 
-
 # Version file
-
 !thriveversion.ver
+
 # Temporary/backup files
 *~
-
 
 # Cscope files
 /cscope.files
@@ -155,3 +154,6 @@ output.png
 *.DS_Store
 
 *.mo
+
+# Dev tools
+.direnv/
