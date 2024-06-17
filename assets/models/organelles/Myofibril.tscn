@@ -1,19 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://bfednm4bjtfx8"]
 
 [ext_resource type="ArrayMesh" uid="uid://cmrb4padj8164" path="res://assets/models/organelles/Myofibiril.mesh" id="1"]
+[ext_resource type="Shader" path="res://shaders/OrganelleOpaque.gdshader" id="1_1xrf0"]
 [ext_resource type="Texture2D" uid="uid://cyvkcpdtij2q" path="res://assets/textures/Myofibril.png" id="2"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="3"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
 
-[sub_resource type="ShaderMaterial" id="1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7kj5k"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("3")
-shader_parameter/dissolveValue = 0.0
-shader_parameter/fresnelValue = 1.0
-shader_parameter/fresnelActive = false
-shader_parameter/outlineWidth = 0.05
-shader_parameter/growColor = Color(0.694118, 0.364706, 0.313726, 1)
+shader = ExtResource("1_1xrf0")
+shader_parameter/dissolveValue = null
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = Color(0.853081, 0.334244, 0, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 shader_parameter/texture = ExtResource("2")
@@ -21,5 +19,5 @@ shader_parameter/dissolveTexture = ExtResource("4")
 
 [node name="Myofibril" type="MeshInstance3D"]
 transform = Transform3D(0.24, 0, 0, 0, 0.24, 0, 0, 0, 0.24, 0, 0, 0)
-material_override = SubResource("1")
+material_override = SubResource("ShaderMaterial_7kj5k")
 mesh = ExtResource("1")

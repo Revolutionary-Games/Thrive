@@ -37,7 +37,13 @@ public interface IEditorComponent
 
     public void OnInvalidAction();
 
-    public void OnValidAction();
+    /// <summary>
+    ///   Triggered when a valid action occurs. Can be used to implement sounds for example or other GUI feedback.
+    /// </summary>
+    /// <param name="actions">
+    ///   The valid actions, can be used to filter when something special should happen based on the action type
+    /// </param>
+    public void OnValidAction(IEnumerable<CombinableActionData> actions);
 
     /// <summary>
     ///   Notify this component about the freebuild status. Many components don't need to react to this, they can

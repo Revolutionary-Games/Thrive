@@ -21,6 +21,8 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
+[ReadsComponent(typeof(OrganelleContainer))]
+[ReadsComponent(typeof(MicrobeEventCallbacks))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(0.5f, false)]
 public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
@@ -194,8 +196,72 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
 
             if (damageTarget.Has<CellProperties>())
             {
+                var toxinType = damageSource.ToxinProperties.ToxinSubType;
+
+                // These are checked within here to allow special effect toxins to try to damage non-cell things but
+                // ultimately fail to apply their effect
+
+                if (toxinType == ToxinType.Macrolide)
+                {
+                    // Speed debuff toxin
+                    if (!damageTarget.Has<MicrobeTemporaryEffects>())
+                    {
+                        // Return false to indicate an error with a microbe that is missing the effects
+                        return false;
+                    }
+
+                    ref var temporaryEffects = ref damageTarget.Get<MicrobeTemporaryEffects>();
+
+                    // TODO: should there be a cooldown for when this can trigger again?
+                    if (temporaryEffects.SpeedDebuffDuration <= 0)
+                    {
+                        damageTarget.SendNoticeIfPossible(() =>
+                            new SimpleHUDMessage(Localization.Translate("NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN")));
+                    }
+
+                    temporaryEffects.SpeedDebuffDuration =
+                        Constants.MACROLIDE_DEBUFF_DURATION * damageSource.ToxinAmount;
+                    temporaryEffects.StateApplied = false;
+
+                    return true;
+                }
+
+                if (toxinType == ToxinType.ChannelInhibitor)
+                {
+                    // ATP debuff toxin
+                    if (!damageTarget.Has<MicrobeTemporaryEffects>())
+                        return false;
+
+                    ref var temporaryEffects = ref damageTarget.Get<MicrobeTemporaryEffects>();
+
+                    // TODO: should there be a cooldown for when this can trigger again?
+                    if (temporaryEffects.ATPDebuffDuration <= 0)
+                    {
+                        damageTarget.SendNoticeIfPossible(() =>
+                            new SimpleHUDMessage(Localization.Translate("NOTICE_HIT_BY_ATP_TOXIN"),
+                                DisplayDuration.Long));
+                    }
+
+                    temporaryEffects.ATPDebuffDuration =
+                        Constants.CHANNEL_INHIBITOR_DEBUFF_DURATION * damageSource.ToxinAmount;
+                    temporaryEffects.StateApplied = false;
+
+                    return true;
+                }
+
+                if (damageSource.ToxinProperties.HasSpecialEffect)
+                    GD.PrintErr("Applying a special agent as just plain damage, this is likely wrong");
+
+                float modifier = 1;
+
+                if (damageTarget.Has<OrganelleContainer>())
+                {
+                    modifier = CalculateToxinOrganelleDamageMultiplier(ref damageTarget.Get<OrganelleContainer>(),
+                        damageSource.ToxinProperties);
+                }
+
                 damageSource.ToxinProperties.DealDamage(ref health, ref damageTarget.Get<CellProperties>(),
-                    damageSource.ToxinAmount);
+                    damageSource.ToxinAmount * modifier);
             }
             else
             {
@@ -211,5 +277,32 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
             // Destroy this toxin to avoid recurring error printing spam
             return true;
         }
+    }
+
+    private static float CalculateToxinOrganelleDamageMultiplier(ref OrganelleContainer organelleContainer,
+        AgentProperties toxinProperties)
+    {
+        var oxygenParts = organelleContainer.OxygenUsingOrganelles;
+
+        // For now all effects are based on oxygen use so this method can just exit if there aren't any of those
+        if (oxygenParts == 0)
+            return 1;
+
+        // Oxygen targeting toxin has increased damage based on the number of oxygen using parts
+        if (toxinProperties.ToxinSubType == ToxinType.OxygenMetabolismInhibitor)
+        {
+            return 1 + Math.Min(oxygenParts * Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE,
+                Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX);
+        }
+
+        // Oxytoxy is less effective against targets with oxygen using organelles to model how those cells are
+        // naturally adapted to avoid damage from oxygen
+        if (toxinProperties.ToxinSubType == ToxinType.Oxytoxy)
+        {
+            return 1 - Math.Min(oxygenParts * Constants.OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE,
+                Constants.OXYTOXY_DAMAGE_DEBUFF_MAX);
+        }
+
+        return 1;
     }
 }

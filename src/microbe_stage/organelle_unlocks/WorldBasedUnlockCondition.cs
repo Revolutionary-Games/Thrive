@@ -133,8 +133,8 @@ public class PatchCompound : WorldBasedUnlockCondition
         if (data is not WorldAndPlayerDataSource worldArgs)
             return false;
 
-        var current = worldArgs.CurrentPatch.GetCompoundAmount(Compound!,
-            CompoundAmountType.Biome);
+        // TODO: is it correct that this uses display adjusted values?
+        var current = worldArgs.CurrentPatch.GetCompoundAmountForDisplay(Compound!, CompoundAmountType.Biome);
 
         var minSatisfied = !Min.HasValue || current >= Min;
         var maxSatisfied = !Max.HasValue || current <= Max;

@@ -92,7 +92,7 @@ public interface IEditor : ISaveLoadedTracked
 
     public void OnInvalidAction();
 
-    public void OnValidAction();
+    public void OnValidAction(IEnumerable<CombinableActionData> actions);
 
     /// <summary>
     ///   Request from the user to exit the editor anyway

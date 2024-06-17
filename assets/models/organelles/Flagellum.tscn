@@ -1,17 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1cn5qg3v8fg0"]
 
 [ext_resource type="PackedScene" uid="uid://dk3i4rrc0gjjq" path="res://assets/models/organelles/Flagellum.glb" id="1"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2_t6fmv"]
+[ext_resource type="Shader" path="res://shaders/OrganelleOpaque.gdshader" id="2_laoej"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_43ujs"]
 [ext_resource type="Texture2D" uid="uid://dbhe5ecjgredi" path="res://assets/textures/flagellum.png" id="4_w6y0d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ff6tk"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("2_t6fmv")
+shader = ExtResource("2_laoej")
 shader_parameter/dissolveValue = 0.0
-shader_parameter/fresnelValue = 1.0
-shader_parameter/fresnelActive = false
 shader_parameter/outlineWidth = null
 shader_parameter/growColor = null
 shader_parameter/tint = Color(1, 1, 1, 1)

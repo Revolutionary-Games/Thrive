@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
-"PO-Revision-Date: 2024-03-14 12:20+0000\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -327,6 +327,19 @@ msgstr "\\ Barra rovesciata [Backslash]"
 
 msgid "BACKSPACE"
 msgstr "Cancella [Backspace]"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Apri la visualizzazione avanzata delle preimpostazioni"
 
 msgid "BASE_MOBILITY"
 msgstr "Mobilità di base"
@@ -740,8 +753,20 @@ msgstr "Esci dal gioco"
 msgid "COMPILED_AT_COLON"
 msgstr "Composti:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Composti:"
+
 msgid "COMPOUNDS"
 msgstr "Composti"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Composto da trovare:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Composto da trovare:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostra/nascondi i composti"
@@ -749,8 +774,24 @@ msgstr "Mostra/nascondi i composti"
 msgid "COMPOUNDS_COLON"
 msgstr "Composti:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Mostra/nascondi i composti"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Mostra/nascondi i composti"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvole di composti"
@@ -766,6 +807,25 @@ msgstr "La concentrazione di {0} è diminuita del {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consumo di {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Bilancio dei composti"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Consumo di {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Bilancio dei composti"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composto da trovare:"
@@ -1157,8 +1217,9 @@ msgstr "(segreti che possono apparire casualmente nel gioco)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "(comincia ogni generazione vicino a una nuvola di glucosio)"
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1567,6 +1628,67 @@ msgstr "Editor istantaneo"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Abilita gli effetti di luce della GUI"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Organuli multipli"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Slega tutte"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Il valore usato per generare il mondo; deve essere un numero intero positivo"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"I microbi aggressivi inseguono le prede per grandi distanze\n"
+"e sono più propensi a combattere quando aggrediti.\n"
+"I microbi pacifici, invece, ignorano i soggetti lontani\n"
+"e sono meno inclini a sparare tossine ai propri predatori."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Organuli non connessi"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"I microbi focalizzati inseguono le prede e i frammenti di cibo per lunghe distanze\n"
+"e potrebbero essere più ambiziosi per questi ultimi.\n"
+"I microbi reattivi cambiano più facilmente bersaglio."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Trasforma l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Inoltre, trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Apri l'editor e modifica la tua specie"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Il titolo è mancante"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1675,6 +1797,10 @@ msgstr "Inserisci ID esistente"
 
 msgid "EXIT"
 msgstr "Esci"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Vai al prossimo pannello dell'editor"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -1791,6 +1917,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplasto"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Il termoplasto è una struttura a doppia membrana. Si tratta di un organismo procariote, vivente all'interno di un eucariote. Contiene pigmenti termosensibili, impilati insieme in sacchetti membranosi, in grado di sfruttare l'energia delle differenze di calore vicine per produrre [thrive:compound type=\"atp\"][/thrive:compound] a partire dall'acqua. Questo processo si chiama [b]termosintesi[/b]. Il tasso aumenta con la temperatura."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Produce [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtra gli oggetti per categoria:"
@@ -2700,6 +2838,10 @@ msgstr "Esiguo"
 msgid "LINE_COLOUR"
 msgstr "Colore linea:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Il titolo è mancante"
+
 msgid "LIPASE"
 msgstr "Lipasi"
 
@@ -3602,6 +3744,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Movimento di Base"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3868,6 +4017,7 @@ msgstr "Ossigeno"
 msgid "OXYTOXISOME"
 msgstr "OssiTossisoma"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Un metabolosoma modificato. Produce una forma primitiva dell'agente tossico [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
@@ -3990,6 +4140,13 @@ msgstr "Caricamento del file pck ({0}) non riuscito perché il file non esiste"
 
 msgid "PEACEFUL"
 msgstr "Pacifico"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Stai eseguendo Thrive con GLES2. Ciò non è collaudato a dovere, ed è probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o a forzare la grafica AMD o Nvidia a eseguire Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4805,6 +4962,10 @@ msgstr "è migrato nelle zone:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menù di pausa"
 
+#, fuzzy
+msgid "START"
+msgstr "Avvio"
+
 msgid "STARTING"
 msgstr "Avvio"
 
@@ -4821,6 +4982,20 @@ msgstr "È richiesto il riavvio"
 
 msgid "STATISTICS"
 msgstr "Statistiche"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "PRODUZIONE DI ATP TROPPO BASSA!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Movimento di Base"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Inizializzazione della libreria client Steam fallita"
@@ -4890,6 +5065,9 @@ msgstr "Spazio di stoccaggio"
 
 msgid "STORAGE_COLON"
 msgstr "Spazio di stoccaggio:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Hai effettuato l'accesso come: {0}"
@@ -5244,14 +5422,76 @@ msgstr "Stato:"
 msgid "TOTAL_SAVES"
 msgstr "Salvataggi totali:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Il vacuolo tossine è un vacuolo che è stato modificato per la produzione, l'immagazzinamento e la secrezione di [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Più vacuoli tossine hai, più rapidamente sarai in grado di rilasciare le tossine."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Alcune opzioni potrebbero essere disattivate in caso che \"Solo VCLC\" sia attivata"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Il vacuolo tossine è un vacuolo che è stato modificato per la produzione, l'immagazzinamento e la secrezione di [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Più vacuoli tossine hai, più rapidamente sarai in grado di rilasciare le tossine."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Vacuolo\n"
+"Tossine"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Il vacuolo tossine è un vacuolo che è stato modificato per la produzione, l'immagazzinamento e la secrezione di [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Più vacuoli tossine hai, più rapidamente sarai in grado di rilasciare le tossine."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "I metabolosomi sono ammassi di proteine avvolti in involucri proteici. Convertono il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] molto più velocemente rispetto a quanto farebbe il citoplasma. Questo processo si chiama [b]respirazione aerobica[/b]. Tuttavia, richiedono [thrive:compound type=\"oxygen\"][/thrive:compound] per funzionare: livelli più bassi li rallentano. Siccome i metabolosomi sono sospesi direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Il vacuolo tossine è un vacuolo che è stato modificato per la produzione, l'immagazzinamento e la secrezione di [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Più vacuoli tossine hai, più rapidamente sarai in grado di rilasciare le tossine."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Resistenza alle Tossine"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Resistenza alle Tossine"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Tipo:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"I microbi aggressivi inseguono le prede per grandi distanze\n"
+"e sono più propensi a combattere quando aggrediti.\n"
+"I microbi pacifici, invece, ignorano i soggetti lontani\n"
+"e sono meno inclini a sparare tossine ai propri predatori."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Vacuolo\n"
 "Tossine"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Il vacuolo tossine è un vacuolo che è stato modificato per la produzione, l'immagazzinamento e la secrezione di [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Più vacuoli tossine hai, più rapidamente sarai in grado di rilasciare le tossine."
 
@@ -5623,6 +5863,10 @@ msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Le cilia, come strutture, sono simili ai flagelli. Tuttavia, invece che fornire una spinta direzionale, aiutano le cellule a roteare meglio."
 
 #, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} PM"
+
+#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "La lipasi permette alla cellula di rompere la maggior parte di tipi di membrana. La tua cellula produce un po' di lipasi anche senza bisogno di un lisosoma; ma selezionando quest'opzione ne aumenterai l'efficacia."
 
@@ -5736,6 +5980,9 @@ msgstr "{1} {0}o/a"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{1} {0}o/a"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Vedi codice sorgente"

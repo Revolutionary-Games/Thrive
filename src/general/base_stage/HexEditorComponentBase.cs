@@ -495,7 +495,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     /// </summary>
     /// <returns>True when the input is consumed</returns>
     [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
-    public bool CancelCurrentAction()
+    public virtual bool CancelCurrentAction()
     {
         if (!Visible)
             return false;
@@ -503,9 +503,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (MovingPlacedHex != null)
         {
             OnCurrentActionCanceled();
-
-            // Re-enable undo/redo button
-            Editor.NotifyUndoRedoStateChanged();
 
             return true;
         }
@@ -522,8 +519,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (!Visible)
             return false;
 
-        // Can't move anything while already moving one
-        if (MovingPlacedHex != null)
+        // Can't move anything while already moving one (or another pending action)
+        if (MovingPlacedHex != null || CanCancelAction)
         {
             Editor.OnActionBlockedWhileMoving();
             return true;
@@ -537,29 +534,22 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             return true;
 
         StartHexMove(hex);
-
-        // Once a move has begun, the button visibility should be updated so it becomes visible
-        UpdateCancelState();
         return true;
     }
 
     public void StartHexMove(THexMove selectedHex)
     {
-        if (MovingPlacedHex != null)
+        if (MovingPlacedHex != null || CanCancelAction)
         {
             // Already moving something! some code went wrong
-            throw new InvalidOperationException("Can't begin hex move while another in progress");
+            throw new InvalidOperationException(
+                "Can't begin hex move while another in progress (or another in-progress action)");
         }
 
         MovingPlacedHex = selectedHex;
 
         OnMoveActionStarted();
-
-        // Disable undo/redo/symmetry button while moving (enabled after finishing move)
-        Editor.NotifyUndoRedoStateChanged();
-
-        // TODO: change this to go through the editor as well for consistency
-        UpdateSymmetryButton();
+        OnActionStatusChanged();
     }
 
     public void StartHexMoveWithSymmetry(IEnumerable<THexMove> selectedHexes)
@@ -647,7 +637,23 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         return true;
     }
 
-    public override void OnValidAction()
+    public override void OnValidAction(IEnumerable<CombinableActionData> actions)
+    {
+        var anyPlacement = typeof(HexPlacementActionData<,>);
+        var anyMove = typeof(HexMoveActionData<,>);
+
+        foreach (var data in actions)
+        {
+            var type = data.GetType();
+            if (type.IsAssignableToGenericType(anyPlacement) || type.IsAssignableToGenericType(anyMove))
+            {
+                PlayHexPlacementSound();
+                break;
+            }
+        }
+    }
+
+    public void PlayHexPlacementSound()
     {
         GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
     }
@@ -729,7 +735,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (!Editor.CheckEnoughMPForAction(Editor.WhatWouldActionsCost(action.Data)))
             return false;
 
-        if (CanCancelMove)
+        if (CanCancelAction)
         {
             if (!DoesActionEndInProgressAction(action))
             {
@@ -737,12 +743,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
                 Editor.OnActionBlockedWhileMoving();
                 return false;
             }
+
+            OnPendingActionWillSucceed();
         }
 
-        OnMoveWillSucceed();
-
         Editor.EnqueueAction(action);
-        Editor.OnValidAction();
+        Editor.OnValidAction(action.Data);
         UpdateSymmetryButton();
         return true;
     }
@@ -750,6 +756,14 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected virtual TCombinedAction CreateCombinedAction(IEnumerable<EditorAction> actions)
     {
         return (TCombinedAction)new CombinedEditorAction(actions);
+    }
+
+    protected override void OnActionStatusChanged()
+    {
+        base.OnActionStatusChanged();
+
+        // TODO: change this to go through the editor object for consistency
+        UpdateSymmetryButton();
     }
 
     protected void OnSymmetryPressed()
@@ -889,24 +903,20 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
     }
 
-    protected virtual void OnCurrentActionCanceled()
+    protected override void OnCurrentActionCanceled()
     {
-        UpdateCancelButtonVisibility();
+        base.OnCurrentActionCanceled();
 
         // TODO: switch to this going through the editor
         UpdateSymmetryButton();
     }
 
-    protected virtual void OnMoveWillSucceed()
+    protected virtual void OnPendingActionWillSucceed()
     {
         MovingPlacedHex = null;
 
-        // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
-        // TODO: should this call be made through Editor here?
-        UpdateCancelButtonVisibility();
-
-        // Re-enable undo/redo button
-        Editor.NotifyUndoRedoStateChanged();
+        // Move succeeded; Update the cancel button visibility, so it is not hidden because the move has completed
+        OnActionStatusChanged();
     }
 
     /// <summary>
@@ -1086,14 +1096,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    protected virtual void UpdateCancelState()
-    {
-        UpdateCancelButtonVisibility();
-    }
-
     protected void UpdateSymmetryButton()
     {
-        componentBottomLeftButtons.SymmetryEnabled = MovingPlacedHex == null;
+        componentBottomLeftButtons.SymmetryEnabled = !CanCancelAction;
     }
 
     protected override void Dispose(bool disposing)

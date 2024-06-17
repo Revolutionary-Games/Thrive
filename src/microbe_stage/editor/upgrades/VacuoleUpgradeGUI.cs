@@ -42,7 +42,7 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         mucilage = SimulationParameters.Instance.GetCompound("mucilage");
     }
 
-    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
+    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame, float costMultiplier)
     {
         shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
             .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.InternalName == mucilage.InternalName)).ToList();

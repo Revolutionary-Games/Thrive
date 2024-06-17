@@ -37,7 +37,7 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
     }
 
     /// <summary>
-    ///   If true an editor (component) action is active and can be cancelled. By default just checks for moves
+    ///   If true an editor (component) action is active and can be cancelled. By default, just checks for moves
     /// </summary>
     [JsonIgnore]
     public virtual bool CanCancelAction => throw new GodotAbstractPropertyNotOverriddenException();
@@ -144,6 +144,20 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
             finishButtonWarningBadge.Show();
 
         animator.Play(animation);
+    }
+
+    protected virtual void OnActionStatusChanged()
+    {
+        // Disable undo/redo/symmetry button while acting is in progress (enabled after finishing the action)
+        Editor.NotifyUndoRedoStateChanged();
+
+        // Once a move (or other pending action) has begun, the button visibility should be updated to make it visible
+        UpdateCancelButtonVisibility();
+    }
+
+    protected virtual void OnCurrentActionCanceled()
+    {
+        OnActionStatusChanged();
     }
 
     protected virtual void OnCancelActionClicked()

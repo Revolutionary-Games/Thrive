@@ -314,7 +314,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         temperature = SimulationParameters.Instance.GetCompound("temperature");
 
-        // Setup bars. In the future it'd be nice to setup bars as needed for the player for allowing easily adding
+        // Setup bars. In the future it'd be nice to set up bars as needed for the player for allowing easily adding
         // new compound types
         var barScene = GD.Load<PackedScene>("res://src/microbe_stage/gui/CompoundProgressBar.tscn");
 
@@ -446,6 +446,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         if (!editorButton.Disabled || stage?.HasPlayer != true)
             return;
 
+        if (stage.MovingToEditor)
+            return;
+
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
 
         editorButton.ShowReproductionDialog();
@@ -531,7 +534,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         winExtinctBoxHolder.Show();
 
-        extinctionBox = ExtinctionBoxScene.Instantiate<CustomWindow>();
+        extinctionBox = ExtinctionBoxScene.Instantiate<ExtinctionBox>();
         winExtinctBoxHolder.AddChild(extinctionBox);
         extinctionBox.Show();
     }

@@ -6,7 +6,6 @@
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_3jtjp"]
 
 [node name="ControllerDeadzoneConfiguration" instance=ExtResource("1")]
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,12 +42,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Explanation" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="0"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../HBoxContainer/Start")
 focus_next = NodePath("../HBoxContainer/Start")
 focus_mode = 2
 text = "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 label_settings = ExtResource("3_3jtjp")
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="1"]
 layout_mode = 2

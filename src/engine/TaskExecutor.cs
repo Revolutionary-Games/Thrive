@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics.X86;
 using System.Threading;
 using System.Threading.Tasks;
 using DefaultEcs.Threading;
@@ -31,7 +32,7 @@ public class TaskExecutor : IParallelRunner
     private int currentThreadCount;
     private int usedNativeTaskCount;
 
-    private int queuedParallelRunnableCount;
+    private volatile int queuedParallelRunnableCount;
 
     private int ecsThrottling = 4;
 
@@ -224,14 +225,14 @@ public class TaskExecutor : IParallelRunner
 
         while (queuedParallelRunnableCount > 0)
         {
-            // TODO: add this when we can to reduce hyperthreading resource use while waiting
-            // System.Runtime.Intrinsics.X86.X86Base.Pause();
-
             // Busy loop a bit before checking the variable again
             for (int i = 0; i < 10; ++i)
             {
                 _ = i;
             }
+
+            // Reduce hyperthreading resource use while waiting
+            X86Base.Pause();
         }
 
 #if DEBUG
@@ -323,13 +324,6 @@ public class TaskExecutor : IParallelRunner
         }
 
         mainThreadTaskStorage.Clear();
-    }
-
-    // TODO: maybe remove this given the comment in RunTasks?
-    public void Quit()
-    {
-        running = false;
-        ParallelTasks = 0;
     }
 
     public void ReApplyThreadCount()
@@ -447,36 +441,48 @@ public class TaskExecutor : IParallelRunner
         // This is used to sleep only when no new work is arriving to allow this thread to sleep only sometimes
         int noWorkCounter = 0;
 
-        while (running)
+        // This whole thing is in a try-catch now to try to solve issue of background threads disappearing without a
+        // trace
+        try
         {
-            // Wait a bit before going to sleep
-            if (noWorkCounter > ThreadSleepAfterNoWorkFor)
+            while (running)
             {
-                lock (threadNotifySync)
+                // Wait a bit before going to sleep
+                if (noWorkCounter > ThreadSleepAfterNoWorkFor)
                 {
-                    // This timeout here is just for safety to avoid locking up, reducing this doesn't seem to have any
-                    // performance impact. This is set now for a balance of threads not being able to be stuck too long
-                    // in case the wake up thread notify not working
-                    Monitor.Wait(threadNotifySync, 10);
-                }
-            }
-
-            if (queuedTasks.TryDequeue(out ThreadCommand command))
-            {
-                if (command.CommandType == ThreadCommand.Type.Quit)
-                {
-                    return;
+                    lock (threadNotifySync)
+                    {
+                        // This timeout here is just for safety to avoid locking up, reducing this doesn't seem to have
+                        // any performance impact. This is set now for a balance of threads not being able to be stuck
+                        // too long in case the wake-up thread notify not working
+                        Monitor.Wait(threadNotifySync, 10);
+                    }
                 }
 
-                if (ProcessNormalCommand(command))
-                    return;
+                if (queuedTasks.TryDequeue(out ThreadCommand command))
+                {
+                    if (command.CommandType == ThreadCommand.Type.Quit)
+                    {
+                        return;
+                    }
 
-                noWorkCounter = 0;
+                    if (ProcessNormalCommand(command))
+                        return;
+
+                    noWorkCounter = 0;
+                }
+                else
+                {
+                    ++noWorkCounter;
+
+                    // Reduce hyperthreading resource use while just busy looping
+                    X86Base.Pause();
+                }
             }
-            else
-            {
-                ++noWorkCounter;
-            }
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Background thread failed to run, this is a serious problem and may deadlock the game: ", e);
         }
     }
 
@@ -486,7 +492,7 @@ public class TaskExecutor : IParallelRunner
         {
             try
             {
-                // Task may not be null when the command type was task
+                // Task may not be null when the command type was a task
                 command.Task!.RunSynchronously();
             }
             catch (TaskSchedulerException exception)
@@ -519,7 +525,7 @@ public class TaskExecutor : IParallelRunner
                     Debugger.Break();
 #endif
 
-                GD.Print("Background task caused an exception: ", command.Task.Exception);
+                GD.PrintErr("Background task caused an exception: ", command.Task.Exception);
             }
         }
         else if (command.CommandType == ThreadCommand.Type.ParallelRunnable)
@@ -538,7 +544,7 @@ public class TaskExecutor : IParallelRunner
                 // TODO: should this quit the game immediately due to the exception (or pass it to the main thread
                 // for example with a field that Run would check after running the tasks)?
 
-                GD.Print("Background ParallelRunnable failed due to: ", exception);
+                GD.PrintErr("Background ParallelRunnable failed due to: ", exception);
                 return true;
             }
             finally

@@ -405,3 +405,77 @@
     - Updated AngleSharp from 1.1.0 to 1.1.2
     - Updated code checking tools version
     - Updated translations
+
+0.6.6.1:
+  IntroductionText: |
+    This is a quick patch release to address some of the biggest issues with the previous release. This doesn't fix every single issue report we got after 0.6.6 as many of the issues still don't have known root causes and wouldn't be easily fixable in a small amount of time. The biggest visible things are the fixed organelle models as well as fixing the size and position of many GUI elements.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.6.1
+  PatchNotes:
+    - Fixed organelle models looking bad in Godot 4
+    - Improved the visuals of the chemoreceptor and tutorial lines
+    - Turned off compression on the clouds perlin noise texture which was accidentally turned on with the Godot 4 update
+    - Did some minor organelle visuals tweaks
+    - Organelle placement sound is now only played if a placement action was done (fixes it being played for organelle removal)
+    - Fixed evolutionary tree zooming in and out not working correctly
+    - Fixed screen effects in miscellaneous settings not working
+    - Fixed win and extinction screens
+    - Fixed various GUI popup related problems in the later prototypes
+    - Increased audio latency to 20ms which helps crackling audio if the game was running slightly too slow
+    - Added extra error handling to Thriveopedia load and save load against scene load failures which seems like a randomly occurring bug in Godot 4 engine itself
+    - Added extra safety checks around native library load and printing of current CPU name if it is not detected as sufficient for running Thrive
+    - Added extra checks to our simulation running code to maybe start to narrow down a few bugs
+    - Redid modal manager connect and check operation to hopefully fix one case of signal connection errors printed in Godot 4
+    - Fixed position of our links popup in the main menu
+    - Other GUI fixes
+    - Added hyperthreading throttling instructions to our busy-wait loops
+    - Our CI builds system works again
+    - Updated our automated code checks to work on Windows again
+    - Removed trailing spaces in shaders that Godot did automatically
+    - Added game export script flag to ignore problems with installed Godot to just try to export anyway
+    - Updated Nix flake to use Godot 4.2.2
+    - Updated xunit from 2.7.1 to 2.8.0
+    - Updated translations
+
+0.6.7:
+  IntroductionText: |
+    Here is a release full of new features to make up for the previous few releases that were light on new features. The main 3 major new features are: endosymbiosis, day/night cycle enabled by default, and toxin customization. These add much more variety to the microbe stage and hopefully make the game significantly more enjoyable. Endosymbiosis allows you to create an endosymbiont organelle from another species giving a free copy of that organelle and unlocking placing that organelle. Day/night cycle has been polished up with some new GUI features in the editor to make it easier to determine if you can survive the night and as such is now enabled by default. The toxin customization feature allows using different toxin types that have different effects for more interesting toxin gameplay. Besides the major features we also have a variety of smaller changes and bug fixes (including one fix for the game freezing during gameplay).
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.7
+  PatchNotes:
+    - Implemented endosymbiosis. It is now possible to engulf other species to turn them into free organelles and also to unlock those organelles in an alternative way compared to the normal unlock conditions.
+    - Added customization for toxin organelles to select various toxin types that have different effects than oxytoxy
+    - Added different colours for different toxin types
+    - Day/night cycle is now enabled by default but can still be turned off
+    - Added ferroplast organelle, which is the eukaryotic variant of rusticyanin
+    - Cells spawning close to night time (or during night) get extra resources to help them survive the night
+    - Buffed cell corpse chunks
+    - Added alternative unlock condition for oxytoxisome that unlocks it after dying multiple times, this models how prey species can become toxic instead of only predator species having access to toxin
+    - Added custom inventory item drag icons and updated land tree placeholder model
+    - Fixed auto-evo mutations code using exceptions for normal flow control, this fixes at least one identified case where the game would freeze completely
+    - Fixed compound bars when max storage amount is less than 1
+    - Fixed fluid currents system force not applying, this bug was likely present ever since the ECS refactor
+    - Fixed iron chunk collision model scaling and fixed their rotation differences compared to the visual models
+    - Fixed HUD messages font shadow not working
+    - Fixed a brief flash of the game when exiting the freebuild editor for the first time
+    - Fixed multiline text edit style not working correctly
+    - Fixed cheats being able to enable the editor button when already going to the editor which allowed causing a crash in the game by clicking the button again
+    - Fixed some problems related to multicellular species trying to enter binding mode
+    - Made AI cells that depend on resources that aren't present during the night be more sessile during it
+    - Added new GUI and warnings to the editor to show if storage space and compound production during the day is enough to survive the night for photosynthesisers
+    - Added a display in the editor showing how long each compound takes to fill up, this will hopefully help in planning for how to survive the night with enough resource generation during the day
+    - Made auto-evo consider surviving the night more to penalize species with not enough storage or resource stocking up during the day
+    - Created a new custom model for ice chunks to be separate from the particle effects also present in the patch
+    - Added support for organelle upgrades overriding the base model of the organelle, which will be used more in the future
+    - Added custom model and icon for injectisome upgrade
+    - Added custom physics time to metrics panel, this feature was done last December but somehow forgotten to be added until now
+    - Added support for loading more shape types to our physics engine integration in preparation for use with organelle shapes
+    - Created custom collision shapes for all organelles to finally properly fix them
+    - Tweaked glucose reduction effect code a tiny bit to be clearer
+    - Made orphaned node count in metrics panel ignore intentionally cached nodes
+    - Improved organelle model data handling to keep model path variables and scenes in a single data container to avoid future mistakes with mixing up data for different scenes
+    - Fixed some code warnings and fixed a bug in metaball moving that this uncovered where the parent metaball reference was not updated correctly
+    - Removed unused thermoplast mesh file
+    - Updated Jolt Physics engine
+    - Updated YamlDotNet from 15.1.2 to 15.1.6
+    - Updated xunit from 2.8.0 to 2.8.1
+    - Updated code checking tools
+    - Updated translations

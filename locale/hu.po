@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
 "PO-Revision-Date: 2024-03-14 12:20+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -318,6 +318,19 @@ msgstr "fordított perjel"
 
 msgid "BACKSPACE"
 msgstr "Törlés"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Speciális beállítási nézet megnyitása"
 
 msgid "BASE_MOBILITY"
 msgstr "Alap mozgékonyság"
@@ -739,8 +752,20 @@ msgstr "Kilépés a játékból"
 msgid "COMPILED_AT_COLON"
 msgstr "Vegyületek:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Vegyületek:"
+
 msgid "COMPOUNDS"
 msgstr "Vegyületek"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Megtalálható vegyületek:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Megtalálható vegyületek:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Az összetevők mutatása / elrejtése"
@@ -748,8 +773,22 @@ msgstr "Az összetevők mutatása / elrejtése"
 msgid "COMPOUNDS_COLON"
 msgstr "Vegyületek:"
 
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Az összetevők mutatása / elrejtése"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Az összetevők mutatása / elrejtése"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Vegyületfelhők"
@@ -765,6 +804,24 @@ msgstr "{0} töménysége ennyivel csökkent: {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} fogyasztás"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "{0} fogyasztás"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0} fogyasztás"
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Az összetevők mutatása / elrejtése"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Megtalálható vegyületek:"
@@ -1154,8 +1211,9 @@ msgstr "(random megidézett titkok a játékban)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz a sejted)"
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1569,6 +1627,66 @@ msgstr "Szerkesztő engedélyezése"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI fényeffektjeinek engedélyezése"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Sejtszervecske elhelyezése"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Összes szétválasztása"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Az agresszív sejtek a prédáikat távolabbról is le fogják vadászni,\n"
+"és nagyobb eséllyel küzdenek más ragadozók ellen, ha megtámadják őket.\n"
+"A békés sejtek nem kergetnek más prédákat,\n"
+"és kevesebb eséllyel használnak mérgeket ragadozók ellen."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Levált sejtszervecskék"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
+"A reszponzív sejtek hamar új célpontokat keresnek."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-ot alakít át [thrive:compound type=\"glucose\"][/thrive:compound]-zá. A folyamat sebessége a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától függ. Továbbá még a [thrive:compound type=\"glucose\"][/thrive:compound]-t alakítja át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Segítség"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Nincs cím"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1680,6 +1798,10 @@ msgstr "Írj be egy létező ID-t"
 
 msgid "EXIT"
 msgstr "Kilépés"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Menj a következő szerkesztő ablakba"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -1800,6 +1922,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplasztisz"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a hőmérséklettől."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Elemek szűrése kategóriák szerint:"
@@ -2717,6 +2851,10 @@ msgstr "Elég kicsi"
 msgid "LINE_COLOUR"
 msgstr "Vonal színe:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Nincs cím"
+
 msgid "LIPASE"
 msgstr "Lipáz"
 
@@ -3612,6 +3750,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Alap mozgás"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4003,6 +4148,13 @@ msgstr "pck fájl ({0}) betöltése sikertelen"
 
 msgid "PEACEFUL"
 msgstr "Békés"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "A Thrive-ot GLES2 módban futtatod. Ennek a módnak a használata nincs letesztelve, és nagy eséllyel hibákat okozhat. Próbáld meg frissíteni a videókártyád driverét vagy/és kényszerítsd az AMD vagy Nvidia grafikai szoftverét a Thrive futtatására."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4833,6 +4985,10 @@ msgstr "ezen patch-ekben terjed:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menü"
 
+#, fuzzy
+msgid "START"
+msgstr "Indítás"
+
 msgid "STARTING"
 msgstr "Indítás"
 
@@ -4849,6 +5005,20 @@ msgstr "Újraindítás szükséges"
 
 msgid "STATISTICS"
 msgstr "Statisztikák"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "AZ ATP TERMELŐDÉSE TÚL ALACSONY!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Alap mozgás"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
@@ -4922,6 +5092,9 @@ msgstr "Tárhely"
 
 msgid "STORAGE_COLON"
 msgstr "Tárhely:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Belépve mint: {0}"
@@ -5275,8 +5448,69 @@ msgstr "Készítő:"
 msgid "TOTAL_SAVES"
 msgstr "Összes mentés:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Egyes beállítások lehet, hogy nem elérhetők, hogyha a LAWK engedélyezve van"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Méreganyag\n"
+"Vakuólum"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Méreg elleni állóképesség"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Méreg elleni állóképesség"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Típus:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Az agresszív sejtek a prédáikat távolabbról is le fogják vadászni,\n"
+"és nagyobb eséllyel küzdenek más ragadozók ellen, ha megtámadják őket.\n"
+"A békés sejtek nem kergetnek más prédákat,\n"
+"és kevesebb eséllyel használnak mérgeket ragadozók ellen."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5641,6 +5875,10 @@ msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
 #, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
+
+#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
@@ -5756,6 +5994,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "A forráskód megtekintése"

@@ -17,7 +17,7 @@ public struct CellProperties
 {
     /// <summary>
     ///   Base colour of the cell. This is used when initializing organelles as it would otherwise be difficult to
-    ///   to obtain the colour
+    ///   obtain the colour
     /// </summary>
     public Color Colour;
 
@@ -59,6 +59,7 @@ public struct CellProperties
         ShapeCreated = false;
     }
 
+    [JsonIgnore]
     public float Radius => IsBacteria ? UnadjustedRadius * 0.5f : UnadjustedRadius;
 }
 
@@ -152,8 +153,8 @@ public static class CellPropertiesHelpers
     ///   </para>
     /// </remarks>
     public static void Divide(this ref CellProperties cellProperties, ref OrganelleContainer organelles,
-        in Entity entity, Species species, IWorldSimulation worldSimulation, ISpawnSystem spawnerToRegisterWith,
-        ModifyDividedCellCallback? customizeCallback,
+        in Entity entity, Species species, IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        ISpawnSystem spawnerToRegisterWith, ModifyDividedCellCallback? customizeCallback,
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
     {
         if (organelles.Organelles == null)
@@ -273,8 +274,8 @@ public static class CellPropertiesHelpers
         var spawnPosition = currentPosition + direction * width;
 
         // Create the one daughter cell.
-        var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species, spawnPosition,
-            true, (null, 0), out var copyEntity, multicellularSpawnState);
+        var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
+            spawnPosition, true, (null, 0), out var copyEntity, multicellularSpawnState);
 
         // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
         // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like

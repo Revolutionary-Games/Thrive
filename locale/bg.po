@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
-"PO-Revision-Date: 2024-03-14 12:20+0000\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -320,6 +320,19 @@ msgstr "Обратна наклонена черта"
 
 msgid "BACKSPACE"
 msgstr "Клавиш „Backspace“"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Отваряне на разширените настройки"
 
 msgid "BASE_MOBILITY"
 msgstr "Базова подвижност"
@@ -748,8 +761,20 @@ msgstr "Отваряне на обществената Уикипедия на �
 msgid "COMPILED_AT_COLON"
 msgstr "Създадена на:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Създадена на:"
+
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Обект на търсенето:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Обект на търсенето:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Превключване на химичните съединения"
@@ -757,8 +782,24 @@ msgstr "Превключване на химичните съединения"
 msgid "COMPOUNDS_COLON"
 msgstr "Има химични съединения:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Превключване на химичните съединения"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Превключване на химичните съединения"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Облаци"
@@ -774,6 +815,25 @@ msgstr "Концентрацията на {0} се понижи с {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Баланс на химичните съединения"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Баланс на химичните съединения"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Обект на търсенето:"
@@ -1223,7 +1283,8 @@ msgstr "(в секунди)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Денонощен цикъл"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(ВНИМАНИЕ: понижава ефективността на фотосинтезата)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1628,6 +1689,66 @@ msgstr "Активиране на редактора"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Светлинни ефекти"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Няколко органела"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Разпадане"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Идентификаторът трябва да е положително цяло число"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Агресивните микроби преследват плячката си на големи разстояния\n"
+"и са склонни да се защитят, когато са нападнати.\n"
+"Пасивните микроби не преследват пляката си на големи разстояния\n"
+"и са склонни да избягат, когато са нападнати."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Несвързани органели"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Това е броят на отхвърлените съобщения.\n"
+"Ако желаете да ги възстановите, натиснете бутона „Нулиране“."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound] в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в околната среда. Също така, превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Отваряне на редактора"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Заглавието липсва"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
@@ -1738,6 +1859,10 @@ msgstr "Въвеждане на съществуващ идентификаци�
 msgid "EXIT"
 msgstr "Изход"
 
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Преминаване към следващия раздел"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Стартираща програма"
 
@@ -1828,6 +1953,18 @@ msgstr "Дата на публикуване: {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Термопласт"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината в околната среда за да произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от вода в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез температурните градиенти. Количеството зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound] в околната среда."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Филтриране по категория:"
@@ -2716,6 +2853,10 @@ msgstr "Много малък"
 msgid "LINE_COLOUR"
 msgstr "Цвят на линията:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Заглавието липсва"
+
 msgid "LIPASE"
 msgstr "Липаза"
 
@@ -3597,6 +3738,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Базово движение"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3861,6 +4009,7 @@ msgstr "Кислород"
 msgid "OXYTOXISOME"
 msgstr "Окситоксизома"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]."
 
@@ -3977,6 +4126,13 @@ msgstr "Зареждането на основния файл „{0}“ е не�
 
 msgid "PEACEFUL"
 msgstr "Пасивно"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
@@ -4780,6 +4936,10 @@ msgstr "текущо разпространение в зоните:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Отваряне на менюто"
 
+#, fuzzy
+msgid "START"
+msgstr "Започната"
+
 msgid "STARTING"
 msgstr "Започната"
 
@@ -4796,6 +4956,20 @@ msgstr "Изисква се рестартиране"
 
 msgid "STATISTICS"
 msgstr "Статистика"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ПРОИЗВОДСТВОТО НА АТФ Е НЕДОСТАТЪЧНО!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Базово движение"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Стартирането на „Steam“ е неуспешно"
@@ -4863,6 +5037,9 @@ msgstr "Съхранение"
 
 msgid "STORAGE_COLON"
 msgstr "Съхранение:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Влезли сте като: {0}"
@@ -5225,14 +5402,72 @@ msgstr "Изминало време:"
 msgid "TOTAL_SAVES"
 msgstr "Брой записи:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Зависи от включването на „Земеподобен живот“"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Токсична\n"
+"вакуола"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Токсична устойчивост"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Токсична устойчивост"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Вид:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсична\n"
 "вакуола"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
 
@@ -5605,6 +5840,10 @@ msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Ресничките са подобни на камшичетата, но те увеличават само скоростта на завъртане на клетките."
 
 #, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} МТ"
+
+#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Позволява разграждането на повечето видове мембрани. Произвеждането на този ензим е възможно и без помощта на лизозомата, но добавянето му подобрява хранителната ефективност на клетката."
 
@@ -5713,6 +5952,9 @@ msgstr "Бележки към изданието"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} — {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Изходен код"

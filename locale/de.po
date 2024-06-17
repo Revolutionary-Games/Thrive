@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
-"PO-Revision-Date: 2024-03-14 12:20+0000\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -318,6 +318,19 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Rücktaste"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Erweiterte Einstellungen anzeigen"
 
 msgid "BASE_MOBILITY"
 msgstr "Basis Mobilität"
@@ -726,8 +739,20 @@ msgstr "Besuche unser Gemeinschafts-Wiki"
 msgid "COMPILED_AT_COLON"
 msgstr "Erstellt am:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Erstellt am:"
+
 msgid "COMPOUNDS"
 msgstr "Substanzen"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Suche nach Substanz:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Suche nach Substanz:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Substanzen ein-/ausblenden"
@@ -735,8 +760,24 @@ msgstr "Substanzen ein-/ausblenden"
 msgid "COMPOUNDS_COLON"
 msgstr "Substanzen:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Verbindungsbalance"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Verbindungsbalance"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Substanzen ein-/ausblenden"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Verbindungsbalance"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Substanzen ein-/ausblenden"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Verbindungswolken"
@@ -752,6 +793,25 @@ msgstr "{0}konzentrationen sind um {1} gesunken"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}-Verbrauch"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Verbindungsbalance"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0}-Verbrauch"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Verbindungsbalance"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Verbindungsbalance"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Suche nach Substanz:"
@@ -1182,7 +1242,8 @@ msgstr "(Spieltaglänge in Realzeitsekunden)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Tag-/Nachtzyklus aktivieren"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1589,6 +1650,66 @@ msgstr "Editor aktivieren"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI-Lichteffekte aktivieren"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Mehrere Organellen"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Alle Verbindungen lösen"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Der Zahlenwert zum Generieren der Zufallswelt. (Muss eine positive ganze Zahl sein.)"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Aggressive Mikroben jagen ihre Beute über größere Entfernungen\n"
+"und kämpfen eher gegen Angreifer, wenn sie angegriffen werden.\n"
+"Friedliche Mikroben greifen andere nicht über größere Entfernungen an\n"
+"und setzen seltener Giftstoffe gegen Angreifer ein."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Getrennte Organellen"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Dies zeigt an, wie viele Popups vom Spieler dauerhaft ausgeblendet wurden.\n"
+"Wenn einige davon wieder sichtbar werden sollen, können mit der Schaltfläche neben dieser alle ausgeblendeten Popups wieder angezeigt werden."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Wandelt [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in [thrive:compound type=\"glucose\"][/thrive:compound] um. Die Rate skaliert mit der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] auch in [thrive:compound type=\"atp\"][/thrive:compound] um."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Betritt den Editor und bearbeite deine Spezies"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Titel fehlt"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -1698,6 +1819,10 @@ msgstr "Bekannte ID angeben"
 
 msgid "EXIT"
 msgstr "Verlassen"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Zum nächsten Tab des Editors wechseln"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Beenden zum Launcher"
@@ -1810,6 +1935,18 @@ msgstr "Veröffentlicht am {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Thermoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Der Thermoplast ist eine Doppelmembranstruktur, in der wärmeempfindliche Pigmente in Membransäcken gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Thermoplast sind in der Lage, die Energie der Wärmeunterschiede in der Umgebung zu nutzen, um in einem Prozess namens Thermosynthese aus Wasser und gasförmigem Kohlendioxid Glukose zu produzieren. Die Geschwindigkeit seiner Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Temperatur ab."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate hängt von der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] und der Temperatur ab."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Nach Kategorie sortieren:"
@@ -2711,6 +2848,10 @@ msgstr "Sehr klein"
 msgid "LINE_COLOUR"
 msgstr "Linienfarbe:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Titel fehlt"
+
 msgid "LIPASE"
 msgstr "Lipase"
 
@@ -3579,6 +3720,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Basisbewegung"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Der Editor steht jetzt zur Verfügung"
 
@@ -3846,6 +3994,7 @@ msgstr "Sauerstoff"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisome"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
@@ -3963,6 +4112,13 @@ msgstr "Laden der pck-Datei ({0}) fehlgeschlagen weil die Datei nicht existiert"
 
 msgid "PEACEFUL"
 msgstr "Friedlich"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Du betreibst Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird wahrscheinlich Probleme verursachen. Versuche deine Grafiktreiber zu aktualisieren und/oder die Verwendung von AMD- oder Nvidia-Grafiken zur Ausführung von Thrive zu erzwingen."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4776,6 +4932,10 @@ msgstr "Ausbreitung auf Gebiete:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause-Menü"
 
+#, fuzzy
+msgid "START"
+msgstr "Startet"
+
 msgid "STARTING"
 msgstr "Startet"
 
@@ -4792,6 +4952,20 @@ msgstr "Neustart erforderlich"
 
 msgid "STATISTICS"
 msgstr "Statistiken"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP-PRODUKTION ZU NIEDRIG!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Basisbewegung"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen"
@@ -4861,6 +5035,9 @@ msgstr "Speicher"
 
 msgid "STORAGE_COLON"
 msgstr "Speicherplatz:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Angemeldet als: {0}"
@@ -5225,14 +5402,72 @@ msgstr "Status:"
 msgid "TOTAL_SAVES"
 msgstr "Gesamtspeicherungen:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Einige Optionen sind möglicherweise nicht verfügbar, wenn nur kohlenstoffbasiertes Leben aktiviert ist"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toxin-\n"
+"Vakuole"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt sind. Sie sind in der Lage, Glukose in einem Prozess, der aerobe Atmung genannt wird, mit einer viel höheren Geschwindigkeit in ATP umzuwandeln, als dies im Zytoplasma möglich ist. Für ihre Funktion benötigt sie jedoch Sauerstoff, und ein niedrigerer Sauerstoffgehalt in der Umgebung verlangsamt die Geschwindigkeit ihrer ATP-Produktion. Da die Metabolosomen direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Toxin-Resistenz"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Toxin-Resistenz"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Typ:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Mache diese Spezies zu einem Fossil um sie im Museum zu speichern. Du kannst von der Thriveopedia auf das Museum zugreifen, oder Fossile im Sandboxeditor laden."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxin-\n"
 "Vakuole"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
@@ -5608,6 +5843,10 @@ msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Zilien funktionieren ähnlich wie Flagellen. Aber anstatt Antrieb in eine bestimmte Richtung zu geben, helfen sie bei der Drehbewegung der Zelle."
 
 #, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
+
+#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Lipase ermöglicht es der Zelle die meisten Membranen zu zersetzen. Etwas davon wird auch ohne Lysosom von deiner Zelle produziert, aber es hier auszuwählen erhöht die Effizienz des Prozesses."
 
@@ -5718,6 +5957,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Quellcode anschauen"

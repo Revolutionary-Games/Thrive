@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Partial class: Scene tree dumper
@@ -21,6 +22,13 @@ public partial class DebugOverlays
 
         file.Close();
 
+        // TODO: maybe this should have a separate button? (if added the if should be removed to always try to print
+        // the orphaned nodes)
+#if DEBUG
+        if (Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount) > 0)
+            PrintOrphanedNodes();
+#endif
+
         GD.Print("Scene tree dumped to \"", SCENE_DUMP_FILE, "\"");
     }
 
@@ -30,5 +38,30 @@ public partial class DebugOverlays
 
         foreach (Node child in node.GetChildren())
             DumpSceneTreeToFile(child, file, indent + 1);
+    }
+
+    private static void PrintOrphanedNodes()
+    {
+        GD.Print("Orphaned nodes:");
+
+        PrintOrphanedCountStatistics(false);
+
+        PrintOrphanNodes();
+
+        PrintOrphanedCountStatistics(true);
+    }
+
+    private static void PrintOrphanedCountStatistics(bool always)
+    {
+        var orphanedCount = Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount);
+
+        if (Math.Abs(orphanedCount - GetOrphanedCacheItems()) < 0.1)
+        {
+            GD.Print("All orphaned Nodes are accounted for in cache items waiting re-use");
+        }
+        else if (always)
+        {
+            GD.Print($"Total orphaned items: {orphanedCount}");
+        }
     }
 }

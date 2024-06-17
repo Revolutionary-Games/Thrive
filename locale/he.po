@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
-"PO-Revision-Date: 2024-03-14 12:20+0000\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "סגנון תנועה דו-מימדית:"
 
 msgid "3D_EDITOR"
 msgstr "עורך תלת-מימדי"
@@ -29,7 +29,7 @@ msgid "3D_MOVEMENT"
 msgstr "תנועה תלת-מימדית"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "סגנון תנועה תלת-מימדית:"
 
 msgid "ABILITIES"
 msgstr "יכולות"
@@ -43,36 +43,29 @@ msgstr "הופל."
 msgid "ABYSSOPELAGIC"
 msgstr "אביסלפלגיים"
 
-#, fuzzy
 msgid "ACTION_AWAKEN"
-msgstr "מודע"
+msgstr "התעורר ({0:F1} / {1:F1})"
 
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "מודע"
+msgstr "עבור לשלב ההתעוררות. זמין כאשר יש לך מספיק יכולת שכלית (רקמה מסוג עם אקסונים)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "פעולה זו חסומה בזמן שפעולה אחרת בתהליך"
 
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "אשר יציאה"
+msgstr "מחק"
 
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "אוכלוסיית מינים"
+msgstr "הכפל אכלוסיה"
 
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "אשר יציאה"
+msgstr "שכפל יחידות"
 
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} עם אוכלוסיה: {1}"
+msgstr "חצה אוכלוסייה"
 
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "אשר יציאה"
+msgstr "שגר"
 
 msgid "ACTIVE"
 msgstr "פעיל"
@@ -316,6 +309,19 @@ msgstr "לוכסן שמאלי"
 
 msgid "BACKSPACE"
 msgstr "חזור"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "פתח את תצוגת ההגדרה המתקדם"
 
 msgid "BASE_MOBILITY"
 msgstr "ניידות בסיסית"
@@ -725,8 +731,20 @@ msgstr "ראו את ויקי הקהילתי שלנו"
 msgid "COMPILED_AT_COLON"
 msgstr "נבנה ב:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "נבנה ב:"
+
 msgid "COMPOUNDS"
 msgstr "תרכובות"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "תרכובת לחפש:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "תרכובת לחפש:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא תרכובות"
@@ -734,8 +752,24 @@ msgstr "הראה/החבא תרכובות"
 msgid "COMPOUNDS_COLON"
 msgstr "תרכובות:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "הראה/החבא תרכובות"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "הראה/החבא תרכובות"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "ענני תרכובות"
@@ -751,6 +785,25 @@ msgstr "ריכוזי ה{0} ירדו ב{1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} צריכה"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "מאזן תרכובות"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0} צריכה"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "מאזן תרכובות"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "תרכובת לחפש:"
@@ -1183,8 +1236,9 @@ msgstr "(באקראי מייצר סודות במשחק)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "(מתחיל עם ענן גלוקוז חופשי קרוב בכל דור)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "כיול שטח מת הסתיים, השטח המת החדש מוצגים מתחת במציגי ערכי הציר."
@@ -1587,6 +1641,67 @@ msgstr "הפעל את העורך"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "אפשר תצוגת אור בממשק משתמש"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "שכפל אברונים"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "שחרר הכל"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"מיקרובים אגרסיבים ירדפו אחרי הטרפם למרחקים\n"
+"והם לרוב נוטים להילחם בטורפים כשהם מותקפים.\n"
+"מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
+"ופחות נוטים להשתמש ברעלנים כנגד טורפים."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "אברונים מנותקים"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"מיקרובים ממוקדים יחפשו אחר גושים או טרף למרחקים\n"
+"ולרוב הוא ישאף לגושים.\n"
+"מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז של [thrive:compound type=\"carbondioxide\"][/thrive:compound]. בנוסף הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "כנס לעורך ושנה את המין שלך"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "חסרה כותרת"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: {1}- ATP"
 
@@ -1693,6 +1808,10 @@ msgstr "הכנס ID קיים"
 
 msgid "EXIT"
 msgstr "יציאה"
+
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "לך לכרטיסיית העורך הבאה"
 
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
@@ -1808,6 +1927,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "תרמופלסט"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. זהו פרוקריוט שהשתנה לצרכי המארח האיקוריוטי. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של בדלי החום בסביבה בכדי ליצור [thrive:compound type=\"atp\"][/thrive:compound] ממים בתהליך שנקרא [b]תרמוסינתזה[/b]. קצב ייצור ה[thrive:compound type=\"atp\"][/thrive:compound] שלו משתנה עם ריכוז ה[thrive:compound type=\"atp\"][/thrive:compound] וה[thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל הטמפרטורה."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "סננן לפי קטגוריה:"
@@ -2713,6 +2844,10 @@ msgstr "מאוד קטן"
 msgid "LINE_COLOUR"
 msgstr "צבע הקו:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "חסרה כותרת"
+
 msgid "LIPASE"
 msgstr "ליפאז"
 
@@ -3594,6 +3729,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "מהירות בסיסית"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3861,6 +4003,7 @@ msgstr "חמצן"
 msgid "OXYTOXISOME"
 msgstr "אוקסיטוקסיזום"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "מטבולוזום שונה אחראי לייצור צורה פרימיטיבית של החומר הרעיל \"אוקסיטוקסי נ\"ט\"."
 
@@ -3981,6 +4124,13 @@ msgstr "טעינת קבצי pck ({0}) נכשלה בגלל שקובץ זה לא �
 
 msgid "PEACEFUL"
 msgstr "שלוו"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4786,6 +4936,10 @@ msgstr "התפשט לאזורים:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "תפריט השהה"
 
+#, fuzzy
+msgid "START"
+msgstr "מתחיל"
+
 msgid "STARTING"
 msgstr "מתחיל"
 
@@ -4802,6 +4956,20 @@ msgstr "אתחול מחדש נדרש"
 
 msgid "STATISTICS"
 msgstr "סטטיסטיקה"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ייצור ATP נמוך מדי!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "מהירות בסיסית"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "אתחול ספריית Steam נכשל"
@@ -4870,6 +5038,9 @@ msgstr "אחסון"
 
 msgid "STORAGE_COLON"
 msgstr "אחסון:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "התחבר כ:{0}"
@@ -5224,14 +5395,76 @@ msgstr "מצב:"
 msgid "TOTAL_SAVES"
 msgstr "נשמר בסך הכל:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "חלק מהאפשרויות היו מבוטלים לשינוי אם LAWK מופעל"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"חלולית\n"
+" רעלן"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound] במהירות גבוה יותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא [b]נשימה אירובית[/b]. יחד עם זאת, הוא דורש [thrive:compound type=\"oxygen\"][/thrive:compound] כדי לתפקד, ורמות [thrive:compound type=\"oxygen\"][/thrive:compound] נמוכות יותר בסביבה יאטו את קצב ייצור של [thrive:compound type=\"atp\"][/thrive:compound]. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "עמידות לרעלים"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "עמידות לרעלים"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "סוג:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"מיקרובים אגרסיבים ירדפו אחרי הטרפם למרחקים\n"
+"והם לרוב נוטים להילחם בטורפים כשהם מותקפים.\n"
+"מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
+"ופחות נוטים להשתמש ברעלנים כנגד טורפים."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "חלולית\n"
 " רעלן"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
 
@@ -5605,6 +5838,10 @@ msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
 
 #, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} נקמ\"ו"
+
+#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "ליפאז מאפשרים לתא לפרק את רוב סוגי הממברנות. התא שלך כבר מייצר את האנזים הזה ללא הליזוזום, אבל על ידי בחירה בסוג זה מאפשר לך להגביר את יעילותו."
 
@@ -5715,6 +5952,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "צפה בקוד מקור"

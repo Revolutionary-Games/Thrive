@@ -8,5 +8,5 @@ public interface IPositionedOrganelle : IPositionedHex
     /// <summary>
     ///   This is now the number of times to rotate. This used to be the angle in degrees
     /// </summary>
-    public int Orientation { get; }
+    public int Orientation { get; set; }
 }

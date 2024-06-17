@@ -24,12 +24,12 @@ The available input attributes
 
 | Attribute | Description | Parameters | Method parameters | Multiple |
 | --------- | ----------- | ---------- | ----------------- | -------- |
-| RunOnKey  | Fires repeatedly when the input is held down | input : string | delta : float | yes |
+| RunOnKey  | Fires repeatedly when the input is held down | input : string | delta : double | yes |
 | RunOnKeyChange | Fires once when the input is pressed or released | input : string | state : bool | yes |
 | RunOnKeyDown | Fires once when the input is pressed | input : string | none | yes |
 | RunOnKeyUp | Fires once when the input is released | input : string | none | yes |
 | RunOnKeyToggle | Fires once when the input is pressed and provides an alternating bool | input : string | state : bool | yes |
-| RunOnAxis | Fires repeatedly when one of the axis members is held down. Every axis member has a value associated with it. The average of the pressed values is given to the method | inputs : string[]<br> values : float[] | delta : float<br> value : float | yes |
+| RunOnAxis | Fires repeatedly when one of the axis members is held down. Every axis member has a value associated with it. The average of the pressed values is given to the method | inputs : string[]<br> values : float[] | delta : double<br> value : float | yes |
 | RunOnAxisGroup | Combines multiple RunOnAxis. Used when you want to combine multiple axes and want to differentiate between them | none | delta : float<br>value1 : float<br>value2 : float... | no |
 
 - **Attribute** is the name of the attribute
@@ -134,7 +134,7 @@ public class MicrobeCamera : Camera
   }
 
   [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f })]
-  public void Zoom(float delta, float value) {}
+  public void Zoom(double delta, float value) {}
 }
 ```
 
@@ -152,7 +152,7 @@ public class MicrobeCamera
 {
   [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f })]
   [RunOnAxis(new[] { "g_zoom_in_fast", "g_zoom_out_fast" }, new[] { -3.0f, 3.0f })]
-  public void Zoom(float delta, float value) {}
+  public void Zoom(double delta, float value) {}
 }
 ```
 
@@ -169,7 +169,7 @@ public class MicrobeCamera
 
   [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out", "g_zoom_in_fast", "g_zoom_out_fast" }, 
       new[] { -1.0f, 1.0f, -3.0f, 3.0f })]
-  public void Zoom(float delta, float value) {}
+  public void Zoom(double delta, float value) {}
 }
 ```
 
@@ -189,7 +189,7 @@ public class PlayerMicrobeInput : NodeWithInput
 {
   [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
   [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-  public void OnMovement(float delta, float value) {}
+  public void OnMovement(double delta, float value) {}
 }
 ```
 
@@ -203,7 +203,7 @@ public class PlayerMicrobeInput : NodeWithInput
   [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
   [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
   [RunOnAxisGroup]
-  public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement) {}
+  public void OnMovement(double delta, float forwardBackwardMovement, float leftRightMovement) {}
 }
 ```
 

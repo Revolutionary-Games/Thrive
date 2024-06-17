@@ -2,7 +2,7 @@
 
 public interface IOrganelleUpgrader
 {
-    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame);
+    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame, float costMultiplier);
 
     /// <summary>
     ///   Called by the upgrade GUI when the changes should be applied

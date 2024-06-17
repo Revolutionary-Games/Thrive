@@ -505,13 +505,13 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
     }
 
-    public virtual void OnValidAction()
+    public virtual void OnValidAction(IEnumerable<CombinableActionData> actions)
     {
         foreach (var editorComponent in GetAllEditorComponents())
         {
             if (editorComponent.Visible)
             {
-                editorComponent.OnValidAction();
+                editorComponent.OnValidAction(actions);
                 break;
             }
         }
@@ -709,9 +709,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
 
         ApplyAutoEvoResults();
-
-        // Recompute average sunlight in case auto-evo modifies things
-        CurrentGame.GameWorld.UpdateGlobalAverageSunlight();
 
         FadeIn();
     }

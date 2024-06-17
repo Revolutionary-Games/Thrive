@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-25 15:18+0300\n"
-"PO-Revision-Date: 2024-04-10 06:38+0000\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-11 06:06+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -321,6 +321,18 @@ msgstr "Обратный Слэш"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr "Считать, словно день"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr "Если этот флажок установлен, числа, вычисляемые в этой панели, вычисляются так, как если бы процессы происходили днём"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr "Включить стоимость передвижения"
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Если флажок установлен, вычисляет баланс и другие числа на этой панели, предполагая, что клетка постоянно движется"
 
 msgid "BASE_MOBILITY"
 msgstr "Базовая Мобильность"
@@ -724,8 +736,19 @@ msgstr "Зайти на нашу Wiki"
 msgid "COMPILED_AT_COLON"
 msgstr "Собрано в:"
 
+msgid "COMPLETE_ACTION"
+msgstr "Завершить"
+
 msgid "COMPOUNDS"
 msgstr "Соединения"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Соединение, которое нужно найти:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Соединение, которое нужно найти:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показать/скрыть соединения"
@@ -733,8 +756,24 @@ msgstr "Показать/скрыть соединения"
 msgid "COMPOUNDS_COLON"
 msgstr "Соединения:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Показать/скрыть соединения"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Показать/скрыть соединения"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Облака веществ"
@@ -750,6 +789,25 @@ msgstr "Концентрация {0} снизилась на {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} потребления"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Компонентный Баланс"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0} потребления"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Компонентный Баланс"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Соединение, которое нужно найти:"
@@ -1192,7 +1250,8 @@ msgstr "(длительность дней, выраженная в реальн
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Включить цикл день/ночь"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(ВНИМАНИЕ: фотосинтез становится гораздо менее жизнеспособным)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1596,6 +1655,66 @@ msgstr "Включить редактор"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Включить световые эффекты GUI"
 
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Открыть все органеллы"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Отвязать все клетки в колонии"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Это значение используется для генерации мира, оно должно быть положительным целым числом"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Агрессивные микробы будут преследовать добычу на больших расстояниях\n"
+"и с большей вероятностью будут сражаться с хищниками при нападении.\n"
+"Мирные микробы не будут нападать на больших расстояниях\n"
+"и с меньшей вероятностью будут использовать токсины против хищников."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Отсоединённые Органеллы"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Это показывает, сколько всплывающих окон было навсегда отклонено пользователем.\n"
+"Если некоторые всплывающие окна, которые действительно нужны, будут отклонены, можно использовать кнопку рядом с этим, чтобы все отклоненные всплывающие окна снова появились."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Превращает [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Также превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Войдите в редактор для модификации видов"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Название отсутствует"
+
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
@@ -1701,6 +1820,10 @@ msgstr "Постройки"
 msgid "EXIT"
 msgstr "Выход"
 
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Перейдите в новую вкладку редактора"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Выйти в лаунчер"
 
@@ -1788,6 +1911,18 @@ msgstr "Опубликовано на {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Этот пункт был усечен из-за слишком большой длины, пожалуйста, прочитайте оригинал для полного содержания. {0}"
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Термопласт"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Термопласт — двумембранная структура, содержащая термочувствительные пигменты, сложенные вместе в мембранные мешочки. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в термопласте способны использовать энергию разности температур в окружающей среде для получения [thrive:compound type=\"atp\"][/thrive:compound] из воды и газообразного углекислого газа в процессе, называемом [b]термосинтез[/b]. Скорость выработки [thrive:compound type=\"atp\"][/thrive:compound] зависит [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и температуры."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Отфильтровать предметы по категориям:"
@@ -2643,6 +2778,10 @@ msgstr "Очень маленькое"
 
 msgid "LINE_COLOUR"
 msgstr "Цвет Линии:"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Название отсутствует"
 
 msgid "LIPASE"
 msgstr "Липаза"
@@ -3514,6 +3653,13 @@ msgstr "Нынешний размер клетки слишком мал для 
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Недостаточно вместимости поглощенной материи для поглощения данного объекта"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Базовое Передвижение"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Редактор теперь доступен"
 
@@ -3716,6 +3862,7 @@ msgstr "{0} органелла"
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Разблокировка органелл включена"
 
+#, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr "(Некоторые органеллы будут обладать определёнными требованиями для возможности ставить их)"
 
@@ -3763,6 +3910,7 @@ msgstr "Кислород"
 msgid "OXYTOXISOME"
 msgstr "Окситоксисома"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Модифицированная метаболосома, ответственная за выработку примитивной формы токсичного агента ОксиТоксин."
 
@@ -3876,6 +4024,13 @@ msgstr "Не удалось загрузить файл pck ({0}), его не �
 
 msgid "PEACEFUL"
 msgstr "Мирный"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4659,6 +4814,10 @@ msgstr "распространяется в биомы:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузы"
 
+#, fuzzy
+msgid "START"
+msgstr "Запуск"
+
 msgid "STARTING"
 msgstr "Запуск"
 
@@ -4673,6 +4832,20 @@ msgstr "Начать исследование"
 
 msgid "STATISTICS"
 msgstr "Статистика"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "НЕДОСТАТОЧНОЕ ПРОИЗВОДСТВО АТФ!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Базовое Передвижение"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Не удалось выполнить инициализацию клиентской библиотеки Steam"
@@ -4741,6 +4914,9 @@ msgstr "Вместимость"
 
 msgid "STORAGE_COLON"
 msgstr "Вместимость:"
+
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Авторизован как: {0}"
@@ -5091,14 +5267,72 @@ msgstr "Полученная Энергия:"
 msgid "TOTAL_SAVES"
 msgstr "Всего сохранений:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Выстрелить токсином, что при попадании наносит урон клеткам"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Токсиновая\n"
+"вакуоль"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они способны преобразовывать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]с гораздо большей скоростью, чем это может быть сделано в цитоплазме, в процессе называемом [b]Аэробным Дыханием[/b]. Однако для его функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], а более низкий уровень [thrive:compound type=\"oxygen\"][/thrive:compound] в окружающей среде замедлит скорость производства [thrive:compound type=\"atp\"][/thrive:compound]. Поскольку метаболосомы находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Устойчивость к Токсинам"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Устойчивость к Токсинам"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Тип:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "(При включении начинает потреблять больше одного потока для вычисления игровой логики, может понизить производительность при малом количестве фоновых потоков)"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсиновая\n"
 "вакуоль"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
 
@@ -5435,7 +5669,7 @@ msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr "скорость становится ниже {0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
-msgstr "[b]{0}[/b] открыто, если"
+msgstr "[b]{0}[/b] откроется, если"
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
@@ -5450,6 +5684,10 @@ msgstr "Вытягивание ресничек"
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Когда вы находитесь в режиме поглощения ([thrive:input]g_toggle_engulf[/thrive:input]) этот тип ресничек будет притягивать посторонние клетки к себе, т.е клетке игрока. Крайне полезно для захвата добычи."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Обычное, не улучшенное состояние"
@@ -5552,6 +5790,10 @@ msgstr "Просмотреть Заметки Обновления"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Просмотреть последние или все заметки обновлений Thrive"
+
+#, fuzzy
+msgid "VIEW_PENDING_ACTIONS"
+msgstr "Модификации"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Открыть исходный код"

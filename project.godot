@@ -15,7 +15,7 @@ config/description="Thrive is an open source evolution simulation game.
 Play as a microbe on an alien world trying to survive and adapt to your surroundings in order to thrive.
 
 https://revolutionarygamesstudio.com/"
-config/version="0.6.6"
+config/version="0.6.7.0"
 run/main_scene="res://src/general/MainMenu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Thrive"
@@ -24,6 +24,10 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://assets/misc/thrive_logo_big.png"
 config/icon="res://assets/misc/icon.png"
 config/windows_native_icon="res://assets/misc/icon.ico"
+
+[audio]
+
+driver/output_latency=20
 
 [autoload]
 

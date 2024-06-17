@@ -206,7 +206,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
     }
 
-    public override void OnValidAction()
+    public override void OnValidAction(IEnumerable<CombinableActionData> actions)
     {
     }
 
@@ -328,7 +328,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                     continue;
 
                 var dataPoint = DataPoint.GetDataPoint(snapshot.TimePeriod,
-                    Math.Round(patch.GetCompoundAmountInSnapshot(snapshot, entry.Key.InternalName), 3));
+                    Math.Round(patch.GetCompoundAmountInSnapshotForDisplay(snapshot, entry.Key.InternalName), 3));
                 dataPoint.MarkerColour = dataset.Colour;
 
                 dataset.AddPoint(dataPoint);

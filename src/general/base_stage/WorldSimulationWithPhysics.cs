@@ -95,7 +95,8 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     protected override void Dispose(bool disposing)
     {
-        // Derived classes should also wait for this before destroying things
+        // Derived classes should also wait for this before destroying things (and set metrics reporting off)
+        physics.DisablePhysicsTimeRecording = true;
         WaitForStartedPhysicsRun();
 
         ReleaseUnmanagedResources();
