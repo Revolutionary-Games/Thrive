@@ -118,6 +118,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [Export]
     protected EditorEntryButton editorButton = null!;
 
+    [Export]
+    protected ActionButton mucocystHotkey = null!;
+
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
     protected ActionButton ejectEngulfedHotkey = null!;
@@ -866,16 +869,18 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
-        bool showingSignaling, bool engulfOn, bool showEject)
+    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime, bool showMucocyst,
+        bool showingSignaling, bool engulfOn, bool showEject, bool mucocystOn)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
         secreteSlimeHotkey.Visible = showSlime;
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
+        mucocystHotkey.Visible = showMucocyst;
 
         engulfHotkey.ButtonPressed = engulfOn;
+        mucocystHotkey.ButtonPressed = mucocystOn;
         fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
         secreteSlimeHotkey.ButtonPressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
         signalingAgentsHotkey.ButtonPressed = Input.IsActionPressed(signalingAgentsHotkey.ActionName);

@@ -55,6 +55,13 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
             throw new NotImplementedException();
         }
 
+        if (entity.Has<MicrobeControl>())
+        {
+            // Microbe can't passively absorb compounds with mucocyst active
+            if (entity.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
+                return;
+        }
+
         ref var position = ref entity.Get<WorldPosition>();
 
         compoundCloudSystem.AbsorbCompounds(position.Position, absorber.AbsorbRadius, storage.Compounds,

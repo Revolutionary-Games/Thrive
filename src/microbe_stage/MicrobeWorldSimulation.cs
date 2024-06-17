@@ -77,6 +77,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private OsmoregulationAndHealingSystem osmoregulationAndHealingSystem = null!;
     private PilusDamageSystem pilusDamageSystem = null!;
     private SlimeSlowdownSystem slimeSlowdownSystem = null!;
+    private MucocystSystem mucocystSystem = null!;
     private MicrobePhysicsCreationAndSizeSystem microbePhysicsCreationAndSizeSystem = null!;
     private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
     private MicrobeReproductionSystem microbeReproductionSystem = null!;
@@ -216,6 +217,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, couldParallelize);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
+        mucocystSystem = new MucocystSystem(EntitySystem, couldParallelize);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
@@ -453,6 +455,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 osmoregulationAndHealingSystem.Dispose();
                 pilusDamageSystem.Dispose();
                 slimeSlowdownSystem.Dispose();
+                mucocystSystem.Dispose();
                 microbePhysicsCreationAndSizeSystem.Dispose();
                 microbeRenderPrioritySystem.Dispose();
                 microbeReproductionSystem.Dispose();
