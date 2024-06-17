@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   A hotkey representing and visualizing an input for in-game actions.
@@ -54,6 +55,13 @@ public partial class ActionButton : Button
             UpdateKeyPrompt();
         }
     }
+
+    /// <summary>
+    ///   When <see cref="ActionName"/> is set this is the resolved StringName variant of that for easy access
+    ///   without needing to construct string names constantly
+    /// </summary>
+    [JsonIgnore]
+    public StringName? ActionNameAsStringName => keyPrompt?.ResolvedAction;
 
     public override void _Ready()
     {
