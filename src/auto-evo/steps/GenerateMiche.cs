@@ -54,7 +54,7 @@ public class GenerateMiche : IRunStep
         // Autotrophic Miches
 
         // Glucose
-        if (Patch.GetCompoundAmount(Glucose) > 0)
+        if (Patch.GetCompoundAmountForDisplay(Glucose) > 0)
         {
             generatedMiche.AddChild(
                 new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 10.0f),
@@ -62,7 +62,7 @@ public class GenerateMiche : IRunStep
         }
 
         // Hydrogen Sulfide
-        if (Patch.GetCompoundAmount(HydrogenSulfide) > 0)
+        if (Patch.GetCompoundAmountForDisplay(HydrogenSulfide) > 0)
         {
             generatedMiche.AddChild(
                 new Miche(new AutotrophEnergyEfficiencyPressure(Patch, HydrogenSulfide, Glucose, 5.0f),
@@ -70,21 +70,22 @@ public class GenerateMiche : IRunStep
         }
 
         // Sunlight
-        if (Patch.GetCompoundAmount(Sunlight) > 0)
+        if (Patch.GetCompoundAmountForDisplay(Sunlight) > 0)
         {
             generatedMiche.AddChild(
                 new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Sunlight, Glucose, 5.0f)));
         }
 
         // Heat
-        if (Patch.GetCompoundAmount(Temperature) > 0)
+        // This check probably should be more than 0
+        if (Patch.GetCompoundAmountForDisplay(Temperature) > 0)
         {
             generatedMiche.AddChild(
                 new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Temperature, ATP, 5.0f)));
         }
 
         // Iron
-        if (Patch.GetCompoundAmount(Iron) > 0)
+        if (Patch.GetCompoundAmountForDisplay(Iron) > 0)
         {
             generatedMiche.AddChild(
                 new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Iron, ATP, 5.0f),
