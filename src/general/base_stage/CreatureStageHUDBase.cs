@@ -876,10 +876,18 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         ejectEngulfedHotkey.Visible = showEject;
 
         engulfHotkey.ButtonPressed = engulfOn;
-        fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
-        secreteSlimeHotkey.ButtonPressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
-        signalingAgentsHotkey.ButtonPressed = Input.IsActionPressed(signalingAgentsHotkey.ActionName);
-        ejectEngulfedHotkey.ButtonPressed = Input.IsActionPressed(ejectEngulfedHotkey.ActionName);
+
+        if (fireToxinHotkey.ActionNameAsStringName != null)
+            fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionNameAsStringName);
+
+        if (secreteSlimeHotkey.ActionNameAsStringName != null)
+            secreteSlimeHotkey.ButtonPressed = Input.IsActionPressed(secreteSlimeHotkey.ActionNameAsStringName);
+
+        if (signalingAgentsHotkey.ActionNameAsStringName != null)
+            signalingAgentsHotkey.ButtonPressed = Input.IsActionPressed(signalingAgentsHotkey.ActionNameAsStringName);
+
+        if (ejectEngulfedHotkey.ActionNameAsStringName != null)
+            ejectEngulfedHotkey.ButtonPressed = Input.IsActionPressed(ejectEngulfedHotkey.ActionNameAsStringName);
     }
 
     /// <summary>
