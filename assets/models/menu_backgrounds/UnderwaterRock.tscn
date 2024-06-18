@@ -4,9 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bu4uvavl0ieg2" path="res://assets/textures/iron_01.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="3_iedi2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ligkh"]
-resource_local_to_scene = true
-resource_name = "UnderWaterChimney_Mat"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxcgg"]
 cull_mode = 2
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
@@ -23,4 +21,4 @@ subsurf_scatter_enabled = true
 subsurf_scatter_strength = 0.08
 
 [node name="IronRockBG01" instance=ExtResource("1")]
-material_override = SubResource("StandardMaterial3D_ligkh")
+material_override = SubResource("StandardMaterial3D_uxcgg")

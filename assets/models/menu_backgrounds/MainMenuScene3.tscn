@@ -1,13 +1,12 @@
-[gd_scene load_steps=68 format=3 uid="uid://bjxkgjgaoqvsh"]
+[gd_scene load_steps=22 format=3 uid="uid://bjxkgjgaoqvsh"]
 
 [ext_resource type="PackedScene" uid="uid://q16rprhnmgsk" path="res://assets/models/menu_backgrounds/UnderwaterChimney2.tscn" id="1"]
-[ext_resource type="Texture2D" uid="uid://kloyvken30uu" path="res://assets/textures/menu_backgrounds/SingleClouds.png" id="3_ooioo"]
 [ext_resource type="PackedScene" uid="uid://b1nmj2ijqsdwp" path="res://assets/models/menu_backgrounds/UnderwaterSoil.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://c46w6nmb14i0m" path="res://assets/models/menu_backgrounds/Menu_Vent_particles.tscn" id="4_hjk10"]
-[ext_resource type="Texture2D" uid="uid://dhad2rl5f4478" path="res://assets/textures/menu_backgrounds/SingleClouds_Normal.png" id="4_nq5x3"]
 [ext_resource type="PackedScene" uid="uid://dc8lgeaqscprc" path="res://assets/models/IronRock2.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://xqbmpxl56ysw" path="res://assets/textures/menu_backgrounds/UnderwaterSoil_Normal.png" id="8_xuumh"]
+[ext_resource type="Material" uid="uid://cun7s26mej10d" path="res://assets/models/menu_backgrounds/UnderwaterSoil_Mat2.material" id="9_m5dda"]
 [ext_resource type="PackedScene" uid="uid://h6dsvt4v07um" path="res://assets/models/menu_backgrounds/UnderwaterRock.tscn" id="10_aaijv"]
 [ext_resource type="Texture2D" uid="uid://dnl0rj3iho2mq" path="res://assets/textures/menu_backgrounds/UnderwaterSoil_Base_color.png" id="10_uhuxw"]
 
@@ -89,11 +88,9 @@ panorama = SubResource("GradientTexture2D_1efhn")
 filter = false
 
 [sub_resource type="Sky" id="17"]
-resource_local_to_scene = true
 sky_material = SubResource("PanoramaSkyMaterial_0tuoa")
 
 [sub_resource type="Environment" id="2"]
-resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("17")
 sky_custom_fov = 82.4
@@ -133,7 +130,6 @@ adjustment_contrast = 1.07
 adjustment_saturation = 1.37
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1hl6o"]
-resource_local_to_scene = true
 dof_blur_far_enabled = true
 dof_blur_far_distance = 35.0
 dof_blur_far_transition = 15.0
@@ -141,481 +137,21 @@ dof_blur_near_enabled = true
 dof_blur_near_distance = 10.0
 dof_blur_near_transition = 6.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmlxg"]
-resource_local_to_scene = true
-transparency = 4
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_ooioo")
-metallic = 0.18
-metallic_specular = 1.0
-roughness = 0.7
-normal_enabled = true
-normal_scale = 6.2
-normal_texture = ExtResource("4_nq5x3")
-disable_receive_shadows = true
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_3h8pu"]
-resource_local_to_scene = true
-_data = [Vector2(0.00344828, 1), 0.0, 0.0, 0, 0, Vector2(0.544828, 0.438202), -3.2615, -3.2615, 0, 0, Vector2(0.996552, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_0f2id"]
-resource_local_to_scene = true
-curve = SubResource("Curve_3h8pu")
-
-[sub_resource type="Gradient" id="Gradient_pi44u"]
-offsets = PackedFloat32Array(0, 0.212121, 0.617424, 1)
-colors = PackedColorArray(0.572549, 0.211765, 0, 0.568627, 0.113725, 0.113725, 0.113725, 0.85098, 0.160784, 0.160784, 0.160784, 0.854902, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_egiip"]
-gradient = SubResource("Gradient_pi44u")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cfpw8"]
-resource_local_to_scene = true
-emission_shape = 1
-emission_sphere_radius = 0.03
-angle_min = -179.0
-angle_max = 179.0
-direction = Vector3(0, 1, 0)
-spread = 1.0
-initial_velocity_min = 5.0
-initial_velocity_max = 5.0
-gravity = Vector3(0, -0.1, 0)
-color_ramp = SubResource("GradientTexture1D_egiip")
-alpha_curve = SubResource("CurveTexture_0f2id")
-turbulence_influence_min = 0.0
-turbulence_initial_displacement_max = 0.2
-
-[sub_resource type="QuadMesh" id="QuadMesh_xviu6"]
-resource_local_to_scene = true
+[sub_resource type="QuadMesh" id="QuadMesh_2tyhq"]
 size = Vector2(2, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkjo6"]
-resource_local_to_scene = true
-transparency = 4
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_ooioo")
-metallic = 0.18
-metallic_specular = 1.0
-roughness = 0.7
-normal_enabled = true
-normal_scale = 6.2
-normal_texture = ExtResource("4_nq5x3")
-disable_receive_shadows = true
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_yggn1"]
-resource_local_to_scene = true
-_data = [Vector2(0.00344828, 1), 0.0, 0.0, 0, 0, Vector2(0.544828, 0.438202), -3.2615, -3.2615, 0, 0, Vector2(0.996552, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_83pdj"]
-resource_local_to_scene = true
-curve = SubResource("Curve_yggn1")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jsyrn"]
-resource_local_to_scene = true
-emission_shape = 1
-emission_sphere_radius = 0.03
-angle_min = -179.0
-angle_max = 179.0
-direction = Vector3(0, 1, 0)
-spread = 1.0
-initial_velocity_min = 5.0
-initial_velocity_max = 5.0
-gravity = Vector3(0, -0.1, 0)
-color_ramp = SubResource("GradientTexture1D_egiip")
-alpha_curve = SubResource("CurveTexture_83pdj")
-turbulence_influence_min = 0.0
-turbulence_initial_displacement_max = 0.2
-
-[sub_resource type="QuadMesh" id="QuadMesh_rynfs"]
-resource_local_to_scene = true
-size = Vector2(3, 3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61jtu"]
-resource_local_to_scene = true
-transparency = 4
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_ooioo")
-metallic = 0.18
-metallic_specular = 1.0
-roughness = 0.7
-normal_enabled = true
-normal_scale = 6.2
-normal_texture = ExtResource("4_nq5x3")
-disable_receive_shadows = true
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_qwc45"]
-resource_local_to_scene = true
-_data = [Vector2(0.00344828, 1), 0.0, 0.0, 0, 0, Vector2(0.544828, 0.438202), -3.2615, -3.2615, 0, 0, Vector2(0.996552, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_gntno"]
-resource_local_to_scene = true
-curve = SubResource("Curve_qwc45")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xlsl6"]
-resource_local_to_scene = true
-emission_shape = 1
-emission_sphere_radius = 0.03
-angle_min = -179.0
-angle_max = 179.0
-direction = Vector3(0, 1, 0)
-spread = 1.0
-initial_velocity_min = 5.0
-initial_velocity_max = 5.0
-gravity = Vector3(0, -0.1, 0)
-color_ramp = SubResource("GradientTexture1D_egiip")
-alpha_curve = SubResource("CurveTexture_gntno")
-turbulence_influence_min = 0.0
-turbulence_initial_displacement_max = 0.2
-
-[sub_resource type="QuadMesh" id="QuadMesh_ik7il"]
-resource_local_to_scene = true
-size = Vector2(3, 3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48pg0"]
-resource_local_to_scene = true
-transparency = 4
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_ooioo")
-metallic = 0.18
-metallic_specular = 1.0
-roughness = 0.7
-normal_enabled = true
-normal_scale = 6.2
-normal_texture = ExtResource("4_nq5x3")
-disable_receive_shadows = true
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_gmtpm"]
-resource_local_to_scene = true
-_data = [Vector2(0.00344828, 1), 0.0, 0.0, 0, 0, Vector2(0.544828, 0.438202), -3.2615, -3.2615, 0, 0, Vector2(0.996552, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_pkveu"]
-resource_local_to_scene = true
-curve = SubResource("Curve_gmtpm")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mvjb7"]
-resource_local_to_scene = true
-emission_shape = 1
-emission_sphere_radius = 0.03
-angle_min = -179.0
-angle_max = 179.0
-direction = Vector3(0, 1, 0)
-spread = 1.0
-initial_velocity_min = 5.0
-initial_velocity_max = 5.0
-gravity = Vector3(0, -0.1, 0)
-color_ramp = SubResource("GradientTexture1D_egiip")
-alpha_curve = SubResource("CurveTexture_pkveu")
-turbulence_influence_min = 0.0
-turbulence_initial_displacement_max = 0.2
-
-[sub_resource type="QuadMesh" id="QuadMesh_osnj5"]
-resource_local_to_scene = true
-size = Vector2(3, 3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wc0si"]
-resource_local_to_scene = true
-transparency = 4
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_ooioo")
-metallic = 0.18
-metallic_specular = 1.0
-roughness = 0.7
-normal_enabled = true
-normal_scale = 6.2
-normal_texture = ExtResource("4_nq5x3")
-disable_receive_shadows = true
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_2y7rg"]
-resource_local_to_scene = true
-_data = [Vector2(0.00344828, 1), 0.0, 0.0, 0, 0, Vector2(0.544828, 0.438202), -3.2615, -3.2615, 0, 0, Vector2(0.996552, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_dq2pg"]
-resource_local_to_scene = true
-curve = SubResource("Curve_2y7rg")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5u75e"]
-resource_local_to_scene = true
-emission_shape = 1
-emission_sphere_radius = 0.03
-angle_min = -179.0
-angle_max = 179.0
-direction = Vector3(0, 1, 0)
-spread = 1.0
-initial_velocity_min = 5.0
-initial_velocity_max = 5.0
-gravity = Vector3(0, -0.1, 0)
-color_ramp = SubResource("GradientTexture1D_egiip")
-alpha_curve = SubResource("CurveTexture_dq2pg")
-turbulence_influence_min = 0.0
-turbulence_initial_displacement_max = 0.2
-
-[sub_resource type="QuadMesh" id="QuadMesh_n1k5o"]
-resource_local_to_scene = true
-size = Vector2(3, 3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lb72i"]
-resource_local_to_scene = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a10jh"]
 resource_name = "UnderwaterSoil_Mat"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
+albedo_color = Color(0.847475, 0.847474, 0.847474, 1)
 albedo_texture = ExtResource("10_uhuxw")
 metallic_specular = 0.18
 normal_enabled = true
 normal_scale = 1.77
 normal_texture = ExtResource("8_xuumh")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atv3u"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqoqg"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlhe8"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1wssx"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dri6v"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22sna"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfho0"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5q5jl"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pxwh"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ev16g"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqebs"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgc5a"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t63yh"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxdgd"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5kkk"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i60fn"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1gfi"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgh2t"]
-resource_local_to_scene = true
-resource_name = "UnderwaterSoil_Mat"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_enabled = true
-normal_scale = 1.77
-normal_texture = ExtResource("8_xuumh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dps0h"]
-resource_local_to_scene = true
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 0.258824)
-albedo_texture = ExtResource("10_uhuxw")
-metallic_specular = 0.18
-normal_scale = 1.77
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s3ik5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjgps"]
 resource_local_to_scene = true
 cull_mode = 2
 vertex_color_use_as_albedo = true
@@ -662,11 +198,9 @@ transform = Transform3D(0.959115, -0.0637075, 0.142029, 0.159017, 0.773711, 0.61
 
 [node name="VentParticles1" parent="." instance=ExtResource("4_hjk10")]
 transform = Transform3D(4.872, 0, 0, 0, 1.8, 0, 0, 0, 5.616, -8.972, 10.75, 24.703)
-material_override = SubResource("StandardMaterial3D_xmlxg")
 amount = 45
 visibility_aabb = AABB(-3.14709, -4, -6.35581, 8, 8, 7.76436)
-process_material = SubResource("ParticleProcessMaterial_cfpw8")
-draw_pass_1 = SubResource("QuadMesh_xviu6")
+draw_pass_1 = SubResource("QuadMesh_2tyhq")
 
 [node name="UnderwaterChimney3" parent="." instance=ExtResource("1")]
 transform = Transform3D(-0.533049, 0, -0.182602, 0, 1, 0, 0.133665, 0, -0.728206, -7.346, 5.217, 15.494)
@@ -684,9 +218,6 @@ omni_attenuation = 2.2974
 
 [node name="VentParticles2" parent="UnderwaterChimney3" instance=ExtResource("4_hjk10")]
 transform = Transform3D(16, 0, -3.8147e-07, 0, 2.3, 0, 3.8147e-07, 0, 16, 0, 1.6, 0)
-material_override = SubResource("StandardMaterial3D_nkjo6")
-process_material = SubResource("ParticleProcessMaterial_jsyrn")
-draw_pass_1 = SubResource("QuadMesh_rynfs")
 
 [node name="UnderwaterChimney4" parent="." instance=ExtResource("1")]
 transform = Transform3D(-0.41343, 0.183527, -0.133774, 0.134676, 0.598819, 6.59842e-08, 0.10367, -0.0460202, -0.533483, -28.6633, 6.39463, 18.5842)
@@ -703,10 +234,7 @@ omni_attenuation = 2.2974
 
 [node name="VentParticles3" parent="UnderwaterChimney4" instance=ExtResource("4_hjk10")]
 transform = Transform3D(14.6335, 0.659123, 1.79483e-06, -3.29562, 2.9267, -2.88208e-06, -2.38419e-06, 4.83463e-07, 15, -0.691605, 0.768367, -1.90735e-06)
-material_override = SubResource("StandardMaterial3D_61jtu")
 amount = 25
-process_material = SubResource("ParticleProcessMaterial_xlsl6")
-draw_pass_1 = SubResource("QuadMesh_ik7il")
 
 [node name="UnderwaterChimney5" parent="." instance=ExtResource("1")]
 transform = Transform3D(-0.631706, 0.365301, -0.188013, 0.20578, 1.19192, 7.87585e-08, 0.158404, -0.091601, -0.749787, -31.3255, -0.424461, 4.90141)
@@ -725,10 +253,7 @@ omni_attenuation = 3.03144
 
 [node name="VentParticles4" parent="UnderwaterChimney5" instance=ExtResource("4_hjk10")]
 transform = Transform3D(14.7806, 0.511238, -9.01509e-07, -2.55619, 2.95612, -3.8137e-06, 2.38419e-07, 7.8231e-07, 15, -0.653919, 0.551311, 0.408634)
-material_override = SubResource("StandardMaterial3D_48pg0")
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_mvjb7")
-draw_pass_1 = SubResource("QuadMesh_osnj5")
 
 [node name="UnderwaterChimney6" parent="." instance=ExtResource("1")]
 transform = Transform3D(0.973435, 0.223152, -0.0512572, -0.224611, 0.974137, -0.024659, 0.0444288, 0.0355169, 0.998381, -11.463, 4.481, -14.427)
@@ -750,10 +275,7 @@ omni_attenuation = 2.2974
 
 [node name="VentParticles5" parent="." instance=ExtResource("4_hjk10")]
 transform = Transform3D(-16.4895, -2.63366e-06, -4.13486, -1.86862e-05, 2.3, -5.51403e-06, 4.13486, -1.08702e-07, -16.4895, -11.0402, 5.77586, -14.0467)
-material_override = SubResource("StandardMaterial3D_wc0si")
 amount = 45
-process_material = SubResource("ParticleProcessMaterial_5u75e")
-draw_pass_1 = SubResource("QuadMesh_n1k5o")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0543926, -0.99852, -2.37757e-09, -4.37114e-08, 1.91069e-15, 1, -0.99852, 0.0543926, -4.36467e-08, 0, 17.284, 0)
@@ -770,87 +292,87 @@ transform = Transform3D(2.34667, 0.4843, 3.20291, 0.0737935, 3.94602, -0.65073, 
 
 [node name="iron1" parent="." instance=ExtResource("7")]
 transform = Transform3D(1.23, 0, 0, 0, 1.19933, 0.732346, 0, -0.386247, 2.27398, 0.964568, 2.42129, -3.2694)
-material_override = SubResource("StandardMaterial3D_lb72i")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron9" parent="." instance=ExtResource("7")]
 transform = Transform3D(0.389554, -0.446776, 2.10173, 0.308177, -1.08773, -1.04673, 1.12524, 0.452576, -0.440936, -10.3511, 2.52491, 8.31997)
-material_override = SubResource("StandardMaterial3D_atv3u")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron11" parent="." instance=ExtResource("7")]
 transform = Transform3D(0.660357, -0.741751, 3.44029, -0.646167, 1.2966, 2.28875, -1.59122, -0.834353, 0.4983, 5.44006, 4.12481, 6.31493)
-material_override = SubResource("StandardMaterial3D_vqoqg")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron12" parent="." instance=ExtResource("7")]
 transform = Transform3D(-1.65187, 1.47509, 1.40531, 0.254082, -1.50538, 3.04051, 1.32048, 2.13493, 1.17295, -1.2279, 3.85927, 5.78599)
-material_override = SubResource("StandardMaterial3D_hlhe8")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron13" parent="." instance=ExtResource("7")]
 transform = Transform3D(1.325, 1.121, 1.23098, -1.52408, 1.10117, -0.398007, -0.677091, -0.284938, 3.3048, -0.0966698, 1.60704, 3.7366)
-material_override = SubResource("StandardMaterial3D_1wssx")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron5" parent="." instance=ExtResource("7")]
 transform = Transform3D(2.62, 0, 0, 0, -3.45779, -1.53733, 0, 2.01089, -2.64348, 0.205676, 4.32868, -10.7671)
-material_override = SubResource("StandardMaterial3D_dri6v")
+material_override = ExtResource("9_m5dda")
 
 [node name="IronRockBG01" parent="." instance=ExtResource("10_aaijv")]
 transform = Transform3D(0.718532, -0.26365, 3.52808, 1.35383, -0.300669, -1.88262, 0.149875, 3.97996, 0.0914914, 4.64212, 2.78974, -4.04514)
-material_override = SubResource("StandardMaterial3D_22sna")
+material_override = ExtResource("9_m5dda")
 skeleton = NodePath("")
 
 [node name="iron2" parent="." instance=ExtResource("7")]
 transform = Transform3D(11.7, 0, 0, 0, -4.62379e-07, 17.106, 0, -10.578, -7.47727e-07, -32.9505, 2.13488, -11.6791)
-material_override = SubResource("StandardMaterial3D_yfho0")
+material_override = ExtResource("9_m5dda")
 skeleton = NodePath("../WorldEnvironment")
 
 [node name="iron7" parent="." instance=ExtResource("7")]
 transform = Transform3D(0.62907, 9.94628, -5.74984, 5.72287, 2.84195, 14.1945, 10.1854, -2.2111, -7.62035, -15.3838, -1.26952, -10.1592)
-material_override = SubResource("StandardMaterial3D_5q5jl")
+material_override = ExtResource("9_m5dda")
 skeleton = NodePath("../WorldEnvironment")
 
 [node name="iron3" parent="." instance=ExtResource("6")]
-transform = Transform3D(9.52, 0, 0, 0, -3.20623e-07, 4.505, 0, -7.335, -1.9692e-07, -19.3294, 1.5466, 11.4426)
-material_override = SubResource("StandardMaterial3D_7pxwh")
+transform = Transform3D(9.52, 0, 0, 0, -3.20623e-07, 4.505, 0, -7.335, -1.9692e-07, -19.3294, 1.13076, 11.4426)
+material_override = ExtResource("9_m5dda")
 
 [node name="iron8" parent="." instance=ExtResource("6")]
 transform = Transform3D(2.64944, -12.2456, 0.0627813, 0.442836, 4.00598e-07, -8.48475, 12.3103, 2.63551, 0.291708, -32.651, 4.17994, 12.6542)
-material_override = SubResource("StandardMaterial3D_ev16g")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron4" parent="." instance=ExtResource("6")]
 transform = Transform3D(2.80283, -0.275585, 0.701911, -0.782459, -0.987168, 2.5143, 1.7345e-07, -1.5844, -1.68864, 5.52975, 6.92871, 9.4619)
-material_override = SubResource("StandardMaterial3D_qqebs")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron14" parent="." instance=ExtResource("6")]
 transform = Transform3D(0.887217, 1.41569, 1.82399, 0.161168, -1.1868, 2.41098, 2.76676, -0.384836, -0.725343, 2.5865, 7.91768, 11.29)
-material_override = SubResource("StandardMaterial3D_kgc5a")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron15" parent="." instance=ExtResource("6")]
 transform = Transform3D(0.432089, 1.07576, -0.577609, 0.436467, 0.322186, 1.62046, 1.67069, -0.362395, -0.273958, -0.0443568, 5.86604, 8.92786)
-material_override = SubResource("StandardMaterial3D_t63yh")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron16" parent="." instance=ExtResource("6")]
 transform = Transform3D(-0.306641, 1.73034, 0.663061, -0.958912, 0.518227, -1.454, -1.76277, -0.582904, 0.675607, -0.949979, 6.60865, 10.1376)
-material_override = SubResource("StandardMaterial3D_rxdgd")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron17" parent="." instance=ExtResource("6")]
 transform = Transform3D(-0.747269, 1.73034, 0.316906, 0.427163, 0.518228, -1.62866, -1.83848, -0.582905, -0.50722, -6.10484, 2.19685, -7.26003)
-material_override = SubResource("StandardMaterial3D_y5kkk")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron18" parent="." instance=ExtResource("6")]
 transform = Transform3D(0.906729, -0.395068, -0.364449, 0.323237, 1.18357, -0.0265526, 0.270852, -0.0899181, 1.25175, -2.39763, 3.32238, -7.6066)
-material_override = SubResource("StandardMaterial3D_i60fn")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron19" parent="." instance=ExtResource("6")]
 transform = Transform3D(1.51868, -1.6816, 0.108056, -0.226547, -0.472823, -2.58387, 1.32785, 1.8426, -0.564422, -4.57415, 1.70164, -3.62968)
-material_override = SubResource("StandardMaterial3D_q1gfi")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron20" parent="." instance=ExtResource("6")]
 transform = Transform3D(1.12966, -1.1809, 0.0628663, -0.168515, -0.332037, -1.50327, 0.987714, 1.29395, -0.328375, -10.7212, 0.0739745, 3.12302)
-material_override = SubResource("StandardMaterial3D_bgh2t")
+material_override = ExtResource("9_m5dda")
 
 [node name="iron21" parent="." instance=ExtResource("6")]
-transform = Transform3D(-0.938623, 1.39646, -0.0212464, 0.702291, 0.683219, 1.22897, 0.951774, 0.873037, -0.927781, -13.0935, 1.30141, 4.84903)
-material_override = SubResource("StandardMaterial3D_dps0h")
+transform = Transform3D(-0.438819, 2.02361, 0.952183, 1.48938, -0.382688, 1.32079, 1.26063, 1.15654, -1.22901, -13.0935, 0.454385, 5.19586)
+material_override = SubResource("StandardMaterial3D_a10jh")
 
 [node name="iron22" parent="." instance=ExtResource("6")]
 transform = Transform3D(-0.0125223, 2.60165, 0.0173912, 0.707826, 0.0426514, -1.13572, -0.775451, -0.00308044, -1.03696, -13.7744, -0.214223, 2.02327)
-material_override = SubResource("StandardMaterial3D_s3ik5")
+material_override = SubResource("StandardMaterial3D_pjgps")
