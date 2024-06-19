@@ -18,8 +18,10 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   # Probably really don't need to support debug symbols in release for MSVC
 else()
   # Sadly this needs to specify sandy bridge to get xgetbv working, but that
-  # is only called if AVX support is already detected, so this should be fined
-  # for older CPUs
+  # is only called if AVX support is already detected, so this should be fine
+  # for older CPUs. Nehalem is the minimum Thrive can work with but when SSE
+  # 4.2 support is not detected the slower library is used anyway and the CPU
+  # check won't have detected AVX.
   target_compile_options(early_checks PRIVATE -march=sandybridge)
 
   target_compile_options(early_checks PRIVATE -Wall -Wextra -Wpedantic -Wno-unknown-pragmas)
