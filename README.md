@@ -11,7 +11,7 @@ This is the code repository for Thrive. For more information, visit
 
 [![Community Forums](https://img.shields.io/badge/-Community%20Forums-%239cf)](https://community.revolutionarygamesstudio.com/)
 <a href="https://translate.revolutionarygamesstudio.com/engage/thrive/">
-<img src="https://translate.revolutionarygamesstudio.com/widgets/thrive/-/thrive-game/svg-badge.svg" alt="translation status" /></a>
+<img alt="Weblate project translated" src="https://img.shields.io/weblate/progress/thrive?server=https%3A%2F%2Ftranslate.revolutionarygamesstudio.com&logo=weblate"></a>
 [![Developer Wiki](https://img.shields.io/badge/-Developer%20Wiki-red)](https://wiki.revolutionarygamesstudio.com/)
 [![Discord](https://discord.com/api/guilds/228300288023461893/widget.png)](https://discord.gg/FZxDQ4H)
 
