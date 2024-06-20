@@ -151,7 +151,7 @@ normal_enabled = true
 normal_scale = 1.77
 normal_texture = ExtResource("8_xuumh")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjgps"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44oje"]
 resource_local_to_scene = true
 cull_mode = 2
 vertex_color_use_as_albedo = true
@@ -375,4 +375,4 @@ material_override = SubResource("StandardMaterial3D_a10jh")
 
 [node name="iron22" parent="." instance=ExtResource("6")]
 transform = Transform3D(-0.0125223, 2.60165, 0.0173912, 0.707826, 0.0426514, -1.13572, -0.775451, -0.00308044, -1.03696, -13.7744, -0.214223, 2.02327)
-material_override = SubResource("StandardMaterial3D_pjgps")
+material_override = SubResource("StandardMaterial3D_44oje")
