@@ -38,6 +38,8 @@ public partial class KeyPrompt : CenterContainer
     private string actionName = string.Empty;
     private StringName? resolvedActionName;
 
+    private bool dirty;
+
     /// <summary>
     ///   Name of the action this key prompt shows
     /// </summary>
@@ -51,6 +53,7 @@ public partial class KeyPrompt : CenterContainer
                 return;
 
             actionName = value;
+            dirty = true;
 
             if (!string.IsNullOrEmpty(value))
             {
@@ -74,7 +77,7 @@ public partial class KeyPrompt : CenterContainer
         primaryIcon = GetNode<TextureRect>("Primary");
         secondaryIcon = GetNode<TextureRect>("Secondary");
 
-        Refresh();
+        dirty = true;
     }
 
     public override void _EnterTree()
@@ -85,7 +88,7 @@ public partial class KeyPrompt : CenterContainer
         // currently)
         KeyPromptHelper.IconsChanged += OnIconsChanged;
         InputDataList.InputsRemapped += OnIconsChanged;
-        Refresh();
+        dirty = true;
     }
 
     public override void _ExitTree()
@@ -103,6 +106,9 @@ public partial class KeyPrompt : CenterContainer
         // the tutorial etc. to set this hidden itself.
         if (!Visible)
             return;
+
+        if (dirty)
+            Refresh();
 
         if (!ShowPress)
         {
@@ -126,16 +132,41 @@ public partial class KeyPrompt : CenterContainer
 
         if (what == NotificationResized)
         {
-            if (primaryIcon != null)
-                ApplySize();
+            ApplySize();
         }
     }
 
-    /// <summary>
-    ///   Refreshes this buttons icon. If you change ActionName you need to call this
-    /// </summary>
-    public void Refresh()
+    protected virtual void ApplySize()
     {
+        if (primaryIcon == null)
+            return;
+
+        var size = Size;
+        primaryIcon.CustomMinimumSize = size;
+        secondaryIcon.CustomMinimumSize = size;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            resolvedActionName?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
+    /// <summary>
+    ///   Refreshes this buttons icon. Automatically called after being marked dirty on the next process this is
+    ///   visible.
+    /// </summary>
+    private void Refresh()
+    {
+        if (dirty)
+            GD.Print("did a refresh");
+
+        dirty = false;
+
         if (primaryIcon == null)
             return;
 
@@ -166,25 +197,8 @@ public partial class KeyPrompt : CenterContainer
         }
     }
 
-    protected virtual void ApplySize()
-    {
-        var size = Size;
-        primaryIcon!.CustomMinimumSize = size;
-        secondaryIcon.CustomMinimumSize = size;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            resolvedActionName?.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnIconsChanged(object? sender, EventArgs args)
     {
-        Refresh();
+        dirty = true;
     }
 }

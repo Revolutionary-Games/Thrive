@@ -477,16 +477,7 @@ public partial class TabButtons : HBoxContainer
                 throw new ArgumentOutOfRangeException();
         }
 
-        if (leftButtonIndicator.ActionName != wantedLeft)
-        {
-            leftButtonIndicator.ActionName = wantedLeft;
-            leftButtonIndicator.Refresh();
-        }
-
-        if (rightButtonIndicator.ActionName != wantedRight)
-        {
-            rightButtonIndicator.ActionName = wantedRight;
-            rightButtonIndicator.Refresh();
-        }
+        leftButtonIndicator.ActionName = wantedLeft;
+        rightButtonIndicator.ActionName = wantedRight;
     }
 }
