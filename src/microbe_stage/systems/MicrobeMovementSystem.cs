@@ -80,21 +80,29 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         // Position is used to calculate the look direction
         ref var position = ref entity.Get<WorldPosition>();
 
-        var lookVector = control.LookAtPoint - position.Position;
+        var lookVector = (control.LookAtPoint - position.Position).Normalized();
         lookVector.Y = 0;
 
-        var length = lookVector.Length();
-
-        if (length > MathUtils.EPSILON)
+        if (lookVector.Length() > MathUtils.EPSILON)
         {
             // Normalize vector when it has a length
-            lookVector /= length;
+            lookVector = lookVector.Normalized();
         }
         else
         {
             // Without any difference with the look at point compared to the current position, default to looking
             // forward
             lookVector = Vector3.Forward;
+        }
+
+        // Simplify turns to 90 degrees to keep consistant turning speed
+        if ((position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up) > Constants.CELL_TURN_SLOWDOWN_RADIANS)
+        {
+            lookVector = position.Rotation * Vector3.Left;
+        }
+        else if ((position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up) < -Constants.CELL_TURN_SLOWDOWN_RADIANS)
+        {
+            lookVector = position.Rotation * Vector3.Right;
         }
 
 #if DEBUG
