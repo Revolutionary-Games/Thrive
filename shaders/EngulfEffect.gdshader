@@ -8,7 +8,7 @@ uniform float movementWigglyNess = 1.f;
 uniform float waviness = 40.f;
 uniform float waveSpeed = 10.f;
 
-uniform float fade = 0.2f;
+uniform float fade = 0.f;
 
 uniform vec3 tint : source_color = vec3(0, 0.55, 0.80);
 

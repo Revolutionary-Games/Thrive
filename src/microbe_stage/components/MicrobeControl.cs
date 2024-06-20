@@ -232,8 +232,20 @@ public static class MicrobeControlHelpers
         }
 
         if (state)
+        {
             control.State = MicrobeState.MucocystShield;
+            var membrane = entity.Get<CellProperties>().CreatedMembrane;
+
+            if (membrane != null)
+                membrane.SetMucocystEffectVisible(true);
+        }
         else
+        {
             control.State = MicrobeState.Normal;
+            var membrane = entity.Get<CellProperties>().CreatedMembrane;
+
+            if (membrane != null)
+                membrane.SetMucocystEffectVisible(false);
+        }
     }
 }

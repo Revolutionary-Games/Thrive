@@ -7,11 +7,13 @@ using DefaultEcs.System;
 using DefaultEcs.Threading;
 
 /// <summary>
-///   Handles slowing down cells that are currently moving through slime (and don't have slime jets themselves)
+///   Handles gaining immortality from mucocyst ability
 /// </summary>
 [With(typeof(MicrobeControl))]
 [With(typeof(Health))]
+[With(typeof(CompoundStorage))]
 [Without(typeof(AttachedToEntity))]
+[WritesToComponent(typeof(CellProperties))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RuntimeCost(7)]
@@ -39,10 +41,19 @@ public sealed class MucocystSystem : AEntitySetSystem<float>
 
             if (entity.Get<CompoundStorage>().Compounds.Compounds[mucilageCompound] <= 0)
                 control.State = MicrobeState.Normal;
+
+            var membrane = entity.Get<CellProperties>().CreatedMembrane;
+
+            if (membrane != null)
+                membrane.SetMucocystEffectVisible(true);
         }
         else
         {
             entity.Get<Health>().Invulnerable = CheatManager.GodMode;
+
+            var membrane = entity.Get<CellProperties>().CreatedMembrane;
+            if (membrane != null)
+                membrane.SetMucocystEffectVisible(false);
         }
     }
 }
