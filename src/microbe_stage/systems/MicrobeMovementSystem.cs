@@ -80,7 +80,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         // Position is used to calculate the look direction
         ref var position = ref entity.Get<WorldPosition>();
 
-        var lookVector = (control.LookAtPoint - position.Position);
+        var lookVector = control.LookAtPoint - position.Position;
         lookVector.Y = 0;
 
         if (lookVector.Length() > MathUtils.EPSILON)
