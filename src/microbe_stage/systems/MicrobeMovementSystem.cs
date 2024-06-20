@@ -151,8 +151,8 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         if (control.State == MicrobeState.MucocystShield)
         {
-            rotationSpeed *= Constants.MUCOCYST_SPEED_DIVISOR;
-            movementImpulse /= Constants.MUCOCYST_SPEED_DIVISOR;
+            rotationSpeed /= Constants.MUCOCYST_SPEED_MULTIPLIER;
+            movementImpulse *= Constants.MUCOCYST_SPEED_MULTIPLIER;
         }
 
         physicalWorld.ApplyBodyMicrobeControl(physics.Body!, movementImpulse, wantedRotation, rotationSpeed);

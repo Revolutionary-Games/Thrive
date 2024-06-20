@@ -7,8 +7,6 @@ using Godot;
 /// </summary>
 public class SlimeJetComponent : IOrganelleComponent
 {
-    public bool IsMucocyst;
-
     private const string SlimeJetAnimationName = "SlimeJet";
     private const string MUCOCYST_UPGRADE_NAME = "mucocyst";
 
@@ -37,6 +35,8 @@ public class SlimeJetComponent : IOrganelleComponent
             animationDirty = true;
         }
     }
+
+    public bool IsMucocyst { get; private set; }
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {

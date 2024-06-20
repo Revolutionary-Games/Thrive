@@ -1,7 +1,6 @@
 ﻿namespace Components;
 
 using System;
-using System.Linq;
 using DefaultEcs;
 using Godot;
 
@@ -188,10 +187,6 @@ public static class MicrobeControlHelpers
         if (organelleInfo.SlimeJets == null || organelleInfo.SlimeJets.Count < 1)
             return;
 
-        // Not valid if all slime jets are mucocysts
-        if (organelleInfo.SlimeJets.All(c => c.IsMucocyst))
-            return;
-
         control.QueuedSlimeSecretionTime += duration;
     }
 
@@ -221,11 +216,7 @@ public static class MicrobeControlHelpers
         }
 
         // It might be tricky as there is now mucocyst upgrade that doesn't emit slime normally
-        if (organelleInfo.SlimeJets == null || organelleInfo.SlimeJets.Count < 1)
-            return;
-
-        // Must have at least one mucocyst
-        if (organelleInfo.SlimeJets.All(c => c.IsMucocyst != true))
+        if (organelleInfo.MucocystCount == null || organelleInfo.MucocystCount < 1)
             return;
 
         if (entity.Has<CompoundStorage>())
@@ -233,13 +224,29 @@ public static class MicrobeControlHelpers
             ref var compoundStorage = ref entity.Get<CompoundStorage>();
             var mucilage = SimulationParameters.Instance.GetCompound("mucilage");
 
-            if (compoundStorage.Compounds.Compounds[mucilage] < Constants.MUCOCYST_SPEED_MINIMUM_MUCILAGE)
+            if (compoundStorage.Compounds.Compounds[mucilage] < Constants.MUCOCYST_MINIMUM_MUCILAGE)
                 return;
         }
 
+        var membrane = entity.Get<CellProperties>().CreatedMembrane;
+
         if (state)
+        {
             control.State = MicrobeState.MucocystShield;
+
+            entity.Get<CompoundAbsorber>().AbsorbSpeed = -1;
+            entity.Get<SoundEffectPlayer>().PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
+
+            membrane?.SetMucocystEffectVisible(true);
+        }
         else
+        {
             control.State = MicrobeState.Normal;
+
+            entity.Get<CompoundAbsorber>().AbsorbSpeed = 0;
+
+            membrane?.SetMucocystEffectVisible(false);
+
+        }
     }
 }

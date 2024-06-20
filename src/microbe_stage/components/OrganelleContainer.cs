@@ -44,6 +44,12 @@ public struct OrganelleContainer
     public List<SlimeJetComponent>? SlimeJets;
 
     /// <summary>
+    ///   The slime jets with mucocyst
+    /// </summary>
+    [JsonIgnore]
+    public int? MucocystCount;
+
+    /// <summary>
     ///   Flagellum components that need to be animated when the cell is moving at top speed
     /// </summary>
     [JsonIgnore]
@@ -498,8 +504,15 @@ public static class OrganelleContainerHelpers
                 }
                 else if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
-                    container.SlimeJets ??= new List<SlimeJetComponent>();
-                    container.SlimeJets.Add(slimeJetComponent);
+                    if (slimeJetComponent.IsMucocyst)
+                    {
+                        ++container.MucocystCount;
+                    }
+                    else
+                    {
+                        container.SlimeJets ??= new List<SlimeJetComponent>();
+                        container.SlimeJets.Add(slimeJetComponent);
+                    }
                 }
                 else if (organelleComponent is MovementComponent thrustComponent)
                 {
@@ -588,6 +601,7 @@ public static class OrganelleContainerHelpers
     /// </summary>
     public static void FetchLayoutOrganelleComponents(this ref OrganelleContainer container)
     {
+        container.MucocystCount = 0;
         container.SlimeJets?.Clear();
         container.ThrustComponents?.Clear();
         container.RotationComponents?.Clear();
@@ -602,8 +616,15 @@ public static class OrganelleContainerHelpers
             {
                 if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
-                    container.SlimeJets ??= new List<SlimeJetComponent>();
-                    container.SlimeJets.Add(slimeJetComponent);
+                    if (slimeJetComponent.IsMucocyst)
+                    {
+                        ++container.MucocystCount;
+                    }
+                    else
+                    {
+                        container.SlimeJets ??= new List<SlimeJetComponent>();
+                        container.SlimeJets.Add(slimeJetComponent);
+                    }
                 }
                 else if (organelleComponent is MovementComponent thrustComponent)
                 {

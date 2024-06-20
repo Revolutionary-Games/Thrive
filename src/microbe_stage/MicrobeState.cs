@@ -21,7 +21,7 @@
     Engulf,
 
     /// <summary>
-    ///   The microbe is currently shielded my mucocyst shield
+    ///   The microbe is currently shielded by mucocyst shield
     /// </summary>
     MucocystShield,
 }

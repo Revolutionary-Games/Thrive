@@ -1,48 +1,66 @@
 ﻿namespace Systems;
 
 using System;
+using System.Collections.Generic;
+using System.IO.Pipes;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
 
 /// <summary>
-///   Handles slowing down cells that are currently moving through slime (and don't have slime jets themselves)
+///   Handles gaining immortality from mucocyst ability
 /// </summary>
 [With(typeof(MicrobeControl))]
 [With(typeof(Health))]
+[With(typeof(CompoundStorage))]
+[With(typeof(CellProperties))]
 [Without(typeof(AttachedToEntity))]
+[ReadsComponent(typeof(CellProperties))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
-[RuntimeCost(7)]
 public sealed class MucocystSystem : AEntitySetSystem<float>
 {
     private Compound mucilageCompound = SimulationParameters.Instance.GetCompound("mucilage");
 
-    public MucocystSystem(World world, IParallelRunner runner) :
-        base(world, runner)
+    private List<Entity> activeMucocysts = new();
+
+    public MucocystSystem(World world) :
+        base(world)
     {
     }
 
     protected override void Update(float delta, in Entity entity)
     {
         // Handles invulnerability from mucocyst. Other buffs/debuffs from mucocyst are in related systems
+
         ref var control = ref entity.Get<MicrobeControl>();
 
         if (control.State == MicrobeState.MucocystShield)
         {
-            entity.Get<Health>().Invulnerable = true;
-            entity.Get<CompoundStorage>().Compounds.
+            ref var storage = ref entity.Get<CompoundStorage>();
+
+            storage.Compounds.
                 Compounds[mucilageCompound] -= Math.Min(
                 Constants.MUCOCYST_MUCILAGE_DRAIN * delta,
-                entity.Get<CompoundStorage>().Compounds.Compounds[mucilageCompound]);
+                storage.Compounds.Compounds[mucilageCompound]);
 
-            if (entity.Get<CompoundStorage>().Compounds.Compounds[mucilageCompound] <= 0)
+            if (storage.Compounds.Compounds[mucilageCompound] <= 0)
                 control.State = MicrobeState.Normal;
+
+            entity.Get<Health>().Invulnerable = true;
+
+            var membrane = entity.Get<CellProperties>().CreatedMembrane;
+
+            membrane?.SetMucocystEffectVisible(true);
         }
         else
         {
-            entity.Get<Health>().Invulnerable = CheatManager.GodMode;
+            entity.Get<Health>().Invulnerable = entity.Has<PlayerMarker>() ? CheatManager.GodMode : false;
+
+            var membrane = entity.Get<CellProperties>().CreatedMembrane;
+
+            membrane?.SetMucocystEffectVisible(false);
         }
     }
 }

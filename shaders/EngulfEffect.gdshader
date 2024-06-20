@@ -1,14 +1,14 @@
 shader_type spatial;
-render_mode unshaded;
+
 // Any changes to these two must be matched in Membrane.gdshader
 // Set to 0 to disable wiggle
 uniform float wigglyNess = 1.f;
 uniform float movementWigglyNess = 1.f;
 
-uniform float waviness = 40.f;
-uniform float waveSpeed = 10.f;
+uniform float waviness = 20.f;
+uniform float waveSpeed = 15.f;
 
-uniform float fade = 0.2f;
+uniform float fade = 0.f;
 
 uniform vec3 tint : source_color = vec3(0, 0.55, 0.80);
 
@@ -28,5 +28,5 @@ void fragment() {
     vec3 final = vec3(waves) * tint;
 
     ALBEDO = final;
-    ALPHA = waves * (clamp(UV.y - 4.f / 9.f, 0, 1)) * fade;
+    ALPHA = waves * (1.f - UV.y) * fade;
 }

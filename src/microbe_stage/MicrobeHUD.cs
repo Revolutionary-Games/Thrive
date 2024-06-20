@@ -423,7 +423,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         bool showToxin;
         bool showSlime;
-        bool showMucocyst = false;
+        bool showMucocyst;
 
         bool engulfing;
         bool usingMucocyst;
@@ -434,10 +434,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             ref var colony = ref player.Get<MicrobeColony>();
 
             // TODO: does this need a variant that just returns a bool and has an early exit?
-            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets);
+            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets, out var mucocysts);
 
             showToxin = vacuoles > 0;
             showSlime = slimeJets > 0;
+            showMucocyst = mucocysts > 0;
 
             engulfing = colony.ColonyState == MicrobeState.Engulf;
             usingMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
@@ -445,8 +446,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         else
         {
             showToxin = organelles.AgentVacuoleCount > 0;
-            showSlime = organelles.SlimeJets is { Count: > 0 } && !organelles.SlimeJets.All(c => c.IsMucocyst);
-            showMucocyst = organelles.SlimeJets is { Count: > 0 } && !organelles.SlimeJets.All(c => !c.IsMucocyst);
+            showSlime = organelles.SlimeJets is { Count: > 0 };
+            showMucocyst = organelles.MucocystCount > 0;
 
             engulfing = control.State == MicrobeState.Engulf;
             usingMucocyst = control.State == MicrobeState.MucocystShield;

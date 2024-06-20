@@ -233,10 +233,11 @@ public static class MicrobeColonyHelpers
     ///   Calculates the total counts of special organelles in a colony
     /// </summary>
     public static void CalculateColonySpecialOrganelles(this ref MicrobeColony colony, out int agentVacuoles,
-        out int slimeJets)
+        out int slimeJets, out int mucocysts)
     {
         agentVacuoles = 0;
         slimeJets = 0;
+        mucocysts = 0;
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -244,6 +245,7 @@ public static class MicrobeColonyHelpers
 
             agentVacuoles += organelles.AgentVacuoleCount;
             slimeJets += organelles.SlimeJets?.Count ?? 0;
+            mucocysts += organelles.MucocystCount ?? 0;
         }
     }
 

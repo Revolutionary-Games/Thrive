@@ -236,15 +236,12 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         if (control.QueuedSlimeSecretionTime > 0 && control.SlimeSecretionCooldown <= 0)
         {
             // Play a sound only if we've just started, i.e. only if no jets are already active
-            if (organelles.SlimeJets.All(c => !c.Active && !c.IsMucocyst))
+            if (organelles.SlimeJets.All(c => !c.Active))
                 soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
 
             // Activate all jets, which will constantly secrete slime until we turn them off
             foreach (var jet in organelles.SlimeJets)
             {
-                if (jet.IsMucocyst)
-                    continue;
-
                 // Make sure this is animating
                 jet.Active = true;
 

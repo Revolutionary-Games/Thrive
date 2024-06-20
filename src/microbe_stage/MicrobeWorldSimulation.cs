@@ -219,7 +219,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, couldParallelize);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
-        mucocystSystem = new MucocystSystem(EntitySystem, couldParallelize);
+        mucocystSystem = new MucocystSystem(EntitySystem);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
