@@ -95,7 +95,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             lookVector = Vector3.Forward;
         }
 
-        // Simplify turns to 90 degrees to keep consistant turning speed
+        // Simplify turns to 90 degrees to keep consistent turning speed
         if ((position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up)
             > Constants.CELL_TURN_SLOWDOWN_RADIANS)
         {
