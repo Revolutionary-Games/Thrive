@@ -82,11 +82,12 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         var lookVector = control.LookAtPoint - position.Position;
         lookVector.Y = 0;
+        var lookVectorLength = lookVector.Length();
 
-        if (lookVector.Length() > MathUtils.EPSILON)
+        if (lookVectorLength > MathUtils.EPSILON)
         {
             // Normalize vector when it has a length
-            lookVector = lookVector.Normalized();
+            lookVector /= lookVectorLength;
         }
         else
         {
