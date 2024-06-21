@@ -95,14 +95,14 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             lookVector = Vector3.Forward;
         }
 
+        var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
+
         // Simplify turns to 90 degrees to keep consistent turning speed
-        if ((position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up)
-            > Constants.CELL_TURN_SLOWDOWN_RADIANS)
+        if (turnAngle > Constants.CELL_TURN_SLOWDOWN_RADIANS)
         {
             lookVector = position.Rotation * Vector3.Left;
         }
-        else if ((position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up)
-                 < -Constants.CELL_TURN_SLOWDOWN_RADIANS)
+        else if (turnAngle < -Constants.CELL_TURN_SLOWDOWN_RADIANS)
         {
             lookVector = position.Rotation * Vector3.Right;
         }
