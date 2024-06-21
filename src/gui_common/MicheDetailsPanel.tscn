@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cikd2ef2usr1y"]
+
+[ext_resource type="Script" path="res://src/gui_common/MicheDetailsPanel.cs" id="1_ow3ua"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5_1t1od"]
+
+[node name="MicheDetailsPanel" type="MarginContainer"]
+custom_minimum_size = Vector2(352, 300)
+offset_right = 352.0
+offset_bottom = 562.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_ow3ua")
+MicheDetailsLabelPath = NodePath("ScrollContainer/VBoxContainer/MicheInfoLabel")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MicheInfoLabel" parent="ScrollContainer/VBoxContainer" instance=ExtResource("5_1t1od")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+fit_content = true
+scroll_active = false
+EnableTooltipsForMetaTags = false

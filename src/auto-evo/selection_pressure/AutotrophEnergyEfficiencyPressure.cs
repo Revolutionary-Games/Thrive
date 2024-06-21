@@ -8,9 +8,10 @@ using Systems;
 
 public class AutotrophEnergyEfficiencyPressure : SelectionPressure
 {
-    public Patch Patch;
-    public Compound Compound;
-    public Compound OutCompound;
+    public static readonly LocalizedString Name = new LocalizedString("AUTOTROPH_ENERGY_EFFICIENCY_PRESSURE");
+    public readonly Patch Patch;
+    public readonly Compound Compound;
+    public readonly Compound OutCompound;
     private readonly float weight;
 
     public AutotrophEnergyEfficiencyPressure(Patch patch, Compound compound, Compound outCompound, float weight) :
@@ -20,12 +21,12 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
         {
             AddOrganelleAnywhere.ThatUseCompound(compound),
             new RemoveAnyOrganelle(),
-        })
+        },
+        40000)
     {
         Patch = patch;
         Compound = compound;
         OutCompound = outCompound;
-        EnergyProvided = 40000;
         this.weight = weight;
     }
 
@@ -55,5 +56,10 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
             return -1;
 
         return compoundOut / compoundIn * weight;
+    }
+
+    public override string ToString()
+    {
+        return $"{Name} ({Compound.Name})";
     }
 }

@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 public class AvoidPredationSelectionPressure : SelectionPressure
 {
-    public Species Predator;
-    public Patch Patch;
+    public static readonly LocalizedString Name = new LocalizedString("AVOID_PREDATION_SELECTION_PRESSURE");
+    public readonly Species Predator;
+    public readonly Patch Patch;
+
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
@@ -27,7 +29,8 @@ public class AvoidPredationSelectionPressure : SelectionPressure
                     AddOrganelleAnywhere.Direction.REAR),
                 AddOrganelleAnywhere.ThatCreateCompound(ATP),
             }),
-        })
+        },
+        0)
     {
         Patch = patch;
         Predator = predator;
@@ -45,5 +48,10 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         }
 
         return 1 / predationScore * weight;
+    }
+
+    public override string ToString()
+    {
+        return Name.ToString();
     }
 }

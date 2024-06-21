@@ -9,13 +9,14 @@ using Godot;
 
 public class PredationEffectivenessPressure : SelectionPressure
 {
-    public MicrobeSpecies Prey;
+    public static readonly LocalizedString Name = new LocalizedString("PREDATION_EFFECTIVENESS_PRESSURE");
+    public readonly MicrobeSpecies Prey;
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
-    private SimulationCache cache;
-    private Patch patch;
-    private float weight;
+    private readonly SimulationCache cache;
+    private readonly Patch patch;
+    private readonly float weight;
 
     public PredationEffectivenessPressure(MicrobeSpecies prey, Patch patch, float weight, SimulationCache cache) :
     base(
@@ -39,13 +40,14 @@ public class PredationEffectivenessPressure : SelectionPressure
             new RemoveAnyOrganelle(),
             new LowerRigidity(),
             new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
-        })
+        },
+        1000)
     {
         this.cache = cache;
-        Prey = prey;
         this.patch = patch;
-        EnergyProvided = 1000;
         this.weight = weight;
+
+        Prey = prey;
     }
 
     public float FitnessScore(MicrobeSpecies microbeSpecies, MicrobeSpecies prey)
@@ -129,5 +131,10 @@ public class PredationEffectivenessPressure : SelectionPressure
         }
 
         return predatorScore * weight;
+    }
+
+    public override string ToString()
+    {
+        return $"{Name} ({Prey.FormattedName})";
     }
 }

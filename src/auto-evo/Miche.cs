@@ -204,4 +204,18 @@ public class Miche
 
         return new Miche(Pressure, newChildren);
     }
+
+    public override int GetHashCode()
+    {
+        var parentHash = Parent != null ? Parent.GetHashCode() : 53;
+
+        return Pressure.GetHashCode() * 131 ^ parentHash * 587 ^
+            (Occupant == null ? 17 : Occupant.GetHashCode()) * 5171;
+    }
+
+    public virtual string GetDetailString()
+    {
+        return Localization.Translate("MICHE_DETAIL_TEXT").FormatSafe(
+            Pressure.ToString());
+    }
 }

@@ -6,6 +6,7 @@ using Godot;
 
 public class MetabolicStabilityPressure : SelectionPressure
 {
+    public static readonly LocalizedString Name = new LocalizedString("METABOLIC_STABILITY_PRESSURE");
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private readonly Patch patch;
     private readonly float weight;
@@ -16,7 +17,8 @@ public class MetabolicStabilityPressure : SelectionPressure
         {
             AddOrganelleAnywhere.ThatCreateCompound(ATP),
             new AddOrganelleAnywhere(_ => true),
-        })
+        },
+        0)
     {
         this.patch = patch;
         this.weight = weight;
@@ -30,6 +32,11 @@ public class MetabolicStabilityPressure : SelectionPressure
         }
 
         return ScoreByCell(species, cache);
+    }
+
+    public override string ToString()
+    {
+        return Name.ToString();
     }
 
     private float ScoreByCell(MicrobeSpecies species, SimulationCache cache)

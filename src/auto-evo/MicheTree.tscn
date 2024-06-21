@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://clhnq4g06pd62"]
+
+[ext_resource type="Script" path="res://src/auto-evo/MicheTree.cs" id="1_2futc"]
+
+[node name="MicheTree" type="VBoxContainer"]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_2futc")
+TreePath = NodePath("Tree")
+
+[node name="Tree" type="Control" parent="."]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+
+[connection signal="draw" from="Tree" to="." method="TreeDraw"]
+[connection signal="gui_input" from="Tree" to="." method="GUIInput" binds= [false]]
+[connection signal="mouse_exited" from="Tree" to="." method="MouseExit"]

@@ -1,20 +1,24 @@
 ﻿namespace AutoEvo;
 
 using System.Collections.Generic;
+using System.Dynamic;
 
 public abstract class SelectionPressure
 {
-    public float Strength;
-    public List<IMutationStrategy<MicrobeSpecies>> Mutations;
-    public int EnergyProvided = 0;
+    public readonly float Strength;
+    public readonly List<IMutationStrategy<MicrobeSpecies>> Mutations;
+    public readonly int EnergyProvided = 0;
 
-    public SelectionPressure(float strength, List<IMutationStrategy<MicrobeSpecies>> mutations)
+    public SelectionPressure(float strength, List<IMutationStrategy<MicrobeSpecies>> mutations, int energyProvided)
     {
         Strength = strength;
         Mutations = mutations;
+        EnergyProvided = energyProvided;
     }
 
     public abstract float Score(MicrobeSpecies species, SimulationCache cache);
+
+    public abstract override string ToString();
 
     /// <summary>
     ///   Calculates the relative difference between the old and new scores
@@ -43,5 +47,10 @@ public abstract class SelectionPressure
         {
             return 0;
         }
+    }
+
+    public void ApplyTranslations()
+    {
+        TranslationHelper.ApplyTranslations(this);
     }
 }

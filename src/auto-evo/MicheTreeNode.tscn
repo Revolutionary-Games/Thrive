@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dne61y1uyf6h6"]
+
+[ext_resource type="Texture2D" uid="uid://beg2u81krnijs" path="res://assets/textures/gui/bevel/RoundButtonGreen.png" id="1_ka2sf"]
+[ext_resource type="Texture2D" uid="uid://slqwb75g7koa" path="res://assets/textures/gui/bevel/RoundButtonGreenPressed.png" id="2_5oaq6"]
+[ext_resource type="Texture2D" uid="uid://bvbg7s7ic1vx6" path="res://assets/textures/gui/bevel/RoundButtonGreenHover.png" id="3_1gp6t"]
+[ext_resource type="Script" path="res://src/auto-evo/MicheTreeNode.cs" id="4_wokrr"]
+
+[node name="EvolutionaryTreeNode" type="TextureButton"]
+custom_minimum_size = Vector2(30, 30)
+offset_right = 30.0
+offset_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("1_ka2sf")
+texture_pressed = ExtResource("2_5oaq6")
+texture_hover = ExtResource("3_1gp6t")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("4_wokrr")
