@@ -228,7 +228,7 @@ public static class Constants
     public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
     public const float CILIA_ROTATION_FACTOR = 22000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
-    public const float CELL_TURN_SLOWDOWN_RADIANS = 0.4f;
+    public const float CELL_TURN_INFLECTION_RADIANS = 0.8f;
 
     // TODO: remove if these stay unused
     // // These speed values are also reversed like the above
