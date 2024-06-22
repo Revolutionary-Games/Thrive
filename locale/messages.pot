@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-21 17:04-0500\n"
+"POT-Creation-Date: 2024-06-19 11:03+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -460,12 +460,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:650
+#: ../src/microbe_stage/MicrobeHUD.cs:652
 #: ../src/microbe_stage/MicrobeHUD.tscn:414
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:606
+#: ../src/microbe_stage/MicrobeHUD.cs:608
 #: ../src/microbe_stage/MicrobeHUD.tscn:407
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -691,7 +691,7 @@ msgstr ""
 msgid "CANNOT_WRITE_SAVE"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:306 ../src/modding/ModLoader.cs:354
+#: ../src/modding/ModLoader.cs:304 ../src/modding/ModLoader.cs:352
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
@@ -2590,12 +2590,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:526
+#: ../src/microbe_stage/MicrobeHUD.cs:528
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:525
+#: ../src/microbe_stage/MicrobeHUD.cs:527
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -3811,10 +3811,6 @@ msgstr ""
 msgid "MESOPELAGIC"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/MetabolicStabilityPressure.cs:7
-msgid "METABOLIC_STABILITY_PRESSURE"
-msgstr ""
-
 #: ../simulation_parameters/microbe_stage/organelles.json:361
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:279
 msgid "METABOLOSOMES"
@@ -4128,31 +4124,31 @@ msgstr ""
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:465
+#: ../src/modding/ModLoader.cs:463
 msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:454
+#: ../src/modding/ModLoader.cs:452
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:472
+#: ../src/modding/ModLoader.cs:470
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:486
+#: ../src/modding/ModLoader.cs:484
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:328
+#: ../src/modding/ModLoader.cs:326
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:367
+#: ../src/modding/ModLoader.cs:365
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:373
+#: ../src/modding/ModLoader.cs:371
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
@@ -4178,15 +4174,15 @@ msgstr ""
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:509
+#: ../src/modding/ModLoader.cs:507
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:530
+#: ../src/modding/ModLoader.cs:528
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:343
+#: ../src/modding/ModLoader.cs:341
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
@@ -4703,7 +4699,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2630
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2642
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:459
+#: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "N_A"
 msgstr ""
 
@@ -4711,7 +4707,7 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:513
+#: ../src/microbe_stage/MicrobeHUD.cs:515
 #: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.cs:45
 msgid "N_TIMES"
 msgstr ""
@@ -5126,11 +5122,11 @@ msgstr ""
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:549
+#: ../src/modding/ModLoader.cs:547
 msgid "PCK_LOAD_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:541
+#: ../src/modding/ModLoader.cs:539
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr ""
 
@@ -5224,7 +5220,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:483
+#: ../src/microbe_stage/MicrobeHUD.cs:485
 msgid "PLAYER"
 msgstr ""
 

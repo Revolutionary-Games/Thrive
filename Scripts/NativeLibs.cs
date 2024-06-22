@@ -738,6 +738,10 @@ public class NativeLibs
                 // No AVX build
                 shCommandBuilder.Append($"&& cmake {thriveContainerFolder} ");
                 shCommandBuilder.Append("-DTHRIVE_AVX=OFF ");
+
+                // Also older target CPU to not use as advanced instructions elsewhere which would cause an issue
+                // Nehalem is absolutely the oldest CPU architecture to have SSE 4.2
+                shCommandBuilder.Append("-DCMAKE_CXX_FLAGS=-march=nehalem ");
             }
 
             shCommandBuilder.Append("&& cmake ");

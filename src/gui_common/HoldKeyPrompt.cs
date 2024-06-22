@@ -76,7 +76,7 @@ public partial class HoldKeyPrompt : KeyPrompt
 
         if (!string.IsNullOrEmpty(ActionName))
         {
-            var pressed = Input.IsActionPressed(ActionName);
+            var pressed = ResolvedAction != null && Input.IsActionPressed(ResolvedAction);
             var oldProgress = holdProgress;
 
             if (pressed)
