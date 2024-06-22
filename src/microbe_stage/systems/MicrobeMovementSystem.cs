@@ -88,16 +88,19 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         var unsignedTurnAngle = Math.Abs(turnAngle);
 
         // saturation function, scaled to a quarter of a circle
-        var blendFactor = (Mathf.Pi / 4) * unsignedTurnAngle / (unsignedTurnAngle + Constants.CELL_TURN_SLOWDOWN_RADIANS);
+        var blendFactor = (Mathf.Pi / 4) * unsignedTurnAngle
+            / (unsignedTurnAngle + Constants.CELL_TURN_SLOWDOWN_RADIANS);
 
         // Simplify turns to 90 degrees to keep consistent turning speed
         if (turnAngle > 0.1f)
         {
-            lookVector = (position.Rotation * new Vector3(-Mathf.Cos(blendFactor), 0, Mathf.Sin(blendFactor))).Normalized();
+            lookVector = (position.Rotation
+                * new Vector3(-Mathf.Cos(blendFactor), 0, Mathf.Sin(blendFactor))).Normalized();
         }
         else if (turnAngle < -0.1f)
         {
-            lookVector = (position.Rotation * new Vector3(Mathf.Cos(blendFactor), 0, Mathf.Sin(blendFactor))).Normalized();
+            lookVector = (position.Rotation
+                * new Vector3(Mathf.Cos(blendFactor), 0, Mathf.Sin(blendFactor))).Normalized();
         }
         else if (lookVectorLength > MathUtils.EPSILON)
         {
@@ -113,7 +116,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
 #if DEBUG
         if (!lookVector.IsNormalized())
-            throw new Exception("Look vector not normalized: turn angle="+turnAngle+" blendFactor="+blendFactor+" lookVector="+lookVector);
+            throw new Exception("Look vector not normalized");
 #endif
 
         var up = Vector3.Up;
