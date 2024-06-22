@@ -789,6 +789,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
+    protected virtual void PerformHardcoreModeSave()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
     protected virtual void SaveGame(string name)
     {
         throw new GodotAbstractMethodNotOverriddenException();

@@ -175,6 +175,34 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
     }
 
+    public override void _Notification(int notification)
+    {
+        base._Notification(notification);
+
+        if (notification == NotificationWMCloseRequest)
+        {
+            if (!GameWorld.WorldSettings.HardcoreMode)
+            {
+                GD.Print("Closing game directly from Microbe Stage");
+                SceneManager.Instance.QuitThrive();
+                return;
+            }
+
+            if (SaveHelper.CurrentSaveAction == null)
+                return;
+
+            if (SaveHelper.CurrentSaveAction.Method.IsFinal)
+            {
+                GD.Print("Closing game after hardcore mode save");
+                SceneManager.Instance.QuitThrive();
+            }
+            else
+            {
+                GD.Print("Not closing game due to hardcore mode save not being completed");
+            }
+        }
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -185,6 +213,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     public override void _ExitTree()
     {
+        if (WorldSettings.HardcoreMode)
+            SaveHelper.HardcoreModeSave(WorldSettings.HardcoreModeName!, this, true);
+
         base._ExitTree();
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
         CheatManager.OnPlayerDuplicationCheatUsed -= OnDuplicatePlayerCheatUsed;
@@ -925,12 +956,32 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     protected override void AutoSave()
     {
+        if (WorldSettings.HardcoreMode)
+        {
+            PerformHardcoreModeSave();
+
+            return;
+        }
+
         SaveHelper.AutoSave(this);
     }
 
     protected override void PerformQuickSave()
     {
+        if (WorldSettings.HardcoreMode)
+        {
+            return;
+        }
+
         SaveHelper.QuickSave(this);
+    }
+
+    protected override void PerformHardcoreModeSave()
+    {
+        if (!WorldSettings.HardcoreMode)
+            return;
+
+        SaveHelper.HardcoreModeSave(WorldSettings.HardcoreModeName!, this);
     }
 
     protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
@@ -1123,6 +1174,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Engulfing death has a different tutorial
         if (!engulfed)
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
+
+        if (CurrentGame!.GameWorld.WorldSettings.HardcoreMode)
+            AutoSave();
 
         // Don't clear the player object here as we want to wait until the player entity is deleted before creating
         // a new one to avoid having two player entities existing at the same time
