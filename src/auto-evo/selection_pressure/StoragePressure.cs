@@ -1,20 +1,19 @@
 ﻿namespace AutoEvo;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 public class StoragePressure : SelectionPressure
 {
+    // Needed for translation extraction
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     public static readonly LocalizedString Name = new LocalizedString("STORAGE_PRESSURE");
+
+    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     public readonly Compound Compound;
     private readonly float weight;
-    public StoragePressure(float weight, Compound compound) : base(
-        weight,
-        new List<IMutationStrategy<MicrobeSpecies>>
-        {
-            new AddOrganelleAnywhere(organelle => organelle.Components?.Storage?.Capacity > 0.5f),
-        },
+
+    public StoragePressure(float weight, Compound compound) : base(weight,
+        [
+            new AddOrganelleAnywhere(organelle => organelle.Components.Storage?.Capacity > 0.5f),
+        ],
         0)
     {
         Compound = compound;

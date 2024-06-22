@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Godot;
 
 public class ModifyExistingSpecies : IRunStep
 {
@@ -24,10 +23,6 @@ public class ModifyExistingSpecies : IRunStep
     ///   Returns a new list of all possible species that might emerge in response to the provided pressures,
     ///   as well as a copy of the origonal species.
     /// </summary>
-    /// <param name="results">
-    ///   RunResults needed to find latest copy of provided species.
-    ///   This object is NOT modified.
-    /// </param>
     /// <returns>List of viable variants, and the provided species</returns>
     public static List<MicrobeSpecies> ViableVariants(RunResults results,
         MicrobeSpecies species,
@@ -52,7 +47,7 @@ public class ModifyExistingSpecies : IRunStep
 
             // For each viable variant, get a new variants that at least improve score a little bit
             List<MicrobeSpecies> potentialVariants = viableVariants.Select(startVariant =>
-                MutationsFrom(startVariant, curPressure, mutationLibrary))
+                    MutationsFrom(startVariant, curPressure, mutationLibrary))
                 .SelectMany(x => x).ToList();
 
             potentialVariants.AddRange(viableVariants);
@@ -69,7 +64,7 @@ public class ModifyExistingSpecies : IRunStep
         return viableVariants.OrderByDescending(x =>
             selectionPressures.Select(pressure =>
                 pressure.Score(x, cache) / pressureScores[pressure] * pressure.Strength).Sum() +
-                    (x == species ? 0.01f : 0.0f)).ToList();
+            (x == species ? 0.01f : 0.0f)).ToList();
     }
 
     /// <summary>
@@ -114,13 +109,13 @@ public class ModifyExistingSpecies : IRunStep
         // TODO: Make sure this is actually necessary
         var oldMiche = currentMiche.DeepCopy();
 
-        // Put these in auto evo config
-        const int PossibleMutationsPerSpecies = 3;
-        const int TotalMutationsToTry = 15;
+        // TODO: Put these in auto evo config
+        const int possibleMutationsPerSpecies = 3;
+        const int totalMutationsToTry = 15;
 
         var mutationsToTry = new List<Tuple<MicrobeSpecies, MicrobeSpecies>>();
 
-        var leafNodes = oldMiche.AllLeafNodes().Where(x => x.Occupant != null);
+        var leafNodes = oldMiche.AllLeafNodes().Where(x => x.Occupant != null).ToList();
 
         foreach (var species in oldMiche.AllOccupants())
         {
@@ -134,7 +129,7 @@ public class ModifyExistingSpecies : IRunStep
 
                 var variants = ViableVariants(results, species, Patch, partlist, Cache, pressures);
 
-                mutationsToTry.AddRange(variants.Take(PossibleMutationsPerSpecies)
+                mutationsToTry.AddRange(variants.Take(possibleMutationsPerSpecies)
                     .Select(speciesToAdd => new Tuple<MicrobeSpecies, MicrobeSpecies>(species, speciesToAdd))
                     .ToList());
             }
@@ -142,7 +137,7 @@ public class ModifyExistingSpecies : IRunStep
 
         var alreadyHandledSpecies = new List<MicrobeSpecies>();
 
-        mutationsToTry = mutationsToTry.OrderBy(x => random.Next()).Take(TotalMutationsToTry).ToList();
+        mutationsToTry = mutationsToTry.OrderBy(_ => random.Next()).Take(totalMutationsToTry).ToList();
 
         foreach (var pair in mutationsToTry)
         {
@@ -163,10 +158,9 @@ public class ModifyExistingSpecies : IRunStep
                 else
                 {
                     results.AddNewSpecies(pair.Item2,
-                        new[]
-                        {
+                        [
                             new KeyValuePair<Patch, long>(Patch, 1000),
-                        },
+                        ],
                         RunResults.NewSpeciesType.FillNiche, pair.Item1);
                 }
             }

@@ -3,8 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public static class CommonMutationFunctions
 {
@@ -99,9 +97,8 @@ public static class CommonMutationFunctions
             minSubHex.R = (int)(minSubHex.R * (minDistance - 1.0) / minDistance);
 
             // Move all island organelles by minSubHex
-            foreach (var organelle in organelles.Where(
-                        o => islandHexes.Any(h =>
-                            o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
+            foreach (var organelle in organelles.Where(o => islandHexes.Any(h =>
+                         o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
             {
                 organelle.Position -= minSubHex;
             }

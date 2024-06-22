@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
 {
     private MembraneType membraneType;
+
     public ChangeMembraneType(MembraneType membraneType)
     {
         this.membraneType = membraneType;

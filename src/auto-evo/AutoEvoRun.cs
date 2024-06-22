@@ -6,8 +6,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
-using Xoshiro.PRNG64;
 using Thread = System.Threading.Thread;
+
+// using Xoshiro.PRNG64;
 
 /// <summary>
 ///   A single run of the auto-evo system happening in a background thread
@@ -371,9 +372,9 @@ public class AutoEvoRun
     protected virtual void GatherInfo(Queue<IRunStep> steps)
     {
         // TODO: allow passing in a seed
-        var random = new XoShiRo256starstar();
+        // var random = new XoShiRo256starstar();
 
-        var alreadyHandledSpecies = new HashSet<Species>();
+        // var alreadyHandledSpecies = new HashSet<Species>();
 
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
@@ -382,7 +383,8 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new GenerateMiche(entry.Value, new SimulationCache(worldSettings), map.CurrentPatch == entry.Value));
+            steps.Enqueue(new GenerateMiche(entry.Value, new SimulationCache(worldSettings),
+                map.CurrentPatch == entry.Value));
         }
 
         foreach (var entry in map.Patches)

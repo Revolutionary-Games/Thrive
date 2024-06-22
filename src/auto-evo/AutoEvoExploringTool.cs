@@ -1,10 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Formats.Tar;
 using System.Globalization;
 using System.Linq;
-using System.Net;
 using AutoEvo;
 using Godot;
 
@@ -845,7 +842,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         world.MicheHistoryList.Add(results.MicheByPatch);
 
         // Rebuild Miche Tree
-        if (results.MicheByPatch.TryGetValue(patchDisplayed, out Miche? miche) == true)
+        if (results.MicheByPatch.TryGetValue(patchDisplayed, out Miche? miche))
         {
             micheTree.SetMiche(miche);
         }
@@ -1018,9 +1015,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         patchDisplayed = patch;
         patchListMenu.Text = patch.Name.ToString();
 
-        var gameWorld = world.GameProperties.GameWorld;
-
-        if (world.MicheHistoryList[generationDisplayed].TryGetValue(patch, out Miche? miche) == true)
+        if (world.MicheHistoryList[generationDisplayed].TryGetValue(patch, out Miche? miche))
         {
             micheTree.SetMiche(miche);
         }
@@ -1034,7 +1029,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         }
 
         // NoOps are being used to hold species nodes
-        if (micheData!.Pressure.GetType() == typeof(NoOpPressure))
+        if (micheData.Pressure.GetType() == typeof(NoOpPressure))
         {
             if (micheData.Occupant == null)
                 return;
@@ -1042,7 +1037,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
             micheSpeciesDetailsPanel.Visible = true;
             micheDetailsPanel.Visible = false;
 
-            var species = world.SpeciesHistoryList[generationDisplayed].Values.First(p => p.ID == micheData.Occupant.ID);
+            var species = world.SpeciesHistoryList[generationDisplayed].Values
+                .First(p => p.ID == micheData.Occupant.ID);
 
             micheSpeciesDetailsPanel.PreviewSpecies = species;
         }

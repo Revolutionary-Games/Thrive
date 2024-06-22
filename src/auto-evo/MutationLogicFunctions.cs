@@ -1,8 +1,6 @@
-namespace AutoEvo;
-using System;
-using System.Collections.Generic;
+﻿namespace AutoEvo;
+
 using System.Linq;
-using System.Text;
 
 public class MutationLogicFunctions
 {

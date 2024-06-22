@@ -1,15 +1,12 @@
 ﻿namespace AutoEvo;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Godot;
-
 public class PredationEffectivenessPressure : SelectionPressure
 {
+    // Needed for translation extraction
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     public static readonly LocalizedString Name = new LocalizedString("PREDATION_EFFECTIVENESS_PRESSURE");
+
+    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     public readonly MicrobeSpecies Prey;
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
@@ -19,29 +16,26 @@ public class PredationEffectivenessPressure : SelectionPressure
     private readonly float weight;
 
     public PredationEffectivenessPressure(MicrobeSpecies prey, Patch patch, float weight, SimulationCache cache) :
-    base(
-        weight,
-        new List<IMutationStrategy<MicrobeSpecies>>
-        {
-            new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
-            AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
-            new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
-                AddOrganelleAnywhere.Direction.FRONT),
-            new AddMultipleOrganelles(new List<AddOrganelleAnywhere>
-            {
-                new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
-                    AddOrganelleAnywhere.Direction.REAR),
-                AddOrganelleAnywhere.ThatCreateCompound(ATP),
-            }),
+        base(weight,
+            [
+                new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
+                AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
+                new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
+                    AddOrganelleAnywhere.Direction.Front),
+                new AddMultipleOrganelles([
+                    new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
+                        AddOrganelleAnywhere.Direction.Rear),
+                    AddOrganelleAnywhere.ThatCreateCompound(ATP),
+                ]),
 
-            // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.AGGRESSION, 150.0f),
-            // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.OPPORTUNISM, 150.0f),
-            // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.FEAR, -150.0f),
-            new RemoveAnyOrganelle(),
-            new LowerRigidity(),
-            new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
-        },
-        1000)
+                // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.AGGRESSION, 150.0f),
+                // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.OPPORTUNISM, 150.0f),
+                // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.FEAR, -150.0f),
+                new RemoveAnyOrganelle(),
+                new LowerRigidity(),
+                new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
+            ],
+            1000)
     {
         this.cache = cache;
         this.patch = patch;

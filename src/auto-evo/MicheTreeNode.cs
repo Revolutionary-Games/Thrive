@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   MicheTreeNode represents a selectable node for a Miche

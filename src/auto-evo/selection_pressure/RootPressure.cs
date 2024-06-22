@@ -1,22 +1,22 @@
 ﻿namespace AutoEvo;
 
-using System.Collections.Generic;
-using System.Linq;
-using Godot;
-
 public class RootPressure : SelectionPressure
 {
+    // Needed for translation extraction
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     public static readonly LocalizedString Name = new LocalizedString("ROOT_PRESSURE");
-    public RootPressure() : base(
-        0,
-        new List<IMutationStrategy<MicrobeSpecies>>
-        {
-            // Add a little bit of randomness to the miche tree
-            new AddOrganelleAnywhere(_ => true),
+
+    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
+
+    public RootPressure() : base(0,
+        [
+            new AddOrganelleAnywhere(_ => true), // Add a little bit of randomness to the miche tree
             new RemoveAnyOrganelle(),
-        },
+        ],
         0)
-    { }
+    {
+    }
+
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
         return 1;

@@ -1,28 +1,25 @@
 ﻿namespace AutoEvo;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Godot;
-using Systems;
-
 public class AutotrophEnergyEfficiencyPressure : SelectionPressure
 {
+    // Needed for translation extraction
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     public static readonly LocalizedString Name = new LocalizedString("AUTOTROPH_ENERGY_EFFICIENCY_PRESSURE");
+
+    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
+
     public readonly Patch Patch;
     public readonly Compound Compound;
     public readonly Compound OutCompound;
     private readonly float weight;
 
     public AutotrophEnergyEfficiencyPressure(Patch patch, Compound compound, Compound outCompound, float weight) :
-    base(
-        weight,
-        new List<IMutationStrategy<MicrobeSpecies>>
-        {
-            AddOrganelleAnywhere.ThatUseCompound(compound),
-            new RemoveAnyOrganelle(),
-        },
-        40000)
+        base(weight,
+            [
+                AddOrganelleAnywhere.ThatUseCompound(compound),
+                new RemoveAnyOrganelle(),
+            ],
+            40000)
     {
         Patch = patch;
         Compound = compound;

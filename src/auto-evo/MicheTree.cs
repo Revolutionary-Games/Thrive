@@ -1,6 +1,5 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using AutoEvo;
 using Godot;
 
@@ -69,8 +68,8 @@ public partial class MicheTree : Control
     private readonly ButtonGroup nodesGroup = new();
 
 #pragma warning disable CA2213
-    private Miche rootMiche = null!;
-    private MicheTreeNode rootMicheNode = null!;
+    private Miche? rootMiche;
+    private MicheTreeNode? rootMicheNode;
 
     /// <summary>
     ///   Tree part of <see cref="EvolutionaryTree"/>. Consists of many buttons and connection lines.
@@ -84,7 +83,7 @@ public partial class MicheTree : Control
     private PackedScene treeNodeScene = null!;
 #pragma warning restore CA2213
 
-    private int treeDepth = 0;
+    private int treeDepth;
 
     /// <summary>
     ///   Drag offset relative to tree.
@@ -117,7 +116,7 @@ public partial class MicheTree : Control
     [Signal]
     public delegate void MicheSelectedEventHandler(int micheHash);
 
-    private Vector2 TreeSize => new(rootMicheNode.Width + 200, treeDepth * DEPTH_SEPARATION + 100);
+    private Vector2 TreeSize => new(rootMicheNode!.Width + 200, treeDepth * DEPTH_SEPARATION + 100);
 
     public override void _Ready()
     {
@@ -164,7 +163,7 @@ public partial class MicheTree : Control
 
         var micheHash = rootMiche.GetHashCode();
 
-        var totalWidth = 0f;
+        var totalWidth = 0.0f;
         foreach (var child in rootMiche.Children)
         {
             totalWidth += GenerateMicheData(child, rootMicheNode, 1);
@@ -195,11 +194,8 @@ public partial class MicheTree : Control
     {
         if (disposing)
         {
-            if (TreePath != null)
-            {
-                TreePath.Dispose();
-                nodesGroup.Dispose();
-            }
+            TreePath.Dispose();
+            nodesGroup.Dispose();
         }
 
         base.Dispose(disposing);
@@ -224,7 +220,7 @@ public partial class MicheTree : Control
 
         var micheNode = SetupTreeNode(miche, parentNode, depth);
 
-        var totalWidth = 0f;
+        var totalWidth = 0.0f;
         foreach (var child in miche.Children)
         {
             totalWidth += GenerateMicheData(child, micheNode, depth + 1);
@@ -380,7 +376,7 @@ public partial class MicheTree : Control
         if (rootMiche == null)
             return;
 
-        TreeDraw(rootMiche, rootMicheNode);
+        TreeDraw(rootMiche, rootMicheNode!);
     }
 
     private void TreeDraw(Miche miche, MicheTreeNode micheNode)

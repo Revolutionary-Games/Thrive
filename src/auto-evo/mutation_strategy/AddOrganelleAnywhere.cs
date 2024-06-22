@@ -1,15 +1,15 @@
 ﻿namespace AutoEvo;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Godot;
 
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
     public Func<OrganelleDefinition, bool> Criteria;
     private Direction direction;
 
-    public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, Direction direction = Direction.NEUTRAL)
+    public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, Direction direction = Direction.Neutral)
     {
         Criteria = criteria;
         this.direction = direction;
@@ -17,24 +17,20 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
     public enum Direction
     {
-        FRONT,
-        NEUTRAL,
-        REAR,
+        Front,
+        Neutral,
+        Rear,
     }
 
-    public static AddOrganelleAnywhere ThatUseCompound(Compound compound, Direction direction = Direction.NEUTRAL)
+    public static AddOrganelleAnywhere ThatUseCompound(Compound compound, Direction direction = Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
             .Where(proc => proc.Process.Inputs.ContainsKey(compound)).Any(), direction);
     }
 
     public static AddOrganelleAnywhere ThatCreateCompound(Compound compound,
-        Direction direction = Direction.NEUTRAL)
+        Direction direction = Direction.Neutral)
     {
-        var matches = SimulationParameters.Instance.GetAllOrganelles()
-            .Where(organelle => organelle.RunnableProcesses
-            .Where(proc => proc.Process.Outputs.ContainsKey(compound)).Any()).Count();
-
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
             .Where(proc => proc.Process.Outputs.ContainsKey(compound)).Any(), direction);
     }
@@ -49,9 +45,9 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         {
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            OrganelleTemplate? position = null;
+            OrganelleTemplate position;
 
-            if (direction == Direction.NEUTRAL)
+            if (direction == Direction.Neutral)
             {
                 position = CommonMutationFunctions
                     .GetRealisticPosition(organelle, newSpecies.Organelles, new Random());
@@ -67,7 +63,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
                     CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random()),
                 };
 
-                position = choices.OrderBy(x => direction == Direction.FRONT ? x.Position.R : -x.Position.R)
+                position = choices.OrderBy(x => direction == Direction.Front ? x.Position.R : -x.Position.R)
                     .First();
             }
 

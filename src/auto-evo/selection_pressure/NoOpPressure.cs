@@ -1,15 +1,18 @@
-namespace AutoEvo;
-
-using System.Collections.Generic;
+﻿namespace AutoEvo;
 
 public class NoOpPressure : SelectionPressure
 {
+    // Needed for translation extraction
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     public static readonly LocalizedString Name = new LocalizedString("NO_OP_PRESSURE");
-    public NoOpPressure() : base(
-        0,
-        new List<IMutationStrategy<MicrobeSpecies>> { },
+
+    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
+
+    public NoOpPressure() : base(0,
+        [],
         0)
-    { }
+    {
+    }
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {

@@ -1,16 +1,15 @@
 ﻿namespace AutoEvo;
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
-using Godot;
 
 public class Miche
 {
-    public Miche? Parent = null;
+    public Miche? Parent;
     public List<Miche> Children = new();
 
     // This should always be null if this Miche has children
-    public MicrobeSpecies? Occupant = null;
+    public MicrobeSpecies? Occupant;
     public SelectionPressure Pressure;
 
     public Miche(SelectionPressure pressure) : this(pressure, (List<Miche>?)null) { }
@@ -19,11 +18,9 @@ public class Miche
 
     public Miche(SelectionPressure pressure, List<Miche>? children)
     {
-        Children = new List<Miche>();
-
         if (children != null)
         {
-            AddChildren(children);
+            Children = children;
         }
 
         Pressure = pressure;
@@ -104,7 +101,6 @@ public class Miche
     /// <summary>
     ///   Inserts a species into any spots on the tree where the species is a better fit than any current occupants
     /// </summary>
-    /// <param name="species">new species being inserted</param>
     /// <returns>
     ///   Returns a bool based on if the species was inserted into a leaf node
     /// </returns>
@@ -215,7 +211,6 @@ public class Miche
 
     public virtual string GetDetailString()
     {
-        return Localization.Translate("MICHE_DETAIL_TEXT").FormatSafe(
-            Pressure.ToString());
+        return Localization.Translate("MICHE_DETAIL_TEXT").FormatSafe(Pressure.ToString());
     }
 }

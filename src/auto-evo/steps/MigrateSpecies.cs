@@ -1,9 +1,7 @@
-namespace AutoEvo;
+﻿namespace AutoEvo;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Godot;
 
 public class MigrateSpecies : IRunStep
 {
@@ -29,9 +27,9 @@ public class MigrateSpecies : IRunStep
 
         var miche = results.MicheByPatch[patch];
 
-        var occupants = miche.AllOccupants().Distinct();
+        var occupants = miche.AllOccupants().Distinct().ToList();
 
-        if (!occupants.Any())
+        if (occupants.Count == 0)
             return true;
 
         for (int i = 0; i < moveAttempts; i++)
@@ -47,9 +45,6 @@ public class MigrateSpecies : IRunStep
             // in or about to go extinct, or really anything other
             // than random selection
             var target = patch.Adjacent.ToList().Random(random);
-
-            if (target == null)
-                continue;
 
             // possibly very overkill
             var newMiche = results.MicheByPatch[target].DeepCopy();

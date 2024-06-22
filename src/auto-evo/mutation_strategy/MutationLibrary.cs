@@ -10,7 +10,7 @@ public class MutationLibrary
 
     public MutationLibrary(MicrobeSpecies microbeSpecies)
     {
-        var microbeOrganelles = microbeSpecies.Organelles.Select(organelle => organelle.Definition).Distinct();
+        var microbeOrganelles = microbeSpecies.Organelles.Select(organelle => organelle.Definition).Distinct().ToList();
         foreach (var organelleDefinition in SimulationParameters.Instance.GetAllOrganelles())
         {
             var shouldAdd = true;
@@ -20,7 +20,7 @@ public class MutationLibrary
                 shouldAdd = false;
             }
 
-            if (organelleDefinition.Unique && microbeOrganelles.ToList().Contains(organelleDefinition))
+            if (organelleDefinition.Unique && microbeOrganelles.Contains(organelleDefinition))
             {
                 shouldAdd = false;
             }

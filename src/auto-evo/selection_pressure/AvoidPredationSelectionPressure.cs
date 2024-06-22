@@ -1,14 +1,12 @@
 ﻿namespace AutoEvo;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 public class AvoidPredationSelectionPressure : SelectionPressure
 {
+    // Needed for translation extraction
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     public static readonly LocalizedString Name = new LocalizedString("AVOID_PREDATION_SELECTION_PRESSURE");
+
+    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     public readonly Species Predator;
     public readonly Patch Patch;
 
@@ -18,18 +16,16 @@ public class AvoidPredationSelectionPressure : SelectionPressure
     private readonly float weight;
 
     public AvoidPredationSelectionPressure(Species predator, float weight, Patch patch) : base(weight,
-        new List<IMutationStrategy<MicrobeSpecies>>
-        {
+        [
             AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
             new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
-                AddOrganelleAnywhere.Direction.FRONT),
-            new AddMultipleOrganelles(new List<AddOrganelleAnywhere>
-            {
+                AddOrganelleAnywhere.Direction.Front),
+            new AddMultipleOrganelles([
                 new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
-                    AddOrganelleAnywhere.Direction.REAR),
+                    AddOrganelleAnywhere.Direction.Rear),
                 AddOrganelleAnywhere.ThatCreateCompound(ATP),
-            }),
-        },
+            ]),
+        ],
         0)
     {
         Patch = patch;
