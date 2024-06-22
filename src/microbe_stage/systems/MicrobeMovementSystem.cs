@@ -89,7 +89,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         // saturation function, scaled to a quarter of a circle
         var blendFactor = (Mathf.Pi / 4) * unsignedTurnAngle
-            / (unsignedTurnAngle + Constants.CELL_TURN_SLOWDOWN_RADIANS);
+            / (unsignedTurnAngle + Constants.CELL_TURN_INFLECTION_RADIANS);
 
         // Simplify turns to 90 degrees to keep consistent turning speed
         if (turnAngle > 0.1f)
