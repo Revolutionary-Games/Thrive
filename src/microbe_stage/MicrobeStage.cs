@@ -135,7 +135,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
 
     /// <summary>
-    ///   This gets called the first time the stage scene is put into an active scene tree.
+    ///   This method gets called the first time the stage scene is put into an active scene tree.
     ///   So returning from the editor doesn't cause this to re-run.
     /// </summary>
     public override void _Ready()
