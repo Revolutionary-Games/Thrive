@@ -4,6 +4,7 @@ using Components;
 using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
+using Godot;
 
 /// <summary>
 ///   Handles applying pilus damage to microbes
@@ -21,8 +22,13 @@ using DefaultEcs.Threading;
 [RuntimeCost(1)]
 public sealed class PilusDamageSystem : AEntitySetSystem<float>
 {
-    public PilusDamageSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+    private PackedScene burstEffect = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
+
+    private IWorldSimulation worldSimulation;
+
+    public PilusDamageSystem(World world, IParallelRunner parallelRunner, IWorldSimulation worldSimulation) : base(world, parallelRunner)
     {
+        this.worldSimulation = worldSimulation;
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -80,6 +86,7 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
             }
 
             DealPilusDamage(ref ourExtraData, ref collision, collision.SecondEntity);
+            SpawnHelpers.SpawnCellBurstEffect(worldSimulation, collision.SecondEntity.Get<WorldPosition>().Position, 0.5f);
         }
     }
 
