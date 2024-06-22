@@ -13,4 +13,12 @@ public partial class ThriveopediaMechanicsRootPage : ThriveopediaWikiPage
     public override string ParentPageName => "WikiRoot";
 
     public override bool StartsCollapsed => false;
+
+    [Signal]
+    public delegate void OnStageChangedEventHandler();
+
+    public override void OnSelectedStageChanged()
+    {
+        EmitSignal(SignalName.OnStageChanged);
+    }
 }

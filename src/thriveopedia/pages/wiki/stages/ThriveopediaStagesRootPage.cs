@@ -27,7 +27,7 @@ public partial class ThriveopediaStagesRootPage : ThriveopediaWikiPage
         base._Ready();
 
         stageListContainer = GetNode<HFlowContainer>(StageListContainerPath);
-        linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/PageLinkButton.tscn");
+        linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/IconPageLinkButton.tscn");
     }
 
     public override void OnThriveopediaOpened()
@@ -38,12 +38,24 @@ public partial class ThriveopediaStagesRootPage : ThriveopediaWikiPage
 
         foreach (var stage in wiki.Stages)
         {
-            var button = (PageLinkButton)linkButtonScene.Instantiate();
+            var button = (IconPageLinkButton)linkButtonScene.Instantiate();
 
             button.DisplayName = stage.Name;
             button.IconPath = GetStageIconPath(stage);
-            button.OpenLink = () => ThriveopediaManager.OpenPage(stage.InternalName);
+            button.PageName = stage.InternalName;
             stageListContainer.AddChild(button);
+        }
+    }
+
+    public override void OnSelectedStageChanged()
+    {
+        foreach (var obj in stageListContainer.GetChildren())
+        {
+            if (obj is IconPageLinkButton button)
+            {
+                var page = (ThriveopediaWikiPage)ThriveopediaManager.GetPage(button.PageName);
+                button.Visible = page.VisibleInTree;
+            }
         }
     }
 

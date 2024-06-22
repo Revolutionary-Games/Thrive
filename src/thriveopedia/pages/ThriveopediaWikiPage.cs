@@ -23,6 +23,8 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     {
     }
 
+    public bool VisibleInTree { get; set; } = true;
+
     /// <summary>
     ///   Wiki content to display on this page.
     /// </summary>
@@ -95,6 +97,10 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
 
         foreach (var section in PageContent.Sections)
             AddSection(section);
+    }
+
+    public virtual void OnSelectedStageChanged()
+    {
     }
 
     /// <summary>

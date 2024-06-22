@@ -364,4 +364,4 @@ layout_mode = 2
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CloseButton" to="." method="OnClosePressed"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/SearchInput" to="." method="OnSearchUpdated"]
 [connection signal="cell_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree" to="." method="OnPageSelectedFromPageTree"]
-[connection signal="item_edited" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree" to="." method="OnItemEdited"]
+[connection signal="item_edited" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree" to="." method="OnSelectedStageUpdated"]

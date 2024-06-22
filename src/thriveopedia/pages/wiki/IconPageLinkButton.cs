@@ -2,9 +2,10 @@
 using Godot;
 
 /// <summary>
-///   Button which links to a Thriveopedia page.
+///   Button which links to a Thriveopedia page and uses an icon. Added automatically via code.
 /// </summary>
-public partial class PageLinkButton : VBoxContainer
+/// <seealso cref="TextPageLinkButton"/>
+public partial class IconPageLinkButton : VBoxContainer
 {
     [Export]
     public NodePath? ButtonPath;
@@ -21,7 +22,7 @@ public partial class PageLinkButton : VBoxContainer
 
     public string DisplayName { get; set; } = null!;
 
-    public Action OpenLink { get; set; } = null!;
+    public string PageName { get; set; } = null!;
 
     public override void _Ready()
     {
@@ -36,7 +37,7 @@ public partial class PageLinkButton : VBoxContainer
 
     public void OnPressed()
     {
-        OpenLink();
+        ThriveopediaManager.OpenPage(PageName);
     }
 
     protected override void Dispose(bool disposing)

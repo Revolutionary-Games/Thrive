@@ -27,7 +27,7 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
         base._Ready();
 
         organelleListContainer = GetNode<HFlowContainer>(OrganelleListContainerPath);
-        linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/PageLinkButton.tscn");
+        linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/IconPageLinkButton.tscn");
     }
 
     public override void OnThriveopediaOpened()
@@ -38,12 +38,24 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
         foreach (var organelle in wiki.Organelles)
         {
-            var button = (PageLinkButton)linkButtonScene.Instantiate();
+            var button = (IconPageLinkButton)linkButtonScene.Instantiate();
             var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(organelle.InternalName);
             button.IconPath = organelleDefinition.IconPath!;
             button.DisplayName = organelleDefinition.Name;
-            button.OpenLink = () => ThriveopediaManager.OpenPage(organelle.InternalName);
+            button.PageName = organelle.InternalName;
             organelleListContainer.AddChild(button);
+        }
+    }
+
+    public override void OnSelectedStageChanged()
+    {
+        foreach (var obj in organelleListContainer.GetChildren())
+        {
+            if (obj is IconPageLinkButton button)
+            {
+                var page = (ThriveopediaWikiPage)ThriveopediaManager.GetPage(button.PageName);
+                button.Visible = page.VisibleInTree;
+            }
         }
     }
 

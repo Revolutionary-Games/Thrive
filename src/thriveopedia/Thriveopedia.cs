@@ -139,8 +139,6 @@ public partial class Thriveopedia : ControlWithInput
         }
     }
 
-    public Stage CurrentSelectedStage { get; private set; } = Stage.MicrobeStage;
-
     public override void _Ready()
     {
         backButton = GetNode<TextureButton>(BackButtonPath);
@@ -265,6 +263,21 @@ public partial class Thriveopedia : ControlWithInput
         return species;
     }
 
+    /// <summary>
+    ///   Gets an existing page by name, or null if no page exists with that name.
+    /// </summary>
+    /// <param name="name">The name of the desired page</param>
+    /// <returns>The Thriveopedia page with the given name</returns>
+    public IThriveopediaPage GetPage(string name)
+    {
+        var page = allPages.Keys.FirstOrDefault(p => p.PageName == name);
+
+        if (page == null)
+            throw new InvalidOperationException($"No page with name {name} found");
+
+        return page;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -299,21 +312,6 @@ public partial class Thriveopedia : ControlWithInput
         SelectInTreeWithoutEvent(SelectedPage);
 
         viewOnlineButton.Visible = SelectedPage is ThriveopediaWikiPage;
-    }
-
-    /// <summary>
-    ///   Gets an existing page by name, or null if no page exists with that name.
-    /// </summary>
-    /// <param name="name">The name of the desired page</param>
-    /// <returns>The Thriveopedia page with the given name</returns>
-    private IThriveopediaPage GetPage(string name)
-    {
-        var page = allPages.Keys.FirstOrDefault(p => p.PageName == name);
-
-        if (page == null)
-            throw new InvalidOperationException($"No page with name {name} found");
-
-        return page;
     }
 
     /// <summary>
@@ -375,25 +373,28 @@ public partial class Thriveopedia : ControlWithInput
         }
 
         treeItem.SetText(0, optionsText.ToString());
+
+        OnSelectedStageUpdated();
     }
 
-    private void OnItemEdited()
+    private void OnSelectedStageUpdated()
     {
         // Triggers when the stage dropdown has been edited
         var item = pageTree.GetEdited();
-        CurrentSelectedStage = (Stage)item.GetRange(0);
+
+        ThriveopediaManager.CurrentSelectedStage = item != null ? (Stage)item.GetRange(0) : Stage.MicrobeStage;
 
         foreach (var treeItem in allPages.Values)
         {
             IThriveopediaPage page;
-            try
-            {
-                page = allPages.First(x => x.Value == treeItem).Key;
-            }
-            catch (InvalidOperationException)
-            {
+
+            var pair = allPages.FirstOrDefault(x => x.Value == treeItem);
+
+            // Skip over any TreeItems that are not in the list of pages
+            if (pair.Equals(default(KeyValuePair<IThriveopediaPage, TreeItem>)))
                 continue;
-            }
+
+            page = pair.Key;
 
             if (page is ThriveopediaWikiPage wikiPage)
             {
@@ -402,7 +403,18 @@ public partial class Thriveopedia : ControlWithInput
                 if (restrictedTo == null)
                     continue;
 
-                treeItem.Visible = restrictedTo.Contains(CurrentSelectedStage);
+                treeItem.Visible = restrictedTo.Contains(
+                    ThriveopediaManager.CurrentSelectedStage);
+
+                wikiPage.VisibleInTree = treeItem.Visible;
+            }
+        }
+
+        foreach (var page in allPages.Keys)
+        {
+            if (page is ThriveopediaWikiPage wikiPage)
+            {
+                wikiPage.OnSelectedStageChanged();
             }
         }
     }

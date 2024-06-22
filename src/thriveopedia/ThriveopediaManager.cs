@@ -15,6 +15,11 @@ public class ThriveopediaManager
     public static ThriveopediaManager Instance => ManagerInstance;
 
     /// <summary>
+    ///   The currently selected stage to view. Should be the same across all active thriveopedias.
+    /// </summary>
+    public static Stage CurrentSelectedStage { get; set; }
+
+    /// <summary>
     ///   Action to open the Thriveopedia in the current game context, e.g. from the main menu or from the pause menu.
     /// </summary>
     public OnPageOpened? OnPageOpenedHandler { get; set; }
@@ -32,6 +37,11 @@ public class ThriveopediaManager
         }
 
         Instance.OnPageOpenedHandler(pageName);
+    }
+
+    public static IThriveopediaPage GetPage(string pageName)
+    {
+        return Instance.activeThriveopedias[0].GetPage(pageName);
     }
 
     public static Species? GetActiveSpeciesData(uint speciesId)
