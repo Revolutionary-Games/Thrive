@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Shows a key prompt that reacts to being pressed down
@@ -11,12 +12,6 @@ using Godot;
 /// </remarks>
 public partial class KeyPrompt : CenterContainer
 {
-    /// <summary>
-    ///   Name of the action this key prompt shows
-    /// </summary>
-    [Export]
-    public string ActionName = null!;
-
     /// <summary>
     ///   If true reacts when the user presses the key
     /// </summary>
@@ -40,6 +35,41 @@ public partial class KeyPrompt : CenterContainer
     protected TextureRect secondaryIcon = null!;
 #pragma warning restore CA2213
 
+    private string actionName = string.Empty;
+    private StringName? resolvedActionName;
+
+    private bool dirty;
+
+    /// <summary>
+    ///   Name of the action this key prompt shows
+    /// </summary>
+    [Export]
+    public string ActionName
+    {
+        get => actionName;
+        set
+        {
+            if (value == actionName)
+                return;
+
+            actionName = value;
+            dirty = true;
+
+            if (!string.IsNullOrEmpty(value))
+            {
+                resolvedActionName = new StringName(value);
+            }
+            else
+            {
+                resolvedActionName?.Dispose();
+                resolvedActionName = null;
+            }
+        }
+    }
+
+    [JsonIgnore]
+    public StringName? ResolvedAction => resolvedActionName;
+
     public override void _Ready()
     {
         base._Ready();
@@ -47,7 +77,7 @@ public partial class KeyPrompt : CenterContainer
         primaryIcon = GetNode<TextureRect>("Primary");
         secondaryIcon = GetNode<TextureRect>("Secondary");
 
-        Refresh();
+        dirty = true;
     }
 
     public override void _EnterTree()
@@ -58,7 +88,7 @@ public partial class KeyPrompt : CenterContainer
         // currently)
         KeyPromptHelper.IconsChanged += OnIconsChanged;
         InputDataList.InputsRemapped += OnIconsChanged;
-        Refresh();
+        dirty = true;
     }
 
     public override void _ExitTree()
@@ -72,10 +102,13 @@ public partial class KeyPrompt : CenterContainer
     public override void _Process(double delta)
     {
         // Skip processing when not visible to save quite a bit of processing time from any existing prompts
-        // Note this doesn't use IsVisibleInTree as that is also a processing intensive method. Instead this relies on
+        // Note this doesn't use IsVisibleInTree as that is also a processing intensive method. Instead, this relies on
         // the tutorial etc. to set this hidden itself.
         if (!Visible)
             return;
+
+        if (dirty)
+            Refresh();
 
         if (!ShowPress)
         {
@@ -83,7 +116,7 @@ public partial class KeyPrompt : CenterContainer
             return;
         }
 
-        if (string.IsNullOrEmpty(ActionName) || !Input.IsActionPressed(ActionName))
+        if (resolvedActionName == null || !Input.IsActionPressed(resolvedActionName))
         {
             primaryIcon!.SelfModulate = UnpressedColour;
         }
@@ -99,16 +132,41 @@ public partial class KeyPrompt : CenterContainer
 
         if (what == NotificationResized)
         {
-            if (primaryIcon != null)
-                ApplySize();
+            ApplySize();
         }
     }
 
-    /// <summary>
-    ///   Refreshes this buttons icon. If you change ActionName you need to call this
-    /// </summary>
-    public void Refresh()
+    protected virtual void ApplySize()
     {
+        if (primaryIcon == null)
+            return;
+
+        var size = Size;
+        primaryIcon.CustomMinimumSize = size;
+        secondaryIcon.CustomMinimumSize = size;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            resolvedActionName?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
+    /// <summary>
+    ///   Refreshes this buttons icon. Automatically called after being marked dirty on the next process this is
+    ///   visible.
+    /// </summary>
+    private void Refresh()
+    {
+        if (dirty)
+            GD.Print("did a refresh");
+
+        dirty = false;
+
         if (primaryIcon == null)
             return;
 
@@ -139,15 +197,8 @@ public partial class KeyPrompt : CenterContainer
         }
     }
 
-    protected virtual void ApplySize()
-    {
-        var size = Size;
-        primaryIcon!.CustomMinimumSize = size;
-        secondaryIcon.CustomMinimumSize = size;
-    }
-
     private void OnIconsChanged(object? sender, EventArgs args)
     {
-        Refresh();
+        dirty = true;
     }
 }

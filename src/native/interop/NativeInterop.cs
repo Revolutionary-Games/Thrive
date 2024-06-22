@@ -18,6 +18,8 @@ using SharedBase.Utilities;
 /// </summary>
 public static class NativeInterop
 {
+    private const string GODOT_INTERNAL_PATH_LIKELY_MARKER = "data_Thrive_";
+
     // Need these delegate holders to keep delegates alive
     private static readonly NativeMethods.OnLogMessage LogMessageCallback = ForwardMessage;
 
@@ -34,6 +36,7 @@ public static class NativeInterop
     private static bool cpuIsInsufficient;
 
     private static bool printedDistributableNotice;
+    private static bool printedErrorAboutExecutablePath;
 
 #if DEBUG
     private static bool printedSteamLibName;
@@ -472,6 +475,9 @@ public static class NativeInterop
             if (LookForLibraryUpInFolders(steamName, out loaded))
                 return loaded;
 
+            if (LoadLibraryIfExists(Path.Join(GetExecutableFolder(), steamName), out loaded))
+                return loaded;
+
             GD.PrintErr("Steam API library seems to be missing");
             return NativeLibrary.Load(libraryName, assembly, searchPath);
         }
@@ -537,15 +543,68 @@ public static class NativeInterop
         return NativeLibrary.Load(libraryName, assembly, searchPath);
     }
 
+    /// <summary>
+    ///   Tries to get a sensible executable folder. Due to Godot this may not always work but this tries to be right
+    /// </summary>
+    /// <returns>Executable path or empty string</returns>
+    private static string GetExecutableFolder()
+    {
+        try
+        {
+            var location = AppDomain.CurrentDomain.BaseDirectory;
+
+            if (location == null)
+            {
+                throw new Exception("Entry assembly location is empty");
+            }
+
+            if (location.StartsWith("file://"))
+            {
+                location = location.Substring("file://".Length);
+            }
+
+            // Remove one folder level if this is likely an internal Godot path (when packaged)
+            if (location.Contains(GODOT_INTERNAL_PATH_LIKELY_MARKER))
+                return Path.Join(location, "..");
+
+            return location;
+        }
+        catch (Exception e)
+        {
+            // Cannot detect
+            if (!printedErrorAboutExecutablePath)
+            {
+                GD.PrintErr("Cannot determine current location of the running executable: ", e);
+                printedErrorAboutExecutablePath = true;
+            }
+
+            return string.Empty;
+        }
+    }
+
     private static bool LoadLibraryIfExists(string libraryPath, out IntPtr loaded)
     {
-        if (File.Exists(libraryPath))
-        {
-#if DEBUG_LIBRARY_LOAD
-            GD.Print("Loading library: ", libraryPath);
-#endif
+        var executableFolder = GetExecutableFolder();
 
-            var full = Path.GetFullPath(libraryPath);
+        var executableRelative = Path.Join(executableFolder, libraryPath);
+
+        if (File.Exists(libraryPath) || File.Exists(executableRelative))
+        {
+            string full;
+            if (File.Exists(libraryPath))
+            {
+#if DEBUG_LIBRARY_LOAD
+                GD.Print("Loading library: ", libraryPath);
+#endif
+                full = Path.GetFullPath(libraryPath);
+            }
+            else
+            {
+#if DEBUG_LIBRARY_LOAD
+                GD.Print("Loading library relative to executable: ", executableRelative);
+#endif
+                full = Path.GetFullPath(executableRelative);
+            }
 
             loaded = NativeLibrary.Load(full);
             return true;
@@ -553,6 +612,7 @@ public static class NativeInterop
 
 #if DEBUG_LIBRARY_LOAD
         GD.Print("Candidate library path doesn't exist: ", libraryPath);
+        GD.Print("Executable relative variant: ", executableRelative);
 #endif
 
         loaded = IntPtr.Zero;

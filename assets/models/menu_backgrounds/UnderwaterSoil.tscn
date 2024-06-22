@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1nmj2ijqsdwp"]
 
-[ext_resource type="PackedScene" uid="uid://g4fdxmb6dcj5" path="res://assets/models/menu_backgrounds/UnderwaterSoil.glb" id="2"]
-[ext_resource type="Material" path="res://assets/models/menu_backgrounds/UnderwaterSoil_Mat.material" id="2_od717"]
+[ext_resource type="Material" uid="uid://btjq64yewvrfr" path="res://assets/models/menu_backgrounds/UnderwaterSoil_Mat.material" id="2_kmv3i"]
+[ext_resource type="ArrayMesh" uid="uid://cp7hiss1ocxd5" path="res://assets/models/menu_backgrounds/UnderwaterSoil.mesh" id="2_optsc"]
 
-[node name="UnderwaterSoil" instance=ExtResource("2")]
+[node name="Node3D" type="Node3D"]
 
-[node name="UnderwaterSoil2" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_od717")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_kmv3i")
+mesh = ExtResource("2_optsc")

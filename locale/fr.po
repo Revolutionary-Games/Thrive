@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-07 10:19+0300\n"
-"PO-Revision-Date: 2024-06-14 06:50+0000\n"
-"Last-Translator: Zero Cool <zerocool@e.email>\n"
+"POT-Creation-Date: 2024-06-19 11:03+0300\n"
+"PO-Revision-Date: 2024-06-16 10:22+0000\n"
+"Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -718,10 +718,10 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Luminosité ou intensité de la couleur"
 
 msgid "COMMON_ABILITIES"
-msgstr "Capacités commun"
+msgstr "Capacités communes"
 
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr "Éditeur commun et phases stratégie"
+msgstr "Éditeur commun et phases de stratégie"
 
 msgid "COMMUNITY_FORUM"
 msgstr "Forum de la communauté"
@@ -1653,9 +1653,8 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
 msgstr ""
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
-msgstr "Organites déconnectés"
+msgstr "Cette espèce ne peut être transformée en aucun organite valide"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
@@ -3835,16 +3834,11 @@ msgstr "{0} organites"
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organite"
 
-#, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
-msgstr ""
-"Des mods installés ont été détectés, mais aucun mod n'a été activé.\n"
-"\n"
-"Les mods doivent être activés après l'installation. Visitez le gestionnaire de mods en utilisant le bouton mods dans le menu extras."
+msgstr "Déverrouillage des organites activé"
 
-#, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
-msgstr "(ATTENTION : la photosynthèse devient beaucoup moins viable)"
+msgstr "(certains organites auront des conditions de déverrouillage requises pour les placer)"
 
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiques de l'organisme"
@@ -4073,7 +4067,7 @@ msgid "PLAYER_EXTINCT"
 msgstr "Le joueur est éteint"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "Parents du joueur"
+msgstr "Dépend du joueur"
 
 msgid "PLAYER_REPRODUCED"
 msgstr "le joueur s'est reproduit"
@@ -4508,7 +4502,7 @@ msgid "SCREEN_EFFECT_NONE"
 msgstr "Aucun"
 
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr ""
+msgstr "Dépend de l'écran"
 
 msgid "SCROLLLOCK"
 msgstr "Verrouillage de défilement"
@@ -5634,9 +5628,8 @@ msgstr "Limiter l'utilisation du composé de croissance"
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "Placer organite"
 
-#, fuzzy
 msgid "UNLOCK_ALL_ORGANELLES"
-msgstr "Plusieurs organites"
+msgstr "Déverrouiller tous les organites"
 
 msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
 msgstr ""
@@ -6803,9 +6796,8 @@ msgstr ""
 "Inclure les prototypes des phases avancées : {0}\n"
 "Inclure les Easter eggs : {1}"
 
-#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr "pour augmenter la mobilité"
+msgstr "Dépend du monde"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pire secteur :"
