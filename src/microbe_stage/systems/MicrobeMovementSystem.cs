@@ -84,7 +84,22 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         lookVector.Y = 0;
         var lookVectorLength = lookVector.Length();
 
-        if (lookVectorLength > MathUtils.EPSILON)
+        var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
+        var unsignedTurnAngle = Math.Abs(turnAngle);
+
+        // saturation function, scaled to a quarter of a circle
+        var blendFactor = (Mathf.Pi / 4) * unsignedTurnAngle / (unsignedTurnAngle + Constants.CELL_TURN_SLOWDOWN_RADIANS);
+
+        // Simplify turns to 90 degrees to keep consistent turning speed
+        if (turnAngle > 0.1f)
+        {
+            lookVector = (position.Rotation * new Vector3(-Mathf.Cos(blendFactor), 0, Mathf.Sin(blendFactor))).Normalized();
+        }
+        else if (turnAngle < -0.1f)
+        {
+            lookVector = (position.Rotation * new Vector3(Mathf.Cos(blendFactor), 0, Mathf.Sin(blendFactor))).Normalized();
+        }
+        else if (lookVectorLength > MathUtils.EPSILON)
         {
             // Normalize vector when it has a length
             lookVector /= lookVectorLength;
@@ -96,21 +111,9 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             lookVector = Vector3.Forward;
         }
 
-        var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
-
-        // Simplify turns to 90 degrees to keep consistent turning speed
-        if (turnAngle > Constants.CELL_TURN_SLOWDOWN_RADIANS)
-        {
-            lookVector = position.Rotation * Vector3.Left;
-        }
-        else if (turnAngle < -Constants.CELL_TURN_SLOWDOWN_RADIANS)
-        {
-            lookVector = position.Rotation * Vector3.Right;
-        }
-
 #if DEBUG
         if (!lookVector.IsNormalized())
-            throw new Exception("Look vector not normalized");
+            throw new Exception("Look vector not normalized: turn angle="+turnAngle+" blendFactor="+blendFactor+" lookVector="+lookVector);
 #endif
 
         var up = Vector3.Up;
