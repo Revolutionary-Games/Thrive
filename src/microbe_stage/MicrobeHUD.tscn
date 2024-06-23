@@ -1,8 +1,9 @@
-[gd_scene load_steps=46 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=48 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="Texture2D" uid="uid://drrdhfwd5s8e2" path="res://assets/textures/gui/bevel/actions/EngulfEject.png" id="7"]
+[ext_resource type="Shader" path="res://shaders/ScreenDamage.gdshader" id="8_xbpdo"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bvqcyxabp8g4g" path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" id="10"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeHUD.cs" id="13"]
@@ -34,6 +35,12 @@
 [ext_resource type="Texture2D" uid="uid://buv5vjrf4hx0h" path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" id="68"]
 [ext_resource type="Texture2D" uid="uid://bqyawyqghdnxp" path="res://assets/textures/gui/bevel/unbind.png" id="70"]
 [ext_resource type="Texture2D" uid="uid://cbxkq166e7veg" path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" id="72"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8s2oy"]
+shader = ExtResource("8_xbpdo")
+shader_parameter/damageColor = Color(0.85, 0, 0, 0.65)
+shader_parameter/fade = 0.0
+shader_parameter/extent = 0.15
 
 [sub_resource type="Animation" id="39"]
 resource_name = "HideCompoundsPanels"
@@ -299,19 +306,19 @@ PatchExtinctionBoxScene = ExtResource("60")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
-damageScreenEffect = NodePath("DamageEffect")
+damageScreenEffect = NodePath("")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
 
-[node name="DamageEffect" type="ColorRect" parent="."]
+[node name="DamageEffect" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_8s2oy")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.733333, 0, 0, 0)
 
 [node name="TopRight" type="MarginContainer" parent="."]
 layout_mode = 0
