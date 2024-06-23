@@ -174,6 +174,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
+    [Export]
+    private ColorRect damageScreenEffect = null!;
 
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
@@ -197,6 +199,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [JsonProperty]
     private Color healthBarFlashColour = new(0, 0, 0, 0);
+
+    private float lastHealth;
 
     protected CreatureStageHUDBase()
     {
@@ -665,6 +669,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
         hpLabel.Text = hpText;
         hpLabel.TooltipText = hpText;
+
+        if (damageScreenEffect.Color.A > 0)
+            damageScreenEffect.Color = new Color(0.8f, 0, 0, damageScreenEffect.Color.A - delta);
+
+        if (hp < lastHealth)
+            damageScreenEffect.Color = new Color(0.8f, 0, 0, 0.2f);
+
+        lastHealth = hp;
     }
 
     protected virtual void ReadPlayerHitpoints(out float hp, out float maxHP)
