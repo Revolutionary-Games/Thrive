@@ -306,12 +306,13 @@ PatchExtinctionBoxScene = ExtResource("60")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
-damageScreenEffect = NodePath("")
+damageScreenEffect = NodePath("DamageEffect")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
 
 [node name="DamageEffect" type="Panel" parent="."]
+top_level = true
 material = SubResource("ShaderMaterial_8s2oy")
 layout_mode = 1
 anchors_preset = 15
@@ -362,10 +363,16 @@ alignment = 2
 
 [node name="EnvironmentPanel" parent="BottomLeft/LeftPanels" instance=ExtResource("13_wltm2")]
 layout_mode = 2
+ApplyCompressedVerticalExtraSpace = null
+PanelCompressed = null
+ShowPanel = null
 
 [node name="CompoundPanels" parent="BottomLeft/LeftPanels" instance=ExtResource("14_hlko5")]
 layout_mode = 2
 ShowAgents = false
+ApplyCompressedVerticalExtraSpace = null
+PanelCompressed = null
+ShowPanel = null
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("59")]
 layout_mode = 1
@@ -373,6 +380,9 @@ offset_left = 2.0
 offset_top = -46.0
 offset_right = 447.0
 offset_bottom = -3.0
+ShowCompoundPanelToggles = null
+ShowSuicideButton = null
+ShowProcessesButton = null
 
 [node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -571,6 +581,10 @@ offset_top = 108.0
 offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
+OrderMessagesBottomUp = null
+MaxShownMessages = null
+MaxDisplayTimeBeforeForceFade = null
+MidwayFadeValue = null
 
 [node name="ProcessPanel" parent="." instance=ExtResource("61")]
 offset_left = 8.0
@@ -596,6 +610,8 @@ grow_vertical = 0
 
 [node name="PauseInfo" parent="PausePrompt" index="1"]
 offset_bottom = -24.0
+ExtendedBbcode = null
+EnableTooltipsForMetaTags = null
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(550, 69)
@@ -706,14 +722,6 @@ custom_minimum_size = Vector2(450, 0)
 offset_right = 300.0
 offset_bottom = 97.0
 
-[connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
-[connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
-[connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
-[connection signal="OnMenuPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenMenu"]
-[connection signal="OnPausePressed" from="BottomLeft/HUDBottomBar" to="." method="PauseButtonPressed"]
-[connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
-[connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
-[connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Multicellular" to="." method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Macroscopic" to="." method="OnBecomeMacroscopicPressed"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
@@ -724,8 +732,5 @@ offset_bottom = 97.0
 [connection signal="pressed" from="ScrollContainer/HotBar/BindingMode" to="." method="OnBindingModePressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/SecreteSlime" to="." method="OnSecreteSlimePressed"]
-[connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
-[connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCanceled"]
-[connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularConfirmed"]
 
 [editable path="PausePrompt"]

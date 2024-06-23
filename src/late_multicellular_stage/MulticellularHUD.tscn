@@ -81,7 +81,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -127,11 +127,13 @@ PatchExtinctionBoxScene = ExtResource("16")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
+damageScreenEffect = NodePath("DamageEffect")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
 
 [node name="DamageEffect" type="Panel" parent="."]
+top_level = true
 material = SubResource("ShaderMaterial_32qwl")
 layout_mode = 1
 anchors_preset = 15
@@ -168,6 +170,7 @@ offset_right = 150.0
 offset_bottom = 25.0
 fit_content = true
 ExtendedBbcode = "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
+EnableTooltipsForMetaTags = null
 
 [node name="BottomLeft" type="Control" parent="."]
 anchors_preset = 0
@@ -195,15 +198,24 @@ alignment = 2
 
 [node name="EnvironmentPanel" parent="BottomLeft/LeftPanels" instance=ExtResource("13_ayo6l")]
 layout_mode = 2
+ApplyCompressedVerticalExtraSpace = null
+PanelCompressed = null
+ShowPanel = null
 
 [node name="CompoundPanels" parent="BottomLeft/LeftPanels" instance=ExtResource("14_47uq8")]
 layout_mode = 2
 ShowAgents = false
+ApplyCompressedVerticalExtraSpace = null
+PanelCompressed = null
+ShowPanel = null
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("69")]
 layout_mode = 1
 offset_top = -40.0
 offset_bottom = -5.0
+ShowCompoundPanelToggles = null
+ShowSuicideButton = null
+ShowProcessesButton = null
 
 [node name="BottomRight" type="Control" parent="."]
 anchors_preset = 0
@@ -499,6 +511,8 @@ offset_bottom = -101.0
 
 [node name="PauseInfo" parent="PausePrompt" index="1"]
 offset_bottom = -24.0
+ExtendedBbcode = null
+EnableTooltipsForMetaTags = null
 
 [node name="InventoryScreen" parent="." instance=ExtResource("29")]
 anchors_preset = 0
@@ -523,6 +537,10 @@ offset_top = 108.0
 offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
+OrderMessagesBottomUp = null
+MaxShownMessages = null
+MaxDisplayTimeBeforeForceFade = null
+MidwayFadeValue = null
 
 [node name="RadialPopup" parent="." instance=ExtResource("32")]
 
@@ -536,21 +554,11 @@ custom_minimum_size = Vector2(450, 0)
 DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 
-[connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
-[connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
-[connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
-[connection signal="OnMenuPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenMenu"]
-[connection signal="OnPausePressed" from="BottomLeft/HUDBottomBar" to="." method="PauseButtonPressed"]
-[connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
-[connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
-[connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnMoveToLandPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnAwakenPressed"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Interact" to="." method="ForwardInteractButton"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Inventory" to="." method="ForwardOpenInventory"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Build" to="." method="ForwardBuildPressed"]
-[connection signal="Confirmed" from="MoveToLandConfirmation" to="." method="OnMoveToLandConfirmed"]
-[connection signal="Confirmed" from="MoveToAwakeningConfirm" to="." method="OnAwakenConfirmed"]
 
 [editable path="PausePrompt"]

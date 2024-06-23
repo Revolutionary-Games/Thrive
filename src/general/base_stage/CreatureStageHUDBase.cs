@@ -175,7 +175,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
     [Export]
-    private ColorRect damageScreenEffect = null!;
+    private Panel damageScreenEffect = null!;
 
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
@@ -184,6 +184,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private PatchExtinctionBox? patchExtinctionBox;
     private ProcessPanel processPanel = null!;
 #pragma warning restore CA2213
+
+    private StringName fadeParameterName = new("fade");
 
     // Used for save load to apply these properties
     private bool temporaryEnvironmentCompressed;
@@ -670,11 +672,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         hpLabel.Text = hpText;
         hpLabel.TooltipText = hpText;
 
-        if (damageScreenEffect.Color.A > 0)
-            damageScreenEffect.Color = new Color(0.8f, 0, 0, damageScreenEffect.Color.A - delta);
+        var shaderMaterial = (ShaderMaterial)damageScreenEffect.Material;
+
+        if ((float)shaderMaterial.GetShaderParameter(fadeParameterName) > 0)
+        {
+            shaderMaterial.SetShaderParameter(fadeParameterName, (float)shaderMaterial
+                .GetShaderParameter(fadeParameterName) - delta);
+        }
 
         if (hp < lastHealth)
-            damageScreenEffect.Color = new Color(0.8f, 0, 0, 0.2f);
+            shaderMaterial.SetShaderParameter(fadeParameterName, 1);
 
         lastHealth = hp;
     }
@@ -978,6 +985,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 BottomLeftBarPath.Dispose();
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
+                fadeParameterName.Dispose();
             }
         }
 
