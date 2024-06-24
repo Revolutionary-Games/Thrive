@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-24 15:31-0500\n"
+"POT-Creation-Date: 2024-06-24 16:11-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -3894,6 +3894,10 @@ msgstr ""
 "¿ Aún así deseas intentar cargar la partida?"
 
 #, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Advertencia del modo GLES2"
+
+#, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
 
@@ -4612,6 +4616,9 @@ msgstr ""
 "\n"
 "Si no arreglas el problema que causa el error, necesitarás reiniciar y crashear Thrive multiples veces para volver al modo seguro."
 
+msgid "SAFE_MODE_TITLE"
+msgstr "Thrive iniciado en modo seguro"
+
 msgid "SAVE"
 msgstr "Guardar"
 
@@ -5105,6 +5112,10 @@ msgstr "¡UPS!, parece que Steam no se encuentra disponible en este momento. Por
 
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Se ha producido un error desconocido de Steam"
+
+#, fuzzy
+msgid "STEAM_INIT_FAILED"
+msgstr "Error en la inicialización de la biblioteca de cliente de Steam"
 
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
@@ -7201,17 +7212,6 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
-
-#, fuzzy
-#~ msgid "OPENGL_MODE_WARNING"
-#~ msgstr "Advertencia del modo GLES2"
-
-#~ msgid "SAFE_MODE_TITLE"
-#~ msgstr "Thrive iniciado en modo seguro"
-
-#, fuzzy
-#~ msgid "STEAM_INIT_FAILED"
-#~ msgstr "Error en la inicialización de la biblioteca de cliente de Steam"
 
 #, fuzzy
 #~ msgid "STORAGE_PRESSURE"

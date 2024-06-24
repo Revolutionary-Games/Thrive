@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-24 15:31-0500\n"
+"POT-Creation-Date: 2024-06-24 16:11-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1093,7 +1093,7 @@ msgstr ""
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:51
+#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:50
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:62
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
@@ -3849,7 +3849,7 @@ msgstr ""
 msgid "MICHE"
 msgstr ""
 
-#: ../src/gui_common/MicheDetailsPanel.cs:85
+#: ../src/gui_common/MicheDetailsPanel.cs:86
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
 
@@ -4743,6 +4743,10 @@ msgstr ""
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
+#: ../src/general/MainMenu.tscn:838
+msgid "OPENGL_MODE_WARNING"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:837
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
@@ -5306,7 +5310,7 @@ msgstr ""
 msgid "PREDATION_EFFECTIVENESS_PRESSURE"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:140
+#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:139
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
@@ -5695,6 +5699,10 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:856
 msgid "SAFE_MODE_EXPLANATION"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:857
+msgid "SAFE_MODE_TITLE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1653 ../src/saving/NewSaveMenu.tscn:80
@@ -6326,6 +6334,10 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:557
 msgid "STEAM_ERROR_UNKNOWN"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:881
+msgid "STEAM_INIT_FAILED"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:880

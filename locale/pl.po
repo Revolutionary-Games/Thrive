@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-24 15:31-0500\n"
+"POT-Creation-Date: 2024-06-24 16:11-0500\n"
 "PO-Revision-Date: 2024-06-11 06:06+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -3744,6 +3744,10 @@ msgstr ""
 "Czy chcesz spróbować wczytać zapis mimo to?"
 
 #, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Ostrzeżenie Tryb GLES2"
+
+#, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie grafiki AMD lub Nvidia do uruchamiania Trive."
 
@@ -4420,6 +4424,9 @@ msgstr "Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając [
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
+msgid "SAFE_MODE_TITLE"
+msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
+
 msgid "SAVE"
 msgstr "Zapisz"
 
@@ -4904,6 +4911,10 @@ msgstr "Steam jest obecnie niedostępny, spróbuj ponownie"
 
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nieznany błąd Steama"
+
+#, fuzzy
+msgid "STEAM_INIT_FAILED"
+msgstr "Zapis nie zadziałał! Pojawił się błąd"
 
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
@@ -6822,17 +6833,6 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
-
-#, fuzzy
-#~ msgid "OPENGL_MODE_WARNING"
-#~ msgstr "Ostrzeżenie Tryb GLES2"
-
-#~ msgid "SAFE_MODE_TITLE"
-#~ msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
-
-#, fuzzy
-#~ msgid "STEAM_INIT_FAILED"
-#~ msgstr "Zapis nie zadziałał! Pojawił się błąd"
 
 #, fuzzy
 #~ msgid "STORAGE_PRESSURE"

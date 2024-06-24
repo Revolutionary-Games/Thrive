@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-24 15:31-0500\n"
+"POT-Creation-Date: 2024-06-24 16:11-0500\n"
 "PO-Revision-Date: 2024-06-17 08:11+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -3783,6 +3783,10 @@ msgstr ""
 "Всё равно попробовать загрузить это сохранение?"
 
 #, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Предупреждение режима GLES2"
+
+#, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
 
@@ -4464,6 +4468,9 @@ msgstr ""
 "\n"
 "Если вы не устраните проблему, вызывающую сбой при запуске, вам потребуется перезапустить Thrive несколько раз, чтобы вернуться в безопасный режим."
 
+msgid "SAFE_MODE_TITLE"
+msgstr "Thrive запущен в безопасном режиме"
+
 msgid "SAVE"
 msgstr "Сохранить"
 
@@ -4935,6 +4942,9 @@ msgstr "Steam в настоящее время недоступен, пожал�
 
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Произошла неизвестная ошибка Steam"
+
+msgid "STEAM_INIT_FAILED"
+msgstr "Не удалось выполнить инициализацию клиентской библиотеки Steam"
 
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
@@ -6956,16 +6966,6 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
-
-#, fuzzy
-#~ msgid "OPENGL_MODE_WARNING"
-#~ msgstr "Предупреждение режима GLES2"
-
-#~ msgid "SAFE_MODE_TITLE"
-#~ msgstr "Thrive запущен в безопасном режиме"
-
-#~ msgid "STEAM_INIT_FAILED"
-#~ msgstr "Не удалось выполнить инициализацию клиентской библиотеки Steam"
 
 #, fuzzy
 #~ msgid "STORAGE_PRESSURE"
