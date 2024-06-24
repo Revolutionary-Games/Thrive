@@ -50,11 +50,11 @@ public abstract class SelectionPressure
         TranslationHelper.ApplyTranslations(this);
     }
 
-    public abstract override string ToString();
-
     /// <summary>
     ///   A description of this miche. Needs to support translations changing and be player readable
     /// </summary>
     /// <returns>A formattable that has the description in it</returns>
     public abstract IFormattable GetDescription();
+
+    public abstract override string ToString();
 }
