@@ -1,25 +1,22 @@
-[gd_resource type="ParticlesMaterial" load_steps=5 format=2]
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://x84sicrwf6n1"]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.00740741, 0.481481, 1 )
-colors = PoolColorArray( 1, 1, 1, 0.0352941, 1, 1, 1, 1, 1, 1, 1, 0.0352941 )
+[sub_resource type="Gradient" id="1"]
+offsets = PackedFloat32Array(0.00740741, 0.481481, 1)
+colors = PackedColorArray(1, 1, 1, 0.0352941, 1, 1, 1, 1, 1, 1, 1, 0.0352941)
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("1")
 
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.318182 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.318182), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id="4"]
+curve = SubResource("3")
 
 [resource]
 emission_shape = 1
 emission_sphere_radius = 1.0
-gravity = Vector3( 5, 0, 0 )
-initial_velocity = 2.0
-initial_velocity_random = 1.0
-damping = 19.54
-scale = 0.35
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
+gravity = Vector3(5, 0, 0)
+scale_curve = SubResource("4")
+color_ramp = SubResource("2")

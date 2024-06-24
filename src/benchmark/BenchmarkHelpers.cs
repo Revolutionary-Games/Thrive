@@ -20,7 +20,7 @@ public static class BenchmarkHelpers
         return $"CPU: {OS.GetProcessorName()} (used tasks: {TaskExecutor.Instance.ParallelTasks}, " +
             $"native: {TaskExecutor.Instance.NativeTasks}, sim threads: " +
             $"{Settings.Instance.RunGameSimulationMultithreaded.Value})\n" +
-            $"GPU: {VisualServer.GetVideoAdapterName()}\nOS: {OS.GetName()}";
+            $"GPU: {RenderingServer.GetVideoAdapterName()}\nOS: {OS.GetName()}";
     }
 
     /// <summary>
@@ -31,8 +31,8 @@ public static class BenchmarkHelpers
         // This needs to be invoked to make sure directly starting benchmark scenes works
         Invoke.Instance.Queue(() =>
         {
-            Engine.TargetFps = -1;
-            OS.VsyncEnabled = false;
+            Engine.MaxFps = 0;
+            DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Disabled);
         });
     }
 

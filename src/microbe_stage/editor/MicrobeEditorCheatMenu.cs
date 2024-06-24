@@ -1,23 +1,26 @@
 ﻿using Godot;
 
-public class MicrobeEditorCheatMenu : CheatMenu
+/// <summary>
+///   Cheat menu for the <see cref="MicrobeEditor"/>
+/// </summary>
+public partial class MicrobeEditorCheatMenu : CheatMenu
 {
     [Export]
     public NodePath? InfiniteMpPath;
 
 #pragma warning disable CA2213
-    private CustomCheckBox infiniteMp = null!;
+    private CheckBox infiniteMp = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
-        infiniteMp = GetNode<CustomCheckBox>(InfiniteMpPath);
+        infiniteMp = GetNode<CheckBox>(InfiniteMpPath);
         base._Ready();
     }
 
     public override void ReloadGUI()
     {
-        infiniteMp.Pressed = CheatManager.InfiniteMP;
+        infiniteMp.ButtonPressed = CheatManager.InfiniteMP;
     }
 
     protected override void Dispose(bool disposing)

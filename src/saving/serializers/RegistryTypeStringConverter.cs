@@ -1,4 +1,6 @@
-﻿using System;
+﻿namespace Saving.Serializers;
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -67,17 +69,20 @@ public class RegistryTypeStringConverter : TypeConverter
             },
         };
 
-    public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+    public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
     {
         return typeof(string) == sourceType;
     }
 
-    public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+    public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
     {
+        if (destinationType == null)
+            return false;
+
         return typeof(string) == destinationType || GetRegistryByType(destinationType) != null;
     }
 
-    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
+    public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object? value)
     {
         if (value == null)
             return null;
@@ -94,9 +99,12 @@ public class RegistryTypeStringConverter : TypeConverter
         return SupportedRegistryTypes[split[0]].RetrieveInstance(split[1]);
     }
 
-    public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value,
+    public override object ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value,
         Type destinationType)
     {
+        if (value == null)
+            throw new ArgumentException("Cannot convert null", nameof(value));
+
         if (destinationType == typeof(string))
         {
             var type = GetRegistryByType(value.GetType());
@@ -143,12 +151,12 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
 {
     protected abstract string TypeName { get; }
 
-    public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+    public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
     {
         return typeof(string) == destinationType || typeof(TType) == destinationType;
     }
 
-    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
+    public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object? value)
     {
         if (value == null)
             return null;
@@ -156,9 +164,12 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
         return SupportedRegistryTypes[TypeName].RetrieveInstance((string)value);
     }
 
-    public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value,
+    public override object ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value,
         Type destinationType)
     {
+        if (value == null)
+            throw new ArgumentException("Cannot convert null", nameof(value));
+
         if (destinationType == typeof(string))
         {
             var type = GetRegistryByType(typeof(TType));

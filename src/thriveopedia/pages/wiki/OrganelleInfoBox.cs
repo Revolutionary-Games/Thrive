@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Wiki-style info box for an organelle.
 /// </summary>
-public class OrganelleInfoBox : PanelContainer
+public partial class OrganelleInfoBox : PanelContainer
 {
     [Export]
     public NodePath? NamePath;
@@ -67,8 +67,8 @@ public class OrganelleInfoBox : PanelContainer
     private Label upgradesLabel = null!;
     private Label internalNameLabel = null!;
 
-    private Texture? modelTexture;
-    private Texture? modelLoadingTexture;
+    private Texture2D? modelTexture;
+    private Texture2D? modelLoadingTexture;
 #pragma warning restore CA2213
 
     private ImageTask? modelImageTask;
@@ -88,7 +88,7 @@ public class OrganelleInfoBox : PanelContainer
         }
     }
 
-    public Texture? ModelTexture
+    public Texture2D? ModelTexture
     {
         get => modelTexture;
         set
@@ -117,17 +117,20 @@ public class OrganelleInfoBox : PanelContainer
         upgradesLabel = GetNode<Label>(UpgradesLabelPath);
         internalNameLabel = GetNode<Label>(InternalNameLabelPath);
 
-        modelLoadingTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/IconGenerating.png");
+        modelLoadingTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/IconGenerating.png");
 
         UpdateModelImage();
         UpdateValues();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
-        if (organelle == null || string.IsNullOrEmpty(organelle.DisplayScene) || finishedLoadingModelImage)
+        if (organelle == null || finishedLoadingModelImage)
+            return;
+
+        if (!organelle.TryGetGraphicsScene(null, out var sceneWithModelInfo))
             return;
 
         if (modelImageTask != null)
@@ -141,8 +144,8 @@ public class OrganelleInfoBox : PanelContainer
             return;
         }
 
-        modelImageTask = new ImageTask(new GalleryCardModel.ModelPreview(organelle.DisplayScene!,
-            organelle.DisplaySceneModelNodePath));
+        modelImageTask = new ImageTask(new GalleryCardModel.ModelPreview(sceneWithModelInfo.LoadedScene.ResourcePath,
+            sceneWithModelInfo.ModelPath));
 
         PhotoStudio.Instance.SubmitTask(modelImageTask);
 
@@ -183,7 +186,7 @@ public class OrganelleInfoBox : PanelContainer
         if (organelle == null)
             return;
 
-        icon.Texture = GD.Load<Texture>(organelle.IconPath);
+        icon.Texture = GD.Load<Texture2D>(organelle.IconPath);
 
         var opaque = new Color(1, 1, 1, 1);
         var translucent = new Color(1, 1, 1, 0.25f);
@@ -194,7 +197,7 @@ public class OrganelleInfoBox : PanelContainer
             organelle.Processes!.Keys
                 .Select(p => SimulationParameters.Instance.GetBioProcess(p).Name)
                 .Aggregate((a, b) => a + "\n" + b) :
-            TranslationServer.Translate("NONE");
+            Localization.Translate("NONE");
 
         var hasEnzymes = organelle.Enzymes.Count > 0;
         enzymesLabel.Modulate = hasEnzymes ? opaque : translucent;
@@ -203,7 +206,7 @@ public class OrganelleInfoBox : PanelContainer
                 .Where(e => e.Value > 0)
                 .Select(e => e.Key.Name)
                 .Aggregate((a, b) => a + "\n" + b) :
-            TranslationServer.Translate("NONE");
+            Localization.Translate("NONE");
 
         var hasUpgrades = organelle.AvailableUpgrades.Count > 0;
         upgradesLabel.Modulate = hasUpgrades ? opaque : translucent;
@@ -212,7 +215,7 @@ public class OrganelleInfoBox : PanelContainer
                 .Where(u => u.Key != "none")
                 .Select(u => u.Value.Name)
                 .Aggregate((a, b) => a + "\n" + b) :
-            TranslationServer.Translate("NONE");
+            Localization.Translate("NONE");
 
         nameLabel.Text = organelle.Name;
         costLabel.Text = organelle.MPCost.ToString(CultureInfo.CurrentCulture);

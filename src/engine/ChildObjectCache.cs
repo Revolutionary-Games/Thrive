@@ -7,7 +7,7 @@ using Godot;
 ///   Helper class for managing creating child objects based on a key and caching them to not recreate them each frame
 /// </summary>
 public class ChildObjectCache<TKey, TNode>
-    where TKey : class
+    where TKey : notnull
     where TNode : Node
 {
     private readonly Node parentObject;

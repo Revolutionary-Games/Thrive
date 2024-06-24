@@ -1,54 +1,53 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+
+/// <summary>
+///   Welcome message and intro to the report tab
+/// </summary>
+public class EditorWelcome : TutorialPhase
 {
-    using System;
+    private readonly string reportTab = EditorTab.Report.ToString();
 
-    /// <summary>
-    ///   Welcome message and intro to the report tab
-    /// </summary>
-    public class EditorWelcome : TutorialPhase
+    public override string ClosedByName => "MicrobeEditorReport";
+
+    public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
-        private readonly string reportTab = EditorTab.Report.ToString();
+        gui.EditorEntryReportVisible = ShownCurrently;
+    }
 
-        public override string ClosedByName => "MicrobeEditorReport";
-
-        public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        switch (eventType)
         {
-            gui.EditorEntryReportVisible = ShownCurrently;
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            switch (eventType)
+            case TutorialEventType.EnteredMicrobeEditor:
             {
-                case TutorialEventType.EnteredMicrobeEditor:
+                if (!HasBeenShown && CanTrigger)
                 {
-                    if (!HasBeenShown && CanTrigger)
-                    {
-                        Show();
-                    }
-
-                    break;
+                    Show();
                 }
 
-                case TutorialEventType.MicrobeEditorTabChanged:
-                {
-                    var tab = ((StringEventArgs)args).Data;
-
-                    // Hide when switched to another tab
-                    if (tab != reportTab)
-                    {
-                        if (ShownCurrently)
-                        {
-                            Hide();
-                        }
-                    }
-
-                    break;
-                }
+                break;
             }
 
-            return false;
+            case TutorialEventType.MicrobeEditorTabChanged:
+            {
+                var tab = ((StringEventArgs)args).Data;
+
+                // Hide when switched to another tab
+                if (tab != reportTab)
+                {
+                    if (ShownCurrently)
+                    {
+                        Hide();
+                    }
+                }
+
+                break;
+            }
         }
+
+        return false;
     }
 }

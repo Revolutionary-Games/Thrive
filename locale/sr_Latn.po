@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2022-03-21 22:25+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
 "Language: sr_Latn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -326,6 +326,19 @@ msgstr "Nazad"
 msgid "BACKSPACE"
 msgstr "Nazad"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Mobilnost"
@@ -339,15 +352,6 @@ msgstr ""
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
-
-msgid "BASSBOOST"
-msgstr ""
-
-msgid "BASSDOWN"
-msgstr ""
-
-msgid "BASSUP"
-msgstr ""
 
 msgid "BATHYPELAGIC"
 msgstr "Bathipelagik"
@@ -777,8 +781,20 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "COMPILED_AT_COLON"
 msgstr "Jedinjenja:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Jedinjenja:"
+
 msgid "COMPOUNDS"
 msgstr "Jedinjenje"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Oblak jedinjenja"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Oblak jedinjenja"
 
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -787,8 +803,22 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "COMPOUNDS_COLON"
 msgstr "Jedinjenja:"
 
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Oblak jedinjenja"
@@ -807,6 +837,24 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Oblak jedinjenja"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Oblak jedinjenja"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Oblak jedinjenja"
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
@@ -878,7 +926,147 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
+
+msgid "CONTROLLER_AXIS_R2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr ""
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
 msgid "CONTROLLER_DEADZONES"
@@ -897,6 +1085,9 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
@@ -908,6 +1099,9 @@ msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
 msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+msgid "CPU_THREADS"
 msgstr ""
 
 msgid "CRAFTING_CLEAR_INPUTS"
@@ -1053,8 +1247,9 @@ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "Izbodite druge ćelije sa ovo."
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1216,14 +1411,6 @@ msgstr "Brzina:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-#, fuzzy
-msgid "DIRECTIONL"
-msgstr "Rezolucija:"
-
-#, fuzzy
-msgid "DIRECTIONR"
-msgstr "Rezolucija:"
-
 msgid "DISABLED"
 msgstr ""
 
@@ -1292,6 +1479,14 @@ msgstr "Sposobnosti"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Sposobnosti"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Sposobnosti"
 
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
@@ -1460,12 +1655,62 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr "Omogućite uređivač"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Spoljni efekti:"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Postavite organelu"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Nastaviti"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Isključene Organele"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Hemosintetizujući proteini su male grupe proteina u citoplazmi koje su u stanju da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida. Pošto su proteini hemosinteze suspendovani direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
@@ -1577,12 +1822,12 @@ msgstr "Resetujte Unosi"
 msgid "EXIT"
 msgstr "Izaći"
 
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Omogućite uređivač"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -1672,6 +1917,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -1863,15 +2120,6 @@ msgstr "Generacija:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-msgid "GLES2"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING"
-msgstr "Upozorenje u režimu GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Koristite Thrive vith GLES2. Ovo je ozbiljno neprovereno i verovatno će izazvati probleme. Pokušajte da ažurirate upravljačke programe za video i / ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje programa Thrive."
-
 msgid "GLES3"
 msgstr ""
 
@@ -1985,12 +2233,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Vodonik Sulfid"
-
-msgid "HYPERL"
-msgstr ""
-
-msgid "HYPERR"
-msgstr ""
 
 msgid "ICESHARD"
 msgstr "Krhotina Leda"
@@ -2220,10 +2462,17 @@ msgstr ""
 msgid "KEY_BACK"
 msgstr "Nazad"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Nazad"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Postoji sukob sa {0}.\n"
 "Da li želite da uklonite unos iz {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr ""
@@ -2249,6 +2498,10 @@ msgid "KEY_FORWARD"
 msgstr "Kreni napred"
 
 #, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Pomerite se levo"
+
+#, fuzzy
 msgid "KEY_HELP"
 msgstr "Pomoć"
 
@@ -2258,7 +2511,17 @@ msgstr ""
 msgid "KEY_HOMEPAGE"
 msgstr ""
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Pomoć"
+
 msgid "KEY_INSERT"
+msgstr ""
+
+msgid "KEY_JIS_EISU"
+msgstr ""
+
+msgid "KEY_JIS_KANA"
 msgstr ""
 
 #, fuzzy
@@ -2267,6 +2530,10 @@ msgstr "Pomerite se levo"
 
 msgid "KEY_MENU"
 msgstr ""
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Pomerite se levo"
 
 msgid "KEY_OPENURL"
 msgstr ""
@@ -2568,6 +2835,10 @@ msgstr ""
 #, fuzzy
 msgid "LINE_COLOUR"
 msgstr "Boja"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Dodajte novo vezivanje tastera"
 
 msgid "LIPASE"
 msgstr ""
@@ -3016,6 +3287,10 @@ msgstr ""
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "Automatska-evolucija nije uspela"
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
@@ -3381,6 +3656,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr ""
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3473,6 +3754,14 @@ msgstr "U redu"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Upozorenje u režimu GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Koristite Thrive vith GLES2. Ovo je ozbiljno neprovereno i verovatno će izazvati probleme. Pokušajte da ažurirate upravljačke programe za video i / ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje programa Thrive."
 
 msgid "OPEN_FOLDER"
 msgstr ""
@@ -3640,6 +3929,7 @@ msgstr "Kiseonik"
 msgid "OXYTOXISOME"
 msgstr "OksiToksizom"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Modifikovani metabolosom odgovoran za proizvodnju primitivnog oblika toksičnog agensa OksiToksi NT."
 
@@ -3762,6 +4052,13 @@ msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Automatska-evolucija nije uspela"
 
 msgid "PEACEFUL"
+msgstr ""
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Koristite Thrive vith GLES2. Ovo je ozbiljno neprovereno i verovatno će izazvati probleme. Pokušajte da ažurirate upravljačke programe za video i / ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje programa Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 msgid "PERCENTAGE_VALUE"
@@ -4486,9 +4783,6 @@ msgstr "Silicijum-Dioksid"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ova membrana ima jak zid od silicijum dioksida. Može se dobro odupreti ukupnoj šteti i vrlo je otporan na fizička oštećenja. Takođe zahteva manje energije za održavanje forme. Međutim, usporava ćeliju velikim faktorom i ćelija apsorbuje resurse smanjenom brzinom."
 
-msgid "SIXTEEN_TIMES"
-msgstr ""
-
 msgid "SIZE_COLON"
 msgstr "Veličina:"
 
@@ -4624,6 +4918,10 @@ msgstr "se proširila na zone:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
+#, fuzzy
+msgid "START"
+msgstr "Počinje"
+
 msgid "STARTING"
 msgstr "Počinje"
 
@@ -4639,6 +4937,18 @@ msgstr ""
 
 msgid "STATISTICS"
 msgstr "Statistika"
+
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr ""
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr ""
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
@@ -4712,22 +5022,10 @@ msgstr "Skladište"
 msgid "STORAGE_COLON"
 msgstr "Skladište"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
 msgstr ""
 
 #, fuzzy
@@ -4789,12 +5087,6 @@ msgstr "Dodajte novo vezivanje tastera"
 
 msgid "SUNLIGHT"
 msgstr "Sunčeva Svetlost"
-
-msgid "SUPERL"
-msgstr ""
-
-msgid "SUPERR"
-msgstr ""
 
 msgid "SUPPORTER_PATRONS"
 msgstr ""
@@ -5071,10 +5363,6 @@ msgid "TOGGLE_PAUSE"
 msgstr ""
 
 #, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Prebacite gutanje"
-
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
 msgstr "Prebacite gutanje"
 
@@ -5091,14 +5379,72 @@ msgstr "Vrste:"
 msgid "TOTAL_SAVES"
 msgstr ""
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Otrovna\n"
+"Vacuole"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Otpornost na toksine"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Otpornost na toksine"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Zdrav.:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Otrovna\n"
 "Vacuole"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
 
@@ -5113,13 +5459,6 @@ msgid "TRANSLATORS"
 msgstr ""
 
 msgid "TRANSPARENCY"
-msgstr ""
-
-#, fuzzy
-msgid "TREBLEDOWN"
-msgstr "Pomerite nadole"
-
-msgid "TREBLEUP"
 msgstr ""
 
 #, fuzzy
@@ -5295,10 +5634,6 @@ msgid "UNKNOWN_MOUSE"
 msgstr "Nepoznati miš"
 
 #, fuzzy
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Nepoznati miš"
-
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Postavite organelu"
 
@@ -5384,6 +5719,9 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+
+msgid "UPGRADE_COST"
+msgstr ""
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5502,6 +5840,9 @@ msgstr "Pećina"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Pećina"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Pogledajte Izvorni Kod"
@@ -6644,6 +6985,22 @@ msgid "ZOOM_OUT"
 msgstr "Odzumirati"
 
 #, fuzzy
+#~ msgid "DIRECTIONL"
+#~ msgstr "Rezolucija:"
+
+#, fuzzy
+#~ msgid "DIRECTIONR"
+#~ msgstr "Rezolucija:"
+
+#, fuzzy
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Pomerite nadole"
+
+#, fuzzy
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Nepoznati miš"
+
+#, fuzzy
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
@@ -6693,10 +7050,6 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Korisničko ime:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Sposobnosti"
 
 #, fuzzy
 #~ msgid "NOT_RUNNING_DOT"

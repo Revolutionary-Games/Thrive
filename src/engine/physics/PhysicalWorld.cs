@@ -53,6 +53,12 @@ public class PhysicalWorld : IDisposable
     /// </summary>
     public float AveragePhysicsDuration => NativeMethods.PhysicalWorldGetPhysicsAverageTime(AccessWorldInternal());
 
+    /// <summary>
+    ///   Used to turn off metrics reporting when game is closing to no longer access metrics object which may be
+    ///   disposed already
+    /// </summary>
+    public bool DisablePhysicsTimeRecording { get; set; }
+
     public static PhysicalWorld Create()
     {
         return new PhysicalWorld(NativeMethods.CreatePhysicalWorld());
@@ -66,6 +72,12 @@ public class PhysicalWorld : IDisposable
     public bool ProcessPhysics(float delta)
     {
         bool processed = NativeMethods.ProcessPhysicalWorld(AccessWorldInternal(), delta);
+
+        if (processed && !DisablePhysicsTimeRecording)
+        {
+            if (DebugOverlays.Instance.PerformanceMetricsVisible)
+                DebugOverlays.Instance.ReportPhysicalWorldStats(this);
+        }
 
         return processed;
     }
@@ -84,7 +96,15 @@ public class PhysicalWorld : IDisposable
 
     public bool WaitUntilPhysicsRunEnds()
     {
-        return NativeMethods.WaitForPhysicsToCompleteInPhysicalWorld(AccessWorldInternal());
+        bool processed = NativeMethods.WaitForPhysicsToCompleteInPhysicalWorld(AccessWorldInternal());
+
+        if (processed && !DisablePhysicsTimeRecording)
+        {
+            if (DebugOverlays.Instance.PerformanceMetricsVisible)
+                DebugOverlays.Instance.ReportPhysicalWorldStats(this);
+        }
+
+        return processed;
     }
 
     /// <summary>
@@ -97,7 +117,7 @@ public class PhysicalWorld : IDisposable
     ///   If false then the body won't be automatically added to the world and <see cref="AddBody"/> needs to be called
     /// </param>
     /// <returns>The created physics body instance</returns>
-    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation,
+    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quaternion rotation,
         bool addToWorld = true)
     {
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBody(AccessWorldInternal(),
@@ -109,7 +129,7 @@ public class PhysicalWorld : IDisposable
     ///   one around which rotation is allowed.
     /// </summary>
     /// <returns>The created physics body</returns>
-    public NativePhysicsBody CreateMovingBodyWithAxisLock(PhysicsShape shape, Vector3 position, Quat rotation,
+    public NativePhysicsBody CreateMovingBodyWithAxisLock(PhysicsShape shape, Vector3 position, Quaternion rotation,
         Vector3 lockedAxes, bool lockRotation, bool addToWorld = true)
     {
         if (lockedAxes.LengthSquared() < MathUtils.EPSILON)
@@ -120,7 +140,7 @@ public class PhysicalWorld : IDisposable
             addToWorld));
     }
 
-    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation,
+    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quaternion rotation,
         bool addToWorld = true)
     {
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateStaticBody(AccessWorldInternal(),
@@ -128,7 +148,7 @@ public class PhysicalWorld : IDisposable
             new JVec3(position), new JQuat(rotation), addToWorld));
     }
 
-    public NativePhysicsBody CreateSensor(PhysicsShape shape, Vector3 position, Quat rotation,
+    public NativePhysicsBody CreateSensor(PhysicsShape shape, Vector3 position, Quaternion rotation,
         bool detectSleepingBodies, bool detectStaticBodies = false)
     {
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateSensor(AccessWorldInternal(),
@@ -166,10 +186,10 @@ public class PhysicalWorld : IDisposable
     /// </param>
     public void DestroyBody(NativePhysicsBody body, bool dispose = true)
     {
+        NativeMethods.DestroyPhysicalWorldBody(AccessWorldInternal(), body.AccessBodyInternal());
+
         // As the body will be forcefully destroyed, all the collision writing resources can be freed
         body.NotifyCollisionRecordingStopped();
-
-        NativeMethods.DestroyPhysicalWorldBody(AccessWorldInternal(), body.AccessBodyInternal());
 
         if (dispose)
             body.Dispose();
@@ -188,14 +208,14 @@ public class PhysicalWorld : IDisposable
         }
     }
 
-    public Transform ReadBodyTransform(NativePhysicsBody body)
+    public Transform3D ReadBodyTransform(NativePhysicsBody body)
     {
         var data = ReadBodyPosition(body);
 
-        return new Transform(new Basis(data.Rotation), data.Position);
+        return new Transform3D(new Basis(data.Rotation), data.Position);
     }
 
-    public (Vector3 Position, Quat Rotation) ReadBodyPosition(NativePhysicsBody body)
+    public (Vector3 Position, Quaternion Rotation) ReadBodyPosition(NativePhysicsBody body)
     {
         // TODO: could probably make things a bit more efficient if the C# body stored the body ID to avoid one level
         // of indirection here (the indirection is maybe on the C++ side -hhyyrylainen)
@@ -233,7 +253,7 @@ public class PhysicalWorld : IDisposable
     /// <param name="rotationSpeedDivisor">
     ///   How fast the body rotates to face <see cref="lookDirection"/>, higher values are slower
     /// </param>
-    public void ApplyBodyMicrobeControl(NativePhysicsBody body, Vector3 movementImpulse, Quat lookDirection,
+    public void ApplyBodyMicrobeControl(NativePhysicsBody body, Vector3 movementImpulse, Quaternion lookDirection,
         float rotationSpeedDivisor)
     {
 #if DEBUG
@@ -272,7 +292,7 @@ public class PhysicalWorld : IDisposable
         NativeMethods.SetBodyPosition(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position));
     }
 
-    public void SetBodyPositionAndRotation(NativePhysicsBody body, Vector3 position, Quat rotation)
+    public void SetBodyPositionAndRotation(NativePhysicsBody body, Vector3 position, Quaternion rotation)
     {
         NativeMethods.SetBodyPositionAndRotation(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position),
             new JQuat(rotation));
@@ -418,8 +438,7 @@ public class PhysicalWorld : IDisposable
         if (maxRecordedCollisions < 1)
             throw new ArgumentException("Need to record at least one collision", nameof(maxRecordedCollisions));
 
-        var (collisionsArray, arrayAddress) =
-            body.SetupCollisionRecording(maxRecordedCollisions);
+        var (collisionsArray, arrayAddress) = body.SetupCollisionRecording(maxRecordedCollisions);
 
         receiverOfAddressOfCollisionCount = NativeMethods.PhysicsBodyEnableCollisionRecording(AccessWorldInternal(),
             body.AccessBodyInternal(), arrayAddress, maxRecordedCollisions);
@@ -435,10 +454,17 @@ public class PhysicalWorld : IDisposable
 
     public void BodyStopCollisionRecording(NativePhysicsBody body)
     {
-        body.NotifyCollisionRecordingStopped();
         NativeMethods.PhysicsBodyDisableCollisionRecording(AccessWorldInternal(), body.AccessBodyInternal());
+        body.NotifyCollisionRecordingStopped();
     }
 
+    /// <summary>
+    ///   Add a collision filter callback for a body
+    /// </summary>
+    /// <param name="body">The body</param>
+    /// <param name="filterCallback">
+    ///   The filter. Note that this callable *must be* kept alive externally for this to work safely
+    /// </param>
     public void BodyAddCollisionFilter(NativePhysicsBody body, OnCollisionFilterCallback filterCallback)
     {
         NativeMethods.PhysicsBodyAddCollisionFilter(AccessWorldInternal(), body.AccessBodyInternal(), filterCallback);

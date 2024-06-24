@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2022-04-07 21:08+0000\n"
-"Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -338,6 +338,19 @@ msgstr "Kaldkriips"
 msgid "BACKSPACE"
 msgstr "Tagasilükkeklahv"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Pausi menüü"
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Liikuvus"
@@ -351,15 +364,6 @@ msgstr ""
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "vabasurm"
-
-msgid "BASSBOOST"
-msgstr "Bassivõim"
-
-msgid "BASSDOWN"
-msgstr "Bass alla"
-
-msgid "BASSUP"
-msgstr "Bass üles"
 
 msgid "BATHYPELAGIC"
 msgstr "Batüpelaagiline"
@@ -772,8 +776,20 @@ msgstr "vabasurm"
 msgid "COMPILED_AT_COLON"
 msgstr "Ühendid:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Ühendid:"
+
 msgid "COMPOUNDS"
 msgstr "Ühendid"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Leitav ühend:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Leitav ühend:"
 
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -782,8 +798,24 @@ msgstr "Näita/peida keskkonda ja ühendeid"
 msgid "COMPOUNDS_COLON"
 msgstr "Ühendid:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Näita/peida keskkonda ja ühendeid"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Näita/peida keskkonda ja ühendeid"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Liitpilved"
@@ -804,6 +836,25 @@ msgstr "{0} kontsentratsioon on vähenenud {1} võrra"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} tarbimine"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Liitsaldod"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0} tarbimine"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Liitsaldod"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Leitav ühend:"
@@ -881,7 +932,147 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Kas jätkata prototüüpide lavastamist?"
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
+
+msgid "CONTROLLER_AXIS_R2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr ""
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
 msgid "CONTROLLER_DEADZONES"
@@ -900,6 +1091,9 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopeerimise viga lõikelauale"
 
@@ -912,6 +1106,10 @@ msgstr "Protanope (punane-roheline)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (sinine-kollane)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "Teemad:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
@@ -1057,8 +1255,12 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1233,12 +1435,6 @@ msgstr "Kiirus:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr "Vasakule"
-
-msgid "DIRECTIONR"
-msgstr "paremale"
-
 msgid "DISABLED"
 msgstr "töövõimetu"
 
@@ -1306,6 +1502,14 @@ msgstr "Kuvamisvõimaluste riba"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Kuvamisvõimaluste riba"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Kuvamisvõimaluste riba"
 
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
@@ -1476,11 +1680,69 @@ msgstr "Luba kõik ühilduvad modifikatsioonid"
 msgid "ENABLE_EDITOR"
 msgstr "Luba redaktor"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Lubage GUI valgusefektid"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Asetage organell"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Vabastage kõik"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Peata mäng"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Agressiivsed mikroobid ajavad saaki taga suuremate vahemaade tagant\n"
+"ja nad võitlevad rünnaku korral tõenäolisemalt kiskjatega.\n"
+"Rahumeelsed mikroobid ei haara teisi kaugemal\n"
+"ja kasutavad vähem tõenäoliselt toksiine röövloomade vastu."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Katkestatud organellid"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Muudab [thrive:compound type=\"vesiniksulfiid\"][/thrive:compound] tüübiks [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound]. Muudab ka [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Lisage uus võtme sidumine"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Pealkiri puudub"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1600,12 +1862,12 @@ msgid "EXIT"
 msgstr "Välju"
 
 #, fuzzy
-msgid "EXIT_TO_LAUNCHER"
-msgstr "Käivitage E"
+msgid "EXIT_EDITOR"
+msgstr "Minge järgmisele redaktori vahekaardile"
 
 #, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+msgid "EXIT_TO_LAUNCHER"
+msgstr "Käivitage E"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -1703,6 +1965,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] kontsentratsiooni ja temperatuuriga."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -1919,15 +2193,6 @@ msgstr "Põlvkond:"
 msgid "GITHUB_TOOLTIP"
 msgstr "vabasurm"
 
-msgid "GLES2"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 režiimi hoiatus"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Kasutate GLES2-ga Thrive'i. See on tõsiselt testimata ja põhjustab tõenäoliselt probleeme. Proovige värskendada oma videodraivereid ja/või sundida Thrive'i käitamiseks kasutama AMD või Nvidia graafikat."
-
 msgid "GLES3"
 msgstr ""
 
@@ -2046,12 +2311,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Vesiniksulfiid"
-
-msgid "HYPERL"
-msgstr "Hüper vasakpoolne"
-
-msgid "HYPERR"
-msgstr "Hüper paremale"
 
 msgid "ICESHARD"
 msgstr "jääkild"
@@ -2288,10 +2547,17 @@ msgstr "juuni"
 msgid "KEY_BACK"
 msgstr "tagasi"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "tagasi"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Kasutajaga {0} on konflikt.\n"
 "Kas soovite sisendi domeenist {1} eemaldada?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "tühjenda"
@@ -2314,6 +2580,10 @@ msgstr "Lemmikud"
 msgid "KEY_FORWARD"
 msgstr "Edasi"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Kodu"
+
 msgid "KEY_HELP"
 msgstr "Abi"
 
@@ -2323,14 +2593,30 @@ msgstr "Kodu"
 msgid "KEY_HOMEPAGE"
 msgstr "Koduleht"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Abi"
+
 msgid "KEY_INSERT"
 msgstr "insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Ootel"
 
 msgid "KEY_LEFT"
 msgstr "Vasakule"
 
 msgid "KEY_MENU"
 msgstr "Menüü"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Ava URL"
@@ -2638,6 +2924,10 @@ msgstr ""
 
 msgid "LINE_COLOUR"
 msgstr "Joone värv:"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Pealkiri puudub"
 
 msgid "LIPASE"
 msgstr "Lipaas"
@@ -3167,6 +3457,10 @@ msgstr "Modifikatsiooni kokkupanek:"
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Modifikatsiooni põhiklass:"
 
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "{0}: modi kooste mahalaadimismeetodi kutse nurjus"
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: määratud modiklassi \"{1}\" ei leitud modi koostusest"
 
@@ -3569,6 +3863,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Aluse liikumine"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3658,6 +3959,14 @@ msgstr ""
 "Kuna Thrive on praegu arendusjärgus, ei ole salvestamise ühilduvus prioriteet.\n"
 "Võite teatada kõigist tekkinud probleemidest, kuid need ei ole praegu kõige olulisemad.\n"
 "Kas soovite siiski proovida salvestust laadida?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "GLES2 režiimi hoiatus"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Kasutate GLES2-ga Thrive'i. See on tõsiselt testimata ja põhjustab tõenäoliselt probleeme. Proovige värskendada oma videodraivereid ja/või sundida Thrive'i käitamiseks kasutama AMD või Nvidia graafikat."
 
 msgid "OPEN_FOLDER"
 msgstr "Ava kaust"
@@ -3836,6 +4145,7 @@ msgstr "Hapnik"
 msgid "OXYTOXISOME"
 msgstr "Oksütoksisoom"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
@@ -3960,6 +4270,13 @@ msgstr "Pck-faili ({0}) laadimine ebaõnnestus"
 
 msgid "PEACEFUL"
 msgstr "Rahulik"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Kasutate GLES2-ga Thrive'i. See on tõsiselt testimata ja põhjustab tõenäoliselt probleeme. Proovige värskendada oma videodraivereid ja/või sundida Thrive'i käitamiseks kasutama AMD või Nvidia graafikat."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4652,9 +4969,6 @@ msgstr "Ränidioksiid"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on tugev ränidioksiidi sein. See talub hästi üldist kahju ja on väga vastupidav füüsilistele kahjustustele. Samuti nõuab see oma vormi säilitamiseks vähem energiat. Kuid see aeglustab raku tööd suure teguri võrra ja rakk neelab ressursse vähendatud kiirusega."
 
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
-
 msgid "SIZE_COLON"
 msgstr "Suurus:"
 
@@ -4799,6 +5113,10 @@ msgstr "levinud plaastritele:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
+#, fuzzy
+msgid "START"
+msgstr "alustamine"
+
 msgid "STARTING"
 msgstr "alustamine"
 
@@ -4815,6 +5133,20 @@ msgstr "Nõutav taaskäivitamine"
 
 msgid "STATISTICS"
 msgstr "Statistika"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP TOOTMINE LIIGA VÄHE!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Aluse liikumine"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam kliendi teegi lähtestamine ebaõnnestus"
@@ -4889,23 +5221,11 @@ msgstr "Varud"
 msgid "STORAGE_COLON"
 msgstr "Varud"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisse logitud kui: {0}"
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -4972,12 +5292,6 @@ msgstr "vabasurm"
 
 msgid "SUNLIGHT"
 msgstr "Päikesevalgus"
-
-msgid "SUPERL"
-msgstr "Super vasakpoolne"
-
-msgid "SUPERR"
-msgstr "Super paremale"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "Toetajad"
@@ -5262,10 +5576,6 @@ msgstr ""
 msgid "TOGGLE_PAUSE"
 msgstr "Paus"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Lülitage sidumine sisse"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Lülita lahti sidumine"
 
@@ -5282,14 +5592,76 @@ msgstr "eelmine:"
 msgid "TOTAL_SAVES"
 msgstr "Kokkuhoid:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "vabasurm"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toksiin\n"
+"Vacuool"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Toksiiniresistentsus"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksiiniresistentsus"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Tüüp:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Agressiivsed mikroobid ajavad saaki taga suuremate vahemaade tagant\n"
+"ja nad võitlevad rünnaku korral tõenäolisemalt kiskjatega.\n"
+"Rahumeelsed mikroobid ei haara teisi kaugemal\n"
+"ja kasutavad vähem tõenäoliselt toksiine röövloomade vastu."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toksiin\n"
 "Vacuool"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
@@ -5305,12 +5677,6 @@ msgstr "Tõlkijad"
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "Tõlkijad"
-
-msgid "TREBLEDOWN"
-msgstr "Treble alla"
-
-msgid "TREBLEUP"
-msgstr "Treble üles"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -5582,10 +5948,6 @@ msgid "UNKNOWN_MOUSE"
 msgstr "Tundmatu hiir"
 
 #, fuzzy
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Tundmatu töökoja ID selle modifikatsiooni jaoks"
-
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Asetage organell"
 
@@ -5671,6 +6033,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} mp"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5787,6 +6153,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Vaadake lähtekoodi"
@@ -6909,6 +7278,46 @@ msgstr "Suurenda"
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "Bassivõim"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Bass alla"
+
+#~ msgid "BASSUP"
+#~ msgstr "Bass üles"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Vasakule"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "paremale"
+
+#~ msgid "HYPERL"
+#~ msgstr "Hüper vasakpoolne"
+
+#~ msgid "HYPERR"
+#~ msgstr "Hüper paremale"
+
+#~ msgid "SUPERL"
+#~ msgstr "Super vasakpoolne"
+
+#~ msgid "SUPERR"
+#~ msgstr "Super paremale"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Treble alla"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Treble üles"
+
+#, fuzzy
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Tundmatu töökoja ID selle modifikatsiooni jaoks"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Rahvaarv kokku:"
 
@@ -6974,10 +7383,6 @@ msgstr "Suumi välja"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Kohandatud kasutajanimi:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Kuvamisvõimaluste riba"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Ei jookse."

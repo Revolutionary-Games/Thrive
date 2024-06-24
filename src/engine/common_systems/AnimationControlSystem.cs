@@ -1,104 +1,105 @@
-﻿namespace Systems
-{
-    using Components;
-    using DefaultEcs;
-    using DefaultEcs.System;
-    using Godot;
-    using World = DefaultEcs.World;
+﻿namespace Systems;
 
-    /// <summary>
-    ///   System that handles <see cref="AnimationControl"/>
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This does kind of modify the spatial, but only in very specific circumstances (if cast to animation player
-    ///     succeeds) and even then this just calls a Godot method on it to stop animation playing.
-    ///   </para>
-    /// </remarks>
-    [With(typeof(AnimationControl))]
-    [With(typeof(SpatialInstance))]
-    [ReadsComponent(typeof(SpatialInstance))]
-    [RuntimeCost(0.5f, false)]
-    [RunsOnMainThread]
-    public sealed class AnimationControlSystem : AEntitySetSystem<float>
+using Components;
+using DefaultEcs;
+using DefaultEcs.System;
+using Godot;
+using World = DefaultEcs.World;
+
+/// <summary>
+///   System that handles <see cref="AnimationControl"/>
+/// </summary>
+/// <remarks>
+///   <para>
+///     This does kind of modify the spatial, but only in very specific circumstances (if cast to animation player
+///     succeeds) and even then this just calls a Godot method on it to stop animation playing.
+///   </para>
+/// </remarks>
+[With(typeof(AnimationControl))]
+[With(typeof(SpatialInstance))]
+[ReadsComponent(typeof(SpatialInstance))]
+[RuntimeCost(0.5f, false)]
+[RunsOnMainThread]
+public sealed class AnimationControlSystem : AEntitySetSystem<float>
+{
+    public AnimationControlSystem(World world) : base(world, null)
     {
-        public AnimationControlSystem(World world) : base(world, null)
+    }
+
+    protected override void Update(float state, in Entity entity)
+    {
+        ref var animation = ref entity.Get<AnimationControl>();
+
+        if (animation.AnimationApplied)
+            return;
+
+        ref var spatial = ref entity.Get<SpatialInstance>();
+
+        // Wait until graphics instance is initialized
+        if (spatial.GraphicalInstance == null)
+            return;
+
+        var player = GetPlayer(spatial.GraphicalInstance, animation.AnimationPlayerPath);
+
+        if (player == null)
         {
+            GD.PrintErr($"{nameof(AnimationControl)} component couldn't find animation player from node: ",
+                spatial.GraphicalInstance, " with relative path: ", animation.AnimationPlayerPath);
+
+            // Set the animation as applied to not spam this error message over and over
+            animation.AnimationApplied = true;
+            return;
         }
 
-        protected override void Update(float state, in Entity entity)
+        if (animation.StopPlaying)
         {
-            ref var animation = ref entity.Get<AnimationControl>();
-
-            if (animation.AnimationApplied)
-                return;
-
-            ref var spatial = ref entity.Get<SpatialInstance>();
-
-            // Wait until graphics instance is initialized
-            if (spatial.GraphicalInstance == null)
-                return;
-
-            var player = GetPlayer(spatial.GraphicalInstance, animation.AnimationPlayerPath);
-
-            if (player == null)
-            {
-                GD.PrintErr($"{nameof(AnimationControl)} component couldn't find animation player from node: ",
-                    spatial.GraphicalInstance, " with relative path: ", animation.AnimationPlayerPath);
-
-                // Set the animation as applied to not spam this error message over and over
-                animation.AnimationApplied = true;
-                return;
-            }
-
-            if (animation.StopPlaying)
-            {
-                // Reset this to make sure the animation doesn't start again behind our backs
+            // Reset this to make sure the animation doesn't start again behind our backs
+            // But only if not already in the tree, as Godot will complain uselessly about this
+            if (!player.IsInsideTree())
                 player.Autoplay = null;
 
-                // TODO: parameter in the component to allow passing reset: false?
-                player.Stop();
-            }
-
-            animation.AnimationApplied = true;
+            // TODO: parameter in the component to allow passing reset: false?
+            player.Stop();
         }
 
-        private AnimationPlayer? GetPlayer(Spatial spatial, string? playerPath)
+        animation.AnimationApplied = true;
+    }
+
+    private AnimationPlayer? GetPlayer(Node3D spatial, string? playerPath)
+    {
+        // TODO: cache for animation players to allow fast per-update data access
+        // For now a cache is not implemented as this is just for stopping playing an animation once and then not
+        // doing anything
+
+        int childCount = spatial.GetChildCount();
+
+        // When no path provided, find the first animation player
+        if (string.IsNullOrEmpty(playerPath))
         {
-            // TODO: cache for animation players to allow fast per-update data access
-            // For now a cache is not implemented as this is just for stopping playing an animation once and then not
-            // doing anything
-
-            int childCount = spatial.GetChildCount();
-
-            // When no path provided, find the first animation player
-            if (string.IsNullOrEmpty(playerPath))
+            for (int i = 0; i < childCount; ++i)
             {
-                for (int i = 0; i < childCount; ++i)
-                {
-                    var child = spatial.GetChild(i);
+                var child = spatial.GetChild(i);
 
-                    if (child is AnimationPlayer casted)
-                        return casted;
-                }
-
-                return null;
+                if (child is AnimationPlayer casted)
+                    return casted;
             }
 
-            if (childCount == 1)
-            {
-                // There might be one level of indirection
-                if (!playerPath!.StartsWith("Spatial"))
-                {
-                    // TODO: how to suppress errors if this is wrong
-                    var attempt = spatial.GetChild(0).GetNode<AnimationPlayer>(playerPath);
-
-                    if (attempt != null)
-                        return attempt;
-                }
-            }
-
-            return spatial.GetNode<AnimationPlayer>(playerPath);
+            return null;
         }
+
+        if (childCount == 1)
+        {
+            // There might be one level of indirection
+            if (!playerPath.StartsWith("Node3D"))
+            {
+                // TODO: how to suppress errors if this is wrong
+                var attempt = spatial.GetChild(0).GetNode<AnimationPlayer>(playerPath);
+
+                if (attempt != null)
+                    return attempt;
+            }
+        }
+
+        return spatial.GetNode<AnimationPlayer>(playerPath);
     }
 }

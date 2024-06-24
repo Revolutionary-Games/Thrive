@@ -30,7 +30,7 @@ public class AscensionComponent : SpaceStructureComponent
         if (missingEnergy)
         {
             result.Add((InteractionType.ActivateAscension,
-                TranslationServer.Translate("INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY")));
+                Localization.Translate("INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY")));
         }
         else
         {

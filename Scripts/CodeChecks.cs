@@ -18,6 +18,16 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         Func<LocalizationOptionsBase, CancellationToken, Task<bool>> runLocalizationTool) :
         base(opts)
     {
+        var inspectCode = new InspectCode();
+
+        // Full paths are a bit not helpful in CI output
+        if (IsRunningInCI())
+        {
+            inspectCode.DisableFullPathPrinting();
+        }
+
+        var thriveVersion = AssemblyInfoReader.ReadVersionFromCsproj("Thrive.csproj");
+
         ValidChecks = new Dictionary<string, CodeCheck>
         {
             {
@@ -28,7 +38,8 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                         IgnoredFiles = new List<string>(FilesNotAllowedToHaveBom),
                     },
                     new BomChecker(BomChecker.Mode.Disallowed, FilesNotAllowedToHaveBom),
-                    new CfgCheck(AssemblyInfoReader.ReadVersionFromAssemblyInfo()),
+                    new CfgCheck(thriveVersion),
+                    new ProjectGodotCheck(thriveVersion),
                     new DisallowedFileType(".gd", ".mo", ".gltf")
                     {
                         ExtraErrorMessages =
@@ -38,7 +49,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                     })
             },
             { "compile", new CompileCheck() },
-            { "inspectcode", new InspectCode() },
+            { "inspectcode", inspectCode },
             { "cleanupcode", new CleanupCode() },
             { "localization", new LocalizationCheck(runLocalizationTool) },
             { "steam-build", new SteamBuildCheck() },
@@ -56,8 +67,9 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         // Generated json files that are intentionally minimized
         FilePathsToAlwaysIgnore.Add(new Regex(@"older_patch_notes\.json$"));
 
-        // We ignore the .import files for now as checking those takes quite a bit of time
-        FilePathsToAlwaysIgnore.Add(new Regex(@"\.import$"));
+        // We ignore the .godot folder as it has godot temporary data and a bunch of files that don't conform to any
+        // styles
+        FilePathsToAlwaysIgnore.Add(new Regex(@"\.godot\/"));
     }
 
     protected override Dictionary<string, CodeCheck> ValidChecks { get; }

@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class MetaballPopupMenu : HexPopupMenu
+/// <summary>
+///   Popup menu when right clicking a metaball in the editor
+/// </summary>
+public partial class MetaballPopupMenu : HexPopupMenu
 {
     private List<MulticellularMetaball>? selectedMetaballs;
 
@@ -55,7 +58,7 @@ public class MetaballPopupMenu : HexPopupMenu
         }
         else
         {
-            titleLabel.Text = TranslationServer.Translate("MULTIPLE_METABALLS");
+            titleLabel.Text = Localization.Translate("MULTIPLE_METABALLS");
         }
     }
 

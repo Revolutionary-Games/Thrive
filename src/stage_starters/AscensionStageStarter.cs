@@ -1,7 +1,10 @@
 ﻿using System;
 using Godot;
 
-public class AscensionStageStarter : ComplexStageStarterBase
+/// <summary>
+///   Started for ascension stage (basically starts <see cref="MainGameState.SpaceStage"/> with ascended mode enabled)
+/// </summary>
+public partial class AscensionStageStarter : ComplexStageStarterBase
 {
     protected override MainGameState SimplyLoadableGameState => throw new InvalidOperationException("Should be unused");
 
@@ -9,7 +12,7 @@ public class AscensionStageStarter : ComplexStageStarterBase
     {
         currentGame ??= GameProperties.StartAscensionStageGame(new WorldGenerationSettings());
 
-        var spaceStage = SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instance<SpaceStage>();
+        var spaceStage = SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instantiate<SpaceStage>();
         spaceStage.CurrentGame = currentGame;
 
         return spaceStage;

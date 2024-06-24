@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Contains logic for generating PatchMap objects
@@ -10,7 +11,7 @@ public static class PatchMapGenerator
 {
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies, Random? random = null)
     {
-        random ??= new Random(settings.Seed);
+        random ??= new XoShiRo256starstar(settings.Seed);
 
         var map = new PatchMap();
 
@@ -166,6 +167,14 @@ public static class PatchMapGenerator
         ConnectPatchesBetweenRegions(map, random);
         map.CreateAdjacenciesFromPatchData();
 
+        // Fix up initial average sunlight values. Note that in the future if there are things that update the biome
+        // available sunlight in a patch, this needs to be done again
+        float daytimeMultiplier = DayNightCycle.CalculateDayTimeMultiplier(settings.DaytimeFraction);
+        foreach (var entry in map.Patches)
+        {
+            entry.Value.UpdateAverageSunlight(DayNightCycle.CalculateAverageSunlight(daytimeMultiplier, settings));
+        }
+
         return map;
     }
 
@@ -197,7 +206,7 @@ public static class PatchMapGenerator
     /// </summary>
     private static void DelaunayTriangulation(ref bool[,] graph, List<Vector2> vertexCoordinates)
     {
-        var triangles = Geometry.TriangulateDelaunay2d(vertexCoordinates.ToArray());
+        var triangles = Geometry2D.TriangulateDelaunay(vertexCoordinates.ToArray());
         for (var i = 0; i < triangles.Length; i += 3)
         {
             graph[triangles[i], triangles[i + 1]] = graph[triangles[i + 1], triangles[i]] = true;
@@ -412,6 +421,8 @@ public static class PatchMapGenerator
                 sunlightProperty.Ambient = sunlightAmount;
 
                 seafloor.Biome.ChangeableCompounds[sunlightCompound] = sunlightProperty;
+
+                // Average sunlight is updated later
 
                 // Build vents and cave position
                 if (vents != null || cave != null)

@@ -163,6 +163,21 @@ public:
         activeBodiesWithCollisions.clear();
     }
 
+    void DebugCheckActiveCollisions()
+    {
+        const auto size = activeBodiesWithCollisions.size();
+        for (size_t i = 0; i < size; ++i)
+        {
+            auto body = activeBodiesWithCollisions[i];
+            if (body->activeRecordedCollisionCount > body->maxCollisionsToRecord)
+            {
+                LOG_ERROR("Detected body with more collisions than it should have, " +
+                    std::to_string(body->activeRecordedCollisionCount) + " > " +
+                    std::to_string(body->maxCollisionsToRecord) + " (max)");
+            }
+        }
+    }
+
     inline void IncrementStepCounter() noexcept
     {
         ++stepCounter;
@@ -1209,6 +1224,9 @@ void PhysicalWorld::PerformPhysicsStepOperations(float delta)
     }
 
     pimpl->bodiesStepControlLock.Unlock();
+
+    // Enable for some extreme checking of collision write data indices
+    // pimpl->DebugCheckActiveCollisions();
 }
 
 Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,

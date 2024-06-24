@@ -32,14 +32,14 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     public PhysicalWorld PhysicalWorld => physics;
 
-    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation)
+    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quaternion rotation)
     {
         var body = physics.CreateMovingBody(shape, position, rotation);
         createdBodies.Add(body);
         return body;
     }
 
-    public NativePhysicsBody CreateMovingBodyWithAxisLock(PhysicsShape shape, Vector3 position, Quat rotation,
+    public NativePhysicsBody CreateMovingBodyWithAxisLock(PhysicsShape shape, Vector3 position, Quaternion rotation,
         Vector3 lockedAxis, bool lockRotation)
     {
         var body = physics.CreateMovingBodyWithAxisLock(shape, position, rotation, lockedAxis, lockRotation);
@@ -47,14 +47,14 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         return body;
     }
 
-    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation)
+    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quaternion rotation)
     {
         var body = physics.CreateStaticBody(shape, position, rotation);
         createdBodies.Add(body);
         return body;
     }
 
-    public NativePhysicsBody CreateSensor(PhysicsShape sensorShape, Vector3 position, Quat rotation,
+    public NativePhysicsBody CreateSensor(PhysicsShape sensorShape, Vector3 position, Quaternion rotation,
         bool detectSleepingBodies = false, bool detectStaticBodies = false)
     {
         var body = physics.CreateSensor(sensorShape, position, rotation, detectSleepingBodies, detectStaticBodies);
@@ -95,7 +95,8 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     protected override void Dispose(bool disposing)
     {
-        // Derived classes should also wait for this before destroying things
+        // Derived classes should also wait for this before destroying things (and set metrics reporting off)
+        physics.DisablePhysicsTimeRecording = true;
         WaitForStartedPhysicsRun();
 
         ReleaseUnmanagedResources();

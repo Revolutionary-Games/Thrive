@@ -13,13 +13,20 @@
 ///     This custom class fixes the bug by only enabling word wrap once the label becomes visible.
 ///   </para>
 /// </remarks>
-public class CustomExpandingWordWrappedLabel : Label
+public partial class CustomExpandingWordWrappedLabel : Label
 {
     public CustomExpandingWordWrappedLabel(string text)
     {
         Text = text;
-        Align = AlignEnum.Center;
-        SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+        HorizontalAlignment = HorizontalAlignment.Center;
+        SizeFlagsHorizontal = SizeFlags.ExpandFill;
+        CustomMinimumSize = new Vector2(50, 0);
+        SizeFlagsVertical = SizeFlags.ShrinkBegin;
+        Size = Vector2.Zero;
+    }
+
+    public CustomExpandingWordWrappedLabel() : this(string.Empty)
+    {
     }
 
     public override void _Notification(int what)
@@ -28,7 +35,7 @@ public class CustomExpandingWordWrappedLabel : Label
 
         if (what == NotificationVisibilityChanged && Visible)
         {
-            Autowrap = true;
+            AutowrapMode = TextServer.AutowrapMode.WordSmart;
         }
     }
 }

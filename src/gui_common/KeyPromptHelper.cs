@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
 
 /// <summary>
 ///   Resolves input actions to icons for them
@@ -125,7 +125,8 @@ public static class KeyPromptHelper
     /// </returns>
     public static (string Primary, string? Overlay) GetPathForAction(string actionName)
     {
-        return GetPathForAction(InputMap.GetActionList(actionName));
+        // TODO: cache for valid input actions: https://github.com/Revolutionary-Games/Thrive/issues/4983
+        return GetPathForAction(InputMap.ActionGetEvents(actionName));
     }
 
     /// <summary>
@@ -133,16 +134,16 @@ public static class KeyPromptHelper
     /// </summary>
     /// <param name="actionName">Name of the action</param>
     /// <returns>A tuple of icon for the action and a potential overlay that should be drawn on top</returns>
-    public static (Texture Primary, Texture? Overlay) GetTextureForAction(string actionName)
+    public static (Texture2D Primary, Texture2D? Overlay) GetTextureForAction(string actionName)
     {
         var (primaryPath, overlayPath) = GetPathForAction(actionName);
 
-        Texture? overlay = null;
+        Texture2D? overlay = null;
 
         if (overlayPath != null)
-            overlay = GD.Load<Texture>(overlayPath);
+            overlay = GD.Load<Texture2D>(overlayPath);
 
-        return (GD.Load<Texture>(primaryPath), overlay);
+        return (GD.Load<Texture2D>(primaryPath), overlay);
     }
 
     /// <summary>
@@ -152,7 +153,7 @@ public static class KeyPromptHelper
     /// <returns>
     ///   A tuple of path to the icon for the action and potentially an overlay image to be drawn on top
     /// </returns>
-    public static (string Primary, string? Overlay) GetPathForAction(Array actionList)
+    public static (string Primary, string? Overlay) GetPathForAction(Array<InputEvent> actionList)
     {
         // Find the first action matching InputMethod
         foreach (var action in actionList)
@@ -163,12 +164,12 @@ public static class KeyPromptHelper
                 {
                     if (action is InputEventKey key)
                     {
-                        return (GetPathForKeyboardKey(OS.GetScancodeString(key.Scancode)), null);
+                        return (GetPathForKeyboardKey(OS.GetKeycodeString(key.Keycode)), null);
                     }
 
                     if (action is InputEventMouseButton button)
                     {
-                        return GetPathForMouseButton((ButtonList)button.ButtonIndex);
+                        return GetPathForMouseButton(button.ButtonIndex);
                     }
 
                     break;
@@ -178,13 +179,13 @@ public static class KeyPromptHelper
                 {
                     if (action is InputEventJoypadButton joypadButton)
                     {
-                        return (GetPathForControllerButton((JoystickList)joypadButton.ButtonIndex), null);
+                        return (GetPathForControllerButton(joypadButton.ButtonIndex), null);
                     }
 
                     if (action is InputEventJoypadMotion joypadMotion)
                     {
-                        return (GetPathForControllerAxis((JoystickList)joypadMotion.Axis),
-                            GetPathForControllerAxisDirection((JoystickList)joypadMotion.Axis, joypadMotion.AxisValue));
+                        return (GetPathForControllerAxis(joypadMotion.Axis),
+                            GetPathForControllerAxisDirection(joypadMotion.Axis, joypadMotion.AxisValue));
                     }
 
                     break;
@@ -230,29 +231,29 @@ public static class KeyPromptHelper
     ///   A tuple of the primary key texture and an optional overlay texture that should be drawn on top of the primary
     ///   one. If not drawn the icon will not be clear
     /// </returns>
-    public static (string Primary, string? Overlay) GetPathForMouseButton(ButtonList button)
+    public static (string Primary, string? Overlay) GetPathForMouseButton(MouseButton button)
     {
         switch (button)
         {
-            case ButtonList.Left:
+            case MouseButton.Left:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Left_Key_{Theme}.png",
                     null);
-            case ButtonList.Middle:
+            case MouseButton.Middle:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
                     null);
-            case ButtonList.Right:
+            case MouseButton.Right:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Right_Key_{Theme}.png",
                     null);
-            case ButtonList.WheelUp:
+            case MouseButton.WheelUp:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
                     "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Up.png");
-            case ButtonList.WheelDown:
+            case MouseButton.WheelDown:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
                     "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Down.png");
-            case ButtonList.WheelLeft:
+            case MouseButton.WheelLeft:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
                     "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Left.png");
-            case ButtonList.WheelRight:
+            case MouseButton.WheelRight:
                 return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
                     "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Right.png");
 
@@ -262,17 +263,17 @@ public static class KeyPromptHelper
         return (GetPathForInvalidKey(), null);
     }
 
-    public static string GetPathForControllerButton(JoystickList button)
+    public static string GetPathForControllerButton(JoyButton button)
     {
         switch (activeControllerType)
         {
             case ControllerType.Xbox360:
                 return GetXboxControllerButton("Xbox 360", "360_", button);
             case ControllerType.XboxOne:
-                return GetXboxControllerButton("Xbox One", "XboxOne_", button);
+                return GetXboxOneControllerButton("Xbox One", "XboxOne_", button);
             default:
             case ControllerType.XboxSeriesX:
-                return GetXboxControllerButton("Xbox Series X", "XboxSeriesX_", button);
+                return GetXboxSeriesControllerButton("Xbox Series X", "XboxSeriesX_", button);
 
             case ControllerType.PlayStation3:
                 return GetPlayStationControllerButton("PS3", button);
@@ -283,7 +284,7 @@ public static class KeyPromptHelper
         }
     }
 
-    public static string GetPathForControllerAxis(JoystickList axis)
+    public static string GetPathForControllerAxis(JoyAxis axis)
     {
         switch (activeControllerType)
         {
@@ -304,7 +305,7 @@ public static class KeyPromptHelper
         }
     }
 
-    public static string? GetPathForControllerAxisDirection(JoystickList axis, float direction, bool large = true)
+    public static string? GetPathForControllerAxisDirection(JoyAxis axis, float direction, bool large = true)
     {
         var suffix = large ? string.Empty : "_Unscaled";
 
@@ -314,21 +315,21 @@ public static class KeyPromptHelper
         {
             // Handling both sticks at once here assumes the direction mappings are the same
             // TODO: the above needs confirming
-            case JoystickList.AnalogLy:
-            case JoystickList.AnalogRy:
+            case JoyAxis.LeftY:
+            case JoyAxis.RightY:
                 directionName = direction < 0 ? "Up" : "Down";
 
                 break;
 
-            case JoystickList.AnalogLx:
-            case JoystickList.AnalogRx:
+            case JoyAxis.LeftX:
+            case JoyAxis.RightX:
                 directionName = direction < 0 ? "Left" : "Right";
 
                 break;
 
             // These don't really have "directions" so we return empty for them
-            case JoystickList.AnalogL2:
-            case JoystickList.AnalogR2:
+            case JoyAxis.TriggerLeft:
+            case JoyAxis.TriggerRight:
                 return null;
 
             // But unknown value is still error
@@ -339,58 +340,60 @@ public static class KeyPromptHelper
         return $"res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_{directionName}{suffix}.png";
     }
 
-    private static string GetXboxControllerButton(string folder, string typePrefix, JoystickList button)
+    private static string GetXboxControllerButton(string folder, string typePrefix, JoyButton button)
     {
         string buttonName;
 
         switch (button)
         {
-            case JoystickList.XboxA:
+            case JoyButton.A:
                 buttonName = "A";
                 break;
-            case JoystickList.XboxB:
+            case JoyButton.B:
                 buttonName = "B";
                 break;
-            case JoystickList.XboxX:
+            case JoyButton.X:
                 buttonName = "X";
                 break;
-            case JoystickList.XboxY:
+            case JoyButton.Y:
                 buttonName = "Y";
                 break;
-            case JoystickList.L:
+            case JoyButton.LeftShoulder:
                 buttonName = "LB";
                 break;
-            case JoystickList.R:
+            case JoyButton.RightShoulder:
                 buttonName = "RB";
                 break;
-            case JoystickList.L2:
+
+            // NOTE: bumpers no longer part of the button list
+            /*case JoyButton.L2:
                 buttonName = "LT";
                 break;
-            case JoystickList.R2:
+            case JoyButton.R2:
                 buttonName = "RT";
-                break;
-            case JoystickList.L3:
+                break;*/
+            case JoyButton.LeftStick:
                 buttonName = "Left_Stick_Click";
                 break;
-            case JoystickList.R3:
+            case JoyButton.RightStick:
                 buttonName = "Right_Stick_Click";
                 break;
-            case JoystickList.Select:
+            case JoyButton.Back:
                 buttonName = "Back";
                 break;
-            case JoystickList.Start:
+            case JoyButton.Start:
                 buttonName = "Start";
                 break;
-            case JoystickList.DpadUp:
+            case JoyButton.DpadUp:
                 buttonName = "Dpad_Up";
                 break;
-            case JoystickList.DpadDown:
+            case JoyButton.DpadDown:
                 buttonName = "Dpad_Down";
                 break;
-            case JoystickList.DpadLeft:
+            case JoyButton.DpadLeft:
                 buttonName = "Dpad_Left";
                 break;
-            case JoystickList.DpadRight:
+            case JoyButton.DpadRight:
                 buttonName = "Dpad_Right";
                 break;
             default:
@@ -400,25 +403,62 @@ public static class KeyPromptHelper
         return $"res://assets/textures/gui/xelu_prompts/{folder}/{typePrefix}{buttonName}.png";
     }
 
-    private static string GetXboxControllerAxis(string folder, string typePrefix, JoystickList axis)
+    private static string GetXboxOneControllerButton(string folder, string typePrefix, JoyButton button)
+    {
+        string buttonName;
+
+        switch (button)
+        {
+            case JoyButton.Back:
+                buttonName = "Windows";
+                break;
+            case JoyButton.Start:
+                buttonName = "Menu";
+                break;
+
+            default:
+                return GetXboxControllerButton(folder, typePrefix, button);
+        }
+
+        return $"res://assets/textures/gui/xelu_prompts/{folder}/{typePrefix}{buttonName}.png";
+    }
+
+    private static string GetXboxSeriesControllerButton(string folder, string typePrefix, JoyButton button)
+    {
+        string buttonName;
+
+        switch (button)
+        {
+            case JoyButton.Back:
+                buttonName = "View";
+                break;
+
+            default:
+                return GetXboxOneControllerButton(folder, typePrefix, button);
+        }
+
+        return $"res://assets/textures/gui/xelu_prompts/{folder}/{typePrefix}{buttonName}.png";
+    }
+
+    private static string GetXboxControllerAxis(string folder, string typePrefix, JoyAxis axis)
     {
         // TODO: direction indicator for the axes
         string buttonName;
 
         switch (axis)
         {
-            case JoystickList.AnalogLy:
-            case JoystickList.AnalogLx:
+            case JoyAxis.LeftY:
+            case JoyAxis.LeftX:
                 buttonName = "Left_Stick";
                 break;
-            case JoystickList.AnalogRy:
-            case JoystickList.AnalogRx:
+            case JoyAxis.RightY:
+            case JoyAxis.RightX:
                 buttonName = "Right_Stick";
                 break;
-            case JoystickList.AnalogL2:
+            case JoyAxis.TriggerLeft:
                 buttonName = "LT";
                 break;
-            case JoystickList.AnalogR2:
+            case JoyAxis.TriggerRight:
                 buttonName = "RT";
                 break;
             default:
@@ -428,43 +468,46 @@ public static class KeyPromptHelper
         return $"res://assets/textures/gui/xelu_prompts/{folder}/{typePrefix}{buttonName}.png";
     }
 
-    private static string GetPlayStationControllerButton(string type, JoystickList button)
+    private static string GetPlayStationControllerButton(string type, JoyButton button)
     {
         string buttonName;
 
         switch (button)
         {
-            case JoystickList.SonyX:
+            case JoyButton.A:
                 buttonName = "Cross";
                 break;
-            case JoystickList.SonyCircle:
+            case JoyButton.B:
                 buttonName = "Circle";
                 break;
-            case JoystickList.SonySquare:
+            case JoyButton.X:
                 buttonName = "Square";
                 break;
-            case JoystickList.SonyTriangle:
+            case JoyButton.Y:
                 buttonName = "Triangle";
                 break;
-            case JoystickList.L:
+            case JoyButton.LeftShoulder:
                 buttonName = "L1";
                 break;
-            case JoystickList.R:
+            case JoyButton.RightShoulder:
                 buttonName = "R1";
                 break;
-            case JoystickList.L2:
+
+            // No longer present in button list
+            /*case JoyButton.L2:
                 buttonName = "L2";
                 break;
-            case JoystickList.R2:
+            case JoyButton.R2:
                 buttonName = "R2";
-                break;
-            case JoystickList.L3:
+                break;*/
+
+            case JoyButton.LeftStick:
                 buttonName = "Left_Stick_Click";
                 break;
-            case JoystickList.R3:
+            case JoyButton.RightStick:
                 buttonName = "Right_Stick_Click";
                 break;
-            case JoystickList.Select:
+            case JoyButton.Back:
             {
                 if (type == "PS3")
                 {
@@ -482,7 +525,7 @@ public static class KeyPromptHelper
                 break;
             }
 
-            case JoystickList.Start:
+            case JoyButton.Start:
             {
                 if (type == "PS3")
                 {
@@ -500,19 +543,19 @@ public static class KeyPromptHelper
                 break;
             }
 
-            case JoystickList.DpadUp:
+            case JoyButton.DpadUp:
                 buttonName = "Dpad_Up";
                 break;
-            case JoystickList.DpadDown:
+            case JoyButton.DpadDown:
                 buttonName = "Dpad_Down";
                 break;
-            case JoystickList.DpadLeft:
+            case JoyButton.DpadLeft:
                 buttonName = "Dpad_Left";
                 break;
-            case JoystickList.DpadRight:
+            case JoyButton.DpadRight:
                 buttonName = "Dpad_Right";
                 break;
-            case JoystickList.Touchpad:
+            case JoyButton.Touchpad:
                 buttonName = "Touch_Pad";
                 break;
             default:
@@ -522,25 +565,25 @@ public static class KeyPromptHelper
         return $"res://assets/textures/gui/xelu_prompts/{type}/{type}_{buttonName}.png";
     }
 
-    private static string GetPlayStationControllerAxis(string type, JoystickList axis)
+    private static string GetPlayStationControllerAxis(string type, JoyAxis axis)
     {
         // TODO: direction indicator for the axes
         string buttonName;
 
         switch (axis)
         {
-            case JoystickList.AnalogLy:
-            case JoystickList.AnalogLx:
+            case JoyAxis.LeftY:
+            case JoyAxis.LeftX:
                 buttonName = "Left_Stick";
                 break;
-            case JoystickList.AnalogRy:
-            case JoystickList.AnalogRx:
+            case JoyAxis.RightY:
+            case JoyAxis.RightX:
                 buttonName = "Right_Stick";
                 break;
-            case JoystickList.AnalogL2:
+            case JoyAxis.TriggerLeft:
                 buttonName = "L2";
                 break;
-            case JoystickList.AnalogR2:
+            case JoyAxis.TriggerRight:
                 buttonName = "R2";
                 break;
             default:

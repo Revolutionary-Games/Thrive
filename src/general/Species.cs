@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   Class that represents a species. This is an abstract base for
 ///   use by all stage-specific species classes.
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
 [UseThriveSerializer]
@@ -70,7 +71,7 @@ public abstract class Species : ICloneable
         get
         {
             var colour = Colour;
-            return new Color(colour.r, colour.g, colour.b, 1);
+            return new Color(colour.R, colour.G, colour.B, 1);
         }
     }
 
@@ -110,6 +111,9 @@ public abstract class Species : ICloneable
     /// </summary>
     [JsonProperty]
     public bool PlayerSpecies { get; private set; }
+
+    [JsonProperty]
+    public EndosymbiosisData Endosymbiosis { get; private set; } = new();
 
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
@@ -206,6 +210,7 @@ public abstract class Species : ICloneable
         // These don't mutate for a species
         // genus;
         // epithet;
+        // endosymbiosis
     }
 
     /// <summary>
@@ -251,6 +256,17 @@ public abstract class Species : ICloneable
     public abstract void UpdateInitialCompounds();
 
     /// <summary>
+    ///   Handles giving extra resources if spawned during the night (to prevent freshly spawned creatures not being
+    ///   able to survive the night)
+    /// </summary>
+    /// <param name="targetStorage">Where to give the extra night-surviving compounds</param>
+    /// <param name="spawnEnvironment">
+    ///   The spawn environment the species member is in, derived classes may need more specific environments like
+    ///   <see cref="IMicrobeSpawnEnvironment"/>.
+    /// </param>
+    public abstract void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment);
+
+    /// <summary>
     ///   Updates the name of this species if the new name is valid
     /// </summary>
     /// <param name="newName">The new name to try to switch to</param>
@@ -276,6 +292,7 @@ public abstract class Species : ICloneable
     ///   referring to the old data. In for example the Mutations
     ///   code.
     /// </summary>
+    /// <returns>Deep-cloned instance of this object</returns>
     public abstract object Clone();
 
     /// <summary>
@@ -285,12 +302,13 @@ public abstract class Species : ICloneable
     /// <returns>The visual hash code</returns>
     public virtual int GetVisualHashCode()
     {
-        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607);
+        return Genus.GetHashCode() * 599 ^ Epithet.GetHashCode() * 601 ^ Colour.GetHashCode() * 607;
     }
 
     public virtual string GetDetailString()
     {
-        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(FormattedNameBbCode,
+        // TODO: include endosymbiosis data?
+        return Localization.Translate("SPECIES_DETAIL_TEXT").FormatSafe(FormattedNameBbCode,
             ID,
             Generation,
             Population,
@@ -317,6 +335,10 @@ public abstract class Species : ICloneable
         species.Population = Population;
         species.Generation = Generation;
         species.PlayerSpecies = PlayerSpecies;
+
+        // Preserve endosymbiosis progress object as the same, as this is meant to be used when converting species
+        // types
+        species.Endosymbiosis = Endosymbiosis;
     }
 
     /// <summary>
@@ -329,6 +351,8 @@ public abstract class Species : ICloneable
 
         foreach (var entry in Behaviour)
             species.Behaviour[entry.Key] = entry.Value;
+
+        species.Endosymbiosis = Endosymbiosis.Clone();
 
         // Genus and epithet aren't copied as they are required constructor parameters
         species.Colour = Colour;

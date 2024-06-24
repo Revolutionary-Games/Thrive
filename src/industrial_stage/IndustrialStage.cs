@@ -1,12 +1,11 @@
 ﻿using System;
 using Godot;
 using Newtonsoft.Json;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   The main class handling the industrial stage functions
 /// </summary>
-public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
+public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 {
     [Export]
     public NodePath? NameLabelSystemPath;
@@ -24,7 +23,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     private PackedScene cityScene = null!;
 
     // TODO: switch to using proper unit class here
-    private Spatial? toSpaceAnimatedUnit;
+    private Node3D? toSpaceAnimatedUnit;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -41,7 +40,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     private Vector3? cameraPanEnd;
 
     [JsonProperty]
-    private float stageMoveStepElapsed;
+    private double stageMoveStepElapsed;
 
     [JsonProperty]
     private float toSpaceUnitAcceleration;
@@ -101,13 +100,13 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         citySystem = new CitySystem(rootOfDynamicallySpawned);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
         if (!IsGameOver())
         {
-            citySystem.Process(delta, this);
+            citySystem.Process((float)delta, this);
 
             resourceStorage.Capacity = citySystem.CachedTotalStorage;
 
@@ -122,7 +121,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         Jukebox.Instance.PlayCategory("IndustrialStage");
     }
 
-    public PlacedCity AddCity(Transform location, bool playerCity)
+    public PlacedCity AddCity(Transform3D location, bool playerCity)
     {
         if (CurrentGame == null)
             throw new InvalidOperationException("Current game not set");
@@ -138,9 +137,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         var city = SpawnHelpers.SpawnCity(location, rootOfDynamicallySpawned, cityScene, playerCity, techWeb);
 
-        var binds = new Array();
-        binds.Add(city);
-        city.Connect(nameof(PlacedCity.OnSelected), this, nameof(OpenCityInfo), binds);
+        city.Connect(PlacedCity.SignalName.OnSelected, Callable.From(() => OpenCityInfo(city)));
 
         return city;
     }
@@ -150,7 +147,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         CurrentGame = GameProperties.StartIndustrialStageGame(new WorldGenerationSettings());
 
         // Spawn an initial city
-        AddCity(Transform.Identity, true);
+        AddCity(Transform3D.Identity, true);
 
         base.StartNewGame();
     }
@@ -289,8 +286,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         // For now the prototype just displays the visuals
         var scene = spacecraft.WorldRepresentation;
 
-        toSpaceAnimatedUnit = new Spatial();
-        toSpaceAnimatedUnit.AddChild(scene.Instance<Spatial>());
+        toSpaceAnimatedUnit = new Node3D();
+        toSpaceAnimatedUnit.AddChild(scene.Instantiate<Node3D>());
 
         toSpaceAnimatedUnit.Scale = new Vector3(Constants.SPACE_TO_INDUSTRIAL_SCALE_FACTOR,
             Constants.SPACE_TO_INDUSTRIAL_SCALE_FACTOR,
@@ -298,7 +295,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         rootOfDynamicallySpawned.AddChild(toSpaceAnimatedUnit);
 
-        toSpaceAnimatedUnit.GlobalTranslation = spaceCraftData.Value.City.GlobalTranslation;
+        toSpaceAnimatedUnit.GlobalPosition = spaceCraftData.Value.City.GlobalPosition;
 
         HUD.CloseAllOpenWindows();
 
@@ -306,14 +303,14 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         movingToSpaceStagePhase = StageMovePhase.ZoomingCamera;
 
         cameraPanStart = strategicCamera.WorldLocation;
-        cameraPanEnd = spaceCraftData.Value.City.GlobalTranslation;
+        cameraPanEnd = spaceCraftData.Value.City.GlobalPosition;
 
         strategicCamera.AllowPlayerInput = false;
         strategicCamera.MinZoomLevel *= Constants.INDUSTRIAL_TO_SPACE_CAMERA_MIN_HEIGHT_MULTIPLIER;
         strategicCamera._Ready();
     }
 
-    private void HandleStageTransition(float delta)
+    private void HandleStageTransition(double delta)
     {
         switch (movingToSpaceStagePhase)
         {
@@ -327,8 +324,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
                 stageMoveStepElapsed += delta;
 
-                strategicCamera.WorldLocation = cameraPanStart.Value.LinearInterpolate(cameraPanEnd.Value,
-                    Math.Min(stageMoveStepElapsed / Constants.INDUSTRIAL_TO_SPACE_CAMERA_PAN_DURATION, 1));
+                strategicCamera.WorldLocation = cameraPanStart.Value.Lerp(cameraPanEnd.Value,
+                    (float)Math.Min(stageMoveStepElapsed / Constants.INDUSTRIAL_TO_SPACE_CAMERA_PAN_DURATION, 1));
 
                 if (AnimateCameraZoomTowards(strategicCamera.MinZoomLevel, delta,
                         Constants.INDUSTRIAL_TO_SPACE_CAMERA_ZOOM_SPEED) &&
@@ -349,7 +346,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
                 HandleRocketMovingUp(delta);
 
-                if ((toSpaceAnimatedUnit.GlobalTranslation - strategicCamera.WorldLocation).y >
+                if ((toSpaceAnimatedUnit.GlobalPosition - strategicCamera.WorldLocation).Y >
                     Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_START)
                 {
                     movingToSpaceStagePhase = StageMovePhase.FollowingRocket;
@@ -362,10 +359,10 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
             {
                 HandleRocketMovingUp(delta);
 
-                strategicCamera.WorldLocation = strategicCamera.WorldLocation.LinearInterpolate(
-                    toSpaceAnimatedUnit!.GlobalTranslation, Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
+                strategicCamera.WorldLocation = strategicCamera.WorldLocation.Lerp(toSpaceAnimatedUnit!.GlobalPosition,
+                    Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
 
-                if (toSpaceAnimatedUnit.GlobalTranslation.y > Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT)
+                if (toSpaceAnimatedUnit.GlobalPosition.Y > Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT)
                 {
                     movingToSpaceStagePhase = StageMovePhase.FadingOut;
                     TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut,
@@ -378,8 +375,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
             case StageMovePhase.FadingOut:
             {
                 HandleRocketMovingUp(delta);
-                strategicCamera.WorldLocation = strategicCamera.WorldLocation.LinearInterpolate(
-                    toSpaceAnimatedUnit!.GlobalTranslation, Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
+                strategicCamera.WorldLocation = strategicCamera.WorldLocation.Lerp(toSpaceAnimatedUnit!.GlobalPosition,
+                    Constants.INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED);
 
                 // TODO: maybe already fade out the stars in somehow? (or maybe even in the previous step)
                 break;
@@ -390,22 +387,22 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         }
     }
 
-    private void HandleRocketMovingUp(float delta)
+    private void HandleRocketMovingUp(double delta)
     {
         if (toSpaceAnimatedUnit == null)
             throw new InvalidOperationException("Unit going to space not set");
 
         // TODO: unit specific acceleration values / movement here
-        toSpaceUnitAcceleration += delta * Constants.INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION;
+        toSpaceUnitAcceleration += (float)(delta * Constants.INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION);
 
-        toSpaceAnimatedUnit.GlobalTranslation += new Vector3(0, toSpaceUnitAcceleration, 0);
+        toSpaceAnimatedUnit.GlobalPosition += new Vector3(0, toSpaceUnitAcceleration, 0);
     }
 
     private void SwitchToSpaceScene()
     {
         GD.Print("Switching to space scene");
 
-        var spaceStage = SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instance<SpaceStage>();
+        var spaceStage = SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instantiate<SpaceStage>();
         spaceStage.CurrentGame = CurrentGame;
 
         SceneManager.Instance.SwitchToScene(spaceStage);

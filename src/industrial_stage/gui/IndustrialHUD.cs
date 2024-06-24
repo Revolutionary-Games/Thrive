@@ -3,7 +3,7 @@
 /// <summary>
 ///   HUD for the industrial stage. Very similar to <see cref="SocietyHUD"/>
 /// </summary>
-public class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
+public partial class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
 {
     // TODO: merge the common parts with the society stage hud into its own sub-scenes
     [Export]

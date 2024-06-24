@@ -3,7 +3,7 @@
 /// <summary>
 ///   Shows info about a single planet
 /// </summary>
-public class PlanetScreen : CustomWindow
+public partial class PlanetScreen : CustomWindow
 {
     [Export]
     public NodePath? ShortStatsLabelPath;
@@ -18,10 +18,10 @@ public class PlanetScreen : CustomWindow
 
     private EntityReference<PlacedPlanet>? managedPlanet;
 
-    private float elapsed = 1;
+    private double elapsed = 1;
 
     [Signal]
-    public delegate void OnOpenGodTools(Object unit);
+    public delegate void OnOpenGodToolsEventHandler(GodotObject unit);
 
     public override void _Ready()
     {
@@ -31,7 +31,7 @@ public class PlanetScreen : CustomWindow
         godToolsButton = GetNode<Button>(GodToolsButtonPath);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -115,7 +115,7 @@ public class PlanetScreen : CustomWindow
         var foodBalance = target.CalculateFoodProduction() - target.CalculateFoodConsumption();
 
         // Update the bottom stats bar
-        shortStatsLabel.Text = TranslationServer.Translate("CITY_SHORT_STATISTICS")
+        shortStatsLabel.Text = Localization.Translate("CITY_SHORT_STATISTICS")
             .FormatSafe(StringUtils.ThreeDigitFormat(target.Population),
                 StringUtils.FormatPositiveWithLeadingPlus(StringUtils.ThreeDigitFormat(foodBalance), foodBalance),
                 researchSpeed);
@@ -128,6 +128,6 @@ public class PlanetScreen : CustomWindow
             return;
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnOpenGodTools), target);
+        EmitSignal(SignalName.OnOpenGodTools, target);
     }
 }

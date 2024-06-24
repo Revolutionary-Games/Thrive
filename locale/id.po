@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2022-08-18 10:33+0000\n"
-"Last-Translator: Kasterisk <microscube@gmail.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -340,6 +340,19 @@ msgstr "Backslash"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Tambah keybind baru"
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Mobilitas"
@@ -353,15 +366,6 @@ msgstr ""
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
-
-msgid "BASSBOOST"
-msgstr "Bassboost"
-
-msgid "BASSDOWN"
-msgstr "Bass Down"
-
-msgid "BASSUP"
-msgstr "Bass Up"
 
 msgid "BATHYPELAGIC"
 msgstr "Batipelagik"
@@ -777,8 +781,20 @@ msgstr "Keluar dari permainan"
 msgid "COMPILED_AT_COLON"
 msgstr "Senyawa:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Senyawa:"
+
 msgid "COMPOUNDS"
 msgstr "Senyawa"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Awan senyawa"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Awan senyawa"
 
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -787,8 +803,24 @@ msgstr "Tambah keybind baru"
 msgid "COMPOUNDS_COLON"
 msgstr "Senyawa:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Tambah keybind baru"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Awan senyawa"
@@ -806,6 +838,25 @@ msgstr "Konsentrasi {0} menurun sebanyak {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "konsumsi {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Keseimbangan Senyawa"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "konsumsi {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Keseimbangan Senyawa"
 
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
@@ -877,7 +928,147 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
+
+msgid "CONTROLLER_AXIS_R2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr ""
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
 msgid "CONTROLLER_DEADZONES"
@@ -896,6 +1087,9 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Salin Error ke Clipboard"
 
@@ -908,6 +1102,10 @@ msgstr ""
 
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "Threads:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
@@ -1053,8 +1251,9 @@ msgstr "{0} populasi berubah {1} karena: {2}"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "Tusuk sel lain dengan ini."
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1229,12 +1428,6 @@ msgstr "Kecepatan:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr "Left"
-
-msgid "DIRECTIONR"
-msgstr "Right"
-
 msgid "DISABLED"
 msgstr ""
 
@@ -1300,6 +1493,14 @@ msgstr "Tampilkan Bilah Kemampuan Sel"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Tampilkan Bilah Kemampuan Sel"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Tampilkan Bilah Kemampuan Sel"
 
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
@@ -1469,11 +1670,66 @@ msgstr "Save terpilih tidak kompatibel"
 msgid "ENABLE_EDITOR"
 msgstr "Aktifkan editor"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Aktifkan Efek Cahaya GUI"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Letakkan organel"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Lepas semua"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Lanjutkan"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Mikroba agresif akan mengejar mangsa pada jarak yang lebih besar\n"
+"dan akan mungkin sekali untuk berkelahi dengan pemangsa jika terserang.\n"
+"Mikroba damai tidak akan melawan yang lain pada jarak yang lebih besar\n"
+"dan tidak mungkin untuk menggunakan toksin lawan pemangsa."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Organel Terputus"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Mengubah [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] menjadi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Juga mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "KAMU TELAH BERKEMBANG!"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1591,12 +1847,12 @@ msgid "EXIT"
 msgstr "Keluar"
 
 #, fuzzy
-msgid "EXIT_TO_LAUNCHER"
-msgstr "Launch E"
+msgid "EXIT_EDITOR"
+msgstr "Aktifkan editor"
 
 #, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(kecepatan mutasi spesies AI)"
+msgid "EXIT_TO_LAUNCHER"
+msgstr "Launch E"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -1711,6 +1967,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplas"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan suhu."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -1904,15 +2172,6 @@ msgstr "Generasi:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Keluar dari permainan"
 
-msgid "GLES2"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING"
-msgstr "Peringatan Mode GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
-
 msgid "GLES3"
 msgstr ""
 
@@ -2032,12 +2291,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogen Sulfida"
-
-msgid "HYPERL"
-msgstr "Hyper Left"
-
-msgid "HYPERR"
-msgstr "Hyper Right"
 
 msgid "ICESHARD"
 msgstr "Pecahan Es"
@@ -2273,10 +2526,17 @@ msgstr ""
 msgid "KEY_BACK"
 msgstr "Back"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Back"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Ada konflik dengan {0}.\n"
 "Apakah kamu ingin menghapus input dari {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Clear"
@@ -2299,6 +2559,10 @@ msgstr "Favourites"
 msgid "KEY_FORWARD"
 msgstr "Depan"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Home"
+
 msgid "KEY_HELP"
 msgstr "Help"
 
@@ -2308,14 +2572,30 @@ msgstr "Home"
 msgid "KEY_HOMEPAGE"
 msgstr "Homepage"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Help"
+
 msgid "KEY_INSERT"
 msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Standby"
 
 msgid "KEY_LEFT"
 msgstr "Left"
 
 msgid "KEY_MENU"
 msgstr "Menu"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Open URL"
@@ -2615,6 +2895,10 @@ msgstr ""
 msgid "LINE_COLOUR"
 msgstr "Warna"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "KAMU TELAH BERKEMBANG!"
+
 msgid "LIPASE"
 msgstr "Lipase"
 
@@ -2792,6 +3076,7 @@ msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [t
 msgid "METRICS"
 msgstr "Metrik Performa"
 
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "Waktu Proses: {0} s\n"
@@ -3118,6 +3403,10 @@ msgstr ""
 
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
+
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "Auto-evo gagal bekerja"
 
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
@@ -3487,6 +3776,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Pergerakan Dasar"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3580,6 +3876,14 @@ msgstr ""
 "Karena Thrive masih dalam awal pengembangan, kompatibilitas save bukanlah prioritas.\n"
 "Kamu dapat melapor masalah yang kamu temui, tetapi mereka bukan prioritas utama.\n"
 "Apakah kamu ingin tetap memuat save ini?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Peringatan Mode GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
 
 #, fuzzy
 msgid "OPEN_FOLDER"
@@ -3752,6 +4056,7 @@ msgstr "Oksigen"
 msgid "OXYTOXISOME"
 msgstr "Oksitoksisom"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
@@ -3877,6 +4182,13 @@ msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Selesai memuat"
 
 msgid "PEACEFUL"
+msgstr ""
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 msgid "PERCENTAGE_VALUE"
@@ -4587,9 +4899,6 @@ msgstr "Silika"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding kuat terbuat dari silika. Dapat menahan kerusakan secara keseluruhan dengan baik dan sangat kebal terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuk. Namun, sangat memperlambat sel dan juga memperlambat laju kemampuan sel menyerap sumber daya."
 
-msgid "SIXTEEN_TIMES"
-msgstr ""
-
 msgid "SIZE_COLON"
 msgstr "Ukuran:"
 
@@ -4731,6 +5040,10 @@ msgstr "menyebar ke daerah:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+#, fuzzy
+msgid "START"
+msgstr "Memulai"
+
 msgid "STARTING"
 msgstr "Memulai"
 
@@ -4746,6 +5059,20 @@ msgstr ""
 
 msgid "STATISTICS"
 msgstr "Statistika"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "PRODUKSI ATP TERLALU RENDAH!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Pergerakan Dasar"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
@@ -4823,23 +5150,11 @@ msgstr "Penyimpanan"
 msgid "STORAGE_COLON"
 msgstr "Penyimpanan"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Masuk sebagai {0}"
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -4900,12 +5215,6 @@ msgstr "Tambah keybind baru"
 
 msgid "SUNLIGHT"
 msgstr "Sinar Matahari"
-
-msgid "SUPERL"
-msgstr "Super Left"
-
-msgid "SUPERR"
-msgstr "Super Right"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "Pendukung"
@@ -5184,10 +5493,6 @@ msgstr ""
 msgid "TOGGLE_PAUSE"
 msgstr "Jeda"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Nyala/matikan pelekatan"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Nyala/matikan pelepasan"
 
@@ -5204,14 +5509,72 @@ msgstr "Status:"
 msgid "TOTAL_SAVES"
 msgstr "Jumlah save total:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Vakuola\n"
+"Racun"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosom adalah gugusan protein terbungkus dalam kulit protein. Mereka dapat mengkonversi glukosa menjadi ATP pada laju yang lebih tinggi daripada yang terjadi di sitoplasma dengan proses yang dinamakan Respirasi Aerob. Namun, proses tersebut tentu membutuhkan oksigen untuk berfungsi, dan tingkat oksigen yang lebih rendah di lingkungan akan memperlambat laju produksi ATP-nya. Karena metabolosom tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Kekebalan Racun"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Kekebalan Racun"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "HP:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Vakuola\n"
 "Racun"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
@@ -5227,12 +5590,6 @@ msgstr "Bantu Alih Bahasa Permainan"
 
 msgid "TRANSPARENCY"
 msgstr "Transparansi"
-
-msgid "TREBLEDOWN"
-msgstr "Treble Down"
-
-msgid "TREBLEUP"
-msgstr "Treble Up"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -5519,9 +5876,6 @@ msgstr "Tampilkan Bilah Kemampuan Sel"
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Tidak diketahui di Windows"
-
 #, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Letakkan organel"
@@ -5607,6 +5961,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} PM"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5726,6 +6084,9 @@ msgstr "Gua"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Gua"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Lihat Kode Sumber"
@@ -6852,6 +7213,42 @@ msgstr "Perbesar"
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "Bassboost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Bass Down"
+
+#~ msgid "BASSUP"
+#~ msgstr "Bass Up"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Left"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Right"
+
+#~ msgid "HYPERL"
+#~ msgstr "Hyper Left"
+
+#~ msgid "HYPERR"
+#~ msgstr "Hyper Right"
+
+#~ msgid "SUPERL"
+#~ msgstr "Super Left"
+
+#~ msgid "SUPERR"
+#~ msgstr "Super Right"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Treble Down"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Treble Up"
+
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Tidak diketahui di Windows"
+
 #, fuzzy
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "{0} populasi berubah {1} karena: {2}"
@@ -6907,10 +7304,6 @@ msgstr "Perkecil"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Nama Pengguna Kustom:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Tampilkan Bilah Kemampuan Sel"
 
 #, fuzzy
 #~ msgid "NOT_RUNNING_DOT"

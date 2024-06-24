@@ -25,96 +25,96 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 1280.0
-margin_bottom = 25.0
+offset_right = 1280.0
+offset_bottom = 25.0
 text = "CREATE_NEW_SAVE"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 29.0
-margin_right = 1280.0
-margin_bottom = 679.0
+offset_top = 29.0
+offset_right = 1280.0
+offset_bottom = 679.0
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_right = 1280.0
-margin_bottom = 37.0
+offset_right = 1280.0
+offset_bottom = 37.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_top = 6.0
-margin_right = 56.0
-margin_bottom = 31.0
+offset_top = 6.0
+offset_right = 56.0
+offset_bottom = 31.0
 text = "NAME"
 
 [node name="SaveName" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 60.0
-margin_right = 1041.0
-margin_bottom = 37.0
-focus_neighbour_right = NodePath("../Save")
-focus_neighbour_bottom = NodePath("../../../CenterContainer/Back")
+offset_left = 60.0
+offset_right = 1041.0
+offset_bottom = 37.0
+focus_neighbor_right = NodePath("../Save")
+focus_neighbor_bottom = NodePath("../../../CenterContainer/Back")
 focus_next = NodePath("../Save")
 focus_previous = NodePath(".")
 size_flags_horizontal = 3
 caret_blink = true
 
 [node name="ExtraOptions" type="MenuButton" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 1045.0
-margin_right = 1176.0
-margin_bottom = 37.0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+offset_left = 1045.0
+offset_right = 1176.0
+offset_bottom = 37.0
+theme_override_colors/font_disabled_color = Color( 1, 1, 1, 1 )
+theme_override_colors/font_color = Color( 1, 1, 1, 1 )
+theme_override_colors/font_hover_color = Color( 1, 1, 1, 1 )
+theme_override_colors/font_pressed_color = Color( 1, 1, 1, 1 )
 disabled = true
 text = "EXTRA_OPTIONS"
 
 [node name="Save" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 1180.0
-margin_right = 1280.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 100, 37 )
-focus_neighbour_left = NodePath("../SaveName")
-focus_neighbour_bottom = NodePath("../../../CenterContainer/Back")
+offset_left = 1180.0
+offset_right = 1280.0
+offset_bottom = 37.0
+custom_minimum_size = Vector2( 100, 37 )
+focus_neighbor_left = NodePath("../SaveName")
+focus_neighbor_bottom = NodePath("../../../CenterContainer/Back")
 focus_next = NodePath("../../../CenterContainer/Back")
 focus_previous = NodePath("../SaveName")
 text = "SAVE"
 
 [node name="VSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
-margin_top = 41.0
-margin_right = 1280.0
-margin_bottom = 45.0
+offset_top = 41.0
+offset_right = 1280.0
+offset_bottom = 45.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
-margin_top = 49.0
-margin_right = 1280.0
-margin_bottom = 74.0
+offset_top = 49.0
+offset_right = 1280.0
+offset_bottom = 74.0
 text = "OVERWRITE_EXISTING_SAVE"
 
 [node name="SaveList" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 78.0
-margin_right = 1280.0
-margin_bottom = 650.0
+offset_top = 78.0
+offset_right = 1280.0
+offset_bottom = 650.0
 size_flags_vertical = 3
 AutoRefreshOnFirstVisible = false
 SelectableItems = true
 LoadableItems = false
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 683.0
-margin_right = 1280.0
-margin_bottom = 720.0
+offset_top = 683.0
+offset_right = 1280.0
+offset_bottom = 720.0
 
 [node name="Back" type="Button" parent="VBoxContainer/CenterContainer"]
-margin_left = 590.0
-margin_right = 690.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 100, 37 )
-focus_neighbour_left = NodePath("../../VBoxContainer/HBoxContainer/SaveName")
-focus_neighbour_top = NodePath("../../VBoxContainer/HBoxContainer/Save")
-focus_neighbour_right = NodePath("../../VBoxContainer/HBoxContainer/Save")
-focus_neighbour_bottom = NodePath(".")
+offset_left = 590.0
+offset_right = 690.0
+offset_bottom = 37.0
+custom_minimum_size = Vector2( 100, 37 )
+focus_neighbor_left = NodePath("../../VBoxContainer/HBoxContainer/SaveName")
+focus_neighbor_top = NodePath("../../VBoxContainer/HBoxContainer/Save")
+focus_neighbor_right = NodePath("../../VBoxContainer/HBoxContainer/Save")
+focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath("../../VBoxContainer/HBoxContainer/Save")
 size_flags_horizontal = 0
@@ -125,28 +125,28 @@ __meta__ = {
 }
 
 [node name="FocusGrabber" parent="VBoxContainer/CenterContainer" instance=ExtResource( 5 )]
-margin_left = 640.0
-margin_top = 18.0
-margin_right = 640.0
-margin_bottom = 18.0
+offset_left = 640.0
+offset_top = 18.0
+offset_right = 640.0
+offset_bottom = 18.0
 SkipOverridingFocusForElements = [ NodePath("../../..") ]
 Priority = 3
 NodeToGiveFocusTo = NodePath("../../VBoxContainer/HBoxContainer/Save")
 AlwaysOverrideFocus = true
 
 [node name="OverwriteConfirm" parent="." instance=ExtResource( 3 )]
-rect_min_size = Vector2( 500, 0 )
+custom_minimum_size = Vector2( 500, 0 )
 WindowTitle = "OVERWRITE_EXISTING_SAVE_PROMPT"
 
 [node name="AttemptWriteFailAccept" parent="." instance=ExtResource( 3 )]
-rect_min_size = Vector2( 500, 0 )
+custom_minimum_size = Vector2( 500, 0 )
 WindowTitle = "CANNOT_WRITE_SAVE"
 Movable = false
 HideCancelButton = true
 DialogText = "ATTEMPT_TO_WRITE_SAVE_FAILED"
 
 [connection signal="text_changed" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextChanged"]
-[connection signal="text_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextEntered"]
+[connection signal="text_submitted" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextEntered"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Save" to="." method="SaveButtonPressed"]
 [connection signal="OnConfirmed" from="VBoxContainer/VBoxContainer/SaveList" to="." method="OnSaveListItemConfirmed"]
 [connection signal="OnSelectedChanged" from="VBoxContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]

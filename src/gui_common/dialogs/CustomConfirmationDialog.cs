@@ -5,7 +5,7 @@
 /// </summary>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class CustomConfirmationDialog : CustomWindow
+public partial class CustomConfirmationDialog : CustomWindow
 {
     [Export]
     public bool HideOnOk = true;
@@ -35,10 +35,10 @@ public class CustomConfirmationDialog : CustomWindow
 #pragma warning restore CA2213
 
     /// <summary>
-    ///   Emitted when OK button is pressed. For Cancel see <see cref="CustomWindow.Cancelled"/>.
+    ///   Emitted when OK button is pressed. For Cancel see <see cref="CustomWindow.Canceled"/>.
     /// </summary>
     [Signal]
-    public delegate void Confirmed();
+    public delegate void ConfirmedEventHandler();
 
     /// <summary>
     ///   If true, turns this dialog into its AcceptDialog form (only Ok button visible).
@@ -115,7 +115,7 @@ public class CustomConfirmationDialog : CustomWindow
 
         // Only move the buttons when run outside of the editor to avoid messing up
         // the predefined button order placement in the scene when it's opened
-        if (OS.IsOkLeftAndCancelRight() && !Engine.EditorHint)
+        if (DisplayServer.GetSwapCancelOk() && !Engine.IsEditorHint())
         {
             buttonsContainer.MoveChild(confirmButton, 1);
             buttonsContainer.MoveChild(cancelButton, 3);
@@ -126,15 +126,16 @@ public class CustomConfirmationDialog : CustomWindow
         UpdateButtons();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateLabel();
-            UpdateButtons();
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
 
-        base._Notification(what);
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     public void SetConfirmDisabled(bool disabled)
@@ -160,7 +161,7 @@ public class CustomConfirmationDialog : CustomWindow
         if (dialogLabel == null)
             throw new SceneTreeAttachRequired();
 
-        var text = TranslationServer.Translate(dialogText);
+        var text = Localization.Translate(dialogText);
         dialogLabel.ExtendedBbcode = CenterText ? $"[center]{text}[/center]" : text;
     }
 
@@ -190,17 +191,23 @@ public class CustomConfirmationDialog : CustomWindow
             }
         }
 
-        confirmButton.Text = TranslationServer.Translate(confirmText);
-        cancelButton.Text = TranslationServer.Translate(cancelText);
+        confirmButton.Text = Localization.Translate(confirmText);
+        cancelButton.Text = Localization.Translate(cancelText);
     }
 
     private void OnConfirmPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(Confirmed));
+        EmitSignal(SignalName.Confirmed);
 
         if (HideOnOk)
             Close();
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateLabel();
+        UpdateButtons();
     }
 }

@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2022-09-23 11:38+0000\n"
-"Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -319,6 +319,19 @@ msgstr "Enrere"
 msgid "BACKSPACE"
 msgstr "Enrere"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Obrir la vista de configuració avançada"
+
 msgid "BASE_MOBILITY"
 msgstr "Mobilitat base"
 
@@ -330,15 +343,6 @@ msgstr "Bàsic"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Tornar a la vista de configuració bàsica"
-
-msgid "BASSBOOST"
-msgstr "Tecla Bassboost"
-
-msgid "BASSDOWN"
-msgstr "Tecla Bass Down"
-
-msgid "BASSUP"
-msgstr "Tecla Bass Up"
 
 msgid "BATHYPELAGIC"
 msgstr "Zona batipelàgica"
@@ -745,8 +749,20 @@ msgstr "Sortir del joc"
 msgid "COMPILED_AT_COLON"
 msgstr "Compostos:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Compostos:"
+
 msgid "COMPOUNDS"
 msgstr "Compostos"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Compost a trobar:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Compost a trobar:"
 
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -755,8 +771,24 @@ msgstr "Mostrar / amagar l'entorn i els compostos"
 msgid "COMPOUNDS_COLON"
 msgstr "Compostos:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Núvols de Compostos"
@@ -772,6 +804,25 @@ msgstr "{0} concentrations han disminuït per {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consum"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Equilibri de Compostos"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0} consum"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Equilibri de Compostos"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Compost a trobar:"
@@ -847,7 +898,147 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Continuar als prototips d'altres estadis?"
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
+
+msgid "CONTROLLER_AXIS_R2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr ""
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
 msgid "CONTROLLER_DEADZONES"
@@ -866,6 +1057,9 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copiar l'Error al Porta-Retalls"
 
@@ -878,6 +1072,10 @@ msgstr "Protanòpia (Vermell-Verd)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Blau-Groc)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "Fils:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
@@ -1016,8 +1214,9 @@ msgstr "(secrets aleatòriament generats al joc)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "(comença cada generació amb un núvol de glucosa gratuït proper)"
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1188,12 +1387,6 @@ msgstr "Velocitat de Digestió:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-msgid "DIRECTIONL"
-msgstr "Esquerra"
-
-msgid "DIRECTIONR"
-msgstr "Dreta"
-
 msgid "DISABLED"
 msgstr "Inhabilitat"
 
@@ -1260,6 +1453,14 @@ msgstr "Mostrar barra d'habilitats"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar partícules de fons"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Mostrar noms de botons de selecció de parts"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Mostrar noms de botons de selecció de parts"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Mostrar noms de botons de selecció de parts"
@@ -1422,11 +1623,69 @@ msgstr "Habilitar Tots els Mods Compatibles"
 msgid "ENABLE_EDITOR"
 msgstr "Habilitar l'editor"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efectes de llum del GUI"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Múltiples Orgànuls"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Desunir totes les cèl·lules"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Els microbis agressius perseguiran les preses a més distància\n"
+"i és més probable que s'enfrontin a depredadors quan siguin atacats.\n"
+"Els microbis pacífics desistiran de perseguir les seves preses abans\n"
+"i és menys probable que facin servir toxines contra depredadors."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Orgànuls Desconnectats"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Els microbis centrats buscaran recursos o preses més llunyans\n"
+"i és possible que siguin molt més ambiciosos respecte a uns mateixos recursos.\n"
+"Els microbis sensibles canviaran d'objectius més aviat."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. També transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Entrar a l'editor i modificar la teva espècie"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Falta un nom"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1540,12 +1799,12 @@ msgid "EXIT"
 msgstr "Sortir"
 
 #, fuzzy
-msgid "EXIT_TO_LAUNCHER"
-msgstr "Llançar E"
+msgid "EXIT_EDITOR"
+msgstr "Anar a la següent pestanya de l'editor"
 
 #, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(velocitat a la qual les espècies de la IA muten)"
+msgid "EXIT_TO_LAUNCHER"
+msgstr "Llançar E"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -1658,6 +1917,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Produeix [thrive:compound]glucose[/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound]carbondioxide[/thrive:compound] i temperatura."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrar elements per categoria:"
@@ -1852,15 +2123,6 @@ msgstr "Generació:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Sortir del joc"
 
-msgid "GLES2"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING"
-msgstr "Mode d'Alerta GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no ha estat del tot validada i, per tant, pot originar alguns problemes. Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de gràfics AMD o Nvidia per executar Thrive."
-
 msgid "GLES3"
 msgstr ""
 
@@ -1979,12 +2241,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Àcid Sulfhídric"
-
-msgid "HYPERL"
-msgstr "Tecla Hyper Left"
-
-msgid "HYPERR"
-msgstr "Tecla Hyper Right"
 
 msgid "ICESHARD"
 msgstr "Fragment de gel"
@@ -2219,10 +2475,17 @@ msgstr "Juny"
 msgid "KEY_BACK"
 msgstr "Enrere"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Enrere"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Hi ha un conflicte amb {0}\n"
 "Vols eliminar l'input de {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Treure"
@@ -2245,6 +2508,10 @@ msgstr "Preferits"
 msgid "KEY_FORWARD"
 msgstr "Endavant"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Menú principal"
+
 msgid "KEY_HELP"
 msgstr "Ajuda"
 
@@ -2254,14 +2521,30 @@ msgstr "Menú principal"
 msgid "KEY_HOMEPAGE"
 msgstr "Pàgina principal"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Ajuda"
+
 msgid "KEY_INSERT"
 msgstr "Insertar"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insertar"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Stand-by"
 
 msgid "KEY_LEFT"
 msgstr "Esquerra"
 
 msgid "KEY_MENU"
 msgstr "Menú"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Pestanya"
 
 msgid "KEY_OPENURL"
 msgstr "Obrir l'URL"
@@ -2557,6 +2840,10 @@ msgstr "Molt petit"
 msgid "LINE_COLOUR"
 msgstr "Color de la línia:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Falta un nom"
+
 msgid "LIPASE"
 msgstr "Lipasa"
 
@@ -2725,6 +3012,7 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thri
 msgid "METRICS"
 msgstr "Mètriques de rendiment"
 
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "Temps de procès: {0} s\n"
@@ -3072,6 +3360,10 @@ msgstr "Ensamblatge de Mod:"
 
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Classe Principal d'Ensamblatge de Mod:"
+
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "{0}: el mètode de descàrrega de l'ensamblatge del mod ha fallat"
 
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: classe de mod especificada \"{1}\" no s'ha trobat a l'ensamblatge del mod"
@@ -3462,6 +3754,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Capacitat de moviment"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3553,6 +3852,14 @@ msgstr ""
 "Com que el joc actualment encara està en una fase primerenca de desenvolupament, la compatibilitat entre diferents versions encara no és la major prioritat.\n"
 "Teniu la opció de notificar els problemes que us troben en aquest respecte però, no obstant, actualment no són de màxima prioritat.\n"
 "Voleu intentar carregar l'arxiu igualment?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Mode d'Alerta GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no ha estat del tot validada i, per tant, pot originar alguns problemes. Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de gràfics AMD o Nvidia per executar Thrive."
 
 msgid "OPEN_FOLDER"
 msgstr "Obrir Carpeta"
@@ -3722,6 +4029,7 @@ msgstr "Oxigen"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxysoma"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
 
@@ -3846,6 +4154,13 @@ msgstr "La càrrega de l'arxiu ({0}) ha fallat"
 
 msgid "PEACEFUL"
 msgstr "Pacífic"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no ha estat del tot validada i, per tant, pot originar alguns problemes. Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de gràfics AMD o Nvidia per executar Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4527,9 +4842,6 @@ msgstr "Silici"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una forta paret de silici. Pot resistir les agressions externes, sobretot les de naturalesa física. També consumeix poca energia. No obstant, fa que la cèl·lula esdevingui lenta, i que absorbeixi els nutrients a poc a poc."
 
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
-
 msgid "SIZE_COLON"
 msgstr "Mida:"
 
@@ -4669,6 +4981,10 @@ msgstr "s'ha escampat a les zones:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menú de pausa"
 
+#, fuzzy
+msgid "START"
+msgstr "Començant"
+
 msgid "STARTING"
 msgstr "Començant"
 
@@ -4685,6 +5001,20 @@ msgstr "Cal reiniciar"
 
 msgid "STATISTICS"
 msgstr "Estadístiques"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "LA PRODUCCIÓ D'ATP ÉS MASSA BAIXA!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Capacitat de moviment"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Error en la inicialització de la llibreria de client d'Steam"
@@ -4755,23 +5085,11 @@ msgstr "Emmagatzematge"
 msgid "STORAGE_COLON"
 msgstr "Emmagatzematge:"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Registrat com a: {0}"
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -4831,12 +5149,6 @@ msgstr "Suicidi"
 
 msgid "SUNLIGHT"
 msgstr "Llum solar"
-
-msgid "SUPERL"
-msgstr "Tecla Super Left"
-
-msgid "SUPERR"
-msgstr "Tecla Super Right"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "Partidaris"
@@ -5113,10 +5425,6 @@ msgstr ""
 msgid "TOGGLE_PAUSE"
 msgstr "Pausa"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Activar el mode d'unió"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Desactivar el mode d'unió"
 
@@ -5133,14 +5441,76 @@ msgstr "Artista:"
 msgid "TOTAL_SAVES"
 msgstr "Nombre total d'arxius guardats:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Algunes opcions poden ser desactivades si només LAWK està activat"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toxina\n"
+"Vacúol"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Resistència a les Toxines"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Resistència a les Toxines"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Tipus:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Els microbis agressius perseguiran les preses a més distància\n"
+"i és més probable que s'enfrontin a depredadors quan siguin atacats.\n"
+"Els microbis pacífics desistiran de perseguir les seves preses abans\n"
+"i és menys probable que facin servir toxines contra depredadors."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxina\n"
 "Vacúol"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
@@ -5155,12 +5525,6 @@ msgstr "Traductors"
 
 msgid "TRANSPARENCY"
 msgstr "Transparència"
-
-msgid "TREBLEDOWN"
-msgstr "Sons aguts avall"
-
-msgid "TREBLEUP"
-msgstr "Sons aguts amunt"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -5430,9 +5794,6 @@ msgstr "Mostrar noms de botons de selecció de parts"
 msgid "UNKNOWN_MOUSE"
 msgstr "Desconegut ratolí"
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Desconegut a Windows"
-
 #, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Col·locar orgànul"
@@ -5518,6 +5879,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Els filaments de cilis són similars als flagels, però en comptes de proporcional una força d'impuls direccional, proporcional una força rotacional per ajudar les cèl·lules a rotar."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5632,6 +5997,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Veure Codi Font"
@@ -6756,6 +7124,45 @@ msgstr "Enfocar la visió de la càmera"
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "Tecla Bassboost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Tecla Bass Down"
+
+#~ msgid "BASSUP"
+#~ msgstr "Tecla Bass Up"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Esquerra"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Dreta"
+
+#~ msgid "HYPERL"
+#~ msgstr "Tecla Hyper Left"
+
+#~ msgid "HYPERR"
+#~ msgstr "Tecla Hyper Right"
+
+#~ msgid "SUPERL"
+#~ msgstr "Tecla Super Left"
+
+#~ msgid "SUPERR"
+#~ msgstr "Tecla Super Right"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Sons aguts avall"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Sons aguts amunt"
+
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Desconegut a Windows"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Població Total:"
 
@@ -6827,10 +7234,6 @@ msgstr "Zoom enfora"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Nom d'usuari propi:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Mostrar noms de botons de selecció de parts"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "No està en marxa."

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using Godot;
 
-public class TemporaryLoadedNodeDeleter : Node
+/// <summary>
+///   Keeps a list of nodes that should be deleted if they aren't later reported to be useful after all
+/// </summary>
+[GodotAutoload]
+public partial class TemporaryLoadedNodeDeleter : Node
 {
     private static TemporaryLoadedNodeDeleter? instance;
 
@@ -23,10 +27,18 @@ public class TemporaryLoadedNodeDeleter : Node
 
     public override void _Ready()
     {
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
-    public override void _Process(float delta)
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
+    }
+
+    public override void _Process(double delta)
     {
         if (HoldDeletion)
             return;

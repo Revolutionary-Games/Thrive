@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dsh6ewpnsug4m"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/TweakedColourPicker.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs" type="Script" id=3]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="2"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs" id="3"]
 
 [node name="ChemoreceptorUpgradeGUI" type="VBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
-script = ExtResource( 3 )
+mouse_filter = 0
+theme = ExtResource("1")
+script = ExtResource("3")
 TargetTypeSelectorPath = NodePath("TargetType")
 CompoundsSelectorPath = NodePath("Compound")
 CompoundsLabelPath = NodePath("CompoundLabel")
@@ -21,53 +23,42 @@ MinimumAmountLabelPath = NodePath("MinimumAmountLabel")
 ColourSelectorPath = NodePath("Colour")
 
 [node name="Label" type="Label" parent="."]
-margin_right = 1280.0
-margin_bottom = 25.0
+layout_mode = 2
 text = "TARGET_TYPE_COLON"
 
 [node name="TargetType" type="OptionButton" parent="."]
-margin_top = 29.0
-margin_right = 1280.0
-margin_bottom = 48.0
-text = "COMPOUNDS"
-items = [ "COMPOUNDS", null, false, 0, null, "SPECIES", null, false, 1, null ]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "COMPOUNDS"
+popup/item_0/id = 0
+popup/item_1/text = "SPECIES"
+popup/item_1/id = 1
 
 [node name="CompoundLabel" type="Label" parent="."]
-margin_right = 1280.0
-margin_bottom = 25.0
+layout_mode = 2
 text = "COMPOUND_TO_FIND"
 
 [node name="Compound" type="OptionButton" parent="."]
-margin_top = 29.0
-margin_right = 1280.0
-margin_bottom = 48.0
+layout_mode = 2
 
 [node name="SpeciesLabel" type="Label" parent="."]
-margin_right = 1280.0
-margin_bottom = 25.0
+layout_mode = 2
 text = "SPECIES_TO_FIND"
 
 [node name="Species" type="OptionButton" parent="."]
-margin_top = 29.0
-margin_right = 1280.0
-margin_bottom = 48.0
+layout_mode = 2
 
 [node name="Spacer" type="Control" parent="."]
-margin_top = 52.0
-margin_right = 1280.0
-margin_bottom = 57.0
-rect_min_size = Vector2( 0, 5 )
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="Label3" type="Label" parent="."]
-margin_top = 61.0
-margin_right = 1280.0
-margin_bottom = 86.0
+layout_mode = 2
 text = "SEARCH_RADIUS"
 
 [node name="Distance" type="HSlider" parent="."]
-margin_top = 90.0
-margin_right = 1280.0
-margin_bottom = 105.0
+layout_mode = 2
 size_flags_horizontal = 3
 rounded = true
 scrollable = false
@@ -75,21 +66,15 @@ tick_count = 8
 ticks_on_borders = true
 
 [node name="Spacer2" type="Control" parent="."]
-margin_top = 109.0
-margin_right = 1280.0
-margin_bottom = 112.0
-rect_min_size = Vector2( 0, 3 )
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
 
 [node name="MinimumAmountLabel" type="Label" parent="."]
-margin_top = 116.0
-margin_right = 1280.0
-margin_bottom = 141.0
+layout_mode = 2
 text = "MINIMUM_AMOUNT_TO_FIND"
 
 [node name="MinimumAmount" type="HSlider" parent="."]
-margin_top = 145.0
-margin_right = 1280.0
-margin_bottom = 160.0
+layout_mode = 2
 size_flags_horizontal = 3
 step = 50.0
 scrollable = false
@@ -97,22 +82,15 @@ tick_count = 8
 ticks_on_borders = true
 
 [node name="Spacer3" type="Control" parent="."]
-margin_top = 164.0
-margin_right = 1280.0
-margin_bottom = 167.0
-rect_min_size = Vector2( 0, 3 )
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
 
 [node name="ColourLabel" type="Label" parent="."]
-margin_top = 171.0
-margin_right = 1280.0
-margin_bottom = 196.0
+layout_mode = 2
 text = "LINE_COLOUR"
 
-[node name="Colour" parent="." instance=ExtResource( 2 )]
-margin_left = 0.0
-margin_top = 200.0
-margin_right = 1280.0
-margin_bottom = 759.0
+[node name="Colour" parent="." instance=ExtResource("2")]
+layout_mode = 2
 edit_alpha = false
 
 [connection signal="item_selected" from="TargetType" to="." method="TypeChanged"]

@@ -24,7 +24,7 @@ Prerequisites
 Godot mono version
 ------------------
 
-The currently used Godot version is __3.5 mono__. The regular version
+The currently used Godot version is __4.2.2 .NET__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -32,6 +32,10 @@ through the [previous Godot
 versions](https://downloads.tuxfamily.org/godotengine/) to get the
 right version. Using a different version than what is mentioned above
 will cause issues.
+
+Note that if you have previously used Godot 3 on Thrive, you need to
+delete the `.import` folder, otherwise the project setup for Godot 4
+will not work correctly.
 
 Godot is self-contained, meaning that you just extract the downloaded
 archive and run the Godot executable in it.
@@ -80,20 +84,22 @@ https://www.youtube.com/watch?v=HVsySz-h9r4
 ----------
 
 Next you need, .NET SDK. Recommended version currently is 8.0, but a
-newer version may also work.
+newer version may also work. You also need *runtime* 6.0 to run Thrive
+tests. This can be installed either with the sdk version 6.0 or just
+the plain runtime which saves some disk space.
 
-On Linux you can use your package manager to install that. The package
+On Linux you can use your package manager to install .NET. The package
 might be called `dotnet-sdk-8.0`. For example on Fedora this can be
-installed with: `sudo dnf install dotnet-sdk-8.0`
+installed with: `sudo dnf install dotnet-sdk-8.0 dotnet-runtime-6.0`
 
 On Windows don't install Mono or MonoDevelop, it will break
 things. Dotnet is a good tool to use on Windows. You can download an
 installer for that from: https://dotnet.microsoft.com/en-us/download
 
 On mac you can install the dotnet sdk by downloading an installer from
-Microsoft's side. Important note for M1 mac users, you need to install
-the arm version, the x64 version doesn't work out of the box, so it is
-very much not recommended to be used.
+Microsoft's website. Important note for M1 mac users, you need to
+install the arm version, the x64 version doesn't work out of the box,
+so it is very much not recommended to be used.
 
 The SDK is also available through Homebrew but it will install the
 latest version (even if that's not yet officially the version used by
@@ -123,42 +129,24 @@ Godot currently supports the following development environments:
 - Visual Studio 2022
 - Visual Studio Code
 - JetBrains Rider
-- MonoDevelop
+- MonoDevelop (may not be suitable for Godot 4)
 - Visual Studio for Mac
-
-### MonoDevelop
-
-On Linux MonoDevelop and Jetbrains Rider are recommended. To get an up
-to date version of mono, first enable the mono repository:
-https://www.mono-project.com/download/stable/ and then install the
-following packages with your package manager: `mono-complete
-monodevelop nuget`. Make sure it is a newer version of mono that comes
-with msbuild. Fedora has mono in the official repo but it is too old
-to work. If you are going to use Rider you don't need the monodevelop
-package. With Rider it may be possible to skip the mono install and just
-install dotnet sdk.
-
-For a better experience with Godot, you can install the following
-addon for MonoDevelop:
-https://github.com/godotengine/godot-monodevelop-addin This is not
-needed for basic usage, so you can skip if you can't figure out how to
-install it.
 
 ### Jetbrains Rider
 
-Jetbrains Rider is recommended for Thrive development on Linux. It is
-available from: https://www.jetbrains.com/rider/
+Jetbrains Rider is recommended for Thrive development on Linux (also
+available and a good choice on Windows). It is available from:
+https://www.jetbrains.com/rider/
 
 It has a Godot plugin which is easy to install. With Rider the
-debugging experience is better than with MonoDevelop.
+debugging experience is good.
 
-If building in Rider doesn't work or some features are missing, then
-install the mono packages, also mentioned in the previous section. Or
-you can also change the build tools used by Rider.
+If building in Rider doesn't work check the build tools used by Rider.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/rider_godot_plugin.png" alt="rider godot plugin" width="600px">
 
-For better experience make sure to install the Godot plugin for Rider.
+For better experience make sure to install the Godot plugin for Rider,
+which makes debugging the game in Rider easy.
 
 ### Visual Studio 2022
 
@@ -168,8 +156,9 @@ https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_basic
 
 ### Visual Studio Code
 
-Note: Setting up Visual Studio Code with Linux is possible,
-however it is recommended to use MonoDevelop or Rider instead.
+Note: Setting up Visual Studio Code with Linux is possible, however it
+is recommended to use Rider instead (this section may be neglected
+more than instructions for other tools).
 
 Visual Studio Code, not to be confused with Visual Studio, doesn't
 come with build tools, so you'll need to install the build tools for
@@ -178,6 +167,8 @@ https://visualstudio.microsoft.com/downloads/?q=build+tools You will
 need **at least** VS Build tools 2022 due to the version of C# used by
 Thrive. During the installation process, make sure MSBuild tools is
 listed under the installation details.
+
+Note: the following section is not updated for Godot 4
 
 Go back to where you downloaded the .NET SDK from and find _All .NET
 Framework Downloads_ Choose version 4.7 and select the Developer Pack.    
@@ -213,9 +204,10 @@ computer. If you're setting up Thrive just for testing or because you
 want to try in development features you don't need to fork the
 project, and can clone the main Thrive repository. If you cloned
 without the `--recursive` flag, you can initialize the submodules
-afterwards. See the instructions for that a bit later in this
-document. Also if you run into sudden build issues updating the
-submodules is a good first step to solving such a problem.
+afterwards (`git submodule update --init --recursive`). See the
+instructions for that a bit later in this document. Also if you run
+into sudden build issues updating the submodules is a good first step
+to solving such a problem.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/terminal_git_clone.png" alt="termina running git clone">
 
@@ -240,10 +232,9 @@ paths may cause issues on Windows. One additional potential problem is
 non-English characters in the path name, for example if your path
 includes "työpöytä", the setup will fail.
 
-You should check at this point if
-the image files in `Thrive/assets/textures` can be opened, if they
-can't be opened and their file sizes are tiny, you don't have Git LFS
-properly installed.
+You should check at this point if the image files in
+`Thrive/assets/textures` can be opened, if they can't be opened and
+their file sizes are tiny, you don't have Git LFS properly installed.
 
 For devs working directly with the Thrive repository switch to a feature
 branch or create one when working on new features. For example `git checkout 123_feature`.
@@ -254,9 +245,27 @@ Thrive.
 Setup
 -----
 
+### Compiling C# Code
+
+At this point it is extremely recommended to compile Thrive at least
+once before opening it in Godot. This is because otherwise Godot will
+unset C# class related properties, leading to various problems.
+
+You can use your IDE or the command line to compile the C#
+code. Navigate to the cloned `Thrive` folder and either open the
+`.sln` file in your IDE and build, or run `dotnet build` command in
+the folder. Both of these options should also restore all NuGet
+packages.
+
+If the build fails, check the troubleshooting section "build or script
+running fails" later in this document. If the NuGet packages did not
+get restored automatically `dotnet restore` can be used to force that
+to happen. Once the build succeeds you can proceed to the next
+section.
+
 ### Project import
 
-Now open your installed Godot with mono. It should open with a project
+Now open your installed Godot version with mono. It should open with a project
 manager window. From this window select the option to import a
 project.
 
@@ -293,59 +302,34 @@ On the top toolbar, go to Editor -> Editor Settings.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_settings_location.png" alt="godot editor settings">
 
-Scroll down on the left window until you find the Mono section.
+Scroll down on the left window until you find the Dotnet section (note
+the screenshot is from Godot 3, Godot 4 has slightly renamed things).
 Click on Editor. Set External Editor to your development environment.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_external_editor_settings.png" alt="godot external editor" width="550px">
 
 Here selected IDE is Rider.
 
-Click on Builds under Mono and set Build Tool to your compiler. If you
-have build errors, check if this is setup properly.
-
-On Linux dotnet is the recommended build tool.
-
 Even if you do not use the Godot script editor, Godot automatically opens some files and replaces the spaces with tabs.
 To stop Godot from messing with your files, go to Text Editor -> Indent and set Type to spaces
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_use_spaces.png" alt="set intend to spaces" width="550px">
 
+With Godot 4 it is no longer required to manually switch the build
+tool to "dotnet" (the option should no longer exist).
+
 ### C# packages
 
-Thrive uses some external C# packages which need to be restored before
-compiling.
-
-On Linux, or if you're using Visual Studio Code, open a terminal to
-the thrive folder and run the following command: `dotnet restore` it
-should download the missing nuget packages. You may need to rerun this
-command when new package dependencies are added to Thrive. Note: if
-you use an IDE like MonoDevelop or Rider it like will automatically
-restore missing packages when compiling the game through it. Also if
-you use the command line `dotnet` tool to compile the game, that will
-also automatically restore packages.
-
-
-On Windows you should use Visual Studio to restore the packages. To do
-this open `Thrive.sln` in the Thrive folder. The package restore might
-automatically happen if you compile the solution. If it doesn't please
-refer to this page on how to restore the nuget packages with Visual
-Studio:
-https://docs.microsoft.com/en-us/nuget/consume-packages/package-restore
-
-If you have nuget in path or you use the Visual Studio command prompt
-you should also be able to restore the packages by running `nuget
-restore` in the Thrive folder.
-
-If there are any errors about missing .csproj files at this point,
-run: `git submodule update --init` to ensure the files coming from
-submodules should all be up to date.
+Thrive uses some external C# packages which need to be available for
+compiling to work. All IDEs should automatically restore the packages,
+but if not `dotnet restore` command can be used manually.
 
 Compiling
 ---------
 
 Now you should be able to return to the Godot editor and hit the build
-button in the top right corner. If that succeeds then the C# side of
-things should be working.
+button (it is the hammer icon) in the top right corner. If that
+succeeds then the C# side of things should be working.
 
 ## Native Libraries
 
@@ -354,7 +338,7 @@ the game can be ran.
 
 The easiest way to get these is to download precompiled ones by running:
 ```sh
-dotnet run --project Scripts -- native Fetch Install
+dotnet run --project Scripts -- native Fetch
 ```
 
 You can compile these libraries locally after installing C++
@@ -370,7 +354,7 @@ should be used.
 You can compile and install the native libraries for the Godot Editor
 in the Thrive folder with the following script:
 ```sh
-dotnet run --project Scripts -- native Build Install
+dotnet run --project Scripts -- native Build
 ```
 
 Debug versions for easier native code development / more robust error
@@ -398,25 +382,24 @@ found, undefined references, you need to compile the game from the
 Godot editor to make it setup the correct Godot assembly
 references. After that compiling from an external tool should work.
 
-From MonoDevelop you can use the plugin mentioned before, that adds a
-toolbar with a button to launch the game. To do that open `Thrive.sln`
-with MonoDevelop and in the new toolbar select the options `Thrive -
-Launch` and `Tools` then you can hit the play button to the left of
-the dropdown options. This should compile and start Thrive so that
-breakpoints set in MonoDevelop work.
-
 From Rider you can compile the game from the top right menu bar by
-selecting the `Player` target (with the Godot icon). That target
-should automatically appear once you install the Godot plugin
+selecting the `Player` target (with the dotnet icon, the play option
+with the Godot logo is for running Godot 3 projects, which Thrive is
+no longer). That target should automatically appear once you install
+the Godot plugin
 (https://plugins.jetbrains.com/plugin/13882-godot-support). If things
 don't work you should check Rider settings to make sure that the used
-msbuild version is from dotnet and not mono.
+msbuild version is from dotnet and not mono. The first time trying to
+use that run target, you need to adjust the path to Godot editor
+executable in the configuration edit menu in Rider.
 
-With that plugin you can run the game from Godot (once you have ran once
+With that plugin you can run the game through Godot (once you have ran once
 from Godot editor so that it sets up things), using these toolbar buttons
 and options:
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/rider_debugging_buttons.png" alt="rider debug toolbar">
+
+Note: screenshot is for Godot 3, Godot 4 is slightly different.
 
 If it doesn't automatically appear you should be able to manually add it with the
 configuration editor.
@@ -586,7 +569,7 @@ files to check.
 
 ## Additional Tips
 
-### Build or script running fails (or nuget restore fails)
+### Build or script running fails (or dotnet restore fails)
 
 First make sure your submodules are up to date:
 ```sh
@@ -638,25 +621,21 @@ it's very likely to break so it is recommended to close Godot when
 doing such operations that change files outside the Godot editor, and
 then reopening the editor afterwards.
 
+In Godot 4 also hot reload sometimes stops working, at this time the
+only thing to do is to close Godot and reopen it. Note that any scenes
+saved while in this broken state will destroy all C# properties and
+signal connections.
+
 Because Godot sometimes just breaks files, before reporting an issue
 building the game please check that `git status` returns no
 changes. If there are changes reported that you didn't make manually,
 then see the section below about cleaning Godot.
 
-### Troubleshooting (Windows)
-
-If Godot still can't build the full game after following the
-instructions, you should verify that it's using the proper toolset. Go
-to Editor > Editor Settings > Builds under Mono in the panel on the
-left. For VS2019 and later, you should select MSBuild (VS Build Tools)
-for the build tool option, if it isn't already.
-
 ### Build problems with unsupported C# version
 
 If the build fails with errors about unsupported C# language version,
-you need to update your VS build tools, if you are on Windows, or
-mono, if on Linux. Note that you should use the official mono repo on
-Linux to get the latest version of mono.
+you need to update your VS build tools, if using that, or .NET SDK if
+using another IDE.
 
 ### Cleaning Godot
 

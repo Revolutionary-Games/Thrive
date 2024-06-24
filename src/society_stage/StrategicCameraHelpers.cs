@@ -11,11 +11,11 @@ public static class StrategicCameraHelpers
     /// <param name="worldPositionToLook">The world point</param>
     /// <param name="zoomLevel">How close the camera should be, 1 is default zoom level</param>
     /// <returns>Transform for camera</returns>
-    public static Transform CalculateCameraPosition(Vector3 worldPositionToLook, float zoomLevel)
+    public static Transform3D CalculateCameraPosition(Vector3 worldPositionToLook, float zoomLevel)
     {
         // TODO: actual camera positioning logic
         var cameraPos = worldPositionToLook + new Vector3(0, zoomLevel * 50 + 5, -1 * (zoomLevel * 20 + 10));
 
-        return new Transform(Basis.Identity, cameraPos).LookingAt(worldPositionToLook, Vector3.Up);
+        return new Transform3D(Basis.Identity, cameraPos).LookingAt(worldPositionToLook, Vector3.Up);
     }
 }

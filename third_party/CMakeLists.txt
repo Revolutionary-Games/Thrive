@@ -7,11 +7,25 @@
 # Might as well get used to double precision impact now as we'll want that eventually anyway
 set(DOUBLE_PRECISION ON)
 
-# If the following options are tweaked then the CPU check print info in StartupActions.cs needs
-# updating and also in the native module CPUCheck.h file.
-# This needs pretty new AMD CPUs but is probably fine
-set(USE_AVX2 ON)
+if(THRIVE_AVX)
+  set(USE_AVX ON)
+  set(USE_AVX2 ON)
 
+  # Not directly AVX instructions, but are about as new so are only on when AVX is on
+  set(USE_F16C ON)
+  set(USE_FMADD ON)
+  set(USE_LZCNT ON)
+  set(USE_TZCNT ON)
+else()
+  set(USE_AVX OFF)
+  set(USE_AVX2 OFF)
+  set(USE_F16C OFF)
+  set(USE_FMADD OFF)
+  set(USE_LZCNT OFF)
+  set(USE_TZCNT OFF)
+endif()
+
+# Should be fine to require on CPUs, as these are OLD
 set(USE_SSE4_1 ON)
 set(USE_SSE4_2 ON)
 

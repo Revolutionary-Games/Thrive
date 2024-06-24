@@ -1,14 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cu2l6ggptlmtt"]
 
-[ext_resource path="res://src/tools/GenerateThreadedSystems.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/tools/GenerateThreadedSystems.cs" id="1"]
 
 [node name="GenerateThreadedSystems" type="Control"]
-script = ExtResource( 1 )
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1")
 
 [node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+editor_description = "PLACEHOLDER"
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "Generating threaded run order for systems, this may take some minutes. The program will close automatically."
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}

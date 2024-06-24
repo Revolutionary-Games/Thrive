@@ -2,12 +2,12 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Godot;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Runs actions on the main thread before the next update
 /// </summary>
-public class Invoke : Node
+[GodotAutoload]
+public partial class Invoke : Node
 {
     private static Invoke? instance;
 
@@ -21,16 +21,24 @@ public class Invoke : Node
     {
         instance = this;
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
         ProcessPriority = -1000;
     }
 
     public static Invoke Instance => instance ?? throw new InstanceNotLoadedYetException();
 
-    public override void _Process(float delta)
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (instance == this)
+            instance = null;
+    }
+
+    public override void _Process(double delta)
     {
         // Move the queued invokes to a temp list
-        while (nextFrameInvokes.TryTake(out Action tmp))
+        while (nextFrameInvokes.TryTake(out var tmp))
         {
             tempActionList.Add(tmp);
         }
@@ -53,7 +61,7 @@ public class Invoke : Node
         tempActionList.Clear();
 
         // And then run the actions that are allowed to run as soon as possible
-        while (queuedInvokes.TryTake(out Action action))
+        while (queuedInvokes.TryTake(out var action))
         {
             try
             {
@@ -93,7 +101,7 @@ public class Invoke : Node
     /// <param name="logDispose">
     ///   If true then a log message is printed if <see cref="forObject"/> is disposed before the action is ran
     /// </param>
-    public void QueueForObject(Action action, Object forObject, bool logDispose = false)
+    public void QueueForObject(Action action, GodotObject forObject, bool logDispose = false)
     {
         if (disposed)
         {
@@ -137,10 +145,10 @@ public class Invoke : Node
     private class SkippableDisposedInvoke
     {
         private readonly Action underlyingAction;
-        private readonly Object objectToCheck;
+        private readonly GodotObject objectToCheck;
         private readonly bool logFailure;
 
-        public SkippableDisposedInvoke(Action underlyingAction, Object objectToCheck, bool logFailure)
+        public SkippableDisposedInvoke(Action underlyingAction, GodotObject objectToCheck, bool logFailure)
         {
             this.underlyingAction = underlyingAction;
             this.objectToCheck = objectToCheck;

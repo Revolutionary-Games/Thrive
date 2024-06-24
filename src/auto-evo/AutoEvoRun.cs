@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
+using Xoshiro.PRNG64;
 using Thread = System.Threading.Thread;
 
 /// <summary>
@@ -121,13 +122,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return TranslationServer.Translate("ABORTED_DOT");
+                return Localization.Translate("ABORTED_DOT");
 
             if (Finished)
-                return TranslationServer.Translate("FINISHED_DOT");
+                return Localization.Translate("FINISHED_DOT");
 
             if (!started)
-                return TranslationServer.Translate("NOT_STARTED_DOT");
+                return Localization.Translate("NOT_STARTED_DOT");
 
             int total = totalSteps;
 
@@ -136,11 +137,11 @@ public class AutoEvoRun
                 var percentage = CompletionFraction * 100;
 
                 // {0:F1}% done. {1:n0}/{2:n0} steps. [Paused.]
-                return TranslationServer.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total)
-                    + (Running ? string.Empty : " " + TranslationServer.Translate("OPERATION_PAUSED_DOT"));
+                return Localization.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total)
+                    + (Running ? string.Empty : " " + Localization.Translate("OPERATION_PAUSED_DOT"));
             }
 
-            return TranslationServer.Translate("STARTING");
+            return Localization.Translate("STARTING");
         }
     }
 
@@ -369,7 +370,8 @@ public class AutoEvoRun
     /// </summary>
     protected virtual void GatherInfo(Queue<IRunStep> steps)
     {
-        var random = new Random();
+        // TODO: allow passing in a seed
+        var random = new XoShiRo256starstar();
 
         var alreadyHandledSpecies = new HashSet<Species>();
 
@@ -569,9 +571,12 @@ public class AutoEvoRun
                         // sensitive while auto-evo runs this value needs to be reduced
                         int maxTasksAtOnce = 1000;
 
-                        while (runSteps.Peek()?.CanRunConcurrently == true && maxTasksAtOnce > 0)
+                        while (runSteps.TryPeek(out var step) && step.CanRunConcurrently && maxTasksAtOnce > 0)
                         {
-                            var step = runSteps.Dequeue();
+                            var step2 = runSteps.Dequeue();
+
+                            if (step != step2)
+                                throw new Exception("Dequeued an unexpected item");
 
                             concurrentStepTasks.Add(new Task(() => RunSingleStepToCompletion(step)));
                             --maxTasksAtOnce;

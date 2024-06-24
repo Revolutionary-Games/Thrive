@@ -4,16 +4,27 @@ using Godot;
 /// <summary>
 ///   Membrane for microbes
 /// </summary>
-public class Membrane : MeshInstance
+public partial class Membrane : MeshInstance3D
 {
-    [Export]
-    public ShaderMaterial? MaterialToEdit;
-
     // It used to be the case that membrane could be previewed in the Godot editor, if anyone is still interested in
     // that feature, please reimplement it
 
 #pragma warning disable CA2213
-    private Texture? albedoTexture;
+    [Export]
+    public ShaderMaterial? MembraneShaderMaterial;
+
+    [Export]
+    public ShaderMaterial? EngulfShaderMaterial;
+
+    private readonly StringName healthParameterName = new("healthFraction");
+    private readonly StringName wigglynessParameterName = new("wigglyNess");
+    private readonly StringName movementWigglynessParameterName = new("movementWigglyNess");
+    private readonly StringName fadeParameterName = new("fade");
+
+    [Export]
+    private MeshInstance3D engulfAnimationMeshInstance = null!;
+#pragma warning disable CA2213
+    private Texture2D? albedoTexture;
 
     /// <summary>
     ///   Shared cache data about the calculated points for this membrane. This is not disposed as the cache manager
@@ -29,6 +40,7 @@ public class Membrane : MeshInstance
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
+    private double engulfFade;
 
     /// <summary>
     ///   When true the material properties need to be reapplied
@@ -91,7 +103,7 @@ public class Membrane : MeshInstance
 
             // Health is a special case as this is applied so often compared to the other properties that this has an
             // apply shortcut to reduce processing
-            if (MaterialToEdit == null)
+            if (MembraneShaderMaterial == null)
             {
                 Dirty = true;
             }
@@ -139,7 +151,7 @@ public class Membrane : MeshInstance
         color.ToHsv(out var hue, out var saturation, out var brightness);
 
         return Color.FromHsv(hue, saturation * 0.75f, brightness,
-            Mathf.Clamp(color.a, 0.4f - brightness * 0.3f, 1.0f));
+            Mathf.Clamp(color.A, 0.4f - brightness * 0.3f, 1.0f));
     }
 
     public override void _Ready()
@@ -147,13 +159,16 @@ public class Membrane : MeshInstance
         if (membraneData == null!)
             throw new InvalidOperationException("Membrane was not property initialized with membrane data");
 
-        if (MaterialToEdit == null)
-            throw new Exception("MaterialToEdit on Membrane is not set");
+        if (MembraneShaderMaterial == null)
+            throw new Exception("MembraneShaderMaterial on Membrane is not set");
+
+        if (EngulfShaderMaterial == null)
+            throw new Exception("EngulfShaderMaterial on Membrane is not set");
 
         SetMesh();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!Dirty)
             return;
@@ -179,13 +194,13 @@ public class Membrane : MeshInstance
 
         for (int i = 0; i < n - 1; i++)
         {
-            if ((vertices[i].y <= y && y < vertices[i + 1].y) ||
-                (vertices[i + 1].y <= y && y < vertices[i].y))
+            if ((vertices[i].Y <= y && y < vertices[i + 1].Y) ||
+                (vertices[i + 1].Y <= y && y < vertices[i].Y))
             {
-                if (x < (vertices[i + 1].x - vertices[i].x) *
-                    (y - vertices[i].y) /
-                    (vertices[i + 1].y - vertices[i].y) +
-                    vertices[i].x)
+                if (x < (vertices[i + 1].X - vertices[i].X) *
+                    (y - vertices[i].Y) /
+                    (vertices[i + 1].Y - vertices[i].Y) +
+                    vertices[i].X)
                 {
                     crosses = !crosses;
                 }
@@ -193,6 +208,32 @@ public class Membrane : MeshInstance
         }
 
         return crosses;
+    }
+
+    public void HandleEngulfAnimation(bool enable, double delta)
+    {
+        if (enable && engulfFade < 1)
+        {
+            engulfFade += delta * 2;
+            engulfFade = Math.Min(engulfFade, 1);
+        }
+        else if (!enable && engulfFade > 0)
+        {
+            engulfFade -= delta * 2;
+            engulfFade = Math.Max(engulfFade, 0);
+        }
+
+        if (engulfFade != 0)
+        {
+            EngulfShaderMaterial?.SetShaderParameter(fadeParameterName, (float)engulfFade);
+            engulfAnimationMeshInstance.Visible = true;
+        }
+        else
+        {
+            // Disabling visibility when fade is 0 stops the shader from
+            // being run when it can't be seen anyway.
+            engulfAnimationMeshInstance.Visible = false;
+        }
     }
 
     /// <summary>
@@ -220,14 +261,26 @@ public class Membrane : MeshInstance
         for (int i = 0; i < count; ++i)
         {
             var vertex = vertices[i];
-            if (Mathf.Abs(Mathf.Atan2(vertex.y, vertex.x) - organelleAngle) < angleToClosest)
+            if (Mathf.Abs(Mathf.Atan2(vertex.Y, vertex.X) - organelleAngle) < angleToClosest)
             {
-                closestSoFar = new Vector2(vertex.x, vertex.y);
-                angleToClosest = Mathf.Abs(Mathf.Atan2(vertex.y, vertex.x) - organelleAngle);
+                closestSoFar = new Vector2(vertex.X, vertex.Y);
+                angleToClosest = Mathf.Abs(Mathf.Atan2(vertex.Y, vertex.X) - organelleAngle);
             }
         }
 
-        return new Vector3(closestSoFar.x, 0, closestSoFar.y);
+        return new Vector3(closestSoFar.X, 0, closestSoFar.Y);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            healthParameterName.Dispose();
+            wigglynessParameterName.Dispose();
+            movementWigglynessParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -237,7 +290,10 @@ public class Membrane : MeshInstance
     private void SetMesh()
     {
         Mesh = membraneData.GeneratedMesh;
-        MaterialOverride = MaterialToEdit;
+        MaterialOverride = MembraneShaderMaterial;
+
+        engulfAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
+        engulfAnimationMeshInstance.MaterialOverride = EngulfShaderMaterial;
     }
 
     private void ApplyAllMaterialParameters()
@@ -250,29 +306,35 @@ public class Membrane : MeshInstance
 
     private void ApplyWiggly()
     {
-        if (MaterialToEdit == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null)
             return;
 
         float wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
 
-        MaterialToEdit.SetShaderParam("wigglyNess", Mathf.Min(WigglyNess, wigglyNessToApply));
+        float finalWiggly = Mathf.Min(WigglyNess, wigglyNessToApply);
+
+        MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
+        EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
     }
 
     private void ApplyMovementWiggly()
     {
-        if (MaterialToEdit == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null)
             return;
 
         float wigglyNessToApply =
             MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
 
-        MaterialToEdit.SetShaderParam("movementWigglyNess", Mathf.Min(MovementWigglyNess, wigglyNessToApply));
+        float finalWiggly = Mathf.Min(MovementWigglyNess, wigglyNessToApply);
+
+        MembraneShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
+        EngulfShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
     }
 
     private void ApplyHealth()
     {
-        MaterialToEdit?.SetShaderParam("healthFraction", HealthFraction);
+        MembraneShaderMaterial?.SetShaderParameter(healthParameterName, HealthFraction);
     }
 
     private void ApplyTextures()
@@ -284,9 +346,10 @@ public class Membrane : MeshInstance
 
         albedoTexture = Type.LoadedAlbedoTexture;
 
-        MaterialToEdit!.SetShaderParam("albedoTexture", albedoTexture);
-        MaterialToEdit.SetShaderParam("normalTexture", Type.LoadedNormalTexture);
-        MaterialToEdit.SetShaderParam("damagedTexture", Type.LoadedDamagedTexture);
+        // This is called rarely enough that this just plain re-creates StringName instances here each time
+        MembraneShaderMaterial!.SetShaderParameter("albedoTexture", albedoTexture);
+        MembraneShaderMaterial.SetShaderParameter("normalTexture", Type.LoadedNormalTexture);
+        MembraneShaderMaterial.SetShaderParameter("damagedTexture", Type.LoadedDamagedTexture);
 
         currentlyLoadedAlbedoTexture = Type.AlbedoTexture;
     }

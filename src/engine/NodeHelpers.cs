@@ -122,7 +122,7 @@ public static class NodeHelpers
     }
 
     /// <summary>
-    ///   Changes parent of this <see cref="Spatial"/> to a new parent, while keeping the global position. The node
+    ///   Changes parent of this <see cref="Node3D"/> to a new parent, while keeping the global position. The node
     ///   needs to already have parent to use this.
     /// </summary>
     /// <remarks>
@@ -131,7 +131,7 @@ public static class NodeHelpers
     ///     available in upcoming Godot versions.
     ///   </para>
     /// </remarks>
-    public static void ReParentWithTransform(this Spatial node, Node newParent)
+    public static void ReParentWithTransform(this Node3D node, Node newParent)
     {
         var temp = node.GlobalTransform;
         node.ReParent(newParent);
@@ -146,7 +146,7 @@ public static class NodeHelpers
     /// <returns>The fully resolved path</returns>
     public static NodePath ResolveToAbsolutePath(this Node node, NodePath potentiallyRelativePath)
     {
-        if (potentiallyRelativePath.IsEmpty() || potentiallyRelativePath.IsAbsolute())
+        if (potentiallyRelativePath.IsEmpty || potentiallyRelativePath.IsAbsolute())
             return potentiallyRelativePath;
 
         return node.GetNode(potentiallyRelativePath).GetPath();
@@ -160,26 +160,32 @@ public static class NodeHelpers
     /// <returns>ShaderMaterial of the GeometryInstance.</returns>
     public static ShaderMaterial GetMaterial(this Node node, NodePath? modelPath = null)
     {
-        GeometryInstance geometry;
+        GeometryInstance3D? geometry;
 
         try
         {
             // Fetch the actual model from the scene
-            if (modelPath == null || modelPath.IsEmpty())
+            if (modelPath == null || modelPath.IsEmpty)
             {
-                geometry = (GeometryInstance)node;
+                geometry = (GeometryInstance3D?)node;
             }
             else
             {
-                geometry = node.GetNode<GeometryInstance>(modelPath);
+                geometry = node.GetNode<GeometryInstance3D>(modelPath);
             }
         }
         catch (InvalidCastException)
         {
-            GD.PrintErr("Converting node to GeometryInstance for getting material failed, on node: ", node.GetPath(),
-                " relative path: ",
-                modelPath);
+            GD.PrintErr("Converting node to GeometryInstance3D for getting material failed, on node: ", node.GetPath(),
+                " relative path: ", modelPath);
             throw;
+        }
+
+        if (geometry == null)
+        {
+            GD.PrintErr("Getting geometry instance for material fetch failed on node: ", node.GetPath(),
+                " relative path: ", modelPath);
+            throw new NullReferenceException("geometry is null");
         }
 
         try
@@ -228,16 +234,43 @@ public static class NodeHelpers
     }
 
     /// <summary>
+    ///   Recursively counts the children of the given Node
+    /// </summary>
+    /// <param name="node">Where to start counting</param>
+    /// <param name="includeInternal">If true internal Nodes are also counted</param>
+    public static int RecursiveCountChildren(this Node node, bool includeInternal = false)
+    {
+        int childCount = node.GetChildCount(includeInternal);
+
+        int count = 0;
+
+        for (int i = 0; i < childCount; ++i)
+        {
+            var child = node.GetChild(i, includeInternal);
+
+            if (child == null)
+            {
+                GD.PrintErr("Error getting child when counting recursively");
+                break;
+            }
+
+            count += RecursiveCountChildren(child, includeInternal);
+        }
+
+        return childCount + count;
+    }
+
+    /// <summary>
     ///   Gets the parent of a Node as a Spatial in a way that actually works (Godot inbuilt method for this fails
     ///   randomly)
     /// </summary>
     /// <param name="node">The node to get the parent from</param>
     /// <returns>The parent Spatial or null</returns>
-    public static Spatial? GetParentSpatialWorking(this Node node)
+    public static Node3D? GetParentSpatialWorking(this Node node)
     {
         var parent = node.GetParent();
 
-        return parent as Spatial;
+        return parent as Node3D;
     }
 
     /// <summary>

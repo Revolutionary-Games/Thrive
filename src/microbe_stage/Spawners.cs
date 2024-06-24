@@ -8,15 +8,17 @@ using Components;
 using DefaultEcs;
 using DefaultEcs.Command;
 using Godot;
+using Xoshiro.PRNG32;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Helpers for making different types of spawners
 /// </summary>
 public static class Spawners
 {
-    public static MicrobeSpawner MakeMicrobeSpawner(Species species)
+    public static MicrobeSpawner MakeMicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvironment)
     {
-        return new MicrobeSpawner(species);
+        return new MicrobeSpawner(species, spawnEnvironment);
     }
 
     public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType)
@@ -119,7 +121,7 @@ public static class SpawnHelpers
 
         entity.Set(new PredefinedVisuals
         {
-            VisualIdentifier = VisualResourceIdentifier.AgentProjectile,
+            VisualIdentifier = properties.GetVisualResource(),
         });
 
         entity.Set(new SpatialInstance
@@ -208,7 +210,7 @@ public static class SpawnHelpers
         var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
         entity.Set(new WorldPosition(location,
-            new Quat(rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
+            new Quaternion(rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
 
         // TODO: redo chunk visuals with the loadable visual definitions
         // entity.Set(new PredefinedVisuals
@@ -382,48 +384,53 @@ public static class SpawnHelpers
         return entity;
     }
 
-    public static void SpawnMicrobe(IWorldSimulation worldSimulation, Species species, Vector3 location,
-        bool aiControlled, MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
-    {
-        SpawnMicrobe(worldSimulation, species, location, aiControlled, (null, 0), multicellularSpawnState);
-    }
-
-    public static void SpawnMicrobe(IWorldSimulation worldSimulation, Species species, Vector3 location,
-        bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
+    public static void SpawnMicrobe(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        Species species, Vector3 location, bool aiControlled,
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
     {
-        var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, aiControlled,
+        SpawnMicrobe(worldSimulation, spawnEnvironment, species, location, aiControlled, (null, 0),
+            multicellularSpawnState);
+    }
+
+    public static void SpawnMicrobe(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
+        Species species, Vector3 location, bool aiControlled,
+        (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
+    {
+        var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
+            aiControlled,
             multicellularData, out _, multicellularSpawnState);
 
         FinalizeEntitySpawn(recorder, worldSimulation);
     }
 
     public static (EntityCommandRecorder Recorder, float Weight) SpawnMicrobeWithoutFinalizing(
-        IWorldSimulation worldSimulation, Species species,
+        IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment, Species species,
         Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
         out EntityRecord entity,
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud, Random? random = null)
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
-        return (recorder, SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, aiControlled,
-            multicellularData, recorder, out entity, multicellularSpawnState, true, random));
+        return (recorder, SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
+            aiControlled, multicellularData, recorder, out entity, multicellularSpawnState, true, random));
     }
 
-    public static float SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation, Species species,
+    public static float SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation,
+        IMicrobeSpawnEnvironment spawnEnvironment, Species species,
         Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
         EntityCommandRecorder recorder, out EntityRecord entity,
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
         bool giveInitialCompounds = true, Random? random = null)
     {
         // If this method is modified it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
-        // MicrobeVisualOnlySimulation microbe update methods are also up to date
+        // MicrobeVisualOnlySimulation microbe update methods are also up-to-date
 
         var entityCreator = worldSimulation.GetRecorderWorld(recorder);
 
         entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
         // Position
-        entity.Set(new WorldPosition(location, Quat.Identity));
+        entity.Set(new WorldPosition(location, Quaternion.Identity));
 
         entity.Set(new SpeciesMember(species));
 
@@ -582,7 +589,12 @@ public static class SpawnHelpers
             entity.Set(container);
 
             if (giveInitialCompounds)
+            {
                 storage.Compounds.AddInitialCompounds(species.InitialCompounds);
+
+                // Extra initial compounds if close to night
+                species.HandleNightSpawnCompounds(storage.Compounds, spawnEnvironment);
+            }
 
             entity.Set(storage);
         }
@@ -641,6 +653,8 @@ public static class SpawnHelpers
         // Used in certain damage types to apply a cooldown
         entity.Set<DamageCooldown>();
 
+        entity.Set<MicrobeTemporaryEffects>();
+
         entity.Set(new CollisionManagement
         {
             RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
@@ -692,7 +706,7 @@ public static class SpawnHelpers
 
                 case MulticellularSpawnState.ChanceForFullColony:
                 {
-                    random ??= new Random();
+                    random ??= new XoShiRo256plus();
 
                     // Chance to spawn fully grown or partially grown
                     if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
@@ -773,11 +787,11 @@ public static class SpawnHelpers
     }
 
     public static (EntityCommandRecorder Recorder, float Weight) SpawnBacteriaSwarmMember(
-        IWorldSimulation worldSimulation, Species species,
+        IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment, Species species,
         Vector3 location, out EntityRecord entity)
     {
-        return SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, true, (null, 0), out entity,
-            MulticellularSpawnState.Bud);
+        return SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location, true, (null, 0),
+            out entity, MulticellularSpawnState.Bud);
     }
 
     public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location, Compound compound, float amount,
@@ -800,14 +814,14 @@ public static class SpawnHelpers
         Node worldRoot, PackedScene multicellularScene, bool aiControlled, ISpawnSystem spawnSystem,
         GameProperties currentGame)
     {
-        var creature = (MulticellularCreature)multicellularScene.Instance();
+        var creature = multicellularScene.Instantiate<MulticellularCreature>();
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
         creature.Init(spawnSystem, currentGame, !aiControlled);
 
         worldRoot.AddChild(creature);
-        creature.Translation = location;
+        creature.Position = location;
 
         creature.AddToGroup(Constants.ENTITY_TAG_CREATURE);
         creature.AddToGroup(Constants.PROGRESS_ENTITY_GROUP);
@@ -829,19 +843,20 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularCreature.tscn");
     }
 
-    public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform location, Node worldNode,
+    public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform3D location, Node worldNode,
         PackedScene entityScene, bool randomizeRotation = false, Random? random = null)
     {
         var resourceEntity = CreateHarvestedResourceEntity(resourceType, entityScene, false);
 
         if (randomizeRotation)
         {
-            random ??= new Random();
+            random ??= new XoShiRo128plus();
 
             // Randomize rotation by constructing a new Transform that has the basis rotated, note that this loses the
             // scale, but entities shouldn't anyway be allowed to have a root node scale
-            location = new Transform(new Basis(location.basis.Quat() * RandomRotationForResourceEntity(random)),
-                location.origin);
+            location = new Transform3D(
+                new Basis(location.Basis.GetRotationQuaternion() * RandomRotationForResourceEntity(random)),
+                location.Origin);
         }
 
         worldNode.AddChild(resourceEntity);
@@ -858,16 +873,17 @@ public static class SpawnHelpers
     public static ResourceEntity CreateHarvestedResourceEntity(WorldResource resourceType, PackedScene entityScene,
         bool randomizeRotation = true, Random? random = null)
     {
-        var resourceEntity = (ResourceEntity)entityScene.Instance();
+        var resourceEntity = entityScene.Instantiate<ResourceEntity>();
 
         // Apply settings
         resourceEntity.SetResource(resourceType);
 
         if (randomizeRotation)
         {
-            random ??= new Random();
+            random ??= new XoShiRo128plus();
 
-            resourceEntity.Transform = new Transform(new Basis(RandomRotationForResourceEntity(random)), Vector3.Zero);
+            resourceEntity.Transform =
+                new Transform3D(new Basis(RandomRotationForResourceEntity(random)), Vector3.Zero);
         }
 
         resourceEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
@@ -887,10 +903,10 @@ public static class SpawnHelpers
         return entity;
     }
 
-    public static PlacedStructure SpawnStructure(StructureDefinition structureDefinition, Transform location,
+    public static PlacedStructure SpawnStructure(StructureDefinition structureDefinition, Transform3D location,
         Node worldNode, PackedScene entityScene)
     {
-        var structureEntity = entityScene.Instance<PlacedStructure>();
+        var structureEntity = entityScene.Instantiate<PlacedStructure>();
 
         worldNode.AddChild(structureEntity);
         structureEntity.Init(structureDefinition);
@@ -911,12 +927,12 @@ public static class SpawnHelpers
     public static SocietyCreature SpawnCitizen(Species species, Vector3 location, Node worldRoot,
         PackedScene citizenScene)
     {
-        var creature = (SocietyCreature)citizenScene.Instance();
+        var creature = citizenScene.Instantiate<SocietyCreature>();
 
         creature.Init();
 
         worldRoot.AddChild(creature);
-        creature.Translation = location;
+        creature.Position = location;
 
         creature.AddToGroup(Constants.CITIZEN_GROUP);
 
@@ -930,10 +946,10 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/society_stage/SocietyCreature.tscn");
     }
 
-    public static PlacedCity SpawnCity(Transform location, Node worldRoot, PackedScene cityScene, bool playerCity,
+    public static PlacedCity SpawnCity(Transform3D location, Node worldRoot, PackedScene cityScene, bool playerCity,
         TechWeb availableTechnology)
     {
-        var city = (PlacedCity)cityScene.Instance();
+        var city = cityScene.Instantiate<PlacedCity>();
 
         city.Init(playerCity, availableTechnology);
 
@@ -951,11 +967,11 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/industrial_stage/PlacedCity.tscn");
     }
 
-    public static PlacedPlanet SpawnPlanet(Transform location, Node worldRoot, PackedScene planetScene,
+    public static PlacedPlanet SpawnPlanet(Transform3D location, Node worldRoot, PackedScene planetScene,
         bool playerPlanet,
         TechWeb availableTechnology)
     {
-        var planet = (PlacedPlanet)planetScene.Instance();
+        var planet = planetScene.Instantiate<PlacedPlanet>();
 
         planet.Init(playerPlanet, availableTechnology);
 
@@ -973,10 +989,10 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/space_stage/PlacedPlanet.tscn");
     }
 
-    public static SpaceFleet SpawnFleet(Transform location, Node worldRoot, PackedScene fleetScene,
+    public static SpaceFleet SpawnFleet(Transform3D location, Node worldRoot, PackedScene fleetScene,
         bool playerFleet, UnitType initialShip)
     {
-        var fleet = (SpaceFleet)fleetScene.Instance();
+        var fleet = fleetScene.Instantiate<SpaceFleet>();
 
         fleet.Init(initialShip, playerFleet);
 
@@ -990,9 +1006,9 @@ public static class SpawnHelpers
     }
 
     public static PlacedSpaceStructure SpawnSpaceStructure(SpaceStructureDefinition structureDefinition,
-        Transform location, Node worldNode, PackedScene structureScene, bool playerOwned)
+        Transform3D location, Node worldNode, PackedScene structureScene, bool playerOwned)
     {
-        var structureEntity = structureScene.Instance<PlacedSpaceStructure>();
+        var structureEntity = structureScene.Instantiate<PlacedSpaceStructure>();
 
         worldNode.AddChild(structureEntity);
         structureEntity.Init(structureDefinition, playerOwned);
@@ -1015,10 +1031,11 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/space_stage/SpaceFleet.tscn");
     }
 
-    private static Quat RandomRotationForResourceEntity(Random random)
+    private static Quaternion RandomRotationForResourceEntity(Random random)
     {
-        return new Quat(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
-            random.NextFloat() * Mathf.Pi + 0.01f);
+        return new Quaternion(
+            new Vector3(random.NextSingle() + 0.01f, random.NextSingle(), random.NextSingle()).Normalized(),
+            random.NextSingle() * Mathf.Pi + 0.01f);
     }
 }
 
@@ -1027,10 +1044,12 @@ public static class SpawnHelpers
 /// </summary>
 public class MicrobeSpawner : Spawner
 {
+    private readonly IMicrobeSpawnEnvironment spawnEnvironmentSource;
     private readonly Random random = new();
 
-    public MicrobeSpawner(Species species)
+    public MicrobeSpawner(Species species, IMicrobeSpawnEnvironment spawnEnvironmentSource)
     {
+        this.spawnEnvironmentSource = spawnEnvironmentSource;
         Species = species ?? throw new ArgumentException("species is null");
     }
 
@@ -1054,8 +1073,8 @@ public class MicrobeSpawner : Spawner
         var firstSpawn = new SingleItemSpawnQueue((out EntityRecord entity) =>
         {
             // The true here is that this is AI controlled
-            var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, Species,
-                location, true, (null, 0), out entity, MulticellularSpawnState.ChanceForFullColony);
+            var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
+                Species, location, true, (null, 0), out entity, MulticellularSpawnState.ChanceForFullColony);
 
             ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity);
 
@@ -1082,8 +1101,8 @@ public class MicrobeSpawner : Spawner
 
         var swarmQueue = new CallbackSpawnQueue<List<Vector3>>((List<Vector3> positions, out EntityRecord entity) =>
         {
-            var (recorder, weight) = SpawnHelpers.SpawnBacteriaSwarmMember(worldSimulation, Species,
-                positions[0], out entity);
+            var (recorder, weight) = SpawnHelpers.SpawnBacteriaSwarmMember(worldSimulation, spawnEnvironmentSource,
+                Species, positions[0], out entity);
 
             positions.RemoveAt(0);
 

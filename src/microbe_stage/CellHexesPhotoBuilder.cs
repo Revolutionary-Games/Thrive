@@ -1,7 +1,10 @@
 ﻿using System;
 using Godot;
 
-public class CellHexesPhotoBuilder : Spatial, IScenePhotographable
+/// <summary>
+///   PhotoStudio related class for displaying cell hexes for photographing
+/// </summary>
+public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
 {
     private float radius;
     private bool radiusDirty;
@@ -30,14 +33,14 @@ public class CellHexesPhotoBuilder : Spatial, IScenePhotographable
         }
     }
 
-    public void ApplySceneParameters(Spatial instancedScene)
+    public void ApplySceneParameters(Node3D instancedScene)
     {
         var builder = (CellHexesPhotoBuilder)instancedScene;
         builder.Species = Species;
         builder.BuildHexStruct();
     }
 
-    public Vector3 CalculatePhotographDistance(Spatial instancedScene)
+    public Vector3 CalculatePhotographDistance(Node3D instancedScene)
     {
         return new Vector3(0, PhotoStudio.CameraDistanceFromRadiusOfObject(
             ((CellHexesPhotoBuilder)instancedScene).Radius *
@@ -65,26 +68,26 @@ public class CellHexesPhotoBuilder : Spatial, IScenePhotographable
             {
                 var pos = Hex.AxialToCartesian(hex + position);
 
-                var hexNode = (MeshInstance)hexScene.Instance();
+                var hexNode = hexScene.Instantiate<MeshInstance3D>();
                 AddChild(hexNode);
                 hexNode.MaterialOverride = hexMaterial;
-                hexNode.Translation = pos;
+                hexNode.Position = pos;
             }
         }
 
         foreach (var organelle in organelleLayout)
         {
             // Model of the organelle
-            if (organelle.Definition.DisplayScene != null)
-            {
-                var organelleModel = (SceneDisplayer)modelScene.Instance();
-                AddChild(organelleModel);
+            if (!organelle.Definition.TryGetGraphicsScene(organelle.Upgrades, out var sceneWithModelInfo))
+                continue;
 
-                CellEditorComponent.UpdateOrganelleDisplayerTransform(organelleModel, organelle);
+            var organelleModel = modelScene.Instantiate<SceneDisplayer>();
+            AddChild(organelleModel);
 
-                CellEditorComponent.UpdateOrganellePlaceHolderScene(organelleModel,
-                    organelle.Definition.DisplayScene, organelle.Definition, Hex.GetRenderPriority(organelle.Position));
-            }
+            CellEditorComponent.UpdateOrganelleDisplayerTransform(organelleModel, organelle);
+
+            CellEditorComponent.UpdateOrganellePlaceHolderScene(organelleModel,
+                sceneWithModelInfo, Hex.GetRenderPriority(organelle.Position));
         }
     }
 

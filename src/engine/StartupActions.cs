@@ -2,28 +2,44 @@
 using System.Diagnostics;
 using System.Globalization;
 using Godot;
+using LauncherThriveShared;
 using Path = System.IO.Path;
 
 /// <summary>
 ///   This is the first autoloaded class. Used to perform some actions that should happen
 ///   as the first things in the game
 /// </summary>
-public class StartupActions : Node
+[GodotAutoload]
+public partial class StartupActions : Node
 {
     private bool preventStartup;
 
     private StartupActions()
     {
+        // Editor doesn't need these info prints or native library
+        if (Engine.IsEditorHint())
+        {
+            GD.Print("Thrive code loaded into the Godot editor, skipping various autoload operations");
+            return;
+        }
+
         // Print game version
         // TODO: for devbuilds it would be nice to print the hash here
-        GD.Print("This is Thrive version: ", Constants.Version, " (see below for exact build info)");
+        GD.Print("This is Thrive version: ", Constants.VersionFull, " (see below for more build info)");
 
         // Add unhandled exception logger if debugger is not attached
         if (!Debugger.IsAttached)
         {
-            GD.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
-            GD.Print("Unhandled exception logger attached");
+            // TODO: reimplement this (doesn't currently work in Godot 4)
+            // https://github.com/godotengine/godot/issues/73515
+            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
+
+            // GD.Print("Unhandled exception logger attached");
+            GD.Print(
+                "TODO: reimplement unhandled exception handler: https://github.com/godotengine/godot/issues/73515");
         }
+
+        NativeInterop.SetDllImportResolver();
 
         GD.Print("Startup C# locale is: ", CultureInfo.CurrentCulture, " Godot locale is: ",
             TranslationServer.GetLocale());
@@ -33,11 +49,8 @@ public class StartupActions : Node
         GD.Print("user:// directory is: ", userDir);
 
         // Print the logs folder to see in the output where they are stored
-        GD.Print("Game logs are written to: ", Path.Combine(userDir, Constants.LOGS_FOLDER_NAME),
+        GD.Print("Game logs are written to: ", Path.Combine(userDir, ThriveLauncherSharedConstants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
-
-        // TODO: mono runtime doesn't have intrinsics support for checking AVX
-        // https://learn.microsoft.com/fi-fi/dotnet/api/system.runtime.intrinsics.x86.avx?view=net-8.0
 
         bool loadNative = true;
 
@@ -47,12 +60,20 @@ public class StartupActions : Node
             {
                 if (!NativeInterop.CheckCPU())
                 {
-                    // Thrive needs SSE4.1, SSE4.2, and AVX (1) currently, this is not told to the player to avoid
-                    // confusion with what they are missing
-                    GD.Print("Thrive requires a new enough CPU to have various extension instruction sets, " +
-                        "see above for what is detected as missing");
-                    GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
-                        "required instruction set extensions is required");
+                    if (Engine.IsEditorHint())
+                    {
+                        GD.Print(
+                            "Skipping native library load in editor as it is not available (CPU check lib missing)");
+                    }
+                    else
+                    {
+                        // Thrive needs SSE4.1, SSE4.2, this is not told to the player to avoid
+                        // confusion with what they are missing
+                        GD.PrintErr("Thrive requires a new enough CPU to have various extension instruction sets, " +
+                            "see above for what is detected as missing");
+                        GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
+                            "required instruction set extensions is required");
+                    }
 
                     loadNative = false;
                 }
@@ -63,13 +84,24 @@ public class StartupActions : Node
             }
             else
             {
-                GD.Print("Skipping CPU type check, please do not report any crashes due to illegal CPU " +
+                GD.Print("Skipping CPU feature check, please do not report any crashes due to illegal CPU " +
                     "instruction problems (as that indicates missing CPU feature this check would test)");
+            }
+
+            if (LaunchOptions.ForceDisableAvx)
+            {
+                GD.Print("Disabling AVX due to command line option");
+                NativeInterop.DisableAvx();
             }
 
             if (loadNative)
             {
                 NativeInterop.Load();
+            }
+            else if (Engine.IsEditorHint())
+            {
+                GD.Print("Skipping native library load in editor as the CPU feature check couldn't pass");
+                loadNative = false;
             }
             else
             {
@@ -84,7 +116,7 @@ public class StartupActions : Node
         {
             GD.Print($"Thrive native library load failed due to: {e.Message}");
 
-            if (Engine.EditorHint && e is DllNotFoundException)
+            if (Engine.IsEditorHint() && e is DllNotFoundException)
             {
                 loadNative = false;
                 GD.Print("Skipping native library load in editor as it is not available");
@@ -97,7 +129,7 @@ public class StartupActions : Node
                 GD.PrintErr("Please do not report to us the next unhandled exception error about this, unless " +
                     "this is an official Thrive release that has this issue");
 
-                if (FeatureInformation.GetOS() == FeatureInformation.PlatformLinux)
+                if (FeatureInformation.IsLinux())
                 {
                     GD.PrintErr("On Linux please verify you have new enough GLIBC version as otherwise the library " +
                         "is unloadable. Updating your distro to the latest version should resolve the issue as long " +

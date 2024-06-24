@@ -13,13 +13,14 @@ that's why it's important for Thrive contributors to be familiar with
 Godot), we have added various extensions to in-built Godot systems or
 added new utility systems that were missing from Godot. This makes it
 so that not all standard Godot usage is good practice in Thrive
-code. Some examples of this include our custom input system, extended
-functionality GUI Nodes, and other smaller helper methods. These can
-be learned by reading the documents in this folder (if available about
-a specific system) or by reading other Thrive code and using the same
-approach. That second way is also a good way to get familiar with the
-[Thrive style](style_guide.md) and become familiar with various parts
-of the codebase that provide commonly needed operations.
+code. Some examples of this include our [custom input
+system](input_system.md), extended functionality GUI Nodes, and other
+smaller helper methods. These can be learned by reading the documents
+in this folder (if available about a specific system) or by reading
+other Thrive code and using the same approach. That second way is also
+a good way to get familiar with the [Thrive style](style_guide.md) and
+become familiar with various parts of the codebase that provide
+commonly needed operations.
 
 The remainder of this document describes the overall code architecture
 of Thrive. For GUI Thrive uses Godot as intended, but for gameplay
@@ -221,6 +222,15 @@ folders for utility and GUI code. There's also an `engine` folder for
 kind of lower level features that Godot Engine doesn't provide but we
 have coded ourselves to be useful in Thrive.
 
+Input
+-----
+
+We don't use the built-in Godot input methods as those are not
+flexible enough for our use. We have a custom input system that allows
+more flexibly specifying input priority and consuming input from other
+users when certain conditions match. There is a separate document
+describing how the input system works so those details are not
+repeated here, please read that [here](input_system.md).
 
 Native Code
 -----------

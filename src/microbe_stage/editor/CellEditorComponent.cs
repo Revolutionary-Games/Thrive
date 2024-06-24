@@ -110,9 +110,6 @@ public partial class CellEditorComponent :
     public NodePath ATPBalancePanelPath = null!;
 
     [Export]
-    public NodePath ATPBalanceLabelPath = null!;
-
-    [Export]
     public NodePath ATPProductionLabelPath = null!;
 
     [Export]
@@ -134,9 +131,6 @@ public partial class CellEditorComponent :
     public NodePath OrganelleMenuPath = null!;
 
     [Export]
-    public NodePath CompoundBalancePath = null!;
-
-    [Export]
     public NodePath AutoEvoPredictionExplanationPopupPath = null!;
 
     [Export]
@@ -148,12 +142,22 @@ public partial class CellEditorComponent :
     [Export]
     public NodePath RightPanelScrollContainerPath = null!;
 
+#pragma warning disable CA2213
+    [Export]
+    public LabelSettings ATPBalanceNormalText = null!;
+
+    [Export]
+    public LabelSettings ATPBalanceNotEnoughText = null!;
+#pragma warning restore CA2213
+
     /// <summary>
     ///   Temporary hex memory for use by the main thread in this component
     /// </summary>
     private readonly List<Hex> hexTemporaryMemory = new();
 
     private readonly List<Hex> hexTemporaryMemory2 = new();
+
+    private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
 #pragma warning disable CA2213
 
@@ -220,7 +224,10 @@ public partial class CellEditorComponent :
     private TweakedColourPicker membraneColorPicker = null!;
 
     private Control atpBalancePanel = null!;
+
+    [Export]
     private Label atpBalanceLabel = null!;
+
     private Label atpProductionLabel = null!;
     private Label atpConsumptionLabel = null!;
     private SegmentedBar atpProductionBar = null!;
@@ -228,10 +235,32 @@ public partial class CellEditorComponent :
 
     private CustomConfirmationDialog negativeAtpPopup = null!;
 
+    [Export]
+    private CustomConfirmationDialog pendingEndosymbiosisPopup = null!;
+
+    [Export]
+    private Button endosymbiosisButton = null!;
+
+    [Export]
+    private EndosymbiosisPopup endosymbiosisPopup = null!;
+
     private OrganellePopupMenu organelleMenu = null!;
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
+    [Export]
+    private CheckBox calculateBalancesAsIfDay = null!;
+
+    [Export]
+    private CheckBox calculateBalancesWhenMoving = null!;
+
+    [Export]
     private CompoundBalanceDisplay compoundBalance = null!;
+
+    [Export]
+    private CompoundStorageStatistics compoundStorageLastingTimes = null!;
+
+    [Export]
+    private CustomRichTextLabel notEnoughStorageWarning = null!;
 
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
@@ -244,15 +273,14 @@ public partial class CellEditorComponent :
 
     private PackedScene undiscoveredOrganellesTooltipScene = null!;
 
-    private Spatial? cellPreviewVisualsRoot;
+    private Node3D? cellPreviewVisualsRoot;
 #pragma warning restore CA2213
 
-    private OrganelleDefinition protoplasm = null!;
     private OrganelleDefinition nucleus = null!;
     private OrganelleDefinition bindingAgent = null!;
-    private OrganelleDefinition flagellum = null!;
 
     private Compound sunlight = null!;
+    private OrganelleDefinition cytoplasm = null!;
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
@@ -422,9 +450,15 @@ public partial class CellEditorComponent :
         }
     }
 
+    [JsonIgnore]
+    public override bool CanCancelAction => base.CanCancelAction || PendingEndosymbiontPlace != null;
+
+    [JsonProperty]
+    public EndosymbiontPlaceActionData? PendingEndosymbiontPlace { get; protected set; }
+
     /// <summary>
     ///   If this is enabled the editor will show how the edited cell would look like in the environment with
-    ///   parameters set in the editor. Editing hexes is disabled during this (with the exception of undo/redo).
+    ///   parameters set in the editor. Editing hexes is disabled during this (except undo / redo).
     /// </summary>
     public bool MicrobePreviewMode
     {
@@ -506,9 +540,19 @@ public partial class CellEditorComponent :
             if (HasIslands)
                 return true;
 
+            if (HasFinishedPendingEndosymbiosis)
+                return true;
+
             return false;
         }
     }
+
+    /// <summary>
+    ///   True when there are pending endosymbiosis actions. Only works after editor is fully initialized.
+    /// </summary>
+    [JsonIgnore]
+    public bool HasFinishedPendingEndosymbiosis =>
+        Editor.EditorReady && Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
@@ -521,7 +565,8 @@ public partial class CellEditorComponent :
 
     public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
     {
-        organelleModel.Transform = new Transform(MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation),
+        organelleModel.Transform = new Transform3D(
+            new Basis(MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation)),
             organelle.OrganelleModelPosition);
 
         organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
@@ -532,10 +577,10 @@ public partial class CellEditorComponent :
     ///   Updates the organelle model displayer to have the specified scene in it
     /// </summary>
     public static void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        string displayScene, OrganelleDefinition definition, int renderPriority)
+        LoadedSceneWithModelInfo displayScene, int renderPriority)
     {
-        organelleModel.Scene = displayScene;
-        var material = organelleModel.GetMaterial(definition.DisplaySceneModelNodePath);
+        organelleModel.Scene = displayScene.LoadedScene;
+        var material = organelleModel.GetMaterial(displayScene.ModelPath);
         if (material != null)
         {
             material.RenderPriority = renderPriority;
@@ -562,10 +607,8 @@ public partial class CellEditorComponent :
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
 
-        protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
         nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
         bindingAgent = SimulationParameters.Instance.GetOrganelleType("bindingAgent");
-        flagellum = SimulationParameters.Instance.GetOrganelleType("flagellum");
 
         organelleSelectionButtonScene =
             GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
@@ -576,6 +619,7 @@ public partial class CellEditorComponent :
             GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.tscn");
 
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+        cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
 
         SetupMicrobePartSelections();
 
@@ -626,7 +670,6 @@ public partial class CellEditorComponent :
         membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
 
         atpBalancePanel = GetNode<Control>(ATPBalancePanelPath);
-        atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
         atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
@@ -637,8 +680,6 @@ public partial class CellEditorComponent :
         organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
 
         rightPanelScrollContainer = GetNode<ScrollContainer>(RightPanelScrollContainerPath);
-
-        compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
         autoEvoPredictionExplanationPopup = GetNode<CustomWindow>(AutoEvoPredictionExplanationPopupPath);
         autoEvoPredictionExplanationLabel = GetNode<CustomRichTextLabel>(AutoEvoPredictionExplanationLabelPath);
@@ -652,11 +693,16 @@ public partial class CellEditorComponent :
         {
             behaviourEditor.Init(owningEditor, fresh);
         }
+        else
+        {
+            // Endosymbiosis is not managed through this component in multicellular
+            endosymbiosisButton.Visible = false;
+        }
 
         // Visual simulation is needed very early when loading a save
         previewSimulation = new MicrobeVisualOnlySimulation();
 
-        cellPreviewVisualsRoot = new Spatial
+        cellPreviewVisualsRoot = new Node3D
         {
             Name = "CellPreviewVisuals",
         };
@@ -684,9 +730,7 @@ public partial class CellEditorComponent :
 
             if (Editor.EditedCellProperties != null)
             {
-                var properties = Editor.EditedCellProperties;
-
-                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
+                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
                 CreateUndiscoveredOrganellesButtons();
                 CreatePreviewMicrobeIfNeeded();
                 UpdateArrow(false);
@@ -700,8 +744,6 @@ public partial class CellEditorComponent :
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInCurrentPatch();
 
-        UpdateCancelButtonVisibility();
-
         if (IsMulticellularEditor)
         {
             componentBottomLeftButtons.HandleRandomSpeciesName = false;
@@ -710,7 +752,7 @@ public partial class CellEditorComponent :
             // TODO: implement random cell type name generator
             componentBottomLeftButtons.ShowRandomizeButton = false;
 
-            componentBottomLeftButtons.SetNamePlaceholder(TranslationServer.Translate("CELL_TYPE_NAME"));
+            componentBottomLeftButtons.SetNamePlaceholder(Localization.Translate("CELL_TYPE_NAME"));
 
             autoEvoPredictionPanel.Visible = false;
 
@@ -721,20 +763,19 @@ public partial class CellEditorComponent :
 
         UpdateMicrobePartSelections();
 
-        // After the if multicellular check so the tooltip cost factors are correct
+        // After the "if multicellular check" so the tooltip cost factors are correct
         // on changing editor types, as tooltip manager is persistent while the game is running
         UpdateMPCost();
 
         // Do this here as we know the editor and hence world settings have been initialised by now
         UpdateOrganelleLAWKSettings();
 
-        topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
-            Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
+        UpdateLightSelectionPanelVisibility();
 
         ApplySymmetryForCurrentOrganelle();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (cellPreviewVisualsRoot == null)
             throw new InvalidOperationException("This editor component is not initialized");
@@ -764,7 +805,7 @@ public partial class CellEditorComponent :
         if (cellPreviewVisualsRoot.Visible)
         {
             // Init being called is checked at the start of this method
-            previewSimulation!.ProcessAll(delta);
+            previewSimulation!.ProcessAll((float)delta);
         }
 
         // Show the organelle that is about to be placed
@@ -776,11 +817,12 @@ public partial class CellEditorComponent :
 
             var effectiveSymmetry = Symmetry;
 
-            if (MovingPlacedHex == null && ActiveActionName != null)
+            if (!CanCancelAction && ActiveActionName != null)
             {
                 // Can place stuff at all?
-                isPlacementProbablyValid = IsValidPlacement(new OrganelleTemplate(
-                    GetOrganelleDefinition(ActiveActionName), new Hex(q, r), placementRotation));
+                isPlacementProbablyValid =
+                    IsValidPlacement(new OrganelleTemplate(GetOrganelleDefinition(ActiveActionName), new Hex(q, r),
+                        placementRotation), true);
 
                 shownOrganelle = SimulationParameters.Instance.GetOrganelleType(ActiveActionName);
             }
@@ -791,6 +833,14 @@ public partial class CellEditorComponent :
 
                 if (!Settings.Instance.MoveOrganellesWithSymmetry)
                     effectiveSymmetry = HexEditorSymmetry.None;
+            }
+            else if (PendingEndosymbiontPlace != null)
+            {
+                shownOrganelle = PendingEndosymbiontPlace.PlacedOrganelle.Definition;
+                isPlacementProbablyValid =
+                    IsValidPlacement(new OrganelleTemplate(shownOrganelle, new Hex(q, r), placementRotation), false);
+
+                effectiveSymmetry = HexEditorSymmetry.None;
             }
 
             if (shownOrganelle != null)
@@ -803,13 +853,37 @@ public partial class CellEditorComponent :
                 RunWithSymmetry(q, r,
                     (finalQ, finalR, rotation) =>
                     {
-                        RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle);
+                        RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle, MovingPlacedHex?.Upgrades);
                         hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
                     }, effectiveSymmetry);
 
                 MouseHoverPositions = hoveredHexes.ToList();
             }
         }
+    }
+
+    [RunOnKeyDown("e_primary")]
+    public override bool PerformPrimaryAction()
+    {
+        if (Visible && PendingEndosymbiontPlace != null)
+        {
+            GetMouseHex(out var q, out var r);
+            return PerformEndosymbiosisPlace(q, r);
+        }
+
+        return base.PerformPrimaryAction();
+    }
+
+    [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
+    public override bool CancelCurrentAction()
+    {
+        if (Visible && PendingEndosymbiontPlace != null)
+        {
+            OnCurrentActionCanceled();
+            return true;
+        }
+
+        return base.CancelCurrentAction();
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -833,7 +907,7 @@ public partial class CellEditorComponent :
         }
 
         // We set these here to make sure these are ready in the organelle add callbacks (even though currently
-        // that just marks things dirty and we update our stats on the next _Process call)
+        // that just marks things dirty, and we update our stats on the next _Process call)
         Membrane = properties!.MembraneType;
         Rigidity = properties.MembraneRigidity;
         Colour = properties.Colour;
@@ -857,9 +931,9 @@ public partial class CellEditorComponent :
 
         UpdateOrganelleUnlockTooltips(true);
 
-        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
+        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
 
-        // Setup the display cell
+        // Set up the display cell
         CreatePreviewMicrobeIfNeeded();
 
         UpdateArrow(false);
@@ -899,23 +973,25 @@ public partial class CellEditorComponent :
 
         editedProperties.UpdateNameIfValid(newName);
 
+        // Update membrane
+        editedProperties.MembraneType = Membrane;
+        editedProperties.Colour = Colour;
+        editedProperties.MembraneRigidity = Rigidity;
+
         if (!IsMulticellularEditor)
         {
-            editedSpecies.UpdateInitialCompounds();
-
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
 
             behaviourEditor.OnFinishEditing();
+
+            // When this is the primary editor of the species data, this must refresh the species data properties that
+            // depend on being edited
+            editedSpecies.OnEdited();
         }
         else
         {
             GD.Print("MicrobeEditor: updated organelles for cell: ", editedProperties.FormattedName);
         }
-
-        // Update membrane
-        editedProperties.MembraneType = Membrane;
-        editedProperties.Colour = Colour;
-        editedProperties.MembraneRigidity = Rigidity;
     }
 
     public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
@@ -934,12 +1010,17 @@ public partial class CellEditorComponent :
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
-        if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
-            return true;
+        // Show warning if the editor has an endosymbiosis that should be finished
+        if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
+        {
+            pendingEndosymbiosisPopup.PopupCenteredShrink();
+            return false;
+        }
 
         // Show warning popup if trying to exit with negative atp production
-        // Not shown in multicellular as the popup happens in kind of a weird place
-        if (!IsMulticellularEditor && IsNegativeAtpProduction())
+        // Not shown in multicellular as the popup would happen in kind of weird place
+        if (!IsMulticellularEditor && IsNegativeAtpProduction() &&
+            !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
             negativeAtpPopup.PopupCenteredShrink();
             return false;
@@ -951,7 +1032,9 @@ public partial class CellEditorComponent :
         {
             var tutorialState = Editor.CurrentGame.TutorialState;
 
-            if (tutorialState.Enabled)
+            // In the multicellular editor the cell editor might not be visible so preventing exiting the editor
+            // without explanation is not a good idea so that's why this check is here
+            if (tutorialState.Enabled && !IsMulticellularEditor)
             {
                 tutorialState.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
 
@@ -982,8 +1065,7 @@ public partial class CellEditorComponent :
         if (IsMulticellularEditor && editedMicrobeOrganelles.Organelles.Count < 1)
             return;
 
-        topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
-            Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
+        UpdateLightSelectionPanelVisibility();
 
         // Calculate and send energy balance and compound balance to the GUI
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
@@ -1063,7 +1145,7 @@ public partial class CellEditorComponent :
     {
         int previousRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
-        if (MovingPlacedHex != null)
+        if (CanCancelAction)
         {
             Editor.OnActionBlockedWhileMoving();
             UpdateRigiditySlider(previousRigidity);
@@ -1110,7 +1192,7 @@ public partial class CellEditorComponent :
             return false;
 
         // Can't open organelle popup menu while moving something
-        if (MovingPlacedHex != null)
+        if (CanCancelAction)
         {
             Editor.OnActionBlockedWhileMoving();
             return true;
@@ -1136,6 +1218,27 @@ public partial class CellEditorComponent :
         return true;
     }
 
+    public override void OnValidAction(IEnumerable<CombinableActionData> actions)
+    {
+        var endosymbiontPlace = typeof(EndosymbiontPlaceActionData);
+
+        // Most likely better to enumerate multiple times rather than allocate temporary memory
+        // ReSharper disable PossibleMultipleEnumeration
+        foreach (var data in actions)
+        {
+            var type = data.GetType();
+            if (type.IsAssignableToGenericType(endosymbiontPlace))
+            {
+                PlayHexPlacementSound();
+                break;
+            }
+        }
+
+        base.OnValidAction(actions);
+
+        // ReSharper restore PossibleMultipleEnumeration
+    }
+
     public float CalculateSpeed()
     {
         return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
@@ -1149,8 +1252,7 @@ public partial class CellEditorComponent :
 
     public float CalculateHitpoints()
     {
-        var maxHitpoints = Membrane.Hitpoints +
-            (Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+        var maxHitpoints = Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
 
         return maxHitpoints;
     }
@@ -1162,7 +1264,8 @@ public partial class CellEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities()
     {
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles);
+        // TODO: merge this with nominal get to make this more efficient
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out _);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -1177,8 +1280,9 @@ public partial class CellEditorComponent :
 
     public override void OnLightLevelChanged(float dayLightFraction)
     {
-        var maxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum);
-        var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
+        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+        var templateMaxLightLevel =
+            Editor.CurrentPatch.GetCompoundAmountForDisplay(sunlight, CompoundAmountType.Template);
 
         // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
         // nighttime shaders haven't been created for these patches (specifically the sea floor) so for now we can't
@@ -1210,6 +1314,10 @@ public partial class CellEditorComponent :
     protected override int CalculateCurrentActionCost()
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
+            return 0;
+
+        // Endosymbiosis placement is free
+        if (PendingEndosymbiontPlace != null)
             return 0;
 
         var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!);
@@ -1255,16 +1363,18 @@ public partial class CellEditorComponent :
 
     protected override void PerformMove(int q, int r)
     {
-        if (!MoveOrganelle(MovingPlacedHex!, MovingPlacedHex!.Position, new Hex(q, r), MovingPlacedHex.Orientation,
+        if (!MoveOrganelle(MovingPlacedHex!, new Hex(q, r),
                 placementRotation))
         {
             Editor.OnInvalidAction();
         }
     }
 
-    protected override void OnMoveWillSucceed()
+    protected override void OnPendingActionWillSucceed()
     {
-        base.OnMoveWillSucceed();
+        PendingEndosymbiontPlace = null;
+
+        base.OnPendingActionWillSucceed();
 
         // Update rigidity slider in case it was disabled
         // TODO: could come up with a bit nicer design here
@@ -1279,9 +1389,25 @@ public partial class CellEditorComponent :
 
     protected override void OnCurrentActionCanceled()
     {
-        editedMicrobeOrganelles.AddFast(MovingPlacedHex!, hexTemporaryMemory, hexTemporaryMemory2);
-        MovingPlacedHex = null;
+        if (MovingPlacedHex != null)
+        {
+            editedMicrobeOrganelles.AddFast(MovingPlacedHex, hexTemporaryMemory, hexTemporaryMemory2);
+            MovingPlacedHex = null;
+        }
+
+        PendingEndosymbiontPlace = null;
+
         base.OnCurrentActionCanceled();
+    }
+
+    protected override bool DoesActionEndInProgressAction(CombinedEditorAction action)
+    {
+        if (PendingEndosymbiontPlace != null)
+        {
+            return action.Data.Any(d => d is EndosymbiontPlaceActionData);
+        }
+
+        return base.DoesActionEndInProgressAction(action);
     }
 
     protected override void OnMoveActionStarted()
@@ -1300,7 +1426,7 @@ public partial class CellEditorComponent :
         if (organelleHere == null)
             return null;
 
-        // Dont allow deletion of nucleus or the last organelle
+        // Don't allow deletion of nucleus or the last organelle
         if (organelleHere.Definition == nucleus || MicrobeSize - alreadyDeleted < 2)
             return null;
 
@@ -1336,7 +1462,7 @@ public partial class CellEditorComponent :
                 var cartesian = Hex.AxialToCartesian(absoluteHex);
 
                 // Get the min z-axis (highest point in the editor)
-                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z);
+                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.Z);
             }
         }
 
@@ -1379,7 +1505,6 @@ public partial class CellEditorComponent :
                 BestPatchLabelPath.Dispose();
                 MembraneColorPickerPath.Dispose();
                 ATPBalancePanelPath.Dispose();
-                ATPBalanceLabelPath.Dispose();
                 ATPProductionLabelPath.Dispose();
                 ATPConsumptionLabelPath.Dispose();
                 ATPProductionBarPath.Dispose();
@@ -1387,7 +1512,6 @@ public partial class CellEditorComponent :
                 RigiditySliderPath.Dispose();
                 NegativeAtpPopupPath.Dispose();
                 OrganelleMenuPath.Dispose();
-                CompoundBalancePath.Dispose();
                 AutoEvoPredictionExplanationPopupPath.Dispose();
                 AutoEvoPredictionExplanationLabelPath.Dispose();
                 OrganelleUpgradeGUIPath.Dispose();
@@ -1398,6 +1522,36 @@ public partial class CellEditorComponent :
         }
 
         base.Dispose(disposing);
+    }
+
+    private bool PerformEndosymbiosisPlace(int q, int r)
+    {
+        if (PendingEndosymbiontPlace == null)
+        {
+            GD.PrintErr("No endosymbiosis place in progress, there should be at this point");
+            Editor.OnInvalidAction();
+            return false;
+        }
+
+        PendingEndosymbiontPlace.PlacementLocation = new Hex(q, r);
+        PendingEndosymbiontPlace.PlacementRotation = placementRotation;
+
+        PendingEndosymbiontPlace.PlacedOrganelle.Orientation = placementRotation;
+        PendingEndosymbiontPlace.PlacedOrganelle.Position = new Hex(q, r);
+
+        // Before finalizing the data, make sure it can be placed at the current position
+        if (!IsValidPlacement(PendingEndosymbiontPlace.PlacedOrganelle, false))
+        {
+            Editor.OnInvalidAction();
+            return false;
+        }
+
+        var action = new CombinedEditorAction(new SingleEditorAction<EndosymbiontPlaceActionData>(
+            DoEndosymbiontPlaceAction, UndoEndosymbiontPlaceAction, PendingEndosymbiontPlace));
+
+        EnqueueAction(action);
+
+        return true;
     }
 
     private bool CreatePreviewMicrobeIfNeeded()
@@ -1481,8 +1635,8 @@ public partial class CellEditorComponent :
             organelleMenu.EnableDeleteOption = false;
 
             organelleMenu.DeleteOptionTooltip = attemptingNucleusDelete ?
-                TranslationServer.Translate("NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP") :
-                TranslationServer.Translate("LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP");
+                Localization.Translate("NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP") :
+                Localization.Translate("LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP");
         }
         else
         {
@@ -1541,7 +1695,7 @@ public partial class CellEditorComponent :
             var organelle = organelles[i];
             var oldOrganelle = organellePositions.FirstOrDefault(p => p.Hex == hex);
             var occupied = false;
-            if (oldOrganelle != default && organelle != null)
+            if (oldOrganelle != default)
             {
                 if (organelle.Definition.MPCost > oldOrganelle.Organelle?.Definition.MPCost)
                 {
@@ -1572,7 +1726,7 @@ public partial class CellEditorComponent :
             {
                 var data = new OrganelleRemoveActionData(organelle)
                 {
-                    GotReplaced = organelle.Definition.InternalName == "cytoplasm",
+                    GotReplaced = organelle.Definition.InternalName == cytoplasm.InternalName,
                     CostMultiplier = CostMultiplier,
                 };
                 action = new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction,
@@ -1618,12 +1772,12 @@ public partial class CellEditorComponent :
     private IEnumerable<OrganelleTemplate> GetReplacedCytoplasm(IEnumerable<OrganelleTemplate> organelles)
     {
         foreach (var templateHex in organelles
-                     .Where(o => o.Definition.InternalName != "cytoplasm")
+                     .Where(o => o.Definition.InternalName != cytoplasm.InternalName)
                      .SelectMany(o => o.RotatedHexes.Select(h => h + o.Position)))
         {
             var existingOrganelle = editedMicrobeOrganelles.GetElementAt(templateHex, hexTemporaryMemory);
 
-            if (existingOrganelle != null && existingOrganelle.Definition.InternalName == "cytoplasm")
+            if (existingOrganelle != null && existingOrganelle.Definition.InternalName == cytoplasm.InternalName)
             {
                 yield return existingOrganelle;
             }
@@ -1658,7 +1812,7 @@ public partial class CellEditorComponent :
         // First prediction can be made only after population numbers from previous run are applied
         // so this is just here to guard against that potential programming mistake that may happen when code is
         // changed
-        if (!Editor.Ready)
+        if (!Editor.EditorReady)
         {
             GD.PrintErr("Can't start auto-evo prediction before editor is ready");
             return;
@@ -1690,45 +1844,86 @@ public partial class CellEditorComponent :
     {
         biome ??= Editor.CurrentPatch.Biome;
 
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
-            Editor.CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Current);
+        bool moving = calculateBalancesWhenMoving.ButtonPressed;
+
+        // TODO: pass moving variable
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, moving, true,
+            Editor.CurrentGame.GameWorld.WorldSettings,
+            calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current);
 
         UpdateEnergyBalance(energyBalance);
 
-        UpdateCompoundBalances(ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
-            CompoundAmountType.Current, energyBalance));
+        float nominalStorage = 0;
+        Dictionary<Compound, float>? specificStorages = null;
+
+        var compoundBalanceData =
+            CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
+                calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current,
+                organelles, biome, energyBalance,
+                ref specificStorages, ref nominalStorage);
+
+        UpdateCompoundBalances(compoundBalanceData);
+
+        var nightBalanceData = CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
+            CompoundAmountType.Minimum, organelles, biome, energyBalance, ref specificStorages, ref nominalStorage);
+
+        UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
+            specificStorages ?? throw new Exception("Special storages should have been calculated"));
+    }
+
+    private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
+        CompoundAmountType amountType, IReadOnlyCollection<OrganelleTemplate> organelles,
+        BiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
+        ref float nominalStorage)
+    {
+        Dictionary<Compound, CompoundBalance> compoundBalanceData;
+        switch (calculationType)
+        {
+            case BalanceDisplayType.MaxSpeed:
+                compoundBalanceData =
+                    ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType);
+                break;
+            case BalanceDisplayType.EnergyEquilibrium:
+                compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
+                    amountType, energyBalance);
+                break;
+            default:
+                GD.PrintErr("Unknown compound balance type: ", compoundBalance.CurrentDisplayType);
+                goto case BalanceDisplayType.EnergyEquilibrium;
+        }
+
+        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
+
+        return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
 
     /// <summary>
     ///   If not hovering over an organelle, render the to-be-placed organelle
     /// </summary>
-    private void RenderHighlightedOrganelle(int q, int r, int rotation, OrganelleDefinition shownOrganelle)
+    private void RenderHighlightedOrganelle(int q, int r, int rotation, OrganelleDefinition shownOrganelleDefinition,
+        OrganelleUpgrades? upgrades)
     {
-        if (MovingPlacedHex == null && ActiveActionName == null)
-            return;
-
-        RenderHoveredHex(q, r, shownOrganelle.GetRotatedHexes(rotation), isPlacementProbablyValid,
+        RenderHoveredHex(q, r, shownOrganelleDefinition.GetRotatedHexes(rotation), isPlacementProbablyValid,
             out bool hadDuplicate);
 
         bool showModel = !hadDuplicate;
 
         // Model
-        if (!string.IsNullOrEmpty(shownOrganelle.DisplayScene) && showModel)
+        if (showModel && shownOrganelleDefinition.TryGetGraphicsScene(upgrades, out var modelInfo))
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
 
             var organelleModel = hoverModels[usedHoverModel++];
 
-            organelleModel.Transform = new Transform(MathUtils.CreateRotationForOrganelle(rotation),
-                cartesianPosition + shownOrganelle.ModelOffset);
+            organelleModel.Transform = new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(rotation)),
+                cartesianPosition + shownOrganelleDefinition.ModelOffset);
 
             organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
                 Constants.DEFAULT_HEX_SIZE);
 
             organelleModel.Visible = true;
 
-            UpdateOrganellePlaceHolderScene(organelleModel, shownOrganelle.DisplayScene!,
-                shownOrganelle, Hex.GetRenderPriority(new Hex(q, r)));
+            UpdateOrganellePlaceHolderScene(organelleModel, modelInfo, Hex.GetRenderPriority(new Hex(q, r)));
         }
     }
 
@@ -1795,7 +1990,7 @@ public partial class CellEditorComponent :
         if (MicrobePreviewMode)
             return null;
 
-        if (!IsValidPlacement(organelle))
+        if (!IsValidPlacement(organelle, true))
         {
             // Play Sound
             Editor.OnInvalidAction();
@@ -1805,9 +2000,12 @@ public partial class CellEditorComponent :
         return CreateAddOrganelleAction(organelle);
     }
 
-    private bool IsValidPlacement(OrganelleTemplate organelle)
+    private bool IsValidPlacement(OrganelleTemplate organelle, bool allowOverwritingCytoplasm)
     {
-        bool notPlacingCytoplasm = organelle.Definition.InternalName != "cytoplasm";
+        bool notPlacingCytoplasm = organelle.Definition.InternalName != cytoplasm.InternalName;
+
+        if (!allowOverwritingCytoplasm)
+            notPlacingCytoplasm = false;
 
         return editedMicrobeOrganelles.CanPlaceAndIsTouching(organelle,
             notPlacingCytoplasm, hexTemporaryMemory, hexTemporaryMemory2,
@@ -1820,7 +2018,9 @@ public partial class CellEditorComponent :
         // 2 - you put an organelle that requires nucleus but you don't have one
         if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.RequiresNucleus && !HasNucleus))
+        {
             return null;
+        }
 
         if (organelle.Definition.Unique)
             DeselectOrganelleToPlace();
@@ -1843,8 +2043,7 @@ public partial class CellEditorComponent :
     ///   Finishes an organelle move
     /// </summary>
     /// <returns>True if the organelle move succeeded.</returns>
-    private bool MoveOrganelle(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
-        int newRotation)
+    private bool MoveOrganelle(OrganelleTemplate organelle, Hex newLocation, int newRotation)
     {
         // TODO: consider allowing rotation inplace (https://github.com/Revolutionary-Games/Thrive/issues/2993)
 
@@ -2005,7 +2204,7 @@ public partial class CellEditorComponent :
             // Hexes are handled by UpdateAlreadyPlacedHexes
 
             // Model of the organelle
-            if (organelle.Definition.DisplayScene != null)
+            if (organelle.Definition.TryGetGraphicsScene(organelle.Upgrades, out var modelInfo))
             {
                 if (nextFreeOrganelle >= placedModels.Count)
                 {
@@ -2019,8 +2218,7 @@ public partial class CellEditorComponent :
 
                 organelleModel.Visible = !MicrobePreviewMode;
 
-                UpdateOrganellePlaceHolderScene(organelleModel,
-                    organelle.Definition.DisplayScene, organelle.Definition, Hex.GetRenderPriority(organelle.Position));
+                UpdateOrganellePlaceHolderScene(organelleModel, modelInfo, Hex.GetRenderPriority(organelle.Position));
             }
         }
 
@@ -2062,9 +2260,6 @@ public partial class CellEditorComponent :
         {
             StartHexMove(organelleMenu.SelectedOrganelles.First());
         }
-
-        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
-        UpdateCancelButtonVisibility();
     }
 
     private void OnDeletePressed()
@@ -2097,7 +2292,7 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Lock / unlock a single organelle that needs a nucleus
+    ///   Lock / unlock organelle buttons that need a nucleus or are already placed (if unique)
     /// </summary>
     private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
         OrganelleDefinition organelle)
@@ -2149,7 +2344,7 @@ public partial class CellEditorComponent :
                 return;
             }
 
-            var control = (MicrobePartSelection)organelleSelectionButtonScene.Instance();
+            var control = organelleSelectionButtonScene.Instantiate<MicrobePartSelection>();
             control.Locked = organelle.Unimplemented;
             control.PartIcon = organelle.LoadedIcon ?? throw new Exception("Organelle with no icon");
             control.PartName = organelle.UntranslatedName;
@@ -2170,12 +2365,13 @@ public partial class CellEditorComponent :
             // Only add items with valid organelles to dictionary
             placeablePartSelectionElements.Add(organelle, control);
 
-            control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected));
+            control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
+                new Callable(this, nameof(OnOrganelleToPlaceSelected)));
         }
 
         foreach (var membraneType in simulationParameters.GetAllMembranes().OrderBy(m => m.EditorButtonOrder))
         {
-            var control = (MicrobePartSelection)organelleSelectionButtonScene.Instance();
+            var control = organelleSelectionButtonScene.Instantiate<MicrobePartSelection>();
             control.PartIcon = membraneType.LoadedIcon;
             control.PartName = membraneType.UntranslatedName;
             control.SelectionGroup = membraneButtonGroup;
@@ -2188,7 +2384,8 @@ public partial class CellEditorComponent :
 
             membraneSelectionElements.Add(membraneType, control);
 
-            control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected));
+            control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
+                new Callable(this, nameof(OnMembraneSelected)));
         }
 
         // Multicellular parts only available (visible) in multicellular
@@ -2309,33 +2506,43 @@ public partial class CellEditorComponent :
 
     private void ApplyLightLevelOption()
     {
+        calculateBalancesAsIfDay.Disabled = false;
+
         // Show selected light level
         switch (selectedLightLevelOption)
         {
             case LightLevelOption.Day:
             {
-                dayButton.Pressed = true;
+                dayButton.ButtonPressed = true;
                 Editor.DayLightFraction = 1;
+
+                calculateBalancesAsIfDay.ButtonPressed = true;
+                calculateBalancesAsIfDay.Disabled = true;
                 break;
             }
 
             case LightLevelOption.Night:
             {
-                nightButton.Pressed = true;
+                nightButton.ButtonPressed = true;
                 Editor.DayLightFraction = 0;
+
+                calculateBalancesAsIfDay.ButtonPressed = false;
+                calculateBalancesAsIfDay.Disabled = true;
                 break;
             }
 
             case LightLevelOption.Average:
             {
-                averageLightButton.Pressed = true;
+                averageLightButton.ButtonPressed = true;
                 Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
+
+                calculateBalancesAsIfDay.ButtonPressed = false;
                 break;
             }
 
             case LightLevelOption.Current:
             {
-                currentLightButton.Pressed = true;
+                currentLightButton.ButtonPressed = true;
                 Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
                 break;
             }
@@ -2371,7 +2578,7 @@ public partial class CellEditorComponent :
             case SelectionMenuTab.Structure:
             {
                 structureTab.Show();
-                structureTabButton.Pressed = true;
+                structureTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
                 break;
             }
@@ -2379,7 +2586,7 @@ public partial class CellEditorComponent :
             case SelectionMenuTab.Membrane:
             {
                 appearanceTab.Show();
-                appearanceTabButton.Pressed = true;
+                appearanceTabButton.ButtonPressed = true;
                 MicrobePreviewMode = true;
                 break;
             }
@@ -2387,7 +2594,7 @@ public partial class CellEditorComponent :
             case SelectionMenuTab.Behaviour:
             {
                 behaviourEditor.Show();
-                behaviourTabButton.Pressed = true;
+                behaviourTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
                 break;
             }
@@ -2409,18 +2616,18 @@ public partial class CellEditorComponent :
             autoEvoPredictionFailedLabel.Hide();
         }
 
-        var energyFormat = TranslationServer.Translate("ENERGY_IN_PATCH_SHORT");
+        var energyFormat = Localization.Translate("ENERGY_IN_PATCH_SHORT");
 
         if (!string.IsNullOrEmpty(bestPatchName))
         {
             var formatted = StringUtils.ThreeDigitFormat(bestPatchEnergyGathered);
 
             bestPatchLabel.Text =
-                energyFormat.FormatSafe(TranslationServer.Translate(bestPatchName), formatted);
+                energyFormat.FormatSafe(Localization.Translate(bestPatchName), formatted);
         }
         else
         {
-            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+            bestPatchLabel.Text = Localization.Translate("N_A");
         }
 
         if (!string.IsNullOrEmpty(worstPatchName))
@@ -2428,18 +2635,18 @@ public partial class CellEditorComponent :
             var formatted = StringUtils.ThreeDigitFormat(worstPatchEnergyGathered);
 
             worstPatchLabel.Text =
-                energyFormat.FormatSafe(TranslationServer.Translate(worstPatchName), formatted);
+                energyFormat.FormatSafe(Localization.Translate(worstPatchName), formatted);
         }
         else
         {
-            worstPatchLabel.Text = TranslationServer.Translate("N_A");
+            worstPatchLabel.Text = Localization.Translate("N_A");
         }
     }
 
     private void DummyKeepTranslation()
     {
         // This keeps this translation string existing if we ever still want to use worst and best population numbers
-        TranslationServer.Translate("POPULATION_IN_PATCH_SHORT");
+        Localization.Translate("POPULATION_IN_PATCH_SHORT");
     }
 
     private void OpenAutoEvoPredictionDetails()
@@ -2508,7 +2715,7 @@ public partial class CellEditorComponent :
         if (PreviousPlayerGatheredEnergy != null)
         {
             totalEnergyLabel.Value = PreviousPlayerGatheredEnergy.Value;
-            totalEnergyLabel.HintTooltip =
+            totalEnergyLabel.TooltipText =
                 new LocalizedString("GATHERED_ENERGY_TOOLTIP", PreviousPlayerGatheredEnergy).ToString();
         }
         else
@@ -2563,7 +2770,7 @@ public partial class CellEditorComponent :
             if (value > 0.0005f)
                 return Math.Round(value, 3);
 
-            // Small values can get really small (and still be different from getting 0 energy due to fitness) so
+            // Small values can get tiny (and still be different from getting 0 energy due to fitness) so
             // this is here for that reason
             return Math.Round(value, 8);
         }
@@ -2603,7 +2810,7 @@ public partial class CellEditorComponent :
     {
         autoEvoPredictionExplanationLabel.ExtendedBbcode = predictionDetailsText != null ?
             predictionDetailsText.ToString() :
-            TranslationServer.Translate("NO_DATA_TO_SHOW");
+            Localization.Translate("NO_DATA_TO_SHOW");
     }
 
     private OrganelleDefinition GetOrganelleDefinition(string name)

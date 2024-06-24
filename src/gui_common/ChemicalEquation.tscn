@@ -1,56 +1,59 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://d3vq1x8lvthvt"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/ChemicalEquation.cs" type="Script" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/ProcessProcessing.png" type="Texture" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=4]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/gui_common/ChemicalEquation.cs" id="2"]
+[ext_resource type="Texture2D" uid="uid://cyrha88k4ioqh" path="res://assets/textures/gui/bevel/ProcessProcessing.png" id="3"]
+[ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="4_77wn0"]
+[ext_resource type="LabelSettings" uid="uid://4teclbsvoawb" path="res://src/gui_common/fonts/Body-Bold-Smaller-Red.tres" id="4_vbkf3"]
+[ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="5_tr4hc"]
+[ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="5_wdgi7"]
 
-[sub_resource type="Theme" id=1]
-default_font = ExtResource( 4 )
+[sub_resource type="Theme" id="1"]
+default_font = ExtResource("5_wdgi7")
+default_font_size = 18
 
-[node name="ChemicalEquation" type="VBoxContainer"]
+[node name="ChemicalEquation" type="VBoxContainer" node_paths=PackedStringArray("title", "spinner", "firstLineContainer")]
 process_priority = 7
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-TitlePath = NodePath("HBoxContainer/Label")
-SpinnerPath = NodePath("HBoxContainer/Spinner")
-FirstLineContainerPath = NodePath("FirstLine")
+theme = ExtResource("1")
+script = ExtResource("2")
+DefaultTitleFont = ExtResource("4_77wn0")
+title = NodePath("HBoxContainer/Label")
+spinner = NodePath("HBoxContainer/SpinnerNode/Spinner")
+firstLineContainer = NodePath("FirstLine")
+speedLimitedTitleFont = ExtResource("4_vbkf3")
+equationArrowTexture = ExtResource("5_tr4hc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 32.0
+layout_mode = 2
 
-[node name="Spinner" type="TextureRect" parent="HBoxContainer"]
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-rect_pivot_offset = Vector2( 16, 16 )
-texture = ExtResource( 3 )
-expand = true
+[node name="SpinnerNode" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Spinner" type="TextureRect" parent="HBoxContainer/SpinnerNode"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 36.0
-margin_top = 6.0
-margin_right = 1280.0
-margin_bottom = 26.0
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
 text = "Process name goes here..."
-autowrap = true
+label_settings = ExtResource("4_77wn0")
+vertical_alignment = 1
 max_lines_visible = 5
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="FirstLine" type="HBoxContainer" parent="."]
-margin_top = 36.0
-margin_right = 1280.0
-margin_bottom = 36.0
+layout_mode = 2
 mouse_filter = 2
-theme = SubResource( 1 )
+theme = SubResource("1")

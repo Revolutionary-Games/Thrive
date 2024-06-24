@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2023-06-24 20:02+0000\n"
-"Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -315,6 +315,19 @@ msgstr "Lomítko"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Otevřít náhled pokročilého nastavení"
+
 msgid "BASE_MOBILITY"
 msgstr "Základní pohyblivost"
 
@@ -326,15 +339,6 @@ msgstr "Základní"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Návrat k náhledu základního nastavení"
-
-msgid "BASSBOOST"
-msgstr "Bassboost"
-
-msgid "BASSDOWN"
-msgstr "Ubrat basy"
-
-msgid "BASSUP"
-msgstr "Přidat basy"
 
 msgid "BATHYPELAGIC"
 msgstr "Batypelagiál (hloubka oceánu do 4000m)"
@@ -729,8 +733,20 @@ msgstr "Navštivte naši komunitní wiki"
 msgid "COMPILED_AT_COLON"
 msgstr "Postaveno v:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Postaveno v:"
+
 msgid "COMPOUNDS"
 msgstr "Sloučeniny"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Sloučenina k nalezení:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Sloučenina k nalezení:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt sloučeniny"
@@ -738,8 +754,24 @@ msgstr "Zobrazit / skrýt sloučeniny"
 msgid "COMPOUNDS_COLON"
 msgstr "Sloučeniny:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Mračna sloučenin"
@@ -755,6 +787,25 @@ msgstr "{0} koncentrace se snížily o {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Spotřeba {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Balanc sloučenin"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Spotřeba {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Balanc sloučenin"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Sloučenina k nalezení:"
@@ -832,8 +883,188 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Pokračovat k prototypům období?"
 
+#, fuzzy
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_L2"
+msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Citlivost ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_R2"
+msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr "Vizualizéry osy ovladače:"
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr "Dezónové zóny ovladače"
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr "Mrtvá zóna:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr "Tlačítko Controller zobrazí výzvu typu:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr "Tlačítko Controller zobrazí výzvu typu:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr "Mrtvá zóna:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr "Mrtvá zóna:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr "Mrtvá zóna:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr "Dezónové zóny ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr "Tlačítko Controller zobrazí výzvu typu:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr "Tlačítko Controller zobrazí výzvu typu:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr "Vizualizéry osy ovladače:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr "Tlačítko Controller zobrazí výzvu typu:"
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr "Mrtvá zóna:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr "Mrtvá zóna:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr "Mrtvá zóna:"
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr "Citlivost ovladače"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr "Mrtvá zóna:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_Y"
+msgstr "Mrtvá zóna:"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "Dezónové zóny ovladače"
@@ -852,6 +1083,10 @@ msgstr "Tlačítko Controller zobrazí výzvu typu:"
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Citlivost ovladače"
 
+#, fuzzy
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr "Dezónové zóny ovladače"
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopírovat chybu do schránky"
 
@@ -864,6 +1099,10 @@ msgstr "Protanopie (Červená-Zelená)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (Modrá-Žlutá)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "Vlákna:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Vymazání vybraných vstupů"
@@ -1021,7 +1260,8 @@ msgstr "(náhodně spawnuté překvapení ve hře)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Povolení cyklu den/noc"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(POZOR: fotosyntéza se stává mnohem méně životaschopnou)"
 
 #, fuzzy
@@ -1201,12 +1441,6 @@ msgstr "Rychlost trávení:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-msgid "DIRECTIONL"
-msgstr "Vlevo"
-
-msgid "DIRECTIONR"
-msgstr "Vpravo"
-
 msgid "DISABLED"
 msgstr "Vypnuto"
 
@@ -1272,6 +1506,14 @@ msgstr "Zobrazit panel schopností"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Zobrazení částic v pozadí"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Zobrazit panel schopností"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Zobrazit panel schopností"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Zobrazit jména tlačítek výběru částí"
@@ -1434,11 +1676,69 @@ msgstr "Povolit všechny kompatibilní mody"
 msgid "ENABLE_EDITOR"
 msgstr "Zapnout editor"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povolit světelné efekty rozhraní"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Více organel"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Rozpojit všechny"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Agresivní mikrobi budou pronásledovat kořist na větší vzdálenosti\n"
+"a při napadení predátory jsou náchylnější k boji.\n"
+"Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
+"a je méně pravděpodobné, že budou používat toxiny proti predátorům."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Odpojené organely"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
+"a mohou být mnohem náročnější na kusy.\n"
+"Reagující mikroby se dříve přepnou na nové cíle."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Přeměňuje [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] na [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Také přeměňuje [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Vstupte do editoru a upravte svůj druh"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Chybí název"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1550,12 +1850,12 @@ msgid "EXIT"
 msgstr "Odejít"
 
 #, fuzzy
-msgid "EXIT_TO_LAUNCHER"
-msgstr "Spustit E"
+msgid "EXIT_EDITOR"
+msgstr "Přejít do následující záložky editoru"
 
 #, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(rychlost mutací AI druhů)"
+msgid "EXIT_TO_LAUNCHER"
+msgstr "Spustit E"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exportovat všechny světy"
@@ -1667,6 +1967,18 @@ msgstr "Zveřejněno na {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Tato položka byla zkrácena z důvodu přílišné délky, celý obsah si prosím přečtěte v originále. {0}"
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Termoplast je struktura dvou membrán, která obsahuje termosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, která byla asimilována pro použití svým eukaryotickým hostitelem. Pigmenty v termoplastu jsou schopny využít energii rozdílných teplot v prostředí k produkci [thrive:compound type=\"atp\"][/thrive:compound] ve vodě v procesu známem jako [b]termosyntéza[/b]. Rychlost produkce [thrive:compound type=\"atp\"][/thrive:compound] je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a teplotě."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrovat věci podle kategorie:"
@@ -1859,15 +2171,6 @@ msgstr "Generace:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Navštiv náš GitHub repozitář"
 
-msgid "GLES2"
-msgstr "GLES2"
-
-msgid "GLES2_MODE_WARNING"
-msgstr "Varování režimu GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -1986,12 +2289,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sirovodík"
-
-msgid "HYPERL"
-msgstr "Levý Hyper"
-
-msgid "HYPERR"
-msgstr "Pravý Hyper"
 
 msgid "ICESHARD"
 msgstr "Ledový střep"
@@ -2227,10 +2524,17 @@ msgstr "Červen"
 msgid "KEY_BACK"
 msgstr "Zpět"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Zpět"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Nalezen konflikt s {0}.\n"
 "Chcete odstranit vstup z {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Clear (smazat)"
@@ -2253,6 +2557,10 @@ msgstr "Oblíbené"
 msgid "KEY_FORWARD"
 msgstr "Dopředu"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Home"
+
 msgid "KEY_HELP"
 msgstr "Help"
 
@@ -2262,14 +2570,30 @@ msgstr "Home"
 msgid "KEY_HOMEPAGE"
 msgstr "Domovská stránka"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Help"
+
 msgid "KEY_INSERT"
 msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Provoz"
 
 msgid "KEY_LEFT"
 msgstr "Vlevo"
 
 msgid "KEY_MENU"
 msgstr "Menu"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tabulátor"
 
 msgid "KEY_OPENURL"
 msgstr "Otevřít URL"
@@ -2563,6 +2887,10 @@ msgstr "Maličký"
 msgid "LINE_COLOUR"
 msgstr "Barva čáry:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Chybí název"
+
 msgid "LIPASE"
 msgstr "Lipáza"
 
@@ -2731,6 +3059,7 @@ msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound
 msgid "METRICS"
 msgstr "Metriky výkonu"
 
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "Čas procesu: {0} s\n"
@@ -3060,6 +3389,10 @@ msgstr "Sestava modu:"
 
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Hlavní třída sestavy modu:"
+
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "{0}: zavolání unload metody sestavení modu selhalo"
 
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: specifikovaná třída modu \"{1}\" nebyla nalezena v sestavení modu"
@@ -3448,6 +3781,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Základní pohyb"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3538,6 +3878,14 @@ msgstr ""
 "Protože Thrive je v současné době na počátku vývoje, kompatibilita ukládání není prioritou.\n"
 "Můžeš nahlásit jakékoli problémy, se kterými se setkáš, ale právě teď nemají nejvyšší prioritu.\n"
 "Chceš přesto zkusit načíst uložení?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Varování režimu GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
 
 msgid "OPEN_FOLDER"
 msgstr "Otevřít složku"
@@ -3706,6 +4054,7 @@ msgstr "Kyslík"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxizom"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
@@ -3826,6 +4175,13 @@ msgstr "Načítání souboru pck ({0}) se nezdařilo protože soubor neexistuje"
 
 msgid "PEACEFUL"
 msgstr "Mírumilovnost"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4500,9 +4856,6 @@ msgstr "Oxid křemičitý"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má silnou křemičitou stěnu. Dokáže dobře odolat celkovému poškození a je velmi odolný proti fyzickému poškození. Pro udržení své formy vyžaduje také méně energie. Avšak velice zpomaluje buňku a buňka absorbuje zdroje sníženou rychlostí."
 
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
-
 msgid "SIZE_COLON"
 msgstr "Velikost:"
 
@@ -4641,6 +4994,10 @@ msgstr "rozšířen do prostředí:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu pozastavení"
 
+#, fuzzy
+msgid "START"
+msgstr "Začínání"
+
 msgid "STARTING"
 msgstr "Začínání"
 
@@ -4657,6 +5014,20 @@ msgstr "Požadovaný restart"
 
 msgid "STATISTICS"
 msgstr "Statistiky"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Základní pohyb"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Inicializace knihovny klienta služby Steam se nezdařila"
@@ -4727,23 +5098,11 @@ msgstr "Úložný prostor"
 msgid "STORAGE_COLON"
 msgstr "Úložný prostor:"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Přihlášen jako: {0}"
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -4803,12 +5162,6 @@ msgstr "Spáchat sebevraždu"
 
 msgid "SUNLIGHT"
 msgstr "Sluneční svit"
-
-msgid "SUPERL"
-msgstr "Levá klávesa Windows/Command"
-
-msgid "SUPERR"
-msgstr "Pravá klávesa Windows/Command"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "Podporovatelé"
@@ -5085,10 +5438,6 @@ msgstr ""
 msgid "TOGGLE_PAUSE"
 msgstr "Pozastavit"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Přepnout spojování"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Přepnout rozpojování"
 
@@ -5105,14 +5454,76 @@ msgstr "Status:"
 msgid "TOTAL_SAVES"
 msgstr "Celkem uloženo:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Některé možnosti mohou být nedostupné pokud je zapnut realistický režim"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toxinová\n"
+"Vakuola"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomy jsou shluky proteinů zabalené v proteinovém plášti. Mají schopnost změnit [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] daleko rychleji než cytoplasma skrze proces nazývaný [b]Buněčné dýchání[/b]. Potřebuje na to ale [thrive:compound type=\"oxygen\"][/thrive:compound] aby fungovalo, a nízký objem [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomalí schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]. Jelikož jsou metabolosomy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Rezistence vůči toxinům"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Rezistence vůči toxinům"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Typ:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Agresivní mikrobi budou pronásledovat kořist na větší vzdálenosti\n"
+"a při napadení predátory jsou náchylnější k boji.\n"
+"Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
+"a je méně pravděpodobné, že budou používat toxiny proti predátorům."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxinová\n"
 "Vakuola"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
@@ -5127,12 +5538,6 @@ msgstr "Překladatelé"
 
 msgid "TRANSPARENCY"
 msgstr "Průhlednost"
-
-msgid "TREBLEDOWN"
-msgstr "Ubrat výšky"
-
-msgid "TREBLEUP"
-msgstr "Přidat výšky"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -5404,9 +5809,6 @@ msgstr "Neznámý"
 msgid "UNKNOWN_MOUSE"
 msgstr "Neznámá myš"
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Neznáme na Windows"
-
 #, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Umístit organelu"
@@ -5492,6 +5894,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Řasy jsou podobné bičíkům, ale místo poskytování tlačící síly poskytují sílu rotační, která pomáhá buňkám se otáčet."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5605,6 +6011,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zdrojový kód"
@@ -6731,6 +7140,48 @@ msgstr "Přiblížit"
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "Bassboost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Ubrat basy"
+
+#~ msgid "BASSUP"
+#~ msgstr "Přidat basy"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Vlevo"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Vpravo"
+
+#~ msgid "HYPERL"
+#~ msgstr "Levý Hyper"
+
+#~ msgid "HYPERR"
+#~ msgstr "Pravý Hyper"
+
+#~ msgid "SUPERL"
+#~ msgstr "Levá klávesa Windows/Command"
+
+#~ msgid "SUPERR"
+#~ msgstr "Pravá klávesa Windows/Command"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Ubrat výšky"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Přidat výšky"
+
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Neznáme na Windows"
+
+#~ msgid "GLES2"
+#~ msgstr "GLES2"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Celková populace:"
 
@@ -6800,10 +7251,6 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Vlastní uživatelské jméno:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Zobrazit panel schopností"
 
 #, fuzzy
 #~ msgid "NOT_RUNNING_DOT"

@@ -260,10 +260,10 @@ public class RunOnAxisAttribute : InputAttribute
         return result;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
         // If UseDiscreteKeyInputs is true CurrentResult evaluation actually changes state, which is not optimal...
-        var currentResult = GetCurrentResult(delta);
+        var currentResult = GetCurrentResult((float)delta);
         if (Math.Abs(currentResult - DefaultState) > MathUtils.EPSILON || InvokeAlsoWithNoInput)
         {
             if (TrackInputMethod)
@@ -446,13 +446,13 @@ public class RunOnAxisAttribute : InputAttribute
         {
             if (Look == LookMode.Pitch)
             {
-                scaling = Constants.BASE_VERTICAL_RESOLUTION_FOR_INPUT / InputManager.WindowSizeForInputs.y;
+                scaling = Constants.BASE_VERTICAL_RESOLUTION_FOR_INPUT / InputManager.WindowSizeForInputs.Y;
             }
             else
             {
                 // Assume yaw direction stands in also for other mouse input modes well enough
 
-                scaling = Constants.BASE_HORIZONTAL_RESOLUTION_FOR_INPUT / InputManager.WindowSizeForInputs.x;
+                scaling = Constants.BASE_HORIZONTAL_RESOLUTION_FOR_INPUT / InputManager.WindowSizeForInputs.X;
             }
         }
 

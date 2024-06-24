@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -24,6 +25,8 @@ public interface ICacheableData : IDisposable
 
 public static class CacheableDataExtensions
 {
+    private static HashSet<long> reportedHashes = new();
+
     public static T? FetchDataFromCache<TSource, T>(this TSource currentParameters, Func<long, T?> dataFetch)
         where T : class, ICacheableData
         where TSource : ICacheableData
@@ -51,7 +54,24 @@ public static class CacheableDataExtensions
 
     public static void OnCacheHashCollision<T>(long hash)
     {
-        GD.PrintErr("Hash collision for procedural cache data. Losing performance due to recomputation! ",
-            "Multiple ", typeof(T).Name, " have hash of ", hash);
+        // Only report each hash warning once (until clear)
+        lock (reportedHashes)
+        {
+            // Using just the hash and not (hash, T) is probably good enough to report any problems that matter,
+            // collisions should anyway be super rare so collisions with different types should be even rarer
+            if (reportedHashes.Add(hash))
+            {
+                GD.PrintErr("Hash collision for procedural cache data. Losing performance due to " +
+                    "recomputation! ", "Multiple ", typeof(T).Name, " have hash of ", hash);
+            }
+        }
+    }
+
+    public static void ClearCollisionWarnings()
+    {
+        lock (reportedHashes)
+        {
+            reportedHashes.Clear();
+        }
     }
 }

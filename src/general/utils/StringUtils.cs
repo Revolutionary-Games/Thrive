@@ -9,16 +9,23 @@ using Godot;
 /// </summary>
 public static class StringUtils
 {
+    public const int INDENT_AMOUNT = 4;
+
     /// <summary>
     ///   Truncates large numbers with suffix added (e.g. M for million).
     ///   Adapted from https://stackoverflow.com/a/30181106 to allow negatives and translation.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: see if it would be possible to make a variant of this method that writes to a StringBuilder
+    ///   </para>
+    /// </remarks>
     public static string FormatNumber(this double number, bool withSuffix = true)
     {
         if (number is >= 1000000000 or <= -1000000000)
         {
             return withSuffix ?
-                TranslationServer.Translate("BILLION_ABBREVIATION")
+                Localization.Translate("BILLION_ABBREVIATION")
                     .FormatSafe(number.ToString("0,,,.###", CultureInfo.CurrentCulture)) :
                 number.ToString("0,,,.###", CultureInfo.CurrentCulture);
         }
@@ -26,7 +33,7 @@ public static class StringUtils
         if (number is >= 1000000 or <= -1000000)
         {
             return withSuffix ?
-                TranslationServer.Translate("MILLION_ABBREVIATION")
+                Localization.Translate("MILLION_ABBREVIATION")
                     .FormatSafe(number.ToString("0,,.##", CultureInfo.CurrentCulture)) :
                 number.ToString("0,,.##", CultureInfo.CurrentCulture);
         }
@@ -34,7 +41,7 @@ public static class StringUtils
         if (number is >= 1000 or <= -1000)
         {
             return withSuffix ?
-                TranslationServer.Translate("KILO_ABBREVIATION")
+                Localization.Translate("KILO_ABBREVIATION")
                     .FormatSafe(number.ToString("0,.#", CultureInfo.CurrentCulture)) :
                 number.ToString("0,.#", CultureInfo.CurrentCulture);
         }
@@ -213,6 +220,26 @@ public static class StringUtils
         return value.ToString("F1", CultureInfo.CurrentCulture);
     }
 
+    /// <summary>
+    ///   Format variant that writes the result to a <see cref="StringBuilder"/>
+    /// </summary>
+    public static void ThreeDigitFormat(double value, StringBuilder result)
+    {
+        if (value is >= 1000 or <= -1000)
+        {
+            result.Append(FormatNumber(value));
+            return;
+        }
+
+        if (value is >= 100 or <= -100)
+        {
+            result.Append(value.ToString("F0", CultureInfo.CurrentCulture));
+            return;
+        }
+
+        result.Append(value.ToString("F1", CultureInfo.CurrentCulture));
+    }
+
     public static string ThreeDigitFormat(long value)
     {
         if (value is >= 1000 or <= -1000)
@@ -231,7 +258,8 @@ public static class StringUtils
 
     public static string FormatPositiveWithLeadingPlus(float value)
     {
-        if (value < 0)
+        // This check works better than "< 0" as this handles negative zero
+        if (float.IsNegative(value))
             return value.ToString(CultureInfo.CurrentCulture);
 
         return '+' + value.ToString(CultureInfo.CurrentCulture);
@@ -247,7 +275,7 @@ public static class StringUtils
 
     public static string FormatPositiveWithLeadingPlus(string formatted, double value)
     {
-        if (value < 0)
+        if (double.IsNegative(value))
             return formatted;
 
         return '+' + formatted;
@@ -268,6 +296,16 @@ public static class StringUtils
     public static string SlashSeparatedNumbersFormat(long numerator, long denominator)
     {
         return ThreeDigitFormat(numerator) + " / " + ThreeDigitFormat(denominator);
+    }
+
+    /// <summary>
+    ///   Variant of this method that directly puts the result into a <see cref="StringBuilder"/>
+    /// </summary>
+    public static void SlashSeparatedNumbersFormat(double numerator, double denominator, StringBuilder result)
+    {
+        ThreeDigitFormat(numerator, result);
+        result.Append(" / ");
+        ThreeDigitFormat(denominator, result);
     }
 
     /// <summary>
@@ -439,7 +477,7 @@ public static class StringUtils
 
         if (number < 0)
         {
-            // This also isn't a thing in roman numerals but we should support this
+            // This also isn't a thing in roman numerals, but we should support this
             builder.Append('-');
 
             number *= -1;
@@ -526,12 +564,21 @@ public static class StringUtils
         return builder.ToString();
     }
 
-    public static string GetIndent(int indent)
+    public static string GetIndent(int indentLevel)
     {
-        if (indent < 1)
+        if (indentLevel < 1)
             return string.Empty;
 
-        return new string(' ', indent);
+        return new string(' ', indentLevel * INDENT_AMOUNT);
+    }
+
+    public static bool ShouldSkipIndent(string line)
+    {
+        // No indent on preprocessor lines
+        if (line.StartsWith('#'))
+            return true;
+
+        return false;
     }
 
     public static int DetectLineIndentationLevel(string line)
@@ -551,64 +598,6 @@ public static class StringUtils
         }
 
         return spaceCount;
-    }
-
-    // TODO: proper unit tests: https://github.com/Revolutionary-Games/Thrive/issues/1571
-    public static void TestRomanNumerals()
-    {
-        // ReSharper disable StringLiteralTypo
-        if (FormatAsRomanNumerals(1) != "I")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(3) != "III")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(4) != "IV")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(7) != "VII")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(14) != "XIV")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(39) != "XXXIX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(246) != "CCXLVI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(789) != "DCCLXXXIX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(2421) != "MMCDXXI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(160) != "CLX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(207) != "CCVII")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1009) != "MIX")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1066) != "MLXVI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1776) != "MDCCLXXVI")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1918) != "MCMXVIII")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(1944) != "MCMXLIV")
-            throw new Exception();
-
-        if (FormatAsRomanNumerals(2023) != "MMXXIII")
-            throw new Exception();
-
-        // ReSharper restore StringLiteralTypo
     }
 
     /// <summary>

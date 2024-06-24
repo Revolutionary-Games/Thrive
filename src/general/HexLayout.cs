@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -17,7 +18,7 @@ using Newtonsoft.Json;
 /// </remarks>
 /// <typeparam name="T">The concrete type of the hex to hold</typeparam>
 [UseThriveSerializer]
-public abstract class HexLayout<T> : ICollection<T>
+public abstract class HexLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     where T : class, IPositionedHex
 {
     [JsonProperty]
@@ -36,6 +37,7 @@ public abstract class HexLayout<T> : ICollection<T>
         this.onRemoved = onRemoved;
     }
 
+    [JsonConstructor]
     public HexLayout()
     {
     }
@@ -282,6 +284,7 @@ public abstract class HexLayout<T> : ICollection<T>
     // TODO: remove this bit of boxing here. https://nede.dev/blog/preventing-unnecessary-allocation-in-net-collections
     // Need to switch this from ICollection to just IEnumerable<T> (which hopefully doesn't break saving or can be
     // worked around with a custom converter) and directly return a list typed enumerator.
+    [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()
     {
         return existingHexes.GetEnumerator();
@@ -292,13 +295,14 @@ public abstract class HexLayout<T> : ICollection<T>
         return JsonConvert.SerializeObject(this);
     }
 
+    [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
         return existingHexes.GetEnumerator();
     }
 
     /// <summary>
-    ///   Loops though all hexes and checks if there any without connection to the rest.
+    ///   Loops though all hexes and checks if there are any without connection to the rest.
     /// </summary>
     /// <returns>
     ///   Returns a list of hexes that are not connected to the rest
@@ -375,7 +379,7 @@ public abstract class HexLayout<T> : ICollection<T>
     /// </summary>
     /// <param name="hex">The hex to get the neighbours for</param>
     /// <param name="hexCache">The cache of all existing hex locations for fast lookup</param>
-    /// <returns>A list of neighbors that are part of an hex</returns>
+    /// <returns>A list of neighbors that are part of a hex</returns>
     private IEnumerable<Hex> GetNeighborHexes(Hex hex, HashSet<Hex> hexCache)
     {
         return Hex.HexNeighbourOffset

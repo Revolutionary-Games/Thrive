@@ -4,13 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 using Systems;
 
 /// <summary>
 ///   Represents an early multicellular species that is composed of multiple cells
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
@@ -31,7 +32,7 @@ public class EarlyMulticellularSpecies : Species
     public List<CellType> CellTypes { get; private set; } = new();
 
     /// <summary>
-    ///   All organelles in all of the species' placed cells (there can be a lot of duplicates in this list)
+    ///   All organelles in all the species' placed cells (there can be a lot of duplicates in this list)
     /// </summary>
     [JsonIgnore]
     public IEnumerable<OrganelleTemplate> Organelles => Cells.SelectMany(c => c.Organelles);
@@ -103,6 +104,24 @@ public class EarlyMulticellularSpecies : Species
 
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
         }
+    }
+
+    public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)
+    {
+        if (spawnEnvironment is not IMicrobeSpawnEnvironment microbeSpawnEnvironment)
+            throw new ArgumentException("Early multicellular species must have microbe spawn environment info");
+
+        // TODO: this would be excellent to match the actual cell type being used for spawning
+        var cellType = Cells[0].CellType;
+
+        // TODO: CACHING IS MISSING from here (but microbe has it)
+        // TODO: should moving be false in some cases?
+        var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(cellType.Organelles,
+            cellType.MembraneType, true, PlayerSpecies, microbeSpawnEnvironment.CurrentBiome,
+            microbeSpawnEnvironment.WorldSettings);
+
+        MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,
+            spawnEnvironment.DaylightInfo);
     }
 
     public override void ApplyMutation(Species mutation)

@@ -4,7 +4,10 @@ using Godot;
 using Newtonsoft.Json;
 using Path = System.IO.Path;
 
-public class NewModGUI : Control
+/// <summary>
+///   GUI for setting up the basic structure of a mod (when done creates the folder and files for the new mod)
+/// </summary>
+public partial class NewModGUI : Control
 {
     [Export]
     public NodePath? DialogPath;
@@ -86,13 +89,13 @@ public class NewModGUI : Control
     private ModInfo? editedInfo;
 
     [Signal]
-    public delegate void OnCancelled();
+    public delegate void OnCanceledEventHandler();
 
     /// <summary>
     ///   Emitted when creation is accepted. Contains the full JSON serialized <see cref="FullModDetails"/> object.
     /// </summary>
     [Signal]
-    public delegate void OnAccepted(string newModInfo);
+    public delegate void OnAcceptedEventHandler(string newModInfo);
 
     public override void _Ready()
     {
@@ -158,7 +161,7 @@ public class NewModGUI : Control
     private void Closed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnCancelled));
+        EmitSignal(SignalName.OnCanceled);
     }
 
     private void Cancel()
@@ -191,7 +194,7 @@ public class NewModGUI : Control
         ClearError();
 
         dialog.Hide();
-        EmitSignal(nameof(OnAccepted), serialized);
+        EmitSignal(SignalName.OnAccepted, serialized);
     }
 
     private void WikiLinkPressed()
@@ -208,7 +211,7 @@ public class NewModGUI : Control
         {
             Author = Settings.EnvironmentUserName,
             Version = "1.0",
-            Description = TranslationServer.Translate("NEW_MOD_DEFAULT_DESCRIPTION"),
+            Description = Localization.Translate("NEW_MOD_DEFAULT_DESCRIPTION"),
             License = "proprietary",
             RecommendedThriveVersion = Constants.Version,
             MinimumThriveVersion = Constants.Version,
@@ -234,7 +237,7 @@ public class NewModGUI : Control
         pckName.Text = editedInfo.PckToLoad;
         modAssembly.Text = editedInfo.ModAssembly;
         assemblyModClass.Text = editedInfo.AssemblyModClass;
-        assemblyModAutoHarmony.Pressed = editedInfo.UseAutoHarmony ?? false;
+        assemblyModAutoHarmony.ButtonPressed = editedInfo.UseAutoHarmony ?? false;
     }
 
     private bool ReadControlsToEditedInfo()
@@ -253,7 +256,7 @@ public class NewModGUI : Control
         editedInfo.PckToLoad = pckName.Text;
         editedInfo.ModAssembly = modAssembly.Text;
         editedInfo.AssemblyModClass = assemblyModClass.Text;
-        editedInfo.UseAutoHarmony = assemblyModAutoHarmony.Pressed;
+        editedInfo.UseAutoHarmony = assemblyModAutoHarmony.ButtonPressed;
 
         if (string.IsNullOrWhiteSpace(infoUrl.Text))
         {
@@ -261,13 +264,13 @@ public class NewModGUI : Control
         }
         else
         {
-            if (Uri.TryCreate(infoUrl.Text, UriKind.Absolute, out Uri parsed))
+            if (Uri.TryCreate(infoUrl.Text, UriKind.Absolute, out var parsed))
             {
                 editedInfo.InfoUrl = parsed;
             }
             else
             {
-                SetError(TranslationServer.Translate("INVALID_URL_FORMAT"));
+                SetError(Localization.Translate("INVALID_URL_FORMAT"));
                 return false;
             }
         }
@@ -282,19 +285,19 @@ public class NewModGUI : Control
 
         if (string.IsNullOrWhiteSpace(editedInfo.InternalName))
         {
-            SetError(TranslationServer.Translate("INTERNAL_NAME_REQUIRED"));
+            SetError(Localization.Translate("INTERNAL_NAME_REQUIRED"));
             return null;
         }
 
         if (!char.IsUpper(editedInfo.InternalName, 0))
         {
-            SetError(TranslationServer.Translate("INTERNAL_NAME_REQUIRES_CAPITAL"));
+            SetError(Localization.Translate("INTERNAL_NAME_REQUIRES_CAPITAL"));
             return null;
         }
 
         if (ModLoader.LoadModInfo(editedInfo.InternalName, false) != null)
         {
-            SetError(TranslationServer.Translate("INTERNAL_NAME_IN_USE"));
+            SetError(Localization.Translate("INTERNAL_NAME_IN_USE"));
             return null;
         }
 
@@ -309,7 +312,7 @@ public class NewModGUI : Control
         }
         catch (JsonSerializationException e)
         {
-            SetError(TranslationServer.Translate("MISSING_OR_INVALID_REQUIRED_FIELD").FormatSafe(e.Message));
+            SetError(Localization.Translate("MISSING_OR_INVALID_REQUIRED_FIELD").FormatSafe(e.Message));
             return null;
         }
 
@@ -319,7 +322,7 @@ public class NewModGUI : Control
         }
         catch (Exception e)
         {
-            SetError(TranslationServer.Translate("ADDITIONAL_VALIDATION_FAILED").FormatSafe(e.Message));
+            SetError(Localization.Translate("ADDITIONAL_VALIDATION_FAILED").FormatSafe(e.Message));
             return null;
         }
 
@@ -333,7 +336,7 @@ public class NewModGUI : Control
             ClearError();
         }
 
-        errorDisplay.Text = TranslationServer.Translate("FORM_ERROR_MESSAGE").FormatSafe(message);
+        errorDisplay.Text = Localization.Translate("FORM_ERROR_MESSAGE").FormatSafe(message);
     }
 
     private void ClearError()

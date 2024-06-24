@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using Godot;
 
-public class ControllerDeadzoneConfiguration : CustomWindow
+/// <summary>
+///   Popup that has controller deadzone configuration options for the player to use
+/// </summary>
+public partial class ControllerDeadzoneConfiguration : CustomWindow
 {
     [Export]
     public NodePath? VisualizationContainerPath;
@@ -19,8 +22,8 @@ public class ControllerDeadzoneConfiguration : CustomWindow
     [Export]
     public NodePath ExplanationLabelPath = null!;
 
-    private const float SettleDownTimeStart = 4.5f;
-    private const float SettleDownTimeIncreaseMultiplier = 5;
+    private const double SettleDownTimeStart = 4.5f;
+    private const double SettleDownTimeIncreaseMultiplier = 5;
 
 #pragma warning disable CA2213
     private ControllerInputAxisVisualizationContainer visualizationContainer = null!;
@@ -33,7 +36,7 @@ public class ControllerDeadzoneConfiguration : CustomWindow
 #pragma warning restore CA2213
 
     private bool calibrating;
-    private float timeRemaining;
+    private double timeRemaining;
     private List<float>? currentDeadzones;
 
     public delegate void ControlsChangedDelegate(List<float> data);
@@ -57,7 +60,7 @@ public class ControllerDeadzoneConfiguration : CustomWindow
         // TODO: add separate sliders in this GUI to manually tweak all deadzones
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!Visible || !calibrating)
             return;
@@ -103,12 +106,12 @@ public class ControllerDeadzoneConfiguration : CustomWindow
         currentDeadzones = new List<float>(Settings.Instance.ControllerAxisDeadzoneAxes.Value);
 
         // Tweak to the right number of deadzones
-        while (currentDeadzones.Count > (int)JoystickList.AxisMax)
+        while (currentDeadzones.Count > (int)JoyAxis.Max)
         {
             currentDeadzones.RemoveAt(currentDeadzones.Count - 1);
         }
 
-        while (currentDeadzones.Count < (int)JoystickList.AxisMax)
+        while (currentDeadzones.Count < (int)JoyAxis.Max)
         {
             currentDeadzones.Add(currentDeadzones.Count > 0 ?
                 currentDeadzones[0] :
@@ -179,7 +182,7 @@ public class ControllerDeadzoneConfiguration : CustomWindow
             currentDeadzones[i] = 0;
         }
 
-        statusLabel.Text = TranslationServer.Translate("DEADZONE_CALIBRATION_INPROGRESS");
+        statusLabel.Text = Localization.Translate("DEADZONE_CALIBRATION_INPROGRESS");
         calibrating = true;
         applyButton.Disabled = true;
         startButton.Disabled = true;
@@ -200,7 +203,7 @@ public class ControllerDeadzoneConfiguration : CustomWindow
 
         visualizationContainer.OverrideDeadzones(currentDeadzones);
 
-        statusLabel.Text = TranslationServer.Translate("DEADZONE_CALIBRATION_IS_RESET");
+        statusLabel.Text = Localization.Translate("DEADZONE_CALIBRATION_IS_RESET");
     }
 
     private void OnFinishedCalibrating()
@@ -214,7 +217,7 @@ public class ControllerDeadzoneConfiguration : CustomWindow
 
         visualizationContainer.OverrideDeadzones(currentDeadzones);
 
-        statusLabel.Text = TranslationServer.Translate("DEADZONE_CALIBRATION_FINISHED");
+        statusLabel.Text = Localization.Translate("DEADZONE_CALIBRATION_FINISHED");
         calibrating = false;
         applyButton.Disabled = false;
         startButton.Disabled = false;

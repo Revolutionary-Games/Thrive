@@ -4,7 +4,7 @@
 ///   Formatted section of the main article content of a Thriveopedia page. Consists of a single rich text body and an
 ///   optional heading.
 /// </summary>
-public class WikiPageSection : VBoxContainer
+public partial class WikiPageSection : VBoxContainer
 {
     [Export]
     public NodePath? HeadingPath;

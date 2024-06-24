@@ -4,18 +4,20 @@ using Godot;
 /// <summary>
 ///   This is the last autoloaded class to perform some actions there
 /// </summary>
-public class PostStartupActions : Node
+[GodotAutoload]
+public partial class PostStartupActions : Node
 {
     private PostStartupActions()
     {
-        if (Engine.EditorHint)
+        if (Engine.IsEditorHint())
         {
             // Skip these actions when running in the Godot editor
             return;
         }
 
         // Queue window title set as setting it in the autoloads doesn't work yet
-        Invoke.Instance.Perform(() => { OS.SetWindowTitle("Thrive - " + Constants.Version); });
+        // TODO: when playing a devbuild use Constants.VersionFull here
+        Invoke.Instance.Perform(() => { DisplayServer.WindowSetTitle("Thrive - " + Constants.Version); });
     }
 
     public override void _Ready()
@@ -26,7 +28,7 @@ public class PostStartupActions : Node
 
         if (info == null)
         {
-            GD.Print("No build info file exists, can't tell exact commit");
+            GD.Print("No build info file exists, no more build info exists");
         }
         else
         {

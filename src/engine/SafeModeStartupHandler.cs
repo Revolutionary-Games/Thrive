@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using Godot;
+using LauncherThriveShared;
 using Newtonsoft.Json;
+using SharedBase.Models;
 
 /// <summary>
 ///   Handles starting the game with features disabled if there have been failed startup attempts
@@ -105,13 +107,45 @@ public static class SafeModeStartupHandler
         startupSucceeded = true;
 
         DeleteCurrentStartupInfoFile();
-        GD.Print(Constants.STARTUP_SUCCEEDED_MESSAGE);
+
+        // TODO: could maybe consider not printing this at error level in the future thanks
+        // to the new startup info file, which should prevent false positives of start failures
+        if (LaunchOptions.LaunchedThroughLauncher)
+        {
+            GD.PrintErr("The following is not an error, but is printed as an error to ensure launcher always " +
+                "sees it without buffering:");
+            GD.PrintErr(ThriveLauncherSharedConstants.STARTUP_SUCCEEDED_MESSAGE);
+        }
+        else
+        {
+            GD.Print(ThriveLauncherSharedConstants.STARTUP_SUCCEEDED_MESSAGE);
+        }
+
+        WriteCurrentStartInfo(LaunchOptions.StartId);
+    }
+
+    /// <summary>
+    ///   Writes startup file that the launcher can check even if there is a problem with seeing the output to detect
+    ///   if startup worked correctly
+    /// </summary>
+    private static void WriteCurrentStartInfo(string startId)
+    {
+        using var file = FileAccess.Open(Constants.LATEST_START_INFO_FILE, FileAccess.ModeFlags.Write);
+        if (file == null)
+        {
+            GD.PrintErr("Cannot write latest startup info file");
+            return;
+        }
+
+        var data = ThriveJsonConverter.Instance.SerializeObject(new ThriveStartInfo(DateTime.UtcNow, startId));
+
+        file.StoreString(data);
     }
 
     private static StartupAttemptInfo? LoadExistingStartupInfo()
     {
-        using var file = new File();
-        if (file.Open(Constants.STARTUP_ATTEMPT_INFO_FILE, File.ModeFlags.Read) != Error.Ok)
+        using var file = FileAccess.Open(Constants.STARTUP_ATTEMPT_INFO_FILE, FileAccess.ModeFlags.Read);
+        if (file == null)
         {
             // No previous startup info
             return null;
@@ -145,15 +179,15 @@ public static class SafeModeStartupHandler
 
         wroteInfoFile = true;
 
-        // When using a debugger, we don't want to do safe mode start ups
+        // When using a debugger, we don't want to do safe mode startups
         if (Debugger.IsAttached)
         {
             GD.Print("Not writing startup info as debugger is attached");
             return;
         }
 
-        using var file = new File();
-        if (file.Open(Constants.STARTUP_ATTEMPT_INFO_FILE, File.ModeFlags.Write) != Error.Ok)
+        using var file = FileAccess.Open(Constants.STARTUP_ATTEMPT_INFO_FILE, FileAccess.ModeFlags.Write);
+        if (file == null)
         {
             GD.PrintErr("Failed to open startup info file for writing");
             return;
@@ -164,13 +198,11 @@ public static class SafeModeStartupHandler
 
     private static void DeleteCurrentStartupInfoFile()
     {
-        using var directory = new Directory();
-
-        if (!directory.FileExists(Constants.STARTUP_ATTEMPT_INFO_FILE))
+        if (!FileAccess.FileExists(Constants.STARTUP_ATTEMPT_INFO_FILE))
             return;
 
         GD.Print("Startup successful, removing startup info file");
-        if (directory.Remove(Constants.STARTUP_ATTEMPT_INFO_FILE) != Error.Ok)
+        if (DirAccess.RemoveAbsolute(Constants.STARTUP_ATTEMPT_INFO_FILE) != Error.Ok)
             GD.PrintErr("Failed to delete startup info file, game will incorrectly enter safe mode on next start");
     }
 }

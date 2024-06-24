@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2022-03-22 18:22+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
 "Language: th_TH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -320,6 +320,19 @@ msgstr "แบ็กสแลช"
 msgid "BACKSPACE"
 msgstr "พื้นที่ด้านหลัง"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "ความคล่องตัว"
@@ -333,15 +346,6 @@ msgstr ""
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
-
-msgid "BASSBOOST"
-msgstr "เพิ่มเสียงเบส"
-
-msgid "BASSDOWN"
-msgstr "เบสลง"
-
-msgid "BASSUP"
-msgstr "เบสขึ้น"
 
 msgid "BATHYPELAGIC"
 msgstr "โซนมืด"
@@ -755,8 +759,20 @@ msgstr "ดำเนินการต่อ"
 msgid "COMPILED_AT_COLON"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
 msgid "COMPOUNDS"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "สารประกอบของเมฆ"
 
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -765,8 +781,22 @@ msgstr "ดำเนินการต่อ"
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "ดำเนินการต่อ"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "สารประกอบของเมฆ"
@@ -785,6 +815,24 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "สารประกอบของเมฆ"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "สารประกอบของเมฆ"
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "ดำเนินการต่อ"
 
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
@@ -854,7 +902,147 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
+
+msgid "CONTROLLER_AXIS_R2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr ""
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
 msgid "CONTROLLER_DEADZONES"
@@ -873,6 +1061,9 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
@@ -883,6 +1074,9 @@ msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
 msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+msgid "CPU_THREADS"
 msgstr ""
 
 msgid "CRAFTING_CLEAR_INPUTS"
@@ -1026,8 +1220,9 @@ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} 
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr ""
@@ -1188,12 +1383,6 @@ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} 
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr "ซ้าย"
-
-msgid "DIRECTIONR"
-msgstr "ขวา"
-
 msgid "DISABLED"
 msgstr ""
 
@@ -1252,6 +1441,14 @@ msgstr "ความสามารถ"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "ความสามารถ"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "ความสามารถ"
 
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
@@ -1413,10 +1610,59 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr "เปิดใช้งานตัวแก้ไข"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
+msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-msgid "ENABLE_GUI_LIGHT_EFFECTS"
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "วางออร์แกเนลล์"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "โปรตีนสังเคราะห์ Chemosynthesizing เป็นกลุ่มโปรตีนขนาดเล็กในไซโทพลาซึมที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์ เนื่องจากโปรตีนสังเคราะห์ทางเคมีจะแขวนลอยอยู่ในไซโตพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
@@ -1530,12 +1776,12 @@ msgid "EXIT"
 msgstr "ออก"
 
 #, fuzzy
-msgid "EXIT_TO_LAUNCHER"
-msgstr "เปิด E"
+msgid "EXIT_EDITOR"
+msgstr "เปิดใช้งานตัวแก้ไข"
 
 #, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgid "EXIT_TO_LAUNCHER"
+msgstr "เปิด E"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -1628,6 +1874,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "เทอร์โมพลาสต์"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "เทอร์โมพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีเม็ดสีทนความร้อนซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในเทอร์โมพลาสต์สามารถใช้พลังงานของความแตกต่างของความร้อนในสภาพแวดล้อมเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยความร้อน อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และอุณหภูมิ"
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "เทอร์โมพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีเม็ดสีทนความร้อนซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในเทอร์โมพลาสต์สามารถใช้พลังงานของความแตกต่างของความร้อนในสภาพแวดล้อมเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยความร้อน อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และอุณหภูมิ"
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -1820,15 +2078,6 @@ msgstr ""
 msgid "GITHUB_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-msgid "GLES2"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING"
-msgstr "คำเตือนโหมด GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "คุณกำลังเจริญเติบโตด้วย GLES2 สิ่งนี้ยังไม่ผ่านการทดสอบอย่างรุนแรงและมีแนวโน้มที่จะทำให้เกิดปัญหา พยายามอัปเดตไดรเวอร์วิดีโอของคุณและ / หรือบังคับให้ใช้กราฟิก AMD หรือ Nvidia เพื่อเรียกใช้ Thrive"
-
 msgid "GLES3"
 msgstr ""
 
@@ -1943,12 +2192,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "ไฮโดรเจนซัลไฟด์"
-
-msgid "HYPERL"
-msgstr "ไฮเปอร์ซ้าย"
-
-msgid "HYPERR"
-msgstr "ไฮเปอร์ขวา"
 
 msgid "ICESHARD"
 msgstr "ชิ้นส่วนน้ำแข็ง"
@@ -2175,10 +2418,17 @@ msgstr ""
 msgid "KEY_BACK"
 msgstr "กลับ"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "กลับ"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "มีข้อขัดแย้งกับ {0}\n"
 "คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "ล้าง"
@@ -2201,6 +2451,10 @@ msgstr "รายการโปรด"
 msgid "KEY_FORWARD"
 msgstr "ไปข้างหน้า"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "บ้าน"
+
 msgid "KEY_HELP"
 msgstr "ช่วยเหลือ"
 
@@ -2210,14 +2464,30 @@ msgstr "บ้าน"
 msgid "KEY_HOMEPAGE"
 msgstr "โฮมเพจ"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "ช่วยเหลือ"
+
 msgid "KEY_INSERT"
 msgstr "แทรก"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "แทรก"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "รอ"
 
 msgid "KEY_LEFT"
 msgstr "ซ้าย"
 
 msgid "KEY_MENU"
 msgstr "เมนู"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "แท็บ"
 
 msgid "KEY_OPENURL"
 msgstr "เปิด URL"
@@ -2518,6 +2788,10 @@ msgstr ""
 
 msgid "LINE_COLOUR"
 msgstr ""
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "\"{0}\" - {1}"
 
 msgid "LIPASE"
 msgstr ""
@@ -3028,6 +3302,10 @@ msgstr ""
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "ประชากร:"
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
@@ -3387,6 +3665,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr ""
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3479,6 +3763,14 @@ msgstr "ตกลง"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "คำเตือนโหมด GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "คุณกำลังเจริญเติบโตด้วย GLES2 สิ่งนี้ยังไม่ผ่านการทดสอบอย่างรุนแรงและมีแนวโน้มที่จะทำให้เกิดปัญหา พยายามอัปเดตไดรเวอร์วิดีโอของคุณและ / หรือบังคับให้ใช้กราฟิก AMD หรือ Nvidia เพื่อเรียกใช้ Thrive"
 
 #, fuzzy
 msgid "OPEN_FOLDER"
@@ -3650,6 +3942,7 @@ msgstr "ออกซิเจน"
 msgid "OXYTOXISOME"
 msgstr "ออกซิโทซิโซม"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "เมแทบอลิซึมที่ได้รับการแก้ไขซึ่งรับผิดชอบในการผลิตรูปแบบดั้งเดิมของสารพิษ OxyToxy NT"
 
@@ -3771,6 +4064,13 @@ msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr ""
 
 msgid "PEACEFUL"
+msgstr ""
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "คุณกำลังเจริญเติบโตด้วย GLES2 สิ่งนี้ยังไม่ผ่านการทดสอบอย่างรุนแรงและมีแนวโน้มที่จะทำให้เกิดปัญหา พยายามอัปเดตไดรเวอร์วิดีโอของคุณและ / หรือบังคับให้ใช้กราฟิก AMD หรือ Nvidia เพื่อเรียกใช้ Thrive"
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 msgid "PERCENTAGE_VALUE"
@@ -4483,9 +4783,6 @@ msgstr "ซิลิกา"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-msgid "SIXTEEN_TIMES"
-msgstr ""
-
 msgid "SIZE_COLON"
 msgstr ""
 
@@ -4619,6 +4916,10 @@ msgstr "แพร่กระจายไปยังแพทช์:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "START"
+msgstr "เริ่มต้น"
+
 msgid "STARTING"
 msgstr "เริ่มต้น"
 
@@ -4634,6 +4935,18 @@ msgstr ""
 
 msgid "STATISTICS"
 msgstr "สถิติ"
+
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr ""
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr ""
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
@@ -4706,22 +5019,10 @@ msgstr "การจัดเก็บ"
 msgid "STORAGE_COLON"
 msgstr "การจัดเก็บ"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
 msgstr ""
 
 #, fuzzy
@@ -4781,12 +5082,6 @@ msgstr ""
 
 msgid "SUNLIGHT"
 msgstr "แสงแดด"
-
-msgid "SUPERL"
-msgstr "ซ้ายสุด"
-
-msgid "SUPERR"
-msgstr "ขวาสุด"
 
 msgid "SUPPORTER_PATRONS"
 msgstr ""
@@ -5076,10 +5371,6 @@ msgid "TOGGLE_PAUSE"
 msgstr ""
 
 #, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "สลับเขมือบ"
-
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
 msgstr "สลับเขมือบ"
 
@@ -5096,14 +5387,71 @@ msgstr "ก่อนหน้า:"
 msgid "TOTAL_SAVES"
 msgstr ""
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "ท็อกซินแวคิวโอลเป็นแวคิวโอลที่ได้รับการดัดแปลงเพื่อการผลิตการจัดเก็บและการหลั่งสารพิษออกซีโทซีโดยเฉพาะ แวคิวโอลที่เป็นพิษมากขึ้นจะทำให้สารพิษถูกปล่อยออกมามากขึ้น"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "ท็อกซินแวคิวโอลเป็นแวคิวโอลที่ได้รับการดัดแปลงเพื่อการผลิตการจัดเก็บและการหลั่งสารพิษออกซีโทซีโดยเฉพาะ แวคิวโอลที่เป็นพิษมากขึ้นจะทำให้สารพิษถูกปล่อยออกมามากขึ้น"
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"สารพิษ\n"
+"แวคิวโอล"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "ท็อกซินแวคิวโอลเป็นแวคิวโอลที่ได้รับการดัดแปลงเพื่อการผลิตการจัดเก็บและการหลั่งสารพิษออกซีโทซีโดยเฉพาะ แวคิวโอลที่เป็นพิษมากขึ้นจะทำให้สารพิษถูกปล่อยออกมามากขึ้น"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "เมตาโบโลโซมเป็นกลุ่มของโปรตีนที่ห่อหุ้มด้วยเปลือกโปรตีน พวกเขาสามารถเปลี่ยนกลูโคสเป็น ATP ในอัตราที่สูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง เนื่องจากเมตาโบโซมถูกแขวนไว้ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "ท็อกซินแวคิวโอลเป็นแวคิวโอลที่ได้รับการดัดแปลงเพื่อการผลิตการจัดเก็บและการหลั่งสารพิษออกซีโทซีโดยเฉพาะ แวคิวโอลที่เป็นพิษมากขึ้นจะทำให้สารพิษถูกปล่อยออกมามากขึ้น"
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr ""
+
 msgid "TOXIN_RESISTANCE"
 msgstr ""
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "การจัดเก็บ"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "สารพิษ\n"
 "แวคิวโอล"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "ท็อกซินแวคิวโอลเป็นแวคิวโอลที่ได้รับการดัดแปลงเพื่อการผลิตการจัดเก็บและการหลั่งสารพิษออกซีโทซีโดยเฉพาะ แวคิวโอลที่เป็นพิษมากขึ้นจะทำให้สารพิษถูกปล่อยออกมามากขึ้น"
 
@@ -5121,12 +5469,6 @@ msgstr "ช่วยแปลเกม"
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "ช่วยแปลเกม"
-
-msgid "TREBLEDOWN"
-msgstr "เสียงแหลมลง"
-
-msgid "TREBLEUP"
-msgstr "เสียงแหลมขึ้น"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -5352,10 +5694,6 @@ msgid "UNKNOWN_MOUSE"
 msgstr "เมาส์ที่ไม่รู้จัก"
 
 #, fuzzy
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "เมาส์ที่ไม่รู้จัก"
-
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "วางออร์แกเนลล์"
 
@@ -5441,6 +5779,9 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
+
+msgid "UPGRADE_COST"
+msgstr ""
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5555,6 +5896,9 @@ msgstr ""
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "\"{0}\" - {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "ดูซอร์สโค้ด"
@@ -6677,6 +7021,43 @@ msgstr "ซูมเข้า"
 msgid "ZOOM_OUT"
 msgstr "ซูมออก"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "เพิ่มเสียงเบส"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "เบสลง"
+
+#~ msgid "BASSUP"
+#~ msgstr "เบสขึ้น"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "ซ้าย"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "ขวา"
+
+#~ msgid "HYPERL"
+#~ msgstr "ไฮเปอร์ซ้าย"
+
+#~ msgid "HYPERR"
+#~ msgstr "ไฮเปอร์ขวา"
+
+#~ msgid "SUPERL"
+#~ msgstr "ซ้ายสุด"
+
+#~ msgid "SUPERR"
+#~ msgstr "ขวาสุด"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "เสียงแหลมลง"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "เสียงแหลมขึ้น"
+
+#, fuzzy
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "เมาส์ที่ไม่รู้จัก"
+
 #, fuzzy
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
@@ -6712,10 +7093,6 @@ msgstr "ซูมออก"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "ชื่อผู้ใช้ที่กำหนดเอง:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "ความสามารถ"
 
 #, fuzzy
 #~ msgid "NOT_RUNNING_DOT"

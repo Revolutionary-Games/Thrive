@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
+/// <summary>
+///   Upgrade GUI for the chemoreceptor to configure what it detects
+/// </summary>
+public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
     public NodePath? TargetTypeSelectorPath;
@@ -49,8 +52,9 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     private enum TargetType
     {
-        Compound,
-        Species,
+        // Values here must match what is set in the Godot editor
+        Compound = 0,
+        Species = 1,
     }
 
     public override void _Ready()
@@ -76,7 +80,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         TypeChanged((int)TargetType.Compound);
     }
 
-    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
+    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame, float costMultiplier)
     {
         shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds()
             .OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase).ToList();
@@ -169,6 +173,9 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             case TargetType.Species:
                 speciesSelector.Visible = true;
                 speciesLabel.Visible = true;
+                break;
+            default:
+                GD.PrintErr("Unknown type to show in chemoreceptor upgrade GUI");
                 break;
         }
 

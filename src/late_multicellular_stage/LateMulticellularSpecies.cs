@@ -2,12 +2,13 @@
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
+using Saving.Serializers;
 
 /// <summary>
 ///   Represents a late multicellular species that is 3D and composed of placed tissues
 /// </summary>
 [JsonObject(IsReference = true)]
-[TypeConverter(typeof(ThriveTypeConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
@@ -45,7 +46,7 @@ public class LateMulticellularSpecies : Species
     public MulticellularSpeciesType MulticellularType { get; private set; }
 
     /// <summary>
-    ///   All organelles in all of the species' placed metaballs (there can be a lot of duplicates in this list)
+    ///   All organelles in all the species' placed metaballs (there can be a lot of duplicates in this list)
     /// </summary>
     [JsonIgnore]
     public IEnumerable<OrganelleTemplate> Organelles =>
@@ -113,6 +114,11 @@ public class LateMulticellularSpecies : Species
         {
             SetInitialCompoundsForDefault();
         }
+    }
+
+    public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)
+    {
+        // TODO: implement something here if required (probably needed for plants at least if they use this class)
     }
 
     public override void ApplyMutation(Species mutation)

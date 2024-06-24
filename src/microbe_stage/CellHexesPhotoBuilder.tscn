@@ -3,5 +3,5 @@
 [ext_resource path="res://src/microbe_stage/CellHexesPhotoBuilder.cs" type="Script" id=1]
 
 
-[node name="CellHexPhotoBuilder" type="Spatial"]
+[node name="CellHexPhotoBuilder" type="Node3D"]
 script = ExtResource( 1 )

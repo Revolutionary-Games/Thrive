@@ -4,6 +4,7 @@ using System.Linq;
 using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   All data regarding the game world of a thrive playthrough
@@ -98,12 +99,6 @@ public class GameWorld : ISaveLoadable
         var initialSpeciesRecord = new SpeciesRecordLite((Species)PlayerSpecies.Clone(), PlayerSpecies.Population);
         GenerationHistory.Add(0, new GenerationRecord(0,
             new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
-
-        if (WorldSettings.DayNightCycleEnabled)
-        {
-            // Make sure average light levels are computed already
-            UpdateGlobalAverageSunlight();
-        }
 
         UnlockProgress.UnlockAll = !settings.Difficulty.OrganelleUnlocksEnabled;
     }
@@ -252,9 +247,18 @@ public class GameWorld : ISaveLoadable
     /// <summary>
     ///   Generates a few random species in all patches
     /// </summary>
-    public void GenerateRandomSpeciesForFreeBuild()
+    public void GenerateRandomSpeciesForFreeBuild(long seed = 0)
     {
-        var random = new Random();
+        Random random;
+
+        if (seed == 0)
+        {
+            random = new XoShiRo256starstar();
+        }
+        else
+        {
+            random = new XoShiRo256starstar(seed);
+        }
 
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
@@ -658,17 +662,6 @@ public class GameWorld : ISaveLoadable
         foreach (var patch in Map.Patches.Values)
         {
             patch.UpdateCurrentSunlight(LightCycle.DayLightFraction);
-        }
-    }
-
-    /// <summary>
-    ///   Updates/sets the average light level of all patches according to <see cref="LightCycle"/> data.
-    /// </summary>
-    public void UpdateGlobalAverageSunlight()
-    {
-        foreach (var patch in Map.Patches.Values)
-        {
-            patch.UpdateAverageSunlight(LightCycle.AverageSunlight);
         }
     }
 

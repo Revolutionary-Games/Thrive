@@ -3,7 +3,7 @@
 [ext_resource path="res://src/gui_common/SegmentedBar.cs" type="Script" id=1]
 
 [node name="ProgressBar" type="HBoxContainer"]
-custom_constants/separation = 0
+theme_override_constants/separation = 0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

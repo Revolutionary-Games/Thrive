@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/society_stage/SocietyCreature.tscn", UsesEarlyResolve = false)]
-public class SocietyCreature : Spatial, IEntity
+public partial class SocietyCreature : Node3D, IEntity
 {
 #pragma warning disable CA2213
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
@@ -32,7 +32,7 @@ public class SocietyCreature : Spatial, IEntity
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public Node3D EntityNode => this;
 
     public override void _Ready()
     {
@@ -53,11 +53,11 @@ public class SocietyCreature : Spatial, IEntity
         _Ready();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
 
@@ -65,7 +65,7 @@ public class SocietyCreature : Spatial, IEntity
         {
             // Move towards the target
             // TODO: nicer looking movement (and rotation)
-            var vectorToTarget = movementTarget.Value - GlobalTranslation;
+            var vectorToTarget = movementTarget.Value - GlobalPosition;
 
             var distance = vectorToTarget.Length();
 
@@ -82,9 +82,9 @@ public class SocietyCreature : Spatial, IEntity
             // TODO: speed from species
             float speed = 10;
 
-            vectorToTarget *= speed * delta;
+            vectorToTarget *= speed * (float)delta;
 
-            GlobalTranslation += vectorToTarget;
+            GlobalPosition += vectorToTarget;
         }
     }
 

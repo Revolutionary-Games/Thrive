@@ -13,7 +13,9 @@ using Newtonsoft.Json;
 ///     future with more logic being put in <see cref="MicrobeEditorPatchMap"/>
 ///   </para>
 /// </remarks>
-public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
+/// <typeparam name="TEditor">Type of editor this component is for</typeparam>
+[GodotAbstract]
+public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
     where TEditor : IEditorWithPatches
 {
     [Export]
@@ -44,6 +46,10 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     [JsonProperty]
     private FogOfWarMode fogOfWar;
+
+    protected PatchMapEditorComponent()
+    {
+    }
 
     /// <summary>
     ///   Returns the current patch the player is in
@@ -154,7 +160,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
     }
 
-    public override void OnValidAction()
+    public override void OnValidAction(IEnumerable<CombinableActionData> actions)
     {
     }
 
@@ -162,8 +168,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
         base.OnLightLevelChanged(dayLightFraction);
 
-        var maxLightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
-        var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
+        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+        var templateMaxLightLevel =
+            Editor.CurrentPatch.GetCompoundAmountForDisplay(sunlight, CompoundAmountType.Template);
 
         // We don't want the light level in other patches be changed to zero if this callback is called while
         // we're on a patch that isn't affected by day/night effects
@@ -171,11 +178,11 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         {
             foreach (var patch in Editor.CurrentGame.GameWorld.Map.Patches.Values)
             {
-                var targetMaxLightLevel = patch.Biome.MaximumCompounds[sunlight].Ambient;
+                var targetMaxLightLevel = patch.Biome.GetCompound(sunlight, CompoundAmountType.Biome);
 
                 var lightLevelAmount = new BiomeCompoundProperties
                 {
-                    Ambient = targetMaxLightLevel * dayLightFraction,
+                    Ambient = targetMaxLightLevel.Ambient * dayLightFraction,
                 };
 
                 patch.Biome.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
@@ -296,7 +303,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     private void UpdateSeedLabel()
     {
-        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
+        seedLabel.Text = Localization.Translate("SEED_LABEL")
             .FormatSafe(Editor.CurrentGame.GameWorld.WorldSettings.Seed);
     }
 

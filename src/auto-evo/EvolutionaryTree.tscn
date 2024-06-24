@@ -1,38 +1,35 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cjbhth6wlc08l"]
 
-[ext_resource path="res://src/auto-evo/EvolutionaryTree.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/auto-evo/EvolutionaryTree.cs" id="1"]
 
-[node name="EvolutionaryTree" type="Control"]
+[node name="EvolutionaryTree" type="VBoxContainer"]
+clip_contents = true
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_clip_content = true
-mouse_filter = 1
-script = ExtResource( 1 )
-TimelinePath = NodePath("VBoxContainer/Timeline")
-TreePath = NodePath("VBoxContainer/Tree")
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+script = ExtResource("1")
+TimelinePath = NodePath("Timeline")
+TreePath = NodePath("Tree")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Timeline" type="Control" parent="VBoxContainer"]
-margin_right = 1280.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 0, 50 )
+[node name="Timeline" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 9
+size_flags_vertical = 0
+mouse_force_pass_scroll_events = false
 
-[node name="Tree" type="Control" parent="VBoxContainer"]
-margin_top = 54.0
-margin_right = 1280.0
-margin_bottom = 720.0
-rect_clip_content = true
+[node name="Tree" type="Control" parent="."]
+clip_contents = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
 
-[connection signal="draw" from="VBoxContainer/Timeline" to="." method="TimelineDraw"]
-[connection signal="gui_input" from="VBoxContainer/Timeline" to="." method="GUIInput" binds= [ true ]]
-[connection signal="mouse_exited" from="VBoxContainer/Timeline" to="." method="MouseExit"]
-[connection signal="draw" from="VBoxContainer/Tree" to="." method="TreeDraw"]
-[connection signal="gui_input" from="VBoxContainer/Tree" to="." method="GUIInput" binds= [ false ]]
-[connection signal="mouse_exited" from="VBoxContainer/Tree" to="." method="MouseExit"]
+[connection signal="draw" from="Timeline" to="." method="TimelineDraw"]
+[connection signal="gui_input" from="Timeline" to="." method="GUIInput" binds= [true]]
+[connection signal="mouse_exited" from="Timeline" to="." method="MouseExit"]
+[connection signal="draw" from="Tree" to="." method="TreeDraw"]
+[connection signal="gui_input" from="Tree" to="." method="GUIInput" binds= [false]]
+[connection signal="mouse_exited" from="Tree" to="." method="MouseExit"]

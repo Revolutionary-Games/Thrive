@@ -13,7 +13,8 @@ using Godot;
 ///     delete old resources after like 30 days)
 ///   </para>
 /// </remarks>
-public class PhotoStudio : Viewport
+[GodotAutoload]
+public partial class PhotoStudio : SubViewport
 {
     [Export]
     public NodePath? CameraPath;
@@ -36,7 +37,7 @@ public class PhotoStudio : Viewport
     private static PhotoStudio? instance;
 
     private readonly Dictionary<ISimulationPhotographable.SimulationType, IWorldSimulation> worldSimulations = new();
-    private readonly Dictionary<IWorldSimulation, Spatial> simulationWorldRoots = new();
+    private readonly Dictionary<IWorldSimulation, Node3D> simulationWorldRoots = new();
 
     private readonly Queue<ImageTask> tasks = new();
     private ImageTask? currentTask;
@@ -52,10 +53,10 @@ public class PhotoStudio : Viewport
     /// </summary>
     private Image? renderedImage;
 
-    private Spatial? instancedScene;
+    private Node3D? instancedScene;
 
-    private Camera camera = null!;
-    private Spatial renderedObjectHolder = null!;
+    private Camera3D camera = null!;
+    private Node3D renderedObjectHolder = null!;
 
     private Node simulationWorldsParent = null!;
 
@@ -108,12 +109,15 @@ public class PhotoStudio : Viewport
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
 
         base._Ready();
 
-        camera = GetNode<Camera>(CameraPath);
-        renderedObjectHolder = GetNode<Spatial>(RenderedObjectHolderPath);
+        camera = GetNode<Camera3D>(CameraPath);
+        renderedObjectHolder = GetNode<Node3D>(RenderedObjectHolderPath);
         simulationWorldsParent = GetNode(SimulationWorldsParentPath);
 
         // We manually trigger rendering when we want
@@ -121,10 +125,10 @@ public class PhotoStudio : Viewport
 
         camera.Fov = Constants.PHOTO_STUDIO_CAMERA_FOV;
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (currentTaskStep == Step.NoTask)
         {
@@ -271,13 +275,13 @@ public class PhotoStudio : Viewport
             {
                 if (TaskUsesWorldSimulation)
                 {
-                    camera.Translation =
+                    camera.Position =
                         currentTask!.SimulationPhotographable!.CalculatePhotographDistance(
                             previouslyUsedWorldSimulation!);
                 }
                 else
                 {
-                    camera.Translation = currentTask!.ScenePhotographable!.CalculatePhotographDistance(instancedScene!);
+                    camera.Position = currentTask!.ScenePhotographable!.CalculatePhotographDistance(instancedScene!);
                 }
 
                 currentTaskStep = Step.Render;
@@ -294,7 +298,7 @@ public class PhotoStudio : Viewport
 
             case Step.CaptureImage:
             {
-                renderedImage = GetTexture().GetData();
+                renderedImage = GetTexture().GetImage();
                 currentTaskStep = Step.Save;
                 break;
             }
@@ -303,9 +307,10 @@ public class PhotoStudio : Viewport
             {
                 renderedImage!.Convert(Image.Format.Rgba8);
 
-                var texture = new ImageTexture();
-                texture.CreateFromImage(renderedImage,
-                    (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Mipmaps);
+                // TODO: should mipmaps be optional?
+                renderedImage.GenerateMipmaps();
+
+                var texture = ImageTexture.CreateFromImage(renderedImage);
 
                 currentTask!.OnFinished(texture, renderedImage);
                 currentTask = null;
@@ -397,7 +402,7 @@ public class PhotoStudio : Viewport
 
     private void InstanceCurrentScene()
     {
-        instancedScene = taskScene!.Instance<Spatial>();
+        instancedScene = taskScene!.Instantiate<Node3D>();
 
         waitingForBackgroundOperation = false;
         currentTaskStep = Step.ApplySceneParameters;
@@ -438,9 +443,9 @@ public class PhotoStudio : Viewport
         }
     }
 
-    private Spatial CreateNewRoot(IWorldSimulation worldSimulation)
+    private Node3D CreateNewRoot(IWorldSimulation worldSimulation)
     {
-        var node = new Spatial();
+        var node = new Node3D();
         simulationWorldsParent.AddChild(node);
         simulationWorldRoots[worldSimulation] = node;
 

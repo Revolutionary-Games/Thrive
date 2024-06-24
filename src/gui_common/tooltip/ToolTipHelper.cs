@@ -25,7 +25,7 @@ public static class ToolTipHelper
     {
         if (DefaultToolTipCache.Count < 1)
         {
-            return (DefaultToolTip)DefaultTipScene.Instance();
+            return (DefaultToolTip)DefaultTipScene.Instantiate();
         }
 
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/3799
@@ -55,6 +55,19 @@ public static class ToolTipHelper
         DefaultToolTipCache.Push(toolTip);
     }
 
+    public static int GetDefaultToolTipCacheSize()
+    {
+        int count = 0;
+
+        // Need to also count children to get an accurate count
+        foreach (var toolTip in DefaultToolTipCache)
+        {
+            count += 1 + toolTip.RecursiveCountChildren();
+        }
+
+        return count;
+    }
+
     /// <summary>
     ///   Registers a Control mouse enter and exit event if hasn't already yet to the callbacks for the given
     ///   custom tooltip. Note that the code calling this must call
@@ -82,14 +95,17 @@ public static class ToolTipHelper
         if (control.IsToolTipRegistered(tooltip))
             return;
 
-        var toolTipCallbackData = new ToolTipCallbackData(control, tooltip, autoUnregister);
+        var data = new ToolTipCallbackData(control, tooltip, autoUnregister);
 
-        control.Connect("mouse_entered", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseEnter));
-        control.Connect("mouse_exited", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
-        control.Connect("hide", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
-        control.Connect("tree_exiting", toolTipCallbackData, nameof(ToolTipCallbackData.OnExitingTree));
+        control.Connect(Control.SignalName.MouseEntered, data.EnterCallable =
+            new Callable(data, nameof(ToolTipCallbackData.OnMouseEnter)));
+        control.Connect(Control.SignalName.MouseExited, data.ExitCallable =
+            new Callable(data, nameof(ToolTipCallbackData.OnMouseExit)));
+        control.Connect(CanvasItem.SignalName.Hidden, data.ExitCallable);
+        control.Connect(Node.SignalName.TreeExiting, data.ExitTreeCallable =
+            new Callable(data, nameof(ToolTipCallbackData.OnExitingTree)));
 
-        ToolTipCallbacks.Add(toolTipCallbackData);
+        ToolTipCallbacks.Add(data);
     }
 
     /// <summary>
@@ -125,12 +141,13 @@ public static class ToolTipHelper
         if (!control.IsToolTipRegistered(tooltip))
             return;
 
-        var data = GetToolTipCallbackData(control, tooltip);
+        var data = GetToolTipCallbackData(control, tooltip) ??
+            throw new ArgumentException("No tooltip callback data exists for the given control and tooltip");
 
-        control.Disconnect("mouse_entered", data, nameof(ToolTipCallbackData.OnMouseEnter));
-        control.Disconnect("mouse_exited", data, nameof(ToolTipCallbackData.OnMouseExit));
-        control.Disconnect("hide", data, nameof(ToolTipCallbackData.OnMouseExit));
-        control.Disconnect("tree_exiting", data, nameof(ToolTipCallbackData.OnExitingTree));
+        control.Disconnect(Control.SignalName.MouseEntered, data.EnterCallable);
+        control.Disconnect(Control.SignalName.MouseExited, data.ExitCallable);
+        control.Disconnect(CanvasItem.SignalName.Hidden, data.ExitCallable);
+        control.Disconnect(Node.SignalName.TreeExiting, data.ExitTreeCallable);
 
         ToolTipCallbacks.Remove(data);
 
@@ -166,7 +183,7 @@ public static class ToolTipHelper
 
     public static bool IsToolTipRegistered(this Control control, ICustomToolTip tooltip)
     {
-        return ToolTipCallbacks.Contains(GetToolTipCallbackData(control, tooltip));
+        return GetToolTipCallbackData(control, tooltip) != null;
     }
 
     public static int CountRegisteredToolTips()
@@ -215,7 +232,7 @@ public static class ToolTipHelper
         }
     }
 
-    private static ToolTipCallbackData GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
+    private static ToolTipCallbackData? GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
     {
         return ToolTipCallbacks.Find(c => c.ToolTipable == control && c.ToolTip == tooltip);
     }

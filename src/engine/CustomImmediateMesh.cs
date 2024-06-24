@@ -51,11 +51,11 @@ public class CustomImmediateMesh : IDisposable
         Mesh = new ArrayMesh();
 
         // Setup the mesh data we don't need to change
-        arrays = new Array((int)Godot.Mesh.ArrayType.Max);
+        arrays = new Array();
         arrays.Resize((int)Godot.Mesh.ArrayType.Max);
     }
 
-    public AABB CustomBoundingBox
+    public Aabb CustomBoundingBox
     {
         get => Mesh.CustomAabb;
         set => Mesh.CustomAabb = value;
@@ -218,11 +218,11 @@ public class CustomImmediateMesh : IDisposable
 
         if (uvData.Count > 0)
         {
-            arrays[(int)Godot.Mesh.ArrayType.TexUv] = GetTemporaryCopy(uvData, ref tempUvData);
+            arrays[(int)Godot.Mesh.ArrayType.TexUV] = GetTemporaryCopy(uvData, ref tempUvData);
         }
         else
         {
-            arrays[(int)Godot.Mesh.ArrayType.TexUv] = null;
+            arrays[(int)Godot.Mesh.ArrayType.TexUV] = default(Variant);
         }
 
         if (normalData.Count > 0)
@@ -231,7 +231,7 @@ public class CustomImmediateMesh : IDisposable
         }
         else
         {
-            arrays[(int)Godot.Mesh.ArrayType.Normal] = null;
+            arrays[(int)Godot.Mesh.ArrayType.Normal] = default(Variant);
         }
 
         if (colourData.Count > 0)
@@ -240,7 +240,7 @@ public class CustomImmediateMesh : IDisposable
         }
         else
         {
-            arrays[(int)Godot.Mesh.ArrayType.Color] = null;
+            arrays[(int)Godot.Mesh.ArrayType.Color] = default(Variant);
         }
 
         if (indexData.Count > 0)
@@ -249,7 +249,7 @@ public class CustomImmediateMesh : IDisposable
         }
         else
         {
-            arrays[(int)Godot.Mesh.ArrayType.Index] = null;
+            arrays[(int)Godot.Mesh.ArrayType.Index] = default(Variant);
         }
 
         // TODO: find out if we can use this for much higher performance:

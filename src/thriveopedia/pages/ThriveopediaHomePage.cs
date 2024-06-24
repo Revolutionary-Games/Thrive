@@ -1,12 +1,10 @@
-﻿using Godot;
-
-/// <summary>
+﻿/// <summary>
 ///   Thriveopedia page displaying welcome information and links to websites.
 /// </summary>
-public class ThriveopediaHomePage : ThriveopediaPage
+public partial class ThriveopediaHomePage : ThriveopediaPage, IThriveopediaPage
 {
-    public override string PageName => "Home";
-    public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_HOME_PAGE_TITLE");
+    public string PageName => "Home";
+    public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_HOME_PAGE_TITLE");
 
-    public override string? ParentPageName => null;
+    public string? ParentPageName => null;
 }

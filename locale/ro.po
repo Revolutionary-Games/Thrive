@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2023-03-13 09:01+0000\n"
-"Last-Translator: Yehoslav Rudenco <yehoslavrudenco@protonmail.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-03-30 03:50+0000\n"
+"Last-Translator: edy <lazareduard702@gmail.com>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -25,9 +25,8 @@ msgstr "stil de mișcare 2D:"
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
 
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Mișcare în 3D"
+msgstr "Mișcare 3D"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "stil de mișcare în 3D:"
@@ -39,350 +38,393 @@ msgid "ABORT"
 msgstr "Renunță"
 
 msgid "ABORTED_DOT"
-msgstr ""
+msgstr "Abandonat."
 
 msgid "ABYSSOPELAGIC"
-msgstr ""
+msgstr "Abisopelagică"
 
 msgid "ACTION_AWAKEN"
-msgstr ""
+msgstr "Trezește ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr ""
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Acțiune blocată în timp ce alta este în progres"
 
 msgid "ACTION_DELETE"
-msgstr ""
+msgstr "Șterge"
 
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr ""
+msgstr "Populație Dublă"
 
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr ""
+msgstr "Unități Dublate"
 
 msgid "ACTION_HALF_POPULATION"
-msgstr ""
+msgstr "Înjumătățește Populația"
 
 msgid "ACTION_TELEPORT"
-msgstr ""
+msgstr "Teleportare"
 
 msgid "ACTIVE"
 msgstr "Activ"
 
 msgid "ACTIVE_THREAD_COUNT"
-msgstr ""
+msgstr "Thread-uri curente:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
+"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Validările adiționale au detectat o problemă: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Adaugă un key-bind nou"
 
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Avansat"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Deschide meniul setărilor avansate"
 
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Fixare aerobă a azotului"
 
 msgid "AGENTS"
-msgstr ""
+msgstr "Agenți"
 
 msgid "AGENTS_COLON"
-msgstr ""
+msgstr "Agenți:"
 
 msgid "AGENT_NAME"
-msgstr ""
+msgstr "{0} Agent"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
 
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "Agresiv"
 
 msgid "AI_MUTATION_RATE"
-msgstr ""
+msgstr "Rata mutațiilor IA"
 
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr ""
+msgstr "(viteza cu care speciile IA suferă mutații)"
 
 msgid "ALL"
 msgstr "Toate"
 
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
+msgstr "Permiteți speciilor să nu migreze (dacă nu se găsește o migrație bună)"
 
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr ""
+msgstr "Permiteți speciilor să nu sufere mutații (dacă nu se găsește nicio mutație bună)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr ""
+msgstr "Statistici generice ale tuturor lumilor"
 
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
+"[b] Generații:[/b]\n"
+"  {0}\n"
+"[b] Total specii:[/b]\n"
+"  {1} medie; Abaterea standard {2}\n"
+"[b] Specii încă în viață:[/b]\n"
+"  {3} medie; Abaterea standard {4}\n"
+"[b] Număr de specii per patch:[/b]\n"
+"  {5} medie; Abaterea standard {6}\n"
+"[b] Populația totală per patch:[/b]\n"
+"  {7} medie; Abaterea standard {8}\n"
+"[b] Dimensiunea medie hexagonală a speciilor de microbi:[/b]\n"
+"  {9} medie; Abaterea standard {10}\n"
+"[b] Date organite generice:[/b]"
 
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "Sunteți deja ascensionați"
 
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "Volumul ambianței"
 
 msgid "AMMONIA"
-msgstr ""
+msgstr "Amoniac"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Cantitatea de salvări automate de păstrat:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Cantitatea de salvări rapide de păstrat:"
 
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Fixarea azotului anaerob"
 
 msgid "AND_UNLOCK_CONDITION"
-msgstr ""
+msgstr "și"
 
 msgid "APPEARANCE"
-msgstr ""
+msgstr "Apariție"
 
 msgid "APPLY"
-msgstr ""
+msgstr "Aplică"
 
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Aplică schimbări"
 
 msgid "APRIL"
-msgstr ""
+msgstr "Aprilie"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
+msgstr "Sunteți siguri că doriți să resetați TOATE setările la valorile implicite?"
 
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
+msgstr "Sunteți siguri că doriți să resetați setările de intrare la valorile implicite?"
 
 msgid "ARTIST_COLON"
-msgstr ""
+msgstr "Artist:"
 
+#, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "\"{0}\" - {1}"
 
 msgid "ART_BY"
-msgstr ""
+msgstr "Artă de {0}"
 
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "Galerie de artă"
 
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr ""
+msgstr "Felicitări!"
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"A-ți evoluat și ați terminat jocul. Felicitări pentru că ați ajuns la sfârșitul jocului!\n"
+"\n"
+"Puteți continua să jucați în Stagiul Spațial cu God-Toolurile deblocate pentru a vă juca în sandbox.\n"
+"\n"
+"De asemenea, este posibil să coborâți și să vă întoarceți la Etapa Microb în această salvare și să jucați din nou prin toate etapele cu avantaje suplimentare.\n"
+"\n"
+"Total timpi evoluați în această salvare: {0}"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Clasa de asamblare mod este necesară atunci când este specificată asamblarea"
 
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+msgstr "Asamblarea modului este necesară atunci când armonia automată este activată"
 
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Presupune că procesorul are hyperthreading activat"
 
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Nu poate fi detectat automat dacă hyperthreading-ul este activat sau nu.\n"
+"Acest lucru afectează numărul implicit de thread-uri, deoarece thread-urile hiperthreading nu sunt la fel de rapide ca nucleele CPU reale."
 
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "Gaze atmosferice"
 
 msgid "ATP"
 msgstr "ATF"
 
 msgid "ATP_BALANCE"
-msgstr ""
+msgstr "Balanța ATP"
 
 msgid "ATP_PRODUCTION"
-msgstr ""
+msgstr "Producția ATP"
 
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr ""
+msgstr "Încercarea de a scrie acest fișier de salvare nu a reușit. Numele de salvare poate fi prea lung sau este posibil să nu aveți acces de scriere la folderul de salvare."
 
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "La cursor:"
 
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Dispozitiv de ieșire audio:"
 
+#, fuzzy
 msgid "AUGUST"
-msgstr ""
+msgstr "August"
 
+#, fuzzy
 msgid "AUTO"
-msgstr ""
+msgstr "Auto"
 
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr ""
+msgstr "Populația {0} s-a modificat cu {1} în {2} datorită: {3}"
 
 msgid "AUTO-EVO_PREDICTION"
-msgstr ""
+msgstr "Predicție Auto-Evo"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
+"Acest panou arată energia totală așteptată colectată și numărul populației (în paranteze) din auto-evo pentru speciile editate.\n"
+"Auto-evo rulează simularea populației care este cealaltă parte (în afară de propria performanță) care afectează populația."
 
 msgid "AUTO-EVO_STEPS_DONE"
-msgstr ""
+msgstr "{0:F1}% terminat. {1:n0}/{2:n0} pași."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Salvare automată în timpul jocului"
 
+#, fuzzy
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Auto-Evo"
 
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr ""
+msgstr "Instrument de explorare Auto-Evo"
 
 msgid "AUTO_EVO_FAILED"
-msgstr ""
+msgstr "Auto-evo nu a reușit să ruleze"
 
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "Rezultate Auto-evo:"
 
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
+msgstr "Starea rulării:"
 
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr ""
+msgstr "Stare Auto-Evo:"
 
 msgid "AUTO_MOVE_FORWARDS"
-msgstr ""
+msgstr "Deplasare automată înainte"
 
+#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr ""
+msgstr "Auto ({0}x{1})"
 
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Proiecte de construcții disponibile"
 
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "Moduri disponibile"
 
 msgid "AWAKENING_STAGE"
+msgstr "Stagiul de trezire"
+
+msgid "AWARE_STAGE"
+msgstr "Stagiul conștient"
+
+msgid "BACK"
+msgstr "Înapoi"
+
+#, fuzzy
+msgid "BACKSLASH"
+msgstr "Backslash"
+
+#, fuzzy
+msgid "BACKSPACE"
+msgstr "Backspace"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr ""
 
 #, fuzzy
-msgid "AWARE_STAGE"
-msgstr "Etapa Microbilor"
-
-msgid "BACK"
-msgstr ""
-
-msgid "BACKSLASH"
-msgstr ""
-
-msgid "BACKSPACE"
-msgstr ""
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Deschide meniul setărilor avansate"
 
 msgid "BASE_MOBILITY"
-msgstr ""
+msgstr "Mobilitate de bază"
 
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "Mișcare de bază"
 
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "De Bază"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Reveniți la vizualizarea de configurare de bază"
 
-msgid "BASSBOOST"
-msgstr ""
-
-msgid "BASSDOWN"
-msgstr ""
-
-msgid "BASSUP"
-msgstr ""
-
+#, fuzzy
 msgid "BATHYPELAGIC"
-msgstr ""
+msgstr "Bathypelagic"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Devino macroscopic ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Devino Multicelular ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Incepe să te dezvolți"
 
 msgid "BEHAVIOUR"
-msgstr ""
+msgstr "Comportament"
 
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr ""
+msgstr "Activitate"
 
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr ""
+msgstr "Agresiune"
 
 msgid "BEHAVIOUR_FEAR"
-msgstr ""
+msgstr "Frică"
 
 msgid "BEHAVIOUR_FOCUS"
-msgstr ""
+msgstr "Concentrare"
 
+#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr ""
+msgstr "Opportunism"
 
 msgid "BELOW_SEA_LEVEL"
-msgstr ""
+msgstr "{0}-{1}m sub nivelul mării"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Benchmark-uri"
 
 msgid "BENCHMARK_FINISHED"
-msgstr ""
+msgstr "Benchmark completat"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Faza de Benchmark:"
 
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Rezultate:"
 
 msgid "BEST_PATCH_COLON"
-msgstr ""
+msgstr "Cel mai bun patch:"
 
 msgid "BIG_IRON_CHUNK"
-msgstr ""
+msgstr "Bucată mare de fier"
 
+#, fuzzy
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} B"
 
 msgid "BINDING_AGENT"
-msgstr ""
+msgstr "Agent de unire"
 
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr ""
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Legați axele împreună"
 
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Șansă în fiecare petic cu puține specii (biodiversitate scăzută) pentru a crea o nouă specie"
 
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
@@ -697,7 +739,16 @@ msgstr ""
 msgid "COMPILED_AT_COLON"
 msgstr ""
 
+msgid "COMPLETE_ACTION"
+msgstr ""
+
 msgid "COMPOUNDS"
+msgstr ""
+
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr ""
+
+msgid "COMPOUNDS_AT_MAX_SPEED"
 msgstr ""
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -706,8 +757,22 @@ msgstr ""
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "COMPOUND_CLOUDS"
 msgstr ""
@@ -723,6 +788,22 @@ msgstr ""
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
+
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "COMPOUND_TO_FIND"
 msgstr ""
@@ -784,7 +865,145 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_R2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr ""
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
 msgid "CONTROLLER_DEADZONES"
@@ -802,6 +1021,9 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
@@ -812,6 +1034,9 @@ msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
 msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+msgid "CPU_THREADS"
 msgstr ""
 
 msgid "CRAFTING_CLEAR_INPUTS"
@@ -943,7 +1168,7 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1094,12 +1319,6 @@ msgstr ""
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr ""
-
-msgid "DIRECTIONR"
-msgstr ""
-
 msgid "DISABLED"
 msgstr ""
 
@@ -1152,6 +1371,12 @@ msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_VULKAN"
 msgstr ""
 
 msgid "DISPLAY_PART_NAMES"
@@ -1305,10 +1530,63 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr ""
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
+msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-msgid "ENABLE_GUI_LIGHT_EFFECTS"
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
+
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
@@ -1413,10 +1691,11 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-msgid "EXIT_TO_LAUNCHER"
-msgstr ""
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Editor 3D"
 
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
 msgid "EXPORT_ALL_WORLDS"
@@ -1499,6 +1778,16 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+msgid "FERROPLAST"
+msgstr ""
+
+msgid "FERROPLAST_DESCRIPTION"
+msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -1670,15 +1959,6 @@ msgstr ""
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
-msgid "GLES2"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-
 msgid "GLES3"
 msgstr ""
 
@@ -1785,12 +2065,6 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
-msgstr ""
-
-msgid "HYPERL"
-msgstr ""
-
-msgid "HYPERR"
 msgstr ""
 
 msgid "ICESHARD"
@@ -2000,7 +2274,13 @@ msgstr ""
 msgid "KEY_BACK"
 msgstr ""
 
+msgid "KEY_BACKTAB"
+msgstr ""
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
+msgstr ""
+
+msgid "KEY_BRING_UP_KEYBOARD"
 msgstr ""
 
 msgid "KEY_CLEAR"
@@ -2024,6 +2304,9 @@ msgstr ""
 msgid "KEY_FORWARD"
 msgstr ""
 
+msgid "KEY_GLOBE"
+msgstr ""
+
 msgid "KEY_HELP"
 msgstr ""
 
@@ -2033,13 +2316,25 @@ msgstr ""
 msgid "KEY_HOMEPAGE"
 msgstr ""
 
+msgid "KEY_HYPER"
+msgstr ""
+
 msgid "KEY_INSERT"
+msgstr ""
+
+msgid "KEY_JIS_EISU"
+msgstr ""
+
+msgid "KEY_JIS_KANA"
 msgstr ""
 
 msgid "KEY_LEFT"
 msgstr ""
 
 msgid "KEY_MENU"
+msgstr ""
+
+msgid "KEY_META"
 msgstr ""
 
 msgid "KEY_OPENURL"
@@ -2329,6 +2624,9 @@ msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
 msgid "LINE_COLOUR"
+msgstr ""
+
+msgid "LINKS_TITLE"
 msgstr ""
 
 msgid "LIPASE"
@@ -2734,6 +3032,10 @@ msgstr ""
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "Validările adiționale au detectat o problemă: {0}"
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
@@ -3071,6 +3373,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Mișcare de bază"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3151,6 +3460,17 @@ msgstr ""
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
+
+msgid "OPENGL_MODE_WARNING"
+msgstr ""
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
 
 msgid "OPEN_FOLDER"
 msgstr ""
@@ -3410,6 +3730,17 @@ msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr ""
 
 msgid "PEACEFUL"
+msgstr ""
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 msgid "PERCENTAGE_VALUE"
@@ -4039,9 +4370,6 @@ msgstr ""
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-msgid "SIXTEEN_TIMES"
-msgstr ""
-
 msgid "SIZE_COLON"
 msgstr ""
 
@@ -4164,6 +4492,9 @@ msgstr ""
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
+msgid "START"
+msgstr ""
+
 msgid "STARTING"
 msgstr ""
 
@@ -4177,6 +4508,20 @@ msgid "START_RESEARCH"
 msgstr ""
 
 msgid "STATISTICS"
+msgstr ""
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Mișcare de bază"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
 msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
@@ -4245,22 +4590,10 @@ msgstr ""
 msgid "STORAGE_COLON"
 msgstr ""
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
 msgstr ""
 
 #, fuzzy
@@ -4319,12 +4652,6 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "SUNLIGHT"
-msgstr ""
-
-msgid "SUPERL"
-msgstr ""
-
-msgid "SUPERR"
 msgstr ""
 
 msgid "SUPPORTER_PATRONS"
@@ -4583,9 +4910,6 @@ msgstr ""
 msgid "TOGGLE_PAUSE"
 msgstr ""
 
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr ""
-
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
@@ -4601,8 +4925,61 @@ msgstr ""
 msgid "TOTAL_SAVES"
 msgstr ""
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
+
+msgid "TOXIN_CYTOTOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr ""
+"Acest panou arată energia totală așteptată colectată și numărul populației (în paranteze) din auto-evo pentru speciile editate.\n"
+"Auto-evo rulează simularea populației care este cealaltă parte (în afară de propria performanță) care afectează populația."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr ""
+
 msgid "TOXIN_RESISTANCE"
 msgstr ""
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Artist:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -4620,12 +4997,6 @@ msgid "TRANSLATORS"
 msgstr ""
 
 msgid "TRANSPARENCY"
-msgstr ""
-
-msgid "TREBLEDOWN"
-msgstr ""
-
-msgid "TREBLEUP"
 msgstr ""
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -4823,9 +5194,6 @@ msgstr ""
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr ""
-
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr ""
 
@@ -4899,6 +5267,9 @@ msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
+msgstr ""
+
+msgid "UPGRADE_COST"
 msgstr ""
 
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5001,6 +5372,9 @@ msgid "VIEW_PATCH_NOTES"
 msgstr ""
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
+msgstr ""
+
+msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
 msgid "VIEW_SOURCE_CODE"

@@ -84,6 +84,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0,
@@ -261,7 +265,7 @@
           "Meshes": [
             {
               "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
+              "ConvexShapePath": "res://assets/models/organelles/ToxinVacuole.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
@@ -272,11 +276,13 @@
               "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
             },
             {
-              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/OxytoxyProteins.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "SceneModelPath": "Armature001/Skeleton/flagella"
+              "SceneModelPath": "Armature_001/Skeleton3D/flagella",
+              "ConvexShapePath": "res://assets/models/organelles/Flagellum.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
@@ -342,6 +348,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0.00008,
@@ -408,17 +418,17 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0.10
         },
         "carbondioxide": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.09
+          "Ambient": 0.30
         },
         "nitrogen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.7
+          "Ambient": 0.6
         },
         "sunlight": {
           "Amount": 0,
@@ -518,6 +528,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0.00004,
@@ -584,12 +598,12 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0.20
         },
         "carbondioxide": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.09
+          "Ambient": 0.10
         },
         "nitrogen": {
           "Amount": 0,
@@ -693,6 +707,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0.00003,
@@ -716,7 +734,7 @@
           "Meshes": [
             {
               "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
+              "ConvexShapePath": "res://assets/models/organelles/ToxinVacuole.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
@@ -727,11 +745,13 @@
               "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
             },
             {
-              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/OxytoxyProteins.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "SceneModelPath": "Armature001/Skeleton/flagella"
+              "SceneModelPath": "Armature_001/Skeleton3D/flagella",
+              "ConvexShapePath": "res://assets/models/organelles/Flagellum.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
@@ -839,12 +859,12 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0.14
         },
         "carbondioxide": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.09
+          "Ambient": 0.16
         },
         "nitrogen": {
           "Amount": 0,
@@ -948,6 +968,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0,
@@ -971,7 +995,7 @@
           "Meshes": [
             {
               "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
+              "ConvexShapePath": "res://assets/models/organelles/ToxinVacuole.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
@@ -982,11 +1006,13 @@
               "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
             },
             {
-              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/OxytoxyProteins.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "SceneModelPath": "Armature001/Skeleton/flagella"
+              "SceneModelPath": "Armature_001/Skeleton3D/flagella",
+              "ConvexShapePath": "res://assets/models/organelles/Flagellum.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
@@ -1094,12 +1120,12 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0.16
         },
         "carbondioxide": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.09
+          "Ambient": 0.14
         },
         "nitrogen": {
           "Amount": 0,
@@ -1203,6 +1229,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0.00005,
@@ -1226,7 +1256,7 @@
           "Meshes": [
             {
               "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
+              "ConvexShapePath": "res://assets/models/organelles/ToxinVacuole.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
@@ -1237,11 +1267,13 @@
               "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
             },
             {
-              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/OxytoxyProteins.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "SceneModelPath": "Armature001/Skeleton/flagella"
+              "SceneModelPath": "Armature_001/Skeleton3D/flagella",
+              "ConvexShapePath": "res://assets/models/organelles/Flagellum.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
@@ -1349,12 +1381,12 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0.18
         },
         "carbondioxide": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.09
+          "Ambient": 0.12
         },
         "nitrogen": {
           "Amount": 0,
@@ -1459,6 +1491,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0.00005,
@@ -1634,6 +1670,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0.0001,
@@ -1700,12 +1740,12 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0.15
         },
         "carbondioxide": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.09
+          "Ambient": 0.15
         },
         "nitrogen": {
           "Amount": 0,
@@ -1833,6 +1873,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0.00002,
@@ -1899,12 +1943,12 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0.22
         },
         "carbondioxide": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.09
+          "Ambient": 0.08
         },
         "nitrogen": {
           "Amount": 0,
@@ -2009,6 +2053,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0.00005,
@@ -2075,12 +2123,12 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0.22
         },
         "carbondioxide": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.09
+          "Ambient": 0.08
         },
         "nitrogen": {
           "Amount": 0,
@@ -2184,6 +2232,10 @@
             {
               "ScenePath": "res://assets/models/Iron5.tscn",
               "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
           "Density": 0.00005,
@@ -2207,7 +2259,7 @@
           "Meshes": [
             {
               "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
+              "ConvexShapePath": "res://assets/models/organelles/ToxinVacuole.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
@@ -2218,11 +2270,13 @@
               "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
             },
             {
-              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/OxytoxyProteins.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "SceneModelPath": "Armature001/Skeleton/flagella"
+              "SceneModelPath": "Armature_001/Skeleton3D/flagella",
+              "ConvexShapePath": "res://assets/models/organelles/Flagellum.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
@@ -2330,12 +2384,12 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0.14
         },
         "carbondioxide": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.09
+          "Ambient": 0.16
         },
         "nitrogen": {
           "Amount": 0,

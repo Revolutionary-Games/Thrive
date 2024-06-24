@@ -125,7 +125,7 @@ public class TutorialState : ITutorialInput
     // End of tutorial state variables
 
     [JsonProperty]
-    public float TotalElapsed { get; private set; }
+    public double TotalElapsed { get; private set; }
 
     /// <summary>
     ///   True if any of the tutorials are active that want to pause the game
@@ -230,7 +230,7 @@ public class TutorialState : ITutorialInput
         {
             if (hasPaused)
             {
-                UnPause(gui);
+                UnPause();
             }
 
             if (needsToApplyEvenIfDisabled)
@@ -243,7 +243,7 @@ public class TutorialState : ITutorialInput
             return;
         }
 
-        HandlePausing(gui);
+        HandlePausing();
 
         // Pause if the game is paused, but we didn't want to pause things
         if (PauseManager.Instance.Paused && !WantsGamePaused)
@@ -347,14 +347,14 @@ public class TutorialState : ITutorialInput
             tutorial.ApplyGUIState(gui);
     }
 
-    private void HandlePausing(ITutorialGUI gui)
+    private void HandlePausing()
     {
         if (WantsGamePaused != hasPaused)
         {
             if (hasPaused)
             {
                 // Unpause
-                UnPause(gui);
+                UnPause();
             }
             else
             {
@@ -369,7 +369,7 @@ public class TutorialState : ITutorialInput
         }
     }
 
-    private void UnPause(ITutorialGUI gui)
+    private void UnPause()
     {
         if (hasPaused)
             PauseManager.Instance.Resume(nameof(TutorialState));

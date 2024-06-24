@@ -16,7 +16,7 @@ using File = System.IO.File;
 ///   main module as this needs to be able to load for example <see cref="MicrobeWorldSimulation"/> that depends on
 ///   Godot types.
 /// </summary>
-public class GenerateThreadedSystems : Node
+public partial class GenerateThreadedSystems : Node
 {
     /// <summary>
     ///   How many threads to use when generating threaded system run. Needs to be at least 2. Too high number splits
@@ -43,10 +43,21 @@ public class GenerateThreadedSystems : Node
     public static bool PrintThreadWaits = true;
 
     /// <summary>
+    ///   When true adds try-catch statements around system executions to ensure no exceptions are leaked to a higher
+    ///   level
+    /// </summary>
+    public static bool AddSimulationExceptionCatches = true;
+
+    /// <summary>
     ///   When true inserts a lot of debug code to check that no conflicting systems are executed in the same timeslot
     ///   during runtime. Used to verify that this tool works correctly.
     /// </summary>
     public static bool DebugGuardComponentWrites = false;
+
+    /// <summary>
+    ///   When true forces use of system barrier class (currently this seems to prevent some thread deadlocking)
+    /// </summary>
+    public static bool ForceUseSystemBarrier = true;
 
     public static bool UseMultithreadingToDoMoreSimulations = true;
 
@@ -139,7 +150,7 @@ public class GenerateThreadedSystems : Node
     {
     }
 
-    private string BarrierType => DebugGuardComponentWrites ? "Barrier" : "SimpleBarrier";
+    private string BarrierType => DebugGuardComponentWrites || ForceUseSystemBarrier ? "Barrier" : "SimpleBarrier";
 
     public static void EnsureOneBlankLine(List<string> lines, bool acceptBlockStart = true, bool acceptComments = true)
     {
@@ -201,7 +212,7 @@ public class GenerateThreadedSystems : Node
         TaskExecutor.Instance.AddTask(new Task(Run));
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (done)
             GetTree().Quit();
@@ -224,17 +235,61 @@ public class GenerateThreadedSystems : Node
         }
     }
 
-    private static void AddProcessEndIfConfigured(string? processEnd, List<string> processLines)
+    private static void AddProcessEndIfConfigured(string? processEnd, List<string> processLines, int indent)
     {
         if (string.IsNullOrWhiteSpace(processEnd))
             return;
 
         EnsureOneBlankLine(processLines);
 
+        if (AddSimulationExceptionCatches)
+        {
+            AddSystemTryBegin(indent, processLines);
+            ++indent;
+        }
+
         foreach (var line in processEnd.Split("\n"))
         {
-            processLines.Add(line);
+            processLines.Add(StringUtils.GetIndent(indent) + line);
         }
+
+        if (AddSimulationExceptionCatches)
+        {
+            --indent;
+            AddSystemTryEnd(indent, processLines, "processing end actions");
+        }
+    }
+
+    private static void AddSystemTryBegin(int indent, List<string> textOutput)
+    {
+        EnsureOneBlankLine(textOutput);
+        textOutput.Add(StringUtils.GetIndent(indent) +
+            "// Catch for extra system run safety (for debugging why higher level catches don't get errors)");
+        textOutput.Add(StringUtils.GetIndent(indent) + "try");
+        textOutput.Add(StringUtils.GetIndent(indent) + "{");
+    }
+
+    private static void AddSystemTryEnd(int indent, List<string> textOutput, string name)
+    {
+        textOutput.Add(StringUtils.GetIndent(indent) + "}");
+        textOutput.Add(StringUtils.GetIndent(indent) + "catch (Exception e)");
+        textOutput.Add(StringUtils.GetIndent(indent) + "{");
+        ++indent;
+
+        textOutput.Add(StringUtils.GetIndent(indent) + $"GD.PrintErr(\"Simulation system failure ({name}): \" + e);");
+
+        textOutput.Add(string.Empty);
+
+        textOutput.Add("#if DEBUG");
+        textOutput.Add(StringUtils.GetIndent(indent) + "if (Debugger.IsAttached)");
+        textOutput.Add(StringUtils.GetIndent(indent + 1) + "Debugger.Break();");
+        textOutput.Add("#endif");
+
+        textOutput.Add(string.Empty);
+        textOutput.Add(StringUtils.GetIndent(indent) + "throw;");
+
+        --indent;
+        textOutput.Add(StringUtils.GetIndent(indent) + "}");
     }
 
     private void RunInternal()
@@ -268,11 +323,11 @@ public class GenerateThreadedSystems : Node
             GenerateThreadedSystemsRun(mainSystems, otherSystems.ToList(), TargetThreadCount - 1,
                 processSystemTextLines, variables);
 
-            AddProcessEndIfConfigured(processEnd, processSystemTextLines);
+            AddProcessEndIfConfigured(processEnd, processSystemTextLines, 0);
 
             var nonThreadedLines = new List<string>();
-            GenerateNonThreadedSystems(mainSystems, otherSystems, nonThreadedLines);
-            AddProcessEndIfConfigured(processEnd, nonThreadedLines);
+            GenerateNonThreadedSystems(mainSystems, otherSystems, nonThreadedLines, 0);
+            AddProcessEndIfConfigured(processEnd, nonThreadedLines, 0);
 
             WriteGeneratedSimulationFile(file, simulationClass.Name, processSystemTextLines, nonThreadedLines,
                 frameSystemTextLines, variables);
@@ -313,7 +368,7 @@ public class GenerateThreadedSystems : Node
     }
 
     private void GenerateNonThreadedSystems(List<SystemToSchedule> mainSystems, List<SystemToSchedule> otherSystems,
-        List<string> processSystemTextLines)
+        List<string> processSystemTextLines, int indent)
     {
         var allSystems = mainSystems.Concat(otherSystems).ToList();
         SortSingleGroupOfSystems(allSystems);
@@ -331,9 +386,22 @@ public class GenerateThreadedSystems : Node
             "available");
         processSystemTextLines.Add("// or threaded run would be slower (or just for debugging)");
 
+        if (AddSimulationExceptionCatches)
+        {
+            processSystemTextLines.Add(string.Empty);
+            AddSystemTryBegin(indent, processSystemTextLines);
+            ++indent;
+        }
+
         foreach (var system in allSystems)
         {
-            system.GetRunningText(processSystemTextLines, 0, -1);
+            system.GetRunningText(processSystemTextLines, indent, -1);
+        }
+
+        if (AddSimulationExceptionCatches)
+        {
+            --indent;
+            AddSystemTryEnd(indent, processSystemTextLines, "processing without threads");
         }
     }
 
@@ -371,33 +439,59 @@ public class GenerateThreadedSystems : Node
     {
         int threadCount = threads.Count;
 
+        int indent = 0;
+
         // Tasks for background operations
         for (int i = 1; i < threadCount; ++i)
         {
             var thread = threads[i];
             int threadId = thread.First().ThreadId;
             lineReceiver.Add($"var background{i} = new Task(() =>");
-            lineReceiver.Add($"{StringUtils.GetIndent(4)}{{");
+            ++indent;
+            lineReceiver.Add($"{StringUtils.GetIndent(indent)}{{");
+            ++indent;
 
-            GenerateCodeForThread(thread, lineReceiver, 8);
+            if (AddSimulationExceptionCatches)
+            {
+                AddSystemTryBegin(indent, lineReceiver);
+                ++indent;
+            }
+
+            GenerateCodeForThread(thread, lineReceiver, indent);
 
             lineReceiver.Add(string.Empty);
 
-            AddBarrierWait(lineReceiver, 1, threadId, 8);
+            AddBarrierWait(lineReceiver, 1, threadId, indent);
 
-            lineReceiver.Add($"{StringUtils.GetIndent(4)}}});");
+            if (AddSimulationExceptionCatches)
+            {
+                --indent;
+                AddSystemTryEnd(indent, lineReceiver, $"threaded run for thread {threadId}");
+            }
+
+            --indent;
+
+            lineReceiver.Add($"{StringUtils.GetIndent(indent)}}});");
+
+            --indent;
 
             lineReceiver.Add(string.Empty);
             lineReceiver.Add($"TaskExecutor.Instance.AddTask(background{i});");
         }
 
+        if (AddSimulationExceptionCatches)
+        {
+            AddSystemTryBegin(indent, lineReceiver);
+            ++indent;
+        }
+
         // Main thread operations
         var mainThread = threads[0];
 
-        GenerateCodeForThread(mainThread, lineReceiver, 0);
+        GenerateCodeForThread(mainThread, lineReceiver, indent);
 
         lineReceiver.Add(string.Empty);
-        AddBarrierWait(lineReceiver, 1, mainThread.First().ThreadId, 0);
+        AddBarrierWait(lineReceiver, 1, mainThread.First().ThreadId, indent);
 
         variables["barrier1"] = new VariableInfo(BarrierType, !DebugGuardComponentWrites, $"new({threadCount})")
         {
@@ -415,6 +509,12 @@ public class GenerateThreadedSystems : Node
         if (MeasureThreadWaits)
         {
             GenerateTimeMeasurementResultsCode(lineReceiver, variables, threadCount);
+        }
+
+        if (AddSimulationExceptionCatches)
+        {
+            --indent;
+            AddSystemTryEnd(indent, lineReceiver, "threaded run for main thread");
         }
     }
 
@@ -461,16 +561,16 @@ public class GenerateThreadedSystems : Node
         lineReceiver.Add("elapsedSinceTimePrint += delta;");
         lineReceiver.Add("if (elapsedSinceTimePrint >= 1)");
         lineReceiver.Add("{");
-        lineReceiver.Add(StringUtils.GetIndent(4) + "elapsedSinceTimePrint = 0;");
+        lineReceiver.Add(StringUtils.GetIndent(1) + "elapsedSinceTimePrint = 0;");
 
         if (PrintThreadWaits)
-            lineReceiver.Add(StringUtils.GetIndent(4) + @"GD.Print($""Simulation thread wait times: "");");
+            lineReceiver.Add(StringUtils.GetIndent(1) + @"GD.Print($""Simulation thread wait times: "");");
 
         for (int i = 1; i <= threadCount; ++i)
         {
             if (PrintThreadWaits)
-                lineReceiver.Add(StringUtils.GetIndent(4) + $"GD.Print($\"\\t thread{i}:\\t{{waitTime{i}}}\");");
-            lineReceiver.Add(StringUtils.GetIndent(4) + $"waitTime{i} = 0;");
+                lineReceiver.Add(StringUtils.GetIndent(1) + $"GD.Print($\"\\t thread{i}:\\t{{waitTime{i}}}\");");
+            lineReceiver.Add(StringUtils.GetIndent(1) + $"waitTime{i} = 0;");
         }
 
         lineReceiver.Add("}");
@@ -479,9 +579,21 @@ public class GenerateThreadedSystems : Node
     private void AddSystemSingleGroupRunningLines(IEnumerable<SystemToSchedule> systems, List<string> textOutput,
         int indent, int thread)
     {
+        if (AddSimulationExceptionCatches)
+        {
+            AddSystemTryBegin(indent, textOutput);
+            ++indent;
+        }
+
         foreach (var system in systems)
         {
             system.GetRunningText(textOutput, indent, thread);
+        }
+
+        if (AddSimulationExceptionCatches)
+        {
+            --indent;
+            AddSystemTryEnd(indent, textOutput, "simple running group method");
         }
     }
 
@@ -688,19 +800,23 @@ public class GenerateThreadedSystems : Node
         writer.WriteLine("// Automatically generated file. DO NOT EDIT!");
         writer.WriteLine("// Run GenerateThreadedSystems to generate this file");
 
-        if (DebugGuardComponentWrites)
+        if (DebugGuardComponentWrites || AddSimulationExceptionCatches)
         {
             writer.WriteLine("using System;");
+        }
+
+        if (DebugGuardComponentWrites)
+        {
             writer.WriteLine("using System.Collections.Generic;");
         }
 
-        if (MeasureThreadWaits || DebugGuardComponentWrites)
+        if (MeasureThreadWaits || DebugGuardComponentWrites || AddSimulationExceptionCatches)
             writer.WriteLine("using System.Diagnostics;");
 
         writer.WriteLine("using System.Threading;");
         writer.WriteLine("using System.Threading.Tasks;");
 
-        if (MeasureThreadWaits || DebugGuardComponentWrites)
+        if (MeasureThreadWaits || DebugGuardComponentWrites || AddSimulationExceptionCatches)
             writer.WriteLine("using Godot;");
 
         writer.WriteLine();
@@ -708,7 +824,7 @@ public class GenerateThreadedSystems : Node
         writer.WriteLine($"public partial class {className}");
         writer.WriteLine('{');
 
-        indent += 4;
+        indent += 1;
         bool addedVariables = false;
 
         foreach (var pair in variables.OrderByDescending(p => p.Value.IsReadonly))
@@ -728,7 +844,7 @@ public class GenerateThreadedSystems : Node
 
         writer.WriteLine(StringUtils.GetIndent(indent) + "private void InitGenerated()");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         if (DebugGuardComponentWrites)
         {
@@ -743,7 +859,7 @@ public class GenerateThreadedSystems : Node
             }
         }
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
         writer.WriteLine();
@@ -766,7 +882,7 @@ public class GenerateThreadedSystems : Node
         writer.WriteLine();
         writer.WriteLine(StringUtils.GetIndent(indent) + "private void DisposeGenerated()");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         foreach (var pair in variables)
         {
@@ -776,12 +892,12 @@ public class GenerateThreadedSystems : Node
             }
         }
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
         // End of class
         writer.WriteLine('}');
-        indent -= 4;
+        indent -= 1;
 
         if (indent != 0)
             throw new Exception("Writer didn't end closing all indents");
@@ -794,27 +910,27 @@ public class GenerateThreadedSystems : Node
         writer.WriteLine(StringUtils.GetIndent(indent) +
             $"private void OnBarrierPhaseCompleted({BarrierType} barrier)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         writer.WriteLine(StringUtils.GetIndent(indent) + "lock (debugWriteLock)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         writer.WriteLine(StringUtils.GetIndent(indent) + "foreach (var entry in readsFromComponents)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        writer.WriteLine(StringUtils.GetIndent(indent + 4) + "entry.Value.Clear();");
+        writer.WriteLine(StringUtils.GetIndent(indent + 1) + "entry.Value.Clear();");
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
         writer.WriteLine();
         writer.WriteLine(StringUtils.GetIndent(indent) + "foreach (var entry in writesToComponents)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        writer.WriteLine(StringUtils.GetIndent(indent + 4) + "entry.Value.Clear();");
+        writer.WriteLine(StringUtils.GetIndent(indent + 1) + "entry.Value.Clear();");
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
         // Check method
@@ -822,7 +938,7 @@ public class GenerateThreadedSystems : Node
         writer.WriteLine(StringUtils.GetIndent(indent) +
             "private void OnThreadAccessComponent(bool write, string component, string system, int thread)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         bool firstBlank = true;
 
@@ -838,10 +954,10 @@ public class GenerateThreadedSystems : Node
             }
 
             // The code is indented here in the source code so a substring is taken to replace the indent sizes
-            writer.WriteLine(StringUtils.GetIndent(indent) + line.Substring(8));
+            writer.WriteLine(StringUtils.GetIndent(indent) + line.Substring(StringUtils.GetIndent(2).Length));
         }
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
         return indent;
     }
@@ -849,7 +965,7 @@ public class GenerateThreadedSystems : Node
     private int WriteBlockContents(StreamWriter writer, List<string> lines, int indent)
     {
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
-        indent += 4;
+        indent += 1;
 
         foreach (var line in lines)
         {
@@ -859,10 +975,17 @@ public class GenerateThreadedSystems : Node
                 continue;
             }
 
-            writer.WriteLine(StringUtils.GetIndent(indent) + line);
+            if (StringUtils.ShouldSkipIndent(line))
+            {
+                writer.WriteLine(line);
+            }
+            else
+            {
+                writer.WriteLine(StringUtils.GetIndent(indent) + line);
+            }
         }
 
-        indent -= 4;
+        indent -= 1;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
         return indent;
     }

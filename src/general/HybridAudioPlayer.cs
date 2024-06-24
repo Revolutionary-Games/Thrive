@@ -9,15 +9,17 @@
 ///     Useful in cases where the playing of an audio stream must be able to fulfill both of these conditions.
 ///   </para>
 /// </remarks>
-public class HybridAudioPlayer : Spatial
+public partial class HybridAudioPlayer : Node3D
 {
 #pragma warning disable CA2213
     private AudioStreamPlayer3D? player3D;
     private AudioStreamPlayer? playerNonPositional;
+
+    private AudioStream? stream;
 #pragma warning restore CA2213
 
     private bool positional;
-    private AudioStream? stream;
+
     private float volume = 1.0f;
     private string bus = "SFX";
 
@@ -147,11 +149,11 @@ public class HybridAudioPlayer : Spatial
     {
         if (Positional && player3D != null)
         {
-            player3D.UnitDb = GD.Linear2Db(volume);
+            player3D.VolumeDb = Mathf.LinearToDb(volume);
         }
         else if (!Positional && playerNonPositional != null)
         {
-            playerNonPositional.VolumeDb = GD.Linear2Db(volume);
+            playerNonPositional.VolumeDb = Mathf.LinearToDb(volume);
         }
     }
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2024-02-24 06:17+0000\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -321,6 +321,19 @@ msgstr "Обратна наклонена черта"
 msgid "BACKSPACE"
 msgstr "Клавиш „Backspace“"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Отваряне на разширените настройки"
+
 msgid "BASE_MOBILITY"
 msgstr "Базова подвижност"
 
@@ -332,15 +345,6 @@ msgstr "Основни"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Отваряне на основните настройки"
-
-msgid "BASSBOOST"
-msgstr "Клавиш „Bassboost“"
-
-msgid "BASSDOWN"
-msgstr "Клавиш „Bass Down“"
-
-msgid "BASSUP"
-msgstr "Клавиш „Bass Up“"
 
 msgid "BATHYPELAGIC"
 msgstr "Батиал"
@@ -757,8 +761,20 @@ msgstr "Отваряне на обществената Уикипедия на �
 msgid "COMPILED_AT_COLON"
 msgstr "Създадена на:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Създадена на:"
+
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Обект на търсенето:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Обект на търсенето:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Превключване на химичните съединения"
@@ -766,8 +782,24 @@ msgstr "Превключване на химичните съединения"
 msgid "COMPOUNDS_COLON"
 msgstr "Има химични съединения:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Превключване на химичните съединения"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Превключване на химичните съединения"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Облаци"
@@ -783,6 +815,25 @@ msgstr "Концентрацията на {0} се понижи с {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Баланс на химичните съединения"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Баланс на химичните съединения"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Обект на търсенето:"
@@ -857,8 +908,188 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Искате ли да продължите?"
 
+#, fuzzy
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_L2"
+msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Чувствителност на контролера"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_R2"
+msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr "Визуализатор на осите:"
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr "Мъртви зони"
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr "Мъртва зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr "Вид на контролера:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr "Вид на контролера:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr "Мъртва зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr "Мъртва зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr "Мъртва зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr "Мъртви зони"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr "Вид на контролера:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr "Вид на контролера:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr "Визуализатор на осите:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr "Вид на контролера:"
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr "Мъртва зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr "Мъртва зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr "Мъртва зона:"
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr "Чувствителност на контролера"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr "Мъртва зона:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_Y"
+msgstr "Мъртва зона:"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "Мъртви зони"
@@ -877,6 +1108,10 @@ msgstr "Вид на контролера:"
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Чувствителност на контролера"
 
+#, fuzzy
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr "Мъртви зони"
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копиране на грешката в клипборда"
 
@@ -888,6 +1123,10 @@ msgstr "Протанопия (червено и зелено)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританопия (синьо и жълто)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "Нишки:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
@@ -1044,7 +1283,8 @@ msgstr "(в секунди)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Денонощен цикъл"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(ВНИМАНИЕ: понижава ефективността на фотосинтезата)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1214,12 +1454,6 @@ msgstr "Хранителна скорост:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/с"
 
-msgid "DIRECTIONL"
-msgstr "Наляво"
-
-msgid "DIRECTIONR"
-msgstr "Надясно"
-
 msgid "DISABLED"
 msgstr "Изключено"
 
@@ -1283,6 +1517,14 @@ msgstr "Лента на способностите"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Фонови частици"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Наименования на органелите"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Наименования на органелите"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Наименования на органелите"
@@ -1444,11 +1686,68 @@ msgstr "Включване на съвместимите модификации"
 msgid "ENABLE_EDITOR"
 msgstr "Активиране на редактора"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Светлинни ефекти"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Няколко органела"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Разпадане"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Идентификаторът трябва да е положително цяло число"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Агресивните микроби преследват плячката си на големи разстояния\n"
+"и са склонни да се защитят, когато са нападнати.\n"
+"Пасивните микроби не преследват пляката си на големи разстояния\n"
+"и са склонни да избягат, когато са нападнати."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Несвързани органели"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Това е броят на отхвърлените съобщения.\n"
+"Ако желаете да ги възстановите, натиснете бутона „Нулиране“."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound] в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в околната среда. Също така, превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Отваряне на редактора"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Заглавието липсва"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
@@ -1560,12 +1859,12 @@ msgstr "Въвеждане на съществуващ идентификаци�
 msgid "EXIT"
 msgstr "Изход"
 
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Преминаване към следващия раздел"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Стартираща програма"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(определя скоростта на мутация на Вашите съперници)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Експортиране"
@@ -1654,6 +1953,18 @@ msgstr "Дата на публикуване: {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Термопласт"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината в околната среда за да произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от вода в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез температурните градиенти. Количеството зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound] в околната среда."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Филтриране по категория:"
@@ -1839,15 +2150,6 @@ msgstr "Поколение:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
 
-msgid "GLES2"
-msgstr "GLES2"
-
-msgid "GLES2_MODE_WARNING"
-msgstr "Предупреждение за GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -1962,12 +2264,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
-
-msgid "HYPERL"
-msgstr "Клавиш „Hyper Left“"
-
-msgid "HYPERR"
-msgstr "Клавиш „Hyper Right“"
 
 msgid "ICESHARD"
 msgstr "Леден къс"
@@ -2197,10 +2493,17 @@ msgstr "Юни"
 msgid "KEY_BACK"
 msgstr "Клавиш „Back“"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Клавиш „Back“"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Установен е конфликт с „{0}“.\n"
 "Искате ли да нулирате „{1}“?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Клавиш „Clear“"
@@ -2223,6 +2526,10 @@ msgstr "Клавиш „Favorites“"
 msgid "KEY_FORWARD"
 msgstr "Клавиш „Forward“"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Клавиш „Home“"
+
 msgid "KEY_HELP"
 msgstr "Клавиш „Help“"
 
@@ -2232,14 +2539,30 @@ msgstr "Клавиш „Home“"
 msgid "KEY_HOMEPAGE"
 msgstr "Клавиш „Homepage“"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Клавиш „Help“"
+
 msgid "KEY_INSERT"
 msgstr "Клавиш „Insert“"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Клавиш „Insert“"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Клавиш „Standby“"
 
 msgid "KEY_LEFT"
 msgstr "Стрелка наляво"
 
 msgid "KEY_MENU"
 msgstr "Клавиш „Menu“"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Клавиш „Tab“"
 
 msgid "KEY_OPENURL"
 msgstr "Клавиш „Open URL“"
@@ -2530,6 +2853,10 @@ msgstr "Много малък"
 msgid "LINE_COLOUR"
 msgstr "Цвят на линията:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Заглавието липсва"
+
 msgid "LIPASE"
 msgstr "Липаза"
 
@@ -2698,6 +3025,7 @@ msgstr "Превръщат [thrive:compound type=\"glucose\"]глюкозата[
 msgid "METRICS"
 msgstr "Показатели за производителност"
 
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "Време за обработка: {0} с\n"
@@ -3043,6 +3371,10 @@ msgstr "„Assembly“:"
 
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Основно „Assembly“:"
+
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "„{0}“: изключването на „Assembly“ е неуспешно"
 
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "„{0}“: „{1}“ не съществува в „Assembly“"
@@ -3406,6 +3738,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Базово движение"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3492,6 +3831,14 @@ msgstr ""
 "Играта е в начален етап на разработка и съвместимостта не е приоритет.\n"
 "Ако искате, може да докладвате за потенциалните проблеми.\n"
 "Искате ли да го заредите въпреки това?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Предупреждение за GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
 
 msgid "OPEN_FOLDER"
 msgstr "Местоположение"
@@ -3662,6 +4009,7 @@ msgstr "Кислород"
 msgid "OXYTOXISOME"
 msgstr "Окситоксизома"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]."
 
@@ -3778,6 +4126,13 @@ msgstr "Зареждането на основния файл „{0}“ е не�
 
 msgid "PEACEFUL"
 msgstr "Пасивно"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
@@ -4448,9 +4803,6 @@ msgstr "Силициева"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана с здрава стена от силициев диоксид, която осигурява най-добрата защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става прекалено бавна, както и усвояването на хранителните вещества."
 
-msgid "SIXTEEN_TIMES"
-msgstr "16 пъти"
-
 msgid "SIZE_COLON"
 msgstr "Размер:"
 
@@ -4584,6 +4936,10 @@ msgstr "текущо разпространение в зоните:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Отваряне на менюто"
 
+#, fuzzy
+msgid "START"
+msgstr "Започната"
+
 msgid "STARTING"
 msgstr "Започната"
 
@@ -4600,6 +4956,20 @@ msgstr "Изисква се рестартиране"
 
 msgid "STATISTICS"
 msgstr "Статистика"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ПРОИЗВОДСТВОТО НА АТФ Е НЕДОСТАТЪЧНО!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Базово движение"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Стартирането на „Steam“ е неуспешно"
@@ -4668,23 +5038,11 @@ msgstr "Съхранение"
 msgid "STORAGE_COLON"
 msgstr "Съхранение:"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Влезли сте като: {0}"
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -4744,12 +5102,6 @@ msgstr "Извършване на самоубийство"
 
 msgid "SUNLIGHT"
 msgstr "Слънчева светлина"
-
-msgid "SUPERL"
-msgstr "Клавиш „Super Left“"
-
-msgid "SUPERR"
-msgstr "Клавиш „Super Right“"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "Поддръжници"
@@ -5034,10 +5386,6 @@ msgstr "Превключване на навигацията"
 msgid "TOGGLE_PAUSE"
 msgstr "Прекъсване на играта"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Свързване"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Отделяне"
 
@@ -5054,14 +5402,72 @@ msgstr "Изминало време:"
 msgid "TOTAL_SAVES"
 msgstr "Брой записи:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Зависи от включването на „Земеподобен живот“"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Токсична\n"
+"вакуола"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Токсична устойчивост"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Токсична устойчивост"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Вид:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсична\n"
 "вакуола"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
 
@@ -5076,12 +5482,6 @@ msgstr "Преводачи"
 
 msgid "TRANSPARENCY"
 msgstr "Прозрачност"
-
-msgid "TREBLEDOWN"
-msgstr "Клавиш „Treble Down“"
-
-msgid "TREBLEUP"
-msgstr "Клавиш „Treble Up“"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Трябва да направите няколко вкаменелости!"
@@ -5354,9 +5754,6 @@ msgstr "Неизвестен"
 msgid "UNKNOWN_MOUSE"
 msgstr "Неизвестен бутон"
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Неизвестна"
-
 #, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Добавяне на органел или друг обект"
@@ -5441,6 +5838,10 @@ msgstr "Придърпващи реснички"
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Ресничките са подобни на камшичетата, но те увеличават само скоростта на завъртане на клетките."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} МТ"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5552,6 +5953,9 @@ msgstr "Бележки към изданието"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} — {1}"
 
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
+
 msgid "VIEW_SOURCE_CODE"
 msgstr "Изходен код"
 
@@ -5607,27 +6011,34 @@ msgstr "Колелце нагоре"
 msgid "WIKI"
 msgstr "нашата Уикипедия"
 
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
 msgstr "Подлежи на уточняване"
 
@@ -5709,6 +6120,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr "Подлежи на уточняване"
 
@@ -5773,51 +6185,66 @@ msgstr "Хемосинтезиращи протеини"
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Хемосинтезиращи протеини"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CILIA_UPGRADES"
 msgstr "Подлежи на уточняване"
 
@@ -5849,27 +6276,34 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Подлежи на уточняване"
 
@@ -5916,6 +6350,7 @@ msgstr ""
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr "Подлежи на уточняване"
 
@@ -5946,6 +6381,7 @@ msgstr "Метаболозомите са струпвания от протеи
 msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
 msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr "Подлежи на уточняване"
 
@@ -5976,6 +6412,7 @@ msgstr "Това е основният източник на енергия на
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "Подлежи на уточняване"
 
@@ -5983,99 +6420,127 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr "Подлежи на уточняване"
 
@@ -6083,6 +6548,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
 msgstr "Аксон"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr "Подлежи на уточняване"
 
@@ -6092,6 +6558,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "Подлежи на уточняване"
 
@@ -6101,6 +6568,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr "Подлежи на уточняване"
 
@@ -6224,27 +6692,35 @@ msgstr ""
 "Токсична\n"
 "вакуола"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr "Подлежи на уточняване"
 
@@ -6301,6 +6777,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "Подлежи на уточняване"
 
@@ -6308,27 +6785,34 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Подлежи на уточняване"
 
@@ -6363,51 +6847,65 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "Подлежи на уточняване"
 
@@ -6440,27 +6938,34 @@ msgstr "Тилакоидите са струпвания от протеини �
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Подлежи на уточняване"
 
@@ -6482,6 +6987,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr "Подлежи на уточняване"
 
@@ -6577,6 +7083,48 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "Клавиш „Bassboost“"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Клавиш „Bass Down“"
+
+#~ msgid "BASSUP"
+#~ msgstr "Клавиш „Bass Up“"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Наляво"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Надясно"
+
+#~ msgid "HYPERL"
+#~ msgstr "Клавиш „Hyper Left“"
+
+#~ msgid "HYPERR"
+#~ msgstr "Клавиш „Hyper Right“"
+
+#~ msgid "SUPERL"
+#~ msgstr "Клавиш „Super Left“"
+
+#~ msgid "SUPERR"
+#~ msgstr "Клавиш „Super Right“"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Клавиш „Treble Down“"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Клавиш „Treble Up“"
+
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Неизвестна"
+
+#~ msgid "GLES2"
+#~ msgstr "GLES2"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16 пъти"
+
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Обща популация:"
 
@@ -6651,10 +7199,6 @@ msgstr "Отдалечаване"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Потребителско име:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Наименования на органелите"
 
 #~ msgid "TINY"
 #~ msgstr "Миниатюрен"

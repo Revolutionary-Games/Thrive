@@ -2,7 +2,11 @@
 using System.Linq;
 using Godot;
 
-public class OrganelleUpgradeGUI : Control
+/// <summary>
+///   Upgrade GUI that can be opened for organelle. This manages loading custom elements for different organelle types
+///   and provides the base upgrade selection.
+/// </summary>
+public partial class OrganelleUpgradeGUI : Control
 {
     [Export]
     public NodePath? PopupPath;
@@ -43,7 +47,7 @@ public class OrganelleUpgradeGUI : Control
     private List<string>? currentlySelectedGeneralUpgrades;
 
     [Signal]
-    public delegate void Accepted();
+    public delegate void AcceptedEventHandler();
 
     public override void _Ready()
     {
@@ -81,13 +85,13 @@ public class OrganelleUpgradeGUI : Control
                 return;
             }
 
-            var instance = scene.Instance();
+            var instance = scene.Instantiate();
             upgrader = (IOrganelleUpgrader)instance;
 
             organelleSpecificContent.FreeChildren();
             organelleSpecificContent.AddChild(instance);
 
-            scrollContainer.RectMinSize = upgrader.GetMinDialogSize();
+            scrollContainer.CustomMinimumSize = upgrader.GetMinDialogSize();
 
             somethingAdded = true;
         }
@@ -101,18 +105,18 @@ public class OrganelleUpgradeGUI : Control
         generalUpgradeSelectorButtons.Clear();
         ReleaseTooltips();
 
-        if (availableGeneralUpgrades.Count > 0)
+        if (availableGeneralUpgrades.Count > 0 && !organelle.Definition.UpgraderSkipDefaultControls)
         {
             var tooltipGroup = GetTooltipGroup();
 
             var oldUpgrade = organelle.Upgrades ?? new OrganelleUpgrades();
 
-            // Setup the buttons for each of the available upgrades
+            // Set up the buttons for each of the available upgrades
             foreach (var availableUpgrade in availableGeneralUpgrades)
             {
                 var upgrade = availableUpgrade.Value;
 
-                var selectionButton = upgradeSelectionButtonScene.Instance<MicrobePartSelection>();
+                var selectionButton = upgradeSelectionButtonScene.Instantiate<MicrobePartSelection>();
 
                 var newUpgrade = new OrganelleUpgrades();
                 newUpgrade.UnlockedFeatures.Add(availableUpgrade.Key);
@@ -130,11 +134,11 @@ public class OrganelleUpgradeGUI : Control
                 selectionButton.MPCost = cost;
                 selectionButton.PartIcon = upgrade.LoadedIcon;
 
-                selectionButton.Connect(nameof(MicrobePartSelection.OnPartSelected), this,
-                    nameof(OnGeneralUpgradeSelected));
+                selectionButton.Connect(MicrobePartSelection.SignalName.OnPartSelected, new Callable(this,
+                    nameof(OnGeneralUpgradeSelected)));
 
                 // Tooltip
-                var tooltip = upgradeTooltipScene.Instance<SelectionMenuToolTip>();
+                var tooltip = upgradeTooltipScene.Instantiate<SelectionMenuToolTip>();
                 tooltip.DisplayName = upgrade.Name;
                 tooltip.Description = upgrade.Description;
                 tooltip.MutationPointCost = cost;
@@ -173,7 +177,7 @@ public class OrganelleUpgradeGUI : Control
         popup.PopupCenteredShrink();
 
         scrollContainer.ScrollVertical = 0;
-        upgrader?.OnStartFor(organelle, currentGame);
+        upgrader?.OnStartFor(organelle, currentGame, costMultiplier);
         storedEditor = editorComponent;
     }
 
@@ -251,7 +255,7 @@ public class OrganelleUpgradeGUI : Control
             }
         }
 
-        EmitSignal(nameof(Accepted));
+        EmitSignal(SignalName.Accepted);
     }
 
     private void OnCancel()

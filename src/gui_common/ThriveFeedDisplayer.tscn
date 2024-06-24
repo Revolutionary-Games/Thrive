@@ -1,52 +1,46 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://cpp1dl8aiumt7"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/ThriveFeedDisplayer.cs" type="Script" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/gui_common/ThriveFeedDisplayer.cs" id="3"]
+[ext_resource type="FontVariation" uid="uid://bk80ohpv7wi0u" path="res://assets/fonts/variants/NotoSans-Regular.tres" id="3_f34nn"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_fuesv"]
+[ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="6_gap0o"]
+[ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="8_l5q4e"]
 
 [node name="ThriveFeedDisplayer" type="VBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-theme = ExtResource( 1 )
-script = ExtResource( 3 )
+theme = ExtResource("1")
+script = ExtResource("3")
 NewsContainerPath = NodePath("ScrollContainer/VBoxContainer/NewsContainer")
 LoadingIndicatorPath = NodePath("ScrollContainer/VBoxContainer/LoadingIndicator")
-TitleFont = ExtResource( 6 )
-FooterFont = ExtResource( 4 )
+TitleFont = ExtResource("3_f34nn")
+TitleFontSize = 18
+FooterFontSettings = ExtResource("4_fuesv")
 
 [node name="Label" type="Label" parent="."]
-margin_right = 1280.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 5 )
+layout_mode = 2
 text = "NEWS"
+label_settings = ExtResource("6_gap0o")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-margin_top = 29.0
-margin_right = 1280.0
-margin_bottom = 720.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
-scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 1280.0
-margin_bottom = 26.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="LoadingIndicator" type="Label" parent="ScrollContainer/VBoxContainer"]
-margin_right = 1280.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 2
 text = "LOADING_DOT_DOT_DOT"
+label_settings = ExtResource("8_l5q4e")
 
 [node name="NewsContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_top = 26.0
-margin_right = 1280.0
-margin_bottom = 26.0
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/separation = 15
+theme_override_constants/separation = 15

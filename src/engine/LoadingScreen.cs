@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   A loading screen that shows cool stuff. This is autoloaded overlay on top of other scenes.
 /// </summary>
-public class LoadingScreen : Control
+public partial class LoadingScreen : Control
 {
     [Export]
     public NodePath? ArtworkPath;
@@ -31,7 +31,7 @@ public class LoadingScreen : Control
     ///   How fast the loading indicator spins
     /// </summary>
     [Export]
-    public float SpinnerSpeed = 180.0f;
+    public double SpinnerSpeed = Math.PI;
 
     private static LoadingScreen? instance;
 
@@ -51,11 +51,11 @@ public class LoadingScreen : Control
     private bool wasVisible;
 
     private string? loadingMessage;
-    private string? tip;
+    private string tip = string.Empty;
     private string loadingDescription = string.Empty;
     private string? artDescription;
 
-    private float totalElapsed;
+    private double totalElapsed;
 
     private LoadingScreen()
     {
@@ -66,7 +66,7 @@ public class LoadingScreen : Control
 
     public string LoadingMessage
     {
-        get => loadingMessage ??= TranslationServer.Translate("LOADING");
+        get => loadingMessage ??= Localization.Translate("LOADING");
         set
         {
             if (loadingMessage == value)
@@ -103,7 +103,7 @@ public class LoadingScreen : Control
         }
     }
 
-    public string? Tip
+    public string Tip
     {
         get => tip;
         set
@@ -143,7 +143,7 @@ public class LoadingScreen : Control
         Hide();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         // Only elapse passed time if this is visible
         if (!Visible)
@@ -160,7 +160,7 @@ public class LoadingScreen : Control
         // Spin the spinner
         totalElapsed += delta;
 
-        spinner.RectRotation = (int)(totalElapsed * SpinnerSpeed) % 360;
+        spinner.RotationDegrees = (int)(totalElapsed * SpinnerSpeed) % Mathf.Tau;
     }
 
     /// <summary>
@@ -206,7 +206,7 @@ public class LoadingScreen : Control
         var category = gallery.AssetCategories.ContainsKey(gameStateName) ? gameStateName : "General";
         var artwork = gallery.AssetCategories[category].Assets.Random(random);
 
-        artworkRect.Image = GD.Load<Texture>(artwork.ResourcePath);
+        artworkRect.Image = GD.Load<Texture2D>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);
     }
 
@@ -265,6 +265,6 @@ public class LoadingScreen : Control
     private void UpdateTip()
     {
         if (tipLabel != null)
-            tipLabel.ExtendedBbcode = TranslationServer.Translate(Tip);
+            tipLabel.ExtendedBbcode = Localization.Translate(Tip);
     }
 }

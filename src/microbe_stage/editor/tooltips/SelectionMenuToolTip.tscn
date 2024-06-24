@@ -1,42 +1,34 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://bl77ntlowknmp"]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-BiggerPlus.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/microbe_stage/ProcessList.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=5]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs" type="Script" id=7]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=8]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=9]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=10]
+[ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="4"]
+[ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="4_olfrb"]
+[ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="5_hsw5o"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="6"]
+[ext_resource type="LabelSettings" uid="uid://bhs4dgsx2ut6q" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall-Red.tres" id="6_2mc08"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs" id="7"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0.129412, 0.141176, 0.980392)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 429, 1 )
-
 [node name="SelectionMenuTooltip" type="PanelContainer"]
-margin_right = 350.0
-margin_bottom = 155.0
-rect_min_size = Vector2( 350, 0 )
+custom_minimum_size = Vector2(350, 0)
+offset_right = 350.0
+offset_bottom = 155.0
 mouse_filter = 2
-theme = ExtResource( 9 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 7 )
-__meta__ = {
-"_editor_description_": "NOTE: processes description string should only be set here on the ProcessesDescription property and not directly on the rich text label node as it will be overidden otherwise."
-}
+theme = ExtResource("9")
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("7")
 NameLabelPath = NodePath("MarginContainer/VBoxContainer/Header/Title")
 MpLabelPath = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
 RequiresNucleusPath = NodePath("MarginContainer/VBoxContainer/RequiresNucleus")
@@ -47,123 +39,91 @@ ProcessListPath = NodePath("MarginContainer/VBoxContainer/ProcessList")
 MoreInfoPath = NodePath("MarginContainer/VBoxContainer/MoreInfo")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 364.0
-margin_bottom = 264.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/margin_right = 15
-custom_constants/margin_top = 15
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 15
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 348.0
-margin_bottom = 248.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/separation = 15
+theme_override_constants/separation = 15
 
 [node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 333.0
-margin_bottom = 31.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 
 [node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header"]
-margin_right = 83.0
-margin_bottom = 20.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+mouse_filter = 2
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 4 )
-expand = true
+mouse_filter = 2
+texture = ExtResource("4")
+expand_mode = 1
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP"]
-margin_left = 24.0
-margin_right = 83.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 8 )
+layout_mode = 2
 text = "N_A_MP"
+label_settings = ExtResource("4_olfrb")
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
-margin_left = 93.0
-margin_right = 323.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 230, 0 )
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
-align = 1
-autowrap = true
+text = "Organelle Name"
+label_settings = ExtResource("5_hsw5o")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header"]
-margin_left = 333.0
-margin_right = 333.0
-margin_bottom = 31.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="RequiresNucleus" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 46.0
-margin_right = 333.0
-margin_bottom = 65.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 10 )
+layout_mode = 2
 text = "REQUIRES_NUCLEUS"
+label_settings = ExtResource("6_2mc08")
 
-[node name="ProcessesDescription" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 80.0
-margin_right = 333.0
-margin_bottom = 102.0
+[node name="ProcessesDescription" parent="MarginContainer/VBoxContainer" instance=ExtResource("6")]
+layout_mode = 2
 mouse_filter = 2
+fit_content = true
 
-[node name="ProcessList" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 117.0
-margin_right = 333.0
-margin_bottom = 117.0
+[node name="ProcessList" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
+layout_mode = 2
 mouse_filter = 2
 
 [node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 132.0
-margin_right = 333.0
-margin_bottom = 132.0
+layout_mode = 2
 mouse_filter = 2
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 147.0
-margin_right = 333.0
-margin_bottom = 151.0
+layout_mode = 2
 mouse_filter = 2
-custom_styles/separator = SubResource( 2 )
 
-[node name="Description" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 166.0
-margin_right = 333.0
-margin_bottom = 188.0
+[node name="Description" parent="MarginContainer/VBoxContainer" instance=ExtResource("6")]
+layout_mode = 2
+fit_content = true
 
 [node name="MoreInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 203.0
-margin_right = 333.0
-margin_bottom = 233.0
+layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MoreInfo"]
-margin_right = 333.0
-margin_bottom = 4.0
+layout_mode = 2
 mouse_filter = 2
-custom_styles/separator = SubResource( 2 )
 
-[node name="MoreInfoLabel" parent="MarginContainer/VBoxContainer/MoreInfo" instance=ExtResource( 6 )]
-margin_top = 8.0
-margin_right = 333.0
-margin_bottom = 30.0
+[node name="MoreInfoLabel" parent="MarginContainer/VBoxContainer/MoreInfo" instance=ExtResource("6")]
+layout_mode = 2
+fit_content = true
 ExtendedBbcode = "MORE_INFO_PROMPT"

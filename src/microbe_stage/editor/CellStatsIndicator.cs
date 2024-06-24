@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 ///   Shows cell stats (e.g. Storage: 2.1, Hp: 50, etc) for the organism statistics display.
 ///   Also functions as a comparison for old value with a new one, indicated with an up/down icon.
 /// </summary>
-public class CellStatsIndicator : HBoxContainer
+[JsonObject(MemberSerialization.OptIn)]
+public partial class CellStatsIndicator : HBoxContainer
 {
 #pragma warning disable CA2213
     /// <summary>
@@ -19,10 +20,10 @@ public class CellStatsIndicator : HBoxContainer
     ///   </para>
     /// </remarks>
     [Export]
-    public Texture? InvalidIcon;
+    public Texture2D? InvalidIcon;
 
     [Export]
-    public Texture? Icon;
+    public Texture2D? Icon;
 
     [Export]
     public NodePath? ValuePath;
@@ -32,9 +33,9 @@ public class CellStatsIndicator : HBoxContainer
     private TextureRect? changeIndicator;
     private TextureRect? iconRect;
 
-    private Texture blankIcon = null!;
-    private Texture increaseIcon = null!;
-    private Texture decreaseIcon = null!;
+    private Texture2D blankIcon = null!;
+    private Texture2D increaseIcon = null!;
+    private Texture2D decreaseIcon = null!;
 #pragma warning restore CA2213
 
     private string description = "unset";
@@ -104,11 +105,11 @@ public class CellStatsIndicator : HBoxContainer
         changeIndicator = GetNode<TextureRect>("Indicator");
         iconRect = GetNode<TextureRect>("Icon");
 
-        InvalidIcon ??= GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
+        InvalidIcon ??= GD.Load<Texture2D>("res://assets/textures/gui/bevel/helpButton.png");
 
-        blankIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/blankStat.png");
-        increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
-        decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
+        blankIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/blankStat.png");
+        increaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/increase.png");
+        decreaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/decrease.png");
 
         iconRect.Texture = Icon;
 
@@ -121,13 +122,16 @@ public class CellStatsIndicator : HBoxContainer
         UpdateValue();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateDescription();
-            UpdateValue();
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     public void ResetInitialValue()
@@ -173,7 +177,7 @@ public class CellStatsIndicator : HBoxContainer
 
         if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
         {
-            changeIndicator.RectMinSize = ChangeIndicatorSize;
+            changeIndicator.CustomMinimumSize = ChangeIndicatorSize;
             if (Value > initialValue)
             {
                 changeIndicator.Texture = increaseIcon;
@@ -191,7 +195,7 @@ public class CellStatsIndicator : HBoxContainer
         }
         else
         {
-            changeIndicator.RectMinSize = InvalidIndicatorSize;
+            changeIndicator.CustomMinimumSize = InvalidIndicatorSize;
             changeIndicator.Texture = InvalidIcon;
             changeIndicator.Visible = true;
         }
@@ -202,7 +206,7 @@ public class CellStatsIndicator : HBoxContainer
         if (descriptionLabel == null)
             return;
 
-        descriptionLabel.Text = TranslationServer.Translate(Description);
+        descriptionLabel.Text = Localization.Translate(Description);
     }
 
     private void UpdateValue()
@@ -215,5 +219,11 @@ public class CellStatsIndicator : HBoxContainer
         valueLabel.Text = string.IsNullOrEmpty(Format) ?
             Value.ToString(CultureInfo.CurrentCulture) :
             Format!.FormatSafe(Value);
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateDescription();
+        UpdateValue();
     }
 }

@@ -1,320 +1,325 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=3 uid="uid://b6at78uxbps1"]
 
-[ext_resource path="res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs" type="Script" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
-[ext_resource path="res://src/late_multicellular_stage/editor/MetaballPopupMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=6]
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=8]
-[ext_resource path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/gui_common/CollapsibleList.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/microbe_stage/editor/MutationPointsBar.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/textures/gui/bevel/warningBadge.png" type="Texture" id=14]
+[ext_resource type="Script" path="res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs" id="1"]
+[ext_resource type="Texture2D" uid="uid://bo70v3237p6iv" path="res://assets/textures/gui/bevel/hSeparatorCentered.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://u7xx74aaed4e" path="res://src/late_multicellular_stage/editor/MetaballPopupMenu.tscn" id="3"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="7_ck2k0"]
+[ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="13"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="13_wsdas"]
+[ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="14"]
+[ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="14_e8ubw"]
 
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 429, 1 )
+[sub_resource type="StyleBoxTexture" id="1"]
+texture = ExtResource("2")
+region_rect = Rect2(0, 0, 429, 1)
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id="5"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0, 0.435294, 0.52549, 1 )
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id="2"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.0666667, 1, 0.835294, 1 )
+bg_color = Color(0, 0.435294, 0.52549, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id="3"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.164706, 0.215686, 0.235294, 1 )
+bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.396078, 0.623529, 0.584314, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id="4"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="ButtonGroup" id=6]
+[sub_resource type="ButtonGroup" id="ButtonGroup_vcpf2"]
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id="7"]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id="8"]
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id="14"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.81, 0.0162, 0.0162, 1 )
+bg_color = Color(0.49, 0, 0, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 1, 0.07, 0.07, 1 )
+border_color = Color(1, 0.07, 0.07, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.81, 0.0162, 0.0162, 1 )
+bg_color = Color(0.81, 0.0162, 0.0162, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 1, 0.07, 0.07, 1 )
+border_color = Color(1, 0.07, 0.07, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id="13"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.49, 0, 0, 1 )
+bg_color = Color(0.81, 0.0162, 0.0162, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 1, 0.07, 0.07, 1 )
+border_color = Color(1, 0.07, 0.07, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id="16"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.0156863, 0.811765, 0.396078, 1 )
+bg_color = Color(0, 0.490196, 0.258824, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=41]
+[sub_resource type="StyleBoxFlat" id="15"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.0156863, 0.811765, 0.396078, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="41"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.666667, 1, 0.941176, 1 )
+border_color = Color(0.666667, 1, 0.941176, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=16]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
-bg_color = Color( 0, 0.490196, 0.258824, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id="17"]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [Vector2(1, 1)]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rect_size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 21, 21 ) ]
+"values": [Vector2(21, 21)]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 134, -8.58575 ) ]
+"values": [Vector2(134, -8.58575)]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("..:custom_constants/margin_right")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
+tracks/3/path = NodePath("..:theme_override_constants/margin_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0 ]
+"values": [0]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("..:custom_constants/margin_top")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
+tracks/4/path = NodePath("..:theme_override_constants/margin_top")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0 ]
+"values": [0]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("..:custom_constants/margin_left")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
+tracks/5/path = NodePath("..:theme_override_constants/margin_left")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0 ]
+"values": [0]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("..:custom_constants/margin_bottom")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
+tracks/6/path = NodePath("..:theme_override_constants/margin_bottom")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0 ]
+"values": [0]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id="18"]
 resource_name = "hide"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+"values": [Vector2(1, 1), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id="19"]
 resource_name = "show"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vbjf3"]
+_data = {
+"RESET": SubResource("17"),
+"hide": SubResource("18"),
+"show": SubResource("19")
 }
 
 [node name="MetaballBodyEditorComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 5 )
-script = ExtResource( 1 )
-FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
-MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
-ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
-CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
-FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
-IslandErrorPath = NodePath("IslandError")
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5")
+script = ExtResource("1")
 TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
 StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
 ReproductionTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
@@ -333,569 +338,435 @@ DuplicateCellTypeDialogPath = NodePath("NewTissueTypeSetup")
 DuplicateCellTypeNamePath = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
 MetaballPopupMenuPath = NodePath("MetaballPopupMenu")
 CannotReduceBrainPowerPopupPath = NodePath("CannotReduceBrainPowerStage")
+IslandErrorPath = NodePath("IslandError")
+MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
+ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
+CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
+FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
+FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 0
 anchor_bottom = 1.0
-margin_top = 40.0
-margin_right = 350.0
-margin_bottom = -50.0
-rect_min_size = Vector2( 350, 0 )
+offset_top = 40.0
+offset_right = 350.0
+offset_bottom = -50.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="MainPanel" type="PanelContainer" parent="LeftPanel"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 350.0
-margin_bottom = 625.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": true
-}
+mouse_force_pass_scroll_events = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 339.0
-margin_bottom = 619.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer"]
-margin_right = 338.0
-margin_bottom = 35.0
-mouse_filter = 1
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
 
-[node name="MutationPointsBar" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2" instance=ExtResource( 12 )]
+[node name="MutationPointsBar" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2" instance=ExtResource("12")]
+layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer"]
-margin_top = 39.0
-margin_right = 338.0
-margin_bottom = 43.0
+layout_mode = 2
 mouse_filter = 1
-custom_styles/separator = SubResource( 1 )
+theme_override_styles/separator = SubResource("1")
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer"]
-margin_top = 47.0
-margin_right = 338.0
-margin_bottom = 618.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="EditingPanel" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 328.0
-margin_bottom = 561.0
-custom_constants/separation = 10
-__meta__ = {
-"_editor_description_": "To add a new item to a cell parts list, instantiate MicrobePartSelection scene into the list and change its node name with the defined internal name of a cell part object (e.g. organelle, membrane) it represents. Note that if the object is registered in the JSON files, the values of the newly-added item would be automatically updated at runtime, otherwise it wouldn't. Final step is to assign the item into the appropriate Group in the Node tab (see the existing selection buttons for reference)."
-}
+layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="TabButtons" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 10 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 318.0
-margin_bottom = 28.0
+[node name="TabButtons" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource("10")]
+layout_mode = 2
 LevelOnScreen = 1
 
 [node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
-margin_right = 103.0
-margin_bottom = 28.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+mouse_filter = 1
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
 toggle_mode = true
-pressed = true
+button_pressed = true
 action_mode = 0
-group = SubResource( 6 )
+button_group = SubResource("ButtonGroup_vcpf2")
 text = "STRUCTURE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Internals" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
-margin_left = 107.0
-margin_right = 210.0
-margin_bottom = 28.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+mouse_filter = 1
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
 disabled = true
 toggle_mode = true
 action_mode = 0
-group = SubResource( 6 )
+button_group = SubResource("ButtonGroup_vcpf2")
 text = "INTERNALS"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
-margin_left = 214.0
-margin_right = 318.0
-margin_bottom = 28.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+mouse_filter = 1
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
 toggle_mode = true
 action_mode = 0
-group = SubResource( 6 )
+button_group = SubResource("ButtonGroup_vcpf2")
 text = "BEHAVIOUR"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Appearance" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 visible = false
-margin_left = 268.0
-margin_right = 364.0
-margin_bottom = 28.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+mouse_filter = 1
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
 toggle_mode = true
 action_mode = 0
-group = SubResource( 6 )
+button_group = SubResource("ButtonGroup_vcpf2")
 text = "APPEARANCE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Movement" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 visible = false
-margin_left = 268.0
-margin_right = 353.0
-margin_bottom = 28.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+mouse_filter = 1
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
 disabled = true
 toggle_mode = true
 action_mode = 0
-group = SubResource( 6 )
+button_group = SubResource("ButtonGroup_vcpf2")
 text = "MOVEMENT"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Reproduction" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 visible = false
-margin_left = 268.0
-margin_right = 380.0
-margin_bottom = 28.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+mouse_filter = 1
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
 toggle_mode = true
 action_mode = 0
-group = SubResource( 6 )
+button_group = SubResource("ButtonGroup_vcpf2")
 text = "REPRODUCTION"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
-margin_top = 38.0
-margin_right = 318.0
-margin_bottom = 556.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 7 )
+mouse_filter = 1
+theme_override_styles/panel = SubResource("7")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure"]
-margin_right = 318.0
-margin_bottom = 518.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_vertical = 3
-scroll_horizontal_enabled = false
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer"]
-margin_right = 318.0
-margin_bottom = 98.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/margin_right = 10
+theme_override_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer"]
-margin_right = 308.0
-margin_bottom = 98.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
+theme_override_constants/separation = 10
 
-[node name="Cells" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 11 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 308.0
-margin_bottom = 24.0
+[node name="Cells" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource("11")]
+layout_mode = 2
 DisplayName = "CELLS"
 Columns = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection"]
-margin_top = 34.0
-margin_right = 308.0
-margin_bottom = 98.0
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer"]
-margin_right = 308.0
-margin_bottom = 30.0
+layout_mode = 2
 
 [node name="Modify" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
-margin_right = 109.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 8 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 disabled = true
 text = "MODIFY_TYPE"
 
 [node name="Control" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
-margin_left = 113.0
-margin_right = 239.0
-margin_bottom = 30.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Delete" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
-margin_left = 243.0
-margin_right = 308.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 8 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 disabled = true
 text = "DELETE"
 
 [node name="Duplicate" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer"]
-margin_top = 34.0
-margin_right = 308.0
-margin_bottom = 64.0
-custom_fonts/font = ExtResource( 8 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 disabled = true
 text = "DUPLICATE_TYPE"
 
 [node name="Reproduction" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
-margin_top = 74.0
-margin_right = 409.0
-margin_bottom = 556.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 8 )
+mouse_filter = 1
+theme_override_styles/panel = SubResource("8")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction"]
-margin_right = 409.0
-margin_bottom = 482.0
-mouse_filter = 1
-scroll_horizontal_enabled = false
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer"]
-margin_right = 409.0
-margin_bottom = 19.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/margin_right = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer"]
-margin_right = 399.0
-margin_bottom = 19.0
-custom_constants/separation = 15
+layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 399.0
-margin_bottom = 19.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_top = 1.0
-margin_right = 179.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 6 )
-text = "REPRODUCTION_METHOD"
-
-[node name="Control" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 183.0
-margin_right = 183.0
-margin_bottom = 19.0
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
 size_flags_horizontal = 3
+text = "REPRODUCTION_METHOD"
+label_settings = ExtResource("7_ck2k0")
+autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 187.0
-margin_right = 399.0
-margin_bottom = 19.0
+layout_mode = 2
 disabled = true
-text = "REPRODUCTION_ASEXUAL"
-items = [ "REPRODUCTION_ASEXUAL", null, false, 0, null ]
+item_count = 1
 selected = 0
+popup/item_0/text = "REPRODUCTION_ASEXUAL"
+popup/item_0/id = 0
 
-[node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 9 )]
+[node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource("9")]
 visible = false
-margin_top = 74.0
+layout_mode = 2
 FinishOrNextButtonPath = NodePath("")
 
 [node name="Appearance" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
-margin_top = 74.0
-margin_right = 318.0
-margin_bottom = 556.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 8 )
+mouse_filter = 1
+theme_override_styles/panel = SubResource("8")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance"]
-margin_right = 318.0
-margin_bottom = 482.0
-mouse_filter = 1
-scroll_horizontal_enabled = false
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer"]
-margin_right = 318.0
-margin_bottom = 112.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/margin_right = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer"]
-margin_right = 308.0
-margin_bottom = 112.0
-custom_constants/separation = 15
+layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 308.0
+layout_mode = 2
 
 [node name="MetaballsOnlyLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 15.0
-margin_right = 308.0
-margin_bottom = 112.0
-custom_fonts/font = ExtResource( 6 )
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 text = "We plan to implement convolution surfaces to make the \"skin\" of the creatures. Currently this is not implemented so the metaballs are rendered with just basic spheres to give some impression of what the shape is."
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER
-This is a placeholder to not make translators do pointless work"
-}
+label_settings = ExtResource("7_ck2k0")
+autowrap_mode = 3
 
-[node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource( 13 )]
-ShowNewButton = false
+[node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource("13")]
+layout_mode = 1
+offset_right = 641.0
+grow_vertical = 0
 ShowSymmetryButton = false
+ShowNewButton = false
 
 [node name="BottomRight" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -10.0
-margin_bottom = -10.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomRight"]
-margin_right = 150.0
-margin_bottom = 40.0
+layout_mode = 2
 alignment = 2
 
 [node name="CancelButton" type="Button" parent="BottomRight/HBoxContainer"]
 visible = false
-margin_right = 237.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 140, 40 )
-mouse_filter = 1
-custom_colors/font_color_disabled = Color( 0.498039, 0.529412, 0.541176, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_styles/hover = SubResource( 12 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/normal = SubResource( 14 )
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.498039, 0.529412, 0.541176, 1)
+theme_override_styles/normal = SubResource("14")
+theme_override_styles/hover = SubResource("12")
+theme_override_styles/pressed = SubResource("13")
 shortcut_in_tooltip = false
 text = "CANCEL_ACTION_CAPITAL"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ConfirmButton" type="Button" parent="BottomRight/HBoxContainer"]
-margin_right = 150.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 140, 40 )
-mouse_filter = 1
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_styles/hover = SubResource( 15 )
-custom_styles/focus = SubResource( 41 )
-custom_styles/normal = SubResource( 16 )
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("16")
+theme_override_styles/hover = SubResource("15")
+theme_override_styles/focus = SubResource("41")
 text = "NEXT_CAPITAL"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton"]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -21.0
-margin_top = -10.0
-margin_bottom = 11.0
-mouse_filter = 1
+offset_left = -21.0
+offset_top = -10.0
+offset_bottom = 11.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_constants/margin_right = 0
-custom_constants/margin_top = 0
-custom_constants/margin_left = 0
-custom_constants/margin_bottom = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="WarningBadge" type="TextureRect" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer"]
 visible = false
-margin_right = 21.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 21, 21 )
-rect_pivot_offset = Vector2( 0, 10 )
+custom_minimum_size = Vector2(21, 21)
+layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource( 14 )
-expand = true
+texture = ExtResource("14")
+expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge"]
-anims/RESET = SubResource( 17 )
-anims/hide = SubResource( 18 )
-anims/show = SubResource( 19 )
-
-[node name="IslandError" parent="." instance=ExtResource( 7 )]
-margin_right = 600.0
-margin_bottom = 85.0
-rect_min_size = Vector2( 600, 0 )
-WindowTitle = "DISCONNECTED_METABALLS"
-HideCancelButton = true
-DialogText = "DISCONNECTED_METABALLS_TEXT"
-
-[node name="CannotDeleteInUseType" parent="." instance=ExtResource( 7 )]
-WindowTitle = "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-HideCancelButton = true
-DialogText = "CANNOT_DELETE_USED_CELL_TYPE"
-
-[node name="CannotReduceBrainPowerStage" parent="." instance=ExtResource( 7 )]
-WindowTitle = "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-HideCancelButton = true
-DialogText = "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-
-[node name="NewTissueTypeSetup" parent="." instance=ExtResource( 7 )]
-rect_min_size = Vector2( 550, 90 )
-WindowTitle = "CREATE_NEW_TISSUE_TYPE"
-HideOnOk = false
-NodeToGiveFocusOnOpen = NodePath("VBoxContainer2/NewName")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="NewTissueTypeSetup"]
-margin_right = 40.0
-margin_bottom = 40.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
+libraries = {
+"": SubResource("AnimationLibrary_vbjf3")
 }
 
-[node name="Description" type="Label" parent="NewTissueTypeSetup/VBoxContainer2"]
-margin_right = 381.0
-margin_bottom = 25.0
-text = "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-autowrap = true
+[node name="IslandError" parent="." instance=ExtResource("7")]
+custom_minimum_size = Vector2(600, 0)
+offset_right = 600.0
+offset_bottom = 85.0
+HideCancelButton = true
+DialogText = "DISCONNECTED_METABALLS_TEXT"
+WindowTitle = "DISCONNECTED_METABALLS"
 
-[node name="Spacer" type="Control" parent="NewTissueTypeSetup/VBoxContainer2"]
-margin_top = 29.0
-margin_right = 381.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 0, 5 )
+[node name="CannotDeleteInUseType" parent="." instance=ExtResource("7")]
+HideCancelButton = true
+DialogText = "CANNOT_DELETE_USED_CELL_TYPE"
+WindowTitle = "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 
-[node name="NewNameLabel" type="Label" parent="NewTissueTypeSetup/VBoxContainer2"]
-margin_top = 38.0
-margin_right = 381.0
-margin_bottom = 63.0
-text = "NEW_NAME_COLON"
+[node name="CannotReduceBrainPowerStage" parent="." instance=ExtResource("7")]
+HideCancelButton = true
+DialogText = "CANNOT_REDUCE_BRAIN_POWER_STAGE"
+WindowTitle = "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 
-[node name="NewName" type="LineEdit" parent="NewTissueTypeSetup/VBoxContainer2"]
-margin_top = 67.0
-margin_right = 381.0
-margin_bottom = 98.0
-max_length = 100
-placeholder_text = "NEW_NAME"
+[node name="NewTissueTypeSetup" parent="." instance=ExtResource("7")]
+custom_minimum_size = Vector2(550, 90)
+HideOnOk = false
+NodeToGiveFocusOnOpen = NodePath("VBoxContainer2/NewName")
+WindowTitle = "CREATE_NEW_TISSUE_TYPE"
 
-[node name="BottomButtonSpacer" type="Control" parent="NewTissueTypeSetup/VBoxContainer2"]
-margin_top = 102.0
-margin_right = 381.0
-margin_bottom = 147.0
-rect_min_size = Vector2( 0, 45 )
+[node name="VBoxContainer2" type="VBoxContainer" parent="NewTissueTypeSetup"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="MetaballPopupMenu" parent="." instance=ExtResource( 3 )]
+[node name="Description" type="Label" parent="NewTissueTypeSetup/VBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
+label_settings = ExtResource("13_wsdas")
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="NewTissueTypeSetup/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="NewNameLabel" type="Label" parent="NewTissueTypeSetup/VBoxContainer2"]
+layout_mode = 2
+text = "NEW_NAME_COLON"
+label_settings = ExtResource("14_e8ubw")
+
+[node name="NewName" type="LineEdit" parent="NewTissueTypeSetup/VBoxContainer2"]
+layout_mode = 2
+placeholder_text = "NEW_NAME"
+max_length = 100
+
+[node name="BottomButtonSpacer" type="Control" parent="NewTissueTypeSetup/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MetaballPopupMenu" parent="." instance=ExtResource("3")]
 
 [connection signal="gui_input" from="." to="." method="OnMetaballEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnMetaballEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnMetaballEditorMouseExited"]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= [ "Structure" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= [ "Behaviour" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance" to="." method="SetSelectionMenuTab" binds= [ "Appearance" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Movement" to="." method="SetSelectionMenuTab" binds= [ "Movement" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction" to="." method="SetSelectionMenuTab" binds= [ "Reproduction" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= ["Structure"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance" to="." method="SetSelectionMenuTab" binds= ["Appearance"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Movement" to="." method="SetSelectionMenuTab" binds= ["Movement"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction" to="." method="SetSelectionMenuTab" binds= ["Reproduction"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
@@ -908,7 +779,7 @@ mouse_filter = 2
 [connection signal="animation_finished" from="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge/AnimationPlayer" to="." method="HideFinishButtonWarningAfterAnimation"]
 [connection signal="Confirmed" from="NewTissueTypeSetup" to="." method="OnNewCellTypeConfirmed"]
 [connection signal="text_changed" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
-[connection signal="text_entered" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]
+[connection signal="text_submitted" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]
 [connection signal="DeletePressed" from="MetaballPopupMenu" to="." method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="MetaballPopupMenu" to="." method="OnModifyPressed"]
 [connection signal="MovePressed" from="MetaballPopupMenu" to="." method="OnMovePressed"]

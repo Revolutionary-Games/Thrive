@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
+public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment
 {
     [Export]
     public NodePath? GuidanceLinePath;
@@ -45,7 +45,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
     /// </summary>
-    private float elapsedSinceEntityPositionCheck = Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL + 1;
+    private double elapsedSinceEntityPositionCheck = Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL + 1;
 
     [JsonProperty]
     private bool wonOnce;
@@ -99,6 +99,15 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
+
+    [JsonIgnore]
+    public IDaylightInfo DaylightInfo => GameWorld.LightCycle;
+
+    public WorldGenerationSettings WorldSettings => GameWorld.WorldSettings;
+
+    [JsonIgnore]
+    public BiomeConditions CurrentBiome => GameWorld.Map.CurrentPatch?.Biome ??
+        throw new InvalidOperationException("no current patch set");
 
     /// <summary>
     ///   Makes saving information related to the patch manager work. This checks the patch manager against null to
@@ -184,7 +193,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         DebugOverlays.Instance.OnWorldDisabled(WorldSimulation);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -207,7 +216,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         bool playerAlive = HasAlivePlayer;
 
-        if (WorldSimulation.ProcessAll(delta))
+        if (WorldSimulation.ProcessAll((float)delta))
         {
             // If game logic didn't run, the debug labels don't need to update
             DebugOverlays.Instance.UpdateActiveEntities(WorldSimulation);
@@ -229,8 +238,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
-                new RotationEventArgs(playerPosition.Rotation,
-                    playerPosition.Rotation.GetEuler() * MathUtils.RADIANS_TO_DEGREES), this);
+                new RotationEventArgs(playerPosition.Rotation, playerPosition.Rotation.GetEuler()), this);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
                 new CompoundBagEventArgs(Player.Get<CompoundStorage>().Compounds), this);
@@ -404,6 +412,14 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (CurrentGame == null)
             throw new InvalidOperationException("Stage has no current game");
 
+        // Update endosymbiosis progress now that the player got to the editor
+        if (Player.Has<TemporaryEndosymbiontInfo>())
+        {
+            ref var endosymbiontInfo = ref Player.Get<TemporaryEndosymbiontInfo>();
+
+            endosymbiontInfo.UpdateEndosymbiosisProgress(Player.Get<SpeciesMember>().Species);
+        }
+
         Node sceneInstance;
 
         if (Player.Has<EarlyMulticellularSpeciesMember>())
@@ -412,7 +428,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
             var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
-            sceneInstance = scene.Instance();
+            sceneInstance = scene.Instantiate();
             var editor = (EarlyMulticellularEditor)sceneInstance;
 
             editor.CurrentGame = CurrentGame;
@@ -432,7 +448,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
             var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
 
-            sceneInstance = scene.Instance();
+            sceneInstance = scene.Instantiate();
             var editor = (MicrobeEditor)sceneInstance;
 
             editor.CurrentGame = CurrentGame;
@@ -525,7 +541,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
-        var editor = (EarlyMulticellularEditor)scene.Instance();
+        var editor = scene.Instantiate<EarlyMulticellularEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
         editor.ReturnToStage = this;
@@ -581,7 +597,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
 
-        var editor = (LateMulticellularEditor)scene.Instance();
+        var editor = scene.Instantiate<LateMulticellularEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
 
@@ -650,7 +666,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         // Spawn another cell from the player species
         // This needs to be done after updating the player so that multicellular organisms are accurately separated
         cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
-            WorldSimulation.SpawnSystem, (ref EntityRecord daughter) =>
+            this, WorldSimulation.SpawnSystem, (ref EntityRecord daughter) =>
             {
                 // Mark as player reproduced entity
                 daughter.Set(new PlayerOffspring
@@ -691,7 +707,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             if (GameWorld.WorldSettings.DayNightCycleEnabled)
             {
                 var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-                var patchSunlight = GameWorld.Map.CurrentPatch!.GetCompoundAmount(sunlight, CompoundAmountType.Biome);
+                var patchSunlight = GameWorld.Map.CurrentPatch!.Biome.GetCompound(sunlight, CompoundAmountType.Biome)
+                    .Ambient;
 
                 if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
                 {
@@ -746,7 +763,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         EnsureWorldSimulationIsCreated();
 
         // Initialise the simulation on a basic level first to ensure the base stage setup has all the objects it needs
-        WorldSimulation.Init(rootOfDynamicallySpawned, Clouds);
+        WorldSimulation.Init(rootOfDynamicallySpawned, Clouds, this);
 
         patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.ProcessSystem, Clouds,
             WorldSimulation.TimedLifeSystem, worldLight);
@@ -813,7 +830,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             WorldSimulation.ClearPlayerLocationDependentCaches();
         }
 
-        var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, GameWorld.PlayerSpecies,
+        var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this,
+            GameWorld.PlayerSpecies,
             spawnLocation, false, (null, 0), out var entityRecord);
 
         entityRecord.Set(new MicrobeEventCallbacks
@@ -828,6 +846,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             OnIngestedByHostile = OnPlayerEngulfedByHostile,
             OnSuccessfulEngulfment = OnPlayerIngesting,
             OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached,
+            OnEngulfmentStorageNearlyEmpty = OnPlayerEngulfmentNearlyEmpty,
             OnEjectedFromHostileEngulfer = OnPlayerEjectedFromHostileEngulfer,
 
             OnOrganelleDuplicated = OnPlayerOrganelleDuplicated,
@@ -918,7 +937,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!))
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!, this))
         {
             if (promptPatchNameChange)
                 HUD.ShowPatchName(CurrentPatchName.ToString());
@@ -954,7 +973,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
         {
             // This might need to be refactored for efficiency but, it works for now
-            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") *
+            var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+            var lightLevel =
+                GameWorld.Map.CurrentPatch!.Biome.GetCompound(sunlight, CompoundAmountType.Current).Ambient *
                 GameWorld.LightCycle.DayLightFraction;
 
             // Normalise by maximum light level in the patch
@@ -988,8 +1009,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (GameWorld.Map.CurrentPatch == null)
             throw new InvalidOperationException("Unknown current patch");
 
-        maxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
-        templateMaxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
+        // This wasn't updated to check if the patch has day / night cycle as it might be plausible in the future
+        // that other compounds than sunlight are varying so in those cases stage visuals should probably not update
+        var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+        maxLightLevel = GameWorld.Map.CurrentPatch.Biome.GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+        templateMaxLightLevel = GameWorld.Map.CurrentPatch.BiomeTemplate.Conditions
+            .GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
     }
 
     private void SaveGame(string name)
@@ -1016,7 +1041,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// <returns>Enumerable of all microbes of Player's species</returns>
     private IEnumerable<Entity> GetAllPlayerSpeciesMicrobes()
     {
-        if (Player == null)
+        if (Player == default)
             throw new InvalidOperationException("Could not get player species microbes: no Player object");
 
         var species = Player.Get<SpeciesMember>().ID;
@@ -1031,7 +1056,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
     }
 
-    private void OnSpawnEnemyCheatUsed(object sender, EventArgs e)
+    private void OnSpawnEnemyCheatUsed(object? sender, EventArgs e)
     {
         if (!HasPlayer)
             return;
@@ -1041,7 +1066,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         // No enemy species to spawn in this patch
         if (species.Count == 0)
         {
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPAWN_ENEMY_CHEAT_FAIL"), 2.0f);
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("SPAWN_ENEMY_CHEAT_FAIL"), 2.0f);
             GD.PrintErr("Can't use spawn enemy cheat because this patch does not contain any enemy species");
             return;
         }
@@ -1050,8 +1075,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         var playerPosition = Player.Get<WorldPosition>().Position;
 
-        var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, randomSpecies,
-            playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
+        var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, this,
+            randomSpecies, playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
 
         // Make the cell despawn like normal
         WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
@@ -1060,7 +1085,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
     }
 
-    private void OnDuplicatePlayerCheatUsed(object sender, EventArgs e)
+    private void OnDuplicatePlayerCheatUsed(object? sender, EventArgs e)
     {
         if (!HasAlivePlayer)
         {
@@ -1076,8 +1101,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         ref var organelles = ref Player.Get<OrganelleContainer>();
         var playerSpecies = Player.Get<SpeciesMember>().Species;
 
-        cellProperties.Divide(ref organelles, Player, playerSpecies, WorldSimulation, WorldSimulation.SpawnSystem,
-            null, MulticellularSpawnState.ChanceForFullColony);
+        cellProperties.Divide(ref organelles, Player, playerSpecies, WorldSimulation, this,
+            WorldSimulation.SpawnSystem, null, MulticellularSpawnState.ChanceForFullColony);
     }
 
     private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)
@@ -1200,6 +1225,14 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         Invoke.Instance.QueueForObject(
             () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this), this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerEngulfmentNearlyEmpty(Entity player)
+    {
+        Invoke.Instance.QueueForObject(
+            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentNotFull, EventArgs.Empty, this),
+            this);
     }
 
     [DeserializedCallbackAllowed]
@@ -1339,8 +1372,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     private void TranslationsForFeaturesToReimplement()
     {
         // TODO: reimplement the microbe features that depend on these translations
-        TranslationServer.Translate("SUCCESSFUL_KILL");
-        TranslationServer.Translate("SUCCESSFUL_SCAVENGE");
-        TranslationServer.Translate("ESCAPE_ENGULFING");
+        Localization.Translate("SUCCESSFUL_KILL");
+        Localization.Translate("SUCCESSFUL_SCAVENGE");
+        Localization.Translate("ESCAPE_ENGULFING");
     }
 }

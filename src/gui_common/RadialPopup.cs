@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-public class RadialPopup : CustomWindow
+/// <summary>
+///   A popup that integrates <see cref="RadialMenu"/> into one full package.
+/// </summary>
+public partial class RadialPopup : CustomWindow
 {
     [Export]
     public NodePath? RadialPath;
 
     [Signal]
-    public delegate void OnItemSelected(int itemId);
+    public delegate void OnItemSelectedEventHandler(int itemId);
 
     public RadialMenu Radial { get; private set; } = null!;
 
@@ -18,7 +21,7 @@ public class RadialPopup : CustomWindow
         FullRect = true;
         Decorate = false;
 
-        Radial.Connect(nameof(RadialMenu.OnItemSelected), this, nameof(ForwardSelected));
+        Radial.Connect(RadialMenu.SignalName.OnItemSelected, new Callable(this, nameof(ForwardSelected)));
         Radial.Visible = false;
     }
 
@@ -55,7 +58,7 @@ public class RadialPopup : CustomWindow
     protected override void OnHidden()
     {
         base.OnHidden();
-        EmitSignal(nameof(Cancelled));
+        EmitSignal(CustomWindow.SignalName.Canceled);
         Radial.Visible = false;
     }
 
@@ -71,7 +74,7 @@ public class RadialPopup : CustomWindow
 
     private void ForwardSelected(int itemId)
     {
-        EmitSignal(nameof(OnItemSelected), itemId);
+        EmitSignal(SignalName.OnItemSelected, itemId);
         Hide();
     }
 }

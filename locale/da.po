@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2022-07-20 09:20+0000\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-09 13:22+0000\n"
 "Last-Translator: Magnus Norling Svane <magn665e@icloud.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -16,62 +16,62 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2D bevægelsesstil:"
 
 msgid "3D_EDITOR"
-msgstr ""
+msgstr "3D Editor"
 
 msgid "3D_MOVEMENT"
-msgstr ""
+msgstr "3D Bevægelse"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3D bevægelsesstil:"
 
 msgid "ABILITIES"
-msgstr ""
+msgstr "Evner"
 
 msgid "ABORT"
-msgstr ""
+msgstr "Afbryd"
 
 msgid "ABORTED_DOT"
-msgstr ""
+msgstr "Afbrudt."
 
 msgid "ABYSSOPELAGIC"
-msgstr ""
+msgstr "Abyssopelagisk"
 
 msgid "ACTION_AWAKEN"
-msgstr ""
+msgstr "Opvågne ({0:F1}/{1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr ""
+msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Handling blokeret mens en anden udføres"
 
 msgid "ACTION_DELETE"
-msgstr ""
+msgstr "Slet"
 
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr ""
+msgstr "Fordobl Bestand"
 
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr ""
+msgstr "Dupliker Enheder"
 
 msgid "ACTION_HALF_POPULATION"
-msgstr ""
+msgstr "Halver Bestand"
 
 msgid "ACTION_TELEPORT"
-msgstr ""
+msgstr "Teleportere"
 
 msgid "ACTIVE"
-msgstr ""
+msgstr "Aktiv"
 
 msgid "ACTIVE_THREAD_COUNT"
-msgstr ""
+msgstr "Nuværende tråde:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
@@ -292,6 +292,18 @@ msgstr ""
 msgid "BACKSPACE"
 msgstr ""
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr ""
+
 msgid "BASE_MOBILITY"
 msgstr ""
 
@@ -302,15 +314,6 @@ msgid "BASIC_VIEW"
 msgstr ""
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr ""
-
-msgid "BASSBOOST"
-msgstr ""
-
-msgid "BASSDOWN"
-msgstr ""
-
-msgid "BASSUP"
 msgstr ""
 
 msgid "BATHYPELAGIC"
@@ -694,7 +697,16 @@ msgstr ""
 msgid "COMPILED_AT_COLON"
 msgstr ""
 
+msgid "COMPLETE_ACTION"
+msgstr ""
+
 msgid "COMPOUNDS"
+msgstr ""
+
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr ""
+
+msgid "COMPOUNDS_AT_MAX_SPEED"
 msgstr ""
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -703,7 +715,19 @@ msgstr ""
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr ""
+
 msgid "COMPOUND_BALANCE_TITLE"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr ""
 
 msgid "COMPOUND_CLOUDS"
@@ -719,6 +743,21 @@ msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
 msgid "COMPOUND_FOOD_SOURCE"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr ""
+
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
 msgstr ""
 
 msgid "COMPOUND_TO_FIND"
@@ -781,7 +820,145 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_R2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr ""
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
 msgid "CONTROLLER_DEADZONES"
@@ -799,6 +976,9 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
@@ -809,6 +989,9 @@ msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
 msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+msgid "CPU_THREADS"
 msgstr ""
 
 msgid "CRAFTING_CLEAR_INPUTS"
@@ -940,7 +1123,7 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1091,12 +1274,6 @@ msgstr ""
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr ""
-
-msgid "DIRECTIONR"
-msgstr ""
-
 msgid "DISABLED"
 msgstr ""
 
@@ -1149,6 +1326,12 @@ msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr ""
+
+msgid "DISPLAY_DRIVER_VULKAN"
 msgstr ""
 
 msgid "DISPLAY_PART_NAMES"
@@ -1301,10 +1484,52 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr ""
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
+msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-msgid "ENABLE_GUI_LIGHT_EFFECTS"
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr ""
+
+msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
@@ -1409,10 +1634,10 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-msgid "EXIT_TO_LAUNCHER"
+msgid "EXIT_EDITOR"
 msgstr ""
 
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
 msgid "EXPORT_ALL_WORLDS"
@@ -1494,6 +1719,15 @@ msgid "FEED_ITEM_PUBLISHED_AT"
 msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
+msgstr ""
+
+msgid "FERROPLAST"
+msgstr ""
+
+msgid "FERROPLAST_DESCRIPTION"
+msgstr ""
+
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
@@ -1664,15 +1898,6 @@ msgstr ""
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
-msgid "GLES2"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-
 msgid "GLES3"
 msgstr ""
 
@@ -1779,12 +2004,6 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
-msgstr ""
-
-msgid "HYPERL"
-msgstr ""
-
-msgid "HYPERR"
 msgstr ""
 
 msgid "ICESHARD"
@@ -1994,7 +2213,13 @@ msgstr ""
 msgid "KEY_BACK"
 msgstr ""
 
+msgid "KEY_BACKTAB"
+msgstr ""
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
+msgstr ""
+
+msgid "KEY_BRING_UP_KEYBOARD"
 msgstr ""
 
 msgid "KEY_CLEAR"
@@ -2018,6 +2243,9 @@ msgstr ""
 msgid "KEY_FORWARD"
 msgstr ""
 
+msgid "KEY_GLOBE"
+msgstr ""
+
 msgid "KEY_HELP"
 msgstr ""
 
@@ -2027,13 +2255,25 @@ msgstr ""
 msgid "KEY_HOMEPAGE"
 msgstr ""
 
+msgid "KEY_HYPER"
+msgstr ""
+
 msgid "KEY_INSERT"
+msgstr ""
+
+msgid "KEY_JIS_EISU"
+msgstr ""
+
+msgid "KEY_JIS_KANA"
 msgstr ""
 
 msgid "KEY_LEFT"
 msgstr ""
 
 msgid "KEY_MENU"
+msgstr ""
+
+msgid "KEY_META"
 msgstr ""
 
 msgid "KEY_OPENURL"
@@ -2322,6 +2562,9 @@ msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
 msgid "LINE_COLOUR"
+msgstr ""
+
+msgid "LINKS_TITLE"
 msgstr ""
 
 msgid "LIPASE"
@@ -2678,6 +2921,9 @@ msgstr ""
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr ""
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
@@ -3014,6 +3260,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr ""
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3093,6 +3345,12 @@ msgid "OK"
 msgstr ""
 
 msgid "OLDER_VERSION_LOADING_WARNING"
+msgstr ""
+
+msgid "OPENGL_MODE_WARNING"
+msgstr ""
+
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
 msgid "OPEN_FOLDER"
@@ -3351,6 +3609,12 @@ msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr ""
 
 msgid "PEACEFUL"
+msgstr ""
+
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 msgid "PERCENTAGE_VALUE"
@@ -3980,9 +4244,6 @@ msgstr ""
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-msgid "SIXTEEN_TIMES"
-msgstr ""
-
 msgid "SIZE_COLON"
 msgstr ""
 
@@ -4103,6 +4364,9 @@ msgstr ""
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
+msgid "START"
+msgstr ""
+
 msgid "STARTING"
 msgstr ""
 
@@ -4116,6 +4380,18 @@ msgid "START_RESEARCH"
 msgstr ""
 
 msgid "STATISTICS"
+msgstr ""
+
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr ""
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr ""
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
 msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
@@ -4184,22 +4460,10 @@ msgstr ""
 msgid "STORAGE_COLON"
 msgstr ""
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
 msgstr ""
 
 msgid "STRATEGY_STAGES"
@@ -4257,12 +4521,6 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "SUNLIGHT"
-msgstr ""
-
-msgid "SUPERL"
-msgstr ""
-
-msgid "SUPERR"
 msgstr ""
 
 msgid "SUPPORTER_PATRONS"
@@ -4520,9 +4778,6 @@ msgstr ""
 msgid "TOGGLE_PAUSE"
 msgstr ""
 
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr ""
-
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
@@ -4538,7 +4793,52 @@ msgstr ""
 msgid "TOTAL_SAVES"
 msgstr ""
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_CYTOTOXIN"
+msgstr ""
+
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr ""
+
 msgid "TOXIN_RESISTANCE"
+msgstr ""
+
+msgid "TOXIN_TYPE_COLON"
+msgstr ""
+
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr ""
 
 msgid "TOXIN_VACUOLE"
@@ -4557,12 +4857,6 @@ msgid "TRANSLATORS"
 msgstr ""
 
 msgid "TRANSPARENCY"
-msgstr ""
-
-msgid "TREBLEDOWN"
-msgstr ""
-
-msgid "TREBLEUP"
 msgstr ""
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -4706,9 +5000,6 @@ msgstr ""
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr ""
-
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr ""
 
@@ -4782,6 +5073,9 @@ msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
+msgstr ""
+
+msgid "UPGRADE_COST"
 msgstr ""
 
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -4884,6 +5178,9 @@ msgid "VIEW_PATCH_NOTES"
 msgstr ""
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
+msgstr ""
+
+msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
 msgid "VIEW_SOURCE_CODE"

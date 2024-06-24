@@ -12,6 +12,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 {
     private readonly Lazy<(ArrayMesh Mesh, int SurfaceIndex)> finalMesh;
 
+    private readonly Lazy<(ArrayMesh Mesh, int SurfaceIndex)> finalEngulfMesh;
+
     private float radius;
 
     private bool radiusCalculated;
@@ -26,7 +28,26 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
         // Setup mesh to be generated (on the main thread) only when required
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
-            MembraneShapeGenerator.GetThreadSpecificGenerator().GenerateMesh(this));
+        {
+            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
+
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+            lock (generator)
+            {
+                return generator.GenerateMesh(this);
+            }
+        });
+
+        finalEngulfMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
+        {
+            var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
+
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+            lock (generator)
+            {
+                return generator.GenerateEngulfMesh(this);
+            }
+        });
 
         // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
         // might exist a reference to this class instance (that's why it is only released in the finalizer)
@@ -70,6 +91,9 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     public ArrayMesh GeneratedMesh => finalMesh.Value.Mesh;
     public int SurfaceIndex => finalMesh.Value.SurfaceIndex;
 
+    public ArrayMesh GeneratedEngulfMesh => finalEngulfMesh.Value.Mesh;
+    public int EngulfSurfaceIndex => finalEngulfMesh.Value.SurfaceIndex;
+
     public float Radius
     {
         get
@@ -80,6 +104,8 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
             return radius;
         }
     }
+
+    public bool Disposed => disposed;
 
     public bool MatchesCacheParameters(ICacheableData cacheData)
     {
@@ -129,6 +155,9 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         if (finalMesh.IsValueCreated)
             finalMesh.Value.Mesh.Dispose();
 
+        if (finalEngulfMesh.IsValueCreated)
+            finalEngulfMesh.Value.Mesh.Dispose();
+
         ArrayPool<Vector2>.Shared.Return(Vertices2D);
     }
 }
@@ -160,6 +189,8 @@ public sealed class MembraneCollisionShape : ICacheableData
     public int PointCount { get; }
     public float Density { get; }
     public bool IsBacteria { get; }
+
+    public bool Disposed => disposed;
 
     private JVecF3[] MembranePoints
     {
@@ -204,7 +235,7 @@ public sealed class MembraneCollisionShape : ICacheableData
             for (int i = 0; i < pointCount; ++i)
             {
                 var point = points[i];
-                hash ^= i * 17 + JVecF3.GetCompatibleHashCode(point.x, 0, point.y);
+                hash ^= i * 17 + JVecF3.GetCompatibleHashCode(point.X, 0, point.Y);
             }
 
             hash ^= isBacteria ? 7907 : 7867;
@@ -254,7 +285,7 @@ public sealed class MembraneCollisionShape : ICacheableData
             var point = points[i];
             var otherPoint = otherMembranePoints[i];
 
-            if (!point.X.Equals(otherPoint.x) || !point.Z.Equals(otherPoint.y))
+            if (!point.X.Equals(otherPoint.X) || !point.Z.Equals(otherPoint.Y))
                 return false;
         }
 

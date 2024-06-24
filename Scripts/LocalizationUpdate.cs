@@ -77,6 +77,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "Description",
         "LocalizedString",
         "TranslationServer.Translate",
+        "Localization.Translate",
     };
 
     /// <summary>
@@ -99,11 +100,10 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "ProcessesDescription",
         "WindowTitle",
         "dialog_text",
-        "hint_tooltip",
-        "items",
+        "tooltip_text",
         "placeholder_text",
         "text",
-        "window_title",
+        "title",
     };
 
     /// <summary>

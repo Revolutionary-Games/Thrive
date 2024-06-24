@@ -1,7 +1,10 @@
 ﻿using System;
 using Godot;
 
-public class MetaballTest : Node
+/// <summary>
+///   Various tests for metaballs
+/// </summary>
+public partial class MetaballTest : Node
 {
 #pragma warning disable CA2213
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
@@ -24,7 +27,7 @@ public class MetaballTest : Node
         metaballDisplayer = GetNode<MulticellularMetaballDisplayer>("MulticellularMetaballDisplayer");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (wantedLayout != currentLayout)
         {

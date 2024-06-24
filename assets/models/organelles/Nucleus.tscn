@@ -1,69 +1,69 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://fut6yvqxhf25"]
 
-[ext_resource path="res://assets/models/organelles/Nucleus.mesh" type="ArrayMesh" id=1]
-[ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=2]
-[ext_resource path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" type="Script" id=3]
-[ext_resource path="res://assets/models/organelles/Golgi.mesh" type="ArrayMesh" id=4]
-[ext_resource path="res://assets/textures/ER.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/GolgiApparatus.png" type="Texture" id=6]
-[ext_resource path="res://assets/models/organelles/ER.mesh" type="ArrayMesh" id=7]
-[ext_resource path="res://assets/textures/nucleus.png" type="Texture" id=8]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=9]
+[ext_resource type="ArrayMesh" uid="uid://b6g1xduahoudr" path="res://assets/models/organelles/Nucleus.mesh" id="1"]
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2"]
+[ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="3"]
+[ext_resource type="ArrayMesh" uid="uid://bvwcnhf6ucku4" path="res://assets/models/organelles/Golgi.mesh" id="4"]
+[ext_resource type="Texture2D" uid="uid://cm6qpo6rqrnjw" path="res://assets/textures/ER.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://vslrd1mpxtgj" path="res://assets/textures/GolgiApparatus.png" id="6"]
+[ext_resource type="ArrayMesh" uid="uid://dcpkvaqyp563n" path="res://assets/models/organelles/ER.mesh" id="7"]
+[ext_resource type="Texture2D" uid="uid://1bv1v578jkl4" path="res://assets/textures/nucleus.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="9"]
 
-
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
-shader = ExtResource( 2 )
-shader_param/dissolveValue = 0.0
-shader_param/fresnelValue = 1.0
-shader_param/fresnelActive = false
-shader_param/outlineWidth = 0.05
-shader_param/growColor = Color( 0.431373, 0.431373, 0.431373, 1 )
-shader_param/tint = Color( 1, 1, 1, 1 )
-shader_param/texture = ExtResource( 8 )
-shader_param/dissolveTexture = ExtResource( 9 )
+render_priority = 0
+shader = ExtResource("2")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = 0.05
+shader_parameter/growColor = Color(0.431373, 0.431373, 0.431373, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("8")
+shader_parameter/dissolveTexture = ExtResource("9")
 
-[sub_resource type="ShaderMaterial" id=2]
-resource_local_to_scene = true
-render_priority = -1
-shader = ExtResource( 2 )
-shader_param/dissolveValue = 0.0
-shader_param/fresnelValue = 1.0
-shader_param/fresnelActive = false
-shader_param/outlineWidth = 0.05
-shader_param/growColor = Color( 0.294118, 0.294118, 0.294118, 1 )
-shader_param/tint = Color( 1, 1, 1, 1 )
-shader_param/texture = ExtResource( 6 )
-shader_param/dissolveTexture = ExtResource( 9 )
-
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
 render_priority = -1
-shader = ExtResource( 2 )
-shader_param/dissolveValue = 0.0
-shader_param/fresnelValue = 1.0
-shader_param/fresnelActive = false
-shader_param/outlineWidth = 0.05
-shader_param/growColor = Color( 0.294118, 0.329412, 0.337255, 1 )
-shader_param/tint = Color( 1, 1, 1, 1 )
-shader_param/texture = ExtResource( 5 )
-shader_param/dissolveTexture = ExtResource( 9 )
+shader = ExtResource("2")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = 0.05
+shader_parameter/growColor = Color(0.362829, 0.362829, 0.362829, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("6")
+shader_parameter/dissolveTexture = ExtResource("9")
 
-[node name="Nucleus" type="MeshInstance"]
-transform = Transform( 127.947, 0, 0, 0, -2.08452e-05, 127.947, 0, -127.947, -2.08452e-05, 0, 0, 0 )
-material_override = SubResource( 1 )
-mesh = ExtResource( 1 )
-material/0 = null
-script = ExtResource( 3 )
+[sub_resource type="ShaderMaterial" id="3"]
+resource_local_to_scene = true
+render_priority = -1
+shader = ExtResource("2")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = 0.05
+shader_parameter/growColor = Color(0.409176, 0.452529, 0.462167, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("5")
+shader_parameter/dissolveTexture = ExtResource("9")
 
-[node name="Golgi" type="MeshInstance" parent="."]
-transform = Transform( -0.74586, -0.666102, -1.08522e-07, 0.666102, -0.74586, -2.84437e-07, 1.08522e-07, -2.84437e-07, 0.999999, -0.00490416, -0.0155195, -2.52845e-09 )
-material_override = SubResource( 2 )
-mesh = ExtResource( 4 )
-material/0 = null
+[node name="Nucleus" type="MeshInstance3D"]
+transform = Transform3D(127.947, 0, 0, 0, -2.08452e-05, 127.947, 0, -127.947, -2.08452e-05, 0, 0, 0)
+material_override = SubResource("1")
+mesh = ExtResource("1")
+script = ExtResource("3")
 
-[node name="ER" type="MeshInstance" parent="."]
-transform = Transform( -0.630648, 0.776067, 1.26437e-07, -0.776067, -0.630648, -2.65666e-07, -1.26437e-07, -2.65666e-07, 0.999999, 0.0103581, -0.0146696, -0.00807817 )
-material_override = SubResource( 3 )
-mesh = ExtResource( 7 )
-material/0 = null
+[node name="Golgi" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.74586, -0.666102, -1.08522e-07, 0.666102, -0.74586, -2.84437e-07, 1.08522e-07, -2.84437e-07, 0.999999, -0.00490416, -0.0155195, -2.52845e-09)
+material_override = SubResource("2")
+mesh = ExtResource("4")
+
+[node name="ER" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.630648, 0.776067, 1.26437e-07, -0.776067, -0.630648, -2.65666e-07, -1.26437e-07, -2.65666e-07, 0.999999, 0.0103581, -0.0146696, -0.00807817)
+material_override = SubResource("3")
+mesh = ExtResource("7")

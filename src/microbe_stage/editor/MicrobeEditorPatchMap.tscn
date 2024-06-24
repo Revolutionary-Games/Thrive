@@ -1,194 +1,177 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://r0oqu6luui0h"]
 
-[ext_resource path="res://shaders/Monochrome.shader" type="Shader" id=1]
-[ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=7]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=14]
-[ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" type="Script" id=28]
-[ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=30]
+[ext_resource type="Shader" path="res://shaders/Monochrome.gdshader" id="1"]
+[ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="4"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="6_6vp11"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="14"]
+[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="18"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" id="28"]
+[ext_resource type="PackedScene" path="res://src/gui_common/DraggableScrollContainer.tscn" id="30"]
 
-[sub_resource type="ShaderMaterial" id=28]
-shader = ExtResource( 1 )
+[sub_resource type="ShaderMaterial" id="28"]
+shader = ExtResource("1")
 
-[sub_resource type="StyleBoxFlat" id=26]
+[sub_resource type="StyleBoxFlat" id="27"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.0156863, 0.811765, 0.396078, 1 )
+bg_color = Color(0, 0.490196, 0.258824, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=42]
+[sub_resource type="StyleBoxFlat" id="26"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.0156863, 0.811765, 0.396078, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="42"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.666667, 1, 0.941176, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id=27]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
-bg_color = Color( 0, 0.490196, 0.258824, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_color = Color(0.666667, 1, 0.941176, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [node name="MicrobeEditorPatchMap" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 14 )
-script = ExtResource( 28 )
-FinishOrNextButtonPath = NodePath("MarginContainer2/NextTabButton")
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14")
+script = ExtResource("28")
 MapDrawerPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 PatchDetailsPanelPath = NodePath("MarginContainer/HSplitContainer/PatchDetailsPanel")
-SeedLabelPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/SeedLabel")
+SeedLabelPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer2/SeedLabel")
+FinishOrNextButtonPath = NodePath("MarginContainer2/NextTabButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-custom_constants/margin_right = 10
-custom_constants/margin_top = 45
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 55
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 55
 
 [node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
-margin_left = 10.0
-margin_top = 45.0
-margin_right = 1270.0
-margin_bottom = 665.0
+layout_mode = 2
 collapsed = true
 
 [node name="MapPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer"]
-margin_right = 908.0
-margin_bottom = 620.0
+layout_mode = 2
 size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/MapPanel"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 907.0
-margin_bottom = 619.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer" instance=ExtResource( 30 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 896.0
-margin_bottom = 608.0
-ShowScrollbars = false
+[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer" instance=ExtResource("30")]
+layout_mode = 2
 ContentPath = NodePath("PatchMapDrawer")
 
-[node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" instance=ExtResource( 18 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1500.0
-margin_bottom = 1500.0
-rect_min_size = Vector2( 1500, 1500 )
+[node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" instance=ExtResource("18")]
+custom_minimum_size = Vector2(1500, 1500)
+layout_mode = 2
 DrawDefaultMapIfEmpty = false
-MonochromeMaterial = SubResource( 28 )
+MonochromeMaterial = SubResource("28")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]
-margin_left = 709.0
-margin_top = 10.0
-margin_right = 896.0
-margin_bottom = 40.0
+layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 2
 
 [node name="FindCurrentPatchButton" type="Button" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer"]
-margin_right = 187.0
-margin_bottom = 30.0
-focus_neighbour_bottom = NodePath("../../../../../../MarginContainer2/NextTabButton")
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../../../../MarginContainer2/NextTabButton")
 focus_next = NodePath("../../../../../../MarginContainer2/NextTabButton")
-custom_fonts/font = ExtResource( 7 )
+theme_override_font_sizes/font_size = 16
 text = "FIND_CURRENT_PATCH"
 
-[node name="SeedLabel" type="Label" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]
-margin_left = 10.0
-margin_top = 591.0
-margin_right = 896.0
-margin_bottom = 608.0
-size_flags_vertical = 8
-custom_fonts/font = ExtResource( 3 )
-text = "SEED_LABEL"
+[node name="Control" type="Control" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
 
-[node name="PatchDetailsPanel" parent="MarginContainer/HSplitContainer" instance=ExtResource( 2 )]
-margin_left = 920.0
-margin_right = 1260.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 2
+
+[node name="SeedLabel" type="Label" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "SEED_LABEL"
+label_settings = ExtResource("6_6vp11")
+
+[node name="Control" type="Control" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+
+[node name="PatchDetailsPanel" parent="MarginContainer/HSplitContainer" instance=ExtResource("2")]
+layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -150.0
-margin_top = -50.0
+offset_left = -150.0
+offset_top = -50.0
 grow_horizontal = 0
-rect_min_size = Vector2( 150, 0 )
-custom_constants/margin_right = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="FocusGrabber" parent="MarginContainer2" instance=ExtResource( 4 )]
-margin_right = 150.0
-margin_bottom = 40.0
+[node name="FocusGrabber" parent="MarginContainer2" instance=ExtResource("4")]
+layout_mode = 2
 NodeToGiveFocusTo = NodePath("../NextTabButton")
 
 [node name="NextTabButton" type="Button" parent="MarginContainer2"]
-margin_right = 150.0
-margin_bottom = 40.0
-focus_neighbour_left = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
-focus_neighbour_top = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
+layout_mode = 2
+focus_neighbor_left = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
+focus_neighbor_top = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
 focus_next = NodePath(".")
 focus_previous = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
 mouse_filter = 1
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_styles/hover = SubResource( 26 )
-custom_styles/focus = SubResource( 42 )
-custom_styles/normal = SubResource( 27 )
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("27")
+theme_override_styles/hover = SubResource("26")
+theme_override_styles/focus = SubResource("42")
 text = "NEXT_CAPITAL"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="OnCurrentPatchCentered" from="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" method="CenterTo"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton" to="." method="OnFindCurrentPatchPressed"]

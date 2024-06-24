@@ -18,6 +18,11 @@ public class BioProcess : IRegistryType
 
     public Dictionary<Compound, float> Outputs = null!;
 
+    /// <summary>
+    ///   True when this is a metabolism process
+    /// </summary>
+    public bool IsMetabolismProcess;
+
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
 #pragma warning restore 169,649

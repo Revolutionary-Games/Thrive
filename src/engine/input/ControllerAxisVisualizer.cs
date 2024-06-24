@@ -7,7 +7,7 @@ using Godot;
 ///   Visualizes controller axis states. Doesn't listen to input so needs something like
 ///   <see cref="ControllerInputAxisVisualizationContainer"/> to tell this what to show.
 /// </summary>
-public class ControllerAxisVisualizer : MarginContainer
+public partial class ControllerAxisVisualizer : MarginContainer
 {
     [Export]
     public int DecimalsToDisplay = 4;
@@ -85,7 +85,7 @@ public class ControllerAxisVisualizer : MarginContainer
         verticalRawDisplayer = GetNode<Control>(VerticalRawDisplayerPath);
         verticalDeadzoneDisplayer = GetNode<Control>(VerticalDeadzoneDisplayerPath);
 
-        drawerNode.Connect("draw", this, nameof(Draw));
+        drawerNode.Connect(CanvasItem.SignalName.Draw, new Callable(this, nameof(OnDrawerDraw)));
 
         SetVerticalAxisDisplay(false);
     }
@@ -112,7 +112,7 @@ public class ControllerAxisVisualizer : MarginContainer
     {
         horizontalValue = value;
 
-        drawerNode.Update();
+        drawerNode.QueueRedraw();
         UpdateAxisValueLabel(horizontalRawValue, value);
     }
 
@@ -128,7 +128,7 @@ public class ControllerAxisVisualizer : MarginContainer
 
         verticalValue = value;
 
-        drawerNode.Update();
+        drawerNode.QueueRedraw();
         UpdateAxisValueLabel(verticalRawValue, value);
     }
 
@@ -164,13 +164,13 @@ public class ControllerAxisVisualizer : MarginContainer
         if (horizontalAxis == -1)
         {
             horizontalAxis = axis;
-            horizontalLabel.Text = TranslationServer.Translate("HORIZONTAL_WITH_AXIS_NAME_COLON").FormatSafe(axis);
+            horizontalLabel.Text = Localization.Translate("HORIZONTAL_WITH_AXIS_NAME_COLON").FormatSafe(axis);
             ReadDeadzone(horizontalDeadzoneValue, horizontalAxis, Settings.Instance.ControllerAxisDeadzoneAxes.Value);
         }
         else if (!HasSecondAxis)
         {
             verticalAxis = axis;
-            verticalLabel.Text = TranslationServer.Translate("VERTICAL_WITH_AXIS_NAME_COLON").FormatSafe(axis);
+            verticalLabel.Text = Localization.Translate("VERTICAL_WITH_AXIS_NAME_COLON").FormatSafe(axis);
             SetVerticalAxisDisplay(true);
             ReadDeadzone(verticalDeadzoneValue, verticalAxis, Settings.Instance.ControllerAxisDeadzoneAxes.Value);
         }
@@ -237,12 +237,12 @@ public class ControllerAxisVisualizer : MarginContainer
         base.Dispose(disposing);
     }
 
-    private void Draw()
+    private void OnDrawerDraw()
     {
-        var size = drawerNode.RectSize;
+        var size = drawerNode.Size;
         var center = size / 2;
 
-        var circleSize = size.y / 2;
+        var circleSize = size.Y / 2;
 
         drawerNode.DrawCircle(center, circleSize, focused ? Colors.LightSlateGray : Colors.Gray);
         drawerNode.DrawArc(center, circleSize, 0, (float)MathUtils.FULL_CIRCLE, 128, Colors.Black, 1, true);
@@ -269,13 +269,13 @@ public class ControllerAxisVisualizer : MarginContainer
     private void OnFocused()
     {
         focused = true;
-        drawerNode.Update();
+        drawerNode.QueueRedraw();
     }
 
     private void OnFocusLost()
     {
         focused = false;
-        drawerNode.Update();
+        drawerNode.QueueRedraw();
     }
 
     private void SetVerticalAxisDisplay(bool visible)
@@ -287,7 +287,7 @@ public class ControllerAxisVisualizer : MarginContainer
 
     private void ReadDeadzone(Label valueLabel, int axis, IReadOnlyList<float> axisDeadzones)
     {
-        var index = axis - (int)JoystickList.Axis0;
+        var index = axis - (int)JoyAxis.LeftX;
 
         float deadzone = 0;
 

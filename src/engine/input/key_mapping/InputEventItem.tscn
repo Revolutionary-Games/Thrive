@@ -1,37 +1,28 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://8ej2keixk0wj"]
 
-[ext_resource path="res://src/engine/input/key_mapping/InputEventItem.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
+[ext_resource type="Script" path="res://src/engine/input/key_mapping/InputEventItem.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 
 [node name="InputEventItem" type="MarginContainer"]
-theme = ExtResource( 2 )
-script = ExtResource( 1 )
+theme = ExtResource("2")
+script = ExtResource("1")
 ButtonPath = NodePath("HBoxContainer/RebindButton")
 XButtonPath = NodePath("HBoxContainer/XButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 97.0
-margin_bottom = 35.0
-custom_constants/separation = 0
+layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="RebindButton" type="Button" parent="HBoxContainer"]
-margin_right = 77.0
-margin_bottom = 35.0
-custom_fonts/font = ExtResource( 3 )
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Control+A"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="XButton" type="Button" parent="HBoxContainer"]
-margin_left = 77.0
-margin_right = 97.0
-margin_bottom = 35.0
+editor_description = "PLACEHOLDER"
+layout_mode = 2
 focus_mode = 0
-custom_colors/font_color = Color( 0.784314, 0, 0, 1 )
+theme_override_colors/font_color = Color(0.784314, 0, 0, 1)
 action_mode = 0
 text = "x"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}

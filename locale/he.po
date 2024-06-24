@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2022-11-17 16:00+0000\n"
-"Last-Translator: doomlightning <tamirt500@gmail.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "סגנון תנועה דו-מימדית:"
 
 msgid "3D_EDITOR"
 msgstr "עורך תלת-מימדי"
@@ -29,7 +29,7 @@ msgid "3D_MOVEMENT"
 msgstr "תנועה תלת-מימדית"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "סגנון תנועה תלת-מימדית:"
 
 msgid "ABILITIES"
 msgstr "יכולות"
@@ -43,36 +43,29 @@ msgstr "הופל."
 msgid "ABYSSOPELAGIC"
 msgstr "אביסלפלגיים"
 
-#, fuzzy
 msgid "ACTION_AWAKEN"
-msgstr "מודע"
+msgstr "התעורר ({0:F1} / {1:F1})"
 
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "מודע"
+msgstr "עבור לשלב ההתעוררות. זמין כאשר יש לך מספיק יכולת שכלית (רקמה מסוג עם אקסונים)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "פעולה זו חסומה בזמן שפעולה אחרת בתהליך"
 
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "אשר יציאה"
+msgstr "מחק"
 
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "אוכלוסיית מינים"
+msgstr "הכפל אכלוסיה"
 
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "אשר יציאה"
+msgstr "שכפל יחידות"
 
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} עם אוכלוסיה: {1}"
+msgstr "חצה אוכלוסייה"
 
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "אשר יציאה"
+msgstr "שגר"
 
 msgid "ACTIVE"
 msgstr "פעיל"
@@ -317,6 +310,19 @@ msgstr "לוכסן שמאלי"
 msgid "BACKSPACE"
 msgstr "חזור"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "פתח את תצוגת ההגדרה המתקדם"
+
 msgid "BASE_MOBILITY"
 msgstr "ניידות בסיסית"
 
@@ -328,15 +334,6 @@ msgstr "בסיסי"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "לחזור אל תצוגת ההגדרה הבסיסית"
-
-msgid "BASSBOOST"
-msgstr "מקש Bassboost"
-
-msgid "BASSDOWN"
-msgstr "מקש Bass Down"
-
-msgid "BASSUP"
-msgstr "מקש Bass Up"
 
 msgid "BATHYPELAGIC"
 msgstr "בתיפלגיים"
@@ -734,8 +731,20 @@ msgstr "ראו את ויקי הקהילתי שלנו"
 msgid "COMPILED_AT_COLON"
 msgstr "נבנה ב:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "נבנה ב:"
+
 msgid "COMPOUNDS"
 msgstr "תרכובות"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "תרכובת לחפש:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "תרכובת לחפש:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא תרכובות"
@@ -743,8 +752,24 @@ msgstr "הראה/החבא תרכובות"
 msgid "COMPOUNDS_COLON"
 msgstr "תרכובות:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "הראה/החבא תרכובות"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "הראה/החבא תרכובות"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "ענני תרכובות"
@@ -760,6 +785,25 @@ msgstr "ריכוזי ה{0} ירדו ב{1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} צריכה"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "מאזן תרכובות"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0} צריכה"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "מאזן תרכובות"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "תרכובת לחפש:"
@@ -834,8 +878,185 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "להמשיך לשלב האבטיפוס?"
 
+#, fuzzy
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_L2"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "רגישות הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_R2"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr "מצג ציר בקר :"
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr "שטחי מת של הבקר"
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr "שטחי מת של הבקר"
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr "רגישות הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr "שטחי מת של הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr "שטחי מת של הבקר"
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr "מצג ציר בקר :"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr "מצג ציר בקר :"
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr "שטח מת:"
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr "רגישות הבקר"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr "שטח מת:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_Y"
+msgstr "שטח מת:"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "שטחי מת של הבקר"
@@ -854,6 +1075,10 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "רגישות הבקר"
 
+#, fuzzy
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr "שטחי מת של הבקר"
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "מעתיק שגיאה ללוח העתקה"
 
@@ -866,6 +1091,10 @@ msgstr "פרוטנופ (אדום-ירוק)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "טריטנופ (כחול - צהוב)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "נושאים:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
@@ -1007,8 +1236,9 @@ msgstr "(באקראי מייצר סודות במשחק)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "(מתחיל עם ענן גלוקוז חופשי קרוב בכל דור)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "כיול שטח מת הסתיים, השטח המת החדש מוצגים מתחת במציגי ערכי הציר."
@@ -1173,12 +1403,6 @@ msgstr "מהירות עיכול:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0} לשנייה"
 
-msgid "DIRECTIONL"
-msgstr "שמאלה"
-
-msgid "DIRECTIONR"
-msgstr "ימינה"
-
 msgid "DISABLED"
 msgstr "כבוי"
 
@@ -1244,6 +1468,14 @@ msgstr "תצוגת רשימת יכולות"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "הצג חלקיקי רקע"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "הצג שמות כפתורי בחירת חלקים"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "הצג שמות כפתורי בחירת חלקים"
@@ -1406,11 +1638,69 @@ msgstr "הפעל את כל המודים התואמים"
 msgid "ENABLE_EDITOR"
 msgstr "הפעל את העורך"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "אפשר תצוגת אור בממשק משתמש"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "שכפל אברונים"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "שחרר הכל"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"מיקרובים אגרסיבים ירדפו אחרי הטרפם למרחקים\n"
+"והם לרוב נוטים להילחם בטורפים כשהם מותקפים.\n"
+"מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
+"ופחות נוטים להשתמש ברעלנים כנגד טורפים."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "אברונים מנותקים"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"מיקרובים ממוקדים יחפשו אחר גושים או טרף למרחקים\n"
+"ולרוב הוא ישאף לגושים.\n"
+"מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז של [thrive:compound type=\"carbondioxide\"][/thrive:compound]. בנוסף הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "כנס לעורך ושנה את המין שלך"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "חסרה כותרת"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: {1}- ATP"
@@ -1520,12 +1810,12 @@ msgid "EXIT"
 msgstr "יציאה"
 
 #, fuzzy
-msgid "EXIT_TO_LAUNCHER"
-msgstr "מקש E"
+msgid "EXIT_EDITOR"
+msgstr "לך לכרטיסיית העורך הבאה"
 
 #, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(המהירות המוטציות שנוצרים במיני AI )"
+msgid "EXIT_TO_LAUNCHER"
+msgstr "מקש E"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -1637,6 +1927,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "תרמופלסט"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. זהו פרוקריוט שהשתנה לצרכי המארח האיקוריוטי. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של בדלי החום בסביבה בכדי ליצור [thrive:compound type=\"atp\"][/thrive:compound] ממים בתהליך שנקרא [b]תרמוסינתזה[/b]. קצב ייצור ה[thrive:compound type=\"atp\"][/thrive:compound] שלו משתנה עם ריכוז ה[thrive:compound type=\"atp\"][/thrive:compound] וה[thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל הטמפרטורה."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "סננן לפי קטגוריה:"
@@ -1829,15 +2131,6 @@ msgstr "דור:"
 msgid "GITHUB_TOOLTIP"
 msgstr "צפו בספריית GitHub שלנו"
 
-msgid "GLES2"
-msgstr "GLES2"
-
-msgid "GLES2_MODE_WARNING"
-msgstr "אזהרת GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -1954,12 +2247,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "מימן גופרתי"
-
-msgid "HYPERL"
-msgstr "מקש Hyper Left"
-
-msgid "HYPERR"
-msgstr "מקש Hyper Right"
 
 msgid "ICESHARD"
 msgstr "רסיסי קרח"
@@ -2194,10 +2481,17 @@ msgstr "יוני"
 msgid "KEY_BACK"
 msgstr "מקש חזור"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "מקש חזור"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "יש התנגשות עם {0}.\n"
 "האם אתה רוצה להסיר את הקלט {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "מקש Clear"
@@ -2220,6 +2514,10 @@ msgstr "מקש מועדפים"
 msgid "KEY_FORWARD"
 msgstr "מקש קדימה"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "מקש Home"
+
 msgid "KEY_HELP"
 msgstr "מקש עזרה"
 
@@ -2229,14 +2527,30 @@ msgstr "מקש Home"
 msgid "KEY_HOMEPAGE"
 msgstr "מקש דף הבית"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "מקש עזרה"
+
 msgid "KEY_INSERT"
 msgstr "מקש Insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "מקש Insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "מקש חכה"
 
 msgid "KEY_LEFT"
 msgstr "מקש שמאלה"
 
 msgid "KEY_MENU"
 msgstr "מקש Menu"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "מקש Tab"
 
 msgid "KEY_OPENURL"
 msgstr "מקש פתח URL"
@@ -2530,6 +2844,10 @@ msgstr "מאוד קטן"
 msgid "LINE_COLOUR"
 msgstr "צבע הקו:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "חסרה כותרת"
+
 msgid "LIPASE"
 msgstr "ליפאז"
 
@@ -2697,6 +3015,7 @@ msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:
 msgid "METRICS"
 msgstr "מדדי ביצועיים"
 
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "זמן עיבוד: {0} שניות\n"
@@ -3041,6 +3360,10 @@ msgstr "העלת מוד:"
 
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "מחלקה העיקרית להעלת מוד:"
+
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "{0}: קריאת פריקה הרכבה של מוד זה נכשלה"
 
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: מחלקת מוד ספיציפית \"{1}\" לא מצאה את קליטת המוד"
@@ -3406,6 +3729,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "מהירות בסיסית"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3494,6 +3824,14 @@ msgstr ""
 "בגלל שThrive עוד בשלבי בנייה ראשוניים, שמירת גרסאות שלא תואמות לגרסה אינו בסדר העדיפויות.\n"
 "אתה יכול לדווח על כל בעיה שנתקלת, אבל זה אינו בעדיפות גבוהה כרגע.\n"
 "האם ברצונך להמשיך לטעון שמירה זו?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "אזהרת GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
 
 msgid "OPEN_FOLDER"
 msgstr "פתח תיקייה"
@@ -3665,6 +4003,7 @@ msgstr "חמצן"
 msgid "OXYTOXISOME"
 msgstr "אוקסיטוקסיזום"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "מטבולוזום שונה אחראי לייצור צורה פרימיטיבית של החומר הרעיל \"אוקסיטוקסי נ\"ט\"."
 
@@ -3785,6 +4124,13 @@ msgstr "טעינת קבצי pck ({0}) נכשלה בגלל שקובץ זה לא �
 
 msgid "PEACEFUL"
 msgstr "שלוו"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4455,9 +4801,6 @@ msgstr "צורן"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "לקרום זה יש קיר חזק העשוי מצורן. מה שמאפשר לו לעמוד היטב עם הנזק הכללי ועמיד מאוד בפני נזקים פיזיים. זהו גם דורש פחות אנרגיה כדי לשמור על צורתו. עם זאת, הוא מאט את התא בצורה רצינית והתא סופג משאבים בקצב מופחת."
 
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
-
 msgid "SIZE_COLON"
 msgstr "גודל:"
 
@@ -4593,6 +4936,10 @@ msgstr "התפשט לאזורים:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "תפריט השהה"
 
+#, fuzzy
+msgid "START"
+msgstr "מתחיל"
+
 msgid "STARTING"
 msgstr "מתחיל"
 
@@ -4609,6 +4956,20 @@ msgstr "אתחול מחדש נדרש"
 
 msgid "STATISTICS"
 msgstr "סטטיסטיקה"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ייצור ATP נמוך מדי!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "מהירות בסיסית"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "אתחול ספריית Steam נכשל"
@@ -4678,23 +5039,11 @@ msgstr "אחסון"
 msgid "STORAGE_COLON"
 msgstr "אחסון:"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "התחבר כ:{0}"
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -4754,12 +5103,6 @@ msgstr "התאבדות"
 
 msgid "SUNLIGHT"
 msgstr "אור שמש"
-
-msgid "SUPERL"
-msgstr "מקש Super Left"
-
-msgid "SUPERR"
-msgstr "מקש Super Right"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "תומכים"
@@ -5036,10 +5379,6 @@ msgstr ""
 msgid "TOGGLE_PAUSE"
 msgstr "עצור"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "החלף מצב קישור"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "בטל מצב קישור"
 
@@ -5056,14 +5395,76 @@ msgstr "מצב:"
 msgid "TOTAL_SAVES"
 msgstr "נשמר בסך הכל:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "חלק מהאפשרויות היו מבוטלים לשינוי אם LAWK מופעל"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"חלולית\n"
+" רעלן"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound] במהירות גבוה יותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא [b]נשימה אירובית[/b]. יחד עם זאת, הוא דורש [thrive:compound type=\"oxygen\"][/thrive:compound] כדי לתפקד, ורמות [thrive:compound type=\"oxygen\"][/thrive:compound] נמוכות יותר בסביבה יאטו את קצב ייצור של [thrive:compound type=\"atp\"][/thrive:compound]. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "עמידות לרעלים"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "עמידות לרעלים"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "סוג:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"מיקרובים אגרסיבים ירדפו אחרי הטרפם למרחקים\n"
+"והם לרוב נוטים להילחם בטורפים כשהם מותקפים.\n"
+"מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
+"ופחות נוטים להשתמש ברעלנים כנגד טורפים."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "חלולית\n"
 " רעלן"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
 
@@ -5078,12 +5479,6 @@ msgstr "מתרגמים"
 
 msgid "TRANSPARENCY"
 msgstr "שקיפות"
-
-msgid "TREBLEDOWN"
-msgstr "מקש Treble Down"
-
-msgid "TREBLEUP"
-msgstr "מקש Treble Up"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -5357,9 +5752,6 @@ msgstr "לא ידוע"
 msgid "UNKNOWN_MOUSE"
 msgstr "לחצן עכבר לא יודע"
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "לא מוכר לWindows"
-
 #, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "הוסף אברון"
@@ -5444,6 +5836,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} נקמ\"ו"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5556,6 +5952,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "צפה בקוד מקור"
@@ -6680,6 +7079,48 @@ msgstr "להתמקד"
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "מקש Bassboost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "מקש Bass Down"
+
+#~ msgid "BASSUP"
+#~ msgstr "מקש Bass Up"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "שמאלה"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "ימינה"
+
+#~ msgid "HYPERL"
+#~ msgstr "מקש Hyper Left"
+
+#~ msgid "HYPERR"
+#~ msgstr "מקש Hyper Right"
+
+#~ msgid "SUPERL"
+#~ msgstr "מקש Super Left"
+
+#~ msgid "SUPERR"
+#~ msgstr "מקש Super Right"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "מקש Treble Down"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "מקש Treble Up"
+
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "לא מוכר לWindows"
+
+#~ msgid "GLES2"
+#~ msgstr "GLES2"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "כלל האוכלוסיה:"
 
@@ -6752,10 +7193,6 @@ msgstr "זום החוצה"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "שם משתמש מותאם אישית:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "הצג שמות כפתורי בחירת חלקים"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "לא רץ."

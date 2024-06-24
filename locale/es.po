@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2023-06-24 20:02+0000\n"
-"Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -50,7 +50,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Avanzar al Estadio del Despertar. Solo disponible una vez tengas suficiente poder cerebral (tejido con axones)"
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "Acción bloqueada mientras otra esta en progreso"
+msgstr "Acción bloqueada mientras otra está en progreso"
 
 msgid "ACTION_DELETE"
 msgstr "Borrar"
@@ -168,9 +168,8 @@ msgstr "Cantidad de guardados rápidos a almacenar:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Fijación de Nitrógeno Anaeróbica"
 
-#, fuzzy
 msgid "AND_UNLOCK_CONDITION"
-msgstr "Condiciones Físicas"
+msgstr "y"
 
 msgid "APPEARANCE"
 msgstr "Apariencia"
@@ -202,9 +201,8 @@ msgstr "Arte por {0}"
 msgid "ART_GALLERY"
 msgstr "Galeria de arte"
 
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "Población de las Especies"
+msgstr "¡Felicitaciones!"
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
@@ -295,7 +293,6 @@ msgstr "Resultados de auto-evo:"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estado de auto-evo:"
 
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Estado de auto-evo:"
 
@@ -314,9 +311,8 @@ msgstr "Mods disponíbles"
 msgid "AWAKENING_STAGE"
 msgstr "Estadio del despertar"
 
-#, fuzzy
 msgid "AWARE_STAGE"
-msgstr "Etapa de microbio"
+msgstr "Estadio Consciente"
 
 msgid "BACK"
 msgstr "Atrás"
@@ -326,6 +322,19 @@ msgstr "Barra invertida"
 
 msgid "BACKSPACE"
 msgstr "Retroceso"
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Abre las opciones avanzadas"
 
 msgid "BASE_MOBILITY"
 msgstr "Mobilidad"
@@ -338,15 +347,6 @@ msgstr "Básico"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Vuelve a opciones simples"
-
-msgid "BASSBOOST"
-msgstr "Refuerzo de graves"
-
-msgid "BASSDOWN"
-msgstr "Bajar los graves"
-
-msgid "BASSUP"
-msgstr "Subir los graves"
 
 msgid "BATHYPELAGIC"
 msgstr "Batipelágico"
@@ -384,14 +384,12 @@ msgstr "{0}-{1}m bajo el nivel del mar"
 msgid "BENCHMARKS"
 msgstr "Prueba de rendimiento"
 
-#, fuzzy
 msgid "BENCHMARK_FINISHED"
-msgstr "Carga terminada"
+msgstr "Prueba de rendimiento completada"
 
 msgid "BENCHMARK_PHASE"
 msgstr "Fase de prueba de rendimiento:"
 
-#, fuzzy
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Resultados:"
 
@@ -434,7 +432,6 @@ msgstr "Vacuola Bioluminiscente"
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#, fuzzy
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurona"
 
@@ -447,17 +444,14 @@ msgstr "Navegar"
 msgid "BROWSE_WORKSHOP"
 msgstr "Navegar Workshop"
 
-#, fuzzy
 msgid "BUILD_CITY"
-msgstr "Estructura"
+msgstr "Construir una ciudad"
 
-#, fuzzy
 msgid "BUILD_QUEUE"
-msgstr "Estructura"
+msgstr "Fila de construcción"
 
-#, fuzzy
 msgid "BUILD_STRUCTURE"
-msgstr "Estructura"
+msgstr "Construir Estructura"
 
 msgid "BY"
 msgstr "Por:"
@@ -495,11 +489,9 @@ msgstr "No puede engullir"
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "No se puede mover un meatball a uno de sus descendientes"
 
-#, fuzzy
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr "La cantidad de poder cerebral es demasiado baja para seguir en el estadio actual. Volver a estadios anteriores no está permitido ahora mismo, por favor aumenta el poder cerebral para continuar."
+msgstr "La cantidad de poder cerebral ahora es demasiado baja para seguir en el estadio actual. Volver a estadios anteriores no está permitido ahora mismo, por favor aumenta el poder cerebral para continuar."
 
-#, fuzzy
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr "No se puede reducir el poder cerebral para volver a estadios anteriores"
 
@@ -636,7 +628,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Pedazo de Cadáver de Célula"
 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Consumo de: {0}"
@@ -748,8 +740,20 @@ msgstr "Visita nuestra wiki comunitaria"
 msgid "COMPILED_AT_COLON"
 msgstr "Compilado en:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Compilado en:"
+
 msgid "COMPOUNDS"
 msgstr "Compuestos"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Compuestos a encontrar:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Compuestos a encontrar:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / Ocultar compuestos"
@@ -757,8 +761,24 @@ msgstr "Mostrar / Ocultar compuestos"
 msgid "COMPOUNDS_COLON"
 msgstr "Compuestos:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Balance de compuestos"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Balance de compuestos"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Mostrar / Ocultar compuestos"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balance de compuestos"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Mostrar / Ocultar compuestos"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nubes de compuestos"
@@ -774,6 +794,25 @@ msgstr "Las concentraciones de {0} han descendido por un {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consumo de: {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Balance de compuestos"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Consumo de: {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Balance de compuestos"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Balance de compuestos"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Compuestos a encontrar:"
@@ -848,8 +887,185 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Continuar al prototipo de la siguiente etapa?"
 
+#, fuzzy
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_L2"
+msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Sensibilidad del contról"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_R2"
+msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr "Visualizador del axis del contról:"
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr "Zona muerta del contról"
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr "Zona muerta:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr "Zona muerta del contról"
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr "Sensibilidad del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr "Zona muerta:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr "Zona muerta:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr "Zona muerta:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr "Zona muerta del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr "Zona muerta del contról"
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr "Visualizador del axis del contról:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr "Visualizador del axis del contról:"
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr "Zona muerta:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr "Zona muerta:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr "Zona muerta:"
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr "Sensibilidad del contról"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr "Zona muerta:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_Y"
+msgstr "Zona muerta:"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "Zona muerta del contról"
@@ -868,6 +1084,10 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Sensibilidad del contról"
 
+#, fuzzy
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr "Zona muerta del contról"
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copiar Error al Portapapeles"
 
@@ -880,6 +1100,10 @@ msgstr "Protanomalía (Rojo-Verde)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanomalía (Azul-Amarillo)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "Hilos:"
 
 #, fuzzy
 msgid "CRAFTING_CLEAR_INPUTS"
@@ -1031,7 +1255,7 @@ msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Habilitar ciclo día/noche"
 
 #, fuzzy
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(ADVERTENCIA: la fotosíntesis se vuelve mucho menos viable)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1205,12 +1429,6 @@ msgstr "Velocidad de Digestion:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-msgid "DIRECTIONL"
-msgstr "Izquierda"
-
-msgid "DIRECTIONR"
-msgstr "Derecha"
-
 msgid "DISABLED"
 msgstr "Desactivado"
 
@@ -1275,6 +1493,14 @@ msgstr "Mostrar la barra de habilidades"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar particular de fondo"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Mostrar la barra de habilidades"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Mostrar la barra de habilidades"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Mostrar nombre de botones durante selección de partes"
@@ -1436,11 +1662,68 @@ msgstr "Activar todos los mods compatibles"
 msgid "ENABLE_EDITOR"
 msgstr "Activar editor"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efectos de luz GUI"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Multiples Orgánulos"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Desunir todas"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "El valor usado para generar el planeta, debe ser un numero positivo"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Los microbios agresivos perseguirán a las presas por mayores distancias\n"
+"y son más propensas a contra atacar a sus depredadores cuando son atacadas.\n"
+"Las pacíficas no perseguirán a otros microbios\n"
+"y son menos propensas a usar toxinas contra sus depredadores."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Orgánulos Desconectados"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Esto muestra cuantos popups han sido permanentemente deshabilitados por el usuario.\n"
+"Si alguno de los popups que necesita están deshabilitados, el botón junto a este puede ser utilizado para mostrar todos los popups nuevamente."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Convierte [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de conversión escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. También convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Entra al editor y modifica tu especie"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Falta Título"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1554,12 +1837,12 @@ msgid "EXIT"
 msgstr "Salir"
 
 #, fuzzy
-msgid "EXIT_TO_LAUNCHER"
-msgstr "Lanzar E"
+msgid "EXIT_EDITOR"
+msgstr "Ir a la siguiente pestaña"
 
 #, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(Velocidad con la cual las species de la AI mutan)"
+msgid "EXIT_TO_LAUNCHER"
+msgstr "Lanzar E"
 
 #, fuzzy
 msgid "EXPORT_ALL_WORLDS"
@@ -1672,6 +1955,18 @@ msgstr "Publicado en {0}"
 #, fuzzy
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Este artículo se ha cortado por ser demasiado largo, por favor lea el original para ver todo el contenido. {0}"
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplasto"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir energía en un proceso llamado Termosíntesis. La producción de glucosa dependerá de la concentración de dióxido de carbono y temperatura."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la temperatura."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrar objetos por categoría:"
@@ -1857,15 +2152,6 @@ msgstr "Generación:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Visita nuestro repositorio de GitHub"
 
-msgid "GLES2"
-msgstr "GLES2"
-
-msgid "GLES2_MODE_WARNING"
-msgstr "Advertencia del modo GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -1982,12 +2268,6 @@ msgstr "{0} (x{1})"
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Ácido Sulfhídrico"
-
-msgid "HYPERL"
-msgstr "Híper izquierda"
-
-msgid "HYPERR"
-msgstr "Híper derecha"
 
 msgid "ICESHARD"
 msgstr "Fragmento de hielo"
@@ -2229,10 +2509,17 @@ msgstr "Junio"
 msgid "KEY_BACK"
 msgstr "Atrás"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Atrás"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Hay un conflicto con {0}.\n"
 "¿Quieres eliminar la entrada de {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Eliminar"
@@ -2255,6 +2542,10 @@ msgstr "Favoritos"
 msgid "KEY_FORWARD"
 msgstr "Adelantar"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Inicio"
+
 msgid "KEY_HELP"
 msgstr "Ayuda"
 
@@ -2264,14 +2555,30 @@ msgstr "Inicio"
 msgid "KEY_HOMEPAGE"
 msgstr "Página principal"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Ayuda"
+
 msgid "KEY_INSERT"
 msgstr "Insertar"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insertar"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "En espera"
 
 msgid "KEY_LEFT"
 msgstr "Izquierda"
 
 msgid "KEY_MENU"
 msgstr "Menú"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tabulador"
 
 msgid "KEY_OPENURL"
 msgstr "Abrir URL"
@@ -2567,6 +2874,10 @@ msgstr "Muy pequeño"
 msgid "LINE_COLOUR"
 msgstr "Color de la línea:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Falta Título"
+
 msgid "LIPASE"
 msgstr "Lipasa"
 
@@ -2735,6 +3046,7 @@ msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thriv
 msgid "METRICS"
 msgstr "Métricas de Rendimiento"
 
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "Tiempo de procesamiento: {0} s\n"
@@ -3077,6 +3389,10 @@ msgstr "Ensamblaje del Mod:"
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Clase principal de ensamblaje del Mod:"
 
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "{0}: el método de descarga del ensamblaje del mod ha fallado"
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: el mod especificado clase \"{1}\" no se ha encontrado en el ensamblaje del mod"
 
@@ -3307,7 +3623,7 @@ msgid "MUSIC"
 msgstr "Música"
 
 msgid "MUSIC_VOLUME"
-msgstr "Volumen de la Música"
+msgstr "Volumen de la música"
 
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Intentos de mutación por especie"
@@ -3445,6 +3761,13 @@ msgstr "El tamaño actual de la célula es demasiado pequeño para engullir al o
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "No hay espacio suficiente en el almacenamiento de materia ingerida para engullir al objetivo"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Movimiento Base"
+
 #, fuzzy
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "El editor ahora está listo para acceder"
@@ -3534,6 +3857,14 @@ msgstr ""
 "Como Thrive esta actualmente en desarrollo, la compatibilidad entre partidas no es una prioridad.\n"
 "Puedes reportar problemas que encuentres, pero no son la mayor prioridad ahora mismo.\n"
 "¿ Aún así deseas intentar cargar la partida?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Advertencia del modo GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
 
 msgid "OPEN_FOLDER"
 msgstr "Abrir carpeta"
@@ -3707,6 +4038,7 @@ msgstr "Oxígeno"
 msgid "OXYTOXISOME"
 msgstr "Oxitoxisoma"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
 
@@ -3827,6 +4159,13 @@ msgstr "La carga del archivo pck ({0}) ha fallado porque el archivo no existe"
 
 msgid "PEACEFUL"
 msgstr "Pacífica"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4508,9 +4847,6 @@ msgstr "Sílice"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Esta membrana tiene una dura pared de sílice. Puede resistir el daño muy bien, especialmente el daño físico. También requiere menos energía. No obstante, ralentiza a la célula drásticamente y absorbe recursos a una velocidad menor."
 
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
-
 msgid "SIZE_COLON"
 msgstr "Tamaño:"
 
@@ -4647,6 +4983,10 @@ msgstr "Migró a:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menú de pausa"
 
+#, fuzzy
+msgid "START"
+msgstr "Comenzando"
+
 msgid "STARTING"
 msgstr "Comenzando"
 
@@ -4662,6 +5002,20 @@ msgstr "Reinicio requerido"
 
 msgid "STATISTICS"
 msgstr "Estadísticas"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "¡PRODUCCIÓN DE ATP DEMASIADO BAJA!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Movimiento Base"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Error en la inicialización de la biblioteca de cliente de Steam"
@@ -4731,23 +5085,11 @@ msgstr "Almacenamiento"
 msgid "STORAGE_COLON"
 msgstr "Almacenamiento:"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Conectado como: {0}"
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -4815,12 +5157,6 @@ msgstr "Suicidarse"
 
 msgid "SUNLIGHT"
 msgstr "Luz solar"
-
-msgid "SUPERL"
-msgstr "Súper izquierda"
-
-msgid "SUPERR"
-msgstr "Súper derecha"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "Colaboradores"
@@ -5117,10 +5453,6 @@ msgstr "Activar/desactivar árbol de navegación"
 msgid "TOGGLE_PAUSE"
 msgstr "Pausa"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Alternar unión"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Alternar separación"
 
@@ -5138,14 +5470,72 @@ msgstr "Estado:"
 msgid "TOTAL_SAVES"
 msgstr "Partidas guardadas:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Ciertas opciones serán deshabilitadas si \"Solo usar VCLC\" está activado"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Vacuola de\n"
+"Toxinas"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Los metabolosomas son aglomeraciones de proteínas envueltas en cápsides. Pueden convertir la [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] de forma mucho más eficiente que el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente causarán la ralentización de su producción de [thrive:compound type=\"atp\"][/thrive:compound]. Como los metabolosomas están directamente suspendidos en el citoplasma, este fluido realiza la [b]glucólisis[/b]."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Resistencia Tóxica"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Resistencia Tóxica"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Tipo:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Fosiliza esta especie para preservarla en el Museo. Puedes acceder al Museo desde la Thrivepedia, o abrir especies fosilizadas en el editor libre."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Vacuola de\n"
 "Toxinas"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
@@ -5160,12 +5550,6 @@ msgstr "Traductores"
 
 msgid "TRANSPARENCY"
 msgstr "Transparencia"
-
-msgid "TREBLEDOWN"
-msgstr "Bajar los agudos"
-
-msgid "TREBLEUP"
-msgstr "Subir los agudos"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -5442,9 +5826,6 @@ msgstr "Desconocido"
 msgid "UNKNOWN_MOUSE"
 msgstr "Botón desconocido del mouse"
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Desconocido en Windows"
-
 #, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Colocar orgánulos"
@@ -5530,6 +5911,10 @@ msgstr "Tirando de los cilios"
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Los Cilios son similares a los flagelos, pero en vez de proveer major velocidad directional, proveen major fuerza de rotación, ayudando a las células a girar."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} PM"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5643,6 +6028,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ver código fuente"
@@ -6774,6 +7162,48 @@ msgstr "Hacer zoom"
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "Refuerzo de graves"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Bajar los graves"
+
+#~ msgid "BASSUP"
+#~ msgstr "Subir los graves"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Izquierda"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Derecha"
+
+#~ msgid "HYPERL"
+#~ msgstr "Híper izquierda"
+
+#~ msgid "HYPERR"
+#~ msgstr "Híper derecha"
+
+#~ msgid "SUPERL"
+#~ msgstr "Súper izquierda"
+
+#~ msgid "SUPERR"
+#~ msgstr "Súper derecha"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Bajar los agudos"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Subir los agudos"
+
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Desconocido en Windows"
+
+#~ msgid "GLES2"
+#~ msgstr "GLES2"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Población Total:"
 
@@ -6847,10 +7277,6 @@ msgstr "Alejar el zoom"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Nombre personalizado:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Mostrar la barra de habilidades"
 
 #, fuzzy
 #~ msgid "NOT_RUNNING_DOT"

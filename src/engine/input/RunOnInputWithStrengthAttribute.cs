@@ -48,7 +48,7 @@ public class RunOnInputWithStrengthAttribute : RunOnKeyAttribute
         return baseResult;
     }
 
-    public override void OnProcess(float delta)
+    public override void OnProcess(double delta)
     {
         if (ReadHeldOrPrimedAndResetPrimed())
         {

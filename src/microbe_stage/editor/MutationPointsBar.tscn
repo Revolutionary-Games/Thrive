@@ -1,69 +1,71 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://seoiqsheiljf"]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=2]
-[ext_resource path="res://src/microbe_stage/editor/MutationPointsTextMaterial.tres" type="Material" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/WhiteArrow.png" type="Texture" id=4]
-[ext_resource path="res://src/microbe_stage/editor/MutationPointsBar.cs" type="Script" id=5]
+[ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="2"]
+[ext_resource type="Material" uid="uid://dodp28iio21ld" path="res://src/microbe_stage/editor/MutationPointsTextMaterial.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="4"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_6f2eg"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/MutationPointsBar.cs" id="5"]
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.294118, 0.152941, 0.356863, 1 )
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqa1m"]
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cj4jd"]
+bg_color = Color(0.294118, 0.152941, 0.356863, 1)
 
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.745098, 0.356863, 0.921569, 1 )
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qheyi"]
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1jjy"]
+bg_color = Color(0.745098, 0.356863, 0.921569, 1)
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id="7"]
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ), Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1), Color(2, 2, 2, 1), Color(1, 1, 1, 1), Color(2, 2, 2, 1), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("../Background:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0.54902 ), Color( 0.537255, 0.0823529, 0.0823529, 0.54902 ), Color( 0, 0, 0, 0.54902 ), Color( 0.537255, 0.0823529, 0.0823529, 0.54902 ), Color( 0, 0, 0, 0.54902 ) ]
+"values": [Color(0, 0, 0, 0.54902), Color(0.537255, 0.0823529, 0.0823529, 0.54902), Color(0, 0, 0, 0.54902), Color(0.537255, 0.0823529, 0.0823529, 0.54902), Color(0, 0, 0, 0.54902)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("../../MPIcon:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1), Color(1.5, 1.5, 1.5, 1), Color(1, 1, 1, 1), Color(1.5, 1.5, 1.5, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5nvi"]
+_data = {
+"FlashBar": SubResource("7")
 }
 
 [node name="MutationPointsBar" type="HBoxContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 328.0
-margin_bottom = 30.0
-custom_constants/separation = -10
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 328.0
+offset_bottom = 30.0
+theme_override_constants/separation = -10
+script = ExtResource("5")
 CurrentMutationPointsLabelPath = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/CurrentMp")
 MutationPointsArrowPath = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/MpArrow")
 ResultingMutationPointsLabelPath = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/ResultingMp")
@@ -73,154 +75,114 @@ MutationPointsSubtractBarPath = NodePath("MarginContainer/MPBarSubtract")
 AnimationPlayerPath = NodePath("MarginContainer/MPBarMain/FlashAnimation")
 
 [node name="MPIcon" type="TextureRect" parent="."]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource( 2 )
-expand = true
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 show_behind_parent = true
-margin_left = 10.0
-margin_right = 318.0
-margin_bottom = 20.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Background" type="ColorRect" parent="MarginContainer"]
 show_behind_parent = true
-margin_right = 308.0
-margin_bottom = 20.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-color = Color( 0, 0, 0, 0.54902 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+mouse_filter = 1
+color = Color(0, 0, 0, 0.54902)
 
 [node name="MPBarSubtract" type="ProgressBar" parent="MarginContainer"]
-self_modulate = Color( 0.721569, 0.721569, 0.721569, 1 )
+self_modulate = Color(0.721569, 0.721569, 0.721569, 1)
 show_behind_parent = true
-margin_right = 308.0
-margin_bottom = 20.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 4 )
+mouse_filter = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_dqa1m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cj4jd")
 step = 0.1
 value = 100.0
-percent_visible = false
+show_percentage = false
 
 [node name="MPBarMain" type="ProgressBar" parent="MarginContainer"]
 show_behind_parent = true
-margin_right = 308.0
-margin_bottom = 20.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-custom_styles/fg = SubResource( 5 )
-custom_styles/bg = SubResource( 6 )
+mouse_filter = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_qheyi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1jjy")
 step = 0.1
 value = 100.0
-percent_visible = false
+show_percentage = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MPBarMain"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MPBarMain/HBoxContainer"]
-margin_right = 149.0
-margin_bottom = 20.0
-mouse_filter = 1
-custom_constants/margin_left = 20
+layout_mode = 2
+theme_override_constants/margin_left = 20
 
 [node name="MPLabel" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer"]
-material = ExtResource( 3 )
-margin_left = 20.0
-margin_top = 1.0
-margin_right = 149.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 1 )
+material = ExtResource("3")
+layout_mode = 2
 text = "MUTATION_POINTS"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+label_settings = ExtResource("4_6f2eg")
+vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MPBarMain/HBoxContainer"]
-margin_left = 153.0
-margin_right = 308.0
-margin_bottom = 20.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/margin_right = 15
+theme_override_constants/margin_right = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2"]
-margin_right = 140.0
-margin_bottom = 20.0
+layout_mode = 2
 alignment = 2
 
 [node name="CurrentMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
-material = ExtResource( 3 )
-margin_left = 80.0
-margin_top = 1.0
-margin_right = 104.0
-margin_bottom = 18.0
+material = ExtResource("3")
+layout_mode = 2
 size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 1 )
 text = "100"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("4_6f2eg")
+vertical_alignment = 1
 
 [node name="MpArrow" type="TextureRect" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
 visible = false
-material = ExtResource( 3 )
-margin_left = 87.0
-margin_right = 102.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 15, 20 )
+material = ExtResource("3")
+custom_minimum_size = Vector2(18, 20)
+layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource( 4 )
-expand = true
+texture = ExtResource("4")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="ResultingMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
+editor_description = "PLACEHOLDER"
 visible = false
-material = ExtResource( 3 )
-margin_left = 74.0
-margin_top = 1.0
-margin_right = 102.0
-margin_bottom = 18.0
+material = ExtResource("3")
+layout_mode = 2
 size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 1 )
 text = "100)"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("4_6f2eg")
+vertical_alignment = 1
 
 [node name="BaseMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
-material = ExtResource( 3 )
-margin_left = 108.0
-margin_top = 1.0
-margin_right = 140.0
-margin_bottom = 18.0
+editor_description = "PLACEHOLDER"
+material = ExtResource("3")
+layout_mode = 2
 size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 1 )
 text = "/ 100"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
+label_settings = ExtResource("4_6f2eg")
+vertical_alignment = 1
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="MarginContainer/MPBarMain"]
-anims/FlashBar = SubResource( 7 )
+libraries = {
+"": SubResource("AnimationLibrary_g5nvi")
+}

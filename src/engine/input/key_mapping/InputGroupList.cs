@@ -7,7 +7,7 @@ using Godot;
 ///   Holds the various <see cref="InputGroupItem">input groups</see> in one VBoxContainer.
 ///   Used by OptionsMenu>Inputs>InputGroupContainer
 /// </summary>
-public class InputGroupList : VBoxContainer
+public partial class InputGroupList : VBoxContainer
 {
     [Export]
     public NodePath? ConflictDialogPath;
@@ -17,13 +17,13 @@ public class InputGroupList : VBoxContainer
 
     private IEnumerable<InputGroupItem>? activeInputGroupList;
 
-    private InputEventItem? latestDialogCaller;
-    private InputEventItem? latestDialogConflict;
-    private InputEvent? latestDialogNewEvent;
-
 #pragma warning disable CA2213
     private CustomConfirmationDialog conflictDialog = null!;
     private CustomConfirmationDialog resetInputsDialog = null!;
+
+    private InputEventItem? latestDialogCaller;
+    private InputEventItem? latestDialogConflict;
+    private InputEvent? latestDialogNewEvent;
 #pragma warning restore CA2213
 
     private FocusFlowDynamicChildrenHelper focusHelper = null!;
@@ -97,7 +97,8 @@ public class InputGroupList : VBoxContainer
             return Settings.GetDefaultControls();
 
         return new InputDataList(ActiveInputGroupList.SelectMany(p => p.Actions)
-            .ToDictionary(p => p.InputName, p => p.Inputs.Select(x => x.AssociatedEvent).ToList()));
+            .ToDictionary(p => p.InputName,
+                p => p.Inputs.Where(x => x.AssociatedEvent != null).Select(x => x.AssociatedEvent!).ToList()));
     }
 
     /// <summary>
@@ -155,7 +156,7 @@ public class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.DialogText = TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT")
+        conflictDialog.DialogText = Localization.Translate("KEY_BINDING_CHANGE_CONFLICT")
             .FormatSafe(inputActionItem.DisplayName, inputActionItem.DisplayName);
 
         conflictDialog.PopupCenteredShrink();

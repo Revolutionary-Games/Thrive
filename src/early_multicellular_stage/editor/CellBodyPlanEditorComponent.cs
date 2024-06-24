@@ -118,7 +118,7 @@ public partial class CellBodyPlanEditorComponent :
     private bool forceUpdateCellGraphics;
 
     [Signal]
-    public delegate void OnCellTypeToEditSelected(string name, bool switchTab);
+    public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
     public enum SelectionMenuTab
     {
@@ -219,7 +219,7 @@ public partial class CellBodyPlanEditorComponent :
 
             if (Editor.EditedCellProperties != null)
             {
-                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
+                UpdateGUIAfterLoadingSpecies();
                 UpdateArrow(false);
             }
             else
@@ -231,7 +231,7 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCancelButtonVisibility();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -326,7 +326,7 @@ public partial class CellBodyPlanEditorComponent :
             {
                 var positionVector = direction * distance;
 
-                if (TryAddHexToEditedLayout(hex, (int)positionVector.x, (int)positionVector.y))
+                if (TryAddHexToEditedLayout(hex, (int)positionVector.X, (int)positionVector.Y))
                     break;
 
                 distance += 0.8f;
@@ -335,7 +335,7 @@ public partial class CellBodyPlanEditorComponent :
 
         newName = species.FormattedName;
 
-        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
+        UpdateGUIAfterLoadingSpecies();
 
         UpdateArrow(false);
     }
@@ -374,7 +374,7 @@ public partial class CellBodyPlanEditorComponent :
             while (true)
             {
                 var positionVector = direction * distance;
-                hexWithData.Data!.Position = new Hex((int)positionVector.x, (int)positionVector.y);
+                hexWithData.Data!.Position = new Hex((int)positionVector.X, (int)positionVector.Y);
 
                 if (editedSpecies.Cells.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
                 {
@@ -500,12 +500,15 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override void PerformActiveAction()
     {
-        AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
+        if (AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active"))))
+        {
+            // Placed a cell, could trigger a tutorial or something
+        }
     }
 
     protected override void PerformMove(int q, int r)
     {
-        if (!MoveCell(MovingPlacedHex!, MovingPlacedHex!.Position, new Hex(q, r), MovingPlacedHex.Data!.Orientation,
+        if (!MoveCell(MovingPlacedHex!, new Hex(q, r),
                 placementRotation))
         {
             Editor.OnInvalidAction();
@@ -564,7 +567,7 @@ public partial class CellBodyPlanEditorComponent :
             var cartesian = Hex.AxialToCartesian(hex.Position);
 
             // Get the min z-axis (highest point in the editor)
-            highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z);
+            highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.Z);
         }
 
         return highestPointInMiddleRows;
@@ -597,7 +600,7 @@ public partial class CellBodyPlanEditorComponent :
         base.Dispose(disposing);
     }
 
-    private void UpdateGUIAfterLoadingSpecies(Species species)
+    private void UpdateGUIAfterLoadingSpecies()
     {
         GD.Print("Starting early multicellular editor with: ", editedMicrobeCells.Count,
             " cells in the microbe");
@@ -789,7 +792,7 @@ public partial class CellBodyPlanEditorComponent :
         return new CombinedEditorAction(moveActionData);
     }
 
-    private bool MoveCell(HexWithData<CellTemplate> cell, Hex oldLocation, Hex newLocation, int oldRotation,
+    private bool MoveCell(HexWithData<CellTemplate> cell, Hex newLocation,
         int newRotation)
     {
         // TODO: consider allowing rotation inplace (https://github.com/Revolutionary-Games/Thrive/issues/2993)
@@ -830,9 +833,6 @@ public partial class CellBodyPlanEditorComponent :
         {
             StartHexMove(cellPopupMenu.SelectedCells.First());
         }
-
-        // Once an cell move has begun, the button visibility should be updated so it becomes visible
-        UpdateCancelButtonVisibility();
     }
 
     private void OnDeletePressed()
@@ -846,7 +846,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnModifyPressed()
     {
-        EmitSignal(nameof(OnCellTypeToEditSelected), cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName, true);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName,
+            true);
     }
 
     /// <summary>
@@ -860,7 +861,7 @@ public partial class CellBodyPlanEditorComponent :
             if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
             {
                 // Need new button
-                control = (CellTypeSelection)cellTypeSelectionButtonScene.Instance();
+                control = (CellTypeSelection)cellTypeSelectionButtonScene.Instantiate();
                 control.SelectionGroup = cellTypeButtonGroup;
 
                 control.PartName = cellType.TypeName;
@@ -870,7 +871,8 @@ public partial class CellBodyPlanEditorComponent :
                 cellTypeSelectionList.AddItem(control);
                 cellTypeSelectionButtons.Add(cellType.TypeName, control);
 
-                control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnCellToPlaceSelected));
+                control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
+                    new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
             control.MPCost = cellType.MPCost;
@@ -943,7 +945,7 @@ public partial class CellBodyPlanEditorComponent :
         OnCurrentActionChanged();
 
         // After clearing the selected cell, emit a signal to let the editor know
-        EmitSignal(nameof(OnCellTypeToEditSelected), null, false);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant), false);
     }
 
     private void OnCellsChanged()
@@ -992,7 +994,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void ShowCellTypeInModelHolder(SceneDisplayer modelHolder, CellType cell, Vector3 position, int orientation)
     {
-        modelHolder.Transform = new Transform(Quat.Identity, position);
+        modelHolder.Transform = new Transform3D(Basis.Identity, position);
 
         var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
 
@@ -1007,11 +1009,11 @@ public partial class CellBodyPlanEditorComponent :
         }
         else
         {
-            billboard = (CellBillboard)billboardScene.Instance();
+            billboard = (CellBillboard)billboardScene.Instantiate();
         }
 
         // Set look direction
-        billboard.Transform = new Transform(rotation, new Vector3(0, 0, 0));
+        billboard.Transform = new Transform3D(new Basis(rotation), new Vector3(0, 0, 0));
 
         billboard.DisplayedCell = cell;
 
@@ -1051,7 +1053,7 @@ public partial class CellBodyPlanEditorComponent :
         // the entire time and doesn't change due to the focus grabber a tiny bit later
         duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
-        duplicateCellTypeName.CaretPosition = type.TypeName.Length;
+        duplicateCellTypeName.CaretColumn = type.TypeName.Length;
     }
 
     private void OnNewCellTypeNameChanged(string newText)
@@ -1136,7 +1138,7 @@ public partial class CellBodyPlanEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnCellTypeToEditSelected), activeActionName, true);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, activeActionName, true);
     }
 
     private void RegenerateCellTypeIcon(CellType type)
@@ -1176,21 +1178,21 @@ public partial class CellBodyPlanEditorComponent :
             case SelectionMenuTab.Structure:
             {
                 structureTab.Show();
-                structureTabButton.Pressed = true;
+                structureTabButton.ButtonPressed = true;
                 break;
             }
 
             case SelectionMenuTab.Reproduction:
             {
                 reproductionTab.Show();
-                reproductionTabButton.Pressed = true;
+                reproductionTabButton.ButtonPressed = true;
                 break;
             }
 
             case SelectionMenuTab.Behaviour:
             {
                 behaviourEditor.Show();
-                behaviourTabButton.Pressed = true;
+                behaviourTabButton.ButtonPressed = true;
                 break;
             }
 

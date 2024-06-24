@@ -3,7 +3,7 @@
 /// <summary>
 ///   A button to display the undiscovered organelles in each group.
 /// </summary>
-public class UndiscoveredOrganellesButton : MarginContainer
+public partial class UndiscoveredOrganellesButton : MarginContainer
 {
 #pragma warning disable CA2213
     [Export]
@@ -51,6 +51,6 @@ public class UndiscoveredOrganellesButton : MarginContainer
         if (button == null)
             return;
 
-        button.Group = SelectionGroup;
+        button.ButtonGroup = SelectionGroup;
     }
 }

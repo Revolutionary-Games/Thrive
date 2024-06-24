@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2022-03-22 18:22+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -326,6 +326,19 @@ msgstr "Deklivo"
 msgid "BACKSPACE"
 msgstr "Retropaŝo"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Movebleco"
@@ -339,15 +352,6 @@ msgstr ""
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
-
-msgid "BASSBOOST"
-msgstr ""
-
-msgid "BASSDOWN"
-msgstr ""
-
-msgid "BASSUP"
-msgstr ""
 
 msgid "BATHYPELAGIC"
 msgstr "Batipelagika"
@@ -783,8 +787,20 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "COMPILED_AT_COLON"
 msgstr "Kunmetaĵoj:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Kunmetaĵoj:"
+
 msgid "COMPOUNDS"
 msgstr "Kunmetaĵoj"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Kunmetitaj nuboj"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Kunmetitaj nuboj"
 
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -793,8 +809,24 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "COMPOUNDS_COLON"
 msgstr "Kunmetaĵoj:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Kunmetaĵaj Ekvilibro"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Kunmetaĵaj Ekvilibro"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Kunmetaĵaj Ekvilibro"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Kunmetitaj nuboj"
@@ -813,6 +845,25 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Kunmetitaj nuboj"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Kunmetaĵaj Ekvilibro"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Kunmetitaj nuboj"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Kunmetaĵaj Ekvilibro"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Kunmetaĵaj Ekvilibro"
 
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
@@ -885,7 +936,147 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata Aerobia Nitrogena Fiksado."
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata Aerobia Nitrogena Fiksado."
+
+msgid "CONTROLLER_AXIS_R2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr ""
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
 msgid "CONTROLLER_DEADZONES"
@@ -904,6 +1095,9 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopiu Eraron Al Tondujo"
 
@@ -915,6 +1109,9 @@ msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
 msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+msgid "CPU_THREADS"
 msgstr ""
 
 msgid "CRAFTING_CLEAR_INPUTS"
@@ -1062,8 +1259,9 @@ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+msgstr "Piku aliajn ĉelojn per ĉi tio."
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1235,12 +1433,6 @@ msgstr "Rapideco:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr "Maldesktra"
-
-msgid "DIRECTIONR"
-msgstr "Dekstra"
-
 msgid "DISABLED"
 msgstr ""
 
@@ -1309,6 +1501,14 @@ msgstr "Kapabloj"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Kapabloj"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Kapabloj"
 
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
@@ -1480,12 +1680,63 @@ msgstr "Elektita konservado ne kongruas"
 msgid "ENABLE_EDITOR"
 msgstr "Ebligu la redaktilon"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Eksteraj efikoj:"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Disloku organeton"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Malligi ĉiujn"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Rekomenci"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Malkonektitaj Organetoj"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. Ĉar la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la ĉirkaŭa fluido iom fermentas."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "VI PROSPERIS!"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1603,12 +1854,12 @@ msgstr "Anstataŭigi ekzistantan konservadon:"
 msgid "EXIT"
 msgstr "Eliri"
 
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Ebligu la redaktilon"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(la rapideco de mutacio en AI-specioj)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -1702,6 +1953,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termika plasto"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -1895,15 +2158,6 @@ msgstr "Generacio:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-msgid "GLES2"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING"
-msgstr "Averto Modo GLES2"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ Nvidia-grafikaĵojn por ke Thrive funkciu."
-
 msgid "GLES3"
 msgstr ""
 
@@ -2019,12 +2273,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogena Sulfido"
-
-msgid "HYPERL"
-msgstr ""
-
-msgid "HYPERR"
-msgstr ""
 
 msgid "ICESHARD"
 msgstr "Glacia ero"
@@ -2262,10 +2510,17 @@ msgstr ""
 msgid "KEY_BACK"
 msgstr "Reen"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Reen"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr ""
@@ -2292,6 +2547,10 @@ msgid "KEY_FORWARD"
 msgstr "Antaŭeniĝu"
 
 #, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Movu maldekstren"
+
+#, fuzzy
 msgid "KEY_HELP"
 msgstr "Helpu"
 
@@ -2301,7 +2560,17 @@ msgstr ""
 msgid "KEY_HOMEPAGE"
 msgstr ""
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Helpu"
+
 msgid "KEY_INSERT"
+msgstr ""
+
+msgid "KEY_JIS_EISU"
+msgstr ""
+
+msgid "KEY_JIS_KANA"
 msgstr ""
 
 #, fuzzy
@@ -2310,6 +2579,10 @@ msgstr "Movu maldekstren"
 
 msgid "KEY_MENU"
 msgstr ""
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Movu maldekstren"
 
 msgid "KEY_OPENURL"
 msgstr ""
@@ -2613,6 +2886,10 @@ msgstr ""
 #, fuzzy
 msgid "LINE_COLOUR"
 msgstr "Koloro"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "VI PROSPERIS!"
 
 msgid "LIPASE"
 msgstr ""
@@ -3141,6 +3418,10 @@ msgstr ""
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "Aŭtomata evolucio malsukcesis"
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
@@ -3514,6 +3795,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Baza Movado"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3614,6 +3902,14 @@ msgstr ""
 "Ĉar Thrive nuntempe estas en frua disvolviĝo kaj kongruo de konsevadoj ne estas prioritato.\n"
 "Vi eble raportos iujn ajn problemojn, kiujn vi renkontas, sed ili ne estas la plej alta prioritato nun.\n"
 "Ĉu vi volas provi ŝargi la konservadon ĉiuokaze?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Averto Modo GLES2"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ Nvidia-grafikaĵojn por ke Thrive funkciu."
 
 #, fuzzy
 msgid "OPEN_FOLDER"
@@ -3787,6 +4083,7 @@ msgstr "Oksigeno"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisomo"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Modifita metabolosomo, responsanta pri la produktado de primitiva formo de la toksa agento OxyToxy NT."
 
@@ -3913,6 +4210,13 @@ msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Ŝarĝo estas finita"
 
 msgid "PEACEFUL"
+msgstr ""
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ Nvidia-grafikaĵojn por ke Thrive funkciu."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 msgid "PERCENTAGE_VALUE"
@@ -4640,9 +4944,6 @@ msgstr "Siliko"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ĉi tiu membrano havas fortan silikan muron. Ĝi povas bone rezisti ĝeneralan damaĝon kaj tre rezistas al fizika damaĝo. Ĝi ankaŭ postulas malpli da energio por konservi sian formon. Tamen ĝi malrapidigas la ĉelon kaj la ĉelo sorbas resurson kun malpli granda rapideco."
 
-msgid "SIXTEEN_TIMES"
-msgstr ""
-
 msgid "SIZE_COLON"
 msgstr "Grandeco:"
 
@@ -4792,6 +5093,10 @@ msgstr "disvastiĝas al flikĵj:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
+#, fuzzy
+msgid "START"
+msgstr "Komenco"
+
 msgid "STARTING"
 msgstr "Komenco"
 
@@ -4807,6 +5112,20 @@ msgstr ""
 
 msgid "STATISTICS"
 msgstr "Statistiko"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP-PRODUKTO ESTAS TRE MALALTA!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Baza Movado"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
@@ -4882,22 +5201,10 @@ msgstr "Stokado"
 msgid "STORAGE_COLON"
 msgstr "Stokado"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
 msgstr ""
 
 #, fuzzy
@@ -4966,12 +5273,6 @@ msgstr "Aldonunovan funkcion por klavo"
 
 msgid "SUNLIGHT"
 msgstr "Sunlumo"
-
-msgid "SUPERL"
-msgstr ""
-
-msgid "SUPERR"
-msgstr ""
 
 msgid "SUPPORTER_PATRONS"
 msgstr ""
@@ -5254,10 +5555,6 @@ msgid "TOGGLE_PAUSE"
 msgstr ""
 
 #, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Ŝaltu engluton"
-
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
 msgstr "Ŝaltu engluton"
 
@@ -5274,14 +5571,72 @@ msgstr "Specioj:"
 msgid "TOTAL_SAVES"
 msgstr "Entute konservadoj:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toksa\n"
+"Vakuolo"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Toksinrezisto"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksinrezisto"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "SP:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toksa\n"
 "Vakuolo"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
@@ -5299,12 +5654,6 @@ msgstr "Helpu Traduki La Ludon"
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "Helpu Traduki La Ludon"
-
-msgid "TREBLEDOWN"
-msgstr "Treble Down"
-
-msgid "TREBLEUP"
-msgstr ""
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -5593,10 +5942,6 @@ msgid "UNKNOWN_MOUSE"
 msgstr "Nekonata musbutono"
 
 #, fuzzy
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Nekonata musbutono"
-
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Disloku organeton"
 
@@ -5683,6 +6028,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5802,6 +6151,9 @@ msgstr "Kaverno"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Kaverno"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Rigardi Fontkodon"
@@ -6942,6 +7294,19 @@ msgstr "Zomu"
 msgid "ZOOM_OUT"
 msgstr "Malzomu"
 
+#~ msgid "DIRECTIONL"
+#~ msgstr "Maldesktra"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Dekstra"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Treble Down"
+
+#, fuzzy
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Nekonata musbutono"
+
 #, fuzzy
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
@@ -7002,10 +7367,6 @@ msgstr "Malzomu"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Via Salutnomo:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Kapabloj"
 
 #, fuzzy
 #~ msgid "NOT_RUNNING_DOT"

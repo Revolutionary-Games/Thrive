@@ -5,23 +5,26 @@ using Godot;
 /// <summary>
 ///   Shows a single chemical equation in a control
 /// </summary>
-public class ChemicalEquation : VBoxContainer
+public partial class ChemicalEquation : VBoxContainer
 {
-    [Export]
-    public NodePath? TitlePath;
-
-    [Export]
-    public NodePath SpinnerPath = null!;
-
-    [Export]
-    public NodePath FirstLineContainerPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
+    public LabelSettings DefaultTitleFont = null!;
+
+    [Export]
     private Label? title;
+
+    [Export]
     private TextureRect? spinner;
+
+    [Export]
     private HBoxContainer firstLineContainer = null!;
 
-    private Texture equationArrowTexture = null!;
+    [Export]
+    private LabelSettings speedLimitedTitleFont = null!;
+
+    [Export]
+    private Texture2D equationArrowTexture = null!;
 
     // Dynamically generated controls
     private CompoundListBox? leftSide;
@@ -86,20 +89,6 @@ public class ChemicalEquation : VBoxContainer
 
     public float SpinnerBaseSpeed { get; set; } = Constants.DEFAULT_PROCESS_SPINNER_SPEED;
 
-    public Color DefaultTitleColour
-    {
-        get => defaultTitleColour;
-        set
-        {
-            if (defaultTitleColour == value)
-                return;
-
-            defaultTitleColour = value;
-            if (title != null)
-                UpdateHeader();
-        }
-    }
-
     /// <summary>
     ///   If true the title color will be changed to red if EquationFromProcess has any limiting compounds.
     /// </summary>
@@ -107,57 +96,44 @@ public class ChemicalEquation : VBoxContainer
 
     public override void _Ready()
     {
-        title = GetNode<Label>(TitlePath);
-        spinner = GetNode<TextureRect>(SpinnerPath);
-        firstLineContainer = GetNode<HBoxContainer>(FirstLineContainerPath);
-
-        equationArrowTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/WhiteArrow.png");
-
         UpdateEquation();
     }
 
-    public override void _Process(float delta)
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+    }
+
+    public override void _Process(double delta)
     {
         if (ShowSpinner && EquationFromProcess != null)
         {
-            currentSpinnerRotation += delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed;
+            currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed;
 
             // TODO: should we at some point subtract like 100000*360 from the spinner rotation to avoid float range
             // exceeding?
 
-            // Now uses the same math as LoadingScreen as a spinner glitch was fixed there
-            spinner!.RectRotation = (int)currentSpinnerRotation % 360;
+            spinner!.RotationDegrees = (int)currentSpinnerRotation % 360;
         }
 
         if (AutoRefreshProcess)
             UpdateEquation();
     }
 
-    public override void _Notification(int what)
+    private void OnTranslationsChanged()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            if (perSecondLabel != null)
-                perSecondLabel.Text = TranslationServer.Translate("PER_SECOND_SLASH");
+        if (perSecondLabel != null)
+            perSecondLabel.Text = Localization.Translate("PER_SECOND_SLASH");
 
-            if (environmentSeparator != null)
-                environmentSeparator.Text = GetEnvironmentLabelText();
-        }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (TitlePath != null)
-            {
-                TitlePath.Dispose();
-                SpinnerPath.Dispose();
-                FirstLineContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
+        if (environmentSeparator != null)
+            environmentSeparator.Text = GetEnvironmentLabelText();
     }
 
     private void UpdateEquation()
@@ -196,7 +172,7 @@ public class ChemicalEquation : VBoxContainer
 
         if (perSecondLabel == null && ShowPerSecondLabel)
         {
-            perSecondLabel = new Label { Text = TranslationServer.Translate("PER_SECOND_SLASH") };
+            perSecondLabel = new Label { Text = Localization.Translate("PER_SECOND_SLASH") };
             firstLineContainer.AddChild(perSecondLabel);
         }
 
@@ -216,11 +192,11 @@ public class ChemicalEquation : VBoxContainer
 
         if (MarkRedOnLimitingCompounds && EquationFromProcess.LimitingCompounds is { Count: > 0 })
         {
-            title.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+            title.LabelSettings = speedLimitedTitleFont;
         }
         else
         {
-            title.AddColorOverride("font_color", DefaultTitleColour);
+            title.LabelSettings = DefaultTitleFont;
         }
     }
 
@@ -258,7 +234,11 @@ public class ChemicalEquation : VBoxContainer
             {
                 equationArrow = new TextureRect
                 {
-                    Expand = true, RectMinSize = new Vector2(20, 20), Texture = equationArrowTexture,
+                    ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+                    CustomMinimumSize = new Vector2(20, 20),
+                    Texture = equationArrowTexture,
+                    StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
+                    SizeFlagsVertical = SizeFlags.ShrinkBegin,
                 };
                 firstLineContainer.AddChild(equationArrow);
             }
@@ -289,8 +269,8 @@ public class ChemicalEquation : VBoxContainer
                 environmentSeparator = new Label
                 {
                     Text = GetEnvironmentLabelText(),
-                    RectMinSize = new Vector2(30, 20),
-                    Align = Label.AlignEnum.Center,
+                    CustomMinimumSize = new Vector2(30, 20),
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
 
                 firstLineContainer.AddChild(environmentSeparator);
@@ -320,6 +300,6 @@ public class ChemicalEquation : VBoxContainer
 
     private string GetEnvironmentLabelText()
     {
-        return TranslationServer.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
+        return Localization.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
     }
 }

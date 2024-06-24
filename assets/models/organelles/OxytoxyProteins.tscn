@@ -1,23 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://d18jaljhot4pk"]
 
-[ext_resource path="res://assets/textures/oxytoxy_fluid.png" type="Texture" id=1]
-[ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=2]
-[ext_resource path="res://assets/models/organelles/OxytoxyProteins.mesh" type="ArrayMesh" id=3]
-[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=4]
+[ext_resource type="Texture2D" uid="uid://d35w5tdi3k1xf" path="res://assets/textures/oxytoxy_fluid.png" id="1"]
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://bj5d562k8regp" path="res://assets/models/organelles/OxytoxyProteins.mesh" id="3"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
 
-
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
-shader = ExtResource( 2 )
-shader_param/dissolveValue = 0.0
-shader_param/outlineWidth = 0.05
-shader_param/growColor = Color( 0.227451, 0.180392, 0.180392, 1 )
-shader_param/tint = Color( 1, 1, 1, 1 )
-shader_param/texture = ExtResource( 1 )
-shader_param/dissolveTexture = ExtResource( 4 )
+render_priority = 0
+shader = ExtResource("2")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = 0.05
+shader_parameter/growColor = Color(0.227451, 0.180392, 0.180392, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/texture = ExtResource("1")
+shader_parameter/dissolveTexture = ExtResource("4")
 
-[node name="OxytoxyProteins" type="MeshInstance"]
-transform = Transform( 0.0147721, 0.00260472, -4.24363e-10, 0, -2.44381e-09, -0.015, -0.00260472, 0.0147721, -2.40668e-09, 0, 0, 0 )
-material_override = SubResource( 1 )
-mesh = ExtResource( 3 )
-material/0 = null
+[node name="OxytoxyProteins" type="MeshInstance3D"]
+transform = Transform3D(0.837087, 0.147601, -6.45184e-09, 0, -3.71547e-08, -0.85, -0.147601, 0.837087, -3.65902e-08, 0, -0.00876844, 0)
+material_override = SubResource("1")
+mesh = ExtResource("3")

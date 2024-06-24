@@ -1,373 +1,272 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=3 uid="uid://bjy0kv58k8fuk"]
 
-[ext_resource path="res://assets/models/menu_backgrounds/UnderwaterChimney.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/textures/menu_backgrounds/SingleClouds.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/menu_backgrounds/UnderwaterParticle.png" type="Texture" id=3]
-[ext_resource path="res://assets/models/menu_backgrounds/UnderwaterRock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/textures/iron_01.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/iron_bump.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/menu_backgrounds/SingleClouds_Normal.png" type="Texture" id=9]
+[ext_resource type="PackedScene" uid="uid://dktxuj5u5dkmy" path="res://assets/models/menu_backgrounds/UnderwaterChimney.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bbc87m2s4lt5b" path="res://assets/models/menu_backgrounds/UnderwaterSmoke.tscn" id="2_ggksx"]
+[ext_resource type="Texture2D" uid="uid://tss2on640obh" path="res://assets/textures/menu_backgrounds/UnderwaterParticle.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://h6dsvt4v07um" path="res://assets/models/menu_backgrounds/UnderwaterRock.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://bu4uvavl0ieg2" path="res://assets/textures/iron_01.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="6"]
 
-[sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.929032 )
-colors = PoolColorArray( 0.378494, 0.652321, 0.800781, 1, 0, 0, 0, 1 )
+[sub_resource type="Gradient" id="Gradient_evfme"]
+offsets = PackedFloat32Array(0, 0.670732)
+colors = PackedColorArray(0.380392, 0.65098, 0.8, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cbs00"]
+gradient = SubResource("Gradient_evfme")
 fill = 1
-fill_from = Vector2( 0.490741, 0 )
-fill_to = Vector2( 0.513889, 1 )
+fill_from = Vector2(0.491, 0)
+fill_to = Vector2(0.514, 1)
 
-[sub_resource type="PanoramaSky" id=5]
-panorama = SubResource( 4 )
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_h6hv2"]
+panorama = SubResource("GradientTexture2D_cbs00")
 
-[sub_resource type="Environment" id=2]
+[sub_resource type="Sky" id="5"]
+sky_material = SubResource("PanoramaSkyMaterial_h6hv2")
+radiance_size = 2
+
+[sub_resource type="Environment" id="2"]
 background_mode = 2
-background_sky = SubResource( 5 )
-background_sky_custom_fov = 113.6
-background_energy = 1.15
-ambient_light_color = Color( 0.207843, 0.376471, 0.509804, 1 )
+sky = SubResource("5")
+sky_custom_fov = 113.6
+ambient_light_color = Color(0.207843, 0.376471, 0.509804, 1)
 ambient_light_sky_contribution = 0.0
-fog_enabled = true
-fog_color = Color( 0.2, 0.305882, 0.403922, 1 )
-fog_sun_amount = 1.0
-fog_depth_begin = 0.0
-fog_depth_end = 420.8
-fog_transmit_enabled = true
-fog_transmit_curve = 0.901249
-fog_height_enabled = true
-fog_height_min = 29.6
-fog_height_max = -119.5
 tonemap_mode = 2
 tonemap_exposure = 0.7
 tonemap_white = 2.22
-auto_exposure_enabled = true
-auto_exposure_scale = 0.5
-auto_exposure_min_luma = 0.6
-auto_exposure_max_luma = 16.0
-auto_exposure_speed = 36.46
-ss_reflections_enabled = true
-ss_reflections_depth_tolerance = 5.4
+ssr_enabled = true
+ssr_depth_tolerance = 5.4
 ssao_enabled = true
 ssao_radius = 10.7
 ssao_intensity = 22.92
-ssao_radius2 = 11.06
-ssao_intensity2 = 128.0
 ssao_light_affect = 0.52
-ssao_quality = 0
-ssao_edge_sharpness = 20.79
-dof_blur_far_enabled = true
-dof_blur_far_distance = 2.68
-dof_blur_far_transition = 1.83
-dof_blur_far_amount = 0.01
-dof_blur_far_quality = 0
-dof_blur_near_enabled = true
-dof_blur_near_distance = 13.8
-dof_blur_near_transition = 2.37
-dof_blur_near_amount = 0.11
-dof_blur_near_quality = 0
 glow_enabled = true
-glow_levels/1 = true
-glow_levels/2 = true
-glow_levels/4 = true
-glow_levels/6 = true
-glow_levels/7 = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/4 = 1.0
+glow_levels/6 = 1.0
+glow_levels/7 = 1.0
 glow_intensity = 1.56
 glow_strength = 0.72
 glow_bloom = 0.31
 glow_blend_mode = 1
 glow_hdr_threshold = 0.5
-glow_hdr_luminance_cap = 28.96
 glow_hdr_scale = 1.47
-glow_high_quality = true
+glow_hdr_luminance_cap = 28.96
+fog_enabled = true
+fog_light_color = Color(0.0855954, 0.0971605, 0.115342, 1)
+fog_density = 0.0942
 adjustment_enabled = true
 adjustment_brightness = 1.01
 adjustment_contrast = 1.07
 adjustment_saturation = 1.37
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_73sbg"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 14.85
+dof_blur_near_enabled = true
+dof_blur_near_distance = 10.4
+dof_blur_near_transition = 3.0
+dof_blur_amount = 0.11
+
+[sub_resource type="Animation" id="21"]
 resource_name = "CameraAnimation"
 length = 10.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Camera:translation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector3( 13.962, 4.231, 2.151 ), Vector3( 13.962, 5.007, 2.151 ), Vector3( 13.962, 4.231, 2.151 ) ]
+"values": [Vector3(13.962, 4.231, 2.151), Vector3(13.962, 5.007, 2.151), Vector3(13.962, 4.231, 2.151)]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Camera:rotation_degrees")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2.5, 5, 7.5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Vector3( 15.842, 81.498, 0 ), Vector3( 17.871, 81.498, 0 ), Vector3( 15.842, 81.498, 0 ), Vector3( 14.073, 81.498, 0 ), Vector3( 15.842, 81.498, 0 ) ]
+"values": [Vector3(15.842, 81.498, 0), Vector3(17.871, 81.498, 0), Vector3(15.842, 81.498, 0), Vector3(14.073, 81.498, 0), Vector3(15.842, 81.498, 0)]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id="22"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector3( 15.842, 81.498, 0 ) ]
+"values": [Vector3(15.842, 81.498, 0)]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Camera:translation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector3( 13.962, 4.231, 2.151 ) ]
+"values": [Vector3(13.962, 4.231, 2.151)]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Camera:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector3( 15.842, 81.498, 0 ) ]
+"values": [Vector3(15.842, 81.498, 0)]
 }
 
-[sub_resource type="SpatialMaterial" id=19]
-flags_transparent = true
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c77e2"]
+_data = {
+"CameraAnimation": SubResource("21"),
+"RESET": SubResource("22")
+}
+
+[sub_resource type="StandardMaterial3D" id="11"]
+transparency = 1
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-params_cull_mode = 2
-params_depth_draw_mode = 3
-params_billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-albedo_texture = ExtResource( 2 )
-metallic = 0.18
-metallic_specular = 1.0
-roughness = 0.7
-normal_enabled = true
-normal_scale = 3.49
-normal_texture = ExtResource( 9 )
-
-[sub_resource type="QuadMesh" id=7]
-material = SubResource( 19 )
-
-[sub_resource type="Curve" id=18]
-_data = [ Vector2( 0, 0.657955 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Gradient" id=8]
-offsets = PoolRealArray( 0, 0.306122, 0.710884, 0.977654, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0.956623, 0.446927, 0.446927, 0.446927, 0, 1, 1, 1, 0 )
-
-[sub_resource type="SpatialMaterial" id=11]
-flags_transparent = true
-vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
-albedo_texture = ExtResource( 3 )
+albedo_texture = ExtResource("3")
 emission_enabled = true
-emission = Color( 0.545098, 0.752941, 0.87451, 1 )
-emission_energy = 0.87
-emission_operator = 0
-emission_on_uv2 = false
+emission = Color(0.545098, 0.752941, 0.87451, 1)
+emission_energy_multiplier = 0.87
 subsurf_scatter_enabled = true
 subsurf_scatter_strength = 0.69
 
-[sub_resource type="QuadMesh" id=12]
-material = SubResource( 11 )
+[sub_resource type="QuadMesh" id="12"]
+material = SubResource("11")
 
-[sub_resource type="Gradient" id=13]
-offsets = PoolRealArray( 0, 0.519553, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.129412, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id="13"]
+offsets = PackedFloat32Array(0, 0.519553, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.129412, 1, 1, 1, 0)
 
-[sub_resource type="SpatialMaterial" id=20]
-albedo_color = Color( 0.862745, 0.784314, 0.647059, 1 )
-albedo_texture = ExtResource( 5 )
+[sub_resource type="StandardMaterial3D" id="20"]
+albedo_color = Color(0.862745, 0.784314, 0.647059, 1)
+albedo_texture = ExtResource("5")
 normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 6 )
+normal_texture = ExtResource("6")
 
-[node name="MainMenuScene2" type="Spatial"]
-transform = Transform( 0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 0, 0, 0 )
+[node name="MainMenuScene2" type="Node3D"]
+transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 2 )
+environment = SubResource("2")
+camera_attributes = SubResource("CameraAttributesPractical_73sbg")
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 13.962, 4.231, 2.151 )
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 13.962, 4.231, 2.151)
 fov = 50.7
 near = 0.11
 far = 503.4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c77e2")
+}
 autoplay = "CameraAnimation"
-anims/CameraAnimation = SubResource( 21 )
-anims/RESET = SubResource( 22 )
+speed_scale = 0.5
 
-[node name="UnderwaterChimney" parent="." instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+[node name="UnderwaterChimney" parent="." instance=ExtResource("1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="CPUParticles" type="CPUParticles" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.149, 8.096, -0.135 )
-cast_shadow = 0
-amount = 50
-lifetime = 1.5
-preprocess = 2.08
-speed_scale = 0.26
-fixed_fps = 60
-draw_order = 2
-mesh = SubResource( 7 )
-emission_shape = 1
-emission_sphere_radius = 0.07
-direction = Vector3( 0, 1, 0 )
-spread = 0.0
-gravity = Vector3( 0, 9.8, 0 )
-initial_velocity = 5.0
-angle = 368.9
-angle_random = 1.0
-scale_amount = 4.22
-scale_amount_random = 0.4
-scale_amount_curve = SubResource( 18 )
-color = Color( 0.12549, 0.0862745, 0.027451, 0.529412 )
-color_ramp = SubResource( 8 )
+[node name="UnderwaterSmoke" parent="." instance=ExtResource("2_ggksx")]
+transform = Transform3D(-7.45058e-08, 3.72529e-09, 1, 3.72529e-08, 1, -7.45058e-09, -1, -6.0536e-08, -1.49012e-08, -0.171367, 8.09691, -0.131783)
 
-[node name="CPUParticles2" type="CPUParticles" parent="."]
-transform = Transform( -3.42207e-08, 0, 0.782878, 0, 0.833637, 0, -0.837808, 0, -3.66217e-08, -0.443411, 3.97815, 5.69209 )
-cast_shadow = 0
-amount = 50
-lifetime = 1.5
-preprocess = 2.08
-speed_scale = 0.26
-fixed_fps = 60
-draw_order = 2
-mesh = SubResource( 7 )
-emission_shape = 1
-emission_sphere_radius = 0.07
-direction = Vector3( 0, 1, 0 )
-spread = 0.0
-gravity = Vector3( 0, 9.8, 0 )
-initial_velocity = 5.0
-angle = 368.9
-angle_random = 1.0
-scale_amount = 4.22
-scale_amount_random = 0.4
-scale_amount_curve = SubResource( 18 )
-color = Color( 0.176471, 0.121569, 0.0470588, 0.529412 )
-color_ramp = SubResource( 8 )
+[node name="UnderwaterSmoke3" parent="." instance=ExtResource("2_ggksx")]
+transform = Transform3D(-4.61936e-07, 7.82311e-08, 1, 4.84288e-08, 1, -7.45058e-08, -1, -1.62516e-07, 1.63913e-07, 2.19401, 4.71154, -4.48352)
 
-[node name="CPUParticles3" type="CPUParticles" parent="."]
-transform = Transform( -1.14933e-08, 0, 0.262936, 0, 0.706436, 0, -0.71201, 0, -3.1123e-08, 2.34822, 5.09276, -4.53206 )
-cast_shadow = 0
-amount = 50
-lifetime = 1.5
-preprocess = 2.08
-speed_scale = 0.26
-fixed_fps = 60
-draw_order = 2
-mesh = SubResource( 7 )
-emission_shape = 1
-emission_sphere_radius = 0.07
-direction = Vector3( 0, 1, 0 )
-spread = 0.0
-gravity = Vector3( 0, 9.8, 0 )
-initial_velocity = 5.0
-angle = 368.9
-angle_random = 1.0
-scale_amount = 4.22
-scale_amount_random = 0.4
-scale_amount_curve = SubResource( 18 )
-color = Color( 0.219608, 0.14902, 0.054902, 0.529412 )
-color_ramp = SubResource( 8 )
+[node name="UnderwaterSmoke2" parent="." instance=ExtResource("2_ggksx")]
+transform = Transform3D(-3.8743e-07, 6.33299e-08, 1, 1.81608e-08, 1, -5.96046e-08, -1, -1.60653e-07, 1.63913e-07, -0.914389, 3.76822, 6.01451)
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( -0.0543926, -0.99852, -2.37757e-09, -4.37114e-08, 1.91069e-15, 1, -0.99852, 0.0543926, -4.36467e-08, 0, 17.284, 0 )
-light_color = Color( 0.647059, 0.72549, 0.929412, 1 )
-light_energy = 1.881
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.0279763, -0.995088, 0.0949602, -0.0108348, 0.0952938, 0.99539, -0.99955, 0.0268189, -0.0134484, 2.04458, 17.2006, -0.294029)
+light_color = Color(0.647059, 0.72549, 0.929412, 1)
+light_energy = 1.588
 shadow_bias = 0.283
 directional_shadow_blend_splits = true
-directional_shadow_normal_bias = 1.626
 
-[node name="UnderwaterParticle" type="CPUParticles" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 1.09711, -4.79564e-08, 4.79564e-08, 6.0306e-08, 1.37964, 2.63606e-15, 11.0658, 4.18832, -0.542366 )
+[node name="UnderwaterParticle" type="CPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 1.09711, -4.79564e-08, 4.79564e-08, 6.0306e-08, 1.37964, 2.63606e-15, 11.0658, 4.18832, -0.542366)
 amount = 10
 lifetime = 6.0
 preprocess = 3.0
 draw_order = 2
-mesh = SubResource( 12 )
-emission_shape = 5
+mesh = SubResource("12")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 2.0
 emission_ring_radius = 2.0
 emission_ring_inner_radius = 0.0
-emission_ring_height = 2.0
-emission_ring_axis = Vector3( 0, 0, 1 )
-direction = Vector3( 0, 1, 1 )
-gravity = Vector3( 0.028, 0, 0 )
-initial_velocity = 0.5
-initial_velocity_random = 0.25
-angular_velocity = 0.5
-angular_velocity_random = 0.25
-damping = 0.1
-angle = 360.0
-scale_amount = 3.0
-scale_amount_random = 0.52
-color = Color( 0.0784314, 0.490196, 0.415686, 1 )
-color_ramp = SubResource( 13 )
-hue_variation = 0.4
-hue_variation_random = 0.22
+direction = Vector3(0, 1, 1)
+gravity = Vector3(0.028, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+angular_velocity_min = 0.5
+angular_velocity_max = 0.5
+damping_min = 0.1
+damping_max = 0.1
+angle_min = 360.0
+angle_max = 360.0
+scale_amount_min = 2.5
+scale_amount_max = 3.5
+color = Color(0.0784314, 0.490196, 0.415686, 1)
+color_ramp = SubResource("13")
+hue_variation_min = 0.2
+hue_variation_max = 0.6
 
-[node name="MicIronBIG02" parent="." instance=ExtResource( 4 )]
-transform = Transform( 0.06005, -139.594, -145.547, -133.706, 24.8329, -167.808, 67.9896, 48.9587, -329.877, 4.14095, 3.97021, -0.559708 )
-material_override = SubResource( 20 )
+[node name="MicIronBIG02" parent="." instance=ExtResource("4")]
+transform = Transform3D(0.06005, -139.594, -145.547, -133.706, 24.8329, -167.808, 67.9896, 48.9587, -329.877, 4.14095, 3.97021, -0.559708)
+material_override = SubResource("20")
 
-[node name="MicIronBIG09" parent="." instance=ExtResource( 4 )]
-transform = Transform( 13.7701, 81.1482, 136.294, 105.709, -5.34832, -44.2679, -11.7032, 47.1712, -239.485, 2.82712, 4.56597, 1.62095 )
-material_override = SubResource( 20 )
+[node name="MicIronBIG09" parent="." instance=ExtResource("4")]
+transform = Transform3D(2.16048, -66.1489, -198.237, -96.1797, 28.3256, -90.3905, 47.3896, 60.5041, -174.415, 2.82712, 4.56597, 1.62095)
+material_override = SubResource("20")
 
-[node name="MicIronBIG05" parent="." instance=ExtResource( 4 )]
-transform = Transform( -807.919, -4021.62, -6016.7, -4886.71, 715.419, 373.411, 175.055, 1410.47, -17344.6, -200, 15.077, 120 )
-material_override = SubResource( 20 )
+[node name="MicIronBIG05" parent="." instance=ExtResource("4")]
+transform = Transform3D(-807.919, -4021.62, -6016.7, -4886.71, 715.419, 373.411, 175.055, 1410.47, -17344.6, -200, 15.077, 120)
+material_override = SubResource("20")
 
-[node name="MicIronBIG06" parent="." instance=ExtResource( 4 )]
-transform = Transform( 799.573, 4224.27, -2492.71, -4886.71, 715.419, 373.411, 209.905, 564.244, 18188.5, -231.539, 0.2477, 33.095 )
-material_override = SubResource( 20 )
+[node name="MicIronBIG06" parent="." instance=ExtResource("4")]
+transform = Transform3D(799.573, 4224.27, -2492.71, -4886.71, 715.419, 373.411, 209.905, 564.244, 18188.5, -231.539, 0.2477, 33.095)
+material_override = SubResource("20")
 
-[node name="MicIronBIG07" parent="." instance=ExtResource( 4 )]
-transform = Transform( -1917, 6891.31, -8049.11, -6497.47, -3649.37, 17052, 4905.02, 7951.75, 30106.4, -374.724, 2.66869, -44.8635 )
-material_override = SubResource( 20 )
+[node name="MicIronBIG07" parent="." instance=ExtResource("4")]
+transform = Transform3D(-1917, 6891.31, -8049.11, -6497.47, -3649.37, 17052, 4905.02, 7951.75, 30106.4, -374.724, 2.66869, -44.8635)
+material_override = SubResource("20")
 
-[node name="MicIronBIG08" parent="." instance=ExtResource( 4 )]
-transform = Transform( 631.646, 6246.68, 5818.51, -4823.14, -2708.96, 12657.8, 6877.54, 1085.02, 38471.9, -204.974, -31.6544, -184.716 )
-material_override = SubResource( 20 )
+[node name="MicIronBIG08" parent="." instance=ExtResource("4")]
+transform = Transform3D(631.646, 6246.68, 5818.51, -4823.14, -2708.96, 12657.8, 6877.54, 1085.02, 38471.9, -204.974, -31.6544, -184.716)
+material_override = SubResource("20")
 
-[node name="MicIronBIG03" parent="." instance=ExtResource( 4 )]
-transform = Transform( 21.4436, 0, -148.459, 0, 150, 0, 148.459, 0, 21.4436, 5.83912, 2.56639, -2.33573 )
-material_override = SubResource( 20 )
+[node name="MicIronBIG03" parent="." instance=ExtResource("4")]
+transform = Transform3D(-21.555, -1.17384, -148.438, -70.8848, -131.707, 11.3349, -130.425, 71.7759, 18.3717, 5.83912, 2.56639, -2.33573)
+material_override = SubResource("20")
 
-[node name="MicIronBIG04" parent="." instance=ExtResource( 4 )]
-transform = Transform( -52.2435, -140.606, -0.757336, -18.5022, 6.07359, 148.731, -139.385, 51.8947, -19.4589, 3.95268, 2.69188, 3.33375 )
-material_override = SubResource( 20 )
+[node name="MicIronBIG04" parent="." instance=ExtResource("4")]
+transform = Transform3D(-19.5674, 96.5391, -113.125, -74.9692, -104.945, -76.591, -128.439, 46.5481, 61.9401, 3.95268, 2.69188, 3.33375)
+material_override = SubResource("20")
 skeleton = NodePath("../MicIronBIG01")
 
-[node name="MicIronBIG01" parent="." instance=ExtResource( 4 )]
-transform = Transform( 150, 0, 0, 0, 150, 0, 0, 0, 150, 3.2331, 2.33866, 5.82775 )
-material_override = SubResource( 20 )
+[node name="MicIronBIG01" parent="." instance=ExtResource("4")]
+transform = Transform3D(-123.894, -59.998, 59.5854, 82.352, -109.604, 60.8696, 19.1916, 82.9893, 123.469, 3.2331, 2.33866, 5.82775)
+material_override = SubResource("20")

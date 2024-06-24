@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   A single patch in PatchMapDrawer
 /// </summary>
-public class PatchMapNode : MarginContainer
+public partial class PatchMapNode : MarginContainer
 {
     [Export]
     public NodePath? IconPath;
@@ -42,9 +42,9 @@ public class PatchMapNode : MarginContainer
     private Panel? markPanel;
     private Panel? adjacentHighlightPanel;
     private Label? unknownLabel;
-#pragma warning restore CA2213
 
-    private Texture? patchIcon;
+    private Texture2D? patchIcon;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   True if mouse is hovering on this node
@@ -71,7 +71,7 @@ public class PatchMapNode : MarginContainer
     /// </summary>
     private bool adjacentToSelectedPatch;
 
-    private float currentBlinkTime;
+    private double currentBlinkTime;
 
     private Patch? patch;
 
@@ -114,7 +114,7 @@ public class PatchMapNode : MarginContainer
         }
     }
 
-    public Texture? PatchIcon
+    public Texture2D? PatchIcon
     {
         get => patchIcon;
         set
@@ -192,7 +192,7 @@ public class PatchMapNode : MarginContainer
         UpdateVisibility();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -213,12 +213,12 @@ public class PatchMapNode : MarginContainer
 
         if (@event is InputEventMouseButton
             {
-                Pressed: true, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
+                Pressed: true, ButtonIndex: MouseButton.Left or MouseButton.Right,
             })
         {
             IsDirty = true;
             OnSelect();
-            GetTree().SetInputAsHandled();
+            GetViewport().SetInputAsHandled();
         }
     }
 
@@ -239,7 +239,7 @@ public class PatchMapNode : MarginContainer
                 unknownLabel.Show();
 
                 // TODO: would it help anything to persistently load the unknown texture (instead of each time here)?
-                PatchIcon = GD.Load<Texture>(UnknownTextureFilePath);
+                PatchIcon = GD.Load<Texture2D>(UnknownTextureFilePath);
                 return;
             }
 

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 using UnlockConstraints;
 
 /// <summary>
@@ -17,7 +18,7 @@ using UnlockConstraints;
 ///     organelles.json.
 ///   </para>
 /// </remarks>
-[TypeConverter(typeof(OrganelleDefinitionStringConverter))]
+[TypeConverter($"Saving.Serializers.{nameof(OrganelleDefinitionStringConverter)}")]
 #pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
 public class OrganelleDefinition : IRegistryType
 #pragma warning restore CA1001
@@ -29,45 +30,16 @@ public class OrganelleDefinition : IRegistryType
     public string Name = null!;
 
     /// <summary>
-    ///   A path to a scene to display this organelle with. If empty won't have a display model.
-    /// </summary>
-    public string? DisplayScene;
-
-    /// <summary>
-    ///   A path to a scene to display this organelle as a corpse chunk. Not needed if it is the same as DisplayScene.
-    /// </summary>
-    public string? CorpseChunkScene;
-
-    /// <summary>
-    ///   If the root of the display scene is not the MeshInstance this needs to have the relative node path
-    /// </summary>
-    public string? DisplaySceneModelPath;
-
-    [JsonIgnore]
-    public NodePath? DisplaySceneModelNodePath;
-
-    /// <summary>
-    ///   If this organelle's display scene has animation this needs to be the path to the animation player node
-    /// </summary>
-    public string? DisplaySceneAnimation;
-
-    /// <summary>
     ///   When true the graphics for this organelle are positioned externally (i.e. moved to the membrane edge and
     ///   point outside from the cell)
     /// </summary>
     public bool PositionedExternally;
 
     /// <summary>
-    ///   Loaded scene instance to be used when organelle of this type is placed
-    /// </summary>
-    [JsonIgnore]
-    public PackedScene? LoadedScene;
-
-    /// <summary>
     ///   Loaded icon for display in GUIs
     /// </summary>
     [JsonIgnore]
-    public Texture? LoadedIcon;
+    public Texture2D? LoadedIcon;
 
     /// <summary>
     ///   Density of this organelle. Note that densities should fall into just a few categories to ensure that cached
@@ -187,6 +159,12 @@ public class OrganelleDefinition : IRegistryType
     public string? UpgradeGUI;
 
     /// <summary>
+    ///   If set to true then <see cref="AvailableUpgrades"/> won't be displayed by the default upgrader control, but
+    ///   everything must be handled by <see cref="UpgradeGUI"/>.
+    /// </summary>
+    public bool UpgraderSkipDefaultControls;
+
+    /// <summary>
     ///   The upgrades that are available for this organelle type
     /// </summary>
     public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
@@ -197,6 +175,13 @@ public class OrganelleDefinition : IRegistryType
     public List<ConditionSet>? UnlockConditions;
 
     /// <summary>
+    ///   What organelle does this organelle turn into when doing endosymbiosis. See
+    ///   <see cref="MicrobeInternalCalculations.CalculatePossibleEndosymbiontsFromSpecies"/>.
+    /// </summary>
+    [JsonIgnore]
+    public OrganelleDefinition? EndosymbiosisUnlocks;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
@@ -204,6 +189,24 @@ public class OrganelleDefinition : IRegistryType
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
 #pragma warning restore 169,649
+
+    /// <summary>
+    ///   A path to a scene to display this organelle with. If empty won't have a display model.
+    /// </summary>
+    [JsonProperty]
+    private SceneWithModelInfo graphics;
+
+    /// <summary>
+    ///   How to display this organelle as a corpse chunk. Not needed if it is the same as <see cref="graphics"/>.
+    /// </summary>
+    [JsonProperty]
+    private SceneWithModelInfo corpseChunkGraphics;
+
+    private LoadedSceneWithModelInfo loadedSceneData;
+    private LoadedSceneWithModelInfo loadedCorpseScene;
+
+    [JsonProperty]
+    private string? endosymbiosisUnlocks;
 
     private Vector3 modelOffset;
 
@@ -267,9 +270,59 @@ public class OrganelleDefinition : IRegistryType
 
     public bool HasSignalingFeature { get; private set; }
 
+    /// <summary>
+    ///   True when this organelle is one that uses oxygen as a process input (and is metabolism related). This is
+    ///   used to adjust toxin effects that have a distinction between oxygen breathers and others.
+    /// </summary>
+    public bool IsOxygenMetabolism { get; private set; }
+
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
+
+    /// <summary>
+    ///   Gets the visual scene that should be used to represent this organelle (if there is one)
+    /// </summary>
+    /// <param name="upgrades">
+    ///   Some upgrades alter organelle visuals so when upgrades are set for this organelle they should be passed here
+    ///   to get the right visuals
+    /// </param>
+    /// <param name="modelInfo">
+    ///   The model info returned like this (as it may be a struct type this can't return a nullable reference without
+    ///   boxing)
+    /// </param>
+    /// <returns>True when this has a scene</returns>
+    public bool TryGetGraphicsScene(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
+    {
+        if (TryGetGraphicsForUpgrade(upgrades, out modelInfo))
+        {
+            return true;
+        }
+
+        if (loadedSceneData.LoadedScene == null!)
+        {
+            return false;
+        }
+
+        modelInfo = loadedSceneData;
+        return true;
+    }
+
+    public bool TryGetCorpseChunkGraphics(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
+    {
+        if (TryGetGraphicsForUpgrade(upgrades, out modelInfo))
+        {
+            return true;
+        }
+
+        if (loadedCorpseScene.LoadedScene == null!)
+        {
+            return false;
+        }
+
+        modelInfo = loadedCorpseScene;
+        return true;
+    }
 
     public bool ContainsHex(Hex hex)
     {
@@ -397,14 +450,11 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "Hexes is empty");
         }
 
-        if (string.IsNullOrEmpty(DisplayScene) && string.IsNullOrEmpty(CorpseChunkScene))
+        if (string.IsNullOrEmpty(graphics.ScenePath) && string.IsNullOrEmpty(corpseChunkGraphics.ScenePath))
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Both DisplayScene and CorpseChunkScene are null");
         }
-
-        if (DisplaySceneModelPath != null)
-            DisplaySceneModelNodePath = new NodePath(DisplaySceneModelPath);
 
         // Check for duplicate position hexes
         for (int i = 0; i < Hexes.Count; ++i)
@@ -444,8 +494,13 @@ public class OrganelleDefinition : IRegistryType
         // Fail with multiple default upgrades
         if (AvailableUpgrades.Values.Count(u => u.IsDefault) > 1)
         {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Multiple default upgrades specified");
+        }
+
+        if (UpgraderSkipDefaultControls && string.IsNullOrEmpty(UpgradeGUI))
+        {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Multiple default upgrades specified");
+                "Upgrader scene is required when default upgrade controls are suppressed");
         }
 
         // Check unlock conditions
@@ -456,10 +511,9 @@ public class OrganelleDefinition : IRegistryType
         }
 
 #if DEBUG
-        if (!string.IsNullOrEmpty(CorpseChunkScene))
+        if (!string.IsNullOrEmpty(corpseChunkGraphics.ScenePath))
         {
-            using var directory = new Directory();
-            if (!directory.FileExists(CorpseChunkScene))
+            if (!ResourceLoader.Exists(corpseChunkGraphics.ScenePath))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Corpse chunk scene path doesn't exist");
@@ -475,26 +529,53 @@ public class OrganelleDefinition : IRegistryType
     {
         CalculateModelOffset();
 
+        IsOxygenMetabolism = false;
+
         RunnableProcesses = new List<TweakedProcess>();
 
         // Preload the scene for instantiating in microbes
-        if (!string.IsNullOrEmpty(DisplayScene))
+        // TODO: switch this to only load when loading the microbe stage to not load this in the future when we have
+        // playable stages that don't need these graphics
+        if (!string.IsNullOrEmpty(graphics.ScenePath))
         {
-            LoadedScene = GD.Load<PackedScene>(DisplayScene);
+            loadedSceneData.LoadFrom(graphics);
+        }
+
+        if (!string.IsNullOrEmpty(corpseChunkGraphics.ScenePath))
+        {
+            loadedCorpseScene.LoadFrom(corpseChunkGraphics);
+        }
+        else
+        {
+            // Use default values from the primary scene
+            loadedCorpseScene = loadedSceneData;
         }
 
         if (!string.IsNullOrEmpty(IconPath))
         {
-            LoadedIcon = GD.Load<Texture>(IconPath);
+            LoadedIcon = GD.Load<Texture2D>(IconPath);
         }
 
         // Resolve process names
         if (Processes != null)
         {
+            var oxygen = parameters.GetCompound("oxygen");
+
             foreach (var process in Processes)
             {
-                RunnableProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key),
-                    process.Value));
+                var resolvedProcess = new TweakedProcess(parameters.GetBioProcess(process.Key),
+                    process.Value);
+
+                if (process.Value <= 0)
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Process speed value should be above 0");
+                }
+
+                if (resolvedProcess.Process.IsMetabolismProcess && ProcessUsesOxygen(resolvedProcess, oxygen))
+                    IsOxygenMetabolism = true;
+
+                RunnableProcesses.Add(resolvedProcess);
             }
         }
 
@@ -514,6 +595,12 @@ public class OrganelleDefinition : IRegistryType
         {
             foreach (var set in UnlockConditions)
                 set.Resolve(parameters);
+        }
+
+        // Resolve endosymbiosis data
+        if (!string.IsNullOrEmpty(endosymbiosisUnlocks))
+        {
+            EndosymbiosisUnlocks = parameters.GetOrganelleType(endosymbiosisUnlocks);
         }
 
         if (Unimplemented)
@@ -610,6 +697,42 @@ public class OrganelleDefinition : IRegistryType
 
         offset /= Hexes.Count;
         return offset;
+    }
+
+    private bool TryGetGraphicsForUpgrade(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo upgradeScene)
+    {
+        if (upgrades == null)
+        {
+            upgradeScene = default(LoadedSceneWithModelInfo);
+
+            return false;
+        }
+
+        foreach (var availableUpgrade in AvailableUpgrades)
+        {
+            if (upgrades.UnlockedFeatures.Contains(availableUpgrade.Key))
+            {
+                if (availableUpgrade.Value.TryGetGraphicsScene(out upgradeScene))
+                {
+                    return true;
+                }
+            }
+        }
+
+        upgradeScene = default(LoadedSceneWithModelInfo);
+
+        return false;
+    }
+
+    private bool ProcessUsesOxygen(TweakedProcess resolvedProcess, Compound oxygen)
+    {
+        foreach (var processInput in resolvedProcess.Process.Inputs)
+        {
+            if (processInput.Key == oxygen)
+                return true;
+        }
+
+        return false;
     }
 
     public class OrganelleComponentFactoryInfo

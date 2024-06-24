@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
 "PO-Revision-Date: 2024-02-20 12:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -331,6 +331,19 @@ msgstr "Kenoviiva"
 msgid "BACKSPACE"
 msgstr "Askelpalautin"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Pysäytysmenu"
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Liikkuvuus"
@@ -344,15 +357,6 @@ msgstr "Yksinkertainen"
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Kuole"
-
-msgid "BASSBOOST"
-msgstr ""
-
-msgid "BASSDOWN"
-msgstr ""
-
-msgid "BASSUP"
-msgstr ""
 
 msgid "BATHYPELAGIC"
 msgstr "Batypelaginen vyöhyke"
@@ -773,8 +777,20 @@ msgstr "Kuole"
 msgid "COMPILED_AT_COLON"
 msgstr "Käännetty ajanhetkellä:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Käännetty ajanhetkellä:"
+
 msgid "COMPOUNDS"
 msgstr "Yhdisteet"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Ympäristön yhdistelmät:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Ympäristön yhdistelmät:"
 
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -783,8 +799,24 @@ msgstr "Näytä / piilota ympäristö ja yhdisteet"
 msgid "COMPOUNDS_COLON"
 msgstr "Yhdisteet:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Yhdistepilvet"
@@ -805,6 +837,25 @@ msgstr "{0}:n pitoisuudet ovat laskeneet {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}:n kulutus"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Yhdisteiden tasapainopisteet"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0}:n kulutus"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Yhdisteiden tasapainopisteet"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Ympäristön yhdistelmät:"
@@ -877,8 +928,166 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Jatka vaiheiden prototyyppeihin?"
 
+#, fuzzy
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_L2"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Ohjaimen herkkyys"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_R2"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr "Ohjaimen akselien visualisoijat:"
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Ohjaimen akselien visualisoijat:"
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr "Ohjaimen herkkyys"
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr "Ohjaimen herkkyys"
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr "Ohjaimen herkkyys"
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr "Ohjaimen akselien visualisoijat:"
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr "Ohjaimen herkkyys"
+
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_Y"
+msgstr "Ohjaimen herkkyys"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
@@ -896,6 +1105,10 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Ohjaimen herkkyys"
 
+#, fuzzy
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr "Ohjaimen akselien visualisoijat:"
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopioi virhe leikepöydälle"
 
@@ -908,6 +1121,10 @@ msgstr "Protanopia (punavihersokeus)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (sininen-keltainen)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "Taustasuorittajia:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
@@ -1058,8 +1275,12 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1237,12 +1458,6 @@ msgstr "Nopeus:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-msgid "DIRECTIONL"
-msgstr "Vasemmalle"
-
-msgid "DIRECTIONR"
-msgstr "Oikealle"
-
 msgid "DISABLED"
 msgstr "Ei käytössä"
 
@@ -1314,6 +1529,14 @@ msgstr "Näytä kykypalkki"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Näytä taustahiukkasia"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Näytä kykypalkki"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Näytä kykypalkki"
 
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
@@ -1494,11 +1717,69 @@ msgstr "Valittu tallennus ei ole yhteensopiva"
 msgid "ENABLE_EDITOR"
 msgstr "Avaa editorin lukitus"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Käytä käyttöliittymän valoefektejä"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Useita elimiä"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Erkane kaikista"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Laita peli tauolle"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Aggressiiviset mikrobit kulkevat pidempiä etäisyyksiä jahdatessaan muita\n"
+"ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
+"Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
+"käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Irtonaiset soluelimet"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]t [thrive:compound type=\"glucose\"][/thrive:compound]:ksi. Vauhti riippuu [thrive:compound type=\"carbondioxide\"][/thrive:compound]n määrästä. Muuntaa myös [thrive:compound type=\"glucose\"][/thrive:compound]a [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Lisää uusi syöte"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Otsikko puuttuu"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1621,12 +1902,12 @@ msgstr "Korvaa aikaisempi tallennus:"
 msgid "EXIT"
 msgstr "Poistu"
 
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Avaa editorin lukitus"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -1724,6 +2005,18 @@ msgstr "Julkaistu {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Lämpöplasti"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja lämpötilasta."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -1927,15 +2220,6 @@ msgstr "Sukupolvi:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Kuole"
 
-msgid "GLES2"
-msgstr "GLES2"
-
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2-moodi Varoitus"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2048,12 +2332,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Rikkivety"
-
-msgid "HYPERL"
-msgstr "Vasen hyper"
-
-msgid "HYPERR"
-msgstr "Oikea hyper"
 
 msgid "ICESHARD"
 msgstr "Jääsirpale"
@@ -2287,10 +2565,17 @@ msgstr "Kesäkuu"
 msgid "KEY_BACK"
 msgstr "Takaisin"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Takaisin"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Syötteellä on conflikti: {0}.\n"
 "Haluatko poistaa syötteen {1}:lta?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Tyhjennä"
@@ -2313,6 +2598,10 @@ msgstr "Suosikit"
 msgid "KEY_FORWARD"
 msgstr "Eteenpäin"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Koti"
+
 msgid "KEY_HELP"
 msgstr "Apu"
 
@@ -2322,14 +2611,30 @@ msgstr "Koti"
 msgid "KEY_HOMEPAGE"
 msgstr "Kotisivu"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Apu"
+
 msgid "KEY_INSERT"
 msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Insert"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Valmiustila"
 
 msgid "KEY_LEFT"
 msgstr "Vasemmalle"
 
 msgid "KEY_MENU"
 msgstr "Valikko"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tabulaattori"
 
 msgid "KEY_OPENURL"
 msgstr "Avaa osoite"
@@ -2637,6 +2942,10 @@ msgstr "Erittäin pieni"
 #, fuzzy
 msgid "LINE_COLOUR"
 msgstr "Väri"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Otsikko puuttuu"
 
 msgid "LIPASE"
 msgstr "Lipaasi"
@@ -3158,6 +3467,10 @@ msgstr "Modin Assembly:"
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "Auto-evon suorittaminen epäonnistui"
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
@@ -3533,6 +3846,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Perus liikkuminen"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3620,6 +3940,18 @@ msgstr "OK"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "GLES2-moodi Varoitus"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr ""
+"Pelokkaat mikrobit pakenevat pidempiä matkoja, kuin urheat, ja\n"
+"todennäköisemmin pakenevat petoja.\n"
+"Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
+"todennäköisimmin takaisin uhattuna."
 
 #, fuzzy
 msgid "OPEN_FOLDER"
@@ -3924,6 +4256,17 @@ msgstr "Lataus on valmistunut"
 
 msgid "PEACEFUL"
 msgstr "Rauhallinen"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Pelokkaat mikrobit pakenevat pidempiä matkoja, kuin urheat, ja\n"
+"todennäköisemmin pakenevat petoja.\n"
+"Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
+"todennäköisimmin takaisin uhattuna."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4627,9 +4970,6 @@ msgstr "Piidioksidi"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
-
 msgid "SIZE_COLON"
 msgstr "Koko:"
 
@@ -4775,6 +5115,10 @@ msgstr "levisi alueille:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
+#, fuzzy
+msgid "START"
+msgstr "Aloitetaan"
+
 msgid "STARTING"
 msgstr "Aloitetaan"
 
@@ -4791,6 +5135,20 @@ msgstr "Uudelleenkäynnistys Vaaditaan"
 
 msgid "STATISTICS"
 msgstr "Statistiikkaa"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP:n TUOTANTO ON LIIAN ALHAINEN!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Perus liikkuminen"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
@@ -4865,23 +5223,11 @@ msgstr "Varastotila"
 msgid "STORAGE_COLON"
 msgstr "Varastotila:"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisäänkirjauduttu käyttäjänä: {0}"
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -4948,12 +5294,6 @@ msgstr "Kuole"
 
 msgid "SUNLIGHT"
 msgstr "Auringonvalo"
-
-msgid "SUPERL"
-msgstr "Vasen super"
-
-msgid "SUPERR"
-msgstr "Oikea super"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "Tukijat"
@@ -5238,10 +5578,6 @@ msgstr ""
 msgid "TOGGLE_PAUSE"
 msgstr "Pysäytä"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Aloita/lopeta kiinnittyminen"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Aloita/Lopeta erkanemistila"
 
@@ -5258,8 +5594,69 @@ msgstr "edellinen:"
 msgid "TOTAL_SAVES"
 msgstr "Tallennusten määrä:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Kuole"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Myrkky-\n"
+"vakuoli"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Myrkyn kestävyys"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Myrkyn kestävyys"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Terv.:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Aggressiiviset mikrobit kulkevat pidempiä etäisyyksiä jahdatessaan muita\n"
+"ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
+"Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
+"käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5280,12 +5677,6 @@ msgstr "Kääntäjät"
 
 msgid "TRANSPARENCY"
 msgstr "Läpinäkyvyys"
-
-msgid "TREBLEDOWN"
-msgstr ""
-
-msgid "TREBLEUP"
-msgstr ""
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -5558,10 +5949,6 @@ msgid "UNKNOWN_MOUSE"
 msgstr "Tuntematon hiiren painike"
 
 #, fuzzy
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Tuntematon hiiren painike"
-
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Lisää soluelin"
 
@@ -5646,6 +6033,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5764,6 +6155,9 @@ msgstr "{0} {1}"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Katsele lähdekoodia"
@@ -6880,6 +7274,34 @@ msgstr "Zoomaa sisään"
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
 
+#~ msgid "DIRECTIONL"
+#~ msgstr "Vasemmalle"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Oikealle"
+
+#~ msgid "HYPERL"
+#~ msgstr "Vasen hyper"
+
+#~ msgid "HYPERR"
+#~ msgstr "Oikea hyper"
+
+#~ msgid "SUPERL"
+#~ msgstr "Vasen super"
+
+#~ msgid "SUPERR"
+#~ msgstr "Oikea super"
+
+#, fuzzy
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Tuntematon hiiren painike"
+
+#~ msgid "GLES2"
+#~ msgstr "GLES2"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Kanta:"
 
@@ -6956,10 +7378,6 @@ msgstr "Zoomaa ulospäin"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Valittu käyttäjänimi:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Näytä kykypalkki"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Ei suoriteta."

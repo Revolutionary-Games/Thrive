@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2022-10-03 11:25+0000\n"
-"Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -183,7 +183,7 @@ msgid "APPLY"
 msgstr "Tillämpa"
 
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Tillämpa ändringar"
 
 msgid "APRIL"
 msgstr "April"
@@ -224,6 +224,8 @@ msgstr "Anta att CPUn har hyperthreading aktiverad"
 
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Det går inte att automatiskt upptäcka om flertrådning är på eller inte.\n"
+"Detta påverkar standardantalet trådar eftersom flertrådnings-trådar inte är lika snabba som CPU-trådar."
 
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosfäriska Gaser"
@@ -241,7 +243,7 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUKTION FÖR LÅG!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr ""
+msgstr "Det gick inte att spara denna sparfilen. Namnet på sparfilen kan vara för långt, eller så kanske du inte har tillträde för att skriva i mappen."
 
 msgid "AT_CURSOR"
 msgstr "Vid Muspekare:"
@@ -306,13 +308,13 @@ msgid "AUTO_RESOLUTION"
 msgstr "Upplösning:"
 
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Tillgängliga Konstruktionsprojekt"
 
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "Tillgängliga Mod"
 
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "Uppvaknandestadiet"
 
 #, fuzzy
 msgid "AWARE_STAGE"
@@ -327,6 +329,19 @@ msgstr "Omvänt snedstreck"
 msgid "BACKSPACE"
 msgstr "Backa"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Öppna vyn för avancerade inställningar"
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Mobilitet"
@@ -335,29 +350,20 @@ msgid "BASE_MOVEMENT"
 msgstr "Grundrörelse"
 
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Grundläggande"
 
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Självmord"
 
-msgid "BASSBOOST"
-msgstr "Basboost"
-
-msgid "BASSDOWN"
-msgstr "Sänk Bas"
-
-msgid "BASSUP"
-msgstr "Öka Bas"
-
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagisk"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Bli Makroskopisk ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Bli Flercellig ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
 msgstr "Börja Trivas"
@@ -389,20 +395,20 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m under havsnivån"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Riktvärden"
 
 #, fuzzy
 msgid "BENCHMARK_FINISHED"
 msgstr "Färdigladdat"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Riktvärdesfas:"
 
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Resultat:"
 
 msgid "BEST_PATCH_COLON"
-msgstr ""
+msgstr "Bästa Biom:"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Stor järnbit"
@@ -422,7 +428,7 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Binder samman axlar"
 
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr "Sannolikhet i varje område med få arter (låg biodiversitet) att skapa en ny art"
@@ -443,7 +449,7 @@ msgid "BIOME_LABEL"
 msgstr "Omgivning: {0}"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Nervcell"
 
 msgid "BRAVE"
 msgstr "Modig"
@@ -452,7 +458,7 @@ msgid "BROWSE"
 msgstr "Bläddra"
 
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "Bläddra genom Workshop"
 
 #, fuzzy
 msgid "BUILD_CITY"
@@ -476,7 +482,7 @@ msgid "CALCIUM_CARBONATE"
 msgstr "Kalciumkarbonat"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Detta membran har ett starkt skal gjort av kalciumkarbonat. Det kan lätt motstå skada och kräver mindre energi för att hålla sin form. Nackdelarna av ett sådant tungt skal är att cellen blir mycket långsammare och tar längre tid att ta upp resurser."
 
 msgid "CAMERA"
 msgstr "Kamera"
@@ -497,23 +503,23 @@ msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Kan inte radera använd celltyp"
 
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "Kan inte uppsluka"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Kan inte flytta en metaboll in i dess ättlingsträd"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "Mängden hjärnkraft är nu för låg för att stanna i det nuvarande stadiet. Det är för nuvarande inte tillåtet att gå tillbaka till föregående stadier, var god öka hjärnkraften för att fortsätta."
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "Kan Inte Minska Hjärnkraft För Att Gå Tillbaka Till Föregående Stadier"
 
 #, fuzzy
 msgid "CANNOT_WRITE_SAVE"
 msgstr "Skapa Ny Sparfil"
 
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "Kan inte ladda modinfo för {0}"
 
 msgid "CAPSLOCK"
 msgstr "Capslock"
@@ -522,22 +528,22 @@ msgid "CARBON_DIOXIDE"
 msgstr "Koldioxid"
 
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "ett överflöd"
 
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "ganska mycket"
 
 msgid "CATEGORY_LITTLE"
-msgstr ""
+msgstr "lite"
 
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr ""
+msgstr "rätt mycket"
 
 msgid "CATEGORY_SOME"
-msgstr ""
+msgstr "en del"
 
 msgid "CATEGORY_VERY_LITTLE"
-msgstr ""
+msgstr "väldigt lite"
 
 msgid "CAUTIOUS"
 msgstr "Försiktig"
@@ -560,7 +566,7 @@ msgid "CELLULOSE"
 msgstr "Cellulosa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Detta membran har en vägg, vilket leder till bättre skydd mot allmän skada och särskilt mot fysisk skada. Den kostar också mindre energi för att bibehålla sin form, men kan inte ta upp resurser lika snabbt och är trögare. [b]Cellulas kan smälta denna vägg[/b] vilket gör den sårbar mot uppslukning av rovdjur."
 
 msgid "CELL_TYPE_NAME"
 msgstr ""
@@ -773,8 +779,20 @@ msgstr "Självmord"
 msgid "COMPILED_AT_COLON"
 msgstr "Föreningar:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Föreningar:"
+
 msgid "COMPOUNDS"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Molekylmoln"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Molekylmoln"
 
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -783,8 +801,22 @@ msgstr "Hjälp"
 msgid "COMPOUNDS_COLON"
 msgstr "Föreningar:"
 
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr ""
+
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Hjälp"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Hjälp"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Molekylmoln"
@@ -802,6 +834,24 @@ msgstr "{0} koncentrationer har minskat med {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} konsumtion"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "{0} konsumtion"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "{0} konsumtion"
+
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Hjälp"
 
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
@@ -876,7 +926,147 @@ msgstr "Protanope (Röd-Grön)"
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Fortsätt till fasprototyper?"
 
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_L2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
+
+msgid "CONTROLLER_AXIS_R2"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr ""
+
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr ""
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
 msgid "CONTROLLER_DEADZONES"
@@ -895,6 +1085,9 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr ""
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopiera felmeddelande till urklipp"
 
@@ -907,6 +1100,10 @@ msgstr "Protanope (Röd-Grön)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (Blå-Gul)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "Trådar:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
@@ -1057,8 +1254,13 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr ""
@@ -1226,12 +1428,6 @@ msgstr "Hastighet:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-msgid "DIRECTIONL"
-msgstr "Vänster"
-
-msgid "DIRECTIONR"
-msgstr "Höger"
-
 msgid "DISABLED"
 msgstr "Avstängt"
 
@@ -1303,6 +1499,14 @@ msgstr "Visa förmågor"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Visa förmågor"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Visa förmågor"
 
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
@@ -1466,11 +1670,70 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr "Aktivera Cellredigeraren"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Aktivera GUI ljus effecter"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Placera organell"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Lösgör alla"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "Fortsätt"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Bortkopplade Organeller"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "DU HAR FRODATS!"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1594,12 +1857,12 @@ msgid "EXIT"
 msgstr "Lämna"
 
 #, fuzzy
-msgid "EXIT_TO_LAUNCHER"
-msgstr "Avfyra E"
+msgid "EXIT_EDITOR"
+msgstr "Aktivera Cellredigeraren"
 
 #, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(farten som AI arter muterar)"
+msgid "EXIT_TO_LAUNCHER"
+msgstr "Avfyra E"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -1693,6 +1956,18 @@ msgstr ""
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
@@ -1894,15 +2169,6 @@ msgstr "generation:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Självmord"
 
-msgid "GLES2"
-msgstr ""
-
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 Läges Varning"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
-
 msgid "GLES3"
 msgstr ""
 
@@ -2017,12 +2283,6 @@ msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Svavelväte"
-
-msgid "HYPERL"
-msgstr "Hyper Vänster"
-
-msgid "HYPERR"
-msgstr "Hyper Höger"
 
 msgid "ICESHARD"
 msgstr "Isskärva"
@@ -2258,10 +2518,17 @@ msgstr "Juni"
 msgid "KEY_BACK"
 msgstr "Backåt"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Backåt"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "There is a conflict with {0}.\n"
 "Vill du ta bort inputen från {1}?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Rensa"
@@ -2284,6 +2551,10 @@ msgstr "Favoriter"
 msgid "KEY_FORWARD"
 msgstr "Framåt"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Hem"
+
 msgid "KEY_HELP"
 msgstr "Hjälp"
 
@@ -2293,14 +2564,30 @@ msgstr "Hem"
 msgid "KEY_HOMEPAGE"
 msgstr "Startsida"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Hjälp"
+
 msgid "KEY_INSERT"
 msgstr "Inmata"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Inmata"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Standby"
 
 msgid "KEY_LEFT"
 msgstr "Vänster"
 
 msgid "KEY_MENU"
 msgstr "Meny"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Öppen URL"
@@ -2611,6 +2898,10 @@ msgstr ""
 #, fuzzy
 msgid "LINE_COLOUR"
 msgstr "Färg"
+
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "DU HAR FRODATS!"
 
 msgid "LIPASE"
 msgstr "Lipas"
@@ -3095,6 +3386,10 @@ msgstr ""
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "befolkning:"
+
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
@@ -3466,6 +3761,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Grundrörelse"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3552,6 +3854,14 @@ msgstr "OK"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "GLES2 Läges Varning"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
 
 #, fuzzy
 msgid "OPEN_FOLDER"
@@ -3733,6 +4043,7 @@ msgstr "Syre"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisom"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "En modifieerad metabolosom ansvarig för produktionen of en primitiv form av den giftiga agenten OxyToxy NT."
 
@@ -3861,6 +4172,13 @@ msgstr "Färdigladdat"
 
 msgid "PEACEFUL"
 msgstr "Fredlig"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4572,9 +4890,6 @@ msgstr "Kiseldioxid"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
-
 msgid "SIZE_COLON"
 msgstr "Storlek:"
 
@@ -4715,6 +5030,10 @@ msgstr "sprid till platser:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "START"
+msgstr "Börjar"
+
 msgid "STARTING"
 msgstr "Börjar"
 
@@ -4730,6 +5049,20 @@ msgstr ""
 
 msgid "STATISTICS"
 msgstr "Statistik"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP PRODUKTION FÖR LÅG!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Grundrörelse"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
@@ -4803,23 +5136,11 @@ msgstr "Förråd"
 msgid "STORAGE_COLON"
 msgstr "Förråd"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Inloggad som: {0}"
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -4879,12 +5200,6 @@ msgstr "Självmord"
 
 msgid "SUNLIGHT"
 msgstr "Solljus"
-
-msgid "SUPERL"
-msgstr "Super Vänster"
-
-msgid "SUPERR"
-msgstr "Super Höger"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "Supportrar"
@@ -5172,10 +5487,6 @@ msgstr ""
 msgid "TOGGLE_PAUSE"
 msgstr "Pausa"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Växla bindning av och på"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Växla avbindning av och på"
 
@@ -5192,14 +5503,75 @@ msgstr "föregående:"
 msgid "TOTAL_SAVES"
 msgstr "Totala sparningar:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Giftvakuolen är en vakuol som har modifierats för produktion, lagring, och utsöndring av oxytoxy-gifter. Mer giftvakuoler ökar intervallen gift kan avfyras med."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Självmord"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Giftvakuolen är en vakuol som har modifierats för produktion, lagring, och utsöndring av oxytoxy-gifter. Mer giftvakuoler ökar intervallen gift kan avfyras med."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Gift\n"
+"vakuol"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Giftvakuolen är en vakuol som har modifierats för produktion, lagring, och utsöndring av oxytoxy-gifter. Mer giftvakuoler ökar intervallen gift kan avfyras med."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Giftvakuolen är en vakuol som har modifierats för produktion, lagring, och utsöndring av oxytoxy-gifter. Mer giftvakuoler ökar intervallen gift kan avfyras med."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr ""
+
 msgid "TOXIN_RESISTANCE"
 msgstr ""
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Typ:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Gift\n"
 "vakuol"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Giftvakuolen är en vakuol som har modifierats för produktion, lagring, och utsöndring av oxytoxy-gifter. Mer giftvakuoler ökar intervallen gift kan avfyras med."
 
@@ -5216,12 +5588,6 @@ msgstr "Översättare"
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "Översättare"
-
-msgid "TREBLEDOWN"
-msgstr "Sänk Treble"
-
-msgid "TREBLEUP"
-msgstr "Öka Treble"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -5446,10 +5812,6 @@ msgid "UNKNOWN_MOUSE"
 msgstr "Okänd mus"
 
 #, fuzzy
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Okänd mus"
-
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Placera organell"
 
@@ -5536,6 +5898,10 @@ msgstr ""
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
 
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -5653,6 +6019,9 @@ msgstr "Grotta"
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Grotta"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Visa Källkod"
@@ -6774,6 +7143,46 @@ msgstr "Zooma in"
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "Basboost"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Sänk Bas"
+
+#~ msgid "BASSUP"
+#~ msgstr "Öka Bas"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Vänster"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Höger"
+
+#~ msgid "HYPERL"
+#~ msgstr "Hyper Vänster"
+
+#~ msgid "HYPERR"
+#~ msgstr "Hyper Höger"
+
+#~ msgid "SUPERL"
+#~ msgstr "Super Vänster"
+
+#~ msgid "SUPERR"
+#~ msgstr "Super Höger"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Sänk Treble"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Öka Treble"
+
+#, fuzzy
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Okänd mus"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
 #, fuzzy
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
@@ -6825,10 +7234,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Anpassat Användarnamn:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Visa förmågor"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Körs inte."

@@ -4,15 +4,16 @@ using Godot;
 /// <summary>
 ///   Handles showing the cell type preview on a selection button
 /// </summary>
-public class CellTypeSelection : MicrobePartSelection
+public partial class CellTypeSelection : MicrobePartSelection
 {
     private CellType? cellType;
 
 #pragma warning disable CA2213
-    private Texture placeholderIcon = null!;
+    private Texture2D placeholderIcon = null!;
+
+    private Texture2D? cellImage;
 #pragma warning restore CA2213
 
-    private Texture? cellImage;
     private ImageTask? imageTask;
 
     public CellType CellType
@@ -32,12 +33,12 @@ public class CellTypeSelection : MicrobePartSelection
     {
         base._Ready();
 
-        placeholderIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/IconGenerating.png");
+        placeholderIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/IconGenerating.png");
 
         PartIcon = placeholderIcon;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 

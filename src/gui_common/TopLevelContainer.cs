@@ -9,12 +9,21 @@
 ///     <see cref="CustomWindow"/> as the base class / scene.
 ///   </para>
 /// </remarks>
-public class TopLevelContainer : Control
+public partial class TopLevelContainer : Control
 {
+    private readonly Callable onRectSizeCallable;
+
     private bool mouseUnCaptureActive;
     private bool previousVisibilityState;
 
     private bool hasBeenRemovedFromTree;
+
+    private bool readyCalled;
+
+    public TopLevelContainer()
+    {
+        onRectSizeCallable = new Callable(this, nameof(ApplyRectSettings));
+    }
 
     /// <summary>
     ///   Emitted when this window is closed or hidden.
@@ -26,13 +35,13 @@ public class TopLevelContainer : Control
     ///   </para>
     /// </remarks>
     [Signal]
-    public delegate void Closed();
+    public delegate void ClosedEventHandler();
 
     /// <summary>
     ///   Emitted when this is opened
     /// </summary>
     [Signal]
-    public delegate void Opened();
+    public delegate void OpenedEventHandler();
 
     /// <summary>
     ///   Returns true if this window is closing (not yet hidden) after calling <see cref="Close"/>.
@@ -92,12 +101,12 @@ public class TopLevelContainer : Control
         // TODO: refactoring this to work the normal way, would be pretty nice but requires all derived classes to be
         // checked to ensure they contain base calls in all of their overridden methods.
 
-        switch (what)
+        switch ((long)what)
         {
             case NotificationEnterTree:
             {
-                SetAsToplevel(true);
-                GetTree().Root.Connect("size_changed", this, nameof(ApplyRectSettings));
+                TopLevel = true;
+                GetTree().Root.Connect(Viewport.SignalName.SizeChanged, onRectSizeCallable);
 
                 // Special actions when re-entering the tree (and not when initially being added to the tree)
                 if (hasBeenRemovedFromTree)
@@ -115,7 +124,7 @@ public class TopLevelContainer : Control
 
             case NotificationExitTree:
             {
-                GetTree().Root.Disconnect("size_changed", this, nameof(ApplyRectSettings));
+                GetTree().Root.Disconnect(Viewport.SignalName.SizeChanged, onRectSizeCallable);
 
                 MouseUnCaptureActive = false;
                 hasBeenRemovedFromTree = true;
@@ -123,9 +132,19 @@ public class TopLevelContainer : Control
             }
 
             case NotificationReady:
+                readyCalled = true;
                 Hide();
+
                 ApplyRectSettings();
                 break;
+        }
+
+        // Workaround Godot 4 bug: https://github.com/godotengine/godot/issues/73908
+        if (!readyCalled)
+            return;
+
+        switch ((long)what)
+        {
             case NotificationResized:
                 ApplyRectSettings();
                 break;
@@ -141,14 +160,14 @@ public class TopLevelContainer : Control
                     MouseUnCaptureActive = true;
                     ApplyRectSettings();
                     OnOpen();
-                    EmitSignal(nameof(Opened));
+                    EmitSignal(SignalName.Opened);
                 }
                 else
                 {
                     Closing = false;
                     MouseUnCaptureActive = false;
                     OnHidden();
-                    EmitSignal(nameof(Closed));
+                    EmitSignal(SignalName.Closed);
                 }
 
                 break;
@@ -177,7 +196,7 @@ public class TopLevelContainer : Control
     public void OpenModal()
     {
         ModalManager.Instance.MakeModal(this);
-        Notification(Popup.NotificationPostPopup);
+        Notification((int)MissingGodotNotifications.NotificationPostPopup);
     }
 
     public void Open(bool modal, Rect2? rect = null)
@@ -193,8 +212,8 @@ public class TopLevelContainer : Control
 
         if (rect.HasValue)
         {
-            RectPosition = rect.Value.Position;
-            RectSize = rect.Value.Size;
+            Position = rect.Value.Position;
+            Size = rect.Value.Size;
         }
     }
 
@@ -205,8 +224,8 @@ public class TopLevelContainer : Control
     {
         var windowSize = GetViewportRect().Size;
 
-        var rectPosition = ((windowSize - (size ?? RectSize) * RectScale) / 2.0f).Floor();
-        var rectSize = size ?? RectSize;
+        var rectPosition = ((windowSize - (size ?? Size) * Scale) / 2.0f).Floor();
+        var rectSize = size ?? Size;
 
         Open(modal, new Rect2(rectPosition, rectSize));
     }
@@ -304,9 +323,12 @@ public class TopLevelContainer : Control
     {
         if (FullRect)
         {
+            // For debugging warnings coming from window uneven anchors:
+            // GD.Print("Applying full rect to: " + GetPath());
+
             var fullRect = GetFullRect();
-            RectPosition = fullRect.Position;
-            RectSize = fullRect.Size;
+            Position = fullRect.Position;
+            Size = fullRect.Size;
         }
     }
 

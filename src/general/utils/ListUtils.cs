@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
+using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 public static class ListUtils
 {
@@ -12,6 +15,22 @@ public static class ListUtils
     /// <param name="random">Randomness source</param>
     /// <typeparam name="T">Type of list items.</typeparam>
     public static T Random<T>(this List<T> items, Random random)
+    {
+        if (items == null || items.Count < 1)
+            throw new ArgumentException("Can't select a random item from an empty sequence");
+
+        return items[random.Next(0, items.Count)];
+    }
+
+    public static T Random<[MustBeVariant] T>(this Array<T> items, Random random)
+    {
+        if (items == null || items.Count < 1)
+            throw new ArgumentException("Can't select a random item from an empty sequence");
+
+        return items[random.Next(0, items.Count)];
+    }
+
+    public static Variant Random(this Array items, Random random)
     {
         if (items == null || items.Count < 1)
             throw new ArgumentException("Can't select a random item from an empty sequence");

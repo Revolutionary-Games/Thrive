@@ -19,19 +19,19 @@ public class PatchManager : IChildPropertiesLoadCallback
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
-    private DirectionalLight worldLight;
+    private DirectionalLight3D worldLight;
 
     private Patch? previousPatch;
 
     private float compoundCloudBrightness = 1.0f;
 
     /// <summary>
-    ///   Used to detect when an old save is loaded and we can't rely on the new logic for despawning things
+    ///   Used to detect when an old save is loaded, and we can't rely on the new logic for despawning things
     /// </summary>
     private bool skipDespawn;
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight)
+        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight3D worldLight)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
@@ -56,10 +56,11 @@ public class PatchManager : IChildPropertiesLoadCallback
     ///   entities if the patch changed etc.
     /// </summary>
     /// <param name="currentPatch">The patch to apply settings from</param>
+    /// <param name="spawnEnvironment">Spawn environment to give to setup cell spawners</param>
     /// <returns>
     ///   True if the patch is changed from the previous one. False if the patch is not changed.
     /// </returns>
-    public bool ApplyChangedPatchSettingsIfNeeded(Patch currentPatch)
+    public bool ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, IMicrobeSpawnEnvironment spawnEnvironment)
     {
         var patchIsChanged = false;
 
@@ -102,7 +103,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         // total entity count is limited
         HandleCloudSpawns(currentPatch.Biome);
         HandleChunkSpawns(currentPatch.Biome);
-        HandleCellSpawns(currentPatch);
+        HandleCellSpawns(currentPatch, spawnEnvironment);
 
         RemoveNonMarkedSpawners();
 
@@ -198,7 +199,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
     }
 
-    private void HandleCellSpawns(Patch patch)
+    private void HandleCellSpawns(Patch patch, IMicrobeSpawnEnvironment spawnEnvironment)
     {
         if (CurrentGame == null)
             throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
@@ -228,8 +229,8 @@ public class PatchManager : IChildPropertiesLoadCallback
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(microbeSpawners, name, density,
-                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species), Constants.MICROBE_SPAWN_RADIUS),
-                new MicrobeSpawnerComparer());
+                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species, spawnEnvironment),
+                    Constants.MICROBE_SPAWN_RADIUS), new MicrobeSpawnerComparer());
         }
     }
 
@@ -291,7 +292,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void UpdateLight(Biome biome)
     {
-        worldLight.Translation = new Vector3(0, 0, 0);
+        worldLight.Position = new Vector3(0, 0, 0);
         worldLight.LookAt(biome.Sunlight.Direction, new Vector3(0, 1, 0));
 
         worldLight.ShadowEnabled = biome.Sunlight.Shadows;
@@ -363,9 +364,18 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private class MicrobeSpawnerComparer : EqualityComparer<CreatedSpawner>
     {
-        public override bool Equals(CreatedSpawner x, CreatedSpawner y)
+        public override bool Equals(CreatedSpawner? x, CreatedSpawner? y)
         {
-            if (ReferenceEquals(x, y) || ReferenceEquals(x.Spawner, y.Spawner))
+            if (ReferenceEquals(x, y))
+                return true;
+
+            if (ReferenceEquals(x, null))
+                return false;
+
+            if (ReferenceEquals(y, null))
+                return false;
+
+            if (ReferenceEquals(x.Spawner, y.Spawner))
                 return true;
 
             if (x.Spawner is MicrobeSpawner microbeSpawner1 && y.Spawner is MicrobeSpawner microbeSpawner2)
@@ -378,7 +388,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         public override int GetHashCode(CreatedSpawner obj)
         {
-            return (obj.Name.GetHashCode() * 439) ^ (obj.Spawner.GetHashCode() * 443);
+            return obj.Name.GetHashCode() * 439 ^ obj.Spawner.GetHashCode() * 443;
         }
     }
 }

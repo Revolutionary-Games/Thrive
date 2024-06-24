@@ -9,7 +9,7 @@ using Godot;
 ///     This is a <see cref="CenterContainer"/> so that this can show two images layered on top of each other
 ///   </para>
 /// </remarks>
-public class KeyPrompt : CenterContainer
+public partial class KeyPrompt : CenterContainer
 {
     /// <summary>
     ///   Name of the action this key prompt shows
@@ -69,7 +69,7 @@ public class KeyPrompt : CenterContainer
         InputDataList.InputsRemapped -= OnIconsChanged;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         // Skip processing when not visible to save quite a bit of processing time from any existing prompts
         // Note this doesn't use IsVisibleInTree as that is also a processing intensive method. Instead this relies on
@@ -141,12 +141,12 @@ public class KeyPrompt : CenterContainer
 
     protected virtual void ApplySize()
     {
-        var size = RectSize;
-        primaryIcon!.RectMinSize = size;
-        secondaryIcon.RectMinSize = size;
+        var size = Size;
+        primaryIcon!.CustomMinimumSize = size;
+        secondaryIcon.CustomMinimumSize = size;
     }
 
-    private void OnIconsChanged(object sender, EventArgs args)
+    private void OnIconsChanged(object? sender, EventArgs args)
     {
         Refresh();
     }

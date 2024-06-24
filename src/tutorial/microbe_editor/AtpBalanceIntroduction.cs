@@ -1,83 +1,82 @@
-﻿namespace Tutorial
+﻿namespace Tutorial;
+
+using System;
+using Godot;
+using Newtonsoft.Json;
+
+/// <summary>
+///   Tells the player about the ATP balance bar functionality (must trigger before the negative ATP balance
+///   tutorial will work)
+/// </summary>
+public class AtpBalanceIntroduction : EditorEntryCountingTutorial
 {
-    using System;
-    using Godot;
-    using Newtonsoft.Json;
+    [JsonProperty]
+    private bool shouldEnableNegativeATPTutorial;
 
-    /// <summary>
-    ///   Tells the player about the ATP balance bar functionality (must trigger before the negative ATP balance
-    ///   tutorial will work)
-    /// </summary>
-    public class AtpBalanceIntroduction : EditorEntryCountingTutorial
+    public override string ClosedByName => nameof(AtpBalanceIntroduction);
+
+    [JsonIgnore]
+    public Control? ATPBalanceBarControl { get; set; }
+
+    protected override int TriggersOnNthEditorSession => 2;
+
+    public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
-        [JsonProperty]
-        private bool shouldEnableNegativeATPTutorial;
+        if (gui.AtpBalanceBarHighlight == null)
+            throw new InvalidOperationException($"{nameof(gui.AtpBalanceBarHighlight)} has not been set");
 
-        public override string ClosedByName => nameof(AtpBalanceIntroduction);
+        gui.AtpBalanceBarHighlight.TargetControl = ATPBalanceBarControl;
 
-        [JsonIgnore]
-        public Control? ATPBalanceBarControl { get; set; }
+        gui.AtpBalanceIntroductionVisible = ShownCurrently;
+        gui.HandleShowingATPBarHighlight();
+    }
 
-        protected override int TriggersOnNthEditorSession => 2;
+    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+        object sender)
+    {
+        if (base.CheckEvent(overallState, eventType, args, sender))
+            return true;
 
-        public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
+        switch (eventType)
         {
-            if (gui.AtpBalanceBarHighlight == null)
-                throw new InvalidOperationException($"{nameof(gui.AtpBalanceBarHighlight)} has not been set");
-
-            gui.AtpBalanceBarHighlight.TargetControl = ATPBalanceBarControl;
-
-            gui.AtpBalanceIntroductionVisible = ShownCurrently;
-            gui.HandleShowingATPBarHighlight();
-        }
-
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-            object sender)
-        {
-            if (base.CheckEvent(overallState, eventType, args, sender))
-                return true;
-
-            switch (eventType)
+            case TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged:
             {
-                case TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged:
+                // This event is fine enough for detecting when the player changes something to highlight the
+                // ATP balance bar, could be changed in the future to use organelle placement
+
+                if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
-                    // This event is fine enough for detecting when the player changes something to highlight the
-                    // ATP balance bar, could be changed in the future to use organelle placement
+                    Show();
+                    shouldEnableNegativeATPTutorial = true;
 
-                    if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
-                    {
-                        Show();
-                        shouldEnableNegativeATPTutorial = true;
-
-                        return true;
-                    }
-
-                    break;
+                    return true;
                 }
 
-                case TutorialEventType.EnteredMicrobeEditor:
-                {
-                    if (shouldEnableNegativeATPTutorial)
-                    {
-                        overallState.NegativeAtpBalanceTutorial.CanTrigger = true;
-                        shouldEnableNegativeATPTutorial = false;
-                        HandlesEvents = false;
-                    }
-
-                    break;
-                }
+                break;
             }
 
-            return false;
+            case TutorialEventType.EnteredMicrobeEditor:
+            {
+                if (shouldEnableNegativeATPTutorial)
+                {
+                    overallState.NegativeAtpBalanceTutorial.CanTrigger = true;
+                    shouldEnableNegativeATPTutorial = false;
+                    HandlesEvents = false;
+                }
+
+                break;
+            }
         }
 
-        public override void Hide()
-        {
-            base.Hide();
+        return false;
+    }
 
-            // This needs to be done so that this keeps getting the microbe enter events and can make the next
-            // tutorial trigger
-            HandlesEvents = true;
-        }
+    public override void Hide()
+    {
+        base.Hide();
+
+        // This needs to be done so that this keeps getting the microbe enter events and can make the next
+        // tutorial trigger
+        HandlesEvents = true;
     }
 }

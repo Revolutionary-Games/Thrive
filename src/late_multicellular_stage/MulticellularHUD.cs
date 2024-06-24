@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 ///   Manages the multicellular HUD scene
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
-public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
+public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
 {
     [Export]
     public NodePath? MoveToLandPopupPath;
@@ -48,21 +48,14 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
 
     private float? lastBrainPower;
 
-    // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
-    public new delegate void OnOpenMenu();
+    public delegate void OnInteractButtonPressedEventHandler();
 
     [Signal]
-    public new delegate void OnOpenMenuToHelp();
+    public delegate void OnOpenInventoryPressedEventHandler();
 
     [Signal]
-    public delegate void OnInteractButtonPressed();
-
-    [Signal]
-    public delegate void OnOpenInventoryPressed();
-
-    [Signal]
-    public delegate void OnOpenBuildPressed();
+    public delegate void OnOpenBuildPressedEventHandler();
 
     [JsonIgnore]
     public bool IsInventoryOpen => inventoryScreen.IsOpen;
@@ -85,7 +78,7 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         inventoryScreen = GetNode<InventoryScreen>(InventoryScreenPath);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -163,11 +156,6 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         return c => bag.IsUseful(c);
     }
 
-    protected override bool SpecialHandleBar(ProgressBar bar)
-    {
-        return false;
-    }
-
     protected override bool ShouldShowAgentsPanel()
     {
         throw new NotImplementedException();
@@ -210,7 +198,7 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         buildButton.Visible = isAwakened;
 
         // TODO: figure out why this doesn't display correctly in the UI
-        inventoryButton.Pressed = IsInventoryOpen;
+        inventoryButton.ButtonPressed = IsInventoryOpen;
     }
 
     protected override void Dispose(bool disposing)
@@ -292,7 +280,7 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         var limit = Constants.BRAIN_POWER_REQUIRED_FOR_AWAKENING;
 
         awakenButton.Disabled = brainPower < limit;
-        awakenButton.Text = TranslationServer.Translate("ACTION_AWAKEN").FormatSafe(brainPower, limit);
+        awakenButton.Text = Localization.Translate("ACTION_AWAKEN").FormatSafe(brainPower, limit);
     }
 
     private void OnAwakenConfirmed()
@@ -304,16 +292,16 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
 
     private void ForwardInteractButton()
     {
-        EmitSignal(nameof(OnInteractButtonPressed));
+        EmitSignal(SignalName.OnInteractButtonPressed);
     }
 
     private void ForwardOpenInventory()
     {
-        EmitSignal(nameof(OnOpenInventoryPressed));
+        EmitSignal(SignalName.OnOpenInventoryPressed);
     }
 
     private void ForwardBuildPressed()
     {
-        EmitSignal(nameof(OnOpenBuildPressed));
+        EmitSignal(SignalName.OnOpenBuildPressed);
     }
 }

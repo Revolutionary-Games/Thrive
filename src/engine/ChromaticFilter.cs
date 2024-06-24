@@ -3,9 +3,13 @@
 /// <summary>
 ///   A chromatic aberration and barrel distortion filter effect
 /// </summary>
-public class ChromaticFilter : TextureRect
+public partial class ChromaticFilter : TextureRect
 {
+    private readonly StringName amountParameterName = new("MAX_DIST_PX");
+
+#pragma warning disable CA2213
     private ShaderMaterial? material;
+#pragma warning restore CA2213
 
     public override void _EnterTree()
     {
@@ -28,6 +32,16 @@ public class ChromaticFilter : TextureRect
         Settings.Instance.ChromaticEnabled.OnChanged -= OnChanged;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            amountParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void OnChanged(bool enabled)
     {
         if (enabled)
@@ -42,6 +56,6 @@ public class ChromaticFilter : TextureRect
 
     private void SetAmount(float amount)
     {
-        material!.SetShaderParam("MAX_DIST_PX", amount);
+        material!.SetShaderParameter(amountParameterName, amount);
     }
 }

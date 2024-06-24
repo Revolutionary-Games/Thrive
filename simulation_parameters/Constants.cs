@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Godot;
+using LauncherThriveShared;
 using Newtonsoft.Json;
-using Path = System.IO.Path;
 
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
@@ -172,6 +173,7 @@ public static class Constants
     public const float MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE = 0.3f;
     public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER = 0.025f;
     public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL = 0.015f;
+    public const float MEMBRANE_ENGULF_ANIMATION_DISTANCE = 1.25f;
 
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
@@ -339,6 +341,17 @@ public static class Constants
     public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
 
     /// <summary>
+    ///   When night is closer than this number of seconds and a cell spawns, it gets extra resources to survive.
+    /// </summary>
+    public const float INITIAL_RESOURCE_BUFF_WHEN_NIGHT_CLOSER_THAN = 30.0f;
+
+    /// <summary>
+    ///   How many seconds of filling up during the day that a cell can be given when it is spawned close to or during
+    ///   the night
+    /// </summary>
+    public const float NIGHT_RESOURCE_BUFF_MAX_FILL_SECONDS = 45.0f;
+
+    /// <summary>
     ///   How often the microbe AI processes each microbe
     /// </summary>
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
@@ -403,6 +416,28 @@ public static class Constants
     public const float AGENT_EMISSION_VELOCITY = 16.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
+
+    public const float CYTOTOXIN_DAMAGE = 12.0f;
+
+    public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
+
+    public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
+    public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
+
+    public const float MACROLIDE_BASE_MOVEMENT_DEBUFF = 0.8f;
+    public const float MACROLIDE_DEBUFF_DURATION = 5;
+
+    /// <summary>
+    ///   Each oxygen using organelle in a cell increases damage caused by oxygen-inhibiting toxin by this amount,
+    ///   up to a cap.
+    /// </summary>
+    public const float OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE = 0.05f;
+
+    public const float OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX = 0.5f;
+
+    public const float OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE = 0.05f;
+
+    public const float OXYTOXY_DAMAGE_DEBUFF_MAX = 0.75f;
 
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
@@ -535,7 +570,7 @@ public static class Constants
     /// </summary>
     public const int FLOATING_CHUNK_MAX_COUNT = 35;
 
-    public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
+    public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 5000.0f;
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
 
@@ -577,7 +612,7 @@ public static class Constants
     public const float NAME_LABEL_VISIBILITY_DISTANCE = 300.0f;
 
     /// <summary>
-    ///   Maximum number of damage events allowed for an entity. Any more are not recorded and is an error.
+    ///   Maximum number of damage events allowed for an entity. More than this are not recorded and is an error.
     /// </summary>
     public const int MAX_DAMAGE_EVENTS = 1000;
 
@@ -854,7 +889,7 @@ public static class Constants
     public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
 
     // Corpse info
-    public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
+    public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
     public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
@@ -973,6 +1008,16 @@ public static class Constants
 
     public const float AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION = 5;
 
+    /// <summary>
+    ///   How much less active cells are during the night
+    /// </summary>
+    public const float AI_ACTIVITY_NIGHT_MULTIPLIER = 0.5f;
+
+    public const float AI_ACTIVITY_NIGHT_MULTIPLIER_SESSILE = 0.02f;
+
+    public const float AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT = 340;
+    public const float AI_ACTIVITY_TO_BE_SESSILE_DURING_NIGHT = 50;
+
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -40.0f;
@@ -1012,8 +1057,11 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
 
-    public const float AUTO_EVO_MINIMUM_VIABLE_RESERVE_PER_TIME_UNIT = 1.0f;
-    public const float AUTO_EVO_NON_VIABLE_RESERVE_PENALTY = 10;
+    public const float AUTO_EVO_NIGHT_STORAGE_NOT_ENOUGH_PENALTY = 0.1f;
+    public const float AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER = 1.2f;
+    public const float AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY = 0.7f;
+
+    public const float AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE = 2.5f;
 
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
@@ -1214,13 +1262,15 @@ public static class Constants
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
-    public const string LOGS_FOLDER_NAME = "logs";
-    public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
+    public const string LOGS_FOLDER = "user://" + ThriveLauncherSharedConstants.LOGS_FOLDER_NAME;
 
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/" + JSON_DEBUG_OUTPUT_FILE_NAME;
     public const string JSON_DEBUG_OUTPUT_FILE_NAME = "json_debug.txt";
 
     public const string STARTUP_ATTEMPT_INFO_FILE = "user://startup_attempt.json";
+
+    public const string LATEST_START_INFO_FILE =
+        "user://" + ThriveLauncherSharedConstants.LATEST_START_INFO_FILE_NAME;
 
     public const string LAST_PLAYED_VERSION_FILE = "user://last_played_version.txt";
 
@@ -1252,7 +1302,7 @@ public static class Constants
     public const string OS_WINDOWS_NAME = "Windows";
 
     /// <summary>
-    ///   This is just here to make it easier to debug saves
+    ///   This is just here to make it easier to debug saves JSON data
     /// </summary>
     public const Formatting SAVE_FORMATTING = Formatting.None;
 
@@ -1311,7 +1361,7 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10.0f;
 
     /// <summary>
-    ///   Minimum amount for the some category in the hover info.
+    ///   Minimum amount for some category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_SOME = 50.0f;
 
@@ -1326,9 +1376,19 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800.0f;
 
     /// <summary>
-    ///   Minimum amount for the an abundance category in the hover info.
+    ///   Minimum amount for an abundance category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
+
+    public const int ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS = 2;
+    public const int PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 3;
+
+    public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.10f;
+
+    public const float COMPOUND_BAR_COMPACT_WIDTH = 64;
+    public const float COMPOUND_BAR_NORMAL_WIDTH = 220;
+    public const float COMPOUND_BAR_NARROW_COMPACT_WIDTH = 73;
+    public const float COMPOUND_BAR_NARROW_NORMAL_WIDTH = 162;
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
@@ -1356,23 +1416,26 @@ public static class Constants
     public const int HEX_MAX_RENDER_PRIORITY = HEX_RENDER_PRIORITY_DISTANCE * HEX_RENDER_PRIORITY_DISTANCE;
 
     /// <summary>
+    ///   How many endosymbionts in total prokaryotes can have
+    /// </summary>
+    public const int ENDOSYMBIOSIS_MAX_FOR_PROKARYOTE = 1;
+
+    /// <summary>
+    ///   How many times a target species needs to be engulfed for it to be completed (in the base case, this is
+    ///   lowered with more organelle instances)
+    /// </summary>
+    public const int ENDOSYMBIOSIS_COST_BASE = 6;
+
+    public const int ENDOSYMBIOSIS_COST_REDUCTION_PER_ORGANELLE = 1;
+
+    public const int ENDOSYMBIOSIS_COST_MIN = 2;
+
+    /// <summary>
     ///   If membrane scene is updated this should be updated as well
     /// </summary>
     public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
-
-    // TODO: combine to a common module with launcher as these are there as well
-    public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
-    public const string OPENED_THROUGH_LAUNCHER_OPTION = "--thrive-started-by-launcher";
-    public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
-    public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
-
-    public const string SKIP_CPU_CHECK_OPTION = "--skip-cpu-check";
-
-    public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
-    public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
-    public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
 
     // Min/max values for each customisable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;
@@ -1472,7 +1535,7 @@ public static class Constants
     public const float SPACE_FLEET_SELECTION_RADIUS = 1.7f;
 
     /// <summary>
-    ///   Names like "Pangonia Primus" are cool so we use those until it makes more sense to switch to roman numerals
+    ///   Names like "Pangonia Primus" are cool, so we use those until it makes more sense to switch to roman numerals
     /// </summary>
     public const int NAMING_SWITCH_TO_ROMAN_NUMERALS_AFTER = 10;
 
@@ -1549,10 +1612,10 @@ public static class Constants
     /// </remarks>
     public static readonly IReadOnlyList<string> ModLocations = new[]
     {
-        OS.HasFeature("standalone") ?
+        Engine.IsEditorHint() ?
+            ProjectSettings.GlobalizePath("res://mods") :
             Path.Combine(Path.GetDirectoryName(OS.GetExecutablePath()) ??
-                throw new InvalidOperationException("no current executable path"), "mods") :
-            ProjectSettings.GlobalizePath("res://mods"),
+                throw new InvalidOperationException("no current executable path"), "mods"),
         "user://mods",
     };
 
@@ -1607,20 +1670,33 @@ public static class Constants
         (FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT > REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT) ? 0 : -42;
 
     // Needed to be true by InputManager
-    private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;
+    private const uint GodotJoystickAxesStartAtZero = (JoyAxis.LeftX == 0) ? 0 : -42;
 
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823
 
-    /// <summary>
-    ///   This needs to be a separate field to make this only be calculated once needed the first time
-    /// </summary>
-    private static readonly string GameVersion = FetchVersion();
+    private const string VERSION_HASH_SUFFIX_REGEX = @"\+[0-9a-f]+$";
+
+    private static readonly Lazy<string> GameVersion = new(FetchVersion);
+
+    private static readonly Lazy<string> GameVersionSimple = new(FetchVersionWithoutHashSuffix);
+
+    private static readonly Lazy<string?> VersionCommitInternal = new(FetchVersionJustCommit);
 
     /// <summary>
     ///   Game version
     /// </summary>
-    public static string Version => GameVersion;
+    public static string Version => GameVersionSimple.Value;
+
+    /// <summary>
+    ///   Game version including all suffixes like current commit
+    /// </summary>
+    public static string VersionFull => GameVersion.Value;
+
+    /// <summary>
+    ///   Just the commit hash part of the <see cref="VersionFull"/>
+    /// </summary>
+    public static string? VersionCommit => VersionCommitInternal.Value;
 
     public static string UserFolderAsNativePath => OS.GetUserDataDir().Replace('\\', '/');
 
@@ -1629,16 +1705,62 @@ public static class Constants
         try
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var version = assembly.GetName().Version;
+            var version = assembly.GetName().Version ?? throw new Exception("Version missing from assembly");
             var versionSuffix =
                 (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
                     typeof(AssemblyInformationalVersionAttribute), false);
-            return $"{version}" + versionSuffix[0].InformationalVersion;
+
+            var versionStr = version.ToString();
+
+            string versionSuffixStr;
+
+            if (versionSuffix.Length > 0)
+            {
+                // If there is no informational version, it equals the same as the version itself, so needs to be
+                // skipped in that case
+                if (!versionSuffix[0].InformationalVersion.StartsWith(versionStr))
+                {
+                    versionSuffixStr = versionSuffix[0].InformationalVersion;
+                }
+                else
+                {
+                    versionSuffixStr = string.Empty;
+                }
+            }
+            else
+            {
+                versionSuffixStr = string.Empty;
+            }
+
+            return $"{version}" + versionSuffixStr;
         }
         catch (Exception error)
         {
             GD.Print("Error getting version: ", error);
             return "error (" + error.GetType().Name + ")";
         }
+    }
+
+    private static string FetchVersionWithoutHashSuffix()
+    {
+        var suffixRegex = new Regex(VERSION_HASH_SUFFIX_REGEX);
+
+        return suffixRegex.Replace(VersionFull, string.Empty);
+    }
+
+    private static string? FetchVersionJustCommit()
+    {
+        var suffixRegex = new Regex(VERSION_HASH_SUFFIX_REGEX);
+
+        // TODO: apparently this just stopped working at some point (the hash suffix is now gone)
+        var match = suffixRegex.Match(VersionFull);
+
+        if (!match.Success)
+        {
+            GD.PrintErr("Version doesn't include commit hash");
+            return null;
+        }
+
+        return match.Value.TrimStart('+');
     }
 }

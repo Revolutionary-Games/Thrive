@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Manages playing music. Autoload singleton
 /// </summary>
-public class Jukebox : Node
+[GodotAutoload]
+public partial class Jukebox : Node
 {
     private const float FADE_TIME = 1.0f;
     private const float FADE_LOW_VOLUME = 0.0f;
@@ -45,6 +47,9 @@ public class Jukebox : Node
     /// </summary>
     private Jukebox()
     {
+        if (Engine.IsEditorHint())
+            return;
+
         instance = this;
     }
 
@@ -77,15 +82,21 @@ public class Jukebox : Node
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+        {
+            paused = true;
+            return;
+        }
+
         categories = SimulationParameters.Instance.GetMusicCategories();
 
-        PauseMode = PauseModeEnum.Process;
+        ProcessMode = ProcessModeEnum.Always;
 
         // Preallocate one audio stream player, due to the dynamic number of simultaneous tracks to play this is a list
         NewPlayer();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (paused)
             return;
@@ -227,13 +238,13 @@ public class Jukebox : Node
         {
             foreach (var player in audioPlayers)
             {
-                var dbValue = GD.Linear2Db(linearVolume * player.BaseVolume * player.LinearVolume);
+                var dbValue = Mathf.LinearToDb(linearVolume * player.BaseVolume * player.LinearVolume);
                 player.Player.VolumeDb = dbValue;
             }
         }
         else
         {
-            var dbValue = GD.Linear2Db(linearVolume * audioPlayer.BaseVolume * audioPlayer.LinearVolume);
+            var dbValue = Mathf.LinearToDb(linearVolume * audioPlayer.BaseVolume * audioPlayer.LinearVolume);
             audioPlayer.Player.VolumeDb = dbValue;
         }
     }
@@ -247,11 +258,11 @@ public class Jukebox : Node
         player.Bus = "Music";
 
         // Set initial volume to be what the volume should be currently
-        player.VolumeDb = GD.Linear2Db(linearVolume);
+        player.VolumeDb = Mathf.LinearToDb(linearVolume);
 
         // TODO: should MIX_TARGET_SURROUND be used here?
 
-        player.Connect("finished", this, nameof(OnSomeTrackEnded));
+        player.Connect(AudioStreamPlayer.SignalName.Finished, new Callable(this, nameof(OnSomeTrackEnded)));
 
         var created = new AudioPlayer(player);
 
@@ -361,7 +372,7 @@ public class Jukebox : Node
         AddVolumeChange(FADE_TIME, 0, NORMAL_VOLUME, audioPlayer);
     }
 
-    private void AddWait(float duration, AudioPlayer? audioPlayer = null)
+    private void AddWait(double duration, AudioPlayer? audioPlayer = null)
     {
         var data = new TimedOperationData(duration, audioPlayer);
 
@@ -382,7 +393,7 @@ public class Jukebox : Node
         }));
     }
 
-    private void AddVolumeChange(float duration, float startVolume, float endVolume, AudioPlayer? audioPlayer = null)
+    private void AddVolumeChange(double duration, float startVolume, float endVolume, AudioPlayer? audioPlayer = null)
     {
         var data = new TimedOperationData(duration, audioPlayer) { StartVolume = startVolume, EndVolume = endVolume };
 
@@ -399,7 +410,7 @@ public class Jukebox : Node
             if (data.TimeLeft < 0)
                 data.TimeLeft = 0;
 
-            float progress = (data.TotalDuration - data.TimeLeft) / data.TotalDuration;
+            var progress = (data.TotalDuration - data.TimeLeft) / data.TotalDuration;
 
             if (progress >= 1.0f)
             {
@@ -407,9 +418,9 @@ public class Jukebox : Node
                 return true;
             }
 
-            float targetVolume = data.StartVolume + (data.EndVolume - data.StartVolume) * progress;
+            var targetVolume = data.StartVolume + (data.EndVolume - data.StartVolume) * progress;
 
-            SetVolume(targetVolume, data.AudioPlayer);
+            SetVolume((float)targetVolume, data.AudioPlayer);
 
             return false;
         }));
@@ -553,7 +564,7 @@ public class Jukebox : Node
         }
         else
         {
-            var random = new Random();
+            var random = new XoShiRo128starstar();
             int nextIndex;
 
             if (mode == TrackList.Order.Random)
@@ -670,9 +681,9 @@ public class Jukebox : Node
 
     private class Operation
     {
-        public Func<float, bool> Action;
+        public Func<double, bool> Action;
 
-        public Operation(Func<float, bool> action)
+        public Operation(Func<double, bool> action)
         {
             Action = action;
         }
@@ -682,14 +693,14 @@ public class Jukebox : Node
     {
         public readonly AudioPlayer? AudioPlayer;
 
-        public readonly float TotalDuration;
-        public float TimeLeft;
+        public readonly double TotalDuration;
+        public double TimeLeft;
 
         // Data for timed operations dealing with volumes
         public float StartVolume;
         public float EndVolume;
 
-        public TimedOperationData(float time, AudioPlayer? audioPlayer = null)
+        public TimedOperationData(double time, AudioPlayer? audioPlayer = null)
         {
             AudioPlayer = audioPlayer;
 

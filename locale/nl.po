@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-27 22:50+0100\n"
-"PO-Revision-Date: 2024-02-18 17:10+0000\n"
-"Last-Translator: Jelver Prins <Jelverprins@gmail.com>\n"
+"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -323,6 +323,19 @@ msgstr "Backslash"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+msgstr ""
+
+msgid "BALANCE_DISPLAY_WHILE_MOVING"
+msgstr ""
+
+#, fuzzy
+msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+msgstr "Open de weergave voor geavanceerde instellingen"
+
 msgid "BASE_MOBILITY"
 msgstr "Basismobiliteit"
 
@@ -334,15 +347,6 @@ msgstr "Basis"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Ga terug naar basisinstellingenweergave"
-
-msgid "BASSBOOST"
-msgstr "Basversterking"
-
-msgid "BASSDOWN"
-msgstr "Bass Zachter"
-
-msgid "BASSUP"
-msgstr "Bass Harder"
 
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagisch"
@@ -734,8 +738,20 @@ msgstr "Bezoek onze gemeenschapswiki"
 msgid "COMPILED_AT_COLON"
 msgstr "Gebouwd op:"
 
+#, fuzzy
+msgid "COMPLETE_ACTION"
+msgstr "Gebouwd op:"
+
 msgid "COMPOUNDS"
 msgstr "Verbindingen"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_EQUILIBRIUM"
+msgstr "Stof om te Vinden:"
+
+#, fuzzy
+msgid "COMPOUNDS_AT_MAX_SPEED"
+msgstr "Stof om te Vinden:"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Toon / verberg stoffen"
@@ -743,8 +759,24 @@ msgstr "Toon / verberg stoffen"
 msgid "COMPOUNDS_COLON"
 msgstr "Verbindingen:"
 
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
+msgstr "Toon / verberg stoffen"
+
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_BALANCE_TOOLTIP"
+msgstr "Toon / verberg stoffen"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Samenstellings-wolken"
@@ -760,6 +792,25 @@ msgstr "{0}concentratie is met {1} gedaald"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Verbruik van {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
+msgstr "Stofbalanzen"
+
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
+msgstr "Verbruik van {0}"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TITLE"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
+msgstr "Stofbalanzen"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Stof om te Vinden:"
@@ -837,8 +888,188 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Doorgaan naar de faseprototypen?"
 
+#, fuzzy
+msgid "CONTROLLER_ANY_DEVICE"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_L2"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_X"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_LEFT_Y"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
+msgstr "Gevoeligheid spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_R2"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_X"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_AXIS_RIGHT_Y"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_DOWN"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_LEFT"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_DPAD_UP"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
+msgstr "Deadzone:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_LEFT_STICK"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_MISC1"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE1"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE2"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE3"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PADDLE4"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_SELECT"
+msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS3_START"
+msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CIRCLE"
+msgstr "Deadzone:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_CROSS"
+msgstr "Deadzone:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L1"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_L3"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_OPTIONS"
+msgstr "Deadzone:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R1"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_R3"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SHARE"
+msgstr "Deadzones Spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
+msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_SQUARE"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
+msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
+msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_RIGHT_STICK"
+msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
+
+msgid "CONTROLLER_BUTTON_TOUCH_PAD"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_UNKNOWN"
+msgstr "Deadzone:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_A"
+msgstr "Deadzone:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_B"
+msgstr "Deadzone:"
+
+msgid "CONTROLLER_BUTTON_XBOX_BACK"
+msgstr ""
+
+msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
+msgstr ""
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_START"
+msgstr "Gevoeligheid spelbesturingsapparaat"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_X"
+msgstr "Deadzone:"
+
+#, fuzzy
+msgid "CONTROLLER_BUTTON_XBOX_Y"
+msgstr "Deadzone:"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "Deadzones Spelbesturingsapparaat"
@@ -857,6 +1088,10 @@ msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Gevoeligheid spelbesturingsapparaat"
 
+#, fuzzy
+msgid "CONTROLLER_UNKNOWN_AXIS"
+msgstr "Deadzones Spelbesturingsapparaat"
+
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopieer Fout naar Klembord"
 
@@ -868,6 +1103,10 @@ msgstr "Protanopie (Rood-Groen)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (Blauw-Geel)"
+
+#, fuzzy
+msgid "CPU_THREADS"
+msgstr "Threads:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Wis geselecteerde invulvelden"
@@ -1017,7 +1256,8 @@ msgstr "(lengte in werkelijke seconden voor een speldag)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Zet dag/nacht cyclus aan"
 
-msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+#, fuzzy
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1191,12 +1431,6 @@ msgstr "Verteringssnelheid:"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-msgid "DIRECTIONL"
-msgstr "Links"
-
-msgid "DIRECTIONR"
-msgstr "Rechts"
-
 msgid "DISABLED"
 msgstr "Uitgeschakeld"
 
@@ -1258,6 +1492,14 @@ msgstr "Toon Capaciteiten Balk"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Achtergronddeeltjes weergeven"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_OPENGL"
+msgstr "Toon Capaciteiten Balk"
+
+#, fuzzy
+msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Toon Capaciteiten Balk"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Toon knopnamen van onderdelenselectie"
@@ -1416,11 +1658,68 @@ msgstr "Zet Alle Bruikbare Mods Aan"
 msgid "ENABLE_EDITOR"
 msgstr "Schakel de editor in"
 
-msgid "ENABLE_EXPERIMENTAL_FEATURES"
-msgstr ""
-
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Zet GUI Licht Effecten Aan"
+
+msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
+msgstr ""
+
+msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
+msgstr ""
+
+msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
+msgstr "Meerdere Organellen"
+
+msgid "ENDOSYMBIOSIS_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
+msgstr "Ontbind al"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
+msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_EXPLANATION"
+msgstr ""
+"Aggressieve microben zullen prooi op lange afstand jagen\n"
+"en zullen vaker terugvechten tegen roofdieren wanneer ze aangevallen worden.\n"
+"Vredige microben zullen niet op lange afstand jagen\n"
+"en zullen minder vaak gifstoffen tegen roofdieren gebruiken."
+
+msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
+msgstr "Losgekoppelde Organellen"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
+msgstr ""
+"Dit toont hoeveel vensters permanent uitgezet zijn door de gebruiker.\n"
+"Het kan zijn dat sommige wenselijke vensters per ongelijk uitgezet zijn. De knop hiernaast kan gebruikt worden om alle uitgezette vensters weer aan te zetten."
+
+msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
+msgstr "Zet [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] om in [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Zet ook [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_START_TOOLTIP"
+msgstr "Open bewerker en bewerk je soort"
+
+#, fuzzy
+msgid "ENDOSYMBIOSIS_TITLE"
+msgstr "Titel mist"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1529,12 +1828,12 @@ msgstr "Gebouwen"
 msgid "EXIT"
 msgstr "Sluit"
 
+#, fuzzy
+msgid "EXIT_EDITOR"
+msgstr "Ga naar het volgende bewerkertabblad"
+
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Sluit af naar opstartprogramma"
-
-#, fuzzy
-msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(snelheid waarmee AI-soorten muteren)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exporteer Alle Werelden"
@@ -1620,6 +1919,18 @@ msgstr "Gepubliceerd op {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Het item is ingekort omdat het te lang is, om de gehele inhoud te lezen moet je naar het origineel. {0}"
+
+#, fuzzy
+msgid "FERROPLAST"
+msgstr "Thermoplast"
+
+#, fuzzy
+msgid "FERROPLAST_DESCRIPTION"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "FERROPLAST_PROCESSES_DESCRIPTION"
+msgstr "Produceert [thrive:compound type=\"atp\"][/thrive:compound] aan de hand van temperatuurverschillen. Snelheid schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filter items op basis van categorie:"
@@ -1798,15 +2109,6 @@ msgstr "Generatie:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Bezoek onze Github opslagplek"
 
-msgid "GLES2"
-msgstr "GLES2"
-
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 moduswaarschuwing"
-
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
-
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -1919,12 +2221,6 @@ msgstr "{0} (x{1})"
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Waterstofsulfide"
-
-msgid "HYPERL"
-msgstr "Hyper links"
-
-msgid "HYPERR"
-msgstr "Hyper rechts"
 
 msgid "ICESHARD"
 msgstr "Ijsscherf"
@@ -2140,10 +2436,17 @@ msgstr "Juni"
 msgid "KEY_BACK"
 msgstr "Terug"
 
+#, fuzzy
+msgid "KEY_BACKTAB"
+msgstr "Terug"
+
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Er is een conflict met {0}.\n"
 "Wil je de invoer van {1} verwijderen?"
+
+msgid "KEY_BRING_UP_KEYBOARD"
+msgstr ""
 
 msgid "KEY_CLEAR"
 msgstr "Wissen"
@@ -2166,6 +2469,10 @@ msgstr "Favorieten"
 msgid "KEY_FORWARD"
 msgstr "Voorwaarts"
 
+#, fuzzy
+msgid "KEY_GLOBE"
+msgstr "Thuis"
+
 msgid "KEY_HELP"
 msgstr "Hulp"
 
@@ -2175,14 +2482,30 @@ msgstr "Thuis"
 msgid "KEY_HOMEPAGE"
 msgstr "Home-pagina"
 
+#, fuzzy
+msgid "KEY_HYPER"
+msgstr "Hulp"
+
 msgid "KEY_INSERT"
 msgstr "Invoegen"
+
+#, fuzzy
+msgid "KEY_JIS_EISU"
+msgstr "Invoegen"
+
+#, fuzzy
+msgid "KEY_JIS_KANA"
+msgstr "Stand-by"
 
 msgid "KEY_LEFT"
 msgstr "Links"
 
 msgid "KEY_MENU"
 msgstr "Menu"
+
+#, fuzzy
+msgid "KEY_META"
+msgstr "Tab"
 
 msgid "KEY_OPENURL"
 msgstr "Open URL"
@@ -2472,6 +2795,10 @@ msgstr "Zeer klein"
 msgid "LINE_COLOUR"
 msgstr "Lijnkleur:"
 
+#, fuzzy
+msgid "LINKS_TITLE"
+msgstr "Titel mist"
+
 msgid "LIPASE"
 msgstr "Lipase"
 
@@ -2640,6 +2967,7 @@ msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:c
 msgid "METRICS"
 msgstr "Prestatietellers"
 
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "Procestijd: {0} s\n"
@@ -2978,6 +3306,10 @@ msgstr "Mod Assembly:"
 
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Hoofdklasse van de Mod Assembly:"
+
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
+msgstr "{0}: het aanroepen van de ontlaadfunctie van de assembly van de mod is mislukt"
 
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: gespecificeerde modklasse \"{1}\" niet gevonden in de assembly van de mod"
@@ -3342,6 +3674,13 @@ msgstr "Formaat van huidige cel is te klein om doelwit te verzwelgen"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Niet genoeg ruimte in opslag voor ingeslikte materie om doelwit te verzwelgen"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Basisbeweging"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Klaar om bewerker te openen"
 
@@ -3428,6 +3767,14 @@ msgstr ""
 "Aangezien Thrive momenteel in een vroeg stadium van zijn ontwikkeling is, is opslagcompatibiliteit geen prioriteit.\n"
 "Je kan alle problemen die je tegenkomt melden, maar ze zijn momenteel niet de hoogste prioriteit.\n"
 "Wil je toch proberen om het opgeslagen bestand te laden?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "GLES2 moduswaarschuwing"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING_EXPLANATION"
+msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
 
 msgid "OPEN_FOLDER"
 msgstr "Open Map"
@@ -3591,6 +3938,7 @@ msgstr "Zuurstof"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxysoom"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
@@ -3674,6 +4022,7 @@ msgstr "— {0}"
 msgid "PATCH_NOTE_CHANGES_HEADING"
 msgstr "Veranderingen:"
 
+#, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Zie de volledige details van deze uitgave op [color=#3796e1][url={0}]Github[/url][/color]"
 
@@ -3703,6 +4052,13 @@ msgstr "Laden van pck-bestand {{0}) mislukt omdat het bestand niet bestaat"
 
 msgid "PEACEFUL"
 msgstr "Vreedzaam"
+
+#, fuzzy
+msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
+msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
+
+msgid "PENDING_ENDOSYMBIOSIS_TITLE"
+msgstr ""
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4358,9 +4714,6 @@ msgstr "Siliciumdioxide"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een sterke celmuur van silica. Het kan zeer goed tegen schade en is zeer resistent voor fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel ernstig en de cel kan grondstoffen minder snel opnemen."
 
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
-
 msgid "SIZE_COLON"
 msgstr "Grootte:"
 
@@ -4491,6 +4844,10 @@ msgstr "verspreid naar patches:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pauzeermenu"
 
+#, fuzzy
+msgid "START"
+msgstr "Starten"
+
 msgid "STARTING"
 msgstr "Starten"
 
@@ -4505,6 +4862,20 @@ msgstr "Begin Onderzoek"
 
 msgid "STATISTICS"
 msgstr "Statistieken"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP PRODUCTIE TE LAAG!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Basisbeweging"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam clientbibliotheekinitializatie mislukt"
@@ -4574,23 +4945,11 @@ msgstr "Opslag"
 msgid "STORAGE_COLON"
 msgstr "Opslag:"
 
+msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
+msgstr ""
+
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als: {0}"
-
-msgid "STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_MODE"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OFF"
-msgstr ""
-
-msgid "STRAIN_BAR_VISIBILITY_OVER_ZERO"
-msgstr ""
 
 msgid "STRATEGY_STAGES"
 msgstr "Strategiefasen"
@@ -4648,12 +5007,6 @@ msgstr "Verga meteen"
 
 msgid "SUNLIGHT"
 msgstr "Zonlicht"
-
-msgid "SUPERL"
-msgstr "Super Links"
-
-msgid "SUPERR"
-msgstr "Super Rechts"
 
 msgid "SUPPORTER_PATRONS"
 msgstr "Ondersteuners"
@@ -4933,10 +5286,6 @@ msgstr "Zet navigatieboom uit/aan"
 msgid "TOGGLE_PAUSE"
 msgstr "Pauzeren"
 
-#, fuzzy
-msgid "TOGGLE_SPRINT_TOOLTIP"
-msgstr "Binden aan/uit"
-
 msgid "TOGGLE_UNBINDING"
 msgstr "Ontbinden aan/uit"
 
@@ -4953,14 +5302,77 @@ msgstr "Soorten:"
 msgid "TOTAL_SAVES"
 msgstr "Totale hoeveelheid opslagbestanden:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Sommige opties kunnen uitgeschakeld zijn als \"Enkel LZWHK\" ingeschakeld is"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toxine\n"
+"Vacuole"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewikkeld. Ze maken het mogelijk om met een veel hogere snelheid [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound] dan cytoplasma dit kan doen. Ze gebruiken hierbij een proces genaamd [b]Aerobe Dissimilatie[/b]. Het heeft echter wel [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te kunnen doen. Lagere hoeveelheden van [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving zullen ook zorgen voor een tragere productie van [thrive:compound type=\"atp\"][/thrive:compound]. Aangezien metabolosomen direct in het cytoplasma hangen, voert de vloeistof er om heen ook enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Weerstand tegen Gifstoffen"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Weerstand tegen Gifstoffen"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Type:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Neerdalen zal je verheven status verwijderen en je terug naar de Microbenfase brengen. Je kunt dan in je huidige opslagbestand het spel opnieuw spelen.\n"
+"\n"
+"Je zult neerdalingsextraatjes krijgen voor de verdere spelduur. In een toekomstige versie zul je het extraatje zelf kunnen kiezen maar voor nu zul je altijd een 20% verlaging in osmoregulatiekosten krijgen. \n"
+"\n"
+"Zodra je besluit neer te dalen kun je een nieuw wereldkiemgetal kiezen om op een andere kaart te spelen. Ook kun je bijvoorbeeld LZWHK uitzetten."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxine\n"
 "Vacuole"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
@@ -4975,12 +5387,6 @@ msgstr "Vertalers"
 
 msgid "TRANSPARENCY"
 msgstr "Transparantie"
-
-msgid "TREBLEDOWN"
-msgstr "Hoge tonen Zachter"
-
-msgid "TREBLEUP"
-msgstr "Hoge tonen Harder"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Probeer enkele soorten te fossilizeren!"
@@ -5251,9 +5657,6 @@ msgstr "Onbekend"
 msgid "UNKNOWN_MOUSE"
 msgstr "Onbekende muisknop"
 
-msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Onbekend op Windows"
-
 #, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "Plaats organellen"
@@ -5337,6 +5740,10 @@ msgstr "Trekkende Cilia"
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Wanneer je in de verzwelgmodus ([thrive:input]g_toggle_engulf[/thrive:input]) zit zal dit type cilia draaikolken in het water maken om objecten in de buurt naar binnen te trekken. Dit is nuttig voor het vangen van prooi."
+
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "De standaard niet-geupgrade staat"
@@ -5441,6 +5848,9 @@ msgstr "Zie Patchnotities"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Zie nu meest recente of alle Thrive patchnotities"
+
+msgid "VIEW_PENDING_ACTIONS"
+msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ga naar broncode"
@@ -6564,6 +6974,48 @@ msgstr "Inzoomen"
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
+#~ msgid "BASSBOOST"
+#~ msgstr "Basversterking"
+
+#~ msgid "BASSDOWN"
+#~ msgstr "Bass Zachter"
+
+#~ msgid "BASSUP"
+#~ msgstr "Bass Harder"
+
+#~ msgid "DIRECTIONL"
+#~ msgstr "Links"
+
+#~ msgid "DIRECTIONR"
+#~ msgstr "Rechts"
+
+#~ msgid "HYPERL"
+#~ msgstr "Hyper links"
+
+#~ msgid "HYPERR"
+#~ msgstr "Hyper rechts"
+
+#~ msgid "SUPERL"
+#~ msgstr "Super Links"
+
+#~ msgid "SUPERR"
+#~ msgstr "Super Rechts"
+
+#~ msgid "TREBLEDOWN"
+#~ msgstr "Hoge tonen Zachter"
+
+#~ msgid "TREBLEUP"
+#~ msgstr "Hoge tonen Harder"
+
+#~ msgid "UNKNOWN_ON_WINDOWS"
+#~ msgstr "Onbekend op Windows"
+
+#~ msgid "GLES2"
+#~ msgstr "GLES2"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Totale Bevolking:"
 
@@ -6642,10 +7094,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Gebruikersnaam:"
-
-#, fuzzy
-#~ msgid "DISPLAY_DRIVER_NAME"
-#~ msgstr "Toon Capaciteiten Balk"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Niet bezig."

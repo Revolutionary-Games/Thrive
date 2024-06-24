@@ -415,6 +415,7 @@ protected:
     /// this frame and the data can't be recorded
     inline PhysicsCollision* GetNextCollisionRecordLocation(uint32_t stepIdentifier) noexcept
     {
+        // TODO: could maybe trigger this only on the first recording of a collision
         HandleStepIdentifier(stepIdentifier);
 
         return GetNextRecordLocation();
@@ -423,14 +424,20 @@ protected:
     inline PhysicsCollision* GetNextOrExistingCollisionRecordLocation(
         uint32_t stepIdentifier, PhysicsBody* otherBody, bool& usedExisting)
     {
+        // TODO: could maybe trigger this only on the first recording of a collision
         HandleStepIdentifier(stepIdentifier);
 
-        const auto compareCount = activeRecordedCollisionCount.load(std::memory_order::acquire);
+        auto compareCount = activeRecordedCollisionCount.load(std::memory_order::acquire);
 
         if (compareCount > 0)
         {
             // Is this enough for the above TODO?
             std::atomic_thread_fence(std::memory_order::acq_rel);
+
+            // Briefly the write may be out of range, so to guard against that we need this adjustment to what this
+            // method may read
+            if (compareCount > maxCollisionsToRecord) [[unlikely]]
+                compareCount = maxCollisionsToRecord;
 
             for (int i = 0; i < compareCount; ++i)
             {
@@ -492,11 +499,18 @@ private:
         if (indexToWriteTo >= maxCollisionsToRecord) [[unlikely]]
         {
             // If we go over the number of allowed recorded collisions, we need to reset the memory back
-            if (indexToWriteTo > maxCollisionsToRecord)
-                activeRecordedCollisionCount.store(maxCollisionsToRecord, std::memory_order_release);
+            activeRecordedCollisionCount.fetch_sub(1, std::memory_order::acq_rel);
+
+            // Previously this used atomic store on the variable, but that seemed to not work, though the bug was
+            // probably in an if-condition instead, still it seems like this subtract approach always works
 
             return nullptr;
         }
+
+#ifndef NDEBUG
+        if (indexToWriteTo >= maxCollisionsToRecord) [[unlikely]]
+            throw std::runtime_error("physics collision write index is too high");
+#endif
 
         return &collisionRecordingTarget[indexToWriteTo];
     }
@@ -510,6 +524,7 @@ private:
     {
         Lock lock(collisionRecordMutex);
 
+        // TODO: could maybe trigger this only on the first recording of a collision
         HandleStepIdentifier(stepIdentifier);
 
         return GetNextRecordLocation();
@@ -520,6 +535,7 @@ private:
     {
         Lock lock(collisionRecordMutex);
 
+        // TODO: could maybe trigger this only on the first recording of a collision
         HandleStepIdentifier(stepIdentifier);
 
         const auto compareCount = activeRecordedCollisionCount;
@@ -574,7 +590,7 @@ private:
     {
         // Skip if too many collisions
         if (activeRecordedCollisionCount >= maxCollisionsToRecord) [[unlikely]]
-            return false;
+            return nullptr;
 
         return &collisionRecordingTarget[activeRecordedCollisionCount++];
     }

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 
 /// <summary>
 ///   The main tooltip class for the selections on the microbe editor's selection menu.
 ///   Contains list of processes and modifiers info.
 /// </summary>
-public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
+public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 {
     [Export]
     public NodePath? NameLabelPath;
@@ -40,7 +41,8 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
 #pragma warning disable CA2213
     private PackedScene modifierInfoScene = null!;
-    private Font latoBoldFont = null!;
+    private LabelSettings noProcessesFont = null!;
+    private LabelSettings processTitleFont = null!;
 
     private Label? nameLabel;
     private Label? mpLabel;
@@ -179,7 +181,8 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         moreInfo = GetNode<VBoxContainer>(MoreInfoPath);
 
         modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
-        latoBoldFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Bold-Smaller.tres");
+        noProcessesFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Bold-Smaller.tres");
+        processTitleFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Bold-Smaller-Gold.tres");
 
         UpdateName();
         UpdateDescription();
@@ -195,13 +198,16 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         UpdateOsmoregulationCost();
     }
 
-    public override void _Notification(int what)
+    public override void _EnterTree()
     {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateDescription();
-            UpdateProcessesDescription();
-        }
+        base._EnterTree();
+        Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
     /// <summary>
@@ -209,7 +215,7 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     /// </summary>
     public void AddModifierInfo(string name, float value)
     {
-        var modifierInfo = (ModifierInfoLabel)modifierInfoScene.Instance();
+        var modifierInfo = modifierInfoScene.Instantiate<ModifierInfoLabel>();
 
         modifierInfo.DisplayName = name;
         modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
@@ -218,7 +224,7 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         modifierInfos.Add(modifierInfo);
     }
 
-    public ModifierInfoLabel GetModifierInfo(string nodeName)
+    public ModifierInfoLabel? GetModifierInfo(string nodeName)
     {
         return modifierInfos.Find(m => m.Name == nodeName);
     }
@@ -228,19 +234,23 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     /// </summary>
     public void WriteOrganelleProcessList(List<ProcessSpeedInformation>? processes)
     {
+        processList.ProcessesTitleColour = processTitleFont;
+
         if (processes == null || processes.Count <= 0)
         {
             processList.QueueFreeChildren();
 
-            var noProcessLabel = new Label();
-            noProcessLabel.AddFontOverride("font", latoBoldFont);
-            noProcessLabel.Text = TranslationServer.Translate("NO_ORGANELLE_PROCESSES");
+            var noProcessLabel = new Label
+            {
+                LabelSettings = noProcessesFont,
+                Text = "NO_ORGANELLE_PROCESSES",
+            };
+
             processList.AddChild(noProcessLabel);
             return;
         }
 
         processList.ShowSpinners = false;
-        processList.ProcessesTitleColour = new Color(1.0f, 0.83f, 0.0f);
         processList.MarkRedOnLimitingCompounds = true;
         processList.ProcessesToShow = processes;
     }
@@ -298,7 +308,7 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
             }
             else
             {
-                modifier.ModifierValue = StringUtils.FormatPositiveWithLeadingPlus(TranslationServer
+                modifier.ModifierValue = StringUtils.FormatPositiveWithLeadingPlus(Localization
                     .Translate("PERCENTAGE_VALUE")
                     .FormatSafe((deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture)), deltaValue);
             }
@@ -365,7 +375,13 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         if (descriptionLabel == null)
             return;
 
-        descriptionLabel.ExtendedBbcode = TranslationServer.Translate(Description);
+        if (Description == null)
+        {
+            descriptionLabel.ExtendedBbcode = null;
+            return;
+        }
+
+        descriptionLabel.ExtendedBbcode = Localization.Translate(Description);
     }
 
     private void UpdateProcessesDescription()
@@ -373,7 +389,7 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         if (processesDescriptionLabel == null)
             return;
 
-        processesDescriptionLabel.ExtendedBbcode = TranslationServer.Translate(ProcessesDescription);
+        processesDescriptionLabel.ExtendedBbcode = Localization.Translate(ProcessesDescription);
         processesDescriptionLabel.Visible = !string.IsNullOrEmpty(ProcessesDescription);
     }
 
@@ -416,7 +432,7 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     private void UpdateLists()
     {
-        foreach (ModifierInfoLabel item in modifierInfoList.GetChildren())
+        foreach (var item in modifierInfoList.GetChildren().OfType<ModifierInfoLabel>())
         {
             modifierInfos.Add(item);
         }
@@ -428,5 +444,16 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
             return;
 
         moreInfo.Visible = thriveopediaPageName != null;
+    }
+
+    private void OnTranslationsChanged()
+    {
+        UpdateDescription();
+        UpdateProcessesDescription();
+    }
+
+    private void DummyKeepTranslations()
+    {
+        TranslationServer.Translate("NO_ORGANELLE_PROCESSES");
     }
 }

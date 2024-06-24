@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cubnkmc6top1h"]
 
-[ext_resource path="res://src/stage_starters/AwakeningStageStarter.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/stage_starters/AwakeningStageStarter.cs" id="1"]
 
 [node name="AwakeningStageStarter" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")
