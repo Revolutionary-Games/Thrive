@@ -1,5 +1,7 @@
 ﻿namespace AutoEvo;
 
+using Godot;
+
 public class GenerateMiche : IRunStep
 {
     public Patch Patch;
@@ -38,7 +40,7 @@ public class GenerateMiche : IRunStep
     private Miche GenerateMicheTree()
     {
         var rootMiche = new Miche(new RootPressure());
-        var generatedMiche = new Miche(new MetabolicStabilityPressure(Patch, 100.0f));
+        var generatedMiche = new Miche(new MetabolicStabilityPressure(Patch, 10.0f));
 
         rootMiche.AddChild(generatedMiche);
 
@@ -47,24 +49,39 @@ public class GenerateMiche : IRunStep
         // Glucose
         if (Patch.Biome.TryGetCompound(Glucose, CompoundAmountType.Biome, out var glucose) && glucose.Amount > 0)
         {
-            generatedMiche.AddChild(new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 10.0f),
-                new Miche(new ReachCompoundCloudPressure(2.0f))));
+            var glucoseMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 1));
+            glucoseMiche.AddChild(new Miche(new CompoundCloudPressure(Patch, 1, Glucose)));
+
+            generatedMiche.AddChild(glucoseMiche);
         }
 
         // Iron
         if (Patch.Biome.TryGetCompound(Iron, CompoundAmountType.Biome, out var iron) && iron.Amount > 0)
         {
-            generatedMiche.AddChild(new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Iron, ATP, 5.0f),
-                new Miche(new ReachCompoundCloudPressure(2.0f))));
+            var ironMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Iron, ATP, 5.0f));
+            ironMiche.AddChild(new Miche(new CompoundCloudPressure(Patch, 1, Iron)));
+
+            if (Patch.Biome.Chunks.ContainsKey("ironSmallChunk"))
+                ironMiche.AddChild(new Miche(new ChunkCompoundPressure(Patch, 1, "ironSmallChunk", Iron)));
+
+            if (Patch.Biome.Chunks.ContainsKey("ironBigChunk"))
+                ironMiche.AddChild(new Miche(new ChunkCompoundPressure(Patch, 1, "ironBigChunk", Iron)));
+
+            GD.Print(Patch.Biome.Chunks.Keys);
+
+            generatedMiche.AddChild(ironMiche);
         }
 
         // Hydrogen Sulfide
         if (Patch.Biome.TryGetCompound(HydrogenSulfide, CompoundAmountType.Biome, out var hydrogenSulfide) &&
             hydrogenSulfide.Amount > 0)
         {
-            generatedMiche.AddChild(new Miche(
-                new AutotrophEnergyEfficiencyPressure(Patch, HydrogenSulfide, Glucose, 5.0f),
-                new Miche(new ReachCompoundCloudPressure(2.0f))));
+            var hydrogenSulfideMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, HydrogenSulfide, Glucose, 5.0f));
+            var generateATP = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 1.0f));
+
+            generateATP.AddChild(new Miche(new CompoundCloudPressure(Patch, 2.0f, HydrogenSulfide)));
+            hydrogenSulfideMiche.AddChild(generateATP);
+            generatedMiche.AddChild(hydrogenSulfideMiche);
         }
 
         // Sunlight
@@ -76,7 +93,7 @@ public class GenerateMiche : IRunStep
         // Heat
         // This check probably should be more than 0
         if (Patch.Biome.TryGetCompound(Temperature, CompoundAmountType.Biome, out var temperature) &&
-            temperature.Ambient > 0)
+            temperature.Ambient > 1)
         {
             generatedMiche.AddChild(new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Temperature, ATP, 5.0f)));
         }

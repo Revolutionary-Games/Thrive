@@ -11,20 +11,17 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
     public readonly Patch Patch;
     public readonly Compound Compound;
     public readonly Compound OutCompound;
-    private readonly float weight;
 
     public AutotrophEnergyEfficiencyPressure(Patch patch, Compound compound, Compound outCompound, float weight) :
         base(weight,
             [
                 AddOrganelleAnywhere.ThatUseCompound(compound),
-                new RemoveAnyOrganelle(),
-            ],
-            40000)
+                RemoveOrganelle.ThatUseCompound(compound)
+            ])
     {
         Patch = patch;
         Compound = compound;
         OutCompound = outCompound;
-        this.weight = weight;
     }
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
@@ -36,13 +33,11 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                // ... that uses the given compound (regardless of usage)
                 if (process.Process.Inputs.TryGetValue(Compound, out var inputAmount))
                 {
-                    compoundIn += inputAmount;
-
                     if (process.Process.Outputs.TryGetValue(OutCompound, out var outputAmount))
                     {
+                        compoundIn += inputAmount;
                         compoundOut += outputAmount;
                     }
                 }
@@ -50,9 +45,14 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
         }
 
         if (compoundOut <= 0)
-            return -1;
+            return 0;
 
-        return compoundOut / compoundIn * weight;
+        return compoundOut / compoundIn;
+    }
+
+    public override float GetEnergy()
+    {
+        return 0;
     }
 
     public override string ToString()

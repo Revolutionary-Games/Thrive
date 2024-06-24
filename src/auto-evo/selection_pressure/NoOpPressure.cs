@@ -8,15 +8,17 @@ public class NoOpPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    public NoOpPressure() : base(0,
-        [],
-        0)
-    {
-    }
+    public NoOpPressure() : base(1, [])
+    { }
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
         return 1;
+    }
+
+    public override float GetEnergy()
+    {
+        return 0;
     }
 
     public override string ToString()

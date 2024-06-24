@@ -287,7 +287,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private int worldsPendingToRun;
 
     /// <summary>
-    ///   The padtch that the miche tab is displaying,
+    ///   The patch that the miche tab is displaying,
     ///   which equals to the selected popup item index of <see cref="patchListMenu"/>
     /// </summary>
     private Patch patchDisplayed = null!;
@@ -839,7 +839,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
             s => (Species)s.Value.Clone()));
         world.PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(s => s.Key,
             s => (PatchSnapshot)s.Value.CurrentSnapshot.Clone()));
-        world.MicheHistoryList.Add(results.MicheByPatch);
+        world.MicheHistoryList.Add(results.MicheByPatch.ToDictionary(s => s.Key,
+            s => s.Value.DeepCopy()));
 
         // Rebuild Miche Tree
         if (results.MicheByPatch.TryGetValue(patchDisplayed, out Miche? miche))
@@ -910,6 +911,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         generationDisplayed = world.CurrentGeneration;
 
+        micheDetailsPanel.WorldSettings = world.WorldSettings;
+
         // Rebuild history list
         historyListMenu.ClearAllItems();
         for (int i = 0; i <= world.CurrentGeneration; ++i)
@@ -928,7 +931,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
         }
 
         patchListMenu.CreateElements();
-        PatchListMenuIndexChanged(0);
 
         UpdateSpeciesList();
         SpeciesListMenuIndexChanged(0);
@@ -936,6 +938,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         patchMapDrawer.Map = world.GameProperties.GameWorld.Map;
         patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
+
+        if (patchMapDrawer.PlayerPatch != null)
+            PatchListMenuUpdate(patchMapDrawer.PlayerPatch);
 
         world.GameProperties.GameWorld.BuildEvolutionaryTree(evolutionaryTree);
 
@@ -1025,7 +1030,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     {
         if (!micheTree.MicheByHash.TryGetValue(micheHash, out var micheData))
         {
-            throw new Exception("Invalid hash passed into MicheTreeNodeSelected");
+            throw new ArgumentException("Invalid hash passed into MicheTreeNodeSelected");
         }
 
         // NoOps are being used to hold species nodes
@@ -1068,7 +1073,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         };
 
         patchDetailsPanel.SelectedPatch = patch;
-        PatchListMenuUpdate(patch);
+        PatchListMenuUpdate(selectedPatch);
     }
 
     private void PlayWithCurrentSettingPressed()
@@ -1176,6 +1181,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
         /// </summary>
         public readonly AutoEvoConfiguration AutoEvoConfiguration;
 
+        public readonly WorldGenerationSettings WorldSettings;
+
         /// <summary>
         ///   The game itself
         /// </summary>
@@ -1213,8 +1220,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
         public AutoEvoExploringToolWorld(IAutoEvoConfiguration configuration)
         {
             AutoEvoConfiguration = configuration.Clone();
-            GameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings
-                { AutoEvoConfiguration = AutoEvoConfiguration });
+            WorldSettings = new WorldGenerationSettings { AutoEvoConfiguration = AutoEvoConfiguration };
+            GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);
 
             RunResultsList.Add(new LocalizedStringBuilder());
             SpeciesHistoryList.Add(new Dictionary<uint, Species>

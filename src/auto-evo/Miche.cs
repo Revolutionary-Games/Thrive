@@ -12,17 +12,8 @@ public class Miche
     public MicrobeSpecies? Occupant;
     public SelectionPressure Pressure;
 
-    public Miche(SelectionPressure pressure) : this(pressure, (List<Miche>?)null) { }
-
-    public Miche(SelectionPressure pressure, Miche child) : this(pressure, new List<Miche> { child }) { }
-
-    public Miche(SelectionPressure pressure, List<Miche>? children)
+    public Miche(SelectionPressure pressure)
     {
-        if (children != null)
-        {
-            Children = children;
-        }
-
         Pressure = pressure;
     }
 
@@ -110,7 +101,7 @@ public class Miche
         var myScore = Pressure.Score(species, cache);
 
         // Prune branch if species fails any pressures
-        if (myScore < 0)
+        if (myScore <= 0)
             return false;
 
         if (IsLeafNode() && Occupant == null)
@@ -127,7 +118,6 @@ public class Miche
                 Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, cache));
         }
 
-        // We know Occupant isn't null because of an earlier check
         // We check here to see if scores more than 0, beacuse
         // scores is relative to the inserted species
         if (IsLeafNode() && newScores[Occupant!] > 0)
@@ -137,7 +127,6 @@ public class Miche
         }
 
         var inserted = false;
-
         foreach (var child in Children)
         {
             if (child.InsertSpecies(species, newScores, cache))
@@ -185,8 +174,8 @@ public class Miche
 
     public Miche DeepCopy()
     {
-        // This doesn't copy pressures, but it shouldn't really need to
-        // Pressures should be deterministic
+        // This doesn't copy pressures, but it shouldn't need to
+        // Pressures should not have state outside init
 
         if (IsLeafNode())
         {
@@ -198,7 +187,12 @@ public class Miche
 
         var newChildren = new List<Miche>(Children).Select(child => child.DeepCopy()).ToList();
 
-        return new Miche(Pressure, newChildren);
+        var newMiche = new Miche(Pressure)
+        {
+            Children = newChildren,
+        };
+
+        return newMiche;
     }
 
     public override int GetHashCode()
@@ -207,10 +201,5 @@ public class Miche
 
         return Pressure.GetHashCode() * 131 ^ parentHash * 587 ^
             (Occupant == null ? 17 : Occupant.GetHashCode()) * 5171;
-    }
-
-    public virtual string GetDetailString()
-    {
-        return Localization.Translate("MICHE_DETAIL_TEXT").FormatSafe(Pressure.ToString());
     }
 }

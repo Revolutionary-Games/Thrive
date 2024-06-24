@@ -8,18 +8,22 @@ public class RootPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    public RootPressure() : base(0,
+    public RootPressure() : base(1,
         [
             new AddOrganelleAnywhere(_ => true), // Add a little bit of randomness to the miche tree
-            new RemoveAnyOrganelle(),
-        ],
-        0)
+            new RemoveOrganelle(_ => true),
+        ])
     {
     }
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
         return 1;
+    }
+
+    public override float GetEnergy()
+    {
+        return 0;
     }
 
     public override string ToString()

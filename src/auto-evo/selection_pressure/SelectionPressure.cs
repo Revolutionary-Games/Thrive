@@ -6,16 +6,15 @@ public abstract class SelectionPressure
 {
     public readonly float Strength;
     public readonly List<IMutationStrategy<MicrobeSpecies>> Mutations;
-    public readonly int EnergyProvided;
 
-    public SelectionPressure(float strength, List<IMutationStrategy<MicrobeSpecies>> mutations, int energyProvided)
+    public SelectionPressure(float strength, List<IMutationStrategy<MicrobeSpecies>> mutations)
     {
         Strength = strength;
         Mutations = mutations;
-        EnergyProvided = energyProvided;
     }
 
     public abstract float Score(MicrobeSpecies species, SimulationCache cache);
+    public abstract float GetEnergy();
 
     /// <summary>
     ///   Calculates the relative difference between the old and new scores

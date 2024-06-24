@@ -1020,7 +1020,7 @@ public static class Constants
     public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 100;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
-    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
+    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 150000;
     public const float AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT = 500;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;

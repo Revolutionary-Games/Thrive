@@ -13,7 +13,7 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     private readonly SimulationCache cache;
     private readonly Patch patch;
-    private readonly float weight;
+    private readonly float totalEnergy;
 
     public PredationEffectivenessPressure(MicrobeSpecies prey, Patch patch, float weight, SimulationCache cache) :
         base(weight,
@@ -31,15 +31,16 @@ public class PredationEffectivenessPressure : SelectionPressure
                 // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.AGGRESSION, 150.0f),
                 // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.OPPORTUNISM, 150.0f),
                 // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.FEAR, -150.0f),
-                new RemoveAnyOrganelle(),
+                new RemoveOrganelle(_ => true),
                 new LowerRigidity(),
                 new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
-            ],
-            1000)
+            ])
     {
         this.cache = cache;
         this.patch = patch;
-        this.weight = weight;
+
+        patch.SpeciesInPatch.TryGetValue(prey, out long population);
+        totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
 
         Prey = prey;
     }
@@ -109,7 +110,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         // No Canabalism
         if (species == Prey)
         {
-            return -1.0f;
+            return 0.0f;
         }
 
         var microbeSpecies = species;
@@ -121,10 +122,15 @@ public class PredationEffectivenessPressure : SelectionPressure
         // Explicitly prohibit circular predation relationships
         if (reversePredatorScore > predatorScore)
         {
-            return -1.0f;
+            return 0.0f;
         }
 
-        return predatorScore * weight;
+        return predatorScore;
+    }
+
+    public override float GetEnergy()
+    {
+        return 0;
     }
 
     public override string ToString()

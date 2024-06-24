@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -9,6 +10,7 @@ public partial class MicheDetailsPanel : MarginContainer
 {
     [Export]
     public NodePath? MicheDetailsLabelPath;
+    public WorldGenerationSettings WorldSettings = null!;
 
 #pragma warning disable CA2213
     private CustomRichTextLabel? micheDetailsLabel;
@@ -71,7 +73,20 @@ public partial class MicheDetailsPanel : MarginContainer
     /// </summary>
     private void UpdateMichePreview()
     {
-        micheDetailsLabel!.ExtendedBbcode = PreviewMiche?.GetDetailString();
+        if (previewMiche == null)
+        {
+            micheDetailsLabel!.ExtendedBbcode = null;
+            return;
+        }
+
+        var cache = new SimulationCache(WorldSettings);
+
+        micheDetailsLabel!.ExtendedBbcode = Localization.Translate("MICHE_DETAIL_TEXT").FormatSafe(
+            previewMiche.Pressure.ToString(),
+            previewMiche.Pressure.GetEnergy(),
+            string.Join("\n  ",
+                previewMiche.AllOccupants().ToList().Distinct()
+                    .Select(b => b.FormattedName + ": " + previewMiche.Pressure.Score(b, cache))));
     }
 
     private void OnTranslationsChanged()

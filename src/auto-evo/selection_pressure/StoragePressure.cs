@@ -8,21 +8,23 @@ public class StoragePressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     public readonly Compound Compound;
-    private readonly float weight;
 
     public StoragePressure(float weight, Compound compound) : base(weight,
         [
             new AddOrganelleAnywhere(organelle => organelle.Components.Storage?.Capacity > 0.5f),
-        ],
-        0)
+        ])
     {
         Compound = compound;
-        this.weight = weight;
     }
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
-        return species.StorageCapacity * weight;
+        return species.StorageCapacity;
+    }
+
+    public override float GetEnergy()
+    {
+        return 0;
     }
 
     public override string ToString()

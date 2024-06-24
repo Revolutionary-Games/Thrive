@@ -12,9 +12,6 @@ public class AvoidPredationSelectionPressure : SelectionPressure
 
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-
-    private readonly float weight;
-
     public AvoidPredationSelectionPressure(Species predator, float weight, Patch patch) : base(weight,
         [
             AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
@@ -25,12 +22,10 @@ public class AvoidPredationSelectionPressure : SelectionPressure
                     AddOrganelleAnywhere.Direction.Rear),
                 AddOrganelleAnywhere.ThatCreateCompound(ATP),
             ]),
-        ],
-        0)
+        ])
     {
         Patch = patch;
         Predator = predator;
-        this.weight = weight;
     }
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
@@ -40,10 +35,15 @@ public class AvoidPredationSelectionPressure : SelectionPressure
 
         if (predationScore == 0)
         {
-            return 1.0f * weight;
+            return 1.0f;
         }
 
-        return 1 / predationScore * weight;
+        return 1 / predationScore;
+    }
+
+    public override float GetEnergy()
+    {
+        return 0;
     }
 
     public override string ToString()

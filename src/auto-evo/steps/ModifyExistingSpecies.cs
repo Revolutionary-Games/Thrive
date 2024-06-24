@@ -21,7 +21,7 @@ public class ModifyExistingSpecies : IRunStep
 
     /// <summary>
     ///   Returns a new list of all possible species that might emerge in response to the provided pressures,
-    ///   as well as a copy of the origonal species.
+    ///   as well as a copy of the original species.
     /// </summary>
     /// <returns>List of viable variants, and the provided species</returns>
     public static List<MicrobeSpecies> ViableVariants(RunResults results,
@@ -106,18 +106,15 @@ public class ModifyExistingSpecies : IRunStep
 
         var currentMiche = results.MicheByPatch[Patch];
 
-        // TODO: Make sure this is actually necessary
-        var oldMiche = currentMiche.DeepCopy();
-
         // TODO: Put these in auto evo config
-        const int possibleMutationsPerSpecies = 3;
+        const int possibleMutationsPerSpecies = 3; // FIXME
         const int totalMutationsToTry = 15;
 
         var mutationsToTry = new List<Tuple<MicrobeSpecies, MicrobeSpecies>>();
 
-        var leafNodes = oldMiche.AllLeafNodes().Where(x => x.Occupant != null).ToList();
+        var leafNodes = currentMiche.AllLeafNodes().Where(x => x.Occupant != null).ToList();
 
-        foreach (var species in oldMiche.AllOccupants())
+        foreach (var species in currentMiche.AllOccupants())
         {
             foreach (var traversal in leafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()))
             {
@@ -125,7 +122,7 @@ public class ModifyExistingSpecies : IRunStep
 
                 var pressures = traversal.Select(x => x.Pressure).ToList();
 
-                pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
+                pressures.AddRange(SpeciesDependentPressures(currentMiche, species));
 
                 var variants = ViableVariants(results, species, Patch, partlist, Cache, pressures);
 
