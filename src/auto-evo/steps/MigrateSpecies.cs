@@ -56,6 +56,7 @@ public class MigrateSpecies : IRunStep
             if (moveAmount > 0 && newMiche.InsertSpecies(species, cache))
             {
                 results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
+                return true;
             }
         }
 

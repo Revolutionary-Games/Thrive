@@ -423,6 +423,9 @@ public partial class MicheTree : Control
             var mid = from + new Vector2(0, sizeFactor * DEPTH_SEPARATION / 2.0f);
             tree.DrawLine(from, new Vector2(mid.X, mid.Y), Colors.DarkCyan, lineWidth);
 
+            if (mid.X > to.X)
+                halfLineWidth = -halfLineWidth;
+
             // We draw horizontal line a little longer so the turning point looks better.
             tree.DrawLine(new Vector2(mid.X - halfLineWidth, mid.Y), new Vector2(to.X + halfLineWidth, mid.Y),
                 Colors.DarkCyan, lineWidth);

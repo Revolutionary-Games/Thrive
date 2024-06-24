@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using System.Collections.Generic;
 
 public abstract class SelectionPressure
@@ -50,4 +51,10 @@ public abstract class SelectionPressure
     }
 
     public abstract override string ToString();
+
+    /// <summary>
+    ///   A description of this miche. Needs to support translations changing and be player readable
+    /// </summary>
+    /// <returns>A formattable that has the description in it</returns>
+    public abstract IFormattable GetDescription();
 }

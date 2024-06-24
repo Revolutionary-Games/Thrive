@@ -1,5 +1,7 @@
 ﻿namespace AutoEvo;
 
+using System;
+
 public class AutotrophEnergyEfficiencyPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -13,11 +15,10 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
     public readonly Compound OutCompound;
 
     public AutotrophEnergyEfficiencyPressure(Patch patch, Compound compound, Compound outCompound, float weight) :
-        base(weight,
-            [
-                AddOrganelleAnywhere.ThatUseCompound(compound),
-                RemoveOrganelle.ThatUseCompound(compound)
-            ])
+        base(weight, [
+            AddOrganelleAnywhere.ThatUseCompound(compound),
+            RemoveOrganelle.ThatUseCompound(compound),
+        ])
     {
         Patch = patch;
         Compound = compound;
@@ -41,6 +42,11 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
                         compoundOut += outputAmount;
                     }
                 }
+                else if (process.Process.Outputs.TryGetValue(OutCompound, out var outputAmount))
+                {
+                    // Penalize other ways to generate the compound to encourage specialization
+                    compoundOut -= outputAmount / 2;
+                }
             }
         }
 
@@ -53,6 +59,12 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
     public override float GetEnergy()
     {
         return 0;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        // This shouldn't be called on 0 energy pressures
+        return Name;
     }
 
     public override string ToString()

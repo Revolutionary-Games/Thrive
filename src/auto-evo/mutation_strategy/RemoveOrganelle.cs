@@ -7,6 +7,7 @@ using System.Linq;
 public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 {
     public Func<OrganelleDefinition, bool> Criteria;
+
     public RemoveOrganelle(Func<OrganelleDefinition, bool> criteria)
     {
         Criteria = criteria;

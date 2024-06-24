@@ -1,5 +1,7 @@
 ﻿namespace AutoEvo;
 
+using System;
+
 public class AvoidPredationSelectionPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -12,17 +14,17 @@ public class AvoidPredationSelectionPressure : SelectionPressure
 
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-    public AvoidPredationSelectionPressure(Species predator, float weight, Patch patch) : base(weight,
-        [
-            AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
-            new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
-                AddOrganelleAnywhere.Direction.Front),
-            new AddMultipleOrganelles([
-                new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
-                    AddOrganelleAnywhere.Direction.Rear),
-                AddOrganelleAnywhere.ThatCreateCompound(ATP),
-            ]),
-        ])
+
+    public AvoidPredationSelectionPressure(Species predator, float weight, Patch patch) : base(weight, [
+        AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
+        new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
+            AddOrganelleAnywhere.Direction.Front),
+        new AddMultipleOrganelles([
+            new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
+                AddOrganelleAnywhere.Direction.Rear),
+            AddOrganelleAnywhere.ThatCreateCompound(ATP),
+        ]),
+    ])
     {
         Patch = patch;
         Predator = predator;
@@ -44,6 +46,12 @@ public class AvoidPredationSelectionPressure : SelectionPressure
     public override float GetEnergy()
     {
         return 0;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        // This shouldn't be called on 0 energy pressures
+        return Name;
     }
 
     public override string ToString()

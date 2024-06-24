@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-19 11:03+0300\n"
+"POT-Creation-Date: 2024-06-24 15:31-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -3851,10 +3851,6 @@ msgstr ""
 "Möchtest du trotzdem versuchen den Spielstand zu laden?"
 
 #, fuzzy
-msgid "OPENGL_MODE_WARNING"
-msgstr "GLES2-Modus-Warnung"
-
-#, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Du betreibst Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird wahrscheinlich Probleme verursachen. Versuche deine Grafiktreiber zu aktualisieren und/oder die Verwendung von AMD- oder Nvidia-Grafiken zur Ausführung von Thrive zu erzwingen."
 
@@ -4567,9 +4563,6 @@ msgstr ""
 "\n"
 "Wenn das Problem, das den Startfehler verursacht, nicht behoben wird, müssen Sie Thrive mehrmals neu starten und abstürzen lassen, um wieder in den abgesicherten Modus zu gelangen."
 
-msgid "SAFE_MODE_TITLE"
-msgstr "Thrive im abgesicherten Modus gestartet"
-
 msgid "SAVE"
 msgstr "Speichern"
 
@@ -5063,10 +5056,6 @@ msgstr "Steam ist momentan nicht erreichbar, bitte versuche es erneut"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Unbekannter Steam-Fehler ist aufgetreten"
 
-#, fuzzy
-msgid "STEAM_INIT_FAILED"
-msgstr "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen"
-
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen sind nicht verfügbar.\n"
@@ -5086,10 +5075,6 @@ msgstr "Speicher"
 
 msgid "STORAGE_COLON"
 msgstr "Speicherplatz:"
-
-#, fuzzy
-msgid "STORAGE_PRESSURE"
-msgstr "Druck"
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
@@ -7138,6 +7123,21 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#, fuzzy
+#~ msgid "OPENGL_MODE_WARNING"
+#~ msgstr "GLES2-Modus-Warnung"
+
+#~ msgid "SAFE_MODE_TITLE"
+#~ msgstr "Thrive im abgesicherten Modus gestartet"
+
+#, fuzzy
+#~ msgid "STEAM_INIT_FAILED"
+#~ msgstr "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen"
+
+#, fuzzy
+#~ msgid "STORAGE_PRESSURE"
+#~ msgstr "Druck"
 
 #, fuzzy
 #~ msgid "PATCH"

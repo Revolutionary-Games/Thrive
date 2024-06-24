@@ -1,12 +1,9 @@
 ﻿namespace AutoEvo;
 
-using Godot;
-
 public class GenerateMiche : IRunStep
 {
     public Patch Patch;
     public SimulationCache Cache;
-    public bool PlayerPatch;
 
     private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
@@ -18,11 +15,10 @@ public class GenerateMiche : IRunStep
     private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
 
-    public GenerateMiche(Patch patch, SimulationCache cache, bool playerPatch)
+    public GenerateMiche(Patch patch, SimulationCache cache)
     {
         Patch = patch;
         Cache = cache;
-        PlayerPatch = playerPatch;
     }
 
     public int TotalSteps => 1;
@@ -56,18 +52,14 @@ public class GenerateMiche : IRunStep
         }
 
         // Iron
-        if (Patch.Biome.TryGetCompound(Iron, CompoundAmountType.Biome, out var iron) && iron.Amount > 0)
+        if (Patch.Biome.Chunks.TryGetValue("ironSmallChunk", out var smallChunk) && smallChunk.Density > 0)
         {
-            var ironMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Iron, ATP, 5.0f));
-            ironMiche.AddChild(new Miche(new CompoundCloudPressure(Patch, 1, Iron)));
+            var ironMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Iron, ATP, 1.0f));
 
-            if (Patch.Biome.Chunks.ContainsKey("ironSmallChunk"))
-                ironMiche.AddChild(new Miche(new ChunkCompoundPressure(Patch, 1, "ironSmallChunk", Iron)));
+            ironMiche.AddChild(new Miche(new ChunkCompoundPressure(Patch, 1, "ironSmallChunk", Iron)));
 
-            if (Patch.Biome.Chunks.ContainsKey("ironBigChunk"))
+            if (Patch.Biome.Chunks.TryGetValue("ironBigChunk", out var bigChunk) && bigChunk.Density > 0)
                 ironMiche.AddChild(new Miche(new ChunkCompoundPressure(Patch, 1, "ironBigChunk", Iron)));
-
-            GD.Print(Patch.Biome.Chunks.Keys);
 
             generatedMiche.AddChild(ironMiche);
         }
@@ -76,10 +68,11 @@ public class GenerateMiche : IRunStep
         if (Patch.Biome.TryGetCompound(HydrogenSulfide, CompoundAmountType.Biome, out var hydrogenSulfide) &&
             hydrogenSulfide.Amount > 0)
         {
-            var hydrogenSulfideMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, HydrogenSulfide, Glucose, 5.0f));
-            var generateATP = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 1.0f));
+            var hydrogenSulfideMiche = new Miche(
+                new AutotrophEnergyEfficiencyPressure(Patch, HydrogenSulfide, Glucose, 1.0f));
+            var generateATP = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 0.5f));
 
-            generateATP.AddChild(new Miche(new CompoundCloudPressure(Patch, 2.0f, HydrogenSulfide)));
+            generateATP.AddChild(new Miche(new CompoundCloudPressure(Patch, 1.0f, HydrogenSulfide)));
             hydrogenSulfideMiche.AddChild(generateATP);
             generatedMiche.AddChild(hydrogenSulfideMiche);
         }
@@ -87,7 +80,10 @@ public class GenerateMiche : IRunStep
         // Sunlight
         if (Patch.Biome.TryGetCompound(Sunlight, CompoundAmountType.Biome, out var sunlight) && sunlight.Ambient > 0)
         {
-            generatedMiche.AddChild(new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Sunlight, Glucose, 5.0f)));
+            var sunlightMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Sunlight, Glucose, 1.0f));
+            sunlightMiche.AddChild(new Miche(new EnvironmentalCompoundPressure(Patch, 1, Sunlight)));
+
+            generatedMiche.AddChild(sunlightMiche);
         }
 
         // Heat
@@ -95,14 +91,17 @@ public class GenerateMiche : IRunStep
         if (Patch.Biome.TryGetCompound(Temperature, CompoundAmountType.Biome, out var temperature) &&
             temperature.Ambient > 1)
         {
-            generatedMiche.AddChild(new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Temperature, ATP, 5.0f)));
+            var tempMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Temperature, ATP, 1.0f));
+            tempMiche.AddChild(new Miche(new EnvironmentalCompoundPressure(Patch, 1, Temperature)));
+
+            generatedMiche.AddChild(tempMiche);
         }
 
         // Heterotrophic Miches
         foreach (var possiblePrey in Patch.SpeciesInPatch)
         {
             generatedMiche.AddChild(
-                new Miche(new PredationEffectivenessPressure((MicrobeSpecies)possiblePrey.Key, Patch, 10.0f, Cache)));
+                new Miche(new PredationEffectivenessPressure((MicrobeSpecies)possiblePrey.Key, Patch, 1.0f, Cache)));
         }
 
         return rootMiche;

@@ -244,12 +244,6 @@ public static class PopulationSimulation
                     continue;
 
                 energyBySpecies[currentSpecies] += energy;
-
-                if (trackEnergy)
-                {
-                    populations.AddTrackedEnergyForSpecies(currentSpecies, patch, niche,
-                        fitnessBySpecies[currentSpecies], energy, totalNicheFitness);
-                }
             }
         }
 

@@ -35,6 +35,17 @@ public static class CommonMutationFunctions
                         hexOffset *= radius;
                         result.Position = pos + hexOffset;
 
+                        if (organelle.HasMovementComponent)
+                        {
+                            // Face movement to move forward
+                            result.Orientation = 3;
+
+                            if (existingOrganelles.CanPlace(result, new List<Hex>(), new List<Hex>()))
+                            {
+                                return result;
+                            }
+                        }
+
                         // Check every possible rotation value.
                         for (int rotation = 0; rotation <= 5; ++rotation)
                         {

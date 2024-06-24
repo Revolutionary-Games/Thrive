@@ -1,4 +1,4 @@
-namespace AutoEvo;
+﻿namespace AutoEvo;
 
 using System;
 using Godot;
@@ -16,10 +16,10 @@ public class ChunkCompoundPressure : SelectionPressure
 
     public ChunkCompoundPressure(Patch patch, float weight, string chunkType, Compound compound) : base(weight, [])
     {
-        if (!patch.Biome.Chunks.TryGetValue(chunkType, out var chunk))
+        if (!patch.Biome.Chunks.TryGetValue(chunkType, out var chunkData))
             throw new ArgumentException("Chunk does not exsist in patch");
 
-        this.chunk = chunk;
+        chunk = chunkData;
 
         if (chunk.Compounds?.TryGetValue(compound, out var compoundAmount) != true)
             throw new ArgumentException("Chunk does not exsist in patch");
@@ -39,6 +39,14 @@ public class ChunkCompoundPressure : SelectionPressure
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
         return 1;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        return new LocalizedString("CHUNK_FOOD_SOURCE",
+            string.IsNullOrEmpty(chunk.Name) ?
+                new LocalizedString("NOT_FOUND_CHUNK") :
+                new LocalizedString(chunk.Name));
     }
 
     public override float GetEnergy()

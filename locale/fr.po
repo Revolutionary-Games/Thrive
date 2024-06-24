@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-19 11:03+0300\n"
+"POT-Creation-Date: 2024-06-24 15:31-0500\n"
 "PO-Revision-Date: 2024-06-16 10:22+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -3756,9 +3756,6 @@ msgstr ""
 "Vous pouvez signaler les problèmes rencontrés, mais ils n'ont pas la plus haute priorité actuellement.\n"
 "Voulez-vous essayer de charger la sauvegarde malgré tout ?"
 
-msgid "OPENGL_MODE_WARNING"
-msgstr "Avertissement mode OpenGL"
-
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Vous utilisez Thrive avec OpenGL. Cela demeure non testé et risque de causer des problèmes. Assurez-vous d'utiliser des cartes graphiques (processeurs graphiques ou intégrées) suffisamment récentes et essayez de mettre à jour vos pilotes vidéos. Pour les ordinateur portables vous pouvez avoir besoin de forcer l'utilisation des cartes graphiques AMD ou Nvidia dédiées pour lancer Thrive au lieu des cartes graphiques intégrées."
 
@@ -4440,9 +4437,6 @@ msgstr ""
 "\n"
 "Si vous ne résolvez pas le problème à l'origine de l'échec du démarrage, vous devrez redémarrer et faire planter Thrive plusieurs fois pour revenir en mode sans échec."
 
-msgid "SAFE_MODE_TITLE"
-msgstr "Thrive a démarré en mode sans échec"
-
 msgid "SAVE"
 msgstr "Sauvegarder"
 
@@ -4918,9 +4912,6 @@ msgstr "Steam est indisponible pour le moment, veuillez réessayer ultérieureme
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Une erreur Steam inconnue vient de se produire"
 
-msgid "STEAM_INIT_FAILED"
-msgstr "L'initialisation de Steam a échoué"
-
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "L'initialisation de la bibliothèque du client Steam a échoué. Les fonctionnalités Steam seront indisponibles.\n"
@@ -4940,10 +4931,6 @@ msgstr "Stockage"
 
 msgid "STORAGE_COLON"
 msgstr "Stockage :"
-
-#, fuzzy
-msgid "STORAGE_PRESSURE"
-msgstr "Pression"
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
@@ -6885,6 +6872,19 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "OPENGL_MODE_WARNING"
+#~ msgstr "Avertissement mode OpenGL"
+
+#~ msgid "SAFE_MODE_TITLE"
+#~ msgstr "Thrive a démarré en mode sans échec"
+
+#~ msgid "STEAM_INIT_FAILED"
+#~ msgstr "L'initialisation de Steam a échoué"
+
+#, fuzzy
+#~ msgid "STORAGE_PRESSURE"
+#~ msgstr "Pression"
 
 #, fuzzy
 #~ msgid "PATCH"

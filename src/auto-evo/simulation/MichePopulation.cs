@@ -1,9 +1,8 @@
-namespace AutoEvo;
+﻿namespace AutoEvo;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Godot;
 using Xoshiro.PRNG64;
 
 /// <summary>
@@ -38,8 +37,7 @@ public static class MichePopulation
 
         while (parameters.StepsLeft > 0)
         {
-            RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache,
-                parameters.AutoEvoConfiguration, parameters.WorldSettings);
+            RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache);
             --parameters.StepsLeft;
         }
     }
@@ -135,15 +133,13 @@ public static class MichePopulation
     }
 
     private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
-        IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache,
-        IAutoEvoConfiguration autoEvoConfiguration, WorldGenerationSettings worldSettings)
+        IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache)
     {
         foreach (var entry in patchesToSimulate)
         {
             // Simulate the species in each patch taking into account the already computed populations
             SimulatePatchStep(parameters, entry.Value,
-                species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0),
-                random, cache, autoEvoConfiguration, worldSettings);
+                species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0), random, cache);
         }
     }
 
@@ -151,16 +147,17 @@ public static class MichePopulation
     ///   The heart of the simulation that handles the processed parameters and calculates future populations.
     /// </summary>
     private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
-        IEnumerable<Species> genericSpecies, Random random, SimulationCache cache,
-        IAutoEvoConfiguration autoEvoConfiguration, WorldGenerationSettings worldSettings)
+        IEnumerable<Species> genericSpecies, Random random, SimulationCache cache)
     {
         _ = random;
 
         var populations = simulationConfiguration.Results;
         bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
-        bool dayNightCycle = worldSettings.DayNightCycleEnabled;
 
         populations.MicheByPatch.TryGetValue(patch, out var miche);
+
+        foreach (var s in simulationConfiguration.ExtraSpecies)
+            miche!.InsertSpecies((MicrobeSpecies)s, cache);
 
         var species = genericSpecies.ToList();
 
@@ -172,10 +169,38 @@ public static class MichePopulation
 
         foreach (var currentSpecies in species)
         {
-            var totalEnergy = leafNodes.Where(x => x.Occupant == currentSpecies).Select(x => x.BackTraversal())
-                .SelectMany(x => x).Distinct().Select(x => x.Pressure.GetEnergy()).Sum();
+            var energyBalanceInfo = cache.GetEnergyBalanceForSpecies((MicrobeSpecies)currentSpecies, patch.Biome);
+            var individualCost = energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+                * currentSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
 
-            long newPopulation = (long)(totalEnergy / ((MicrobeSpecies)currentSpecies).Organelles.Count);
+            var miches = leafNodes.Where(x => x.Occupant == currentSpecies).Select(x => x.BackTraversal())
+                .SelectMany(x => x).Distinct().ToList();
+
+            float totalEnergy = 0;
+
+            foreach (var subMiche in miches)
+            {
+                var micheEnergy = subMiche.Pressure.GetEnergy();
+
+                if (micheEnergy <= 0)
+                    continue;
+
+                totalEnergy += micheEnergy;
+
+                if (trackEnergy)
+                {
+                    populations.AddTrackedEnergyForSpecies(currentSpecies, patch, subMiche.Pressure,
+                        subMiche.Pressure.Score((MicrobeSpecies)currentSpecies, cache), micheEnergy);
+                }
+            }
+
+            long newPopulation = (long)(totalEnergy / individualCost);
+
+            if (trackEnergy)
+            {
+                populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
+                    totalEnergy, individualCost);
+            }
 
             // Can't survive without enough population
             if (newPopulation < Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)

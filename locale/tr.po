@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-19 11:03+0300\n"
+"POT-Creation-Date: 2024-06-24 15:31-0500\n"
 "PO-Revision-Date: 2024-06-17 08:11+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -3707,9 +3707,6 @@ msgstr ""
 "Karşılaştığınız sorunları rapor edebilirsiniz ancak şu an bunlar da en büyük öncelik değil.\n"
 "Yine de kaydı yüklemeyi denemek ister misiniz?"
 
-msgid "OPENGL_MODE_WARNING"
-msgstr "OpenGL Mod Uyarısı"
-
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Thrive'ı OpenGL ile çalıştırmaktasınız. Bu mod ciddi derecede test edilmemiştir ve bu modun sorunlara neden olması muhtemeldir. Yeterince yeni bir ekran kartı ya da dahili ekran kartı kullandığınızdan emin olun ve ekran kartı sürücülerinizi güncelleştirmeyi deneyin. Dizüstü bilgisayarlarda Thrive'ı çalıştırmak için, dahili grafiklerin yerine, harici AMD veya Nvidia grafiklerini kullanmaya zorlamanız gerekebilir."
 
@@ -4388,9 +4385,6 @@ msgstr ""
 "\n"
 "Eğer başlatma hatasına neden olan sorunu düzeltemezseniz, güvenli moda geri dönmek için Thrive'ı defalarca yeniden başlatmanız gerekecektir."
 
-msgid "SAFE_MODE_TITLE"
-msgstr "Thrive, Güvenli Modda Başlatıldı"
-
 msgid "SAVE"
 msgstr "Kaydet"
 
@@ -4860,9 +4854,6 @@ msgstr "Steam şu an mevcut değil, lütfen tekrar deneyin"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Bilinmeyen bir Steam hatası meydana geldi"
 
-msgid "STEAM_INIT_FAILED"
-msgstr "Steam'i Başlatma Başarısız"
-
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Steam istemci kütüphanesini başlatma işlemi başarısız oldu. Steam özellikleri mevcut olmayacak.\n"
@@ -4882,10 +4873,6 @@ msgstr "Depo"
 
 msgid "STORAGE_COLON"
 msgstr "Depo:"
-
-#, fuzzy
-msgid "STORAGE_PRESSURE"
-msgstr "Basınç"
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr "saniye hızda"
@@ -7022,6 +7009,19 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "OPENGL_MODE_WARNING"
+#~ msgstr "OpenGL Mod Uyarısı"
+
+#~ msgid "SAFE_MODE_TITLE"
+#~ msgstr "Thrive, Güvenli Modda Başlatıldı"
+
+#~ msgid "STEAM_INIT_FAILED"
+#~ msgstr "Steam'i Başlatma Başarısız"
+
+#, fuzzy
+#~ msgid "STORAGE_PRESSURE"
+#~ msgstr "Basınç"
 
 #, fuzzy
 #~ msgid "PATCH"

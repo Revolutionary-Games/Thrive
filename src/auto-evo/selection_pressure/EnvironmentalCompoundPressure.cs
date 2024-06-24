@@ -1,4 +1,4 @@
-namespace AutoEvo;
+﻿namespace AutoEvo;
 
 using System;
 
@@ -26,12 +26,19 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
-        return 1;
+        return species.StorageCapacity;
     }
 
     public override float GetEnergy()
     {
         return totalEnergy;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        // TODO: somehow allow the compound name to translate properly. We now have custom BBCode to refer to
+        // compounds so this should be doable
+        return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE", compound.Name);
     }
 
     public override string ToString()

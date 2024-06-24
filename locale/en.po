@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-19 11:03+0300\n"
+"POT-Creation-Date: 2024-06-24 15:31-0500\n"
 "PO-Revision-Date: 2024-06-17 08:11+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1950,7 +1950,7 @@ msgid "FOOD_CHAIN"
 msgstr "Food Chain"
 
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: {4})"
+msgstr "{0} energy: {1} (fitness: {2})"
 
 msgid "FORGET_MOD_DETAILS"
 msgstr "Remove Local Data"
@@ -3699,9 +3699,6 @@ msgstr ""
 "You may report any issues you encounter, but they aren't the highest priority right now.\n"
 "Do you want to try loading the save anyway?"
 
-msgid "OPENGL_MODE_WARNING"
-msgstr "OpenGL Mode Warning"
-
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "You are running Thrive with OpenGL. This is severely untested and is likely to cause issues. Make sure you are using a new enough GPU or integrated graphics and try to update your video drivers. For laptops you may need to force dedicated AMD or Nvidia graphics to be used to run Thrive instead of integrated graphics."
 
@@ -4375,9 +4372,6 @@ msgstr ""
 "\n"
 "If you don't fix the issue causing the start failure you will need to restart and crash Thrive multiple times to get back to safe mode."
 
-msgid "SAFE_MODE_TITLE"
-msgstr "Thrive Started In Safe Mode"
-
 msgid "SAVE"
 msgstr "Save"
 
@@ -4847,9 +4841,6 @@ msgstr "Steam is unavailable currently, please retry"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Unknown Steam error happened"
 
-msgid "STEAM_INIT_FAILED"
-msgstr "Steam Initialization Failed"
-
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Steam client library initialization has failed. Steam features will be unavailable.\n"
@@ -4869,9 +4860,6 @@ msgstr "Storage"
 
 msgid "STORAGE_COLON"
 msgstr "Storage:"
-
-msgid "STORAGE_PRESSURE"
-msgstr "Storage Pressure"
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr "seconds of"
@@ -7007,6 +6995,18 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "OPENGL_MODE_WARNING"
+#~ msgstr "OpenGL Mode Warning"
+
+#~ msgid "SAFE_MODE_TITLE"
+#~ msgstr "Thrive Started In Safe Mode"
+
+#~ msgid "STEAM_INIT_FAILED"
+#~ msgstr "Steam Initialization Failed"
+
+#~ msgid "STORAGE_PRESSURE"
+#~ msgstr "Storage Pressure"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost"

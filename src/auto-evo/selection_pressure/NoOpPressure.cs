@@ -1,5 +1,7 @@
 ﻿namespace AutoEvo;
 
+using System;
+
 public class NoOpPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -9,7 +11,8 @@ public class NoOpPressure : SelectionPressure
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     public NoOpPressure() : base(1, [])
-    { }
+    {
+    }
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
@@ -19,6 +22,12 @@ public class NoOpPressure : SelectionPressure
     public override float GetEnergy()
     {
         return 0;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        // This shouldn't be called on 0 energy pressures
+        return Name;
     }
 
     public override string ToString()

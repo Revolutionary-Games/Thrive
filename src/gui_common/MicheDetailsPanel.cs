@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using System.Linq;
 using Godot;
 
@@ -10,6 +11,7 @@ public partial class MicheDetailsPanel : MarginContainer
 {
     [Export]
     public NodePath? MicheDetailsLabelPath;
+
     public WorldGenerationSettings WorldSettings = null!;
 
 #pragma warning disable CA2213
@@ -86,7 +88,7 @@ public partial class MicheDetailsPanel : MarginContainer
             previewMiche.Pressure.GetEnergy(),
             string.Join("\n  ",
                 previewMiche.AllOccupants().ToList().Distinct()
-                    .Select(b => b.FormattedName + ": " + previewMiche.Pressure.Score(b, cache))));
+                    .Select(b => b.FormattedName + ": " + Math.Round(previewMiche.Pressure.Score(b, cache), 3))));
     }
 
     private void OnTranslationsChanged()

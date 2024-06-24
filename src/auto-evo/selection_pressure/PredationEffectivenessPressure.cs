@@ -1,5 +1,7 @@
 ﻿namespace AutoEvo;
 
+using System;
+
 public class PredationEffectivenessPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -16,25 +18,24 @@ public class PredationEffectivenessPressure : SelectionPressure
     private readonly float totalEnergy;
 
     public PredationEffectivenessPressure(MicrobeSpecies prey, Patch patch, float weight, SimulationCache cache) :
-        base(weight,
-            [
-                new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
-                AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
-                new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
-                    AddOrganelleAnywhere.Direction.Front),
-                new AddMultipleOrganelles([
-                    new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
-                        AddOrganelleAnywhere.Direction.Rear),
-                    AddOrganelleAnywhere.ThatCreateCompound(ATP),
-                ]),
+        base(weight, [
+            new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
+            AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
+            new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
+                AddOrganelleAnywhere.Direction.Front),
+            new AddMultipleOrganelles([
+                new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
+                    AddOrganelleAnywhere.Direction.Rear),
+                AddOrganelleAnywhere.ThatCreateCompound(ATP),
+            ]),
 
-                // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.AGGRESSION, 150.0f),
-                // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.OPPORTUNISM, 150.0f),
-                // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.FEAR, -150.0f),
-                new RemoveOrganelle(_ => true),
-                new LowerRigidity(),
-                new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
-            ])
+            // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.AGGRESSION, 150.0f),
+            // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.OPPORTUNISM, 150.0f),
+            // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.FEAR, -150.0f),
+            new RemoveOrganelle(_ => true),
+            new LowerRigidity(),
+            new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
+        ])
     {
         this.cache = cache;
         this.patch = patch;
@@ -130,7 +131,12 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     public override float GetEnergy()
     {
-        return 0;
+        return totalEnergy;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        return new LocalizedString("PREDATION_FOOD_SOURCE", Prey.FormattedNameBbCode);
     }
 
     public override string ToString()

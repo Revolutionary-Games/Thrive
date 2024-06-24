@@ -1,5 +1,7 @@
 ﻿namespace AutoEvo;
 
+using System;
+
 public class MetabolicStabilityPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -10,11 +12,10 @@ public class MetabolicStabilityPressure : SelectionPressure
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private readonly Patch patch;
 
-    public MetabolicStabilityPressure(Patch patch, float weight) : base(weight,
-        [
-            AddOrganelleAnywhere.ThatCreateCompound(ATP),
-            RemoveOrganelle.ThatUseCompound(ATP)
-        ])
+    public MetabolicStabilityPressure(Patch patch, float weight) : base(weight, [
+        AddOrganelleAnywhere.ThatCreateCompound(ATP),
+        RemoveOrganelle.ThatUseCompound(ATP),
+    ])
     {
         this.patch = patch;
     }
@@ -45,6 +46,12 @@ public class MetabolicStabilityPressure : SelectionPressure
     public override float GetEnergy()
     {
         return 0;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        // This shouldn't be called on 0 energy pressures
+        return Name;
     }
 
     public override string ToString()

@@ -1,5 +1,7 @@
 ﻿namespace AutoEvo;
 
+using System;
+
 public class RootPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -8,11 +10,10 @@ public class RootPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    public RootPressure() : base(1,
-        [
-            new AddOrganelleAnywhere(_ => true), // Add a little bit of randomness to the miche tree
-            new RemoveOrganelle(_ => true),
-        ])
+    public RootPressure() : base(1, [
+        new AddOrganelleAnywhere(_ => true), // Add a little bit of randomness to the miche tree
+        new RemoveOrganelle(_ => true),
+    ])
     {
     }
 
@@ -24,6 +25,12 @@ public class RootPressure : SelectionPressure
     public override float GetEnergy()
     {
         return 0;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        // This shouldn't be called on 0 energy pressures
+        return Name;
     }
 
     public override string ToString()

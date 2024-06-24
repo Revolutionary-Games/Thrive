@@ -13,11 +13,10 @@ public class CompoundCloudPressure : SelectionPressure
     private readonly float totalEnergy;
     private readonly Compound compound;
 
-    public CompoundCloudPressure(Patch patch, float weight, Compound compound) : base(weight,
-        [
-            new LowerRigidity(),
-            new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
-        ])
+    public CompoundCloudPressure(Patch patch, float weight, Compound compound) : base(weight, [
+        new LowerRigidity(),
+        new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
+    ])
     {
         if (!compound.IsCloud)
             throw new ArgumentException("Given compound to cloud pressure is not of cloud type");
@@ -42,6 +41,13 @@ public class CompoundCloudPressure : SelectionPressure
     public override float GetEnergy()
     {
         return totalEnergy;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        // TODO: somehow allow the compound name to translate properly. Maybe we need to use bbcode to refer to the
+        // compounds?
+        return new LocalizedString("COMPOUND_FOOD_SOURCE", compound.Name);
     }
 
     public override string ToString()
