@@ -255,7 +255,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "strainBar", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "sprintHotkey", "strainBar", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -300,6 +300,7 @@ PatchExtinctionBoxScene = ExtResource("60")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
+sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("StrainBar")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
@@ -701,6 +702,16 @@ theme_override_styles/pressed = SubResource("1")
 ActionIcon = ExtResource("21")
 ActionName = "g_secrete_slime"
 
+[node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+visible = false
+layout_mode = 2
+tooltip_text = "SECRETE_SLIME_TOOLTIP"
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
+ActionIcon = ExtResource("21")
+ActionName = "g_secrete_slime"
+
 [node name="HintText" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -729,5 +740,6 @@ offset_bottom = 97.0
 [connection signal="pressed" from="ScrollContainer/HotBar/BindingMode" to="." method="OnBindingModePressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/SecreteSlime" to="." method="OnSecreteSlimePressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
 
 [editable path="PausePrompt"]

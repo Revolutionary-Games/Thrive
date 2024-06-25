@@ -38,10 +38,8 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(MicrobeTemporaryEffects))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
-[RunsAfter(typeof(ProcessSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
 [RunsBefore(typeof(StrainSystem))]
-[RunsBefore(typeof(OsmoregulationAndHealingSystem))]
 [RuntimeCost(14)]
 public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 {

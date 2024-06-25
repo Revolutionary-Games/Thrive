@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://5m75uu7qtg8x"]
+[gd_scene load_steps=43 format=3 uid="uid://5m75uu7qtg8x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="6"]
@@ -74,7 +74,31 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "strainBar", "pausePrompt", "pauseInfo", "hudMessages")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwi1j"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7grn"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.784314)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "sprintHotkey", "strainBar", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -120,6 +144,7 @@ PatchExtinctionBoxScene = ExtResource("16")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
+sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("StrainBar")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
@@ -166,7 +191,6 @@ offset_right = 150.0
 offset_bottom = 25.0
 fit_content = true
 ExtendedBbcode = "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-EnableTooltipsForMetaTags = null
 
 [node name="BottomLeft" type="Control" parent="."]
 anchors_preset = 0
@@ -194,24 +218,15 @@ alignment = 2
 
 [node name="EnvironmentPanel" parent="BottomLeft/LeftPanels" instance=ExtResource("13_ayo6l")]
 layout_mode = 2
-ApplyCompressedVerticalExtraSpace = null
-PanelCompressed = null
-ShowPanel = null
 
 [node name="CompoundPanels" parent="BottomLeft/LeftPanels" instance=ExtResource("14_47uq8")]
 layout_mode = 2
 ShowAgents = false
-ApplyCompressedVerticalExtraSpace = null
-PanelCompressed = null
-ShowPanel = null
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("69")]
 layout_mode = 1
 offset_top = -40.0
 offset_bottom = -5.0
-ShowCompoundPanelToggles = null
-ShowSuicideButton = null
-ShowProcessesButton = null
 
 [node name="BottomRight" type="Control" parent="."]
 anchors_preset = 0
@@ -479,6 +494,16 @@ tooltip_text = "EJECT_ENGULFED_TOOLTIP"
 ActionIcon = ExtResource("33")
 ActionName = "g_eject_engulfed"
 
+[node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource("78")]
+visible = false
+layout_mode = 2
+tooltip_text = "SECRETE_SLIME_TOOLTIP"
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwi1j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h7grn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h7grn")
+ActionIcon = ExtResource("24")
+ActionName = "g_secrete_slime"
+
 [node name="HintText" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -507,8 +532,6 @@ offset_bottom = -101.0
 
 [node name="PauseInfo" parent="PausePrompt" index="1"]
 offset_bottom = -24.0
-ExtendedBbcode = null
-EnableTooltipsForMetaTags = null
 
 [node name="InventoryScreen" parent="." instance=ExtResource("29")]
 anchors_preset = 0
@@ -533,10 +556,6 @@ offset_top = 108.0
 offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
-OrderMessagesBottomUp = null
-MaxShownMessages = null
-MaxDisplayTimeBeforeForceFade = null
-MidwayFadeValue = null
 
 [node name="RadialPopup" parent="." instance=ExtResource("32")]
 
@@ -556,5 +575,6 @@ WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 [connection signal="pressed" from="ScrollContainer/HotBar/Interact" to="." method="ForwardInteractButton"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Inventory" to="." method="ForwardOpenInventory"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Build" to="." method="ForwardBuildPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
 
 [editable path="PausePrompt"]
