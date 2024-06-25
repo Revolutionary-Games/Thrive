@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -57,6 +57,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private int? playerColonySize;
 
     private bool playerWasDigested;
+
+    /// <summary>
+    ///   Wether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
+    ///   and updating the bar will be ignored
+    /// </summary>
+    private bool playerMissingStrainAffected;
 
     [Signal]
     public delegate void OnToggleEngulfButtonPressedEventHandler();
@@ -312,6 +318,18 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         return stage.Player.Get<CompoundStorage>().Compounds;
     }
 
+    protected override float? ReadPlayerStrainFraction()
+    {
+        if (stage!.Player.Has<StrainAffected>() && !playerMissingStrainAffected)
+        {
+            GD.PrintErr("Player is missing StrainAffected component");
+            playerMissingStrainAffected = true;
+            return null;
+        }
+
+        return stage.Player.Get<StrainAffected>().CalculateStrainFraction();
+    }
+
     protected override Func<Compound, bool> GetIsUsefulCheck()
     {
         if (!stage!.Player.Has<MicrobeColony>())
@@ -429,7 +447,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, engulfing, isDigesting);
+            organelles.HasSignalingAgent, engulfing, isDigesting, control.Sprinting);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);

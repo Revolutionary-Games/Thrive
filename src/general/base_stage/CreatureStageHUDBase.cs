@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Components;
@@ -174,6 +174,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
+    [Export]
+    private ActionButton sprintHotkey = null!;
+
+    [Export]
+    private ProgressBar strainBar = null!;
 
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
@@ -431,6 +436,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         UpdateProcessPanel();
 
         UpdateFossilisationButtons();
+
+        UpdateStrain();
     }
 
     public void SendEditorButtonToTutorial(TutorialState tutorialState)
@@ -672,6 +679,57 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
+    protected void UpdateStrain()
+    {
+        // if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
+        // {
+        //     strainBar.Visible = false;
+        //     return;
+        // }
+
+        var readStrainFraction = ReadPlayerStrainFraction();
+
+        // Skip the rest of the method if player does not have strain
+        if (readStrainFraction == null)
+            return;
+
+        var strainFraction = readStrainFraction.Value;
+
+        // atpBar.TintProgress = StrainGradient.Interpolate(strainFraction);
+
+        strainBar.Value = strainFraction;
+
+        switch (Settings.Instance.StrainBarVisibilityMode.Value)
+        {
+            // TODO: second and thrid setting handling
+
+            case Settings.StrainBarVisibility.Off:
+                strainBar.Hide();
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
+                strainBar.Show();
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenOverZero:
+                strainBar.Show();
+                break;
+            case Settings.StrainBarVisibility.AlwaysVisible:
+                strainBar.Show();
+                break;
+        }
+    }
+
+    /// <summary>
+    ///   Gets the current amount of strain affecting the player
+    /// </summary>
+    /// <returns>
+    ///   Null if the player is missing <see cref="StrainAffected"/>,
+    ///   else the player's strain fraction
+    /// </returns>
+    protected virtual float? ReadPlayerStrainFraction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
     protected void SetEditorButtonFlashEffect(bool enabled)
     {
         editorButton.SetEditorButtonFlashEffect(enabled);
@@ -867,7 +925,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
-        bool showingSignaling, bool engulfOn, bool showEject)
+        bool showingSignaling, bool engulfOn, bool showEject, bool isSprinting)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
@@ -875,6 +933,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
 
+        sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;
         fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
         secreteSlimeHotkey.ButtonPressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
