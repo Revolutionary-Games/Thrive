@@ -383,7 +383,7 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new GenerateMiche(entry.Value, new SimulationCache(worldSettings)));
+            steps.Enqueue(new GenerateMiche(entry.Value, new SimulationCache(worldSettings), worldSettings));
         }
 
         foreach (var entry in map.Patches)

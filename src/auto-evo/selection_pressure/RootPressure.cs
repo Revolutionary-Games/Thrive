@@ -13,6 +13,10 @@ public class RootPressure : SelectionPressure
     public RootPressure() : base(1, [
         new AddOrganelleAnywhere(_ => true), // Add a little bit of randomness to the miche tree
         new RemoveOrganelle(_ => true),
+        new AddMultipleOrganelles([
+            new AddOrganelleAnywhere(organelle => organelle.InternalName == "nucleus"),
+            new AddOrganelleAnywhere(organelle => organelle.RequiresNucleus),
+        ]),
     ])
     {
     }

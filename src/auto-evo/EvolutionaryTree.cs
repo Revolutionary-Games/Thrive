@@ -221,7 +221,7 @@ public partial class EvolutionaryTree : Control
                 if (record.SplitFromID == null)
                 {
                     SetupTreeNode(record.Species,
-                        speciesNodes[speciesID].Last(), generation - 1, true);
+                        speciesNodes[speciesID].Last(), generation, true);
                 }
             }
             else if (record.SplitFromID != null)

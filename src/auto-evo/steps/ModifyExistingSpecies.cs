@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Mutation = System.Tuple<MicrobeSpecies, MicrobeSpecies, RunResults.NewSpeciesType>;
 
 public class ModifyExistingSpecies : IRunStep
 {
@@ -85,6 +86,14 @@ public class ModifyExistingSpecies : IRunStep
             {
                 var newScore = pastPressure.Score(potentialVariant, cache);
                 var oldScore = pastPressure.Score(baseSpecies, cache);
+
+                // Break if mutation fails a new pressure
+                if (newScore <= 0 && oldScore > 0)
+                {
+                    combinedScores = -1;
+                    break;
+                }
+
                 combinedScores += pastPressure.WeightedComparedScores(newScore, oldScore);
             }
 
@@ -104,17 +113,18 @@ public class ModifyExistingSpecies : IRunStep
         // Have this be passed in
         var random = new Random();
 
-        var currentMiche = results.MicheByPatch[Patch];
+        var oldMiche = results.MicheByPatch[Patch];
+        var oldOccupants = oldMiche.AllOccupants().ToList();
 
         // TODO: Put these in auto evo config
-        const int possibleMutationsPerSpecies = 3; // FIXME
-        const int totalMutationsToTry = 15;
+        const int possibleMutationsPerSpecies = 3;
+        const int totalMutationsToTry = 20;
 
-        var mutationsToTry = new List<Tuple<MicrobeSpecies, MicrobeSpecies>>();
+        var mutationsToTry = new List<Mutation>();
 
-        var leafNodes = currentMiche.AllLeafNodes().Where(x => x.Occupant != null).ToList();
+        var leafNodes = oldMiche.AllLeafNodes().Where(x => x.Occupant != null).ToList();
 
-        foreach (var species in currentMiche.AllOccupants())
+        foreach (var species in oldOccupants)
         {
             foreach (var traversal in leafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()))
             {
@@ -122,44 +132,123 @@ public class ModifyExistingSpecies : IRunStep
 
                 var pressures = traversal.Select(x => x.Pressure).ToList();
 
-                pressures.AddRange(SpeciesDependentPressures(currentMiche, species));
+                pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
 
                 var variants = ViableVariants(results, species, Patch, partlist, Cache, pressures);
 
                 mutationsToTry.AddRange(variants.Take(possibleMutationsPerSpecies)
-                    .Select(speciesToAdd => new Tuple<MicrobeSpecies, MicrobeSpecies>(species, speciesToAdd))
-                    .ToList());
+                    .Select(speciesToAdd => new Mutation(species, speciesToAdd,
+                        RunResults.NewSpeciesType.SplitDueToMutation)).ToList());
             }
         }
 
-        var alreadyHandledSpecies = new List<MicrobeSpecies>();
+        // This section of the code tries to mutate species into unfilled miches
+        // Not exactly realistic, but more diversity is more fun for the player
+        var emptytraversals = oldMiche.AllLeafNodes().Where(x => x.Occupant == null)
+            .Select(x => x.BackTraversal()).ToList();
 
-        mutationsToTry = mutationsToTry.OrderBy(_ => random.Next()).Take(totalMutationsToTry).ToList();
-
-        foreach (var pair in mutationsToTry)
+        foreach (var species in oldOccupants)
         {
-            if (pair.Item1 == pair.Item2)
+            foreach (var traversal in emptytraversals)
+            {
+                var partlist = new MutationLibrary(species);
+
+                var pressures = traversal.Select(x => x.Pressure).ToList();
+
+                pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
+
+                var variants = ViableVariants(results, species, Patch, partlist, Cache, pressures);
+
+                mutationsToTry.AddRange(variants.Take(possibleMutationsPerSpecies)
+                    .Select(speciesToAdd => new Mutation(species, speciesToAdd,
+                        RunResults.NewSpeciesType.FillNiche)).ToList());
+            }
+        }
+
+        var newMiche = oldMiche.DeepCopy();
+
+        mutationsToTry = mutationsToTry.Where(x => x.Item1 != x.Item2).OrderBy(_ => random.Next())
+            .Take(totalMutationsToTry).ToList();
+
+        foreach (var mutation in mutationsToTry)
+        {
+            mutation.Item2.OnEdited();
+
+            newMiche.InsertSpecies(mutation.Item2, Cache);
+        }
+
+        var newOccupants = newMiche.AllOccupants().ToList();
+
+        var handledMutations = new List<MicrobeSpecies>();
+
+        // This gets the best mutation for each species.
+        // All other mutations will split off to form a new species.
+        foreach (var species in oldOccupants)
+        {
+            if (!newOccupants.Contains(species) || species.PlayerSpecies)
                 continue;
 
-            pair.Item2.OnEdited();
+            Mutation? bestMutation = null;
+            var bestScore = 0.0f;
 
-            if (!alreadyHandledSpecies.Contains(pair.Item1) && currentMiche.InsertSpecies(pair.Item2, Cache))
+            var parentTraversal = leafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()).ToList();
+            var parentPressures = parentTraversal.SelectMany(x => x).Select(x => x.Pressure).Distinct().ToList();
+
+            // find the initial scores of the parent
+            var pressureScores = new Dictionary<SelectionPressure, float>();
+            foreach (var pressure in parentPressures)
             {
-                alreadyHandledSpecies.Add(pair.Item1);
+                pressureScores[pressure] = pressure.Score(species, Cache);
+            }
 
-                // Check if the mutated species overwrote the old one in all miches
-                if (!pair.Item1.PlayerSpecies && !currentMiche.AllOccupants().Contains(pair.Item1))
+            foreach (var mutation in mutationsToTry.Where(x => x.Item1 == species))
+            {
+                var combinedScores = 0.0f;
+
+                foreach (var traversal in parentTraversal)
                 {
-                    results.AddMutationResultForSpecies(pair.Item1, pair.Item2);
+                    var pressures = traversal.Select(x => x.Pressure).ToList();
+
+                    foreach (var pressure in pressures)
+                    {
+                        var newScore = pressure.Score(mutation.Item2, Cache);
+                        var oldScore = pressureScores[pressure];
+
+                        // Break if mutation fails a pressure
+                        if (newScore <= 0)
+                        {
+                            combinedScores = -1;
+                            goto break_loop;
+                        }
+
+                        combinedScores += pressure.WeightedComparedScores(newScore, oldScore);
+                    }
                 }
-                else
+
+            break_loop:
+                if (combinedScores > bestScore)
                 {
-                    results.AddNewSpecies(pair.Item2,
-                        [
-                            new KeyValuePair<Patch, long>(Patch, 1000),
-                        ],
-                        RunResults.NewSpeciesType.FillNiche, pair.Item1);
+                    bestScore = combinedScores;
+                    bestMutation = mutation;
                 }
+            }
+
+            if (bestMutation != null)
+            {
+                handledMutations.Add(bestMutation.Item2);
+                results.AddMutationResultForSpecies(bestMutation.Item1, bestMutation.Item2);
+            }
+        }
+
+        // Before adding the results for the species we verify the mutations were not overridden in the miche tree
+        // by a better mutation. This pervents species from instantly going extinict.
+        foreach (var mutation in mutationsToTry)
+        {
+            if (newOccupants.Contains(mutation.Item2) && !handledMutations.Contains(mutation.Item2))
+            {
+                handledMutations.Add(mutation.Item2);
+                results.AddNewSpecies(mutation.Item2, [new KeyValuePair<Patch, long>(Patch, 1000)],
+                    mutation.Item3, mutation.Item1);
             }
         }
 
@@ -175,6 +264,7 @@ public class ModifyExistingSpecies : IRunStep
 
     private List<SelectionPressure> SpeciesDependentPressures(Miche miche, Species species)
     {
+        // TODO: Make that weight a constant
         return new List<SelectionPressure>(PredatorsOf(miche, species)
             .Select(x => new AvoidPredationSelectionPressure(x, 5.0f, Patch)).ToList());
     }

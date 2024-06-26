@@ -14,11 +14,13 @@ public class GenerateMiche : IRunStep
     private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
     private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
+    private WorldGenerationSettings worldSettings;
 
-    public GenerateMiche(Patch patch, SimulationCache cache)
+    public GenerateMiche(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings)
     {
         Patch = patch;
         Cache = cache;
+        this.worldSettings = worldSettings;
     }
 
     public int TotalSteps => 1;
@@ -46,7 +48,8 @@ public class GenerateMiche : IRunStep
         if (Patch.Biome.TryGetCompound(Glucose, CompoundAmountType.Biome, out var glucose) && glucose.Amount > 0)
         {
             var glucoseMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 1));
-            glucoseMiche.AddChild(new Miche(new CompoundCloudPressure(Patch, 1, Glucose)));
+            glucoseMiche.AddChild(new Miche(
+                new CompoundCloudPressure(Patch, 1, Glucose, worldSettings.DayNightCycleEnabled)));
 
             generatedMiche.AddChild(glucoseMiche);
         }
@@ -70,9 +73,11 @@ public class GenerateMiche : IRunStep
         {
             var hydrogenSulfideMiche = new Miche(
                 new AutotrophEnergyEfficiencyPressure(Patch, HydrogenSulfide, Glucose, 1.0f));
-            var generateATP = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 0.5f));
+            var generateATP = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 0.25f));
 
-            generateATP.AddChild(new Miche(new CompoundCloudPressure(Patch, 1.0f, HydrogenSulfide)));
+            generateATP.AddChild(new Miche(new CompoundCloudPressure(Patch, 1.0f, HydrogenSulfide,
+                worldSettings.DayNightCycleEnabled)));
+
             hydrogenSulfideMiche.AddChild(generateATP);
             generatedMiche.AddChild(hydrogenSulfideMiche);
         }

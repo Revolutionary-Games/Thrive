@@ -196,6 +196,9 @@ public static class MichePopulation
 
             long newPopulation = (long)(totalEnergy / individualCost);
 
+            if (currentSpecies.PlayerSpecies)
+                newPopulation = simulationConfiguration.Results.GetPopulationInPatch(currentSpecies, patch);
+
             if (trackEnergy)
             {
                 populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,

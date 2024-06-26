@@ -14,6 +14,14 @@ public class AvoidPredationSelectionPressure : SelectionPressure
 
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+    private static readonly MembraneType DoubleMembrane = SimulationParameters.Instance.GetMembrane("double");
+    private static readonly MembraneType CelluloseMembrane = SimulationParameters.Instance.GetMembrane("cellulose");
+    private static readonly MembraneType ChitinMembrane = SimulationParameters.Instance.GetMembrane("chitin");
+
+    private static readonly MembraneType CalciumCarbonateMembrane =
+        SimulationParameters.Instance.GetMembrane("calciumCarbonate");
+
+    private static readonly MembraneType SilicaMembrane = SimulationParameters.Instance.GetMembrane("silica");
 
     public AvoidPredationSelectionPressure(Species predator, float weight, Patch patch) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
@@ -24,6 +32,11 @@ public class AvoidPredationSelectionPressure : SelectionPressure
                 AddOrganelleAnywhere.Direction.Rear),
             AddOrganelleAnywhere.ThatCreateCompound(ATP),
         ]),
+        new ChangeMembraneType(DoubleMembrane),
+        new ChangeMembraneType(CelluloseMembrane),
+        new ChangeMembraneType(ChitinMembrane),
+        new ChangeMembraneType(CalciumCarbonateMembrane),
+        new ChangeMembraneType(SilicaMembrane),
     ])
     {
         Patch = patch;

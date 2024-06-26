@@ -19,6 +19,12 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
             .Where(proc => proc.Process.Inputs.ContainsKey(compound)).Any());
     }
 
+    public static RemoveOrganelle ThatCreateCompound(Compound compound)
+    {
+        return new RemoveOrganelle(organelle => organelle.RunnableProcesses
+            .Where(proc => proc.Process.Outputs.ContainsKey(compound)).Any());
+    }
+
     public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
     {
         // TODO: Make this something passed in

@@ -14,6 +14,8 @@ public class ChunkCompoundPressure : SelectionPressure
     private readonly float totalEnergy;
     private readonly ChunkConfiguration chunk;
 
+    // private readonly Compound compound;
+
     public ChunkCompoundPressure(Patch patch, float weight, string chunkType, Compound compound) : base(weight, [])
     {
         if (!patch.Biome.Chunks.TryGetValue(chunkType, out var chunkData))
@@ -38,7 +40,23 @@ public class ChunkCompoundPressure : SelectionPressure
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
-        return 1;
+        var score = 1.0f;
+
+        // Speed is not too important to chunk microbes
+        // But all else being the same faster is better than slower
+        score += cache.GetBaseSpeedForSpecies(species) * 0.1f;
+
+        // Diminishing returns on storage
+        score += (Mathf.Pow(species.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+
+        // If the species can't engulf, then they are dependent on only eating the runoff compounds
+        if (!species.CanEngulf ||
+            cache.GetBaseHexSizeForSpecies(species) < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+        {
+            score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
+        }
+
+        return score;
     }
 
     public override IFormattable GetDescription()

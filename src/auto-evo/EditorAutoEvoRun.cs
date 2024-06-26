@@ -23,7 +23,7 @@ public class EditorAutoEvoRun : AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new GenerateMiche(entry.Value, new SimulationCache(worldSettings)));
+            steps.Enqueue(new GenerateMiche(entry.Value, new SimulationCache(worldSettings), worldSettings));
         }
 
         steps.Enqueue(new CalculatePopulation(configuration, worldSettings, map,

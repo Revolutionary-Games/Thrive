@@ -36,6 +36,10 @@ public class MigrateSpecies : IRunStep
         {
             var species = occupants.ToList().Random(random);
 
+            // TODO: Make this a game option?
+            if (species.PlayerSpecies)
+                continue;
+
             var population = patch.GetSpeciesSimulationPopulation(species);
             if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
                 continue;

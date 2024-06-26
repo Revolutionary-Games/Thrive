@@ -17,7 +17,7 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
     public AutotrophEnergyEfficiencyPressure(Patch patch, Compound compound, Compound outCompound, float weight) :
         base(weight, [
             AddOrganelleAnywhere.ThatUseCompound(compound),
-            RemoveOrganelle.ThatUseCompound(compound),
+            RemoveOrganelle.ThatCreateCompound(compound),
         ])
     {
         Patch = patch;
@@ -45,7 +45,8 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
                 else if (process.Process.Outputs.TryGetValue(OutCompound, out var outputAmount))
                 {
                     // Penalize other ways to generate the compound to encourage specialization
-                    compoundOut -= outputAmount / 2;
+                    // TODO: Make constant
+                    compoundOut -= outputAmount * 0.1f;
                 }
             }
         }
