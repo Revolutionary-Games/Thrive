@@ -35,7 +35,7 @@ public class GenerateMiche : IRunStep
         return true;
     }
 
-    private Miche GenerateMicheTree()
+    public Miche GenerateMicheTree()
     {
         var rootMiche = new Miche(new RootPressure());
         var generatedMiche = new Miche(new MetabolicStabilityPressure(Patch, 10.0f));
@@ -47,7 +47,7 @@ public class GenerateMiche : IRunStep
         // Glucose
         if (Patch.Biome.TryGetCompound(Glucose, CompoundAmountType.Biome, out var glucose) && glucose.Amount > 0)
         {
-            var glucoseMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 1));
+            var glucoseMiche = new Miche(new AutotrophEnergyEfficiencyPressure(Patch, Glucose, ATP, 1.5f));
             glucoseMiche.AddChild(new Miche(
                 new CompoundCloudPressure(Patch, 1, Glucose, worldSettings.DayNightCycleEnabled)));
 
@@ -112,7 +112,7 @@ public class GenerateMiche : IRunStep
         return rootMiche;
     }
 
-    private Miche PopulateMiche(Miche miche)
+    public Miche PopulateMiche(Miche miche)
     {
         foreach (var species in Patch.SpeciesInPatch.Keys)
         {

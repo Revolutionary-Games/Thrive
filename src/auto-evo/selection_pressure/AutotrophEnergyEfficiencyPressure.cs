@@ -46,12 +46,12 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
                 {
                     // Penalize other ways to generate the compound to encourage specialization
                     // TODO: Make constant
-                    compoundOut -= outputAmount * 0.1f;
+                    compoundOut -= outputAmount * 0.3f;
                 }
             }
         }
 
-        if (compoundOut <= 0)
+        if (compoundIn <= 0)
             return 0;
 
         return compoundOut / compoundIn;

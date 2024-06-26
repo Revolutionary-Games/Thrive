@@ -21,8 +21,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
             AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
-            new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
-                AddOrganelleAnywhere.Direction.Front),
+            new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent, AddOrganelleAnywhere.Direction.Front),
             new AddMultipleOrganelles([
                 new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
                     AddOrganelleAnywhere.Direction.Rear),

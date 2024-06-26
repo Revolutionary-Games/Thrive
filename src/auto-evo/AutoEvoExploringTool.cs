@@ -842,12 +842,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
         world.MicheHistoryList.Add(results.MicheByPatch.ToDictionary(s => s.Key,
             s => s.Value.DeepCopy()));
 
-        // Rebuild Miche Tree
-        if (results.MicheByPatch.TryGetValue(patchDisplayed, out Miche? miche))
-        {
-            micheTree.SetMiche(miche);
-        }
-
         // Add checkbox to history container
         historyListMenu.AddItem(world.CurrentGeneration.ToString(CultureInfo.CurrentCulture), false, Colors.White);
         historyListMenu.CreateElements();
@@ -913,6 +907,10 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         micheDetailsPanel.WorldSettings = world.WorldSettings;
 
+        patchMapDrawer.Map = world.GameProperties.GameWorld.Map;
+        patchMapDrawer.SelectedPatch = patchMapDrawer.PlayerPatch;
+        patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
+
         // Rebuild history list
         historyListMenu.ClearAllItems();
         for (int i = 0; i <= world.CurrentGeneration; ++i)
@@ -935,9 +933,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
         UpdateSpeciesList();
         SpeciesListMenuIndexChanged(0);
         UpdateCurrentWorldStatistics();
-
-        patchMapDrawer.Map = world.GameProperties.GameWorld.Map;
-        patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
 
         if (patchMapDrawer.PlayerPatch != null)
             PatchListMenuUpdate(patchMapDrawer.PlayerPatch);
@@ -1010,7 +1005,17 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private void PatchListMenuIndexChanged(int index)
     {
         var patchName = patchListMenu.Popup.GetItemText(index);
-        var patch = world.GameProperties.GameWorld.Map.Patches.Values.First(p => p.Name.ToString() == patchName);
+        var selectedPatch = world.GameProperties.GameWorld.Map.Patches.Values
+            .First(p => p.Name.ToString() == patchName);
+
+        // Get current snapshot
+        var patch = new Patch(selectedPatch.Name, 0, selectedPatch.BiomeTemplate, selectedPatch.BiomeType,
+            world.PatchHistoryList[generationDisplayed][selectedPatch.ID])
+        {
+            TimePeriod = selectedPatch.TimePeriod,
+            Depth = { [0] = selectedPatch.Depth[0], [1] = selectedPatch.Depth[1] },
+            Visibility = selectedPatch.Visibility,
+        };
 
         PatchListMenuUpdate(patch);
     }
@@ -1020,9 +1025,21 @@ public partial class AutoEvoExploringTool : NodeWithInput
         patchDisplayed = patch;
         patchListMenu.Text = patch.Name.ToString();
 
-        if (world.MicheHistoryList[generationDisplayed].TryGetValue(patch, out Miche? miche))
+        if (generationDisplayed != world.CurrentGeneration &&
+            world.MicheHistoryList[generationDisplayed].TryGetValue(patch, out Miche? miche))
         {
             micheTree.SetMiche(miche);
+        }
+        else
+        {
+            var cache = new SimulationCache(world.WorldSettings);
+
+            var generateMiche = new GenerateMiche(patch, cache, world.WorldSettings);
+            var newMiche = generateMiche.GenerateMicheTree();
+
+            generateMiche.PopulateMiche(newMiche);
+
+            micheTree.SetMiche(newMiche);
         }
     }
 
@@ -1042,8 +1059,16 @@ public partial class AutoEvoExploringTool : NodeWithInput
             micheSpeciesDetailsPanel.Visible = true;
             micheDetailsPanel.Visible = false;
 
-            var species = world.SpeciesHistoryList[generationDisplayed].Values
-                .First(p => p.ID == micheData.Occupant.ID);
+            Species species;
+            if (generationDisplayed == world.CurrentGeneration)
+            {
+                species = patchDisplayed.SpeciesInPatch.Keys.First(p => p.ID == micheData.Occupant.ID);
+            }
+            else
+            {
+                species = world.SpeciesHistoryList[generationDisplayed].Values
+                    .First(p => p.ID == micheData.Occupant.ID);
+            }
 
             micheSpeciesDetailsPanel.PreviewSpecies = species;
         }
@@ -1073,7 +1098,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         };
 
         patchDetailsPanel.SelectedPatch = patch;
-        PatchListMenuUpdate(selectedPatch);
+        PatchListMenuUpdate(patch);
     }
 
     private void PlayWithCurrentSettingPressed()
@@ -1231,8 +1256,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
                     (Species)GameProperties.GameWorld.PlayerSpecies.Clone()
                 },
             });
-
-            MicheHistoryList.Add(new Dictionary<Patch, Miche>());
 
             PatchHistoryList.Add(GameProperties.GameWorld.Map.Patches.ToDictionary(p => p.Key,
                 p => (PatchSnapshot)p.Value.CurrentSnapshot.Clone()));

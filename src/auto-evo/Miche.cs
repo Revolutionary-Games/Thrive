@@ -80,13 +80,13 @@ public class Miche
         }
     }
 
-    public bool InsertSpecies(MicrobeSpecies species, SimulationCache cache)
+    public bool InsertSpecies(MicrobeSpecies species, SimulationCache cache, bool dry = false)
     {
         var scoresDictionary = AllOccupants().Distinct().ToDictionary(x => x, _ => 0.0f);
 
         scoresDictionary[species] = 0.0f;
 
-        return InsertSpecies(species, scoresDictionary, cache);
+        return InsertSpecies(species, scoresDictionary, cache, dry);
     }
 
     /// <summary>
@@ -96,7 +96,7 @@ public class Miche
     ///   Returns a bool based on if the species was inserted into a leaf node
     /// </returns>
     public bool InsertSpecies(MicrobeSpecies species, Dictionary<MicrobeSpecies, float> scoresSoFar,
-        SimulationCache cache)
+        SimulationCache cache, bool dry)
     {
         var myScore = Pressure.Score(species, cache);
 
@@ -106,7 +106,9 @@ public class Miche
 
         if (IsLeafNode() && Occupant == null)
         {
-            Occupant = species;
+            if (!dry)
+                Occupant = species;
+
             return true;
         }
 
@@ -122,16 +124,21 @@ public class Miche
         // scores is relative to the inserted species
         if (IsLeafNode() && newScores[Occupant!] > 0)
         {
-            Occupant = species;
+            if (!dry)
+                Occupant = species;
+
             return true;
         }
 
         var inserted = false;
         foreach (var child in Children)
         {
-            if (child.InsertSpecies(species, newScores, cache))
+            if (child.InsertSpecies(species, newScores, cache, dry))
             {
                 inserted = true;
+
+                if (dry)
+                    return true;
             }
         }
 

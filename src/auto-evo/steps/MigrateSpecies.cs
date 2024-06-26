@@ -49,15 +49,13 @@ public class MigrateSpecies : IRunStep
             // in or about to go extinct, or really anything other
             // than random selection
             var target = patch.Adjacent.ToList().Random(random);
-
-            // possibly very overkill
-            var newMiche = results.MicheByPatch[target].DeepCopy();
+            var targetMiche = results.MicheByPatch[target];
 
             // Calculate random amount of population to send
             int moveAmount = (int)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
                 population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
 
-            if (moveAmount > 0 && newMiche.InsertSpecies(species, cache))
+            if (moveAmount > 0 && targetMiche.InsertSpecies(species, cache, true))
             {
                 results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
                 return true;

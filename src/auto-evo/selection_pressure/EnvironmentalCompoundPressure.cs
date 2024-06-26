@@ -26,7 +26,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
-        return species.StorageCapacity;
+        return 1;
     }
 
     public override float GetEnergy()
