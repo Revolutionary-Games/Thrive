@@ -54,20 +54,13 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             }
             else
             {
-                var choices = new List<OrganelleTemplate>
-                {
-                    CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random()),
-                    CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random()),
-                    CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random()),
-                    CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random()),
-                    CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random()),
-                };
-
-                position = choices.OrderBy(x => direction == Direction.Front ? x.Position.R : -x.Position.R)
-                    .First();
+                position = new OrganelleTemplate(organelle,
+                    direction == Direction.Front ? new Hex(0, -100) : new Hex(0, 100),
+                    direction == Direction.Front ? 0 : 3);
             }
 
             newSpecies.Organelles.Add(position);
+            CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles);
 
             retval.Add(newSpecies);
         }
