@@ -48,7 +48,7 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         var predationScore = new PredationEffectivenessPressure(species, Patch, 1, cache)
             .FitnessScore((MicrobeSpecies)Predator, species);
 
-        if (predationScore == 0)
+        if (predationScore <= 0)
         {
             return 1.0f;
         }
