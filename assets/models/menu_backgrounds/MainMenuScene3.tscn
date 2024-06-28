@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://bjxkgjgaoqvsh"]
+[gd_scene load_steps=27 format=3 uid="uid://bjxkgjgaoqvsh"]
 
 [ext_resource type="PackedScene" uid="uid://q16rprhnmgsk" path="res://assets/models/menu_backgrounds/UnderwaterChimney2.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://b1nmj2ijqsdwp" path="res://assets/models/menu_backgrounds/UnderwaterSoil.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://c46w6nmb14i0m" path="res://assets/models/menu_backgrounds/Menu_Vent_particles.tscn" id="4_hjk10"]
 [ext_resource type="PackedScene" uid="uid://dc8lgeaqscprc" path="res://assets/models/IronRock2.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="7"]
+[ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="8_x71gj"]
 [ext_resource type="Texture2D" uid="uid://xqbmpxl56ysw" path="res://assets/textures/menu_backgrounds/UnderwaterSoil_Normal.png" id="8_xuumh"]
 [ext_resource type="Material" uid="uid://cun7s26mej10d" path="res://assets/models/menu_backgrounds/UnderwaterSoil_Mat2.material" id="9_m5dda"]
 [ext_resource type="PackedScene" uid="uid://h6dsvt4v07um" path="res://assets/models/menu_backgrounds/UnderwaterRock.tscn" id="10_aaijv"]
@@ -140,6 +141,57 @@ dof_blur_near_transition = 6.0
 [sub_resource type="QuadMesh" id="QuadMesh_2tyhq"]
 size = Vector2(2, 2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxbxl"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.588235, 0.717647, 0.760784, 0.909804)
+albedo_texture = ExtResource("10_uhuxw")
+metallic_specular = 0.0
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 1.04
+normal_texture = ExtResource("8_x71gj")
+anisotropy_enabled = true
+anisotropy = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_duajj"]
+resource_name = "UnderwaterSoil_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.820842, 0.879052, 0.878769, 1)
+albedo_texture = ExtResource("10_uhuxw")
+metallic_specular = 0.18
+normal_enabled = true
+normal_scale = 1.77
+normal_texture = ExtResource("8_xuumh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qb0v"]
+resource_name = "UnderwaterSoil_Mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.67466, 0.798159, 0.726167, 0.823529)
+albedo_texture = ExtResource("10_uhuxw")
+metallic_specular = 0.18
+normal_enabled = true
+normal_scale = 1.77
+normal_texture = ExtResource("8_xuumh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyww4"]
+resource_name = "UnderwaterSoil_Mat"
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.686275, 0.686275, 0.686275, 0.886275)
+albedo_texture = ExtResource("10_uhuxw")
+metallic_specular = 0.18
+normal_enabled = true
+normal_scale = 1.77
+normal_texture = ExtResource("8_xuumh")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a10jh"]
 resource_name = "UnderwaterSoil_Mat"
 cull_mode = 2
@@ -151,7 +203,7 @@ normal_enabled = true
 normal_scale = 1.77
 normal_texture = ExtResource("8_xuumh")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjgps"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43xtl"]
 resource_local_to_scene = true
 cull_mode = 2
 vertex_color_use_as_albedo = true
@@ -310,12 +362,13 @@ material_override = ExtResource("9_m5dda")
 transform = Transform3D(1.325, 1.121, 1.23098, -1.52408, 1.10117, -0.398007, -0.677091, -0.284938, 3.3048, -0.0966698, 1.60704, 3.7366)
 material_override = ExtResource("9_m5dda")
 
-[node name="iron5" parent="." instance=ExtResource("7")]
-transform = Transform3D(2.62, 0, 0, 0, -3.45779, -1.53733, 0, 2.01089, -2.64348, 0.205676, 4.32868, -10.7671)
-material_override = ExtResource("9_m5dda")
+[node name="IronRockBG02" parent="." instance=ExtResource("10_aaijv")]
+transform = Transform3D(2.096, 0, 0, 0, -3.14469, -0.452811, 0, 0.592393, -2.40372, 0.148345, 4.14213, -10.4429)
+material_override = SubResource("StandardMaterial3D_kxbxl")
+skeleton = NodePath("")
 
 [node name="IronRockBG01" parent="." instance=ExtResource("10_aaijv")]
-transform = Transform3D(0.718532, -0.26365, 3.52808, 1.35383, -0.300669, -1.88262, 0.149875, 3.97996, 0.0914914, 4.64212, 2.78974, -4.04514)
+transform = Transform3D(0.718532, -0.26365, 3.52808, 1.35383, -0.300669, -1.88262, 0.149875, 3.97996, 0.0914914, 4.77394, 2.78974, -4.04514)
 material_override = ExtResource("9_m5dda")
 skeleton = NodePath("")
 
@@ -350,20 +403,20 @@ transform = Transform3D(0.432089, 1.07576, -0.577609, 0.436467, 0.322186, 1.6204
 material_override = ExtResource("9_m5dda")
 
 [node name="iron16" parent="." instance=ExtResource("6")]
-transform = Transform3D(-0.306641, 1.73034, 0.663061, -0.958912, 0.518227, -1.454, -1.76277, -0.582904, 0.675607, -0.949979, 6.60865, 10.1376)
+transform = Transform3D(-0.306641, 1.73034, 0.663061, -0.958912, 0.518227, -1.454, -1.76277, -0.582904, 0.675607, -0.871419, 6.60865, 10.1376)
 material_override = ExtResource("9_m5dda")
 
 [node name="iron17" parent="." instance=ExtResource("6")]
-transform = Transform3D(-0.747269, 1.73034, 0.316906, 0.427163, 0.518228, -1.62866, -1.83848, -0.582905, -0.50722, -6.10484, 2.19685, -7.26003)
-material_override = ExtResource("9_m5dda")
+transform = Transform3D(-0.393956, 1.73336, -0.621467, 0.185826, -0.658005, -1.61963, -1.98271, -0.40608, -0.0283125, -6.10484, 1.91059, -7.38315)
+material_override = SubResource("StandardMaterial3D_duajj")
 
 [node name="iron18" parent="." instance=ExtResource("6")]
-transform = Transform3D(0.906729, -0.395068, -0.364449, 0.323237, 1.18357, -0.0265526, 0.270852, -0.0899181, 1.25175, -2.39763, 3.32238, -7.6066)
-material_override = ExtResource("9_m5dda")
+transform = Transform3D(1.61054, 0.725711, -0.527229, -0.654335, 2.00637, -0.396508, 0.268514, 0.536488, 2.19606, -3.05077, 2.3034, -7.6066)
+material_override = SubResource("StandardMaterial3D_8qb0v")
 
 [node name="iron19" parent="." instance=ExtResource("6")]
 transform = Transform3D(1.51868, -1.6816, 0.108056, -0.226547, -0.472823, -2.58387, 1.32785, 1.8426, -0.564422, -4.57415, 1.70164, -3.62968)
-material_override = ExtResource("9_m5dda")
+material_override = SubResource("StandardMaterial3D_jyww4")
 
 [node name="iron20" parent="." instance=ExtResource("6")]
 transform = Transform3D(1.12966, -1.1809, 0.0628663, -0.168515, -0.332037, -1.50327, 0.987714, 1.29395, -0.328375, -10.7212, 0.0739745, 3.12302)
@@ -375,4 +428,4 @@ material_override = SubResource("StandardMaterial3D_a10jh")
 
 [node name="iron22" parent="." instance=ExtResource("6")]
 transform = Transform3D(-0.0125223, 2.60165, 0.0173912, 0.707826, 0.0426514, -1.13572, -0.775451, -0.00308044, -1.03696, -13.7744, -0.214223, 2.02327)
-material_override = SubResource("StandardMaterial3D_pjgps")
+material_override = SubResource("StandardMaterial3D_43xtl")
