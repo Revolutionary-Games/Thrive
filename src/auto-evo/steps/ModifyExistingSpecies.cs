@@ -69,9 +69,9 @@ public class ModifyExistingSpecies : IRunStep
             var greenShift = random.NextDouble() * 0.1 - 0.05;
             var blueShift = random.NextDouble() * 0.1 - 0.05;
 
-            variant.Colour = new Color(Mathf.Clamp((float)(oldColour.R + redShift), 0f, 1f),
-                Mathf.Clamp((float)(oldColour.G + greenShift), 0f, 1f),
-                Mathf.Clamp((float)(oldColour.B + blueShift), 0f, 1f));
+            variant.Colour = new Color(Mathf.Clamp((float)(oldColour.R + redShift), 0, 1),
+                Mathf.Clamp((float)(oldColour.G + greenShift), 0, 1),
+                Mathf.Clamp((float)(oldColour.B + blueShift), 0, 1));
         }
 
         return viableVariants.OrderByDescending(x =>
