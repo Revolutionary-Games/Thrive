@@ -23,7 +23,7 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
         Fear,
     }
 
-    public bool Repeatable => true;
+    public bool Repeatable => false;
 
     public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
     {

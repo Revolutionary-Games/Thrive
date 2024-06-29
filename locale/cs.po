@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 20:43-0500\n"
+"POT-Creation-Date: 2024-06-29 16:34-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -267,9 +267,6 @@ msgstr "{0:F1}% splněno. {1:n0}/{2:n0} kroků."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatické ukládání během hry"
-
-msgid "AUTOTROPH_ENERGY_EFFICIENCY_PRESSURE"
-msgstr ""
 
 msgid "AUTO_EVO"
 msgstr "Automatická evoluce"
@@ -634,6 +631,10 @@ msgstr ""
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Spotřeba {0}"
 
+#, fuzzy
+msgid "CHUNK_PRESSURE"
+msgstr "Tlak"
+
 msgid "CILIA"
 msgstr "Řasinky"
 
@@ -789,8 +790,16 @@ msgstr "Hustota oblaků sloučenin"
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(hustota oblak sloučenin v prostředí)"
 
+#, fuzzy
+msgid "COMPOUND_CLOUD_PRESSURE"
+msgstr "Mračna sloučenin"
+
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr "{0} koncentrace se snížily o {1}"
+
+#, fuzzy
+msgid "COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Mračna sloučenin"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Spotřeba {0}"
@@ -1777,6 +1786,10 @@ msgstr "Štítek entity"
 
 msgid "ENVIRONMENT"
 msgstr "Životní prostředí"
+
+#, fuzzy
+msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Mračna sloučenin"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retence glukózy v prostředí"
@@ -2987,6 +3000,10 @@ msgstr "Lysozom je organela připojena na membránu, která obsahuje hydrolytick
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Obsahuje trávící enzymy. Může být modifikován pro změnu typu enzymu, který obsahuje. Lysozomy jsou schopny obsahovat pouze jeden typ enzymu najednou. Enzymy zrychlují a zvyšují efektivitu trávení."
+
+#, fuzzy
+msgid "MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Mračna sloučenin"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4406,10 +4423,6 @@ msgstr "RAW"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Suroví:"
-
-#, fuzzy
-msgid "REACH_COMPOUND_CLOUD_PRESSURE"
-msgstr "Mračna sloučenin"
 
 msgid "READING_SAVE_DATA"
 msgstr "Načítám uložená data"
@@ -7187,6 +7200,10 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#, fuzzy
+#~ msgid "REACH_COMPOUND_CLOUD_PRESSURE"
+#~ msgstr "Mračna sloučenin"
 
 #~ msgid "PROTOPLASM"
 #~ msgstr "Protoplazma"

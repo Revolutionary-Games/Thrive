@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 20:43-0500\n"
+"POT-Creation-Date: 2024-06-29 16:34-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -271,9 +271,6 @@ msgstr "{0:F1}% fertig. {1:n0}/{2:n0} Schritte."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatisches speichern während des Spieles"
-
-msgid "AUTOTROPH_ENERGY_EFFICIENCY_PRESSURE"
-msgstr ""
 
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
@@ -639,6 +636,10 @@ msgstr "Zellleichenstück"
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}-Verbrauch"
 
+#, fuzzy
+msgid "CHUNK_PRESSURE"
+msgstr "Druck"
+
 msgid "CILIA"
 msgstr "Zilie"
 
@@ -795,8 +796,16 @@ msgstr "Wolkendichte"
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(Dichte der Ressourcen-Wolken in der Spielumgebung)"
 
+#, fuzzy
+msgid "COMPOUND_CLOUD_PRESSURE"
+msgstr "Verbindungswolken"
+
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr "{0}konzentrationen sind um {1} gesunken"
+
+#, fuzzy
+msgid "COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Verbindungswolken"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}-Verbrauch"
@@ -1747,6 +1756,10 @@ msgstr "Entitäts Kennzeichnung"
 
 msgid "ENVIRONMENT"
 msgstr "Umgebung"
+
+#, fuzzy
+msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Verbindungswolken"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Glukoseerhalt in der Umwelt"
@@ -2948,6 +2961,10 @@ msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthä
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz der Verdauung verbessern. Die Art des enthaltenen Enzyms kann verändert werden. Es kann nur ein Enzym pro Lysosom benutzt werden."
+
+#, fuzzy
+msgid "MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Verbindungswolken"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Uhrzeit manuell einstellen"
@@ -4347,10 +4364,6 @@ msgstr "Roh"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Rohwert:"
-
-#, fuzzy
-msgid "REACH_COMPOUND_CLOUD_PRESSURE"
-msgstr "Verbindungswolken"
 
 msgid "READING_SAVE_DATA"
 msgstr "Lesen von Speicherdaten"
@@ -7131,6 +7144,10 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#, fuzzy
+#~ msgid "REACH_COMPOUND_CLOUD_PRESSURE"
+#~ msgstr "Verbindungswolken"
 
 #~ msgid "PROTOPLASM"
 #~ msgstr "Protoplasma"

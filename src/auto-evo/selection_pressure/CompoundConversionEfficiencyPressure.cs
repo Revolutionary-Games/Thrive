@@ -6,7 +6,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("AUTOTROPH_ENERGY_EFFICIENCY_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("COMPOUND_EFFICIENCY_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 

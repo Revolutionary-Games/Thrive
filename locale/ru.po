@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 20:43-0500\n"
+"POT-Creation-Date: 2024-06-29 16:34-0500\n"
 "PO-Revision-Date: 2024-06-17 08:11+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -276,9 +276,6 @@ msgstr "{0:F1}% завершено. {1:n0}/{2:n0} шагов."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автосохранение во время игры"
-
-msgid "AUTOTROPH_ENERGY_EFFICIENCY_PRESSURE"
-msgstr ""
 
 msgid "AUTO_EVO"
 msgstr "Авто-Эво"
@@ -638,6 +635,10 @@ msgstr "Фрагмент клеточного трупа"
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} потребления"
 
+#, fuzzy
+msgid "CHUNK_PRESSURE"
+msgstr "Давление"
+
 msgid "CILIA"
 msgstr "Ресничка"
 
@@ -791,8 +792,16 @@ msgstr "Плотность облаков веществ"
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(плотность облаков веществ в окружающей среде)"
 
+#, fuzzy
+msgid "COMPOUND_CLOUD_PRESSURE"
+msgstr "Облака веществ"
+
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr "Концентрация {0} снизилась на {1}"
+
+#, fuzzy
+msgid "COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Облака веществ"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} потребления"
@@ -1751,6 +1760,10 @@ msgstr "Описание объекта"
 
 msgid "ENVIRONMENT"
 msgstr "Окружающая среда"
+
+#, fuzzy
+msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Облака веществ"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Сохранение природной глюкозы"
@@ -2879,6 +2892,10 @@ msgstr "Лизосома — мембранная органелла, содер
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Содержит пищеварительные ферменты. Тип фермента может быть изменён. Только один фермент за раз."
+
+#, fuzzy
+msgid "MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Облака веществ"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Вручную установить время"
@@ -4257,10 +4274,6 @@ msgstr "\"Raw\""
 
 msgid "RAW_VALUE_COLON"
 msgstr "Сырое значение:"
-
-#, fuzzy
-msgid "REACH_COMPOUND_CLOUD_PRESSURE"
-msgstr "Облака веществ"
 
 msgid "READING_SAVE_DATA"
 msgstr "Чтение данных сохранения"
@@ -6963,6 +6976,10 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#, fuzzy
+#~ msgid "REACH_COMPOUND_CLOUD_PRESSURE"
+#~ msgstr "Облака веществ"
 
 #~ msgid "PROTOPLASM"
 #~ msgstr "Протоплазма"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 20:43-0500\n"
+"POT-Creation-Date: 2024-06-29 16:34-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -275,9 +275,6 @@ msgstr "{0:F1} % на стъпка {1:n0} от {2:n0}."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автоматичен запис по време на игра"
-
-msgid "AUTOTROPH_ENERGY_EFFICIENCY_PRESSURE"
-msgstr ""
 
 msgid "AUTO_EVO"
 msgstr "Автоматична еволюция"
@@ -642,6 +639,10 @@ msgstr ""
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}"
 
+#, fuzzy
+msgid "CHUNK_PRESSURE"
+msgstr "Налягане"
+
 msgid "CILIA"
 msgstr "Реснички"
 
@@ -817,8 +818,16 @@ msgstr "Гъстота на облаците"
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(определя гъстотата на облаците в околната среда)"
 
+#, fuzzy
+msgid "COMPOUND_CLOUD_PRESSURE"
+msgstr "Облаци"
+
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr "Концентрацията на {0} се понижи с {1}"
+
+#, fuzzy
+msgid "COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Облаци"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}"
@@ -1786,6 +1795,10 @@ msgstr "Надписи на обектите"
 
 msgid "ENVIRONMENT"
 msgstr "Околна среда"
+
+#, fuzzy
+msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Облаци"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Задържане на глюкозата в околната среда"
@@ -2953,6 +2966,10 @@ msgstr "Лизозомата е мембранен органел, съдърж�
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Съдържа храносмилателни ензими. Нейните свойства определят вида на ензима, който се използва за усвояването на обектите от клетката. Ензимите подобряват хранителната ефективност на клетката."
+
+#, fuzzy
+msgid "MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Облаци"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4361,10 +4378,6 @@ msgstr "НЦ"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Стойност:"
-
-#, fuzzy
-msgid "REACH_COMPOUND_CLOUD_PRESSURE"
-msgstr "Облаци"
 
 msgid "READING_SAVE_DATA"
 msgstr "Четене на запазените данни"
@@ -7130,6 +7143,10 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#, fuzzy
+#~ msgid "REACH_COMPOUND_CLOUD_PRESSURE"
+#~ msgstr "Облаци"
 
 #~ msgid "PROTOPLASM"
 #~ msgstr "Протоплазма"

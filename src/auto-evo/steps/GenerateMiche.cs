@@ -73,11 +73,13 @@ public class GenerateMiche : IRunStep
         {
             var hydrogenSulfideMiche = new Miche(
                 new CompoundConversionEfficiencyPressure(Patch, HydrogenSulfide, Glucose, 1.0f));
-            var generateATP = new Miche(new CompoundConversionEfficiencyPressure(Patch, Glucose, ATP, 0.25f));
+            var generateATP = new Miche(new CompoundConversionEfficiencyPressure(Patch, Glucose, ATP, 0.5f));
+            var maintainGlucose = new Miche(new MaintainCompound(Patch, 1, Glucose));
+            var envPressure = new Miche(new CompoundCloudPressure(Patch, 1.0f, HydrogenSulfide,
+                worldSettings.DayNightCycleEnabled));
 
-            generateATP.AddChild(new Miche(new CompoundCloudPressure(Patch, 1.0f, HydrogenSulfide,
-                worldSettings.DayNightCycleEnabled)));
-
+            maintainGlucose.AddChild(envPressure);
+            generateATP.AddChild(maintainGlucose);
             hydrogenSulfideMiche.AddChild(generateATP);
             generatedMiche.AddChild(hydrogenSulfideMiche);
         }
@@ -86,8 +88,13 @@ public class GenerateMiche : IRunStep
         if (Patch.Biome.TryGetCompound(Sunlight, CompoundAmountType.Biome, out var sunlight) && sunlight.Ambient > 0)
         {
             var sunlightMiche = new Miche(new CompoundConversionEfficiencyPressure(Patch, Sunlight, Glucose, 1.0f));
-            sunlightMiche.AddChild(new Miche(new EnvironmentalCompoundPressure(Patch, 1, Sunlight, 3000)));
+            var generateATP = new Miche(new CompoundConversionEfficiencyPressure(Patch, Glucose, ATP, 0.5f));
+            var maintainGlucose = new Miche(new MaintainCompound(Patch, 1, Glucose));
+            var envPressure = new Miche(new EnvironmentalCompoundPressure(Patch, 1, Sunlight, 10000));
 
+            maintainGlucose.AddChild(envPressure);
+            generateATP.AddChild(maintainGlucose);
+            sunlightMiche.AddChild(generateATP);
             generatedMiche.AddChild(sunlightMiche);
         }
 

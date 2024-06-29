@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 20:43-0500\n"
+"POT-Creation-Date: 2024-06-29 16:34-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -277,9 +277,6 @@ msgstr "{0:F1}% klaar. {1:n0}/{2:n0} stappen."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sla automatisch op tijdens het spelen"
-
-msgid "AUTOTROPH_ENERGY_EFFICIENCY_PRESSURE"
-msgstr ""
 
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
@@ -640,6 +637,10 @@ msgstr "Lichaamsdeel van cel"
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Verbruik van {0}"
 
+#, fuzzy
+msgid "CHUNK_PRESSURE"
+msgstr "Druk"
+
 msgid "CILIA"
 msgstr "Cilia"
 
@@ -794,8 +795,16 @@ msgstr "Dichtheid van stofwolken"
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(dichtheid van wolken van verbindingen zoals glucose en ammoniak in de omgeving)"
 
+#, fuzzy
+msgid "COMPOUND_CLOUD_PRESSURE"
+msgstr "Samenstellings-wolken"
+
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr "{0}concentratie is met {1} gedaald"
+
+#, fuzzy
+msgid "COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Samenstellings-wolken"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Verbruik van {0}"
@@ -1758,6 +1767,10 @@ msgstr "Entiteitslabel"
 
 msgid "ENVIRONMENT"
 msgstr "Omgeving"
+
+#, fuzzy
+msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Samenstellings-wolken"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retentie van glucose in de omgeving"
@@ -2895,6 +2908,10 @@ msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hy
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
+
+#, fuzzy
+msgid "MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Samenstellings-wolken"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Stel Handmatig Tijd In"
@@ -4285,10 +4302,6 @@ msgstr "Rauw"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Rauw:"
-
-#, fuzzy
-msgid "REACH_COMPOUND_CLOUD_PRESSURE"
-msgstr "Samenstellings-wolken"
 
 msgid "READING_SAVE_DATA"
 msgstr "Opslagdata wordt gelezen"
@@ -7021,6 +7034,10 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "REACH_COMPOUND_CLOUD_PRESSURE"
+#~ msgstr "Samenstellings-wolken"
 
 #~ msgid "PROTOPLASM"
 #~ msgstr "Protoplasma"

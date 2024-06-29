@@ -7,24 +7,29 @@ public class ChunkCompoundPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("REACH_COMPOUND_CLOUD_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("CHUNK_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
+    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+
     private readonly float totalEnergy;
     private readonly ChunkConfiguration chunk;
+    private readonly Patch patch;
 
-    // private readonly Compound compound;
+    private readonly Compound compound;
 
     public ChunkCompoundPressure(Patch patch, float weight, string chunkType, Compound compound) : base(weight, [])
     {
         if (!patch.Biome.Chunks.TryGetValue(chunkType, out var chunkData))
-            throw new ArgumentException("Chunk does not exsist in patch");
+            throw new ArgumentException("Chunk does not exist in patch");
 
         chunk = chunkData;
+        this.compound = compound;
+        this.patch = patch;
 
         if (chunk.Compounds?.TryGetValue(compound, out var compoundAmount) != true)
-            throw new ArgumentException("Chunk does not exsist in patch");
+            throw new ArgumentException("Chunk does not exist in patch");
 
         // This computation nerfs big chunks with a large amount,
         // by adding an "accessibility" component to total energy.
@@ -55,6 +60,28 @@ public class ChunkCompoundPressure : SelectionPressure
         {
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
+
+        var atpCreated = 0.0f;
+
+        foreach (var organelle in species.Organelles)
+        {
+            foreach (var process in organelle.Definition.RunnableProcesses)
+            {
+                if (process.Process.Inputs.ContainsKey(compound))
+                {
+                    if (process.Process.Outputs.TryGetValue(ATP, out var outputAmount))
+                    {
+                        var processEfficiency = cache.GetProcessMaximumSpeed(process, patch.Biome).Efficiency;
+
+                        atpCreated += outputAmount * processEfficiency;
+                    }
+                }
+            }
+        }
+
+        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+
+        score *= Mathf.Min(atpCreated / energyBalance.TotalConsumption, 1);
 
         return score;
     }

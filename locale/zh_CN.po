@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 20:43-0500\n"
+"POT-Creation-Date: 2024-06-29 16:34-0500\n"
 "PO-Revision-Date: 2024-06-19 00:11+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -276,9 +276,6 @@ msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "游戏中启用自动保存"
-
-msgid "AUTOTROPH_ENERGY_EFFICIENCY_PRESSURE"
-msgstr ""
 
 msgid "AUTO_EVO"
 msgstr "Auto-Evo系统"
@@ -638,6 +635,10 @@ msgstr "细胞尸体碎块"
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}消耗"
 
+#, fuzzy
+msgid "CHUNK_PRESSURE"
+msgstr "压力"
+
 msgid "CILIA"
 msgstr "纤毛"
 
@@ -789,8 +790,16 @@ msgstr "化合物云密度"
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "（环境中化合物云的密度）"
 
+#, fuzzy
+msgid "COMPOUND_CLOUD_PRESSURE"
+msgstr "化合物云"
+
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr "{0}的浓度已减少了{1}"
+
+#, fuzzy
+msgid "COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "化合物云"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
@@ -1690,6 +1699,10 @@ msgstr "实体标签"
 
 msgid "ENVIRONMENT"
 msgstr "环境"
+
+#, fuzzy
+msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "化合物云"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "环境葡萄糖保留"
@@ -2807,6 +2820,10 @@ msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一次只能选择一种酶。"
+
+#, fuzzy
+msgid "MAINTAIN_COMPOUND_PRESSURE"
+msgstr "化合物云"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "手动设置时间"
@@ -4176,10 +4193,6 @@ msgstr "Raw"
 
 msgid "RAW_VALUE_COLON"
 msgstr "原始值："
-
-#, fuzzy
-msgid "REACH_COMPOUND_CLOUD_PRESSURE"
-msgstr "化合物云"
 
 msgid "READING_SAVE_DATA"
 msgstr "读取存档数据中"
@@ -7011,6 +7024,10 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#, fuzzy
+#~ msgid "REACH_COMPOUND_CLOUD_PRESSURE"
+#~ msgstr "化合物云"
 
 #~ msgid "PROTOPLASM"
 #~ msgstr "原生质"

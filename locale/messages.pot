@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 20:43-0500\n"
+"POT-Creation-Date: 2024-06-29 16:34-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,7 +162,7 @@ msgstr ""
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1149
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1174
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -335,10 +335,6 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1394
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
-
-#: ../src/auto-evo/selection_pressure/AutotrophEnergyEfficiencyPressure.cs:9
-msgid "AUTOTROPH_ENERGY_EFFICIENCY_PRESSURE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:184
@@ -878,8 +874,12 @@ msgstr ""
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:65
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:91
 msgid "CHUNK_FOOD_SOURCE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:10
+msgid "CHUNK_PRESSURE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:1060
@@ -1088,8 +1088,16 @@ msgstr ""
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 
+#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:9
+msgid "COMPOUND_CLOUD_PRESSURE"
+msgstr ""
+
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/CompoundConversionEfficiencyPressure.cs:9
+msgid "COMPOUND_EFFICIENCY_PRESSURE"
 msgstr ""
 
 #: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:71
@@ -1574,7 +1582,7 @@ msgstr ""
 msgid "CURRENT_WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1108
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1133
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
@@ -1902,7 +1910,7 @@ msgstr ""
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:41
+#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:65
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -2206,6 +2214,10 @@ msgstr ""
 
 #: ../src/microbe_stage/gui/EnvironmentPanel.tscn:223
 msgid "ENVIRONMENT"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:10
+msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:507
@@ -3716,6 +3728,10 @@ msgstr ""
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#: ../src/auto-evo/selection_pressure/MaintainCompound.cs:10
+msgid "MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:103
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3899,8 +3915,8 @@ msgstr ""
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1121
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1165
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1146
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1190
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
@@ -4619,7 +4635,8 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:67
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:93
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:105
 msgid "NOT_FOUND_CHUNK"
 msgstr ""
 
@@ -5306,7 +5323,7 @@ msgstr ""
 msgid "PREDATION_EFFECTIVENESS_PRESSURE"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:139
+#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:70
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -5413,17 +5430,11 @@ msgstr ""
 msgid "RAW_VALUE_COLON"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:11
-#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:9
-#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:9
-msgid "REACH_COMPOUND_CLOUD_PRESSURE"
-msgstr ""
-
 #: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:907
+#: ../src/auto-evo/AutoEvoExploringTool.cs:901
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:279
 msgid "READY"
 msgstr ""

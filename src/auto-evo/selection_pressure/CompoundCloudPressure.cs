@@ -6,7 +6,7 @@ public class CompoundCloudPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("REACH_COMPOUND_CLOUD_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("COMPOUND_CLOUD_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
