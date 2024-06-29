@@ -63,8 +63,6 @@ public class PredationEffectivenessPressure : SelectionPressure
         var microbeSpeciesHexSize = cache.GetBaseHexSizeForSpecies(microbeSpecies);
         var predatorSpeed = cache.GetBaseSpeedForSpecies(microbeSpecies);
 
-        predatorSpeed += cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).FinalBalance;
-
         // Only assign engulf score if one can actually engulf
         var engulfScore = 0.0f;
         if (microbeSpeciesHexSize / preyHexSize >
@@ -95,6 +93,9 @@ public class PredationEffectivenessPressure : SelectionPressure
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
+        // having lots of extra Pili really doesn't help you THAT much
+        pilusScore = MathF.Pow(pilusScore, 0.4f);
+
         // predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > microbeSpeciesHexSize)
         {
@@ -105,7 +106,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         oxytoxyScore /= prey.MembraneType.ToxinResistance;
 
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-        return behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore);
+        return behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore) / cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption;
     }
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
