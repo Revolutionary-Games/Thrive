@@ -1,7 +1,6 @@
 ﻿namespace AutoEvo;
 
 using System;
-using Godot;
 
 public class PredationEffectivenessPressure : SelectionPressure
 {
