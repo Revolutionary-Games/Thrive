@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Mutation = System.Tuple<MicrobeSpecies, MicrobeSpecies, RunResults.NewSpeciesType>;
 
 public class ModifyExistingSpecies : IRunStep
@@ -109,8 +110,6 @@ public class ModifyExistingSpecies : IRunStep
 
                     if (combinedScores > 0)
                     {
-                        // potentialVariant.Colour = new Color((float)new Random().NextDouble(), 0.5f, 0.5f);
-
                         newInputSpecies.Add(potentialVariant);
                         viableVariants.Add(potentialVariant);
                     }
@@ -137,6 +136,16 @@ public class ModifyExistingSpecies : IRunStep
         foreach (var variant in mutatedSpecies)
         {
             MutationLogicFunctions.NameNewMicrobeSpecies(variant, baseSpecies);
+
+            var oldColour = variant.Colour;
+
+            var redShift = random.NextDouble() * 0.1 - 0.05;
+            var greenShift = random.NextDouble() * 0.1 - 0.05;
+            var blueShift = random.NextDouble() * 0.1 - 0.05;
+
+            variant.Colour = new Color(Mathf.Clamp((float)(oldColour.R + redShift), 0, 1),
+                Mathf.Clamp((float)(oldColour.G + greenShift), 0, 1),
+                Mathf.Clamp((float)(oldColour.B + blueShift), 0, 1));
         }
 
         return mutatedSpecies.OrderByDescending(x =>

@@ -46,7 +46,7 @@ public class AvoidPredationSelectionPressure : SelectionPressure
     {
         var predationScore = cache.GetPredationScore((MicrobeSpecies)Predator, species, Patch.Biome);
 
-        if (predationScore == 0)
+        if (predationScore <= 0)
         {
             return 1.0f;
         }
