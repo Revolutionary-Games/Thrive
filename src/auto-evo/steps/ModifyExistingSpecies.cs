@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,9 +58,20 @@ public class ModifyExistingSpecies : IRunStep
             viableVariants = PruneInviableSpecies(potentialVariants, pressuresSoFar, species, cache);
         }
 
+        Random random = new Random();
         foreach (var variant in viableVariants)
         {
             MutationLogicFunctions.NameNewMicrobeSpecies(variant, species);
+
+            var oldColour = species.Colour;
+
+            var redShift = random.NextDouble() * 0.1 - 0.05;
+            var greenShift = random.NextDouble() * 0.1 - 0.05;
+            var blueShift = random.NextDouble() * 0.1 - 0.05;
+
+            variant.Colour = new Color(Mathf.Clamp((float)(oldColour.R + redShift), 0f, 1f),
+                Mathf.Clamp((float)(oldColour.G + greenShift), 0f, 1f),
+                Mathf.Clamp((float)(oldColour.B + blueShift), 0f, 1f));
         }
 
         return viableVariants.OrderByDescending(x =>
@@ -99,8 +111,6 @@ public class ModifyExistingSpecies : IRunStep
 
             if (combinedScores >= 0)
             {
-                // potentialVariant.Colour = new Color((float)new Random().NextDouble(), 0.5f, 0.5f);
-
                 viableVariants.Add(potentialVariant);
             }
         }
