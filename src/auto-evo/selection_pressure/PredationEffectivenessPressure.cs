@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using Godot;
 using System;
 
 public class PredationEffectivenessPressure : SelectionPressure
@@ -90,6 +91,9 @@ public class PredationEffectivenessPressure : SelectionPressure
 
         var (pilusScore, oxytoxyScore, mucilageScore) = cache.GetPredationToolsRawScores(microbeSpecies);
 
+        // don't use mucus for now
+        mucilageScore *= 0;
+
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
@@ -105,7 +109,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         // prey that resist toxin are obviously weaker to it
         oxytoxyScore /= prey.MembraneType.ToxinResistance;
 
-        return behaviourScore * (pilusScore + engulfScore + oxytoxyScore/* + mucilageScore*/) /
+        return behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore) /
             cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption;
     }
 
