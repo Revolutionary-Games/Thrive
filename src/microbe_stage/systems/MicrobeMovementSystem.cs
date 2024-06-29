@@ -89,7 +89,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         // linear function reaching 1 at CELL_TURN_INFLECTION_RADIANS
         var blendFactor = Mathf.Pi / 4.0f * Mathf.Min(unsignedTurnAngle *
-         (1.0f / Constants.CELL_TURN_INFLECTION_RADIANS), 1.0f);
+            (1.0f / Constants.CELL_TURN_INFLECTION_RADIANS), 1.0f);
 
         // Simplify turns to 90 degrees to keep consistent turning speed
         if (turnAngle > 0.1f)
