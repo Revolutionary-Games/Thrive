@@ -223,10 +223,10 @@ public static class Constants
 
     // Note that the rotation speed is reversed, i.e. lower values mean faster
     public const float CELL_MAX_ROTATION = 8.0f;
-    public const float CELL_MIN_ROTATION = 0.1f;
+    public const float CELL_MIN_ROTATION = 0.20f;
     public const float CELL_ROTATION_INFLECTION_INERTIA = 65000000.0f;
     public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
-    public const float CILIA_ROTATION_FACTOR = 22000000.0f;
+    public const float CILIA_ROTATION_FACTOR = 18000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
     public const float CELL_TURN_INFLECTION_RADIANS = 0.8f;
 
