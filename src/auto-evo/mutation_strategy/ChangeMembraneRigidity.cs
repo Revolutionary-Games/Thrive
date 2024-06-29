@@ -14,6 +14,7 @@ public class ChangeMembraneRigidity : IMutationStrategy<MicrobeSpecies>
     }
 
     public bool Repeatable => true;
+
     public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
     {
         // This is currently arbitrary
