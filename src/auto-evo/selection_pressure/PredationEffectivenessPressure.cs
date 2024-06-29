@@ -105,8 +105,8 @@ public class PredationEffectivenessPressure : SelectionPressure
         // prey that resist toxin are obviously weaker to it
         oxytoxyScore /= prey.MembraneType.ToxinResistance;
 
-        // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-        return behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore) / cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption;
+        return behaviourScore * (pilusScore + engulfScore + oxytoxyScore/* + mucilageScore*/) /
+            cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption;
     }
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
