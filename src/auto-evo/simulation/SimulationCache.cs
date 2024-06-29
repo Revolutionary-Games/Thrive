@@ -29,19 +29,16 @@ public class SimulationCache
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
-    private readonly Dictionary<MicrobeSpecies, float> cachedStorageCapacities = new();
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float> cachedCompoundScores = new();
+
+    private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound, Compound), float> cachedCompoundScores =
+        new();
+
+    private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, BiomeConditions), float> predationScores = new();
 
     private readonly Dictionary<(TweakedProcess, BiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
         new();
 
     private readonly Dictionary<MicrobeSpecies, (float, float, float)> cachedPredationToolsRawScores = new();
-
-    private readonly Dictionary<(OrganelleDefinition, BiomeConditions, Compound), float>
-        cachedEnergyCreationScoreForOrganelle = new();
-
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float>
-        cachedEnergyCreationScoreForSpecies = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
@@ -69,6 +66,7 @@ public class SimulationCache
         return cached;
     }
 
+    // TODO: Both of these seem like something that could easily be stored on the species with OnEdited
     public float GetBaseSpeedForSpecies(MicrobeSpecies species)
     {
         if (cachedBaseSpeeds.TryGetValue(species, out var cached))
@@ -95,127 +93,47 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetStorageCapacityForSpecies(MicrobeSpecies species)
+    public float GetCompoundConversionScoreForSpecies(Compound fromCompound, Compound toCompound,
+        MicrobeSpecies species, BiomeConditions biomeConditions)
     {
-        if (cachedStorageCapacities.TryGetValue(species, out var cached))
-            return cached;
-
-        cached = species.StorageCapacity;
-
-        cachedStorageCapacities.Add(species, cached);
-        return cached;
-    }
-
-    public float GetCompoundUseScoreForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions,
-        Compound compound)
-    {
-        var key = (species, biomeConditions, compound);
+        var key = (species, biomeConditions, fromCompound, toCompound);
 
         if (cachedCompoundScores.TryGetValue(key, out var cached))
         {
             return cached;
         }
 
-        cached = 0.0f;
+        var compoundIn = 0.0f;
+        var compoundOut = 0.0f;
 
-        // We check generation from all the processes of the cell../
         foreach (var organelle in species.Organelles)
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                // ... that uses the given compound (regardless of usage)
-                if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
+                if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
                 {
-                    var processEfficiency = GetProcessMaximumSpeed(process, biomeConditions).Efficiency;
+                    if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
+                    {
+                        var processEfficiency = GetProcessMaximumSpeed(process, biomeConditions).Efficiency;
 
-                    cached += inputAmount * processEfficiency;
+                        compoundIn += inputAmount;
+                        compoundOut += outputAmount * processEfficiency;
+                    }
                 }
             }
+        }
+
+        if (compoundIn <= 0)
+        {
+            cached = 0;
+        }
+        else
+        {
+            cached = compoundOut / compoundIn;
         }
 
         cachedCompoundScores.Add(key, cached);
         return cached;
-    }
-
-    public float GetEnergyCreationScoreForOrganelle(OrganelleDefinition organelle, BiomeConditions biomeConditions,
-        Compound compound)
-    {
-        var key = (organelle, biomeConditions, compound);
-        if (cachedEnergyCreationScoreForOrganelle.TryGetValue(key, out var cached))
-            return cached;
-
-        var energyCreationScore = 0.0f;
-
-        // We check generation from all processes of the cell
-        foreach (var process in organelle.RunnableProcesses)
-        {
-            // ... that uses the given compound...
-            if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
-            {
-                var processEfficiency = GetProcessMaximumSpeed(process, biomeConditions).Efficiency;
-
-                // ... and that produce glucose
-                if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))
-                {
-                    // Better ratio means that we transform stuff more efficiently and need less input
-                    var compoundRatio = glucoseAmount / inputAmount;
-
-                    // Better output is a proxy for more time dedicated to reproduction than energy production
-                    var absoluteOutput = glucoseAmount * processEfficiency;
-
-                    energyCreationScore += (float)(
-                        Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
-                        * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
-                        * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER);
-                }
-
-                // ... and that produce ATP
-                if (process.Process.Outputs.TryGetValue(atp, out var atpAmount))
-                {
-                    // Better ratio means that we transform stuff more efficiently and need less input
-                    var compoundRatio = atpAmount / inputAmount;
-
-                    // Better output is a proxy for more time dedicated to reproduction than energy production
-                    var absoluteOutput = atpAmount * processEfficiency;
-
-                    energyCreationScore += (float)(
-                        Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
-                        * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
-                        * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER);
-                }
-            }
-        }
-
-        cachedEnergyCreationScoreForOrganelle.Add(key, energyCreationScore);
-        return energyCreationScore;
-    }
-
-    /// <summary>
-    ///   A measure of how good the species is for generating energy from a given compound.
-    /// </summary>
-    /// <returns>
-    ///   A float to represent score. Scores are only compared against other scores from the same FoodSource,
-    ///   so different implementations do not need to worry about scale.
-    /// </returns>
-    public float GetEnergyGenerationScoreForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions,
-        Compound compound)
-    {
-        var key = (species, biomeConditions, compound);
-
-        if (cachedEnergyCreationScoreForSpecies.TryGetValue(key, out var cached))
-            return cached;
-
-        var energyCreationScore = 0.0f;
-
-        // We check generation from all the processes of the cell.
-        foreach (var organelle in species.Organelles)
-        {
-            energyCreationScore += GetEnergyCreationScoreForOrganelle(organelle.Definition, biomeConditions,
-                compound);
-        }
-
-        cachedEnergyCreationScoreForSpecies.Add(key, energyCreationScore);
-        return energyCreationScore;
     }
 
     /// <summary>
@@ -237,6 +155,76 @@ public class SimulationCache
         cached = ProcessSystem.CalculateProcessMaximumSpeed(process, biomeConditions, CompoundAmountType.Average);
 
         cachedProcessSpeeds.Add(key, cached);
+        return cached;
+    }
+
+    public float GetPredationScore(MicrobeSpecies microbeSpecies, MicrobeSpecies prey, BiomeConditions biomeConditions)
+    {
+        // No cannibalism
+        if (microbeSpecies == prey)
+        {
+            return 0.0f;
+        }
+
+        var key = (microbeSpecies, prey, biomeConditions);
+
+        if (predationScores.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        var preyHexSize = GetBaseHexSizeForSpecies(prey);
+        var preySpeed = GetBaseSpeedForSpecies(prey);
+
+        var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+
+        // TODO: if these two methods were combined it might result in better performance with needing just
+        // one dictionary lookup
+        var microbeSpeciesHexSize = GetBaseHexSizeForSpecies(microbeSpecies);
+        var predatorSpeed = GetBaseSpeedForSpecies(microbeSpecies);
+
+        predatorSpeed += GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions).FinalBalance;
+
+        // Only assign engulf score if one can actually engulf
+        var engulfScore = 0.0f;
+        if (microbeSpeciesHexSize / preyHexSize >
+            Constants.ENGULF_SIZE_RATIO_REQ && microbeSpecies.CanEngulf)
+        {
+            // Catch scores grossly accounts for how many preys you catch in a run;
+            var catchScore = 0.0f;
+
+            // First, you may hunt individual preys, but only if you are fast enough...
+            if (predatorSpeed > preySpeed)
+            {
+                // You catch more preys if you are fast, and if they are slow.
+                // This incentivizes engulfment strategies in these cases.
+                catchScore += predatorSpeed / preySpeed;
+            }
+
+            // ... but you may also catch them by luck (e.g. when they run into you),
+            // and this is especially easy if you're huge.
+            // This is also used to incentivize size in microbe species.
+            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * microbeSpeciesHexSize;
+
+            // Allow for some degree of lucky engulfment
+            engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+        }
+
+        var (pilusScore, oxytoxyScore, mucilageScore) = GetPredationToolsRawScores(microbeSpecies);
+
+        // Pili are much more useful if the microbe can close to melee
+        pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+
+        // predators are less likely to use toxin against larger prey, unless they are opportunistic
+        if (preyHexSize > microbeSpeciesHexSize)
+        {
+            oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        }
+
+        // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
+        cached = behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore);
+
+        predationScores.Add(key, cached);
         return cached;
     }
 

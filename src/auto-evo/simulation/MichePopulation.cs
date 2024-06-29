@@ -42,6 +42,33 @@ public static class MichePopulation
         }
     }
 
+    public static int CalculateMicrobePopulationInPatch(MicrobeSpecies species, Miche miche,
+        BiomeConditions biomeConditions, SimulationCache cache)
+    {
+        var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(species, biomeConditions);
+        var individualCost = energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+            * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+
+        var leafNodes = miche.GetLeafNodes();
+
+        var miches = leafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal())
+            .SelectMany(x => x).Distinct().ToList();
+
+        float totalEnergy = 0;
+
+        foreach (var subMiche in miches)
+        {
+            var micheEnergy = subMiche.Pressure.GetEnergy();
+
+            if (micheEnergy <= 0)
+                continue;
+
+            totalEnergy += micheEnergy;
+        }
+
+        return (int)(totalEnergy / individualCost);
+    }
+
     /// <summary>
     ///   Populates the initial population numbers taking config into account
     /// </summary>
@@ -165,7 +192,7 @@ public static class MichePopulation
         if (species.Count < 1)
             return;
 
-        var leafNodes = miche!.AllLeafNodes().Where(x => x.Occupant != null).ToList();
+        var leafNodes = miche!.GetLeafNodes().Where(x => x.Occupant != null).ToList();
 
         foreach (var currentSpecies in species)
         {

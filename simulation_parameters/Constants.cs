@@ -416,7 +416,7 @@ public static class Constants
     public const float OXYTOXY_DAMAGE_DEBUFF_MAX = 0.75f;
 
     /// <summary>
-    ///   How much a cell's speed is slowed when travelling through slime
+    ///   How much a cell's speed is slowed when traveling through slime
     /// </summary>
     public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
 
@@ -1005,11 +1005,11 @@ public static class Constants
     /// <summary>
     ///   Populations of species that are under this will be killed off by auto-evo
     /// </summary>
-    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
+    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 30;
 
     // Auto evo population algorithm tweak variables
     // TODO: move all of these into auto-evo_parameters.json
-    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 200;
+    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
@@ -1407,7 +1407,7 @@ public static class Constants
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
-    // Min/max values for each customisable difficulty option
+    // Min/max values for each customizable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;
     public const float MAX_MP_MULTIPLIER = 2;
     public const float MIN_AI_MUTATION_RATE = 0.5f;

@@ -13,19 +13,20 @@ public class EnvironmentalCompoundPressure : SelectionPressure
     private readonly float totalEnergy;
     private readonly Compound compound;
 
-    public EnvironmentalCompoundPressure(Patch patch, float weight, Compound compound) : base(weight, [])
+    public EnvironmentalCompoundPressure(Patch patch, float weight, Compound compound, float energyMultiplier) :
+        base(weight, [])
     {
         if (compound.IsCloud)
             throw new ArgumentException("Given compound to environmental pressure is a cloud type");
 
         this.compound = compound;
 
-        // TODO: Make num a constant
-        totalEnergy = patch.Biome.AverageCompounds[compound].Ambient * 100;
+        totalEnergy = patch.Biome.AverageCompounds[compound].Ambient * energyMultiplier;
     }
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
+        // Force to specialize
         return 1;
     }
 

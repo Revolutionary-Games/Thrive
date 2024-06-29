@@ -22,7 +22,7 @@ public class MetabolicStabilityPressure : SelectionPressure
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
-        if (species.BaseSpeed == 0)
+        if (cache.GetBaseSpeedForSpecies(species) == 0)
         {
             return 0.0f;
         }

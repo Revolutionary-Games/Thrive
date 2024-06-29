@@ -27,16 +27,15 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
         new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
             AddOrganelleAnywhere.Direction.Front),
-        new AddMultipleOrganelles([
-            new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
-                AddOrganelleAnywhere.Direction.Rear),
-            AddOrganelleAnywhere.ThatCreateCompound(ATP),
-        ]),
+        new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
+            AddOrganelleAnywhere.Direction.Rear),
         new ChangeMembraneType(DoubleMembrane),
         new ChangeMembraneType(CelluloseMembrane),
         new ChangeMembraneType(ChitinMembrane),
         new ChangeMembraneType(CalciumCarbonateMembrane),
         new ChangeMembraneType(SilicaMembrane),
+        new ChangeMembraneRigidity(true),
+        new ChangeMembraneRigidity(false),
     ])
     {
         Patch = patch;
@@ -45,8 +44,7 @@ public class AvoidPredationSelectionPressure : SelectionPressure
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
-        var predationScore = new PredationEffectivenessPressure(species, Patch, 1, cache)
-            .FitnessScore((MicrobeSpecies)Predator, species);
+        var predationScore = cache.GetPredationScore((MicrobeSpecies)Predator, species, Patch.Biome);
 
         if (predationScore == 0)
         {

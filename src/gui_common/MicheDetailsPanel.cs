@@ -87,7 +87,7 @@ public partial class MicheDetailsPanel : MarginContainer
             previewMiche.Pressure.ToString(),
             previewMiche.Pressure.GetEnergy(),
             string.Join("\n  ",
-                previewMiche.AllOccupants().ToList().Distinct()
+                previewMiche.GetOccupants().ToList().Distinct()
                     .Select(b => b.FormattedName + ": " + Math.Round(previewMiche.Pressure.Score(b, cache), 3))));
     }
 

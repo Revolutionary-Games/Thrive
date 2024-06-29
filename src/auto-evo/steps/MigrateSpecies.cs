@@ -27,7 +27,7 @@ public class MigrateSpecies : IRunStep
 
         var miche = results.MicheByPatch[patch];
 
-        var occupants = miche.AllOccupants().Distinct().ToList();
+        var occupants = miche.GetOccupants().Distinct().ToList();
 
         if (occupants.Count == 0)
             return true;

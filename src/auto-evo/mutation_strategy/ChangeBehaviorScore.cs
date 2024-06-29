@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
 {
-    private BehaviorAttribute attribute;
-    private float maxChange;
+    private readonly BehaviorAttribute attribute;
+    private readonly float maxChange;
 
     public ChangeBehaviorScore(BehaviorAttribute attribute, float maxChange)
     {
@@ -23,7 +23,9 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
         Fear,
     }
 
-    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
+    public bool Repeatable => true;
+
+    public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
     {
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
@@ -31,7 +33,7 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
 
         if (Math.Abs(change) < 1)
         {
-            return new List<MicrobeSpecies>();
+            return [];
         }
 
         switch (attribute)
@@ -58,6 +60,6 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
                 break;
         }
 
-        return new List<MicrobeSpecies> { newSpecies };
+        return [Tuple.Create(newSpecies, mp)];
     }
 }

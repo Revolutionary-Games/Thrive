@@ -17,7 +17,7 @@ public class CompoundCloudPressure : SelectionPressure
 
     public CompoundCloudPressure(Patch patch, float weight, Compound compound, bool isDayNightCycleEnabled) :
         base(weight, [
-            new LowerRigidity(),
+            new ChangeMembraneRigidity(true),
             new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
         ])
     {
@@ -40,7 +40,7 @@ public class CompoundCloudPressure : SelectionPressure
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
-        var score = species.BaseSpeed;
+        var score = cache.GetBaseSpeedForSpecies(species);
 
         // Species that are less active during the night get a small penalty here based on their activity
         if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(species, patch.Biome))

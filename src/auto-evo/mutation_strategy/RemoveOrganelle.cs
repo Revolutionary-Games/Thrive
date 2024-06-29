@@ -6,12 +6,15 @@ using System.Linq;
 
 public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 {
+    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
     public Func<OrganelleDefinition, bool> Criteria;
 
     public RemoveOrganelle(Func<OrganelleDefinition, bool> criteria)
     {
         Criteria = criteria;
     }
+
+    public bool Repeatable => true;
 
     public static RemoveOrganelle ThatUseCompound(Compound compound)
     {
@@ -25,22 +28,44 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
             .Where(proc => proc.Process.Outputs.ContainsKey(compound)).Any());
     }
 
-    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
+    public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
     {
+        if (mp < 10)
+            return [];
+
         // TODO: Make this something passed in
         var random = new Random();
 
-        var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+        // TODO: Move to constants
+        const int removeOrganelleAttempts = 5;
 
-        var organelles = newSpecies.Organelles.ToList().Where(x => Criteria(x.Definition)).ToList();
+        var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
+            .OrderBy(_ => random.Next()).Take(removeOrganelleAttempts).ToList();
 
         if (organelles.Count <= 1)
-            return [newSpecies];
+            return [];
 
-        newSpecies.Organelles.RemoveHexAt(organelles.ElementAt(random.Next(0, organelles.Count)).Position, []);
+        var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
-        CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles);
+        foreach (var organelle in organelles)
+        {
+            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-        return [newSpecies];
+            if (organelle.Definition == Nucleus)
+            {
+                if (baseSpecies.Organelles.Any(x => x.Definition.RequiresNucleus))
+                    continue;
+
+                newSpecies.IsBacteria = true;
+            }
+
+            newSpecies.Organelles.RemoveHexAt(organelle.Position, []);
+
+            CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles);
+
+            mutated.Add(Tuple.Create(newSpecies, mp - 10));
+        }
+
+        return mutated;
     }
 }

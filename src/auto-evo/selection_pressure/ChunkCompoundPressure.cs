@@ -74,6 +74,10 @@ public class ChunkCompoundPressure : SelectionPressure
 
     public override string ToString()
     {
-        return $"{Name} ({chunk})";
+        var chunkName = string.IsNullOrEmpty(chunk.Name) ?
+            new LocalizedString("NOT_FOUND_CHUNK") :
+            new LocalizedString(chunk.Name);
+
+        return $"{Name} ({chunkName})";
     }
 }

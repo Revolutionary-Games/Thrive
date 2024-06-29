@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using System.Collections.Generic;
 
 public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
@@ -11,12 +12,20 @@ public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
         this.membraneType = membraneType;
     }
 
-    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
+    public bool Repeatable => false;
+
+    public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
     {
+        if (baseSpecies.MembraneType == membraneType)
+            return [];
+
+        if (mp < membraneType.EditorCost)
+            return [];
+
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
         newSpecies.MembraneType = membraneType;
 
-        return new List<MicrobeSpecies> { newSpecies };
+        return [Tuple.Create(newSpecies, mp - membraneType.EditorCost)];
     }
 }

@@ -6,12 +6,13 @@ using System.Linq;
 
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
-    public Func<OrganelleDefinition, bool> Criteria;
-    private Direction direction;
+    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    private readonly Direction direction;
+    private readonly OrganelleDefinition[] allOrganelles;
 
     public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, Direction direction = Direction.Neutral)
     {
-        Criteria = criteria;
+        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToArray();
         this.direction = direction;
     }
 
@@ -21,6 +22,8 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         Neutral,
         Rear,
     }
+
+    public bool Repeatable => true;
 
     public static AddOrganelleAnywhere ThatUseCompound(Compound compound, Direction direction = Direction.Neutral)
     {
@@ -35,14 +38,41 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             .Where(proc => proc.Process.Outputs.ContainsKey(compound)).Any(), direction);
     }
 
-    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
+    public static AddOrganelleAnywhere ThatConvertBetweenCompounds(Compound fromCompound, Compound toCompound,
+        Direction direction = Direction.Neutral)
     {
-        var viableOrganelles = partList.GetAllOrganelles().Where(x => Criteria(x));
+        return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
+            .Where(proc => proc.Process.Inputs.ContainsKey(fromCompound) &&
+                proc.Process.Outputs.ContainsKey(toCompound)).Any(), direction);
+    }
 
-        var retval = new List<MicrobeSpecies>();
+    public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
+    {
+        // If a cheaper organelle gets added this will need to be updated
+        if (mp < 20)
+            return [];
 
-        foreach (var organelle in viableOrganelles)
+        // TODO: Make this something passed in
+        var random = new Random();
+
+        // TODO: Move to constants
+        const int addOrganelleAttempts = 15;
+
+        var organelles = allOrganelles.OrderBy(_ => random.Next()).Take(addOrganelleAttempts).ToList();
+
+        var mutated = new List<Tuple<MicrobeSpecies, float>>();
+
+        foreach (var organelle in organelles)
         {
+            if (organelle.MPCost > mp)
+                continue;
+
+            if (organelle.RequiresNucleus && baseSpecies.IsBacteria)
+                continue;
+
+            if (organelle.Unique && baseSpecies.Organelles.Select(x => x.Definition).Contains(organelle))
+                continue;
+
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
             OrganelleTemplate position;
@@ -62,9 +92,15 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             newSpecies.Organelles.Add(position);
             CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles);
 
-            retval.Add(newSpecies);
+            // If the new species is a eukaryote, mark this as such
+            if (organelle == Nucleus)
+            {
+                newSpecies.IsBacteria = false;
+            }
+
+            mutated.Add(Tuple.Create(newSpecies, mp - organelle.MPCost));
         }
 
-        return retval;
+        return mutated;
     }
 }

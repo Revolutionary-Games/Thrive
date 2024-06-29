@@ -32,7 +32,7 @@ public class Miche
         return Parent.Root();
     }
 
-    public IEnumerable<Miche> AllLeafNodes()
+    public IEnumerable<Miche> GetLeafNodes()
     {
         if (IsLeafNode())
         {
@@ -43,13 +43,13 @@ public class Miche
 
         foreach (var child in Children)
         {
-            nodes.AddRange(child.AllLeafNodes());
+            nodes.AddRange(child.GetLeafNodes());
         }
 
         return nodes;
     }
 
-    public IEnumerable<MicrobeSpecies> AllOccupants()
+    public IEnumerable<MicrobeSpecies> GetOccupants()
     {
         var occupants = new List<MicrobeSpecies>();
 
@@ -60,7 +60,7 @@ public class Miche
 
         foreach (var child in Children)
         {
-            occupants.AddRange(child.AllOccupants());
+            occupants.AddRange(child.GetOccupants());
         }
 
         return occupants;
@@ -82,7 +82,7 @@ public class Miche
 
     public bool InsertSpecies(MicrobeSpecies species, SimulationCache cache, bool dry = false)
     {
-        var scoresDictionary = AllOccupants().Distinct().ToDictionary(x => x, _ => 0.0f);
+        var scoresDictionary = GetOccupants().Distinct().ToDictionary(x => x, _ => 0.0f);
 
         scoresDictionary[species] = 0.0f;
 
@@ -114,7 +114,7 @@ public class Miche
 
         var newScores = new Dictionary<MicrobeSpecies, float>();
 
-        foreach (var currentSpecies in AllOccupants())
+        foreach (var currentSpecies in GetOccupants())
         {
             newScores[currentSpecies] = scoresSoFar[currentSpecies] +
                 Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, cache));
