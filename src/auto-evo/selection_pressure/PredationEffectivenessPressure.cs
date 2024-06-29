@@ -101,6 +101,9 @@ public class PredationEffectivenessPressure : SelectionPressure
             oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
 
+        // prey that resist toxin are obviously weaker to it
+        oxytoxyScore /= prey.MembraneType.ToxinResistance;
+
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
         return behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore);
     }
