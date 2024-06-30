@@ -57,13 +57,24 @@ public class ModifyExistingSpecies : IRunStep
                     outputSpecies.AddRange(PruneMutations(speciesTuple.Item1, mutated, cache, selectionPressures));
                 }
 
-                inputSpecies = PruneMutations(baseSpecies, outputSpecies, cache, selectionPressures);
+                // TODO: Given we limit the size already these could be made into arrays and with some proper juggling
+                // we could avoid allocations
+                // TODO: Make these a performance setting?
+                if (inputSpecies.Count > 500)
+                {
+                    inputSpecies = GetTopMutations(baseSpecies, viableVariants, 250, cache, selectionPressures)
+                        .ToList();
+                }
+                else
+                {
+                    inputSpecies = PruneMutations(baseSpecies, outputSpecies, cache, selectionPressures);
+                }
+
                 viableVariants.AddRange(inputSpecies);
 
-                // Make these a performance setting?
-                if (viableVariants.Count > 100)
+                if (viableVariants.Count > 1000)
                 {
-                    viableVariants = GetTopMutations(baseSpecies, viableVariants, 50, cache, selectionPressures)
+                    viableVariants = GetTopMutations(baseSpecies, viableVariants, 500, cache, selectionPressures)
                         .ToList();
                 }
 
@@ -73,9 +84,16 @@ public class ModifyExistingSpecies : IRunStep
                 if (!mutationStrategy.Repeatable)
                     break;
 
-                // Limit Recursion Depth
-                if (i > 200)
+                // Sanity check to prevent hanging
+                if (i > 100)
                     throw new Exception("Mutation Loop Never Broke");
+
+                // FIXME: Somehow RemoveOrganelle keeps triggering this
+                if (i > 11)
+                {
+                    GD.Print(mutationStrategy.GetType());
+                    GD.Print(outputSpecies.Select(x => x.Item2).Max());
+                }
 
                 i++;
             }
