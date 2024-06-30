@@ -26,19 +26,10 @@ public class ModifyExistingSpecies : IRunStep
     ///   as well as a copy of the original species.
     /// </summary>
     /// <returns>List of viable variants, and the provided species</returns>
-    public static List<MicrobeSpecies> ViableVariants(MicrobeSpecies baseSpecies,
-        Patch patch,
-        SimulationCache cache,
-        List<SelectionPressure> selectionPressures)
+    public static List<MicrobeSpecies> GenerateMutations(MicrobeSpecies baseSpecies, int amount,
+        SimulationCache cache, List<SelectionPressure> selectionPressures)
     {
         var random = new Random();
-
-        // Find the initial scores
-        var pressureScores = new Dictionary<SelectionPressure, float>();
-        foreach (var curPressure in selectionPressures)
-        {
-            pressureScores[curPressure] = curPressure.Score(baseSpecies, cache);
-        }
 
         // TODO: Possibly make that 100 a difficulty setting
         var viableVariants = new List<Tuple<MicrobeSpecies, float>>
@@ -63,56 +54,17 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2);
 
-                    foreach (var potentialVariant in mutated)
-                    {
-                        var combinedScores = 0.0;
-                        foreach (var pastPressure in selectionPressures)
-                        {
-                            var newScore = pastPressure.Score(potentialVariant.Item1, cache);
-                            var oldScore = pastPressure.Score(speciesTuple.Item1, cache);
-
-                            // Break if mutation fails a new pressure
-                            if (newScore <= 0 && oldScore > 0)
-                            {
-                                combinedScores = -1;
-                                break;
-                            }
-
-                            combinedScores += pastPressure.WeightedComparedScores(newScore, oldScore);
-                        }
-
-                        if (combinedScores > 0)
-                        {
-                            outputSpecies.Add(potentialVariant);
-                        }
-                    }
+                    outputSpecies.AddRange(PruneMutations(speciesTuple.Item1, mutated, cache, selectionPressures));
                 }
 
-                var newInputSpecies = new List<Tuple<MicrobeSpecies, float>>();
+                inputSpecies = PruneMutations(baseSpecies, outputSpecies, cache, selectionPressures);
+                viableVariants.AddRange(inputSpecies);
 
-                foreach (var potentialVariant in outputSpecies)
+                // Make these a performance setting?
+                if (viableVariants.Count > 100)
                 {
-                    var combinedScores = 0.0;
-                    foreach (var pastPressure in selectionPressures)
-                    {
-                        var newScore = pastPressure.Score(potentialVariant.Item1, cache);
-                        var oldScore = pressureScores[pastPressure];
-
-                        // Break if mutation fails a new pressure
-                        if (newScore <= 0 && oldScore > 0)
-                        {
-                            combinedScores = -1;
-                            break;
-                        }
-
-                        combinedScores += pastPressure.WeightedComparedScores(newScore, oldScore);
-                    }
-
-                    if (combinedScores > 0)
-                    {
-                        newInputSpecies.Add(potentialVariant);
-                        viableVariants.Add(potentialVariant);
-                    }
+                    viableVariants = GetTopMutations(baseSpecies, viableVariants, 50, cache, selectionPressures)
+                        .ToList();
                 }
 
                 if (outputSpecies.Count == 0)
@@ -122,11 +74,9 @@ public class ModifyExistingSpecies : IRunStep
                     break;
 
                 // Limit Recursion Depth
-                // TODO: Make this constant
-                if (i > 5)
-                    break;
+                if (i > 200)
+                    throw new Exception("Mutation Loop Never Broke");
 
-                inputSpecies = newInputSpecies;
                 i++;
             }
         }
@@ -148,9 +98,57 @@ public class ModifyExistingSpecies : IRunStep
                 Mathf.Clamp((float)(oldColour.B + blueShift), 0, 1));
         }
 
-        return mutatedSpecies.OrderByDescending(x =>
-            selectionPressures.Select(pressure =>
-                pressure.Score(x, cache) / pressureScores[pressure] * pressure.Strength).Sum()).ToList();
+        return GetTopMutations(baseSpecies, viableVariants, amount, cache, selectionPressures).Select(x => x.Item1)
+            .ToList();
+    }
+
+    public static List<Tuple<MicrobeSpecies, float>> PruneMutations(MicrobeSpecies baseSpecies,
+        List<Tuple<MicrobeSpecies, float>> mutated, SimulationCache cache, List<SelectionPressure> selectionPressures)
+    {
+        var outputSpecies = new List<Tuple<MicrobeSpecies, float>>();
+
+        foreach (var potentialVariant in mutated)
+        {
+            var combinedScores = 0.0;
+            foreach (var pastPressure in selectionPressures)
+            {
+                var newScore = pastPressure.Score(potentialVariant.Item1, cache);
+                var oldScore = pastPressure.Score(baseSpecies, cache);
+
+                // Break if mutation fails a new pressure
+                if (newScore <= 0 && oldScore > 0)
+                {
+                    combinedScores = -1;
+                    break;
+                }
+
+                combinedScores += pastPressure.WeightedComparedScores(newScore, oldScore);
+            }
+
+            if (combinedScores > 0)
+            {
+                outputSpecies.Add(potentialVariant);
+            }
+        }
+
+        return outputSpecies;
+    }
+
+    public static IEnumerable<Tuple<MicrobeSpecies, float>> GetTopMutations(MicrobeSpecies baseSpecies,
+        List<Tuple<MicrobeSpecies, float>> mutated, int amount, SimulationCache cache,
+        List<SelectionPressure> selectionPressures)
+    {
+        // Find the initial scores
+        var pressureScores = new Dictionary<SelectionPressure, float>();
+        foreach (var curPressure in selectionPressures)
+        {
+            pressureScores[curPressure] = curPressure.Score(baseSpecies, cache);
+        }
+
+        return mutated.OrderByDescending(x =>
+                selectionPressures.Select(pressure =>
+                    pressure.Score(x.Item1, cache) / pressureScores[pressure] * pressure.Strength).Sum())
+            .ThenBy(x => x.Item2).Take(amount);
     }
 
     public bool RunStep(RunResults results)
@@ -162,7 +160,7 @@ public class ModifyExistingSpecies : IRunStep
         var oldOccupants = oldMiche.GetOccupants().Distinct().ToList();
 
         // TODO: Put these in auto evo config
-        const int possibleMutationsPerSpecies = 3;
+        const int possibleMutationsToTryPerSpecies = 3;
         const int totalMutationsToTry = 20;
 
         var mutationsToTry = new List<Mutation>();
@@ -177,11 +175,10 @@ public class ModifyExistingSpecies : IRunStep
 
                 pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
 
-                var variants = ViableVariants(species, Patch, Cache, pressures);
+                var variants = GenerateMutations(species, possibleMutationsToTryPerSpecies, Cache, pressures);
 
-                mutationsToTry.AddRange(variants.Take(possibleMutationsPerSpecies)
-                    .Select(speciesToAdd => new Mutation(species, speciesToAdd,
-                        RunResults.NewSpeciesType.SplitDueToMutation)).ToList());
+                mutationsToTry.AddRange(variants.Select(speciesToAdd => new Mutation(species, speciesToAdd,
+                    RunResults.NewSpeciesType.SplitDueToMutation)).ToList());
             }
         }
 
@@ -198,11 +195,10 @@ public class ModifyExistingSpecies : IRunStep
 
                 pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
 
-                var variants = ViableVariants(species, Patch, Cache, pressures);
+                var variants = GenerateMutations(species, possibleMutationsToTryPerSpecies, Cache, pressures);
 
-                mutationsToTry.AddRange(variants.Take(possibleMutationsPerSpecies)
-                    .Select(speciesToAdd => new Mutation(species, speciesToAdd,
-                        RunResults.NewSpeciesType.FillNiche)).ToList());
+                mutationsToTry.AddRange(variants.Select(speciesToAdd => new Mutation(species, speciesToAdd,
+                    RunResults.NewSpeciesType.FillNiche)).ToList());
             }
         }
 
