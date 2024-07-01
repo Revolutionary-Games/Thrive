@@ -17,6 +17,11 @@ public enum VisualResourceIdentifier
     CellBurstEffect,
 
     /// <summary>
+    ///   Iron projectile effect
+    /// </summary>
+    SidenophoreProjectile,
+
+    /// <summary>
     ///   Oxytoxy effect
     /// </summary>
     AgentProjectile,

@@ -76,6 +76,11 @@ public struct OrganelleContainer
     public int AgentVacuoleCount;
 
     /// <summary>
+    ///   How good organelle is at breaking down iron (rusticyanin - 1, ferroplast - 2)
+    /// </summary>
+    public int IronBreakdownEfficiency;
+
+    /// <summary>
     ///   The microbe stores here the sum of capacity of all the current organelles. This is here to prevent anyone
     ///   from messing with this value if we used the Capacity from the CompoundBag for the calculations that use
     ///   this.
@@ -449,6 +454,7 @@ public static class OrganelleContainerHelpers
         container.AvailableEnzymes[Lipase.Value] = 1;
 
         container.AgentVacuoleCount = 0;
+        container.IronBreakdownEfficiency = 0;
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
@@ -518,6 +524,12 @@ public static class OrganelleContainerHelpers
 
             if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
+
+            if (organelleDefinition.InternalName == "rusticyanin")
+                ++container.IronBreakdownEfficiency;
+
+            if (organelleDefinition.InternalName == "ferroplast")
+                container.IronBreakdownEfficiency += 2;
 
             container.OrganellesCapacity +=
                 MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelleDefinition,
