@@ -225,6 +225,18 @@ public class SimulationCache
             oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
 
+        // If you can store enough to kill the prey, producing more isn't as important
+        var storageToKillRatio = microbeSpecies.StorageCapacities.Nominal * Constants.OXYTOXY_DAMAGE /
+            prey.MembraneType.Hitpoints * prey.MembraneType.ToxinResistance;
+        if (storageToKillRatio > 1)
+        {
+            oxytoxyScore = MathF.Pow(oxytoxyScore, 0.8f);
+        }
+        else
+        {
+            oxytoxyScore = MathF.Pow(oxytoxyScore, storageToKillRatio * 0.8f);
+        }
+
         // prey that resist toxin are obviously weaker to it
         oxytoxyScore /= prey.MembraneType.ToxinResistance;
 
