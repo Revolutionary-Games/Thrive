@@ -169,6 +169,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         var result = new EnergyBalanceInfo();
 
         float processATPProduction = 0.0f;
+        float processConservativeATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
         float movementATPConsumption = 0.0f;
 
@@ -192,6 +193,23 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     processATPProduction += amount;
 
                     result.AddProduction(organelle.Definition.InternalName, amount);
+
+                    var isInEnvironment = true;
+                    foreach (var input in processData.WritableInputs)
+                    {
+                        if (biome.Compounds.TryGetValue(input.Key, out var inputCompoundData))
+                        {
+                            if (inputCompoundData.Amount > 0 || inputCompoundData.Ambient > 0)
+                                continue;
+                        }
+
+                        isInEnvironment = false;
+                    }
+
+                    if (isInEnvironment)
+                    {
+                        processConservativeATPProduction += amount;
+                    }
                 }
             }
 
@@ -248,6 +266,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         // Compute totals
         result.TotalProduction = processATPProduction;
+        result.ConservativeTotalProduction = processConservativeATPProduction;
         result.TotalConsumptionStationary = processATPConsumption + result.Osmoregulation;
 
         if (includeMovementCost)
@@ -260,6 +279,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         result.FinalBalance = result.TotalProduction - result.TotalConsumption;
+        result.ConservativeFinalBalance = result.TotalProduction - result.TotalConsumption;
         result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
 
         return result;

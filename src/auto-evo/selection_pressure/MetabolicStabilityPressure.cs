@@ -29,7 +29,7 @@ public class MetabolicStabilityPressure : SelectionPressure
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
 
-        if (energyBalance.FinalBalance > 0)
+        if (energyBalance.ConservativeFinalBalance > 0)
         {
             return 1.0f;
         }

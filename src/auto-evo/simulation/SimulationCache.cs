@@ -33,6 +33,9 @@ public class SimulationCache
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound, Compound), float> cachedCompoundScores =
         new();
 
+    private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound, Compound), float> cachedGeneratedCompound =
+        new();
+
     private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, BiomeConditions), float> predationScores = new();
 
     private readonly Dictionary<(TweakedProcess, BiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
@@ -114,10 +117,10 @@ public class SimulationCache
                 {
                     if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
                     {
-                        var processEfficiency = GetProcessMaximumSpeed(process, biomeConditions).Efficiency;
+                        var processSpeed = GetProcessMaximumSpeed(process, biomeConditions).CurrentSpeed;
 
                         compoundIn += inputAmount;
-                        compoundOut += outputAmount * processEfficiency;
+                        compoundOut += outputAmount * processSpeed;
                     }
                 }
             }
@@ -133,6 +136,38 @@ public class SimulationCache
         }
 
         cachedCompoundScores.Add(key, cached);
+        return cached;
+    }
+
+    public float GetCompoundGeneratedFrom(Compound fromCompound, Compound toCompound, MicrobeSpecies species,
+        BiomeConditions biomeConditions)
+    {
+        var key = (species, biomeConditions, fromCompound, toCompound);
+
+        if (cachedGeneratedCompound.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        cached = 0.0f;
+
+        foreach (var organelle in species.Organelles)
+        {
+            foreach (var process in organelle.Definition.RunnableProcesses)
+            {
+                if (process.Process.Inputs.ContainsKey(fromCompound))
+                {
+                    if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
+                    {
+                        var processSpeed = GetProcessMaximumSpeed(process, biomeConditions).CurrentSpeed;
+
+                        cached += outputAmount * processSpeed;
+                    }
+                }
+            }
+        }
+
+        cachedGeneratedCompound.Add(key, cached);
         return cached;
     }
 
@@ -153,6 +188,18 @@ public class SimulationCache
         }
 
         cached = ProcessSystem.CalculateProcessMaximumSpeed(process, biomeConditions, CompoundAmountType.Average);
+
+        foreach (var input in process.Process.Inputs)
+        {
+            if (biomeConditions.Compounds.TryGetValue(input.Key, out var inputCompoundData))
+            {
+                if (inputCompoundData.Amount <= 0 && inputCompoundData.Ambient <= 0)
+                {
+                    cached.CurrentSpeed = 0;
+                    break;
+                }
+            }
+        }
 
         cachedProcessSpeeds.Add(key, cached);
         return cached;

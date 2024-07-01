@@ -37,37 +37,10 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
-        var amountCreated = 0.0f;
-        var totalCreated = 0.0f;
-
-        foreach (var organelle in species.Organelles)
-        {
-            foreach (var process in organelle.Definition.RunnableProcesses)
-            {
-                if (process.Process.Inputs.ContainsKey(compound))
-                {
-                    if (process.Process.Outputs.TryGetValue(createdCompound, out var outputAmount))
-                    {
-                        var processEfficiency = cache.GetProcessMaximumSpeed(process, patch.Biome).Efficiency;
-
-                        amountCreated += outputAmount * processEfficiency;
-                    }
-                }
-
-                if (process.Process.Outputs.TryGetValue(createdCompound, out var totalOutputAmount))
-                {
-                    var processEfficiency = cache.GetProcessMaximumSpeed(process, patch.Biome).Efficiency;
-
-                    totalCreated += totalOutputAmount * processEfficiency;
-                }
-            }
-        }
+        var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, species, patch.Biome);
 
         if (createdCompound == Glucose)
             amountCreated *= cache.GetCompoundConversionScoreForSpecies(Glucose, ATP, species, patch.Biome);
-
-        if (totalCreated <= 0)
-            return 0;
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
 

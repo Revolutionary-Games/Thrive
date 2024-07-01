@@ -85,7 +85,8 @@ public class GenerateMiche : IRunStep
         }
 
         // Sunlight
-        if (Patch.Biome.TryGetCompound(Sunlight, CompoundAmountType.Biome, out var sunlight) && sunlight.Ambient > 0)
+        if (Patch.Biome.TryGetCompound(Sunlight, CompoundAmountType.Biome, out var sunlight) &&
+            sunlight.Ambient >= 0.25f)
         {
             var sunlightMiche = new Miche(new CompoundConversionEfficiencyPressure(Patch, Sunlight, Glucose, 1.0f));
             var generateATP = new Miche(new CompoundConversionEfficiencyPressure(Patch, Glucose, ATP, 0.5f));
@@ -99,7 +100,6 @@ public class GenerateMiche : IRunStep
         }
 
         // Heat
-        // This check probably should be more than 0
         if (Patch.Biome.TryGetCompound(Temperature, CompoundAmountType.Biome, out var temperature) &&
             temperature.Ambient > 60)
         {
@@ -109,12 +109,18 @@ public class GenerateMiche : IRunStep
             generatedMiche.AddChild(tempMiche);
         }
 
+        var predationRoot = new Miche(new PredatorRoot(Patch, 5));
+        var predationGlucose = new Miche(new CompoundConversionEfficiencyPressure(Patch, Glucose, ATP, 1.0f));
+
         // Heterotrophic Miches
         foreach (var possiblePrey in Patch.SpeciesInPatch)
         {
-            generatedMiche.AddChild(
+            predationGlucose.AddChild(
                 new Miche(new PredationEffectivenessPressure((MicrobeSpecies)possiblePrey.Key, Patch, 1.0f)));
         }
+
+        predationRoot.AddChild(predationGlucose);
+        generatedMiche.AddChild(predationRoot);
 
         return rootMiche;
     }

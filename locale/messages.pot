@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-29 20:22-0500\n"
+"POT-Creation-Date: 2024-07-01 12:44-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -874,7 +874,7 @@ msgstr ""
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:91
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:74
 msgid "CHUNK_FOOD_SOURCE"
 msgstr ""
 
@@ -1910,7 +1910,7 @@ msgstr ""
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:65
+#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:59
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -4635,8 +4635,8 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:93
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:105
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:76
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:88
 msgid "NOT_FOUND_CHUNK"
 msgstr ""
 
@@ -5323,8 +5323,12 @@ msgstr ""
 msgid "PREDATION_EFFECTIVENESS_PRESSURE"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:70
+#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:69
 msgid "PREDATION_FOOD_SOURCE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/PredatorRoot.cs:10
+msgid "PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1055

@@ -12,7 +12,6 @@ public class AvoidPredationSelectionPressure : SelectionPressure
     public readonly Species Predator;
     public readonly Patch Patch;
 
-    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private static readonly MembraneType DoubleMembrane = SimulationParameters.Instance.GetMembrane("double");
     private static readonly MembraneType CelluloseMembrane = SimulationParameters.Instance.GetMembrane("cellulose");

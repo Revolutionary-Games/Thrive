@@ -61,27 +61,10 @@ public class ChunkCompoundPressure : SelectionPressure
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        var atpCreated = 0.0f;
-
-        foreach (var organelle in species.Organelles)
-        {
-            foreach (var process in organelle.Definition.RunnableProcesses)
-            {
-                if (process.Process.Inputs.ContainsKey(compound))
-                {
-                    if (process.Process.Outputs.TryGetValue(ATP, out var outputAmount))
-                    {
-                        var processEfficiency = cache.GetProcessMaximumSpeed(process, patch.Biome).Efficiency;
-
-                        atpCreated += outputAmount * processEfficiency;
-                    }
-                }
-            }
-        }
-
+        var compoundATP = cache.GetCompoundGeneratedFrom(compound, ATP, species, patch.Biome);
         var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
 
-        score *= Mathf.Min(atpCreated / energyBalance.TotalConsumption, 1);
+        score *= Mathf.Min(compoundATP / energyBalance.TotalConsumption, 1);
 
         return score;
     }

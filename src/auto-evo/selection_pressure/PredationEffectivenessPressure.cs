@@ -10,7 +10,6 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     public readonly MicrobeSpecies Prey;
-    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Patch patch;
     private readonly float totalEnergy;

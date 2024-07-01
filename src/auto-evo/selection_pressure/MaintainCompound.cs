@@ -32,16 +32,16 @@ public class MaintainCompound : SelectionPressure
             {
                 if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
                 {
-                    var processEfficiency = cache.GetProcessMaximumSpeed(process, patch.Biome).Efficiency;
+                    var processSpeed = cache.GetProcessMaximumSpeed(process, patch.Biome).CurrentSpeed;
 
-                    compoundUsed += inputAmount * processEfficiency;
+                    compoundUsed += inputAmount * processSpeed;
                 }
 
                 if (process.Process.Outputs.TryGetValue(compound, out var outputAmount))
                 {
-                    var processEfficiency = cache.GetProcessMaximumSpeed(process, patch.Biome).Efficiency;
+                    var processSpeed = cache.GetProcessMaximumSpeed(process, patch.Biome).CurrentSpeed;
 
-                    compoundCreated += outputAmount * processEfficiency;
+                    compoundCreated += outputAmount * processSpeed;
                 }
             }
         }
