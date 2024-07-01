@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 {
@@ -39,6 +40,9 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         // TODO: Move to constants
         const int removeOrganelleAttempts = 5;
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
             .OrderBy(_ => random.Next()).Take(removeOrganelleAttempts).ToList();
 
@@ -59,7 +63,21 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
                 newSpecies.IsBacteria = true;
             }
 
-            newSpecies.Organelles.RemoveHexAt(organelle.Position, []);
+            newSpecies.Organelles.Clear();
+
+            // Is this the best way to do this? Probably not, but this is how mutations.cs does is
+            // and the other way outright did not work
+            foreach (var parentOrganelle in baseSpecies.Organelles)
+            {
+                if (parentOrganelle == organelle)
+                    continue;
+
+                var newOrganelle = (OrganelleTemplate)parentOrganelle.Clone();
+
+                // Copy the organelle
+                if (newSpecies.Organelles.CanPlace(newOrganelle, workMemory1, workMemory2))
+                    newSpecies.Organelles.AddFast(newOrganelle, workMemory1, workMemory2);
+            }
 
             CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles);
 
