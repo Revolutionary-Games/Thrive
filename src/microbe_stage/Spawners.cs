@@ -84,6 +84,90 @@ public static class SpawnHelpers
     /// <summary>
     ///   Spawns an agent projectile
     /// </summary>
+    public static EntityRecord SpawnIronProjectile(IWorldSimulation worldSimulation,
+        float amount, float lifetime, Vector3 location, Vector3 direction, float scale, Entity emitter)
+    {
+        var recorder = SpawnIronProjectileWithoutFinalizing(worldSimulation,
+            amount, lifetime, location, direction, scale, emitter, out var entity);
+
+        FinalizeEntitySpawn(recorder, worldSimulation);
+
+        return entity;
+    }
+
+    public static EntityCommandRecorder SpawnIronProjectileWithoutFinalizing(IWorldSimulation worldSimulation,
+        float amount, float lifetime, Vector3 location, Vector3 direction, float scale,
+        Entity emitter, out EntityRecord entity)
+    {
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+        entity = SpawnIronProjectileWithoutFinalizing(worldSimulation, recorder, amount, lifetime,
+            location, direction, scale, emitter);
+
+        return recorder;
+    }
+
+    public static EntityRecord SpawnIronProjectileWithoutFinalizing(IWorldSimulation worldSimulation,
+        EntityCommandRecorder commandRecorder, float amount, float lifetime,
+        Vector3 location, Vector3 direction, float scale, Entity emitter)
+    {
+        var normalizedDirection = direction.Normalized();
+
+        var entityCreator = worldSimulation.GetRecorderWorld(commandRecorder);
+
+        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
+
+        entity.Set(new WorldPosition(location + direction * 1.5f));
+
+        entity.Set(new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.SidenophoreProjectile,
+        });
+
+        entity.Set(default(SpatialInstance));
+
+        entity.Set(new TimedLife
+        {
+            TimeToLiveRemaining = lifetime,
+        });
+        entity.Set(new FadeOutActions
+        {
+            FadeTime = Constants.EMITTER_DESPAWN_DELAY,
+            DisableCollisions = true,
+            RemoveVelocity = true,
+            DisableParticles = true,
+        });
+
+        entity.Set(new Physics
+        {
+            Velocity = normalizedDirection * Constants.AGENT_EMISSION_VELOCITY,
+            AxisLock = Physics.AxisLockType.YAxisWithRotation,
+        });
+
+        entity.Set(new SiderophoreProjectile
+        {
+            Amount = amount,
+            Sender = emitter,
+        });
+
+        // Need to specify shape like this to make saving work
+        entity.Set(new SimpleShapeCreator(SimpleShapeType.Sphere, Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
+            Constants.TOXIN_PROJECTILE_PHYSICS_DENSITY));
+
+        entity.Set<PhysicsShapeHolder>();
+        entity.Set(new CollisionManagement
+        {
+            IgnoredCollisionsWith = new List<Entity> { emitter },
+
+            // Callbacks are initialized by ToxinCollisionSystem
+        });
+
+        // Needed for fade actions
+        entity.Set<ManualPhysicsControl>();
+
+        return entity;
+    }
+
     public static EntityRecord SpawnAgentProjectile(IWorldSimulation worldSimulation, AgentProperties properties,
         float amount, float lifetime, Vector3 location, Vector3 direction, float scale, Entity emitter)
     {
@@ -227,6 +311,8 @@ public static class SpawnHelpers
             VisualScale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale, chunkType.ChunkScale),
             ApplyVisualScale = Math.Abs(chunkType.ChunkScale - 1) > MathUtils.EPSILON,
         });
+
+        entity.Set(chunkType);
 
         bool hasMicrobeShaderParameters = false;
 

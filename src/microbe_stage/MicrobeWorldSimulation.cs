@@ -82,6 +82,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobeReproductionSystem microbeReproductionSystem = null!;
     private TintColourApplyingSystem tintColourApplyingSystem = null!;
     private ToxinCollisionSystem toxinCollisionSystem = null!;
+    private SiderophoreSystem siderophoreSystem = null!;
     private UnneededCompoundVentingSystem unneededCompoundVentingSystem = null!;
 
     // Multicellular systems
@@ -221,6 +222,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
 
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, couldParallelize);
+        siderophoreSystem = new SiderophoreSystem(EntitySystem, couldParallelize, this);
+
         unneededCompoundVentingSystem = new UnneededCompoundVentingSystem(cloudSystem, EntitySystem, parallelRunner);
 
         // Systems stored in properties
@@ -458,6 +461,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 microbeReproductionSystem.Dispose();
                 tintColourApplyingSystem.Dispose();
                 toxinCollisionSystem.Dispose();
+                siderophoreSystem.Dispose();
                 unneededCompoundVentingSystem.Dispose();
                 delayedColonyOperationSystem.Dispose();
                 multicellularGrowthSystem.Dispose();

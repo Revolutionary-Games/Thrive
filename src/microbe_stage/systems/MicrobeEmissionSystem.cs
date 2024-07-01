@@ -82,6 +82,13 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             control.QueuedToxinToEmit = null;
         }
 
+        if (control.QueuedIronToEmit)
+        {
+            EmitIron(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
+                engulfed);
+            control.QueuedIronToEmit = false;
+        }
+
         // This method itself checks for the preconditions on emitting slime
         HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
             ref position, compounds, engulfed, delta);
@@ -207,6 +214,48 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         }
 
         ++control.FiredToxinCount;
+    }
+
+    private void EmitIron(in Entity entity, ref MicrobeControl control, ref OrganelleContainer organelles,
+        ref CellProperties cellProperties, ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition position,
+        bool engulfed)
+    {
+        if (engulfed)
+            return;
+
+        if (control.AgentEmissionCooldown > 0)
+            return;
+
+        // Only shoot if you have any iron organelles
+        if (organelles.IronBreakdownEfficiency < 1)
+            return;
+
+        // Can't shoot if membrane is not ready
+        if (!cellProperties.IsMembraneReady())
+            return;
+
+        // The cooldown time is inversely proportional to the amount of agent vacuoles with a little nerf.
+        control.AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN * 5 / organelles.IronBreakdownEfficiency;
+
+        float ejectionDistance = cellProperties.CreatedMembrane!.EncompassingCircleRadius +
+            Constants.AGENT_EMISSION_DISTANCE_OFFSET;
+
+        if (cellProperties.IsBacteria)
+            ejectionDistance *= 0.5f;
+
+        // Find the direction the microbe is facing
+        // (actual rotation, not LookAtPoint, also takes colony membership into account and uses the
+        // parent rotation)
+        var direction = FacingDirection(entity, ref position);
+
+        var emissionPosition = position.Position + (direction * ejectionDistance);
+
+        var agent = SpawnHelpers.SpawnIronProjectile(worldSimulation, organelles.IronBreakdownEfficiency,
+            Constants.EMITTED_AGENT_LIFETIME, emissionPosition, direction, organelles.IronBreakdownEfficiency, entity);
+
+        ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
+
+        soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
     }
 
     private void HandleSlimeSecretion(in Entity entity, ref MicrobeControl control,
