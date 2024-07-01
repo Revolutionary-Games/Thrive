@@ -101,7 +101,7 @@ public class GenerateMiche : IRunStep
         // Heat
         // This check probably should be more than 0
         if (Patch.Biome.TryGetCompound(Temperature, CompoundAmountType.Biome, out var temperature) &&
-            temperature.Ambient > 1)
+            temperature.Ambient > 60)
         {
             var tempMiche = new Miche(new CompoundConversionEfficiencyPressure(Patch, Temperature, ATP, 1.0f));
             tempMiche.AddChild(new Miche(new EnvironmentalCompoundPressure(Patch, 1, Temperature, 100)));
