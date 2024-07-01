@@ -148,7 +148,7 @@ public static class MicrobeInternalCalculations
         var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
 
         var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
-            CalculateAverageDensity(organelles), isBacteria);
+            isBacteria);
 
         float organelleMovementForce = 0;
 
@@ -291,24 +291,6 @@ public static class MicrobeInternalCalculations
     public static float RotationSpeedToUserReadableNumber(float rawSpeed)
     {
         return 1 / rawSpeed * 100;
-    }
-
-    public static float CalculateAverageDensity(IEnumerable<IPositionedOrganelle> organelles)
-    {
-        float totalVolume = Constants.BASE_CELL_DENSITY_VOLUME;
-
-        float density = Constants.BASE_CELL_DENSITY * Constants.BASE_CELL_DENSITY_VOLUME;
-
-        foreach (var organelle in organelles)
-        {
-            var definition = organelle.Definition;
-            var volume = definition.HexCount * definition.RelativeDensityVolume;
-            totalVolume += volume;
-
-            density += definition.Density * volume;
-        }
-
-        return density / totalVolume;
     }
 
     public static float CalculateDigestionSpeed(int enzymeCount)
