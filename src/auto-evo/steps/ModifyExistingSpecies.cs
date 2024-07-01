@@ -60,9 +60,9 @@ public class ModifyExistingSpecies : IRunStep
                 // TODO: Given we limit the size already these could be made into arrays and with some proper juggling
                 // we could avoid allocations
                 // TODO: Make these a performance setting?
-                if (inputSpecies.Count > 500)
+                if (outputSpecies.Count > 500)
                 {
-                    inputSpecies = GetTopMutations(baseSpecies, viableVariants, 250, cache, selectionPressures)
+                    inputSpecies = GetTopMutations(baseSpecies, outputSpecies, 250, cache, selectionPressures)
                         .ToList();
                 }
                 else
@@ -87,13 +87,6 @@ public class ModifyExistingSpecies : IRunStep
                 // Sanity check to prevent hanging
                 if (i > 100)
                     throw new Exception("Mutation Loop Never Broke");
-
-                // FIXME: Somehow RemoveOrganelle keeps triggering this
-                if (i > 11)
-                {
-                    GD.Print(mutationStrategy.GetType());
-                    GD.Print(outputSpecies.Select(x => x.Item2).Max());
-                }
 
                 i++;
             }
