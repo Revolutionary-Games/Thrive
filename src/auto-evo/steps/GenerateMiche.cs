@@ -90,7 +90,7 @@ public class GenerateMiche : IRunStep
             var sunlightMiche = new Miche(new CompoundConversionEfficiencyPressure(Patch, Sunlight, Glucose, 1.0f));
             var generateATP = new Miche(new CompoundConversionEfficiencyPressure(Patch, Glucose, ATP, 0.5f));
             var maintainGlucose = new Miche(new MaintainCompound(Patch, 1, Glucose));
-            var envPressure = new Miche(new EnvironmentalCompoundPressure(Patch, 1, Sunlight, 10000));
+            var envPressure = new Miche(new EnvironmentalCompoundPressure(Patch, 1, Sunlight, Glucose, 10000));
 
             maintainGlucose.AddChild(envPressure);
             generateATP.AddChild(maintainGlucose);
@@ -104,7 +104,7 @@ public class GenerateMiche : IRunStep
             temperature.Ambient > 60)
         {
             var tempMiche = new Miche(new CompoundConversionEfficiencyPressure(Patch, Temperature, ATP, 1.0f));
-            tempMiche.AddChild(new Miche(new EnvironmentalCompoundPressure(Patch, 1, Temperature, 100)));
+            tempMiche.AddChild(new Miche(new EnvironmentalCompoundPressure(Patch, 1, Temperature, ATP, 100)));
 
             generatedMiche.AddChild(tempMiche);
         }
