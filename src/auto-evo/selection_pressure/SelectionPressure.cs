@@ -17,6 +17,21 @@ public abstract class SelectionPressure
     public abstract float Score(MicrobeSpecies species, SimulationCache cache);
     public abstract float GetEnergy();
 
+    public float CacheScore(MicrobeSpecies species, SimulationCache cache)
+    {
+        var key = (species, this);
+
+        if (cache.CachedPressureScores.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        cached = Score(species, cache);
+
+        cache.CachedPressureScores.Add(key, cached);
+        return cached;
+    }
+
     /// <summary>
     ///   Calculates the relative difference between the old and new scores
     /// </summary>

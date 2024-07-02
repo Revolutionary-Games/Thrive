@@ -79,8 +79,8 @@ public class PhysicsShape : IDisposable
         }
 
         // The rented array from the pool will be returned when the cache entry is disposed
-        result = new MembraneCollisionShape(
-            CreateMicrobeShape(new ReadOnlySpan<JVecF3>(convertedData, 0, pointCount), Constants.BASE_CELL_DENSITY,
+        result = new MembraneCollisionShape(CreateMicrobeShape(new ReadOnlySpan<JVecF3>(convertedData, 0, pointCount),
+                Constants.BASE_CELL_DENSITY,
                 scaleAsBacteria),
             convertedData, pointCount, Constants.BASE_CELL_DENSITY, scaleAsBacteria);
 

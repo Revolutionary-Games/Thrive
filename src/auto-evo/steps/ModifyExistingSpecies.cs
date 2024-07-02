@@ -60,9 +60,9 @@ public class ModifyExistingSpecies : IRunStep
                 // TODO: Given we limit the size already these could be made into arrays and with some proper juggling
                 // we could avoid allocations
                 // TODO: Make these a performance setting?
-                if (outputSpecies.Count > 500)
+                if (outputSpecies.Count > 100)
                 {
-                    inputSpecies = GetTopMutations(baseSpecies, outputSpecies, 250, cache, selectionPressures)
+                    inputSpecies = GetTopMutations(baseSpecies, outputSpecies, 50, cache, selectionPressures)
                         .ToList();
                 }
                 else
@@ -72,9 +72,9 @@ public class ModifyExistingSpecies : IRunStep
 
                 viableVariants.AddRange(inputSpecies);
 
-                if (viableVariants.Count > 1000)
+                if (viableVariants.Count > 200)
                 {
-                    viableVariants = GetTopMutations(baseSpecies, viableVariants, 500, cache, selectionPressures)
+                    viableVariants = GetTopMutations(baseSpecies, viableVariants, 100, cache, selectionPressures)
                         .ToList();
                 }
 
@@ -85,7 +85,7 @@ public class ModifyExistingSpecies : IRunStep
                     break;
 
                 // Sanity check to prevent hanging
-                if (i > 100)
+                if (i > 20)
                     throw new Exception("Mutation Loop Never Broke");
 
                 i++;
@@ -123,8 +123,8 @@ public class ModifyExistingSpecies : IRunStep
             var combinedScores = 0.0;
             foreach (var pastPressure in selectionPressures)
             {
-                var newScore = pastPressure.Score(potentialVariant.Item1, cache);
-                var oldScore = pastPressure.Score(baseSpecies, cache);
+                var newScore = pastPressure.CacheScore(potentialVariant.Item1, cache);
+                var oldScore = pastPressure.CacheScore(baseSpecies, cache);
 
                 // Break if mutation fails a new pressure
                 if (newScore <= 0 && oldScore > 0)
@@ -149,16 +149,10 @@ public class ModifyExistingSpecies : IRunStep
         List<Tuple<MicrobeSpecies, float>> mutated, int amount, SimulationCache cache,
         List<SelectionPressure> selectionPressures)
     {
-        // Find the initial scores
-        var pressureScores = new Dictionary<SelectionPressure, float>();
-        foreach (var curPressure in selectionPressures)
-        {
-            pressureScores[curPressure] = curPressure.Score(baseSpecies, cache);
-        }
-
         return mutated.OrderByDescending(x =>
                 selectionPressures.Select(pressure =>
-                    pressure.Score(x.Item1, cache) / pressureScores[pressure] * pressure.Strength).Sum())
+                    pressure.CacheScore(x.Item1, cache) / pressure.CacheScore(baseSpecies, cache) *
+                    pressure.Strength).Sum())
             .ThenBy(x => x.Item2).Take(amount);
     }
 

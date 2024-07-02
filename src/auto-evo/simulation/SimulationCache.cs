@@ -20,10 +20,10 @@ using Systems;
 /// </remarks>
 public class SimulationCache
 {
+    public readonly Dictionary<(MicrobeSpecies, SelectionPressure), float> CachedPressureScores = new();
+
     private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private readonly WorldGenerationSettings worldSettings;
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
