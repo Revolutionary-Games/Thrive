@@ -257,9 +257,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
     {
         UpdateRotationRate(ref organelles);
 
-        var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneVertices, vertexCount,
-            MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
-            cellProperties.IsBacteria);
+        var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneVertices, vertexCount, cellProperties.IsBacteria);
 
         ++extraData.MicrobeShapesCount;
         ++extraData.TotalShapeCount;
@@ -269,13 +267,11 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
         return shape;
     }
 
-    private PhysicsShape CreateColonyMemberBaseShape(ref MicrobePhysicsExtraData extraData,
-        ref OrganelleContainer organelles, Membrane membrane, bool isBacteria)
+    private PhysicsShape CreateColonyMemberBaseShape(ref MicrobePhysicsExtraData extraData, Membrane membrane,
+        bool isBacteria)
     {
         var data = membrane.MembraneData;
-        var shape = PhysicsShape.GetOrCreateMicrobeShape(data.Vertices2D, data.VertexCount,
-            MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
-            isBacteria);
+        var shape = PhysicsShape.GetOrCreateMicrobeShape(data.Vertices2D, data.VertexCount, isBacteria);
 
         // Rotation rate doesn't need to be updated as the microbe, if ever ejected, will create its own shape
         // Colony rotation calculation uses the organelles directly to calculate the rotation.
@@ -343,7 +339,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
                     attached.RelativePosition, attached.RelativeRotation));
 
                 combinedData.Add((
-                    CreateColonyMemberBaseShape(ref extraData, ref currentMemberOrganelles, membrane, isBacteria),
+                    CreateColonyMemberBaseShape(ref extraData, membrane, isBacteria),
                     attached.RelativePosition, attached.RelativeRotation));
             }
         }

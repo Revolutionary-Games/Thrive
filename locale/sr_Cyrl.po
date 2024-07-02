@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-19 11:03+0300\n"
+"POT-Creation-Date: 2024-07-01 12:44-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -309,6 +309,10 @@ msgstr ""
 
 msgid "AVAILABLE_MODS"
 msgstr ""
+
+#, fuzzy
+msgid "AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "се проширила на зоне:"
 
 msgid "AWAKENING_STAGE"
 msgstr ""
@@ -681,6 +685,10 @@ msgstr ""
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Облак једињења"
 
+#, fuzzy
+msgid "CHUNK_PRESSURE"
+msgstr "Прити."
+
 msgid "CILIA"
 msgstr "Цилија"
 
@@ -846,8 +854,16 @@ msgstr "Облак једињења"
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "Облак једињења"
 
+#, fuzzy
+msgid "COMPOUND_CLOUD_PRESSURE"
+msgstr "Облак једињења"
+
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Облак једињења"
 
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
@@ -1774,6 +1790,10 @@ msgstr "Биом: {0}"
 
 msgid "ENVIRONMENT"
 msgstr "Животна средина"
+
+#, fuzzy
+msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Облак једињења"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
@@ -2965,7 +2985,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -2990,6 +3010,10 @@ msgstr "Метаболосоми су грозди протеина умотан
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
+
+#, fuzzy
+msgid "MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Облак једињења"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3063,6 +3087,9 @@ msgstr ""
 msgid "MESOPELAGIC"
 msgstr "Месопелагик"
 
+msgid "METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
 msgid "METABOLOSOMES"
 msgstr "Метаболосоми"
 
@@ -3081,6 +3108,16 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 msgid "MIB_VALUE"
+msgstr ""
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr "Врсте Присутне"
+
+msgid "MICHE_TREE"
 msgstr ""
 
 #, fuzzy
@@ -3844,6 +3881,10 @@ msgid "NO_MODS_ENABLED"
 msgstr "Укључи тастери за варања"
 
 #, fuzzy
+msgid "NO_OP_PRESSURE"
+msgstr "Прити."
+
+#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Поставите органелу"
 
@@ -4148,6 +4189,10 @@ msgid "PAST_DEVELOPERS"
 msgstr ""
 
 #, fuzzy
+msgid "PATCH_COLON"
+msgstr "Врсте:"
+
+#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr "Баш као и 99% свих врста које су икада постојале, и ваша врста је изумрла. Други ће наставити да попуњавају вашу нишу и просперирати, али то нећете бити ви. Бићете заборављени, неуспели експеримент у еволуцији."
 
@@ -4329,8 +4374,15 @@ msgstr "ПОПУЛАЦИЈА:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "ПОПУЛАЦИЈА:"
 
+msgid "PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
+
+#, fuzzy
+msgid "PREDATOR_ROOT_PRESSURE"
+msgstr "Прити."
 
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
@@ -4379,9 +4431,6 @@ msgstr ""
 
 msgid "PROTEINS"
 msgstr "Протеини"
-
-msgid "PROTOPLASM"
-msgstr "Протоплазма"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
@@ -4577,6 +4626,10 @@ msgstr ""
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Чвршћа мембрана је отпорнија на оштећења, али ће исто отежати кретање за ћелију."
 
+#, fuzzy
+msgid "ROOT_PRESSURE"
+msgstr "Прити."
+
 msgid "ROTATE_LEFT"
 msgstr "Ротирајте лево"
 
@@ -4634,8 +4687,9 @@ msgstr "Рустицијанин је протеин који може да ко
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
+#, fuzzy
 msgid "SAFE_MODE_TITLE"
-msgstr ""
+msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 msgid "SAVE"
 msgstr "Сачувати"
@@ -7291,6 +7345,21 @@ msgstr "Зумирати"
 
 msgid "ZOOM_OUT"
 msgstr "Одзумирати"
+
+#, fuzzy
+#~ msgid "REACH_COMPOUND_CLOUD_PRESSURE"
+#~ msgstr "Облак једињења"
+
+#~ msgid "PROTOPLASM"
+#~ msgstr "Протоплазма"
+
+#, fuzzy
+#~ msgid "STORAGE_PRESSURE"
+#~ msgstr "Прити."
+
+#, fuzzy
+#~ msgid "PATCH"
+#~ msgstr "Карта Зоне"
 
 #, fuzzy
 #~ msgid "DIRECTIONL"

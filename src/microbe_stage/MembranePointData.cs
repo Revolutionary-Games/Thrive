@@ -221,16 +221,14 @@ public sealed class MembraneCollisionShape : ICacheableData
         }
     }
 
-    public static long ComputeMicrobeShapeCacheHash(IReadOnlyList<Vector2> points, int pointCount, float density,
-        bool isBacteria)
+    public static long ComputeMicrobeShapeCacheHash(IReadOnlyList<Vector2> points, int pointCount, bool isBacteria)
     {
         if (pointCount > points.Count)
             throw new ArgumentException("Point count is more than list size", nameof(pointCount));
 
         unchecked
         {
-            long hash = ~(long)pointCount;
-            hash ^= density.GetHashCode();
+            long hash = ~pointCount;
 
             for (int i = 0; i < pointCount; ++i)
             {
@@ -253,7 +251,7 @@ public sealed class MembraneCollisionShape : ICacheableData
         if (data.PointCount != count)
             return false;
 
-        if (!MatchesParameters(data.Density, data.IsBacteria))
+        if (!MatchesParameters(data.IsBacteria))
             return false;
 
         var points = MembranePoints;
@@ -268,10 +266,9 @@ public sealed class MembraneCollisionShape : ICacheableData
         return true;
     }
 
-    public bool MatchesCacheParameters(IReadOnlyList<Vector2> otherMembranePoints, int pointCount, float density,
-        bool isBacteria)
+    public bool MatchesCacheParameters(IReadOnlyList<Vector2> otherMembranePoints, int pointCount, bool isBacteria)
     {
-        if (!MatchesParameters(density, isBacteria))
+        if (!MatchesParameters(isBacteria))
             return false;
 
         var count = PointCount;
@@ -292,12 +289,9 @@ public sealed class MembraneCollisionShape : ICacheableData
         return true;
     }
 
-    public bool MatchesParameters(float density, bool isBacteria)
+    public bool MatchesParameters(bool isBacteria)
     {
-        // It'd probably fine to do an exact compare on the density as the calculations to derive densities
-        // probably are pretty stable, but it doesn't hurt if things that aren't exactly the same density are
-        // considered equal
-        if (Math.Abs(density - Density) > 0.000001f || isBacteria != IsBacteria)
+        if (isBacteria != IsBacteria)
             return false;
 
         return true;

@@ -18,6 +18,8 @@ using JetBrains.Annotations;
 /// </remarks>
 public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesResult>>
 {
+    public Dictionary<Patch, Miche> MicheByPatch = new();
+
     /// <summary>
     ///   The per-species results
     /// </summary>
@@ -171,27 +173,22 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
     }
 
-    public void AddTrackedEnergyForSpecies(MicrobeSpecies species, Patch patch, FoodSource niche,
-        float speciesFitness, float speciesEnergy, float totalFitness)
+    public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
+        float speciesFitness, float speciesEnergy)
     {
-        if (niche == null)
-            throw new ArgumentException("niche is missing", nameof(niche));
-
         MakeSureResultExistsForSpecies(species);
 
         var dataReceiver = results[species].GetEnergyResults(patch);
 
-        var nicheDescription = niche.GetDescription();
+        var nicheDescription = pressure.GetDescription();
         dataReceiver.PerNicheEnergy[nicheDescription] = new SpeciesPatchEnergyResults.NicheInfo
         {
             CurrentSpeciesFitness = speciesFitness,
             CurrentSpeciesEnergy = speciesEnergy,
-            TotalFitness = totalFitness,
-            TotalAvailableEnergy = niche.TotalEnergyAvailable(),
         };
     }
 
-    public void AddTrackedEnergyConsumptionForSpecies(MicrobeSpecies species, Patch patch,
+    public void AddTrackedEnergyConsumptionForSpecies(Species species, Patch patch,
         long unadjustedPopulation, float totalEnergy, float individualCost)
     {
         MakeSureResultExistsForSpecies(species);
@@ -1190,10 +1187,6 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
             public float CurrentSpeciesFitness;
 
             public float CurrentSpeciesEnergy;
-
-            public float TotalFitness;
-
-            public float TotalAvailableEnergy;
         }
     }
 }

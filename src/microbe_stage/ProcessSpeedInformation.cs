@@ -41,7 +41,7 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public float CurrentSpeed { get; set; }
 
     /// <summary>
-    ///   Efficiency is a measure of how well the environment is favourable to the process.
+    ///   Efficiency is a measure of how well the environment is favorable to the process.
     /// </summary>
     /// <remarks>
     ///   <para>

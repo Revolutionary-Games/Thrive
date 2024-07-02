@@ -2796,9 +2796,7 @@ public partial class CellEditorComponent :
             {
                 var data = nicheInfo.Value;
                 predictionDetailsText.Append(new LocalizedString("FOOD_SOURCE_ENERGY_INFO", nicheInfo.Key,
-                    Round(data.CurrentSpeciesEnergy), Round(data.CurrentSpeciesFitness),
-                    Round(data.TotalAvailableEnergy),
-                    Round(data.TotalFitness)));
+                    Round(data.CurrentSpeciesEnergy), Round(data.CurrentSpeciesFitness)));
                 predictionDetailsText.Append('\n');
             }
 
