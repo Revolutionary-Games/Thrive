@@ -27,6 +27,11 @@ public struct MicrobeControl
     public Compound? QueuedToxinToEmit;
 
     /// <summary>
+    ///   If true, microbe will fire iron breakdown substance on next update.
+    /// </summary>
+    public bool QueuedIronToEmit;
+
+    /// <summary>
     ///   This is here as this is very closely related to <see cref="QueuedSlimeSecretionTime"/>
     /// </summary>
     public float SlimeSecretionCooldown;
@@ -73,6 +78,7 @@ public struct MicrobeControl
         LookAtPoint = startingPosition + new Vector3(0, 0, -1);
         MovementDirection = new Vector3(0, 0, 0);
         QueuedToxinToEmit = null;
+        QueuedIronToEmit = false;
         SlimeSecretionCooldown = 0;
         QueuedSlimeSecretionTime = 0;
         AgentEmissionCooldown = 0;
@@ -156,6 +162,36 @@ public static class MicrobeControlHelpers
             return false;
 
         control.QueuedToxinToEmit = agentType;
+
+        return true;
+    }
+
+    public static bool EmitIron(this ref MicrobeControl control, ref OrganelleContainer organelles,
+        in Entity entity)
+    {
+        // Disallow when engulfed
+        if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+            return false;
+
+        if (entity.Has<MicrobeColony>())
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+
+            // TODO: remove the delegate allocation here
+            colony.PerformForOtherColonyMembersThanLeader(m =>
+                m.Get<MicrobeControl>()
+                    .EmitIron(ref m.Get<OrganelleContainer>(),
+                        m));
+        }
+
+        if (control.AgentEmissionCooldown > 0)
+            return false;
+
+        // Only shoot if you have an agent vacuole.
+        if (organelles.IronBreakdownEfficiency < 1)
+            return false;
+
+        control.QueuedIronToEmit = true;
 
         return true;
     }
