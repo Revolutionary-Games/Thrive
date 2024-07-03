@@ -139,7 +139,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
         return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
-            isPlayerSpecies, worldSettings, amountType);
+            isPlayerSpecies, worldSettings, amountType, null);
     }
 
     /// <summary>
@@ -164,7 +164,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
-        CompoundAmountType amountType)
+        CompoundAmountType amountType, AutoEvo.SimulationCache? cache)
     {
         var result = new EnergyBalanceInfo();
 
@@ -179,7 +179,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                var processData = CalculateProcessMaximumSpeed(process, biome, amountType);
+                ProcessSpeedInformation processData;
+                if (cache != null && amountType == CompoundAmountType.Average)
+                {
+                    processData = cache.GetProcessMaximumSpeed(process, biome);
+                }
+                else
+                {
+                    processData = CalculateProcessMaximumSpeed(process, biome, amountType);
+                }
 
                 if (processData.WritableInputs.TryGetValue(ATP, out var amount))
                 {
