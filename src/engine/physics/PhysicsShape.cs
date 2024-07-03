@@ -50,17 +50,18 @@ public class PhysicsShape : IDisposable
     /// </summary>
     /// <returns>The shape made from a convex body for the microbe</returns>
     public static PhysicsShape GetOrCreateMicrobeShape(IReadOnlyList<Vector2> membranePoints, int pointCount,
-        bool scaleAsBacteria)
+        float overallDensity, bool scaleAsBacteria)
     {
         var cache = ProceduralDataCache.Instance;
 
-        var hash = MembraneCollisionShape.ComputeMicrobeShapeCacheHash(membranePoints, pointCount, scaleAsBacteria);
+        var hash = MembraneCollisionShape.ComputeMicrobeShapeCacheHash(membranePoints, pointCount,
+            overallDensity, scaleAsBacteria);
 
         var result = cache.ReadMembraneCollisionShape(hash);
 
         if (result != null)
         {
-            if (result.MatchesCacheParameters(membranePoints, pointCount, scaleAsBacteria))
+            if (result.MatchesCacheParameters(membranePoints, pointCount, overallDensity, scaleAsBacteria))
             {
                 return result.Shape;
             }
@@ -79,10 +80,9 @@ public class PhysicsShape : IDisposable
         }
 
         // The rented array from the pool will be returned when the cache entry is disposed
-        result = new MembraneCollisionShape(CreateMicrobeShape(new ReadOnlySpan<JVecF3>(convertedData, 0, pointCount),
-                Constants.BASE_CELL_DENSITY,
-                scaleAsBacteria),
-            convertedData, pointCount, Constants.BASE_CELL_DENSITY, scaleAsBacteria);
+        result = new MembraneCollisionShape(
+            CreateMicrobeShape(new ReadOnlySpan<JVecF3>(convertedData, 0, pointCount), overallDensity, scaleAsBacteria),
+            convertedData, pointCount, overallDensity, scaleAsBacteria);
 
         cache.WriteMembraneCollisionShape(ref result);
 
