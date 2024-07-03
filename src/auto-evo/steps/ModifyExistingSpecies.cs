@@ -44,9 +44,8 @@ public class ModifyExistingSpecies : IRunStep
         {
             var inputSpecies = viableVariants;
 
-            var i = 0;
-
-            while (true)
+            // TODO: Make Const
+            for (int i = 0; i < 3; i++)
             {
                 var outputSpecies = new List<Tuple<MicrobeSpecies, float>>();
 
@@ -83,12 +82,6 @@ public class ModifyExistingSpecies : IRunStep
 
                 if (!mutationStrategy.Repeatable)
                     break;
-
-                // Sanity check to prevent hanging
-                if (i > 20)
-                    throw new Exception("Mutation Loop Never Broke");
-
-                i++;
             }
         }
 

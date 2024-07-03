@@ -61,7 +61,7 @@ public static class CommonMutationFunctions
             }
         }
 
-        // We didnt find an open spot, this doesn't make much sense
+        // We didn't find an open spot, this doesn't make much sense
         throw new Exception("Mutation code could not find a good position " +
             "for a new organelle");
     }

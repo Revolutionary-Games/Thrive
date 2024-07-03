@@ -84,6 +84,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             }
             else
             {
+                // TODO: Convert to bounding box algo
                 position = new OrganelleTemplate(organelle,
                     direction == Direction.Front ? new Hex(0, -100) : new Hex(0, 100),
                     direction == Direction.Front ? 0 : 3);
