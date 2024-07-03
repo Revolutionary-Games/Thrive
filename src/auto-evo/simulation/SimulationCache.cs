@@ -77,7 +77,8 @@ public class SimulationCache
             return cached;
         }
 
-        cached = species.BaseSpeed;
+        cached = MicrobeInternalCalculations.CalculateSpeed(species.Organelles.Organelles, species.MembraneType,
+            species.MembraneRigidity, species.IsBacteria, true);
 
         cachedBaseSpeeds.Add(species, cached);
         return cached;

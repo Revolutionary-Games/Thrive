@@ -141,14 +141,20 @@ public static class MicrobeInternalCalculations
 
     // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
     public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
-        float membraneRigidity, bool isBacteria)
+        float membraneRigidity, bool isBacteria, bool useEstimate = false)
     {
-        // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to figure
-        // out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
-        var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
+        var averageDensity = CalculateAverageDensity(organelles);
+        float shapeMass = 0;
 
-        var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
-            CalculateAverageDensity(organelles), isBacteria);
+        if (!useEstimate)
+        {
+            var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
+
+            var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
+                averageDensity, isBacteria);
+
+            shapeMass = shape.GetMass();
+        }
 
         float organelleMovementForce = 0;
 
@@ -163,6 +169,8 @@ public static class MicrobeInternalCalculations
         float backwardDirectionFactor;
         float rightDirectionFactor;
         float leftDirectionFactor;
+
+        float massEstimate = 0;
 
         // TODO: balance the calculation in regards to the new flagella force and the base movement force
 
@@ -191,7 +199,13 @@ public static class MicrobeInternalCalculations
                 rightwardDirectionMovementForce += MovementForce(movementConstant, rightDirectionFactor);
                 leftwardDirectionMovementForce += MovementForce(movementConstant, leftDirectionFactor);
             }
+
+            massEstimate += averageDensity * organelle.Definition.HexCount;
         }
+
+        // If this estimate could be made more accurate without additional computation that would be great
+        // but it is close enough for now
+        massEstimate *= 1.4f;
 
         var maximumMovementDirection = MaximumSpeedDirection(organelles);
 
@@ -214,7 +228,9 @@ public static class MicrobeInternalCalculations
             CalculateBaseMovement(membraneType, membraneRigidity, organelles.Sum(o => o.Definition.HexCount),
                 isBacteria);
 
-        float finalSpeed = (baseMovementForce + organelleMovementForce) / shape.GetMass();
+        var finalMass = useEstimate ? massEstimate : shapeMass;
+
+        float finalSpeed = (baseMovementForce + organelleMovementForce) / finalMass;
 
         return finalSpeed;
     }
