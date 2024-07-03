@@ -84,7 +84,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             }
             else
             {
-                var x = (int)(random.NextSingle() * 5);
+                var x = (int)(random.NextSingle() * 10 - 5);
 
                 position = new OrganelleTemplate(organelle,
                     direction == Direction.Front ? new Hex(x, -100) : new Hex(x, 100),
