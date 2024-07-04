@@ -7,6 +7,7 @@ namespace Systems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -136,6 +137,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         WorldGenerationSettings worldSettings, CompoundAmountType amountType)
     {
         var organellesList = organelles.ToList();
+
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
         return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
             isPlayerSpecies, worldSettings, amountType, null);
@@ -164,7 +166,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
-        CompoundAmountType amountType, AutoEvo.SimulationCache? cache)
+        CompoundAmountType amountType, SimulationCache? cache)
     {
         var result = new EnergyBalanceInfo();
 
