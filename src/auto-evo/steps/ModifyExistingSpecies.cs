@@ -227,18 +227,10 @@ public class ModifyExistingSpecies : IRunStep
             var bestScore = 0.0f;
 
             var parentTraversal = leafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()).ToList();
-            var parentPressures = parentTraversal.SelectMany(x => x).Select(x => x.Pressure).Distinct().ToList();
-
-            // find the initial scores of the parent
-            var pressureScores = new Dictionary<SelectionPressure, float>();
-            foreach (var pressure in parentPressures)
-            {
-                pressureScores[pressure] = pressure.Score(species, Cache);
-            }
 
             foreach (var mutation in mutationsToTry)
             {
-                if (mutation.Item1 == species)
+                if (mutation.Item1 != species)
                     continue;
 
                 var combinedScores = 0.0f;
@@ -249,21 +241,23 @@ public class ModifyExistingSpecies : IRunStep
                     {
                         var pressure = miche.Pressure;
 
-                        var newScore = pressure.Score(mutation.Item2, Cache);
-                        var oldScore = pressureScores[pressure];
+                        var newScore = pressure.CacheScore(mutation.Item2, Cache);
+                        var oldScore = pressure.CacheScore(mutation.Item1, Cache);
 
                         // Break if mutation fails a pressure
                         if (newScore <= 0)
                         {
                             combinedScores = -1;
-                            goto break_loop;
+                            break;
                         }
 
                         combinedScores += pressure.WeightedComparedScores(newScore, oldScore);
                     }
+
+                    if (combinedScores < 0)
+                        break;
                 }
 
-            break_loop:
                 if (combinedScores > bestScore)
                 {
                     bestScore = combinedScores;

@@ -17,6 +17,7 @@ public abstract class SelectionPressure
     public abstract float Score(MicrobeSpecies species, SimulationCache cache);
     public abstract float GetEnergy();
 
+    // TODO: Make sure this does not make things worse
     public float CacheScore(MicrobeSpecies species, SimulationCache cache)
     {
         var key = (species, this);

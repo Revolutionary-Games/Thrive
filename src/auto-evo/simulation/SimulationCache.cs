@@ -120,10 +120,9 @@ public class SimulationCache
                 {
                     if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
                     {
-                        var processSpeed = GetProcessMaximumSpeed(process, biomeConditions).CurrentSpeed;
-
+                        // We don't multiply by speed here as it is about pure efficiency
                         compoundIn += inputAmount;
-                        compoundOut += outputAmount * processSpeed;
+                        compoundOut += outputAmount;
                     }
                 }
             }
@@ -290,7 +289,15 @@ public class SimulationCache
         // prey that resist toxin are obviously weaker to it
         oxytoxyScore /= prey.MembraneType.ToxinResistance;
 
-        cached = behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore) /
+        var scoreMultiplier = 1.0f;
+
+        if (!microbeSpecies.CanEngulf)
+        {
+            // If you can't engulf, you just get energy from the chunks leaking.
+            scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
+        }
+
+        cached = scoreMultiplier * behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore) /
             GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions).TotalConsumption;
 
         predationScores.Add(key, cached);
