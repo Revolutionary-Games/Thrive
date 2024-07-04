@@ -220,7 +220,7 @@ public class ModifyExistingSpecies : IRunStep
         // All other mutations will split off to form a new species.
         foreach (var species in oldOccupants)
         {
-            if (!newOccupants.Contains(species) || species.PlayerSpecies)
+            if (newOccupants.Contains(species) || species.PlayerSpecies)
                 continue;
 
             Mutation? bestMutation = null;
