@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-19 11:03+0300\n"
-"PO-Revision-Date: 2024-06-16 10:22+0000\n"
-"Last-Translator: syl <syl@gresille.org>\n"
+"PO-Revision-Date: 2024-07-04 17:22+0000\n"
+"Last-Translator: Max6mm <ricard.max@hotmail.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgid "ACTION_AWAKEN"
 msgstr "S'éveiller ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Passer à la phase Éveillé. Disponible une fois que vous avez assez de puissance cérébrale (Type de tissu avec axons)."
+msgstr "Passer à la phase Éveillé. Disponible une fois que vous avez assez de puissance cérébrale (Type de tissu avec axones)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Action bloquée pendant qu'une autre est en cours"
@@ -331,9 +331,8 @@ msgstr "Lors de la vérification des chiffres calculés dans ce panneau, calcule
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr "Inclure le coût des mouvements"
 
-#, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr "Ouvrir la vue de configuration avancée"
+msgstr "Lorsque cette option est cochée, les valeurs indiquées ici sont calculées en supposant que la cellule est constamment en mouvement"
 
 msgid "BASE_MOBILITY"
 msgstr "Mobilité de base"
@@ -404,9 +403,8 @@ msgstr "{0} Mrd"
 msgid "BINDING_AGENT"
 msgstr "Agent liant"
 
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Permet de se lier à d'autres cellules. C'est le premier pas vers la multicellularité. Lorsque votre cellule fait partie d'une colonie, les composés sont partagés entre les différentes cellules. Vous ne pouvez pas entrer dans l'éditeur lorsque vous faites partie d'une colonie. Vous devez donc vous délier une fois que vous avez collecté suffisamment de composés pour diviser votre cellule."
 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
@@ -761,11 +759,11 @@ msgstr "Composés :"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr "Équilibre des composants"
+msgstr "(stockage plein en {0} s)"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
-msgstr "Équilibre des composants"
+msgstr "(stockage plein en {0} s alors que la lumière du jour dure seulement {1} s)"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
@@ -776,7 +774,9 @@ msgstr "Équilibre des composés"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
-msgstr "Afficher / cacher l'environnement et les composés"
+msgstr ""
+"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
+"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuages de composés"
@@ -795,21 +795,26 @@ msgstr "Consommation de {0}"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr "Équilibre des composants"
+msgstr "(insuffisant pour passer toute la nuit qui dure {0} s)"
 
+#, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "Seulement {1} [thrive:compound type=\"{0}\"][/thrive:compound] peuvent être générés pendant la journée, mais pour survivre la nuit, {2} sont nécessaires."
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
-msgstr "Consommation de {0}"
+msgstr "La capacité de stockage est insuffisante pour [thrive:compound type=\"{0}\"][/thrive:compound] car la nuit dure {2} s mais le stockage ne peut contenir que {1} s de composés."
 
 msgid "COMPOUND_STORAGE_STATS_TITLE"
 msgstr "Capacités de stockage"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
-msgstr "Équilibre des composants"
+msgstr ""
+"Cette section montre le temps qu'il faut à la cellule pour épuiser chaque type de composé en partant d'une réserve pleine.\n"
+"Ces chiffres sont toujours calculés comme s'il faisait nuit et permettent de vérifier si la cellule aura assez de réserves\n"
+"pour survivre toute la nuit. En désactivant les coûts de déplacement à l'aide de la case à cocher, on obtient les valeurs minimales\n"
+"nécessaires pour survivre en restant immobile toute la nuit."
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composé à trouver :"
@@ -1625,53 +1630,47 @@ msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr ""
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "Un endosymbiote est déjà présent. Entrez dans l'éditeur pour faire progresser le processus d'endosymbiose"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
-msgstr "Plusieurs organites"
+msgstr "Organites disponibles à transformer"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr "Endosymbiose"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr "Dissocier tout"
+msgstr "Annuler le processus d'endosymbiose. Vous perdrez la progression actuelle pour cet endosymbiote !"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
-msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
+msgstr "Terminer le processus d'endosymbiose et le placer en tant qu'organite"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
-"Les microbes agressifs pourchasseront leurs proies sur de plus longues distances\n"
-"et sont plus enclins à affronter un assaillant.\n"
-"Les microbes pacifiques ne poursuivront pas les autres cellules si elles se tiennent à distance\n"
-"et utiliseront moins de toxines contre les prédateurs."
+msgstr "L'endosymbiose est un processus qui transforme une espèce en un endosymbiote (une espèce qui vit à l'intérieur d'une autre dans une relation de symbiose). Cela débloquera l'organite créé, et donnera une copie gratuite de cet organite. Les espèces pouvant être transformées en organites sont représentées ci-dessous après avoir été englouties. La durée du processus dépend de la compatibilité de l'espèce candidate à l'endosymbiose (cette caractéristique est indiquée sous chaque organite candidat)."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Aucune espèce susceptible d'être transformée en endosymbiote n'a encore été engloutie"
 
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
 msgstr "Cette espèce ne peut être transformée en aucun organite valide"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
-"Ceci indique le nombre de fenêtres contextuelles qui ont été définitivement désactivées par l'utilisateur.\n"
-"Si certaines fenêtres contextuelles, qui sont en fait souhaitées, ont été désactivées, le bouton situé à côté peut être utilisé pour faire réapparaître toutes les fenêtres contextuelles désactivées."
+msgstr "Pour réaliser le processus d'endosymbiose, l'espèce cible doit être engloutie pour être transformée en organite temporaire (une seule espèce peut être présente à la fois). Le processus est ensuite lancé une fois que l'organite temporaire a été placé dans l'éditeur."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr "Les procaryotes peuvent avoir au maximum un endosymbiote"
+msgstr "Les procaryotes ne peuvent avoir au maximum qu'un seul endosymbiote"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr "Transforme le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. Effet proportionnel avec la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Transforme aussi le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Survivez jusqu'à l'éditeur avec cette espèce en tant qu'organite temporaire pour faire avancer le processus"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
-msgstr "Entrer dans l'éditeur et modifier votre espèce"
+msgstr "Démarrer l'endosymbiose avec cette espèce (disponible après avoir sélectionné le type d'organite cible)"
 
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbiose"
@@ -1760,9 +1759,9 @@ msgstr "Arbre phylogénétique"
 #, fuzzy
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
-"Pas encore affiché en mode freebuild ou dans les sauvegardes lancées dans des versions antérieures à 0.6.0.\n"
+"La construction de l'arbre phylogénétique a échoué.\n"
 "\n"
-"Si aucun de ces cas ne s'applique, une erreur s'est produite. Veuillez en informer l'équipe de développement et fournir les logs de jeu."
+"Veuillez en informer l'équipe de développement et fournir les logs de jeu."
 
 msgid "EXACT_VERSION_COLON"
 msgstr "Version exacte de Thrive :"
@@ -1772,7 +1771,7 @@ msgstr "Ceci est le code exact à partir duquel cette version de Thrive a été 
 
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr "Une exception a eu lieu lors de la compréhension des objets chargés"
+msgstr "Une exception s'est produite lors du traitement des objets importés"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Une exception a eu lieu pendant le chargement des données de sauvegarde"
@@ -1862,11 +1861,13 @@ msgstr "Activé"
 msgid "FEBRUARY"
 msgstr "Février"
 
+#, fuzzy
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr ""
+msgstr "L'analyse du contenu de ce flux a échoué."
 
+#, fuzzy
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
+msgstr "Le contenu de ce flux est incomplet."
 
 msgid "FEED_ITEM_PUBLISHED_AT"
 msgstr "Publié le {0}"
@@ -1879,11 +1880,11 @@ msgstr "Ferroplaste"
 
 #, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire de l'[thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production d'[thrive:compound type=\"atp\"][/thrive:compound] varie avec la [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "La puissance du métal. Le ferroplaste est une structure à double membrane remplie de protéines et d'enzymes. Il s'agit d'un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Il est capable d'oxyder le [thrive:compound type=\"iron\"][/thrive:compound] d'un état chimique à un autre avec une efficacité bien supérieure à celle de la rusticyanine. Ce processus, appelé [b]respiration du fer[/b], libère de l'énergie que la cellule peut ensuite récolter. Il nécessite cependant du [thrive:compound type=\"carbondioxide\"][/thrive:compound] et du [thrive:compound type=\"oxygen\"][/thrive:compound] pour fonctionner, et des niveaux inférieurs de l'un ou l'autre de ces éléments dans l'environnement ralentiront le rythme de sa production de [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
+msgstr "Transforme [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La vitesse varie en fonction de la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound] et en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrer les objets par catégories :"
@@ -1908,7 +1909,7 @@ msgstr "Tirer des toxines"
 
 #, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr "Certaines options peuvent être désactivées si l'option \"LAWK uniquement\" est activée"
+msgstr "Projette une toxine causant des dommages aux cellules touchées"
 
 msgid "FLAGELLUM"
 msgstr "Flagelle"
@@ -1986,8 +1987,9 @@ msgstr "Erreur : {0}"
 msgid "FOSSILISATION"
 msgstr "Fossilisation"
 
+#, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
+msgstr "Fossilisez cette espèce pour la sauvegarder dans le musée. Vous pouvez accéder au musée à partir du Thriveopedia, ou charger des espèces fossilisées dans l'éditeur de construction libre."
 
 msgid "FOSSILISATION_FAILED"
 msgstr "Échec de la fossilisation"
@@ -2045,7 +2047,9 @@ msgstr "Équipe conception du jeu"
 
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
-msgstr "Visitez notre page Patreon"
+msgstr ""
+"Indique l’estimation de l'énergie totale collectée par votre espèce dans toutes les zones et la population résultante (entre parenthèses).\n"
+"Énergie précédente : {0}"
 
 msgid "GENERAL"
 msgstr "Général"
@@ -2746,7 +2750,7 @@ msgstr "Lipase"
 
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "La lipase permet de décomposer la plupart des membranes. votre cellule en produit déja sans lysosome, mais sélectionner ce type en augmentera l'efficacité."
+msgstr "La lipase permet de décomposer la plupart des membranes. votre cellule en produit déjà sans lysosome, mais sélectionner ce type en augmentera l'efficacité."
 
 msgid "LOAD"
 msgstr "Charger"
@@ -2966,6 +2970,7 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 msgstr "Une fois complètement engloutis, les objets seront maintenus dans la membrane pour être digérés. Ceux qui ne peuvent pas l'être seront automatiquement éjectés, alors vérifiez au préalable que vous avez les mutations qui permettent de les digérer. Les enzymes vous aideront pour la digestion. Elles sont produites par le lysosome ; évoluez cette organite pour rendre la digestion bien plus efficace."
 
+#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Organites externes\n"
@@ -2976,7 +2981,7 @@ msgstr ""
 "\n"
 "Chémorécepteur : permet de détecter les composés de plus loin\n"
 "\n"
-"Slime Jet : permet d'émettre du [thrive:compound type=\"mucilage\"][/thrive:compound] (produit à partir de [thrive:compound type=\"glucose\"][/thrive:compound]) pour accélérer votre cellule.\n"
+"Propulseur gélatineux : permet d'émettre du [thrive:compound type=\"mucilage\"][/thrive:compound] (produit à partir de [thrive:compound type=\"glucose\"][/thrive:compound]) pour accélérer votre cellule.\n"
 "\n"
 "Cils : augmentent la vitesse de rotation des cellules"
 
@@ -3041,11 +3046,9 @@ msgstr "Phase microbienne"
 #, fuzzy
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
-"Collectez du glucose (nuages blanc) en vous déplaçant dessus.\n"
+"Vous avez débloqué la possibilité de progresser vers la [b]multicellularité[/b]. Voici la prochaine étape de votre voyage.\n"
 "\n"
-"Votre cellule a besoin de glucose afin de produire de l'énergie et rester en vie.\n"
-"\n"
-"Suivez la ligne entre votre cellule et le glucose le plus proche."
+"Pour continuer, appuyez sur le bouton \"Devenir multicellulaire\"."
 
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
@@ -3067,16 +3070,17 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 "Pour contrôler votre cellule utilisez les touches affichées près de votre cellule (au centre de l'écran) et la souris pour contrôler l'orientation de votre cellule.\n"
-"\n"
+"AVERTISSEMENT : la saisie par manette est expérimentale et n'est pas totalement utilisable (sans pavé tactile), il faut s'attendre à des bogues.\n"
 "Essayez toutes les touches pendant quelques secondes pour continuer."
 
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
-"Gardez un œil sur votre barre de santé près de votre barre d'ATP (en bas à droite).\n"
-"Votre cellule meurt si elle est à court de vie.\n"
-"Vous régénérez votre santé tant que vous avez de l'ATP.\n"
-"Faites en sorte de collecter assez de glucose pour produire de l'ATP."
+"Surveillez la baisse du [b]taux d'ensoleillement[/b] sur le panneau de l'environnement.\n"
+"\n"
+"Lorsque la nuit tombe, l'environnement s'assombrit.\n"
+"La nuit, la photosynthèse est inefficace.\n"
+"Assurez-vous donc d'avoir suffisamment de réserves de [thrive:icon]StorageIcon[/thrive:icon] pour survivre à la nuit."
 
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
@@ -3173,7 +3177,12 @@ msgstr ""
 
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
-msgstr "  {0} : Trouvé dans {1} espèce, en moyenne {2} chacun"
+msgstr ""
+"L'un de vos organites s'est divisé.\n"
+"\n"
+"À mesure que vous accumulez des composés, votre cellule en utilise une partie pour sa reproduction.\n"
+"\n"
+"Lorsque la quantité de composés est suffisante, les organites se divisent et à se dupliquent. Quand tous les organites se sont divisés, votre cellule peut se reproduire et vous pouvez entrer dans l'éditeur."
 
 msgid "MIDDLE_MOUSE"
 msgstr "Clic molette"
@@ -3471,8 +3480,9 @@ msgstr "Plusieurs organites"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anticrénelage plusieurs échantillons :"
 
+#, fuzzy
 msgid "MULTITHREADED_SIMULATION_ENABLED"
-msgstr ""
+msgstr "Exécuter les simulations du jeu à l'aide de plusieurs threads"
 
 #, fuzzy
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
@@ -3610,11 +3620,11 @@ msgstr "Aucun objet avec lequel interagir"
 
 #, fuzzy
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
-msgstr "Blessé par absence d'ATP"
+msgstr "Dommages dus à l'absence d'ATP"
 
 #, fuzzy
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
-msgstr "Blessé par ingestion de toxines"
+msgstr "Dommages dus à l'ingestion de toxines"
 
 #, fuzzy
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
@@ -3624,15 +3634,16 @@ msgstr "{0} manquant pour phagocyter la cible"
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Cellule trop petite pour phagocyter la cible"
 
+#, fuzzy
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr ""
+msgstr "Pas suffisamment d'espace disponible pour phagocyter la cible"
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr "Production d'ATP inhibée par une toxine"
 
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
-msgstr "Mouvement de base"
+msgstr "Vitesse de déplacement réduite en raison d'une toxine"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Vous pouvez maintenant accéder à l'éditeur"
@@ -3801,7 +3812,7 @@ msgstr "Organites"
 
 #, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr "(ATTENTION : la photosynthèse devient beaucoup moins viable)"
+msgstr "Les conditions de déverrouillage ne sont vérifiées qu'une fois par génération lors de l'entrée dans l'éditeur"
 
 msgid "ORGANELLE_AXON"
 msgstr "Axone"
@@ -3823,7 +3834,7 @@ msgstr "Pilus de prédateur"
 
 #, fuzzy
 msgid "ORGANELLE_PILUS_DESCRIPTION"
-msgstr "Planter les autres cellules avec ça."
+msgstr "Les pili (singulier : pilus) se trouvent à la surface de nombreux micro-organismes et ressemblent à de fins poils. Des dizaines, voire des centaines de pili peuvent être présents à la surface d'un micro-organisme et remplir plusieurs fonctions, notamment dans la prédation. Les micro-organismes pathogènes utilisent les pili de façon agressive, soit pour s'attacher et se lier aux tissus de l'hôte, soit pour franchir la membrane externe et accéder au cytoplasme. Il existe de nombreux pili similaires, mais ils ne sont pas liés par l'évolution et résultent d'une évolution convergente. Un même organisme peut développer plusieurs types de pili, et les pili présents à la surface des cellules sont constamment modifiés et remplacés."
 
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Peut être utilisé pour attaquer les autres cellules ou pour se défendre contre leurs toxines."
@@ -3999,7 +4010,7 @@ msgstr "Pacifique"
 
 #, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
-msgstr "Vous utilisez Thrive avec OpenGL. Cela demeure non testé et risque de causer des problèmes. Assurez-vous d'utiliser des cartes graphiques (processeurs graphiques ou intégrées) suffisamment récentes et essayez de mettre à jour vos pilotes vidéos. Pour les ordinateur portables vous pouvez avoir besoin de forcer l'utilisation des cartes graphiques AMD ou Nvidia dédiées pour lancer Thrive au lieu des cartes graphiques intégrées."
+msgstr "Le processus d'endosymbiose est terminé et peut être finalisé en le plaçant en tant qu'organite. Il est recommandé de le faire dès que possible, car aucun autre progrès dans le processus d'endosymbiose ne sera possible avant cela. Consulter la progression de l'endosymbiose maintenant ?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
@@ -4524,7 +4535,7 @@ msgstr "Sécréter du mucilage"
 
 #, fuzzy
 msgid "SECRETE_SLIME_TOOLTIP"
-msgstr "Sécréter du mucilage"
+msgstr "Sécréter du mucilage pour augmenter votre vitesse ou pour engluer des cellules et les ralentir"
 
 msgid "SEED_LABEL"
 msgstr "Graine de la planète : {0}"
@@ -4629,7 +4640,7 @@ msgstr "Agent de signalisation"
 
 #, fuzzy
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
-msgstr "Les agents de signalisation permettent aux cellules de créer des substances chimiques auxquelles d'autres cellules peuvent réagir. Les substances chimiques de signalisation peuvent être utilisées pour attirer d'autres cellules ou les avertir d'un danger pour les faire fuir."
+msgstr "Maintenir la touche enfoncée pour voir le menu des commandes de groupe permettant de commander d'autres cellules"
 
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Les agents de signalisation permettent aux cellules de créer des substances chimiques auxquelles d'autres cellules peuvent réagir. Les substances chimiques de signalisation peuvent être utilisées pour attirer d'autres cellules ou les avertir d'un danger pour les faire fuir."
@@ -4848,8 +4859,9 @@ msgstr "Fichier introuvable"
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr "Vous ne pouvez pas partager de contenu via ce compte Steam. Veuillez contacter le support Steam."
 
+#, fuzzy
 msgid "STEAM_ERROR_INVALID_PARAMETER"
-msgstr ""
+msgstr "Paramètre invalide transmis à Steam"
 
 #, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
@@ -5001,7 +5013,7 @@ msgstr "Progrès"
 
 #, fuzzy
 msgid "TECHNOLOGY_HUNTER_GATHERING"
-msgstr "Chasse-cueillette"
+msgstr "Chasseur - Cueilleur"
 
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
 msgstr ""
@@ -5205,7 +5217,7 @@ msgstr "Activer relieur"
 
 #, fuzzy
 msgid "TOGGLE_BINDING_TOOLTIP"
-msgstr "Activer relieur"
+msgstr "Activez le mode liaison. Entrez en contact avec d'autres cellules pour créer une colonie."
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Activer/désactiver le panneau de débogage"
@@ -5215,7 +5227,9 @@ msgstr "Activer/désactiver Engloutir"
 
 #, fuzzy
 msgid "TOGGLE_ENGULF_TOOLTIP"
-msgstr "Activer/désactiver Engloutir"
+msgstr ""
+"Activez le mode engloutissement pour engloutir divers éléments,\n"
+"ou bien de petits organismes au prix d'une plus grande consommation d'ATP pendant ce temps"
 
 msgid "TOGGLE_FPS"
 msgstr "Afficher/cacher les FPS"
@@ -5301,12 +5315,7 @@ msgstr "Type de toxine :"
 
 #, fuzzy
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
-msgstr ""
-"Dévoluer vous retirera votre statut évolué et vous fera retourner à la phase microbienne. De là vous pourrez rejouer au jeu dans la sauvegarde actuelle.\n"
-"\n"
-"Vous recevrez un avantage de dévolution pour la nouvelle partie. Dans une version future vous pourrez choisir votre avantage mais pour l'instant ce sera toujours une diminution de 20% de l'osmorégulation.\n"
-"\n"
-"Une fois votre dévolution confirmée, vous pourrez modifier les paramètres du jeu pour choisir une autre graine de monde et ainsi jouer sur une carte différente ou désactiver LAWK, par exemple."
+msgstr "Les différents types de toxines ont des effets variés qui sont plus efficaces contre certains types de cellules. Si une cellule possède plusieurs types de toxines, celles-ci sont utilisées successivement plutôt que toutes à la fois."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5355,13 +5364,12 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
-"Voici la carte des secteurs.\n"
+"La barre de production d'ATP à droite indique la quantité de [thrive:compound type=\"atp\"][/thrive:compound] produite par votre cellule par rapport à la quantité consommée. Si la barre supérieure est plus courte que la barre inférieure, cela signifie que vous ne produisez pas assez d'[thrive:compound type=\"atp\"][/thrive:compound].\n"
 "\n"
-"Chaque icône représente un environnement unique que vous pouvez habiter, le panneau sur votre droite décrivant les conditions du secteur actuellement sélectionné.\n"
+"La barre du bas montre le coût de l'[b]osmorégulation[/b] [thrive:icon]OsmoIcon[/thrive:icon] et le coût du [b]déplacement[/b] [thrive:icon]MovementIcon[/thrive:icon].\n"
+"L'[b]Osmorégulation[/b] [thrive:icon]OsmoIcon[/thrive:icon] est [u]le coût fondamental pour rester en vie[/u]. Chaque élément que vous ajoutez augmente ce coût.\n"
 "\n"
-"Si vous sélectionnez un secteur connecté à celui que vous occupez, qui est mis en évidence par une bordure verte clignotante, vous pouvez appuyer sur le bouton \"Déplacer vers ce secteur\" sur la droite pour y migrer.\n"
-"\n"
-"Essayez de sélectionner un secteur pour continuer."
+"Si votre production de [thrive:compound type=\"atp\"][/thrive:compound] est négative, assurez-vous d'augmenter votre production de [thrive:compound type=\"atp\"][/thrive:compound] ou d'ajouter du [b]stockage[/b] [thrive:icon]StorageIcon[/thrive:icon] pour vous permettre de vous déplacer en plusieurs étapes."
 
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -5384,53 +5392,53 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
-"C'est l'éditeur de cellules où vous pouvez faire évoluer votre espèce en dépensant des points de mutation (PM). À chaque génération, vous aurez toujours 100 PM à dépenser, alors inutile d'économiser !\n"
+"Vous pouvez ajouter l'organite [b]chémorécepteur[/b] à votre cellule.\n"
 "\n"
-"L'hexagone au centre de votre écran est votre cellule, qui est composée d'une seule partie de cytoplasme.\n"
+"Les chémorécepteurs sont des récepteurs qui permettent à votre espèce de détecter des composés.\n"
 "\n"
-"Pour continuer, sélectionnez une partie dans le panneau de gauche. Cliquez ensuite avec le bouton gauche de la souris à côté de l'hexagone pour le placer. Vous pouvez faire pivoter les pièces avec [thrive:input]e_rotate_left[/thrive:input] et [thrive:input]e_rotate_right[/thrive:input]."
+"En placer un vous permettra de détecter des composés comme le [thrive:compound type=\"glucose\"][/thrive:compound] et vous guidera vers eux. Ils peuvent également être utilisés pour détecter les cellules d'autres espèces."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Voila les bases de l'édition de votre espèce. Vous pouvez consulter les autres onglets de l'éditeur de cellule pour plus d'options.\n"
+"Voilà les bases de l'édition de votre espèce. Pour finir, vous pouvez renommer votre espèce en cliquant sur le nom en bas à gauche et en modifiant le texte.\n"
 "\n"
-"Vous pouvez renommer votre espèce en cliquant sur son nom et en changeant le texte.\n"
+"Essayez d'explorer les autres onglets de la barre [b]PM[thrive:icon]MP[/thrive:icon][/b] pour voir comment personnaliser votre cellule.\n"
 "\n"
-"Au début, vous devriez garder votre cellule petite et migrer vers les parcelles en surface.\n"
+"Pour survivre dans ce monde hostile, vous devrez trouver une source fiable de [thrive:compound type=\"atp\"][/thrive:compound] car le [thrive:compound type=\"glucose\"][/thrive:compound] naturel va [b]rapidement décliner[/b].\n"
 "\n"
 "Bonne chance !"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
-"C'est l'éditeur de cellules où vous pouvez faire évoluer votre espèce en dépensant des points de mutation (PM). À chaque génération, vous aurez toujours 100 PM à dépenser, alors inutile d'économiser !\n"
+"Les [b]flagelles[/b] propulsent votre microbe dans la direction opposée à celle où ils sont placés.\n"
 "\n"
-"L'hexagone au centre de votre écran est votre cellule, qui est composée d'une seule partie de cytoplasme.\n"
+"En plaçant un flagelle pointant vers l'arrière, votre microbe sera poussé vers l'avant.\n"
 "\n"
-"Pour continuer, sélectionnez une partie dans le panneau de gauche. Cliquez ensuite avec le bouton gauche de la souris à côté de l'hexagone pour le placer. Vous pouvez faire pivoter les pièces avec [thrive:input]e_rotate_left[/thrive:input] et [thrive:input]e_rotate_right[/thrive:input]."
+"Les flagelles sont des organites très gourmands en [thrive:compound type=\"atp\"][/thrive:compound] et ne conviennent donc pas très bien aux petites cellules.\n"
+"\n"
+"Une autre façon d'augmenter légèrement la [b]vitesse de déplacement[/b] [thrive:icon]MovementIcon[/thrive:icon] est de rendre votre membrane plus fluide dans l'onglet [u]membrane[/u]."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
-"Retirer des organites coûte aussi des PM car c'est aussi une mutation de votre espèce, à moins qu'elles n'aient été placé lors de la session en cours.\n"
+"Vous pouvez [b]modifier[/b] cet organite. Cela débloquera de [b]nouvelles fonctions[/b] ou des [b]améliorations[/b] de cet organite.\n"
 "\n"
-"Vous pouvez faire un clic droit sur les organites puis sélectionner l’option supprimer pour les retirer.\n"
+"Pour ce faire, faites un clic droit sur l'organite pour faire apparaître le [b]menu contextuel de l'organite[/b], et appuyez sur le bouton \"Modifier\".\n"
 "\n"
-"Si vous faites une erreur, vous pouvez annuler tous les changements que vous faites dans l'éditeur.\n"
-"\n"
-"Cliquez sur le bouton d'annulation pour continuer."
+"Modifiez l'organite pour continuer."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
-"Voici la carte des secteurs.\n"
+"Votre équilibre en [thrive:compound type=\"atp\"][/thrive:compound] est négatif.\n"
 "\n"
-"Chaque icône représente un environnement unique que vous pouvez habiter, le panneau sur votre droite décrivant les conditions du secteur actuellement sélectionné.\n"
+"Lorsque vous vous déplacerez et que tous les processus fonctionneront, votre cellule épuisera son [thrive:compound type=\"atp\"][/thrive:compound] et mourra.\n"
 "\n"
-"Si vous sélectionnez un secteur connecté à celui que vous occupez, qui est mis en évidence par une bordure verte clignotante, vous pouvez appuyer sur le bouton \"Déplacer vers ce secteur\" sur la droite pour y migrer.\n"
+"Il existe de nombreuses façons de réguler la production de [thrive:compound type=\"atp\"][/thrive:compound]. Vous pouvez l'augmenter en ajoutant des organites qui produisent de l'[thrive:compound type=\"atp\"][/thrive:compound] comme les [b]Métabolosomes[/b]. Certaines [b]membranes[/b] peuvent réduire le coût de l'osmorégulation [thrive:icon]OsmoIcon[/thrive:icon]. \n"
 "\n"
-"Essayez de sélectionner un secteur pour continuer."
+"Enfin, vous pouvez également supprimer les organites inutiles ou redondants."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
@@ -5499,17 +5507,17 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"You have entered Unlink mode. In this mode, you can click on colony members to unlink them.\n"
+"La capacité de votre cellule à engloutir des substances est limitée. Cette limite dépend de sa taille; les plus petites cellules auront une capacité moindre.\n"
 "\n"
-"To leave the colony completely, you can click on your own cell or press the Ungroup All button."
+"Lorsqu'elle est pleine, une cellule ne peut plus engloutir d'autres substances. Il faut alors attendre que ces éléments soient digérés pour engloutir d'autres éléments."
 
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Engloutissez les objets en vous déplaçant au-dessus d'eux en mode engloutissement. Passez en mode engloutissement en appuyant sur [thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
-"Arrête d'engloutir une fois que l'objet est aspiré.\n"
+"Arrêtez d'engloutir une fois que l'objet est aspiré.\n"
 "\n"
-"Suis la ligne de ta cellule jusqu'à l'objet engloutissable le plus proche."
+"Suivez la ligne qui va de votre cellule à l'objet engloutissable le plus proche."
 
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
@@ -5647,7 +5655,7 @@ msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
 msgstr ""
 
 msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} microbes ont été engloutis (actuellement à {1})"
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
@@ -5899,12 +5907,20 @@ msgstr "Pas de processus."
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_STRATEGY"
-msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
+msgstr ""
+"Il est très utile de former des colonies, en particulier pour les organismes utilisant la [b]Photosynthèse[/b]. Chaque cellule supplémentaire dans une colonie réduit le coût global de l'osmorégulation, ce qui signifie une plus grande efficacité énergétique. Ainsi, les espèces photosynthétiques produiront du [thrive:compound type=\"glucose\"][/thrive:compound] plus rapidement, et les colonies prédatrices pourront survivre plus longtemps entre deux repas.\n"
+"\n"
+"Toutefois, il peut être difficile de trouver des cellules avec lesquelles se lier, il peut donc être utile d'utiliser un [b][color=#3796e1][url=thriveopedia:signalingAgent]Agent de signalisation[/url][/color][/b] pour attirer des alliés près de vous.\n"
+"\n"
+"Les cellules ne peuvent pas se diviser lorsqu'elles sont dans une colonie, vous devez donc les délier avant d'entrer dans l'éditeur.\n"
+"\n"
+"Bien qu'une colonie puisse croître indéfiniment, vous n'avez besoin que de cinq cellules pour passer à l'étape suivante. Vous trouverez le bouton permettant de devenir multicellulaire au-dessus du bouton de l'éditeur dans l'interface utilisateur."
 
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -5950,7 +5966,7 @@ msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Transforme l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Une cellule doit posséder un [b][color=#3796e1][url=thriveopedia:nucleus]Noyau[/url][/color][/b] pour pouvoir former des [b]Chimioplastes[/b]."
 
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
@@ -5959,6 +5975,7 @@ msgstr "À venir"
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
 msgstr "Pas d'améliorations."
 
@@ -5993,16 +6010,22 @@ msgstr "Pas d'améliorations."
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
 msgstr "Pas d'effets spéciaux."
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
-msgstr "Protéine Chimiosynthétisante"
+msgstr "Petits groupes de protéines dans le [b][color=#3796e1][url=thriveopedia:cytoplasme]Cytoplasme[/url][/color][/b] qui convertissent de l'[thrive:compound type=\"hydrogensulfide\"][/thrive : compound], du [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et de l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]Chimiosynthèse bactérienne[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] varie en fonction de la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
 msgstr "Pas de modifications."
 
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
-msgstr "Transforme le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. Effet proportionnel avec la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Transforme aussi le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr ""
+"[b]Chimiosynthèse bactérienne :[/b] [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Convertit [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. Le taux varie en fonction de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] dans l'environnement.\n"
+"\n"
+"[b]Glycolyse[/b] : [b]Glucose[/b] [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Comme des [b]protéines chimiosynthétisantes[/b] sont présentes dans le [b][color=#3796e1][url=thriveopedia:cytoplasme]cytoplasme[/url][/color][/b], elles effectuent également une certaine [b]glycolyse[/b]."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "Pas de conditions."
@@ -6045,10 +6068,11 @@ msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Pas d'améliorations."
 
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Chaque hexagone de [b]Cils[/b] augmente la vitesse de rotation d'une cellule, et consomme de l'[/thrive:compound type=\"atp\"][/thrive:compound] en échange d'une mobilité accrue. Cette amélioration dépend de l'emplacement de l'organite - plus il est éloigné du centre de la cellule, plus son moment d'inertie est élevé, et plus sa vitesse de rotation est grande."
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "De petits poils à l'extérieur d'une cellule qui utilisent [thrive:compound type=\"atp\"][/thrive:compound] pour augmenter la vitesse de rotation de la cellule. Ils peuvent être améliorés pour générer des courants qui attirent des cellules proies ou d'autres objets."
 
 msgid "WIKI_CILIA_MODIFICATIONS"
 msgstr "Pas de modifications."
@@ -6091,6 +6115,11 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
+"Si vous parvenez à collecter des [thrive:compound type=\"glucose\"][/thrive:compound] sur les nuages environnants, chaque hexagone de [b]Cytoplasme[/b] produira naturellement de l'énergie (sous la forme de [thrive:compound type=\"atp\"][/thrive:compound]). Cet organite est donc un choix fiable pour produire facilement de l'énergie dans la plupart des environnements. D'ailleurs, la cellule de départ (LUCA) est un simple hexagone de [b]Cytoplasme[/b].\n"
+"\n"
+"Il existe cependant des méthodes plus performantes pour générer de l'[thrive:compound type=\"atp\"][/thrive:compound]. Au fil du jeu, il est conseillé d'investir dans des organites plus spécialisés en fonction des conditions environnementales, d'autant plus que les concentrations en [thrive:compound type=\"glucose\"][/thrive:compound] diminuent avec le temps. Par exemple [b][color=#3796e1][url=thriveopedia:metabolosome]Métabolosomes[/url][/color][/b] est efficace si la zone est riche en [thrive:compound type=\"oxygen\"][/thrive : compound], et [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthèse[/url][/color][/b] est efficace dans les zones où la [thrive:compound type=\"temperature\"][/thrive:compound] est élevée.\n"
+"\n"
+"L'ajout d'hexagones de [b]Cytoplasme[/b] est également l'un des moyens les plus efficaces d'augmenter la taille d'une cellule. Augmenter la taille de la cellule, c'est augmenter sa santé et empêcher les petites cellules de l'engloutir, au détriment de sa vitesse et de sa manœuvrabilité."
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Pas d'améliorations."
