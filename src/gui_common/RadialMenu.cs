@@ -96,6 +96,8 @@ public partial class RadialMenu : CenterContainer
     public override void _Ready()
     {
         centerLabel = GetNode<Label>(CenterLabelPath);
+        centerLabel.HorizontalAlignment = HorizontalAlignment.Center;
+
         dynamicLabelsContainer = GetNode<Node>(DynamicLabelsContainerPath);
         indicator = GetNode<TextureRect>(IndicatorPath);
 
@@ -332,7 +334,6 @@ public partial class RadialMenu : CenterContainer
         }
 
         var center = Size / 2;
-        var indicatorOffset = center - new Vector2(IndicatorSize / 2.0f, IndicatorSize);
 
         indicator.Visible = true;
 
@@ -360,7 +361,7 @@ public partial class RadialMenu : CenterContainer
         indicator.Rotation = mouseAngle + Mathf.Pi * 0.5f;
 
         indicator.Position = new Vector2(Mathf.Cos(mouseAngle), Mathf.Sin(mouseAngle)) *
-            RadialCircleStart + indicatorOffset;
+            RadialCircleStart + center;
 
         UpdateHoveredFromAngle(mouseAngle);
     }
