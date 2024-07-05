@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-19 11:03+0300\n"
-"PO-Revision-Date: 2024-07-04 17:22+0000\n"
+"PO-Revision-Date: 2024-07-05 19:22+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -82,13 +82,13 @@ msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "დამატებითმა შემოწმებებმა გამოავლინა პრობლემა: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "ახალი ღილაკის ასახვის დამატება"
 
 msgid "ADVANCED_VIEW"
 msgstr "დამატებით"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "დამატებითი მორგების ხედის გახსნა"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "აერობული აზოტის ფიქსაცია"
@@ -104,6 +104,10 @@ msgstr "{0} აგენტი"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"აგრესიულ მიკრობები მსხვერპლს დიდ მანძილზე გამოეკიდებიან\n"
+"და დიდი შანსით პასუხს გასცემენ, როცა ვინმე მათ უტევს.\n"
+"მშვიდობიანი მიკრობები დიდ მანძილზე არ გადაადგილდებიან\n"
+"და მტაცებლების წინააღმდეგ, დიდი შანსით, ტოქსინებს იყენებენ."
 
 msgid "AGGRESSIVE"
 msgstr "აგრესიული"
@@ -112,25 +116,25 @@ msgid "AI_MUTATION_RATE"
 msgstr "ხი-ის მუტაციის სიჩქარე"
 
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr ""
+msgstr "(სიჩქარე, რომლითაც AI-ის სახეობები განიცდიან მუტაციას)"
 
 msgid "ALL"
 msgstr "ყველა"
 
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
+msgstr "სახეობებისთვის არ-მიგრაციის უფლების მიცემა (თუ კარგი მიგრაცია აღმოჩენილი არაა)"
 
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr ""
+msgstr "სახეობებისთვის არ-მუტაციის უფლების მიცემა (თუ არაა აღმოჩენილი კარგი მუტაცია)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr ""
+msgstr "ყველა სამყაროს ზოგადი სტატისტიკა"
 
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "თქვენ უკვე ახვედით"
 
 msgid "ALT"
 msgstr "Alt"
@@ -142,10 +146,10 @@ msgid "AMMONIA"
 msgstr "ამიაკი"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "შენარჩუნებული ავტოშენახვების რაოდენობა:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "შენარჩუნებული სწრაფი შენახვების რაოდენობა:"
 
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "ანაერობული აზოტის ფიქსაცია"
@@ -166,10 +170,10 @@ msgid "APRIL"
 msgstr "აპრილი"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
+msgstr "დარწმუნებული ბრძანდებით, რომ გნებავთ, ყველა პარამეტრი ნაგულისხმევ მნიშვნელობაზე ჩამოყაროთ?"
 
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
+msgstr "დარწმუნებული ბრძანდებით, რომ გნებავთ, შეყვანის პარამეტრიებ ნაგულისხმევ მნიშვნელობაზე ჩამოყაროთ?"
 
 msgid "ARTIST_COLON"
 msgstr "ხელოვანი:"
@@ -196,7 +200,7 @@ msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "ჩათვლა, რომ CPU-ზე მრავალნაკადიანობა ჩართულია"
 
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
@@ -451,7 +455,7 @@ msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "გამოყენებულ უჯრედის ტიპს ვერ წაშლით"
 
 msgid "CANNOT_ENGULF"
 msgstr "შთანთქმა შეუძლებელია"
@@ -469,7 +473,7 @@ msgid "CANNOT_WRITE_SAVE"
 msgstr "შენახულის ჩაწერა შეუძლებელია"
 
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "ვერ ჩავტვირთე ინფორმაცია მოდულისთვის {0}"
 
 msgid "CAPSLOCK"
 msgstr "Caps Lock"
@@ -520,7 +524,7 @@ msgid "CELL_TYPE_NAME"
 msgstr "უჯრედის ტიპის სახელი"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr ""
+msgstr "ცვლილების შენიშვნები მეტისმეტად გრძელია"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "სიმეტრიის შეცვლა"
@@ -535,7 +539,7 @@ msgid "CHEAT_MENU"
 msgstr "ჩიტების მენიუ"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "უჯრედის პროცესების ჩვენება/დამალვა"
 
 msgid "CHEMOPLAST"
 msgstr "ქემოპლასტი"
@@ -616,7 +620,7 @@ msgid "CITY_SHORT_STATISTICS"
 msgstr ""
 
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr ""
+msgstr "ძველი შენახულების გასუფთავება"
 
 msgid "CLOSE"
 msgstr "დახურვა"
@@ -634,7 +638,7 @@ msgid "COASTAL"
 msgstr "სანაპირო"
 
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "ფიზიკის გამართვის ფიგურების ჩვენება"
 
 msgid "COLOUR"
 msgstr "ფერი"
@@ -643,22 +647,22 @@ msgid "COLOURBLIND_CORRECTION"
 msgstr "ფერების კოლექცია დალტონიკებისთვის:"
 
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "მიმდინარე ფერის პრესეტად დამატება"
 
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr ""
+msgstr "ფერის ალფა არხის მნიშვნელობა"
 
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr ""
+msgstr "ფერის ლურჯი არხის მნიშვნელობა"
 
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr ""
+msgstr "ფერის მწვანე არხის მნიშვნელობა"
 
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr ""
+msgstr "შეფერილობის მნიშვნელობა. ფერის ნაწილი"
 
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
@@ -670,7 +674,7 @@ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr ""
+msgstr "ფერის წითელი არხის მნიშვნელობა"
 
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
@@ -682,7 +686,7 @@ msgid "COMMON_ABILITIES"
 msgstr "ზოგადი შესაძლებლობები"
 
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "საერთო რედაქტორი და სტრატეგიის ფაზები"
 
 msgid "COMMUNITY_FORUM"
 msgstr "საზოგადო ფორუმი"
@@ -694,7 +698,7 @@ msgid "COMMUNITY_WIKI"
 msgstr "საზოგადოებრივი ვიკი"
 
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "ეწვიეთ ჩვენი საზოგადოების ვიკის"
 
 msgid "COMPILED_AT_COLON"
 msgstr "აგების დრო:"
@@ -709,7 +713,7 @@ msgid "COMPOUNDS_AT_EQUILIBRIUM"
 msgstr "ბალანსი წონასწორობისას"
 
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr ""
+msgstr "ბალანსი მაქსიმალურ სიჩქარეზე"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "ნაერთების ჩვენება / დამალვა"
@@ -718,7 +722,7 @@ msgid "COMPOUNDS_COLON"
 msgstr "ნაერთები:"
 
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr ""
+msgstr "(ავსებს საცავს {0} წამში)"
 
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr ""
@@ -742,7 +746,7 @@ msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0}-ის კონცენტრაცია შემცირდა მნიშვნელობით {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} მოხმარება"
@@ -784,19 +788,19 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "დაადასტურეთ თავზე გადაწერა"
 
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr ""
+msgstr "გადავიდე ასვლის ფაზაზე?"
 
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "გადავიდე ინდუსტრიულ ფაზაზე?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr ""
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr ""
+msgstr "გადავიდე კოსმოსის ფაზაზე?"
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
@@ -805,7 +809,7 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr ""
+msgstr "ზოგიერთი პარამეტრი არასწორია"
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "ერთეული: {0}"
@@ -820,7 +824,7 @@ msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "გავაგრძელო შემდეგი ფაზის პროტოტიპებზე?"
 
 msgid "CONTROLLER_ANY_DEVICE"
 msgstr "ნებისმიერი მოწყობილობა"
@@ -973,7 +977,7 @@ msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "მკვდარი ზონა:"
 
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "კონტროლერის ღილაკი გამოგიტანთ ტიპს:"
 
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "კონტროლერის მგრძნობიარობა"
@@ -1054,7 +1058,7 @@ msgid "CREATE_NEW"
 msgstr "ახლის შექმნა"
 
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr ""
+msgstr "ახალი ტიპის უჯრედის შექმნა"
 
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr ""
@@ -1066,7 +1070,7 @@ msgid "CREATE_NEW_SAVE"
 msgstr "ახალი შენახვის შექმნა"
 
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr ""
+msgstr "ქსოვილის ახალი ტიპის შექმნა"
 
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
@@ -1075,7 +1079,7 @@ msgid "CREATING_DOT_DOT_DOT"
 msgstr "შექმნა..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "ობიექტების შექმნა შენახულიდან"
 
 msgid "CREDITS"
 msgstr "ტიტრები"
@@ -1093,7 +1097,7 @@ msgid "CURRENT_RESEARCH_NONE"
 msgstr "კვლევა არ მიმდინარეობს"
 
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr ""
+msgstr "ამჟამად მიმდინარეობს კვლევა: {0} ({1})"
 
 msgid "CURRENT_WORLD"
 msgstr "მიმდინარე სამყარო"
@@ -1114,7 +1118,7 @@ msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "ციტოპლაზმური გლიკოლიზი"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "გადაიყვანს [thrive:compound type=\"glucose\"][/thrive:compound]ს [thrive:compound type=\"atp\"][/thrive:compound]-ში."
 
 msgid "DAY_LENGTH"
 msgstr "დღის სიგრძე"
@@ -1135,7 +1139,7 @@ msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr ""
 
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "მკვდარი ზონების კალიბრაცია ჩამოყრილია"
 
 msgid "DEADZONE_CONFIGURATION"
 msgstr "მკვდარი ზონების მორგება"
@@ -1204,7 +1208,7 @@ msgid "DESCRIPTION_COLON"
 msgstr "აღწერა:"
 
 msgid "DESCRIPTION_TOO_LONG"
-msgstr ""
+msgstr "აღწერა მეტისმეტად გრძელია"
 
 msgid "DESPAWN_ENTITIES"
 msgstr "ყველა ერთეულის მოცილება"
@@ -1231,7 +1235,7 @@ msgid "DEVELOPMENT_WIKI"
 msgstr "პროგრამისტების ვიკი"
 
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "ეწვიეთ ჩვენს პროგრამისტების ვიკის"
 
 msgid "DEVOURED"
 msgstr "შთანთქმულია"
@@ -1306,7 +1310,7 @@ msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
 msgid "DISCORD_TOOLTIP"
-msgstr ""
+msgstr "შემოგვიერთდით ჩვენს საჯარო Discord სერვერზე"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "მოცილებული მხტუნარები:"
@@ -1315,13 +1319,13 @@ msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "აღარ მაჩვენო"
 
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "ამის შესახებ აღარ გამაფრთხილო"
 
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
-msgstr ""
+msgstr "3D მენიუს ფონების ჩვენება"
 
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "შესაძლებლობების პანელის ჩვენება"
@@ -1336,7 +1340,7 @@ msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
 
 msgid "DISPLAY_PART_NAMES"
-msgstr ""
+msgstr "ნაწილის არჩევნის ღილაკის სახელების ჩვენება"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
@@ -1480,7 +1484,7 @@ msgid "ENABLED_MODS"
 msgstr "ჩართული მოდები"
 
 msgid "ENABLE_ALL_COMPATIBLE"
-msgstr ""
+msgstr "ყველა თავსებადობის მოდის ჩართვა"
 
 msgid "ENABLE_EDITOR"
 msgstr "რედაქტორის ჩართვა"
@@ -1498,7 +1502,7 @@ msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr ""
 
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
-msgstr ""
+msgstr "ხელმისაწვდომი ორგანელები, რომ გადააქციოთ"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr "ენდოსიმბიოზი"
@@ -1540,7 +1544,7 @@ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ატფ"
 
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr ""
+msgstr "ენერგია {0} {1}-სთვის"
 
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr "{0}, {1}"
@@ -1555,7 +1559,7 @@ msgid "ENTER_EXISTING_ID"
 msgstr "შეიყვანეთ არსებული ID"
 
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr ""
+msgstr "შეიყვანეთ არსებული Workshop ID"
 
 msgid "ENTITY_LABEL"
 msgstr "ობიექტის ჭდე"
@@ -1570,7 +1574,7 @@ msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr ""
 
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "გარემოს ჩვენება / დამალვა"
 
 msgid "EPIPELAGIC"
 msgstr "ეპიპელაგიალური"
@@ -1582,10 +1586,10 @@ msgid "ERROR"
 msgstr "შეცდომა"
 
 msgid "ERROR_CREATING_FOLDER"
-msgstr ""
+msgstr "მოდისთვის საქაღალდის შექმნა ჩავარდა"
 
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr ""
+msgstr "შეცდომა მოდის ინფორმაციის ფაილის შექმნისას"
 
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
@@ -1681,7 +1685,7 @@ msgid "EXTRA_OPTIONS"
 msgstr "დამატებითი პარამეტრები"
 
 msgid "FACEBOOK_TOOLTIP"
-msgstr ""
+msgstr "ეწვიეთ ჩვენს Facebook-ის გვერდს"
 
 msgid "FAILED"
 msgstr "ჩავარდა"
@@ -1690,7 +1694,7 @@ msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 msgstr ""
 
 msgid "FAILED_SAVE_DELETION"
-msgstr ""
+msgstr "შეცდომა: შენახულის წაშლა ჩავარდა"
 
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr ""
@@ -1732,7 +1736,7 @@ msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "საგნების ფილტრი კატეგორიით:"
 
 msgid "FIND_CURRENT_PATCH"
 msgstr "მიმდინარე ბიომის პოვნა"
@@ -1741,7 +1745,7 @@ msgid "FINISHED_DOT"
 msgstr "დასრულდა."
 
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "რედაქტირების დასრულება და გარემოში დაბრუნება"
 
 msgid "FINISH_ONE_GENERATION"
 msgstr "ერთი გენერაციის სიმულაცია"
@@ -1789,22 +1793,22 @@ msgid "FOCUS_EXPLANATION"
 msgstr ""
 
 msgid "FOG_OF_WAR_DISABLED"
-msgstr ""
+msgstr "ომის ნისლი გათიშულია"
 
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr ""
+msgstr "(გამოჩნდება ყველა ბიომი)"
 
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "ინტენსიური ომის ნისლი"
 
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "ომის ნისლის რეჟიმი"
 
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "ჩვეულებრივი ომის ნისლი"
 
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
@@ -1840,7 +1844,7 @@ msgid "FOSSILISATION_HINT"
 msgstr "ამ სახეობების გაქვავება"
 
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "ამ სახეობების განამარხიანება (უკვე ნამარხია)"
 
 msgid "FOSSILISE"
 msgstr "გაქვავება"
@@ -1897,7 +1901,7 @@ msgid "GENERATION_COLON"
 msgstr "თაობა:"
 
 msgid "GITHUB_TOOLTIP"
-msgstr ""
+msgstr "ეწვიეთ ჩვენს GitHub-ის რეპოზიტორიას"
 
 msgid "GLES3"
 msgstr "GLES3"
@@ -1912,7 +1916,7 @@ msgid "GLUCOSE"
 msgstr "გლუკოზა"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "გლუკოზის კონცენტრაციები მკვეთრად დაეცა!"
 
 msgid "GLYCOLYSIS"
 msgstr "გლიკოლიზი"
@@ -1960,7 +1964,7 @@ msgid "HELP"
 msgstr "დახმარება"
 
 msgid "HELP_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "როგორ ითამაშოთ თამააში"
 
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(რაც მაღალია მნიშვნელობა, მით მაღალია წარმადობა)"
@@ -1972,16 +1976,16 @@ msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr ""
 
 msgid "HOLD_FOR_PAN_WITH_MOUSE"
-msgstr ""
+msgstr "გეჭიროთ თაგუნათი პანორამირებისთვის"
 
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "გეჭიროთ ბრძანებების მენიუს საჩვენებლად"
 
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "გეჭიროთ კურსორის საჩვენებლად"
 
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-msgstr ""
+msgstr "გეჭიროთ [thrive:input]g_free_cursor[/thrive:input] კურსორის საჩვენებლად"
 
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "დაიჭირეთ გამოსატოვებლად"
@@ -2014,13 +2018,13 @@ msgid "ICESHELF"
 msgstr "შელფური მყინვარი"
 
 msgid "ID_IS_NOT_A_NUMBER"
-msgstr ""
+msgstr "ID არაწორი რიცხვია"
 
 msgid "ID_NUMBER"
 msgstr "ID ნომერი"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr ""
+msgstr "შემდეგი ფაზის პროტოტიპების ჩასმა"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
@@ -2071,7 +2075,7 @@ msgid "INGESTED_MATTER"
 msgstr "შთანთქმული მატერია"
 
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr ""
+msgstr "ახალი სამყაროს შექმნა"
 
 msgid "INPUTS"
 msgstr "შეყვანა"
@@ -2095,13 +2099,13 @@ msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "აყვავების კარიბჭის გააქტიურება"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr ""
+msgstr "ასვლის კარიბჭის აქტივაცია (არასაკმარისი ენერგია)"
 
 msgid "INTERACTION_CONSTRUCT"
 msgstr "მშენებლობის დასრულება"
 
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr ""
+msgstr "მშენებლობის დასრულება (აკლია აუცილებელი მასალები)"
 
 msgid "INTERACTION_CRAFT"
 msgstr "ხელობა..."
@@ -2122,7 +2126,7 @@ msgid "INTERACTION_HARVEST"
 msgstr "მოსავლის აღება"
 
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr ""
+msgstr "მოპოვება (გაკლიათ აღჭურვილობა: {0})"
 
 msgid "INTERACTION_PICK_UP"
 msgstr "აღება"
@@ -2137,7 +2141,7 @@ msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
 msgid "INTERNAL_NAME_REQUIRED"
-msgstr ""
+msgstr "შიდა სახელ აუცილებელია"
 
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
@@ -2146,7 +2150,7 @@ msgid "INVALID_DATA_TO_PLOT"
 msgstr "არასწორი მონაცემები დასახატად"
 
 msgid "INVALID_ICON_PATH"
-msgstr ""
+msgstr "არასწორი მოდის ხატულის ბილიკი"
 
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr ""
@@ -2155,7 +2159,7 @@ msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
 msgid "INVALID_TAG"
-msgstr ""
+msgstr "მითითებულია არასწორი ჭდე \"{0}\""
 
 msgid "INVALID_URL_FORMAT"
 msgstr "არასწორი ბმულის ფორმატი"
@@ -2164,7 +2168,7 @@ msgid "INVALID_URL_SCHEME"
 msgstr "არასწორ ბმულის სქემა"
 
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "საგნები იატაკზე"
 
 msgid "INVENTORY_TITLE"
 msgstr "ინვენტარი"
@@ -2188,7 +2192,7 @@ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "რკინის ქემოლითოავტოტროფია"
 
 msgid "ITCH_TOOLTIP"
-msgstr ""
+msgstr "ეწვიეთ ჩვენს itch.io-ის გვერდს"
 
 msgid "JANUARY"
 msgstr "იანვარი"
@@ -2362,7 +2366,7 @@ msgid "LANGUAGE"
 msgstr "ენა:"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr ""
+msgstr "ეს ენა დასრულებულია {0}%-ით"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
@@ -2371,7 +2375,7 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "ბოლო ორგანელას ვერ წაშლით"
 
 msgid "LATE_MULTICELLULAR"
 msgstr "გვიანი მრავალუჯრედიანი"
@@ -2536,7 +2540,7 @@ msgid "LIMIT_EXTREME"
 msgstr "ექსტრემალური"
 
 msgid "LIMIT_GROWTH_RATE"
-msgstr ""
+msgstr "ზრდის ნაერთების გამოყენების შეზღუდვა"
 
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr ""
@@ -2584,7 +2588,7 @@ msgid "LOADING_DOT_DOT_DOT"
 msgstr "ჩატვირთვა..."
 
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr ""
+msgstr "ადრეული მრავალუჯრედიანი რედაქტორის ჩატვირთვა"
 
 msgid "LOADING_GAME"
 msgstr "თამაშის ჩატვირთვა"
@@ -2605,7 +2609,7 @@ msgid "LOAD_GAME"
 msgstr "თამაშის ჩატვირთვა"
 
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "შენახული თამაშების ჩატვირთვა"
 
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
@@ -2626,7 +2630,7 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr "ლ"
 
 msgid "LOCK_DAY_NIGHT_CYCYLE"
-msgstr ""
+msgstr "დღეღამის ციკლის გამორთვა"
 
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
@@ -2647,7 +2651,7 @@ msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "MANUALLY_SET_TIME"
-msgstr ""
+msgstr "დროის ხელით დაყენება"
 
 msgid "MAP"
 msgstr "რუკა"
@@ -2671,7 +2675,7 @@ msgid "MAX_FPS_NO_LIMIT"
 msgstr "შეუზღუდავი"
 
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr ""
+msgstr "არსებების მაქსიმალური რაოდენობა:"
 
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
@@ -2861,7 +2865,7 @@ msgid "MILLION_ABBREVIATION"
 msgstr "{0} მლნ"
 
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr ""
+msgstr "აღმოსაჩენი მინიმალური რაოდენობა:"
 
 msgid "MINIMUM_VERSION"
 msgstr "მინიმუმი:"
@@ -2903,7 +2907,7 @@ msgid "MIXED_DOT_DOT_DOT"
 msgstr "შერეული..."
 
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr ""
+msgstr "მოდების ინსტრუქციები ხელმისაწვდომია მისამართზე"
 
 msgid "MODELS"
 msgstr "მოდელები"
@@ -2927,7 +2931,7 @@ msgid "MOD_ASSEMBLY"
 msgstr "მოდის ანაწყობი:"
 
 msgid "MOD_ASSEMBLY_CLASS"
-msgstr ""
+msgstr "მოდის ანაწყობის მთავარი კლასი:"
 
 msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
 msgstr ""
@@ -2972,7 +2976,7 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
-msgstr ""
+msgstr "{0}: ჩატვირთვადი რესურსების გარეშე"
 
 msgid "MOD_ICON_FILE"
 msgstr "ხატულის ფაილი:"
@@ -3002,10 +3006,10 @@ msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
 
 msgid "MOD_MAXIMUM_THRIVE"
-msgstr ""
+msgstr "Thrive-ის მაქსიმალური მხარდაჭერილი ვერსია:"
 
 msgid "MOD_MINIMUM_THRIVE"
-msgstr ""
+msgstr "Thrive-ის მინიმალური აუცილებელი ვერსია:"
 
 msgid "MOD_NAME"
 msgstr "მოდის სახელი:"
@@ -3047,13 +3051,13 @@ msgid "MOVEMENT"
 msgstr "გადაადგილება"
 
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "გადაადგილების მცდელობები თითოეული სახეობისთვის"
 
 msgid "MOVE_BACKWARDS"
 msgstr "გადატანა უკან"
 
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "დაბლა ჩასვლა ან ჩახტომა"
 
 msgid "MOVE_FORWARD"
 msgstr "გადატანა წინ"
@@ -3068,7 +3072,7 @@ msgid "MOVE_RIGHT"
 msgstr "გადატანა მარჯვნივ"
 
 msgid "MOVE_TO_ANY_PATCH"
-msgstr ""
+msgstr "გადასვლა ნებისმიერი ბიომისკენ"
 
 msgid "MOVE_TO_LAND"
 msgstr "მიწაზე გადასვლა"
@@ -3083,13 +3087,13 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "ამ ბიომის გადაადგილება"
 
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "მაღლა ასვლა ან ახტომა"
 
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
-msgstr ""
+msgstr "გადავიდე გამოღვიძების ფაზაზე?"
 
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
@@ -3098,7 +3102,7 @@ msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "გადავიდე მიწაზე?"
 
 msgid "MOVING_TO_SOCIETY_STAGE"
-msgstr ""
+msgstr "საზოგადოებად გადაქცევა..."
 
 msgid "MP_COST"
 msgstr "{0} მქ"
@@ -3146,7 +3150,7 @@ msgid "MUSIC_VOLUME"
 msgstr "მუსიკის ხმა"
 
 msgid "MUTATIONS_PER_SPECIES"
-msgstr ""
+msgstr "მუტაციის მცდელობები თითოეული სახეობისთვის"
 
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "მუტაციის ფასის კოფიციენტი"
@@ -3191,13 +3195,13 @@ msgid "NEWS"
 msgstr "სიახლეები"
 
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "საწყისი პოპულაცია ბიომრავალფეროვნების გამზრდელი სახეობებისთვის"
 
 msgid "NEW_GAME"
 msgstr "ახალი თამაში"
 
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "ახალი თამაშის დაწყება"
 
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
@@ -3215,7 +3219,7 @@ msgid "NEXT_CAPITAL"
 msgstr "შემდეგი"
 
 msgid "NEXT_EDITOR_TAB"
-msgstr ""
+msgstr "გადასვლა რედაქტორის შემდეგ ჩანართზე"
 
 msgid "NITROGEN"
 msgstr "აზოტი"
@@ -3251,7 +3255,7 @@ msgid "NOTHING_HERE"
 msgstr "აქ არაფერია"
 
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "ურთიერთქმედება ვერაფერთან ხდება"
 
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
@@ -3260,7 +3264,7 @@ msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
-msgstr ""
+msgstr "სამიზნის შთანთქმისთვის {0} გაკლიათ"
 
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
@@ -3269,7 +3273,7 @@ msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
-msgstr ""
+msgstr "ატფ-ის წარმოება ჩახშობილია ტოქსინის მიერ"
 
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
@@ -3296,7 +3300,7 @@ msgid "NO_EVENTS_RECORDED"
 msgstr "მოვლენები არ ჩაწერილა"
 
 msgid "NO_FOSSIL_DIRECTORY"
-msgstr ""
+msgstr "ნამარხების საქაღალდე აღმოჩენილი არაა"
 
 msgid "NO_MODS_ENABLED"
 msgstr "ჩართული მოდების გარეშე"
@@ -3482,7 +3486,7 @@ msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "ოსმორეგულაციის ფასის კოეფიციენტი"
 
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
+msgstr "(მოთამაშის სახეობის ოსმორეგულაციის ფასი)"
 
 msgid "OUR_WIKI"
 msgstr "ჩვენი ვიკი"
@@ -3551,7 +3555,7 @@ msgid "PAN_CAMERA_UP"
 msgstr "აბრუნება"
 
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr ""
+msgstr "რეპროდუქციის პროგრესის პასიური მიღება"
 
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr ""
@@ -3593,7 +3597,7 @@ msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
 msgid "PATREON_TOOLTIP"
-msgstr ""
+msgstr "ეწვიეთ ჩვენს Patreon-ის გვერდს"
 
 msgid "PATRONS"
 msgstr "მფარველი წმინდანები"
@@ -3602,16 +3606,16 @@ msgid "PAUSED"
 msgstr "დაპაუზებული"
 
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr ""
+msgstr "თამაშზე დაბრუნება"
 
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "[center]გასაგრძელებლად დააწექით [thrive:input]g_pause[/thrive:input][/center]"
 
 msgid "PAUSE_TOOLTIP"
 msgstr "თამაშის შეჩერება"
 
 msgid "PCK_LOAD_FAILED"
-msgstr ""
+msgstr "ჩავარდა ჩატვირთვა pck ფაილისთვის ({0})"
 
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr ""
@@ -3623,7 +3627,7 @@ msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "ენდოსიმბიოზის პროცესის დასრულების მოლოდინი"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -3650,7 +3654,7 @@ msgid "PHYSICAL_RESISTANCE"
 msgstr "ფიზიკური წინააღმდეგობა"
 
 msgid "PLACE_ORGANELLE"
-msgstr ""
+msgstr "ორგანელას (ან სხვა მოთავსებადი საგნის) მოთავსება"
 
 msgid "PLANET"
 msgstr "პლანეტა"
@@ -3659,7 +3663,7 @@ msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "პლანეტის გენერაციას მალე იხილავთ!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "პლანეტის შემთხვევითობის თესლი"
@@ -3668,7 +3672,7 @@ msgid "PLAYER"
 msgstr "მოთამაშე"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr ""
+msgstr "მოთამაშის სიკვდილის სასჯელი პოპულაციაზე"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
@@ -3706,10 +3710,10 @@ msgid "PLAY_INTRO_VIDEO"
 msgstr "შესავლის ვიდეოს დაკვრა"
 
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr ""
+msgstr "მიკრობი შესავლის დაკვრა ახალი თამაშის გაშვებისას"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr ""
+msgstr "თამაში მიმდინარე პარამეტრით"
 
 msgid "POPULATION_CAPITAL"
 msgstr "პოპულაცია:"
@@ -3727,7 +3731,7 @@ msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0}-ის ამოწყვეტა"
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr ""
+msgstr "დეტალები პროგნოზის ფუძეში არსებული ინფორმაციის შესახებ"
 
 msgid "PRESSURE"
 msgstr "წნევა"
@@ -3739,10 +3743,10 @@ msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "დააჭირეთ ღილაკს..."
 
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
-msgstr ""
+msgstr "მინიატურის გამოსახულება არ არსებობს"
 
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
-msgstr ""
+msgstr "მინიატურის გამოსახულების ფაილი მეტისმეტად დიდია"
 
 msgid "PREVIOUS_COLON"
 msgstr "წინა:"
@@ -3877,7 +3881,7 @@ msgid "RESET_TO_DEFAULTS"
 msgstr "ჩამოვყარო ნაგულისხმევებზე?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr ""
+msgstr "გამძლეა ძირითადი შთანთქმის მიმართ"
 
 msgid "RESOLUTION"
 msgstr "გაფართოება:"
@@ -3919,7 +3923,7 @@ msgid "RETURN_TO_MENU"
 msgstr "მენიუში დაბრუნება"
 
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr ""
+msgstr "გასვლა მთავარ მენიუში"
 
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -3928,7 +3932,7 @@ msgid "REVEAL_ALL_PATCHES"
 msgstr "ყველა ბიომის გამოჩენა"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
-msgstr ""
+msgstr "ეწვიეთ Revolutionary Games-ის ოფიციალურ საიტებს"
 
 msgid "RIGHT_ARROW"
 msgstr "→"
@@ -3964,10 +3968,10 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "გენის კოდი:"
 
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr ""
+msgstr "გაჩნდნენ, რომ ნიშა შეავსონ"
 
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr ""
+msgstr "გაჩნდნენ სხვადასხვა გადარჩევის წნევის გამო"
 
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "{0}-დან გამოყოფილი"
@@ -3994,7 +3998,7 @@ msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
 msgid "SAFE_MODE_TITLE"
-msgstr ""
+msgstr "Thrive გაშვებულია უსაფრთხო რეჟიმში"
 
 msgid "SAVE"
 msgstr "შენახვა"
@@ -4030,7 +4034,7 @@ msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
 
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr ""
+msgstr "შენახვის ფაილი არასწორ თამაშის მდგომარეობის სცენას შეიცავს"
 
 msgid "SAVE_INVALID"
 msgstr "არასწორი"
@@ -4066,7 +4070,7 @@ msgid "SAVING_DOT_DOT_DOT"
 msgstr "შენახვა..."
 
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
+msgstr "შენახვა ჩავარდა! აღმოჩენილია გამონაკლისი"
 
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
@@ -4132,13 +4136,13 @@ msgid "SELECTED_MOD"
 msgstr "არჩეული მოდი:"
 
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
-msgstr ""
+msgstr "მონიშნული შენახული შეუთავსებელია"
 
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr ""
 
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
-msgstr ""
+msgstr "მონიშნული შენახული განახლებადია"
 
 msgid "SELECT_A_GENERATION"
 msgstr "აირჩიეთ თაობა"
@@ -4165,10 +4169,10 @@ msgid "SELECT_PREVIEW_IMAGE"
 msgstr "აირჩიეთ მინიატურის გამოსახულება"
 
 msgid "SELECT_SPACE_STRUCTURE_TITLE"
-msgstr ""
+msgstr "არჩიეთ ასაშენებელი სტრუქტურა"
 
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
-msgstr ""
+msgstr "აირჩიეთ მოსათავსებელი სტრუქტურა"
 
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr ""
@@ -4195,7 +4199,7 @@ msgid "SHOW_HELP"
 msgstr "დახმარების ჩვენება"
 
 msgid "SHOW_NEW_PATCH_NOTES"
-msgstr ""
+msgstr "ახალი პაჩის შენიშვნების ავტომატური ჩვენება"
 
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
@@ -4204,10 +4208,10 @@ msgid "SHOW_TUTORIALS"
 msgstr "სახელმძღვანელოების ჩვენება"
 
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
+msgstr "სახელმძღვანელოების ჩვენება (მიმდინარე თამაშში)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
+msgstr "სახელმძღვანელოების ჩვენება (ახალ თამაშში)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "შეუნახავი მიმდინარეობის გაფრთხილების ჩვენება"
@@ -4297,7 +4301,7 @@ msgid "SPACE_STRUCTURE_HAS_RESOURCES"
 msgstr ""
 
 msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
-msgstr ""
+msgstr "დამატებითი ინფორმაცია ხელმისაწვდომი არაა"
 
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
 msgstr ""
@@ -4342,7 +4346,7 @@ msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "სახეობის სახელი..."
 
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
-msgstr ""
+msgstr "სახეობის სახელი მეტისმეტად გრძელია!"
 
 msgid "SPECIES_POPULATION"
 msgstr "სახეობების პოპულაცია"
@@ -4402,10 +4406,10 @@ msgid "STAT_DAMAGE"
 msgstr "დაზიანება"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
-msgstr ""
+msgstr "ზიანის გაზრდა ჟანგბადგამომყენებელი ორგანელებისთვის"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
-msgstr ""
+msgstr "Steam-ის კლიენტის ბიბლიოთეკის ინიციალიზაცია ჩავარდა"
 
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
@@ -4432,13 +4436,13 @@ msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
 msgid "STEAM_ERROR_INVALID_PARAMETER"
-msgstr ""
+msgstr "Steam-სთვის გადაცემული პარამეტრი არასწორია"
 
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr ""
 
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr ""
+msgstr "Steam-ში შესული არ ბრძანდებით"
 
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
@@ -4447,7 +4451,7 @@ msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
 msgid "STEAM_ERROR_UNKNOWN"
-msgstr ""
+msgstr "აღმოჩენილია Steam-ის უცნობი შეცდომა"
 
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam-ის ინიციალიზაცია ჩავარდა"
@@ -4456,7 +4460,7 @@ msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
 msgid "STEAM_TOOLTIP"
-msgstr ""
+msgstr "ეწვიეთ ჩვენს Steam-ის გვერდს"
 
 msgid "STEM_CELL_NAME"
 msgstr "ღეროვანი"
@@ -4537,22 +4541,22 @@ msgid "SUPPORTER_PATRONS"
 msgstr "მხარდამმჭერები"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "გადართვა წინა კამერის ხედზე"
 
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "გადართვამ მარჯვენა კამერის ხედზე"
 
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "გადართვამ ზედა კამერის ხედზე"
 
 msgid "SYSREQ"
 msgstr "SysRq"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
-msgstr ""
+msgstr "მეორადი დონის ჩანართის მარცხნივ გადართვა"
 
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
-msgstr ""
+msgstr "მეორადი დონის ჩანართის მარჯვნივ გადართვა"
 
 msgid "TAB_SWITCH_LEFT"
 msgstr "ჩანართის გადართვა მარცხნივ"
@@ -4561,7 +4565,7 @@ msgid "TAB_SWITCH_RIGHT"
 msgstr "ჩანართის გადართვა მარჯვნივ"
 
 msgid "TAGS_IS_WHITESPACE"
-msgstr ""
+msgstr "ჭდეები, მხოლოდ, გამოტოვებებს შეიცავებ"
 
 msgid "TAKE_SCREENSHOT"
 msgstr "ეკრანის ანაბეჭდის აღება"
@@ -4594,7 +4598,7 @@ msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
 msgstr "კოსმოსის ერა"
 
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
-msgstr ""
+msgstr "აუცილებელი ტექნ. დონე: {0}"
 
 msgid "TECHNOLOGY_ROCKETRY"
 msgstr "რაკეტები"
@@ -4660,7 +4664,7 @@ msgid "THE_DISTURBANCE"
 msgstr "უწესრიგობა"
 
 msgid "THIS_IS_LOCAL_MOD"
-msgstr ""
+msgstr "ეს ლოკალურად დაყენებული მოდია"
 
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
@@ -4729,7 +4733,7 @@ msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "სახეობა [b][u]{0}[/u][/b] გადაშენდა!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b] გაქრა ამ ბიომიდან"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -4738,10 +4742,10 @@ msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b] პოპულაცია შემცირდა მნიშვნელობამდე {1}"
 
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b] პოპულაცია გაზარდა მნიშვნელობამდე {1}"
 
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "გასული დრო: {0:#,#} წელი"
@@ -4816,7 +4820,7 @@ msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
 msgstr ""
 
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
-msgstr ""
+msgstr "სროლის სიჩქარე და ტოქსიკურობა:"
 
 msgid "TOXIN_MACROLIDE"
 msgstr "მაკროლიდი"
@@ -4840,7 +4844,7 @@ msgid "TOXIN_PREFER_TOXICITY"
 msgstr "ტოქსიკური"
 
 msgid "TOXIN_PROPERTIES_HEADING"
-msgstr ""
+msgstr "ტოქსინის ეფექტები სამიზნეზე"
 
 msgid "TOXIN_RESISTANCE"
 msgstr "ტოქსინის წინააღმდეგობა"
@@ -4872,10 +4876,10 @@ msgid "TRANSPARENCY"
 msgstr "გამჭვირვალობა"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
-msgstr ""
+msgstr "სცადეთ ზოგიერთი სახეობის განამარხება!"
 
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "სცადეთ, შეინახოთ!"
 
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "სცადეთ, ეკრანის ანაბეჭდები აიღოთ!"
@@ -4969,7 +4973,7 @@ msgid "TUTORIAL_VIEW_NOW"
 msgstr "ნახვა ახლა"
 
 msgid "TWITTER_TOOLTIP"
-msgstr ""
+msgstr "ეწვიეთ ჩვენს Twitter-ის ლენტას"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -4978,7 +4982,7 @@ msgid "TYPE_COLON"
 msgstr "ტიპი:"
 
 msgid "UNAPPLIED_MOD_CHANGES"
-msgstr ""
+msgstr "არსებობს გადაუტარებელი ცვლილებები"
 
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -4987,7 +4991,7 @@ msgid "UNBIND_ALL"
 msgstr "ყველა მიმაგრების გაუქმება"
 
 msgid "UNBIND_ALL_TOOLTIP"
-msgstr ""
+msgstr "კოლონიაში ყველა უჯრედის მიბმის მოხსნა"
 
 msgid "UNBIND_HELP_TEXT"
 msgstr "მიმაგრების გაუქმების რეჟიმი"
@@ -5041,7 +5045,7 @@ msgid "UNKNOWN_VERSION"
 msgstr "უცნობი ვერსია"
 
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr ""
+msgstr "უცნობი WorkShop ID ამ მოდისთვის"
 
 msgid "UNLIMIT_GROWTH_SPEED"
 msgstr "შეუზღუდავი ზრდის სიჩქარე"
@@ -5053,7 +5057,7 @@ msgid "UNLOCK_ALL_ORGANELLES"
 msgstr "ყველა ორგანელის განბლოკვა"
 
 msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
-msgstr ""
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-ის წარმოება აღწევს {0}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
 msgstr ""
@@ -5071,7 +5075,7 @@ msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
 msgstr ""
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
-msgstr ""
+msgstr "ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound] აღწევს: {0}"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
@@ -5083,10 +5087,10 @@ msgid "UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW"
 msgstr ""
 
 msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
-msgstr ""
+msgstr "გამრავლება {0} ბიომში"
 
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
-msgstr ""
+msgstr "სიჩქარე {0}-ზე ნაკლები გახდება"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr "[b]{0}[/b] განიბლოკება, როცა"
@@ -5107,7 +5111,7 @@ msgid "UPGRADE_COST"
 msgstr "{0} ({1} მქ)"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr ""
+msgstr "ნაგულისხმევი მდგომარეობა გაუმჯობესების გარეშე"
 
 msgid "UPGRADE_NAME_NONE"
 msgstr "გაუმჯობესები გარეშე"
@@ -5137,7 +5141,7 @@ msgid "USES_FEATURE"
 msgstr "დიახ"
 
 msgid "USE_AUTO_HARMONY"
-msgstr ""
+msgstr "Harmony-ის ავტოჩატვირთვის გამოყენება"
 
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
@@ -5149,13 +5153,13 @@ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "ფონური ნაკადების რიცხვის ხელით დაყენება"
 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "ვირტუალური ფანჯრის ზომის გამოყენება"
 
 msgid "VACUOLE"
 msgstr "ვაკუოლა"
@@ -5188,7 +5192,7 @@ msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "ვერტიკალური (ღერძი: {0})"
 
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "ამჟამად გამოყენებული ვიდეომეხსიერება:"
 
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} მიბ"
@@ -5242,10 +5246,10 @@ msgid "WAITING_FOR_AUTO_EVO"
 msgstr "ავტოევოს მოლოდინი:"
 
 msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
+msgstr "მოგესალმებათ Thrveopedia"
 
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr ""
+msgstr "გადაშენდა პლანეტიდან"
 
 msgid "WENT_EXTINCT_IN"
 msgstr "გადაშენების დრო {0}"
@@ -5314,16 +5318,16 @@ msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "ეფექტების გარეშე. განხორციელებული არაა."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr ""
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr ""
+msgstr "ცვლილებების გარეშე. განხორციელებული არაა."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
-msgstr ""
+msgstr "პროცესების გარეშე. განხორციელებული არაა."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
 msgstr ""
@@ -5335,7 +5339,7 @@ msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr ""
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "გაუმჯობესებების გარეშე. განხორციელებული არაა."
 
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "ეფექტების გარეშე."
@@ -6076,7 +6080,7 @@ msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr "საგნის მინიატურის გამოსახულება:"
 
 msgid "WORKSHOP_ITEM_TAGS"
-msgstr ""
+msgstr "საგნის ჭდეები (მძიმით \",\" გამოყოფილი):"
 
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "ნივთის დასახელება:"
@@ -6100,7 +6104,7 @@ msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
 msgstr ""
 
 msgid "WORLD_GENERAL_STATISTICS"
-msgstr ""
+msgstr "მიმდინარე სამყაროს ზოგადი სტატისტიკა"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
@@ -6124,7 +6128,7 @@ msgid "YEARS"
 msgstr "წელი"
 
 msgid "YOUTUBE_TOOLTIP"
-msgstr ""
+msgstr "ეწვიეთ ჩვენს YouTube-ის არხს"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
