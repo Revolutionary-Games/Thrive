@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-19 11:03+0300\n"
-"PO-Revision-Date: 2024-07-05 19:22+0000\n"
+"PO-Revision-Date: 2024-07-06 16:31+0000\n"
 "Last-Translator: Max6mm <ricard.max@hotmail.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -47,7 +47,7 @@ msgid "ACTION_AWAKEN"
 msgstr "S'éveiller ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Passer à la phase Éveillé. Disponible une fois que vous avez assez de puissance cérébrale (Type de tissu avec axones)."
+msgstr "Passer à la Phase d'Éveil. Disponible une fois que vous avez assez de puissance cérébrale (Type de tissu avec axones)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Action bloquée pendant qu'une autre est en cours"
@@ -1622,11 +1622,13 @@ msgstr "Activer l'éditeur"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Activer les effets lumineux dans l'interface utilisateur"
 
+#, fuzzy
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "Le processus d'endosymbiose est terminé, finalisez-le dans l'éditeur"
 
+#, fuzzy
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "La cible de l'endosymbiose a été transformée en organite temporaire. L'endosymbiose progressera si vous parvenez à atteindre l'éditeur"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr "Un endosymbiote est déjà présent. Entrez dans l'éditeur pour faire progresser le processus d'endosymbiose"
@@ -1638,7 +1640,6 @@ msgstr "Organites disponibles à transformer"
 msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr "Endosymbiose"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
 msgstr "Annuler le processus d'endosymbiose. Vous perdrez la progression actuelle pour cet endosymbiote !"
 
@@ -1656,7 +1657,6 @@ msgstr "Aucune espèce susceptible d'être transformée en endosymbiote n'a enco
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
 msgstr "Cette espèce ne peut être transformée en aucun organite valide"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr "Pour réaliser le processus d'endosymbiose, l'espèce cible doit être engloutie pour être transformée en organite temporaire (une seule espèce peut être présente à la fois). Le processus est ensuite lancé une fois que l'organite temporaire a été placé dans l'éditeur."
 
@@ -4012,8 +4012,9 @@ msgstr "Pacifique"
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "Le processus d'endosymbiose est terminé et peut être finalisé en le plaçant en tant qu'organite. Il est recommandé de le faire dès que possible, car aucun autre progrès dans le processus d'endosymbiose ne sera possible avant cela. Consulter la progression de l'endosymbiose maintenant ?"
 
+#, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "Progrès du processus d'endosymbiose en cours"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -5864,12 +5865,14 @@ msgstr "Molette avant"
 msgid "WIKI"
 msgstr "Wiki"
 
-#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
-msgstr "Effets externes :"
+msgstr ""
+"Pour chaque cellule d'un organisme multicellulaire qui contient un [b]Axone[/b], la puissance cérébrale de cet organisme augmentera proportionnellement au volume de cette cellule. Les cellules dotées d'[b]Axones[/b] sont considérées comme possédant un tissu cérébral.\n"
+"\n"
+"Lorsque la puissance cérébrale dépasse [b]+0.5[/b], le joueur entre dans la Phase Consciente. Lorsque la puissance cérébrale dépasse [b]+5.0[/b], le joueur entre dans la Phase d'Éveil."
 
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'étape multicellulaire. Ils sont nécessaires pour augmenter la puissance cérébrale d'un organisme et lui permettre de passer aux phases suivantes."
 
 msgid "WIKI_AXON_MODIFICATIONS"
 msgstr "Pas de modifications."
@@ -5877,7 +5880,6 @@ msgstr "Pas de modifications."
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Pas de processus."
 
-#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr "Disponible à partir du stade multicellulaire."
 
@@ -5885,7 +5887,7 @@ msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "L'ajout d'[b]Axones[/b] est essentiel pour atteindre les étapes suivantes. Il est recommandé d'ajouter un [b]Axone[/b] à plusieurs types de cellules dans votre organisme multicellulaire, mais en ajouter plus d'un est superflu. Pour le moment, les [b]Axones[/b] supplémentaires n'apportent aucun avantage additionnel."
 
 msgid "WIKI_AXON_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -5897,9 +5899,11 @@ msgstr ""
 "\n"
 "Les cellules d'une même colonie partagent leurs ressources, les répartissant équitablement entre toutes les cellules. Les colonies bénéficient également d'un coût d'osmorégulation réduit - le coût d'osmorégulation de chaque cellule diminue à un rythme inversement proportionnel au nombre total de membres de la colonie."
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_INTRO"
-msgstr "relieur"
+msgstr ""
+"Permet à une cellule de se réunir avec d'autres cellules de son espèce pour former une colonie cellulaire. Une fois liées dans une colonie, les cellules se déplacent comme une seule et même entité et partagent leurs composés. Les cellules doivent se détacher d'une colonie avant d'entrer dans l'éditeur et de se diviser.\n"
+"\n"
+"La formation de colonies cellulaires est la première étape vers la multicellularité, et les [b]agents liants[/b] sont donc essentiels pour passer à la phase suivante."
 
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
 msgstr "Pas de modifications."
@@ -5907,7 +5911,6 @@ msgstr "Pas de modifications."
 msgid "WIKI_BINDING_AGENT_PROCESSES"
 msgstr "Pas de processus."
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
 "Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]Noyau[/url][/color][/b] pour pouvoir développer des [b]Agents liants[/b].\n"
@@ -5920,7 +5923,6 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr ""
 "Il est très utile de former des colonies, en particulier pour les organismes utilisant la [b]Photosynthèse[/b]. Chaque cellule supplémentaire dans une colonie réduit le coût global de l'osmorégulation, ce qui signifie une plus grande efficacité énergétique. Ainsi, les espèces photosynthétiques produiront du [thrive:compound type=\"glucose\"][/thrive:compound] plus rapidement, et les colonies prédatrices pourront survivre plus longtemps entre deux repas.\n"
@@ -5952,7 +5954,14 @@ msgstr "Ne peut pas être ajouté à des cellules. Doit être implémenté."
 
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr "Vacuole bioluminescente"
+msgstr ""
+"De nombreux organismes vivants sont bioluminescents, y compris certaines bactéries et certains protistes. Le fait de produire chimiquement de la lumière dans le corps d'un organisme a de nombreuses utilisations, notamment pour attirer des partenaires, communiquer avec les membres de la même espèce et attirer ou repousser d'autres espèces. La bioluminescence des algues microscopiques peut produire des efflorescences algales, illuminant d'énormes régions de l'océan d'une lueur bleu-vert.\n"
+"\n"
+"Pour l'instant, la fonction de la bioluminescence n'a pas encore été intégrée dans le jeu. Bien qu'il s'agisse d'une touche esthétique agréable et même d'une aide pour le joueur dans les environnements sombres, il a été difficile de définir des mécanismes de jeu utiles basés sur la bioluminescence. La communication intra-espèce est déjà couverte par l'[b][color=#3796e1][url=thriveopedia:signalingAgent]Agent de signalisation[/url][/color][/b], et toute autre utilisation semble difficile à justifier lorsqu'elle entraîne un coût inévitable en [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Ceci peut se faire par le biais d'une [b]Vacuole Bioluminescente[/b] ou d'un organite plus spécifique. Un exemple concret est le [color=#3796e1][url=https://en.wikipedia.org/wiki/Scintillon]Scintillon[/url][/color].\n"
+"\n"
+"Si vous êtes favorable à l'inclusion de [b]Vacuoles Bioluminescentes[/b] ou si vous avez des suggestions de fonctions intéressantes pour le jeu, rendez-vous sur notre [color=#3796e1][url=https://suggestions.revolutionarygamesstudio.com/]tableau des suggestions[/url][/color]."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr "Pas disponible dans le jeu. Doit être implémenté."
@@ -6427,9 +6436,15 @@ msgstr ""
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr "Pas d'améliorations."
 
-#, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
-msgstr "Axone"
+msgstr ""
+"Les organites sont les \"organes\" des organismes unicellulaires. Dans Thrive, ils sont les éléments constitutifs de votre cellule, contrôlant ses fonctions et processus internes.\n"
+"\n"
+"Chaque fois que vous vous reproduisez, vous pouvez ajouter, déplacer, modifier ou supprimer des organites à l'intérieur de votre cellule à l'aide de l'éditeur de microbes. Presque toutes ces actions coûtent des points de mutation. Les organites sont disposés dans une grille hexagonale, formant une forme contiguë enveloppée par la membrane cellulaire, et chaque organite a une empreinte hexagonale caractéristique. Les organites externes s'attachent à l'extérieur de la membrane, de sorte que pour la plupart d'entre eux, l'orientation du placement a de l'importance.\n"
+"\n"
+"Lorsque vous modifiez votre cellule, les autres espèces modifient également la disposition de leurs organites. Elles ont accès aux mêmes pouvoirs et capacités.\n"
+"\n"
+"Sélectionnez un organite dans la liste ci-dessous pour en savoir plus."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
