@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ using Godot;
 /// </summary>
 public partial class PatchDetailsPanel : PanelContainer
 {
+    public List<Migration> Migrations = new();
+
 #pragma warning disable CA2213
     [Export]
     private Control nothingSelected = null!;
@@ -36,6 +39,27 @@ public partial class PatchDetailsPanel : PanelContainer
 
     [Export]
     private Button? moveToPatchButton;
+
+    [Export]
+    private VBoxContainer? migrationMenu;
+
+    [Export]
+    private VBoxContainer? menu;
+
+    [Export]
+    private Button? migrateButton;
+
+    [Export]
+    private Button? migrationSource;
+
+    [Export]
+    private Button? migrationDestination;
+
+    [Export]
+    private Button? migrationAccept;
+
+    [Export]
+    private Button? migrationCancel;
 
     [Export]
     private CollapsibleList physicalConditionsContainer = null!;
@@ -86,12 +110,15 @@ public partial class PatchDetailsPanel : PanelContainer
     private Compound phosphatesCompound = null!;
     private Compound sunlightCompound = null!;
 
+    private Migration? currentlyEditedMigration;
+
     private Patch? targetPatch;
     private Patch? currentPatch;
 
     private bool moveToPatchButtonVisible = true;
 
     public Action<Patch>? OnMoveToPatchClicked { get; set; }
+    public Action<Migration>? MigrationAdded { get; set; }
 
     public Patch? SelectedPatch
     {
@@ -209,6 +236,8 @@ public partial class PatchDetailsPanel : PanelContainer
 
         increaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/decrease.png");
+
+        Migrations = new List<Migration>();
 
         UpdateMoveToPatchButton();
     }
@@ -471,5 +500,74 @@ public partial class PatchDetailsPanel : PanelContainer
         }
 
         OnMoveToPatchClicked.Invoke(SelectedPatch);
+    }
+
+    private void MigrateButtonPressed()
+    {
+        menu!.Visible = false;
+        migrationMenu!.Visible = true;
+
+        currentlyEditedMigration = new Migration();
+
+        migrationSource!.Text = new LocalizedString("SOURCE_PATCH").ToString();
+        migrationDestination!.Text = new LocalizedString("DESTINATION_PATCH").ToString();
+    }
+
+    private void MigrateSourcePressed()
+    {
+        if (SelectedPatch == null)
+            return;
+
+        currentlyEditedMigration!.SourcePatch = SelectedPatch;
+        migrationSource!.Text = SelectedPatch.VisibleName.ToString();
+    }
+
+    private void MigrateDestinationPressed()
+    {
+        if (SelectedPatch == null)
+            return;
+
+        currentlyEditedMigration!.DestinationPatch = SelectedPatch;
+        migrationDestination!.Text = SelectedPatch.VisibleName.ToString();
+    }
+
+    private void MigrateAcceptPressed()
+    {
+        if (currentlyEditedMigration!.DestinationPatch == null || currentlyEditedMigration.SourcePatch == null)
+        {
+            menu!.Visible = true;
+            migrationMenu!.Visible = false;
+
+            return;
+        }
+
+        if (!currentlyEditedMigration.DestinationPatch.Adjacent.Contains(currentlyEditedMigration.SourcePatch))
+        {
+            menu!.Visible = true;
+            migrationMenu!.Visible = false;
+
+            return;
+        }
+
+        Migrations.Add(currentlyEditedMigration);
+
+        MigrationAdded?.Invoke(currentlyEditedMigration);
+
+        menu!.Visible = true;
+        migrationMenu!.Visible = false;
+    }
+
+    private void MigrateCancelPressed()
+    {
+        menu!.Visible = true;
+        migrationMenu!.Visible = false;
+    }
+
+    public class Migration
+    {
+        public Patch? SourcePatch;
+        public Patch? DestinationPatch;
+
+        public long? Amount = 100;
     }
 }

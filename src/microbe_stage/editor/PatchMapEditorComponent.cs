@@ -83,6 +83,7 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         };
 
         detailsPanel.OnMoveToPatchClicked = SetPlayerPatch;
+        detailsPanel.MigrationAdded = ValidateMigration;
 
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
@@ -142,6 +143,28 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
             // TODO: Log player species' migration
             targetPatch.AddSpecies(Editor.EditedBaseSpecies, 0);
         }
+
+        // Migrations
+        foreach (var migration in detailsPanel.Migrations)
+        {
+            if (migration.Amount == null)
+                return;
+
+            var playerSpecies = Editor.CurrentGame.GameWorld.PlayerSpecies;
+
+            var sourcePreviousPopulation = migration.SourcePatch!.GetSpeciesSimulationPopulation(playerSpecies);
+            migration.SourcePatch.UpdateSpeciesSimulationPopulation(playerSpecies,
+                sourcePreviousPopulation - (long)migration.Amount);
+
+            if (migration.DestinationPatch!.FindSpeciesByID(playerSpecies.ID) != null)
+            {
+                migration.DestinationPatch.SpeciesInPatch[playerSpecies] += (long)migration.Amount;
+            }
+            else
+            {
+                migration.DestinationPatch.AddSpecies(playerSpecies, (long)migration.Amount);
+            }
+        }
     }
 
     public override void OnMutationPointsChanged(int mutationPoints)
@@ -197,6 +220,11 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         // previewBiomeConditions.AverageCompounds[sunlight] = lightLevelAmount;
 
         UpdateShownPatchDetails();
+    }
+
+    public Species GetPlayerSpecies()
+    {
+        return Editor.CurrentGame.GameWorld.PlayerSpecies;
     }
 
     protected virtual void UpdateShownPatchDetails()
@@ -316,5 +344,13 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     private void MoveToPatchClicked()
     {
         SetPlayerPatch(mapDrawer.SelectedPatch);
+    }
+
+    private void ValidateMigration(PatchDetailsPanel.Migration migration)
+    {
+        if (migration.SourcePatch!.FindSpeciesByID(Editor.CurrentGame.GameWorld.PlayerSpecies.ID) == null)
+        {
+            detailsPanel.Migrations.Remove(migration);
+        }
     }
 }

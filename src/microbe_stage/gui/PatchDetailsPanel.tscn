@@ -27,7 +27,7 @@
 texture = ExtResource("9")
 region_rect = Rect2(0, 0, 429, 1)
 
-[node name="PatchDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer")]
+[node name="PatchDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "migrationMenu", "menu", "migrateButton", "migrationSource", "migrationDestination", "migrationAccept", "migrationCancel", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer")]
 custom_minimum_size = Vector2(340, 0)
 offset_right = 352.0
 offset_bottom = 620.0
@@ -42,6 +42,13 @@ biome = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/Pa
 depth = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Depth")
 moveToPatchHSeparator = NodePath("VBoxContainer/HSeparator")
 moveToPatchButton = NodePath("VBoxContainer/MarginContainer2/MoveToPatchButton")
+migrationMenu = NodePath("MigrationMenu")
+menu = NodePath("VBoxContainer")
+migrateButton = NodePath("VBoxContainer/MarginContainer3/MigrateButton")
+migrationSource = NodePath("MigrationMenu/MarginContainer3/SourcePatch")
+migrationDestination = NodePath("MigrationMenu/MarginContainer4/DestinationPatch")
+migrationAccept = NodePath("MigrationMenu/MarginContainer5/Accept")
+migrationCancel = NodePath("MigrationMenu/MarginContainer2/Cancel")
 physicalConditionsContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions")
 atmosphereContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses")
 compoundsContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds")
@@ -447,4 +454,98 @@ focus_mode = 0
 disabled = true
 text = "MOVE_TO_THIS_PATCH"
 
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MigrateButton" type="Button" parent="VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+tooltip_text = "MIGRATION_TOOLTIP"
+focus_mode = 0
+text = "MIGRATE"
+
+[node name="MigrationMenu" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MigrationMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SourcePatch" type="Button" parent="MigrationMenu/MarginContainer3"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+focus_mode = 0
+text = "SOURCE_PATCH"
+
+[node name="MarginContainer4" type="MarginContainer" parent="MigrationMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="DestinationPatch" type="Button" parent="MigrationMenu/MarginContainer4"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+focus_mode = 0
+text = "DESTINATION_PATCH"
+
+[node name="MarginContainer6" type="MarginContainer" parent="MigrationMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="MigrationMenu/MarginContainer6"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+text = "MIGRATION_EXPLANATION"
+autowrap_mode = 3
+
+[node name="MarginContainer5" type="MarginContainer" parent="MigrationMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Accept" type="Button" parent="MigrationMenu/MarginContainer5"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+focus_mode = 0
+text = "ACCEPT"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MigrationMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Cancel" type="Button" parent="MigrationMenu/MarginContainer2"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+focus_mode = 0
+text = "CANCEL"
+
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/MoveToPatchButton" to="." method="MoveToPatchClicked"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/MigrateButton" to="." method="MigrateButtonPressed"]
+[connection signal="pressed" from="MigrationMenu/MarginContainer3/SourcePatch" to="." method="MigrateSourcePressed"]
+[connection signal="pressed" from="MigrationMenu/MarginContainer4/DestinationPatch" to="." method="MigrateDestinationPressed"]
+[connection signal="pressed" from="MigrationMenu/MarginContainer5/Accept" to="." method="MigrateAcceptPressed"]
+[connection signal="pressed" from="MigrationMenu/MarginContainer2/Cancel" to="." method="MigrateCancelPressed"]
