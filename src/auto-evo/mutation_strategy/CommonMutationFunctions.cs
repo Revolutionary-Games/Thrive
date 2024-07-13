@@ -15,7 +15,8 @@ public static class CommonMutationFunctions
         Rear,
     }
 
-    public static void AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies, Random random)
+    public static void AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
+        Random random)
     {
         OrganelleTemplate position;
 
