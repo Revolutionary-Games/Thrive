@@ -22,8 +22,7 @@ public static class CommonMutationFunctions
 
         if (direction == Direction.Neutral)
         {
-            position = CommonMutationFunctions
-                .GetRealisticPosition(organelle, newSpecies.Organelles, new Random());
+            position = GetRealisticPosition(organelle, newSpecies.Organelles, new Random());
         }
         else
         {
@@ -35,7 +34,7 @@ public static class CommonMutationFunctions
         }
 
         newSpecies.Organelles.Add(position);
-        CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles);
+        AttachIslandHexes(newSpecies.Organelles);
 
         // If the new species is a eukaryote, mark this as such
         if (organelle == Nucleus)
