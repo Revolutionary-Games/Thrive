@@ -3,14 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static global::AutoEvo.CommonMutationFunctions;
 
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
-    private readonly Direction direction;
+    private readonly CommonMutationFunctions.Direction direction;
     private readonly OrganelleDefinition[] allOrganelles;
 
-    public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, Direction direction = Direction.Neutral)
+    public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, CommonMutationFunctions.Direction direction
+        = CommonMutationFunctions.Direction.Neutral)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToArray();
         this.direction = direction;
@@ -18,21 +18,22 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
-    public static AddOrganelleAnywhere ThatUseCompound(Compound compound, Direction direction = Direction.Neutral)
+    public static AddOrganelleAnywhere ThatUseCompound(Compound compound, CommonMutationFunctions.Direction direction
+        = CommonMutationFunctions.Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
             .Where(proc => proc.Process.Inputs.ContainsKey(compound)).Any(), direction);
     }
 
     public static AddOrganelleAnywhere ThatCreateCompound(Compound compound,
-        Direction direction = Direction.Neutral)
+        CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
             .Where(proc => proc.Process.Outputs.ContainsKey(compound)).Any(), direction);
     }
 
     public static AddOrganelleAnywhere ThatConvertBetweenCompounds(Compound fromCompound, Compound toCompound,
-        Direction direction = Direction.Neutral)
+        CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
             .Where(proc => proc.Process.Inputs.ContainsKey(fromCompound) &&
