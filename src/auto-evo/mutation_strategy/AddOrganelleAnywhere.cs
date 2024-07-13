@@ -55,7 +55,8 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         // TODO: Make this something passed in
         var random = new Random();
 
-        var organelles = allOrganelles.OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS).ToList();
+        var organelles = allOrganelles.OrderBy(_ => random.Next())
+            .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS).ToList();
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 

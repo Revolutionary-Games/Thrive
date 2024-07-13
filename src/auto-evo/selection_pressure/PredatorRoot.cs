@@ -1,7 +1,6 @@
 ﻿namespace AutoEvo;
 
 using System;
-using Godot;
 
 public class PredatorRoot : SelectionPressure
 {
@@ -26,7 +25,6 @@ public class PredatorRoot : SelectionPressure
     public override float Score(MicrobeSpecies species, SimulationCache cache)
     {
         var atpFromGlucose = cache.GetCompoundGeneratedFrom(Glucose, ATP, species, patch.Biome);
-        var totalATP = cache.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumption;
 
         // Ensure that a predator actually needs the glucose from prey
         if (atpFromGlucose >= cache.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumption)
