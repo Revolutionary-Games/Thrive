@@ -36,7 +36,7 @@ public static class CommonMutationFunctions
         newSpecies.Organelles.Add(position);
         AttachIslandHexes(newSpecies.Organelles);
 
-        // If the new species is a eukaryote, mark this as such
+        // If the new species is a eukaryote, mark this as such.
         if (organelle == Nucleus)
         {
             newSpecies.IsBacteria = false;
