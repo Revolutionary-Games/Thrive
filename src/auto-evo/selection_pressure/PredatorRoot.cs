@@ -29,7 +29,19 @@ public class PredatorRoot : SelectionPressure
         var totalATP = cache.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumption;
 
         // Ensure that a predator actually needs the glucose from prey
-        return Mathf.Min(atpFromGlucose / totalATP, 1);
+        if (atpFromGlucose >= cache.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumption)
+        {
+            return 1;
+        }
+        else if (atpFromGlucose >= cache.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumptionStationary)
+        {
+            return 0.5f;
+        }
+        else
+        {
+            // for now we strictly forbid predators that need another food source to live
+            return 0;
+        }
     }
 
     public override float GetEnergy()
