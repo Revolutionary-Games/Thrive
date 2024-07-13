@@ -3,10 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static global::AutoEvo.CommonMutationFunctions;
 
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
-    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
     private readonly Direction direction;
     private readonly OrganelleDefinition[] allOrganelles;
 
@@ -14,13 +14,6 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToArray();
         this.direction = direction;
-    }
-
-    public enum Direction
-    {
-        Front,
-        Neutral,
-        Rear,
     }
 
     public bool Repeatable => true;
@@ -73,30 +66,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            OrganelleTemplate position;
-
-            if (direction == Direction.Neutral)
-            {
-                position = CommonMutationFunctions
-                    .GetRealisticPosition(organelle, newSpecies.Organelles, new Random());
-            }
-            else
-            {
-                var x = (int)(random.NextSingle() * 7 - 3);
-
-                position = new OrganelleTemplate(organelle,
-                    direction == Direction.Front ? new Hex(x, -100) : new Hex(x, 100),
-                    direction == Direction.Front ? 0 : 3);
-            }
-
-            newSpecies.Organelles.Add(position);
-            CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles);
-
-            // If the new species is a eukaryote, mark this as such
-            if (organelle == Nucleus)
-            {
-                newSpecies.IsBacteria = false;
-            }
+            CommonMutationFunctions.AddOrganelle(organelle, direction, newSpecies, random);
 
             mutated.Add(Tuple.Create(newSpecies, mp - organelle.MPCost));
         }

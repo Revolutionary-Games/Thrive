@@ -6,6 +6,43 @@ using System.Linq;
 
 public static class CommonMutationFunctions
 {
+    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
+    public enum Direction
+    {
+        Front,
+        Neutral,
+        Rear,
+    }
+
+    public static void AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies, Random random)
+    {
+        OrganelleTemplate position;
+
+        if (direction == Direction.Neutral)
+        {
+            position = CommonMutationFunctions
+                .GetRealisticPosition(organelle, newSpecies.Organelles, new Random());
+        }
+        else
+        {
+            var x = (int)(random.NextSingle() * 7 - 3);
+
+            position = new OrganelleTemplate(organelle,
+                direction == Direction.Front ? new Hex(x, -100) : new Hex(x, 100),
+                direction == Direction.Front ? 0 : 3);
+        }
+
+        newSpecies.Organelles.Add(position);
+        CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles);
+
+        // If the new species is a eukaryote, mark this as such
+        if (organelle == Nucleus)
+        {
+            newSpecies.IsBacteria = false;
+        }
+    }
+
     public static OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,
         OrganelleLayout<OrganelleTemplate> existingOrganelles, Random random)
     {

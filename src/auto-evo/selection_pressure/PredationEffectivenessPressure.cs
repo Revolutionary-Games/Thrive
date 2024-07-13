@@ -18,9 +18,10 @@ public class PredationEffectivenessPressure : SelectionPressure
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
             AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
-            new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent, AddOrganelleAnywhere.Direction.Front),
+            new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent, CommonMutationFunctions.Direction.Front),
             new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
-                AddOrganelleAnywhere.Direction.Rear),
+                CommonMutationFunctions.Direction.Rear),
+            new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),

@@ -25,9 +25,9 @@ public class AvoidPredationSelectionPressure : SelectionPressure
     public AvoidPredationSelectionPressure(Species predator, float weight, Patch patch) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
         new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
-            AddOrganelleAnywhere.Direction.Front),
+            CommonMutationFunctions.Direction.Front),
         new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
-            AddOrganelleAnywhere.Direction.Rear),
+            CommonMutationFunctions.Direction.Rear),
         new ChangeMembraneType(DoubleMembrane),
         new ChangeMembraneType(CelluloseMembrane),
         new ChangeMembraneType(ChitinMembrane),
