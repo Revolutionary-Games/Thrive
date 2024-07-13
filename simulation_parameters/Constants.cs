@@ -1041,6 +1041,8 @@ public static class Constants
 
     public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.3f;
 
+    public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
+
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>

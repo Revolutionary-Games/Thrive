@@ -55,10 +55,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         // TODO: Make this something passed in
         var random = new Random();
 
-        // TODO: Move to constants
-        const int addOrganelleAttempts = 15;
-
-        var organelles = allOrganelles.OrderBy(_ => random.Next()).Take(addOrganelleAttempts).ToList();
+        var organelles = allOrganelles.OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS).ToList();
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
@@ -84,7 +81,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             }
             else
             {
-                var x = (int)(random.NextSingle() * 10 - 5);
+                var x = (int)(random.NextSingle() * 7 - 3);
 
                 position = new OrganelleTemplate(organelle,
                     direction == Direction.Front ? new Hex(x, -100) : new Hex(x, 100),
