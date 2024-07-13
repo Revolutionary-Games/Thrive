@@ -93,9 +93,9 @@ public class ModifyExistingSpecies : IRunStep
 
             var oldColour = variant.Colour;
 
-            var redShift = random.NextDouble() * 0.1 - 0.05;
-            var greenShift = random.NextDouble() * 0.1 - 0.05;
-            var blueShift = random.NextDouble() * 0.1 - 0.05;
+            var redShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            var greenShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            var blueShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
 
             variant.Colour = new Color(Mathf.Clamp((float)(oldColour.R + redShift), 0, 1),
                 Mathf.Clamp((float)(oldColour.G + greenShift), 0, 1),

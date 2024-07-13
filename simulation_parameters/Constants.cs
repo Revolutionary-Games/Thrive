@@ -1039,6 +1039,8 @@ public static class Constants
     public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
     public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
 
+    public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.3f;
+
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
