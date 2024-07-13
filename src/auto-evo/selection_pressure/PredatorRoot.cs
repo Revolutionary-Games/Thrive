@@ -31,15 +31,14 @@ public class PredatorRoot : SelectionPressure
         {
             return 1;
         }
-        else if (atpFromGlucose >= cache.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumptionStationary)
+
+        if (atpFromGlucose >= cache.GetEnergyBalanceForSpecies(species, patch.Biome).TotalConsumptionStationary)
         {
             return 0.5f;
         }
-        else
-        {
-            // for now we strictly forbid predators that need another food source to live
-            return 0;
-        }
+
+        // for now we strictly forbid predators that need another food source to live
+        return 0;
     }
 
     public override float GetEnergy()
