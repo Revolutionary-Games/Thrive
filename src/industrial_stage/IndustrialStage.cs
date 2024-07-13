@@ -395,7 +395,11 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
         // TODO: unit specific acceleration values / movement here
         toSpaceUnitAcceleration += (float)(delta * Constants.INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION);
 
-        toSpaceAnimatedUnit.GlobalPosition += new Vector3(0, toSpaceUnitAcceleration, 0);
+        // almost, but don't quite, level out at max height
+        var orbitTurnAngle = toSpaceAnimatedUnit.GlobalPosition.Y / (Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT * 1.1f);
+
+        toSpaceAnimatedUnit.Rotation = new Vector3(0, 0, orbitTurnAngle * (Mathf.Pi / 2));
+        toSpaceAnimatedUnit.GlobalPosition += new Vector3(-toSpaceUnitAcceleration * orbitTurnAngle, toSpaceUnitAcceleration * (1 - orbitTurnAngle), 0);
     }
 
     private void SwitchToSpaceScene()
