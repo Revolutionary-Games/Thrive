@@ -72,6 +72,11 @@ public partial class Thriveopedia : ControlWithInput
     private bool treeCollapsed;
 
     /// <summary>
+    ///   The stage dropdown is stored here so it can be used as a parent.
+    /// </summary>
+    private TreeItem stageDropdown = null!;
+
+    /// <summary>
     ///   Details for the game currently in progress. Null if opened from the main menu.
     /// </summary>
     private GameProperties? currentGame;
@@ -338,8 +343,11 @@ public partial class Thriveopedia : ControlWithInput
             }
         }
 
-        if (page.ParentPageName != null && allPages.Keys.All(p => p.PageName != page.ParentPageName))
+        if (page.ParentPageName != null && page.ParentPageName != "CurrentStage" &&
+            allPages.Keys.All(p => p.PageName != page.ParentPageName))
+        {
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
+        }
 
         page.PageNode.Connect(ThriveopediaPage.SignalName.OnSceneChanged,
             new Callable(this, nameof(HandleSceneChanged)));
@@ -349,6 +357,11 @@ public partial class Thriveopedia : ControlWithInput
         treeItem.Collapsed = page.StartsCollapsed;
         allPages.Add(page, treeItem);
 
+        // Stage pages should not be visible in the tree as they are handeled by the selection dropdown
+        // However, the TreeItem is still created to avoid problems with allPages
+        if (page is ThriveopediaStagePage)
+            treeItem.Visible = false;
+
         page.Hide();
     }
 
@@ -356,28 +369,31 @@ public partial class Thriveopedia : ControlWithInput
     {
         // Makes use of a basically undocumented Godot feature to add a dropdown menu to the tree
 
-        var treeItem = pageTree.CreateItem(index: 0);
+        var root = allPages[GetPage("WikiRoot")];
+
+        var treeItem = pageTree.CreateItem(root, 0);
         treeItem.SetCellMode(0, TreeItem.TreeCellMode.Range);
         treeItem.SetEditable(0, true);
 
         Stage[] allStages = (Stage[])typeof(Stage).GetEnumValues();
-        var optionsText = new StringBuilder();
+        var optionsText = new LocalizedStringBuilder();
 
         for (int i = 0; i < allStages.Length; i++)
         {
             if (i != 0)
                 optionsText.Append(',');
 
-            optionsText.Append(TranslationServer.Translate(
-                allStages[i].GetAttribute<DescriptionAttribute>().Description));
+            optionsText.Append(new LocalizedString(allStages[i].GetAttribute<DescriptionAttribute>().Description));
         }
 
         treeItem.SetText(0, optionsText.ToString());
 
-        OnSelectedStageUpdated();
+        stageDropdown = treeItem;
+
+        OnSelectedStageUpdated(false);
     }
 
-    private void OnSelectedStageUpdated()
+    private void OnSelectedStageUpdated(bool updatePage)
     {
         // Triggers when the stage dropdown has been edited
         var item = pageTree.GetEdited();
@@ -417,6 +433,21 @@ public partial class Thriveopedia : ControlWithInput
                 wikiPage.OnSelectedStageChanged();
             }
         }
+
+        if (updatePage)
+        {
+            OpenCurrentStagePage();
+        }
+    }
+
+    private void OpenCurrentStagePage()
+    {
+        var pageName = ThriveopediaManager.CurrentSelectedStage.ToString()
+            .ToLowerInvariant()
+            .Replace("stage", "_stage")
+            .Replace("ascension", "ascension_stage");
+
+        ThriveopediaManager.OpenPage(pageName);
     }
 
     /// <summary>
@@ -427,7 +458,17 @@ public partial class Thriveopedia : ControlWithInput
     /// <returns>An item in the page tree which links to the given page</returns>
     private TreeItem CreateTreeItem(IThriveopediaPage page, string? parentName = null)
     {
-        var pageInTree = pageTree.CreateItem(parentName != null ? allPages[GetPage(parentName)] : null);
+        TreeItem? parent;
+        if (parentName == "CurrentStage")
+        {
+            parent = stageDropdown;
+        }
+        else
+        {
+            parent = parentName != null ? allPages[GetPage(parentName)] : null;
+        }
+
+        var pageInTree = pageTree.CreateItem(parent);
 
         UpdatePageInTree(pageInTree, page);
 
@@ -455,6 +496,12 @@ public partial class Thriveopedia : ControlWithInput
     private void OnPageSelectedFromPageTree()
     {
         var selected = pageTree.GetSelected();
+
+        if (selected == stageDropdown)
+        {
+            OpenCurrentStagePage();
+            return;
+        }
 
         try
         {

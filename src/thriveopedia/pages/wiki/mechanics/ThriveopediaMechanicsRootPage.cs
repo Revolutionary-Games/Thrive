@@ -6,16 +6,16 @@
 /// </summary>
 public partial class ThriveopediaMechanicsRootPage : ThriveopediaWikiPage
 {
+    [Signal]
+    public delegate void OnStageChangedEventHandler();
+
     public override string PageName => "MechanicsRoot";
 
     public override string TranslatedPageName => TranslationServer.Translate("MECHANICS");
 
-    public override string ParentPageName => "WikiRoot";
+    public override string ParentPageName => "CurrentStage";
 
     public override bool StartsCollapsed => false;
-
-    [Signal]
-    public delegate void OnStageChangedEventHandler();
 
     public override void OnSelectedStageChanged()
     {

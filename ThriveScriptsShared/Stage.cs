@@ -32,6 +32,6 @@ public enum Stage
     [Description("SPACE_STAGE")]
     SpaceStage = 6,
 
-    [Description("ASCENSION_STAGE")]
-    AscensionStage = 7,
+    [Description("ASCENSION")]
+    Ascension = 7,
 }

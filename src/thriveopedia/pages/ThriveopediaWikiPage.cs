@@ -61,9 +61,6 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
 
         // Generate Stage Pages
 
-        GeneratePage<ThriveopediaStagesRootPage>(pages, wiki.StagesRoot,
-            "res://src/thriveopedia/pages/wiki/stages/ThriveopediaStagesRootPage.tscn");
-
         GeneratePages<ThriveopediaStagePage>(pages, wiki.Stages,
             "res://src/thriveopedia/pages/wiki/stages/ThriveopediaStagePage.tscn");
 

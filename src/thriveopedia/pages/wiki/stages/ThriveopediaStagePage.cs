@@ -12,7 +12,7 @@ public partial class ThriveopediaStagePage : ThriveopediaWikiPage
     private StageInfoBox infoBox = null!;
 #pragma warning restore CA2213
 
-    public override string ParentPageName => "StagesRoot";
+    public override string ParentPageName => "WikiRoot";
 
     public override void _Ready()
     {
