@@ -295,7 +295,8 @@ public static class EngulfableHelpers
 
                     MicrobeDeathSystem.SpawnCorpseChunks(ref organelleContainer,
                         entity.Get<CompoundStorage>().Compounds, spawnSystem, worldSimulation, recorder,
-                        position.Position, new XoShiRo128starstar(), customizeCallback, null);
+                        position.Position, new XoShiRo128starstar(), customizeCallback, null, entity
+                            .Get<MicrobeSpeciesMember>().Species.IsBacteria);
 
                     SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 

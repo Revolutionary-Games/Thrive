@@ -78,7 +78,8 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
     public static void SpawnCorpseChunks(ref OrganelleContainer organelleContainer, CompoundBag compounds,
         ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, EntityCommandRecorder recorder,
-        Vector3 basePosition, Random random, CustomizeSpawnedChunk? customizeCallback, Compound? glucose)
+        Vector3 basePosition, Random random, CustomizeSpawnedChunk? customizeCallback, Compound? glucose,
+        bool isBacteria)
     {
         if (organelleContainer.Organelles == null)
             throw new InvalidOperationException("Organelles can't be null when determining chunks to drop");
@@ -140,13 +141,18 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
 
+            var chunkScale = 1.0f;
+
+            if (isBacteria)
+                chunkScale = 0.5f;
+
             var chunkType = new ChunkConfiguration
             {
-                ChunkScale = 1.0f,
+                ChunkScale = chunkScale,
                 Dissolves = true,
                 PhysicsDensity = 1200.0f,
-                Radius = 1.0f,
-                Size = 3.0f,
+                Radius = chunkScale,
+                Size = chunkScale,
                 VentAmount = 0.4f,
 
                 // Add compounds
@@ -412,7 +418,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
         // Eject compounds and build costs as corpse chunks of the cell
         SpawnCorpseChunks(ref organelleContainer, compounds, spawnSystem, worldSimulation, commandRecorder,
-            position.Position, random, null, glucose);
+            position.Position, random, null, glucose, entity.Get<MicrobeSpeciesMember>().Species.IsBacteria);
 
         ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
         soundPlayer.StopAllSounds();
