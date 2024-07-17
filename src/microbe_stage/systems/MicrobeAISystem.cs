@@ -429,16 +429,18 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
         }
 
+        var isIronEater = organelles.IronBreakdownEfficiency > 0;
+
         // If there are no threats, look for a chunk to eat
         // TODO: still consider engulfing things if we're in a colony that can engulf (has engulfer cells)
         if (cellProperties.MembraneType.CanEngulf)
         {
             var targetChunk = GetNearestChunkItem(in entity, ref engulfer, ref position, compounds,
-                speciesFocus, speciesOpportunism, random);
+                speciesFocus, speciesOpportunism, random, isIronEater, out var isChunkBigIron);
             if (targetChunk != null)
             {
                 PursueAndConsumeChunks(ref position, ref ai, ref control, ref engulfer, entity,
-                    targetChunk.Value.Position, speciesActivity, random);
+                    targetChunk.Value.Position, speciesActivity, random, ref organelles, isIronEater, isChunkBigIron);
                 return;
             }
         }
@@ -488,19 +490,25 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? GetNearestChunkItem(
         in Entity entity, ref Engulfer engulfer, ref WorldPosition position,
-        CompoundBag ourCompounds, float speciesFocus, float speciesOpportunism, Random random)
+        CompoundBag ourCompounds, float speciesFocus, float speciesOpportunism, Random random, bool ironEater, out bool isBigIron)
     {
         (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? chosenChunk = null;
         float bestFoundChunkDistance = float.MaxValue;
 
         BuildChunksCache();
 
+        isBigIron = false;
+
         // Retrieve nearest potential chunk
         foreach (var chunk in chunkDataCache)
         {
-            // Skip too big things
-            if (engulfer.EngulfingSize < chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
-                continue;
+            if (!ironEater)
+            {
+                // Skip too big things
+
+                if (engulfer.EngulfingSize < chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
+                    continue;
+            }
 
             // And too distant things
             var distance = (chunk.Position - position.Position).LengthSquared();
@@ -522,6 +530,14 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                     }
 
                     break;
+                }
+
+                if (ironEater)
+                {
+                    if (p.Key == iron && chunk.EngulfSize > 50)
+                    {
+                        isBigIron = true;
+                    }
                 }
             }
         }
@@ -705,12 +721,22 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     }
 
     private void PursueAndConsumeChunks(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
-        ref Engulfer engulfer, in Entity entity, Vector3 chunk, float speciesActivity, Random random)
+        ref Engulfer engulfer, in Entity entity, Vector3 chunk, float speciesActivity, Random random,
+        ref OrganelleContainer organelles, bool isIronEater = false, bool chunkIsIron = false)
     {
         // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
         ai.TargetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
         control.LookAtPoint = ai.TargetPosition;
-        SetEngulfIfClose(ref control, ref engulfer, ref position, entity, chunk);
+
+        // Check if use siderophore
+        if (isIronEater && chunkIsIron)
+        {
+            control.EmitIron(ref organelles, entity);
+        }
+        else
+        {
+            SetEngulfIfClose(ref control, ref engulfer, ref position, entity, chunk);
+        }
 
         // Just in case something is obstructing chunk engulfing, wiggle a little sometimes
         if (random.NextDouble() < 0.05)
@@ -1239,8 +1265,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 // Ignore chunks that wouldn't yield any useful compounds when absorbing
                 ref var compounds = ref chunk.Get<CompoundStorage>();
 
-                if (!compounds.Compounds.HasAnyCompounds())
-                    continue;
+               // if (!compounds.Compounds.HasAnyCompounds())
+                    //continue;
 
                 // TODO: determine if it is a good idea to resolve this data here immediately
                 ref var position = ref chunk.Get<WorldPosition>();
