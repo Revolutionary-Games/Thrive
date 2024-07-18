@@ -89,57 +89,7 @@ public static class CommonMutationFunctions
         throw new Exception("Mutation code could not find a good position " +
             "for a new organelle");
     }
-
-    private static int[] SideTraveralOrder(Hex hex, Direction direction, Random random)
-    {
-        if (hex.Q < 0)
-        {
-            if (direction == Direction.Front)
-            {
-                return [1];
-            }
-
-            if (direction == Direction.Rear)
-            {
-                return [4];
-            }
-
-            if (hex.R < 0)
-            {
-                return [2, 3, 1, 4, 5, 6];
-            }
-
-            return [3, 2, 1, 5, 4, 6];
-        }
-
-        if (hex.Q > 0)
-        {
-            if (direction == Direction.Front)
-            {
-                return [1];
-            }
-
-            if (direction == Direction.Rear)
-            {
-                return [4];
-            }
-
-            if (hex.R < 0)
-            {
-                return [5, 6, 4, 1, 2, 3];
-            }
-
-            return [6, 5, 4, 1, 3, 2];
-        }
-
-        if (random.Next(2) == 1)
-        {
-            return [1, 6, 2, 5, 3, 4];
-        }
-
-        return [1, 2, 6, 3, 5, 4];
-    }
-
+    
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles)
     {
         var islandHexes = organelles.GetIslandHexes();
@@ -190,5 +140,55 @@ public static class CommonMutationFunctions
 
             islandHexes = organelles.GetIslandHexes();
         }
+    }
+
+    private static int[] SideTraveralOrder(Hex hex, Direction direction, Random random)
+    {
+        if (hex.Q < 0)
+        {
+            if (direction == Direction.Front)
+            {
+                return [1];
+            }
+
+            if (direction == Direction.Rear)
+            {
+                return [4];
+            }
+
+            if (hex.R < 0)
+            {
+                return [2, 3, 1, 4, 5, 6];
+            }
+
+            return [3, 2, 1, 5, 4, 6];
+        }
+
+        if (hex.Q > 0)
+        {
+            if (direction == Direction.Front)
+            {
+                return [1];
+            }
+
+            if (direction == Direction.Rear)
+            {
+                return [4];
+            }
+
+            if (hex.R < 0)
+            {
+                return [5, 6, 4, 1, 2, 3];
+            }
+
+            return [6, 5, 4, 1, 3, 2];
+        }
+
+        if (random.Next(2) == 1)
+        {
+            return [1, 6, 2, 5, 3, 4];
+        }
+
+        return [1, 2, 6, 3, 5, 4];
     }
 }
