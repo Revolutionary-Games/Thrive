@@ -61,10 +61,9 @@ public static class CommonMutationFunctions
                 // Offset by hexes in organelle we are looking at
                 var pos = otherOrganelle.Position + hex;
 
-                for (int sideRoll = 1; sideRoll <= 6; ++sideRoll)
+                foreach (int side in SideTraveralOrder(hex))
                 {
-                    // pick a hex direction, with a slight bias towards forwards
-                    var side = Math.Max(1, random.Next(7));
+                    // pick a hex direction, with a slight bias towards forwards                    
                     for (int radius = 1; radius <= 3; ++radius)
                     {
                         // Offset by hex offset multiplied by a factor to check for greater range
@@ -101,6 +100,31 @@ public static class CommonMutationFunctions
         // We didn't find an open spot, this doesn't make much sense
         throw new Exception("Mutation code could not find a good position " +
             "for a new organelle");
+    }
+
+    private static int[] SideTraveralOrder(Hex hex)
+    {
+        if (hex.Q < 0)
+        {
+            if (hex.R < 0)
+            {
+                return [2, 3, 1, 4, 5, 6];
+            }
+
+            return [3, 2, 1, 5, 4, 6];
+        }
+
+        if (hex.Q > 0)
+        {
+            if (hex.R < 0)
+            {
+                return [5, 6, 4, 1, 2, 3];
+            }
+
+            return [6, 5, 4, 1, 3, 2];
+        }
+
+        return [1, 2, 6, 3, 5, 4];
     }
 
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles)

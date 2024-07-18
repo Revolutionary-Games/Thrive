@@ -417,7 +417,7 @@ public class Mutations
                 // Offset by hexes in organelle we are looking at
                 var pos = otherOrganelle.Position + hex;
 
-                foreach (int side in SideTraveralOrder(hex))
+                for (int side = 1; side <=6; side++)
                 {
                     for (int radius = 1; radius <= 3; ++radius)
                     {
@@ -444,31 +444,6 @@ public class Mutations
         // Not good to signal normal program flow with exceptions so this now returns null when not being able to find
         // a position
         return null;
-    }
-
-    private int[] SideTraveralOrder(Hex hex)
-    {
-        if (hex.Q < 0)
-        {
-            if (hex.R < 0)
-            {
-                return [2, 3, 1, 4, 5, 6];
-            }
-
-            return [3, 2, 1, 5, 4, 6];
-        }
-
-        if (hex.Q > 0)
-        {
-            if (hex.R < 0)
-            {
-                return [5, 6, 4, 1, 2, 3];
-            }
-
-            return [6, 5, 4, 1, 3, 2];
-        }
-
-        return [1, 4, 2, 6, 3, 5];
     }
 
     private MembraneType RandomMembraneType(SimulationParameters simulation)
