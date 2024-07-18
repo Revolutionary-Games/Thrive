@@ -87,7 +87,7 @@ public static class CommonMutationFunctions
         throw new Exception("Mutation code could not find a good position " +
             "for a new organelle");
     }
-    
+
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles)
     {
         var islandHexes = organelles.GetIslandHexes();
