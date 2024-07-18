@@ -20,21 +20,9 @@ public static class CommonMutationFunctions
     {
         OrganelleTemplate position;
 
-        if (direction == Direction.Neutral)
-        {
-            position = GetRealisticPosition(organelle, newSpecies.Organelles, new Random());
-        }
-        else
-        {
-            var x = (int)(random.NextSingle() * 7 - 3);
-
-            position = new OrganelleTemplate(organelle,
-                direction == Direction.Front ? new Hex(x, -100) : new Hex(x, 100),
-                direction == Direction.Front ? 0 : 3);
-        }
+        position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, random);
 
         newSpecies.Organelles.Add(position);
-        AttachIslandHexes(newSpecies.Organelles);
 
         // If the new species is a eukaryote, mark this as such.
         if (organelle == Nucleus)
@@ -44,7 +32,7 @@ public static class CommonMutationFunctions
     }
 
     public static OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,
-        OrganelleLayout<OrganelleTemplate> existingOrganelles, Random random)
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, Random random)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
 
@@ -61,9 +49,9 @@ public static class CommonMutationFunctions
                 // Offset by hexes in organelle we are looking at
                 var pos = otherOrganelle.Position + hex;
 
-                foreach (int side in SideTraveralOrder(hex, random))
+                foreach (int side in SideTraveralOrder(hex, direction, random))
                 {
-                    // pick a hex direction, with a slight bias towards forwards                    
+                    // pick a hex direction, with a slight bias towards forwards
                     for (int radius = 1; radius <= 3; ++radius)
                     {
                         // Offset by hex offset multiplied by a factor to check for greater range
@@ -102,10 +90,20 @@ public static class CommonMutationFunctions
             "for a new organelle");
     }
 
-    private static int[] SideTraveralOrder(Hex hex, Random random)
+    private static int[] SideTraveralOrder(Hex hex, Direction direction, Random random)
     {
         if (hex.Q < 0)
         {
+            if (direction == Direction.Front)
+            {
+                return [1, 2, 6, 3, 5, 4];
+            }
+
+            if (direction == Direction.Rear)
+            {
+                return [4, 2, 3, 2, 5, 1];
+            }
+
             if (hex.R < 0)
             {
                 return [2, 3, 1, 4, 5, 6];
@@ -116,6 +114,16 @@ public static class CommonMutationFunctions
 
         if (hex.Q > 0)
         {
+            if (direction == Direction.Front)
+            {
+                return [1, 6, 2, 5, 3, 4];
+            }
+
+            if (direction == Direction.Rear)
+            {
+                return [4, 5, 4, 6, 2, 1];
+            }
+
             if (hex.R < 0)
             {
                 return [5, 6, 4, 1, 2, 3];
