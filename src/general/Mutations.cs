@@ -417,7 +417,7 @@ public class Mutations
                 // Offset by hexes in organelle we are looking at
                 var pos = otherOrganelle.Position + hex;
 
-                for (int side = 1; side <=6; side++)
+                for (int side = 1; side <= 6; ++side)
                 {
                     for (int radius = 1; radius <= 3; ++radius)
                     {
