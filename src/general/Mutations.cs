@@ -462,10 +462,10 @@ public class Mutations
         {
             if (hex.R < 0)
             {
-                return [6, 5, 4, 1, 3, 2];
+                return [5, 6, 4, 1, 2, 3];
             }
 
-            return [5, 6, 4, 1, 2, 3];
+            return [6, 5, 4, 1, 3, 2];
         }
 
         return [1, 4, 2, 6, 3, 5];
