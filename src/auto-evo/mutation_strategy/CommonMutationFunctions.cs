@@ -96,12 +96,12 @@ public static class CommonMutationFunctions
         {
             if (direction == Direction.Front)
             {
-                return [1, 2, 6, 3, 5, 4];
+                return [1];
             }
 
             if (direction == Direction.Rear)
             {
-                return [4, 2, 3, 2, 5, 1];
+                return [4];
             }
 
             if (hex.R < 0)
@@ -116,12 +116,12 @@ public static class CommonMutationFunctions
         {
             if (direction == Direction.Front)
             {
-                return [1, 6, 2, 5, 3, 4];
+                return [1];
             }
 
             if (direction == Direction.Rear)
             {
-                return [4, 5, 4, 6, 2, 1];
+                return [4];
             }
 
             if (hex.R < 0)
