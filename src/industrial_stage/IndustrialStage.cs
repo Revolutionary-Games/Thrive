@@ -395,7 +395,7 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
         // TODO: unit specific acceleration values / movement here
         toSpaceUnitAcceleration += (float)(delta * Constants.INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION);
 
-        // almost, but don't quite, level out at max height
+        // Almost, but don't quite, level out at max height
         var orbitTurnAngle = toSpaceAnimatedUnit.GlobalPosition.Y /
             (Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT * 1.1f);
 
