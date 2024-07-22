@@ -176,7 +176,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 #pragma warning disable CA2213
 
     [Export]
-    private Panel damageScreenEffect = null!;
+    private Control damageScreenEffect = null!;
 
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
@@ -184,6 +184,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private CustomWindow? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
     private ProcessPanel processPanel = null!;
+
+    private ShaderMaterial damageShaderMaterial = null!;
 #pragma warning restore CA2213
 
     private StringName fadeParameterName = new("fade");
@@ -204,7 +206,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private Color healthBarFlashColour = new(0, 0, 0, 0);
 
     private float lastHealth;
-    private ShaderMaterial? damageShaderMaterial = null;
+    private float damageEffectCurrentValue;
 
     protected CreatureStageHUDBase()
     {
@@ -308,6 +310,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
         Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
 
+        damageShaderMaterial = (ShaderMaterial)damageScreenEffect.Material;
+
         ammonia = SimulationParameters.Instance.GetCompound("ammonia");
         atp = SimulationParameters.Instance.GetCompound("atp");
         carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
@@ -403,8 +407,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // TODO: move these to be gotten as a method in SimulationParameters (similarly to `GetCloudCompounds()`)
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
-
-        damageShaderMaterial = (ShaderMaterial)damageScreenEffect.Material;
     }
 
     public void Init(TStage containedInStage)
@@ -676,22 +678,31 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         hpLabel.Text = hpText;
         hpLabel.TooltipText = hpText;
 
-        if (damageShaderMaterial == null || !Settings.Instance.DamageEffect)
-            return;
+        if (Settings.Instance.ScreenDamageEffect.Value)
+        {
+            // Process damage flash effect
+            if (damageEffectCurrentValue > 0)
+            {
+                damageEffectCurrentValue -= delta * Constants.SCREEN_DAMAGE_FLASH_DECAY_SPEED;
 
-        if ((float)damageShaderMaterial.GetShaderParameter(fadeParameterName) > 0)
-        {
-            damageScreenEffect.Visible = true;
-            damageShaderMaterial.SetShaderParameter(fadeParameterName, (float)damageShaderMaterial
-                .GetShaderParameter(fadeParameterName) - delta);
+                damageScreenEffect.Visible = true;
+                damageShaderMaterial.SetShaderParameter(fadeParameterName, damageEffectCurrentValue);
+            }
+            else
+            {
+                damageScreenEffect.Visible = false;
+            }
+
+            // Start damage flash if player has taken enough damage
+            if (hp < lastHealth && lastHealth - hp > Constants.SCREEN_DAMAGE_FLASH_THRESHOLD)
+                damageEffectCurrentValue = 1;
         }
-        else
+        else if (damageEffectCurrentValue > 0)
         {
+            // Disable effect if user turned off the setting while flashing
+            damageEffectCurrentValue = 0;
             damageScreenEffect.Visible = false;
         }
-
-        if (hp < lastHealth)
-            damageShaderMaterial.SetShaderParameter(fadeParameterName, 1);
 
         lastHealth = hp;
     }
@@ -998,7 +1009,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             }
 
             fadeParameterName.Dispose();
-            damageShaderMaterial?.Dispose();
         }
 
         base.Dispose(disposing);

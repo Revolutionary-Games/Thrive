@@ -359,6 +359,10 @@ public partial class OptionsMenu : ControlWithInput
     private Slider chromaticAberrationSlider = null!;
     private OptionButton controllerPromptType = null!;
     private CheckBox displayAbilitiesHotBarToggle = null!;
+
+    [Export]
+    private CheckBox damageEffect = null!;
+
     private CheckBox displayBackgroundParticlesToggle = null!;
     private CheckBox guiLightEffectsToggle = null!;
     private CheckBox displayPartNamesToggle = null!;
@@ -457,9 +461,6 @@ public partial class OptionsMenu : ControlWithInput
 
     private CustomWindow patchNotesBox = null!;
     private PatchNotesDisplayer patchNotesDisplayer = null!;
-
-    [Export]
-    private CheckBox damageEffect = null!;
 #pragma warning restore CA2213
 
     // Misc
@@ -762,7 +763,6 @@ public partial class OptionsMenu : ControlWithInput
 
         // Graphics
         vsync.ButtonPressed = settings.VSync;
-        damageEffect.ButtonPressed = settings.DamageEffect;
         fullScreen.ButtonPressed = settings.FullScreen;
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
         maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
@@ -771,6 +771,7 @@ public partial class OptionsMenu : ControlWithInput
         chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
         controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
         displayAbilitiesHotBarToggle.ButtonPressed = settings.DisplayAbilitiesHotBar;
+        damageEffect.ButtonPressed = settings.ScreenDamageEffect;
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
@@ -1867,6 +1868,13 @@ public partial class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnDamageEffectToggled(bool pressed)
+    {
+        Settings.Instance.ScreenDamageEffect.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
     private int ControllerPromptTypeToIndex(ControllerType controllerType)
     {
         // This is done like this to ensure that invalid values don't get converted to out of range values (for
@@ -2537,13 +2545,5 @@ public partial class OptionsMenu : ControlWithInput
 
         patchNotesDisplayer.ShowLatest();
         patchNotesBox.PopupCenteredShrink();
-    }
-
-    private void OnDamageEffectToggled(bool pressed)
-    {
-        Settings.Instance.DamageEffect.Value = pressed;
-        Settings.Instance.ApplyWindowSettings();
-
-        UpdateResetSaveButtonState();
     }
 }

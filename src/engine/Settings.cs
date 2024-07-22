@@ -64,12 +64,6 @@ public class Settings
     public SettingValue<bool> VSync { get; private set; } = new(true);
 
     /// <summary>
-    ///   Red screen effect for when player is harmed
-    /// </summary>
-    [JsonProperty]
-    public SettingValue<bool> DamageEffect { get; private set; } = new(true);
-
-    /// <summary>
     ///   Sets amount of MSAA to apply to the viewport
     /// </summary>
     [JsonProperty]
@@ -108,6 +102,12 @@ public class Settings
     public SettingValue<ControllerType> ControllerPromptType { get; private set; } = new(ControllerType.Automatic);
 
     /// <summary>
+    ///   Red screen effect for when player is harmed
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> ScreenDamageEffect { get; private set; } = new(true);
+
+    /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
     /// </summary>
     [JsonProperty]
@@ -120,7 +120,7 @@ public class Settings
     public SettingValue<bool> DisplayBackgroundParticles { get; private set; } = new(true);
 
     /// <summary>
-    ///   Enable or disable lighting effects on the GUI. Mainly Used to workaround a bug where the HUD area
+    ///   Enable or disable lighting effects on the GUI. Mainly Used to work around a bug where the HUD area
     ///   surrounding the editor button sometimes disappearing with the light effect turned on.
     /// </summary>
     [JsonProperty]

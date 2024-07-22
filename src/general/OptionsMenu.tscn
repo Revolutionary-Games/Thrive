@@ -529,6 +529,11 @@ focus_neighbor_top = NodePath("../HBoxContainer10/ControllerPromptType")
 focus_previous = NodePath("../HBoxContainer10/ControllerPromptType")
 text = "DISPLAY_ABILITIES_BAR"
 
+[node name="DamageEffect" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SHOW_DAMAGE_EFFECT"
+
 [node name="GUILightsEffectToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -538,11 +543,6 @@ text = "ENABLE_GUI_LIGHT_EFFECTS"
 layout_mode = 2
 size_flags_horizontal = 0
 text = "DISPLAY_PART_NAMES"
-
-[node name="DamageEffect" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "SHOW_DAMAGE_EFFECT"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -1823,9 +1823,9 @@ grow_vertical = 1
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Menu3DBackgroundsToggle" to="." method="OnDisplay3DMenuBackgroundsToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/ControllerPromptType" to="." method="OnControllerTypeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DamageEffect" to="." method="OnDamageEffectToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/GUILightsEffectToggle" to="." method="OnGUILightEffectsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayPartNamesToggle" to="." method="OnDisplayPartNamesToggled"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DamageEffect" to="." method="OnDamageEffectToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]
