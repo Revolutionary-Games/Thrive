@@ -457,6 +457,9 @@ public partial class OptionsMenu : ControlWithInput
 
     private CustomWindow patchNotesBox = null!;
     private PatchNotesDisplayer patchNotesDisplayer = null!;
+
+    [Export]
+    private CheckBox damageEffect = null!;
 #pragma warning restore CA2213
 
     // Misc
@@ -759,6 +762,7 @@ public partial class OptionsMenu : ControlWithInput
 
         // Graphics
         vsync.ButtonPressed = settings.VSync;
+        damageEffect.ButtonPressed = settings.DamageEffect;
         fullScreen.ButtonPressed = settings.FullScreen;
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
         maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
@@ -2533,5 +2537,13 @@ public partial class OptionsMenu : ControlWithInput
 
         patchNotesDisplayer.ShowLatest();
         patchNotesBox.PopupCenteredShrink();
+    }
+
+    private void OnDamageEffectToggled(bool pressed)
+    {
+        Settings.Instance.DamageEffect.Value = pressed;
+        Settings.Instance.ApplyWindowSettings();
+
+        UpdateResetSaveButtonState();
     }
 }

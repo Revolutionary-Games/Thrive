@@ -676,7 +676,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         hpLabel.Text = hpText;
         hpLabel.TooltipText = hpText;
 
-        if (damageShaderMaterial == null)
+        if (damageShaderMaterial == null || !Settings.Instance.DamageEffect)
             return;
 
         if ((float)damageShaderMaterial.GetShaderParameter(fadeParameterName) > 0)

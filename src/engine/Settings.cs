@@ -64,6 +64,12 @@ public class Settings
     public SettingValue<bool> VSync { get; private set; } = new(true);
 
     /// <summary>
+    ///   Red screen effect for when player is harmed
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> DamageEffect { get; private set; } = new(true);
+
+    /// <summary>
     ///   Sets amount of MSAA to apply to the viewport
     /// </summary>
     [JsonProperty]
