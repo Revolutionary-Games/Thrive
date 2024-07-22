@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://uq64skmnc1ob"]
+
+[ext_resource type="Shader" path="res://shaders/ScreenDamage.gdshader" id="1_4b6ul"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4r5m1"]
+shader = ExtResource("1_4b6ul")
+shader_parameter/damageColor = Color(0.85, 0, 0, 0.65)
+shader_parameter/fade = 0.0
+shader_parameter/extent = 0.15
+
+[node name="DamageEffect" type="Panel"]
+visible = false
+material = SubResource("ShaderMaterial_4r5m1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

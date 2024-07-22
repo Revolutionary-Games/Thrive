@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://5m75uu7qtg8x"]
+[gd_scene load_steps=42 format=3 uid="uid://5m75uu7qtg8x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="6"]
@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://myc8kb3pyj03" path="res://assets/textures/gui/bevel/actions/BuildStructure.png" id="30"]
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="32"]
 [ext_resource type="Texture2D" uid="uid://drrdhfwd5s8e2" path="res://assets/textures/gui/bevel/actions/EngulfEject.png" id="33"]
-[ext_resource type="Shader" path="res://shaders/ScreenDamage.gdshader" id="37_gripv"]
+[ext_resource type="PackedScene" uid="uid://uq64skmnc1ob" path="res://src/microbe_stage/gui/DamageEffect.tscn" id="37_rwj55"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="38_ueybo"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_veaul"]
 [ext_resource type="Texture2D" uid="uid://8q2icxsubpdy" path="res://assets/textures/gui/bevel/atp.png" id="47"]
@@ -74,12 +74,6 @@ corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4r5m1"]
-shader = ExtResource("37_gripv")
-shader_parameter/damageColor = Color(0.85, 0, 0, 0.65)
-shader_parameter/fade = 0.0
-shader_parameter/extent = 0.15
 
 [node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
@@ -530,15 +524,13 @@ custom_minimum_size = Vector2(450, 0)
 DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 
-[node name="DamageEffect" type="Panel" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_4r5m1")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="DamageEffect" parent="." instance=ExtResource("37_rwj55")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
