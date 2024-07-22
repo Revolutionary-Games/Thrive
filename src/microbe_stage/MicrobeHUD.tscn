@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=48 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c5u3d8rsbm0lu" path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" id="18"]
 [ext_resource type="Texture2D" uid="uid://siahiwtfm578" path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" id="21"]
 [ext_resource type="PackedScene" uid="uid://jjb8ei8wuuk" path="res://src/microbe_stage/gui/EditorEntryButton.tscn" id="23_satig"]
+[ext_resource type="Shader" path="res://shaders/ScreenDamage.gdshader" id="34_11ji8"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="39_2oma1"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_nfpcw"]
 [ext_resource type="Texture2D" uid="uid://8q2icxsubpdy" path="res://assets/textures/gui/bevel/atp.png" id="41"]
@@ -254,6 +255,12 @@ corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v5xrx"]
+shader = ExtResource("34_11ji8")
+shader_parameter/damageColor = Color(0.85, 0, 0, 0.65)
+shader_parameter/fade = 0.0
+shader_parameter/extent = 0.15
 
 [node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
@@ -688,6 +695,16 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(450, 0)
 offset_right = 300.0
 offset_bottom = 97.0
+
+[node name="DamageEffect" type="Panel" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_v5xrx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
