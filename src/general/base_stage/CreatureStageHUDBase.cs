@@ -175,6 +175,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
 
+    [Export]
+    private Panel damageScreenEffect = null!;
+
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
 
@@ -182,6 +185,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private PatchExtinctionBox? patchExtinctionBox;
     private ProcessPanel processPanel = null!;
 #pragma warning restore CA2213
+
+    private StringName fadeParameterName = new("fade");
 
     // Used for save load to apply these properties
     private bool temporaryEnvironmentCompressed;
@@ -197,6 +202,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [JsonProperty]
     private Color healthBarFlashColour = new(0, 0, 0, 0);
+
+    private float lastHealth;
+    private ShaderMaterial? damageShaderMaterial = null;
 
     protected CreatureStageHUDBase()
     {
@@ -395,6 +403,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // TODO: move these to be gotten as a method in SimulationParameters (similarly to `GetCloudCompounds()`)
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
+
+        damageShaderMaterial = (ShaderMaterial)damageScreenEffect.Material;
     }
 
     public void Init(TStage containedInStage)
@@ -665,6 +675,25 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
         hpLabel.Text = hpText;
         hpLabel.TooltipText = hpText;
+
+        if (damageShaderMaterial == null)
+            return;
+
+        if ((float)damageShaderMaterial.GetShaderParameter(fadeParameterName) > 0)
+        {
+            damageScreenEffect.Visible = true;
+            damageShaderMaterial.SetShaderParameter(fadeParameterName, (float)damageShaderMaterial
+                .GetShaderParameter(fadeParameterName) - delta);
+        }
+        else
+        {
+            damageScreenEffect.Visible = false;
+        }
+
+        if (hp < lastHealth)
+            damageShaderMaterial.SetShaderParameter(fadeParameterName, 1);
+
+        lastHealth = hp;
     }
 
     protected virtual void ReadPlayerHitpoints(out float hp, out float maxHP)
@@ -967,6 +996,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }
+
+            fadeParameterName.Dispose();
         }
 
         base.Dispose(disposing);

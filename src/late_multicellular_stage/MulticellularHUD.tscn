@@ -81,7 +81,7 @@ shader_parameter/damageColor = Color(0.85, 0, 0, 0.65)
 shader_parameter/fade = 0.0
 shader_parameter/extent = 0.15
 
-[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -127,6 +127,7 @@ PatchExtinctionBoxScene = ExtResource("16")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
+damageScreenEffect = NodePath("DamageEffect")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
