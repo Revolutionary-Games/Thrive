@@ -416,10 +416,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             ReleaseAllAgents(ref position, entity, compounds, species, commandRecorder);
         }
 
-        var isBacteria = true;
-
-        if (entity.Has<CellProperties>())
-            isBacteria = entity.Get<CellProperties>().IsBacteria;
+        var isBacteria = cellProperties.IsBacteria;
 
         // Eject compounds and build costs as corpse chunks of the cell
         SpawnCorpseChunks(ref organelleContainer, compounds, spawnSystem, worldSimulation, commandRecorder,

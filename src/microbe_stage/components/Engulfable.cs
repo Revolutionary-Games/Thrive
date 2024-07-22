@@ -253,6 +253,8 @@ public static class EngulfableHelpers
         if (entity.Has<Health>())
             alreadyDeathProcessed = entity.Get<Health>().DeathProcessed;
 
+        bool hasCellProperties = entity.Has<CellProperties>();
+
         if (engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD && !alreadyDeathProcessed)
         {
             if (entity.Has<Health>() && entity.Has<OrganelleContainer>())
@@ -293,9 +295,11 @@ public static class EngulfableHelpers
 
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 
-                    var isBacteria = true;
+                    // In case there is no cell properties, this defaults to false in order to behave like the old
+                    // version of corpse chunk spawning
+                    var isBacteria = false;
 
-                    if (entity.Has<CellProperties>())
+                    if (hasCellProperties)
                         isBacteria = entity.Get<CellProperties>().IsBacteria;
 
                     MicrobeDeathSystem.SpawnCorpseChunks(ref organelleContainer,
@@ -315,7 +319,7 @@ public static class EngulfableHelpers
         // bonus. That is now gone as this feature didn't really do anything anymore due to the new engulf
         // mechanics which are extremely hard to escape.
 
-        if (entity.Has<CellProperties>())
+        if (hasCellProperties)
         {
             if (alreadyDeathProcessed)
             {
