@@ -998,6 +998,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             }
 
             fadeParameterName.Dispose();
+            damageShaderMaterial?.Dispose();
         }
 
         base.Dispose(disposing);
