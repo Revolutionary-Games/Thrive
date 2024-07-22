@@ -333,6 +333,8 @@ public partial class RadialMenu : CenterContainer
         }
 
         var center = Size / 2;
+
+        // Used to move indicator to its own left to avoid bug where it is offset
         var pivotOffset = indicator.GetTransform().X * -IndicatorSize / 2;
 
         indicator.Visible = true;
