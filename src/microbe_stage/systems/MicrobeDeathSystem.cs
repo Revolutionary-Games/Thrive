@@ -152,7 +152,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                 Dissolves = true,
                 PhysicsDensity = 1200.0f,
                 Radius = chunkScale,
-                Size = chunkScale,
+                Size = 3 * chunkScale,
                 VentAmount = 0.4f,
 
                 // Add compounds
@@ -416,9 +416,14 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             ReleaseAllAgents(ref position, entity, compounds, species, commandRecorder);
         }
 
+        var isBacteria = true;
+
+        if (entity.Has<CellProperties>())
+            isBacteria = entity.Get<CellProperties>().IsBacteria;
+
         // Eject compounds and build costs as corpse chunks of the cell
         SpawnCorpseChunks(ref organelleContainer, compounds, spawnSystem, worldSimulation, commandRecorder,
-            position.Position, random, null, glucose, entity.Get<MicrobeSpeciesMember>().Species.IsBacteria);
+            position.Position, random, null, glucose, isBacteria);
 
         ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
         soundPlayer.StopAllSounds();

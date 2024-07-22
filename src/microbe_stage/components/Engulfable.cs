@@ -293,10 +293,14 @@ public static class EngulfableHelpers
 
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 
+                    var isBacteria = true;
+
+                    if (entity.Has<CellProperties>())
+                        isBacteria = entity.Get<CellProperties>().IsBacteria;
+
                     MicrobeDeathSystem.SpawnCorpseChunks(ref organelleContainer,
                         entity.Get<CompoundStorage>().Compounds, spawnSystem, worldSimulation, recorder,
-                        position.Position, new XoShiRo128starstar(), customizeCallback, null, entity
-                            .Get<MicrobeSpeciesMember>().Species.IsBacteria);
+                        position.Position, new XoShiRo128starstar(), customizeCallback, null, isBacteria);
 
                     SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
