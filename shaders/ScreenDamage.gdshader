@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform vec4 damageColor : source_color = vec4(0.85f, 0, 0, 0.65f);
 
-// Use to fade effect in or out
+// Used to fade effect in and out
 uniform float fade : hint_range(0, 1) = 0;
 
 // Increase to extend color further towards screen center
