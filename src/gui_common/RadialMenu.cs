@@ -333,6 +333,7 @@ public partial class RadialMenu : CenterContainer
         }
 
         var center = Size / 2;
+        var pivotOffset = indicator.GetTransform().X * -IndicatorSize / 2;
 
         indicator.Visible = true;
 
@@ -360,7 +361,7 @@ public partial class RadialMenu : CenterContainer
         indicator.Rotation = mouseAngle + Mathf.Pi * 0.5f;
 
         indicator.Position = new Vector2(Mathf.Cos(mouseAngle), Mathf.Sin(mouseAngle)) *
-            RadialCircleStart + center;
+            RadialCircleStart + pivotOffset + center;
 
         UpdateHoveredFromAngle(mouseAngle);
     }
