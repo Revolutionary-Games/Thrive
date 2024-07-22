@@ -96,7 +96,6 @@ public partial class RadialMenu : CenterContainer
     public override void _Ready()
     {
         centerLabel = GetNode<Label>(CenterLabelPath);
-        centerLabel.HorizontalAlignment = HorizontalAlignment.Center;
 
         dynamicLabelsContainer = GetNode<Node>(DynamicLabelsContainerPath);
         indicator = GetNode<TextureRect>(IndicatorPath);
