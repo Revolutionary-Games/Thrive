@@ -348,11 +348,11 @@ public class Program
             get
             {
                 yield return new Example("download all available libraries",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Fetch } });
+                    new NativeLibOptions { Operations = new[] { OperationMode.Fetch }, Url = string.Empty });
                 yield return new Example("compile libraries locally",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Build } });
+                    new NativeLibOptions { Operations = new[] { OperationMode.Build }, Url = string.Empty });
                 yield return new Example("prepare library versions for distribution or uploading with podman",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Package } });
+                    new NativeLibOptions { Operations = new[] { OperationMode.Package }, Url = string.Empty });
             }
         }
 

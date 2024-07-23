@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-22 13:58+0200\n"
+"POT-Creation-Date: 2024-07-23 09:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,11 +50,11 @@ msgid "ABYSSOPELAGIC"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:277
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:245
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:239
 msgid "ACTION_AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:243
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:237
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
@@ -274,8 +274,8 @@ msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:308
-#: ../src/microbe_stage/MicrobeHUD.tscn:489
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:302
+#: ../src/microbe_stage/MicrobeHUD.tscn:483
 msgid "ATP"
 msgstr ""
 
@@ -370,7 +370,7 @@ msgstr ""
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1067 ../src/general/OptionsMenu.tscn:318
+#: ../src/general/OptionsMenu.cs:1068 ../src/general/OptionsMenu.tscn:318
 msgid "AUTO_RESOLUTION"
 msgstr ""
 
@@ -452,13 +452,13 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:650
-#: ../src/microbe_stage/MicrobeHUD.tscn:422
+#: ../src/microbe_stage/MicrobeHUD.cs:652
+#: ../src/microbe_stage/MicrobeHUD.tscn:416
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:606
-#: ../src/microbe_stage/MicrobeHUD.tscn:415
+#: ../src/microbe_stage/MicrobeHUD.cs:608
+#: ../src/microbe_stage/MicrobeHUD.tscn:409
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -601,7 +601,7 @@ msgstr ""
 msgid "BUILD_QUEUE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:414
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
 msgstr ""
@@ -683,7 +683,7 @@ msgstr ""
 msgid "CANNOT_WRITE_SAVE"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:306 ../src/modding/ModLoader.cs:354
+#: ../src/modding/ModLoader.cs:304 ../src/modding/ModLoader.cs:352
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
@@ -696,27 +696,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:771
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:782
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:775
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:786
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:779
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:790
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:773
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:784
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:777
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:788
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:781
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:792
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -866,7 +866,7 @@ msgstr ""
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:133
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:134
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
@@ -1623,7 +1623,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:360
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:366
 msgid "DEATH"
 msgstr ""
 
@@ -1644,7 +1644,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1541
+#: ../src/general/OptionsMenu.cs:1542
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1882,15 +1882,15 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1084
+#: ../src/general/OptionsMenu.cs:1085
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1081
+#: ../src/general/OptionsMenu.cs:1082
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:540
+#: ../src/general/OptionsMenu.tscn:545
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
@@ -2079,8 +2079,8 @@ msgstr ""
 msgid "EJECT_ENGULFED"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:463
-#: ../src/microbe_stage/MicrobeHUD.tscn:623
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:456
+#: ../src/microbe_stage/MicrobeHUD.tscn:617
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr ""
 
@@ -2096,7 +2096,7 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:535
+#: ../src/general/OptionsMenu.tscn:540
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
@@ -2458,8 +2458,8 @@ msgstr ""
 msgid "FIRE_TOXIN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:438
-#: ../src/microbe_stage/MicrobeHUD.tscn:633
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:431
+#: ../src/microbe_stage/MicrobeHUD.tscn:627
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
 
@@ -2582,12 +2582,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:526
+#: ../src/microbe_stage/MicrobeHUD.cs:528
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:525
+#: ../src/microbe_stage/MicrobeHUD.cs:527
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -2798,7 +2798,7 @@ msgstr ""
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:162
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:156
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -3312,15 +3312,15 @@ msgstr ""
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1593
+#: ../src/general/OptionsMenu.cs:1594
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1589
+#: ../src/general/OptionsMenu.cs:1590
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1585
+#: ../src/general/OptionsMenu.cs:1586
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -3523,7 +3523,7 @@ msgstr ""
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:350
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:354
 msgid "LIGHT"
 msgstr ""
 
@@ -4104,31 +4104,31 @@ msgstr ""
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:465
+#: ../src/modding/ModLoader.cs:463
 msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:454
+#: ../src/modding/ModLoader.cs:452
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:472
+#: ../src/modding/ModLoader.cs:470
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:486
+#: ../src/modding/ModLoader.cs:484
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:328
+#: ../src/modding/ModLoader.cs:326
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:367
+#: ../src/modding/ModLoader.cs:365
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:373
+#: ../src/modding/ModLoader.cs:371
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
@@ -4154,15 +4154,15 @@ msgstr ""
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:509
+#: ../src/modding/ModLoader.cs:507
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:530
+#: ../src/modding/ModLoader.cs:528
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:343
+#: ../src/modding/ModLoader.cs:341
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
@@ -4296,15 +4296,15 @@ msgstr ""
 msgid "MOVE_TO_ANY_PATCH"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:232
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:226
 msgid "MOVE_TO_LAND"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:421
+#: ../src/microbe_stage/MicrobeHUD.tscn:415
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:414
+#: ../src/microbe_stage/MicrobeHUD.tscn:408
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -4316,19 +4316,19 @@ msgstr ""
 msgid "MOVE_UP_OR_JUMP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:530
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:522
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:531
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:523
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:525
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:517
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:526
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:518
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
@@ -4591,7 +4591,7 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:466
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:468
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4675,7 +4675,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2630
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2642
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:459
+#: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "N_A"
 msgstr ""
 
@@ -4683,7 +4683,7 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:513
+#: ../src/microbe_stage/MicrobeHUD.cs:515
 #: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.cs:45
 msgid "N_TIMES"
 msgstr ""
@@ -5094,11 +5094,11 @@ msgstr ""
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:549
+#: ../src/modding/ModLoader.cs:547
 msgid "PCK_LOAD_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:541
+#: ../src/modding/ModLoader.cs:539
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr ""
 
@@ -5192,7 +5192,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:483
+#: ../src/microbe_stage/MicrobeHUD.cs:485
 msgid "PLAYER"
 msgstr ""
 
@@ -5252,8 +5252,8 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:258
-#: ../src/microbe_stage/MicrobeHUD.tscn:435
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:252
+#: ../src/microbe_stage/MicrobeHUD.tscn:429
 #: ../src/society_stage/gui/SocietyHUD.tscn:210
 msgid "POPULATION_CAPITAL"
 msgstr ""
@@ -5282,7 +5282,7 @@ msgstr ""
 msgid "PRESSURE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:354
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:358
 msgid "PRESSURE_SHORT"
 msgstr ""
 
@@ -5819,8 +5819,8 @@ msgstr ""
 msgid "SECRETE_SLIME"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:455
-#: ../src/microbe_stage/MicrobeHUD.tscn:675
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:448
+#: ../src/microbe_stage/MicrobeHUD.tscn:669
 msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
@@ -5921,7 +5921,7 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:545
+#: ../src/general/OptionsMenu.tscn:535
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -5966,7 +5966,7 @@ msgstr ""
 msgid "SIGNALING_AGENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:664
+#: ../src/microbe_stage/MicrobeHUD.tscn:658
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr ""
 
@@ -6543,7 +6543,7 @@ msgstr ""
 msgid "TEMPERATURE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:347
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:351
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
@@ -6735,7 +6735,7 @@ msgstr ""
 msgid "TOGGLE_BINDING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:643
+#: ../src/microbe_stage/MicrobeHUD.tscn:637
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr ""
 
@@ -6744,12 +6744,12 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:49
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:404
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:428
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:397
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:611
+#: ../src/microbe_stage/MicrobeHUD.tscn:605
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr ""
 
@@ -6765,7 +6765,7 @@ msgstr ""
 msgid "TOGGLE_HUD_HIDE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:414
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:407
 msgid "TOGGLE_INVENTORY"
 msgstr ""
 
@@ -7047,7 +7047,7 @@ msgstr ""
 msgid "UNBIND_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:654
+#: ../src/microbe_stage/MicrobeHUD.tscn:648
 msgid "UNBIND_ALL_TOOLTIP"
 msgstr ""
 
@@ -7055,7 +7055,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1672
+#: ../src/general/OptionsMenu.cs:1673
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -7097,7 +7097,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1088
+#: ../src/general/OptionsMenu.cs:1089
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
@@ -7118,7 +7118,7 @@ msgstr ""
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1687
+#: ../src/general/OptionsMenu.cs:1688
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
@@ -7333,7 +7333,7 @@ msgstr ""
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1098 ../src/general/OptionsMenu.tscn:473
+#: ../src/general/OptionsMenu.cs:1099 ../src/general/OptionsMenu.tscn:473
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 

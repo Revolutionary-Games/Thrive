@@ -502,8 +502,7 @@ public partial class CustomRichTextLabel : RichTextLabel
 
             case ThriveBbCode.Input:
             {
-                // TODO: cache for valid input actions: https://github.com/Revolutionary-Games/Thrive/issues/4983
-                if (!InputMap.HasAction(input))
+                if (!InputManager.IsValidInputAction(input))
                 {
                     GD.PrintErr($"Input action: \"{input}\" doesn't exist, referenced in bbcode");
                     break;

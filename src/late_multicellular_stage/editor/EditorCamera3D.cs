@@ -73,6 +73,8 @@ public partial class EditorCamera3D : Camera3D
     [Export]
     public Vector3 RotateAroundPoint = Vector3.Zero;
 
+    private readonly StringName panModeAction = new("e_pan_mode");
+
     /// <summary>
     ///   To make the 3D math reasonable to implement here, we use the x,y and distance values to rotate the camera
     ///   around the target point and panning is just an offset on top of that.
@@ -284,9 +286,19 @@ public partial class EditorCamera3D : Camera3D
         return true;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            panModeAction.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private bool IsPanModeWanted()
     {
-        return Input.IsActionPressed("e_pan_mode");
+        return Input.IsActionPressed(panModeAction);
     }
 
     private void PanCamera(Vector3 panAmount)
