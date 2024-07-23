@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-19 11:03+0300\n"
-"PO-Revision-Date: 2024-06-07 07:01+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-07-06 16:31+0000\n"
+"Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -244,7 +244,7 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "¡PRODUCCIÓN DE ATP DEMASIADO BAJA!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "El intento de escribir este archivo guardado ha fallado.  El nombre de guardado puede ser demasiado largo o es posible que no tenga acceso de escritura a la carpeta de guardado."
+msgstr "El intento de escribir este archivo guardado ha fallado. El nombre de guardado puede ser demasiado largo o es posible que no tenga acceso de escritura a la carpeta de guardado."
 
 msgid "AT_CURSOR"
 msgstr "En el puntero:"
@@ -323,18 +323,20 @@ msgstr "Barra invertida"
 msgid "BACKSPACE"
 msgstr "Retroceso"
 
+#, fuzzy
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "Calcular como si fuera de día"
 
+#, fuzzy
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "Al estar seleccionado, los números en este panel se calculan como si siempre fuera día."
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "Incluir costo de movimiento"
 
 #, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr "Abre las opciones avanzadas"
+msgstr "Cuando seleccionado, el balance y otros números en este panel se calculan supondiendo que la célula está en constante moviemiento"
 
 msgid "BASE_MOBILITY"
 msgstr "Mobilidad"
@@ -722,8 +724,9 @@ msgstr "Brillo"
 msgid "COMMON_ABILITIES"
 msgstr "Habilidades"
 
+#, fuzzy
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "Editor General y Estrategia de Etapas"
 
 msgid "COMMUNITY_FORUM"
 msgstr "Foro de la comunidad"
@@ -740,9 +743,8 @@ msgstr "Visita nuestra wiki comunitaria"
 msgid "COMPILED_AT_COLON"
 msgstr "Compilado en:"
 
-#, fuzzy
 msgid "COMPLETE_ACTION"
-msgstr "Compilado en:"
+msgstr "Terminar"
 
 msgid "COMPOUNDS"
 msgstr "Compuestos"
@@ -778,7 +780,9 @@ msgstr "Balance de compuestos"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
-msgstr "Mostrar / Ocultar compuestos"
+msgstr ""
+"Esta sección muestra el balance total (lo producido - lo consumido) por cada compuesto.\n"
+"Por ejemplo, para hacer una célula vegetal el balance de glucosa tiene que ser positivo."
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nubes de compuestos"
@@ -795,12 +799,11 @@ msgstr "Las concentraciones de {0} han descendido por un {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consumo de: {0}"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr "Balance de compuestos"
+msgstr "(no es suficiente para soportar la noche, que dura {0}s)"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "Solo {1} [thrive:compound type=\"{0}\"][/thrive:compound] puede generarse durante el día, pero para sobrevivir durante la noche se necesita {2}."
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
@@ -978,7 +981,7 @@ msgid "CONTROLLER_BUTTON_PADDLE4"
 msgstr "Zona muerta del contról"
 
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
-msgstr ""
+msgstr "Select"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_START"
@@ -1017,7 +1020,7 @@ msgid "CONTROLLER_BUTTON_PS_SHARE"
 msgstr "Zona muerta del contról"
 
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr ""
+msgstr "Botón del logo"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
@@ -1679,7 +1682,7 @@ msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr "Multiples Orgánulos"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "Endosimbiosis"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
@@ -1698,7 +1701,7 @@ msgstr ""
 "y son menos propensas a usar toxinas contra sus depredadores."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Aún no se han engullido especies adecuadas para convertir en endosimbiontes"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
@@ -1711,7 +1714,7 @@ msgstr ""
 "Si alguno de los popups que necesita están deshabilitados, el botón junto a este puede ser utilizado para mostrar todos los popups nuevamente."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "Las procariotas pueden tener como máximo un endosimbionte"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
@@ -2041,17 +2044,17 @@ msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr "Actualizando el archivo de guardado especificado debido al siguiente error:"
 
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "Intensa niebla de guerra"
 
 #, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
 
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "Modo de niebla de guerra"
 
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "Niebla de guerra normal"
 
 #, fuzzy
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
@@ -2301,14 +2304,14 @@ msgid "INFO_BOX_COST"
 msgstr "¡HAS PROSPERADO!"
 
 msgid "INFO_BOX_ENZYMES"
-msgstr ""
+msgstr "Enzimas"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "Nombre Interno (de Carpeta):"
 
 msgid "INFO_BOX_MASS"
-msgstr ""
+msgstr "Masa"
 
 #, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
@@ -2335,7 +2338,7 @@ msgid "INFO_BOX_UNIQUE"
 msgstr "¡HAS PROSPERADO!"
 
 msgid "INFO_BOX_UPGRADES"
-msgstr ""
+msgstr "Mejoras"
 
 msgid "INGESTED_MATTER"
 msgstr "Material por Digestar"
@@ -2519,7 +2522,7 @@ msgstr ""
 "¿Quieres eliminar la entrada de {1}?"
 
 msgid "KEY_BRING_UP_KEYBOARD"
-msgstr ""
+msgstr "Abrir teclado"
 
 msgid "KEY_CLEAR"
 msgstr "Eliminar"
@@ -2969,7 +2972,7 @@ msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contiene enzimas digestivas. Puede ser modificado para cambiar el tipo de enzima que contiene. Solo se puede usar una enzima por lisosoma. Enzimas aumentan la velocidad y eficiencia de la digestion."
 
 msgid "MANUALLY_SET_TIME"
-msgstr ""
+msgstr "Ajustar manualmente hora del día"
 
 msgid "MAP"
 msgstr "Mapa"
@@ -3606,8 +3609,9 @@ msgstr "Multiples Orgánulos"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "MSAA:"
 
+#, fuzzy
 msgid "MULTITHREADED_SIMULATION_ENABLED"
-msgstr ""
+msgstr "Ejecutar simulación"
 
 #, fuzzy
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
@@ -4692,7 +4696,7 @@ msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Buscar..."
 
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "Buscar..."
 
 msgid "SEARCH_RADIUS"
 msgstr "Buscan en el radio:"
@@ -5012,7 +5016,7 @@ msgid "STAT_BASE_MOVEMENT_REDUCTION"
 msgstr "Movimiento Base"
 
 msgid "STAT_DAMAGE"
-msgstr ""
+msgstr "Daño"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
 msgstr ""
@@ -5579,9 +5583,9 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
-"Este es el mapa de las regiones.\n"
+"La barra de producción de ATP a la derecha indica cuánto [thrive:compound type=\"atp\"][/thrive:compound] tu célula produce comparado a cuánto se consume. Si la barra superior es más corta que la inferior, no estás produciendo suficiente [thrive:compound type=\"atp\"][/thrive:compound].\n"
 "\n"
-"Cada ícono representa un bioma único que puede habitar, el panel en la derecha describe las condiciones del bioma seleccionado actualmente.\n"
+"La barra inferior contiene \n"
 "\n"
 "Si seleccionas un bioma conectado al que actualmente ocupas, el cuál está señalado con un borde verde parpadeando, puede apretar el botón \"Moverme a este bioma\" para migrar allí.\n"
 "\n"
@@ -5597,11 +5601,12 @@ msgstr ""
 "\n"
 "Puedes ver información más detallada de la predicción clicando en el icono del signo de interrogación del panel."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
 "\n"
-"El hexágono en el centro de tu pantalla es tu célula, la cuál está compuesta por una única parte de citoplasma.\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cual está compuesta por una única parte de citoplasma.\n"
 "\n"
 "Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
 
