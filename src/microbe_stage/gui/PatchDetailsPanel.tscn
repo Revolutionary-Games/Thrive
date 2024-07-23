@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bjl5o7oy7yr15"]
+[gd_scene load_steps=27 format=3 uid="uid://bjl5o7oy7yr15"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="1"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_lpicf"]
@@ -20,44 +20,49 @@
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="19_6m1o4"]
 [ext_resource type="Texture2D" uid="uid://dify8alf16jac" path="res://assets/textures/gui/bevel/phosphates.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://bjgfupcxx2nop" path="res://assets/textures/gui/bevel/Pressure.png" id="23"]
+[ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="23_8qra5"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="24_21yun"]
 [ext_resource type="Texture2D" uid="uid://c7cgjvfo1in67" path="res://assets/textures/gui/bevel/Temperature.png" id="25"]
+[ext_resource type="LabelSettings" uid="uid://bl7dig4lq5ko" path="res://src/gui_common/fonts/Body-Regular-Small-Red.tres" id="25_dd3af"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="28"]
 
 [sub_resource type="StyleBoxTexture" id="34"]
 texture = ExtResource("9")
 region_rect = Rect2(0, 0, 429, 1)
 
-[node name="PatchDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "migrationMenu", "menu", "migrateButton", "migrationSource", "migrationDestination", "migrationAccept", "migrationCancel", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer")]
+[node name="PatchDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "normalContentContainer", "migrationContentContainer", "migrateStartButton", "migrationStepExplanation", "migrationStatusLabel", "migrationErrorLabel", "migrationAmountSelector", "migrationAccept", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer")]
 custom_minimum_size = Vector2(340, 0)
 offset_right = 352.0
 offset_bottom = 620.0
 theme = ExtResource("28")
 script = ExtResource("4")
-nothingSelected = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected")
-unknownPatch = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch")
-detailsContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer")
-playerHere = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PlayerHereLabel")
-patchName = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PatchName")
-biome = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Biome")
-depth = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Depth")
-moveToPatchHSeparator = NodePath("VBoxContainer/HSeparator")
-moveToPatchButton = NodePath("VBoxContainer/MarginContainer2/MoveToPatchButton")
-migrationMenu = NodePath("MigrationMenu")
-menu = NodePath("VBoxContainer")
-migrateButton = NodePath("VBoxContainer/MarginContainer3/MigrateButton")
-migrationSource = NodePath("MigrationMenu/MarginContainer3/SourcePatch")
-migrationDestination = NodePath("MigrationMenu/MarginContainer4/DestinationPatch")
+nothingSelected = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected")
+unknownPatch = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch")
+detailsContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer")
+playerHere = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PlayerHereLabel")
+patchName = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PatchName")
+biome = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Biome")
+depth = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Depth")
+moveToPatchHSeparator = NodePath("NormalContent/HSeparator")
+moveToPatchButton = NodePath("NormalContent/MarginContainer2/MoveToPatchButton")
+normalContentContainer = NodePath("NormalContent")
+migrationContentContainer = NodePath("MigrationMenu")
+migrateStartButton = NodePath("NormalContent/MarginContainer3/MigrateButton")
+migrationStepExplanation = NodePath("MigrationMenu/MarginContainer6/MigrationStatusLabel")
+migrationStatusLabel = NodePath("MigrationMenu/MarginContainer7/MigrationSetupDescription")
+migrationErrorLabel = NodePath("MigrationMenu/MarginContainer8/MigrationError")
+migrationAmountSelector = NodePath("MigrationMenu/MarginContainer3/PopulationAmount")
 migrationAccept = NodePath("MigrationMenu/MarginContainer5/Accept")
-migrationCancel = NodePath("MigrationMenu/MarginContainer2/Cancel")
-physicalConditionsContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions")
-atmosphereContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses")
-compoundsContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds")
-speciesParentContainer = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox")
+physicalConditionsContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions")
+atmosphereContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses")
+compoundsContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds")
+speciesParentContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="NormalContent" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="NormalContent"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -66,23 +71,23 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="NormalContent/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NothingSelected" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="NothingSelected" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -91,12 +96,12 @@ label_settings = ExtResource("3_lpicf")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="UnknownPatch" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="UnknownPatch" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -105,15 +110,15 @@ label_settings = ExtResource("3_lpicf")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PatchDetailsContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="PatchDetailsContainer" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 layout_mode = 2
 
-[node name="PatchName" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
+[node name="PatchName" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -123,37 +128,37 @@ label_settings = ExtResource("5_xv7pc")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PlayerHereLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
+[node name="PlayerHereLabel" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
 layout_mode = 2
 text = "CURRENT_LOCATION_CAPITAL"
 label_settings = ExtResource("5_133c0")
 horizontal_alignment = 1
 
-[node name="Biome" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+[node name="Biome" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Biome: BIOME HERE"
 label_settings = ExtResource("7_o264b")
 horizontal_alignment = 1
 
-[node name="Depth" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+[node name="Depth" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "200-340m below sea level"
 label_settings = ExtResource("7_o264b")
 horizontal_alignment = 1
 
-[node name="PhysicalConditions" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+[node name="PhysicalConditions" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
 layout_mode = 2
 DisplayName = "PHYSICAL_CONDITIONS"
 Columns = 2
 
-[node name="Temperature" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+[node name="Temperature" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
 custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -161,25 +166,25 @@ tooltip_text = "TEMPERATURE"
 texture = ExtResource("25")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "52 C"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Pressure" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+[node name="Pressure" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
 custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -187,18 +192,18 @@ tooltip_text = "PRESSURE"
 texture = ExtResource("23")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "102 kPA"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Light" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+[node name="Light" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light"]
 custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -206,44 +211,44 @@ tooltip_text = "SUNLIGHT"
 texture = ExtResource("6")
 expand_mode = 1
 
-[node name="LightInfo" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light"]
+[node name="LightInfo" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Current" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo"]
+[node name="Current" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo/Current"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo/Current"]
 layout_mode = 2
 text = "100%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo/Current"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo/Current"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="MaxLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo"]
+[node name="MaxLabel" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo"]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 text = "LIGHT_MAX"
 label_settings = ExtResource("19_6m1o4")
 
-[node name="AtmosphericGasses" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+[node name="AtmosphericGasses" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
 layout_mode = 2
 DisplayName = "ATMOSPHERIC_GASSES"
 Columns = 2
 
-[node name="Oxygen" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+[node name="Oxygen" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen"]
 custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -251,18 +256,18 @@ tooltip_text = "OXYGEN"
 texture = ExtResource("12")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Oxygen"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Nitrogen" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+[node name="Nitrogen" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen"]
 custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -270,18 +275,18 @@ tooltip_text = "NITROGEN"
 texture = ExtResource("7")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Nitrogen"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="CO2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+[node name="CO2" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2"]
 custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -289,22 +294,22 @@ tooltip_text = "CARBON_DIOXIDE"
 texture = ExtResource("8")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "CO₂"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Compounds" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+[node name="Compounds" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
 layout_mode = 2
 DisplayName = "COMPOUNDS"
 Columns = 2
 
-[node name="HydrogenSulfide" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="HydrogenSulfide" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -312,24 +317,24 @@ tooltip_text = "HYDROGEN_SULFIDE"
 texture = ExtResource("14")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "12%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Ammonia" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="Ammonia" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -337,24 +342,24 @@ tooltip_text = "AMMONIA"
 texture = ExtResource("13")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "5%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Glucose" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="Glucose" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -362,24 +367,24 @@ tooltip_text = "GLUCOSE"
 texture = ExtResource("10")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "9%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Phosphate" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="Phosphate" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -387,24 +392,24 @@ tooltip_text = "PHOSPHATE"
 texture = ExtResource("21")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "5%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Iron" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="Iron" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -412,34 +417,34 @@ tooltip_text = "IRON"
 texture = ExtResource("11")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "5%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="SpeciesBox" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+[node name="SpeciesBox" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
 layout_mode = 2
 DisplayName = "SPECIES_PRESENT"
 
-[node name="SpeciesList" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" instance=ExtResource("1")]
+[node name="SpeciesList" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" instance=ExtResource("1")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 fit_content = true
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="NormalContent"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("34")
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="NormalContent"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -447,14 +452,14 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MoveToPatchButton" type="Button" parent="VBoxContainer/MarginContainer2"]
+[node name="MoveToPatchButton" type="Button" parent="NormalContent/MarginContainer2"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 focus_mode = 0
 disabled = true
 text = "MOVE_TO_THIS_PATCH"
 
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="NormalContent"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -462,7 +467,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MigrateButton" type="Button" parent="VBoxContainer/MarginContainer3"]
+[node name="MigrateButton" type="Button" parent="NormalContent/MarginContainer3"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 tooltip_text = "MIGRATION_TOOLTIP"
@@ -470,36 +475,7 @@ focus_mode = 0
 text = "MIGRATE"
 
 [node name="MigrationMenu" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 2
-
-[node name="MarginContainer3" type="MarginContainer" parent="MigrationMenu"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="SourcePatch" type="Button" parent="MigrationMenu/MarginContainer3"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-focus_mode = 0
-text = "SOURCE_PATCH"
-
-[node name="MarginContainer4" type="MarginContainer" parent="MigrationMenu"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="DestinationPatch" type="Button" parent="MigrationMenu/MarginContainer4"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-focus_mode = 0
-text = "DESTINATION_PATCH"
 
 [node name="MarginContainer6" type="MarginContainer" parent="MigrationMenu"]
 layout_mode = 2
@@ -509,11 +485,56 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="MigrationMenu/MarginContainer6"]
+[node name="MigrationStatusLabel" type="Label" parent="MigrationMenu/MarginContainer6"]
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
-text = "MIGRATION_EXPLANATION"
+text = "MIGRATION_STEP_SOURCE_EXPLANATION"
+label_settings = ExtResource("23_8qra5")
 autowrap_mode = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="MigrationMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PopulationAmount" type="HSlider" parent="MigrationMenu/MarginContainer3"]
+layout_mode = 2
+rounded = true
+
+[node name="MarginContainer7" type="MarginContainer" parent="MigrationMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MigrationSetupDescription" type="Label" parent="MigrationMenu/MarginContainer7"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+label_settings = ExtResource("24_21yun")
+autowrap_mode = 3
+
+[node name="MarginContainer8" type="MarginContainer" parent="MigrationMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MigrationError" type="Label" parent="MigrationMenu/MarginContainer8"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+label_settings = ExtResource("25_dd3af")
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="MigrationMenu"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="MarginContainer5" type="MarginContainer" parent="MigrationMenu"]
 layout_mode = 2
@@ -543,9 +564,7 @@ layout_mode = 2
 focus_mode = 0
 text = "CANCEL"
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer2/MoveToPatchButton" to="." method="MoveToPatchClicked"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer3/MigrateButton" to="." method="MigrateButtonPressed"]
-[connection signal="pressed" from="MigrationMenu/MarginContainer3/SourcePatch" to="." method="MigrateSourcePressed"]
-[connection signal="pressed" from="MigrationMenu/MarginContainer4/DestinationPatch" to="." method="MigrateDestinationPressed"]
+[connection signal="pressed" from="NormalContent/MarginContainer2/MoveToPatchButton" to="." method="MoveToPatchClicked"]
+[connection signal="pressed" from="NormalContent/MarginContainer3/MigrateButton" to="." method="MigrateButtonPressed"]
 [connection signal="pressed" from="MigrationMenu/MarginContainer5/Accept" to="." method="MigrateAcceptPressed"]
 [connection signal="pressed" from="MigrationMenu/MarginContainer2/Cancel" to="." method="MigrateCancelPressed"]

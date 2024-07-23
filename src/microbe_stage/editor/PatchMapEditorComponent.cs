@@ -47,6 +47,8 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     [JsonProperty]
     private FogOfWarMode fogOfWar;
 
+    private bool enabledSourcePatchFilter;
+
     protected PatchMapEditorComponent()
     {
     }
@@ -83,7 +85,8 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         };
 
         detailsPanel.OnMoveToPatchClicked = SetPlayerPatch;
-        detailsPanel.MigrationAdded = ValidateMigration;
+        detailsPanel.OnMigrationAdded = ValidateMigration;
+        detailsPanel.OnMigrationWizardStepChanged = OnMigrationProgress;
 
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
@@ -147,22 +150,28 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         // Migrations
         foreach (var migration in detailsPanel.Migrations)
         {
-            if (migration.Amount == null)
-                return;
+            if (migration.Amount <= 0 || migration.DestinationPatch == null || migration.SourcePatch == null)
+            {
+                GD.PrintErr("Not applying an invalid migration");
+                continue;
+            }
 
             var playerSpecies = Editor.CurrentGame.GameWorld.PlayerSpecies;
 
-            var sourcePreviousPopulation = migration.SourcePatch!.GetSpeciesSimulationPopulation(playerSpecies);
-            migration.SourcePatch.UpdateSpeciesSimulationPopulation(playerSpecies,
-                sourcePreviousPopulation - (long)migration.Amount);
+            var sourcePreviousPopulation = migration.SourcePatch.GetSpeciesSimulationPopulation(playerSpecies);
 
-            if (migration.DestinationPatch!.FindSpeciesByID(playerSpecies.ID) != null)
+            // Max is used here to ensure no negative population ends up being set
+            migration.SourcePatch.UpdateSpeciesSimulationPopulation(playerSpecies,
+                Math.Max(sourcePreviousPopulation - migration.Amount, 0));
+
+            if (migration.DestinationPatch.FindSpeciesByID(playerSpecies.ID) != null)
             {
-                migration.DestinationPatch.SpeciesInPatch[playerSpecies] += (long)migration.Amount;
+                migration.DestinationPatch.UpdateSpeciesSimulationPopulation(playerSpecies,
+                    migration.DestinationPatch.GetSpeciesSimulationPopulation(playerSpecies) + migration.Amount);
             }
             else
             {
-                migration.DestinationPatch.AddSpecies(playerSpecies, (long)migration.Amount);
+                migration.DestinationPatch.AddSpecies(playerSpecies, migration.Amount);
             }
         }
     }
@@ -220,11 +229,6 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         // previewBiomeConditions.AverageCompounds[sunlight] = lightLevelAmount;
 
         UpdateShownPatchDetails();
-    }
-
-    public Species GetPlayerSpecies()
-    {
-        return Editor.CurrentGame.GameWorld.PlayerSpecies;
     }
 
     protected virtual void UpdateShownPatchDetails()
@@ -348,9 +352,74 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
 
     private void ValidateMigration(PatchDetailsPanel.Migration migration)
     {
-        if (migration.SourcePatch!.FindSpeciesByID(Editor.CurrentGame.GameWorld.PlayerSpecies.ID) == null)
+        if (migration.SourcePatch == null || migration.Amount <= 0)
+        {
+            GD.PrintErr("Trying to check validity of migration without source patch or migration population amount");
+            return;
+        }
+
+        // Cannot move more population than there exists in the patch
+        if (migration.SourcePatch.GetSpeciesSimulationPopulation(Editor.CurrentGame.GameWorld.PlayerSpecies) <
+            migration.Amount || migration.Amount < 0)
         {
             detailsPanel.Migrations.Remove(migration);
         }
+    }
+
+    private void OnMigrationProgress(PatchDetailsPanel.MigrationWizardStep step)
+    {
+        if (mapDrawer.Map == null)
+        {
+            GD.PrintErr("Map not set when setting up a migration");
+            return;
+        }
+
+        switch (step)
+        {
+            case PatchDetailsPanel.MigrationWizardStep.SelectSourcePatch:
+            {
+                // Enable filter to show only valid patches for move
+
+                mapDrawer.ApplyPatchNodeEnabledStatus(p =>
+                    p.GetSpeciesSimulationPopulation(Editor.EditedBaseSpecies) > 0);
+                enabledSourcePatchFilter = true;
+
+                // Deselect current patch to allow picking it again (if the player wants it to be the start position)
+                mapDrawer.SelectedPatch = null;
+
+                break;
+            }
+
+            case PatchDetailsPanel.MigrationWizardStep.SelectDestinationPatch:
+            {
+                // Enable filter to show just patches next to the source one
+                var nextTo = detailsPanel.CurrentMigrationSourcePatch;
+                if (nextTo == null)
+                {
+                    GD.PrintErr("No current migration source patch set");
+                }
+                else
+                {
+                    mapDrawer.ApplyPatchNodeEnabledStatus(p => p != nextTo && p.Adjacent.Contains(nextTo));
+                    enabledSourcePatchFilter = true;
+                }
+
+                break;
+            }
+
+            default:
+            {
+                // Otherwise reset the filter
+                if (enabledSourcePatchFilter)
+                {
+                    mapDrawer.ApplyPatchNodeEnabledStatus(true);
+                    enabledSourcePatchFilter = false;
+                }
+
+                break;
+            }
+        }
+
+        // When selecting a source patch, only show valid targets
     }
 }

@@ -68,7 +68,7 @@ public partial class PatchMapDrawer : Control
                 return;
 
             map = value;
-            dirty = true;
+            MarkDirty();
 
             playerPatch ??= map.CurrentPatch;
         }
@@ -204,6 +204,32 @@ public partial class PatchMapDrawer : Control
     public void SetPatchEnabledStatuses(IEnumerable<Patch> patches, Func<Patch, bool> predicate)
     {
         SetPatchEnabledStatuses(patches.ToDictionary(x => x, predicate));
+    }
+
+    /// <summary>
+    ///   Runs a function to determine what to set as the enabled status for all patch nodes
+    /// </summary>
+    /// <param name="predicate">
+    ///   Predicate to run on all nodes and set the result to <see cref="PatchMapNode.Enabled"/>
+    /// </param>
+    public void ApplyPatchNodeEnabledStatus(Func<Patch, bool> predicate)
+    {
+        foreach (var (patch, node) in nodes)
+        {
+            node.Enabled = predicate(patch);
+        }
+    }
+
+    /// <summary>
+    ///   Sets patch node enabled status for all nodes
+    /// </summary>
+    /// <param name="enabled">Value to set to <see cref="PatchMapNode.Enabled"/></param>
+    public void ApplyPatchNodeEnabledStatus(bool enabled)
+    {
+        foreach (var (_, node) in nodes)
+        {
+            node.Enabled = enabled;
+        }
     }
 
     protected override void Dispose(bool disposing)
