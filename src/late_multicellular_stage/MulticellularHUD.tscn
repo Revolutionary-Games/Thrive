@@ -369,7 +369,6 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="ProcessPanel" parent="." instance=ExtResource("13")]
-anchors_preset = 0
 offset_left = 8.0
 offset_top = 72.0
 offset_right = 408.0
@@ -512,7 +511,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RadialPopup" parent="." instance=ExtResource("32")]
-anchors_preset = 0
 
 [node name="MoveToLandConfirmation" parent="." instance=ExtResource("17")]
 custom_minimum_size = Vector2(450, 0)
@@ -525,12 +523,7 @@ DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 
 [node name="DamageEffect" parent="." instance=ExtResource("37_rwj55")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]

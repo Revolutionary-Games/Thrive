@@ -692,8 +692,7 @@ offset_right = 300.0
 offset_bottom = 97.0
 
 [node name="DamageEffect" parent="." instance=ExtResource("35_h7kw8")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
 
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
