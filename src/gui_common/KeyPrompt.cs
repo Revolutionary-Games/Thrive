@@ -162,9 +162,6 @@ public partial class KeyPrompt : CenterContainer
     /// </summary>
     private void Refresh()
     {
-        if (dirty)
-            GD.Print("did a refresh");
-
         dirty = false;
 
         if (primaryIcon == null)

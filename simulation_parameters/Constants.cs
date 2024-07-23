@@ -1,4 +1,4 @@
-﻿using System;
+﻿.using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -596,6 +596,10 @@ public static class Constants
     ///   Amount of health per second regenerated
     /// </summary>
     public const float HEALTH_REGENERATION_RATE = 1.5f;
+
+    public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
+
+    public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;
 
     /// <summary>
     ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells

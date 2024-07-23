@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://5m75uu7qtg8x"]
+[gd_scene load_steps=42 format=3 uid="uid://5m75uu7qtg8x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="6"]
@@ -21,8 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://nwrl6d84y0tj" path="res://assets/textures/gui/bevel/actions/InteractAction.png" id="28"]
 [ext_resource type="PackedScene" uid="uid://bqbt1jtgup58k" path="res://src/awakening_stage/gui/InventoryScreen.tscn" id="29"]
 [ext_resource type="Texture2D" uid="uid://myc8kb3pyj03" path="res://assets/textures/gui/bevel/actions/BuildStructure.png" id="30"]
-[ext_resource type="PackedScene" path="res://src/gui_common/RadialPopup.tscn" id="32"]
+[ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="32"]
 [ext_resource type="Texture2D" uid="uid://drrdhfwd5s8e2" path="res://assets/textures/gui/bevel/actions/EngulfEject.png" id="33"]
+[ext_resource type="PackedScene" uid="uid://uq64skmnc1ob" path="res://src/microbe_stage/gui/DamageEffect.tscn" id="37_rwj55"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="38_ueybo"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_veaul"]
 [ext_resource type="Texture2D" uid="uid://8q2icxsubpdy" path="res://assets/textures/gui/bevel/atp.png" id="47"]
@@ -74,7 +75,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -120,6 +121,7 @@ PatchExtinctionBoxScene = ExtResource("16")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
+damageScreenEffect = NodePath("DamageEffect")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
@@ -367,7 +369,6 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="ProcessPanel" parent="." instance=ExtResource("13")]
-anchors_preset = 0
 offset_left = 8.0
 offset_top = 72.0
 offset_right = 408.0
@@ -510,7 +511,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RadialPopup" parent="." instance=ExtResource("32")]
-anchors_preset = 0
 
 [node name="MoveToLandConfirmation" parent="." instance=ExtResource("17")]
 custom_minimum_size = Vector2(450, 0)
@@ -521,6 +521,9 @@ WindowTitle = "MOVING_TO_LAND_PROTOTYPE_TITLE"
 custom_minimum_size = Vector2(450, 0)
 DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
+
+[node name="DamageEffect" parent="." instance=ExtResource("37_rwj55")]
+layout_mode = 1
 
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
