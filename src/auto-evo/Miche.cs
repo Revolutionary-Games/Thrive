@@ -3,12 +3,15 @@
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+///   A node for the Miche Tree
+/// </summary>
 public class Miche
 {
     public Miche? Parent;
     public List<Miche> Children = new();
 
-    // This should always be null if this Miche has children
+    // Occupant should always be null if this Miche has children
     public MicrobeSpecies? Occupant;
     public SelectionPressure Pressure;
 
@@ -34,12 +37,16 @@ public class Miche
 
     public IEnumerable<Miche> GetLeafNodes()
     {
+        return GetLeafNodes(new List<Miche>());
+    }
+
+    public IEnumerable<Miche> GetLeafNodes(List<Miche> nodes)
+    {
         if (IsLeafNode())
         {
-            return new List<Miche> { this };
+            nodes.Add(this);
+            return nodes;
         }
-
-        var nodes = new List<Miche>();
 
         foreach (var child in Children)
         {
@@ -51,11 +58,15 @@ public class Miche
 
     public IEnumerable<MicrobeSpecies> GetOccupants()
     {
-        var occupants = new List<MicrobeSpecies>();
+        return GetOccupants(new List<MicrobeSpecies>());
+    }
 
+    public IEnumerable<MicrobeSpecies> GetOccupants(List<MicrobeSpecies> occupants)
+    {
         if (Occupant != null)
         {
             occupants.Add(Occupant);
+            return occupants;
         }
 
         foreach (var child in Children)
@@ -64,6 +75,21 @@ public class Miche
         }
 
         return occupants;
+    }
+
+    public IEnumerable<Miche> BackTraversal()
+    {
+        return BackTraversal(new List<Miche>());
+    }
+
+    public IEnumerable<Miche> BackTraversal(List<Miche> currentTraversal)
+    {
+        currentTraversal.Insert(0, this);
+
+        if (Parent == null)
+            return currentTraversal;
+
+        return Parent.BackTraversal(currentTraversal);
     }
 
     public void AddChild(Miche newChild)
@@ -120,7 +146,7 @@ public class Miche
                 Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, cache));
         }
 
-        // We check here to see if scores more than 0, beacuse
+        // We check here to see if scores more than 0, because
         // scores is relative to the inserted species
         if (IsLeafNode() && newScores[Occupant!] > 0)
         {
@@ -143,40 +169,6 @@ public class Miche
         }
 
         return inserted;
-    }
-
-    public List<List<Miche>> AllTraversals()
-    {
-        if (IsLeafNode())
-        {
-            return new List<List<Miche>> { new() { this } };
-        }
-
-        var traversals = Children.SelectMany(x => x.AllTraversals());
-        var retval = new List<List<Miche>>();
-
-        foreach (var list in traversals)
-        {
-            list.Insert(0, this);
-            retval.Add(list);
-        }
-
-        return retval;
-    }
-
-    public IEnumerable<Miche> BackTraversal()
-    {
-        return BackTraversal(new List<Miche>());
-    }
-
-    public IEnumerable<Miche> BackTraversal(List<Miche> currentTraversal)
-    {
-        currentTraversal.Insert(0, this);
-
-        if (Parent == null)
-            return currentTraversal;
-
-        return Parent.BackTraversal(currentTraversal);
     }
 
     public Miche DeepCopy()

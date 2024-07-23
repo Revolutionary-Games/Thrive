@@ -310,22 +310,18 @@ public class ModifyExistingSpecies : IRunStep
     /// <summary>
     ///   Returns a new list of all species that have filled a predation miche to eat the provided species.
     /// </summary>
-    /// <param name="miche">Miche to search</param>
+    /// <param name="micheTree">Miche tree to search</param>
     /// <param name="species">Species to search for Predation miches of</param>
     /// <returns>List of species</returns>
-    private List<Species> PredatorsOf(Miche miche, Species species)
+    private List<Species> PredatorsOf(Miche micheTree, Species species)
     {
         var predators = new List<Species>();
 
-        // TODO: Make this WAY more efficient
-        foreach (var traversal in miche.AllTraversals())
+        foreach (var miche in micheTree.GetLeafNodes())
         {
-            foreach (var curMiche in traversal)
+            if (miche.Pressure is PredationEffectivenessPressure pressure && pressure.Prey == species)
             {
-                if (curMiche.Pressure is PredationEffectivenessPressure pressure && pressure.Prey == species)
-                {
-                    predators.AddRange(curMiche.GetOccupants());
-                }
+                predators.AddRange(miche.GetOccupants());
             }
         }
 
