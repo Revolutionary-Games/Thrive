@@ -359,6 +359,10 @@ public partial class OptionsMenu : ControlWithInput
     private Slider chromaticAberrationSlider = null!;
     private OptionButton controllerPromptType = null!;
     private CheckBox displayAbilitiesHotBarToggle = null!;
+
+    [Export]
+    private CheckBox damageEffect = null!;
+
     private CheckBox displayBackgroundParticlesToggle = null!;
     private CheckBox guiLightEffectsToggle = null!;
     private CheckBox displayPartNamesToggle = null!;
@@ -767,6 +771,7 @@ public partial class OptionsMenu : ControlWithInput
         chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
         controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
         displayAbilitiesHotBarToggle.ButtonPressed = settings.DisplayAbilitiesHotBar;
+        damageEffect.ButtonPressed = settings.ScreenDamageEffect;
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
@@ -1859,6 +1864,13 @@ public partial class OptionsMenu : ControlWithInput
     private void OnDisplayAbilitiesHotBarToggled(bool toggle)
     {
         Settings.Instance.DisplayAbilitiesHotBar.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnDamageEffectToggled(bool pressed)
+    {
+        Settings.Instance.ScreenDamageEffect.Value = pressed;
 
         UpdateResetSaveButtonState();
     }
