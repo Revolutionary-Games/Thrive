@@ -137,6 +137,39 @@
     "EditorButtonOrder": 5,
     "EndosymbiosisUnlocks": "nitrogenfixingplastid"
   },
+  "protoplasm": {
+    "MPCost": 55,
+    "InitialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "Hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "Processes": {
+      "glycolysis": 1
+    },
+    "Components": {
+      "Storage": {
+        "Capacity": 15
+      }
+    },
+    "ProkaryoteChance": 0,
+    "ChanceToCreate": 0,
+    "Density": 1100,
+    "CorpseChunkGraphics": {
+      "ScenePath": "res://assets/models/organelles/Cytoplasm.tscn"
+    },
+    "Name": "PROTOPLASM",
+    "ProductionColour": "#1db7c5",
+    "ConsumptionColour": "#c51d38",
+    "IconPath": "res://assets/textures/gui/bevel/parts/CytoplasmIcon.png",
+    "EditorButtonGroup": "Hidden",
+    "EditorButtonOrder": 5
+  },
   "chemoSynthesizingProteins": {
     "MPCost": 45,
     "InitialComposition": {

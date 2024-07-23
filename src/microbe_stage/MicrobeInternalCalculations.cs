@@ -146,6 +146,8 @@ public static class MicrobeInternalCalculations
         var averageDensity = CalculateAverageDensity(organelles);
         float shapeMass = 0;
 
+        // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to figure
+        // This is why Auto-Evo just estimates the value of the output instead
         if (!useEstimate)
         {
             var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);

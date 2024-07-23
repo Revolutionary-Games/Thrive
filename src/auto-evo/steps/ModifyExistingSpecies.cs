@@ -35,19 +35,21 @@ public class ModifyExistingSpecies : IRunStep
         var viableVariants = new List<Tuple<MicrobeSpecies, float>>
             { Tuple.Create(baseSpecies, 100.0f) };
 
-        // AutoEvo assumes that the order mutations are applied doesn't matter when it actually can affect
+        // Auto-Evo assumes that the order mutations are applied doesn't matter when it actually can affect
         // results quite a bit. Maybe they should have weights?
         var mutationStrategies =
             selectionPressures.SelectMany(x => x.Mutations).Distinct().OrderBy(_ => random.Next()).ToList();
+
+        var outputSpecies = new List<Tuple<MicrobeSpecies, float>>();
 
         foreach (var mutationStrategy in mutationStrategies)
         {
             var inputSpecies = viableVariants;
 
             // TODO: Make Const
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 5; i++)
             {
-                var outputSpecies = new List<Tuple<MicrobeSpecies, float>>();
+                outputSpecies.Clear();
 
                 foreach (var speciesTuple in inputSpecies)
                 {
@@ -56,8 +58,6 @@ public class ModifyExistingSpecies : IRunStep
                     outputSpecies.AddRange(PruneMutations(speciesTuple.Item1, mutated, cache, selectionPressures));
                 }
 
-                // TODO: Given we limit the size already these could be made into arrays and with some proper juggling
-                // we could avoid allocations
                 // TODO: Make these a performance setting?
                 if (outputSpecies.Count > 100)
                 {
@@ -85,9 +85,7 @@ public class ModifyExistingSpecies : IRunStep
             }
         }
 
-        var mutatedSpecies = viableVariants.Select(x => x.Item1).ToList();
-
-        foreach (var variant in mutatedSpecies)
+        foreach (var variant in viableVariants.Select(x => x.Item1))
         {
             MutationLogicFunctions.NameNewMicrobeSpecies(variant, baseSpecies);
 
@@ -160,6 +158,7 @@ public class ModifyExistingSpecies : IRunStep
         // TODO: Put these in auto evo config
         const int possibleMutationsToTryPerSpecies = 3;
         const int totalMutationsToTry = 20;
+        const float unfilledMichePullFraction = 0.6f;
 
         var mutationsToTry = new List<Mutation>();
 
@@ -182,22 +181,29 @@ public class ModifyExistingSpecies : IRunStep
 
         // This section of the code tries to mutate species into unfilled miches
         // Not exactly realistic, but more diversity is more fun for the player
-        var emptyTraversals = oldMiche.GetLeafNodes().Where(x => x.Occupant == null)
-            .Select(x => x.BackTraversal()).ToList();
-
-        foreach (var species in oldOccupants)
+        if (unfilledMichePullFraction > 0)
         {
-            foreach (var traversal in emptyTraversals)
+            var emptyTraversals = oldMiche.GetLeafNodes().Where(x => x.Occupant == null)
+                .Select(x => x.BackTraversal()).ToList();
+
+            var pullMicheList = new List<Mutation>();
+
+            foreach (var species in oldOccupants)
             {
-                var pressures = traversal.Select(x => x.Pressure).ToList();
+                foreach (var traversal in emptyTraversals)
+                {
+                    var pressures = traversal.Select(x => x.Pressure).ToList();
 
-                pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
+                    pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
 
-                var variants = GenerateMutations(species, possibleMutationsToTryPerSpecies, Cache, pressures);
+                    var variants = GenerateMutations(species, possibleMutationsToTryPerSpecies, Cache, pressures);
 
-                mutationsToTry.AddRange(variants.Select(speciesToAdd => new Mutation(species, speciesToAdd,
-                    RunResults.NewSpeciesType.FillNiche)).ToList());
+                    pullMicheList.AddRange(variants.Select(speciesToAdd => new Mutation(species, speciesToAdd,
+                        RunResults.NewSpeciesType.FillNiche)).ToList());
+                }
             }
+
+            mutationsToTry.AddRange(pullMicheList.Take((int)(pullMicheList.Count * unfilledMichePullFraction)));
         }
 
         var newMiche = oldMiche.DeepCopy();

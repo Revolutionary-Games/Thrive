@@ -5,14 +5,14 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Shows various details a bout a species for the player
+///   Shows various details about a species to the player
 /// </summary>
 public partial class MicheDetailsPanel : MarginContainer
 {
     [Export]
     public NodePath? MicheDetailsLabelPath;
 
-    public WorldGenerationSettings WorldSettings = null!;
+    public WorldGenerationSettings? WorldSettings = null;
 
 #pragma warning disable CA2213
     private CustomRichTextLabel? micheDetailsLabel;
@@ -75,7 +75,7 @@ public partial class MicheDetailsPanel : MarginContainer
     /// </summary>
     private void UpdateMichePreview()
     {
-        if (previewMiche == null)
+        if (previewMiche == null || WorldSettings == null)
         {
             micheDetailsLabel!.ExtendedBbcode = null;
             return;
