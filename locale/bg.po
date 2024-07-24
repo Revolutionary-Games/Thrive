@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-23 09:54+0300\n"
+"POT-Creation-Date: 2024-07-24 11:43+0300\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -42,6 +42,9 @@ msgstr "Прекратена."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Абисал"
+
+msgid "ACCEPT"
+msgstr ""
 
 #, fuzzy
 msgid "ACTION_AWAKEN"
@@ -3295,6 +3298,44 @@ msgstr "  {0}: Среща се в {1} от създанията, средно п
 
 msgid "MIDDLE_MOUSE"
 msgstr "Среден бутон"
+
+#, fuzzy
+msgid "MIGRATE"
+msgstr "Количеството"
+
+#, fuzzy
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Създаването на модификацията е неуспешно"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STATUS_TEXT"
+msgstr ""
+"Наблюдавайте нивото на здравето си, което се намира до нивото на [thrive:compound type=\"АТФ\"][/thrive:compound] (долу вдясно).\n"
+"Вашата клетка ще умре, ако изгуби всичките си точки здраве.\n"
+"Ако имате [thrive:compound type=\"АТФ\"][/thrive:compound], точките здраве се възстановяват.\n"
+"Събирайте [thrive:compound type=\"глюкоза\"][/thrive:compound] за да произвеждате [thrive:compound type=\"АТФ\"][/thrive:compound]."
+
+#, fuzzy
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "(определя разхода на мутационни точки в редактора)"
+
+#, fuzzy
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "(определя разхода на мутационни точки в редактора)"
+
+#, fuzzy
+msgid "MIGRATION_TOOLTIP"
+msgstr "Отваряне на страницата ни в „Patreon“"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} млн"
@@ -7406,9 +7447,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "E_DOT"
 #~ msgstr "„Е“."
-
-#~ msgid "RATE"
-#~ msgstr "Количеството"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

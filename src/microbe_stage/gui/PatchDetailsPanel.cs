@@ -168,6 +168,8 @@ public partial class PatchDetailsPanel : PanelContainer
     /// </summary>
     public List<Migration> Migrations { get; } = new();
 
+    public Species? SpeciesToUseForMigrations { get; set; }
+
     public MigrationWizardStep MigrationStep
     {
         get => currentMigrationStep;
@@ -585,6 +587,13 @@ public partial class PatchDetailsPanel : PanelContainer
 
         currentlyEditedMigration = new Migration();
         MigrationStep = MigrationWizardStep.SelectSourcePatch;
+
+        if (SpeciesToUseForMigrations == null)
+        {
+            GD.PrintErr("Patch details not setup with species that is used for migrations!");
+            migrationErrorLabel.Visible = true;
+            migrationErrorLabel.Text = "ERROR: patch details panel not setup correctly by parent code";
+        }
     }
 
     private void MigrateAcceptPressed()
@@ -648,9 +657,36 @@ public partial class PatchDetailsPanel : PanelContainer
                 break;
 
             case MigrationWizardStep.SelectDestinationPatch:
+            {
                 currentlyEditedMigration.DestinationPatch = patch;
                 MigrationStep = MigrationWizardStep.SelectPopulationAmount;
+
+                // Setup population selection
+                // TODO: should there be min and max limits for the migration to not allow migrating all of the
+                // population?
+                migrationAmountSelector.MinValue = 1;
+                migrationAmountSelector.Step = 1;
+
+                if (currentlyEditedMigration.SourcePatch == null)
+                {
+                    GD.PrintErr("Migration in incorrect state, source patch not set");
+                    migrationAmountSelector.MaxValue = 200;
+                }
+                else if (SpeciesToUseForMigrations == null)
+                {
+                    GD.PrintErr("Missing species to use for migrations so max population is incorrect");
+                    migrationAmountSelector.MaxValue = 200;
+                }
+                else
+                {
+                    migrationAmountSelector.MaxValue =
+                        currentlyEditedMigration.SourcePatch.GetSpeciesSimulationPopulation(SpeciesToUseForMigrations);
+                }
+
+                migrationAmountSelector.Value = migrationAmountSelector.MaxValue * 0.5f;
+
                 break;
+            }
         }
     }
 
@@ -734,8 +770,31 @@ public partial class PatchDetailsPanel : PanelContainer
 
         migrationStatusLabel.Visible = true;
 
-        // TODO: actual text
-        migrationStatusLabel.Text = "State of migration here";
+        if (currentlyEditedMigration.DestinationPatch == null)
+        {
+            migrationStatusLabel.Text = Localization.Translate("MIGRATION_STATUS_DESTINATION_NOT_SELECTED")
+                .FormatSafe(currentlyEditedMigration.SourcePatch.Name);
+        }
+        else
+        {
+            migrationStatusLabel.Text = Localization.Translate("MIGRATION_STATUS_TEXT")
+                .FormatSafe(currentlyEditedMigration.SourcePatch.Name, currentlyEditedMigration.DestinationPatch.Name,
+                    currentlyEditedMigration.Amount);
+        }
+    }
+
+    private void MigrationAmountSliderChanged(double value)
+    {
+        if (currentlyEditedMigration == null)
+        {
+            GD.PrintErr("No current migration to edit");
+            return;
+        }
+
+        var population = (long)Math.Round(value);
+
+        currentlyEditedMigration.Amount = population;
+        UpdateMigrationStatusText();
     }
 
     public class Migration

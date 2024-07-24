@@ -95,6 +95,8 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     {
         base.Init(owningEditor, fresh);
 
+        detailsPanel.SpeciesToUseForMigrations = Editor.CurrentGame.GameWorld.PlayerSpecies;
+
         fogOfWar = Editor.CurrentGame.FreeBuild ?
             FogOfWarMode.Ignored :
             Editor.CurrentGame.GameWorld.WorldSettings.FogOfWarMode;
@@ -378,14 +380,14 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         {
             case PatchDetailsPanel.MigrationWizardStep.SelectSourcePatch:
             {
+                // Deselect current patch to allow picking it again (if the player wants it to be the start position)
+                mapDrawer.SelectedPatch = null;
+
                 // Enable filter to show only valid patches for move
 
                 mapDrawer.ApplyPatchNodeEnabledStatus(p =>
                     p.GetSpeciesSimulationPopulation(Editor.EditedBaseSpecies) > 0);
                 enabledSourcePatchFilter = true;
-
-                // Deselect current patch to allow picking it again (if the player wants it to be the start position)
-                mapDrawer.SelectedPatch = null;
 
                 break;
             }
@@ -400,9 +402,23 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
                 }
                 else
                 {
+                    mapDrawer.SelectedPatch = null;
+
                     mapDrawer.ApplyPatchNodeEnabledStatus(p => p != nextTo && p.Adjacent.Contains(nextTo));
                     enabledSourcePatchFilter = true;
                 }
+
+                break;
+            }
+
+            case PatchDetailsPanel.MigrationWizardStep.SelectPopulationAmount:
+            {
+                // At this step selecting any patches is not necessary or useful, so all patches are disabled for
+                // selection here for clarity
+
+                mapDrawer.SelectedPatch = null;
+                mapDrawer.ApplyPatchNodeEnabledStatus(false);
+                enabledSourcePatchFilter = true;
 
                 break;
             }

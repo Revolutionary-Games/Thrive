@@ -59,7 +59,6 @@ compoundsContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBo
 speciesParentContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox")
 
 [node name="NormalContent" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="NormalContent"]
@@ -475,6 +474,7 @@ focus_mode = 0
 text = "MIGRATE"
 
 [node name="MigrationMenu" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer6" type="MarginContainer" parent="MigrationMenu"]
@@ -566,5 +566,6 @@ text = "CANCEL"
 
 [connection signal="pressed" from="NormalContent/MarginContainer2/MoveToPatchButton" to="." method="MoveToPatchClicked"]
 [connection signal="pressed" from="NormalContent/MarginContainer3/MigrateButton" to="." method="MigrateButtonPressed"]
+[connection signal="value_changed" from="MigrationMenu/MarginContainer3/PopulationAmount" to="." method="MigrationAmountSliderChanged"]
 [connection signal="pressed" from="MigrationMenu/MarginContainer5/Accept" to="." method="MigrateAcceptPressed"]
 [connection signal="pressed" from="MigrationMenu/MarginContainer2/Cancel" to="." method="MigrateCancelPressed"]

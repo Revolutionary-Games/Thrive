@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-23 12:02+0200\n"
-"PO-Revision-Date: 2024-07-23 12:05+0200\n"
+"POT-Creation-Date: 2024-07-24 11:43+0300\n"
+"PO-Revision-Date: 2024-07-24 11:26+0300\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1304,9 +1304,6 @@ msgstr "Description is too long"
 
 msgid "DESPAWN_ENTITIES"
 msgstr "Despawn All Entities"
-
-msgid "DESTINATION_PATCH"
-msgstr "Destination Patch"
 
 msgid "DETECTED_CPU_COUNT"
 msgstr "Detected CPU count:"
@@ -3154,11 +3151,29 @@ msgstr "Middle mouse"
 msgid "MIGRATE"
 msgstr "Migrate"
 
-msgid "MIGRATION_EXPLANATION"
-msgstr "Migrate your species without moving yourself from source patch to destination patch"
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Error: failed to add migration, please check migration parameters"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr "Going to migrate population from {0} to ..."
+
+msgid "MIGRATION_STATUS_TEXT"
+msgstr "Going to migrate {2} units of population from {0} to {1}"
+
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "Select a destination patch for the migration that is connected to the source patch"
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr "Only one migration can be performed per editor session. You can view the queued migration below and keep it or cancel it to create a different migration"
+
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "Select how much population to migrate from the source patch to the destination"
+
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "Select a patch that has your species in it currently to act as the source for the migration"
 
 msgid "MIGRATION_TOOLTIP"
-msgstr "Migrate your species without moving yourself"
+msgstr "Migrate your species between patches without moving the patch you are in yourself"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
@@ -4653,9 +4668,6 @@ msgstr "Sound Team Lead"
 
 msgid "SOUND_TEAM_LEADS"
 msgstr "Sound Team Leads"
-
-msgid "SOURCE_PATCH"
-msgstr "Source Patch"
 
 msgid "SPACE"
 msgstr "Space"
@@ -6986,6 +6998,12 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "DESTINATION_PATCH"
+#~ msgstr "Destination Patch"
+
+#~ msgid "SOURCE_PATCH"
+#~ msgstr "Source Patch"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost"
