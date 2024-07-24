@@ -363,6 +363,9 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     private CheckBox damageEffect = null!;
 
+    [Export]
+    private OptionButton strainVisibility = null!;
+
     private CheckBox displayBackgroundParticlesToggle = null!;
     private CheckBox guiLightEffectsToggle = null!;
     private CheckBox displayPartNamesToggle = null!;
@@ -772,6 +775,7 @@ public partial class OptionsMenu : ControlWithInput
         controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
         displayAbilitiesHotBarToggle.ButtonPressed = settings.DisplayAbilitiesHotBar;
         damageEffect.ButtonPressed = settings.ScreenDamageEffect;
+        strainVisibility.Selected = (int)settings.StrainBarVisibilityMode.Value;
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
@@ -1871,6 +1875,13 @@ public partial class OptionsMenu : ControlWithInput
     private void OnDamageEffectToggled(bool pressed)
     {
         Settings.Instance.ScreenDamageEffect.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnStrainVisibilityModeSelected(int index)
+    {
+        Settings.Instance.StrainBarVisibilityMode.Value = (Settings.StrainBarVisibility)index;
 
         UpdateResetSaveButtonState();
     }
