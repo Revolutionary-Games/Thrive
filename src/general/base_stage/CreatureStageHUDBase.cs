@@ -747,10 +747,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 strainBar.Hide();
                 break;
             case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
-                strainBar.Show();
+                if (strainFraction >= 0.8f)
+                    strainBar.Show();
+                else
+                    strainBar.Hide();
                 break;
             case Settings.StrainBarVisibility.VisibleWhenOverZero:
-                strainBar.Show();
+                if (strainFraction > 0.0f)
+                    strainBar.Show();
+                else
+                    strainBar.Hide();
                 break;
             case Settings.StrainBarVisibility.AlwaysVisible:
                 strainBar.Show();
@@ -972,6 +978,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         secreteSlimeHotkey.Visible = showSlime;
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
+        sprintHotkey.Visible = true;
 
         sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;

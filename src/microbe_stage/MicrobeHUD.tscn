@@ -256,7 +256,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "sprintHotkey", "strainBar", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -300,6 +300,8 @@ PatchExtinctionBoxScene = ExtResource("60")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
+sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
+strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
@@ -673,6 +675,16 @@ theme_override_styles/pressed = SubResource("1")
 ActionIcon = ExtResource("21")
 ActionName = "g_secrete_slime"
 
+[node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+visible = false
+layout_mode = 2
+tooltip_text = "SPRINT_HOTKEY_TOOLTIP"
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
+ActionIcon = ExtResource("10")
+ActionName = "g_sprint"
+
 [node name="HintText" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -694,6 +706,19 @@ offset_bottom = 97.0
 [node name="DamageEffect" parent="." instance=ExtResource("35_h7kw8")]
 layout_mode = 1
 
+[node name="Strain" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 27.0
+grow_horizontal = 2
+max_value = 0.9
+show_percentage = false
+
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
 [connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
@@ -712,6 +737,7 @@ layout_mode = 1
 [connection signal="pressed" from="ScrollContainer/HotBar/BindingMode" to="." method="OnBindingModePressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/SecreteSlime" to="." method="OnSecreteSlimePressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnFireToxinPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
 [connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCanceled"]
 [connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularConfirmed"]
