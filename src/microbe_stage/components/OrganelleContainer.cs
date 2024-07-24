@@ -550,7 +550,7 @@ public static class OrganelleContainerHelpers
     public static void UpdateEngulfingSizeData(this ref OrganelleContainer container,
         ref Engulfer engulfer, ref Engulfable engulfable, bool isBacteria)
     {
-        float multiplier = 1;
+        float multiplier = 1.0f / MicrobeInternalCalculations.CalculateSurfaceAreaToVolumeRatio(container.Organelles!);
 
         // Eukaryotic size increase to buff engulfing to match the visual size
         if (!isBacteria)
