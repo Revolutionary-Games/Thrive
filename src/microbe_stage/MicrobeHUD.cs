@@ -453,7 +453,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
 
         bindingModeHotkey.ButtonPressed = control.State == MicrobeState.Binding;
-        unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+
+        if (unbindAllHotkey.ActionNameAsStringName != null)
+            unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionNameAsStringName);
     }
 
     protected override void UpdateHoverInfo(float delta)

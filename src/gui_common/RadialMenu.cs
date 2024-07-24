@@ -96,6 +96,7 @@ public partial class RadialMenu : CenterContainer
     public override void _Ready()
     {
         centerLabel = GetNode<Label>(CenterLabelPath);
+
         dynamicLabelsContainer = GetNode<Node>(DynamicLabelsContainerPath);
         indicator = GetNode<TextureRect>(IndicatorPath);
 
@@ -332,7 +333,11 @@ public partial class RadialMenu : CenterContainer
         }
 
         var center = Size / 2;
-        var indicatorOffset = center - new Vector2(IndicatorSize / 2.0f, IndicatorSize);
+
+        // Used to move indicator to its own left to avoid bug where it is offset
+        // This is required as Godot 4 no longer allows customizing control rotation pivots, so we need to ourselves
+        // apply this extra offset to get rotation and positioning correct for the indicator
+        var pivotOffset = indicator.GetTransform().X * -IndicatorSize / 2;
 
         indicator.Visible = true;
 
@@ -359,8 +364,10 @@ public partial class RadialMenu : CenterContainer
         // In the indicator rotation coordinates the mouse is a quarter circle off
         indicator.Rotation = mouseAngle + Mathf.Pi * 0.5f;
 
+        // Set indicator position based on the mouse angle. Thanks to this re-calculating the value from scratch the
+        // use of GetTransform above doesn't cause an error that would otherwise start to accumulate.
         indicator.Position = new Vector2(Mathf.Cos(mouseAngle), Mathf.Sin(mouseAngle)) *
-            RadialCircleStart + indicatorOffset;
+            RadialCircleStart + pivotOffset + center;
 
         UpdateHoveredFromAngle(mouseAngle);
     }

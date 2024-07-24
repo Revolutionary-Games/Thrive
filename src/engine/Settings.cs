@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -35,21 +34,6 @@ public class Settings
         // This is mainly just to make sure the property is read here before anyone can change TranslationServer locale
         if (DefaultLanguage.Length < 1)
             GD.PrintErr("Default locale is empty");
-    }
-
-    public enum StrainBarVisibility
-    {
-        [Description("STRAIN_BAR_VISIBILITY_OFF")]
-        Off = 0,
-
-        [Description("STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL")]
-        VisibleWhenCloseToFull = 1,
-
-        [Description("STRAIN_BAR_VISIBILITY_OVER_ZERO")]
-        VisibleWhenOverZero = 2,
-
-        [Description("STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE")]
-        AlwaysVisible = 3,
     }
 
     public static Settings Instance => SingletonInstance;
@@ -118,10 +102,10 @@ public class Settings
     public SettingValue<ControllerType> ControllerPromptType { get; private set; } = new(ControllerType.Automatic);
 
     /// <summary>
-    ///   When should the strain bar be visible
+    ///   Red screen effect for when player is harmed
     /// </summary>
-    public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
-        new(StrainBarVisibility.VisibleWhenOverZero);
+    [JsonProperty]
+    public SettingValue<bool> ScreenDamageEffect { get; private set; } = new(true);
 
     /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
@@ -136,7 +120,7 @@ public class Settings
     public SettingValue<bool> DisplayBackgroundParticles { get; private set; } = new(true);
 
     /// <summary>
-    ///   Enable or disable lighting effects on the GUI. Mainly Used to workaround a bug where the HUD area
+    ///   Enable or disable lighting effects on the GUI. Mainly Used to work around a bug where the HUD area
     ///   surrounding the editor button sometimes disappearing with the light effect turned on.
     /// </summary>
     [JsonProperty]

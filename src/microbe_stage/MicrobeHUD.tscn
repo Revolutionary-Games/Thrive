@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=47 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c5u3d8rsbm0lu" path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" id="18"]
 [ext_resource type="Texture2D" uid="uid://siahiwtfm578" path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" id="21"]
 [ext_resource type="PackedScene" uid="uid://jjb8ei8wuuk" path="res://src/microbe_stage/gui/EditorEntryButton.tscn" id="23_satig"]
+[ext_resource type="PackedScene" uid="uid://uq64skmnc1ob" path="res://src/microbe_stage/gui/DamageEffect.tscn" id="35_h7kw8"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="39_2oma1"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_nfpcw"]
 [ext_resource type="Texture2D" uid="uid://8q2icxsubpdy" path="res://assets/textures/gui/bevel/atp.png" id="41"]
@@ -255,7 +256,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "sprintHotkey", "strainBar", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -269,7 +270,6 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme = ExtResource("5")
 script = ExtResource("13")
-IngestedMatterBarFillColour = null
 WinBoxScene = ExtResource("53")
 bindingModeHotkey = NodePath("ScrollContainer/HotBar/BindingMode")
 unbindAllHotkey = NodePath("ScrollContainer/HotBar/UnbindAll")
@@ -300,8 +300,7 @@ PatchExtinctionBoxScene = ExtResource("60")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
-sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
-strainBar = NodePath("StrainBar")
+damageScreenEffect = NodePath("DamageEffect")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
@@ -321,19 +320,6 @@ theme_override_constants/margin_right = 10
 
 [node name="MouseHoverPanel" parent="TopRight" instance=ExtResource("57")]
 layout_mode = 2
-
-[node name="StrainBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_right = 300.0
-offset_bottom = 27.0
-grow_horizontal = 2
-max_value = 1.0
-show_percentage = false
 
 [node name="BottomLeft" type="Control" parent="."]
 anchors_preset = 0
@@ -361,16 +347,10 @@ alignment = 2
 
 [node name="EnvironmentPanel" parent="BottomLeft/LeftPanels" instance=ExtResource("13_wltm2")]
 layout_mode = 2
-ApplyCompressedVerticalExtraSpace = null
-PanelCompressed = null
-ShowPanel = null
 
 [node name="CompoundPanels" parent="BottomLeft/LeftPanels" instance=ExtResource("14_hlko5")]
 layout_mode = 2
 ShowAgents = false
-ApplyCompressedVerticalExtraSpace = null
-PanelCompressed = null
-ShowPanel = null
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("59")]
 layout_mode = 1
@@ -378,9 +358,6 @@ offset_left = 2.0
 offset_top = -46.0
 offset_right = 447.0
 offset_bottom = -3.0
-ShowCompoundPanelToggles = null
-ShowSuicideButton = null
-ShowProcessesButton = null
 
 [node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -579,10 +556,6 @@ offset_top = 108.0
 offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
-OrderMessagesBottomUp = null
-MaxShownMessages = null
-MaxDisplayTimeBeforeForceFade = null
-MidwayFadeValue = null
 
 [node name="ProcessPanel" parent="." instance=ExtResource("61")]
 offset_left = 8.0
@@ -608,8 +581,6 @@ grow_vertical = 0
 
 [node name="PauseInfo" parent="PausePrompt" index="1"]
 offset_bottom = -24.0
-ExtendedBbcode = null
-EnableTooltipsForMetaTags = null
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(550, 69)
@@ -702,16 +673,6 @@ theme_override_styles/pressed = SubResource("1")
 ActionIcon = ExtResource("21")
 ActionName = "g_secrete_slime"
 
-[node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
-visible = false
-layout_mode = 2
-tooltip_text = "SECRETE_SLIME_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
-ActionIcon = ExtResource("21")
-ActionName = "g_secrete_slime"
-
 [node name="HintText" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -730,6 +691,17 @@ custom_minimum_size = Vector2(450, 0)
 offset_right = 300.0
 offset_bottom = 97.0
 
+[node name="DamageEffect" parent="." instance=ExtResource("35_h7kw8")]
+layout_mode = 1
+
+[connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
+[connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
+[connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
+[connection signal="OnMenuPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenMenu"]
+[connection signal="OnPausePressed" from="BottomLeft/HUDBottomBar" to="." method="PauseButtonPressed"]
+[connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
+[connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
+[connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Multicellular" to="." method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Macroscopic" to="." method="OnBecomeMacroscopicPressed"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
@@ -740,6 +712,8 @@ offset_bottom = 97.0
 [connection signal="pressed" from="ScrollContainer/HotBar/BindingMode" to="." method="OnBindingModePressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/SecreteSlime" to="." method="OnSecreteSlimePressed"]
-[connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
+[connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
+[connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCanceled"]
+[connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularConfirmed"]
 
 [editable path="PausePrompt"]

@@ -180,13 +180,20 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [Export]
     private ProgressBar strainBar = null!;
 
+    [Export]
+    private Control damageScreenEffect = null!;
+
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
 
     private CustomWindow? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
     private ProcessPanel processPanel = null!;
+
+    private ShaderMaterial damageShaderMaterial = null!;
 #pragma warning restore CA2213
+
+    private StringName fadeParameterName = new("fade");
 
     // Used for save load to apply these properties
     private bool temporaryEnvironmentCompressed;
@@ -202,6 +209,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [JsonProperty]
     private Color healthBarFlashColour = new(0, 0, 0, 0);
+
+    private float lastHealth;
+    private float damageEffectCurrentValue;
 
     protected CreatureStageHUDBase()
     {
@@ -304,6 +314,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
         Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
+
+        damageShaderMaterial = (ShaderMaterial)damageScreenEffect.Material;
 
         ammonia = SimulationParameters.Instance.GetCompound("ammonia");
         atp = SimulationParameters.Instance.GetCompound("atp");
@@ -672,6 +684,34 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
         hpLabel.Text = hpText;
         hpLabel.TooltipText = hpText;
+
+        if (Settings.Instance.ScreenDamageEffect.Value)
+        {
+            // Process damage flash effect
+            if (damageEffectCurrentValue > 0)
+            {
+                damageEffectCurrentValue -= delta * Constants.SCREEN_DAMAGE_FLASH_DECAY_SPEED;
+
+                damageScreenEffect.Visible = true;
+                damageShaderMaterial.SetShaderParameter(fadeParameterName, damageEffectCurrentValue);
+            }
+            else
+            {
+                damageScreenEffect.Visible = false;
+            }
+
+            // Start damage flash if player has taken enough damage
+            if (hp < lastHealth && lastHealth - hp > Constants.SCREEN_DAMAGE_FLASH_THRESHOLD)
+                damageEffectCurrentValue = 1;
+        }
+        else if (damageEffectCurrentValue > 0)
+        {
+            // Disable effect if user turned off the setting while flashing
+            damageEffectCurrentValue = 0;
+            damageScreenEffect.Visible = false;
+        }
+
+        lastHealth = hp;
     }
 
     protected virtual void ReadPlayerHitpoints(out float hp, out float maxHP)
@@ -935,10 +975,18 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;
-        fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
-        secreteSlimeHotkey.ButtonPressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
-        signalingAgentsHotkey.ButtonPressed = Input.IsActionPressed(signalingAgentsHotkey.ActionName);
-        ejectEngulfedHotkey.ButtonPressed = Input.IsActionPressed(ejectEngulfedHotkey.ActionName);
+
+        if (fireToxinHotkey.ActionNameAsStringName != null)
+            fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionNameAsStringName);
+
+        if (secreteSlimeHotkey.ActionNameAsStringName != null)
+            secreteSlimeHotkey.ButtonPressed = Input.IsActionPressed(secreteSlimeHotkey.ActionNameAsStringName);
+
+        if (signalingAgentsHotkey.ActionNameAsStringName != null)
+            signalingAgentsHotkey.ButtonPressed = Input.IsActionPressed(signalingAgentsHotkey.ActionNameAsStringName);
+
+        if (ejectEngulfedHotkey.ActionNameAsStringName != null)
+            ejectEngulfedHotkey.ButtonPressed = Input.IsActionPressed(ejectEngulfedHotkey.ActionNameAsStringName);
     }
 
     /// <summary>
@@ -1026,6 +1074,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }
+
+            fadeParameterName.Dispose();
         }
 
         base.Dispose(disposing);

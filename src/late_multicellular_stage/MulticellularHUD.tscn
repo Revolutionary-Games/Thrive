@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://5m75uu7qtg8x"]
+[gd_scene load_steps=42 format=3 uid="uid://5m75uu7qtg8x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="6"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://myc8kb3pyj03" path="res://assets/textures/gui/bevel/actions/BuildStructure.png" id="30"]
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="32"]
 [ext_resource type="Texture2D" uid="uid://drrdhfwd5s8e2" path="res://assets/textures/gui/bevel/actions/EngulfEject.png" id="33"]
+[ext_resource type="PackedScene" uid="uid://uq64skmnc1ob" path="res://src/microbe_stage/gui/DamageEffect.tscn" id="37_rwj55"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="38_ueybo"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_veaul"]
 [ext_resource type="Texture2D" uid="uid://8q2icxsubpdy" path="res://assets/textures/gui/bevel/atp.png" id="47"]
@@ -74,31 +75,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwi1j"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7grn"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 0.784314)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-
-[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "sprintHotkey", "strainBar", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -144,8 +121,7 @@ PatchExtinctionBoxScene = ExtResource("16")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
-sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
-strainBar = NodePath("StrainBar")
+damageScreenEffect = NodePath("DamageEffect")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
@@ -165,19 +141,6 @@ theme_override_constants/margin_right = 10
 
 [node name="MouseHoverPanel" parent="TopRight" instance=ExtResource("6")]
 layout_mode = 2
-
-[node name="StrainBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_right = 300.0
-offset_bottom = 27.0
-grow_horizontal = 2
-max_value = 1.0
-show_percentage = false
 
 [node name="TopLeft" type="Control" parent="."]
 anchors_preset = 0
@@ -494,16 +457,6 @@ tooltip_text = "EJECT_ENGULFED_TOOLTIP"
 ActionIcon = ExtResource("33")
 ActionName = "g_eject_engulfed"
 
-[node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource("78")]
-visible = false
-layout_mode = 2
-tooltip_text = "SECRETE_SLIME_TOOLTIP"
-theme_override_styles/normal = SubResource("StyleBoxFlat_uwi1j")
-theme_override_styles/hover = SubResource("StyleBoxFlat_h7grn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_h7grn")
-ActionIcon = ExtResource("24")
-ActionName = "g_secrete_slime"
-
 [node name="HintText" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -569,12 +522,24 @@ custom_minimum_size = Vector2(450, 0)
 DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 
+[node name="DamageEffect" parent="." instance=ExtResource("37_rwj55")]
+layout_mode = 1
+
+[connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
+[connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
+[connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
+[connection signal="OnMenuPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenMenu"]
+[connection signal="OnPausePressed" from="BottomLeft/HUDBottomBar" to="." method="PauseButtonPressed"]
+[connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
+[connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
+[connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnMoveToLandPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnAwakenPressed"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Interact" to="." method="ForwardInteractButton"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Inventory" to="." method="ForwardOpenInventory"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Build" to="." method="ForwardBuildPressed"]
-[connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
+[connection signal="Confirmed" from="MoveToLandConfirmation" to="." method="OnMoveToLandConfirmed"]
+[connection signal="Confirmed" from="MoveToAwakeningConfirm" to="." method="OnAwakenConfirmed"]
 
 [editable path="PausePrompt"]
