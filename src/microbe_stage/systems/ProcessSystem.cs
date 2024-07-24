@@ -662,6 +662,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         if (environmentModifier <= MathUtils.EPSILON)
             canDoProcess = false;
 
+        if (process.SpeedMultiplier <= 0)
+            canDoProcess = false;
+
         // Compute spaceConstraintModifier before updating the final use and input amounts
         foreach (var entry in processData.Inputs)
         {
@@ -713,7 +716,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             // For now lets assume compounds we produce are also useful
             bag.SetUseful(entry.Key);
 
-            var outputAdded = entry.Value * process.Rate * environmentModifier;
+            var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier;
 
             // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
             currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);

@@ -16,6 +16,8 @@ public struct TweakedProcess
 
     public float Rate;
 
+    public float SpeedMultiplier = 1;
+
     [JsonConstructor]
     public TweakedProcess(BioProcess process, float rate = 1.0f)
     {
