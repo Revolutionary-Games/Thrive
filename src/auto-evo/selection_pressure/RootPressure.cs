@@ -18,7 +18,7 @@ public class RootPressure : SelectionPressure
     {
     }
 
-    public override float Score(MicrobeSpecies species, SimulationCache cache)
+    public override float Score(Species species, SimulationCache cache)
     {
         return 1;
     }

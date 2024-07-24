@@ -25,9 +25,12 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         ToCompound = outCompound;
     }
 
-    public override float Score(MicrobeSpecies species, SimulationCache cache)
+    public override float Score(Species species, SimulationCache cache)
     {
-        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, species, Patch.Biome);
+        if (species is not MicrobeSpecies microbeSpecies)
+            return 0;
+
+        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, Patch.Biome);
     }
 
     public override float GetEnergy()

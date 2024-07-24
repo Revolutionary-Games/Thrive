@@ -43,26 +43,29 @@ public class ChunkCompoundPressure : SelectionPressure
         totalEnergy = ventedEnergy * chunk.Density * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
     }
 
-    public override float Score(MicrobeSpecies species, SimulationCache cache)
+    public override float Score(Species species, SimulationCache cache)
     {
+        if (species is not MicrobeSpecies microbeSpecies)
+            return 0;
+
         var score = 1.0f;
 
         // Speed is not too important to chunk microbes
         // But all else being the same faster is better than slower
-        score += cache.GetBaseSpeedForSpecies(species) * 0.1f;
+        score += cache.GetBaseSpeedForSpecies(microbeSpecies) * 0.1f;
 
         // Diminishing returns on storage
-        score += (Mathf.Pow(species.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+        score += (Mathf.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
 
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
-        if (!species.CanEngulf ||
-            cache.GetBaseHexSizeForSpecies(species) < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+        if (!microbeSpecies.CanEngulf ||
+            cache.GetBaseHexSizeForSpecies(microbeSpecies) < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
         {
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        var compoundATP = cache.GetCompoundGeneratedFrom(compound, ATP, species, patch.Biome);
-        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+        var compoundATP = cache.GetCompoundGeneratedFrom(compound, ATP, microbeSpecies, patch.Biome);
+        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
         score *= Mathf.Min(compoundATP / energyBalance.TotalConsumption, 1);
 

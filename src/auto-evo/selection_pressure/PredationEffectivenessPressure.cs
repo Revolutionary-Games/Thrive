@@ -9,12 +9,12 @@ public class PredationEffectivenessPressure : SelectionPressure
     public static readonly LocalizedString Name = new LocalizedString("PREDATION_EFFECTIVENESS_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
-    public readonly MicrobeSpecies Prey;
+    public readonly Species Prey;
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Patch patch;
     private readonly float totalEnergy;
 
-    public PredationEffectivenessPressure(MicrobeSpecies prey, Patch patch, float weight) :
+    public PredationEffectivenessPressure(Species prey, Patch patch, float weight) :
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
             AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
@@ -32,12 +32,14 @@ public class PredationEffectivenessPressure : SelectionPressure
         this.patch = patch;
 
         patch.SpeciesInPatch.TryGetValue(prey, out long population);
-        totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
+
+        totalEnergy = population * CommonPressureFunctions.GetOrganelleCount(prey) *
+            Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
 
         Prey = prey;
     }
 
-    public override float Score(MicrobeSpecies species, SimulationCache cache)
+    public override float Score(Species species, SimulationCache cache)
     {
         // No Cannibalism
         if (species == Prey)
@@ -45,11 +47,8 @@ public class PredationEffectivenessPressure : SelectionPressure
             return 0.0f;
         }
 
-        var microbeSpecies = species;
-        var microbePrey = Prey;
-
-        var predatorScore = cache.GetPredationScore(microbeSpecies, microbePrey, patch.Biome);
-        var reversePredatorScore = cache.GetPredationScore(microbePrey, microbeSpecies, patch.Biome);
+        var predatorScore = cache.GetPredationScore(species, Prey, patch.Biome);
+        var reversePredatorScore = cache.GetPredationScore(Prey, species, patch.Biome);
 
         // Explicitly prohibit circular predation relationships
         if (reversePredatorScore > predatorScore)

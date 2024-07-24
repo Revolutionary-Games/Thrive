@@ -20,14 +20,17 @@ public class MetabolicStabilityPressure : SelectionPressure
         this.patch = patch;
     }
 
-    public override float Score(MicrobeSpecies species, SimulationCache cache)
+    public override float Score(Species species, SimulationCache cache)
     {
-        if (cache.GetBaseSpeedForSpecies(species) == 0)
+        if (species is not MicrobeSpecies microbeSpecies)
+            return 0;
+
+        if (cache.GetBaseSpeedForSpecies(microbeSpecies) == 0)
         {
             return 0.0f;
         }
 
-        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
         if (energyBalance.ConservativeFinalBalance > 0)
         {

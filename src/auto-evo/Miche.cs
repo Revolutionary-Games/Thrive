@@ -12,7 +12,7 @@ public class Miche
     public List<Miche> Children = new();
 
     // Occupant should always be null if this Miche has children
-    public MicrobeSpecies? Occupant;
+    public Species? Occupant;
     public SelectionPressure Pressure;
 
     public Miche(SelectionPressure pressure)
@@ -56,12 +56,12 @@ public class Miche
         return nodes;
     }
 
-    public IEnumerable<MicrobeSpecies> GetOccupants()
+    public IEnumerable<Species> GetOccupants()
     {
-        return GetOccupants(new List<MicrobeSpecies>());
+        return GetOccupants(new List<Species>());
     }
 
-    public IEnumerable<MicrobeSpecies> GetOccupants(List<MicrobeSpecies> occupants)
+    public IEnumerable<Species> GetOccupants(List<Species> occupants)
     {
         if (Occupant != null)
         {
@@ -106,7 +106,7 @@ public class Miche
         }
     }
 
-    public bool InsertSpecies(MicrobeSpecies species, SimulationCache cache, bool dry = false)
+    public bool InsertSpecies(Species species, SimulationCache cache, bool dry = false)
     {
         var scoresDictionary = GetOccupants().Distinct().ToDictionary(x => x, _ => 0.0f);
 
@@ -121,8 +121,7 @@ public class Miche
     /// <returns>
     ///   Returns a bool based on if the species was inserted into a leaf node
     /// </returns>
-    public bool InsertSpecies(MicrobeSpecies species, Dictionary<MicrobeSpecies, float> scoresSoFar,
-        SimulationCache cache, bool dry)
+    public bool InsertSpecies(Species species, Dictionary<Species, float> scoresSoFar, SimulationCache cache, bool dry)
     {
         var myScore = Pressure.Score(species, cache);
 
@@ -138,7 +137,7 @@ public class Miche
             return true;
         }
 
-        var newScores = new Dictionary<MicrobeSpecies, float>();
+        var newScores = new Dictionary<Species, float>();
 
         foreach (var currentSpecies in GetOccupants())
         {

@@ -21,12 +21,15 @@ public class MaintainCompound : SelectionPressure
         this.compound = compound;
     }
 
-    public override float Score(MicrobeSpecies species, SimulationCache cache)
+    public override float Score(Species species, SimulationCache cache)
     {
+        if (species is not MicrobeSpecies microbeSpecies)
+            return 0;
+
         var compoundUsed = 0.0f;
         var compoundCreated = 0.0f;
 
-        foreach (var organelle in species.Organelles)
+        foreach (var organelle in microbeSpecies.Organelles)
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
             {

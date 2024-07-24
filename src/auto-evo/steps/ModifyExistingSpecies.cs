@@ -164,16 +164,20 @@ public class ModifyExistingSpecies : IRunStep
 
         foreach (var species in oldOccupants)
         {
+            if (species is not MicrobeSpecies microbeSpecies)
+                continue;
+
             foreach (var traversal in leafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()))
             {
                 var pressures = traversal.Select(x => x.Pressure).ToList();
 
                 pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
 
-                var variants = GenerateMutations(species, possibleMutationsToTryPerSpecies, Cache, pressures, random);
+                var variants = GenerateMutations(microbeSpecies, possibleMutationsToTryPerSpecies, Cache,
+                    pressures, random);
 
-                mutationsToTry.AddRange(variants.Select(speciesToAdd => new Mutation(species, speciesToAdd,
-                    RunResults.NewSpeciesType.SplitDueToMutation)).ToList());
+                mutationsToTry.AddRange(variants.Select(speciesToAdd => new Mutation(microbeSpecies,
+                    speciesToAdd, RunResults.NewSpeciesType.SplitDueToMutation)).ToList());
             }
         }
 
@@ -188,17 +192,20 @@ public class ModifyExistingSpecies : IRunStep
 
             foreach (var species in oldOccupants)
             {
+                if (species is not MicrobeSpecies microbeSpecies)
+                    continue;
+
                 foreach (var traversal in emptyTraversals)
                 {
                     var pressures = traversal.Select(x => x.Pressure).ToList();
 
                     pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
 
-                    var variants = GenerateMutations(species, possibleMutationsToTryPerSpecies, Cache,
+                    var variants = GenerateMutations(microbeSpecies, possibleMutationsToTryPerSpecies, Cache,
                         pressures, random);
 
-                    pullMicheList.AddRange(variants.Select(speciesToAdd => new Mutation(species, speciesToAdd,
-                        RunResults.NewSpeciesType.FillNiche)).ToList());
+                    pullMicheList.AddRange(variants.Select(speciesToAdd => new Mutation(microbeSpecies,
+                        speciesToAdd, RunResults.NewSpeciesType.FillNiche)).ToList());
                 }
             }
 

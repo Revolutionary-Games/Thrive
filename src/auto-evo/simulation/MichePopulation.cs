@@ -184,7 +184,7 @@ public static class MichePopulation
         populations.MicheByPatch.TryGetValue(patch, out var miche);
 
         foreach (var s in simulationConfiguration.ExtraSpecies)
-            miche!.InsertSpecies((MicrobeSpecies)s, cache);
+            miche!.InsertSpecies(s, cache);
 
         var species = genericSpecies.ToList();
 
@@ -196,7 +196,14 @@ public static class MichePopulation
 
         foreach (var currentSpecies in species)
         {
-            var energyBalanceInfo = cache.GetEnergyBalanceForSpecies((MicrobeSpecies)currentSpecies, patch.Biome);
+            if (currentSpecies is not MicrobeSpecies microbeSpecies)
+            {
+                var population = simulationConfiguration.Results.GetPopulationInPatch(currentSpecies, patch);
+                populations.AddPopulationResultForSpecies(currentSpecies, patch, population);
+                continue;
+            }
+
+            var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
             var individualCost = energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
                 * currentSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
 
@@ -217,7 +224,7 @@ public static class MichePopulation
                 if (trackEnergy)
                 {
                     populations.AddTrackedEnergyForSpecies(currentSpecies, patch, subMiche.Pressure,
-                        subMiche.Pressure.Score((MicrobeSpecies)currentSpecies, cache), micheEnergy);
+                        subMiche.Pressure.Score(microbeSpecies, cache), micheEnergy);
                 }
             }
 

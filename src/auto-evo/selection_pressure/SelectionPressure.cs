@@ -14,7 +14,7 @@ public abstract class SelectionPressure
         Mutations = mutations;
     }
 
-    public abstract float Score(MicrobeSpecies species, SimulationCache cache);
+    public abstract float Score(Species species, SimulationCache cache);
     public abstract float GetEnergy();
 
     // TODO: Make sure this does not make things worse

@@ -41,9 +41,9 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         Predator = predator;
     }
 
-    public override float Score(MicrobeSpecies species, SimulationCache cache)
+    public override float Score(Species species, SimulationCache cache)
     {
-        var predationScore = cache.GetPredationScore((MicrobeSpecies)Predator, species, Patch.Biome);
+        var predationScore = cache.GetPredationScore(Predator, species, Patch.Biome);
 
         if (predationScore <= 0)
         {

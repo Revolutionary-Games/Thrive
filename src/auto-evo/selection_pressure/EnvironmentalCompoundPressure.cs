@@ -35,14 +35,19 @@ public class EnvironmentalCompoundPressure : SelectionPressure
         totalEnergy = patch.Biome.AverageCompounds[compound].Ambient * energyMultiplier;
     }
 
-    public override float Score(MicrobeSpecies species, SimulationCache cache)
+    public override float Score(Species species, SimulationCache cache)
     {
-        var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, species, patch.Biome);
+        if (species is not MicrobeSpecies microbeSpecies)
+            return 0;
+
+        var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, microbeSpecies, patch.Biome);
 
         if (createdCompound == Glucose)
-            amountCreated *= cache.GetCompoundConversionScoreForSpecies(Glucose, ATP, species, patch.Biome);
+        {
+            amountCreated *= cache.GetCompoundConversionScoreForSpecies(Glucose, ATP, microbeSpecies, patch.Biome);
+        }
 
-        var energyBalance = cache.GetEnergyBalanceForSpecies(species, patch.Biome);
+        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
         return Mathf.Min(amountCreated / energyBalance.TotalConsumption, 1);
     }

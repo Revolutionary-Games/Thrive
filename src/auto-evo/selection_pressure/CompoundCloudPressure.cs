@@ -38,12 +38,15 @@ public class CompoundCloudPressure : SelectionPressure
         }
     }
 
-    public override float Score(MicrobeSpecies species, SimulationCache cache)
+    public override float Score(Species species, SimulationCache cache)
     {
-        var score = cache.GetBaseSpeedForSpecies(species);
+        if (species is not MicrobeSpecies microbeSpecies)
+            return 0;
+
+        var score = cache.GetBaseSpeedForSpecies(microbeSpecies);
 
         // Species that are less active during the night get a small penalty here based on their activity
-        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(species, patch.Biome))
+        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
         {
             var multiplier = species.Behaviour.Activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 

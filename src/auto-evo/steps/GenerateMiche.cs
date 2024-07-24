@@ -115,8 +115,7 @@ public class GenerateMiche : IRunStep
         // Heterotrophic Miches
         foreach (var possiblePrey in Patch.SpeciesInPatch)
         {
-            predationGlucose.AddChild(
-                new Miche(new PredationEffectivenessPressure((MicrobeSpecies)possiblePrey.Key, Patch, 1.0f)));
+            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(possiblePrey.Key, Patch, 1.0f)));
         }
 
         predationRoot.AddChild(predationGlucose);
@@ -129,7 +128,7 @@ public class GenerateMiche : IRunStep
     {
         foreach (var species in Patch.SpeciesInPatch.Keys)
         {
-            miche.InsertSpecies((MicrobeSpecies)species, Cache);
+            miche.InsertSpecies(species, Cache);
         }
 
         return miche;
