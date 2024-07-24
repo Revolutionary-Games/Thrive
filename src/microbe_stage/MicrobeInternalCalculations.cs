@@ -372,14 +372,14 @@ public static class MicrobeInternalCalculations
         return result;
     }
 
-    public static float CalculateSurfaceArea(IEnumerable<IPositionedOrganelle> organelles)
+    public static float CalculateSurfaceAreaToVolumeRatio(IEnumerable<IPositionedOrganelle> organelles)
     {
-        var minR = organelles.Min(x => x.Position.R);
-        var maxR = organelles.Max(x => x.Position.R);
-        var minQ = organelles.Min(x => x.Position.Q);
-        var maxQ = organelles.Max(x => x.Position.Q);
+        var minX = organelles.Min(x => Hex.AxialToCartesian(x.Position).X);
+        var maxX = organelles.Max(x => Hex.AxialToCartesian(x.Position).X);
+        var minZ = organelles.Min(x => Hex.AxialToCartesian(x.Position).Z);
+        var maxZ = organelles.Max(x => Hex.AxialToCartesian(x.Position).Z);
 
-        return (float)((maxQ - minQ + 1) + (maxR - minR + 1)) / (float)organelles.Count();
+        return (float)((maxZ - minZ + 1) + (maxX - minX + 1)) / (float)organelles.Count();
     }
 
     /// <summary>

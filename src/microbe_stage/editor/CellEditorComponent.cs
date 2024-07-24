@@ -509,7 +509,7 @@ public partial class CellEditorComponent :
                 result += organelle.Definition.HexCount;
             }
 
-            return result;
+            return (int)(result / MicrobeInternalCalculations.CalculateSurfaceAreaToVolumeRatio(editedMicrobeOrganelles.Organelles!)) + 1;
         }
     }
 
@@ -1253,7 +1253,7 @@ public partial class CellEditorComponent :
 
     public float CalculateHitpoints()
     {
-        var maxHitpoints = (Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER) / MicrobeInternalCalculations.CalculateSurfaceArea(editedMicrobeOrganelles.Organelles!);
+        var maxHitpoints = (Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER) / MicrobeInternalCalculations.CalculateSurfaceAreaToVolumeRatio(editedMicrobeOrganelles.Organelles!);
 
         return maxHitpoints;
     }

@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -54,9 +55,10 @@ public struct Health
 
 public static class HealthHelpers
 {
-    public static float CalculateMicrobeHealth(MembraneType membraneType, float membraneRigidity)
+    public static float CalculateMicrobeHealth(ICellDefinition organelleContainer, MembraneType membraneType, float membraneRigidity)
     {
-        return membraneType.Hitpoints + membraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+        return membraneType.Hitpoints + membraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER 
+            / MicrobeInternalCalculations.CalculateSurfaceAreaToVolumeRatio(organelleContainer.Organelles!);
     }
 
     /// <summary>
