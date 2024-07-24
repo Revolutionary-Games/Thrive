@@ -52,8 +52,6 @@ public class CalculatePopulation : IRunStep
 
         // TODO: allow passing in a random seed
 
-        // PopulationSimulation.Simulate(config, null, new XoShiRo256starstar());
-
         MichePopulation.Simulate(config, null, new XoShiRo256starstar());
 
         return true;

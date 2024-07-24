@@ -27,10 +27,8 @@ public class ModifyExistingSpecies : IRunStep
     /// </summary>
     /// <returns>List of viable variants, and the provided species</returns>
     public static List<MicrobeSpecies> GenerateMutations(MicrobeSpecies baseSpecies, int amount,
-        SimulationCache cache, List<SelectionPressure> selectionPressures)
+        SimulationCache cache, List<SelectionPressure> selectionPressures, Random random)
     {
-        var random = new Random();
-
         // TODO: Possibly make that 100 a difficulty setting
         var viableVariants = new List<Tuple<MicrobeSpecies, float>>
             { Tuple.Create(baseSpecies, 100.0f) };
@@ -149,7 +147,7 @@ public class ModifyExistingSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        // Have this be passed in
+        // TODO: Have this be passed in
         var random = new Random();
 
         var oldMiche = results.MicheByPatch[Patch];
@@ -172,7 +170,7 @@ public class ModifyExistingSpecies : IRunStep
 
                 pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
 
-                var variants = GenerateMutations(species, possibleMutationsToTryPerSpecies, Cache, pressures);
+                var variants = GenerateMutations(species, possibleMutationsToTryPerSpecies, Cache, pressures, random);
 
                 mutationsToTry.AddRange(variants.Select(speciesToAdd => new Mutation(species, speciesToAdd,
                     RunResults.NewSpeciesType.SplitDueToMutation)).ToList());
@@ -196,7 +194,8 @@ public class ModifyExistingSpecies : IRunStep
 
                     pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
 
-                    var variants = GenerateMutations(species, possibleMutationsToTryPerSpecies, Cache, pressures);
+                    var variants = GenerateMutations(species, possibleMutationsToTryPerSpecies, Cache,
+                        pressures, random);
 
                     pullMicheList.AddRange(variants.Select(speciesToAdd => new Mutation(species, speciesToAdd,
                         RunResults.NewSpeciesType.FillNiche)).ToList());

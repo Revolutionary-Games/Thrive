@@ -47,7 +47,7 @@ public static class CommonMutationFunctions
                 // Offset by hexes in organelle we are looking at
                 var pos = otherOrganelle.Position + hex;
 
-                foreach (int side in SideTraveralOrder(hex, direction, random))
+                foreach (int side in SideTraversalOrder(hex, direction, random))
                 {
                     // pick a hex direction, with a slight bias towards forwards
                     for (int radius = 1; radius <= 3; ++radius)
@@ -140,7 +140,7 @@ public static class CommonMutationFunctions
         }
     }
 
-    private static int[] SideTraveralOrder(Hex hex, Direction direction, Random random)
+    private static int[] SideTraversalOrder(Hex hex, Direction direction, Random random)
     {
         if (hex.Q < 0)
         {
