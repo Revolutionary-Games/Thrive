@@ -87,7 +87,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
         var unsignedTurnAngle = Math.Abs(turnAngle);
 
-        // linear function reaching 1 at CELL_TURN_INFLECTION_RADIANS
+        // Linear function reaching 1 at CELL_TURN_INFLECTION_RADIANS
         var blendFactor = Mathf.Pi / 4.0f * Mathf.Min(unsignedTurnAngle *
             (1.0f / Constants.CELL_TURN_INFLECTION_RADIANS), 1.0f);
 
