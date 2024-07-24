@@ -99,6 +99,21 @@ public partial class PatchMapDrawer : Control
             if (selectedPatch == value)
                 return;
 
+            // Only allow selecting the patch if it is selectable
+            foreach (var (patch, node) in nodes)
+            {
+                if (patch == value)
+                {
+                    if (!node.Enabled)
+                    {
+                        GD.Print("Not selecting map node that is not enabled");
+                        return;
+                    }
+
+                    break;
+                }
+            }
+
             selectedPatch = value;
             UpdateNodeSelections();
             NotifySelectionChanged();
@@ -130,7 +145,7 @@ public partial class PatchMapDrawer : Control
     {
         base._Process(delta);
 
-        CheckForDirtyNodes();
+        CheckNodeSelectionUpdate();
 
         if (dirty)
         {
@@ -1002,15 +1017,34 @@ public partial class PatchMapDrawer : Control
         OnSelectedPatchChanged?.Invoke(this);
     }
 
-    private void CheckForDirtyNodes()
+    private void CheckNodeSelectionUpdate()
     {
+        bool needsUpdate = false;
+
         foreach (var node in nodes.Values)
         {
-            if (node.IsDirty)
+            if (node.SelectionDirty)
             {
-                dirty = true;
-                return;
+                needsUpdate = true;
+                break;
             }
+        }
+
+        if (needsUpdate)
+        {
+            UpdateNodeSelections();
+
+            foreach (var node in nodes.Values)
+            {
+                if (SelectedPatch == null)
+                    node.AdjacentToSelectedPatch = false;
+
+                node.UpdateSelectionState();
+            }
+
+            // Also needs to update the lines connecting patches for those to display properly
+            // TODO: would be really nice to be able to just update the line objects without redoing them all
+            RebuildRegionConnections();
         }
     }
 }
