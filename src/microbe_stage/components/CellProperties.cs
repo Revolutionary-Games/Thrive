@@ -35,6 +35,8 @@ public struct CellProperties
     [JsonIgnore]
     public Membrane? CreatedMembrane;
 
+    public float SurfaceAreaToVolumeRatio;
+
     public bool IsBacteria;
 
     /// <summary>
@@ -49,6 +51,7 @@ public struct CellProperties
         MembraneType = initialDefinition.MembraneType;
         MembraneRigidity = initialDefinition.MembraneRigidity;
         CreatedMembrane = null;
+        SurfaceAreaToVolumeRatio = MicrobeInternalCalculations.CalculateSurfaceAreaToVolumeRatio(initialDefinition.Organelles);
         IsBacteria = initialDefinition.IsBacteria;
 
         // These are initialized later

@@ -148,7 +148,7 @@ public static class HealthHelpers
         if (damageSource is "toxin" or "oxytoxy" or "injectisome")
         {
             // Divide damage by toxin resistance
-            damage /= cellProperties.MembraneType.ToxinResistance;
+            damage /= cellProperties.MembraneType.ToxinResistance * cellProperties.SurfaceAreaToVolumeRatio;
         }
         else if (damageSource is "pilus" or "chunk" or "ice")
         {
