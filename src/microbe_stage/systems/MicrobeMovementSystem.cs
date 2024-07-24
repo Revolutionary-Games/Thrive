@@ -92,15 +92,15 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             (1.0f / Constants.CELL_TURN_INFLECTION_RADIANS), 1.0f);
 
         // Simplify turns to 90 degrees to keep consistent turning speed
-        if (turnAngle > 0.1f)
+        if (turnAngle > 0.0f)
         {
             lookVector = (position.Rotation
-                * new Vector3(-Mathf.Cos(blendFactor), 0, Mathf.Sin(blendFactor))).Normalized();
+                * new Vector3(-Mathf.Sin(blendFactor), 0, -Mathf.Cos(blendFactor))).Normalized();
         }
-        else if (turnAngle < -0.1f)
+        else if (turnAngle < 0.0f)
         {
             lookVector = (position.Rotation
-                * new Vector3(Mathf.Cos(blendFactor), 0, Mathf.Sin(blendFactor))).Normalized();
+                * new Vector3(Mathf.Sin(blendFactor), 0, -Mathf.Cos(blendFactor))).Normalized();
         }
         else if (lookVectorLength > MathUtils.EPSILON)
         {
