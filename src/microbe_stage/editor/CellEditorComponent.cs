@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using AutoEvo;
+using Components;
 using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
@@ -1252,7 +1253,7 @@ public partial class CellEditorComponent :
 
     public float CalculateHitpoints()
     {
-        var maxHitpoints = Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+        var maxHitpoints = (Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER) / MicrobeInternalCalculations.CalculateSurfaceArea(editedMicrobeOrganelles.Organelles!);
 
         return maxHitpoints;
     }

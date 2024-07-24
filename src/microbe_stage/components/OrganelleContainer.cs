@@ -302,7 +302,7 @@ public static class OrganelleContainerHelpers
         ref var health = ref entity.Get<Health>();
         if (!health.Dead && health.CurrentHealth > 0 && health.MaxHealth > 0)
         {
-            health.RescaleMaxHealth(HealthHelpers.CalculateMicrobeHealth(cellDefinition.MembraneType,
+            health.RescaleMaxHealth(HealthHelpers.CalculateMicrobeHealth(cellDefinition, cellDefinition.MembraneType,
                 cellDefinition.MembraneRigidity));
         }
     }

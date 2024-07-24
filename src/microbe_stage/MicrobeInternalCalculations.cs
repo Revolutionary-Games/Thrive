@@ -372,6 +372,16 @@ public static class MicrobeInternalCalculations
         return result;
     }
 
+    public static float CalculateSurfaceArea(IEnumerable<IPositionedOrganelle> organelles)
+    {
+        var minR = organelles.Min(x => x.Position.R);
+        var maxR = organelles.Max(x => x.Position.R);
+        var minQ = organelles.Min(x => x.Position.Q);
+        var maxQ = organelles.Max(x => x.Position.Q);
+
+        return (float)((maxQ - minQ + 1) + (maxR - minR + 1)) / (float)organelles.Count();
+    }
+
     /// <summary>
     ///   Gives bonus compounds if time is close to night. This is done to compensate spawning stuff close to night to
     ///   fill them up as if they had been spawned earlier.

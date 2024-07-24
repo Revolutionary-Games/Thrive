@@ -674,7 +674,7 @@ public static class SpawnHelpers
             TimeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL,
         });
 
-        entity.Set(new Health(HealthHelpers.CalculateMicrobeHealth(usedCellDefinition.MembraneType,
+        entity.Set(new Health(HealthHelpers.CalculateMicrobeHealth(usedCellDefinition, usedCellDefinition.MembraneType,
             usedCellDefinition.MembraneRigidity)));
 
         entity.Set(new CommandSignaler
