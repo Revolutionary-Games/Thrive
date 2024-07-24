@@ -50,11 +50,10 @@ predation.) This should be expanded to be much more dynamic in the future.
 ### Insert Step
 After the Miche Tree is generated, all of the species present in the patch are
 inserted one by one into the top of the tree. First the species gets a score
-from the Root Miche's Selection Pressure. If it did not fail the pressure (score
->=
-0) it continues down the tree recursively getting fitness scores from all of
-that Miche's Children. If at any point a species fails a pressure it is pruned
-from going further down that branch of the tree to prevent unnecessary
+from the Root Miche's Selection Pressure. If it did not fail the pressure
+(score >= 0) it continues down the tree recursively getting fitness scores from
+all of that Miche's Children. If at any point a species fails a pressure it is
+pruned from going further down that branch of the tree to prevent unnecessary
 computation. If a species reaches a leaf node without being pruned it's scores
 on each Selection Pressure are compared relative to the Leaf Miche's current
 occupant. If on average the new species has a higher fitness than the occupant
