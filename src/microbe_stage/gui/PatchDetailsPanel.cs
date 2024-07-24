@@ -4,11 +4,13 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
+using Newtonsoft.Json;
 using Range = Godot.Range;
 
 /// <summary>
 ///   Shows details about a <see cref="Patch"/> in the GUI
 /// </summary>
+[JsonObject(MemberSerialization.OptIn)]
 public partial class PatchDetailsPanel : PanelContainer
 {
 #pragma warning disable CA2213
@@ -131,11 +133,16 @@ public partial class PatchDetailsPanel : PanelContainer
         Completed,
     }
 
+    [JsonIgnore]
     public Action<Patch>? OnMoveToPatchClicked { get; set; }
+
+    [JsonIgnore]
     public Action<Migration>? OnMigrationAdded { get; set; }
 
+    [JsonIgnore]
     public Action<MigrationWizardStep>? OnMigrationWizardStepChanged { get; set; }
 
+    [JsonIgnore]
     public Patch? SelectedPatch
     {
         get => targetPatch;
@@ -148,6 +155,7 @@ public partial class PatchDetailsPanel : PanelContainer
         }
     }
 
+    [JsonIgnore]
     public Patch? CurrentPatch
     {
         get => currentPatch;
@@ -161,15 +169,19 @@ public partial class PatchDetailsPanel : PanelContainer
         }
     }
 
+    [JsonIgnore]
     public bool IsPatchMoveValid { get; set; }
 
     /// <summary>
     ///   Created pending migrations
     /// </summary>
-    public List<Migration> Migrations { get; } = new();
+    [JsonProperty]
+    public List<Migration> Migrations { get; private set; } = new();
 
+    [JsonIgnore]
     public Species? SpeciesToUseForMigrations { get; set; }
 
+    [JsonIgnore]
     public MigrationWizardStep MigrationStep
     {
         get => currentMigrationStep;
@@ -184,6 +196,7 @@ public partial class PatchDetailsPanel : PanelContainer
         }
     }
 
+    [JsonIgnore]
     public Patch? CurrentMigrationSourcePatch => currentlyEditedMigration?.SourcePatch;
 
     [Export]

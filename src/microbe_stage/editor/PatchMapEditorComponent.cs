@@ -18,15 +18,6 @@ using Newtonsoft.Json;
 public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
     where TEditor : IEditorWithPatches
 {
-    [Export]
-    public NodePath? MapDrawerPath;
-
-    [Export]
-    public NodePath PatchDetailsPanelPath = null!;
-
-    [Export]
-    public NodePath SeedLabelPath = null!;
-
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
@@ -37,8 +28,15 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     protected Patch playerPatchOnEntry = null!;
 
 #pragma warning disable CA2213
+    [Export]
     protected PatchMapDrawer mapDrawer = null!;
+
+    [Export]
+    [AssignOnlyChildItemsOnDeserialize]
+    [JsonProperty]
     protected PatchDetailsPanel detailsPanel = null!;
+
+    [Export]
     private Label seedLabel = null!;
 #pragma warning restore CA2213
 
@@ -47,7 +45,7 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     [JsonProperty]
     private FogOfWarMode fogOfWar;
 
-    private bool enabledSourcePatchFilter;
+    private bool enabledMigrationPatchFilter;
 
     protected PatchMapEditorComponent()
     {
@@ -71,10 +69,6 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     public override void _Ready()
     {
         base._Ready();
-
-        mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
-        detailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
-        seedLabel = GetNode<Label>(SeedLabelPath);
 
         mapDrawer.OnSelectedPatchChanged = _ =>
         {
@@ -246,21 +240,6 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         UpdateSeedLabel();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MapDrawerPath != null)
-            {
-                MapDrawerPath.Dispose();
-                PatchDetailsPanelPath.Dispose();
-                SeedLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Returns true when the player is allowed to move to the specified patch
     /// </summary>
@@ -387,7 +366,7 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
 
                 mapDrawer.ApplyPatchNodeEnabledStatus(p =>
                     p.GetSpeciesSimulationPopulation(Editor.EditedBaseSpecies) > 0);
-                enabledSourcePatchFilter = true;
+                enabledMigrationPatchFilter = true;
 
                 break;
             }
@@ -402,10 +381,16 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
                 }
                 else
                 {
+                    // Reset selected patch to make the map behave better for this case
                     mapDrawer.SelectedPatch = null;
 
-                    mapDrawer.ApplyPatchNodeEnabledStatus(p => p != nextTo && p.Adjacent.Contains(nextTo));
-                    enabledSourcePatchFilter = true;
+                    // Apply the filter
+                    // TODO: should this allow selecting undiscovered patches? The player species being present in a
+                    // patch doesn't reveal the patch so it is a bit weird to need to use a bunch of free moves to
+                    // reveal patches (this kind of feels like an exploit and someone might report it as a bug).
+                    mapDrawer.ApplyPatchNodeEnabledStatus(p =>
+                        p != nextTo && p.Adjacent.Contains(nextTo) && p.Visibility == MapElementVisibility.Shown);
+                    enabledMigrationPatchFilter = true;
                 }
 
                 break;
@@ -418,7 +403,7 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
 
                 mapDrawer.SelectedPatch = null;
                 mapDrawer.ApplyPatchNodeEnabledStatus(false);
-                enabledSourcePatchFilter = true;
+                enabledMigrationPatchFilter = true;
 
                 break;
             }
@@ -426,10 +411,10 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
             default:
             {
                 // Otherwise reset the filter
-                if (enabledSourcePatchFilter)
+                if (enabledMigrationPatchFilter)
                 {
                     mapDrawer.ApplyPatchNodeEnabledStatus(true);
-                    enabledSourcePatchFilter = false;
+                    enabledMigrationPatchFilter = false;
                 }
 
                 break;
