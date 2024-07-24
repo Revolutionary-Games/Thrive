@@ -663,7 +663,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             canDoProcess = false;
 
         if (process.SpeedMultiplier <= 0)
+        {
             canDoProcess = false;
+        }
+        else if (process.SpeedMultiplier > 1)
+        {
+            process.SpeedMultiplier = 1;
+        }
 
         // Compute spaceConstraintModifier before updating the final use and input amounts
         foreach (var entry in processData.Inputs)
@@ -678,7 +684,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             // process output numbers (computed after testing the speed), we need to multiply by inverse delta
             currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
 
-            inputRemoved = inputRemoved * delta * spaceConstraintModifier;
+            inputRemoved = inputRemoved * delta * spaceConstraintModifier * process.SpeedMultiplier;
 
             // If not enough we can't run the process unless we can lower spaceConstraintModifier enough
             var availableAmount = bag.GetCompoundAmount(entry.Key);
@@ -766,7 +772,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             return;
         }
 
-        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier;
+        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier * process.SpeedMultiplier;
 
         // Apply ATP production speed cap if in effect
         if (isATPProducer && processorInfo.ATPProductionSpeedModifier != 0)
