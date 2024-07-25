@@ -68,7 +68,7 @@ public partial class PatchMapDrawer : Control
                 return;
 
             map = value;
-            dirty = true;
+            MarkDirty();
 
             playerPatch ??= map.CurrentPatch;
         }
@@ -98,6 +98,21 @@ public partial class PatchMapDrawer : Control
         {
             if (selectedPatch == value)
                 return;
+
+            // Only allow selecting the patch if it is selectable
+            foreach (var (patch, node) in nodes)
+            {
+                if (patch == value)
+                {
+                    if (!node.Enabled)
+                    {
+                        GD.Print("Not selecting map node that is not enabled");
+                        return;
+                    }
+
+                    break;
+                }
+            }
 
             selectedPatch = value;
             UpdateNodeSelections();
@@ -130,7 +145,7 @@ public partial class PatchMapDrawer : Control
     {
         base._Process(delta);
 
-        CheckForDirtyNodes();
+        CheckNodeSelectionUpdate();
 
         if (dirty)
         {
@@ -204,6 +219,32 @@ public partial class PatchMapDrawer : Control
     public void SetPatchEnabledStatuses(IEnumerable<Patch> patches, Func<Patch, bool> predicate)
     {
         SetPatchEnabledStatuses(patches.ToDictionary(x => x, predicate));
+    }
+
+    /// <summary>
+    ///   Runs a function to determine what to set as the enabled status for all patch nodes
+    /// </summary>
+    /// <param name="predicate">
+    ///   Predicate to run on all nodes and set the result to <see cref="PatchMapNode.Enabled"/>
+    /// </param>
+    public void ApplyPatchNodeEnabledStatus(Func<Patch, bool> predicate)
+    {
+        foreach (var (patch, node) in nodes)
+        {
+            node.Enabled = predicate(patch);
+        }
+    }
+
+    /// <summary>
+    ///   Sets patch node enabled status for all nodes
+    /// </summary>
+    /// <param name="enabled">Value to set to <see cref="PatchMapNode.Enabled"/></param>
+    public void ApplyPatchNodeEnabledStatus(bool enabled)
+    {
+        foreach (var (_, node) in nodes)
+        {
+            node.Enabled = enabled;
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -976,15 +1017,34 @@ public partial class PatchMapDrawer : Control
         OnSelectedPatchChanged?.Invoke(this);
     }
 
-    private void CheckForDirtyNodes()
+    private void CheckNodeSelectionUpdate()
     {
+        bool needsUpdate = false;
+
         foreach (var node in nodes.Values)
         {
-            if (node.IsDirty)
+            if (node.SelectionDirty)
             {
-                dirty = true;
-                return;
+                needsUpdate = true;
+                break;
             }
+        }
+
+        if (needsUpdate)
+        {
+            UpdateNodeSelections();
+
+            foreach (var node in nodes.Values)
+            {
+                if (SelectedPatch == null)
+                    node.AdjacentToSelectedPatch = false;
+
+                node.UpdateSelectionState();
+            }
+
+            // Also needs to update the lines connecting patches for those to display properly
+            // TODO: would be really nice to be able to just update the line objects without redoing them all
+            RebuildRegionConnections();
         }
     }
 }
