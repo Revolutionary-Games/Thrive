@@ -57,7 +57,7 @@ public static class HealthHelpers
 {
     public static float CalculateMicrobeHealth(ICellDefinition organelleContainer, MembraneType membraneType, float membraneRigidity)
     {
-        return membraneType.Hitpoints + membraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER 
+        return (membraneType.Hitpoints + membraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER) 
             / MicrobeInternalCalculations.CalculateSurfaceAreaToVolumeRatio(organelleContainer.Organelles!);
     }
 

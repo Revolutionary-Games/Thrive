@@ -533,8 +533,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         ref var storage = ref entity.Get<CompoundStorage>();
         ref var processes = ref entity.Get<BioProcesses>();
+        ref var cellProperties = ref entity.Get<CellProperties>();
 
-        ProcessNode(ref processes, ref storage, delta);
+        ProcessNode(ref processes, ref storage, delta, cellProperties);
     }
 
     private static float GetAmbientInBiome(Compound compound, BiomeConditions biome, CompoundAmountType amountType)
@@ -556,7 +557,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
     }
 
-    private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float delta)
+    private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float delta, CellProperties properties)
     {
         var bag = storage.Compounds;
 
@@ -604,12 +605,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     lock (currentProcessStatistics)
                     {
                         currentProcessStatistics.BeginFrame(delta);
-                        RunProcess(delta, processData, bag, process, ref processor, currentProcessStatistics);
+                        RunProcess(delta, processData, bag, process, ref processor, currentProcessStatistics, properties);
                     }
                 }
                 else
                 {
-                    RunProcess(delta, processData, bag, process, ref processor, null);
+                    RunProcess(delta, processData, bag, process, ref processor, null, properties);
                 }
             }
         }
@@ -621,7 +622,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
-        ref BioProcesses processorInfo, SingleProcessStatistics? currentProcessStatistics)
+        ref BioProcesses processorInfo, SingleProcessStatistics? currentProcessStatistics, CellProperties cellProperties)
     {
         // Can your cell do the process
         bool canDoProcess = true;
@@ -779,6 +780,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
 
             totalModifier *= processorInfo.ATPProductionSpeedModifier;
+        }
+
+        if (processData.Inputs.Keys.Contains(SimulationParameters.Instance.GetCompound("sunlight")))
+        {
+            totalModifier *= Mathf.Pow(cellProperties.SurfaceAreaToVolumeRatio, 4.0f);
         }
 
         if (currentProcessStatistics != null)
