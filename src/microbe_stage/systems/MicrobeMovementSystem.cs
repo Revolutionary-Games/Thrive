@@ -18,7 +18,7 @@ using World = DefaultEcs.World;
 /// </remarks>
 /// <remarks>
 ///   <para>
-///     Once save compatibility is broken after 0.6.7 add with temporary effects
+///     Once save compatibility is broken after 0.6.7 add with temporary effects amd strain affected
 ///   </para>
 /// </remarks>
 [With(typeof(MicrobeControl))]
@@ -26,16 +26,17 @@ using World = DefaultEcs.World;
 [With(typeof(CellProperties))]
 [With(typeof(CompoundStorage))]
 [With(typeof(Physics))]
-[With(typeof(StrainAffected))]
 [With(typeof(WorldPosition))]
 [With(typeof(Health))]
 
 // [With(typeof(MicrobeTemporaryEffects))]
+// [With(typeof(StrainAffected))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobeTemporaryEffects))]
+[WritesToComponent(typeof(StrainAffected))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
@@ -157,12 +158,20 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         ref CellProperties cellProperties, ref WorldPosition position,
         ref OrganelleContainer organelles, CompoundBag compounds, float delta)
     {
-        ref var strain = ref entity.Get<StrainAffected>();
-        var strainMultiplier = GetStrainAtpMultiplier(ref strain);
+        // TODO: switch to always reading strain affected once old save compatibility is removed
+        // ref var strain = ref entity.Get<StrainAffected>();
+
+        float strainMultiplier = 1;
 
         if (control.MovementDirection == Vector3.Zero)
         {
-            strain.IsUnderStrain = false;
+            if (entity.Has<StrainAffected>())
+            {
+                // TODO: move this variable up in the future
+                ref var strain = ref entity.Get<StrainAffected>();
+                strainMultiplier = GetStrainAtpMultiplier(ref strain);
+                strain.IsUnderStrain = false;
+            }
 
             // Remove ATP due to strain even if not moving
             // This is calculated similarily to the regular movement cost for consistency
@@ -197,6 +206,24 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
         // movement cost
+
+        if (entity.Has<StrainAffected>())
+        {
+            // TODO: move this variable up in the future
+            ref var strain = ref entity.Get<StrainAffected>();
+            strainMultiplier = GetStrainAtpMultiplier(ref strain);
+
+            // TODO: move this if down in the future
+            if (control.Sprinting)
+            {
+                strain.IsUnderStrain = true;
+            }
+            else
+            {
+                strain.IsUnderStrain = false;
+            }
+        }
+
         var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
 
         var got = compounds.TakeCompound(atp, cost);
@@ -236,12 +263,15 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         if (control.Sprinting)
         {
             force *= Constants.SPRINTING_FORCE_MULTIPLIER;
-            strain.IsUnderStrain = true;
+
+            // TODO: put this code back once strain is guaranteed
+            // strain.IsUnderStrain = true;
         }
-        else
+
+        /*else
         {
             strain.IsUnderStrain = false;
-        }
+        }*/
 
         bool hasColony = entity.Has<MicrobeColony>();
 
