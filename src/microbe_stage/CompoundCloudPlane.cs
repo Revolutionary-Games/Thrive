@@ -116,7 +116,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         if (newX == (position.X + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,          
+            PartialClearDensity(position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,        
                 Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
         else if (newX == (position.X + Constants.CLOUD_SQUARES_PER_SIDE - 1)
@@ -135,8 +135,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         else if (newY == (position.Y + Constants.CLOUD_SQUARES_PER_SIDE - 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(0, ((position.Y + Constants.CLOUD_SQUARES_PER_SIDE - 1)
-                     % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                    % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                 Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
+
         }
 
         position = new Vector2I(newX, newY);
@@ -679,7 +680,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             throw new ArgumentException("Rate can't be negative");
 
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
-        float radius = 1.0f; 
+        float radius = 1.0f;
         float radiusSquared = radius * radius;
 
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
