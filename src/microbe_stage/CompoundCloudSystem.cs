@@ -187,7 +187,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
     }
 
     public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
-    Dictionary<Compound, float>? totals, float delta, float rate)
+        Dictionary<Compound, float>? totals, float delta, float rate)
     {
         if (radius < 1.0f)
         {
