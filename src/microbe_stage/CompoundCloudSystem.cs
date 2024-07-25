@@ -5,6 +5,9 @@ using Godot;
 using Newtonsoft.Json;
 using Systems;
 
+/// <summary>
+///   Manages spawning and processing compound clouds
+/// </summary>
 [RuntimeCost(35)]
 public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked
 {
@@ -193,7 +196,6 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
 
         int resolution = Resolution;
         float localGrabRadius = radius / resolution;
-        float localGrabRadiusSquared = Mathf.Pow(radius / resolution, 2);
 
         foreach (var cloud in clouds)
         {
