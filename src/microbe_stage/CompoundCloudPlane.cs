@@ -186,11 +186,12 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 Size - Constants.CLOUD_EDGE_WIDTH / 2, Size / Constants.CLOUD_SQUARES_PER_SIDE 
                 - Constants.CLOUD_EDGE_WIDTH, Constants.CLOUD_EDGE_WIDTH / 2, delta);
-            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH, 
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH, 
                 Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size - Constants.CLOUD_EDGE_WIDTH / 2, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta);
         }
 
@@ -217,8 +218,10 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH, delta);
             PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Constants.CLOUD_EDGE_WIDTH * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH, Constants.CLOUD_EDGE_WIDTH, delta);
+                Constants.CLOUD_EDGE_WIDTH * Size / Constants.CLOUD_SQUARES_PER_SIDE
+                - Constants.CLOUD_EDGE_WIDTH / 2,
+                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                Constants.CLOUD_EDGE_WIDTH, delta);
             PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
@@ -237,8 +240,10 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         if (position.X != 0)
         {
-            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
-            PartialAdvectEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
+            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, 
+            Size, delta, pos);
+            PartialAdvectEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0,
+            Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
         }
 
         if (position.X != 1)
@@ -381,62 +386,63 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     public void AddCloudInterlocked(Compound compound, int x, int y, float density)
     {
         var compoundIndex = GetCompoundIndex(compound);
+        
         float seenCurrentAmount;
         float newValue;
 
         switch (compoundIndex)
         {
             case 0:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].X;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
+                    seenCurrentAmount = Density[x, y].X;
+                    newValue = seenCurrentAmount + density;
+                }
+                while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
                        seenCurrentAmount);
 
-                    break;
-                }
+                break;
+            }
 
             case 1:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].Y;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
-
-                    break;
+                    seenCurrentAmount = Density[x, y].Y;
+                    newValue = seenCurrentAmount + density;
                 }
+                while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
+                    seenCurrentAmount);
+
+                break;
+            }
 
             case 2:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].Z;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
-
-                    break;
+                    seenCurrentAmount = Density[x, y].Z;
+                    newValue = seenCurrentAmount + density;
                 }
+                while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
+                    seenCurrentAmount);
+
+                break;
+            }
 
             case 3:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].W;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
-
-                    break;
+                    seenCurrentAmount = Density[x, y].W;
+                    newValue = seenCurrentAmount + density;
                 }
+                while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
+                    seenCurrentAmount);
+
+                break;
+            }
 
             default:
                 throw new ArgumentException("This cloud doesn't handle the given compound type");
@@ -460,56 +466,56 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         {
 
             case 0:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].X;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
+                    seenCurrentAmount = Density[x, y].X;
+                    newValue = seenCurrentAmount + density;
+                }
+                while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
                        seenCurrentAmount);
 
-                    return true;
-                }
+                return true;
+            }
 
             case 1:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].Y;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
-
-                    return true;
+                    seenCurrentAmount = Density[x, y].Y;
+                    newValue = seenCurrentAmount + density;
                 }
+                while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
+                    seenCurrentAmount);
+
+                return true;
+            }
 
             case 2:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].Z;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
-
-                    return true;
+                    seenCurrentAmount = Density[x, y].Z;
+                    newValue = seenCurrentAmount + density;
                 }
+                while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
+                    seenCurrentAmount);
+
+                 return true;
+            }
 
             case 3:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].W;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
-                    
-                    return true;
+                    seenCurrentAmount = Density[x, y].W;
+                    newValue = seenCurrentAmount + density;
                 }
+                while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
+                    seenCurrentAmount);
+                    
+                return true;
+            }
 
             default:
                 return false;
@@ -620,8 +626,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Returns true if position with radius around it contains any
-    ///   points that are within this cloud.
+    ///Returns true if position with radius around it contains any
+    ///points that are within this cloud.
     /// </summary>
     public bool ContainsPositionWithRadius(Vector3 worldPosition,
         float radius)
