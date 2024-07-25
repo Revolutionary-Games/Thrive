@@ -682,6 +682,7 @@ tooltip_text = "SPRINT_ACTION_TOOLTIP"
 theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+toggle_mode = true
 ActionIcon = ExtResource("10")
 ActionName = "g_sprint"
 
@@ -738,6 +739,7 @@ show_percentage = false
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/SecreteSlime" to="." method="OnSecreteSlimePressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnFireToxinPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
 [connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCanceled"]
 [connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularConfirmed"]
