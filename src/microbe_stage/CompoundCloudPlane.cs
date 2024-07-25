@@ -617,7 +617,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Checks if position is in this cloud, also returns relative coordinates
+    ///   Returns true if position with radius around it contains any
+    ///   points that are within this cloud.
     /// </summary>
     public bool ContainsPosition(Vector3 worldPosition, out int x, out int y)
     {
@@ -720,7 +721,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                             multiplier = freeSpace / generousAmount;
                         }
 
-                        if (!TakeCompoundInterlocked(i, x, y, fractionToTake * multiplier, cloudAmount, out float taken))
+                        if (!TakeCompoundInterlocked(i, x, y, fractionToTake * multiplier, cloudAmount,
+                        out float taken))
                         {
                             continue;
                         }
