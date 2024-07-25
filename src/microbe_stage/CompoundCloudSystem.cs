@@ -153,17 +153,17 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         {
             if (cloud.ContainsPosition(worldPosition, out var x, out var y))
             {
+                // Within cloud
+
+                // Skip wrong types
                 if (!cloud.HandlesCompound(compound))
                     continue;
 
                 return cloud.AmountAvailable(compound, x, y, fraction);
-
             }
-
         }
 
         return 0;
-
     }
 
     public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result, bool onlyAbsorbable = true)
