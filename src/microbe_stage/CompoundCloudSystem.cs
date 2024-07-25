@@ -143,7 +143,9 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                 return cloud.TakeCompound(compound, x, y, fraction);
 
             }
+
         }
+
         return 0;
 
     }
@@ -162,6 +164,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             }
 
         }
+
         return 0;
 
     }
@@ -263,7 +266,6 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                             if (distance < nearestDistanceSquared)
                             {
                                 closestPoint = currentWorldPos;
-
                                 nearestDistanceSquared = distance;
 
                             }
