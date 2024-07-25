@@ -256,10 +256,12 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     if (x < 0 || y < 0)
                         continue;
 
+                    // Then just need to check that it is within the cloud simulation array
                     if (x < cloud.Size && y < cloud.Size)
                     {
                         if (cloud.AmountAvailable(compound, x, y) >= minConcentration)
                         {
+                            // Potential target point
                             var currentWorldPos = cloud.ConvertToWorld(x, y);
                             var distance = (position - currentWorldPos).LengthSquared();
 
