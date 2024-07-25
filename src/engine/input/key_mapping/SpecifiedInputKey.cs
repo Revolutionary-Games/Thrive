@@ -85,10 +85,10 @@ public class SpecifiedInputKey : ICloneable
     /// <returns>The packed value</returns>
     public static ulong PackAxisWithDirection(int axis, float value, int device)
     {
-        // For direction we just need to preserve the sign
+        // For the direction we just need to preserve the sign
         ulong result = value < 0 ? 1U : 0U;
 
-        // For axis we preserve the sign with one bit
+        // For the axis we preserve the sign with one bit
         if (axis < 0)
         {
             result |= (0x1 << 1) | ((ulong)(axis * -1) << 2);
@@ -98,7 +98,7 @@ public class SpecifiedInputKey : ICloneable
             result |= (ulong)axis << 2;
         }
 
-        // For device we also preserve a sign bit
+        // For the device we also preserve a sign bit
         if (device < 0)
         {
             result = (result & 0xffffffffL) | (0x1L << 32) | ((ulong)(device * -1) << 33);
@@ -140,8 +140,8 @@ public class SpecifiedInputKey : ICloneable
     /// <summary>
     ///   Packs a code along with a device identifier
     /// </summary>
-    /// <param name="code">The input code to pack, needs to be 31 bytes or less</param>
-    /// <param name="device">The device, needs to be 32 bytes or less</param>
+    /// <param name="code">The input code to pack, needs to be 31 bytes or fewer</param>
+    /// <param name="device">The device, needs to be 32 bytes or fewer</param>
     /// <returns>The packed value</returns>
     public static ulong PackCodeWithDevice(long code, int device)
     {
@@ -152,7 +152,7 @@ public class SpecifiedInputKey : ICloneable
 
         ulong result;
 
-        // For code we preserve the sign with one bit
+        // For the code we preserve the sign with one bit
         if (code < 0)
         {
             result = 0x1 | ((ulong)(code * -1) << 1);
@@ -162,7 +162,7 @@ public class SpecifiedInputKey : ICloneable
             result = (ulong)code << 1;
         }
 
-        // For device we also preserve a sign bit
+        // For the device we also preserve a sign bit
         if (device < 0)
         {
             result = (result & 0xffffffffL) | (0x1L << 32) | ((ulong)(device * -1) << 33);

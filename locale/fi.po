@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-25 13:57+0300\n"
+"POT-Creation-Date: 2024-07-25 15:29+0300\n"
 "PO-Revision-Date: 2024-02-20 12:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -42,6 +42,9 @@ msgstr "Peruutettu."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssaalivyöhyke"
+
+msgid "ACCEPT"
+msgstr ""
 
 #, fuzzy
 msgid "ACTION_AWAKEN"
@@ -3402,6 +3405,52 @@ msgstr "Statistiikkaa organismista"
 msgid "MIDDLE_MOUSE"
 msgstr "Hiiren keskimmäinen painike"
 
+#, fuzzy
+msgid "MIGRATE"
+msgstr "Nopeus"
+
+#, fuzzy
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Auto-evon suorittaminen epäonnistui"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STATUS_TEXT"
+msgstr ""
+"Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
+"Solusi kuolee, jos sen terveyspalkki loppuu.\n"
+"Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
+"Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
+
+#, fuzzy
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr ""
+"Aggressiiviset mikrobit kulkevat pidempiä etäisyyksiä jahdatessaan muita\n"
+"ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
+"Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
+"käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr ""
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+
+#, fuzzy
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr ""
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+
+#, fuzzy
+msgid "MIGRATION_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
@@ -5135,7 +5184,7 @@ msgstr "Kopioi ruutu"
 
 #, fuzzy
 msgid "SPRINT_ACTION_TOOLTIP"
-msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+msgstr "Laita peli tauolle"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
@@ -7555,9 +7604,6 @@ msgstr "Zoomaa ulospäin"
 
 #~ msgid "E_DOT"
 #~ msgstr "E."
-
-#~ msgid "RATE"
-#~ msgstr "Nopeus"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""
