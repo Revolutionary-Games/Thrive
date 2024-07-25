@@ -267,15 +267,14 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                             {
                                 closestPoint = currentWorldPos;
                                 nearestDistanceSquared = distance;
-
                             }
                         }
                     }
                 }
             }
         }
-        return closestPoint;
 
+        return closestPoint;
     }
 
     public void EmptyAllClouds()
