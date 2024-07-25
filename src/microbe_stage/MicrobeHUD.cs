@@ -323,14 +323,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override float? ReadPlayerStrainFraction()
     {
-        if (stage!.Player.Has<StrainAffected>())
+        if (!stage!.Player.Has<StrainAffected>())
         {
             if (!playerMissingStrainAffected)
             {
                 GD.PrintErr("Player is missing StrainAffected component");
                 playerMissingStrainAffected = true;
-                return null;
             }
+
+            return null;
         }
 
         return stage.Player.Get<StrainAffected>().CalculateStrainFraction();
