@@ -141,9 +141,9 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     continue;
                 return cloud.TakeCompound(compound, x, y, fraction);
             }
-
         }
         return 0;
+
     }
 
     public float AmountAvailable(Compound compound, Vector3 worldPosition, float fraction)
@@ -156,10 +156,11 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     continue;
 
                 return cloud.AmountAvailable(compound, x, y, fraction);
-            }
 
+            }
         }
         return 0;
+
     }
 
     public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result, bool onlyAbsorbable = true)
@@ -264,6 +265,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                         }
                     }
                 }
+
             }
         }
         return closestPoint;
