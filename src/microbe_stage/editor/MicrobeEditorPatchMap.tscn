@@ -7,7 +7,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="14"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="18"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" id="28"]
-[ext_resource type="PackedScene" path="res://src/gui_common/DraggableScrollContainer.tscn" id="30"]
+[ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="30"]
 
 [sub_resource type="ShaderMaterial" id="28"]
 shader = ExtResource("1")

@@ -983,7 +983,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         secreteSlimeHotkey.Visible = showSlime;
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
-        sprintHotkey.Visible = showSprint;
+        sprintHotkey.Visible = showSprint && stage!.GameWorld.WorldSettings.ExperimentalFeatures;
 
         sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-23 09:54+0300\n"
-"PO-Revision-Date: 2024-07-22 14:00+0200\n"
+"POT-Creation-Date: 2024-07-25 13:57+0300\n"
+"PO-Revision-Date: 2024-07-25 14:06+0300\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -151,6 +151,9 @@ msgstr "You are already ascended"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALWAYS_VISIBLE"
+msgstr "Always visible"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance volume"
@@ -1764,6 +1767,12 @@ msgstr "Exit Editor"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Exit to Launcher"
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr "Experimental features"
+
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(enable extra features that aren't polished enough to be in the game by default, if you play with these please share any feedback you have about these)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Export All Worlds"
@@ -3656,6 +3665,9 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "October"
 
+msgid "OFF"
+msgstr "Off"
+
 msgid "OFFICIAL_WEBSITE"
 msgstr "Official Website"
 
@@ -4733,6 +4745,12 @@ msgstr "Speed:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
 
+msgid "SPRINT"
+msgstr "Sprint"
+
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Toggle sprinting mode. When sprinting cells move faster but consume more ATP and as strain builds consumes even more ATP."
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause menu"
 
@@ -4839,6 +4857,9 @@ msgstr "seconds of"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr "Strain bar visibility"
 
 msgid "STRATEGY_STAGES"
 msgstr "Strategy Stages"
@@ -5705,6 +5726,12 @@ msgstr "VIP Supporters"
 
 msgid "VISIBLE"
 msgstr "Visible"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr "Visible when almost full"
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr "Visible when above zero"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Suggest a Feature"
@@ -7097,14 +7124,6 @@ msgstr "Zoom out"
 
 #~ msgid "AVERAGE"
 #~ msgstr "Average"
-
-#~ msgid "EXPERIMENTAL_LABEL"
-#~ msgstr "Experimental Settings"
-
-#~ msgid "EXPERIMENTAL_WARNING"
-#~ msgstr ""
-#~ "These settings are unpolished and unstable. They may affect your game in undesirable ways.\n"
-#~ "Use at your own risk."
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Insightful stats about the current game"
