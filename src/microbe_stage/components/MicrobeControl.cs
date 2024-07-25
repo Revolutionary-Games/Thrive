@@ -70,6 +70,11 @@ public struct MicrobeControl
     public bool Sprinting;
 
     /// <summary>
+    ///   Whether this microbe is can sprint
+    /// </summary>
+    public bool CanSprint = true;
+
+    /// <summary>
     ///   Constructs an instance with a sensible <see cref="LookAtPoint"/> set
     /// </summary>
     /// <param name="startingPosition">World position this entity is starting at</param>
