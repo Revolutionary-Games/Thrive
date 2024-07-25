@@ -145,6 +145,12 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         return null;
     }
 
+    protected override bool CanSprint()
+    {
+        // TODO: sprinting
+        return false;
+    }
+
     protected override CompoundBag GetPlayerUsefulCompounds()
     {
         return stage!.Player!.ProcessCompoundStorage;

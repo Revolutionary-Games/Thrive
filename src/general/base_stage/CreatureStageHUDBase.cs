@@ -195,6 +195,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     private StringName fadeParameterName = new("fade");
 
+    [Export]
+    private StyleBoxFlat redFill;
+
     // Used for save load to apply these properties
     private bool temporaryEnvironmentCompressed;
     private bool temporaryCompoundCompressed;
@@ -736,6 +739,15 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         strainBar.Value = strainFraction;
 
+        if (!CanSprint())
+        {
+            strainBar.AddThemeStyleboxOverride("fill", redFill);
+        }
+        else
+        {
+            strainBar.RemoveThemeStyleboxOverride("fill");
+        }
+
         switch (Settings.Instance.StrainBarVisibilityMode.Value)
         {
             case Settings.StrainBarVisibility.Off:
@@ -777,6 +789,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     ///   else the player's strain fraction
     /// </returns>
     protected virtual float? ReadPlayerStrainFraction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual bool CanSprint()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

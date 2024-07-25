@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=48 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -35,6 +35,13 @@
 [ext_resource type="Texture2D" uid="uid://buv5vjrf4hx0h" path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" id="68"]
 [ext_resource type="Texture2D" uid="uid://bqyawyqghdnxp" path="res://assets/textures/gui/bevel/unbind.png" id="70"]
 [ext_resource type="Texture2D" uid="uid://cbxkq166e7veg" path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" id="72"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs0sa"]
+bg_color = Color(0.705939, 3.53761e-06, 3.85046e-07, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="Animation" id="39"]
 resource_name = "HideCompoundsPanels"
@@ -303,6 +310,7 @@ editorButton = NodePath("BottomRight/EditorButton")
 sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
+redFill = SubResource("StyleBoxFlat_vs0sa")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")

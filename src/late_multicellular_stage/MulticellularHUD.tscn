@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://5m75uu7qtg8x"]
+[gd_scene load_steps=45 format=3 uid="uid://5m75uu7qtg8x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="6"]
@@ -37,6 +37,13 @@
 [ext_resource type="Texture2D" uid="uid://buv5vjrf4hx0h" path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" id="76"]
 [ext_resource type="PackedScene" uid="uid://qwg2dluu8ow0" path="res://src/microbe_stage/PausePrompt.tscn" id="77"]
 [ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="78"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnc61"]
+bg_color = Color(0.705882, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="28"]
 bg_color = Color(0.47451, 0.560784, 0.588235, 0.392157)
@@ -148,6 +155,7 @@ editorButton = NodePath("BottomRight/EditorButton")
 sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
+redFill = SubResource("StyleBoxFlat_jnc61")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")

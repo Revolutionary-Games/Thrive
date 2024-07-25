@@ -337,6 +337,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         return stage.Player.Get<StrainAffected>().CalculateStrainFraction();
     }
 
+    protected override bool CanSprint()
+    {
+        ref var control = ref stage!.Player.Get<MicrobeControl>();
+        return control.CanSprint;
+    }
+
     protected override Func<Compound, bool> GetIsUsefulCheck()
     {
         if (!stage!.Player.Has<MicrobeColony>())

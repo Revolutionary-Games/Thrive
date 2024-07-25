@@ -17,6 +17,7 @@ public sealed class StrainSystem : AEntitySetSystem<float>
     protected override void Update(float delta, in Entity entity)
     {
         ref var strain = ref entity.Get<StrainAffected>();
+        ref var control = ref entity.Get<MicrobeControl>();
 
         if (strain.IsUnderStrain)
         {
@@ -28,7 +29,12 @@ public sealed class StrainSystem : AEntitySetSystem<float>
             strain.CurrentStrain += strainIncrease;
 
             if (strain.CurrentStrain > Constants.MAX_STRAIN_PER_ENTITY)
+            {
                 strain.CurrentStrain = Constants.MAX_STRAIN_PER_ENTITY;
+
+                control.Sprinting = false;
+                control.CanSprint = false;
+            }
 
             strain.StrainDecreaseCooldown = Constants.STRAIN_DECREASE_COOLDOWN_SECONDS;
         }
@@ -42,6 +48,11 @@ public sealed class StrainSystem : AEntitySetSystem<float>
             {
                 strain.StrainDecreaseCooldown -= delta;
                 ReduceStrain(ref strain, delta, Constants.PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_MULTIPLIER);
+            }
+
+            if (strain.CurrentStrain <= Constants.MIN_STRAIN_SPRINT_REGAIN)
+            {
+                control.CanSprint = true;
             }
         }
     }

@@ -107,15 +107,6 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
                 return;
 
             ApplyATPDamage(compounds, ref health, ref cellProperties);
-
-            if (compounds.GetCompoundAmount(atp) <= Constants.ATP_DAMAGE_THRESHOLD)
-            {
-                control.CanSprint = false;
-            }
-            else
-            {
-                control.CanSprint = true;
-            }
         }
     }
 
