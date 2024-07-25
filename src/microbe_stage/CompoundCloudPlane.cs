@@ -720,9 +720,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
                             multiplier = freeSpace / generousAmount;
                         }
-
                         if (!TakeCompoundInterlocked(i, x, y, fractionToTake * multiplier, cloudAmount,
-        out float taken))
+                                out float taken))
                         {
                             continue;
                         }
