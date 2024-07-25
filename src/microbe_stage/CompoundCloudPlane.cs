@@ -84,17 +84,17 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     /// <summary>
     ///   Initializes this cloud. cloud2 onwards can be null
     /// </summary>
-    public void Init(FluidCurrentsSystem turbulenceSource, int renderPriority, Compound cloud1, Compound? cloud2, 
+    public void Init(FluidCurrentsSystem turbulenceSource, int renderPriority, Compound cloud1, Compound? cloud2,
         Compound? cloud3, Compound? cloud4)
     {
         fluidSystem = turbulenceSource;
         Compounds = new Compound?[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
 
-        decayRates = new Vector4(cloud1.DecayRate, cloud2?.DecayRate ?? 1.0f, 
+        decayRates = new Vector4(cloud1.DecayRate, cloud2?.DecayRate ?? 1.0f,
             cloud3?.DecayRate ?? 1.0f, cloud4?.DecayRate ?? 1.0f);
 
         var material = (ShaderMaterial)Material;
-        
+
         material.SetShaderParameter("colour1", cloud1.Colour);
 
         var blank = new Color(0, 0, 0, 0);
@@ -102,7 +102,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         material.SetShaderParameter("colour2", cloud2?.Colour ?? blank);
         material.SetShaderParameter("colour3", cloud3?.Colour ?? blank);
         material.SetShaderParameter("colour4", cloud4?.Colour ?? blank);
-        
+
         material.RenderPriority = renderPriority;
     }
 
@@ -116,13 +116,13 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         if (newX == (position.X + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,                
+            PartialClearDensity(position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,          
                 Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
-        else if (newX == (position.X + Constants.CLOUD_SQUARES_PER_SIDE - 1) 
+        else if (newX == (position.X + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                  % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(((position.X + Constants.CLOUD_SQUARES_PER_SIDE - 1) 
+            PartialClearDensity(((position.X + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                     % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                 0, Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
@@ -144,7 +144,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         // This accommodates the texture of the cloud to the new position of the plane.
         SetMaterialUVForPosition();
     }
-    
+
     /// <summary>
     ///   Updates the edge concentrations of this cloud before the rest of the cloud.
     ///   This is not ran in parallel.
@@ -153,7 +153,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     {
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
-        
+
         if (position.X != 0)
         {
             PartialDiffuseEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta);
@@ -178,16 +178,16 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2, Size - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH, 
+                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2, 0,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size - Constants.CLOUD_EDGE_WIDTH / 2, Size / Constants.CLOUD_SQUARES_PER_SIDE 
+                Size - Constants.CLOUD_EDGE_WIDTH / 2, Size / Constants.CLOUD_SQUARES_PER_SIDE
                 - Constants.CLOUD_EDGE_WIDTH, Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2, 0,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH, 
+                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 Size - Constants.CLOUD_EDGE_WIDTH / 2,
@@ -202,7 +202,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH, delta);
             PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 
+                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH, delta);
             PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
@@ -240,7 +240,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         if (position.X != 0)
         {
-            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, 
+            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2,
             Size, delta, pos);
             PartialAdvectEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0,
             Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
@@ -264,7 +264,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
             PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
-                Size - Constants.CLOUD_EDGE_WIDTH / 2, 
+                Size - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
             PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2, 0,
@@ -377,6 +377,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             if (c == compound)
                 return true;
         }
+
         return false;
     }
 
@@ -386,7 +387,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     public void AddCloudInterlocked(Compound compound, int x, int y, float density)
     {
         var compoundIndex = GetCompoundIndex(compound);
-        
+
         float seenCurrentAmount;
         float newValue;
 
@@ -513,7 +514,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 }
                 while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
                     seenCurrentAmount);
-                    
+
                 return true;
             }
 
@@ -678,7 +679,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             throw new ArgumentException("Rate can't be negative");
 
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
-        float radius = 1.0f; // 
+        float radius = 1.0f; 
         float radiusSquared = radius * radius;
 
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
@@ -735,13 +736,13 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                             totals.TryGetValue(compound, out var existingValue);
                             totals[compound] = existingValue + taken;
                         }
+
                         break;
                     }
                 }
             }
         }
     }
-
 
     public void ClearContents()
     {
@@ -772,7 +773,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 image.Dispose();
                 texture.Dispose();
             }
+
         }
+
         base.Dispose(disposing);
     }
 
