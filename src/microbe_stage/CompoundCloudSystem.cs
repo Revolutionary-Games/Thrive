@@ -136,6 +136,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         foreach (var cloud in clouds)
         {
             if (cloud.ContainsPosition(worldPosition, out var x, out var y))
+
             {
                 if (!cloud.HandlesCompound(compound))
                     continue;
@@ -152,6 +153,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         foreach (var cloud in clouds)
         {
             if (cloud.ContainsPosition(worldPosition, out var x, out var y))
+
             {
                 if (!cloud.HandlesCompound(compound))
                     continue;
