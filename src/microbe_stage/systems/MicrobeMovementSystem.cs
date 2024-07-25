@@ -82,13 +82,30 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         var lookVector = control.LookAtPoint - position.Position;
         lookVector.Y = 0;
+        var lookVectorLength = lookVector.Length();
 
-        var length = lookVector.Length();
+        var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
+        var unsignedTurnAngle = Math.Abs(turnAngle);
 
-        if (length > MathUtils.EPSILON)
+        // Linear function reaching 1 at CELL_TURN_INFLECTION_RADIANS
+        var blendFactor = Mathf.Pi / 4.0f * Mathf.Min(unsignedTurnAngle *
+            (1.0f / Constants.CELL_TURN_INFLECTION_RADIANS), 1.0f);
+
+        // Simplify turns to 90 degrees to keep consistent turning speed
+        if (turnAngle > 0.0f)
+        {
+            lookVector = (position.Rotation
+                * new Vector3(-Mathf.Sin(blendFactor), 0, -Mathf.Cos(blendFactor))).Normalized();
+        }
+        else if (turnAngle < 0.0f)
+        {
+            lookVector = (position.Rotation
+                * new Vector3(Mathf.Sin(blendFactor), 0, -Mathf.Cos(blendFactor))).Normalized();
+        }
+        else if (lookVectorLength > MathUtils.EPSILON)
         {
             // Normalize vector when it has a length
-            lookVector /= length;
+            lookVector /= lookVectorLength;
         }
         else
         {
