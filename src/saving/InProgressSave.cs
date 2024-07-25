@@ -42,6 +42,8 @@ public class InProgressSave : IDisposable
 
     private bool wasColourblindScreenFilterVisible;
 
+    private bool pauseCompletely;
+
     public InProgressSave(SaveInformation.SaveType type, Func<Node> currentGameRoot,
         Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string? saveName)
     {
@@ -79,11 +81,12 @@ public class InProgressSave : IDisposable
 
     public SaveInformation.SaveType Type { get; }
 
-    public void Start()
+    public void Start(bool pause = false)
     {
         PauseManager.Instance.AddPause(nameof(InProgressSave));
 
         IsSaving = true;
+        pauseCompletely = pause;
         Invoke.Instance.Perform(Step);
     }
 
@@ -169,6 +172,9 @@ public class InProgressSave : IDisposable
 
     private void Step()
     {
+        if (pauseCompletely)
+            PauseManager.Instance.AddPause(nameof(InProgressSave));
+
         switch (state)
         {
             case State.Initial:
