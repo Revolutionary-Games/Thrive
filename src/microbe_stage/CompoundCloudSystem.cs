@@ -36,7 +36,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
     [JsonIgnore]
     private float currentBrightness = 1.0f;
 
-     /// <summary>
+    /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
     [JsonIgnore]
@@ -49,7 +49,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         cloudScene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
     }
 
-     /// <summary>
+    /// <summary>
     ///   Resets the cloud contents and positions as well as the compound types they store
     /// </summary>
     public void Init(FluidCurrentsSystem fluidSystem)
