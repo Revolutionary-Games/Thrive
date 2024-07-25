@@ -14,7 +14,9 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
     [JsonProperty]
     private List<CompoundCloudPlane> clouds = new();
 
+#pragma warning disable CA2213
     private PackedScene cloudScene = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     private Vector3 cloudGridCenter;
@@ -39,7 +41,10 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
     {
         var allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
 
-        if (!IsLoadedFromSave){clouds.Clear();}
+        if (!IsLoadedFromSave)
+        {
+            clouds.Clear();
+        }
 
         neededCloudsAtOnePosition = (int)Math.Ceiling(allCloudCompounds.Count / (float)Constants.CLOUDS_IN_ONE);
 
@@ -136,7 +141,9 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     continue;
                 return cloud.TakeCompound(compound, x, y, fraction);
             }
+
         }
+
         return 0;
     }
 
@@ -151,7 +158,9 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
 
                 return cloud.AmountAvailable(compound, x, y, fraction);
             }
+
         }
+
         return 0;
     }
 
@@ -254,11 +263,17 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                                 closestPoint = currentWorldPos;
                                 nearestDistanceSquared = distance;
                             }
+
                         }
+
                     }
+
                 }
+
             }
+
         }
+
         return closestPoint;
     }
 
