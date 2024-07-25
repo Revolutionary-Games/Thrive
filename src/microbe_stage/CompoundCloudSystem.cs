@@ -312,7 +312,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             cloud.SetBrightness(currentBrightness);
         }
     }
-    
+
     private static Vector3 CalculateGridCenterForPlayerPos(Vector3 pos)
     {
         return new Vector3((int)Math.Round(pos.X / (Constants.CLOUD_X_EXTENT / 3)),
