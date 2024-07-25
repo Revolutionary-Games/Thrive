@@ -76,7 +76,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
 
         TakeOsmoregulationEnergyCost(entity, ref cellProperties, compounds, delta);
 
-        HandleOsmoregulationDamage(entity, ref status, ref health, ref cellProperties, ref control, compounds, delta);
+        HandleOsmoregulationDamage(entity, ref status, ref health, ref cellProperties, compounds, delta);
 
         // Take extra ATP if in engulf mode (and disable engulf mode if out of ATP)
         if (control.State == MicrobeState.Engulf)
@@ -92,7 +92,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     }
 
     private void HandleOsmoregulationDamage(in Entity entity, ref MicrobeStatus status, ref Health health,
-        ref CellProperties cellProperties, ref MicrobeControl control, CompoundBag compounds, float delta)
+        ref CellProperties cellProperties, CompoundBag compounds, float delta)
     {
         status.LastCheckedATPDamage += delta;
 

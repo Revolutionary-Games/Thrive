@@ -196,7 +196,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private StringName fadeParameterName = new("fade");
 
     [Export]
-    private StyleBoxFlat redFill;
+    private StyleBoxFlat? redFill;
 
     // Used for save load to apply these properties
     private bool temporaryEnvironmentCompressed;
@@ -1105,6 +1105,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             }
 
             fadeParameterName.Dispose();
+
+            redFill?.Dispose();
         }
 
         base.Dispose(disposing);
