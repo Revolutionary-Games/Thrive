@@ -64,7 +64,8 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         {
             foreach (var cloud in clouds)
             {
-                cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2], cloud.Compounds[3]);
+                cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
+                cloud.Compounds[3]);
                 --renderPriority;
                 AddChild(cloud);
             }
