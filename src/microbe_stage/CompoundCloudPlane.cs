@@ -718,8 +718,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                             if (freeSpace < 0.0f)
                                 throw new InvalidOperationException("Free space for compounds is negative");
 
+                            // Allow partial absorption to allow cells to take from high density clouds
                             multiplier = freeSpace / generousAmount;
-
                         }
 
                         if (!TakeCompoundInterlocked(i, x, y, fractionToTake * multiplier, cloudAmount,
