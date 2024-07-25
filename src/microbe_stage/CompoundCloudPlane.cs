@@ -627,8 +627,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///Returns true if position with radius around it contains any
-    ///points that are within this cloud.
+    ///   Returns true if position with radius around it contains any
+    ///   points that are within this cloud.
     /// </summary>
     public bool ContainsPositionWithRadius(Vector3 worldPosition,
         float radius)
