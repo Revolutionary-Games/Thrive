@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
@@ -654,9 +655,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             + position.Y * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
     }
 
-    /// <summary>
-    ///   Converts cloud local coordinates to world coordinates
-    /// </summary>
+    [SuppressMessage("ReSharper", "PossibleLossOfFraction",
+        Justification = "Adding floats casts in the function might do more harm then good")]
     public Vector3 ConvertToWorld(int cloudX, int cloudY)
     {
         return new Vector3(cloudX * Resolution +
@@ -721,7 +721,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                         }
 
                         if (!TakeCompoundInterlocked(i, x, y, fractionToTake * multiplier, cloudAmount,
-                        out float taken))
+                            out float taken))
                         {
                             continue;
                         }
