@@ -117,7 +117,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         if (newX == (position.X + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
                 PartialClearDensity(position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
+                    Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
         else if (newX == (position.X + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                  % Constants.CLOUD_SQUARES_PER_SIDE)
@@ -240,10 +240,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         if (position.X != 0)
         {
-            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2,
-            Size, delta, pos);
-            PartialAdvectEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0,
-            Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
+            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
+            PartialAdvectEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2,
+                Size, delta, pos);
         }
 
         if (position.X != 1)
@@ -254,8 +253,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         if (position.X != 2)
         {
-            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 0,
-                Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
         }
 
         if (position.Y != 0)
@@ -786,7 +785,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     ///   </para>
     /// </remarks>
     private static void CalculateMovementFactors(float dx, float dy, out int q0, out int q1, out int r0, out int r1,
-    out float s1, out float s0, out float t1, out float t0)
+        out float s1, out float s0, out float t1, out float t0)
     {
         q0 = (int)Math.Floor(dx);
         q1 = q0 + 1;
@@ -817,9 +816,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             {
                 int adjacentClouds = 4;
                 OldDensity[x, y] =
-                Density[x, y] * (1 - a) +
-                (Density[x, y - 1] + Density[x, y + 1] + Density[x - 1, y] + Density[x + 1, y])
-                * (a / adjacentClouds);
+                    Density[x, y] * (1 - a) +
+                    (Density[x, y - 1] + Density[x, y + 1] + Density[x - 1, y] + Density[x + 1, y])
+                    * (a / adjacentClouds);
             }
         }
     }
@@ -834,11 +833,11 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             {
                 int adjacentClouds = 4;
                 OldDensity[x, y] =
-                Density[x, y] * (1 - a) +
-                (Density[x, (y - 1 + Size) % Size] +
-                Density[x, (y + 1) % Size] +
-                Density[(x - 1 + Size) % Size, y] +
-                Density[(x + 1) % Size, y]) * (a / adjacentClouds);
+                    Density[x, y] * (1 - a) +
+                    (Density[x, (y - 1 + Size) % Size] +
+                        Density[x, (y + 1) % Size] +
+                        Density[(x - 1 + Size) % Size, y] +
+                        Density[(x + 1) % Size, y]) * (a / adjacentClouds);
             }
         }
     }
