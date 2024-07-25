@@ -294,7 +294,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
 
         // This version is used when working with cloud local coordinates
         float localRadius = searchRadius / resolution;
-    
+
         float nearestDistanceSquared = float.MaxValue;
         
         Vector3? closestPoint = null;
