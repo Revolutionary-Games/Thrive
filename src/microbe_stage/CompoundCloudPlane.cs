@@ -400,8 +400,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     seenCurrentAmount = Density[x, y].X;
                     newValue = seenCurrentAmount + density;
                 }
-                while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].X,
-           newValue, seenCurrentAmount) != seenCurrentAmount);
+                while (System.Threading.Interlocked.CompareExchange
+                    (ref Density[x, y].X, newValue, seenCurrentAmount) != seenCurrentAmount);
 
                 break;
             }
