@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://5m75uu7qtg8x"]
+[gd_scene load_steps=44 format=3 uid="uid://5m75uu7qtg8x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="6"]
@@ -75,7 +75,31 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ao1s"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pur5"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.784314)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="MulticellularHUD" type="Control" node_paths=PackedStringArray("environmentPanel", "compoundsPanel", "editorButton", "sprintHotkey", "strainBar", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -121,6 +145,8 @@ PatchExtinctionBoxScene = ExtResource("16")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
+sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
+strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
@@ -457,6 +483,16 @@ tooltip_text = "EJECT_ENGULFED_TOOLTIP"
 ActionIcon = ExtResource("33")
 ActionName = "g_eject_engulfed"
 
+[node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource("78")]
+visible = false
+layout_mode = 2
+tooltip_text = "SPRINT_ACTION_TOOLTIP"
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ao1s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pur5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0pur5")
+ActionIcon = ExtResource("19")
+ActionName = "g_sprint"
+
 [node name="HintText" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -524,6 +560,21 @@ WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 
 [node name="DamageEffect" parent="." instance=ExtResource("37_rwj55")]
 layout_mode = 1
+
+[node name="Strain" type="ProgressBar" parent="."]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 27.0
+grow_horizontal = 2
+max_value = 0.9
+step = 0.001
+show_percentage = false
 
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
