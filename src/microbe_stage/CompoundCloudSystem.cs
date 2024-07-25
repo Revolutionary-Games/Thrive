@@ -141,13 +141,10 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     continue;
 
                 return cloud.TakeCompound(compound, x, y, fraction);
-
             }
-
         }
 
         return 0;
-
     }
 
     public float AmountAvailable(Compound compound, Vector3 worldPosition, float fraction)
