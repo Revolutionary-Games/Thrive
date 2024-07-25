@@ -117,8 +117,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         if (newX == (position.X + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-                PartialClearDensity(position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
-                    Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
+            PartialClearDensity(position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
+                Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
         else if (newX == (position.X + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                  % Constants.CLOUD_SQUARES_PER_SIDE)
@@ -401,7 +401,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
+                    seenCurrentAmount);
 
                 break;
             }
@@ -473,7 +473,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
-                       seenCurrentAmount);
+                    seenCurrentAmount);
 
                 return true;
             }
@@ -671,7 +671,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     ///   Absorbs compounds from this cloud. Doesn't require locking thanks to using atomic updates.
     /// </summary>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
-     Dictionary<Compound, float>? totals, float delta, float rate)
+        Dictionary<Compound, float>? totals, float delta, float rate)
     {
         if (rate < 0)
             throw new ArgumentException("Rate can't be negative");
@@ -717,6 +717,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                         {
                             if (freeSpace < 0.0f)
                                 throw new InvalidOperationException("Free space for compounds is negative");
+
                             multiplier = freeSpace / generousAmount;
                         }
 
