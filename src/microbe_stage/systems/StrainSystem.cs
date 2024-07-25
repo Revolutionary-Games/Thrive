@@ -2,7 +2,6 @@
 using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
-using Godot;
 using World = DefaultEcs.World;
 
 [With(typeof(OrganelleContainer))]
@@ -10,7 +9,6 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(OrganelleContainer))]
 public sealed class StrainSystem : AEntitySetSystem<float>
 {
-    private int extremeEntitiesPerThread;
     public StrainSystem(World world, IParallelRunner runner) : base(world, runner,
         Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
     {

@@ -749,20 +749,19 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 else
                 {
                     strainBar.Hide();
-
                 }
+
                 break;
             case Settings.StrainBarVisibility.VisibleWhenOverZero:
                 if (strainFraction > 0.0f)
                 {
                     strainBar.Show();
-
                 }
                 else
                 {
                     strainBar.Hide();
-
                 }
+
                 break;
             case Settings.StrainBarVisibility.AlwaysVisible:
                 strainBar.Show();
