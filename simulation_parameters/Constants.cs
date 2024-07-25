@@ -191,7 +191,7 @@ public static class Constants
 
     public const float PASSIVE_STRAIN_DECREASE_PER_SECOND = 30.0f;
 
-    public const float PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_DIVISOR = 3.0f;
+    public const float PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_MULTIPLIER = 0.3f;
 
     /// <summary>
     ///   This is multiplied by the strain fraction to get the ATP usage multiplier

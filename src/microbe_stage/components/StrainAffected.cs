@@ -12,7 +12,7 @@ public struct StrainAffected
     public float CurrentStrain;
 
     /// <summary>
-    ///   The amount of time the player has to wait before <see cref="CurrentStrain"/> sarts to fall
+    ///   The amount of time the organism has to wait before <see cref="CurrentStrain"/> sarts to fall
     /// </summary>
     public float StrainDecreaseCooldown;
 

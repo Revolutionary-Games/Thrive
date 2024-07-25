@@ -8,20 +8,22 @@ using World = DefaultEcs.World;
 [With(typeof(OrganelleContainer))]
 [With(typeof(StrainAffected))]
 [ReadsComponent(typeof(OrganelleContainer))]
-[ReadsComponent(typeof(MicrobeControl))]
 public sealed class StrainSystem : AEntitySetSystem<float>
 {
-    public StrainSystem(World world, IParallelRunner runner) : base(world, runner)
+    private int extremeEntitiesPerThread;
+    public StrainSystem(World world, IParallelRunner runner) : base(world, runner,
+        Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
     {
     }
 
     protected override void Update(float delta, in Entity entity)
     {
         ref var strain = ref entity.Get<StrainAffected>();
-        ref var organelles = ref entity.Get<OrganelleContainer>();
 
         if (strain.IsUnderStrain)
         {
+            ref var organelles = ref entity.Get<OrganelleContainer>();
+
             var strainIncrease = Constants.SPRINTING_STRAIN_INCREASE_PER_SECOND * delta;
             strainIncrease += organelles.HexCount * Constants.SPRINTING_STRAIN_INCREASE_PER_HEX;
 
@@ -34,21 +36,21 @@ public sealed class StrainSystem : AEntitySetSystem<float>
         }
         else
         {
-            if (strain.StrainDecreaseCooldown <= Mathf.Epsilon)
+            if (strain.StrainDecreaseCooldown <= 0)
             {
                 ReduceStrain(ref strain, delta);
             }
             else
             {
                 strain.StrainDecreaseCooldown -= delta;
-                ReduceStrain(ref strain, delta, Constants.PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_DIVISOR);
+                ReduceStrain(ref strain, delta, Constants.PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_MULTIPLIER);
             }
         }
     }
 
-    private void ReduceStrain(ref StrainAffected strain, float delta, float divisor = 1.0f)
+    private void ReduceStrain(ref StrainAffected strain, float delta, float multiplier = 1.0f)
     {
-        strain.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_SECOND * delta / divisor;
+        strain.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_SECOND * delta * multiplier;
 
         if (strain.CurrentStrain < 0)
             strain.CurrentStrain = 0;

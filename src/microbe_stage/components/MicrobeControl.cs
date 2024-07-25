@@ -65,7 +65,7 @@ public struct MicrobeControl
     public bool SlowedBySlime;
 
     /// <summary>
-    ///   Whether this microbe is currenyly sprinting
+    ///   Whether this microbe is currently sprinting
     /// </summary>
     public bool Sprinting;
 

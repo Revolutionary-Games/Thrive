@@ -432,6 +432,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             UpdateCompoundBars(convertedDelta);
             UpdateReproductionProgress();
             UpdateAbilitiesHotBar();
+            UpdateStrain();
         }
 
         UpdateATP(convertedDelta);
@@ -448,8 +449,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         UpdateProcessPanel();
 
         UpdateFossilisationButtons();
-
-        UpdateStrain();
     }
 
     public void SendEditorButtonToTutorial(TutorialState tutorialState)
@@ -721,11 +720,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     protected void UpdateStrain()
     {
-        // if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
-        // {
-        //     strainBar.Visible = false;
-        //     return;
-        // }
+        if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
+        {
+            strainBar.Visible = false;
+            return;
+        }
 
         var readStrainFraction = ReadPlayerStrainFraction();
 
@@ -735,28 +734,35 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         var strainFraction = readStrainFraction.Value;
 
-        // atpBar.TintProgress = StrainGradient.Interpolate(strainFraction);
-
         strainBar.Value = strainFraction;
 
         switch (Settings.Instance.StrainBarVisibilityMode.Value)
         {
-            // TODO: second and thrid setting handling
-
             case Settings.StrainBarVisibility.Off:
                 strainBar.Hide();
                 break;
             case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
                 if (strainFraction >= 0.8f)
+                {
                     strainBar.Show();
+                }
                 else
+                {
                     strainBar.Hide();
+
+                }
                 break;
             case Settings.StrainBarVisibility.VisibleWhenOverZero:
                 if (strainFraction > 0.0f)
+                {
                     strainBar.Show();
+
+                }
                 else
+                {
                     strainBar.Hide();
+
+                }
                 break;
             case Settings.StrainBarVisibility.AlwaysVisible:
                 strainBar.Show();
@@ -971,14 +977,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
-        bool showingSignaling, bool engulfOn, bool showEject, bool isSprinting)
+        bool showingSignaling, bool engulfOn, bool showEject, bool isSprinting, bool showSprint)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
         secreteSlimeHotkey.Visible = showSlime;
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
-        sprintHotkey.Visible = true;
+        sprintHotkey.Visible = showSprint;
 
         sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;

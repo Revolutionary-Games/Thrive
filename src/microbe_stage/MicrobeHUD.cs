@@ -320,11 +320,14 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override float? ReadPlayerStrainFraction()
     {
-        if (stage!.Player.Has<StrainAffected>() && !playerMissingStrainAffected)
+        if (stage!.Player.Has<StrainAffected>())
         {
-            GD.PrintErr("Player is missing StrainAffected component");
-            playerMissingStrainAffected = true;
-            return null;
+            if (!playerMissingStrainAffected)
+            {
+                GD.PrintErr("Player is missing StrainAffected component");
+                playerMissingStrainAffected = true;
+                return null;
+            }
         }
 
         return stage.Player.Get<StrainAffected>().CalculateStrainFraction();
@@ -447,7 +450,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, engulfing, isDigesting, control.Sprinting);
+            organelles.HasSignalingAgent, engulfing, isDigesting, control.Sprinting,
+            stage.GameWorld.WorldSettings.ExperimentalFeatures);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);

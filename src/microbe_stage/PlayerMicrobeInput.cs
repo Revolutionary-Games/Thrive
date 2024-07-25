@@ -306,7 +306,9 @@ public partial class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_sprint")]
     public bool StartSprint()
     {
-        // Maybe add check for experimental features
+        if (!stage.WorldSettings.ExperimentalFeatures)
+            return false;
+
         if (!stage.HasPlayer)
             return false;
 
@@ -330,6 +332,9 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
     public void ToggleSprint()
     {
+        if (!stage.WorldSettings.ExperimentalFeatures)
+            return;
+
         if (!stage.HasPlayer)
             return;
 

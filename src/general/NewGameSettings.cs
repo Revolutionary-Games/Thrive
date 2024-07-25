@@ -213,6 +213,9 @@ public partial class NewGameSettings : ControlWithInput
 
     // Other
     private Container checkOptionsMenuAdviceContainer = null!;
+
+    [Export]
+    private CheckBox experimentalFeatures = null!;
 #pragma warning restore CA2213
 
     private SelectedOptionsTab selectedOptionsTab;
@@ -406,6 +409,7 @@ public partial class NewGameSettings : ControlWithInput
         lifeOriginButton.Selected = (int)settings.Origin;
 
         lawkButton.ButtonPressed = settings.LAWK;
+        experimentalFeatures.ButtonPressed = settings.ExperimentalFeatures;
         dayNightCycleButton.ButtonPressed = settings.DayNightCycleEnabled;
         dayLength.Value = settings.DayLength;
 
@@ -602,6 +606,7 @@ public partial class NewGameSettings : ControlWithInput
 
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.LAWK = lawkButton.ButtonPressed;
+        settings.ExperimentalFeatures = experimentalFeatures.ButtonPressed;
         settings.DayNightCycleEnabled = dayNightCycleButton.ButtonPressed;
         settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
