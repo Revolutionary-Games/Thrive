@@ -116,7 +116,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         if (newX == (position.X + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,        
+                PartialClearDensity(position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
         else if (newX == (position.X + Constants.CLOUD_SQUARES_PER_SIDE - 1)
@@ -137,7 +137,6 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             PartialClearDensity(0, ((position.Y + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                     % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                 Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
-
         }
 
         position = new Vector2I(newX, newY);
@@ -466,7 +465,6 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         // ReSharper disable CompareOfFloatsByEqualityOperator
         switch (compoundIndex)
         {
-
             case 0:
             {
                 do
@@ -503,7 +501,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
                     seenCurrentAmount);
 
-                 return true;
+                return true;
             }
 
             case 3:
@@ -774,7 +772,6 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 image.Dispose();
                 texture.Dispose();
             }
-
         }
 
         base.Dispose(disposing);
@@ -789,7 +786,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     ///   </para>
     /// </remarks>
     private static void CalculateMovementFactors(float dx, float dy, out int q0, out int q1, out int r0, out int r1,
-        out float s1, out float s0, out float t1, out float t0)
+    out float s1, out float s0, out float t1, out float t0)
     {
         q0 = (int)Math.Floor(dx);
         q1 = q0 + 1;
