@@ -139,7 +139,9 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             {
                 if (!cloud.HandlesCompound(compound))
                     continue;
+
                 return cloud.TakeCompound(compound, x, y, fraction);
+
             }
         }
         return 0;
@@ -268,10 +270,10 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                         }
                     }
                 }
-
             }
         }
         return closestPoint;
+
     }
 
     public void EmptyAllClouds()
