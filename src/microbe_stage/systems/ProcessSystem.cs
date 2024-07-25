@@ -677,14 +677,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             if (entry.Key.IsEnvironmental)
                 continue;
 
-            var inputRemoved = entry.Value * process.Rate * environmentModifier;
+            var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier;
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
             // We don't multiply by delta here because we report the per-second values anyway. In the actual
             // process output numbers (computed after testing the speed), we need to multiply by inverse delta
             currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
 
-            inputRemoved = inputRemoved * delta * spaceConstraintModifier * process.SpeedMultiplier;
+            inputRemoved = inputRemoved * delta * spaceConstraintModifier;
 
             // If not enough we can't run the process unless we can lower spaceConstraintModifier enough
             var availableAmount = bag.GetCompoundAmount(entry.Key);
@@ -772,7 +772,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             return;
         }
 
-        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier * process.SpeedMultiplier;
+        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier *
+            process.SpeedMultiplier;
 
         // Apply ATP production speed cap if in effect
         if (isATPProducer && processorInfo.ATPProductionSpeedModifier != 0)
@@ -791,7 +792,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         if (currentProcessStatistics != null)
-            currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier;
+        {
+            currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier *
+                process.SpeedMultiplier;
+        }
 
         // Consume inputs
         foreach (var entry in processData.Inputs)
