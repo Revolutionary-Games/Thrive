@@ -69,9 +69,14 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         {
             foreach (var cloud in clouds)
             {
+                // Re-init with potentially changed compounds
+                // TODO: special handling is needed if the compounds actually changed
                 cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
-                cloud.Compounds[3]);
+                    cloud.Compounds[3]);
+                    
                 --renderPriority;
+
+                // Re-add the clouds as our children
                 AddChild(cloud);
             }
 
@@ -166,7 +171,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         return 0;
     }
 
-    public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result, bool onlyAbsorbable = true)
+     public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result, bool onlyAbsorbable = true)
     {
         foreach (var cloud in clouds)
         {
