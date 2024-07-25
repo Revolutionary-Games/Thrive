@@ -682,6 +682,8 @@ public static class SpawnHelpers
             SignalingChannel = species.ID,
         });
 
+        entity.Set<StrainAffected>();
+
         // Microbes are not affected by currents before they are visualized
         // entity.Set<CurrentAffected>();
 

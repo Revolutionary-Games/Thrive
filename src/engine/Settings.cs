@@ -36,6 +36,17 @@ public class Settings
             GD.PrintErr("Default locale is empty");
     }
 
+    public enum StrainBarVisibility
+    {
+        Off = 0,
+
+        VisibleWhenCloseToFull = 1,
+
+        VisibleWhenOverZero = 2,
+
+        AlwaysVisible = 3,
+    }
+
     public static Settings Instance => SingletonInstance;
 
     public static string DefaultLanguage => DefaultLanguageValue;
@@ -106,6 +117,12 @@ public class Settings
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> ScreenDamageEffect { get; private set; } = new(true);
+
+    /// <summary>
+    ///   When should the strain bar be visible
+    /// </summary>
+    public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
+        new(StrainBarVisibility.VisibleWhenOverZero);
 
     /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.

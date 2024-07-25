@@ -86,7 +86,7 @@ public class MicrobeMovement : TutorialPhase
                     else
                     {
                         var rotationDegrees = -((RotationEventArgs)args).RotationInRadians.Y;
-                        var lerped = Mathf.LerpAngle(keyPromptRotation, rotationDegrees, 0.1f);
+                        var lerped = Mathf.LerpAngle(keyPromptRotation, rotationDegrees, 0.14f);
                         keyPromptRotation = lerped;
                     }
 

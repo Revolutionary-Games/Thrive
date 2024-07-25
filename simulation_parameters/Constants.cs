@@ -185,11 +185,35 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
+
+    public const float MAX_STRAIN_PER_ENTITY = 100.0f;
+
+    public const float PASSIVE_STRAIN_DECREASE_PER_SECOND = 30.0f;
+
+    public const float PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_MULTIPLIER = 0.3f;
+
+    /// <summary>
+    ///   This is multiplied by the strain fraction to get the ATP usage multiplier
+    /// </summary>
+    public const float STRAIN_TO_ATP_USAGE_COEFFICIENT = 1.5f;
+
+    /// <summary>
+    ///   How much strain does not affect ATP usage at first
+    /// </summary>
+    public const float CANCELED_STRAIN = 10.0f;
+
+    public const float STRAIN_DECREASE_COOLDOWN_SECONDS = 0.5f;
+
+    public const float SPRINTING_STRAIN_INCREASE_PER_SECOND = 72.0f;
+
+    public const float SPRINTING_STRAIN_INCREASE_PER_HEX = 0.15f;
+
+    public const float SPRINTING_FORCE_MULTIPLIER = 1.8f;
+
     public const float FLAGELLA_ENERGY_COST = 6.0f;
 
     public const float FLAGELLA_BASE_FORCE = 35.0f;
-
-    public const float BASE_MOVEMENT_FORCE = 900.0f;
 
     /// <summary>
     ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
@@ -223,11 +247,13 @@ public static class Constants
 
     // Note that the rotation speed is reversed, i.e. lower values mean faster
     public const float CELL_MAX_ROTATION = 8.0f;
-    public const float CELL_MIN_ROTATION = 0.1f;
-    public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
+    public const float CELL_MIN_ROTATION = 0.10f;
+
+    public const float CELL_ROTATION_INFLECTION_INERTIA = 250000000.0f;
     public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
-    public const float CILIA_ROTATION_FACTOR = 32000000.0f;
+    public const float CILIA_ROTATION_FACTOR = 120000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
+    public const float CELL_TURN_INFLECTION_RADIANS = 0.4f;
 
     // TODO: remove if these stay unused
     // // These speed values are also reversed like the above
@@ -591,6 +617,12 @@ public static class Constants
     ///   Maximum number of damage events allowed for an entity. More than this are not recorded and is an error.
     /// </summary>
     public const int MAX_DAMAGE_EVENTS = 1000;
+
+    /// <summary>
+    ///   The maximum amount of ATP for a cell to take damage from lack of ATP. This used to be a hard-coded zero
+    ///   but while under strain, ATP never reached that low, so an extra margin for ATP damage was added.
+    /// </summary>
+    public const float ATP_DAMAGE_THRESHOLD = 0.05f;
 
     /// <summary>
     ///   Amount of health per second regenerated

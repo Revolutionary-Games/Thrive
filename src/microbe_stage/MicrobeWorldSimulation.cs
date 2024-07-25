@@ -69,6 +69,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobeFlashingSystem microbeFlashingSystem = null!;
     private MicrobeMovementSoundSystem microbeMovementSoundSystem = null!;
     private MicrobeMovementSystem microbeMovementSystem = null!;
+    private StrainSystem strainSystem = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
     private MicrobeTemporaryEffectsSystem microbeTemporaryEffectsSystem = null!;
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
@@ -198,6 +199,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
         engulfedHandlingSystem = new EngulfedHandlingSystem(this, SpawnSystem, EntitySystem, couldParallelize);
 
+        strainSystem = new StrainSystem(EntitySystem, couldParallelize);
         microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
 
         microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, EntitySystem, parallelRunner);
@@ -445,6 +447,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 microbeFlashingSystem.Dispose();
                 microbeMovementSoundSystem.Dispose();
                 microbeMovementSystem.Dispose();
+                strainSystem.Dispose();
                 microbeShaderSystem.Dispose();
                 microbeTemporaryEffectsSystem.Dispose();
                 microbeVisualsSystem.Dispose();
