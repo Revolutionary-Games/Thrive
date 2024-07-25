@@ -296,7 +296,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         float localRadius = searchRadius / resolution;
 
         float nearestDistanceSquared = float.MaxValue;
-        
+
         Vector3? closestPoint = null;
 
         foreach (var cloud in clouds)
