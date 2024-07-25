@@ -562,6 +562,7 @@ WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 layout_mode = 1
 
 [node name="Strain" type="ProgressBar" parent="."]
+visible = false
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 5
@@ -572,6 +573,7 @@ offset_right = 200.0
 offset_bottom = 27.0
 grow_horizontal = 2
 max_value = 0.9
+step = 0.001
 show_percentage = false
 
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]

@@ -708,6 +708,7 @@ offset_bottom = 97.0
 layout_mode = 1
 
 [node name="Strain" type="ProgressBar" parent="."]
+visible = false
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 5
@@ -718,6 +719,7 @@ offset_right = 200.0
 offset_bottom = 27.0
 grow_horizontal = 2
 max_value = 0.9
+step = 0.001
 show_percentage = false
 
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
@@ -738,8 +740,8 @@ show_percentage = false
 [connection signal="pressed" from="ScrollContainer/HotBar/BindingMode" to="." method="OnBindingModePressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/SecreteSlime" to="." method="OnSecreteSlimePressed"]
-[connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnFireToxinPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnFireToxinPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
 [connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCanceled"]
 [connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularConfirmed"]

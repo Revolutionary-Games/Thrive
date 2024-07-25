@@ -454,8 +454,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, engulfing, isDigesting, control.Sprinting,
-            stage.GameWorld.WorldSettings.ExperimentalFeatures);
+            organelles.HasSignalingAgent, engulfing, isDigesting, control.Sprinting, true);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
