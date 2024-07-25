@@ -427,7 +427,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (System.Threading.Interlocked.CompareExchange(ref Density[x, y].Z,
-                    newValue, seenCurrentAmount) != seenCurrentAmount);
+                 newValue, seenCurrentAmount) != seenCurrentAmount);
 
                 break;
             }
@@ -719,6 +719,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                                 throw new InvalidOperationException("Free space for compounds is negative");
 
                             multiplier = freeSpace / generousAmount;
+
                         }
 
                         if (!TakeCompoundInterlocked(i, x, y, fractionToTake * multiplier, cloudAmount,
