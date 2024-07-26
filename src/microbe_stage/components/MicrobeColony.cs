@@ -245,7 +245,7 @@ public static class MicrobeColonyHelpers
 
             agentVacuoles += organelles.AgentVacuoleCount;
             slimeJets += organelles.SlimeJets?.Count ?? 0;
-            mucocysts += organelles.MucocystCount ?? 0;
+            mucocysts += organelles.MucocystCount;
         }
     }
 

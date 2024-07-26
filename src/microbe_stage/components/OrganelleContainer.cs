@@ -44,12 +44,6 @@ public struct OrganelleContainer
     public List<SlimeJetComponent>? SlimeJets;
 
     /// <summary>
-    ///   The slime jets with mucocyst
-    /// </summary>
-    [JsonIgnore]
-    public int? MucocystCount;
-
-    /// <summary>
     ///   Flagellum components that need to be animated when the cell is moving at top speed
     /// </summary>
     [JsonIgnore]
@@ -80,6 +74,11 @@ public struct OrganelleContainer
     ///   The number of agent vacuoles. Determines the time between toxin shots.
     /// </summary>
     public int AgentVacuoleCount;
+
+    /// <summary>
+    ///   The slime jets with mucocyst
+    /// </summary>
+    public int MucocystCount;
 
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the current organelles. This is here to prevent anyone
@@ -455,6 +454,7 @@ public static class OrganelleContainerHelpers
         container.AvailableEnzymes[Lipase.Value] = 1;
 
         container.AgentVacuoleCount = 0;
+        container.MucocystCount = 0;
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
@@ -601,7 +601,6 @@ public static class OrganelleContainerHelpers
     /// </summary>
     public static void FetchLayoutOrganelleComponents(this ref OrganelleContainer container)
     {
-        container.MucocystCount = 0;
         container.SlimeJets?.Clear();
         container.ThrustComponents?.Clear();
         container.RotationComponents?.Clear();
@@ -616,11 +615,7 @@ public static class OrganelleContainerHelpers
             {
                 if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
-                    if (slimeJetComponent.IsMucocyst)
-                    {
-                        ++container.MucocystCount;
-                    }
-                    else
+                    if (!slimeJetComponent.IsMucocyst)
                     {
                         container.SlimeJets ??= new List<SlimeJetComponent>();
                         container.SlimeJets.Add(slimeJetComponent);

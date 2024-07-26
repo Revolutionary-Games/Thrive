@@ -226,6 +226,13 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             return;
         }
 
+        if (entity.Has<MicrobeControl>())
+        {
+            // Microbe reproduction is stopped when mucocyst is active
+            if (entity.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
+                return;
+        }
+
         ref var status = ref entity.Get<MicrobeStatus>();
 
         status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
@@ -368,13 +375,6 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         var (remainingAllowedCompoundUse, remainingFreeCompounds) =
             CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount, false,
                 reproductionDelta);
-
-        if (entity.Has<MicrobeControl>())
-        {
-            // Microbe reproduction is stopped when mucocyst is active
-            if (entity.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
-                return;
-        }
 
         ref var storage = ref entity.Get<CompoundStorage>();
         var compounds = storage.Compounds;

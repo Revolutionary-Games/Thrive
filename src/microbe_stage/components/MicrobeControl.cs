@@ -203,8 +203,10 @@ public static class MicrobeControlHelpers
     }
 
     public static void SetMucocystState(this ref MicrobeControl control,
-        ref OrganelleContainer organelleInfo, in Entity entity, bool state)
+        ref OrganelleContainer organelleInfo, ref CompoundStorage availableCompounds, in Entity entity, bool state, Compound? mucilageCompound = null)
     {
+        mucilageCompound ??= SimulationParameters.Instance.GetCompound("mucilage");
+
         if (entity.Has<MicrobeColony>())
         {
             ref var colony = ref entity.Get<MicrobeColony>();
@@ -212,29 +214,22 @@ public static class MicrobeControlHelpers
             // TODO: is it a good idea to allocate a delegate here?
             colony.PerformForOtherColonyMembersThanLeader(m =>
                 m.Get<MicrobeControl>()
-                    .SetMucocystState(ref m.Get<OrganelleContainer>(), m, state));
+                    .SetMucocystState(ref m.Get<OrganelleContainer>(), ref m.Get<CompoundStorage>(), m, state, mucilageCompound));
         }
 
-        // It might be tricky as there is now mucocyst upgrade that doesn't emit slime normally
-        if (organelleInfo.MucocystCount == null || organelleInfo.MucocystCount < 1)
+        if (organelleInfo.MucocystCount < 1)
             return;
 
-        if (entity.Has<CompoundStorage>())
-        {
-            ref var compoundStorage = ref entity.Get<CompoundStorage>();
-            var mucilage = SimulationParameters.Instance.GetCompound("mucilage");
-
-            if (compoundStorage.Compounds.Compounds[mucilage] < Constants.MUCOCYST_MINIMUM_MUCILAGE)
-                return;
-        }
-
-        var membrane = entity.Get<CellProperties>().CreatedMembrane;
+        if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < Constants.MUCOCYST_MINIMUM_MUCILAGE)
+            return;
 
         if (state)
         {
             control.State = MicrobeState.MucocystShield;
 
             entity.Get<CompoundAbsorber>().AbsorbSpeed = -1;
+
+            // TODO: maybe it is too loud if all cells in a colony play the sound?
             entity.Get<SoundEffectPlayer>().PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
 
             membrane?.SetMucocystEffectVisible(true);
