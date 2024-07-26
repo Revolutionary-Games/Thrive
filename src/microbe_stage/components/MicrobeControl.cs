@@ -3,6 +3,7 @@
 using System;
 using DefaultEcs;
 using Godot;
+using Systems;
 
 /// <summary>
 ///   Control variables for specifying how a microbe wants to move / behave
@@ -70,6 +71,12 @@ public struct MicrobeControl
     public bool Sprinting;
 
     /// <summary>
+    ///   Whether this microbe is currently using mucocyst and is protected. This is an internal variable for
+    ///   <see cref="MucocystSystem"/>. Don't modify!
+    /// </summary>
+    public bool MucocystEffectsApplied;
+
+    /// <summary>
     ///   Constructs an instance with a sensible <see cref="LookAtPoint"/> set
     /// </summary>
     /// <param name="startingPosition">World position this entity is starting at</param>
@@ -84,6 +91,7 @@ public struct MicrobeControl
         State = MicrobeState.Normal;
         SlowedBySlime = false;
         Sprinting = false;
+        MucocystEffectsApplied = false;
     }
 }
 
