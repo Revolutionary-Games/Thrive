@@ -74,6 +74,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     public delegate void OnSecreteSlimeButtonPressedEventHandler();
 
     [Signal]
+    public delegate void OnMucocystButtonPressedEventHandler();
+
+    [Signal]
     public delegate void OnToggleBindingButtonPressedEventHandler();
 
     [Signal]
@@ -420,8 +423,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         bool showToxin;
         bool showSlime;
+        bool showMucocyst;
 
         bool engulfing;
+        bool usingMucocyst;
 
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Has<MicrobeColony>())
@@ -429,19 +434,23 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             ref var colony = ref player.Get<MicrobeColony>();
 
             // TODO: does this need a variant that just returns a bool and has an early exit?
-            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets);
+            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets, out var mucocysts);
 
             showToxin = vacuoles > 0;
             showSlime = slimeJets > 0;
+            showMucocyst = mucocysts > 0;
 
             engulfing = colony.ColonyState == MicrobeState.Engulf;
+            usingMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
         }
         else
         {
             showToxin = organelles.AgentVacuoleCount > 0;
             showSlime = organelles.SlimeJets is { Count: > 0 };
+            showMucocyst = organelles.MucocystCount > 0;
 
             engulfing = control.State == MicrobeState.Engulf;
+            usingMucocyst = control.State == MicrobeState.MucocystShield;
         }
 
         bool isDigesting = false;
@@ -454,7 +463,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, engulfing, isDigesting, control.Sprinting, true);
+            organelles.HasSignalingAgent, showMucocyst, true, engulfing, isDigesting, usingMucocyst, control.Sprinting);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
@@ -782,6 +791,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void OnSecreteSlimePressed()
     {
         EmitSignal(SignalName.OnSecreteSlimeButtonPressed);
+    }
+
+    private void OnMucocystPressed()
+    {
+        EmitSignal(SignalName.OnMucocystButtonPressed);
     }
 
     private void OnEjectEngulfedPressed()
