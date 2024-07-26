@@ -978,8 +978,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime, bool showMucocyst,
-        bool showingSignaling, bool showSprint, bool engulfOn, bool showEject, bool mucocystOn, bool isSprinting)
+    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
+        bool showingSignaling, bool showMucocyst, bool showSprint, bool engulfOn, bool showEject, bool mucocystOn,
+        bool isSprinting)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;

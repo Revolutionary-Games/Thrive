@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-26 10:30+0300\n"
+"POT-Creation-Date: 2024-07-26 14:35+0300\n"
 "PO-Revision-Date: 2024-07-25 13:07+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -3449,6 +3449,10 @@ msgstr "黏液"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "黏液合成"
 
+#, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "切換衝刺模式。衝刺時細胞移動得更快，但會消耗更多的 ATP，隨著壓力增加會消耗更多的 ATP。"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "多細胞編輯器"
 
@@ -5216,6 +5220,10 @@ msgstr "切換物品欄"
 msgid "TOGGLE_METRICS"
 msgstr "切換指標顯示"
 
+#, fuzzy
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "切換全螢幕"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "切換導航樹"
 
@@ -5652,6 +5660,14 @@ msgstr "注射性菌毛"
 
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "將菌毛變為毒刺，刺穿其他細胞時造成毒素損傷"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "{0}（{1} 突變點數）"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"mucilage\"][/thrive:compound]。按下[thrive:input]g_secrete_slime[/thrive:input]釋放儲存的[thrive:compound type=\"mucilage\"][/thrive:compound]，提高該細胞的速度並減慢掠食者的速度。"
 
 msgid "UPLOAD"
 msgstr "上傳"

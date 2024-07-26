@@ -48,6 +48,8 @@ public partial class Membrane : MeshInstance3D
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
     private double engulfFade;
 
+    private bool mucocystEffectEnabled;
+
     /// <summary>
     ///   When true the material properties need to be reapplied
     /// </summary>
@@ -279,6 +281,11 @@ public partial class Membrane : MeshInstance3D
 
     public void SetMucocystEffectVisible(bool visible)
     {
+        // This uses an intermediate variable to reduce calls into Godot as this is continually triggered by a system
+        if (mucocystEffectEnabled == visible)
+            return;
+
+        mucocystEffectEnabled = visible;
         mucocystAnimationMeshInstance.Visible = visible;
     }
 

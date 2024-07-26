@@ -153,15 +153,18 @@ public partial class PlayerMicrobeInput : NodeWithInput
         if (!stage.HasPlayer)
             return;
 
-        ref var control = ref stage.Player.Get<MicrobeControl>();
+        var player = stage.Player;
+        ref var control = ref player.Get<MicrobeControl>();
 
         if (control.State == MicrobeState.MucocystShield)
         {
-            control.SetMucocystState(ref stage.Player.Get<OrganelleContainer>(), stage.Player, false);
+            control.SetMucocystState(ref player.Get<OrganelleContainer>(), ref player.Get<CompoundStorage>(), player,
+                false);
         }
         else
         {
-            control.SetMucocystState(ref stage.Player.Get<OrganelleContainer>(), stage.Player, true);
+            control.SetMucocystState(ref player.Get<OrganelleContainer>(), ref player.Get<CompoundStorage>(), player,
+                true);
         }
     }
 

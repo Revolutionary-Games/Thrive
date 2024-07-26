@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-26 10:30+0300\n"
+"POT-Creation-Date: 2024-07-26 14:35+0300\n"
 "PO-Revision-Date: 2024-07-26 07:22+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -3449,6 +3449,10 @@ msgstr "Müsilaj"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Müsilaj sentezi"
 
+#, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Hızlanma modunu aç. Hızlanırken, hücreler daha hızlı hareket eder. Ancak bu hücreler daha fazla ATP tüketir ve yorgunluk arttıkça ATP tüketimi daha da artar."
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Çok Hücreli Düzenleyicisi"
 
@@ -5216,6 +5220,10 @@ msgstr "Envanteri Aç"
 msgid "TOGGLE_METRICS"
 msgstr "Ölçümler göstergesini aç"
 
+#, fuzzy
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Tam ekrana geç"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Navigasyon ağacını aç"
 
@@ -5654,6 +5662,14 @@ msgstr "İnjektozom Pilus"
 
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Pilusu bir injektozoma dönüştürür, diğer hücrelere saplandığında toksin hasarı verir"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "{0} ({1} MP)"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"mucilage\"]müsilaja[/thrive:compound] çevirir. Depolanan [thrive:compound type=\"mucilage\"]müsilajı[/thrive:compound] salmak için [thrive:input]g_secrete_slime[/thrive:input] tuşuna basın. Müsilaj, salgılandığı hücrenin hızını arttırırken diğer yırtıcılarınkini azaltır."
 
 msgid "UPLOAD"
 msgstr "Karşıya Yükle"

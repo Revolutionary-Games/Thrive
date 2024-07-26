@@ -724,6 +724,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             ref var health = ref Player.Get<Health>();
 
+            // Kill the player even if invulnerable
+            health.Invulnerable = false;
+
             // This doesn't use the microbe damage calculation as this damage can't be resisted
             health.DealDamage(9999.0f, "suicide");
 
@@ -736,7 +739,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 {
                     GD.Print("Forcing player digestion to progress much faster");
 
-                    // Seems like there's no really good way to force digestion to complete immediately, so instead we
+                    // Seems like there's no very good way to force digestion to complete immediately, so instead we
                     // clear everything here to force the digestion to complete immediately
                     engulfable.AdditionalEngulfableCompounds?.Clear();
 
