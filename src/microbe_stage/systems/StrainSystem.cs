@@ -33,7 +33,7 @@ public sealed class StrainSystem : AEntitySetSystem<float>
                 strain.CurrentStrain = Constants.MAX_STRAIN_PER_ENTITY;
 
                 control.Sprinting = false;
-                control.CanSprint = false;
+                control.OutOfSprint = true;
             }
 
             strain.StrainDecreaseCooldown = Constants.STRAIN_DECREASE_COOLDOWN_SECONDS;
@@ -52,7 +52,7 @@ public sealed class StrainSystem : AEntitySetSystem<float>
 
             if (strain.CurrentStrain <= Constants.MIN_STRAIN_SPRINT_REGAIN)
             {
-                control.CanSprint = true;
+                control.OutOfSprint = false;
             }
         }
     }

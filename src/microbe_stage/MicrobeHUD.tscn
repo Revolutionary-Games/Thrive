@@ -36,8 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://bqyawyqghdnxp" path="res://assets/textures/gui/bevel/unbind.png" id="70"]
 [ext_resource type="Texture2D" uid="uid://cbxkq166e7veg" path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" id="72"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs0sa"]
-bg_color = Color(0.705939, 3.53761e-06, 3.85046e-07, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2vtv"]
+bg_color = Color(1, 0, 0, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -310,7 +310,7 @@ editorButton = NodePath("BottomRight/EditorButton")
 sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
-redFill = SubResource("StyleBoxFlat_vs0sa")
+strainBarRedFill = SubResource("StyleBoxFlat_b2vtv")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")

@@ -65,14 +65,11 @@ public struct MicrobeControl
     public bool SlowedBySlime;
 
     /// <summary>
-    ///   Whether this microbe is currently sprinting
+    ///   Whether this microbe cannot sprint
     /// </summary>
-    public bool Sprinting;
+    public bool OutOfSprint;
 
-    /// <summary>
-    ///   Whether this microbe is can sprint
-    /// </summary>
-    public bool CanSprint = true;
+    private bool sprinting;
 
     /// <summary>
     ///   Constructs an instance with a sensible <see cref="LookAtPoint"/> set
@@ -89,6 +86,25 @@ public struct MicrobeControl
         State = MicrobeState.Normal;
         SlowedBySlime = false;
         Sprinting = false;
+    }
+
+    /// <summary>
+    ///   Whether this microbe is currently sprinting
+    /// </summary>
+    public bool Sprinting
+    {
+        get => sprinting;
+        set
+        {
+            if (OutOfSprint)
+            {
+                sprinting = false;
+            }
+            else
+            {
+                sprinting = value;
+            }
+        }
     }
 }
 

@@ -38,8 +38,8 @@
 [ext_resource type="PackedScene" uid="uid://qwg2dluu8ow0" path="res://src/microbe_stage/PausePrompt.tscn" id="77"]
 [ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="78"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnc61"]
-bg_color = Color(0.705882, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa3p7"]
+bg_color = Color(1, 0, 0, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -155,7 +155,7 @@ editorButton = NodePath("BottomRight/EditorButton")
 sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
-redFill = SubResource("StyleBoxFlat_jnc61")
+strainBarRedFill = SubResource("StyleBoxFlat_oa3p7")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")

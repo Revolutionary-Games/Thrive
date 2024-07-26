@@ -314,8 +314,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
-        if (control.CanSprint)
-            control.Sprinting = true;
+        control.Sprinting = true;
 
         // We need to not consume the input, otherwise the key up for this will not run
         return false;

@@ -196,7 +196,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private StringName fadeParameterName = new("fade");
 
     [Export]
-    private StyleBoxFlat? redFill;
+    private StyleBoxFlat? strainBarRedFill;
 
     // Used for save load to apply these properties
     private bool temporaryEnvironmentCompressed;
@@ -741,7 +741,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         if (!CanSprint())
         {
-            strainBar.AddThemeStyleboxOverride("fill", redFill);
+            strainBar.AddThemeStyleboxOverride("fill", strainBarRedFill);
         }
         else
         {
@@ -1106,7 +1106,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
             fadeParameterName.Dispose();
 
-            redFill?.Dispose();
+            strainBarRedFill?.Dispose();
         }
 
         base.Dispose(disposing);

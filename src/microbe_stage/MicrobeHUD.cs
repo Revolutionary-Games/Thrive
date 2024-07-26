@@ -340,7 +340,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     protected override bool CanSprint()
     {
         ref var control = ref stage!.Player.Get<MicrobeControl>();
-        return control.CanSprint;
+        return !control.OutOfSprint;
     }
 
     protected override Func<Compound, bool> GetIsUsefulCheck()
