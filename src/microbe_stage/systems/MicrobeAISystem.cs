@@ -322,6 +322,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             return;
         }
 
+        control.Sprinting = false;
+
         // If this microbe is out of ATP, pick an amount of time to rest
         if (compounds.GetCompoundAmount(atp) < 1.0f)
         {
@@ -439,6 +441,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             {
                 PursueAndConsumeChunks(ref position, ref ai, ref control, ref engulfer, entity,
                     targetChunk.Value.Position, speciesActivity, random);
+
                 return;
             }
         }
@@ -752,6 +755,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 // If the predator is right on top of us there's a chance to try and swing with a pilus
                 ai.MoveWithRandomTurn(2.5f, 3.0f, position.Position, ref control, speciesActivity, random);
             }
+
+            // Sprint until full strain
+            control.Sprinting = true;
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
@@ -789,6 +795,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         else
         {
             control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+
+            control.Sprinting = true;
         }
 
         // Predators can use slime jets as an ambush mechanism
