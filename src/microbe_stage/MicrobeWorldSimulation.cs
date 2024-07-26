@@ -115,7 +115,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     [JsonIgnore]
     public CameraFollowSystem CameraFollowSystem { get; private set; } = null!;
 
-    [JsonProperty(Order = 1)]
+    [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public SpawnSystem SpawnSystem { get; private set; } = null!;
 

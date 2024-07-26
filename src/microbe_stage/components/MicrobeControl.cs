@@ -230,11 +230,13 @@ public static class MicrobeControlHelpers
         if (organelleInfo.MucocystCount < 1)
             return;
 
-        if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < Constants.MUCOCYST_MINIMUM_MUCILAGE)
-            return;
-
         if (state)
         {
+            // Don't allow spamming if not enough mucocyst. This is inside this if to allow exiting mucocyst shield
+            // mode even without enough mucilage remaining.
+            if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < Constants.MUCOCYST_MINIMUM_MUCILAGE)
+                return;
+
             control.State = MicrobeState.MucocystShield;
 
             // TODO: maybe it is too loud if all cells in a colony play the sound?
