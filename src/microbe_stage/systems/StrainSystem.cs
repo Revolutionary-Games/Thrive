@@ -2,11 +2,13 @@
 using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
+using Systems;
 using World = DefaultEcs.World;
 
 [With(typeof(OrganelleContainer))]
 [With(typeof(StrainAffected))]
 [ReadsComponent(typeof(OrganelleContainer))]
+[RunsBefore(typeof(MicrobeMovementSystem))]
 public sealed class StrainSystem : AEntitySetSystem<float>
 {
     public StrainSystem(World world, IParallelRunner runner) : base(world, runner,
@@ -18,6 +20,9 @@ public sealed class StrainSystem : AEntitySetSystem<float>
     {
         ref var strain = ref entity.Get<StrainAffected>();
         ref var control = ref entity.Get<MicrobeControl>();
+
+        if (control.OutOfSprint && control.Sprinting)
+            control.Sprinting = false;
 
         if (strain.IsUnderStrain)
         {
