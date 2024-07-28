@@ -111,6 +111,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             Compound? cloud4 = null;
 
             int startOffset = (i % neededCloudsAtOnePosition) * Constants.CLOUDS_IN_ONE;
+
             cloud1 = allCloudCompounds[startOffset + 0];
 
             if (startOffset + 1 < allCloudCompounds.Count)
@@ -240,6 +241,8 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         // This version is used when working with cloud local coordinates
         float localGrabRadius = radius / resolution;
 
+        float localGrabRadiusSquared = Mathf.Pow(radius / resolution, 2);
+
         // Find clouds that are in range for absorbing
         foreach (var cloud in clouds)
         {
@@ -277,7 +280,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     if (x < cloud.Size && y < cloud.Size)
                     {
                         // Absorb all compounds in the cloud
-                        cloud.AbsorbCompounds(x, y, storage, totals, delta * factor, rate * factor);
+                        cloud.AbsorbCompounds(x, y, storage, totals, delta, rate * factor);
                     }
                 }
             }
@@ -301,9 +304,11 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
 
         foreach (var cloud in clouds)
         {
+            // Skip clouds that don't handle the target compound
             if (!cloud.HandlesCompound(compound))
                 continue;
 
+            // Skip clouds that are out of range
             if (!cloud.ContainsPositionWithRadius(position, searchRadius))
                 continue;
 

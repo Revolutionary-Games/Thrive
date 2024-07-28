@@ -1,26 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://bertyonikiucy"]
+[gd_scene load_steps=8 format=3 uid="uid://bertyonikiucy"]
 
 [ext_resource type="Shader" path="res://shaders/CompoundCloudPlane.gdshader" id="1"]
-[ext_resource type="Texture2D" uid="uid://xj4714l7pucx" path="res://assets/textures/PerlinNoise.jpg" id="2"]
 [ext_resource type="Script" path="res://src/microbe_stage/CompoundCloudPlane.cs" id="3"]
-[ext_resource type="Texture2D" uid="uid://bd6mlts55wpaf" path="res://assets/textures/TestCloudConcentrations.png" id="4"]
 
 [sub_resource type="QuadMesh" id="1"]
+lightmap_size_hint = Vector2i(1002, 1002)
 size = Vector2(200, 200)
+
+[sub_resource type="Gradient" id="Gradient_u1fse"]
+offsets = PackedFloat32Array(0, 0.380597, 0.88806)
+colors = PackedColorArray(0.0562916, 0.0562916, 0.0562916, 1, 0.281187, 0.281187, 0.281187, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7cqxm"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdmng"]
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_u1fse")
+noise = SubResource("FastNoiseLite_7cqxm")
 
 [sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
 render_priority = -1
 shader = ExtResource("1")
-shader_parameter/colour1 = Color(0, 0, 0, 0)
-shader_parameter/colour2 = Color(0, 0, 0, 0)
-shader_parameter/colour3 = Color(0, 0, 0, 0)
-shader_parameter/colour4 = Color(0, 0, 0, 0)
+shader_parameter/colour1 = Color(1, 1, 0, 1)
+shader_parameter/colour2 = Color(0, 0, 1, 1)
+shader_parameter/colour3 = Color(0, 1, 0, 1)
+shader_parameter/colour4 = Color(1, 0, 0, 1)
 shader_parameter/UVOffset = Vector2(0, 0)
-shader_parameter/BrightnessMultiplier = 1.0
-shader_parameter/CloudAlpha = 0.7
-shader_parameter/densities = ExtResource("4")
-shader_parameter/noise = ExtResource("2")
+shader_parameter/BrightnessMultiplier = 10.0
+shader_parameter/NoiseScale = 0.035
+shader_parameter/noise = SubResource("NoiseTexture2D_xdmng")
 
 [node name="CompoundCloudPlane" type="CSGMesh3D"]
 transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0)
