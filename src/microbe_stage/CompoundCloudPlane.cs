@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -38,9 +37,11 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private readonly StringName brightnessParameterName = new("BrightnessMultiplier");
     private readonly StringName uvOffsetParameterName = new("UVOffset");
+
     private Image? image;
     private ImageTexture texture = null!;
     private FluidCurrentsSystem? fluidSystem;
+
     private Vector4 decayRates;
 
     [JsonProperty]
@@ -68,6 +69,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             Size = Settings.Instance.CloudSimulationWidth;
             Resolution = Settings.Instance.CloudResolution;
             CreateDensityTexture();
+
             Density = new Vector4[Size, Size];
             OldDensity = new Vector4[Size, Size];
             ClearContents();
@@ -78,6 +80,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             // TODO: could resample the density data here to allow changing the cloud resolution or size
             // without starting a new save
             CreateDensityTexture();
+
             OldDensity = new Vector4[Size, Size];
             SetMaterialUVForPosition();
         }
@@ -95,6 +98,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         decayRates = new Vector4(cloud1.DecayRate, cloud2?.DecayRate ?? 1.0f,
             cloud3?.DecayRate ?? 1.0f, cloud4?.DecayRate ?? 1.0f);
 
+        // Setup colours
         var material = (ShaderMaterial)Material;
 
         material.SetShaderParameter("colour1", cloud1.Colour);
@@ -105,12 +109,15 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         material.SetShaderParameter("colour3", cloud3?.Colour ?? blank);
         material.SetShaderParameter("colour4", cloud4?.Colour ?? blank);
 
+        // CompoundCloudPlanes need different render priorities to avoid the flickering effect
+        // Which result from intersecting meshes.
         material.RenderPriority = renderPriority;
     }
 
     public void UpdatePosition(Vector2I newPosition)
     {
         cachedWorldPosition = Position;
+
         int newX = ((newPosition.X % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
         int newY = ((newPosition.Y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
@@ -188,8 +195,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 Size - Constants.CLOUD_EDGE_WIDTH / 2, Size / Constants.CLOUD_SQUARES_PER_SIDE
                 - Constants.CLOUD_EDGE_WIDTH, Constants.CLOUD_EDGE_WIDTH / 2, delta);
-            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2, 0,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 Size - Constants.CLOUD_EDGE_WIDTH / 2,
@@ -237,6 +244,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     /// </summary>
     public void UpdateEdgesAfterCenter(float delta)
     {
+        // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
         var pos = new Vector2(cachedWorldPosition.X, cachedWorldPosition.Z);
 
@@ -249,8 +257,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         if (position.X != 1)
         {
-            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 0,
-                Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
         }
 
         if (position.X != 2)
@@ -264,12 +272,11 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, 0,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
-            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
-                Size - Constants.CLOUD_EDGE_WIDTH / 2,
+            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, Size - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
-            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2, 0,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
             PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 Size - Constants.CLOUD_EDGE_WIDTH / 2,
@@ -357,6 +364,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 var x0 = i;
                 var y0 = j;
 
+                // TODO: fix task allocations
                 var task = new Task(() => PartialUpdateTextureImage(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     Size / Constants.CLOUD_SQUARES_PER_SIDE,
@@ -392,6 +400,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         float seenCurrentAmount;
         float newValue;
 
+        // Exact comparisons used to know when the atomic operation really succeeded
+        // ReSharper disable CompareOfFloatsByEqualityOperator
         switch (compoundIndex)
         {
             case 0:
@@ -414,8 +424,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     seenCurrentAmount = Density[x, y].Y;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].Y,
-                           newValue, seenCurrentAmount) != seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
 
                 break;
             }
@@ -427,8 +437,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     seenCurrentAmount = Density[x, y].Z;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].Z,
-                           newValue, seenCurrentAmount) != seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
 
                 break;
             }
@@ -440,8 +450,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     seenCurrentAmount = Density[x, y].W;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].W,
-                           newValue, seenCurrentAmount) != seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
 
                 break;
             }
@@ -449,6 +459,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             default:
                 throw new ArgumentException("This cloud doesn't handle the given compound type");
         }
+
+        // ReSharper restore CompareOfFloatsByEqualityOperator
     }
 
     /// <summary>
@@ -473,8 +485,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     seenCurrentAmount = Density[x, y].X;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].X,
-                           newValue, seenCurrentAmount) != seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
 
                 return true;
             }
@@ -486,8 +498,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     seenCurrentAmount = Density[x, y].Y;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].Y,
-                           newValue, seenCurrentAmount) != seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
 
                 return true;
             }
@@ -499,8 +511,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     seenCurrentAmount = Density[x, y].Z;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].Z,
-                           newValue, seenCurrentAmount) != seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
 
                 return true;
             }
@@ -512,8 +524,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     seenCurrentAmount = Density[x, y].W;
                     newValue = seenCurrentAmount + density;
                 }
-                while (Interlocked.CompareExchange(ref Density[x, y].W,
-                           newValue, seenCurrentAmount) != seenCurrentAmount);
+                while (Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
+                       seenCurrentAmount);
 
                 return true;
             }
@@ -521,6 +533,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             default:
                 return false;
         }
+
+        // ReSharper restore CompareOfFloatsByEqualityOperator
     }
 
     /// <summary>
@@ -560,6 +574,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         if (seenCurrentAmount - taken < 0.1f)
         {
+            // Taking basically everything in the cloud
             newValue = 0;
         }
         else
@@ -567,6 +582,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             newValue = seenCurrentAmount - taken;
         }
 
+        // Exact comparisons used to know when the atomic operation really succeeded
+        // ReSharper disable CompareOfFloatsByEqualityOperator
         switch (compoundIndex)
         {
             case 0:
@@ -584,6 +601,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             default:
                 throw new ArgumentException("Compound index out of range");
         }
+
+        // ReSharper restore CompareOfFloatsByEqualityOperator
     }
 
     /// <summary>
@@ -598,7 +617,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Returns all the compounds that are available at point
+    ///   Returns true if position with radius around it contains any
+    ///   points that are within this cloud.
     /// </summary>
     public void GetCompoundsAt(int x, int y, Dictionary<Compound, float> result, bool onlyAbsorbable)
     {
@@ -618,8 +638,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Returns true if position with radius around it contains any
-    ///   points that are within this cloud.
+    ///   Checks if position is in this cloud, also returns relative coordinates
     /// </summary>
     public bool ContainsPosition(Vector3 worldPosition, out int x, out int y)
     {
@@ -650,22 +669,28 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     {
         var topLeftRelative = worldPosition - cachedWorldPosition;
 
+        // Floor is used here because otherwise the last coordinate is wrong
         x = ((int)Math.Floor((topLeftRelative.X + Constants.CLOUD_WIDTH) / Resolution)
             + position.X * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
         y = ((int)Math.Floor((topLeftRelative.Z + Constants.CLOUD_HEIGHT) / Resolution)
             + position.Y * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
     }
 
-    [SuppressMessage("ReSharper", "PossibleLossOfFraction",
-        Justification = "Adding floats casts in the function might do more harm then good")]
+    /// <summary>
+    ///   Converts cloud local coordinates to world coordinates
+    /// </summary>
     public Vector3 ConvertToWorld(int cloudX, int cloudY)
     {
+        // Integer calculations are intentional here
+        // ReSharper disable PossibleLossOfFraction
         return new Vector3(cloudX * Resolution +
             ((4 - position.X) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
             Constants.CLOUD_WIDTH,
             0,
             cloudY * Resolution + ((4 - position.Y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
             Constants.CLOUD_HEIGHT) + cachedWorldPosition;
+
+        // ReSharper restore PossibleLossOfFraction
     }
 
     /// <summary>
@@ -678,6 +703,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             throw new ArgumentException("Rate can't be negative");
 
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
+
         float radius = 1.0f;
         float radiusSquared = radius * radius;
 
@@ -687,6 +713,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             if (compound == null)
                 break;
 
+            // Skip if compound is non-useful or disallowed to be absorbed
             if (!compound.IsAbsorbable || !storage.IsUseful(compound))
                 continue;
 
@@ -703,15 +730,19 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     if (x < 0 || y < 0 || x >= Size || y >= Size)
                         continue;
 
+                    // Loop here to retry in case we read stale data
                     while (true)
                     {
+                        // Overestimate of how much compounds we get
                         float cloudAmount = HackyAddress(ref Density[x, y], i);
                         float generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
+                        // Skip if there isn't enough to absorb
                         if (generousAmount < MathUtils.EPSILON)
                             break;
 
                         float freeSpace = storage.GetFreeSpaceForCompound(compound);
+
                         float multiplier = 1.0f * rate;
 
                         if (freeSpace < generousAmount)
@@ -726,14 +757,19 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                         if (!TakeCompoundInterlocked(i, x, y, fractionToTake * multiplier, cloudAmount,
                                 out float taken))
                         {
+                            // Value was updated since we read it, we need to retry
                             continue;
                         }
 
                         taken *= Constants.ABSORPTION_RATIO;
+
+                        // This should never fail to add the full amount of compounds as we checked the free space above
+                        // scaled the take amount accordingly
                         storage.AddCompound(compound, taken);
 
                         if (totals != null)
                         {
+                            // Keep track of total compounds absorbed for the cell
                             totals.TryGetValue(compound, out var existingValue);
                             totals[compound] = existingValue + taken;
                         }
@@ -981,6 +1017,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     private void SetMaterialUVForPosition()
     {
         var material = (ShaderMaterial)Material;
+
+        // No clue how this math ends up with the right UV offsets - hhyyrylainen
         material.SetShaderParameter(uvOffsetParameterName, new Vector2(
             position.X / (float)Constants.CLOUD_SQUARES_PER_SIDE,
             position.Y / (float)Constants.CLOUD_SQUARES_PER_SIDE));
