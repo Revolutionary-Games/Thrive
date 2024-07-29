@@ -216,6 +216,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private float lastHealth;
     private float damageEffectCurrentValue;
 
+    private bool strainIsRed;
+
     protected CreatureStageHUDBase()
     {
     }
@@ -739,13 +741,20 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         strainBar.Value = strainFraction;
 
-        if (!CanSprint())
+        var strainState = !CanSprint();
+
+        if (strainState != strainIsRed)
         {
-            strainBar.AddThemeStyleboxOverride("fill", strainBarRedFill);
-        }
-        else
-        {
-            strainBar.RemoveThemeStyleboxOverride("fill");
+            strainIsRed = strainState;
+
+            if (strainIsRed)
+            {
+                strainBar.AddThemeStyleboxOverride("fill", strainBarRedFill);
+            }
+            else
+            {
+                strainBar.RemoveThemeStyleboxOverride("fill");
+            }
         }
 
         switch (Settings.Instance.StrainBarVisibilityMode.Value)
