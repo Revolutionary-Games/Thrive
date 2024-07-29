@@ -764,7 +764,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
                         taken *= Constants.ABSORPTION_RATIO;
 
-                        // This should never fail to add the full amount of compounds as we checked the free space above and
+                        // This should never fail to add the full amount of compounds as we checked the free space above
                         // scaled the take amount accordingly
                         storage.AddCompound(compound, taken);
 

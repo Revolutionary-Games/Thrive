@@ -241,8 +241,6 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         // This version is used when working with cloud local coordinates
         float localGrabRadius = radius / resolution;
 
-        float localGrabRadiusSquared = Mathf.Pow(radius / resolution, 2);
-
         // Find clouds that are in range for absorbing
         foreach (var cloud in clouds)
         {
