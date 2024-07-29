@@ -198,6 +198,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     private StringName fadeParameterName = new("fade");
 
+    [Export]
+    private StyleBoxFlat? strainBarRedFill;
+
     // Used for save load to apply these properties
     private bool temporaryEnvironmentCompressed;
     private bool temporaryCompoundCompressed;
@@ -215,6 +218,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     private float lastHealth;
     private float damageEffectCurrentValue;
+
+    private bool strainIsRed;
 
     protected CreatureStageHUDBase()
     {
@@ -739,6 +744,22 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         strainBar.Value = strainFraction;
 
+        var strainState = !CanSprint();
+
+        if (strainState != strainIsRed)
+        {
+            strainIsRed = strainState;
+
+            if (strainIsRed)
+            {
+                strainBar.AddThemeStyleboxOverride("fill", strainBarRedFill);
+            }
+            else
+            {
+                strainBar.RemoveThemeStyleboxOverride("fill");
+            }
+        }
+
         switch (Settings.Instance.StrainBarVisibilityMode.Value)
         {
             case Settings.StrainBarVisibility.Off:
@@ -780,6 +801,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     ///   else the player's strain fraction
     /// </returns>
     protected virtual float? ReadPlayerStrainFraction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual bool CanSprint()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
@@ -1094,6 +1120,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             }
 
             fadeParameterName.Dispose();
+
+            strainBarRedFill?.Dispose();
         }
 
         base.Dispose(disposing);
