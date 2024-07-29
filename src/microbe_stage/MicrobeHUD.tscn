@@ -37,6 +37,13 @@
 [ext_resource type="Texture2D" uid="uid://bqyawyqghdnxp" path="res://assets/textures/gui/bevel/unbind.png" id="70"]
 [ext_resource type="Texture2D" uid="uid://cbxkq166e7veg" path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" id="72"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2vtv"]
+bg_color = Color(1, 0.301961, 0.301961, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="Animation" id="39"]
 resource_name = "HideCompoundsPanels"
 length = 0.4
@@ -305,6 +312,7 @@ mucocystHotkey = NodePath("ScrollContainer/HotBar/Mucocyst")
 sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
+strainBarRedFill = SubResource("StyleBoxFlat_b2vtv")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")

@@ -40,7 +40,6 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
-[RunsBefore(typeof(StrainSystem))]
 [RuntimeCost(14)]
 public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 {
