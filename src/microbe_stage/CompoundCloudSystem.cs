@@ -62,7 +62,8 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         }
 
         // Count the number of clouds needed at one position from the loaded compound types
-        neededCloudsAtOnePosition = (int)Math.Ceiling(allCloudCompounds.Count / (float)Constants.CLOUDS_IN_ONE);
+        neededCloudsAtOnePosition = (int)Math.Ceiling(allCloudCompounds.Count /
+            (float)Constants.CLOUDS_IN_ONE);
 
         // We need to dynamically spawn more / delete some if this doesn't match
         while (clouds.Count < neededCloudsAtOnePosition)
@@ -241,6 +242,8 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         // This version is used when working with cloud local coordinates
         float localGrabRadius = radius / resolution;
 
+        float localGrabRadiusSquared = Mathf.Pow(radius / resolution, 2);
+
         // Find clouds that are in range for absorbing
         foreach (var cloud in clouds)
         {
@@ -268,17 +271,19 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     if (x < 0 || y < 0)
                         continue;
 
-                    float distance = Mathf.Sqrt(Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2));
-                    if (distance > localGrabRadius)
+                    // Circle check
+                    if (Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2) >
+                        localGrabRadiusSquared)
+                    {
+                        // Not in it
                         continue;
-
-                    float factor = 1.0f - (distance / localGrabRadius);
+                    }
 
                     // Then just need to check that it is within the cloud simulation array
                     if (x < cloud.Size && y < cloud.Size)
                     {
                         // Absorb all compounds in the cloud
-                        cloud.AbsorbCompounds(x, y, storage, totals, delta, rate * factor);
+                        cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
                     }
                 }
             }
