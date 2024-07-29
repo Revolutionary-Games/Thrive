@@ -12,9 +12,11 @@ uniform vec4 colour4 : source_color = vec4(1.0, 0.0, 0.0, 1.0);
 
 uniform vec2 UVOffset = vec2(0, 0);
 
-uniform float BrightnessMultiplier = 2.0;
+// This must evenly divide into 1 or tiling will break
 uniform float NoiseScale = 0.05;
-uniform float CLOUD_SPEED = 0;
+
+uniform float BrightnessMultiplier = 2.0;
+uniform float CLOUD_SPEED = 0.013;
 
 // Setting this too low makes the clouds invisible
 const float CLOUD_DISSIPATION = 0.7;
