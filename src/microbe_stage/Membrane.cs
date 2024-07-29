@@ -16,6 +16,9 @@ public partial class Membrane : MeshInstance3D
     [Export]
     public ShaderMaterial? EngulfShaderMaterial;
 
+    [Export]
+    public ShaderMaterial? MucocystShaderMaterial;
+
     private readonly StringName healthParameterName = new("healthFraction");
     private readonly StringName wigglynessParameterName = new("wigglyNess");
     private readonly StringName movementWigglynessParameterName = new("movementWigglyNess");
@@ -23,6 +26,9 @@ public partial class Membrane : MeshInstance3D
 
     [Export]
     private MeshInstance3D engulfAnimationMeshInstance = null!;
+
+    [Export]
+    private MeshInstance3D mucocystAnimationMeshInstance = null!;
 #pragma warning disable CA2213
     private Texture2D? albedoTexture;
 
@@ -41,6 +47,8 @@ public partial class Membrane : MeshInstance3D
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
     private double engulfFade;
+
+    private bool mucocystEffectEnabled;
 
     /// <summary>
     ///   When true the material properties need to be reapplied
@@ -271,6 +279,16 @@ public partial class Membrane : MeshInstance3D
         return new Vector3(closestSoFar.X, 0, closestSoFar.Y);
     }
 
+    public void SetMucocystEffectVisible(bool visible)
+    {
+        // This uses an intermediate variable to reduce calls into Godot as this is continually triggered by a system
+        if (mucocystEffectEnabled == visible)
+            return;
+
+        mucocystEffectEnabled = visible;
+        mucocystAnimationMeshInstance.Visible = visible;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -294,6 +312,9 @@ public partial class Membrane : MeshInstance3D
 
         engulfAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
         engulfAnimationMeshInstance.MaterialOverride = EngulfShaderMaterial;
+
+        mucocystAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
+        mucocystAnimationMeshInstance.MaterialOverride = MucocystShaderMaterial;
     }
 
     private void ApplyAllMaterialParameters()
@@ -306,7 +327,7 @@ public partial class Membrane : MeshInstance3D
 
     private void ApplyWiggly()
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null)
             return;
 
         float wigglyNessToApply =
@@ -316,11 +337,12 @@ public partial class Membrane : MeshInstance3D
 
         MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
         EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
+        MucocystShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
     }
 
     private void ApplyMovementWiggly()
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null)
             return;
 
         float wigglyNessToApply =
@@ -330,6 +352,7 @@ public partial class Membrane : MeshInstance3D
 
         MembraneShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
         EngulfShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
+        MucocystShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
     }
 
     private void ApplyHealth()

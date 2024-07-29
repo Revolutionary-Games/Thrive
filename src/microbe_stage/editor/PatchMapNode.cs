@@ -90,7 +90,10 @@ public partial class PatchMapNode : MarginContainer
         set => Patch.ApplyVisibility(value);
     }
 
-    public bool IsDirty { get; private set; }
+    /// <summary>
+    ///   True when this has been selected and the <see cref="PatchMapDrawer"/> has not reacted yet.
+    /// </summary>
+    public bool SelectionDirty { get; private set; }
 
     public ShaderMaterial? MonochromeMaterial { get; set; }
 
@@ -144,7 +147,14 @@ public partial class PatchMapNode : MarginContainer
         get => selected;
         set
         {
+            if (selected == value)
+                return;
+
             selected = value;
+
+            // Make sure any highlighted lines / other patches also react correctly to this becoming deselected
+            if (!selected)
+                SelectionDirty = true;
 
             UpdateSelectHighlightRing();
         }
@@ -216,10 +226,16 @@ public partial class PatchMapNode : MarginContainer
                 Pressed: true, ButtonIndex: MouseButton.Left or MouseButton.Right,
             })
         {
-            IsDirty = true;
+            SelectionDirty = true;
             OnSelect();
             GetViewport().SetInputAsHandled();
         }
+    }
+
+    public void UpdateSelectionState()
+    {
+        SelectionDirty = false;
+        UpdateSelectHighlightRing();
     }
 
     public void UpdateVisibility()
@@ -257,7 +273,8 @@ public partial class PatchMapNode : MarginContainer
     {
         Selected = true;
 
-        SelectCallback?.Invoke(this);
+        if (Selected)
+            SelectCallback?.Invoke(this);
     }
 
     public void OnMouseEnter()

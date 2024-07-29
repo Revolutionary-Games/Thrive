@@ -5,7 +5,7 @@
 /// </summary>
 /// <remarks>
 ///   <para>
-///     This is a struct as this just packs one float and a single object reference in here. This allows much tighter
+///     This is a struct as this just packs a few floats and a single object reference in here. This allows much tighter
 ///     data packing when this is used in lists.
 ///   </para>
 /// </remarks>
@@ -15,6 +15,8 @@ public struct TweakedProcess
     public readonly BioProcess Process;
 
     public float Rate;
+
+    public float SpeedMultiplier = 1;
 
     [JsonConstructor]
     public TweakedProcess(BioProcess process, float rate = 1.0f)

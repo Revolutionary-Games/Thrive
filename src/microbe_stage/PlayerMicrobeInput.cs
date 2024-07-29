@@ -125,6 +125,10 @@ public partial class PlayerMicrobeInput : NodeWithInput
         ref var control = ref stage.Player.Get<MicrobeControl>();
         ref var compoundStorage = ref stage.Player.Get<CompoundStorage>();
 
+        // Mucocyst being activated prevents most abilities
+        if (control.State == MicrobeState.MucocystShield)
+            return;
+
         control.EmitToxin(ref stage.Player.Get<OrganelleContainer>(), compoundStorage.Compounds, stage.Player);
     }
 
@@ -136,7 +140,32 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
+        // Mucocyst being activated prevents most abilities
+        if (control.State == MicrobeState.MucocystShield)
+            return;
+
         control.QueueSecreteSlime(ref stage.Player.Get<OrganelleContainer>(), stage.Player, (float)delta);
+    }
+
+    [RunOnKeyDown("g_toggle_mucocyst")]
+    public void ToggleMucocyst()
+    {
+        if (!stage.HasPlayer)
+            return;
+
+        var player = stage.Player;
+        ref var control = ref player.Get<MicrobeControl>();
+
+        if (control.State == MicrobeState.MucocystShield)
+        {
+            control.SetMucocystState(ref player.Get<OrganelleContainer>(), ref player.Get<CompoundStorage>(), player,
+                false);
+        }
+        else
+        {
+            control.SetMucocystState(ref player.Get<OrganelleContainer>(), ref player.Get<CompoundStorage>(), player,
+                true);
+        }
     }
 
     [RunOnKeyDown("g_toggle_engulf")]
@@ -301,6 +330,47 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         if (command != null && stage.HasPlayer)
             stage.HUD.ApplySignalCommand(command, stage.Player);
+    }
+
+    [RunOnKeyDown("g_sprint")]
+    public bool StartSprint()
+    {
+        if (!stage.WorldSettings.ExperimentalFeatures)
+            return false;
+
+        if (!stage.HasPlayer)
+            return false;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.Sprinting = true;
+
+        // We need to not consume the input, otherwise the key up for this will not run
+        return false;
+    }
+
+    [RunOnKeyUp("g_sprint")]
+    public void EndSprint()
+    {
+        if (!stage.HasPlayer)
+            return;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.Sprinting = false;
+    }
+
+    public void ToggleSprint()
+    {
+        if (!stage.WorldSettings.ExperimentalFeatures)
+            return;
+
+        if (!stage.HasPlayer)
+            return;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.Sprinting = !control.Sprinting;
     }
 
     [RunOnKeyDown("g_cheat_editor")]
