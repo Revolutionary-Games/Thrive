@@ -23,25 +23,28 @@ public partial class MicrobeWorldSimulation
                 {
                     // Timeslot 1 on thread 2
                     damageCooldownSystem.Update(delta);
-                    endosymbiontOrganelleSystem.Update(delta);
                     countLimitedDespawnSystem.Update(delta);
-                    compoundAbsorptionSystem.Update(delta);
+                    fluidCurrentsSystem.Update(delta);
+                    entitySignalingSystem.Update(delta);
                     barrier1.SignalAndWait();
 
                     // Timeslot 2 on thread 2
-                    ProcessSystem.Update(delta);
+                    microbePhysicsCreationAndSizeSystem.Update(delta);
+                    compoundAbsorptionSystem.Update(delta);
                     barrier1.SignalAndWait();
+
+                    // Timeslot 3 on thread 2
+                    ProcessSystem.Update(delta);
                     barrier1.SignalAndWait();
 
                     // Timeslot 4 on thread 2
-                    colonyCompoundDistributionSystem.Update(delta);
-                    allCompoundsVentingSystem.Update(delta);
+                    microbeTemporaryEffectsSystem.Update(delta);
                     barrier1.SignalAndWait();
                     barrier1.SignalAndWait();
 
                     // Timeslot 6 on thread 2
-                    multicellularGrowthSystem.Update(delta);
                     engulfedDigestionSystem.Update(delta);
+                    multicellularGrowthSystem.Update(delta);
                     organelleComponentFetchSystem.Update(delta);
                     slimeSlowdownSystem.Update(delta);
                     if (RunAI)
@@ -57,23 +60,21 @@ public partial class MicrobeWorldSimulation
                     barrier1.SignalAndWait();
 
                     // Timeslot 7 on thread 2
+                    microbeFlashingSystem.Update(delta);
                     SpawnSystem.Update(delta);
                     colonyStatsUpdateSystem.Update(delta);
-                    microbeFlashingSystem.Update(delta);
                     barrier1.SignalAndWait();
 
                     // Timeslot 8 on thread 2
+                    engulfedHandlingSystem.Update(delta);
+                    delayedColonyOperationSystem.Update(delta);
                     microbeDeathSystem.Update(delta);
-                    physicsBodyControlSystem.Update(delta);
                     barrier1.SignalAndWait();
 
                     // Timeslot 9 on thread 2
-                    strainSystem.Update(delta);
                     microbeEventCallbackSystem.Update(delta);
+                    damageSoundSystem.Update(delta);
                     barrier1.SignalAndWait();
-
-                    // Timeslot 10 on thread 2
-                    delayedColonyOperationSystem.Update(delta);
 
                     barrier1.SignalAndWait();
                 }
@@ -96,46 +97,47 @@ public partial class MicrobeWorldSimulation
         try
         {
             // Timeslot 1 on thread 1
-            collisionShapeLoaderSystem.Update(delta);
+            pathBasedSceneLoader.Update(delta);
             predefinedVisualLoaderSystem.Update(delta);
             animationControlSystem.Update(delta);
-            pathBasedSceneLoader.Update(delta);
-            simpleShapeCreatorSystem.Update(delta);
+            collisionShapeLoaderSystem.Update(delta);
+            mucocystSystem.Update(delta);
             cellBurstEffectSystem.Update(delta);
-            entitySignalingSystem.Update(delta);
-            TimedLifeSystem.Update(delta);
-            fluidCurrentsSystem.Update(delta);
+            endosymbiontOrganelleSystem.Update(delta);
+            microbeVisualsSystem.Update(delta);
             barrier1.SignalAndWait();
 
             // Timeslot 2 on thread 1
-            microbeVisualsSystem.Update(delta);
             entityMaterialFetchSystem.Update(delta);
-            microbePhysicsCreationAndSizeSystem.Update(delta);
-            physicsBodyCreationSystem.Update(delta);
+            strainSystem.Update(delta);
             microbeRenderPrioritySystem.Update(delta);
+            TimedLifeSystem.Update(delta);
+            barrier1.SignalAndWait();
+
+            // Timeslot 3 on thread 1
+            simpleShapeCreatorSystem.Update(delta);
+            physicsBodyCreationSystem.Update(delta);
             physicsBodyDisablingSystem.Update(delta);
             physicsUpdateAndPositionSystem.Update(delta);
-            physicsCollisionManagementSystem.Update(delta);
-            microbeCollisionSoundSystem.Update(delta);
-            attachedEntityPositionSystem.Update(delta);
-            CameraFollowSystem.Update(delta);
             disallowPlayerBodySleepSystem.Update(delta);
-            damageOnTouchSystem.Update(delta);
+            attachedEntityPositionSystem.Update(delta);
             soundListenerSystem.Update(delta);
+            CameraFollowSystem.Update(delta);
+            physicsCollisionManagementSystem.Update(delta);
+            damageOnTouchSystem.Update(delta);
+            microbeCollisionSoundSystem.Update(delta);
             pilusDamageSystem.Update(delta);
             toxinCollisionSystem.Update(delta);
             barrier1.SignalAndWait();
 
-            // Timeslot 3 on thread 1
-            osmoregulationAndHealingSystem.Update(delta);
-            microbeReproductionSystem.Update(delta);
-            barrier1.SignalAndWait();
-
             // Timeslot 4 on thread 1
-            microbeTemporaryEffectsSystem.Update(delta);
+            allCompoundsVentingSystem.Update(delta);
             barrier1.SignalAndWait();
 
             // Timeslot 5 on thread 1
+            osmoregulationAndHealingSystem.Update(delta);
+            microbeReproductionSystem.Update(delta);
+            colonyCompoundDistributionSystem.Update(delta);
             engulfingSystem.Update(delta);
             barrier1.SignalAndWait();
 
@@ -154,12 +156,11 @@ public partial class MicrobeWorldSimulation
 
             // Timeslot 9 on thread 1
             fadeOutActionSystem.Update(delta);
-            engulfedHandlingSystem.Update(delta);
+            physicsBodyControlSystem.Update(delta);
             unneededCompoundVentingSystem.Update(delta);
             barrier1.SignalAndWait();
 
             // Timeslot 10 on thread 1
-            damageSoundSystem.Update(delta);
             soundEffectSystem.Update(delta);
 
             barrier1.SignalAndWait();
@@ -225,6 +226,7 @@ public partial class MicrobeWorldSimulation
             spatialAttachSystem.Update(delta);
             attachedEntityPositionSystem.Update(delta);
             spatialPositionSystem.Update(delta);
+            mucocystSystem.Update(delta);
             compoundAbsorptionSystem.Update(delta);
             ProcessSystem.Update(delta);
             multicellularGrowthSystem.Update(delta);
@@ -249,6 +251,7 @@ public partial class MicrobeWorldSimulation
             microbeDeathSystem.Update(delta);
             fadeOutActionSystem.Update(delta);
             physicsBodyDisablingSystem.Update(delta);
+            strainSystem.Update(delta);
             slimeSlowdownSystem.Update(delta);
             microbeMovementSystem.Update(delta);
             physicsBodyControlSystem.Update(delta);
@@ -269,7 +272,6 @@ public partial class MicrobeWorldSimulation
             TimedLifeSystem.Update(delta);
             disallowPlayerBodySleepSystem.Update(delta);
             fluidCurrentsSystem.Update(delta);
-            strainSystem.Update(delta);
         }
         catch (Exception e)
         {

@@ -187,7 +187,8 @@ public static class Constants
 
     public const float BASE_MOVEMENT_FORCE = 900.0f;
 
-    public const float MAX_STRAIN_PER_ENTITY = 100.0f;
+    public const float MAX_STRAIN_PER_ENTITY = 400.0f;
+    public const float MIN_STRAIN_SPRINT_REGAIN = 200.0f;
 
     public const float PASSIVE_STRAIN_DECREASE_PER_SECOND = 30.0f;
 
@@ -460,6 +461,18 @@ public static class Constants
     ///   Length in seconds for slime secretion cooldown
     /// </summary>
     public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
+
+    /// <summary>
+    ///   How many times cell gets slowed down with mucocyst (slime jet upgrade) on
+    /// </summary>
+    public const float MUCOCYST_SPEED_MULTIPLIER = 0.01f;
+
+    public const float MUCOCYST_MINIMUM_MUCILAGE = 0.2f;
+
+    /// <summary>
+    ///   How much mucocyst (slime jet upgrade) drains mucilage per second
+    /// </summary>
+    public const float MUCOCYST_MUCILAGE_DRAIN = 0.5f;
 
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 

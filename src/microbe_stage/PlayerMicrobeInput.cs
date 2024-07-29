@@ -125,6 +125,10 @@ public partial class PlayerMicrobeInput : NodeWithInput
         ref var control = ref stage.Player.Get<MicrobeControl>();
         ref var compoundStorage = ref stage.Player.Get<CompoundStorage>();
 
+        // Mucocyst being activated prevents most abilities
+        if (control.State == MicrobeState.MucocystShield)
+            return;
+
         control.EmitToxin(ref stage.Player.Get<OrganelleContainer>(), compoundStorage.Compounds, stage.Player);
     }
 
@@ -136,7 +140,32 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
+        // Mucocyst being activated prevents most abilities
+        if (control.State == MicrobeState.MucocystShield)
+            return;
+
         control.QueueSecreteSlime(ref stage.Player.Get<OrganelleContainer>(), stage.Player, (float)delta);
+    }
+
+    [RunOnKeyDown("g_toggle_mucocyst")]
+    public void ToggleMucocyst()
+    {
+        if (!stage.HasPlayer)
+            return;
+
+        var player = stage.Player;
+        ref var control = ref player.Get<MicrobeControl>();
+
+        if (control.State == MicrobeState.MucocystShield)
+        {
+            control.SetMucocystState(ref player.Get<OrganelleContainer>(), ref player.Get<CompoundStorage>(), player,
+                false);
+        }
+        else
+        {
+            control.SetMucocystState(ref player.Get<OrganelleContainer>(), ref player.Get<CompoundStorage>(), player,
+                true);
+        }
     }
 
     [RunOnKeyDown("g_toggle_engulf")]
@@ -313,6 +342,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
             return false;
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
+
         control.Sprinting = true;
 
         // We need to not consume the input, otherwise the key up for this will not run

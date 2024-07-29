@@ -208,6 +208,14 @@ public static class HealthHelpers
 
         health.CurrentHealth = health.MaxHealth * currentFraction;
     }
+
+    public static bool GetMicrobeInvulnerabilityState(bool isPlayer, bool isMucocystActive)
+    {
+        if (isPlayer && CheatManager.GodMode)
+            return true;
+
+        return isMucocystActive;
+    }
 }
 
 /// <summary>

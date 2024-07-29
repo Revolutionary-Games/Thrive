@@ -40,7 +40,6 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
-[RunsBefore(typeof(StrainSystem))]
 [RuntimeCost(14)]
 public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 {
@@ -148,6 +147,12 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         var movementImpulse =
             CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles, compounds,
                 delta);
+
+        if (control.State == MicrobeState.MucocystShield)
+        {
+            rotationSpeed /= Constants.MUCOCYST_SPEED_MULTIPLIER;
+            movementImpulse *= Constants.MUCOCYST_SPEED_MULTIPLIER;
+        }
 
         physicalWorld.ApplyBodyMicrobeControl(physics.Body!, movementImpulse, wantedRotation, rotationSpeed);
     }
