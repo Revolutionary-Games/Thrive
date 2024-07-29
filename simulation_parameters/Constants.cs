@@ -580,10 +580,11 @@ public static class Constants
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
     /// <summary>
-    ///   If more chunks exist at once than this, then some are forced to despawn immediately. This value is lowered
-    ///   as spawned and microbe corpse chunks have now their individual limits (so the real limit is double this)
+    ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
+    ///   value is higher as spawned and microbe corpse chunks have now their individual limits (so the real limit is
+    ///   double this)
     /// </summary>
-    public const int FLOATING_CHUNK_MAX_COUNT = 35;
+    public const int FLOATING_CHUNK_MAX_COUNT = 50;
 
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 5000.0f;
 
