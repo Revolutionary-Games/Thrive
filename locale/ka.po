@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-25 15:29+0300\n"
+"POT-Creation-Date: 2024-07-26 14:35+0300\n"
 "PO-Revision-Date: 2024-07-13 12:22+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -835,7 +835,7 @@ msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "ერთეული: {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "Workhop-ის შემცველობა აიტვირთება საქაღალდიდან: {0}"
 
 msgid "CONTINUE_THRIVING"
 msgstr "აყვავების გაგრძელება"
@@ -2524,7 +2524,7 @@ msgid "LICENSES"
 msgstr "ლიცენზიები"
 
 msgid "LICENSES_COVERING_THRIVE"
-msgstr ""
+msgstr "Thrive-ი ნაწილების ლიცენზიები აქაა ნაჩვენები"
 
 msgid "LIFE_ORIGIN"
 msgstr "სიცოცხლის წყარო"
@@ -2707,7 +2707,7 @@ msgid "MAX_SPAWNED_ENTITIES"
 msgstr "არსებების მაქსიმალური რაოდენობა:"
 
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "დაუშვებელია {0}-ზე მეტი მონაცემების სეტის ჩვენება!"
 
 msgid "MAY"
 msgstr "მაისი"
@@ -2932,7 +2932,7 @@ msgid "MINIMUM_VERSION"
 msgstr "მინიმუმი:"
 
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "{0}-ზე ნაკლები მონაცემების სეტის ჩვენება დაუშვებელია!"
 
 msgid "MISC"
 msgstr "სხვ"
@@ -3007,7 +3007,7 @@ msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
-msgstr ""
+msgstr "{0}: Assembly-ის ჩატვირთვა ჩავარდა გამონაკლისით: {1}"
 
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: მოდის assembly-ის გამოტვირთვის მეთოდის გამოძახება ჩავარდა"
@@ -3173,6 +3173,10 @@ msgstr "ლორწო"
 
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "ლორწოს სინთეზი"
+
+#, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "ეწვიეთ ჩვენს Patreon-ის გვერდს"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "მრავალუჯრედიანის რედაქტორი"
@@ -4026,7 +4030,7 @@ msgid "RUN_ONE_STEP"
 msgstr "ერთი ნაბიჯის გაშვება"
 
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0} გაგზავნით: {1}-ის პოპულაცია პაჩიდან: {2}"
 
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "გენის კოდი:"
@@ -4260,7 +4264,7 @@ msgid "SHIFT"
 msgstr "Shift"
 
 msgid "SHOW_DAMAGE_EFFECT"
-msgstr ""
+msgstr "დაზიანების ეფექტის ჩვენება ეკრანზე"
 
 msgid "SHOW_HELP"
 msgstr "დახმარების ჩვენება"
@@ -4607,7 +4611,7 @@ msgid "SUCCESSFUL_SCAVENGE"
 msgstr "წარმატებული ძარცვა"
 
 msgid "SUCCESS_BUT_MISSING_ID"
-msgstr ""
+msgstr "შედეგი მიუთითებს წარმატებაზე, მაგრამ ID არ დაბრუნებულა"
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "თვითმკვლელობა"
@@ -4745,7 +4749,7 @@ msgid "THIS_IS_LOCAL_MOD"
 msgstr "ეს ლოკალურად დაყენებული მოდია"
 
 msgid "THIS_IS_WORKSHOP_MOD"
-msgstr ""
+msgstr "ეს მოდი გადმოწერილია Steam WorkShop-დან"
 
 msgid "THREADS"
 msgstr "ნაკადები:"
@@ -4817,7 +4821,7 @@ msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b]-ის პოპულაციის ნაწილი დამიგრირდა {1}-ში"
 
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] პოპულაცია შემცირდა მნიშვნელობამდე {1}"
@@ -4863,6 +4867,10 @@ msgstr "ინტვენტარის გადართვა"
 
 msgid "TOGGLE_METRICS"
 msgstr "მეტრიკების ჩვენების გადართვა"
+
+#, fuzzy
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "სრულეკრანიანი რეჟიმის გადართვა"
 
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "ნავიგაციის ხის გადართვა"
@@ -5199,6 +5207,14 @@ msgstr "ინჟექტორი პილუსი"
 
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "{0} ({1} მქ)"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "ნაგულისხმევი მდგომარეობა გაუმჯობესების გარეშე"
 
 msgid "UPLOAD"
 msgstr "ატვირთვა"

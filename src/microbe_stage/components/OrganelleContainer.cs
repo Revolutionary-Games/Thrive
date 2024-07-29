@@ -76,6 +76,11 @@ public struct OrganelleContainer
     public int AgentVacuoleCount;
 
     /// <summary>
+    ///   The slime jets with mucocyst
+    /// </summary>
+    public int MucocystCount;
+
+    /// <summary>
     ///   The microbe stores here the sum of capacity of all the current organelles. This is here to prevent anyone
     ///   from messing with this value if we used the Capacity from the CompoundBag for the calculations that use
     ///   this.
@@ -449,6 +454,7 @@ public static class OrganelleContainerHelpers
         container.AvailableEnzymes[Lipase.Value] = 1;
 
         container.AgentVacuoleCount = 0;
+        container.MucocystCount = 0;
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
@@ -498,8 +504,15 @@ public static class OrganelleContainerHelpers
                 }
                 else if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
-                    container.SlimeJets ??= new List<SlimeJetComponent>();
-                    container.SlimeJets.Add(slimeJetComponent);
+                    if (slimeJetComponent.IsMucocyst)
+                    {
+                        ++container.MucocystCount;
+                    }
+                    else
+                    {
+                        container.SlimeJets ??= new List<SlimeJetComponent>();
+                        container.SlimeJets.Add(slimeJetComponent);
+                    }
                 }
                 else if (organelleComponent is MovementComponent thrustComponent)
                 {
@@ -602,8 +615,11 @@ public static class OrganelleContainerHelpers
             {
                 if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
-                    container.SlimeJets ??= new List<SlimeJetComponent>();
-                    container.SlimeJets.Add(slimeJetComponent);
+                    if (!slimeJetComponent.IsMucocyst)
+                    {
+                        container.SlimeJets ??= new List<SlimeJetComponent>();
+                        container.SlimeJets.Add(slimeJetComponent);
+                    }
                 }
                 else if (organelleComponent is MovementComponent thrustComponent)
                 {

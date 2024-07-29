@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c5u3d8rsbm0lu" path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" id="18"]
 [ext_resource type="Texture2D" uid="uid://siahiwtfm578" path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" id="21"]
 [ext_resource type="PackedScene" uid="uid://jjb8ei8wuuk" path="res://src/microbe_stage/gui/EditorEntryButton.tscn" id="23_satig"]
+[ext_resource type="Texture2D" uid="uid://b6tpqpuuux2xy" path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" id="32_vhwax"]
 [ext_resource type="PackedScene" uid="uid://uq64skmnc1ob" path="res://src/microbe_stage/gui/DamageEffect.tscn" id="35_h7kw8"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="39_2oma1"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_nfpcw"]
@@ -263,7 +264,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "sprintHotkey", "strainBar", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "sprintHotkey", "strainBar", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -307,6 +308,7 @@ PatchExtinctionBoxScene = ExtResource("60")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
+mucocystHotkey = NodePath("ScrollContainer/HotBar/Mucocyst")
 sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
@@ -694,6 +696,17 @@ toggle_mode = true
 ActionIcon = ExtResource("10")
 ActionName = "g_sprint"
 
+[node name="Mucocyst" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+visible = false
+layout_mode = 2
+tooltip_text = "MUCOCYST_ACTION_TOOLTIP"
+theme_override_styles/normal = SubResource("46")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
+toggle_mode = true
+ActionIcon = ExtResource("32_vhwax")
+ActionName = "g_toggle_mucocyst"
+
 [node name="HintText" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -749,6 +762,7 @@ show_percentage = false
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/SecreteSlime" to="." method="OnSecreteSlimePressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Mucocyst" to="." method="OnMucocystPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
 [connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCanceled"]
 [connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularConfirmed"]

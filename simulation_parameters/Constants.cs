@@ -462,6 +462,18 @@ public static class Constants
     /// </summary>
     public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
 
+    /// <summary>
+    ///   How many times cell gets slowed down with mucocyst (slime jet upgrade) on
+    /// </summary>
+    public const float MUCOCYST_SPEED_MULTIPLIER = 0.01f;
+
+    public const float MUCOCYST_MINIMUM_MUCILAGE = 0.2f;
+
+    /// <summary>
+    ///   How much mucocyst (slime jet upgrade) drains mucilage per second
+    /// </summary>
+    public const float MUCOCYST_MUCILAGE_DRAIN = 0.5f;
+
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 
     public const float TOXIN_PROJECTILE_PHYSICS_DENSITY = 700;
