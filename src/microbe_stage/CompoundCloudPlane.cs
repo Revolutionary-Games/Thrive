@@ -118,6 +118,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     {
         cachedWorldPosition = Position;
 
+        // Whoever made the modulus operator return negatives: i hate u.
         int newX = ((newPosition.X % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
         int newY = ((newPosition.Y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
@@ -617,8 +618,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Returns true if position with radius around it contains any
-    ///   points that are within this cloud.
+    ///   Returns all the compounds that are available at point
     /// </summary>
     public void GetCompoundsAt(int x, int y, Dictionary<Compound, float> result, bool onlyAbsorbable)
     {
@@ -704,9 +704,6 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
 
-        float radius = 1.0f;
-        float radiusSquared = radius * radius;
-
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
             var compound = Compounds[i];
@@ -717,66 +714,51 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             if (!compound.IsAbsorbable || !storage.IsUseful(compound))
                 continue;
 
-            for (int dx = -1; dx <= 1; dx++)
+            // Loop here to retry in case we read stale data
+            while (true)
             {
-                for (int dy = -1; dy <= 1; dy++)
+                // Overestimate of how much compounds we get
+                float cloudAmount = HackyAddress(ref Density[localX, localY], i);
+                float generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
+
+                // Skip if there isn't enough to absorb
+                if (generousAmount < MathUtils.EPSILON)
+                    break;
+
+                float freeSpace = storage.GetFreeSpaceForCompound(compound);
+
+                float multiplier = 1.0f * rate;
+
+                if (freeSpace < generousAmount)
                 {
-                    if (dx * dx + dy * dy > radiusSquared)
-                        continue;
+                    if (freeSpace < 0.0f)
+                        throw new InvalidOperationException("Free space for compounds is negative");
 
-                    int x = localX + dx;
-                    int y = localY + dy;
-
-                    if (x < 0 || y < 0 || x >= Size || y >= Size)
-                        continue;
-
-                    // Loop here to retry in case we read stale data
-                    while (true)
-                    {
-                        // Overestimate of how much compounds we get
-                        float cloudAmount = HackyAddress(ref Density[x, y], i);
-                        float generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
-
-                        // Skip if there isn't enough to absorb
-                        if (generousAmount < MathUtils.EPSILON)
-                            break;
-
-                        float freeSpace = storage.GetFreeSpaceForCompound(compound);
-
-                        float multiplier = 1.0f * rate;
-
-                        if (freeSpace < generousAmount)
-                        {
-                            if (freeSpace < 0.0f)
-                                throw new InvalidOperationException("Free space for compounds is negative");
-
-                            // Allow partial absorption to allow cells to take from high density clouds
-                            multiplier = freeSpace / generousAmount;
-                        }
-
-                        if (!TakeCompoundInterlocked(i, x, y, fractionToTake * multiplier, cloudAmount,
-                                out float taken))
-                        {
-                            // Value was updated since we read it, we need to retry
-                            continue;
-                        }
-
-                        taken *= Constants.ABSORPTION_RATIO;
-
-                        // This should never fail to add the full amount of compounds as we checked the free space above
-                        // scaled the take amount accordingly
-                        storage.AddCompound(compound, taken);
-
-                        if (totals != null)
-                        {
-                            // Keep track of total compounds absorbed for the cell
-                            totals.TryGetValue(compound, out var existingValue);
-                            totals[compound] = existingValue + taken;
-                        }
-
-                        break;
-                    }
+                    // Allow partial absorption to allow cells to take from high density clouds
+                    multiplier = freeSpace / generousAmount;
                 }
+
+                if (!TakeCompoundInterlocked(i, localX, localY, fractionToTake * multiplier, cloudAmount,
+                        out float taken))
+                {
+                    // Value was updated since we read it, we need to retry
+                    continue;
+                }
+
+                taken *= Constants.ABSORPTION_RATIO;
+
+                // This should never fail to add the full amount of compounds as we checked the free space above and
+                // scaled the take amount accordingly
+                storage.AddCompound(compound, taken);
+
+                if (totals != null)
+                {
+                    // Keep track of total compounds absorbed for the cell
+                    totals.TryGetValue(compound, out var existingValue);
+                    totals[compound] = existingValue + taken;
+                }
+
+                break;
             }
         }
     }
