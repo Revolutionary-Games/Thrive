@@ -5,8 +5,9 @@ using DefaultEcs.Threading;
 using Systems;
 using World = DefaultEcs.World;
 
-[With(typeof(OrganelleContainer))]
 [With(typeof(StrainAffected))]
+[With(typeof(MicrobeControl))]
+[With(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 public sealed class StrainSystem : AEntitySetSystem<float>
