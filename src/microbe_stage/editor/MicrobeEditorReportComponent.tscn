@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://qdqcbnri7vsw"]
+[gd_scene load_steps=25 format=3 uid="uid://qdqcbnri7vsw"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_ocn33"]
@@ -31,6 +31,8 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id="30"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_hdykd"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_d1pk0"]
 
@@ -341,6 +343,7 @@ theme_override_fonts/font = ExtResource("10_dmd4f")
 theme_override_font_sizes/font_size = 12
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_hdykd")
 text = "GLOBAL_INITIAL_LETTER"
 
 [node name="LocalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer"]
@@ -352,6 +355,7 @@ theme_override_fonts/font = ExtResource("10_dmd4f")
 theme_override_font_sizes/font_size = 12
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_hdykd")
 text = "LOCAL_INITIAL_LETTER"
 
 [node name="TopFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
