@@ -704,7 +704,6 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
 
-        // TODO: Move to const
         float radius = 1.0f;
         float radiusSquared = radius * radius;
 

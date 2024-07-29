@@ -8,13 +8,13 @@ lightmap_size_hint = Vector2i(1002, 1002)
 size = Vector2(200, 200)
 
 [sub_resource type="Gradient" id="Gradient_u1fse"]
-offsets = PackedFloat32Array(0, 0.380597, 0.88806)
-colors = PackedColorArray(0.0562916, 0.0562916, 0.0562916, 1, 0.281187, 0.281187, 0.281187, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.88806)
+colors = PackedColorArray(0.385493, 0.385492, 0.385492, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7cqxm"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdmng"]
-in_3d_space = true
+generate_mipmaps = false
 seamless = true
 color_ramp = SubResource("Gradient_u1fse")
 noise = SubResource("FastNoiseLite_7cqxm")
@@ -28,8 +28,9 @@ shader_parameter/colour2 = Color(0, 0, 1, 1)
 shader_parameter/colour3 = Color(0, 1, 0, 1)
 shader_parameter/colour4 = Color(1, 0, 0, 1)
 shader_parameter/UVOffset = Vector2(0, 0)
-shader_parameter/BrightnessMultiplier = 10.0
-shader_parameter/NoiseScale = 0.035
+shader_parameter/BrightnessMultiplier = 2.0
+shader_parameter/NoiseScale = 0.05
+shader_parameter/CLOUD_SPEED = 0.013
 shader_parameter/noise = SubResource("NoiseTexture2D_xdmng")
 
 [node name="CompoundCloudPlane" type="CSGMesh3D"]
