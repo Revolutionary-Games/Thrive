@@ -32,7 +32,7 @@ float getIntensity(float value)
 
 void fragment() {
     vec2 scaledUV = UV + UVOffset;
-	vec2 noiseUV = scaledUV / NoiseScale;
+    vec2 noiseUV = scaledUV / NoiseScale;
 
     vec4 concentrations = texture(densities, scaledUV);
 
@@ -47,7 +47,7 @@ void fragment() {
 
     float cloud3 = getIntensity(concentrations.b) *
         texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0) + 0.4).r *
-	    texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.4).r * CLOUD_DISSIPATION;
+        texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.4).r * CLOUD_DISSIPATION;
 
     float cloud4 = getIntensity(concentrations.a) *
         texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0) + 0.6).r *
