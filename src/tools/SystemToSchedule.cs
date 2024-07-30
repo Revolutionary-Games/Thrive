@@ -225,7 +225,10 @@ public class SystemToSchedule
             }
 
             if (system.RunsAfter.Contains(system))
-                throw new Exception("System ended up running after itself after recursive resolve");
+            {
+                throw new Exception("BUG IS LIKELY IN INCORRECT AND CONFLICTING SYSTEM ATTRIBUTES! " +
+                    "System ended up running after itself after recursive resolve.");
+            }
 
             foreach (var runsBefore in system.RunsBefore.ToList())
             {
@@ -233,7 +236,10 @@ public class SystemToSchedule
             }
 
             if (system.RunsBefore.Contains(system))
-                throw new Exception("System ended up running before itself after recursive resolve");
+            {
+                throw new Exception("BUG IS LIKELY IN INCORRECT AND CONFLICTING SYSTEM ATTRIBUTES! " +
+                    "System ended up running before itself after recursive resolve");
+            }
         }
     }
 
