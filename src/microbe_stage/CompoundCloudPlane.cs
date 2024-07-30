@@ -118,6 +118,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     {
         cachedWorldPosition = Position;
 
+        // Whoever made the modulus operator return negatives: i hate u.
         int newX = ((newPosition.X % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
         int newY = ((newPosition.Y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
@@ -617,6 +618,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     }
 
     /// <summary>
+    ///   Returns all the compounds that are available at point
     ///   Returns true if position with radius around it contains any
     ///   points that are within this cloud.
     /// </summary>
@@ -717,10 +719,12 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             if (!compound.IsAbsorbable || !storage.IsUseful(compound))
                 continue;
 
-            for (int dx = -1; dx <= 1; dx++)
+            // These two loops compensate for the new absorb factor calculation in CompoundCloudSystem.AbsorbCompounds
+            for (int dx = -1; dx <= 1; ++dx)
             {
-                for (int dy = -1; dy <= 1; dy++)
+                for (int dy = -1; dy <= 1; --dy)
                 {
+                    // Circle check
                     if (dx * dx + dy * dy > radiusSquared)
                         continue;
 

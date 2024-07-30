@@ -240,6 +240,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
 
         // This version is used when working with cloud local coordinates
         float localGrabRadius = radius / resolution;
+        float localGrabRadiusSquared = Mathf.Pow(radius / resolution, 2);
 
         // Find clouds that are in range for absorbing
         foreach (var cloud in clouds)
@@ -268,11 +269,17 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     if (x < 0 || y < 0)
                         continue;
 
-                    float distance = Mathf.Sqrt(Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2));
-                    if (distance > localGrabRadius)
-                        continue;
+                    float distanceSquared = Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2);
+                    // var distanceSquared = (x - cloudRelativeX) * (x - cloudRelativeX) + (y - cloudRelativeY) * (y - cloudRelativeY);
 
-                    float factor = 1.0f - (distance / localGrabRadius);
+                    // Circle check
+                    if (distanceSquared > localGrabRadiusSquared)
+                    {
+                        // Not in it
+                        continue;
+                    }
+
+                    float factor = 1.0f - (distanceSquared / localGrabRadiusSquared);
 
                     // Then just need to check that it is within the cloud simulation array
                     if (x < cloud.Size && y < cloud.Size)

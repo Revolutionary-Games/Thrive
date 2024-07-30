@@ -25,14 +25,14 @@ const float DENSITY_MULTIPLIER = 0.95;
 // Should be the same as its counterpart in CompoundCloudPlane.cs
 const float CLOUD_MAX_INTENSITY_SHOWN = 1000.f;
 
-float getIntensity(float value)
+float getIntensity(float value) 
 {
     return min(DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f) * BrightnessMultiplier;
 }
 
 void fragment() {
     vec2 scaledUV = UV + UVOffset;
-	vec2 noiseUV = scaledUV / NoiseScale;
+    vec2 noiseUV = scaledUV / NoiseScale;
 
     vec4 concentrations = texture(densities, scaledUV);
 
@@ -47,16 +47,16 @@ void fragment() {
 
     float cloud3 = getIntensity(concentrations.b) *
         texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0) + 0.4).r *
-	    texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.4).r * CLOUD_DISSIPATION;
+        texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.4).r * CLOUD_DISSIPATION;
 
     float cloud4 = getIntensity(concentrations.a) *
         texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0) + 0.6).r *
         texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.6).r * CLOUD_DISSIPATION;
 
     // Sum everything and we also ensure that even the clouds with the lowest amount of compounds get some colour too
-    vec4 colour = colour1 * cloud1 +
-                  colour2 * cloud2 +
-                  colour3 * cloud3 +
+    vec4 colour = colour1 * cloud1 + 
+                  colour2 * cloud2 + 
+                  colour3 * cloud3 + 
                   colour4 * cloud4;
 
     float adjustedAlpha = min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.3, 0.3, 0.7);
