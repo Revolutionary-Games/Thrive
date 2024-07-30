@@ -313,7 +313,7 @@ public partial class MainMenu : NodeWithInput
 
             // Low menu performance will never be warned about if the popup has been dismissed,
             // if 3D backgrounds have been disabled, if the popup has been shown but not dismissed
-            // on this menu session, or if the max framerate is set to 30
+            // on this menu session, or if the max framerate is set to 30 (or lower)
             // In addition, tracking only begins after one second in the menu
             if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.LowPerformanceWarning)
                 && Settings.Instance.Menu3DBackgroundEnabled && canShowLowPerformanceWarning
@@ -816,7 +816,9 @@ public partial class MainMenu : NodeWithInput
 
     private void WarnAboutLowPerformance()
     {
-        if (averageFrameRate < 30 && secondsInMenu >= 16 && !AreAnyMenuPopupsOpen() && !options.Visible)
+        if (averageFrameRate < Constants.MAIN_MENU_LOW_PERFORMANCE_FPS &&
+            secondsInMenu >= Constants.MAIN_MENU_LOW_PERFORMANCE_CHECK_AFTER && !AreAnyMenuPopupsOpen() &&
+            !options.Visible)
         {
             GD.Print($"Average frame rate is {averageFrameRate}, prompting to disable 3D backgrounds");
             lowPerformanceWarning.PopupIfNotDismissed();

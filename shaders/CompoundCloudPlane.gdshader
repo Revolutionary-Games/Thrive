@@ -25,7 +25,7 @@ const float DENSITY_MULTIPLIER = 0.95;
 // Should be the same as its counterpart in CompoundCloudPlane.cs
 const float CLOUD_MAX_INTENSITY_SHOWN = 1000.f;
 
-float getIntensity(float value) 
+float getIntensity(float value)
 {
     return min(DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f) * BrightnessMultiplier;
 }
@@ -54,12 +54,13 @@ void fragment() {
         texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.6).r * CLOUD_DISSIPATION;
 
     // Sum everything and we also ensure that even the clouds with the lowest amount of compounds get some colour too
-    vec4 colour = colour1 * cloud1 + 
-                  colour2 * cloud2 + 
-                  colour3 * cloud3 + 
+    vec4 colour = colour1 * cloud1 +
+                  colour2 * cloud2 +
+                  colour3 * cloud3 +
                   colour4 * cloud4;
 
-    float adjustedAlpha = min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.3, 0.3, 0.7);
+    float adjustedAlpha = min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) *
+        clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.3, 0.3, 0.7);
 
     ALPHA = adjustedAlpha;
     ALBEDO = colour.rgb;

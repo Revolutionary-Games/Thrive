@@ -416,7 +416,7 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 16.0f;
+    public const float AGENT_EMISSION_VELOCITY = 18.5f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
@@ -580,10 +580,11 @@ public static class Constants
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
     /// <summary>
-    ///   If more chunks exist at once than this, then some are forced to despawn immediately. This value is lowered
-    ///   as spawned and microbe corpse chunks have now their individual limits (so the real limit is double this)
+    ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
+    ///   value is higher as spawned and microbe corpse chunks have now their individual limits (so the real limit is
+    ///   double this)
     /// </summary>
-    public const int FLOATING_CHUNK_MAX_COUNT = 35;
+    public const int FLOATING_CHUNK_MAX_COUNT = 50;
 
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 5000.0f;
 
@@ -1211,7 +1212,7 @@ public static class Constants
     public const int SUBMENU_CANCEL_PRIORITY = -1;
 
     /// <summary>
-    ///   Popups have a highest priority to ensure they can react first.
+    ///   Popups have the highest priority to ensure they can react first.
     /// </summary>
     public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
 
@@ -1219,6 +1220,17 @@ public static class Constants
     public const int CUSTOM_FOCUS_DRAWER_RADIUS_POINTS = 12;
     public const int CUSTOM_FOCUS_DRAWER_WIDTH = 3;
     public const bool CUSTOM_FOCUS_DRAWER_ANTIALIAS = true;
+
+    /// <summary>
+    ///   Performance in FPS below this value triggers the main menu low performance warning (if 3D backgrounds are
+    ///   enabled)
+    /// </summary>
+    public const float MAIN_MENU_LOW_PERFORMANCE_FPS = 28.5f;
+
+    /// <summary>
+    ///   How many seconds until low performance warning can be triggered after the main menu is started
+    /// </summary>
+    public const float MAIN_MENU_LOW_PERFORMANCE_CHECK_AFTER = 28.5f;
 
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
