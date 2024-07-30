@@ -143,13 +143,14 @@ public static class MicrobeInternalCalculations
     public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity, bool isBacteria, bool useEstimate = false)
     {
-        var averageDensity = CalculateAverageDensity(organelles);
         float shapeMass = 0;
 
         // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to figure
         // This is why Auto-Evo just estimates the value of the output instead
         if (!useEstimate)
         {
+            var averageDensity = CalculateAverageDensity(organelles);
+
             var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
 
             var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
@@ -202,7 +203,7 @@ public static class MicrobeInternalCalculations
                 leftwardDirectionMovementForce += MovementForce(movementConstant, leftDirectionFactor);
             }
 
-            massEstimate += averageDensity * organelle.Definition.HexCount;
+            massEstimate += organelle.Definition.Density * organelle.Definition.HexCount;
         }
 
         // If this estimate could be made more accurate without additional computation that would be great
