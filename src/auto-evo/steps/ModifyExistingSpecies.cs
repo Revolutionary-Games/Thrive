@@ -44,8 +44,7 @@ public class ModifyExistingSpecies : IRunStep
         {
             var inputSpecies = viableVariants;
 
-            // TODO: Make Const
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; i++)
             {
                 outputSpecies.Clear();
 
@@ -156,7 +155,6 @@ public class ModifyExistingSpecies : IRunStep
         // TODO: Put these in auto evo config
         const int possibleMutationsToTryPerSpecies = 3;
         const int totalMutationsToTry = 20;
-        const float unfilledMichePullFraction = 0.6f;
 
         var mutationsToTry = new List<Mutation>();
 
@@ -183,33 +181,28 @@ public class ModifyExistingSpecies : IRunStep
 
         // This section of the code tries to mutate species into unfilled miches
         // Not exactly realistic, but more diversity is more fun for the player
-        if (unfilledMichePullFraction > 0)
+        var emptyTraversals = oldMiche.GetLeafNodes().Where(x => x.Occupant == null)
+            .Select(x => x.BackTraversal()).ToList();
+
+        var pullMicheList = new List<Mutation>();
+
+        foreach (var species in oldOccupants)
         {
-            var emptyTraversals = oldMiche.GetLeafNodes().Where(x => x.Occupant == null)
-                .Select(x => x.BackTraversal()).ToList();
+            if (species is not MicrobeSpecies microbeSpecies)
+                continue;
 
-            var pullMicheList = new List<Mutation>();
-
-            foreach (var species in oldOccupants)
+            foreach (var traversal in emptyTraversals)
             {
-                if (species is not MicrobeSpecies microbeSpecies)
-                    continue;
+                var pressures = traversal.Select(x => x.Pressure).ToList();
 
-                foreach (var traversal in emptyTraversals)
-                {
-                    var pressures = traversal.Select(x => x.Pressure).ToList();
+                pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
 
-                    pressures.AddRange(SpeciesDependentPressures(oldMiche, species));
+                var variants = GenerateMutations(microbeSpecies, possibleMutationsToTryPerSpecies, Cache,
+                    pressures, random);
 
-                    var variants = GenerateMutations(microbeSpecies, possibleMutationsToTryPerSpecies, Cache,
-                        pressures, random);
-
-                    pullMicheList.AddRange(variants.Select(speciesToAdd => new Mutation(microbeSpecies,
-                        speciesToAdd, RunResults.NewSpeciesType.FillNiche)).ToList());
-                }
+                mutationsToTry.AddRange(variants.Select(speciesToAdd => new Mutation(microbeSpecies,
+                    speciesToAdd, RunResults.NewSpeciesType.FillNiche)).ToList());
             }
-
-            mutationsToTry.AddRange(pullMicheList.Take((int)(pullMicheList.Count * unfilledMichePullFraction)));
         }
 
         var newMiche = oldMiche.DeepCopy();

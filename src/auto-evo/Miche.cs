@@ -6,6 +6,13 @@ using System.Linq;
 /// <summary>
 ///   A node for the Miche Tree
 /// </summary>
+/// <remarks>
+///   <para>
+///     The Miche class forms a tree by storing a list of child instances of Miche Nodes. If a Miche has no children
+///     it is considered a leaf node and can have a species Occupant instead. This class handles insertion into the
+///     tree through scores from the selection pressure it contains. For a fuller explanation see docs/auto_evo.md
+///   </para>
+/// </remarks>
 public class Miche
 {
     public Miche? Parent;

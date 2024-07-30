@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
 
 internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 {
-    private readonly OrganelleDefinition[] allOrganelles;
+    private readonly FrozenSet<OrganelleDefinition> allOrganelles;
 
     public MoveOrganelleBack(Func<OrganelleDefinition, bool> criteria)
     {
-        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToArray();
+        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
     }
 
     public bool Repeatable => true;

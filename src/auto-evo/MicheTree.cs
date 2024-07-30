@@ -4,7 +4,7 @@ using AutoEvo;
 using Godot;
 
 /// <summary>
-///   A miche tree for debugging the miche system. Supports dragging and zooming.
+///   A GUI miche tree for debugging the miche system. Supports dragging and zooming.
 /// </summary>
 /// <remarks>
 ///   <para>

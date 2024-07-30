@@ -443,7 +443,7 @@ public static class Constants
     public const float OXYTOXY_DAMAGE_DEBUFF_MAX = 0.75f;
 
     /// <summary>
-    ///   How much a cell's speed is slowed when traveling through slime
+    ///   How much a cell's speed is slowed when travelling through slime
     /// </summary>
     public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
 
@@ -1062,8 +1062,7 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
-    public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
-    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 20;
+    public const int AUTO_EVO_MOVE_ATTEMPTS = 5;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
@@ -1071,8 +1070,6 @@ public static class Constants
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.2f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.1f;
-    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 150000;
-    public const float AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT = 500;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
@@ -1091,7 +1088,11 @@ public static class Constants
 
     public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.3f;
 
+    public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
+    public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 5;
+
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
 
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount

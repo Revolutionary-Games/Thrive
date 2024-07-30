@@ -36,19 +36,16 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         // TODO: Make this something passed in
         var random = new Random();
 
-        // TODO: Move to constants
-        const int removeOrganelleAttempts = 5;
-
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
-
         var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
-            .OrderBy(_ => random.Next()).Take(removeOrganelleAttempts).ToList();
+            .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS).ToList();
 
         if (organelles.Count <= 1)
             return [];
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
+
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
 
         foreach (var organelle in organelles)
         {

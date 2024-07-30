@@ -1,18 +1,19 @@
 ﻿namespace AutoEvo;
 
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
     private readonly CommonMutationFunctions.Direction direction;
-    private readonly OrganelleDefinition[] allOrganelles;
+    private readonly FrozenSet<OrganelleDefinition> allOrganelles;
 
     public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, CommonMutationFunctions.Direction direction
         = CommonMutationFunctions.Direction.Neutral)
     {
-        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToArray();
+        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
         this.direction = direction;
     }
 

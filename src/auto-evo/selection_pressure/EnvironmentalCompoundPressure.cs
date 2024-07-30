@@ -28,6 +28,11 @@ public class EnvironmentalCompoundPressure : SelectionPressure
         if (compound.IsCloud)
             throw new ArgumentException("Given compound to environmental pressure is a cloud type");
 
+        if (createdCompound != ATP && createdCompound != Glucose)
+        {
+            throw new ArgumentException("Unhandled created compound");
+        }
+
         this.compound = compound;
         this.createdCompound = createdCompound;
         this.patch = patch;
@@ -49,6 +54,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
+        // Penalize Species that do not rely on this compound
         return Mathf.Min(amountCreated / energyBalance.TotalConsumption, 1);
     }
 

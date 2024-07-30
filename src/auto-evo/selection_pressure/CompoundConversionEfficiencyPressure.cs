@@ -17,7 +17,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
     public CompoundConversionEfficiencyPressure(Patch patch, Compound compound, Compound outCompound, float weight) :
         base(weight, [
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
-            RemoveOrganelle.ThatCreateCompound(compound),
+            RemoveOrganelle.ThatCreateCompound(outCompound),
         ])
     {
         Patch = patch;

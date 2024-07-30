@@ -15,6 +15,7 @@ public class MaintainCompound : SelectionPressure
 
     public MaintainCompound(Patch patch, float weight, Compound compound) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(compound),
+        RemoveOrganelle.ThatUseCompound(compound),
     ])
     {
         this.patch = patch;

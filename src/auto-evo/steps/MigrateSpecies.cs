@@ -22,9 +22,6 @@ public class MigrateSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        // Move this to config
-        const int moveAttempts = 5;
-
         var miche = results.MicheByPatch[patch];
 
         var occupants = miche.GetOccupants().Distinct().ToList();
@@ -32,7 +29,7 @@ public class MigrateSpecies : IRunStep
         if (occupants.Count == 0)
             return true;
 
-        for (int i = 0; i < moveAttempts; i++)
+        for (int i = 0; i < Constants.AUTO_EVO_MOVE_ATTEMPTS; i++)
         {
             var species = occupants.ToList().Random(random);
 

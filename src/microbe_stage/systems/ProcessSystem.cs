@@ -614,7 +614,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var process in processor.ActiveProcesses)
             {
-                // If rate is 0 dont do it
+                // If rate is 0 don't do it
                 // The rate specifies how fast fraction of the specified process numbers this cell can do
                 // TODO: would be nice still to report these to process statistics
                 if (process.Rate <= 0.0f)
