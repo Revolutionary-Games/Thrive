@@ -118,6 +118,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [Export]
     protected EditorEntryButton editorButton = null!;
 
+    [Export]
+    protected ActionButton mucocystHotkey = null!;
+
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
     protected ActionButton ejectEngulfedHotkey = null!;
@@ -174,6 +177,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
+    [Export]
+    private ActionButton sprintHotkey = null!;
+
+    [Export]
+    private ProgressBar strainBar = null!;
 
     [Export]
     private Control damageScreenEffect = null!;
@@ -189,6 +197,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 #pragma warning restore CA2213
 
     private StringName fadeParameterName = new("fade");
+
+    [Export]
+    private StyleBoxFlat? strainBarRedFill;
 
     // Used for save load to apply these properties
     private bool temporaryEnvironmentCompressed;
@@ -207,6 +218,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     private float lastHealth;
     private float damageEffectCurrentValue;
+
+    private bool strainIsRed;
 
     protected CreatureStageHUDBase()
     {
@@ -427,6 +440,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             UpdateCompoundBars(convertedDelta);
             UpdateReproductionProgress();
             UpdateAbilitiesHotBar();
+            UpdateStrain();
         }
 
         UpdateATP(convertedDelta);
@@ -712,6 +726,90 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
+    protected void UpdateStrain()
+    {
+        if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
+        {
+            strainBar.Visible = false;
+            return;
+        }
+
+        var readStrainFraction = ReadPlayerStrainFraction();
+
+        // Skip the rest of the method if player does not have strain
+        if (readStrainFraction == null)
+            return;
+
+        var strainFraction = readStrainFraction.Value;
+
+        strainBar.Value = strainFraction;
+
+        var strainState = !CanSprint();
+
+        if (strainState != strainIsRed)
+        {
+            strainIsRed = strainState;
+
+            if (strainIsRed)
+            {
+                strainBar.AddThemeStyleboxOverride("fill", strainBarRedFill);
+            }
+            else
+            {
+                strainBar.RemoveThemeStyleboxOverride("fill");
+            }
+        }
+
+        switch (Settings.Instance.StrainBarVisibilityMode.Value)
+        {
+            case Settings.StrainBarVisibility.Off:
+                strainBar.Hide();
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
+                if (strainFraction >= 0.8f)
+                {
+                    strainBar.Show();
+                }
+                else
+                {
+                    strainBar.Hide();
+                }
+
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenOverZero:
+                if (strainFraction > 0.0f)
+                {
+                    strainBar.Show();
+                }
+                else
+                {
+                    strainBar.Hide();
+                }
+
+                break;
+            case Settings.StrainBarVisibility.AlwaysVisible:
+                strainBar.Show();
+                break;
+        }
+    }
+
+    /// <summary>
+    ///   Gets the current amount of strain affecting the player
+    /// </summary>
+    /// <returns>
+    ///   Null if the player is missing <see cref="StrainAffected"/>,
+    ///   else the player's strain fraction
+    /// </returns>
+    protected virtual float? ReadPlayerStrainFraction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual bool CanSprint()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
     protected void SetEditorButtonFlashEffect(bool enabled)
     {
         editorButton.SetEditorButtonFlashEffect(enabled);
@@ -907,15 +1005,20 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
-        bool showingSignaling, bool engulfOn, bool showEject)
+        bool showingSignaling, bool showMucocyst, bool showSprint, bool engulfOn, bool showEject, bool mucocystOn,
+        bool isSprinting)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
         secreteSlimeHotkey.Visible = showSlime;
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
+        mucocystHotkey.Visible = showMucocyst;
+        sprintHotkey.Visible = showSprint && stage!.GameWorld.WorldSettings.ExperimentalFeatures;
 
+        sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;
+        mucocystHotkey.ButtonPressed = mucocystOn;
 
         if (fireToxinHotkey.ActionNameAsStringName != null)
             fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionNameAsStringName);
@@ -1017,6 +1120,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             }
 
             fadeParameterName.Dispose();
+
+            strainBarRedFill?.Dispose();
         }
 
         base.Dispose(disposing);

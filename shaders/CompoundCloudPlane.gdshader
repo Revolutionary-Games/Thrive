@@ -12,51 +12,56 @@ uniform vec4 colour4 : source_color = vec4(0, 0, 0, 0);
 
 uniform vec2 UVOffset = vec2(0, 0);
 
-uniform float BrightnessMultiplier = 1.0f;
-uniform float CloudAlpha = 0.7f;
+// This must evenly divide into 1 or tiling will break
+uniform float NoiseScale = 0.05;
+
+uniform float BrightnessMultiplier = 1.0;
+uniform float CLOUD_SPEED = 0.013;
 
 // Setting this too low makes the clouds invisible
-const float CLOUD_DISSIPATION = 0.70f;
-
-const float DENSITY_MULTIPLIER = 0.95f;
+const float CLOUD_DISSIPATION = 0.7;
+const float DENSITY_MULTIPLIER = 0.95;
 
 // Should be the same as its counterpart in CompoundCloudPlane.cs
 const float CLOUD_MAX_INTENSITY_SHOWN = 1000.f;
 
-// This needs to be less than 0.5 otherwise large cloud areas (due to the noise texture
-// not being very high resolution) are invisible
-const float NOISE_ZERO_OFFSET = 0.001f;
-
-float getIntensity(float value){
+float getIntensity(float value)
+{
     return min(DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f) * BrightnessMultiplier;
 }
 
-void fragment(){
-    vec4 concentrations = texture(densities, UV + UVOffset);
+void fragment() {
+    vec2 scaledUV = UV + UVOffset;
+    vec2 noiseUV = scaledUV / NoiseScale;
 
-    float cloud1 = getIntensity(concentrations.r) * max(texture(noise, UV + UVOffset).r -
-        NOISE_ZERO_OFFSET, 0.0f) * CLOUD_DISSIPATION;
+    vec4 concentrations = texture(densities, scaledUV);
 
-    float cloud2 = getIntensity(concentrations.g) * max(texture(noise, UV + UVOffset + 0.2f).r -
-        NOISE_ZERO_OFFSET, 0.0f) * CLOUD_DISSIPATION;
+    // Calculates the intensities for each color channel containing the concentrations
+    float cloud1 = getIntensity(concentrations.r) *
+        texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0)).r *
+        texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED)).r * CLOUD_DISSIPATION;
 
-    float cloud3 = getIntensity(concentrations.b) * max(texture(noise, UV + UVOffset + 0.4f).r -
-        NOISE_ZERO_OFFSET, 0.0f) * CLOUD_DISSIPATION;
+    float cloud2 = getIntensity(concentrations.g) *
+        texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0) + 0.2).r *
+        texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.2).r * CLOUD_DISSIPATION;
 
-    float cloud4 = getIntensity(concentrations.a) * max(texture(noise, UV + UVOffset + 0.6f).r -
-        NOISE_ZERO_OFFSET, 0.0f) * CLOUD_DISSIPATION;
+    float cloud3 = getIntensity(concentrations.b) *
+        texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0) + 0.4).r *
+        texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.4).r * CLOUD_DISSIPATION;
 
-    vec4 colour =
-        // first
-        colour1 * cloud1
-        + // second
-        colour2 * cloud2
-        + // third
-        colour3 * cloud3
-        + // fourth
-        colour4 * cloud4;
+    float cloud4 = getIntensity(concentrations.a) *
+        texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0) + 0.6).r *
+        texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.6).r * CLOUD_DISSIPATION;
 
-    ALPHA = min(cloud1 + cloud2 + cloud3 + cloud4, 1.0f) * CloudAlpha;
+    // Sum everything and we also ensure that even the clouds with the lowest amount of compounds get some colour too
+    vec4 colour = colour1 * cloud1 +
+                  colour2 * cloud2 +
+                  colour3 * cloud3 +
+                  colour4 * cloud4;
 
+    float adjustedAlpha = min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) *
+        clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.3, 0.3, 0.7);
+
+    ALPHA = adjustedAlpha;
     ALBEDO = colour.rgb;
 }

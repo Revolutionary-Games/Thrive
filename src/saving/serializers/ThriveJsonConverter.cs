@@ -352,6 +352,11 @@ public abstract class BaseThriveConverter : JsonConverter
             }
         }
 
+        // Sort for serialization order
+        // TODO: this is currently not needed and as this likely would cost performance, this is not enabled
+        // TODO: probably could refactor this entire method to rely less on LINQ
+        // fields = fields.OrderBy(f => f.GetCustomAttribute<JsonPropertyAttribute>()?.Order ?? 0);
+
         return fields;
     }
 
@@ -384,6 +389,9 @@ public abstract class BaseThriveConverter : JsonConverter
                     p => p.CustomAttributes.Any(a => a.AttributeType == JsonPropertyAttribute));
             }
         }
+
+        // TODO: this should also probably support ordering (a bigger overhaul would be to be able to order between
+        // fields and properties)
 
         return properties;
     }
