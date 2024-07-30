@@ -1212,7 +1212,7 @@ public static class Constants
     public const int SUBMENU_CANCEL_PRIORITY = -1;
 
     /// <summary>
-    ///   Popups have a highest priority to ensure they can react first.
+    ///   Popups have the highest priority to ensure they can react first.
     /// </summary>
     public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
 
@@ -1220,6 +1220,17 @@ public static class Constants
     public const int CUSTOM_FOCUS_DRAWER_RADIUS_POINTS = 12;
     public const int CUSTOM_FOCUS_DRAWER_WIDTH = 3;
     public const bool CUSTOM_FOCUS_DRAWER_ANTIALIAS = true;
+
+    /// <summary>
+    ///   Performance in FPS below this value triggers the main menu low performance warning (if 3D backgrounds are
+    ///   enabled)
+    /// </summary>
+    public const float MAIN_MENU_LOW_PERFORMANCE_FPS = 28.5f;
+
+    /// <summary>
+    ///   How many seconds until low performance warning can be triggered after the main menu is started
+    /// </summary>
+    public const float MAIN_MENU_LOW_PERFORMANCE_CHECK_AFTER = 28.5f;
 
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
