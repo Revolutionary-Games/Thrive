@@ -1141,6 +1141,17 @@ public static class MicrobeColonyHelpers
         var memberRecord = recorder.Record(newMember);
         memberRecord.Set(new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
 
+        // Setup event forwarding
+        if (colonyEntity.Has<MicrobeEventCallbacks>())
+        {
+            ref var originalEvents = ref colonyEntity.Get<MicrobeEventCallbacks>();
+
+            if (!originalEvents.IsTemporary)
+            {
+                memberRecord.Set(originalEvents.CloneEventCallbacksForColonyMember());
+            }
+        }
+
         OnColonyMemberAdded(ref colony, newMember);
     }
 
@@ -1228,6 +1239,15 @@ public static class MicrobeColonyHelpers
         var memberRecord = recorder.Record(removedMember);
         memberRecord.Remove<MicrobeColonyMember>();
         memberRecord.Remove<AttachedToEntity>();
+
+        // Destroy temporary event callbacks if they exist
+        if (removedMember.Has<MicrobeEventCallbacks>())
+        {
+            if (removedMember.Get<MicrobeEventCallbacks>().IsTemporary)
+            {
+                memberRecord.Remove<MicrobeEventCallbacks>();
+            }
+        }
     }
 
     private static void UpdateColonyEntityCachedStatistics(this ref MicrobeColony colony)
