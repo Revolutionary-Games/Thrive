@@ -330,6 +330,25 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                     currentEndosomeScale, false);
             }
 
+            if (engulfable.PhagocytosisStep == PhagocytosisPhase.None || engulfable.HostileEngulfer == default)
+            {
+                if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
+                {
+                    GD.PrintErr("Engulfed entity is in incorrect state (None), forcing its ejection");
+                }
+                else
+                {
+                    GD.PrintErr("Engulfed entity is in incorrect state (hostile is no entity), forcing its ejection");
+                }
+
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+#endif
+
+                engulfable.PhagocytosisStep = PhagocytosisPhase.RequestExocytosis;
+            }
+
             // Only handle the animations / state changes when they need updating
             if (transportData?.Interpolate != true &&
                 engulfable.PhagocytosisStep != PhagocytosisPhase.RequestExocytosis &&
@@ -389,6 +408,17 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                         break;
                 }
             }
+
+#if DEBUG
+            if (engulfer.EngulfedObjects?.Contains(engulfedEntity) == true)
+            {
+                if (engulfedEntity.Get<Engulfable>().PhagocytosisStep == PhagocytosisPhase.None)
+                {
+                    GD.PrintErr("Bad state update done on an engulfed object");
+                    Debugger.Break();
+                }
+            }
+#endif
         }
 
         var colour = cellProperties.Colour;
@@ -920,12 +950,12 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
     private void CheckStartEngulfing(ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
         ref Engulfer engulfer, in Entity entity, bool resolveColony)
     {
-        ref var ourExtraData = ref entity.Get<MicrobePhysicsExtraData>();
-
         var count = collisionManagement.GetActiveCollisions(out var collisions);
 
         if (count < 1)
             return;
+
+        ref var ourExtraData = ref entity.Get<MicrobePhysicsExtraData>();
 
         ref var species = ref entity.Get<SpeciesMember>();
 
@@ -978,6 +1008,13 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                     realEngulfer = adjusted;
                 }
             }
+#if DEBUG
+            else
+            {
+                if (entity.Has<MicrobeColony>())
+                    Debugger.Break();
+            }
+#endif
 
             ref var actualEngulfer = ref engulfer;
 
@@ -1142,7 +1179,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         // This sets the target render priority
         engulfable.OnBecomeEngulfed(targetEntity, engulferPriority.RenderPriority);
 
-        // This is setup in OnBecomeEngulfed so this code must be after that
+        // This is set up in OnBecomeEngulfed so this code must be after that
         var originalScale = engulfable.OriginalScale;
 
         CreateEngulfableTransport(ref engulfable, engulfableFinalPosition, originalScale, boundingBoxSize);
@@ -1545,6 +1582,10 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         if (!engulfer.EngulfedObjects.Remove(engulfedEntity))
         {
             GD.PrintErr("Failed to remove engulfed object from engulfer's list of engulfed objects");
+
+#if DEBUG
+            Debugger.Break();
+#endif
         }
 
         var transport = engulfable.BulkTransport;
@@ -1574,10 +1615,9 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         }
 #endif
 
-        // Thanks to digestion decreasing the size of engulfed objects, this doesn't match what we took in
-        // originally. This relies on the digestion system updating this later to make sure this is correct
-        engulfer.UsedEngulfingCapacity =
-            Math.Max(0, engulfer.UsedEngulfingCapacity - engulfable.AdjustedEngulfSize);
+        // In the past this used to directly reduce the used engulfing capacity, but that is now the job of
+        // EngulfedDigestionSystem to make sure it is right. This is probably better this way to avoid accidentally
+        // engulfing something new when things haven't been updated yet.
 
         // Only destroy when not already, to ensure that this doesn't do unnecessary things for an already destroyed
         // entity (like playing the dying animation again on cells)
