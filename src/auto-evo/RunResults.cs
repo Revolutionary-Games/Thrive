@@ -174,7 +174,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     }
 
     public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
-        float speciesFitness, float speciesEnergy)
+        float speciesFitness, float totalFitness, float speciesEnergy)
     {
         MakeSureResultExistsForSpecies(species);
 
@@ -185,6 +185,8 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         {
             CurrentSpeciesFitness = speciesFitness,
             CurrentSpeciesEnergy = speciesEnergy,
+            TotalFitness = totalFitness,
+            TotalAvailableEnergy = pressure.GetEnergy(),
         };
     }
 
@@ -1187,6 +1189,10 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
             public float CurrentSpeciesFitness;
 
             public float CurrentSpeciesEnergy;
+
+            public float TotalFitness;
+
+            public float TotalAvailableEnergy;
         }
     }
 }

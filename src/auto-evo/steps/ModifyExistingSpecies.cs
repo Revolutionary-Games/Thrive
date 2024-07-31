@@ -152,7 +152,7 @@ public class ModifyExistingSpecies : IRunStep
         var oldMiche = results.MicheByPatch[Patch];
         var oldOccupants = oldMiche.GetOccupants().Distinct().ToList();
 
-        // TODO: Put these in auto evo config
+        // TODO: Possibly make this a performance setting?
         const int possibleMutationsToTryPerSpecies = 3;
         const int totalMutationsToTry = 20;
 
@@ -183,8 +183,6 @@ public class ModifyExistingSpecies : IRunStep
         // Not exactly realistic, but more diversity is more fun for the player
         var emptyTraversals = oldMiche.GetLeafNodes().Where(x => x.Occupant == null)
             .Select(x => x.BackTraversal()).ToList();
-
-        var pullMicheList = new List<Mutation>();
 
         foreach (var species in oldOccupants)
         {
