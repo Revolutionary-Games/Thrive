@@ -253,9 +253,11 @@ public static class MichePopulation
 
             long newPopulation = (long)(energyDictionary[currentSpecies] / individualCost);
 
-            // Heavily punish any species that don't hold a miche
+            // Remove any species that don't hold a miche
+            // Probably should make this a setting and throw a multiplier here
+            // It does give a large speed up though
             if (!leafNodes.Any(x => x.Occupant == currentSpecies) && !currentSpecies.PlayerSpecies)
-                newPopulation = (long)(newPopulation * 0.1);
+                newPopulation = 0;
 
             // Can't survive without enough population
             if (newPopulation < Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
