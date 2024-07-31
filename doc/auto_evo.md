@@ -16,22 +16,23 @@ algorithm used to solve Auto-Evo is the Miche Algorithm.
 ### Miche
 The term Miche comes from a shortening of Multi-Niche (and a nod to computer
 science professor Dr. Meesh.) Each Miche is a node in a tree structure called
-the Miche Tree. Each Miche contains a Selection Pressure, with the leaf nodes
-additionally being able to contain an occupant. The Miche Tree's closest
-approximation to a Niche is the transversal (list of nodes) from the Root Miche
-to each Leaf Miche.
+the Miche Tree. Each of these Miches contains a list of child Miches,
+recursively creating the tree. If a node does not contain any child nodes it is
+known as a Leaf Miche, and instead contains a Species known as the Occupant.
+Every Miche additionally contains a Selection Pressure further explained below.
 
 ### Selection Pressure
-A Selection Pressure is a function that provides a fitness score to a creature.
+A Selection Pressure is a function that provides a fitness score to a species.
 Selection Pressures measure fitness in a specific attribute, eg, being able to
 osmoregulate or the ability to find food. Fitness Scores are arbitrary and
 specific to each pressure (With the exception that a score <= 0 means a pressure
 has been failed.) Therefore scores are always compared relative to another
-species via WeightedComparedScores.
+species via WeightedComparedScores. Each selection pressure contains a list of
+Mutation Strategies that are applied to try and increase the Pressure's score in
+the mutations.
 
 ### Mutation Strategies
-Each Selection Pressure contains a list of one or more Mutation Strategies. A
-Mutation Strategy is a function that creates new mutated species from a parent
+A Mutation Strategy is a function that creates new mutated species from a parent
 species. Strategies are often very specific, eg add an organelle that produces
 ATP from iron or remove an organelle that consumes glucose. These allow Auto-Evo
 to only attempt to generate and try a specific subset of the possible mutations
@@ -50,30 +51,25 @@ predation.) This should be expanded to be much more dynamic in the future.
 ### Insert Step
 After the Miche Tree is generated, all of the species present in the patch are
 inserted one by one into the top of the tree. First the species gets a score
-from the Root Miche's Selection Pressure. If it did not fail the pressure
-(score >= 0) it continues down the tree recursively getting fitness scores from
-all of that Miche's Children. If at any point a species fails a pressure it is
-pruned from going further down that branch of the tree to prevent unnecessary
-computation. If a species reaches a leaf node without being pruned it's scores
-on each Selection Pressure are compared relative to the Leaf Miche's current
-occupant. If on average the new species has a higher fitness than the occupant
-or there is no current occupant the new species becomes that Leaf Miches new
-occupant.
+from the Root Miche's Selection Pressure. If it failed the pressure (score <= 0)
+it is pruned and does not continue down that branch. Otherwise it continues down
+the tree recursively, going to each child of the Miche and repeating the
+process. If a species reaches a leaf node without being pruned its scores on
+each Selection Pressure are compared relative to the Leaf Miche's current
+occupant. If with the weighted average the new species has a higher fitness than
+the occupant or there is no current occupant the new species becomes that Leaf
+Miches new occupant.
 
 ### Mutate Step
-(This section is unfinished) After all of the species are inserted into the
-tree, the list of occupants from the leaf nodes in the tree is gotten. For each
-occupant  the transversal between the occupant's Leaf Miche and the Root Miche
-is gone through, creating a list of all Mutation Strategies crossed. Each
-Mutation Strategy is recursively applied to generate a set of new mutated
-creatures. After all occupants have been mutated, a set of the best performing
-creatures from all of the occupants are inserted into Miche Tree just like in
-the Insert Step. Any mutation that occupy a Leaf Miche by time all mutations are
-inserted are added to the patch as a new species. Any species that no longer
-occupy any Leaf Miche are marked as extinct from the patch (An exception to this
-is the player who just needs enough energy to survive.)
-
-### Population Step
-TODO
-
-TODO: Finish this and edit draft
+After all of the species are inserted into the tree, a list of occupants from
+the leaf nodes in the tree is generated. For each occupant the transversal (list
+of Miches) between the occupant's Leaf Miche and the Root Miche is gone through,
+creating a list of all those Miche's Selection Pressures. All of the Mutation
+Strategy from the Each Mutation Strategy is repeatably applied (until the
+species runs out of MP) to generate a set of new mutated creatures. After all
+occupants have been mutated, a set of the best performing creatures from all of
+the occupants are inserted into Miche Tree just like in the Insert Step. Any
+mutation that occupy a Leaf Miche by time all mutations are inserted are added
+to the patch as a new species. Any species that no longer occupy any Leaf Miche
+are marked as extinct from the patch (An exception to this is the player who
+just needs enough energy to survive.)
