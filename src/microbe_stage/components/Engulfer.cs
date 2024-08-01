@@ -85,6 +85,7 @@ public static class EngulferHelpers
         {
             ref var engulfable = ref target.Get<Engulfable>();
 
+            // Cannot engulf something that is already engulfed
             if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
                 return EngulfCheckResult.NotInEngulfMode;
 
@@ -97,18 +98,12 @@ public static class EngulferHelpers
                 return EngulfCheckResult.CannotCannibalize;
 
             // Needs to be big enough to engulf
-            if (engulfer.EngulfingSize < engulfable.AdjustedEngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
+            var targetSize = engulfable.AdjustedEngulfSize;
+            if (engulfer.EngulfingSize < targetSize * Constants.ENGULF_SIZE_RATIO_REQ)
                 return EngulfCheckResult.TargetTooBig;
 
             // Limit amount of things that can be engulfed at once
-            if (engulfer.UsedEngulfingCapacity >= engulfer.EngulfStorageSize ||
-                engulfer.UsedEngulfingCapacity + engulfable.AdjustedEngulfSize >= engulfer.EngulfStorageSize)
-            {
-                return EngulfCheckResult.IngestedMatterFull;
-            }
-
-            // Too many things attempted to be pulled in at once
-            if (engulfer.UsedEngulfingCapacity + engulfable.AdjustedEngulfSize >= engulfer.EngulfStorageSize)
+            if (engulfer.UsedEngulfingCapacity + targetSize >= engulfer.EngulfStorageSize)
             {
                 return EngulfCheckResult.IngestedMatterFull;
             }
