@@ -418,7 +418,7 @@ public class Mutations
 
         // Loop through all the organelles and find an open spot to
         // place our new organelle attached to existing organelles
-        // This almost always is over at the first iteration, so its
+        // This almost always is over at the first iteration, so it's
         // not a huge performance hog
         foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => random.Next()))
         {
