@@ -768,8 +768,7 @@ public partial class CellEditorComponent :
             behaviourEditor.Visible = false;
         }
 
-        if (endosymbiosisPopup != null)
-            endosymbiosisPopup.Lawk = Editor.CurrentGame.GameWorld.WorldSettings.LAWK;
+        endosymbiosisPopup.Lawk = Editor.CurrentGame.GameWorld.WorldSettings.LAWK;
 
         UpdateMicrobePartSelections();
 
