@@ -146,6 +146,7 @@ public static class MicrobeInternalCalculations
         float shapeMass = 0;
 
         // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to figure
+        // out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
         // This is why Auto-Evo just estimates the value of the output instead
         if (!useEstimate)
         {
