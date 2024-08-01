@@ -13,9 +13,11 @@ if(THRIVE_AVX)
 
   # Not directly AVX instructions, but are about as new so are only on when AVX is on
   set(USE_F16C ON)
-  set(USE_FMADD ON)
   set(USE_LZCNT ON)
   set(USE_TZCNT ON)
+
+  # this is off anyway as this causes indeterminism in the simulation
+  set(USE_FMADD OFF)
 else()
   set(USE_AVX OFF)
   set(USE_AVX2 OFF)

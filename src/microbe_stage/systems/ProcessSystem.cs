@@ -289,7 +289,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         result.FinalBalance = result.TotalProduction - result.TotalConsumption;
-        result.ConservativeFinalBalance = result.TotalProduction - result.TotalConsumption;
+        result.ConservativeFinalBalance = result.ConservativeTotalProduction - result.TotalConsumption;
         result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
 
         return result;
