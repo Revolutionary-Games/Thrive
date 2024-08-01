@@ -43,21 +43,26 @@ public static class MicrobeInternalCalculations
         return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(
-        IReadOnlyCollection<OrganelleTemplate> organelles, out float nominalCapacity)
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
+        out float nominalCapacity)
     {
         var totalNominalCap = 0.0f;
 
-        foreach (var organelle in organelles)
+        int count = organelles.Count;
+
+        for (int i = 0; i < count; ++i)
         {
+            var organelle = organelles[i];
             totalNominalCap += GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
         }
 
         var capacities = new Dictionary<Compound, float>();
 
         // Update the variant of this logic in UpdateSpecificCapacities if changes are made
-        foreach (var organelle in organelles)
+        for (int i = 0; i < count; ++i)
         {
+            var organelle = organelles[i];
+
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
 
             if (specificCapacity.Compound == null)
