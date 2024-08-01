@@ -268,7 +268,15 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     if (x < 0 || y < 0)
                         continue;
 
-                    float distance = Mathf.Sqrt(Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2));
+                    // Delta calculation using simple math to calculate the square distance
+                    float deltaX = x - cloudRelativeX;
+                    float deltaY = y - cloudRelativeY;
+                    float distanceSquared = deltaX * deltaX + deltaY * deltaY;
+
+                    // This ensures that the distance will be non zero and scales it down
+                    // Despite its simplicity it helps not getting negative values and
+                    // keeps the same results as the old one
+                    float distance = (distanceSquared + 1.0f) / 2.0f;
                     if (distance > localGrabRadius)
                         continue;
 
