@@ -688,7 +688,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         var targetRadiusNormalized = Mathf.Clamp(targetRadius / radius, 0.0f, 1.0f);
 
         // This needs to convert the relative vector from world space to engulfer local space as this is used
-        // as the attached component position so it is applied relative to the engulfer and its rotation
+        // as the attached component position, so it is applied relative to the engulfer and its rotation
         relativePosition =
             engulferPosition.Rotation.Inverse() * (targetEntityPosition.Position - engulferPosition.Position);
 

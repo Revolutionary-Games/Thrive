@@ -52,6 +52,12 @@ public struct MicrobeEventCallbacks
     ///   Called when an organelle duplicates in this microbe in preparation for reproduction
     /// </summary>
     public Action<Entity, PlacedOrganelle>? OnOrganelleDuplicated;
+
+    /// <summary>
+    ///   Temporary callbacks can be deleted in certain situations (for example used when creating microbe colony
+    ///   event forwarders which are destroyed when the colony is disbanded)
+    /// </summary>
+    public bool IsTemporary;
 }
 
 public static class MicrobeEventCallbackHelpers
@@ -108,5 +114,29 @@ public static class MicrobeEventCallbackHelpers
 
         callbacks.OnNoticeMessage.Invoke(entity, new SimpleHUDMessage(message.ToString()));
         return true;
+    }
+
+    /// <summary>
+    ///   Clones callbacks of the colony leader for putting on a colony member.
+    /// </summary>
+    /// <param name="originalCallbacks">Callbacks to clone (should have at least one callback set)</param>
+    /// <returns>A new callback instance with cloned callbacks that make sense for this context</returns>
+    public static MicrobeEventCallbacks CloneEventCallbacksForColonyMember(this MicrobeEventCallbacks originalCallbacks)
+    {
+        return new MicrobeEventCallbacks
+        {
+            OnSuccessfulEngulfment = originalCallbacks.OnSuccessfulEngulfment,
+
+            OnEngulfmentStorageFull = originalCallbacks.OnEngulfmentStorageFull,
+
+            // This triggers a ton so for now this is left out, so the engulfing full tutorial no longer ends
+            // automatically in a cell colony
+            // OnEngulfmentStorageNearlyEmpty = originalCallbacks.OnEngulfmentStorageNearlyEmpty,
+
+            OnNoticeMessage = originalCallbacks.OnNoticeMessage,
+
+            // Mark this to be deleted on colony disband
+            IsTemporary = true,
+        };
     }
 }
