@@ -513,7 +513,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                        seenCurrentAmount);
 
                 return true;
- 
+
             default:
                 return false;
         }
