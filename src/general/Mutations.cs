@@ -325,7 +325,7 @@ public class Mutations
             }
         }
 
-        var islandHexes = workMemory.WorkingMemory2;
+        var islandHexes = workMemory.WorkingMemory1;
         mutatedOrganelles.GetIslandHexes(islandHexes, workMemory.WorkingMemory3, workMemory.WorkingMemory2,
             workMemory.WorkingMemory4);
 
