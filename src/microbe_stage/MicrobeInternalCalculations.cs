@@ -171,8 +171,14 @@ public static class MicrobeInternalCalculations
 
         // TODO: balance the calculation in regards to the new flagella force and the base movement force
 
-        foreach (var organelle in organelles)
+        int totalHexes = 0;
+        int organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var organelle = organelles[i];
+            totalHexes += organelle.Definition.HexCount;
+
             if (organelle.Definition.HasMovementComponent)
             {
                 Vector3 organelleDirection = GetOrganelleDirection(organelle);
@@ -215,9 +221,7 @@ public static class MicrobeInternalCalculations
         organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
         organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
 
-        float baseMovementForce =
-            CalculateBaseMovement(membraneType, membraneRigidity, organelles.Sum(o => o.Definition.HexCount),
-                isBacteria);
+        float baseMovementForce = CalculateBaseMovement(membraneType, membraneRigidity, totalHexes, isBacteria);
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / shape.GetMass();
 
