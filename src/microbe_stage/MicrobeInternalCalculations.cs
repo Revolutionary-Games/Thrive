@@ -431,7 +431,7 @@ public static class MicrobeInternalCalculations
     ///   that compound is
     /// </returns>
     public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
-        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
+        IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
@@ -519,7 +519,7 @@ public static class MicrobeInternalCalculations
     ///   should be present
     /// </returns>
     public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
-        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
+        IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings,
         ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
@@ -734,11 +734,15 @@ public static class MicrobeInternalCalculations
     ///     Here we only discard if the flagella we input is the "bad" one
     ///   </para>
     /// </remarks>
-    private static Vector3 ChooseFromSymmetricFlagella(IEnumerable<OrganelleTemplate> organelles,
+    private static Vector3 ChooseFromSymmetricFlagella(IReadOnlyList<OrganelleTemplate> organelles,
         OrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
     {
-        foreach (var organelle in organelles)
+        int organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var organelle = organelles[i];
+
             if (organelle != testedOrganelle &&
                 organelle.Position + testedOrganelle.Position == new Hex(0, 0))
             {
