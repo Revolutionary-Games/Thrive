@@ -307,6 +307,11 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     public int GetIslandHexes(List<Hex> resultIslands, HashSet<Hex> workMemory1, List<Hex> workMemory2,
         Queue<Hex> workMemory3)
     {
+#if DEBUG
+        if (ReferenceEquals(resultIslands, workMemory2))
+            throw new ArgumentException("Work memory is same as islands memory");
+#endif
+
         resultIslands.Clear();
 
         if (Count < 1)
@@ -359,18 +364,15 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     public void ComputeHexCache(HashSet<Hex> result, List<Hex> workMemory)
     {
         result.Clear();
-        workMemory.Clear();
-
-        var temporaryMemory = new List<Hex>();
 
         foreach (var hex in existingHexes)
         {
-            GetHexComponentPositions(hex, temporaryMemory);
-            int count = temporaryMemory.Count;
+            GetHexComponentPositions(hex, workMemory);
+            int count = workMemory.Count;
 
             for (int i = 0; i < count; ++i)
             {
-                result.Add(hex.Position + temporaryMemory[i]);
+                result.Add(hex.Position + workMemory[i]);
             }
         }
     }
