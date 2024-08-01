@@ -583,13 +583,11 @@ public partial class PhysicsTest : Node
         physicalWorld.RemoveGravity();
 
         var mutator = new Mutations(random);
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
+        var workMemory = new MutationWorkMemory();
 
         // Generate a random, pretty big microbe species to use for testing
         var microbeSpecies =
-            mutator.CreateRandomSpecies(new MicrobeSpecies(1, string.Empty, string.Empty), 1, false, workMemory1,
-                workMemory2, 25);
+            mutator.CreateRandomSpecies(new MicrobeSpecies(1, string.Empty, string.Empty), 1, false, workMemory, 25);
 
         testMicrobeOrganellePositions =
             microbeSpecies.Organelles.Select(o => new JVecF3(Hex.AxialToCartesian(o.Position))).ToArray();

@@ -43,21 +43,26 @@ public static class MicrobeInternalCalculations
         return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(
-        IReadOnlyCollection<OrganelleTemplate> organelles, out float nominalCapacity)
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
+        out float nominalCapacity)
     {
         var totalNominalCap = 0.0f;
 
-        foreach (var organelle in organelles)
+        int count = organelles.Count;
+
+        for (int i = 0; i < count; ++i)
         {
+            var organelle = organelles[i];
             totalNominalCap += GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
         }
 
         var capacities = new Dictionary<Compound, float>();
 
         // Update the variant of this logic in UpdateSpecificCapacities if changes are made
-        foreach (var organelle in organelles)
+        for (int i = 0; i < count; ++i)
         {
+            var organelle = organelles[i];
+
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
 
             if (specificCapacity.Compound == null)
@@ -178,8 +183,14 @@ public static class MicrobeInternalCalculations
 
         // TODO: balance the calculation in regards to the new flagella force and the base movement force
 
-        foreach (var organelle in organelles)
+        int totalHexes = 0;
+        int organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var organelle = organelles[i];
+            totalHexes += organelle.Definition.HexCount;
+
             if (organelle.Definition.HasMovementComponent)
             {
                 Vector3 organelleDirection = GetOrganelleDirection(organelle);
@@ -228,9 +239,7 @@ public static class MicrobeInternalCalculations
         organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
         organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
 
-        float baseMovementForce =
-            CalculateBaseMovement(membraneType, membraneRigidity, organelles.Sum(o => o.Definition.HexCount),
-                isBacteria);
+        float baseMovementForce = CalculateBaseMovement(membraneType, membraneRigidity, totalHexes, isBacteria);
 
         var finalMass = useEstimate ? massEstimate : shapeMass;
 
@@ -442,7 +451,7 @@ public static class MicrobeInternalCalculations
     ///   that compound is
     /// </returns>
     public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
-        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
+        IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
@@ -530,7 +539,7 @@ public static class MicrobeInternalCalculations
     ///   should be present
     /// </returns>
     public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
-        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
+        IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings,
         ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
@@ -745,11 +754,15 @@ public static class MicrobeInternalCalculations
     ///     Here we only discard if the flagella we input is the "bad" one
     ///   </para>
     /// </remarks>
-    private static Vector3 ChooseFromSymmetricFlagella(IEnumerable<OrganelleTemplate> organelles,
+    private static Vector3 ChooseFromSymmetricFlagella(IReadOnlyList<OrganelleTemplate> organelles,
         OrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
     {
-        foreach (var organelle in organelles)
+        int organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var organelle = organelles[i];
+
             if (organelle != testedOrganelle &&
                 organelle.Position + testedOrganelle.Position == new Hex(0, 0))
             {
