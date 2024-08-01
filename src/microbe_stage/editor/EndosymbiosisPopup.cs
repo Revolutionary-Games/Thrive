@@ -8,6 +8,8 @@ using Godot;
 /// </summary>
 public partial class EndosymbiosisPopup : CustomWindow
 {
+    public bool Lawk;
+
 #pragma warning disable CA2213
     [Export]
     private Label generalExplanationLabel = null!;
@@ -140,6 +142,8 @@ public partial class EndosymbiosisPopup : CustomWindow
             // to give some warning
 
             var choice = candidateGUIScene.Instantiate<EndosymbiosisCandidateOption>();
+
+            choice.Lawk = Lawk;
 
             MicrobeInternalCalculations.CalculatePossibleEndosymbiontsFromSpecies(microbeSpecies, tempSymbionts);
 
