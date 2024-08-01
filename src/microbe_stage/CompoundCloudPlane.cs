@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -411,7 +411,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
-                           seenCurrentAmount);
+                       seenCurrentAmount);
 
                 break;
 
@@ -422,7 +422,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
-                           seenCurrentAmount);
+                       seenCurrentAmount);
 
                 break;
 
@@ -433,7 +433,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
-                           seenCurrentAmount);
+                       seenCurrentAmount);
 
                 break;
 
@@ -444,7 +444,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
-                           seenCurrentAmount);
+                       seenCurrentAmount);
 
                 break;
 
@@ -477,7 +477,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
-                        seenCurrentAmount);
+                       seenCurrentAmount);
 
                 return true;
 
@@ -488,10 +488,10 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
-                        seenCurrentAmount);
+                       seenCurrentAmount);
 
                 return true;
-                
+
             case 2:
                 do
                 {
@@ -499,7 +499,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
-                        seenCurrentAmount);
+                       seenCurrentAmount);
 
                 return true;
 
@@ -510,10 +510,10 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     newValue = seenCurrentAmount + density;
                 }
                 while (Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
-                        seenCurrentAmount);
+                       seenCurrentAmount);
 
                 return true;
-                
+ 
             default:
                 return false;
         }
