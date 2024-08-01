@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -18,7 +17,7 @@ using Newtonsoft.Json;
 /// </remarks>
 /// <typeparam name="T">The concrete type of the hex to hold</typeparam>
 [UseThriveSerializer]
-public abstract class HexLayout<T> : ICollection<T>, IReadOnlyCollection<T>
+public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     where T : class, IPositionedHex
 {
     [JsonProperty]

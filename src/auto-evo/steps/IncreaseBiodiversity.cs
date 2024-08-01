@@ -18,8 +18,7 @@ public class IncreaseBiodiversity : IRunStep
     private readonly SimulationCache cache;
 
     private readonly Mutations mutations = new();
-    private readonly List<Hex> workingMemory1 = new();
-    private readonly List<Hex> workingMemory2 = new();
+    private readonly MutationWorkMemory workMemory = new();
 
     private bool tryCurrentPatch = true;
     private bool createdASpecies;
@@ -132,7 +131,7 @@ public class IncreaseBiodiversity : IRunStep
         if (configuration.BiodiversitySplitIsMutated)
         {
             mutations.CreateMutatedSpecies(fromMicrobe, split, worldSettings.AIMutationMultiplier,
-                worldSettings.LAWK, workingMemory1, workingMemory2);
+                worldSettings.LAWK, workMemory);
         }
 
         // Set the starting population in the patch

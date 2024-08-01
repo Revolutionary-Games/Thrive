@@ -157,6 +157,11 @@ public partial class CellEditorComponent :
 
     private readonly List<Hex> hexTemporaryMemory2 = new();
 
+    private readonly List<Hex> islandResults = new();
+    private readonly HashSet<Hex> islandsWorkMemory1 = new();
+    private readonly List<Hex> islandsWorkMemory2 = new();
+    private readonly Queue<Hex> islandsWorkMemory3 = new();
+
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
 #pragma warning disable CA2213
@@ -485,7 +490,9 @@ public partial class CellEditorComponent :
     public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d == nucleus);
 
     [JsonIgnore]
-    public override bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
+    public override bool HasIslands =>
+        editedMicrobeOrganelles.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
+            islandsWorkMemory3) > 0;
 
     /// <summary>
     ///   Number of organelles in the microbe
@@ -1839,7 +1846,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Calculates the energy balance and compound balance for a cell with the given organelles and membrane
     /// </summary>
-    private void CalculateEnergyAndCompoundBalance(IReadOnlyCollection<OrganelleTemplate> organelles,
+    private void CalculateEnergyAndCompoundBalance(IReadOnlyList<OrganelleTemplate> organelles,
         MembraneType membrane, BiomeConditions? biome = null)
     {
         biome ??= Editor.CurrentPatch.Biome;
@@ -1872,7 +1879,7 @@ public partial class CellEditorComponent :
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
-        CompoundAmountType amountType, IReadOnlyCollection<OrganelleTemplate> organelles,
+        CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles,
         BiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
         ref float nominalStorage)
     {
@@ -2190,12 +2197,13 @@ public partial class CellEditorComponent :
     /// </summary>
     private void UpdateAlreadyPlacedVisuals()
     {
-        var islands = editedMicrobeOrganelles.GetIslandHexes();
+        editedMicrobeOrganelles.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
+            islandsWorkMemory3);
 
         // TODO: The code below is partly duplicate to CellHexPhotoBuilder. If this is changed that needs changes too.
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes,
-            Editor.HexPlacedThisSession<OrganelleTemplate, CellType>(o))), islands, microbePreviewMode);
+            Editor.HexPlacedThisSession<OrganelleTemplate, CellType>(o))), islandResults, microbePreviewMode);
 
         int nextFreeOrganelle = 0;
 

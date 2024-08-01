@@ -49,8 +49,7 @@ public class Mutations
         int seed = 234234565;
         int steps = 10;
 
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
+        var workMemory = new MutationWorkMemory();
 
         string firstSpecies;
         string secondSpecies;
@@ -60,8 +59,8 @@ public class Mutations
         {
             var mutator = new Mutations(new XoShiRo256starstar(seed));
 
-            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
-                workMemory2, steps);
+            var species =
+                mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory, steps);
 
             firstSpecies = species.StringCode;
         }
@@ -69,8 +68,8 @@ public class Mutations
         {
             var mutator = new Mutations(new XoShiRo256starstar(seed + 1));
 
-            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
-                workMemory2, steps);
+            var species =
+                mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory, steps);
 
             secondSpecies = species.StringCode;
         }
@@ -78,8 +77,8 @@ public class Mutations
         {
             var mutator = new Mutations(new XoShiRo256starstar(seed + 2));
 
-            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory1,
-                workMemory2, steps);
+            var species =
+                mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, workMemory, steps);
 
             differentSpecies = species.StringCode;
         }
@@ -96,7 +95,7 @@ public class Mutations
     ///   Creates a mutated version of a species
     /// </summary>
     public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated, float creationRate,
-        bool lawkOnly, List<Hex> workMemory1, List<Hex> workMemory2)
+        bool lawkOnly, MutationWorkMemory workMemory)
     {
         if (parent.Organelles.Count < 1)
         {
@@ -130,7 +129,7 @@ public class Mutations
         MutateBehaviour(parent, mutated);
 
         MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria, creationRate, lawkOnly,
-            workMemory1, workMemory2);
+            workMemory);
 
         // Update the genus if the new species is different enough
         if (NewGenus(mutated, parent))
@@ -186,12 +185,12 @@ public class Mutations
     ///   Creates a fully random species starting with one cytoplasm
     /// </summary>
     public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, float creationRate, bool lawkOnly,
-        List<Hex> workMemory1, List<Hex> workMemory2, int steps = 5)
+        MutationWorkMemory workMemory, int steps = 5)
     {
         // Temporarily create species with just cytoplasm to start mutating from
         var temp = new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty);
 
-        GameWorld.SetInitialSpeciesProperties(temp, workMemory1, workMemory2);
+        GameWorld.SetInitialSpeciesProperties(temp, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
 
         // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
@@ -200,7 +199,7 @@ public class Mutations
 
         for (int step = 0; step < steps; ++step)
         {
-            CreateMutatedSpecies(temp, mutated, creationRate, lawkOnly, workMemory1, workMemory2);
+            CreateMutatedSpecies(temp, mutated, creationRate, lawkOnly, workMemory);
 
             temp = (MicrobeSpecies)mutated.Clone();
         }
@@ -232,7 +231,7 @@ public class Mutations
     /// </summary>
     private void MutateMicrobeOrganelles(OrganelleLayout<OrganelleTemplate> parentOrganelles,
         OrganelleLayout<OrganelleTemplate> mutatedOrganelles, bool isBacteria, float creationRate, bool lawkOnly,
-        List<Hex> workMemory1, List<Hex> workMemory2)
+        MutationWorkMemory workMemory)
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
@@ -260,15 +259,16 @@ public class Mutations
             }
 
             // Copy the organelle
-            if (mutatedOrganelles.CanPlace(organelle, workMemory1, workMemory2))
+            if (mutatedOrganelles.CanPlace(organelle, workMemory.WorkingMemory1, workMemory.WorkingMemory2))
             {
-                mutatedOrganelles.AddFast(organelle, workMemory1, workMemory2);
+                mutatedOrganelles.AddFast(organelle, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
             }
             else
             {
                 // Add the organelle randomly back to the list to make sure we don't throw it away. Note that this
                 // can still fail if unable to find any valid position.
-                AddNewOrganelle(mutatedOrganelles, organelle.Definition, workMemory1, workMemory2);
+                AddNewOrganelle(mutatedOrganelles, organelle.Definition, workMemory.WorkingMemory1,
+                    workMemory.WorkingMemory2);
             }
         }
 
@@ -279,8 +279,8 @@ public class Mutations
             {
                 if (random.Next(0.0f, 1.0f) < Constants.MUTATION_NEW_ORGANELLE_CHANCE)
                 {
-                    AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria, lawkOnly), workMemory1,
-                        workMemory2);
+                    AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria, lawkOnly),
+                        workMemory.WorkingMemory1, workMemory.WorkingMemory2);
                 }
                 else
                 {
@@ -290,12 +290,13 @@ public class Mutations
                     if (organellesThatCanBeDuplicated.Any())
                     {
                         AddNewOrganelle(mutatedOrganelles,
-                            organellesThatCanBeDuplicated.Random(random).Definition, workMemory1, workMemory2);
+                            organellesThatCanBeDuplicated.Random(random).Definition, workMemory.WorkingMemory1,
+                            workMemory.WorkingMemory2);
                     }
                     else
                     {
-                        AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria, lawkOnly), workMemory1,
-                            workMemory2);
+                        AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria, lawkOnly),
+                            workMemory.WorkingMemory1, workMemory.WorkingMemory2);
                     }
                 }
             }
@@ -305,7 +306,7 @@ public class Mutations
         {
             if (random.Next(0.0f, 1.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
             {
-                AddNewOrganelle(mutatedOrganelles, nucleus, workMemory1, workMemory2);
+                AddNewOrganelle(mutatedOrganelles, nucleus, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
             }
         }
 
@@ -313,19 +314,28 @@ public class Mutations
         if (mutatedOrganelles.Count < 1)
         {
             // Add the first parent species organelle
-            AddNewOrganelle(mutatedOrganelles, parentOrganelles[0].Definition, workMemory1, workMemory2);
+            AddNewOrganelle(mutatedOrganelles, parentOrganelles[0].Definition, workMemory.WorkingMemory1,
+                workMemory.WorkingMemory2);
 
             // If still empty, copy the first organelle of the parent
             if (mutatedOrganelles.Count < 1)
-                mutatedOrganelles.AddFast((OrganelleTemplate)parentOrganelles[0].Clone(), workMemory1, workMemory2);
+            {
+                mutatedOrganelles.AddFast((OrganelleTemplate)parentOrganelles[0].Clone(), workMemory.WorkingMemory1,
+                    workMemory.WorkingMemory2);
+            }
         }
 
-        var islandHexes = mutatedOrganelles.GetIslandHexes();
+        var islandHexes = workMemory.WorkingMemory2;
+        mutatedOrganelles.GetIslandHexes(islandHexes, workMemory.WorkingMemory3, workMemory.WorkingMemory2,
+            workMemory.WorkingMemory4);
 
         // Attach islands
         while (islandHexes.Count > 0)
         {
-            var mainHexes = mutatedOrganelles.ComputeHexCache().Except(islandHexes);
+            mutatedOrganelles.ComputeHexCache(workMemory.WorkingMemory3, workMemory.WorkingMemory2);
+
+            // TODO: skip this enumerator allocation
+            var mainHexes = workMemory.WorkingMemory3.Except(islandHexes);
 
             // Compute the shortest hex distance
             Hex minSubHex = default;
@@ -360,13 +370,15 @@ public class Mutations
             minSubHex.R = (int)(minSubHex.R * (minDistance - 1.0) / minDistance);
 
             // Move all island organelles by minSubHex
+            // TODO: remove the lambdas from here that allocate memory and the LINQ usage
             foreach (var organelle in mutatedOrganelles.Where(o => islandHexes.Any(h =>
                          o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
             {
                 organelle.Position -= minSubHex;
             }
 
-            islandHexes = mutatedOrganelles.GetIslandHexes();
+            mutatedOrganelles.GetIslandHexes(islandHexes, workMemory.WorkingMemory3, workMemory.WorkingMemory2,
+                workMemory.WorkingMemory4);
         }
     }
 
