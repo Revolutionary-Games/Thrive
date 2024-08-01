@@ -479,56 +479,56 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         switch (compoundIndex)
         {
             case 0:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].X;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
-                           seenCurrentAmount);
-
-                    return true;
+                    seenCurrentAmount = Density[x, y].X;
+                    newValue = seenCurrentAmount + density;
                 }
+                while (Interlocked.CompareExchange(ref Density[x, y].X, newValue, seenCurrentAmount) !=
+                        seenCurrentAmount);
+
+                return true;
+            }
 
             case 1:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].Y;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
-                           seenCurrentAmount);
-
-                    return true;
+                    seenCurrentAmount = Density[x, y].Y;
+                    newValue = seenCurrentAmount + density;
                 }
+                while (Interlocked.CompareExchange(ref Density[x, y].Y, newValue, seenCurrentAmount) !=
+                        seenCurrentAmount);
+
+                return true;
+            }
 
             case 2:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].Z;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
-                           seenCurrentAmount);
-
-                    return true;
+                    seenCurrentAmount = Density[x, y].Z;
+                    newValue = seenCurrentAmount + density;
                 }
+                while (Interlocked.CompareExchange(ref Density[x, y].Z, newValue, seenCurrentAmount) !=
+                        seenCurrentAmount);
+
+                return true;
+            }
 
             case 3:
+            {
+                do
                 {
-                    do
-                    {
-                        seenCurrentAmount = Density[x, y].W;
-                        newValue = seenCurrentAmount + density;
-                    }
-                    while (Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
-                           seenCurrentAmount);
-
-                    return true;
+                    seenCurrentAmount = Density[x, y].W;
+                    newValue = seenCurrentAmount + density;
                 }
+                while (Interlocked.CompareExchange(ref Density[x, y].W, newValue, seenCurrentAmount) !=
+                        seenCurrentAmount);
+
+                return true;
+            }
 
             default:
                 return false;
