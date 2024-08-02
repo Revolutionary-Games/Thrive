@@ -27,6 +27,18 @@ public partial class StartupActions : Node
         // TODO: for devbuilds it would be nice to print the hash here
         GD.Print("This is Thrive version: ", Constants.VersionFull, " (see below for more build info)");
 
+        // Need to print the starting time to make it absolutely clear which Thrive startup the log is related to for
+        // when technical players might read the log files
+        try
+        {
+            GD.Print("Thrive is starting at: " + DateTime.Now.ToLocalTime().ToString("F") +
+                " (log file name may say something else but this is the correct time)");
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Couldn't determine Thrive startup time: ", e);
+        }
+
         // Add unhandled exception logger if debugger is not attached
         if (!Debugger.IsAttached)
         {

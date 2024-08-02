@@ -75,7 +75,15 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
         ref var engulfer = ref entity.Get<Engulfer>();
 
         if (engulfer.EngulfedObjects == null || engulfer.EngulfedObjects.Count < 1)
+        {
+            // When something ejects its last engulfed object, the used engulfing size needs to be still updated
+
+            // TODO: determine if it is faster to always write this value or compare first
+            if (engulfer.UsedEngulfingCapacity > 0)
+                engulfer.UsedEngulfingCapacity = 0;
+
             return;
+        }
 
         ref var organelles = ref entity.Get<OrganelleContainer>();
         var compounds = entity.Get<CompoundStorage>().Compounds;
@@ -94,6 +102,9 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             return;
 
         var engulferIsPlayer = entity.Has<PlayerMarker>();
+
+        // TODO: if the entity is a colony with the player being the lead cell should that situation set
+        // engulferIsPlayer?
 
         float usedCapacity = 0;
 
@@ -144,6 +155,12 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 // Still need to consider the size of this thing for the engulf storage, otherwise cells can start
                 // pulling in too much
                 usedCapacity += engulfable.AdjustedEngulfSize;
+
+                if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
+                {
+                    GD.PrintErr("Engulfed object is in engulfed list while being not in engulfed state");
+                }
+
                 continue;
             }
 

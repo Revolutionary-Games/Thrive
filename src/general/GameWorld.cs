@@ -260,8 +260,7 @@ public class GameWorld : ISaveLoadable
             random = new XoShiRo256starstar(seed);
         }
 
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
+        var workMemory = new MutationWorkMemory();
 
         foreach (var entry in Map.Patches)
         {
@@ -274,7 +273,7 @@ public class GameWorld : ISaveLoadable
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
                 var randomSpecies = mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK, workMemory1, workMemory2);
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK, workMemory);
 
                 GenerationHistory[0].AllSpeciesData
                     .Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
@@ -303,12 +302,11 @@ public class GameWorld : ISaveLoadable
         {
             case MicrobeSpecies s:
             {
-                var workMemory1 = new List<Hex>();
-                var workMemory2 = new List<Hex>();
+                var workMemory = new MutationWorkMemory();
 
                 // Mutator will mutate the name
                 return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies(species.Genus, species.Epithet),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK, workMemory1, workMemory2);
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK, workMemory);
             }
 
             default:

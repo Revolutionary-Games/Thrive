@@ -62,13 +62,19 @@ public class CellLayout<T> : HexLayout<T>
     {
         result.Clear();
 
-        foreach (var organelle in hex.Organelles)
-        {
-            foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
-            {
-                var rotated = Hex.RotateAxialNTimes(organelleHex, hex.Orientation);
+        var organellesInternal = hex.Organelles.Organelles;
+        int organelleCount = organellesInternal.Count;
 
-                result.Add(rotated + organelle.Position);
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            var organelle = organellesInternal[i];
+
+            var organelleHexes = organelle.Definition.GetRotatedHexes(organelle.Orientation);
+            int hexCount = organelleHexes.Count;
+
+            for (int j = 0; j < hexCount; ++j)
+            {
+                result.Add(Hex.RotateAxialNTimes(organelleHexes[j], hex.Orientation) + organelle.Position);
             }
         }
     }

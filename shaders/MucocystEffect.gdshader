@@ -22,8 +22,8 @@ void vertex(){
 
 void fragment() {
     float outer_edge = UV.y - 0.45f;
-	float inner_edge = (0.5f - UV.y) - 0.1f;
-	
+    float inner_edge = (0.5f - UV.y) - 0.1f;
+    
     float mask = max(0.f, outer_edge * 10.f);
     float mask2 = max(0.f, inner_edge * (1.f + fade));
 

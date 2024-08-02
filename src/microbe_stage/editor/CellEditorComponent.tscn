@@ -827,9 +827,11 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 
 [node name="Title" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Header"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "ORGANISM_STATISTICS"
 label_settings = ExtResource("14_fllwv")
+autowrap_mode = 3
 
 [node name="HSeparator" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer"]
 layout_mode = 2
@@ -1041,11 +1043,13 @@ theme_override_constants/margin_right = 5
 layout_mode = 2
 
 [node name="Title" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 text = "AUTO-EVO_PREDICTION"
 label_settings = ExtResource("14_fllwv")
+autowrap_mode = 3
 
 [node name="Details" type="TextureButton" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer"]
 custom_minimum_size = Vector2(25, 25)
@@ -1108,32 +1112,40 @@ Description = "TOTAL_GATHERED_ENERGY_COLON"
 layout_mode = 2
 
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "BEST_PATCH_COLON"
 label_settings = ExtResource("24_ekuel")
+autowrap_mode = 3
 
 [node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "n/a"
 label_settings = ExtResource("25_68vjv")
+autowrap_mode = 3
 max_lines_visible = 2
 
 [node name="Worst" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "WORST_PATCH_COLON"
 label_settings = ExtResource("24_ekuel")
+autowrap_mode = 3
 
 [node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "n/a"
 label_settings = ExtResource("25_68vjv")
+autowrap_mode = 3
 max_lines_visible = 2
 
 [node name="Spacer" type="Control" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]

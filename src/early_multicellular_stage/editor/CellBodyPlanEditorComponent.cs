@@ -63,6 +63,10 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly List<Hex> hexTemporaryMemory = new();
     private readonly List<Hex> hexTemporaryMemory2 = new();
+    private readonly List<Hex> islandResults = new();
+    private readonly HashSet<Hex> islandsWorkMemory1 = new();
+    private readonly List<Hex> islandsWorkMemory2 = new();
+    private readonly Queue<Hex> islandsWorkMemory3 = new();
 
 #pragma warning disable CA2213
 
@@ -128,7 +132,9 @@ public partial class CellBodyPlanEditorComponent :
     }
 
     [JsonIgnore]
-    public override bool HasIslands => editedMicrobeCells.GetIslandHexes().Count > 0;
+    public override bool HasIslands =>
+        editedMicrobeCells.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
+            islandsWorkMemory3) > 0;
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
@@ -961,11 +967,11 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private void UpdateAlreadyPlacedVisuals()
     {
-        var islands = editedMicrobeCells.GetIslandHexes();
+        editedMicrobeCells.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2, islandsWorkMemory3);
 
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(editedMicrobeCells.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(),
-            Editor.HexPlacedThisSession<HexWithData<CellTemplate>, EarlyMulticellularSpecies>(o))), islands);
+            Editor.HexPlacedThisSession<HexWithData<CellTemplate>, EarlyMulticellularSpecies>(o))), islandResults);
 
         int nextFreeCell = 0;
 

@@ -20,8 +20,7 @@ public class FindBestMutation : VariantTryingStep
     private readonly SimulationCache cache;
 
     private readonly Mutations mutations = new();
-    private readonly List<Hex> workingMemory1 = new();
-    private readonly List<Hex> workingMemory2 = new();
+    private readonly MutationWorkMemory workMemory = new();
 
     public FindBestMutation(IAutoEvoConfiguration configuration,
         WorldGenerationSettings worldSettings, PatchMap map, Species species, Random random,
@@ -68,7 +67,7 @@ public class FindBestMutation : VariantTryingStep
     {
         var mutated = (MicrobeSpecies)species.Clone();
         mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated,
-            worldSettings.AIMutationMultiplier, worldSettings.LAWK, workingMemory1, workingMemory2);
+            worldSettings.AIMutationMultiplier, worldSettings.LAWK, workMemory);
 
         var config = new SimulationConfiguration(configuration, map, worldSettings,
             Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
