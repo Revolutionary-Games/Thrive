@@ -29,7 +29,7 @@
               dotnet-sdk_8
               ((pkgs-godot.callPackage "${nixpkgs-godot}/pkgs/development/tools/godot/4/mono" {}).override {
                 withTouch = false;
-                withDebug = "no"; # Set to yes if you wish to do profiling
+                withDebug = "yes"; # Set to yes if you wish to do profiling
               })
 
               # For compiling native libraries

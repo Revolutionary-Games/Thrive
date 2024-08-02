@@ -374,17 +374,28 @@ public class AutoEvoRun
 
         var autoEvoConfiguration = configuration;
 
+        var allSpecies = new HashSet<Species>();
+
+        var generateMicheCache = new SimulationCache(worldSettings);
+
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new GenerateMiche(entry.Value, new SimulationCache(worldSettings), worldSettings));
+            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, worldSettings));
+
+            foreach (var species in entry.Value.SpeciesInPatch)
+            {
+                allSpecies.Add(species.Key);
+            }
         }
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings)));
+            steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings));
 
             steps.Enqueue(new MigrateSpecies(entry.Value, new SimulationCache(worldSettings)));
         }
+
+        steps.Enqueue(new RemoveInvalidMigrations(allSpecies));
 
         // The new populations don't depend on the mutations, this is so that when
         // the player edits their species the other species they are competing

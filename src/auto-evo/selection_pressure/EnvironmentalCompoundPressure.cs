@@ -7,7 +7,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("ENVIRONMENTAL_COMPOUND_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
@@ -63,7 +63,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
         return totalEnergy;
     }
 
-    public override IFormattable GetDescription()
+    public override LocalizedString GetDescription()
     {
         // TODO: somehow allow the compound name to translate properly. We now have custom BBCode to refer to
         // compounds so this should be doable

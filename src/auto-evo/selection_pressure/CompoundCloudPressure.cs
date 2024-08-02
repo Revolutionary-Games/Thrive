@@ -6,7 +6,7 @@ public class CompoundCloudPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("COMPOUND_CLOUD_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("MICHE_COMPOUND_CLOUD_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
@@ -43,7 +43,7 @@ public class CompoundCloudPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        var score = cache.GetBaseSpeedForSpecies(microbeSpecies);
+        var score = cache.GetSpeedForSpecies(microbeSpecies);
 
         // Species that are less active during the night get a small penalty here based on their activity
         if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
@@ -67,7 +67,7 @@ public class CompoundCloudPressure : SelectionPressure
         return totalEnergy;
     }
 
-    public override IFormattable GetDescription()
+    public override LocalizedString GetDescription()
     {
         // TODO: somehow allow the compound name to translate properly. Maybe we need to use bbcode to refer to the
         // compounds?

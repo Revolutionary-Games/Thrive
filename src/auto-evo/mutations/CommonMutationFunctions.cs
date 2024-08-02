@@ -16,9 +16,11 @@ public static class CommonMutationFunctions
     public static void AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
         Random random)
     {
-        OrganelleTemplate position;
+        var position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, random);
 
-        position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, random);
+        // We return early as not being able to add an organelle is not a critical failure
+        if (position == null)
+            return;
 
         newSpecies.Organelles.Add(position);
 
@@ -29,7 +31,7 @@ public static class CommonMutationFunctions
         }
     }
 
-    public static OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,
+    public static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
         OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, Random random)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
@@ -83,14 +85,17 @@ public static class CommonMutationFunctions
             }
         }
 
-        // We didn't find an open spot, this doesn't make much sense
-        throw new Exception("Mutation code could not find a good position " +
-            "for a new organelle");
+        return null;
     }
 
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles)
     {
-        var islandHexes = organelles.GetIslandHexes();
+        var workMemory1 = new HashSet<Hex>();
+        var workMemory2 = new List<Hex>();
+        var workMemory3 = new Queue<Hex>();
+        var islandHexes = new List<Hex>();
+
+        organelles.GetIslandHexes(islandHexes, workMemory1, workMemory2, workMemory3);
 
         // Attach islands
         while (islandHexes.Count > 0)
@@ -136,57 +141,81 @@ public static class CommonMutationFunctions
                 organelle.Position -= minSubHex;
             }
 
-            islandHexes = organelles.GetIslandHexes();
+            organelles.GetIslandHexes(islandHexes, workMemory1, workMemory2, workMemory3);
         }
     }
 
-    private static int[] SideTraversalOrder(Hex hex, Direction direction, Random random)
+    private static Hex.HexSide[] SideTraversalOrder(Hex hex, Direction direction, Random random)
     {
         if (hex.Q < 0)
         {
             if (direction == Direction.Front)
             {
-                return [1];
+                return [Hex.HexSide.Top];
             }
 
             if (direction == Direction.Rear)
             {
-                return [4];
+                return [Hex.HexSide.Bottom];
             }
 
             if (hex.R < 0)
             {
-                return [2, 3, 1, 4, 5, 6];
+                return
+                [
+                    Hex.HexSide.TopRight, Hex.HexSide.BottomRight, Hex.HexSide.Top, Hex.HexSide.Bottom,
+                    Hex.HexSide.BottomLeft, Hex.HexSide.TopLeft,
+                ];
             }
 
-            return [3, 2, 1, 5, 4, 6];
+            return
+            [
+                Hex.HexSide.BottomRight, Hex.HexSide.TopRight, Hex.HexSide.Top, Hex.HexSide.BottomLeft,
+                Hex.HexSide.Bottom, Hex.HexSide.TopLeft,
+            ];
         }
 
         if (hex.Q > 0)
         {
             if (direction == Direction.Front)
             {
-                return [1];
+                return [Hex.HexSide.Top];
             }
 
             if (direction == Direction.Rear)
             {
-                return [4];
+                return [Hex.HexSide.Bottom];
             }
 
             if (hex.R < 0)
             {
-                return [5, 6, 4, 1, 2, 3];
+                return
+                [
+                    Hex.HexSide.BottomLeft, Hex.HexSide.TopLeft, Hex.HexSide.Bottom, Hex.HexSide.Top,
+                    Hex.HexSide.TopRight, Hex.HexSide.BottomRight,
+                ];
             }
 
-            return [6, 5, 4, 1, 3, 2];
+            return
+            [
+                Hex.HexSide.TopLeft, Hex.HexSide.BottomLeft, Hex.HexSide.Bottom, Hex.HexSide.Top,
+                Hex.HexSide.BottomRight, Hex.HexSide.TopRight,
+            ];
         }
 
         if (random.Next(2) == 1)
         {
-            return [1, 6, 2, 5, 3, 4];
+            return
+            [
+                Hex.HexSide.Top, Hex.HexSide.TopLeft, Hex.HexSide.TopRight, Hex.HexSide.BottomLeft,
+                Hex.HexSide.BottomRight, Hex.HexSide.Bottom,
+            ];
         }
 
-        return [1, 2, 6, 3, 5, 4];
+        return
+        [
+            Hex.HexSide.Top, Hex.HexSide.TopRight, Hex.HexSide.TopLeft, Hex.HexSide.BottomRight,
+            Hex.HexSide.BottomLeft, Hex.HexSide.Bottom,
+        ];
     }
 }

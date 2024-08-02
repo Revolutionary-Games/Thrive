@@ -839,7 +839,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
             s => (Species)s.Value.Clone()));
         world.PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(s => s.Key,
             s => (PatchSnapshot)s.Value.CurrentSnapshot.Clone()));
-        world.MicheHistoryList.Add(results.MicheByPatch.ToDictionary(s => s.Key,
+        world.MicheHistoryList.Add(results.GetMicheByPatchDict().ToDictionary(s => s.Key,
             s => s.Value.DeepCopy()));
 
         // Add checkbox to history container

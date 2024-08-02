@@ -1,12 +1,10 @@
 ﻿namespace AutoEvo;
 
-using System;
-
 public class PredationEffectivenessPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("PREDATION_EFFECTIVENESS_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("MICHE_PREDATION_EFFECTIVENESS_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     public readonly Species Prey;
@@ -64,7 +62,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         return totalEnergy;
     }
 
-    public override IFormattable GetDescription()
+    public override LocalizedString GetDescription()
     {
         return new LocalizedString("PREDATION_FOOD_SOURCE", Prey.FormattedNameBbCode);
     }

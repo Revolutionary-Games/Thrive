@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public class MigrateSpecies : IRunStep
@@ -22,16 +23,19 @@ public class MigrateSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        var miche = results.MicheByPatch[patch];
+        var miche = results.GetMicheForPatch(patch);
 
-        var occupants = miche.GetOccupants().Distinct().ToList();
+        var occupantsSet = new HashSet<Species>();
+        miche.GetOccupants(occupantsSet);
+
+        var occupants = occupantsSet.ToList();
 
         if (occupants.Count == 0)
             return true;
 
-        for (int i = 0; i < Constants.AUTO_EVO_MOVE_ATTEMPTS; i++)
+        for (int i = 0; i < Constants.AUTO_EVO_MOVE_ATTEMPTS; ++i)
         {
-            var species = occupants.ToList().Random(random);
+            var species = occupants.Random(random);
 
             // TODO: Make this a game option?
             if (species.PlayerSpecies)
@@ -46,7 +50,7 @@ public class MigrateSpecies : IRunStep
             // in or about to go extinct, or really anything other
             // than random selection
             var target = patch.Adjacent.ToList().Random(random);
-            var targetMiche = results.MicheByPatch[target];
+            var targetMiche = results.GetMicheForPatch(target);
 
             // Calculate random amount of population to send
             int moveAmount = (int)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,

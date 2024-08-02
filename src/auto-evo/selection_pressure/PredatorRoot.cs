@@ -1,12 +1,10 @@
 ﻿namespace AutoEvo;
 
-using System;
-
 public class PredatorRoot : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("PREDATOR_ROOT_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("MICHE_PREDATOR_ROOT_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
@@ -50,9 +48,8 @@ public class PredatorRoot : SelectionPressure
         return 0;
     }
 
-    public override IFormattable GetDescription()
+    public override LocalizedString GetDescription()
     {
-        // This shouldn't be called on 0 energy pressures
         return Name;
     }
 

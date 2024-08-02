@@ -18,8 +18,6 @@ using JetBrains.Annotations;
 /// </remarks>
 public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesResult>>
 {
-    public Dictionary<Patch, Miche> MicheByPatch = new();
-
     /// <summary>
     ///   The per-species results
     /// </summary>
@@ -32,6 +30,8 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     ///   </para>
     /// </remarks>
     private readonly ConcurrentDictionary<Species, SpeciesResult> results = new();
+
+    private Dictionary<Patch, Miche> micheByPatch = new();
 
     public enum NewSpeciesType
     {
@@ -67,6 +67,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         return results.ToDictionary(r => r.Key.ID,
             r => new SpeciesRecordFull((Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID,
                 r.Value.SplitFrom?.ID));
+    }
+
+    public void AddNewMicheForPatch(Patch patch, Miche miche)
+    {
+        micheByPatch[patch] = miche;
     }
 
     public void AddMutationResultForSpecies(Species species, Species? mutated)
@@ -362,6 +367,20 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
 
         world.Map.DiscardGameplayPopulations();
+    }
+
+    public Miche GetMicheForPatch(Patch patch)
+    {
+        if (!micheByPatch.TryGetValue(patch, out var miche))
+            throw new ArgumentException("Miche not found for " + patch.Name + " in MicheByPatch");
+
+        return miche;
+    }
+
+    // This exist purely so the AutoEvoExploring tool can make a miche by patch history
+    public Dictionary<Patch, Miche> GetMicheByPatchDict()
+    {
+        return micheByPatch;
     }
 
     /// <summary>

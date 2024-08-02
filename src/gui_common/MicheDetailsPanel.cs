@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -83,12 +84,14 @@ public partial class MicheDetailsPanel : MarginContainer
 
         var cache = new SimulationCache(WorldSettings);
 
+        var occupants = new HashSet<Species>();
+        previewMiche.GetOccupants(occupants);
+
         micheDetailsLabel!.ExtendedBbcode = Localization.Translate("MICHE_DETAIL_TEXT").FormatSafe(
             previewMiche.Pressure.ToString(),
             previewMiche.Pressure.GetEnergy(),
             string.Join("\n  ",
-                previewMiche.GetOccupants().ToList().Distinct()
-                    .Select(b => b.FormattedName + ": " + Math.Round(previewMiche.Pressure.Score(b, cache), 3))));
+                occupants.Select(b => b.FormattedName + ": " + Math.Round(previewMiche.Pressure.Score(b, cache), 3))));
     }
 
     private void OnTranslationsChanged()

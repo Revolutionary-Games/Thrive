@@ -1,12 +1,10 @@
 ﻿namespace AutoEvo;
 
-using System;
-
 public class CompoundConversionEfficiencyPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("COMPOUND_EFFICIENCY_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("MICHE_COMPOUND_EFFICIENCY_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
@@ -38,9 +36,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         return 0;
     }
 
-    public override IFormattable GetDescription()
+    public override LocalizedString GetDescription()
     {
-        // This shouldn't be called on 0 energy pressures
         return Name;
     }
 

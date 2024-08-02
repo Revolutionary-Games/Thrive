@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-26 14:35+0300\n"
+"POT-Creation-Date: 2024-08-01 21:03-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -318,10 +318,6 @@ msgstr ""
 
 msgid "AVAILABLE_MODS"
 msgstr "Mod disponibili"
-
-#, fuzzy
-msgid "AVOID_PREDATION_SELECTION_PRESSURE"
-msgstr "Nuova specie: [b][u]{0}[/u][/b] si è diramata da [b][u]{1}[/u][/b] a causa di pressioni selettive diverse"
 
 msgid "AWAKENING_STAGE"
 msgstr ""
@@ -653,10 +649,6 @@ msgstr ""
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Consumo di {0}"
 
-#, fuzzy
-msgid "CHUNK_PRESSURE"
-msgstr "Pressione"
-
 msgid "CILIA"
 msgstr "Ciglia"
 
@@ -817,16 +809,8 @@ msgstr "Densità delle nuvole di composti"
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(densità delle nuvole di composti nell'ambiente)"
 
-#, fuzzy
-msgid "COMPOUND_CLOUD_PRESSURE"
-msgstr "Nuvole di composti"
-
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr "La concentrazione di {0} è diminuita del {1}"
-
-#, fuzzy
-msgid "COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "Nuvole di composti"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consumo di {0}"
@@ -1742,10 +1726,6 @@ msgstr "Etichetta entità"
 
 msgid "ENVIRONMENT"
 msgstr "Ambiente"
-
-#, fuzzy
-msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Nuvole di composti"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Ritenzione ambientale del glucosio"
@@ -2965,10 +2945,6 @@ msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in gr
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contiene uno di tre enzimi digestivi. Fai clic su \"Modifica\" per scegliere quale. Gli enzimi velocizzano la digestione e la rendono più efficiente."
 
-#, fuzzy
-msgid "MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Nuvole di composti"
-
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3035,9 +3011,6 @@ msgstr "Menù"
 msgid "MESOPELAGIC"
 msgstr "Mesopelagico"
 
-msgid "METABOLIC_STABILITY_PRESSURE"
-msgstr ""
-
 msgid "METABOLOSOMES"
 msgstr "Metabolosomi"
 
@@ -3078,6 +3051,22 @@ msgid "MICHE"
 msgstr ""
 
 #, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "Nuova specie: [b][u]{0}[/u][/b] si è diramata da [b][u]{1}[/u][/b] a causa di pressioni selettive diverse"
+
+#, fuzzy
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr "Pressione"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Nuvole di composti"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Nuvole di composti"
+
+#, fuzzy
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
 "[b]Specie[/b]\n"
@@ -3090,6 +3079,33 @@ msgstr ""
 "  #{4}\n"
 "[b]Comportamento[/b]\n"
 "  {5}"
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Nuvole di composti"
+
+#, fuzzy
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Nuvole di composti"
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr "Pressione"
+
+#, fuzzy
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "Predazione di {0}"
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Pressione"
+
+#, fuzzy
+msgid "MICHE_ROOT_PRESSURE"
+msgstr "Pressione"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3887,10 +3903,6 @@ msgstr "Nessuna cartella dei salvataggi trovata"
 msgid "NO_MODS_ENABLED"
 msgstr "Disattivato"
 
-#, fuzzy
-msgid "NO_OP_PRESSURE"
-msgstr "Pressione"
-
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Nessun processo"
 
@@ -4367,16 +4379,8 @@ msgstr "popolazione nelle zone:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#, fuzzy
-msgid "PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "Predazione di {0}"
-
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predazione di {0}"
-
-#, fuzzy
-msgid "PREDATOR_ROOT_PRESSURE"
-msgstr "Pressione"
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Visualizza informazioni dettagliate riguardo la previsione"
@@ -4611,10 +4615,6 @@ msgstr "Rigida"
 
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Più la membrana è rigida, più protegge la cellula dai danni; tuttavia, ne complica anche il movimento."
-
-#, fuzzy
-msgid "ROOT_PRESSURE"
-msgstr "Pressione"
 
 msgid "ROTATE_LEFT"
 msgstr "Ruota a sinistra"
@@ -7272,7 +7272,7 @@ msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
 #, fuzzy
-#~ msgid "REACH_COMPOUND_CLOUD_PRESSURE"
+#~ msgid "COMPOUND_CLOUD_PRESSURE"
 #~ msgstr "Nuvole di composti"
 
 #, fuzzy

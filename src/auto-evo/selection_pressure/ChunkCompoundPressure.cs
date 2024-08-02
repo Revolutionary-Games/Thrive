@@ -7,7 +7,7 @@ public class ChunkCompoundPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("CHUNK_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("MICHE_CHUNK_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
@@ -52,7 +52,7 @@ public class ChunkCompoundPressure : SelectionPressure
 
         // Speed is not too important to chunk microbes
         // But all else being the same faster is better than slower
-        score += cache.GetBaseSpeedForSpecies(microbeSpecies) * 0.1f;
+        score += cache.GetSpeedForSpecies(microbeSpecies) * 0.1f;
 
         // Diminishing returns on storage
         score += (Mathf.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
@@ -73,7 +73,7 @@ public class ChunkCompoundPressure : SelectionPressure
         return score;
     }
 
-    public override IFormattable GetDescription()
+    public override LocalizedString GetDescription()
     {
         return new LocalizedString("CHUNK_FOOD_SOURCE",
             string.IsNullOrEmpty(chunk.Name) ?

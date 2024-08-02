@@ -1,12 +1,10 @@
 ﻿namespace AutoEvo;
 
-using System;
-
 public class MetabolicStabilityPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("METABOLIC_STABILITY_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("MICHE_METABOLIC_STABILITY_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
@@ -25,7 +23,7 @@ public class MetabolicStabilityPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        if (cache.GetBaseSpeedForSpecies(microbeSpecies) == 0)
+        if (cache.GetSpeedForSpecies(microbeSpecies) == 0)
         {
             return 0.0f;
         }
@@ -51,9 +49,8 @@ public class MetabolicStabilityPressure : SelectionPressure
         return 0;
     }
 
-    public override IFormattable GetDescription()
+    public override LocalizedString GetDescription()
     {
-        // This shouldn't be called on 0 energy pressures
         return Name;
     }
 

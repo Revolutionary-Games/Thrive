@@ -1,13 +1,12 @@
 ﻿namespace AutoEvo;
 
-using System;
 using Godot;
 
 public class MaintainCompound : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("MAINTAIN_COMPOUND_PRESSURE");
+    public static readonly LocalizedString Name = new LocalizedString("MICHE_MAINTAIN_COMPOUND_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     private readonly Patch patch;
@@ -61,9 +60,8 @@ public class MaintainCompound : SelectionPressure
         return 0;
     }
 
-    public override IFormattable GetDescription()
+    public override LocalizedString GetDescription()
     {
-        // This shouldn't be called on 0 energy pressures
         return Name;
     }
 

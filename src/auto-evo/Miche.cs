@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,18 +10,26 @@ using System.Linq;
 /// <remarks>
 ///   <para>
 ///     The Miche class forms a tree by storing a list of child instances of Miche Nodes. If a Miche has no children
-///     it is considered a leaf node and can have a species Occupant instead. This class handles insertion into the
-///     tree through scores from the selection pressure it contains. For a fuller explanation see docs/auto_evo.md
+///     it is considered a leaf node and can have a species Occupant instead (otherwise Occupant should be null).
+///     This class handles insertion into the tree through scores from the selection pressure it contains.
+///     For a fuller explanation see docs/auto_evo.md
 ///   </para>
 /// </remarks>
 public class Miche
 {
+    public readonly SelectionPressure Pressure;
     public Miche? Parent;
     public List<Miche> Children = new();
 
-    // Occupant should always be null if this Miche has children
+    /// <summary>
+    ///   The species that currently occupies this Miche
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Occupant should always be null if this Miche is not a leaf node (children is not empty).
+    ///   </para>
+    /// </remarks>
     public Species? Occupant;
-    public SelectionPressure Pressure;
 
     public Miche(SelectionPressure pressure)
     {
@@ -42,46 +51,46 @@ public class Miche
         return Parent.Root();
     }
 
-    public IEnumerable<Miche> GetLeafNodes()
-    {
-        return GetLeafNodes(new List<Miche>());
-    }
-
-    public IEnumerable<Miche> GetLeafNodes(List<Miche> nodes)
+    public void GetLeafNodes(List<Miche> nodes)
     {
         if (IsLeafNode())
         {
             nodes.Add(this);
-            return nodes;
+            return;
         }
 
         foreach (var child in Children)
         {
-            nodes.AddRange(child.GetLeafNodes());
+            child.GetLeafNodes(nodes);
+        }
+    }
+
+    public void GetLeafNodes(List<Miche> nodes, Func<Miche, bool> criteria)
+    {
+        if (IsLeafNode() && criteria(this))
+        {
+            nodes.Add(this);
+            return;
         }
 
-        return nodes;
+        foreach (var child in Children)
+        {
+            child.GetLeafNodes(nodes);
+        }
     }
 
-    public IEnumerable<Species> GetOccupants()
-    {
-        return GetOccupants(new List<Species>());
-    }
-
-    public IEnumerable<Species> GetOccupants(List<Species> occupants)
+    public void GetOccupants(HashSet<Species> occupantsSet)
     {
         if (Occupant != null)
         {
-            occupants.Add(Occupant);
-            return occupants;
+            occupantsSet.Add(Occupant);
+            return;
         }
 
         foreach (var child in Children)
         {
-            occupants.AddRange(child.GetOccupants());
+            child.GetOccupants(occupantsSet);
         }
-
-        return occupants;
     }
 
     public IEnumerable<Miche> BackTraversal()
@@ -115,11 +124,14 @@ public class Miche
 
     public bool InsertSpecies(Species species, SimulationCache cache, bool dry = false)
     {
-        var scoresDictionary = GetOccupants().Distinct().ToDictionary(x => x, _ => 0.0f);
+        var occupants = new HashSet<Species>();
+        GetOccupants(occupants);
+
+        var scoresDictionary = occupants.ToDictionary(x => x, _ => 0.0f);
 
         scoresDictionary[species] = 0.0f;
 
-        return InsertSpecies(species, scoresDictionary, cache, dry);
+        return InsertSpecies(species, scoresDictionary, cache, dry, occupants);
     }
 
     /// <summary>
@@ -128,7 +140,8 @@ public class Miche
     /// <returns>
     ///   Returns a bool based on if the species was inserted into a leaf node
     /// </returns>
-    public bool InsertSpecies(Species species, Dictionary<Species, float> scoresSoFar, SimulationCache cache, bool dry)
+    public bool InsertSpecies(Species species, Dictionary<Species, float> scoresSoFar, SimulationCache cache, bool dry,
+        HashSet<Species> workingMemory)
     {
         var myScore = Pressure.Score(species, cache);
 
@@ -146,7 +159,10 @@ public class Miche
 
         var newScores = new Dictionary<Species, float>();
 
-        foreach (var currentSpecies in GetOccupants())
+        workingMemory.Clear();
+        GetOccupants(workingMemory);
+
+        foreach (var currentSpecies in workingMemory)
         {
             newScores[currentSpecies] = scoresSoFar[currentSpecies] +
                 Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, cache));
@@ -165,7 +181,7 @@ public class Miche
         var inserted = false;
         foreach (var child in Children)
         {
-            if (child.InsertSpecies(species, newScores, cache, dry))
+            if (child.InsertSpecies(species, newScores, cache, dry, workingMemory))
             {
                 inserted = true;
 

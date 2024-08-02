@@ -1,6 +1,5 @@
 ﻿namespace AutoEvo;
 
-using System;
 using System.Collections.Generic;
 
 public abstract class SelectionPressure
@@ -16,22 +15,6 @@ public abstract class SelectionPressure
 
     public abstract float Score(Species species, SimulationCache cache);
     public abstract float GetEnergy();
-
-    // TODO: Make sure this does not make things worse
-    public float CacheScore(MicrobeSpecies species, SimulationCache cache)
-    {
-        var key = (species, this);
-
-        if (cache.CachedPressureScores.TryGetValue(key, out var cached))
-        {
-            return cached;
-        }
-
-        cached = Score(species, cache);
-
-        cache.CachedPressureScores.Add(key, cached);
-        return cached;
-    }
 
     /// <summary>
     ///   Calculates the relative difference between the old and new scores
@@ -67,10 +50,10 @@ public abstract class SelectionPressure
     }
 
     /// <summary>
-    ///   A description of this miche. Needs to support translations changing and be player readable
+    ///   A description of this miche.
     /// </summary>
-    /// <returns>A formattable that has the description in it</returns>
-    public abstract IFormattable GetDescription();
+    public abstract LocalizedString GetDescription();
 
+    // ToString is used to display the Selection Pressure in the Miche Tree
     public abstract override string ToString();
 }

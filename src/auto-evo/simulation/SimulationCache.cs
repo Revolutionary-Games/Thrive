@@ -20,7 +20,7 @@ using Systems;
 /// </remarks>
 public class SimulationCache
 {
-    public readonly Dictionary<(MicrobeSpecies, SelectionPressure), float> CachedPressureScores = new();
+    private readonly Dictionary<(MicrobeSpecies, SelectionPressure), float> cachedPressureScores = new();
 
     private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
@@ -52,6 +52,21 @@ public class SimulationCache
         this.worldSettings = worldSettings;
     }
 
+    public float CacheScore(SelectionPressure pressure, MicrobeSpecies species)
+    {
+        var key = (species, pressure);
+
+        if (cachedPressureScores.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        cached = pressure.Score(species, this);
+
+        cachedPressureScores.Add(key, cached);
+        return cached;
+    }
+
     public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
     {
         var key = (species, biomeConditions);
@@ -72,7 +87,7 @@ public class SimulationCache
     }
 
     // TODO: Both of these seem like something that could easily be stored on the species with OnEdited
-    public float GetBaseSpeedForSpecies(MicrobeSpecies species)
+    public float GetSpeedForSpecies(MicrobeSpecies species)
     {
         if (cachedBaseSpeeds.TryGetValue(species, out var cached))
         {
@@ -229,14 +244,14 @@ public class SimulationCache
         }
 
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
-        var preySpeed = GetBaseSpeedForSpecies(prey);
+        var preySpeed = GetSpeedForSpecies(prey);
 
         var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
-        // TODO: if these two methods were combined it might result in better performance with needing just
+        // TODO: If these two methods were combined it might result in better performance with needing just
         // one dictionary lookup
         var microbeSpeciesHexSize = GetBaseHexSizeForSpecies(microbeSpecies);
-        var predatorSpeed = GetBaseSpeedForSpecies(microbeSpecies);
+        var predatorSpeed = GetSpeedForSpecies(microbeSpecies);
 
         // Only assign engulf score if one can actually engulf
         var engulfScore = 0.0f;
@@ -265,16 +280,16 @@ public class SimulationCache
 
         var (pilusScore, oxytoxyScore, mucilageScore) = GetPredationToolsRawScores(microbeSpecies);
 
-        // don't use mucus for now
+        // TODO: Support mucilage in predation score
         mucilageScore *= 0;
 
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
-        // having lots of extra Pili really doesn't help you THAT much
+        // Having lots of extra Pili really doesn't help you THAT much
         pilusScore = MathF.Pow(pilusScore, 0.4f);
 
-        // predators are less likely to use toxin against larger prey, unless they are opportunistic
+        // Predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > microbeSpeciesHexSize)
         {
             oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
@@ -292,7 +307,7 @@ public class SimulationCache
             oxytoxyScore = MathF.Pow(oxytoxyScore, storageToKillRatio * 0.8f);
         }
 
-        // prey that resist toxin are obviously weaker to it
+        // Prey that resist toxin are obviously weaker to it
         oxytoxyScore /= prey.MembraneType.ToxinResistance;
 
         var scoreMultiplier = 1.0f;

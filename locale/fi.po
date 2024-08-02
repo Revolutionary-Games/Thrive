@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-26 14:35+0300\n"
+"POT-Creation-Date: 2024-08-01 21:03-0500\n"
 "PO-Revision-Date: 2024-02-20 12:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -314,10 +314,6 @@ msgstr "Saatavilla olevat rakennusprojektit"
 
 msgid "AVAILABLE_MODS"
 msgstr "Saatavilla Olevat Modit"
-
-#, fuzzy
-msgid "AVOID_PREDATION_SELECTION_PRESSURE"
-msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta uudeksi lajiksi lajin valintapaineista johtuen"
 
 msgid "AWAKENING_STAGE"
 msgstr "Havahtumisvaihe"
@@ -673,10 +669,6 @@ msgstr "Solun raadon palanen"
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "lohkareen, {0}, kulutus"
 
-#, fuzzy
-msgid "CHUNK_PRESSURE"
-msgstr "Paine"
-
 msgid "CILIA"
 msgstr "Värekarva"
 
@@ -847,16 +839,8 @@ msgstr ""
 "todennäköisemmin jahdata saaliitaan myrkkyillään, jos eivät pysty syömään heitä.\n"
 "Varovaiset mikrobit välttävät vaaroja ja siten kilpailutilanteita esimerkiksi ravinnon keruun yhteydessä."
 
-#, fuzzy
-msgid "COMPOUND_CLOUD_PRESSURE"
-msgstr "Yhdistepilvet"
-
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr "{0}:n pitoisuudet ovat laskeneet {1}"
-
-#, fuzzy
-msgid "COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "Yhdistepilvet"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}:n kulutus"
@@ -1836,10 +1820,6 @@ msgstr "Biomi: {0}"
 
 msgid "ENVIRONMENT"
 msgstr "Ympäristö"
-
-#, fuzzy
-msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Yhdistepilvet"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Ympäristön glukoosin säilyminen"
@@ -3072,10 +3052,6 @@ msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimi
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
 
-#, fuzzy
-msgid "MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Yhdistepilvet"
-
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3144,9 +3120,6 @@ msgstr "Valikko"
 msgid "MESOPELAGIC"
 msgstr "Mesopelaginen vyöhyke"
 
-msgid "METABOLIC_STABILITY_PRESSURE"
-msgstr ""
-
 msgid "METABOLOSOMES"
 msgstr "Metabolosomi"
 
@@ -3170,8 +3143,51 @@ msgid "MICHE"
 msgstr ""
 
 #, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta uudeksi lajiksi lajin valintapaineista johtuen"
+
+#, fuzzy
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr "Paine"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Yhdistepilvet"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Yhdistepilvet"
+
+#, fuzzy
 msgid "MICHE_DETAIL_TEXT"
 msgstr "{0} (x{1})"
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Yhdistepilvet"
+
+#, fuzzy
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Yhdistepilvet"
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr "Paine"
+
+#, fuzzy
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "Lajin {0} saalistus"
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Paine"
+
+#, fuzzy
+msgid "MICHE_ROOT_PRESSURE"
+msgstr "Paine"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3984,10 +4000,6 @@ msgstr "Avaa tallennusten kansio"
 msgid "NO_MODS_ENABLED"
 msgstr "Ei käytössä"
 
-#, fuzzy
-msgid "NO_OP_PRESSURE"
-msgstr "Paine"
-
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Ei toimintoja"
 
@@ -4483,16 +4495,8 @@ msgstr "populaatio alueilla:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#, fuzzy
-msgid "PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "Lajin {0} saalistus"
-
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Lajin {0} saalistus"
-
-#, fuzzy
-msgid "PREDATOR_ROOT_PRESSURE"
-msgstr "Paine"
 
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
@@ -4734,10 +4738,6 @@ msgstr ""
 
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
-
-#, fuzzy
-msgid "ROOT_PRESSURE"
-msgstr "Paine"
 
 msgid "ROTATE_LEFT"
 msgstr "Käännä vasemmalle"
@@ -7431,7 +7431,7 @@ msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
 
 #, fuzzy
-#~ msgid "REACH_COMPOUND_CLOUD_PRESSURE"
+#~ msgid "COMPOUND_CLOUD_PRESSURE"
 #~ msgstr "Yhdistepilvet"
 
 #, fuzzy

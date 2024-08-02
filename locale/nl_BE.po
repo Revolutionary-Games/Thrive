@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-26 14:35+0300\n"
+"POT-Creation-Date: 2024-08-01 21:03-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -316,10 +316,6 @@ msgstr "Beschikbare Bouwprojecten"
 
 msgid "AVAILABLE_MODS"
 msgstr "Beschikbare mods"
-
-#, fuzzy
-msgid "AVOID_PREDATION_SELECTION_PRESSURE"
-msgstr "ontstaan door verschillende selectiedruk"
 
 msgid "AWAKENING_STAGE"
 msgstr "Ontwaakfase"
@@ -655,10 +651,6 @@ msgstr "Celkarkas Deel"
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Wolken met chemische stoffen"
 
-#, fuzzy
-msgid "CHUNK_PRESSURE"
-msgstr "Druk"
-
 msgid "CILIA"
 msgstr "Trilharen"
 
@@ -827,16 +819,8 @@ msgstr ""
 "en zullen proberen prooien op te sporen met gifstoffen als ze hen niet kunnen verzwelgen.\n"
 "Voorzichtige microben brengen zichzelf minder in gevaar door brokken."
 
-#, fuzzy
-msgid "COMPOUND_CLOUD_PRESSURE"
-msgstr "Wolken met chemische stoffen"
-
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
-
-#, fuzzy
-msgid "COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "Wolken met chemische stoffen"
 
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
@@ -1783,10 +1767,6 @@ msgstr "Bioom: {0}"
 
 msgid "ENVIRONMENT"
 msgstr "Omgeving"
-
-#, fuzzy
-msgid "ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Wolken met chemische stoffen"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
@@ -3031,10 +3011,6 @@ msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gif afvuren door te drukken op [thrive:input]g_fire_toxin[/thrive:input]."
 
-#, fuzzy
-msgid "MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Wolken met chemische stoffen"
-
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3104,9 +3080,6 @@ msgstr "Menu"
 msgid "MESOPELAGIC"
 msgstr "Mesopelagisch"
 
-msgid "METABOLIC_STABILITY_PRESSURE"
-msgstr ""
-
 msgid "METABOLOSOMES"
 msgstr "Metabolosomen"
 
@@ -3130,8 +3103,51 @@ msgid "MICHE"
 msgstr ""
 
 #, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "ontstaan door verschillende selectiedruk"
+
+#, fuzzy
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr "Druk"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Wolken met chemische stoffen"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Wolken met chemische stoffen"
+
+#, fuzzy
 msgid "MICHE_DETAIL_TEXT"
 msgstr "{0} (x{1})"
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Wolken met chemische stoffen"
+
+#, fuzzy
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Wolken met chemische stoffen"
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr "Druk"
+
+#, fuzzy
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "ontstaan door verschillende selectiedruk"
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Druk"
+
+#, fuzzy
+msgid "MICHE_ROOT_PRESSURE"
+msgstr "Druk"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3885,10 +3901,6 @@ msgstr "Geen map van fossielen gevonden"
 msgid "NO_MODS_ENABLED"
 msgstr "Mods Uitgeschakeld"
 
-#, fuzzy
-msgid "NO_OP_PRESSURE"
-msgstr "Druk"
-
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Geen processen"
 
@@ -4385,15 +4397,8 @@ msgstr "{0} ({1})"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-msgid "PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr ""
-
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
-
-#, fuzzy
-msgid "PREDATOR_ROOT_PRESSURE"
-msgstr "Druk"
 
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
@@ -4638,10 +4643,6 @@ msgstr ""
 
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Een stijvere membraan is beter bestand tegen schade, maar zal het voor de cel moeilijker maken om te bewegen."
-
-#, fuzzy
-msgid "ROOT_PRESSURE"
-msgstr "Druk"
 
 msgid "ROTATE_LEFT"
 msgstr "Draaien naar links"
@@ -7319,7 +7320,7 @@ msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
 #, fuzzy
-#~ msgid "REACH_COMPOUND_CLOUD_PRESSURE"
+#~ msgid "COMPOUND_CLOUD_PRESSURE"
 #~ msgstr "Wolken met chemische stoffen"
 
 #, fuzzy

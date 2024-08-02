@@ -42,34 +42,32 @@ public static class MichePopulation
         }
     }
 
+    public static float CalculateMicrobeIndividualCost(Species species, BiomeConditions biomeConditions,
+        SimulationCache cache)
+    {
+        if (species is not MicrobeSpecies microbeSpecies)
+            throw new ArgumentException("Unhandled species type passed");
+
+        var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions);
+
+        return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+            * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+    }
+
     /// <summary>
     ///   Estimates the initial population numbers
     /// </summary>
-    public static int CalculateMicrobePopulationInPatch(MicrobeSpecies species, Miche miche,
+    public static int CalculateMicrobePopulationInPatch(Species species, Miche miche,
         BiomeConditions biomeConditions, SimulationCache cache)
     {
-        var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(species, biomeConditions);
-        var individualCost = energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
-            * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        // This assumes that only leaf nodes have energy, but the way Selection Pressures are designed
+        // this is a reasonable assumption
+        var leafNodes = new List<Miche>();
+        miche.GetLeafNodes(leafNodes, x => x.Occupant == species);
 
-        var leafNodes = miche.GetLeafNodes();
+        var individualCost = CalculateMicrobeIndividualCost(species, biomeConditions, cache);
 
-        var miches = leafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal())
-            .SelectMany(x => x).Distinct().ToList();
-
-        float totalEnergy = 0;
-
-        foreach (var subMiche in miches)
-        {
-            var micheEnergy = subMiche.Pressure.GetEnergy();
-
-            if (micheEnergy <= 0)
-                continue;
-
-            totalEnergy += micheEnergy;
-        }
-
-        return (int)(totalEnergy / individualCost);
+        return (int)(leafNodes.Sum(x => x.Pressure.GetEnergy()) / individualCost);
     }
 
     /// <summary>
@@ -184,19 +182,34 @@ public static class MichePopulation
         var populations = simulationConfiguration.Results;
         bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
 
-        populations.MicheByPatch.TryGetValue(patch, out var miche);
+        var miche = populations.GetMicheForPatch(patch);
 
-        foreach (var s in simulationConfiguration.ExtraSpecies)
-            miche!.InsertSpecies(s, cache);
+        foreach (var extraSpecies in simulationConfiguration.ExtraSpecies)
+            miche.InsertSpecies(extraSpecies, cache);
 
-        var species = genericSpecies.Where(x => !simulationConfiguration.ExcludedSpecies.Contains(x))
-            .Union(simulationConfiguration.ExtraSpecies).Distinct().ToList();
+        // This prevents duplicates caused by ExtraSpecies
+        var species = new HashSet<Species>();
+
+        foreach (var currentSpecies in genericSpecies)
+        {
+            if (simulationConfiguration.ExcludedSpecies.Contains(currentSpecies))
+                continue;
+
+            species.Add(currentSpecies);
+        }
+
+        foreach (var currentSpecies in simulationConfiguration.ExtraSpecies)
+        {
+            species.Add(currentSpecies);
+        }
 
         // Skip if there aren't any species in this patch
         if (species.Count < 1)
             return;
 
-        var leafNodes = miche!.GetLeafNodes().Where(x => x.Occupant != null).ToList();
+        var leafNodes = new List<Miche>();
+        miche.GetLeafNodes(leafNodes, x => x.Occupant != null);
+
         var energyDictionary = species.ToDictionary(x => x, _ => 0.0);
 
         foreach (var node in leafNodes)
@@ -212,8 +225,8 @@ public static class MichePopulation
                         continue;
 
                     // Weighted score is intentionally not used here as negatives break everything
-                    var score = currentMiche.Pressure.CacheScore(microbeSpecies, cache) /
-                        currentMiche.Pressure.CacheScore((MicrobeSpecies)node.Occupant!, cache) *
+                    var score = cache.CacheScore(currentMiche.Pressure, microbeSpecies) /
+                        cache.CacheScore(currentMiche.Pressure, (MicrobeSpecies)node.Occupant!) *
                         currentMiche.Pressure.Strength;
 
                     if (simulationConfiguration.WorldSettings.AutoEvoConfiguration.StrictNicheCompetition)
@@ -247,11 +260,8 @@ public static class MichePopulation
                 continue;
             }
 
-            var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-            var individualCost = energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
-                * currentSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
-
-            long newPopulation = (long)(energyDictionary[currentSpecies] / individualCost);
+            var individualCost = CalculateMicrobeIndividualCost(microbeSpecies, patch.Biome, cache);
+            long newPopulation = (long)(individualCost / energyDictionary[currentSpecies]);
 
             // Remove any species that don't hold a miche
             // Probably should make this a setting and throw a multiplier here

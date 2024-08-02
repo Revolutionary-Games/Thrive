@@ -1089,7 +1089,7 @@ public static class Constants
     public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.3f;
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
-    public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 5;
+    public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
 
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
