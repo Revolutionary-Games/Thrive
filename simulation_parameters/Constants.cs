@@ -911,7 +911,7 @@ public static class Constants
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
-    public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
+    public const float CORPSE_CHUNK_AMOUNT_MULTIPLIER = 1.0f;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
     public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 

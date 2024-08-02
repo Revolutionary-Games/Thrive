@@ -136,7 +136,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
-            float amount = organelleContainer.HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
+            float amount = organelleContainer.HexCount * Constants.CORPSE_CHUNK_AMOUNT_MULTIPLIER;
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
