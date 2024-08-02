@@ -757,7 +757,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
 
             // Sprint until full strain
-            control.Sprinting = true;
+
+            if (gameWorld.WorldSettings.ExperimentalFeatures)
+                control.Sprinting = true;
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
@@ -796,7 +798,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         {
             control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
 
-            control.Sprinting = true;
+            if (gameWorld.WorldSettings.ExperimentalFeatures)
+                control.Sprinting = true;
         }
 
         // Predators can use slime jets as an ambush mechanism
