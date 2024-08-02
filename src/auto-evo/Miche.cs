@@ -18,8 +18,8 @@ using System.Linq;
 public class Miche
 {
     public readonly SelectionPressure Pressure;
+    public readonly List<Miche> Children = new();
     public Miche? Parent;
-    public List<Miche> Children = new();
 
     /// <summary>
     ///   The species that currently occupies this Miche
@@ -75,7 +75,7 @@ public class Miche
 
         foreach (var child in Children)
         {
-            child.GetLeafNodes(nodes);
+            child.GetLeafNodes(nodes, criteria);
         }
     }
 
@@ -208,10 +208,8 @@ public class Miche
 
         var newChildren = new List<Miche>(Children).Select(child => child.DeepCopy()).ToList();
 
-        var newMiche = new Miche(Pressure)
-        {
-            Children = newChildren,
-        };
+        var newMiche = new Miche(Pressure);
+        newMiche.Children.AddRange(newChildren);
 
         return newMiche;
     }

@@ -171,7 +171,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         var result = new EnergyBalanceInfo();
 
         float processATPProduction = 0.0f;
-        float processConservativeATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
         float movementATPConsumption = 0.0f;
 
@@ -200,11 +199,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
                 if (processData.WritableOutputs.TryGetValue(ATP, out amount))
                 {
-                    processATPProduction += amount;
-
                     result.AddProduction(organelle.Definition.InternalName, amount);
 
-                    var isInEnvironment = true;
+                    var isInPatch = true;
+
                     foreach (var input in processData.WritableInputs)
                     {
                         if (biome.Compounds.TryGetValue(input.Key, out var inputCompoundData))
@@ -213,12 +211,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                                 continue;
                         }
 
-                        isInEnvironment = false;
+                        isInPatch = false;
+                        break;
                     }
 
-                    if (isInEnvironment)
+                    if (isInPatch)
                     {
-                        processConservativeATPProduction += amount;
+                        processATPProduction += amount;
                     }
                 }
             }
@@ -276,7 +275,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         // Compute totals
         result.TotalProduction = processATPProduction;
-        result.ConservativeTotalProduction = processConservativeATPProduction;
         result.TotalConsumptionStationary = processATPConsumption + result.Osmoregulation;
 
         if (includeMovementCost)
@@ -289,7 +287,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         result.FinalBalance = result.TotalProduction - result.TotalConsumption;
-        result.ConservativeFinalBalance = result.ConservativeTotalProduction - result.TotalConsumption;
         result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
 
         return result;

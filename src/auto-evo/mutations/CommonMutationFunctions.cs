@@ -6,6 +6,46 @@ public static class CommonMutationFunctions
 {
     public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
+    // These must be defined this way to avoid allocations
+    private static readonly Hex.HexSide[] TraversalOrder1 = [Hex.HexSide.Top];
+    private static readonly Hex.HexSide[] TraversalOrder2 = [Hex.HexSide.Bottom];
+
+    private static readonly Hex.HexSide[] TraversalOrder3 =
+    [
+        Hex.HexSide.TopRight, Hex.HexSide.BottomRight,
+        Hex.HexSide.Top, Hex.HexSide.Bottom, Hex.HexSide.BottomLeft, Hex.HexSide.TopLeft,
+    ];
+
+    private static readonly Hex.HexSide[] TraversalOrder4 =
+    [
+        Hex.HexSide.BottomRight, Hex.HexSide.TopRight,
+        Hex.HexSide.Top, Hex.HexSide.BottomLeft, Hex.HexSide.Bottom, Hex.HexSide.TopLeft,
+    ];
+
+    private static readonly Hex.HexSide[] TraversalOrder5 =
+    [
+        Hex.HexSide.BottomLeft, Hex.HexSide.TopLeft,
+        Hex.HexSide.Bottom, Hex.HexSide.Top, Hex.HexSide.TopRight, Hex.HexSide.BottomRight,
+    ];
+
+    private static readonly Hex.HexSide[] TraversalOrder6 =
+    [
+        Hex.HexSide.TopLeft, Hex.HexSide.BottomLeft,
+        Hex.HexSide.Bottom, Hex.HexSide.Top, Hex.HexSide.BottomRight, Hex.HexSide.TopRight,
+    ];
+
+    private static readonly Hex.HexSide[] TraversalOrder7 =
+    [
+        Hex.HexSide.Top, Hex.HexSide.TopLeft, Hex.HexSide.TopRight,
+        Hex.HexSide.BottomLeft, Hex.HexSide.BottomRight, Hex.HexSide.Bottom,
+    ];
+
+    private static readonly Hex.HexSide[] TraversalOrder8 =
+    [
+        Hex.HexSide.Top, Hex.HexSide.TopRight, Hex.HexSide.TopLeft,
+        Hex.HexSide.BottomRight, Hex.HexSide.BottomLeft, Hex.HexSide.Bottom,
+    ];
+
     public enum Direction
     {
         Front,
@@ -151,71 +191,47 @@ public static class CommonMutationFunctions
         {
             if (direction == Direction.Front)
             {
-                return [Hex.HexSide.Top];
+                return TraversalOrder1;
             }
 
             if (direction == Direction.Rear)
             {
-                return [Hex.HexSide.Bottom];
+                return TraversalOrder2;
             }
 
             if (hex.R < 0)
             {
-                return
-                [
-                    Hex.HexSide.TopRight, Hex.HexSide.BottomRight, Hex.HexSide.Top, Hex.HexSide.Bottom,
-                    Hex.HexSide.BottomLeft, Hex.HexSide.TopLeft,
-                ];
+                return TraversalOrder3;
             }
 
-            return
-            [
-                Hex.HexSide.BottomRight, Hex.HexSide.TopRight, Hex.HexSide.Top, Hex.HexSide.BottomLeft,
-                Hex.HexSide.Bottom, Hex.HexSide.TopLeft,
-            ];
+            return TraversalOrder4;
         }
 
         if (hex.Q > 0)
         {
             if (direction == Direction.Front)
             {
-                return [Hex.HexSide.Top];
+                return TraversalOrder1;
             }
 
             if (direction == Direction.Rear)
             {
-                return [Hex.HexSide.Bottom];
+                return TraversalOrder2;
             }
 
             if (hex.R < 0)
             {
-                return
-                [
-                    Hex.HexSide.BottomLeft, Hex.HexSide.TopLeft, Hex.HexSide.Bottom, Hex.HexSide.Top,
-                    Hex.HexSide.TopRight, Hex.HexSide.BottomRight,
-                ];
+                return TraversalOrder5;
             }
 
-            return
-            [
-                Hex.HexSide.TopLeft, Hex.HexSide.BottomLeft, Hex.HexSide.Bottom, Hex.HexSide.Top,
-                Hex.HexSide.BottomRight, Hex.HexSide.TopRight,
-            ];
+            return TraversalOrder6;
         }
 
         if (random.Next(2) == 1)
         {
-            return
-            [
-                Hex.HexSide.Top, Hex.HexSide.TopLeft, Hex.HexSide.TopRight, Hex.HexSide.BottomLeft,
-                Hex.HexSide.BottomRight, Hex.HexSide.Bottom,
-            ];
+            return TraversalOrder7;
         }
 
-        return
-        [
-            Hex.HexSide.Top, Hex.HexSide.TopRight, Hex.HexSide.TopLeft, Hex.HexSide.BottomRight,
-            Hex.HexSide.BottomLeft, Hex.HexSide.Bottom,
-        ];
+        return TraversalOrder8;
     }
 }

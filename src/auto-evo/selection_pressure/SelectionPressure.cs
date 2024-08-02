@@ -13,6 +13,11 @@ public abstract class SelectionPressure
         Mutations = mutations;
     }
 
+    public abstract LocalizedString Name
+    {
+        get;
+    }
+
     public abstract float Score(Species species, SimulationCache cache);
     public abstract float GetEnergy();
 
@@ -55,5 +60,8 @@ public abstract class SelectionPressure
     public abstract LocalizedString GetDescription();
 
     // ToString is used to display the Selection Pressure in the Miche Tree
-    public abstract override string ToString();
+    public override string ToString()
+    {
+        return Name.ToString();
+    }
 }

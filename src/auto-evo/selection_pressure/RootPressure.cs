@@ -4,7 +4,7 @@ public class RootPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("MICHE_ROOT_PRESSURE");
+    private static readonly LocalizedString NameString = new LocalizedString("MICHE_ROOT_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
@@ -15,6 +15,8 @@ public class RootPressure : SelectionPressure
     ])
     {
     }
+
+    public override LocalizedString Name => NameString;
 
     public override float Score(Species species, SimulationCache cache)
     {
@@ -29,10 +31,5 @@ public class RootPressure : SelectionPressure
     public override LocalizedString GetDescription()
     {
         return Name;
-    }
-
-    public override string ToString()
-    {
-        return Name.ToString();
     }
 }

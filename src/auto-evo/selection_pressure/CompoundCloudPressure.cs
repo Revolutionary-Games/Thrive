@@ -6,7 +6,7 @@ public class CompoundCloudPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("MICHE_COMPOUND_CLOUD_PRESSURE");
+    private static readonly LocalizedString NameString = new LocalizedString("MICHE_COMPOUND_CLOUD_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
@@ -37,6 +37,8 @@ public class CompoundCloudPressure : SelectionPressure
             totalEnergy = 0.0f;
         }
     }
+
+    public override LocalizedString Name => NameString;
 
     public override float Score(Species species, SimulationCache cache)
     {

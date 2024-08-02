@@ -1,16 +1,21 @@
 ﻿namespace AutoEvo;
 
+/// <summary>
+///   This pressure does nothing, but is used as a placeholder node in the Miche Tree
+/// </summary>
 public class NoOpPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("MICHE_NO_OP_PRESSURE");
+    private static readonly LocalizedString NameString = new LocalizedString("MICHE_NO_OP_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     public NoOpPressure() : base(1, [])
     {
     }
+
+    public override LocalizedString Name => NameString;
 
     public override float Score(Species species, SimulationCache cache)
     {
@@ -25,10 +30,5 @@ public class NoOpPressure : SelectionPressure
     public override LocalizedString GetDescription()
     {
         return Name;
-    }
-
-    public override string ToString()
-    {
-        return Name.ToString();
     }
 }

@@ -2,15 +2,15 @@
 
 public class CompoundConversionEfficiencyPressure : SelectionPressure
 {
-    // Needed for translation extraction
-    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("MICHE_COMPOUND_EFFICIENCY_PRESSURE");
-
-    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
-
     public readonly Patch Patch;
     public readonly Compound FromCompound;
     public readonly Compound ToCompound;
+
+    // Needed for translation extraction
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
+    private static readonly LocalizedString NameString = new LocalizedString("MICHE_COMPOUND_EFFICIENCY_PRESSURE");
+
+    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     public CompoundConversionEfficiencyPressure(Patch patch, Compound compound, Compound outCompound, float weight) :
         base(weight, [
@@ -22,6 +22,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         FromCompound = compound;
         ToCompound = outCompound;
     }
+
+    public override LocalizedString Name => NameString;
 
     public override float Score(Species species, SimulationCache cache)
     {

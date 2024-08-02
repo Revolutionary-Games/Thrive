@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+///   Step that generates species migrations for each patch
+/// </summary>
 public class MigrateSpecies : IRunStep
 {
     private Patch patch;

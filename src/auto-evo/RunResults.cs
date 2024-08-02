@@ -377,8 +377,15 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         return miche;
     }
 
-    // This exist purely so the AutoEvoExploring tool can make a miche by patch history
-    public Dictionary<Patch, Miche> GetMicheByPatchDict()
+    /// <summary>
+    ///   Returns the miche by patch dictionary
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This should not be used in AutoEvo code, prefer <see cref="GetMicheForPatch"/>.
+    ///   </para>
+    /// </remarks>
+    public Dictionary<Patch, Miche> InspectPatchMicheData()
     {
         return micheByPatch;
     }

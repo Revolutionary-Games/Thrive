@@ -5,15 +5,15 @@
 /// </summary>
 public class GenerateMiche : IRunStep
 {
-    private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
-    private static readonly Compound HydrogenSulfide =
+    private readonly Compound hydrogenSulfide =
         SimulationParameters.Instance.GetCompound("hydrogensulfide");
 
-    private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
-    private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-    private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
+    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
+    private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    private readonly Compound temperature = SimulationParameters.Instance.GetCompound("temperature");
     private readonly Patch patch;
     private readonly SimulationCache cache;
 
@@ -48,11 +48,12 @@ public class GenerateMiche : IRunStep
         // Autotrophic Miches
 
         // Glucose
-        if (patch.Biome.TryGetCompound(Glucose, CompoundAmountType.Biome, out var glucose) && glucose.Amount > 0)
+        if (patch.Biome.TryGetCompound(glucose, CompoundAmountType.Biome, out var glucoseAmount) &&
+            glucoseAmount.Amount > 0)
         {
-            var glucoseMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, Glucose, ATP, 1.5f));
+            var glucoseMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, glucose, atp, 1.5f));
             glucoseMiche.AddChild(new Miche(
-                new CompoundCloudPressure(patch, 1, Glucose, worldSettings.DayNightCycleEnabled)));
+                new CompoundCloudPressure(patch, 1, glucose, worldSettings.DayNightCycleEnabled)));
 
             generatedMiche.AddChild(glucoseMiche);
         }
@@ -60,25 +61,25 @@ public class GenerateMiche : IRunStep
         // Iron
         if (patch.Biome.Chunks.TryGetValue("ironSmallChunk", out var smallChunk) && smallChunk.Density > 0)
         {
-            var ironMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, Iron, ATP, 1.0f));
+            var ironMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, iron, atp, 1.0f));
 
-            ironMiche.AddChild(new Miche(new ChunkCompoundPressure(patch, 1, "ironSmallChunk", Iron)));
+            ironMiche.AddChild(new Miche(new ChunkCompoundPressure(patch, 1, "ironSmallChunk", iron)));
 
             if (patch.Biome.Chunks.TryGetValue("ironBigChunk", out var bigChunk) && bigChunk.Density > 0)
-                ironMiche.AddChild(new Miche(new ChunkCompoundPressure(patch, 1, "ironBigChunk", Iron)));
+                ironMiche.AddChild(new Miche(new ChunkCompoundPressure(patch, 1, "ironBigChunk", iron)));
 
             generatedMiche.AddChild(ironMiche);
         }
 
         // Hydrogen Sulfide
-        if (patch.Biome.TryGetCompound(HydrogenSulfide, CompoundAmountType.Biome, out var hydrogenSulfide) &&
-            hydrogenSulfide.Amount > 0)
+        if (patch.Biome.TryGetCompound(hydrogenSulfide, CompoundAmountType.Biome, out var hydrogenSulfideAmount) &&
+            hydrogenSulfideAmount.Amount > 0)
         {
             var hydrogenSulfideMiche = new Miche(
-                new CompoundConversionEfficiencyPressure(patch, HydrogenSulfide, Glucose, 1.0f));
-            var generateATP = new Miche(new CompoundConversionEfficiencyPressure(patch, Glucose, ATP, 0.5f));
-            var maintainGlucose = new Miche(new MaintainCompound(patch, 1, Glucose));
-            var envPressure = new Miche(new CompoundCloudPressure(patch, 1.0f, HydrogenSulfide,
+                new CompoundConversionEfficiencyPressure(patch, hydrogenSulfide, glucose, 1.0f));
+            var generateATP = new Miche(new CompoundConversionEfficiencyPressure(patch, glucose, atp, 0.5f));
+            var maintainGlucose = new Miche(new MaintainCompound(patch, 1, glucose));
+            var envPressure = new Miche(new CompoundCloudPressure(patch, 1.0f, hydrogenSulfide,
                 worldSettings.DayNightCycleEnabled));
 
             maintainGlucose.AddChild(envPressure);
@@ -88,13 +89,13 @@ public class GenerateMiche : IRunStep
         }
 
         // Sunlight
-        if (patch.Biome.TryGetCompound(Sunlight, CompoundAmountType.Biome, out var sunlight) &&
-            sunlight.Ambient >= 0.25f)
+        if (patch.Biome.TryGetCompound(sunlight, CompoundAmountType.Biome, out var sunlightAmount) &&
+            sunlightAmount.Ambient >= 0.25f)
         {
-            var sunlightMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, Sunlight, Glucose, 1.0f));
-            var generateATP = new Miche(new CompoundConversionEfficiencyPressure(patch, Glucose, ATP, 0.5f));
-            var maintainGlucose = new Miche(new MaintainCompound(patch, 1, Glucose));
-            var envPressure = new Miche(new EnvironmentalCompoundPressure(patch, 1, Sunlight, Glucose, 10000));
+            var sunlightMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, sunlight, glucose, 1.0f));
+            var generateATP = new Miche(new CompoundConversionEfficiencyPressure(patch, glucose, atp, 0.5f));
+            var maintainGlucose = new Miche(new MaintainCompound(patch, 1, glucose));
+            var envPressure = new Miche(new EnvironmentalCompoundPressure(patch, 1, sunlight, glucose, 10000));
 
             maintainGlucose.AddChild(envPressure);
             generateATP.AddChild(maintainGlucose);
@@ -103,17 +104,17 @@ public class GenerateMiche : IRunStep
         }
 
         // Heat
-        if (patch.Biome.TryGetCompound(Temperature, CompoundAmountType.Biome, out var temperature) &&
-            temperature.Ambient > 60)
+        if (patch.Biome.TryGetCompound(temperature, CompoundAmountType.Biome, out var temperatureAmount) &&
+            temperatureAmount.Ambient > 60)
         {
-            var tempMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, Temperature, ATP, 1.0f));
-            tempMiche.AddChild(new Miche(new EnvironmentalCompoundPressure(patch, 1, Temperature, ATP, 100)));
+            var tempMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, temperature, atp, 1.0f));
+            tempMiche.AddChild(new Miche(new EnvironmentalCompoundPressure(patch, 1, temperature, atp, 100)));
 
             generatedMiche.AddChild(tempMiche);
         }
 
         var predationRoot = new Miche(new PredatorRoot(patch, 5));
-        var predationGlucose = new Miche(new CompoundConversionEfficiencyPressure(patch, Glucose, ATP, 1.0f));
+        var predationGlucose = new Miche(new CompoundConversionEfficiencyPressure(patch, glucose, atp, 1.0f));
 
         // Heterotrophic Miches
         foreach (var possiblePrey in patch.SpeciesInPatch)

@@ -53,11 +53,6 @@ public class EnergyBalanceInfo
     public float TotalProduction { get; set; }
 
     /// <summary>
-    ///   The same as <see cref="TotalProduction"/> but only incudes compounds present in the environment.
-    /// </summary>
-    public float ConservativeTotalProduction { get; set; }
-
-    /// <summary>
     ///   The total energy consumption of the microbe while it is moving and running all processes
     /// </summary>
     public float TotalConsumption { get; set; }
@@ -71,11 +66,6 @@ public class EnergyBalanceInfo
     ///   The absolutely final balance of ATP when a microbe is going all out and running everything and moving
     /// </summary>
     public float FinalBalance { get; set; }
-
-    /// <summary>
-    ///   The same as <see cref="FinalBalance"/> but only incudes compounds present in the environment.
-    /// </summary>
-    public float ConservativeFinalBalance { get; set; }
 
     /// <summary>
     ///   Final balance of ATP when a microbe is stationary (running processes + osmoregulation)

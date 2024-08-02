@@ -20,7 +20,7 @@ using Systems;
 /// </remarks>
 public class SimulationCache
 {
-    private readonly Dictionary<(MicrobeSpecies, SelectionPressure), float> cachedPressureScores = new();
+    private readonly Dictionary<(Species, SelectionPressure), float> cachedPressureScores = new();
 
     private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
@@ -52,7 +52,7 @@ public class SimulationCache
         this.worldSettings = worldSettings;
     }
 
-    public float CacheScore(SelectionPressure pressure, MicrobeSpecies species)
+    public float GetPressureScore(SelectionPressure pressure, Species species)
     {
         var key = (species, pressure);
 

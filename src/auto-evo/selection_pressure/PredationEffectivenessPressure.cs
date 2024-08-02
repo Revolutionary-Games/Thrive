@@ -2,12 +2,14 @@
 
 public class PredationEffectivenessPressure : SelectionPressure
 {
+    public readonly Species Prey;
+
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("MICHE_PREDATION_EFFECTIVENESS_PRESSURE");
+    private static readonly LocalizedString NameString = new LocalizedString("MICHE_PREDATION_EFFECTIVENESS_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
-    public readonly Species Prey;
+
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Patch patch;
     private readonly float totalEnergy;
@@ -36,6 +38,8 @@ public class PredationEffectivenessPressure : SelectionPressure
 
         Prey = prey;
     }
+
+    public override LocalizedString Name => NameString;
 
     public override float Score(Species species, SimulationCache cache)
     {

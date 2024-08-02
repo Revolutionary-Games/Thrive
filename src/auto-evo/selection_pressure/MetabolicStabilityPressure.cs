@@ -4,7 +4,7 @@ public class MetabolicStabilityPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("MICHE_METABOLIC_STABILITY_PRESSURE");
+    private static readonly LocalizedString NameString = new LocalizedString("MICHE_METABOLIC_STABILITY_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
@@ -18,6 +18,8 @@ public class MetabolicStabilityPressure : SelectionPressure
         this.patch = patch;
     }
 
+    public override LocalizedString Name => NameString;
+
     public override float Score(Species species, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
@@ -30,7 +32,7 @@ public class MetabolicStabilityPressure : SelectionPressure
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
-        if (energyBalance.ConservativeFinalBalance > 0)
+        if (energyBalance.FinalBalance > 0)
         {
             return 1.0f;
         }
@@ -52,10 +54,5 @@ public class MetabolicStabilityPressure : SelectionPressure
     public override LocalizedString GetDescription()
     {
         return Name;
-    }
-
-    public override string ToString()
-    {
-        return Name.ToString();
     }
 }

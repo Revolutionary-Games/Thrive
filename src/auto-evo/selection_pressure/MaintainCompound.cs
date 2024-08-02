@@ -6,7 +6,7 @@ public class MaintainCompound : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("MICHE_MAINTAIN_COMPOUND_PRESSURE");
+    private static readonly LocalizedString NameString = new LocalizedString("MICHE_MAINTAIN_COMPOUND_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     private readonly Patch patch;
@@ -20,6 +20,8 @@ public class MaintainCompound : SelectionPressure
         this.patch = patch;
         this.compound = compound;
     }
+
+    public override LocalizedString Name => NameString;
 
     public override float Score(Species species, SimulationCache cache)
     {
@@ -63,10 +65,5 @@ public class MaintainCompound : SelectionPressure
     public override LocalizedString GetDescription()
     {
         return Name;
-    }
-
-    public override string ToString()
-    {
-        return Name.ToString();
     }
 }

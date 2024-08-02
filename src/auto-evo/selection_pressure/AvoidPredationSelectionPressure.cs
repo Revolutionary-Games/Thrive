@@ -2,13 +2,15 @@
 
 public class AvoidPredationSelectionPressure : SelectionPressure
 {
-    // Needed for translation extraction
-    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    public static readonly LocalizedString Name = new LocalizedString("MICHE_AVOID_PREDATION_SELECTION_PRESSURE");
-
-    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
     public readonly Species Predator;
     public readonly Patch Patch;
+
+    // Needed for translation extraction
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
+    private static readonly LocalizedString NameString =
+        new LocalizedString("MICHE_AVOID_PREDATION_SELECTION_PRESSURE");
+
+    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private static readonly MembraneType DoubleMembrane = SimulationParameters.Instance.GetMembrane("double");
@@ -39,6 +41,8 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         Predator = predator;
     }
 
+    public override LocalizedString Name => NameString;
+
     public override float Score(Species species, SimulationCache cache)
     {
         var predationScore = cache.GetPredationScore(Predator, species, Patch.Biome);
@@ -63,6 +67,6 @@ public class AvoidPredationSelectionPressure : SelectionPressure
 
     public override string ToString()
     {
-        return Name.ToString();
+        return $"{Name} ({Predator.FormattedName})";
     }
 }
