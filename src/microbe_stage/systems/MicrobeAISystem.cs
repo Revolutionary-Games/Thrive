@@ -758,7 +758,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
             // Sprint until full strain
 
-            if (gameWorld.WorldSettings.ExperimentalFeatures)
+            if (gameWorld!.WorldSettings.ExperimentalFeatures)
                 control.Sprinting = true;
         }
 
@@ -798,7 +798,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         {
             control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
 
-            if (gameWorld.WorldSettings.ExperimentalFeatures)
+            if (gameWorld!.WorldSettings.ExperimentalFeatures)
                 control.Sprinting = true;
         }
 
