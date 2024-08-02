@@ -7,8 +7,6 @@ using Godot;
 /// </summary>
 public partial class EndosymbiosisCandidateOption : VBoxContainer
 {
-    public bool Lawk;
-
     private readonly List<(OrganelleDefinition Organelle, int Cost)> shownChoices = new();
 
     private readonly Dictionary<string, MicrobePartSelection> selectionButtons = new();
@@ -72,8 +70,8 @@ public partial class EndosymbiosisCandidateOption : VBoxContainer
 
         foreach (var (organelle, cost) in organelleChoices)
         {
-            if (shownChoices.Any(c => c.Organelle == organelle) || selectionButtons.ContainsKey(organelle.InternalName)
-                || organelle.LAWK != Lawk)
+            if (shownChoices.Any(c => c.Organelle == organelle) ||
+                selectionButtons.ContainsKey(organelle.InternalName))
             {
                 GD.PrintErr("Duplicate endosymbiosis choice: ", organelle.InternalName);
                 continue;

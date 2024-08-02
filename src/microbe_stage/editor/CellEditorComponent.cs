@@ -768,8 +768,6 @@ public partial class CellEditorComponent :
             behaviourEditor.Visible = false;
         }
 
-        endosymbiosisPopup.Lawk = Editor.CurrentGame.GameWorld.WorldSettings.LAWK;
-
         UpdateMicrobePartSelections();
 
         // After the "if multicellular check" so the tooltip cost factors are correct
