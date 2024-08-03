@@ -14,6 +14,7 @@ using World = DefaultEcs.World;
 [With(typeof(Physics))]
 [With(typeof(TimedLife))]
 [With(typeof(SiderophoreProjectile))]
+[RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(0.5f, false)]
 public sealed class SiderophoreSystem : AEntitySetSystem<float>
 {
@@ -111,7 +112,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
                 var efficiency = sender.Get<OrganelleContainer>().IronBreakdownEfficiency;
 
                 // Not to do operation twice
-                var size = (float)Math.Min(efficiency / 3, 20);
+                var size = (float)Math.Max(Math.Min(efficiency / 3, 20), 1);
 
                 smallIronChunk.ChunkScale = (float)Math.Sqrt(size);
                 smallIronChunk.Size = Math.Min(size, configuration.Compounds[iron].Amount);

@@ -30,7 +30,7 @@ public struct MicrobeControl
     /// <summary>
     ///   If true, microbe will fire iron breakdown substance on next update.
     /// </summary>
-    public bool QueuedIronToEmit;
+    public bool QueuedSiderophoreToEmit;
 
     /// <summary>
     ///   This is here as this is very closely related to <see cref="QueuedSlimeSecretionTime"/>
@@ -95,7 +95,7 @@ public struct MicrobeControl
         LookAtPoint = startingPosition + new Vector3(0, 0, -1);
         MovementDirection = new Vector3(0, 0, 0);
         QueuedToxinToEmit = null;
-        QueuedIronToEmit = false;
+        QueuedSiderophoreToEmit = false;
         SlimeSecretionCooldown = 0;
         QueuedSlimeSecretionTime = 0;
         AgentEmissionCooldown = 0;
@@ -185,7 +185,7 @@ public static class MicrobeControlHelpers
         return true;
     }
 
-    public static bool EmitIron(this ref MicrobeControl control, ref OrganelleContainer organelles,
+    public static bool EmitSiderophore(this ref MicrobeControl control, ref OrganelleContainer organelles,
         in Entity entity)
     {
         // Disallow when engulfed
@@ -199,7 +199,7 @@ public static class MicrobeControlHelpers
             // TODO: remove the delegate allocation here
             colony.PerformForOtherColonyMembersThanLeader(m =>
                 m.Get<MicrobeControl>()
-                    .EmitIron(ref m.Get<OrganelleContainer>(),
+                    .EmitSiderophore(ref m.Get<OrganelleContainer>(),
                         m));
         }
 
@@ -210,7 +210,7 @@ public static class MicrobeControlHelpers
         if (organelles.IronBreakdownEfficiency < 1)
             return false;
 
-        control.QueuedIronToEmit = true;
+        control.QueuedSiderophoreToEmit = true;
 
         return true;
     }

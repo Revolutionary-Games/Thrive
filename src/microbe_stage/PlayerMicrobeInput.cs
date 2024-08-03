@@ -117,14 +117,17 @@ public partial class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKeyDown("g_fire_siderophore")]
-    public void EmitIron()
+    public void EmitSiderophore()
     {
+        if (!stage.WorldSettings.ExperimentalFeatures)
+            return;
+
         if (!stage.HasPlayer)
             return;
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
-        control.EmitIron(ref stage.Player.Get<OrganelleContainer>(), stage.Player);
+        control.EmitSiderophore(ref stage.Player.Get<OrganelleContainer>(), stage.Player);
     }
 
     [RunOnKeyDown("g_fire_toxin")]

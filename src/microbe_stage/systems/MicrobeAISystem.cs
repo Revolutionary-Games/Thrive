@@ -729,9 +729,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         control.LookAtPoint = ai.TargetPosition;
 
         // Check if use siderophore
-        if (isIronEater && chunkIsIron)
+        if (isIronEater && chunkIsIron && gameWorld!.WorldSettings.ExperimentalFeatures)
         {
-            control.EmitIron(ref organelles, entity);
+            control.EmitSiderophore(ref organelles, entity);
         }
         else
         {
