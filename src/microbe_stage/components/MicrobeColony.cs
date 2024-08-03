@@ -233,10 +233,11 @@ public static class MicrobeColonyHelpers
     ///   Calculates the total counts of special organelles in a colony
     /// </summary>
     public static void CalculateColonySpecialOrganelles(this ref MicrobeColony colony, out int agentVacuoles,
-        out int slimeJets)
+        out int slimeJets, out int mucocysts)
     {
         agentVacuoles = 0;
         slimeJets = 0;
+        mucocysts = 0;
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
@@ -244,6 +245,7 @@ public static class MicrobeColonyHelpers
 
             agentVacuoles += organelles.AgentVacuoleCount;
             slimeJets += organelles.SlimeJets?.Count ?? 0;
+            mucocysts += organelles.MucocystCount;
         }
     }
 
@@ -1139,6 +1141,17 @@ public static class MicrobeColonyHelpers
         var memberRecord = recorder.Record(newMember);
         memberRecord.Set(new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
 
+        // Setup event forwarding
+        if (colonyEntity.Has<MicrobeEventCallbacks>())
+        {
+            ref var originalEvents = ref colonyEntity.Get<MicrobeEventCallbacks>();
+
+            if (!originalEvents.IsTemporary)
+            {
+                memberRecord.Set(originalEvents.CloneEventCallbacksForColonyMember());
+            }
+        }
+
         OnColonyMemberAdded(ref colony, newMember);
     }
 
@@ -1226,6 +1239,15 @@ public static class MicrobeColonyHelpers
         var memberRecord = recorder.Record(removedMember);
         memberRecord.Remove<MicrobeColonyMember>();
         memberRecord.Remove<AttachedToEntity>();
+
+        // Destroy temporary event callbacks if they exist
+        if (removedMember.Has<MicrobeEventCallbacks>())
+        {
+            if (removedMember.Get<MicrobeEventCallbacks>().IsTemporary)
+            {
+                memberRecord.Remove<MicrobeEventCallbacks>();
+            }
+        }
     }
 
     private static void UpdateColonyEntityCachedStatistics(this ref MicrobeColony colony)

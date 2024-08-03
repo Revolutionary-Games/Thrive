@@ -36,6 +36,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(CellProperties))]
+[ReadsComponent(typeof(MicrobeControl))]
 [RunsAfter(typeof(ProcessSystem))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RuntimeCost(4, false)]
@@ -86,6 +87,14 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
         // Dead multicellular colonies can't reproduce
         if (health.Dead)
             return;
+
+        if (entity.Has<MicrobeControl>())
+        {
+            // Microbe reproduction is stopped when mucocyst is active (so makes sense to make same apply to
+            // multicellular). This is not a colony-aware check but probably good enough.
+            if (entity.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
+                return;
+        }
 
         ref var growth = ref entity.Get<MulticellularGrowth>();
         HandleMulticellularReproduction(ref growth, entity, delta);

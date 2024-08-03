@@ -45,6 +45,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(SoundEffectPlayer))]
+[ReadsComponent(typeof(MicrobeControl))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(14)]
@@ -223,6 +224,13 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         {
             // Ready to reproduce already. Only the player gets here as other cells split and reset automatically
             return;
+        }
+
+        if (entity.Has<MicrobeControl>())
+        {
+            // Microbe reproduction is stopped when mucocyst is active
+            if (entity.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
+                return;
         }
 
         ref var status = ref entity.Get<MicrobeStatus>();

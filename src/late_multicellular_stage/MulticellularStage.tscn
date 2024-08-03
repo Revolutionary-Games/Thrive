@@ -9,9 +9,9 @@
 [ext_resource type="Script" path="res://src/general/PlayerInspectInfo.cs" id="6"]
 [ext_resource type="PackedScene" path="res://src/awakening_stage/InteractableSystem.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://bo86k7ooatxyu" path="res://src/awakening_stage/gui/InteractablePopup.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://borrsf8mdual2" path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="11"]
-[ext_resource type="PackedScene" path="res://src/late_multicellular_stage/ProgressBarSystem.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://b174h1qc4muj8" path="res://src/late_multicellular_stage/ProgressBarSystem.tscn" id="12"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b7e0u"]
 resource_local_to_scene = true
@@ -67,8 +67,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProgressBarSystem" parent="." instance=ExtResource("12")]
-layout_mode = 3
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -94,8 +92,6 @@ offset_bottom = 540.0
 [node name="InteractablePopup" parent="." instance=ExtResource("8")]
 
 [node name="SelectBuildingPopup" parent="." instance=ExtResource("10")]
-layout_mode = 3
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 

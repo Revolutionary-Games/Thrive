@@ -36,6 +36,17 @@ public class Settings
             GD.PrintErr("Default locale is empty");
     }
 
+    public enum StrainBarVisibility
+    {
+        Off = 0,
+
+        VisibleWhenCloseToFull = 1,
+
+        VisibleWhenOverZero = 2,
+
+        AlwaysVisible = 3,
+    }
+
     public static Settings Instance => SingletonInstance;
 
     public static string DefaultLanguage => DefaultLanguageValue;
@@ -102,6 +113,18 @@ public class Settings
     public SettingValue<ControllerType> ControllerPromptType { get; private set; } = new(ControllerType.Automatic);
 
     /// <summary>
+    ///   Red screen effect for when player is harmed
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> ScreenDamageEffect { get; private set; } = new(true);
+
+    /// <summary>
+    ///   When should the strain bar be visible
+    /// </summary>
+    public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
+        new(StrainBarVisibility.VisibleWhenOverZero);
+
+    /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
     /// </summary>
     [JsonProperty]
@@ -114,7 +137,7 @@ public class Settings
     public SettingValue<bool> DisplayBackgroundParticles { get; private set; } = new(true);
 
     /// <summary>
-    ///   Enable or disable lighting effects on the GUI. Mainly Used to workaround a bug where the HUD area
+    ///   Enable or disable lighting effects on the GUI. Mainly Used to work around a bug where the HUD area
     ///   surrounding the editor button sometimes disappearing with the light effect turned on.
     /// </summary>
     [JsonProperty]

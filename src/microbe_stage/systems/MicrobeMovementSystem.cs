@@ -18,7 +18,7 @@ using World = DefaultEcs.World;
 /// </remarks>
 /// <remarks>
 ///   <para>
-///     Once save compatibility is broken after 0.6.7 add with temporary effects
+///     Once save compatibility is broken after 0.6.7 add with temporary effects amd strain affected
 ///   </para>
 /// </remarks>
 [With(typeof(MicrobeControl))]
@@ -30,11 +30,13 @@ using World = DefaultEcs.World;
 [With(typeof(Health))]
 
 // [With(typeof(MicrobeTemporaryEffects))]
+// [With(typeof(StrainAffected))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobeTemporaryEffects))]
+[WritesToComponent(typeof(StrainAffected))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
@@ -82,13 +84,30 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         var lookVector = control.LookAtPoint - position.Position;
         lookVector.Y = 0;
+        var lookVectorLength = lookVector.Length();
 
-        var length = lookVector.Length();
+        var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
+        var unsignedTurnAngle = Math.Abs(turnAngle);
 
-        if (length > MathUtils.EPSILON)
+        // Linear function reaching 1 at CELL_TURN_INFLECTION_RADIANS
+        var blendFactor = Mathf.Pi / 4.0f * Mathf.Min(unsignedTurnAngle *
+            (1.0f / Constants.CELL_TURN_INFLECTION_RADIANS), 1.0f);
+
+        // Simplify turns to 90 degrees to keep consistent turning speed
+        if (turnAngle > 0.0f)
+        {
+            lookVector = (position.Rotation
+                * new Vector3(-Mathf.Sin(blendFactor), 0, -Mathf.Cos(blendFactor))).Normalized();
+        }
+        else if (turnAngle < 0.0f)
+        {
+            lookVector = (position.Rotation
+                * new Vector3(Mathf.Sin(blendFactor), 0, -Mathf.Cos(blendFactor))).Normalized();
+        }
+        else if (lookVectorLength > MathUtils.EPSILON)
         {
             // Normalize vector when it has a length
-            lookVector /= length;
+            lookVector /= lookVectorLength;
         }
         else
         {
@@ -129,6 +148,12 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles, compounds,
                 delta);
 
+        if (control.State == MicrobeState.MucocystShield)
+        {
+            rotationSpeed /= Constants.MUCOCYST_SPEED_MULTIPLIER;
+            movementImpulse *= Constants.MUCOCYST_SPEED_MULTIPLIER;
+        }
+
         physicalWorld.ApplyBodyMicrobeControl(physics.Body!, movementImpulse, wantedRotation, rotationSpeed);
     }
 
@@ -155,8 +180,26 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         ref CellProperties cellProperties, ref WorldPosition position,
         ref OrganelleContainer organelles, CompoundBag compounds, float delta)
     {
+        // TODO: switch to always reading strain affected once old save compatibility is removed
+        // ref var strain = ref entity.Get<StrainAffected>();
+
+        float strainMultiplier = 1;
+
         if (control.MovementDirection == Vector3.Zero)
         {
+            if (entity.Has<StrainAffected>())
+            {
+                // TODO: move this variable up in the future
+                ref var strain = ref entity.Get<StrainAffected>();
+                strainMultiplier = GetStrainAtpMultiplier(ref strain);
+                strain.IsUnderStrain = false;
+            }
+
+            // Remove ATP due to strain even if not moving
+            // This is calculated similarily to the regular movement cost for consistency
+            var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
+            compounds.TakeCompound(atp, strainCost);
+
             // Slime jets work even when not holding down any movement keys
             var jetMovement = CalculateMovementFromSlimeJets(ref organelles);
 
@@ -185,7 +228,25 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
         // movement cost
-        var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta;
+
+        if (entity.Has<StrainAffected>())
+        {
+            // TODO: move this variable up in the future
+            ref var strain = ref entity.Get<StrainAffected>();
+            strainMultiplier = GetStrainAtpMultiplier(ref strain);
+
+            // TODO: move this if down in the future
+            if (control.Sprinting)
+            {
+                strain.IsUnderStrain = true;
+            }
+            else
+            {
+                strain.IsUnderStrain = false;
+            }
+        }
+
+        var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
 
         var got = compounds.TakeCompound(atp, cost);
 
@@ -220,6 +281,19 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         force *= cellProperties.MembraneType.MovementFactor -
             cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
+
+        if (control.Sprinting)
+        {
+            force *= Constants.SPRINTING_FORCE_MULTIPLIER;
+
+            // TODO: put this code back once strain is guaranteed
+            // strain.IsUnderStrain = true;
+        }
+
+        /*else
+        {
+            strain.IsUnderStrain = false;
+        }*/
 
         bool hasColony = entity.Has<MicrobeColony>();
 
@@ -272,6 +346,12 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
         // vector to work correctly
         return position.Rotation * movementVector;
+    }
+
+    private float GetStrainAtpMultiplier(ref StrainAffected strain)
+    {
+        var strainFraction = strain.CalculateStrainFraction();
+        return strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT + 1.0f;
     }
 
     private Vector3 CalculateMovementFromSlimeJets(ref OrganelleContainer organelles)

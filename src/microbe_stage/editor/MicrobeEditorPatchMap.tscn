@@ -7,7 +7,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="14"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="18"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" id="28"]
-[ext_resource type="PackedScene" path="res://src/gui_common/DraggableScrollContainer.tscn" id="30"]
+[ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="30"]
 
 [sub_resource type="ShaderMaterial" id="28"]
 shader = ExtResource("1")
@@ -60,7 +60,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="MicrobeEditorPatchMap" type="Control"]
+[node name="MicrobeEditorPatchMap" type="Control" node_paths=PackedStringArray("mapDrawer", "detailsPanel", "seedLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,9 +69,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("14")
 script = ExtResource("28")
-MapDrawerPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
-PatchDetailsPanelPath = NodePath("MarginContainer/HSplitContainer/PatchDetailsPanel")
-SeedLabelPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer2/SeedLabel")
+mapDrawer = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
+detailsPanel = NodePath("MarginContainer/HSplitContainer/PatchDetailsPanel")
+seedLabel = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer2/SeedLabel")
 FinishOrNextButtonPath = NodePath("MarginContainer2/NextTabButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

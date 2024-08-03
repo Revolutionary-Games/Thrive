@@ -36,7 +36,7 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("damageEffect", "strainVisibility")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -147,6 +147,8 @@ BuiltAtLabelPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxCon
 UnsavedProgressWarningPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/UnsavedProgressWarning")
 PatchNotesBoxPath = NodePath("CenterContainer/PatchNotesBox")
 PatchNotesDisplayerPath = NodePath("CenterContainer/PatchNotesBox/VBoxContainer/PatchNotesDisplayer")
+damageEffect = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DamageEffect")
+strainVisibility = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11/StrainBarMode")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -528,6 +530,11 @@ focus_neighbor_top = NodePath("../HBoxContainer10/ControllerPromptType")
 focus_previous = NodePath("../HBoxContainer10/ControllerPromptType")
 text = "DISPLAY_ABILITIES_BAR"
 
+[node name="DamageEffect" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SHOW_DAMAGE_EFFECT"
+
 [node name="GUILightsEffectToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -537,6 +544,35 @@ text = "ENABLE_GUI_LIGHT_EFFECTS"
 layout_mode = 2
 size_flags_horizontal = 0
 text = "DISPLAY_PART_NAMES"
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+layout_mode = 2
+mouse_filter = 0
+text = "STRAIN_BAR_VISIBILITY"
+
+[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StrainBarMode" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../DisplayPartNamesToggle")
+focus_previous = NodePath("../../DisplayPartNamesToggle")
+item_count = 4
+selected = 0
+popup/item_0/text = "OFF"
+popup/item_0/id = 0
+popup/item_1/text = "VISIBLE_WHEN_CLOSE_TO_FULL"
+popup/item_1/id = 1
+popup/item_2/text = "VISIBLE_WHEN_OVER_ZERO"
+popup/item_2/id = 2
+popup/item_3/text = "ALWAYS_VISIBLE"
+popup/item_3/id = 3
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -1817,8 +1853,10 @@ grow_vertical = 1
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Menu3DBackgroundsToggle" to="." method="OnDisplay3DMenuBackgroundsToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/ControllerPromptType" to="." method="OnControllerTypeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DamageEffect" to="." method="OnDamageEffectToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/GUILightsEffectToggle" to="." method="OnGUILightEffectsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayPartNamesToggle" to="." method="OnDisplayPartNamesToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11/StrainBarMode" to="." method="OnStrainVisibilityModeSelected"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]

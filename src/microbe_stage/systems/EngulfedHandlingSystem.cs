@@ -102,7 +102,7 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
             }
 
             // If the engulfing entity is dead, then this should have been ejected. The simulation world also has
-            // a on entity destroy callback that should do this so things are going pretty wrong if this is
+            // an on entity destroy callback that should do this so things are going pretty wrong if this is
             // triggered
             if (!engulfable.HostileEngulfer.IsAlive)
             {

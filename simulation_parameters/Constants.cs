@@ -185,11 +185,36 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
+
+    public const float MAX_STRAIN_PER_ENTITY = 400.0f;
+    public const float MIN_STRAIN_SPRINT_REGAIN = 200.0f;
+
+    public const float PASSIVE_STRAIN_DECREASE_PER_SECOND = 30.0f;
+
+    public const float PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_MULTIPLIER = 0.3f;
+
+    /// <summary>
+    ///   This is multiplied by the strain fraction to get the ATP usage multiplier
+    /// </summary>
+    public const float STRAIN_TO_ATP_USAGE_COEFFICIENT = 1.5f;
+
+    /// <summary>
+    ///   How much strain does not affect ATP usage at first
+    /// </summary>
+    public const float CANCELED_STRAIN = 10.0f;
+
+    public const float STRAIN_DECREASE_COOLDOWN_SECONDS = 0.5f;
+
+    public const float SPRINTING_STRAIN_INCREASE_PER_SECOND = 72.0f;
+
+    public const float SPRINTING_STRAIN_INCREASE_PER_HEX = 0.15f;
+
+    public const float SPRINTING_FORCE_MULTIPLIER = 1.8f;
+
     public const float FLAGELLA_ENERGY_COST = 6.0f;
 
     public const float FLAGELLA_BASE_FORCE = 35.0f;
-
-    public const float BASE_MOVEMENT_FORCE = 900.0f;
 
     /// <summary>
     ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
@@ -223,11 +248,13 @@ public static class Constants
 
     // Note that the rotation speed is reversed, i.e. lower values mean faster
     public const float CELL_MAX_ROTATION = 8.0f;
-    public const float CELL_MIN_ROTATION = 0.1f;
-    public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
+    public const float CELL_MIN_ROTATION = 0.10f;
+
+    public const float CELL_ROTATION_INFLECTION_INERTIA = 250000000.0f;
     public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
-    public const float CILIA_ROTATION_FACTOR = 32000000.0f;
+    public const float CILIA_ROTATION_FACTOR = 120000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
+    public const float CELL_TURN_INFLECTION_RADIANS = 0.4f;
 
     // TODO: remove if these stay unused
     // // These speed values are also reversed like the above
@@ -389,7 +416,7 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 16.0f;
+    public const float AGENT_EMISSION_VELOCITY = 18.5f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
@@ -434,6 +461,18 @@ public static class Constants
     ///   Length in seconds for slime secretion cooldown
     /// </summary>
     public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
+
+    /// <summary>
+    ///   How many times cell gets slowed down with mucocyst (slime jet upgrade) on
+    /// </summary>
+    public const float MUCOCYST_SPEED_MULTIPLIER = 0.01f;
+
+    public const float MUCOCYST_MINIMUM_MUCILAGE = 0.2f;
+
+    /// <summary>
+    ///   How much mucocyst (slime jet upgrade) drains mucilage per second
+    /// </summary>
+    public const float MUCOCYST_MUCILAGE_DRAIN = 0.5f;
 
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 
@@ -541,10 +580,11 @@ public static class Constants
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
     /// <summary>
-    ///   If more chunks exist at once than this, then some are forced to despawn immediately. This value is lowered
-    ///   as spawned and microbe corpse chunks have now their individual limits (so the real limit is double this)
+    ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
+    ///   value is higher as spawned and microbe corpse chunks have now their individual limits (so the real limit is
+    ///   double this)
     /// </summary>
-    public const int FLOATING_CHUNK_MAX_COUNT = 35;
+    public const int FLOATING_CHUNK_MAX_COUNT = 50;
 
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 5000.0f;
 
@@ -593,9 +633,19 @@ public static class Constants
     public const int MAX_DAMAGE_EVENTS = 1000;
 
     /// <summary>
+    ///   The maximum amount of ATP for a cell to take damage from lack of ATP. This used to be a hard-coded zero
+    ///   but while under strain, ATP never reached that low, so an extra margin for ATP damage was added.
+    /// </summary>
+    public const float ATP_DAMAGE_THRESHOLD = 0.05f;
+
+    /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
     public const float HEALTH_REGENERATION_RATE = 1.5f;
+
+    public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
+
+    public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;
 
     /// <summary>
     ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
@@ -700,7 +750,7 @@ public static class Constants
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
-    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 1.5f;
+    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 2.0f;
 
     /// <summary>
     ///   The duration for which an engulfable object can't be engulfed after being expelled.
@@ -1162,7 +1212,7 @@ public static class Constants
     public const int SUBMENU_CANCEL_PRIORITY = -1;
 
     /// <summary>
-    ///   Popups have a highest priority to ensure they can react first.
+    ///   Popups have the highest priority to ensure they can react first.
     /// </summary>
     public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
 
@@ -1170,6 +1220,17 @@ public static class Constants
     public const int CUSTOM_FOCUS_DRAWER_RADIUS_POINTS = 12;
     public const int CUSTOM_FOCUS_DRAWER_WIDTH = 3;
     public const bool CUSTOM_FOCUS_DRAWER_ANTIALIAS = true;
+
+    /// <summary>
+    ///   Performance in FPS below this value triggers the main menu low performance warning (if 3D backgrounds are
+    ///   enabled)
+    /// </summary>
+    public const float MAIN_MENU_LOW_PERFORMANCE_FPS = 28.5f;
+
+    /// <summary>
+    ///   How many seconds until low performance warning can be triggered after the main menu is started
+    /// </summary>
+    public const float MAIN_MENU_LOW_PERFORMANCE_CHECK_AFTER = 28.5f;
 
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.

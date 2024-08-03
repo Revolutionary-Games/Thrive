@@ -5,14 +5,13 @@ This is the code repository for Thrive. For more information, visit
 [Revolutionary Games' Website](https://revolutionarygamesstudio.com/).
 
 ### [Build Status](https://dev.revolutionarygamesstudio.com/ci/1)
-### Patreon [![Patreon](https://img.shields.io/badge/Join-Patreon-orange.svg)](https://www.patreon.com/thrivegame)
+### Patreon [![Patreon](https://img.shields.io/badge/Join-Patreon-orange.svg?logo=patreon)](https://www.patreon.com/thrivegame)
 
-[![Thrive on Steam](https://img.shields.io/badge/-Thrive%20on%20Steam-blue)](https://store.steampowered.com/app/1779200/Thrive/) [![Thrive on Itch.io](https://img.shields.io/badge/-Thrive%20on%20Itch.io-orange)](https://revolutionarygames.itch.io/thrive)
+[![Thrive on Steam](https://img.shields.io/badge/-Thrive%20on%20Steam-blue)](https://store.steampowered.com/app/1779200/Thrive/) [<img height='20' alt='Thrive on Itch.io' src='https://static.itch.io/images/badge-color.svg'>](https://revolutionarygames.itch.io/thrive)
 
 [![Community Forums](https://img.shields.io/badge/-Community%20Forums-%239cf)](https://community.revolutionarygamesstudio.com/)
 <a href="https://translate.revolutionarygamesstudio.com/engage/thrive/">
-<img src="https://translate.revolutionarygamesstudio.com/widgets/thrive/-/thrive-game/svg-badge.svg" alt="translation status" />
-</a>
+<img alt="Weblate project translated" src="https://img.shields.io/weblate/progress/thrive?server=https%3A%2F%2Ftranslate.revolutionarygamesstudio.com&logo=weblate"></a>
 [![Developer Wiki](https://img.shields.io/badge/-Developer%20Wiki-red)](https://wiki.revolutionarygamesstudio.com/)
 [![Discord](https://discord.com/api/guilds/228300288023461893/widget.png)](https://discord.gg/FZxDQ4H)
 

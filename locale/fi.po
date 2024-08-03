@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-07 10:19+0300\n"
+"POT-Creation-Date: 2024-08-02 12:03+0300\n"
 "PO-Revision-Date: 2024-02-20 12:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -42,6 +42,9 @@ msgstr "Peruutettu."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssaalivyöhyke"
+
+msgid "ACCEPT"
+msgstr ""
 
 #, fuzzy
 msgid "ACTION_AWAKEN"
@@ -152,6 +155,10 @@ msgstr "Olet jo noussut"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALWAYS_VISIBLE"
+msgstr "Näkyvä"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Tunnelmaäänet"
@@ -1909,6 +1916,13 @@ msgstr "Avaa editorin lukitus"
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
+msgid "EXPERIMENTAL_FEATURES"
+msgstr ""
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
 
@@ -3391,6 +3405,52 @@ msgstr "Statistiikkaa organismista"
 msgid "MIDDLE_MOUSE"
 msgstr "Hiiren keskimmäinen painike"
 
+#, fuzzy
+msgid "MIGRATE"
+msgstr "Nopeus"
+
+#, fuzzy
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Auto-evon suorittaminen epäonnistui"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STATUS_TEXT"
+msgstr ""
+"Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
+"Solusi kuolee, jos sen terveyspalkki loppuu.\n"
+"Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
+"Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
+
+#, fuzzy
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr ""
+"Aggressiiviset mikrobit kulkevat pidempiä etäisyyksiä jahdatessaan muita\n"
+"ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
+"Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
+"käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr ""
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+
+#, fuzzy
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr ""
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+
+#, fuzzy
+msgid "MIGRATION_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
@@ -3665,6 +3725,10 @@ msgstr ""
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Kemosynteesi"
 
+#, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Monisoluinen editori"
 
@@ -3927,6 +3991,9 @@ msgstr "2x"
 
 msgid "OCTOBER"
 msgstr "Lokakuu"
+
+msgid "OFF"
+msgstr ""
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "Virallinen Nettisivu"
@@ -4897,6 +4964,9 @@ msgstr "Efektien voimakkuus"
 msgid "SHIFT"
 msgstr "Vaihto"
 
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr ""
+
 msgid "SHOW_HELP"
 msgstr "Näytä apu"
 
@@ -5112,6 +5182,14 @@ msgstr "Nopeus:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "levisi alueille:"
 
+#, fuzzy
+msgid "SPRINT"
+msgstr "Kopioi ruutu"
+
+#, fuzzy
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
@@ -5228,6 +5306,9 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisäänkirjauduttu käyttäjänä: {0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -5571,6 +5652,10 @@ msgstr "Aloita/lopeta kiinnittyminen"
 
 msgid "TOGGLE_METRICS"
 msgstr "Näytä metriikat"
+
+#, fuzzy
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Vaihda koko näytön tilaa"
 
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
@@ -6054,6 +6139,14 @@ msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "{0} MP"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
+
+#, fuzzy
 msgid "UPLOAD"
 msgstr "Lataa"
 
@@ -6167,6 +6260,12 @@ msgstr "VIP-tukijat"
 
 msgid "VISIBLE"
 msgstr "Näkyvä"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr ""
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr ""
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
@@ -7521,9 +7620,6 @@ msgstr "Zoomaa ulospäin"
 
 #~ msgid "E_DOT"
 #~ msgstr "E."
-
-#~ msgid "RATE"
-#~ msgstr "Nopeus"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

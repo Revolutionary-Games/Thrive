@@ -149,7 +149,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     /// </summary>
     private void ApplyATPDamage(CompoundBag compounds, ref Health health, ref CellProperties cellProperties)
     {
-        if (compounds.GetCompoundAmount(atp) > 0)
+        if (compounds.GetCompoundAmount(atp) > Constants.ATP_DAMAGE_THRESHOLD)
             return;
 
         health.DealMicrobeDamage(ref cellProperties, health.MaxHealth * Constants.NO_ATP_DAMAGE_FRACTION,

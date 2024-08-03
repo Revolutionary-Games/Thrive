@@ -118,6 +118,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [Export]
     protected EditorEntryButton editorButton = null!;
 
+    [Export]
+    protected ActionButton mucocystHotkey = null!;
+
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
     protected ActionButton ejectEngulfedHotkey = null!;
@@ -174,6 +177,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
+    [Export]
+    private ActionButton sprintHotkey = null!;
+
+    [Export]
+    private ProgressBar strainBar = null!;
+
+    [Export]
+    private Control damageScreenEffect = null!;
 
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
@@ -181,7 +192,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private CustomWindow? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
     private ProcessPanel processPanel = null!;
+
+    private ShaderMaterial damageShaderMaterial = null!;
 #pragma warning restore CA2213
+
+    private StringName fadeParameterName = new("fade");
+
+    [Export]
+    private StyleBoxFlat? strainBarRedFill;
 
     // Used for save load to apply these properties
     private bool temporaryEnvironmentCompressed;
@@ -197,6 +215,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [JsonProperty]
     private Color healthBarFlashColour = new(0, 0, 0, 0);
+
+    private float lastHealth;
+    private float damageEffectCurrentValue;
+
+    private bool strainIsRed;
 
     protected CreatureStageHUDBase()
     {
@@ -299,6 +322,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
         Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
+
+        damageShaderMaterial = (ShaderMaterial)damageScreenEffect.Material;
 
         ammonia = SimulationParameters.Instance.GetCompound("ammonia");
         atp = SimulationParameters.Instance.GetCompound("atp");
@@ -415,6 +440,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             UpdateCompoundBars(convertedDelta);
             UpdateReproductionProgress();
             UpdateAbilitiesHotBar();
+            UpdateStrain();
         }
 
         UpdateATP(convertedDelta);
@@ -665,9 +691,121 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
         hpLabel.Text = hpText;
         hpLabel.TooltipText = hpText;
+
+        if (Settings.Instance.ScreenDamageEffect.Value)
+        {
+            // Process damage flash effect
+            if (damageEffectCurrentValue > 0)
+            {
+                damageEffectCurrentValue -= delta * Constants.SCREEN_DAMAGE_FLASH_DECAY_SPEED;
+
+                damageScreenEffect.Visible = true;
+                damageShaderMaterial.SetShaderParameter(fadeParameterName, damageEffectCurrentValue);
+            }
+            else
+            {
+                damageScreenEffect.Visible = false;
+            }
+
+            // Start damage flash if player has taken enough damage
+            if (hp < lastHealth && lastHealth - hp > Constants.SCREEN_DAMAGE_FLASH_THRESHOLD)
+                damageEffectCurrentValue = 1;
+        }
+        else if (damageEffectCurrentValue > 0)
+        {
+            // Disable effect if user turned off the setting while flashing
+            damageEffectCurrentValue = 0;
+            damageScreenEffect.Visible = false;
+        }
+
+        lastHealth = hp;
     }
 
     protected virtual void ReadPlayerHitpoints(out float hp, out float maxHP)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected void UpdateStrain()
+    {
+        if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
+        {
+            strainBar.Visible = false;
+            return;
+        }
+
+        var readStrainFraction = ReadPlayerStrainFraction();
+
+        // Skip the rest of the method if player does not have strain
+        if (readStrainFraction == null)
+            return;
+
+        var strainFraction = readStrainFraction.Value;
+
+        strainBar.Value = strainFraction;
+
+        var strainState = !CanSprint();
+
+        if (strainState != strainIsRed)
+        {
+            strainIsRed = strainState;
+
+            if (strainIsRed)
+            {
+                strainBar.AddThemeStyleboxOverride("fill", strainBarRedFill);
+            }
+            else
+            {
+                strainBar.RemoveThemeStyleboxOverride("fill");
+            }
+        }
+
+        switch (Settings.Instance.StrainBarVisibilityMode.Value)
+        {
+            case Settings.StrainBarVisibility.Off:
+                strainBar.Hide();
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
+                if (strainFraction >= 0.8f)
+                {
+                    strainBar.Show();
+                }
+                else
+                {
+                    strainBar.Hide();
+                }
+
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenOverZero:
+                if (strainFraction > 0.0f)
+                {
+                    strainBar.Show();
+                }
+                else
+                {
+                    strainBar.Hide();
+                }
+
+                break;
+            case Settings.StrainBarVisibility.AlwaysVisible:
+                strainBar.Show();
+                break;
+        }
+    }
+
+    /// <summary>
+    ///   Gets the current amount of strain affecting the player
+    /// </summary>
+    /// <returns>
+    ///   Null if the player is missing <see cref="StrainAffected"/>,
+    ///   else the player's strain fraction
+    /// </returns>
+    protected virtual float? ReadPlayerStrainFraction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual bool CanSprint()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
@@ -867,19 +1005,32 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
-        bool showingSignaling, bool engulfOn, bool showEject)
+        bool showingSignaling, bool showMucocyst, bool showSprint, bool engulfOn, bool showEject, bool mucocystOn,
+        bool isSprinting)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
         secreteSlimeHotkey.Visible = showSlime;
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
+        mucocystHotkey.Visible = showMucocyst;
+        sprintHotkey.Visible = showSprint && stage!.GameWorld.WorldSettings.ExperimentalFeatures;
 
+        sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;
-        fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
-        secreteSlimeHotkey.ButtonPressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
-        signalingAgentsHotkey.ButtonPressed = Input.IsActionPressed(signalingAgentsHotkey.ActionName);
-        ejectEngulfedHotkey.ButtonPressed = Input.IsActionPressed(ejectEngulfedHotkey.ActionName);
+        mucocystHotkey.ButtonPressed = mucocystOn;
+
+        if (fireToxinHotkey.ActionNameAsStringName != null)
+            fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionNameAsStringName);
+
+        if (secreteSlimeHotkey.ActionNameAsStringName != null)
+            secreteSlimeHotkey.ButtonPressed = Input.IsActionPressed(secreteSlimeHotkey.ActionNameAsStringName);
+
+        if (signalingAgentsHotkey.ActionNameAsStringName != null)
+            signalingAgentsHotkey.ButtonPressed = Input.IsActionPressed(signalingAgentsHotkey.ActionNameAsStringName);
+
+        if (ejectEngulfedHotkey.ActionNameAsStringName != null)
+            ejectEngulfedHotkey.ButtonPressed = Input.IsActionPressed(ejectEngulfedHotkey.ActionNameAsStringName);
     }
 
     /// <summary>
@@ -967,6 +1118,10 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }
+
+            fadeParameterName.Dispose();
+
+            strainBarRedFill?.Dispose();
         }
 
         base.Dispose(disposing);

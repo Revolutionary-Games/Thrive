@@ -14,7 +14,6 @@ using World = DefaultEcs.World;
 [With(typeof(Physics))]
 [With(typeof(TimedLife))]
 [With(typeof(SiderophoreProjectile))]
-[RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(0.5f, false)]
 public sealed class SiderophoreSystem : AEntitySetSystem<float>
 {

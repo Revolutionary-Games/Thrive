@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-07 10:19+0300\n"
-"PO-Revision-Date: 2024-06-11 06:06+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2024-08-02 12:03+0300\n"
+"PO-Revision-Date: 2024-07-27 14:22+0000\n"
+"Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -42,6 +42,9 @@ msgstr "Durduruldu."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelajik"
+
+msgid "ACCEPT"
+msgstr "Kabul et"
 
 msgid "ACTION_AWAKEN"
 msgstr "Uyandır ({0:F1} / {1:F1})"
@@ -151,6 +154,9 @@ msgstr "Evreni zaten tırmandınız"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALWAYS_VISIBLE"
+msgstr "Her zaman görünür"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Ortam sesi"
@@ -1765,6 +1771,12 @@ msgstr "Düzenleyiciden Çık"
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Çık ve Başlatıcıya Dön"
 
+msgid "EXPERIMENTAL_FEATURES"
+msgstr "Deneysel özellikler"
+
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(oyunda varsayılan olarak bulunmak üzere yeterince düzenlenmemiş ek özellikleri etkinleştir; eğer bu özellikler ile oyunu oynarsanız, lütfen bize bunlarla ilgili geri bildirimlerinizi paylaşın)"
+
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Tüm Dünyaları Dışa Aktar"
 
@@ -3145,6 +3157,33 @@ msgstr ""
 msgid "MIDDLE_MOUSE"
 msgstr "Orta fare tuşu"
 
+msgid "MIGRATE"
+msgstr "Göç et"
+
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Hata: Göç eklenemedi, lütfen göç parametrelerini inceleyin"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr "Popülasyon, {0} arazisinden ... arazisine taşınacak"
+
+msgid "MIGRATION_STATUS_TEXT"
+msgstr "{2} birim popülasyon, {0} arazisinden {1} arazisine taşınacak"
+
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "Göç için kaynak araziye bağlı, varılacak bir arazi seçin"
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr "Her düzenleyici sürecinde yalnızca bir göç yapılabilir. Sırada bekleyen göçleri aşağıdan inceleyebilir, bu göçleri tutabilir ya da farklı bir göç oluşturmak için iptal edebilirsiniz"
+
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "Kaynak araziden varılacak yere ne kadar popülasyonun göç edeceğini seçin"
+
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "Göç için kaynak görevi görmesi için şu an türünüzün olduğu bir araziyi seçin"
+
+msgid "MIGRATION_TOOLTIP"
+msgstr "Kendi bulunduğunuz araziden ayrılmadan, türünüzü bir araziden başka bir araziye taşıyın"
+
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mn"
 
@@ -3410,6 +3449,9 @@ msgstr "Müsilaj"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Müsilaj sentezi"
 
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Kalkan oluştur"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Çok Hücreli Düzenleyicisi"
 
@@ -3656,6 +3698,9 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "Ekim"
 
+msgid "OFF"
+msgstr "Kapalı"
+
 msgid "OFFICIAL_WEBSITE"
 msgstr "Resmi Web Sitesi"
 
@@ -3785,7 +3830,6 @@ msgstr "{0} organel"
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Organellerin kilidini açma etkin"
 
-#, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr "(bazı organelleri yerleştirmek için gerekli olan kilit açma koşulları sağlanmalıdır)"
 
@@ -4541,6 +4585,9 @@ msgstr "Ses efektleri"
 msgid "SHIFT"
 msgstr "Shift"
 
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "Ekran üzerindeki hasar efektini göster"
+
 msgid "SHOW_HELP"
 msgstr "Yardım menüsünü göster"
 
@@ -4731,6 +4778,12 @@ msgstr "Hız:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "yayıldığı araziler:"
 
+msgid "SPRINT"
+msgstr "Hızlan"
+
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Hızlanma modunu aç. Hızlanırken, hücreler daha hızlı hareket eder. Ancak bu hücreler daha fazla ATP tüketir ve yorgunluk arttıkça ATP tüketimi daha da artar."
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Ara menü"
 
@@ -4837,6 +4890,9 @@ msgstr "saniye hızda"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr "Yorgunluk çubuğu görünürlüğü"
 
 msgid "STRATEGY_STAGES"
 msgstr "Strateji Evreleri"
@@ -5162,6 +5218,9 @@ msgstr "Envanteri Aç"
 
 msgid "TOGGLE_METRICS"
 msgstr "Ölçümler göstergesini aç"
+
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Mukosist kalkanını aç"
 
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Navigasyon ağacını aç"
@@ -5602,6 +5661,12 @@ msgstr "İnjektozom Pilus"
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Pilusu bir injektozoma dönüştürür, diğer hücrelere saplandığında toksin hasarı verir"
 
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "Mukosist"
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "Balçık fışkırtıcıyı, hücrenin etrafında koruyucu bir balçık kılıfı oluşturan mukosiste dönüştürür. Mukosist etkinleştirildiğinde, bütün hasar kaynaklarına karşı geçici bir bağışıklık kazandırır."
+
 msgid "UPLOAD"
 msgstr "Karşıya Yükle"
 
@@ -5703,6 +5768,12 @@ msgstr "VIP Destekçiler"
 
 msgid "VISIBLE"
 msgstr "Görünür"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr "Neredeyse dolduğunda görünür"
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr "Sıfırın üstündeyken görünür"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Bir Özellik Öner"
@@ -7332,10 +7403,6 @@ msgstr "Uzaklaştır"
 #~ msgid "E_DOT"
 #~ msgstr "E."
 
-#, fuzzy
-#~ msgid "RATE"
-#~ msgstr "Oran"
-
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""
 #~ "Biyolüminesant\n"
@@ -7461,3 +7528,7 @@ msgstr "Uzaklaştır"
 
 #~ msgid "TOTAL_TIME_USED_COLON"
 #~ msgstr "Toplam geçen süre:"
+
+#, fuzzy
+#~ msgid "RATE"
+#~ msgstr "Oran"

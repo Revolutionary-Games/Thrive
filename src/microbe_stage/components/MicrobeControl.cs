@@ -3,6 +3,7 @@
 using System;
 using DefaultEcs;
 using Godot;
+using Systems;
 
 /// <summary>
 ///   Control variables for specifying how a microbe wants to move / behave
@@ -70,6 +71,22 @@ public struct MicrobeControl
     public bool SlowedBySlime;
 
     /// <summary>
+    ///   Whether this microbe cannot sprint
+    /// </summary>
+    public bool OutOfSprint;
+
+    /// <summary>
+    ///   Whether this microbe is currently sprinting
+    /// </summary>
+    public bool Sprinting;
+
+    /// <summary>
+    ///   Whether this microbe is currently using mucocyst and is protected. This is an internal variable for
+    ///   <see cref="MucocystSystem"/>. Don't modify!
+    /// </summary>
+    public bool MucocystEffectsApplied;
+
+    /// <summary>
     ///   Constructs an instance with a sensible <see cref="LookAtPoint"/> set
     /// </summary>
     /// <param name="startingPosition">World position this entity is starting at</param>
@@ -84,6 +101,8 @@ public struct MicrobeControl
         AgentEmissionCooldown = 0;
         State = MicrobeState.Normal;
         SlowedBySlime = false;
+        Sprinting = false;
+        MucocystEffectsApplied = false;
     }
 }
 
@@ -229,6 +248,44 @@ public static class MicrobeControlHelpers
         {
             // Randomise the time spent ejecting slime, from 0 to 3 seconds
             control.QueuedSlimeSecretionTime = 3 * random.NextSingle();
+        }
+    }
+
+    public static void SetMucocystState(this ref MicrobeControl control,
+        ref OrganelleContainer organelleInfo, ref CompoundStorage availableCompounds, in Entity entity, bool state,
+        Compound? mucilageCompound = null)
+    {
+        mucilageCompound ??= SimulationParameters.Instance.GetCompound("mucilage");
+
+        if (entity.Has<MicrobeColony>())
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+
+            // TODO: is it a good idea to allocate a delegate here?
+            colony.PerformForOtherColonyMembersThanLeader(m =>
+                m.Get<MicrobeControl>()
+                    .SetMucocystState(ref m.Get<OrganelleContainer>(), ref m.Get<CompoundStorage>(), m, state,
+                        mucilageCompound));
+        }
+
+        if (organelleInfo.MucocystCount < 1)
+            return;
+
+        if (state)
+        {
+            // Don't allow spamming if not enough mucocyst. This is inside this if to allow exiting mucocyst shield
+            // mode even without enough mucilage remaining.
+            if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < Constants.MUCOCYST_MINIMUM_MUCILAGE)
+                return;
+
+            control.State = MicrobeState.MucocystShield;
+
+            // TODO: maybe it is too loud if all cells in a colony play the sound?
+            entity.Get<SoundEffectPlayer>().PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
+        }
+        else
+        {
+            control.State = MicrobeState.Normal;
         }
     }
 }

@@ -58,6 +58,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private bool playerWasDigested;
 
+    /// <summary>
+    ///   Wether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
+    ///   and updating the bar will be ignored
+    /// </summary>
+    private bool playerMissingStrainAffected;
+
     [Signal]
     public delegate void OnToggleEngulfButtonPressedEventHandler();
 
@@ -68,6 +74,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     public delegate void OnSecreteSlimeButtonPressedEventHandler();
 
     [Signal]
+    public delegate void OnMucocystButtonPressedEventHandler();
+
+    [Signal]
     public delegate void OnToggleBindingButtonPressedEventHandler();
 
     [Signal]
@@ -75,6 +84,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Signal]
     public delegate void OnEjectEngulfedButtonPressedEventHandler();
+
+    [Signal]
+    public delegate void OnSprintButtonPressedEventHandler();
 
     protected override string UnPauseHelpText => Localization.Translate("PAUSE_PROMPT");
 
@@ -312,6 +324,31 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         return stage.Player.Get<CompoundStorage>().Compounds;
     }
 
+    protected override float? ReadPlayerStrainFraction()
+    {
+        if (!stage!.Player.Has<StrainAffected>())
+        {
+            if (!playerMissingStrainAffected)
+            {
+                GD.PrintErr("Player is missing StrainAffected component");
+                playerMissingStrainAffected = true;
+            }
+
+            return null;
+        }
+
+        return stage.Player.Get<StrainAffected>().CalculateStrainFraction();
+    }
+
+    protected override bool CanSprint()
+    {
+        if (!stage!.HasAlivePlayer)
+            return false;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+        return !control.OutOfSprint;
+    }
+
     protected override Func<Compound, bool> GetIsUsefulCheck()
     {
         if (!stage!.Player.Has<MicrobeColony>())
@@ -395,8 +432,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         bool showToxin;
         bool showSlime;
+        bool showMucocyst;
 
         bool engulfing;
+        bool usingMucocyst;
 
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Has<MicrobeColony>())
@@ -404,19 +443,23 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             ref var colony = ref player.Get<MicrobeColony>();
 
             // TODO: does this need a variant that just returns a bool and has an early exit?
-            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets);
+            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets, out var mucocysts);
 
             showToxin = vacuoles > 0;
             showSlime = slimeJets > 0;
+            showMucocyst = mucocysts > 0;
 
             engulfing = colony.ColonyState == MicrobeState.Engulf;
+            usingMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
         }
         else
         {
             showToxin = organelles.AgentVacuoleCount > 0;
             showSlime = organelles.SlimeJets is { Count: > 0 };
+            showMucocyst = organelles.MucocystCount > 0;
 
             engulfing = control.State == MicrobeState.Engulf;
+            usingMucocyst = control.State == MicrobeState.MucocystShield;
         }
 
         bool isDigesting = false;
@@ -429,13 +472,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, engulfing, isDigesting);
+            organelles.HasSignalingAgent, showMucocyst, true, engulfing, isDigesting, usingMucocyst, control.Sprinting);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
 
         bindingModeHotkey.ButtonPressed = control.State == MicrobeState.Binding;
-        unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+
+        if (unbindAllHotkey.ActionNameAsStringName != null)
+            unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionNameAsStringName);
     }
 
     protected override void UpdateHoverInfo(float delta)
@@ -757,9 +802,19 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         EmitSignal(SignalName.OnSecreteSlimeButtonPressed);
     }
 
+    private void OnMucocystPressed()
+    {
+        EmitSignal(SignalName.OnMucocystButtonPressed);
+    }
+
     private void OnEjectEngulfedPressed()
     {
         EmitSignal(SignalName.OnEjectEngulfedButtonPressed);
+    }
+
+    private void OnSprintPressed()
+    {
+        EmitSignal(SignalName.OnSprintButtonPressed);
     }
 
     private void OnTranslationsChanged()

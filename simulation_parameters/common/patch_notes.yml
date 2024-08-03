@@ -479,3 +479,16 @@
     - Updated xunit from 2.8.0 to 2.8.1
     - Updated code checking tools
     - Updated translations
+
+0.6.7.1:
+  IntroductionText: |
+    This is a quick small patch release to fix a few major issues that were resolved since the last release. The most major fix is that many more older CPUs should be able to run Thrive now. This problem was caused by a build configuration setting unintentionally targeting much newer CPU instructions than intended.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.7.1
+  PatchNotes:
+    - Changed compilation options for the fallback native library that should now work on older CPUs that only have SSE 4.2 and no newer instructions
+    - Fixed the game getting stuck when selecting 32 native executor threads
+    - Re-enabled Harmony mod loading as this no longer seems to cause the game to get stuck on start up with Godot 4
+    - Reduced unnecessary StringName allocations related to key prompt icons and checking pressed inputs 
+    - Updated YamlDotNet from 15.1.6 to 15.3.0 
+    - Updated Jolt Physics Engine version
+    - Updated translations

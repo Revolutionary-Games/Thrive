@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-07 10:19+0300\n"
-"PO-Revision-Date: 2024-06-11 06:06+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2024-08-02 12:03+0300\n"
+"PO-Revision-Date: 2024-07-24 11:26+0300\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Poedit 3.4.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -42,6 +42,9 @@ msgstr "Aborted."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssopelagic"
+
+msgid "ACCEPT"
+msgstr "Accept"
 
 msgid "ACTION_AWAKEN"
 msgstr "Awaken ({0:F1} / {1:F1})"
@@ -151,6 +154,9 @@ msgstr "You are already ascended"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALWAYS_VISIBLE"
+msgstr "Always visible"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance volume"
@@ -1765,6 +1771,12 @@ msgstr "Exit Editor"
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Exit to Launcher"
 
+msgid "EXPERIMENTAL_FEATURES"
+msgstr "Experimental features"
+
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(enable extra features that aren't polished enough to be in the game by default, if you play with these please share any feedback you have about these)"
+
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Export All Worlds"
 
@@ -3145,6 +3157,33 @@ msgstr ""
 msgid "MIDDLE_MOUSE"
 msgstr "Middle mouse"
 
+msgid "MIGRATE"
+msgstr "Migrate"
+
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Error: failed to add migration, please check migration parameters"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr "Going to migrate population from {0} to ..."
+
+msgid "MIGRATION_STATUS_TEXT"
+msgstr "Going to migrate {2} units of population from {0} to {1}"
+
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "Select a destination patch for the migration that is connected to the source patch"
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr "Only one migration can be performed per editor session. You can view the queued migration below and keep it or cancel it to create a different migration"
+
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "Select how much population to migrate from the source patch to the destination"
+
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "Select a patch that has your species in it currently to act as the source for the migration"
+
+msgid "MIGRATION_TOOLTIP"
+msgstr "Migrate your species between patches without moving the patch you are in yourself"
+
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
@@ -3410,6 +3449,9 @@ msgstr "Mucilage"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Mucilage synthesis"
 
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Create a shield"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Multicellular Editor"
 
@@ -3655,6 +3697,9 @@ msgstr "x{0}"
 
 msgid "OCTOBER"
 msgstr "October"
+
+msgid "OFF"
+msgstr "Off"
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "Official Website"
@@ -4540,6 +4585,9 @@ msgstr "SFX volume"
 msgid "SHIFT"
 msgstr "Shift"
 
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "Show on-screen damage effect"
+
 msgid "SHOW_HELP"
 msgstr "Show help"
 
@@ -4730,6 +4778,12 @@ msgstr "Speed:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
 
+msgid "SPRINT"
+msgstr "Sprint"
+
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Toggle sprinting mode. When sprinting cells move faster but consume more ATP and as strain builds consumes even more ATP."
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause menu"
 
@@ -4836,6 +4890,9 @@ msgstr "seconds of"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr "Strain bar visibility"
 
 msgid "STRATEGY_STAGES"
 msgstr "Strategy Stages"
@@ -5162,6 +5219,9 @@ msgstr "Toggle Inventory"
 msgid "TOGGLE_METRICS"
 msgstr "Toggle Metrics display"
 
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Toggle mucocyst shield"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Toggle navigation tree"
 
@@ -5202,7 +5262,7 @@ msgid "TOXIN_MACROLIDE"
 msgstr "Macrolide"
 
 msgid "TOXIN_MACROLIDE_DESCRIPTION"
-msgstr "Toxin that massively reduces base movement speed making simple cells basically unable to move."
+msgstr "Toxin that massively reduces base movement speed, making simple cells basically unable to move."
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
 msgstr "Cyanide"
@@ -5601,6 +5661,12 @@ msgstr "Injectisome Pilus"
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Turns the pilus into an injectisome, dealing toxin damage when impaling other cells"
 
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "Mucocyst"
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "Turns the slime jet into a mucocyst, which creates a protective sheath of slime around the cell. When activated, it gives temporary immunity to all damage sources."
+
 msgid "UPLOAD"
 msgstr "Upload"
 
@@ -5702,6 +5768,12 @@ msgstr "VIP Supporters"
 
 msgid "VISIBLE"
 msgstr "Visible"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr "Visible when almost full"
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr "Visible when above zero"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Suggest a Feature"
@@ -6966,6 +7038,12 @@ msgstr "Zoom in"
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
 
+#~ msgid "DESTINATION_PATCH"
+#~ msgstr "Destination Patch"
+
+#~ msgid "SOURCE_PATCH"
+#~ msgstr "Source Patch"
+
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost"
 
@@ -7094,14 +7172,6 @@ msgstr "Zoom out"
 
 #~ msgid "AVERAGE"
 #~ msgstr "Average"
-
-#~ msgid "EXPERIMENTAL_LABEL"
-#~ msgstr "Experimental Settings"
-
-#~ msgid "EXPERIMENTAL_WARNING"
-#~ msgstr ""
-#~ "These settings are unpolished and unstable. They may affect your game in undesirable ways.\n"
-#~ "Use at your own risk."
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Insightful stats about the current game"
@@ -7548,9 +7618,6 @@ msgstr "Zoom out"
 
 #~ msgid "EDIAERESIS"
 #~ msgstr "Ë"
-
-#~ msgid "IGRAVE"
-#~ msgstr "Ì"
 
 #~ msgid "IACUTE"
 #~ msgstr "Í"
