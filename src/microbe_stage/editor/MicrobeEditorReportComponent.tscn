@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://qdqcbnri7vsw"]
+[gd_scene load_steps=26 format=3 uid="uid://qdqcbnri7vsw"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_ocn33"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="57"]
 [ext_resource type="Texture2D" uid="uid://c7cgjvfo1in67" path="res://assets/textures/gui/bevel/Temperature.png" id="62"]
 [ext_resource type="PackedScene" uid="uid://mmqt0mcw2if3" path="res://src/gui_common/charts/line/LineChart.tscn" id="103"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vfabd"]
 
 [sub_resource type="StyleBoxFlat" id="29"]
 bg_color = Color(0, 0, 0, 0.588235)
@@ -183,6 +185,7 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 14
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_vfabd")
 text = "AUTO_EVO"
 
 [node name="FoodChainButton" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -194,6 +197,7 @@ theme_override_font_sizes/font_size = 14
 disabled = true
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_vfabd")
 text = "FOOD_CHAIN"
 
 [node name="TimelineButton" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -204,6 +208,7 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 14
 toggle_mode = true
 action_mode = 0
+button_group = SubResource("ButtonGroup_vfabd")
 text = "TIMELINE"
 
 [node name="EvoResultsPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
