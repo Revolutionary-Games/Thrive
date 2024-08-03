@@ -131,6 +131,9 @@ public class ModifyExistingSpecies : IRunStep
 
         foreach (var variant in viableVariants.Select(x => x.Item1))
         {
+            if (variant == baseSpecies)
+                continue;
+
             MutationLogicFunctions.NameNewMicrobeSpecies(variant, baseSpecies);
 
             var oldColour = variant.Colour;
