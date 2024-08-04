@@ -17,7 +17,7 @@ public static class ScreenUtils
         Vector2 resolution = DisplayServer.WindowGetSize();
 
         // Constants from shader calculations
-        const float distortionMultiplier = 75f * 0.4f;
+        const float distortionMultiplier = 75f * 0.375f;
 
         distortion /= resolution.X;
         distortion *= distortionMultiplier;
@@ -44,7 +44,8 @@ public static class ScreenUtils
         float barrelDistortion1 = 0.1f * distortion;
         float barrelDistortion2 = -0.025f * distortion;
 
-        float r2 = pos.X * pos.X + pos.Y * pos.Y; // Replaces shader's dot(Vector2, Vector2) function
+        // Replaces shader's dot(Vector2, Vector2) function
+        float r2 = pos.X * pos.X + pos.Y * pos.Y;
 
         pos *= 1.0f + barrelDistortion1 * r2 + barrelDistortion2 * r2 * r2;
 
