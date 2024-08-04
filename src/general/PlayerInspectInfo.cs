@@ -136,10 +136,10 @@ public partial class PlayerInspectInfo : Node
     }
 
     /// <summary>
-    /// Applies screen effects to mouse position.
+    ///   Applies screen effects to mouse position.
     /// </summary>
     /// <returns>
-    /// True screen position of what visually is under cursor.
+    ///   True screen position of what visually is under cursor.
     /// </returns>
     protected virtual Vector2 ApplyScreenEffects(Vector2 mousePos, Vector2 viewportSize)
     {
