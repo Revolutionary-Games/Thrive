@@ -361,33 +361,6 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         }
     }
 
-    /// <summary>
-    /// Applies distortion for a mouse position
-    /// </summary>
-    private Vector2 ApplyDistortion(Vector2 mousePos, Vector2 size, float dist)
-    {
-        // GD.Print($"{mousePos.X / size.X}, {mousePos.Y / size.Y}");
-
-        dist /= size.X * 75f * 0.75f;
-
-        // Convert from viewport's coordinate system of [0, size] to [-1;1]
-        mousePos = (mousePos * 2f) / size - new Vector2(1f, 1f);
-
-        // Apply shader's distortion
-        float barrelDistortion1 = 0.1f * dist;
-        float barrelDistortion2 = -0.025f * dist;
-
-        float r2 = mousePos.X * mousePos.Y * 2f; // Replaces shader's dot(Vector2, Vector2) function
-        mousePos *= 1.0f + barrelDistortion1 * r2 + barrelDistortion2 * r2 * r2;
-
-        // Return to [0, size]
-        mousePos = (mousePos + new Vector2(1f, 1f)) * size / 2f;
-
-        // GD.Print($"=> {mousePos.X / size.X}, {mousePos.Y / size.Y}");
-
-        return mousePos;
-    }
-
     private void UpdateCursorWorldPos()
     {
         var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
@@ -401,8 +374,6 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         }
 
         var mousePos = viewPort.GetMousePosition();
-
-        mousePos = ApplyDistortion(mousePos, viewPort.GetVisibleRect().Size, Settings.Instance.ChromaticAmount);
 
         var intersection = worldPlane.IntersectsRay(ProjectRayOrigin(mousePos),
             ProjectRayNormal(mousePos));
