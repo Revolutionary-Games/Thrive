@@ -1,23 +1,23 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
-/// Utility for screen and view-related effects
+///   Utility for screen and view-related effects
 /// </summary>
 public static class ScreenUtils
 {
     /// <summary>
-    /// Applies barrel distortion to the given position
+    ///   Applies barrel distortion to the given position
     /// </summary>
     /// <param name="pos">
-    /// Position in the range of [0; resolution.X] for x and [0; resolution.Y] for y
+    ///   Position in the range of [0; resolution.X] for x and [0; resolution.Y] for y
     /// </param>
     public static Vector2 BarrelDistortion(Vector2 pos, float distortion, Vector2 viewportSize)
     {
         Vector2 resolution = DisplayServer.WindowGetSize();
 
         // Constants from shader calculations
-        const float distortionMultiplier = 75f * 0.5f;
+        const float distortionMultiplier = 75.0f * 0.5f;
 
         distortion /= resolution.X;
         distortion *= distortionMultiplier;
@@ -25,15 +25,15 @@ public static class ScreenUtils
         // Convert from [0, size] to [0; 1]
         pos /= viewportSize;
 
-        Vector2 oversizeVector = Distort(new Vector2(1f, 1f), distortion);
-        pos = RemapVector(pos, new Vector2(1f, 1f) - oversizeVector, oversizeVector);
+        Vector2 oversizeVector = Distort(new Vector2(1.0f, 1.0f), distortion);
+        pos = RemapVector(pos, new Vector2(1.0f, 1.0f) - oversizeVector, oversizeVector);
 
         // Convert from [0, 1] to [-1; 1]
-        pos = (pos * 2f) - new Vector2(1f, 1f);
+        pos = (pos * 2.0f) - new Vector2(1.0f, 1.0f);
         pos = Distort(pos, distortion * 1.25f);
 
         // Return to [0, size]
-        pos = (pos + new Vector2(1f, 1f)) / 2f;
+        pos = (pos + new Vector2(1.0f, 1.0f)) / 2.0f;
         pos *= viewportSize;
 
         return pos;
@@ -55,8 +55,8 @@ public static class ScreenUtils
     private static Vector2 RemapVector(Vector2 t, Vector2 a, Vector2 b)
     {
         t = (t - a) / (b - a);
-        t.X = float.Clamp(t.X, 0f, 1f);
-        t.Y = float.Clamp(t.Y, 0f, 1f);
+        t.X = float.Clamp(t.X, 0.0f, 1.0f);
+        t.Y = float.Clamp(t.Y, 0.0f, 1.0f);
         return t;
     }
 }
