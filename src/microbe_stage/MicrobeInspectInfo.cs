@@ -42,12 +42,23 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
 
         base.Process(delta);
 
-        clouds.GetAllAvailableAt(camera.CursorWorldPos, currentHoveredCompounds, false);
+        var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
 
-        if (camera.CursorWorldPos != lastCursorWorldPos)
+        var viewport = camera.GetViewport();
+        var mousePos = viewport.GetMousePosition();
+        mousePos = ApplyScreenEffects(mousePos, viewport.GetVisibleRect().Size);
+
+        var intersection = worldPlane.IntersectsRay(camera.ProjectRayOrigin(mousePos),
+            camera.ProjectRayNormal(mousePos));
+
+        var cursorWorldPos = intersection.Value;
+
+        clouds.GetAllAvailableAt(cursorWorldPos, currentHoveredCompounds, false);
+
+        if (cursorWorldPos != lastCursorWorldPos)
         {
             hoveredCompounds.Clear();
-            lastCursorWorldPos = camera.CursorWorldPos;
+            lastCursorWorldPos = cursorWorldPos;
         }
 
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
@@ -79,5 +90,14 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
         }
 
         currentHoveredCompounds.Clear();
+    }
+
+    /// <inheritdoc/>
+    protected override Vector2 ApplyScreenEffects(Vector2 mousePos, Vector2 viewportSize)
+    {
+        float distortion = Settings.Instance.ChromaticAmount;
+        mousePos = ScreenUtils.BarrelDistortion(mousePos, distortion, viewportSize);
+
+        return mousePos;
     }
 }
