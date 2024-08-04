@@ -17,7 +17,7 @@ public static class ScreenUtils
         Vector2 resolution = DisplayServer.WindowGetSize();
 
         // Constants from shader calculations
-        const float distortionMultiplier = 75f * 0.375f;
+        const float distortionMultiplier = 75f * 0.45f;
 
         distortion /= resolution.X;
         distortion *= distortionMultiplier;
@@ -30,7 +30,7 @@ public static class ScreenUtils
 
         // Convert from [0, 1] to [-1; 1]
         pos = (pos * 2f) - new Vector2(1f, 1f);
-        pos = Distort(pos, distortion * 0.5f);
+        pos = Distort(pos, distortion * 0.7f);
 
         // Return to [0, size]
         pos = (pos + new Vector2(1f, 1f)) / 2f;
