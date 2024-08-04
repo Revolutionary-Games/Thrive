@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://yxuatqlicwtn"]
+[gd_scene load_steps=9 format=3 uid="uid://yxuatqlicwtn"]
 
 [ext_resource type="PackedScene" uid="uid://d2keheblwnnfe" path="res://assets/models/organelles/Cilia.glb" id="1_3ulh5"]
 [ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2"]
+[ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="2_8fa0l"]
 [ext_resource type="Texture2D" uid="uid://dpu27qlhym5wd" path="res://assets/textures/cilia.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
 
@@ -47,8 +48,10 @@ shader_parameter/jiggleAmount = 0.0005
 shader_parameter/texture = ExtResource("3")
 shader_parameter/dissolveTexture = ExtResource("4")
 
-[node name="Cilia" instance=ExtResource("1_3ulh5")]
+[node name="Cilia" node_paths=PackedStringArray("meshChildren") instance=ExtResource("1_3ulh5")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0.273)
+script = ExtResource("2_8fa0l")
+meshChildren = [NodePath("Armature/Skeleton3D/Cube_003"), NodePath("Armature_001/Skeleton3D/Cube_001"), NodePath("Armature_002/Skeleton3D/Cube_002")]
 
 [node name="Armature" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, -1, 3.89414e-07, 0, -3.89414e-07, -1, 0, 0.340916, 0.0558868)
