@@ -98,8 +98,11 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
     /// <inheritdoc/>
     protected override Vector2 ApplyScreenEffects(Vector2 mousePos, Vector2 viewportSize)
     {
-        float distortion = Settings.Instance.ChromaticAmount;
-        mousePos = ScreenUtils.BarrelDistortion(mousePos, distortion, viewportSize);
+        if (Settings.Instance.ChromaticEnabled)
+        {
+            float distortion = Settings.Instance.ChromaticAmount;
+            mousePos = ScreenUtils.BarrelDistortion(mousePos, distortion, viewportSize);
+        }
 
         return mousePos;
     }
