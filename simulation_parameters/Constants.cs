@@ -1086,7 +1086,7 @@ public static class Constants
     public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
     public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
 
-    public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.3f;
+    public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
     public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
