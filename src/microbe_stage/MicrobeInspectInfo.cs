@@ -42,14 +42,12 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
 
         base.Process(delta);
 
-        var cursorVisualWorldPos = camera.CursorVisualWorldPos;
+        clouds.GetAllAvailableAt(camera.CursorVisualWorldPos, currentHoveredCompounds, false);
 
-        clouds.GetAllAvailableAt(cursorVisualWorldPos, currentHoveredCompounds, false);
-
-        if (cursorVisualWorldPos != lastCursorWorldPos)
+        if (camera.CursorVisualWorldPos != lastCursorWorldPos)
         {
             hoveredCompounds.Clear();
-            lastCursorWorldPos = cursorVisualWorldPos;
+            lastCursorWorldPos = camera.CursorVisualWorldPos;
         }
 
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
