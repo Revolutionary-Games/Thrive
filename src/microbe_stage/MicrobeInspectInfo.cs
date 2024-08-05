@@ -42,26 +42,14 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
 
         base.Process(delta);
 
-        var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
+        var cursorVisualWorldPos = camera.CursorVisualWorldPos;
 
-        var viewport = camera.GetViewport();
-        var mousePos = viewport.GetMousePosition();
+        clouds.GetAllAvailableAt(cursorVisualWorldPos, currentHoveredCompounds, false);
 
-        mousePos = ApplyScreenEffects(mousePos, viewport.GetVisibleRect().Size);
-
-        var intersection = worldPlane.IntersectsRay(camera.ProjectRayOrigin(mousePos),
-            camera.ProjectRayNormal(mousePos));
-
-        if (intersection.HasValue)
+        if (cursorVisualWorldPos != lastCursorWorldPos)
         {
-            var cursorWorldPos = intersection.Value;
-            clouds.GetAllAvailableAt(cursorWorldPos, currentHoveredCompounds, false);
-
-            if (cursorWorldPos != lastCursorWorldPos)
-            {
-                hoveredCompounds.Clear();
-                lastCursorWorldPos = cursorWorldPos;
-            }
+            hoveredCompounds.Clear();
+            lastCursorWorldPos = cursorVisualWorldPos;
         }
 
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
