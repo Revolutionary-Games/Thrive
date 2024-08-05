@@ -42,7 +42,6 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 
         ref var sender = ref entity.Get<SiderophoreProjectile>().Sender;
 
-
         if (!projectile.ProjectileInitialized)
         {
             projectile.ProjectileInitialized = true;
@@ -88,37 +87,34 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         var target = collision.SecondEntity;
 
         // Skip if hit something that's not a chunk
-        if (!target.Has<ChunkConfiguration>())
+        if (!target.Has<CompoundStorage>())
             return false;
 
-        ref var configuration = ref target.Get<ChunkConfiguration>();
+        ref var compounds = ref target.Get<CompoundStorage>();
 
-        if (configuration.Compounds == null)
+        if (compounds.Compounds.Compounds == null)
             return false;
 
         // Check if it is the big iron chunk
-        if (configuration.Name == "BIG_IRON_CHUNK")
+        if (compounds.Compounds.Compounds[iron] > 0)
         {
-            if (configuration.Compounds[iron].Amount > 0)
+            var efficiency = projectile.Amount;
+
+            var size = (float)Math.Max(Math.Min(efficiency / 3, 20), 1);
+
+            smallIronChunk.ChunkScale = (float)Math.Sqrt(size);
+            smallIronChunk.Size = Math.Min(size, compounds.Compounds.Compounds[iron]);
+            smallIronChunk.Compounds![iron] = new ChunkConfiguration.ChunkCompound
             {
-                var efficiency = projectile.Amount;
+                Amount = smallIronChunk.Size,
+            };
 
-                var size = (float)Math.Max(Math.Min(efficiency / 3, 20), 1);
+            SpawnHelpers.SpawnChunk(worldSimulation, smallIronChunk, collision.FirstEntity.Get<WorldPosition>()
+                .Position, new Random(), false);
 
-                smallIronChunk.ChunkScale = (float)Math.Sqrt(size);
-                smallIronChunk.Size = Math.Min(size, configuration.Compounds[iron].Amount);
-                smallIronChunk.Compounds![iron] = new ChunkConfiguration.ChunkCompound
-                {
-                    Amount = smallIronChunk.Size,
-                };
-
-                SpawnHelpers.SpawnChunk(worldSimulation, smallIronChunk, collision.FirstEntity.Get<WorldPosition>()
-                    .Position, new Random(), false);
-
-                // Spawn effect
-                SpawnHelpers.SpawnCellBurstEffect(worldSimulation, collision.FirstEntity.Get<WorldPosition>()
-                    .Position, efficiency - 2);
-            }
+            // Spawn effect
+            SpawnHelpers.SpawnCellBurstEffect(worldSimulation, collision.FirstEntity.Get<WorldPosition>()
+                .Position, efficiency - 2);
         }
 
         return true;

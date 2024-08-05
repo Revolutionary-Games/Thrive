@@ -117,31 +117,11 @@ public static class SpawnHelpers
 
         var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
-        entity.Set(new WorldPosition(location + direction * 1.5f));
+        SetProjectileComponents(ref entity, location, direction, lifetime, normalizedDirection, emitter);
 
         entity.Set(new PredefinedVisuals
         {
             VisualIdentifier = VisualResourceIdentifier.SiderophoreProjectile,
-        });
-
-        entity.Set(default(SpatialInstance));
-
-        entity.Set(new TimedLife
-        {
-            TimeToLiveRemaining = lifetime,
-        });
-        entity.Set(new FadeOutActions
-        {
-            FadeTime = Constants.EMITTER_DESPAWN_DELAY,
-            DisableCollisions = true,
-            RemoveVelocity = true,
-            DisableParticles = true,
-        });
-
-        entity.Set(new Physics
-        {
-            Velocity = normalizedDirection * Constants.AGENT_EMISSION_VELOCITY,
-            AxisLock = Physics.AxisLockType.YAxisWithRotation,
         });
 
         entity.Set(new SiderophoreProjectile
@@ -149,21 +129,6 @@ public static class SpawnHelpers
             Amount = amount,
             Sender = emitter,
         });
-
-        // Need to specify shape like this to make saving work
-        entity.Set(new SimpleShapeCreator(SimpleShapeType.Sphere, Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
-            Constants.TOXIN_PROJECTILE_PHYSICS_DENSITY));
-
-        entity.Set<PhysicsShapeHolder>();
-        entity.Set(new CollisionManagement
-        {
-            IgnoredCollisionsWith = new List<Entity> { emitter },
-
-            // Callbacks are initialized by ToxinCollisionSystem
-        });
-
-        // Needed for fade actions
-        entity.Set<ManualPhysicsControl>();
 
         return entity;
     }
@@ -201,29 +166,11 @@ public static class SpawnHelpers
 
         var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
-        entity.Set(new WorldPosition(location + direction * 1.5f));
+        SetProjectileComponents(ref entity, location, direction, lifetime, normalizedDirection, emitter);
 
         entity.Set(new PredefinedVisuals
         {
             VisualIdentifier = properties.GetVisualResource(),
-        });
-
-        entity.Set(new SpatialInstance
-        {
-            VisualScale = new Vector3(scale, scale, scale),
-            ApplyVisualScale = Math.Abs(scale - 1) > MathUtils.EPSILON,
-        });
-
-        entity.Set(new TimedLife
-        {
-            TimeToLiveRemaining = lifetime,
-        });
-        entity.Set(new FadeOutActions
-        {
-            FadeTime = Constants.EMITTER_DESPAWN_DELAY,
-            DisableCollisions = true,
-            RemoveVelocity = true,
-            DisableParticles = true,
         });
 
         entity.Set(new ToxinDamageSource
@@ -231,27 +178,6 @@ public static class SpawnHelpers
             ToxinAmount = amount,
             ToxinProperties = properties,
         });
-
-        entity.Set(new Physics
-        {
-            Velocity = normalizedDirection * Constants.AGENT_EMISSION_VELOCITY,
-            AxisLock = Physics.AxisLockType.YAxisWithRotation,
-        });
-
-        // Need to specify shape like this to make saving work
-        entity.Set(new SimpleShapeCreator(SimpleShapeType.Sphere, Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
-            Constants.TOXIN_PROJECTILE_PHYSICS_DENSITY));
-
-        entity.Set<PhysicsShapeHolder>();
-        entity.Set(new CollisionManagement
-        {
-            IgnoredCollisionsWith = new List<Entity> { emitter },
-
-            // Callbacks are initialized by ToxinCollisionSystem
-        });
-
-        // Needed for fade actions
-        entity.Set<ManualPhysicsControl>();
 
         entity.Set(new ReadableName(properties.Name));
 
@@ -311,8 +237,6 @@ public static class SpawnHelpers
             VisualScale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale, chunkType.ChunkScale),
             ApplyVisualScale = Math.Abs(chunkType.ChunkScale - 1) > MathUtils.EPSILON,
         });
-
-        entity.Set(chunkType);
 
         bool hasMicrobeShaderParameters = false;
 
@@ -1122,6 +1046,46 @@ public static class SpawnHelpers
         return new Quaternion(
             new Vector3(random.NextSingle() + 0.01f, random.NextSingle(), random.NextSingle()).Normalized(),
             random.NextSingle() * Mathf.Pi + 0.01f);
+    }
+
+    private static void SetProjectileComponents(ref EntityRecord entity, Vector3 location, Vector3 direction,
+        float lifetime, Vector3 normalizedDirection, Entity emitter)
+    {
+        entity.Set(new WorldPosition(location + direction * 1.5f));
+        entity.Set(default(SpatialInstance));
+
+        entity.Set(new TimedLife
+        {
+            TimeToLiveRemaining = lifetime,
+        });
+        entity.Set(new FadeOutActions
+        {
+            FadeTime = Constants.EMITTER_DESPAWN_DELAY,
+            DisableCollisions = true,
+            RemoveVelocity = true,
+            DisableParticles = true,
+        });
+
+        entity.Set(new Physics
+        {
+            Velocity = normalizedDirection * Constants.AGENT_EMISSION_VELOCITY,
+            AxisLock = Physics.AxisLockType.YAxisWithRotation,
+        });
+
+        // Need to specify shape like this to make saving work
+        entity.Set(new SimpleShapeCreator(SimpleShapeType.Sphere, Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
+            Constants.TOXIN_PROJECTILE_PHYSICS_DENSITY));
+
+        entity.Set<PhysicsShapeHolder>();
+        entity.Set(new CollisionManagement
+        {
+            IgnoredCollisionsWith = new List<Entity> { emitter },
+
+            // Callbacks are initialized by ToxinCollisionSystem
+        });
+
+        // Needed for fade actions
+        entity.Set<ManualPhysicsControl>();
     }
 }
 
