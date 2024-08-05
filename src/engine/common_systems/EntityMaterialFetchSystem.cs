@@ -1,6 +1,7 @@
 ﻿namespace Systems;
 
 using System;
+using System.Collections.Generic;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -19,6 +20,8 @@ using World = DefaultEcs.World;
 [RunsOnMainThread]
 public sealed class EntityMaterialFetchSystem : AEntitySetSystem<float>
 {
+    private readonly List<ShaderMaterial> tempMaterialFetchList = new();
+
     // TODO: determine if it is thread safe to fetch Godot materials
     public EntityMaterialFetchSystem(World world) : base(world, null)
     {
@@ -50,13 +53,16 @@ public sealed class EntityMaterialFetchSystem : AEntitySetSystem<float>
 
                 if (string.IsNullOrEmpty(materialComponent.AutoRetrieveModelPath))
                 {
-                    materialComponent.Materials = new[] { nodeToFetchFrom.GetMaterial() };
+                    nodeToFetchFrom.GetMaterial(tempMaterialFetchList);
                 }
                 else
                 {
                     using var nodePath = new NodePath(materialComponent.AutoRetrieveModelPath);
-                    materialComponent.Materials = new[] { nodeToFetchFrom.GetMaterial(nodePath) };
+                    nodeToFetchFrom.GetMaterial(tempMaterialFetchList, nodePath);
                 }
+
+                materialComponent.Materials = tempMaterialFetchList.ToArray();
+                tempMaterialFetchList.Clear();
 
                 if (materialComponent.Materials is not { Length: > 0 } || materialComponent.Materials[0] == null)
                 {
