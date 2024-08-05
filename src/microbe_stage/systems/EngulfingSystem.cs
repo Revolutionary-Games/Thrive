@@ -50,7 +50,6 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(EntityRadiusInfo))]
-[ReadsComponent(typeof(DamageCooldown))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RunsAfter(typeof(PilusDamageSystem))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
@@ -1461,8 +1460,11 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable, false);
 
-        ref var damageCooldown = ref entity.Get<DamageCooldown>();
-        damageCooldown.StartCooldown(Constants.PILUS_MAX_COOLDOWN);
+        if (entity.Has<DamageCooldown>())
+        {
+            ref var damageCooldown = ref entity.Get<DamageCooldown>();
+            damageCooldown.StartCooldown(Constants.PILUS_MAX_COOLDOWN);
+        }
 
         // The phagosome will be deleted automatically, we just hide it here to make it disappear on the same frame
         // as the ejection completes
