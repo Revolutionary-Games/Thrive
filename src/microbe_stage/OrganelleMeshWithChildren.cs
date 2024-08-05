@@ -9,8 +9,11 @@ using Godot.Collections;
 public partial class OrganelleMeshWithChildren : MeshInstance3D
 {
 #pragma warning disable CA2213
+    /// <summary>
+    ///   If set, overrides the default behaviour for finding the mesh children
+    /// </summary>
     [Export]
-    private Array<GeometryInstance3D>? meshChildren = null!;
+    private Array<GeometryInstance3D>? meshChildren;
 #pragma warning restore CA2213
 
     public void GetChildrenMaterials(List<ShaderMaterial> result, bool quiet = false)

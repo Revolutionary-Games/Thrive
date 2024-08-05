@@ -346,14 +346,13 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
             // Materials need to be always fully fetched again to make sure we don't forget any active ones
             int start = tempMaterialsList.Count;
-            if (graphics is OrganelleMeshWithChildren organelleMeshWithChildren)
-            {
-                organelleMeshWithChildren.GetChildrenMaterials(tempMaterialsList);
-            }
 
             // Use the model data from when the graphics were loaded for consistency
-            var material = graphics.GetMaterial(placedOrganelle.LoadedGraphicsSceneInfo.ModelPath);
-            tempMaterialsList.Add(material);
+            if (!graphics.GetMaterial(tempMaterialsList, placedOrganelle.LoadedGraphicsSceneInfo.ModelPath))
+            {
+                GD.PrintErr("Failed to fetch organelle materials for created: ",
+                    placedOrganelle.Definition.InternalName);
+            }
 
             // Apply tint (again) to make sure it is up-to-date
             int count = tempMaterialsList.Count;
