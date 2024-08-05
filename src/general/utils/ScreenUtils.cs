@@ -13,7 +13,7 @@ public static class ScreenUtils
         Vector2 resolution = DisplayServer.WindowGetSize();
 
         // Constants from shader calculations
-        const float distortionMultiplier = 75.0f;
+        const float distortionMultiplier = 75.0f * 0.45f;
 
         distortion /= resolution.X;
         distortion *= distortionMultiplier;
@@ -21,12 +21,12 @@ public static class ScreenUtils
         // Convert from [0, size] to [0; 1]
         screenPos /= viewportSize;
 
-        Vector2 oversizeVector = Distort(new Vector2(1.0f, 1.0f), distortion * 0.5f);
+        Vector2 oversizeVector = Distort(new Vector2(1.0f, 1.0f), distortion);
         screenPos = RemapVector(screenPos, new Vector2(1.0f, 1.0f) - oversizeVector, oversizeVector);
 
         // Convert from [0, 1] to [-1; 1]
         screenPos = (screenPos * 2.0f) - new Vector2(1.0f, 1.0f);
-        screenPos = Distort(screenPos, distortion * 0.7f);
+        screenPos = Distort(screenPos, distortion);
 
         // Return to [0, size]
         screenPos = (screenPos + new Vector2(1.0f, 1.0f)) / 2.0f;
