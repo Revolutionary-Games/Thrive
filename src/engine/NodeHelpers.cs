@@ -153,12 +153,14 @@ public static class NodeHelpers
     }
 
     /// <summary>
-    ///   Get the material of this scene's model.
+    ///   Get the material of this scene's model. And handles <see cref="OrganelleMeshWithChildren"/> to get all
+    ///   materials.
     /// </summary>
     /// <param name="node">Node to get material from.</param>
+    /// <param name="result">Where to store the found materials</param>
     /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
-    /// <returns>ShaderMaterial of the GeometryInstance.</returns>
-    public static ShaderMaterial GetMaterial(this Node node, NodePath? modelPath = null)
+    /// <returns>True on success, false on problem</returns>
+    public static bool GetMaterial(this Node node, List<ShaderMaterial> result, NodePath? modelPath = null)
     {
         GeometryInstance3D? geometry;
 
@@ -178,20 +180,25 @@ public static class NodeHelpers
         {
             GD.PrintErr("Converting node to GeometryInstance3D for getting material failed, on node: ", node.GetPath(),
                 " relative path: ", modelPath);
-            throw;
+            return false;
         }
 
         if (geometry == null)
         {
             GD.PrintErr("Getting geometry instance for material fetch failed on node: ", node.GetPath(),
                 " relative path: ", modelPath);
-            throw new NullReferenceException("geometry is null");
+            return false;
         }
+
+        bool success = false;
 
         try
         {
             if (geometry.MaterialOverride != null)
-                return (ShaderMaterial)geometry.MaterialOverride;
+            {
+                result.Add((ShaderMaterial)geometry.MaterialOverride);
+                success = true;
+            }
         }
         catch (InvalidCastException)
         {
@@ -199,20 +206,33 @@ public static class NodeHelpers
                 " relative path: ",
                 modelPath);
 
-            throw;
+            return false;
         }
+
+        // Handle multipart mesh objects
+        if (node is OrganelleMeshWithChildren nodeWithChildren)
+        {
+            nodeWithChildren.GetChildrenMaterials(result);
+        }
+        else if (geometry is OrganelleMeshWithChildren geometryWithChildren)
+        {
+            geometryWithChildren.GetChildrenMaterials(result);
+        }
+
+        if (success)
+            return true;
 
         GD.PrintErr("Material override missing on node (", node, "): ", node.GetPath(),
             " relative path: ", modelPath);
 
-        throw new Exception("No material override to fetch material as");
+        return false;
     }
 
     /// <summary>
     ///   Finds immediate children of node that are in a group
     /// </summary>
     /// <param name="node">The node to find children of</param>
-    /// <param name="group">The group the children need to be in in</param>
+    /// <param name="group">The group the children need to be in</param>
     /// <typeparam name="T">The type the children are cast to before returning</typeparam>
     /// <returns>Enumerable sequence of the children</returns>
     public static IEnumerable<T> GetChildrenToProcess<T>(this Node node, string group)
