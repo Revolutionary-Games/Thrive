@@ -60,11 +60,6 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         return 0;
     }
 
-    public override LocalizedString GetDescription()
-    {
-        return Name;
-    }
-
     public override string ToString()
     {
         return $"{Name} ({Predator.FormattedName})";

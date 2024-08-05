@@ -58,14 +58,20 @@ public class GenerateMiche : IRunStep
             generatedMiche.AddChild(glucoseMiche);
         }
 
+        var hasSmallIronChunk =
+            patch.Biome.Chunks.TryGetValue("ironSmallChunk", out var smallChunk) && smallChunk.Density > 0;
+
+        var hasBigIronChunk = patch.Biome.Chunks.TryGetValue("ironBigChunk", out var bigChunk) && bigChunk.Density > 0;
+
         // Iron
-        if (patch.Biome.Chunks.TryGetValue("ironSmallChunk", out var smallChunk) && smallChunk.Density > 0)
+        if (hasSmallIronChunk || hasBigIronChunk)
         {
             var ironMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, iron, atp, 1.0f));
 
-            ironMiche.AddChild(new Miche(new ChunkCompoundPressure(patch, 1, "ironSmallChunk", iron)));
+            if (hasSmallIronChunk)
+                ironMiche.AddChild(new Miche(new ChunkCompoundPressure(patch, 1, "ironSmallChunk", iron)));
 
-            if (patch.Biome.Chunks.TryGetValue("ironBigChunk", out var bigChunk) && bigChunk.Density > 0)
+            if (hasBigIronChunk)
                 ironMiche.AddChild(new Miche(new ChunkCompoundPressure(patch, 1, "ironBigChunk", iron)));
 
             generatedMiche.AddChild(ironMiche);

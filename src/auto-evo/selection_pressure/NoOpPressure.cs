@@ -26,9 +26,4 @@ public class NoOpPressure : SelectionPressure
     {
         return 0;
     }
-
-    public override LocalizedString GetDescription()
-    {
-        return Name;
-    }
 }

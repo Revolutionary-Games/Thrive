@@ -49,15 +49,13 @@ public abstract class SelectionPressure
         return 0;
     }
 
-    public void ApplyTranslations()
-    {
-        TranslationHelper.ApplyTranslations(this);
-    }
-
     /// <summary>
     ///   A description of this miche.
     /// </summary>
-    public abstract LocalizedString GetDescription();
+    public virtual LocalizedString GetDescription()
+    {
+        return Name;
+    }
 
     // ToString is used to display the Selection Pressure in the Miche Tree
     public override string ToString()

@@ -283,7 +283,6 @@ public class ModifyExistingSpecies : IRunStep
 
             if (bestMutation != null)
             {
-                GD.Print("result");
                 handledMutations.Add(bestMutation.Item2);
                 results.AddMutationResultForSpecies(bestMutation.Item1, bestMutation.Item2);
             }

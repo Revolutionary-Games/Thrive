@@ -23,22 +23,22 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         = CommonMutationFunctions.Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
-            .Where(proc => proc.Process.Inputs.ContainsKey(compound)).Any(), direction);
+            .Any(proc => proc.Process.Inputs.ContainsKey(compound)), direction);
     }
 
     public static AddOrganelleAnywhere ThatCreateCompound(Compound compound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
-            .Where(proc => proc.Process.Outputs.ContainsKey(compound)).Any(), direction);
+            .Any(proc => proc.Process.Outputs.ContainsKey(compound)), direction);
     }
 
     public static AddOrganelleAnywhere ThatConvertBetweenCompounds(Compound fromCompound, Compound toCompound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
-            .Where(proc => proc.Process.Inputs.ContainsKey(fromCompound) &&
-                proc.Process.Outputs.ContainsKey(toCompound)).Any(), direction);
+            .Any(proc => proc.Process.Inputs.ContainsKey(fromCompound) &&
+                proc.Process.Outputs.ContainsKey(toCompound)), direction);
     }
 
     public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)

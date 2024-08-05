@@ -133,19 +133,21 @@ public static class CommonMutationFunctions
         var workMemory1 = new HashSet<Hex>();
         var workMemory2 = new List<Hex>();
         var workMemory3 = new Queue<Hex>();
+
         var islandHexes = new List<Hex>();
+        var mainHexes = new HashSet<Hex>();
 
         organelles.GetIslandHexes(islandHexes, workMemory1, workMemory2, workMemory3);
 
         // Attach islands
         while (islandHexes.Count > 0)
         {
-            var mainHexes = organelles.ComputeHexCache().Except(islandHexes);
+            organelles.ComputeHexCache(mainHexes, workMemory2);
 
             // Compute shortest hex distance
             Hex minSubHex = default;
             int minDistance = int.MaxValue;
-            foreach (var mainHex in mainHexes)
+            foreach (var mainHex in mainHexes.Except(islandHexes))
             {
                 foreach (var islandHex in islandHexes)
                 {
@@ -175,10 +177,17 @@ public static class CommonMutationFunctions
             minSubHex.R = (int)(minSubHex.R * (minDistance - 1.0) / minDistance);
 
             // Move all island organelles by minSubHex
-            foreach (var organelle in organelles.Where(o => islandHexes.Any(h =>
-                         o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
+            foreach (var organelle in organelles)
             {
-                organelle.Position -= minSubHex;
+                foreach (var islandHex in islandHexes)
+                {
+                    if (organelle.Definition.GetRotatedHexes(organelle.Orientation)
+                        .Contains(islandHex - organelle.Position))
+                    {
+                        organelle.Position -= minSubHex;
+                        break;
+                    }
+                }
             }
 
             organelles.GetIslandHexes(islandHexes, workMemory1, workMemory2, workMemory3);

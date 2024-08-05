@@ -49,9 +49,4 @@ public class PredatorRoot : SelectionPressure
     {
         return 0;
     }
-
-    public override LocalizedString GetDescription()
-    {
-        return Name;
-    }
 }

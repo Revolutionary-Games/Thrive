@@ -50,9 +50,4 @@ public class MetabolicStabilityPressure : SelectionPressure
     {
         return 0;
     }
-
-    public override LocalizedString GetDescription()
-    {
-        return Name;
-    }
 }
