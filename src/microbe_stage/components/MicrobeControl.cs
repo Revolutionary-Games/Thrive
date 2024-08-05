@@ -206,7 +206,7 @@ public static class MicrobeControlHelpers
         if (control.AgentEmissionCooldown > 0)
             return false;
 
-        // Only shoot if you have an agent vacuole.
+        // Only shoot if you have any iron-breaking organelles
         if (organelles.IronBreakdownEfficiency < 1)
             return false;
 

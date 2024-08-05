@@ -4,25 +4,25 @@ using DefaultEcs;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Defines toxin damage dealt by an entity
+///   Defines how siderophore projectile behaves
 /// </summary>
 [JSONDynamicTypeAllowed]
 public struct SiderophoreProjectile
 {
+    /// <summary>
+    ///   Sender
+    /// </summary>
+    public Entity Sender;
+
     /// <summary>
     ///   Scales the efficiency
     /// </summary>
     public float Amount;
 
     /// <summary>
-    ///   Scales the efficiency
+    ///    Is already used and to be disposed
     /// </summary>
     public bool IsUsed;
-
-    /// <summary>
-    ///   Sender
-    /// </summary>
-    public Entity Sender;
 
     /// <summary>
     ///   Used by systems internally to know when they have processed the initial adding of a toxin. Should not be

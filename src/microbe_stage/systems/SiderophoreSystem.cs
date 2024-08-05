@@ -1,6 +1,7 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -18,11 +19,10 @@ using World = DefaultEcs.World;
 [RuntimeCost(0.5f, false)]
 public sealed class SiderophoreSystem : AEntitySetSystem<float>
 {
-    /// <summary>
-    ///   Holds a persistent instance of the collision filter callback to not need to create multiple delegates, and
-    ///   to make doubly sure this callback won't be garbage collected while the native side still has a reference to
-    ///   it.
-    /// </summary>
+    private static ChunkConfiguration smallIronChunk = SimulationParameters.Instance.GetBiome("default")
+        .Conditions.Chunks["ironSmallChunk"];
+    private static Compound iron = SimulationParameters.Instance.GetCompound("iron");
+
     private readonly IWorldSimulation worldSimulation;
 
     public SiderophoreSystem(World world, IParallelRunner runner, IWorldSimulation worldSimulation) :
@@ -33,9 +33,6 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 
     protected override void Update(float delta, in Entity entity)
     {
-        if (!entity.Has<SiderophoreProjectile>())
-            return;
-
         ref var projectile = ref entity.Get<SiderophoreProjectile>();
 
         if (projectile.IsUsed)
@@ -43,9 +40,14 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 
         ref var collisions = ref entity.Get<CollisionManagement>();
 
+        ref var sender = ref entity.Get<SiderophoreProjectile>().Sender;
+
+
         if (!projectile.ProjectileInitialized)
         {
             projectile.ProjectileInitialized = true;
+
+            projectile.Amount = sender.Get<OrganelleContainer>().IronBreakdownEfficiency;
 
             collisions.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_COLLISIONS_TINY);
         }
@@ -56,14 +58,10 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         {
             ref var collision = ref activeCollisions![i];
 
-            if (!HandleSiderophoreCollision(ref collision, in worldSimulation, entity
-                    .Get<SiderophoreProjectile>().Sender))
+            if (!HandleSiderophoreCollision(ref collision, in worldSimulation, sender, ref projectile))
             {
                 continue;
             }
-
-            // Applied a damaging hit, destroy this toxin
-            // TODO: We should probably get some *POP* effect here.
 
             // Expire right now
             ref var timedLife = ref entity.Get<TimedLife>();
@@ -80,13 +78,12 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
             // (this is just extra safety against the time over callback configuration not working correctly)
             projectile.IsUsed = true;
 
-            // Only deal damage at most to a single thing
             break;
         }
     }
 
     private static bool HandleSiderophoreCollision(ref PhysicsCollision collision,
-        in IWorldSimulation worldSimulation, Entity sender)
+        in IWorldSimulation worldSimulation, Entity sender, ref SiderophoreProjectile projectile)
     {
         var target = collision.SecondEntity;
 
@@ -96,8 +93,6 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 
         ref var configuration = ref target.Get<ChunkConfiguration>();
 
-        var iron = SimulationParameters.Instance.GetCompound("iron");
-
         if (configuration.Compounds == null)
             return false;
 
@@ -106,12 +101,8 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         {
             if (configuration.Compounds[iron].Amount > 0)
             {
-                var smallIronChunk = SimulationParameters.Instance.GetBiome("default")
-                    .Conditions.Chunks["ironSmallChunk"];
+                var efficiency = projectile.Amount;
 
-                var efficiency = sender.Get<OrganelleContainer>().IronBreakdownEfficiency;
-
-                // Not to do operation twice
                 var size = (float)Math.Max(Math.Min(efficiency / 3, 20), 1);
 
                 smallIronChunk.ChunkScale = (float)Math.Sqrt(size);
@@ -120,8 +111,6 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
                 {
                     Amount = smallIronChunk.Size,
                 };
-
-                // TODO: biting into iron should deplete it faster
 
                 SpawnHelpers.SpawnChunk(worldSimulation, smallIronChunk, collision.FirstEntity.Get<WorldPosition>()
                     .Position, new Random(), false);
