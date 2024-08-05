@@ -20,7 +20,7 @@ public struct SiderophoreProjectile
     public float Amount;
 
     /// <summary>
-    ///    Is already used and to be disposed
+    ///   Is already used and to be disposed
     /// </summary>
     public bool IsUsed;
 

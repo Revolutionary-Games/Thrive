@@ -1,7 +1,6 @@
 ﻿namespace Systems;
 
 using System;
-using System.Runtime.CompilerServices;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -21,6 +20,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 {
     private static ChunkConfiguration smallIronChunk = SimulationParameters.Instance.GetBiome("default")
         .Conditions.Chunks["ironSmallChunk"];
+
     private static Compound iron = SimulationParameters.Instance.GetCompound("iron");
 
     private readonly IWorldSimulation worldSimulation;
@@ -57,7 +57,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         {
             ref var collision = ref activeCollisions![i];
 
-            if (!HandleSiderophoreCollision(ref collision, in worldSimulation, sender, ref projectile))
+            if (!HandleSiderophoreCollision(ref collision, in worldSimulation, ref projectile))
             {
                 continue;
             }
@@ -82,7 +82,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
     }
 
     private static bool HandleSiderophoreCollision(ref PhysicsCollision collision,
-        in IWorldSimulation worldSimulation, Entity sender, ref SiderophoreProjectile projectile)
+        in IWorldSimulation worldSimulation, ref SiderophoreProjectile projectile)
     {
         var target = collision.SecondEntity;
 
@@ -92,7 +92,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 
         ref var compounds = ref target.Get<CompoundStorage>();
 
-        if (compounds.Compounds.Compounds == null)
+        if (compounds.Compounds.Compounds.Count < 1)
             return false;
 
         // Check if it is the big iron chunk
@@ -100,7 +100,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         {
             var efficiency = projectile.Amount;
 
-            var size = (float)Math.Max(Math.Min(efficiency / 3, 20), 1);
+            var size = Math.Max(Math.Min(efficiency / 3, 20), 1);
 
             smallIronChunk.ChunkScale = (float)Math.Sqrt(size);
             smallIronChunk.Size = Math.Min(size, compounds.Compounds.Compounds[iron]);
