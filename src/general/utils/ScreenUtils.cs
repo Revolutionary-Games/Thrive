@@ -30,7 +30,7 @@ public static class ScreenUtils
 
         // Convert from [0, 1] to [-1; 1]
         screenPos = (screenPos * 2.0f) - new Vector2(1.0f, 1.0f);
-        screenPos = Distort(screenPos, distortion * 0.7915f);
+        screenPos = Distort(screenPos, distortion * 0.75f);
 
         // Return to [0, size]
         screenPos = (screenPos + new Vector2(1.0f, 1.0f)) / 2.0f;
