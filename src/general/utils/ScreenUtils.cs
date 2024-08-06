@@ -9,7 +9,9 @@ public static class ScreenUtils
     ///   Applies barrel distortion to the given position
     /// </summary>
     /// <remarks>
-    ///   The math here should be the same as in chromatic.gdshader
+    ///   <para>
+    ///     The math here should be the same as in chromatic.gdshader
+    ///   </para>
     /// </remarks>
     public static Vector2 BarrelDistortion(Vector2 screenPos, float distortion, Vector2 viewportSize)
     {
