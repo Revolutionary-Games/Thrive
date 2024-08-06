@@ -565,7 +565,6 @@ public class OrganelleDefinition : IRegistryType
         if (Processes != null)
         {
             var oxygen = parameters.GetCompound("oxygen");
-            var iron = parameters.GetCompound("iron");
 
             foreach (var process in Processes)
             {
@@ -580,20 +579,6 @@ public class OrganelleDefinition : IRegistryType
 
                 if (resolvedProcess.Process.IsMetabolismProcess && ProcessUsesOxygen(resolvedProcess, oxygen))
                     IsOxygenMetabolism = true;
-
-                // Iron breakdown efficiency
-                if (resolvedProcess.Process.Inputs.ContainsKey(iron))
-                {
-                    // if is from ferroplast, double efficiency
-                    if (resolvedProcess.Process.InternalName == "ferrosynthesis")
-                    {
-                        IronBreakdownEfficiency += 2;
-                    }
-                    else
-                    {
-                        IronBreakdownEfficiency += 1;
-                    }
-                }
 
                 RunnableProcesses.Add(resolvedProcess);
             }

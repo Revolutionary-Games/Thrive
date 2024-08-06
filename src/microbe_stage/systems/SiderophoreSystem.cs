@@ -18,10 +18,10 @@ using World = DefaultEcs.World;
 [RuntimeCost(0.5f, false)]
 public sealed class SiderophoreSystem : AEntitySetSystem<float>
 {
-    private static ChunkConfiguration smallIronChunk = SimulationParameters.Instance.GetBiome("default")
+    private readonly ChunkConfiguration smallIronChunkCache = SimulationParameters.Instance.GetBiome("default")
         .Conditions.Chunks["ironSmallChunk"];
 
-    private static Compound iron = SimulationParameters.Instance.GetCompound("iron");
+    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
 
     private readonly IWorldSimulation worldSimulation;
 
@@ -76,7 +76,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         }
     }
 
-    private static bool HandleSiderophoreCollision(ref PhysicsCollision collision,
+    private bool HandleSiderophoreCollision(ref PhysicsCollision collision,
         in IWorldSimulation worldSimulation, ref SiderophoreProjectile projectile)
     {
         var target = collision.SecondEntity;
@@ -95,6 +95,10 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
             var efficiency = projectile.Amount;
 
             var size = Math.Max(Math.Min(efficiency / 3, 20), 1);
+
+            compounds.Compounds.Compounds[iron] -= size;
+
+            var smallIronChunk = smallIronChunkCache;
 
             smallIronChunk.ChunkScale = (float)Math.Sqrt(size);
             smallIronChunk.Size = Math.Min(size, compounds.Compounds.Compounds[iron]);

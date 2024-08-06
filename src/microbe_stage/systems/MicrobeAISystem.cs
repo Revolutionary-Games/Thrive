@@ -433,12 +433,17 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         var isIronEater = organelles.IronBreakdownEfficiency > 0;
 
+        // Siderophore is experimental feature
+        if (!gameWorld!.WorldSettings.ExperimentalFeatures)
+            isIronEater = false;
+
         // If there are no threats, look for a chunk to eat
         // TODO: still consider engulfing things if we're in a colony that can engulf (has engulfer cells)
         if (cellProperties.MembraneType.CanEngulf)
         {
             var targetChunk = GetNearestChunkItem(in entity, ref engulfer, ref position, compounds,
                 speciesFocus, speciesOpportunism, random, isIronEater, out var isChunkBigIron);
+
             if (targetChunk != null)
             {
                 PursueAndConsumeChunks(ref position, ref ai, ref control, ref engulfer, entity,
@@ -1276,7 +1281,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 ref var compounds = ref chunk.Get<CompoundStorage>();
 
                 if (!compounds.Compounds.HasAnyCompounds())
-                    return;
+                    continue;
 
                 // TODO: determine if it is a good idea to resolve this data here immediately
                 ref var position = ref chunk.Get<WorldPosition>();

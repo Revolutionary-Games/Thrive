@@ -76,7 +76,7 @@ public struct OrganelleContainer
     public int AgentVacuoleCount;
 
     /// <summary>
-    ///   How good organelle is at breaking down iron (rusticyanin - 1, ferroplast - 2)
+    ///   How good organelles are at breaking down iron (score is sum of scores from all organelles)
     /// </summary>
     public int IronBreakdownEfficiency;
 
