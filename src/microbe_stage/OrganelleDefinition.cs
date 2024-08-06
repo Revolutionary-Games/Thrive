@@ -588,12 +588,10 @@ public class OrganelleDefinition : IRegistryType
                     if (resolvedProcess.Process.InternalName == "ferrosynthesis")
                     {
                         IronBreakdownEfficiency += 2;
-
                     }
                     else
                     {
                         IronBreakdownEfficiency += 1;
-
                     }
                 }
 
