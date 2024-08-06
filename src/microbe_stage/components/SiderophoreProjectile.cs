@@ -25,7 +25,7 @@ public struct SiderophoreProjectile
     public bool IsUsed;
 
     /// <summary>
-    ///   Used by systems internally to know when they have processed the initial adding of a toxin. Should not be
+    ///   Used by systems internally to know when they have processed the initial adding of a siderophore. Should not be
     ///   modified from other places.
     /// </summary>
     [JsonIgnore]

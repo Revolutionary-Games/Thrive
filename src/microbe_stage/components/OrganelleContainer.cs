@@ -538,11 +538,7 @@ public static class OrganelleContainerHelpers
             if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
 
-            if (organelleDefinition.InternalName == "rusticyanin")
-                ++container.IronBreakdownEfficiency;
-
-            if (organelleDefinition.InternalName == "ferroplast")
-                container.IronBreakdownEfficiency += 2;
+            container.IronBreakdownEfficiency += organelleDefinition.IronBreakdownEfficiency;
 
             container.OrganellesCapacity +=
                 MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelleDefinition,

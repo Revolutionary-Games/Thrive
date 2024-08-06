@@ -1275,6 +1275,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 // Ignore chunks that wouldn't yield any useful compounds when absorbing
                 ref var compounds = ref chunk.Get<CompoundStorage>();
 
+                if (!compounds.Compounds.HasAnyCompounds())
+                    return;
+
                 // TODO: determine if it is a good idea to resolve this data here immediately
                 ref var position = ref chunk.Get<WorldPosition>();
                 ref var engulfable = ref chunk.Get<Engulfable>();

@@ -238,6 +238,11 @@ public static class SpawnHelpers
             ApplyVisualScale = Math.Abs(chunkType.ChunkScale - 1) > MathUtils.EPSILON,
         });
 
+        if (chunkType.Name == "BIG_IRON_CHUNK")
+        {
+            entity.Set(default(SiderophoreTarget));
+        }
+
         bool hasMicrobeShaderParameters = false;
 
         // This needs to be skipped for particle type chunks (as they don't have materials)

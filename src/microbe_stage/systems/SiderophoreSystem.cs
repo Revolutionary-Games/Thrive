@@ -68,13 +68,8 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 
             ref var physics = ref entity.Get<Physics>();
 
-            // TODO: should this instead of disabling the further collisions be removed from the world immediately
-            // to cause less of a physics impact?
-            // physics.BodyDisabled = true;
             physics.DisableCollisionState = Physics.CollisionState.DisableCollisions;
 
-            // And make sure the flag we check for is set immediately to not process this projectile again
-            // (this is just extra safety against the time over callback configuration not working correctly)
             projectile.IsUsed = true;
 
             break;
@@ -95,8 +90,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         if (compounds.Compounds.Compounds.Count < 1)
             return false;
 
-        // Check if it is the big iron chunk
-        if (compounds.Compounds.Compounds[iron] > 0)
+        if (target.Has<SiderophoreTarget>())
         {
             var efficiency = projectile.Amount;
 
@@ -113,6 +107,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
                 .Position, new Random(), false);
 
             // Spawn effect
+            // TODO: New effect for siderophore collision with iron chunk
             SpawnHelpers.SpawnCellBurstEffect(worldSimulation, collision.FirstEntity.Get<WorldPosition>()
                 .Position, efficiency - 2);
         }
