@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Displays a loaded scene object. Also stores the previous instance to avoid duplicate instantiations.
@@ -37,11 +38,15 @@ public partial class SceneDisplayer : Node3D
     /// <summary>
     ///   Get the material of this scene's model.
     /// </summary>
+    /// <param name="result">Where the resulting materials are stored</param>
     /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
-    /// <returns>ShaderMaterial of the GeometryInstance. Null if no scene.</returns>
-    public ShaderMaterial? GetMaterial(NodePath? modelPath = null)
+    /// <returns>False if no scene set (or fetch failed). True when <see cref="result"/> was filled.</returns>
+    public bool GetMaterial(List<ShaderMaterial> result, NodePath? modelPath = null)
     {
-        return currentlyShown?.GetMaterial(modelPath);
+        if (currentlyShown == null)
+            return false;
+
+        return currentlyShown.GetMaterial(result, modelPath);
     }
 
     public void LoadFromAlreadyLoadedNode(Node sceneToShow)

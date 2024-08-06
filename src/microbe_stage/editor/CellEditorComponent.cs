@@ -162,6 +162,8 @@ public partial class CellEditorComponent :
     private readonly List<Hex> islandsWorkMemory2 = new();
     private readonly Queue<Hex> islandsWorkMemory3 = new();
 
+    private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
+
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
 #pragma warning disable CA2213
@@ -584,13 +586,31 @@ public partial class CellEditorComponent :
     ///   Updates the organelle model displayer to have the specified scene in it
     /// </summary>
     public static void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        LoadedSceneWithModelInfo displayScene, int renderPriority)
+        LoadedSceneWithModelInfo displayScene, int renderPriority, List<ShaderMaterial> temporaryDataHolder)
     {
         organelleModel.Scene = displayScene.LoadedScene;
-        var material = organelleModel.GetMaterial(displayScene.ModelPath);
-        if (material != null)
+
+        temporaryDataHolder.Clear();
+        if (!organelleModel.GetMaterial(temporaryDataHolder, displayScene.ModelPath))
         {
-            material.RenderPriority = renderPriority;
+            GD.PrintErr("Failed to get material for editor / display cell to update render priority");
+            return;
+        }
+
+        // To follow MicrobeRenderPrioritySystem this sets other than the first material to be -1 in priority
+        bool first = true;
+
+        foreach (var shaderMaterial in temporaryDataHolder)
+        {
+            if (first)
+            {
+                shaderMaterial.RenderPriority = renderPriority;
+                first = false;
+            }
+            else
+            {
+                shaderMaterial.RenderPriority = renderPriority - 1;
+            }
         }
     }
 
@@ -1447,6 +1467,12 @@ public partial class CellEditorComponent :
             {
                 CostMultiplier = CostMultiplier,
             });
+    }
+
+    protected void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
+        LoadedSceneWithModelInfo displayScene, int renderPriority)
+    {
+        UpdateOrganellePlaceHolderScene(organelleModel, displayScene, renderPriority, temporaryDisplayerFetchList);
     }
 
     protected override float CalculateEditorArrowZPosition()
