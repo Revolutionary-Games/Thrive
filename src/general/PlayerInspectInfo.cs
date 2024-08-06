@@ -39,8 +39,9 @@ public partial class PlayerInspectInfo : Node
     public virtual void Process(double delta)
     {
         var viewport = GetViewport();
-        var mousePos = viewport.GetMousePosition();
         var camera = viewport.GetCamera3D();
+        var mousePos = viewport.GetMousePosition();
+        mousePos = ApplyScreenEffects(mousePos, viewport.GetVisibleRect().Size);
 
         // Safety check to disable this node when there's no active camera
         if (camera == null)
@@ -132,5 +133,17 @@ public partial class PlayerInspectInfo : Node
 
         rayData = default;
         return false;
+    }
+
+    /// <summary>
+    ///   Applies screen effects to mouse position.
+    /// </summary>
+    /// <returns>
+    ///   True screen position of what visually is under cursor.
+    /// </returns>
+    protected virtual Vector2 ApplyScreenEffects(Vector2 mousePos, Vector2 viewportSize)
+    {
+        // There are no screen effects by default
+        return mousePos;
     }
 }

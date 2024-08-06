@@ -42,12 +42,12 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
 
         base.Process(delta);
 
-        clouds.GetAllAvailableAt(camera.CursorWorldPos, currentHoveredCompounds, false);
+        clouds.GetAllAvailableAt(camera.CursorVisualWorldPos, currentHoveredCompounds, false);
 
-        if (camera.CursorWorldPos != lastCursorWorldPos)
+        if (camera.CursorVisualWorldPos != lastCursorWorldPos)
         {
             hoveredCompounds.Clear();
-            lastCursorWorldPos = camera.CursorWorldPos;
+            lastCursorWorldPos = camera.CursorVisualWorldPos;
         }
 
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
@@ -79,5 +79,17 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
         }
 
         currentHoveredCompounds.Clear();
+    }
+
+    /// <inheritdoc/>
+    protected override Vector2 ApplyScreenEffects(Vector2 mousePos, Vector2 viewportSize)
+    {
+        if (Settings.Instance.ChromaticEnabled)
+        {
+            float distortion = Settings.Instance.ChromaticAmount;
+            mousePos = ScreenUtils.BarrelDistortion(mousePos, distortion, viewportSize);
+        }
+
+        return mousePos;
     }
 }

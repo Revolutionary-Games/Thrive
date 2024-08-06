@@ -87,6 +87,9 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     private Vector3 cursorWorldPos = new(0, 0, 0);
     private bool cursorDirty = true;
 
+    private Vector3 cursorVisualWorldPos = new(0, 0, 0);
+    private bool cursorVisualDirty = true;
+
     [JsonProperty]
     private float lightLevel = 1.0f;
 
@@ -137,6 +140,21 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             return cursorWorldPos;
         }
         private set => cursorWorldPos = value;
+    }
+
+    /// <summary>
+    ///   Returns the position the player is visually pointing to with their cursor, taking screen effects into account
+    /// </summary>
+    [JsonIgnore]
+    public Vector3 CursorVisualWorldPos
+    {
+        get
+        {
+            if (cursorVisualDirty)
+                UpdateCursorVisualWorldPos();
+            return cursorVisualWorldPos;
+        }
+        private set => cursorVisualWorldPos = value;
     }
 
     public bool NodeReferencesResolved { get; private set; }
@@ -251,6 +269,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         }
 
         cursorDirty = true;
+        cursorVisualDirty = true;
     }
 
     public void ResetHeight()
@@ -384,6 +403,44 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         }
 
         cursorDirty = false;
+    }
+
+    private void UpdateCursorVisualWorldPos()
+    {
+        var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
+
+        var viewPort = GetViewport();
+
+        if (viewPort == null)
+        {
+            GD.PrintErr("Camera is not related to a viewport, can't update mouse world position");
+            return;
+        }
+
+        var mousePos = viewPort.GetMousePosition();
+
+        mousePos = ApplyScreenEffects(mousePos, viewPort.GetVisibleRect().Size);
+
+        var intersection = worldPlane.IntersectsRay(ProjectRayOrigin(mousePos),
+            ProjectRayNormal(mousePos));
+
+        if (intersection.HasValue)
+        {
+            cursorVisualWorldPos = intersection.Value;
+        }
+
+        cursorVisualDirty = false;
+    }
+
+    private Vector2 ApplyScreenEffects(Vector2 mousePos, Vector2 viewportSize)
+    {
+        if (Settings.Instance.ChromaticEnabled)
+        {
+            float distortion = Settings.Instance.ChromaticAmount;
+            mousePos = ScreenUtils.BarrelDistortion(mousePos, distortion, viewportSize);
+        }
+
+        return mousePos;
     }
 
     private void UpdateBackgroundVisibility()
