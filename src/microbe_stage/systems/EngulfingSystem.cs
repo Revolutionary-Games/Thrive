@@ -1460,6 +1460,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable, false);
 
+        // When ejecting something with a pilus it can immediately deal max pilus damage to the engulfer, to prevent
+        // that damage cooldown is added when ejecting
         if (entity.Has<DamageCooldown>())
         {
             ref var damageCooldown = ref entity.Get<DamageCooldown>();
