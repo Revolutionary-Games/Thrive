@@ -715,6 +715,8 @@ public partial class CellEditorComponent
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        endosymbiosisPopup.Lawk = Editor.CurrentGame.GameWorld.WorldSettings.LAWK;
+
         endosymbiosisPopup.UpdateData(Editor.EditedBaseSpecies.Endosymbiosis,
             Editor.EditedCellProperties?.IsBacteria ??
             throw new Exception("Cell properties needs to be known already"));
