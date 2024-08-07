@@ -76,6 +76,11 @@ public struct OrganelleContainer
     public int AgentVacuoleCount;
 
     /// <summary>
+    ///   How good this microbe is at breaking down iron (score is sum of scores from all organelles)
+    /// </summary>
+    public int IronBreakdownEfficiency;
+
+    /// <summary>
     ///   The slime jets with mucocyst
     /// </summary>
     public int MucocystCount;
@@ -454,6 +459,7 @@ public static class OrganelleContainerHelpers
         container.AvailableEnzymes[Lipase.Value] = 1;
 
         container.AgentVacuoleCount = 0;
+        container.IronBreakdownEfficiency = 0;
         container.MucocystCount = 0;
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
@@ -531,6 +537,8 @@ public static class OrganelleContainerHelpers
 
             if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
+
+            container.IronBreakdownEfficiency += organelleDefinition.IronBreakdownEfficiency;
 
             container.OrganellesCapacity +=
                 MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelleDefinition,

@@ -82,6 +82,11 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public int EditorButtonOrder;
 
+    /// <summary>
+    ///   How good organelle is at breaking down iron using siderophore
+    /// </summary>
+    public int IronBreakdownEfficiency;
+
     public OrganelleComponentFactoryInfo Components = new();
 
     /// <summary>

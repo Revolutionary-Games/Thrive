@@ -28,4 +28,9 @@ public enum VisualResourceIdentifier
     AgentProjectileCyanide,
 
     AgentProjectileChannelInhibitor,
+
+    /// <summary>
+    ///   Iron projectile effect
+    /// </summary>
+    SiderophoreProjectile,
 }

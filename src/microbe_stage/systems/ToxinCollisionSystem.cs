@@ -137,7 +137,7 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
             GD.PrintErr("Unexpected error in collision filter: ", e);
         }
 
-        // No reason why this shouldn't collie
+        // No reason why this shouldn't collide
         return true;
     }
 
