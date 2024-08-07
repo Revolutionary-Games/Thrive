@@ -89,6 +89,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(352, 0)
 layout_mode = 2
 MoveToPatchButtonVisible = false
+MigrationManagerEnabled = false
 
 [connection signal="OnCurrentPatchCentered" from="HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" method="CenterTo"]
 [connection signal="pressed" from="HSplitContainer/MapPanel/MarginContainer/BoxContainer/FindCurrentPatchButton" to="." method="OnFindCurrentPatchPressed"]
