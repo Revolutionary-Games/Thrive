@@ -192,6 +192,10 @@ public partial class NewGameSettings : ControlWithInput
     private Label fogOfWarModeDescription = null!;
     private Button freeGlucoseCloudButton = null!;
     private Button passiveReproductionButton = null!;
+
+    [Export]
+    private Button switchSpeciesOnExtinctionButton = null!;
+
     private Button limitGrowthRateButton = null!;
     private Button organelleUnlocksEnabled = null!;
 
@@ -400,6 +404,7 @@ public partial class NewGameSettings : ControlWithInput
         fogOfWarModeDropdown.Selected = (int)difficulty.FogOfWarMode;
         freeGlucoseCloudButton.ButtonPressed = difficulty.FreeGlucoseCloud;
         passiveReproductionButton.ButtonPressed = difficulty.PassiveReproduction;
+        switchSpeciesOnExtinctionButton.ButtonPressed = difficulty.SwitchSpeciesOnExtinction;
         limitGrowthRateButton.ButtonPressed = difficulty.LimitGrowthRate;
         organelleUnlocksEnabled.ButtonPressed = difficulty.OrganelleUnlocksEnabled;
 
@@ -593,6 +598,7 @@ public partial class NewGameSettings : ControlWithInput
                 FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
                 FreeGlucoseCloud = freeGlucoseCloudButton.ButtonPressed,
                 PassiveReproduction = passiveReproductionButton.ButtonPressed,
+                SwitchSpeciesOnExtinction = switchSpeciesOnExtinctionButton.ButtonPressed,
                 LimitGrowthRate = limitGrowthRateButton.ButtonPressed,
                 OrganelleUnlocksEnabled = organelleUnlocksEnabled.ButtonPressed,
             };
@@ -729,6 +735,7 @@ public partial class NewGameSettings : ControlWithInput
         fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
         freeGlucoseCloudButton.ButtonPressed = preset.FreeGlucoseCloud;
         passiveReproductionButton.ButtonPressed = preset.PassiveReproduction;
+        switchSpeciesOnExtinctionButton.ButtonPressed = preset.SwitchSpeciesOnExtinction;
         limitGrowthRateButton.ButtonPressed = preset.LimitGrowthRate;
         organelleUnlocksEnabled.ButtonPressed = preset.OrganelleUnlocksEnabled;
 
@@ -771,6 +778,9 @@ public partial class NewGameSettings : ControlWithInput
                 continue;
 
             if (passiveReproductionButton.ButtonPressed != preset.PassiveReproduction)
+                continue;
+
+            if (switchSpeciesOnExtinctionButton.ButtonPressed != preset.SwitchSpeciesOnExtinction)
                 continue;
 
             if (limitGrowthRateButton.ButtonPressed != preset.LimitGrowthRate)
@@ -872,6 +882,12 @@ public partial class NewGameSettings : ControlWithInput
     }
 
     private void OnPassiveReproductionToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnSwapOnExtinctionToggled(bool pressed)
     {
         _ = pressed;
         UpdateSelectedDifficultyPresetControl();
