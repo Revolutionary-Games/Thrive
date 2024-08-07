@@ -76,7 +76,7 @@ public struct OrganelleContainer
     public int AgentVacuoleCount;
 
     /// <summary>
-    ///   How good organelles are at breaking down iron (score is sum of scores from all organelles)
+    ///   How good this microbe is at breaking down iron (score is sum of scores from all organelles)
     /// </summary>
     public int IronBreakdownEfficiency;
 
