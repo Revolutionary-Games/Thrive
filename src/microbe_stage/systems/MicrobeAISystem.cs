@@ -535,17 +535,18 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                     {
                         chosenChunk = chunk;
                         bestFoundChunkDistance = distance;
+
+                        if (ironEater)
+                        {
+                            // TODO: this should have a more robust check (than just pure size)
+                            if (p.Key == iron && chunk.EngulfSize > 50)
+                            {
+                                isBigIron = true;
+                            }
+                        }
                     }
 
                     break;
-                }
-
-                if (ironEater)
-                {
-                    if (p.Key == iron && chunk.EngulfSize > 50)
-                    {
-                        isBigIron = true;
-                    }
                 }
             }
         }
