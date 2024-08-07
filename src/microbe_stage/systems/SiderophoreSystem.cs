@@ -1,6 +1,7 @@
 ﻿namespace Systems;
 
 using System;
+using System.Collections.Generic;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -29,6 +30,9 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         base(world, runner)
     {
         this.worldSimulation = worldSimulation;
+
+        // Create an unshared dictionary for the compounds data that we modify
+        smallIronChunkCache.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -40,13 +44,9 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 
         ref var collisions = ref entity.Get<CollisionManagement>();
 
-        ref var sender = ref entity.Get<SiderophoreProjectile>().Sender;
-
         if (!projectile.ProjectileInitialized)
         {
             projectile.ProjectileInitialized = true;
-
-            projectile.Amount = sender.Get<OrganelleContainer>().IronBreakdownEfficiency;
 
             collisions.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_COLLISIONS_TINY);
         }
@@ -57,7 +57,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         {
             ref var collision = ref activeCollisions![i];
 
-            if (!HandleSiderophoreCollision(ref collision, in worldSimulation, ref projectile))
+            if (!HandleSiderophoreCollision(ref collision, ref projectile))
             {
                 continue;
             }
@@ -76,45 +76,56 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         }
     }
 
-    private bool HandleSiderophoreCollision(ref PhysicsCollision collision,
-        in IWorldSimulation worldSimulation, ref SiderophoreProjectile projectile)
+    private bool HandleSiderophoreCollision(ref PhysicsCollision collision, ref SiderophoreProjectile projectile)
     {
         var target = collision.SecondEntity;
 
-        // Skip if hit something that's not a chunk
-        if (!target.Has<CompoundStorage>())
+        // Skip if hit something that isn't a valid target
+        if (!target.Has<SiderophoreTarget>() || !target.Has<CompoundStorage>())
             return false;
 
         ref var compounds = ref target.Get<CompoundStorage>();
 
-        if (compounds.Compounds.Compounds.Count < 1)
+        if (!compounds.Compounds.Compounds.TryGetValue(iron, out var existingIron))
             return false;
 
-        if (target.Has<SiderophoreTarget>())
+        var efficiency = projectile.Amount;
+
+        var size = Math.Max(Math.Min(efficiency / 3, 20), 1);
+
+        var remainingIron = existingIron - size;
+
+        var firstEntityPosition = collision.FirstEntity.Get<WorldPosition>().Position;
+
+        // This shallow copies a struct to modify here
+        var smallIronChunk = smallIronChunkCache;
+
+        smallIronChunk.ChunkScale = (float)Math.Sqrt(size);
+        smallIronChunk.Size = Math.Min(size, remainingIron);
+
+        // Chunk spawn reads the data and copies it, so we can use one dictionary here, but in case this system is
+        // multithreaded in teh future, there's a lock here
+        lock (smallIronChunk.Compounds!)
         {
-            var efficiency = projectile.Amount;
+            // This update is probably safe as long as 2 threads don't exactly at the same time process a chunk
+            // collision with siderophore, but this lock should make this much less likely problem
+            compounds.Compounds.Compounds[iron] = remainingIron;
 
-            var size = Math.Max(Math.Min(efficiency / 3, 20), 1);
-
-            compounds.Compounds.Compounds[iron] -= size;
-
-            var smallIronChunk = smallIronChunkCache;
-
-            smallIronChunk.ChunkScale = (float)Math.Sqrt(size);
-            smallIronChunk.Size = Math.Min(size, compounds.Compounds.Compounds[iron]);
-            smallIronChunk.Compounds![iron] = new ChunkConfiguration.ChunkCompound
+            smallIronChunk.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>
             {
-                Amount = smallIronChunk.Size,
+                {
+                    iron, new ChunkConfiguration.ChunkCompound
+                    {
+                        Amount = smallIronChunk.Size,
+                    }
+                },
             };
 
-            SpawnHelpers.SpawnChunk(worldSimulation, smallIronChunk, collision.FirstEntity.Get<WorldPosition>()
-                .Position, new Random(), false);
-
-            // Spawn effect
-            // TODO: New effect for siderophore collision with iron chunk
-            SpawnHelpers.SpawnCellBurstEffect(worldSimulation, collision.FirstEntity.Get<WorldPosition>()
-                .Position, efficiency - 2);
+            SpawnHelpers.SpawnChunk(worldSimulation, smallIronChunk, firstEntityPosition, new Random(), false);
         }
+
+        // TODO: New effect for siderophore collision with iron chunk
+        SpawnHelpers.SpawnCellBurstEffect(worldSimulation, firstEntityPosition, efficiency - 2);
 
         return true;
     }
