@@ -960,6 +960,18 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         UpdatePatchLightLevelSettings();
     }
 
+    protected override void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
+    {
+        base.OnGameContinuedAsSpecies(newPlayerSpecies, inPatch);
+
+        // Update spawners if staying in the same patch as otherwise they wouldn't be updated and would spawn the
+        // obsolete species
+        if (inPatch == GameWorld.Map.CurrentPatch)
+        {
+            patchManager.UpdateSpawners(inPatch, this);
+        }
+    }
+
     protected override void OnLightLevelUpdate()
     {
         if (GameWorld.Map.CurrentPatch == null)

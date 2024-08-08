@@ -560,7 +560,22 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         winExtinctBoxHolder.Show();
 
-        extinctionBox = ExtinctionBoxScene.Instantiate<ExtinctionBox>();
+        var box = ExtinctionBoxScene.Instantiate<ExtinctionBox>();
+
+        Species? continueAs = null;
+
+        if (stage!.GameWorld.WorldSettings.SwitchSpeciesOnExtinction)
+        {
+            continueAs = GetPotentialSpeciesToContinueAs();
+
+            if (continueAs == null)
+                GD.Print("No species to continue as found");
+        }
+
+        box.ShowContinueAs = continueAs;
+        box.Connect(ExtinctionBox.SignalName.ContinueSelected, new Callable(this, nameof(ContinueAsSpecies)));
+
+        extinctionBox = box;
         winExtinctBoxHolder.AddChild(extinctionBox);
         extinctionBox.Show();
     }
@@ -627,7 +642,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     /// <summary>
-    ///   Opens the dialog to a fossilise the species selected with a given fossilisation button.
+    ///   Opens the dialog to fossilise the species selected with a given fossilisation button.
     /// </summary>
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
@@ -1063,6 +1078,22 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         }
     }
 
+    protected virtual Species? GetPotentialSpeciesToContinueAs()
+    {
+        if (stage == null)
+        {
+            GD.PrintErr("No stage to get available species through");
+            return null;
+        }
+
+        var currentPlayer = stage.GameWorld.PlayerSpecies;
+
+        // TODO: if we want to allow going back stages, this will need to be adjusted
+        var mustBeSameStage = (Species species) => currentPlayer.GetType() == species.GetType();
+
+        return stage.GameWorld.GetClosestRelatedSpecies(currentPlayer, true, mustBeSameStage);
+    }
+
     protected void OpenMenu()
     {
         EmitSignal(SignalName.OnOpenMenu);
@@ -1190,5 +1221,18 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         {
             button.UpdatePosition();
         }
+    }
+
+    private void ContinueAsSpecies(uint id)
+    {
+        var species = stage?.GameWorld.GetSpecies(id);
+
+        if (species == null)
+        {
+            GD.PrintErr("Couldn't find species to continue as");
+            return;
+        }
+
+        stage!.ContinueGameAsSpecies(species);
     }
 }

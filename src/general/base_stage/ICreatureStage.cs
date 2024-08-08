@@ -22,4 +22,10 @@ public interface ICreatureStage : IStageBase, IReturnableGameState
     public void MoveToEditor();
 
     public void MoveToPatch(Patch patch);
+
+    /// <summary>
+    ///   Causes the game to switch the given species to be the player species and continuing
+    /// </summary>
+    /// <param name="species">Species to play as next</param>
+    public void ContinueGameAsSpecies(Species species);
 }

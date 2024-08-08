@@ -25,7 +25,7 @@ public partial class ExtinctionBox : CustomWindow
     private Species? speciesToContinueAs;
 
     [Signal]
-    public delegate void ContinueSelectedEventHandler(int species);
+    public delegate void ContinueSelectedEventHandler(uint species);
 
     public Species? ShowContinueAs
     {
