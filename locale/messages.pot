@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-07 12:33+0300\n"
+"POT-Creation-Date: 2024-08-08 11:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -328,7 +328,7 @@ msgstr ""
 msgid "AUTO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1323
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1324
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
@@ -337,7 +337,7 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1050
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1284
 msgid "AUTO-EVO_PREDICTION"
 msgstr ""
 
@@ -412,7 +412,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:515 ../src/general/MainMenu.tscn:816
 #: ../src/general/NewGameSettings.tscn:959 ../src/general/OptionsMenu.tscn:1674
 #: ../src/general/PauseMenu.tscn:294
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:66
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
 msgid "BACK"
@@ -713,27 +713,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:880
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:895
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:884
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:899
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:888
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:903
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:882
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:897
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:886
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:901
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:890
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:905
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -920,7 +920,7 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:94
 #: ../src/gui_common/charts/line/LineChart.tscn:215
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1332
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:81
 #: ../src/microbe_stage/ProcessPanel.tscn:74 ../src/modding/ModManager.tscn:709
 #: ../src/thriveopedia/Thriveopedia.tscn:293
@@ -1193,6 +1193,14 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:313 ../src/modding/ModUploader.tscn:204
 msgid "CONTENT_UPLOADED_FROM"
+msgstr ""
+
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:133
+msgid "CONTINUE"
+msgstr ""
+
+#: ../src/microbe_stage/gui/ExtinctionBox.cs:149
+msgid "CONTINUE_AS_SPECIES"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:468
@@ -2273,7 +2281,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1380
+#: ../src/microbe_stage/MicrobeStage.cs:1392
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2350,11 +2358,11 @@ msgstr ""
 msgid "EXTERNAL_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:106
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:114
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:99
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "EXTINCTION_CAPITAL"
 msgstr ""
 
@@ -2368,7 +2376,7 @@ msgstr ""
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:398
+#: ../src/general/base_stage/CreatureStageBase.cs:444
 msgid "EXTINCT_IN_PATCH"
 msgstr ""
 
@@ -3672,7 +3680,7 @@ msgid "LOAD_FINISHED"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:303 ../src/general/PauseMenu.tscn:235
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:115
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:139
 msgid "LOAD_GAME"
 msgstr ""
 
@@ -5275,7 +5283,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:327
+#: ../src/general/base_stage/CreatureStageBase.cs:364
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -5291,7 +5299,7 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:272
+#: ../src/general/base_stage/CreatureStageBase.cs:309
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -5614,7 +5622,7 @@ msgid "RESUME_TOOLTIP"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:264
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:145
 msgid "RETURN_TO_MENU"
 msgstr ""
 
@@ -6170,7 +6178,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1072
+#: ../src/microbe_stage/MicrobeStage.cs:1084
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6494,11 +6502,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1378
+#: ../src/microbe_stage/MicrobeStage.cs:1390
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1379
+#: ../src/microbe_stage/MicrobeStage.cs:1391
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -6619,7 +6627,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:189
-#: ../src/late_multicellular_stage/MulticellularStage.cs:882
+#: ../src/late_multicellular_stage/MulticellularStage.cs:890
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
