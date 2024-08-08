@@ -838,4 +838,38 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         UpdateColonySizeForMulticellular();
         UpdateColonySizeForMacroscopic();
     }
+
+    private void ToggleProcessPressed(ChemicalEquation equation)
+    {
+        if (!stage!.Player.Has<BioProcesses>())
+            return;
+
+        ref var processes = ref stage.Player.Get<BioProcesses>();
+
+        if (processes.ActiveProcesses == null)
+            return;
+
+        var newProcesses = new List<TweakedProcess>();
+
+        foreach (var process in processes.ActiveProcesses)
+        {
+            if (process.Process.Name == equation.EquationFromProcess!.Name)
+            {
+                var newProcess = process;
+                newProcess.SpeedMultiplier = equation.ProcessEnabled ? 1 : 0;
+                newProcesses.Add(newProcess);
+            }
+        }
+
+        // Run loop again to merge newProcesses and processes
+        foreach (var process in processes.ActiveProcesses)
+        {
+            if (newProcesses.Contains(process))
+                continue;
+
+            newProcesses.Add(process);
+        }
+
+        processes.ActiveProcesses = newProcesses;
+    }
 }
