@@ -135,7 +135,23 @@ public partial class ExtinctionBox : CustomWindow
 
         GD.Print("Attempting to continue game as species: ", ShowContinueAs.ID);
 
-        EmitSignal(SignalName.ContinueSelected, ShowContinueAs.ID);
+        if (continueButton != null)
+        {
+            continueButton.Disabled = true;
+        }
+        else
+        {
+            GD.PrintErr("Cannot disable continue button as it doesn't exist");
+        }
+
+        // Play an animation to hide potential patch switch
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.4f, () =>
+        {
+            EmitSignal(SignalName.ContinueSelected, ShowContinueAs.ID);
+
+            // And fade in after triggering the continue option
+            TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.4f);
+        });
     }
 
     private void UpdateContinueOption()
