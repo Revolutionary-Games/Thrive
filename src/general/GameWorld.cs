@@ -570,10 +570,11 @@ public class GameWorld : ISaveLoadable
         // Find the best usable species with the minimum distance to the related species
         Species? result = null;
         int minDistance = int.MaxValue;
+        int minGeneration = int.MaxValue;
 
         foreach (var entry in speciesDistance)
         {
-            if (entry.Value >= minDistance)
+            if (entry.Value > minDistance)
                 continue;
 
             if ((onlyNonExtinct && entry.Key.IsExtinct) || entry.Key.Obsolete)
@@ -582,7 +583,17 @@ public class GameWorld : ISaveLoadable
             if (filter != null && !filter.Invoke(entry.Key))
                 continue;
 
+            // The entry also needs to be as little mutated compared to the player as possible (this is estimated based
+            // on the generation of the species)
+            if (minGeneration < entry.Key.Generation)
+                continue;
+
+            // If same as min distance population needs to be higher
+            if (entry.Value == minDistance && result != null && entry.Key.Population <= result.Population)
+                continue;
+
             minDistance = entry.Value;
+            minGeneration = entry.Key.Generation;
             result = entry.Key;
         }
 

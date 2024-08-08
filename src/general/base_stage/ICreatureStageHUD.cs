@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///   Interface for <see cref="CreatureStageHUDBase{TStage}"/> to make complex inter dependencies work like with
+///   Interface for <see cref="CreatureStageHUDBase{TStage}"/> to make complex interdependencies work like with
 ///   <see cref="IEditor"/>
 /// </summary>
 public interface ICreatureStageHUD : IStageHUD
