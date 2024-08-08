@@ -39,19 +39,19 @@ void fragment() {
     // Calculates the intensities for each color channel containing the concentrations
     float cloud1 = getIntensity(concentrations.r) *
         texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0)).r *
-        texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED)).r * CLOUD_DISSIPATION;
+        texture(noise, noiseUV + vec2(0.5, TIME * CLOUD_SPEED)).r * CLOUD_DISSIPATION;
 
     float cloud2 = getIntensity(concentrations.g) *
         texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0) + 0.2).r *
-        texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.2).r * CLOUD_DISSIPATION;
+        texture(noise, noiseUV + vec2(0.5, TIME * CLOUD_SPEED) + 0.2).r * CLOUD_DISSIPATION;
 
     float cloud3 = getIntensity(concentrations.b) *
         texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0) + 0.4).r *
-        texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.4).r * CLOUD_DISSIPATION;
+        texture(noise, noiseUV + vec2(0.5, TIME * CLOUD_SPEED) + 0.4).r * CLOUD_DISSIPATION;
 
     float cloud4 = getIntensity(concentrations.a) *
         texture(noise, noiseUV + vec2(TIME * CLOUD_SPEED, 0) + 0.6).r *
-        texture(noise, noiseUV + vec2(0, TIME * CLOUD_SPEED) + 0.6).r * CLOUD_DISSIPATION;
+        texture(noise, noiseUV + vec2(0.5, TIME * CLOUD_SPEED) + 0.6).r * CLOUD_DISSIPATION;
 
     // Sum everything and we also ensure that even the clouds with the lowest amount of compounds get some colour too
     vec4 colour = colour1 * cloud1 +
