@@ -605,6 +605,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         winExtinctBoxHolder.Hide();
         patchExtinctionBox?.Hide();
+
+        // Allow extinction box to show again / stop showing it so that it doesn't mess with patch extinction box if
+        // the player continued the game after extinction.
+        extinctionBox?.QueueFree();
+        extinctionBox = null;
     }
 
     public void UpdateEnvironmentalBars(BiomeConditions biome)
