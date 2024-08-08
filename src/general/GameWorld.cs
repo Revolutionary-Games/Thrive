@@ -284,6 +284,9 @@ public class GameWorld : ISaveLoadable
 
         species.BecomePlayerSpecies();
         PlayerSpecies = species;
+
+        // Update the species generation to continue the game timeline from where it left off
+        species.Generation = oldPlayer.Generation;
     }
 
     /// <summary>
