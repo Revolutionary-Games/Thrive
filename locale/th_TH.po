@@ -2866,7 +2866,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -2979,6 +2979,59 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 msgid "MIB_VALUE"
+msgstr ""
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "แพร่กระจายไปยังแพทช์:"
+
+#, fuzzy
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr "เมาส์ขวา"
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr "สารประกอบของเมฆ"
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "แพร่กระจายไปยังแพทช์:"
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "แพร่กระจายไปยังแพทช์:"
+
+#, fuzzy
+msgid "MICHE_ROOT_PRESSURE"
+msgstr "แพร่กระจายไปยังแพทช์:"
+
+msgid "MICHE_TREE"
 msgstr ""
 
 #, fuzzy
@@ -4053,6 +4106,10 @@ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} 
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "ก่อนหน้า:"
+
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
 
@@ -4528,8 +4585,9 @@ msgstr "Rusticyanin เป็นโปรตีนที่สามารถใ
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
+#, fuzzy
 msgid "SAFE_MODE_TITLE"
-msgstr ""
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 msgid "SAVE"
 msgstr "เซฟ"
@@ -5062,8 +5120,9 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
+#, fuzzy
 msgid "STEAM_INIT_FAILED"
-msgstr ""
+msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
 
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
@@ -7109,6 +7168,14 @@ msgstr "ซูมเข้า"
 
 msgid "ZOOM_OUT"
 msgstr "ซูมออก"
+
+#, fuzzy
+#~ msgid "COMPOUND_CLOUD_PRESSURE"
+#~ msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+#~ msgid "STORAGE_PRESSURE"
+#~ msgstr "การจัดเก็บ"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "เพิ่มเสียงเบส"

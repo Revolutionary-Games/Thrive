@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgryi0yvh11d8"]
+[gd_scene load_steps=22 format=3 uid="uid://cgryi0yvh11d8"]
 
 [ext_resource type="Script" path="res://src/auto-evo/AutoEvoExploringTool.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -12,8 +12,11 @@
 [ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://cjbhth6wlc08l" path="res://src/auto-evo/EvolutionaryTree.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://clhnq4g06pd62" path="res://src/auto-evo/MicheTree.tscn" id="16_hpnq1"]
 [ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://b1boea8qjx6xx" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="17_rkk82"]
 [ext_resource type="Texture2D" uid="uid://b84h4mjojeb7q" path="res://assets/textures/gui/bevel/plusButton.png" id="18"]
+[ext_resource type="PackedScene" uid="uid://cikd2ef2usr1y" path="res://src/gui_common/MicheDetailsPanel.tscn" id="18_qhnwh"]
 [ext_resource type="Texture2D" uid="uid://bwcvbcn15kctq" path="res://assets/textures/gui/bevel/plusButtonHover.png" id="19"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="20"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="21"]
@@ -29,6 +32,7 @@ SpeciesSelectPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSpl
 MapPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap")
 ReportPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report")
 ViewerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer")
+MichePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche")
 AllWorldsStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/AllWorldsStatLabel")
 WorldsListMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/WorldsListMenu")
 NewWorldButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/NewWorldButton")
@@ -68,6 +72,10 @@ ResultsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/Results
 SpeciesListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/SpeciesListMenu")
 EvolutionaryTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
 SpeciesDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
+PatchListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer/PatchListMenu")
+MicheTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MicheTree")
+MicheDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/MicheDetailsPanel")
+MicheSpeciesDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
 ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
 ExportSuccessNotificationDialogPath = NodePath("ExportSuccessNotificationDialog")
 
@@ -128,6 +136,12 @@ layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_cxjso")
 text = "VIEWER"
+
+[node name="MicheButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_cxjso")
+text = "MICHE"
 
 [node name="WorldEditor" type="HBoxContainer" parent="GUI/VBoxContainer"]
 layout_mode = 2
@@ -554,6 +568,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 text = "GENERATIONS"
 label_settings = ExtResource("5_6c001")
+vertical_alignment = 1
 
 [node name="HistoryListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -581,6 +596,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 text = "SPECIES"
 label_settings = ExtResource("5_6c001")
+vertical_alignment = 1
 
 [node name="SpeciesListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -719,6 +735,95 @@ theme_override_constants/margin_bottom = 10
 [node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("9")]
 layout_mode = 2
 
+[node name="Miche" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "MICHE_TREE"
+label_settings = ExtResource("5_6c001")
+
+[node name="MicheTree" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("16_hpnq1")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer"]
+layout_mode = 2
+
+[node name="PatchSelectPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "PATCH_COLON"
+label_settings = ExtResource("5_6c001")
+vertical_alignment = 1
+
+[node name="PatchListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+text = "SELECT_A_PATCH"
+flat = false
+script = ExtResource("12")
+
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("17_rkk82")]
+visible = false
+layout_mode = 2
+
+[node name="MicheDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("18_qhnwh")]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
 layout_mode = 2
 
@@ -746,6 +851,7 @@ Movable = false
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/MapButton" to="." method="ChangeTab" binds= ["Map"]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= ["Report"]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= ["Viewer"]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/MicheButton" to="." method="ChangeTab" binds= ["Miche"]]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/NewWorldButton" to="." method="InitNewWorld"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunGeneration" to="." method="OnFinishOneGenerationButtonPressed"]
@@ -762,5 +868,6 @@ Movable = false
 [connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="OnCurrentPatchCentered" from="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" method="CenterTo"]
 [connection signal="SpeciesSelected" from="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
+[connection signal="MicheSelected" from="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MicheTree" to="." method="MicheTreeNodeSelected"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
 [connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]

@@ -21,6 +21,13 @@ public class EditorAutoEvoRun : AutoEvoRun
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
+        var generateMicheCache = new SimulationCache(worldSettings);
+
+        foreach (var entry in map.Patches)
+        {
+            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, worldSettings));
+        }
+
         steps.Enqueue(new CalculatePopulation(configuration, worldSettings, map,
             new List<Species> { ModifiedProperties },
             new List<Species> { OriginalEditedSpecies }, true) { CanRunConcurrently = false });

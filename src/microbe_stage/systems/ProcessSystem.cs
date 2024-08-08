@@ -7,6 +7,7 @@ namespace Systems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -139,7 +140,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
         return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
-            isPlayerSpecies, worldSettings, amountType);
+            isPlayerSpecies, worldSettings, amountType, null);
     }
 
     /// <summary>
@@ -161,10 +162,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
     /// <param name="worldSettings">The world generation settings for this game</param>
     /// <param name="amountType">Specifies how changes during an in-game day are taken into account</param>
+    /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
-        CompoundAmountType amountType)
+        CompoundAmountType amountType, SimulationCache? cache)
     {
         var result = new EnergyBalanceInfo();
 
@@ -178,7 +180,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                var processData = CalculateProcessMaximumSpeed(process, biome, amountType);
+                ProcessSpeedInformation processData;
+                if (cache != null && amountType == CompoundAmountType.Average)
+                {
+                    processData = cache.GetProcessMaximumSpeed(process, biome);
+                }
+                else
+                {
+                    processData = CalculateProcessMaximumSpeed(process, biome, amountType);
+                }
 
                 if (processData.WritableInputs.TryGetValue(ATP, out var amount))
                 {
@@ -189,9 +199,26 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
                 if (processData.WritableOutputs.TryGetValue(ATP, out amount))
                 {
-                    processATPProduction += amount;
-
                     result.AddProduction(organelle.Definition.InternalName, amount);
+
+                    var isInPatch = true;
+
+                    foreach (var input in processData.WritableInputs)
+                    {
+                        if (biome.Compounds.TryGetValue(input.Key, out var inputCompoundData))
+                        {
+                            if (inputCompoundData.Amount > 0 || inputCompoundData.Ambient > 0)
+                                continue;
+                        }
+
+                        isInPatch = false;
+                        break;
+                    }
+
+                    if (isInPatch)
+                    {
+                        processATPProduction += amount;
+                    }
                 }
             }
 
@@ -584,7 +611,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var process in processor.ActiveProcesses)
             {
-                // If rate is 0 dont do it
+                // If rate is 0 don't do it
                 // The rate specifies how fast fraction of the specified process numbers this cell can do
                 // TODO: would be nice still to report these to process statistics
                 if (process.Rate <= 0.0f)

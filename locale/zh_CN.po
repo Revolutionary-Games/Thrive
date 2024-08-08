@@ -2791,7 +2791,8 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "锁定昼夜循环"
 
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -2913,6 +2914,70 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种，原因是进化压力"
+
+#, fuzzy
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr "压力"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "化合物云"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "化合物云"
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]物种[/b]\n"
+"  {0}：{1}\n"
+"[b]世代[/b]\n"
+"  {2}\n"
+"[b]种群数量[/b]\n"
+"  {3}\n"
+"[b]颜色[/b]\n"
+"  #{4}\n"
+"[b]行为[/b]\n"
+"  {5}"
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "化合物云"
+
+#, fuzzy
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr "化合物云"
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr "压力"
+
+#, fuzzy
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "捕食{0}"
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "压力"
+
+#, fuzzy
+msgid "MICHE_ROOT_PRESSURE"
+msgstr "压力"
+
+#, fuzzy
+msgid "MICHE_TREE"
+msgstr "转储SceneTree"
 
 msgid "MICROBE"
 msgstr "微生物"
@@ -3941,6 +4006,10 @@ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 
 msgid "PAST_DEVELOPERS"
 msgstr "过去的开发人员"
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "最繁荣的地区："
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -7059,6 +7128,18 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#, fuzzy
+#~ msgid "COMPOUND_CLOUD_PRESSURE"
+#~ msgstr "化合物云"
+
+#, fuzzy
+#~ msgid "STORAGE_PRESSURE"
+#~ msgstr "压力"
+
+#, fuzzy
+#~ msgid "PATCH"
+#~ msgstr "地区图"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "低音增强"

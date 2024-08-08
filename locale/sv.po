@@ -2978,7 +2978,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -3089,6 +3089,69 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 msgid "MIB_VALUE"
+msgstr ""
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
+
+#, fuzzy
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr "Tryck"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Molekylmoln"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Molekylmoln"
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]Arter[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Population[/b]\n"
+"  {3}\n"
+"[b]Färg[/b]\n"
+"  #{4}\n"
+"[b]Beteende[/b]\n"
+"  {5}"
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Molekylmoln"
+
+#, fuzzy
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Molekylmoln"
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr "Tryck"
+
+#, fuzzy
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "Plundring av {0}"
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Tryck"
+
+#, fuzzy
+msgid "MICHE_ROOT_PRESSURE"
+msgstr "Tryck"
+
+msgid "MICHE_TREE"
 msgstr ""
 
 #, fuzzy
@@ -4159,6 +4222,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Tidigare utvecklare"
 
 #, fuzzy
+msgid "PATCH_COLON"
+msgstr "Bästa Biom:"
+
+#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr "Precis som 99% av alla arter som någonsin har existerat, har din art utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment i evolutionen."
 
@@ -4644,8 +4711,13 @@ msgstr ""
 "Fredliga mikrober attackerar inte andra över större avstånd\n"
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
+#, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
 
 msgid "SAVE"
 msgstr "Spara"
@@ -7235,6 +7307,18 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "COMPOUND_CLOUD_PRESSURE"
+#~ msgstr "Molekylmoln"
+
+#, fuzzy
+#~ msgid "STORAGE_PRESSURE"
+#~ msgstr "Tryck"
+
+#, fuzzy
+#~ msgid "PATCH"
+#~ msgstr "Grotta"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Basboost"
