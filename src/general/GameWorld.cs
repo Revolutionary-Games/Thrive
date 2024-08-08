@@ -264,6 +264,20 @@ public class GameWorld : ISaveLoadable
         if (species.Obsolete)
             throw new ArgumentException("Cannot switch to an obsolete species");
 
+        bool found = false;
+
+        foreach (var existingSpecies in worldSpecies)
+        {
+            if (ReferenceEquals(species, existingSpecies.Value))
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+            GD.PrintErr("Player swapping to species object not present in the current world");
+
         var oldPlayer = PlayerSpecies;
 
         if (oldPlayer.Obsolete)
@@ -535,15 +549,32 @@ public class GameWorld : ISaveLoadable
 
             foreach (var recordSpecies in generation.Value.AllSpeciesData)
             {
+                // Skip already handled species
+                bool handled = false;
+
+                foreach (var alreadyHandled in speciesDistance)
+                {
+                    if (alreadyHandled.Key.ID == recordSpecies.Key)
+                    {
+                        handled = true;
+                        break;
+                    }
+                }
+
+                if (handled)
+                    continue;
+
                 var currentRecordValue = recordSpecies.Value;
 
                 // Directly split species
                 if (currentRecordValue.MutatedPropertiesID == relatedId || currentRecordValue.SplitFromID == relatedId)
                 {
-                    var record =
-                        GenerationRecord.GetFullSpeciesRecord(recordSpecies.Key, generation.Key, GenerationHistory);
-
-                    speciesDistance[record.Species] = 1;
+                    // This cannot use historical species records as those record the historical populations and not
+                    // current ones. And the Species objects wouldn't be in this world.
+                    if (TryGetSpecies(recordSpecies.Key, out var candidateSpecies))
+                    {
+                        speciesDistance[candidateSpecies!] = 1;
+                    }
                 }
 
                 // Indirectly split species
@@ -553,14 +584,16 @@ public class GameWorld : ISaveLoadable
 
                     if (existingId != currentRecordValue.MutatedPropertiesID &&
                         existingId != currentRecordValue.SplitFromID)
+                    {
                         continue;
+                    }
 
-                    var record =
-                        GenerationRecord.GetFullSpeciesRecord(recordSpecies.Key, generation.Key, GenerationHistory);
-
-                    // Distance is one more than the existing calculated distance that this current species is
-                    // related to
-                    speciesDistance[record.Species] = existingDistance.Value + 1;
+                    if (TryGetSpecies(recordSpecies.Key, out var candidateSpecies))
+                    {
+                        // Distance is one more than the existing calculated distance that this current species is
+                        // related to
+                        speciesDistance[candidateSpecies!] = existingDistance.Value + 1;
+                    }
 
                     break;
                 }
