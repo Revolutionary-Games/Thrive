@@ -252,7 +252,10 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             return;
         }
 
+        // Stop being in game over state
         BaseHUD.HidePatchExtinctionBox();
+        gameOver = false;
+        playerExtinctInCurrentPatch = false;
 
         // Allow derived classes to customize things
         OnGameContinuedAsSpecies(species, patch);
@@ -269,6 +272,9 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         // Auto-evo needs to be re-done as player species is different
         CurrentGame.GameWorld.ResetAutoEvoRun();
+
+        // Stop the extinction music
+        StartMusic();
     }
 
     protected override void SetupStage()
@@ -360,7 +366,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
-            Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
+            Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT * 1000,
             Localization.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
             / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
