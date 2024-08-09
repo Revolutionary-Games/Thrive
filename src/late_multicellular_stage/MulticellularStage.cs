@@ -758,11 +758,19 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         UpdateBackgroundPanorama();
     }
 
+    protected override void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
+    {
+        base.OnGameContinuedAsSpecies(newPlayerSpecies, inPatch);
+
+        // TODO: update spawners here when those are added for this stage
+        _ = inPatch;
+    }
+
     protected override void SpawnPlayer()
     {
         // Don't want to respawn the player when moving to the society stage
         // Once the flag is reset to false, we'll have the flag for going to the editor true and will not spawn
-        // the player thanks to that so we don't need to add that second check here
+        // the player thanks to that, so we don't need to add that second check here
         if (HasPlayer || movingToSocietyStage)
             return;
 

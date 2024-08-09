@@ -28,6 +28,9 @@ public class GameWorld : ISaveLoadable
     [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
 
+    /// <summary>
+    ///   History of the world. Generations need to be inserted in order for this to work.
+    /// </summary>
     [JsonProperty]
     public Dictionary<int, GenerationRecord> GenerationHistory = new();
 
@@ -245,6 +248,62 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
+    ///   Removes player status from <see cref="PlayerSpecies"/> and makes the given species the new player. Marks the
+    ///   old species as obsolete (and deletes all populations).
+    /// </summary>
+    /// <param name="species">New player species</param>
+    /// <param name="deleteOldPlayer">If false doesn't make the old player species unable to be used</param>
+    /// <exception cref="ArgumentException">If the given species is currently the player species</exception>
+    public void ReplacePlayerSpeciesWith(Species species, bool deleteOldPlayer = true)
+    {
+        if (ReferenceEquals(PlayerSpecies, species) || PlayerSpecies.ID == species.ID)
+        {
+            throw new ArgumentException("New and old player species are the same");
+        }
+
+        if (species.Obsolete)
+            throw new ArgumentException("Cannot switch to an obsolete species");
+
+        bool found = false;
+
+        foreach (var existingSpecies in worldSpecies)
+        {
+            if (ReferenceEquals(species, existingSpecies.Value))
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+            GD.PrintErr("Player swapping to species object not present in the current world");
+
+        var oldPlayer = PlayerSpecies;
+
+        if (oldPlayer.Obsolete)
+        {
+            GD.PrintErr("Player species is already obsolete on switch");
+        }
+
+        GD.Print($"Switching player species from {oldPlayer.FormattedIdentifier} to {species.FormattedIdentifier}");
+
+        if (deleteOldPlayer)
+        {
+            oldPlayer.Obsolete = true;
+
+            // Remove all populations of the old species to make sure it is extinct
+            oldPlayer.Population = 0;
+            Map.RemoveAllPopulationsOf(oldPlayer);
+        }
+
+        species.BecomePlayerSpecies();
+        PlayerSpecies = species;
+
+        // Update the species generation to continue the game timeline from where it left off
+        species.Generation = oldPlayer.Generation;
+    }
+
+    /// <summary>
     ///   Generates a few random species in all patches
     /// </summary>
     public void GenerateRandomSpeciesForFreeBuild(long seed = 0)
@@ -355,7 +414,8 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
-    ///   Makes the current auto-evo run run at full speed (all threads) until complete. If not active run does nothing
+    ///   Makes the current auto-evo run to run at full speed (all threads) until complete. If not active run does
+    ///   nothing
     /// </summary>
     public void FinishAutoEvoRunAtFullSpeed()
     {
@@ -459,6 +519,118 @@ public class GameWorld : ISaveLoadable
     public bool TryGetSpecies(uint id, out Species? species)
     {
         return worldSpecies.TryGetValue(id, out species);
+    }
+
+    /// <summary>
+    ///   Finds the species that is the closest relative to the given species
+    /// </summary>
+    /// <param name="relatedTo">This is the species to which the closet relative is searched</param>
+    /// <param name="onlyNonExtinct">If true this method will only return non-extinct species</param>
+    /// <param name="filter">Optional extra filter to discard results if this returns false</param>
+    /// <returns>The closest related species or null</returns>
+    public Species? GetClosestRelatedSpecies(Species relatedTo, bool onlyNonExtinct, Func<Species, bool>? filter)
+    {
+        // How closely related species are to the target
+        var speciesDistance = new Dictionary<Species, int>();
+
+        var relatedId = relatedTo.ID;
+
+        int nextGeneration = 0;
+
+        foreach (var generation in GenerationHistory)
+        {
+            if (nextGeneration != generation.Key)
+            {
+                GD.PrintErr(
+                    $"World history is out of order, expected generation {nextGeneration} but got {generation.Key}");
+            }
+
+            ++nextGeneration;
+
+            foreach (var recordSpecies in generation.Value.AllSpeciesData)
+            {
+                // Skip already handled species
+                bool handled = false;
+
+                foreach (var alreadyHandled in speciesDistance)
+                {
+                    if (alreadyHandled.Key.ID == recordSpecies.Key)
+                    {
+                        handled = true;
+                        break;
+                    }
+                }
+
+                if (handled)
+                    continue;
+
+                var currentRecordValue = recordSpecies.Value;
+
+                // Directly split species
+                if (currentRecordValue.MutatedPropertiesID == relatedId || currentRecordValue.SplitFromID == relatedId)
+                {
+                    // This cannot use historical species records as those record the historical populations and not
+                    // current ones. And the Species objects wouldn't be in this world.
+                    if (TryGetSpecies(recordSpecies.Key, out var candidateSpecies))
+                    {
+                        speciesDistance[candidateSpecies!] = 1;
+                    }
+                }
+
+                // Indirectly split species
+                foreach (var existingDistance in speciesDistance)
+                {
+                    var existingId = existingDistance.Key.ID;
+
+                    if (existingId != currentRecordValue.MutatedPropertiesID &&
+                        existingId != currentRecordValue.SplitFromID)
+                    {
+                        continue;
+                    }
+
+                    if (TryGetSpecies(recordSpecies.Key, out var candidateSpecies))
+                    {
+                        // Distance is one more than the existing calculated distance that this current species is
+                        // related to
+                        speciesDistance[candidateSpecies!] = existingDistance.Value + 1;
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        // Find the best usable species with the minimum distance to the related species
+        Species? result = null;
+        int minDistance = int.MaxValue;
+        int minGeneration = int.MaxValue;
+
+        foreach (var entry in speciesDistance)
+        {
+            if (entry.Value > minDistance)
+                continue;
+
+            if ((onlyNonExtinct && entry.Key.IsExtinct) || entry.Key.Obsolete)
+                continue;
+
+            if (filter != null && !filter.Invoke(entry.Key))
+                continue;
+
+            // The entry also needs to be as little mutated compared to the player as possible (this is estimated based
+            // on the generation of the species)
+            if (minGeneration < entry.Key.Generation)
+                continue;
+
+            // If same as min distance population needs to be higher
+            if (entry.Value == minDistance && result != null && entry.Key.Population <= result.Population)
+                continue;
+
+            minDistance = entry.Value;
+            minGeneration = entry.Key.Generation;
+            result = entry.Key;
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -682,9 +854,18 @@ public class GameWorld : ISaveLoadable
         }
 
         tree.Clear();
+        int nextGeneration = 0;
 
         foreach (var generation in GenerationHistory)
         {
+            if (nextGeneration != generation.Key)
+            {
+                GD.PrintErr(
+                    $"World history is out of order, expected generation {nextGeneration} but got {generation.Key}");
+            }
+
+            ++nextGeneration;
+
             var record = generation.Value;
 
             if (generation.Key == 0)
@@ -694,7 +875,7 @@ public class GameWorld : ISaveLoadable
                 continue;
             }
 
-            // Recover all omitted species data for this generation so we can fill the tree
+            // Recover all omitted species data for this generation, so we can fill the tree
             var updatedSpeciesData = record.AllSpeciesData.ToDictionary(s => s.Key,
                 s => GenerationRecord.GetFullSpeciesRecord(s.Key, generation.Key, GenerationHistory));
 

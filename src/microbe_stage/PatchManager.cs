@@ -97,6 +97,22 @@ public class PatchManager : IChildPropertiesLoadCallback
         processSystem.SetBiome(currentPatch.Biome);
 
         // Apply spawn system settings
+        UpdateSpawners(currentPatch, spawnEnvironment);
+
+        // Change the lighting
+        UpdateLight(currentPatch.BiomeTemplate);
+        compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
+
+        UpdateAllPatchLightLevels();
+
+        return patchIsChanged;
+    }
+
+    /// <summary>
+    ///   Updates spawn system settings for current patch
+    /// </summary>
+    public void UpdateSpawners(Patch currentPatch, IMicrobeSpawnEnvironment spawnEnvironment)
+    {
         UnmarkAllSpawners();
 
         // Cloud spawners should be added first due to the way the
@@ -106,14 +122,6 @@ public class PatchManager : IChildPropertiesLoadCallback
         HandleCellSpawns(currentPatch, spawnEnvironment);
 
         RemoveNonMarkedSpawners();
-
-        // Change the lighting
-        UpdateLight(currentPatch.BiomeTemplate);
-        compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
-
-        UpdateAllPatchLightLevels();
-
-        return patchIsChanged;
     }
 
     public void UpdatePatchBiome(Patch currentPatch)
