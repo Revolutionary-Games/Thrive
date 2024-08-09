@@ -25,6 +25,7 @@ shader_parameter/damagedTexture = ExtResource("4")
 shader_parameter/dissolveTexture = ExtResource("5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p8cmc"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("6_vljlr")
 shader_parameter/wigglyNess = 1.0
@@ -35,6 +36,7 @@ shader_parameter/fade = 0.2
 shader_parameter/tint = Color(0, 0.55, 0.8, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lboqi"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("7_grw0d")
 shader_parameter/wigglyNess = 1.0

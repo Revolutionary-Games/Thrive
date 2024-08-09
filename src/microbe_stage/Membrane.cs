@@ -337,7 +337,7 @@ public partial class Membrane : MeshInstance3D
 
         MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
         EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
-        MucocystShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
+        MucocystShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
     }
 
     private void ApplyMovementWiggly()
