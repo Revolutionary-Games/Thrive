@@ -215,9 +215,31 @@ public static class MicrobeControlHelpers
         return true;
     }
 
+    /// <summary>
+    ///   Sets microbe speed straight forward.
+    /// </summary>
+    /// <param name="control">Control to hold commands.</param>
+    /// <param name="speed">Speed at which to move.</param>
     public static void SetMoveSpeed(this ref MicrobeControl control, float speed)
     {
         control.MovementDirection = new Vector3(0, 0, -speed);
+    }
+
+    /// <summary>
+    ///   Moves microbe towards target position, even if that position is not forward.
+    ///   This does NOT handle any turning.
+    /// </summary>
+    /// <param name="control">Control to hold commands.</param>
+    /// <param name="selfPosition">Position of microbe moving.</param>
+    /// <param name="targetPosition">Vector3 that microbe will move towards.</param>
+    /// <param name="speed">Speed at which to move.</param>
+    public static void SetMoveSpeedPrecise(this ref MicrobeControl control, WorldPosition selfPosition,
+        Vector3 targetPosition, float speed)
+    {
+        var angleToTarget = selfPosition.Position.AngleTo(targetPosition) - selfPosition.Rotation.GetAngle();
+
+        control.MovementDirection = new Vector3(Mathf.Sin(angleToTarget) * speed, 0,
+            Mathf.Cos(angleToTarget) * speed);
     }
 
     public static void QueueSecreteSlime(this ref MicrobeControl control,
