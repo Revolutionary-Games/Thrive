@@ -23,7 +23,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private Patch? previousPatch;
 
-    private float compoundCloudBrightness = 1.0f;
+    private float compoundCloudBrightness = 1.2f;
 
     /// <summary>
     ///   Used to detect when an old save is loaded, and we can't rely on the new logic for despawning things

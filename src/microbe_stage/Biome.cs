@@ -36,7 +36,7 @@ public class Biome : IRegistryType
     /// </summary>
     public LightDetails Sunlight = new();
 
-    public float CompoundCloudBrightness = 1.0f;
+    public float CompoundCloudBrightness = 1.2f;
 
     public MusicContext[]? ActiveMusicContexts = null;
 
