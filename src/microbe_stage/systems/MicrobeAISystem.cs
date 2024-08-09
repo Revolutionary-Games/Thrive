@@ -111,7 +111,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         // Engulfables, which are basically all chunks when they aren't cells, and aren't attached so that they
         // also aren't eaten already
-        chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().With<CompoundBag>()
+        chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().With<CompoundStorage>()
             .Without<SpeciesMember>().Without<AttachedToEntity>().AsSet();
 
         var simulationParameters = SimulationParameters.Instance;
