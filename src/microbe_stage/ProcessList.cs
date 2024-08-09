@@ -81,7 +81,9 @@ public partial class ProcessList : VBoxContainer
         equation.ShowSpinner = ShowSpinners;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
 
-        equation.ToggleProcessPressed += HandleToggleProcess;
+        equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));
+
+        equation.ProcessEnabled = process.DisplayInfo.CurrentSpeed > 0;
 
         if (ProcessesTitleColour != null)
             equation.DefaultTitleFont = ProcessesTitleColour;

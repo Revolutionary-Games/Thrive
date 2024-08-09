@@ -849,27 +849,14 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (processes.ActiveProcesses == null)
             return;
 
-        var newProcesses = new List<TweakedProcess>();
-
-        foreach (var process in processes.ActiveProcesses)
+        for (int i = 0; i < processes.ActiveProcesses.Count; ++i)
         {
-            if (process.Process.Name == equation.EquationFromProcess!.Name)
+            if (processes.ActiveProcesses[i].Process.Name == equation.EquationFromProcess!.Name)
             {
-                var newProcess = process;
-                newProcess.SpeedMultiplier = equation.ProcessEnabled ? 1 : 0;
-                newProcesses.Add(newProcess);
+                var process = processes.ActiveProcesses[i];
+                process.SpeedMultiplier = equation.ProcessEnabled ? 1 : 0;
+                processes.ActiveProcesses[i] = process;
             }
         }
-
-        // Run loop again to merge newProcesses and processes
-        foreach (var process in processes.ActiveProcesses)
-        {
-            if (newProcesses.Contains(process))
-                continue;
-
-            newProcesses.Add(process);
-        }
-
-        processes.ActiveProcesses = newProcesses;
     }
 }

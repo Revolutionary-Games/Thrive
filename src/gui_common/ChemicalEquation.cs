@@ -54,6 +54,8 @@ public partial class ChemicalEquation : VBoxContainer
     /// </summary>
     private bool hasNoInputs;
 
+    private bool lastToggle = true;
+
     [Signal]
     public delegate void ToggleProcessPressedEventHandler(ChemicalEquation thisEquation);
 
@@ -88,7 +90,12 @@ public partial class ChemicalEquation : VBoxContainer
         get => toggleProcess.ButtonPressed;
         set
         {
+            if (value == lastToggle)
+                return;
+
             EmitSignal(SignalName.ToggleProcessPressed, this);
+
+            lastToggle = value;
 
             toggleProcess.ButtonPressed = value;
         }
