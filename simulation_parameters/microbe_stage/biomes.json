@@ -550,6 +550,33 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
+        "phosphateChunk": {
+          "Name": "PHOSPHATE_CHUNK",
+          "Meshes": [
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+          },
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+          }
+          ],
+          "Density": 0.00005,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 50,
+          "VentAmount": 10,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 60000
+            }
+          }
+        },
         "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
@@ -989,6 +1016,33 @@
             }
           },
           "DissolverEnzyme": "rusticyanin"
+        },
+        "phosphateChunk": {
+          "Name": "PHOSPHATE_CHUNK",
+          "Meshes": [
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+          },
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+          }
+          ],
+          "Density": 0.00002,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 50,
+          "VentAmount": 10,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 60000
+            }
+          }
         },
         "marineSnow": {
           "Name": "MARINE_SNOW",
@@ -1513,6 +1567,33 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
+        "phosphateChunk": {
+          "Name": "PHOSPHATE_CHUNK",
+          "Meshes": [
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+          },
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+          }
+          ],
+          "Density": 0.00004,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 50,
+          "VentAmount": 10,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 60000
+            }
+          }
+        },
         "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
@@ -1691,6 +1772,33 @@
             }
           },
           "DissolverEnzyme": "rusticyanin"
+        },
+        "phosphateChunk": {
+          "Name": "PHOSPHATE_CHUNK",
+          "Meshes": [
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+          },
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+          }
+          ],
+          "Density": 0.00009,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 50,
+          "VentAmount": 10,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 60000
+            }
+          }
         },
         "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
@@ -2075,6 +2183,33 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
+        "phosphateChunk": {
+          "Name": "PHOSPHATE_CHUNK",
+          "Meshes": [
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+          },
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+          }
+          ],
+          "Density": 0.00003,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 50,
+          "VentAmount": 10,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 60000
+            }
+          }
+        },
         "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
@@ -2253,6 +2388,33 @@
             }
           },
           "DissolverEnzyme": "rusticyanin"
+        },
+        "phosphateChunk": {
+          "Name": "PHOSPHATE_CHUNK",
+          "Meshes": [
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+          },
+          {
+            "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
+            "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+          }
+          ],
+          "Density": 0.00007,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 50,
+          "VentAmount": 10,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 60000
+            }
+          }
         },
         "marineSnow": {
           "Name": "MARINE_SNOW",
