@@ -9,7 +9,7 @@ size = Vector2(200, 200)
 
 [sub_resource type="Gradient" id="Gradient_u1fse"]
 offsets = PackedFloat32Array(0, 0.88806)
-colors = PackedColorArray(0.385493, 0.385492, 0.385492, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.525493, 0.525492, 0.525492, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7cqxm"]
 
@@ -28,8 +28,8 @@ shader_parameter/colour2 = Color(0, 0, 0, 0)
 shader_parameter/colour3 = Color(0, 0, 0, 0)
 shader_parameter/colour4 = Color(0, 0, 0, 0)
 shader_parameter/UVOffset = Vector2(0, 0)
-shader_parameter/NoiseScale = 0.05
-shader_parameter/BrightnessMultiplier = 1.0
+shader_parameter/NoiseScale = 14
+shader_parameter/BrightnessMultiplier = 1.2
 shader_parameter/CLOUD_SPEED = 0.013
 shader_parameter/noise = SubResource("NoiseTexture2D_xdmng")
 
