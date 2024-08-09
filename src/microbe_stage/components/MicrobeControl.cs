@@ -220,6 +220,11 @@ public static class MicrobeControlHelpers
         control.MovementDirection = new Vector3(0, 0, -speed);
     }
 
+    public static void SetMoveSpeedPrecise(this ref MicrobeControl control, WorldPosition selfPosition, Vector3 targetPosition, float speed)
+    {
+        control.MovementDirection = new Vector3(Mathf.Cos(selfPosition.Rotation.GetAngle()) * speed, 0, Mathf.Sin(selfPosition.Rotation.GetAngle()) * speed);
+    }
+
     public static void QueueSecreteSlime(this ref MicrobeControl control,
         ref OrganelleContainer organelleInfo, in Entity entity, float duration)
     {

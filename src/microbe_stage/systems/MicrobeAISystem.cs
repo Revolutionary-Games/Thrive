@@ -760,7 +760,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         }
         else
         {
-            control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            control.SetMoveSpeedPrecise(position, chunk, Constants.AI_BASE_MOVEMENT);
         }
     }
 
@@ -822,12 +822,12 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
             if (RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
             {
-                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                control.SetMoveSpeedPrecise(position, target, Constants.AI_BASE_MOVEMENT);
             }
         }
         else
         {
-            control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            control.SetMoveSpeedPrecise(position, target, Constants.AI_BASE_MOVEMENT);
 
             if (gameWorld!.WorldSettings.ExperimentalFeatures)
                 control.Sprinting = true;
