@@ -366,7 +366,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
-            Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT * 1000,
+            Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             Localization.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
             / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
