@@ -216,7 +216,7 @@ public static class MicrobeControlHelpers
     }
 
     /// <summary>
-    ///     Sets microbe speed straight forward.
+    ///   Sets microbe speed straight forward.
     /// </summary>
     /// <param name="control">Control to hold commands.</param>
     /// <param name="speed">Speed at which to move.</param>
@@ -226,8 +226,8 @@ public static class MicrobeControlHelpers
     }
 
     /// <summary>
-    ///     Moves microbe towards target position, even if that position is not forward.
-    ///     This does NOT handle any turning.
+    ///   Moves microbe towards target position, even if that position is not forward.
+    ///   This does NOT handle any turning.
     /// </summary>
     /// <param name="control">Control to hold commands.</param>
     /// <param name="selfPosition">Position of microbe moving.</param>
