@@ -12,7 +12,7 @@
 default_font = ExtResource("5_wdgi7")
 default_font_size = 18
 
-[node name="ChemicalEquation" type="VBoxContainer" node_paths=PackedStringArray("title", "spinner", "firstLineContainer")]
+[node name="ChemicalEquation" type="VBoxContainer" node_paths=PackedStringArray("title", "toggleProcess", "spinner", "firstLineContainer")]
 process_priority = 7
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +22,7 @@ theme = ExtResource("1")
 script = ExtResource("2")
 DefaultTitleFont = ExtResource("4_77wn0")
 title = NodePath("HBoxContainer/Label")
+toggleProcess = NodePath("HBoxContainer/ToggleProcess")
 spinner = NodePath("HBoxContainer/SpinnerNode/Spinner")
 firstLineContainer = NodePath("FirstLine")
 speedLimitedTitleFont = ExtResource("4_vbkf3")
@@ -53,7 +54,13 @@ label_settings = ExtResource("4_77wn0")
 vertical_alignment = 1
 max_lines_visible = 5
 
+[node name="ToggleProcess" type="CheckButton" parent="HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
 [node name="FirstLine" type="HBoxContainer" parent="."]
 layout_mode = 2
 mouse_filter = 2
 theme = SubResource("1")
+
+[connection signal="toggled" from="HBoxContainer/ToggleProcess" to="." method="ToggleButtonPressed"]

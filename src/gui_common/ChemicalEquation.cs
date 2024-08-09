@@ -15,6 +15,9 @@ public partial class ChemicalEquation : VBoxContainer
     private Label? title;
 
     [Export]
+    private CheckButton toggleProcess = null!;
+
+    [Export]
     private TextureRect? spinner;
 
     [Export]
@@ -51,6 +54,11 @@ public partial class ChemicalEquation : VBoxContainer
     /// </summary>
     private bool hasNoInputs;
 
+    private bool lastToggle = true;
+
+    [Signal]
+    public delegate void ToggleProcessPressedEventHandler(ChemicalEquation thisEquation);
+
     public IProcessDisplayInfo? EquationFromProcess
     {
         get => equationFromProcess;
@@ -74,6 +82,22 @@ public partial class ChemicalEquation : VBoxContainer
         {
             showSpinner = value;
             UpdateHeader();
+        }
+    }
+
+    public bool ProcessEnabled
+    {
+        get => toggleProcess.ButtonPressed;
+        set
+        {
+            if (value == lastToggle)
+                return;
+
+            EmitSignal(SignalName.ToggleProcessPressed, this);
+
+            lastToggle = value;
+
+            toggleProcess.ButtonPressed = value;
         }
     }
 
@@ -301,5 +325,10 @@ public partial class ChemicalEquation : VBoxContainer
     private string GetEnvironmentLabelText()
     {
         return Localization.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
+    }
+
+    private void ToggleButtonPressed(bool toggled)
+    {
+        ProcessEnabled = toggled;
     }
 }
