@@ -13,9 +13,9 @@ uniform vec4 colour4 : source_color = vec4(0, 0, 0, 0);
 uniform vec2 UVOffset = vec2(0, 0);
 
 // This must evenly divide into 1 or tiling will break
-uniform float NoiseScale = 0.05;
+uniform float NoiseScale = 14;
 
-uniform float BrightnessMultiplier = 1.0;
+uniform float BrightnessMultiplier = 1.2;
 uniform float CLOUD_SPEED = 0.013;
 
 // Setting this too low makes the clouds invisible
@@ -32,7 +32,7 @@ float getIntensity(float value)
 
 void fragment() {
     vec2 scaledUV = UV + UVOffset;
-    vec2 noiseUV = scaledUV / NoiseScale;
+    vec2 noiseUV = scaledUV * NoiseScale;
 
     vec4 concentrations = texture(densities, scaledUV);
 
@@ -60,7 +60,7 @@ void fragment() {
                   colour4 * cloud4;
 
     float adjustedAlpha = min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) *
-        clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.3, 0.3, 0.7);
+        clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.4, 0.4, 0.8);
 
     ALPHA = adjustedAlpha;
     ALBEDO = colour.rgb;

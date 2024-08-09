@@ -103,6 +103,9 @@ public class WorldGenerationSettings
     public bool PassiveGainOfReproductionCompounds => Difficulty.PassiveReproduction;
 
     [JsonIgnore]
+    public bool SwitchSpeciesOnExtinction => Difficulty.SwitchSpeciesOnExtinction;
+
+    [JsonIgnore]
     public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;
 
     /// <summary>

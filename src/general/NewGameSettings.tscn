@@ -27,7 +27,7 @@ font = ExtResource("5_otvf3")
 
 [sub_resource type="StyleBoxEmpty" id="4"]
 
-[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("experimentalFeatures")]
+[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("switchSpeciesOnExtinctionButton", "experimentalFeatures")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,6 +82,7 @@ IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/Advance
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
 CheckOptionsMenuAdviceContainerPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer")
+switchSpeciesOnExtinctionButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer13/SwitchOnExtinct")
 experimentalFeatures = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalFeatures")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -644,6 +645,22 @@ text = "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
 
+[node name="VBoxContainer13" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SwitchOnExtinct" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer13"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer13"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
+
 [node name="VBoxContainer10" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -996,6 +1013,7 @@ text = "START_GAME"
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer11/HBoxContainer/HBoxContainer/FogOfWarMode" to="." method="OnFogOfWarModeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9/PassiveReproductionProgress" to="." method="OnPassiveReproductionToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer13/SwitchOnExtinct" to="." method="OnSwapOnExtinctionToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate" to="." method="OnGrowthRateToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12/OrganelleUnlocksEnabled" to="." method="OnOrganelleUnlocksToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced" to="." method="OnLAWKToggled"]

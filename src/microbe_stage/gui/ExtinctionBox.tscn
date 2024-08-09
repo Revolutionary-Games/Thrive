@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2uw1x2g8awbf"]
+[gd_scene load_steps=10 format=3 uid="uid://b2uw1x2g8awbf"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
 [ext_resource type="Script" path="res://src/microbe_stage/gui/ExtinctionBox.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://b6ygk4wqe5y68" path="res://src/gui_common/fonts/Thrive-Humongous-Red.tres" id="4_wg3u8"]
 [ext_resource type="PackedScene" uid="uid://ddi31qylscfyh" path="res://src/saving/SaveList.tscn" id="5"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="5_1cfe3"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="6_fyfe8"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0, 0, 0.392157)
@@ -30,15 +31,19 @@ _data = {
 "FadeIn": SubResource("2")
 }
 
-[node name="ExtinctionBox" type="Control"]
+[node name="ExtinctionBox" type="Control" node_paths=PackedStringArray("continueText", "continueButton")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1115.0
-offset_bottom = 402.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("3")
 script = ExtResource("4")
 ExtinctionMenuPath = NodePath("ExtinctionBoxMenu")
 LoadMenuPath = NodePath("CenterContainer/LoadMenu")
+continueText = NodePath("ExtinctionBoxMenu/PanelContainer/MarginContainer/VBoxContainer/ContinueText")
+continueButton = NodePath("ExtinctionBoxMenu/Continue")
 Movable = false
 ShowCloseButton = false
 Decorate = false
@@ -46,6 +51,7 @@ ExclusiveAllowCloseOnEscape = false
 FullRect = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 offset_right = 1000.0
 offset_bottom = 600.0
 
@@ -70,6 +76,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 theme = ExtResource("3")
@@ -108,6 +116,22 @@ label_settings = ExtResource("5_1cfe3")
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="Control" type="Control" parent="ExtinctionBoxMenu/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="ContinueText" parent="ExtinctionBoxMenu/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_fyfe8")]
+visible = false
+layout_mode = 2
+fit_content = true
+
+[node name="Continue" type="Button" parent="ExtinctionBoxMenu"]
+visible = false
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CONTINUE"
+
 [node name="LoadGame" type="Button" parent="ExtinctionBoxMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
@@ -127,5 +151,6 @@ libraries = {
 autoplay = "FadeIn"
 
 [connection signal="pressed" from="CenterContainer/LoadMenu/Back" to="." method="CloseLoadPressed"]
+[connection signal="pressed" from="ExtinctionBoxMenu/Continue" to="." method="OnContinue"]
 [connection signal="pressed" from="ExtinctionBoxMenu/LoadGame" to="." method="OpenLoadGamePressed"]
 [connection signal="pressed" from="ExtinctionBoxMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
