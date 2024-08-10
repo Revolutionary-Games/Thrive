@@ -17,8 +17,6 @@ public partial class ExtinctionBox : CustomWindow
 #pragma warning disable CA2213
     private Control extinctionMenu = null!;
     private Control loadMenu = null!;
-
-    [Export]
     private Label extinctionMessage = null!;
 
     [Export]
@@ -168,7 +166,7 @@ public partial class ExtinctionBox : CustomWindow
 
         if (ShowContinueAs != null)
         {
-            extinctionMessage.Text = Localization.Translate("EXTINCTION_BOX_TEXT_CONTINUE");
+            GetNode<Label>(ExtinctionMessagePath).Text = Localization.Translate("EXTINCTION_BOX_TEXT_CONTINUE");
 
             continueText.ExtendedBbcode = Localization.Translate("CONTINUE_AS_SPECIES")
                 .FormatSafe(ShowContinueAs.FormattedNameBbCode,
